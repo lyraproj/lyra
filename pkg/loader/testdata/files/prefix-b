@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "prefix-b plugin has run"

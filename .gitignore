@@ -1,0 +1,7 @@
+build
+.plugin/
+.vscode/
+.idea/
+tmp/
+LICENSE_TMPFILE.txt
+*.db
