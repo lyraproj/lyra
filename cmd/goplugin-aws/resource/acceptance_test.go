@@ -16,8 +16,8 @@ var publicKeyFingerprint = "c5:5d:ee:ed:13:c4:da:46:d9:88:a4:8a:34:e9:1f:52"
 
 //vpcHandler defines the contract.  this is unnecessary but for illustrative purposes
 type vpcHandler interface {
-	Create(desiredState *VPC) (actualState *VPC, externalID string, err error)
-	Read(externalID string) (*VPC, error)
+	Create(desiredState *Vpc) (actualState *Vpc, externalID string, err error)
+	Read(externalID string) (*Vpc, error)
 	Delete(externalID string) error
 }
 
@@ -79,7 +79,7 @@ func createVPC(t *testing.T) string {
 func createSubnet(t *testing.T, vpcExternalID string) string {
 	sh := SubnetHandler{}
 	subnet := aTestSubnet()
-	subnet.VpcID = vpcExternalID
+	subnet.VpcId = vpcExternalID
 
 	//Create and check Subnet
 	actualSubnet, subnetExternalID, err := sh.Create(subnet)
@@ -111,8 +111,8 @@ func createRouteTable(t *testing.T, vpcExternalID string, subnetExternalID strin
 	rth := RouteTableHandler{}
 
 	rt := aRouteTable()
-	rt.VpcID = vpcExternalID
-	rt.SubnetID = subnetExternalID
+	rt.VpcId = vpcExternalID
+	rt.SubnetId = subnetExternalID
 
 	//Create and check RouteTable
 	actualRT, rtExternalID, err := rth.Create(rt)
@@ -234,8 +234,8 @@ func createKeyPair(t *testing.T) string {
 	return externalID
 }
 
-func aTestVPC() *VPC {
-	r := VPC{}
+func aTestVPC() *Vpc {
+	r := Vpc{}
 	r.CidrBlock = "10.90.0.0/24"
 	r.Tags = make(map[string]string)
 	r.Tags["created-by"] = "lyra-acceptance-test-vpc"

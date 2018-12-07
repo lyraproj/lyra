@@ -35,7 +35,8 @@ func newClient() *ec2.EC2 {
 }
 
 func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string) error {
-	if len(resourceIds) == 0 {
+	if len(resourceIds) == 0 || tags == nil || len(tags) == 0 {
+		log.Debug("Nothing to tag", "resourceIds", resourceIds, "tags", tags)
 		return nil
 	}
 	awsTags := []*ec2.Tag{}
@@ -48,6 +49,9 @@ func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string)
 			DryRun:    aws.Bool(false),
 			Tags:      awsTags,
 		})
+	if err != nil {
+		log.Debug("Error tagging", "error", err, "resourceIds", resourceIds, "tags", tags, "awsTags", awsTags)
+	}
 	return err
 }
 

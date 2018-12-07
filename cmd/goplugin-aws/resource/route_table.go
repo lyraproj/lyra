@@ -9,9 +9,9 @@ import (
 
 // RouteTable is the managed resource
 type RouteTable struct {
-	VpcID           string
-	RouteTableID    string
-	SubnetID        string
+	VpcId           string
+	RouteTableId    string
+	SubnetId        string
 	Routes          []Route
 	Associations    []RouteTableAssociation
 	PropagatingVgws []PropagatingVgw
@@ -57,7 +57,7 @@ func (h *RouteTableHandler) Create(desired *RouteTable) (*RouteTable, string, er
 	client := newClient()
 	response, err := client.CreateRouteTable(
 		&ec2.CreateRouteTableInput{
-			VpcId: aws.String(desired.VpcID),
+			VpcId: aws.String(desired.VpcId),
 		})
 	if err != nil {
 		log.Debug("Error creating RouteTable", "error", err)
@@ -121,8 +121,8 @@ func (h *RouteTableHandler) Delete(externalID string) error {
 
 func (h *RouteTableHandler) fromAWS(desired *RouteTable, actual *ec2.RouteTable) *RouteTable {
 	routeTable := RouteTable{
-		VpcID:           *actual.VpcId,
-		RouteTableID:    *actual.RouteTableId,
+		VpcId:           *actual.VpcId,
+		RouteTableId:    *actual.RouteTableId,
 		Tags:            convertTags(actual.Tags),
 		Associations:    convertAssociations(actual.Associations),
 		PropagatingVgws: convertPropagatingVgws(actual.PropagatingVgws),
