@@ -7,17 +7,17 @@ import (
 
 // Subnet is the managed resource
 type Subnet struct {
-	VpcID                       string // TODO what TypeDef is required to make this a property (required on present, optional on absent)
+	VpcId                       string // TODO what TypeDef is required to make this a property (required on present, optional on absent)
 	CidrBlock                   string
 	AvailabilityZone            string
 	Ipv6CidrBlock               string
 	Tags                        map[string]string
 	AssignIpv6AddressOnCreation bool
-	MapPublicIPOnLaunch         bool
-	AvailableIPAddressCount     int64
+	MapPublicIpOnLaunch         bool
+	AvailableIpAddressCount     int64
 	DefaultForAz                bool
 	State                       string
-	SubnetID                    string
+	SubnetId                    string
 }
 
 //SubnetHandler creates, reads and deletes the Subnet Resource
@@ -30,7 +30,7 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 	response, err := client.CreateSubnet(
 		&ec2.CreateSubnetInput{
 			CidrBlock: aws.String(desired.CidrBlock),
-			VpcId:     aws.String(desired.VpcID),
+			VpcId:     aws.String(desired.VpcId),
 		})
 	if err != nil {
 		log.Debug("Error creating Subnet", "error", err)
@@ -95,16 +95,16 @@ func (h *SubnetHandler) Delete(externalID string) error {
 
 func (h *SubnetHandler) fromAWS(desired *Subnet, actual *ec2.Subnet) *Subnet {
 	subnet := &Subnet{
-		VpcID:            *actual.VpcId,
+		VpcId:            *actual.VpcId,
 		CidrBlock:        *actual.CidrBlock,
 		AvailabilityZone: *actual.AvailabilityZone,
 
 		Tags:                        convertTags(actual.Tags),
 		AssignIpv6AddressOnCreation: desired.AssignIpv6AddressOnCreation, // TODO DescribeSubnetAttribute
-		MapPublicIPOnLaunch:         desired.MapPublicIPOnLaunch,         // TODO DescribeSubnetAttribute
-		AvailableIPAddressCount:     *actual.AvailableIpAddressCount,
+		MapPublicIpOnLaunch:         desired.MapPublicIpOnLaunch,         // TODO DescribeSubnetAttribute
+		AvailableIpAddressCount:     *actual.AvailableIpAddressCount,
 		DefaultForAz:                *actual.DefaultForAz,
-		SubnetID:                    *actual.SubnetId,
+		SubnetId:                    *actual.SubnetId,
 		State:                       *actual.State,
 	}
 

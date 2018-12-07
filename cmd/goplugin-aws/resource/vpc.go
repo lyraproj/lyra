@@ -5,26 +5,25 @@ import (
 	"github.com/aws/aws-sdk-go/service/ec2"
 )
 
-// VPC is the managed resource
-type VPC struct {
+// Vpc is the managed resource
+type Vpc struct {
 	AmazonProvidedIpv6CidrBlock bool
 	CidrBlock                   string
 	InstanceTenancy             string
-	EnableDNSHostnames          bool
-	EnableDNSSupport            bool
+	EnableDnsHostnames          bool
+	EnableDnsSupport            bool
 	Tags                        map[string]string
-	VpcID                       string
+	VpcId                       string
 	IsDefault                   bool
 	State                       string
-	DhcpOptionsID               string
-	// CidrBlockAssociationSet not supported
+	DhcpOptionsId               string
 }
 
 //VPCHandler creates, reads and deletes the VPC Resource
 type VPCHandler struct{}
 
 // Create a VPC
-func (h *VPCHandler) Create(desired *VPC) (*VPC, string, error) {
+func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 	log.Debug("Creating VPC", "desired", desired)
 	client := newClient()
 	response, err := client.CreateVpc(
@@ -57,7 +56,7 @@ func (h *VPCHandler) Create(desired *VPC) (*VPC, string, error) {
 }
 
 // Read a VPC
-func (h *VPCHandler) Read(externalID string) (*VPC, error) {
+func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
 	log.Debug("Reading VPC", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeVpcs(
@@ -73,7 +72,7 @@ func (h *VPCHandler) Read(externalID string) (*VPC, error) {
 	if len(response.Vpcs) > 1 {
 		log.Error("Expected to find one VPC but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.Vpcs))
 	}
-	actual := h.fromAWS(&VPC{}, response.Vpcs[0])
+	actual := h.fromAWS(&Vpc{}, response.Vpcs[0])
 	log.Debug("Completed VPC read", "actual", actual)
 	return actual, nil
 }
@@ -94,17 +93,17 @@ func (h *VPCHandler) Delete(externalID string) error {
 	return err
 }
 
-func (h *VPCHandler) fromAWS(wanted *VPC, actual *ec2.Vpc) *VPC {
-	return &VPC{
+func (h *VPCHandler) fromAWS(wanted *Vpc, actual *ec2.Vpc) *Vpc {
+	return &Vpc{
 		AmazonProvidedIpv6CidrBlock: wanted.AmazonProvidedIpv6CidrBlock, // TODO look at (s *AssociateSubnetCidrBlockInput) Validate()
-		EnableDNSHostnames:          wanted.EnableDNSHostnames,          // TODO DescribeVpcAttribute
-		EnableDNSSupport:            wanted.EnableDNSSupport,            // TODO DescribeVpcAttribute
+		EnableDnsHostnames:          wanted.EnableDnsHostnames,          // TODO DescribeVpcAttribute
+		EnableDnsSupport:            wanted.EnableDnsSupport,            // TODO DescribeVpcAttribute
 		CidrBlock:                   *actual.CidrBlock,
 		InstanceTenancy:             *actual.InstanceTenancy,
 		Tags:                        convertTags(actual.Tags),
-		VpcID:                       *actual.VpcId,
+		VpcId:                       *actual.VpcId,
 		IsDefault:                   *actual.IsDefault,
 		State:                       *actual.State,
-		DhcpOptionsID:               *actual.DhcpOptionsId,
+		DhcpOptionsId:               *actual.DhcpOptionsId,
 	}
 }

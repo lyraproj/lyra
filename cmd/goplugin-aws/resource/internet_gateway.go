@@ -12,7 +12,7 @@ const defaultRetryBackoff = 1 * time.Second
 
 // InternetGateway is the managed resource
 type InternetGateway struct {
-	InternetGatewayID string
+	InternetGatewayId string
 	Tags              map[string]string
 	Attachments       []InternetGatewayAttachment
 }
@@ -98,7 +98,7 @@ func (h *InternetGatewayHandler) Delete(externalID string) error {
 
 func (h *InternetGatewayHandler) fromAWS(wanted *InternetGateway, actual *ec2.InternetGateway) *InternetGateway {
 	ig := InternetGateway{
-		InternetGatewayID: *actual.InternetGatewayId,
+		InternetGatewayId: *actual.InternetGatewayId,
 		Tags:              convertTags(actual.Tags),
 	}
 

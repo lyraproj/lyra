@@ -20,8 +20,10 @@ func Start() {
 
 		sb := service.NewServerBuilder(c, `Aws`)
 
-		evs := sb.RegisterTypes("Aws::Vpc", resource.VPC{})
+		evs := sb.RegisterTypes("Aws", resource.Vpc{})
 		sb.RegisterHandler("Aws::VPCHandler", &resource.VPCHandler{}, evs[0])
+		evs = sb.RegisterTypes("Aws", resource.Subnet{})
+		sb.RegisterHandler("Aws::SubnetHandler", &resource.SubnetHandler{}, evs[0])
 
 		s := sb.Server()
 		grpc.Serve(c, s)
