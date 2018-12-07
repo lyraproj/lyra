@@ -1,21 +1,15 @@
 # Lyra
 
 ## What is Lyra?
-Lyra (“lee-ruh”) is an open source project for orchestrating and packaging modern infrastructure in a declarative configuration. Lyra provides a vendor-neutral, multi-cloud API for provisioning of resources across public and private cloud providers.
+Lyra (“lee-ruh”) is an open source workflow engine for provisioning and managing cloud native infrastructure. Using infrastructure as code, Lyra enables you to declaratively provision and manage public cloud, private cloud, and any API-requested resources as well as orchestrate imperative actions upon them. 
 
-Lyra exposes multiple user interfaces (CLI, Pipeline, and Kubernetes CRD/Controller) so that developers can provision infrastructure using the workflows that make the most sense to them. 
+Infrastructure management involves defining and executing workflows that manage the underlying resources across their entire lifecycle - performing the initial provisioning, orchestrating intentional changes, and ultimately decommissioning those resources.  Lyra is built to help manage all of these types of these workflows. 
 
-Lyra provides the following capabilities: 
-* Orchestration of public cloud infrastructure consisting of multiple resources that have various types of interdependencies in a sensible workflow
-* Consistent management layer for cloud resources
-* A common packaging format for these infrastructure workflow abstractions 
+Lyra provides a number of language front-ends to describe a Workflow, a collection of Activities in a single manifest. An Activity is a declarative resource or imperative action that can be orchestrated together. These include API-requested resources, from Azure Functions to Kubernetes Deployments to Datadog monitors as well as imperative actions and scripts within the same Workflow. Lyra keeps a record of the resources that Lyra has provisioned in order to ensure idempotency. 
 
-Lyra provides a model-driven configuration language based on the Puppet language to describe a Workflow: 
-API-requested resources, from Azure Functions to Kubernetes Deployments to Datadog monitors as well as imperative actions and scripts within the same Workflow. Lyra keeps a record of the resources that Lyra has provisioned in order to ensure idempotency. 
+Lyra enables Application Services teams to create organization-specific infrastructure Workflows that Application Development teams can consume in a self-service way that leverages familiar user interfaces. In order to integrate into multiple developer user interfaces, Lyra exposes multiple user experiences: starting with a Kubernetes custom resource definition and controller, and eventually Pipeline and CLI interfaces. 
 
-A Workflow can be packaged as a deployable unit and consumed from multiple user interfaces, including a Kubernetes custom resource definition/custom controller, a Pipelines interface, and a CLI interface. 
-
-By separating the authoring of the Workflows from their consumption, Lyra enables Application Service teams to provide tested configurations, embedded governance policies, security validated policies in a single, deployable artifact that Application Developers can provision as dependencies within their containerized application. 
+A Workflow can be packaged as a deployable unit and consumed from any of these interfaces. By separating the authoring of the Workflows from their consumption, Lyra enables Application Service teams to provide tested configurations, embedded governance policies, security validated policies in a single, deployable artifact that Application Developers can provision as dependencies within their containerized application. 
 
 For a more detailed view of how we think about Lyra, check out our [documentation](https://docs.google.com/document/d/1oJwg4LlolC3qlt0xG__xjrz16aYwEyOk8GqyNt5_Gdo/edit?usp=sharing)!
 
@@ -24,9 +18,8 @@ For a more detailed view of how we think about Lyra, check out our [documentatio
 1. Clone the git repo from your $GOPATH: 
 `$ git clone https://github.com/lyraproj/lyra`
 
-3. Add the following lines to data.yaml
+2. Add the following lines to data.yaml
 ``` 
-$ cd lyra
 $ cat data.yaml 
  
 aws:
@@ -40,15 +33,19 @@ aws:
   instance:
     count: 5
 ```
-5. Build the plugin
+3. Build the plugin
 ```
 $ mkdir plugins
+$ make
+```
+4. Get the sample manifest
+```
 $ git clone https://github.com/lyraproj/puppet-workflow.git
 $ cp lyraproj/puppet-workflow/puppet/testdata/attach.pp lyraproj/lyra/plugins/
 $ cd lyraproj/lyra
-$ make
 ```
-3. Run the binary with the sample manifest
+
+5. Run the binary with the sample manifest
 ` $ ./build/lyra apply attach —debug`
  
 
@@ -58,13 +55,13 @@ Very much in early development. Lyra is just starting and things are a bit bumpy
 ## Roadmap
 Here’s a proposed roadmap for the project. Given the infancy of the project, it will change over time. We see the Lyra roadmap evolving in the following three dimensions: 
 
-### Workflow
+### User Experience
 - [ ] Core Engine (minimal CLI) 
 	- [x] Apply 
 	- [ ] Delete
-- [ ] Kubernetes Operator Workflow
-- [ ] Full CLI Workflow (with preview functionality)
-- [ ] GitOps Workflow
+- [ ] Kubernetes custom resource definition/controller 
+- [ ] Full CLI (with preview functionality)
+- [ ] GitOps
 
 ### Language Support
 - [x] Puppet 
@@ -73,7 +70,6 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 - [ ] Language X
 
 ### Content Ecosystem
-- [x] Proof of concept 
 - [ ] Public cloud providers (AWS, Azure, GCP)
 - [ ] Provider X ecosystem
 
