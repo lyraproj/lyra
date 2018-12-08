@@ -184,11 +184,15 @@ func (i *Identity) removeInternal(tx *bolt.Tx, internalID string) error {
 	return nil
 }
 
-// Start the example plugin running
+// Start the Identity service running
 func Start(filename string) {
 	eval.Puppet.Do(func(c eval.Context) {
 		sb := service.NewServerBuilder(c, "Default::Identity::Service")
-		sb.RegisterAPI(serviceapi.IdentityName, &Identity{})
+		id, err := NewIdentity(filename)
+		if err != nil {
+			panic(err)
+		}
+		sb.RegisterAPI(serviceapi.IdentityName, id)
 		s := sb.Server()
 		grpc.Serve(c, s)
 	})
