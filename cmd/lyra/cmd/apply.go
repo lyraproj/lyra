@@ -26,17 +26,20 @@ import (
 var homeDir string
 var hieraData string
 
-// NewApplyCmd returns the apply subcommand used to evaluate and apply manifests.
+// NewApplyCmd returns the apply subcommand used to evaluate and apply activities. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "apply [puppet manifest]",
-		Short:   "Provisions cloud resources from a manifest file",
-		Example: fmt.Sprintf("%s apply manifest.pp", os.Args[0]),
+		Use:     "apply [activity name]",
+		Short:   "Execute a Lyra activity",
+		Example: fmt.Sprintf("  %s apply my_activity", os.Args[0]), // TODO: (JD) Replace with a proper template and better examples
 		Run:     runApply,
 		Args:    cobra.ExactArgs(1),
 	}
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", "path to root directory")
-	cmd.Flags().StringVarP(&hieraData, "data", "d", "./data.yaml", "path to hiera data")
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", "path to root directory") //TODO: Explain WTF this is, why it exists, and how it works
+	cmd.Flags().StringVarP(&hieraData, "data", "d", "./data.yaml", "path to external data file")
+
+	cmd.SetHelpTemplate(cmd.HelpTemplate())
+
 	return cmd
 }
 
@@ -67,7 +70,7 @@ func runApply(cmd *cobra.Command, args []string) {
 
 			logger.Debug("calling apply")
 			apply(c, args[0], eval.EMPTY_MAP) // TODO: Perhaps provide top-level input from command line args
-			ui.ShowSuccessMessage("apply finished")
+			ui.ShowApplyMessage("apply done:", args[0])
 			logger.Debug("apply finished")
 		})
 	})

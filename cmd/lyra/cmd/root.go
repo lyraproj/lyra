@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mgutz/ansi"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/lyra/pkg/version"
+	"github.com/mgutz/ansi"
 	"github.com/spf13/cobra"
 )
 
@@ -22,8 +22,10 @@ var (
 // NewRootCmd returns the root command
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:              "lyra",
-		Short:            "Create and configure infrastructure and resources",
+		Use:   "lyra",
+		Short: "Lyra - Provision and manage cloud native infrastructure",
+		Long: `Lyra - Provision and manage cloud native infrastructure.
+Find more information at: https://github.com/lyraproj/lyra`,
 		Run:              runHelp,
 		PersistentPreRun: initialiseTool,
 		Version:          fmt.Sprintf("%v", version.Get()),
