@@ -1,8 +1,7 @@
 type Lyra::Aws::Resource = {
   attributes => {
     ensure => Enum[absent, present],
-    region => String,
-    tags => Hash[String,String]
+    region => String
   }
 }
 
@@ -28,7 +27,6 @@ function lyra::aws::vpchandler::create(Lyra::Aws::Vpc $r) >> Tuple[Lyra::Aws::Vp
   $rc = Lyra::Aws::Vpc(
     ensure => $r.ensure,
     region => $r.region,
-    tags => $r.tags,
     vpc_id => 'external-vpc-id',
     cidr_block => $r.cidr_block,
     enable_dns_hostnames => $r.enable_dns_hostnames,
@@ -64,7 +62,6 @@ function lyra::aws::subnethandler::create(Lyra::Aws::Subnet $r) >> Tuple[Lyra::A
   $rc = Lyra::Aws::Subnet(
     ensure => $r.ensure,
     region => $r.region,
-    tags => $r.tags,
     subnet_id => 'external-subnet-id',
     vpc_id => $r.vpc_id,
     cidr_block => $r.cidr_block,
@@ -102,7 +99,6 @@ function lyra::aws::instancehandler::create(Lyra::Aws::Instance $r) >> Tuple[Lyr
   $rc = Lyra::Aws::Instance(
     ensure => $r.ensure,
     region => $r.region,
-    tags => $r.tags,
     instance_id => 'external-instance-id',
     instance_type => $r.instance_type,
     image_id => $r.image_id,
@@ -140,7 +136,6 @@ function lyra::aws::internetGatewayhandler::create(Lyra::Aws::InternetGateway $r
   $rc = Lyra::Aws::InternetGateway(
     ensure => $r.ensure,
     region => $r.region,
-    tags => $r.tags,
     internet_gateway_id => 'external-internet_gateway_id'
   )
   return [$rc,$rc.internet_gateway_id]
@@ -153,10 +148,9 @@ register_handler(Lyra::Aws::InternetGateway, Lyra::Aws::InternetGatewayHandler()
 workflow attach {
   typespace => 'lyra::aws',
   input => (
-    String $region = lookup('aws.region'),
-    Hash[String,String] $tags = lookup('aws.tags'),
-    String $key_name = lookup('aws.keyname'),
-    Integer $ec2_cnt = lookup('aws.instance.count')
+    String $region = 'eu-west-1',
+    String $key_name = 'sample-key-name',
+    Integer $ec2_cnt = 1
   ),
   output => (
     String $vpc_id,
@@ -166,31 +160,29 @@ workflow attach {
   )
 } {
   resource vpc {
-    input  => ($region, $tags),
+    input  => ($region),
     output => ($vpc_id)
   }{
     ensure => present,
     region => $region,
     cidr_block => '192.168.0.0/16',
-    tags => $tags,
     enable_dns_hostnames => true,
     enable_dns_support => true
   }
 
   resource subnet {
-    input  => ($region, $tags, $vpc_id),
+    input  => ($region, $vpc_id),
     output => ($subnet_id)
   }{
     ensure => present,
     region => $region,
     vpc_id => $vpc_id,
     cidr_block => '192.168.1.0/24',
-    tags => $tags,
     map_public_ip_on_launch => true
   }
 
   resource instance {
-    input => ($n, $region, $key_name, $tags),
+    input => ($n, $region, $key_name),
     output => ($key = instance_id, $value = (public_ip, private_ip))
   } $nodes = times($ec2_cnt) |$n| {
     region => $region,
@@ -199,15 +191,13 @@ workflow attach {
     image_id => 'ami-f90a4880',
     instance_type => 't2.nano',
     key_name => $key_name,
-    tags => $tags
   }
 
   resource internetgateway {
-    input => ($region, $tags),
+    input => ($region),
     output => ($internet_gateway_id)
   } {
     ensure => present,
     region => $region,
-    tags   => $tags,
   }
 }

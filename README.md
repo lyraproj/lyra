@@ -21,38 +21,10 @@ For a more detailed view of how we think about Lyra, check out our [documentatio
 
 
 ## Getting Started
-1. Clone the git repo from your $GOPATH:
-`$ git clone https://github.com/lyraproj/lyra`
+1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
 
-2. Add the following lines to data.yaml
-```
-$ cat data.yaml
-
-aws:
-  region: eu-west-1
-  keyname: aws-key-name
-  tags:
-    created_by: kenaz@puppet.com
-    department: engineering
-    project:    incubator
-    lifetime:   1h
-  instance:
-    count: 5
-```
-3. Build the plugin
-```
-$ mkdir plugins
-$ make
-```
-4. Get the sample manifest
-```
-$ git clone https://github.com/lyraproj/puppet-workflow.git
-$ cp lyraproj/puppet-workflow/puppet/testdata/attach.pp lyraproj/lyra/plugins/
-$ cd lyraproj/lyra
-```
-
-5. Run the binary with the sample manifest
-` $ ./build/lyra apply attach —debug`
+2. Build the binary: `$ make lyra`
+2. Run the binary with the sample manifest: ` $ ./build/lyra apply attach —debug`
 
 
 ## Project Status
@@ -73,12 +45,12 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 - [x] Puppet
 - [ ] YAML
 - [ ] TypeScript
-- [ ] Language X
+- [ ] Language X (File a [feature request](https://github.com/lyraproj/lyra/issues/new?template=feature_request.md)!)
 
 ### Content Ecosystem
 - [x] Proof of concept
 - [ ] Public cloud providers (AWS, Azure, GCP)
-- [ ] Provider X ecosystem
+- [ ] Provider X ecosystem (File a [feature request](https://github.com/lyraproj/lyra/issues/new?template=feature_request.md)!)
 
 ## Releases
 ### Proof of Concept - TODAY

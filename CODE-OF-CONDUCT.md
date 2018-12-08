@@ -20,13 +20,12 @@ Notes:
 
 -   Obvious spammers are banned on first occurrence. If we don’t do this, we’ll have spam all over the place.
 -   People who are committing minor formatting / style infractions will get some education, rather than hammering them in the 3 strikes process.
--   Contact lyra@puppet.com to report abuse or appeal violations. 
+-   Contact lyra@puppet.com to report abuse or appeal violations.
 
 Activity-specific guidelines
 -----
 
 -   [Getting technical help](#getting-technical-help)
--   [Slack guidelines](#irc-guidelines)
 -   [Issue guidelines](#bug-guidelines)
 -   [Git / source guidelines](#git--source-guidelines)
 

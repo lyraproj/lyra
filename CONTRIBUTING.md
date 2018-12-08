@@ -30,3 +30,4 @@ make
 The resulting `lyra` binaries will be placed in the `build` directory.
 
 ## Submitting Changes
+Fork the repo, make changes, file a Pull Request.
