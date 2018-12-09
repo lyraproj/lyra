@@ -6,18 +6,19 @@ import (
 	"github.com/hashicorp/go-hclog"
 )
 
-// Vpc is the managed resource
+// VPC is the managed resource
 type Vpc struct {
 	AmazonProvidedIpv6CidrBlock bool
 	CidrBlock                   string
-	InstanceTenancy             string
+	InstanceTenancy             string `puppet:"type=>String,kind=>given_or_derived"`
 	EnableDnsHostnames          bool
 	EnableDnsSupport            bool
 	Tags                        map[string]string
-	VpcId                       string
+	VpcId                       string `puppet:"type=>String,kind=>given_or_derived"`
 	IsDefault                   bool
 	State                       string
-	DhcpOptionsId               string
+	DhcpOptionsId               string `puppet:"type=>String,kind=>given_or_derived"`
+	// CidrBlockAssociationSet not supported
 }
 
 //VPCHandler creates, reads and deletes the VPC Resource
