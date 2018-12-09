@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"github.com/hashicorp/go-hclog"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
@@ -26,6 +27,7 @@ type InstanceHandler struct{}
 
 // Create Instance
 func (h *InstanceHandler) Create(desired *Instance) (*Instance, string, error) {
+	log := hclog.Default()
 	log.Debug("Creating Instance", "desired", desired)
 	client := newClient()
 	response, err := client.RunInstances(runInstancesInput(*desired))
@@ -55,6 +57,7 @@ func (h *InstanceHandler) Create(desired *Instance) (*Instance, string, error) {
 
 // Read Instance
 func (h *InstanceHandler) Read(externalID string) (*Instance, error) {
+	log := hclog.Default()
 	log.Debug("Reading Instance", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeInstances(
@@ -90,6 +93,7 @@ func (h *InstanceHandler) Read(externalID string) (*Instance, error) {
 
 // Delete Instance
 func (h *InstanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
 	log.Debug("Deleting Instance", "externalID", externalID)
 	client := newClient()
 
