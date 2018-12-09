@@ -1,7 +1,7 @@
 # Contributing to Lyra
 
 ## Code of Conduct
-Review our [Code of Conduct](https://github.com/lyraproj/lyra/blob/master/code-of-conduct.md).
+Review our [Code of Conduct](https://github.com/lyraproj/lyra/blob/master/CODE-OF-CONDUCT.md).
 
 ## How to ask a question
 Browse for existing issues. Otherwise, open a "[new issue](https://github.com/lyraproj/lyra/issues/new)" in this repo.
