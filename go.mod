@@ -8,6 +8,7 @@ require (
 	github.com/hashicorp/go-plugin v0.0.0-20181030172320-54b6ff97d818
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20181204214259-f3b301b0bb13
 	github.com/lyraproj/issue v0.0.0-20181204205859-7ed1f9741f4a
 	github.com/lyraproj/puppet-evaluator v0.0.0-20181204220310-d0b9569709cb

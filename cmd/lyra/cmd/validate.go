@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/lyraproj/issue/issue"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
+	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/spf13/cobra"
 )
@@ -13,12 +13,17 @@ import (
 // NewValidateCmd returns the validate subcommand used to syntactically validate manifests.
 func NewValidateCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "validate [puppet manifest]",
-		Short:   "Validates manifest file",
-		Example: fmt.Sprintf("%s validate manifest.pp", os.Args[0]),
+		Use:     i18n.T("validateCmdUse"),
+		Short:   i18n.T("validateCmdShort"),
+		Long:    i18n.T("validateCmdLong"),
+		Example: i18n.T("validateCmdExample"),
 		Run:     runValidate,
 		Args:    cobra.ExactArgs(1),
 	}
+
+	cmd.SetHelpTemplate(ui.HelpTemplate)
+	cmd.SetUsageTemplate(ui.UsageTemplate)
+
 	return cmd
 }
 

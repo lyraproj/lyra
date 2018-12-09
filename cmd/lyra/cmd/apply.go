@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/hashicorp/go-plugin"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
+	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/puppet-evaluator/eval"
@@ -29,14 +30,20 @@ var hieraData string
 // NewApplyCmd returns the apply subcommand used to evaluate and apply manifests.
 func NewApplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "apply [puppet manifest]",
-		Short:   "Provisions cloud resources from a manifest file",
-		Example: fmt.Sprintf("%s apply manifest.pp", os.Args[0]),
+		Use:     i18n.T("applyCmdUse"),
+		Short:   i18n.T("applyCmdShort"),
+		Long:    i18n.T("applyCmdLong"),
+		Example: i18n.T("applyCmdExample"),
 		Run:     runApply,
 		Args:    cobra.ExactArgs(1),
 	}
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", "path to root directory")
-	cmd.Flags().StringVarP(&hieraData, "data", "d", "./data.yaml", "path to hiera data")
+
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("applyFlagHomeDir"))
+	cmd.Flags().StringVarP(&hieraData, "data", "d", "./data.yaml", i18n.T("applyFlagExtData"))
+
+	cmd.SetHelpTemplate(ui.HelpTemplate)
+	cmd.SetUsageTemplate(ui.UsageTemplate)
+
 	return cmd
 }
 
