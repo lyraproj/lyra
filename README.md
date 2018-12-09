@@ -17,15 +17,16 @@ Lyra enables teams to create organization-specific infrastructure Workflows that
 A Workflow can be packaged as a deployable unit and consumed from any of these interfaces. By separating the authoring of the Workflows from their consumption, Lyra enables Application Services teams to provide tested configurations, embedded governance policies, and security validated policies in a single, deployable artifact that Application Developers can provision as dependencies within their containerized application.
 
 
-For a more detailed view of how we think about Lyra, check out our [documentation](https://docs.google.com/document/d/1oJwg4LlolC3qlt0xG__xjrz16aYwEyOk8GqyNt5_Gdo/edit?usp=sharing)!
+For a more detailed view of how we think about Lyra, check out our introductory [document](https://docs.google.com/document/d/1oJwg4LlolC3qlt0xG__xjrz16aYwEyOk8GqyNt5_Gdo/edit?usp=sharing)!
 
 
 ## Getting Started
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
 
-2. Build the binary: `$ make lyra`
-2. Run the binary with the sample manifest: ` $ ./build/lyra apply attach —debug`
+2. Build the binary: `$ cd lyra; make lyra`
+2. Run the binary with the sample manifest: ` $ ./build/lyra apply attach —-debug`
 
+(You can view the sample manifest that is applied by the command above in `plugins/attach.pp`)
 
 ## Project Status
 Very much in early development. Lyra is just starting and things are a bit bumpy! Star this project above to stay tuned.
