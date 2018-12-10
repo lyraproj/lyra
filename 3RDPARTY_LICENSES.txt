@@ -1,24 +1,33 @@
-github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                         Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                     MIT License
-github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                            MIT License
-github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                        BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                     MIT License
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                    Mozilla Public License 2.0
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                        Mozilla Public License 2.0
-github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                   ? (The Unlicense, 35%)
-github.com/lyraproj/lyra/vendor/github.com/mattn/go-colorable                     MIT License
-github.com/lyraproj/lyra/vendor/github.com/mattn/go-isatty                        MIT License (95%)
-github.com/lyraproj/lyra/vendor/github.com/mgutz/ansi                             MIT License
-github.com/lyraproj/lyra/vendor/github.com/mitchellh/go-testing-interface         MIT License
-github.com/lyraproj/lyra/vendor/github.com/oklog/run                              Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/spf13/cobra                            Apache License 2.0 (95%)
-github.com/lyraproj/lyra/vendor/github.com/spf13/pflag                            BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/github.com/toqueteos/trie                         MIT License
-github.com/lyraproj/lyra/vendor/golang.org/x/net                                  BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/golang.org/x/text                                 BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/gonum.org/v1/gonum                                BSD 3-clause "New" or "Revised" License (97%)
-github.com/lyraproj/lyra/vendor/google.golang.org/genproto/googleapis/rpc/status  Apache License 2.0
-github.com/lyraproj/lyra/vendor/google.golang.org/grpc                            Apache License 2.0
-github.com/lyraproj/lyra/vendor/gopkg.in/src-d/enry.v1                            Apache License 2.0
-github.com/lyraproj/lyra/vendor/gopkg.in/toqueteos/substring.v1                   MIT License
-github.com/lyraproj/lyra/vendor/gopkg.in/yaml.v2                                  Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                             Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                         MIT License
+github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                                MIT License
+github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                            BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                         MIT License
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                        Mozilla Public License 2.0
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                            Mozilla Public License 2.0
+github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                       ? (The Unlicense, 35%)
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/data-protobuf/datapb              Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera                             Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/issue/issue                       Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator                  Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser                     Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet/functions  Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/semver/semver                     Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk                        Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe                               Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/mattn/go-colorable                         MIT License
+github.com/lyraproj/lyra/vendor/github.com/mattn/go-isatty                            MIT License (95%)
+github.com/lyraproj/lyra/vendor/github.com/mgutz/ansi                                 MIT License
+github.com/lyraproj/lyra/vendor/github.com/mitchellh/go-testing-interface             MIT License
+github.com/lyraproj/lyra/vendor/github.com/oklog/run                                  Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/spf13/cobra                                Apache License 2.0 (95%)
+github.com/lyraproj/lyra/vendor/github.com/spf13/pflag                                BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/github.com/toqueteos/trie                             MIT License
+github.com/lyraproj/lyra/vendor/golang.org/x/net                                      BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/golang.org/x/text                                     BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/gonum.org/v1/gonum                                    BSD 3-clause "New" or "Revised" License (97%)
+github.com/lyraproj/lyra/vendor/google.golang.org/genproto/googleapis/rpc/status      Apache License 2.0
+github.com/lyraproj/lyra/vendor/google.golang.org/grpc                                Apache License 2.0
+github.com/lyraproj/lyra/vendor/gopkg.in/src-d/enry.v1                                Apache License 2.0
+github.com/lyraproj/lyra/vendor/gopkg.in/toqueteos/substring.v1                       MIT License
+github.com/lyraproj/lyra/vendor/gopkg.in/yaml.v2                                      Apache License 2.0
