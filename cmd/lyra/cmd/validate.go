@@ -19,6 +19,9 @@ func NewValidateCmd() *cobra.Command {
 		Run:     runValidate,
 		Args:    cobra.ExactArgs(1),
 	}
+
+	cmd.SetHelpTemplate(cmd.HelpTemplate())
+
 	return cmd
 }
 

@@ -18,6 +18,9 @@ func EmbeddedPluginCmd() *cobra.Command {
 		Run:    startPlugin,
 		Args:   cobra.ExactArgs(1),
 	}
+
+	cmd.SetHelpTemplate(cmd.HelpTemplate())
+
 	return cmd
 }
 

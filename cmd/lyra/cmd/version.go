@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mgutz/ansi"
 	"github.com/lyraproj/lyra/pkg/version"
 
 	"github.com/spf13/cobra"
@@ -18,11 +17,14 @@ func NewVersionCmd() *cobra.Command {
 		Example: fmt.Sprintf("%s version", os.Args[0]),
 		Run:     runVersion,
 	}
+
+	cmd.SetHelpTemplate(cmd.HelpTemplate())
+
 	return cmd
 }
 
 func runVersion(cmd *cobra.Command, args []string) {
-	fmt.Printf("%s%s%s%v\n", ansi.Blue, version.LogoFiglet, ansi.Reset, prettyPrintVersion())
+	fmt.Printf("%v\n", prettyPrintVersion())
 }
 
 func prettyPrintVersion() string {
