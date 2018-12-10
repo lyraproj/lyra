@@ -16,8 +16,6 @@ const (
 	logicalIDTag = "lyra-logical-id"
 )
 
-var log = hclog.Default()
-
 // newClient() creates a new ec2 client
 func newClient() *ec2.EC2 {
 	config := aws.NewConfig().
@@ -36,7 +34,7 @@ func newClient() *ec2.EC2 {
 
 func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string) error {
 	if len(resourceIds) == 0 || tags == nil || len(tags) == 0 {
-		log.Debug("Nothing to tag", "resourceIds", resourceIds, "tags", tags)
+		hclog.Default().Debug("Nothing to tag", "resourceIds", resourceIds, "tags", tags)
 		return nil
 	}
 	awsTags := []*ec2.Tag{}
@@ -50,7 +48,7 @@ func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string)
 			Tags:      awsTags,
 		})
 	if err != nil {
-		log.Debug("Error tagging", "error", err, "resourceIds", resourceIds, "tags", tags, "awsTags", awsTags)
+		hclog.Default().Debug("Error tagging", "error", err, "resourceIds", resourceIds, "tags", tags, "awsTags", awsTags)
 	}
 	return err
 }
@@ -74,7 +72,7 @@ func pollWithoutDefaults(backoff time.Duration, retries int32, fn func() (bool, 
 		}
 		jitter := time.Duration(rand.Int63n(int64(backoff)))
 		backoff = 2 * (backoff + jitter/2)
-		log.Debug("...waiting", "duration", backoff.String())
+		hclog.Default().Debug("...waiting", "duration", backoff.String())
 		time.Sleep(backoff)
 	}
 	return errors.New("polling exhausted retries")

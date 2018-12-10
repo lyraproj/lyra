@@ -2,6 +2,7 @@ package resource
 
 import (
 	"fmt"
+	"github.com/hashicorp/go-hclog"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
@@ -53,6 +54,7 @@ type RouteTableHandler struct{}
 
 // Create a RouteTable
 func (h *RouteTableHandler) Create(desired *RouteTable) (*RouteTable, string, error) {
+	log := hclog.Default()
 	log.Debug("Creating RouteTable", "desired", desired)
 	client := newClient()
 	response, err := client.CreateRouteTable(
@@ -81,6 +83,7 @@ func (h *RouteTableHandler) Create(desired *RouteTable) (*RouteTable, string, er
 
 // Read a RouteTable
 func (h *RouteTableHandler) Read(externalID string) (*RouteTable, error) {
+	log := hclog.Default()
 	log.Debug("Reading RouteTable", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeRouteTables(
@@ -103,6 +106,7 @@ func (h *RouteTableHandler) Read(externalID string) (*RouteTable, error) {
 
 // Delete a RouteTable
 func (h *RouteTableHandler) Delete(externalID string) error {
+	log := hclog.Default()
 	log.Debug("Deleting RouteTable", "externalID", externalID)
 	client := newClient()
 
@@ -187,6 +191,7 @@ func convertRoutes(ec2Routes []*ec2.Route) []Route {
 }
 
 func waitForRouteTable(client *ec2.EC2, externalID string) error {
+	log := hclog.Default()
 	log.Debug("Polling for route table")
 	return poll(func() (bool, error) {
 		response, err := client.DescribeRouteTables(

@@ -1,59 +1,24 @@
-github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                             Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                         MIT License
-github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                                MIT License
-github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                            BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                         MIT License
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                        Mozilla Public License 2.0
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                            Mozilla Public License 2.0
-github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                       ? (The Unlicense, 35%)
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/data-protobuf/datapb              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/config                      ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/functions                   ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/impl                        ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/lookup                      ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/provider                    ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/issue/issue                       ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/errors           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/eval             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/functions        ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/hash             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/impl             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/loader           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/pcore            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/proto            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/serialization    ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/threadlocal      ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/types            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/utils            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/literal             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/parser              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/pn                  ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/validator           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet/functions  ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/semver/semver                     ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/condition              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/grpc                   ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/service                ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/serviceapi             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/servicepb              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/wf                     ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/wfapi                  ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe/api                           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe/wfe                           ?
-github.com/lyraproj/lyra/vendor/github.com/mattn/go-colorable                         MIT License
-github.com/lyraproj/lyra/vendor/github.com/mattn/go-isatty                            MIT License (95%)
-github.com/lyraproj/lyra/vendor/github.com/mgutz/ansi                                 MIT License
-github.com/lyraproj/lyra/vendor/github.com/mitchellh/go-testing-interface             MIT License
-github.com/lyraproj/lyra/vendor/github.com/oklog/run                                  Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/spf13/cobra                                Apache License 2.0 (95%)
-github.com/lyraproj/lyra/vendor/github.com/spf13/pflag                                BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/github.com/toqueteos/trie                             MIT License
-github.com/lyraproj/lyra/vendor/golang.org/x/net                                      BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/golang.org/x/text                                     BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/gonum.org/v1/gonum                                    BSD 3-clause "New" or "Revised" License (97%)
-github.com/lyraproj/lyra/vendor/google.golang.org/genproto/googleapis/rpc/status      Apache License 2.0
-github.com/lyraproj/lyra/vendor/google.golang.org/grpc                                Apache License 2.0
-github.com/lyraproj/lyra/vendor/gopkg.in/src-d/enry.v1                                Apache License 2.0
-github.com/lyraproj/lyra/vendor/gopkg.in/toqueteos/substring.v1                       MIT License
-github.com/lyraproj/lyra/vendor/gopkg.in/yaml.v2                                      Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                         Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                     MIT License
+github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                            MIT License
+github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                        BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                     MIT License
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                    Mozilla Public License 2.0
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                        Mozilla Public License 2.0
+github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                   ? (The Unlicense, 35%)
+github.com/lyraproj/lyra/vendor/github.com/mattn/go-colorable                     MIT License
+github.com/lyraproj/lyra/vendor/github.com/mattn/go-isatty                        MIT License (95%)
+github.com/lyraproj/lyra/vendor/github.com/mgutz/ansi                             MIT License
+github.com/lyraproj/lyra/vendor/github.com/mitchellh/go-testing-interface         MIT License
+github.com/lyraproj/lyra/vendor/github.com/oklog/run                              Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/spf13/cobra                            Apache License 2.0 (95%)
+github.com/lyraproj/lyra/vendor/github.com/spf13/pflag                            BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/github.com/toqueteos/trie                         MIT License
+github.com/lyraproj/lyra/vendor/golang.org/x/net                                  BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/golang.org/x/text                                 BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/gonum.org/v1/gonum                                BSD 3-clause "New" or "Revised" License (97%)
+github.com/lyraproj/lyra/vendor/google.golang.org/genproto/googleapis/rpc/status  Apache License 2.0
+github.com/lyraproj/lyra/vendor/google.golang.org/grpc                            Apache License 2.0
+github.com/lyraproj/lyra/vendor/gopkg.in/src-d/enry.v1                            Apache License 2.0
+github.com/lyraproj/lyra/vendor/gopkg.in/toqueteos/substring.v1                   MIT License
+github.com/lyraproj/lyra/vendor/gopkg.in/yaml.v2                                  Apache License 2.0

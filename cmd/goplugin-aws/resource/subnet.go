@@ -3,6 +3,7 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/hashicorp/go-hclog"
 )
 
 // Subnet is the managed resource
@@ -25,6 +26,7 @@ type SubnetHandler struct{}
 
 // Create a Subnet
 func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
+	log := hclog.Default()
 	log.Debug("Creating Subnet", "desired", desired)
 	client := newClient()
 	response, err := client.CreateSubnet(
@@ -57,6 +59,7 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 
 // Read a Subnet
 func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
+	log := hclog.Default()
 	log.Debug("Reading Subnet", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeSubnets(
@@ -79,6 +82,7 @@ func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
 
 // Delete a Subnet
 func (h *SubnetHandler) Delete(externalID string) error {
+	log := hclog.Default()
 	log.Debug("Deleting Subnet", "externalID", externalID)
 	client := newClient()
 	_, err := client.DeleteSubnet(
