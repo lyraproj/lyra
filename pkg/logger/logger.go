@@ -31,19 +31,19 @@ func Get() hclog.Logger {
 // Initialise the Logger
 func Initialise(spec Spec) hclog.Logger {
 	once.Do(func() {
-		loggerOptions := &hclog.LoggerOptions{
+		hclog.DefaultOptions = &hclog.LoggerOptions{
 			Name:            spec.Name,
 			Level:           hclog.Level(logsDisabled),
 			JSONFormat:      spec.JSON,
 			IncludeLocation: spec.IncludeLocation,
 		}
 		if len(spec.Level) > 0 {
-			loggerOptions.Level = hclog.LevelFromString(spec.Level)
+			hclog.DefaultOptions.Level = hclog.LevelFromString(spec.Level)
 		}
 		if spec.Output != nil {
-			loggerOptions.Output = spec.Output
+			hclog.DefaultOptions.Output = spec.Output
 		}
-		l := hclog.New(loggerOptions)
+		l := hclog.Default()
 		logger = l
 	})
 	return logger

@@ -7,7 +7,6 @@ import (
 	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/version"
 
-	"github.com/mgutz/ansi"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +27,7 @@ func NewVersionCmd() *cobra.Command {
 }
 
 func runVersion(cmd *cobra.Command, args []string) {
-	fmt.Printf("%s%s%s%v\n", ansi.Blue, version.LogoFiglet, ansi.Reset, prettyPrintVersion())
+	fmt.Printf("%v\n", prettyPrintVersion())
 }
 
 func prettyPrintVersion() string {

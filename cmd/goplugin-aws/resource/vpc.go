@@ -3,20 +3,21 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/hashicorp/go-hclog"
 )
 
 // Vpc is the managed resource
 type Vpc struct {
 	AmazonProvidedIpv6CidrBlock bool
 	CidrBlock                   string
-	InstanceTenancy             string
+	InstanceTenancy             string `puppet:"type=>String,kind=>given_or_derived"`
 	EnableDnsHostnames          bool
 	EnableDnsSupport            bool
 	Tags                        map[string]string
-	VpcId                       string
+	VpcId                       string `puppet:"type=>String,kind=>given_or_derived"`
 	IsDefault                   bool
 	State                       string
-	DhcpOptionsId               string
+	DhcpOptionsId               string `puppet:"type=>String,kind=>given_or_derived"`
 }
 
 //VPCHandler creates, reads and deletes the VPC Resource
@@ -24,6 +25,7 @@ type VPCHandler struct{}
 
 // Create a VPC
 func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
+	log := hclog.Default()
 	log.Debug("Creating VPC", "desired", desired)
 	client := newClient()
 	response, err := client.CreateVpc(
@@ -57,6 +59,7 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 
 // Read a VPC
 func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
+	log := hclog.Default()
 	log.Debug("Reading VPC", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeVpcs(
@@ -79,6 +82,7 @@ func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
 
 // Delete a VPC
 func (h *VPCHandler) Delete(externalID string) error {
+	log := hclog.Default()
 	log.Debug("Deleting VPC", "externalID", externalID)
 	client := newClient()
 	_, err := client.DeleteVpc(

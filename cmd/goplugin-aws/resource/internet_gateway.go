@@ -2,6 +2,7 @@ package resource
 
 import (
 	"fmt"
+	"github.com/hashicorp/go-hclog"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -30,6 +31,7 @@ type InternetGatewayHandler struct{}
 
 // Create a InternetGateway
 func (h *InternetGatewayHandler) Create(desired *InternetGateway) (*InternetGateway, string, error) {
+	log := hclog.Default()
 	log.Debug("Creating InternetGateway", "desired", desired)
 	client := newClient()
 	response, err := client.CreateInternetGateway(
@@ -60,6 +62,7 @@ func (h *InternetGatewayHandler) Create(desired *InternetGateway) (*InternetGate
 
 // Read a InternetGateway
 func (h *InternetGatewayHandler) Read(externalID string) (*InternetGateway, error) {
+	log := hclog.Default()
 	log.Debug("Reading InternetGateway", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeInternetGateways(
@@ -82,6 +85,7 @@ func (h *InternetGatewayHandler) Read(externalID string) (*InternetGateway, erro
 
 // Delete a InternetGateway
 func (h *InternetGatewayHandler) Delete(externalID string) error {
+	log := hclog.Default()
 	log.Debug("Deleting InternetGateway", "externalID", externalID)
 	client := newClient()
 	_, err := client.DeleteInternetGateway(
@@ -118,6 +122,7 @@ func (h *InternetGatewayHandler) fromAWS(wanted *InternetGateway, actual *ec2.In
 }
 
 func waitForInternetGateway(client *ec2.EC2, externalID string) error {
+	log := hclog.Default()
 	log.Debug("Polling for internet gateway")
 	return poll(func() (bool, error) {
 		response, err := client.DescribeInternetGateways(

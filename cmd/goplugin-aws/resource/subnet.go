@@ -3,21 +3,22 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/hashicorp/go-hclog"
 )
 
 // Subnet is the managed resource
 type Subnet struct {
 	VpcId                       string // TODO what TypeDef is required to make this a property (required on present, optional on absent)
 	CidrBlock                   string
-	AvailabilityZone            string
+	AvailabilityZone            string `puppet:"type=>String,kind=>given_or_derived"`
 	Ipv6CidrBlock               string
 	Tags                        map[string]string
 	AssignIpv6AddressOnCreation bool
 	MapPublicIpOnLaunch         bool
-	AvailableIpAddressCount     int64
+	AvailableIpAddressCount     int64 `puppet:"type=>Integer,kind=>given_or_derived"`
 	DefaultForAz                bool
 	State                       string
-	SubnetId                    string
+	SubnetId                    string `puppet:"type=>String,kind=>given_or_derived"`
 }
 
 //SubnetHandler creates, reads and deletes the Subnet Resource
@@ -25,6 +26,7 @@ type SubnetHandler struct{}
 
 // Create a Subnet
 func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
+	log := hclog.Default()
 	log.Debug("Creating Subnet", "desired", desired)
 	client := newClient()
 	response, err := client.CreateSubnet(
@@ -57,6 +59,7 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 
 // Read a Subnet
 func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
+	log := hclog.Default()
 	log.Debug("Reading Subnet", "externalID", externalID)
 	client := newClient()
 	response, err := client.DescribeSubnets(
@@ -79,6 +82,7 @@ func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
 
 // Delete a Subnet
 func (h *SubnetHandler) Delete(externalID string) error {
+	log := hclog.Default()
 	log.Debug("Deleting Subnet", "externalID", externalID)
 	client := newClient()
 	_, err := client.DeleteSubnet(

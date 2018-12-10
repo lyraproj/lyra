@@ -6,41 +6,15 @@ github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                   
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                        Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                            Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                       ? (The Unlicense, 35%)
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/data-protobuf/datapb              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/config                      ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/functions                   ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/impl                        ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/lookup                      ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera/provider                    ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/issue/issue                       ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/errors           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/eval             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/functions        ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/hash             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/impl             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/loader           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/pcore            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/proto            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/serialization    ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/threadlocal      ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/types            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator/utils            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/literal             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/parser              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/pn                  ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser/validator           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet            ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet/functions  ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/semver/semver                     ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/condition              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/grpc                   ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/service                ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/serviceapi             ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/servicepb              ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/wf                     ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk/wfapi                  ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe/api                           ?
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe/wfe                           ?
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/data-protobuf/datapb              Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera                             Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/issue/issue                       Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator                  Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser                     Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet/functions  Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/semver/semver                     Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk                        Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe                               Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/mattn/go-colorable                         MIT License
 github.com/lyraproj/lyra/vendor/github.com/mattn/go-isatty                            MIT License (95%)
 github.com/lyraproj/lyra/vendor/github.com/mgutz/ansi                                 MIT License
