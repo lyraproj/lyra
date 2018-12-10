@@ -27,7 +27,7 @@ import (
 var homeDir string
 var hieraData string
 
-// NewApplyCmd returns the apply subcommand used to evaluate and apply manifests.
+// NewApplyCmd returns the apply subcommand used to evaluate and apply activities. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     i18n.T("applyCmdUse"),
@@ -74,7 +74,7 @@ func runApply(cmd *cobra.Command, args []string) {
 
 			logger.Debug("calling apply")
 			apply(c, args[0], eval.EMPTY_MAP) // TODO: Perhaps provide top-level input from command line args
-			ui.ShowSuccessMessage("apply finished")
+			ui.ShowApplyMessage("apply done:", args[0])
 			logger.Debug("apply finished")
 		})
 	})

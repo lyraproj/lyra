@@ -23,33 +23,25 @@ func Message(kind string, message interface{}) {
 	switch kind {
 	case "resource":
 		log.Println(ansi.Green+"[set resource]"+ansi.Reset, message)
+	// Generic error
 	case "error":
-		log.Println(ansi.Red+"[error setting resource]"+ansi.Reset, message)
+		log.Println(ansi.Red+"[error]"+ansi.Reset, message)
 	default:
 		log.Println(message)
 	}
 }
 
-// ShowSuccessMessage prints "Success!" plus optional message to STDOUT
-// Might want to change that string globally later and this is
-// easier than faffing with externalising strings properly
-func ShowSuccessMessage(params ...string) {
+// ShowApplyMessage prints an attractive message to STDOUT
+func ShowApplyMessage(params ...string) {
+	var action = ""
 	var msg = ""
-	if len(params) > 0 {
-		msg = params[0]
+	if len(params) > 1 {
+		msg = params[1]
 	}
-	log.Println() //FIXME: This feels gross
-	log.Println(ansi.Green+"▸ Success!"+ansi.Reset, msg)
-	log.Println()
-}
-
-// ShowApplyStart Might want to unify the first thing that gets spit out after
-// calling a command; this is sort of like the instruction text
-// in a dialog box
-func ShowApplyStart(field string, msg string) {
-	log.Println()
-	log.Println(ansi.Cyan+"▸ "+field+ansi.Reset, msg)
-	log.Println()
+	if len(params) > 0 {
+		action = params[0]
+	}
+	log.Println("\n"+ansi.Green+"▸ "+action+ansi.Reset, msg+"\n")
 }
 
 // AskForConfirmation presents a blocking choice to users
