@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/hashicorp/go-plugin"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
+	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/puppet-evaluator/eval"
@@ -29,16 +30,19 @@ var hieraData string
 // NewApplyCmd returns the apply subcommand used to evaluate and apply activities. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "apply [activity name]",
-		Short:   "Execute a Lyra activity",
-		Example: fmt.Sprintf("  %s apply my_activity", os.Args[0]), // TODO: (JD) Replace with a proper template and better examples
+		Use:     i18n.T("applyCmdUse"),
+		Short:   i18n.T("applyCmdShort"),
+		Long:    i18n.T("applyCmdLong"),
+		Example: i18n.T("applyCmdExample"),
 		Run:     runApply,
 		Args:    cobra.ExactArgs(1),
 	}
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", "path to root directory") //TODO: Explain WTF this is, why it exists, and how it works
-	cmd.Flags().StringVarP(&hieraData, "data", "d", "./data.yaml", "path to external data file")
 
-	cmd.SetHelpTemplate(cmd.HelpTemplate())
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("applyFlagHomeDir"))
+	cmd.Flags().StringVarP(&hieraData, "data", "d", "./data.yaml", i18n.T("applyFlagExtData"))
+
+	cmd.SetHelpTemplate(ui.HelpTemplate)
+	cmd.SetUsageTemplate(ui.UsageTemplate)
 
 	return cmd
 }

@@ -41,9 +41,7 @@ func ShowApplyMessage(params ...string) {
 	if len(params) > 0 {
 		action = params[0]
 	}
-	log.Println() //FIXME: (JD) This feels gross
-	log.Println(ansi.Green+"▸ "+action+ansi.Reset, msg)
-	log.Println()
+	log.Println("\n"+ansi.Green+"▸ "+action+ansi.Reset, msg+"\n")
 }
 
 // AskForConfirmation presents a blocking choice to users
@@ -88,3 +86,44 @@ func ValidationSuccess() {
 func ValidationError(err error) {
 	fmt.Fprintln(os.Stderr, ansi.Red+"▸ Error validating manifest "+ansi.Reset+err.Error())
 }
+
+// HelpTemplate is helpful
+// Inspired by https://github.com/kubernetes/kompose/blob/master/cmd/convert.go
+// Remember ALL the whitespace is significant!
+// TODO: Externalise this whole thing
+var HelpTemplate = `Description:
+  {{rpad .Long 10}}
+
+Usage:{{if .Runnable}}{{if .HasAvailableFlags}}
+  {{appendIfNotPresent .UseLine "[flags]"}}{{else}}{{.UseLine}}{{end}}{{end}}{{if gt .Aliases 0}}
+
+Aliases:
+  {{.NameAndAliases}}{{end}}{{if .HasExample }}
+
+Examples:
+{{ .Example }}{{end}}{{ if .HasAvailableSubCommands}}
+
+Available Commands:{{range .Commands}}{{if .IsAvailableCommand}}
+  {{rpad .Name .NamePadding }} {{.Short}}{{end}}{{end}}{{end}}{{ if .HasAvailableLocalFlags}}
+
+Flags:
+{{.LocalFlags.FlagUsages | trimRightSpace}}{{end}}{{ if .HasAvailableInheritedFlags}}
+
+Global Flags:
+{{.InheritedFlags.FlagUsages | trimRightSpace}}{{end}}{{if .HasHelpSubCommands}}
+
+Additional help topics:{{range .Commands}}{{if .IsHelpCommand}}
+{{rpad .CommandPath .CommandPathPadding}} {{.Short}}{{end}}{{end}}{{end}}
+`
+
+// UsageTemplate is similar to HelpTemplate, but sticks to brief usage.
+// Remember ALL the whitespace is significant!
+// TODO: Externalise this whole thing
+var UsageTemplate = `Usage:{{if .Runnable}}{{if .HasAvailableFlags}}
+  {{appendIfNotPresent .UseLine "[flags]"}}{{else}}{{.UseLine}}{{end}}{{end}}{{ if .HasAvailableLocalFlags}}
+
+Flags:
+{{.LocalFlags.FlagUsages | trimRightSpace}}{{end}}
+
+See '{{.CommandPath}} --help' for more help and examples.
+`

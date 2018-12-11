@@ -143,7 +143,7 @@ endef
 define generate_3rdparty_licence_file
 	@echo "🔘  generating vendor dir"
 	@rm -rf vendor
-	@O111MODULE=on go mod vendor
+	@GO111MODULE=on go mod vendor
 	@echo "🔘  generating 3rd party licence file - $(1)"
 	@GO111MODULE=off $(GOPATH)/bin/licenses $(PACKAGE_NAME)/cmd/lyra \
 	| grep github.com/lyraproj/lyra/vendor | grep -v lyra/puppet-evaluator | grep -v lyra/puppet-parser | grep -v lyra/issue | grep -v lyra/semver | grep -v golang.org/x/sys/unix > $(1)

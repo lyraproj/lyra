@@ -6,6 +6,7 @@ github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                   
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                        Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                            Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                       ? (The Unlicense, 35%)
+github.com/lyraproj/lyra/vendor/github.com/leonelquinteros/gotext/plurals             MIT License
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/data-protobuf/datapb              Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera                             Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/issue/issue                       Apache License 2.0
