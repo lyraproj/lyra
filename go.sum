@@ -77,6 +77,8 @@ github.com/lyraproj/servicesdk v0.0.0-20181204221600-1b64902bc7af/go.mod h1:zBx+
 github.com/lyraproj/servicesdk v0.0.0-20181209231240-80a4a1c1d172/go.mod h1:oSSFmFmY1EIRDR/uy+H3gxOkUxhbdvcNwyae64oc57k=
 github.com/lyraproj/servicesdk v0.0.0-20181210094845-530a38f3f66d h1:xb1KEB5NfIioCU7IA+fpn0r7Rb1SRzANOklbO6BBvhI=
 github.com/lyraproj/servicesdk v0.0.0-20181210094845-530a38f3f66d/go.mod h1:oSSFmFmY1EIRDR/uy+H3gxOkUxhbdvcNwyae64oc57k=
+github.com/lyraproj/servicesdk v0.0.0-20181210164015-44478739c189 h1:Ceg1ewcKzd5t21w8M/p9bS0enVeaY0h6fg2jgqTCftM=
+github.com/lyraproj/servicesdk v0.0.0-20181210164015-44478739c189/go.mod h1:oSSFmFmY1EIRDR/uy+H3gxOkUxhbdvcNwyae64oc57k=
 github.com/lyraproj/wfe v0.0.0-20181204224009-943c25dc5994 h1:ZwJOq+mh/Hii9u/IwBqSF2bx2H/SnsEZxn1wiKeZD5M=
 github.com/lyraproj/wfe v0.0.0-20181204224009-943c25dc5994/go.mod h1:SVS1DHjix/qe430kkf0ezrq+X+MKHmRTtXq4vo85fac=
 github.com/lyraproj/wfe v0.0.0-20181210095014-296f89773f83 h1:RFRvams5jsbTg5c05uUjbPZvK952YVQgeft8XTm5wsM=
@@ -107,6 +109,7 @@ github.com/toqueteos/trie v0.0.0-20150530104557-56fed4a05683/go.mod h1:Ywk48QhEq
 golang.org/x/exp v0.0.0-20180321215751-8460e604b9de h1:xSjD6HQTqT0H/k60N5yYBtnN1OEkVy7WIo/DYyxKRO0=
 golang.org/x/exp v0.0.0-20180321215751-8460e604b9de/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/exp v0.0.0-20181206211736-68cc7b1f272e/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
+golang.org/x/exp v0.0.0-20181210123644-7d6377eee41f/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/lint v0.0.0-20180702182130-06c8688daad7/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/net v0.0.0-20180724234803-3673e40ba225/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
@@ -134,6 +137,7 @@ golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/tools v0.0.0-20180525024113-a5b4c53f6e8b/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/tools v0.0.0-20180828015842-6cd1fcedba52/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/tools v0.0.0-20181207222222-4c874b978acb/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
+golang.org/x/tools v0.0.0-20181210225255-6a3e9aa2ab77/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 gonum.org/v1/gonum v0.0.0-20181203212826-ec146a97d707 h1:5w2imp8wAiiZoSfWgBJnggK4f8+d3stbcbkeVlt9QfI=
 gonum.org/v1/gonum v0.0.0-20181203212826-ec146a97d707/go.mod h1:Y+Yx5eoAFn32cQvJDxZx5Dpnq+c3wtXuadVZAcxbbBo=
 gonum.org/v1/gonum v0.0.0-20181210083604-572d9101fe4f h1:9+rg2sMn4mRm1SsnX5UHFZEJOp/dBRE6xZ6uvnVE+XI=

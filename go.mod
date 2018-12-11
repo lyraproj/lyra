@@ -11,7 +11,7 @@ require (
 	github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc
 	github.com/lyraproj/puppet-evaluator v0.0.0-20181210094924-a56e0957cf4e
 	github.com/lyraproj/puppet-workflow v0.0.0-20181208172956-1d36154f83ce
-	github.com/lyraproj/servicesdk v0.0.0-20181210094845-530a38f3f66d
+	github.com/lyraproj/servicesdk v0.0.0-20181210164015-44478739c189
 	github.com/lyraproj/wfe v0.0.0-20181210095014-296f89773f83
 	github.com/mattn/go-colorable v0.0.9 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
@@ -20,8 +20,9 @@ require (
 	github.com/spf13/pflag v1.0.3 // indirect
 	github.com/stretchr/testify v1.2.2
 	github.com/toqueteos/trie v0.0.0-20150530104557-56fed4a05683 // indirect
-	golang.org/x/exp v0.0.0-20181206211736-68cc7b1f272e // indirect
+	golang.org/x/exp v0.0.0-20181210123644-7d6377eee41f // indirect
 	golang.org/x/sys v0.0.0-20181210030007-2a47403f2ae5 // indirect
+	golang.org/x/tools v0.0.0-20181210225255-6a3e9aa2ab77 // indirect
 	gonum.org/v1/gonum v0.0.0-20181210083604-572d9101fe4f // indirect
 	gonum.org/v1/netlib v0.0.0-20181029234149-ec6d1f5cefe6 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
