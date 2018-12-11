@@ -128,11 +128,8 @@ dist-release:
 	fi
 
 	echo "🔘 Deploying release to Github..."
-	for f in build/*; do \
-		echo "  - $$f"; \
-		tar czf $$f.tar.gz $$f; \
-		sha256sum $$f.tar.gz | awk '{ print $1 }' > $$f.tar.gz.sha256 ; \
-	done;
+	tar czf build/lyra-linux-amd64.tar.gz build/lyra
+	sha256sum build/lyra-linux-amd64.tar.gz | awk '{ print $1 }' > build/lyra-linux-amd64.tar.gz.sha256
 
 define build
 	@echo "🔘  building - $(1)"

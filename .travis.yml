@@ -8,12 +8,13 @@ jobs:
   - stage: Test and build
     script: make
     before_deploy:
+    - sudo apt-get update
     - sudo apt-get install -y upx
     - make dist-release
 deploy:
   provider: releases
   api_key:
-    secure: xgSvTz8VRXtl7DhZzmG0HkLJjD3zEWFkvii43NeTs/r76lSwPZzMJL3+h+PK5mUMX8hx1mzozPwiwecpdNf7pIRLIbIc4e3e8Pqu6b1X5HRNiDfKO/d1IiUEcV33X/F5i8Gwcbz13MPdiB5KJ2zjW8h+ApsuPJqUKNuNaeBv4irZW9GPBNxU592ND3ht1ZvA1q/XSZHGjv3JNbVYDm6SF+29kL5VyaYhh8DD7eEvaXBQNlxK3qjHWSqe5JfpwuHY1XU3JDuSLD3OG+ZrMrQHxECq76DWVfqKTWMvW/NTkLjGyOKjWdOfBszc9FRDn2UzjB5hzt5sD1k+X5P3OWv5a7jx47xCcJi5jrIQa+96n0uwf0HtIC8dbDaWaVB5CWsQne+3ImWs4bbFNrXmZjBBQ4qwXPoVYzCxDcOkRk37ZUid6qE7qNMjUJdtl18rVN5RhKVnxuFuc2C1WoEXs1wAKOYEt7UP1R1If7qo0DexKkcPTP/qKy69Kt2wx3X27nF8AjpA3NJUfc6XDZWltud7RIfSA8+878ekgCditRh4Ph0c3fSuQHge3PYlpzmk5U4Cd3Ol+Ow/Rgktt4YGuv2ZqMx3LaYAUF0nxNdHPhc1OVi/9hb3+oopj7Detzugv1ExG0skBMHISENncpTe+DdpOtEpsu5g64DpZJ4PtMDWSlg=
+    secure: h3mk8yLr3X9Fi6N5izV12kd78WipRqyMeHgp+pI7vXISvVlvX5xLRZ5gvPJlA45/rLb6zvxFdWw3g11wjpxiL0uvCFpXESWUWLp6/iBZM1AoCCT2gK/IWUenQGwFRj9an6FVgpj2Rx9kCveNjw0mfzNyftP8UO/LzBxZsM1tOjYJpR5F0v7JlXXWHejOCbFjuxFQDqTfFEhEjsuzLHbERZW7RmRWeda//vK1VMkaWvSi0ihCWTKxi/nkD2K+1Bh8u7AETfTcAs7x7YpW0e3QJfi7kemgVOTn9/fklQsYfMp2rb2P1YZTU3cqvaXK1V9axZXk1yV2gKGNYnwcKzR1imG7lJylZCeUvTLBYYHeqxdETkRe4nvMMwRc1M1u3ErDJKNlw1VeH6Qf3AAwERDnEjATgQeIyE/Oya/A+mRBqCkJAD/ImN4vXLJ4YxiKEQsLXTj35hxBR0Ep3UvGXG/xKimEVRwIwfBXcPqoJwmCGk2m+SMfhOBuUnujZFsEsjeCSv5Q4o/xabtRp0EO5/OKiPRtjNHurfU13ha2xsSTkzs6jTAjUVH8+eJezb/kSy1+gjWsltLthnnZTCL8TF/zW6Dfte5LqhB5AUXt5GjhWBUg9S1aLRSCn1bvt7aE5c2bfMbBp0OXZpY9KrpiOcqZGri08ejaPfj1THcCBNjAYvs=
   file_glob: true
   file: build/*.tar.gz*
   skip_cleanup: true
