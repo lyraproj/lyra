@@ -10,6 +10,7 @@ script: make
 before_deploy:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y upx; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install upx; fi
   - make dist-release
 deploy:
   provider: releases

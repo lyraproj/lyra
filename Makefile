@@ -51,6 +51,7 @@ $(GOPATH)/bin/protoc-gen-go:
 
 PHONY+= shrink
 shrink:
+	@echo "🔘 Shrinking binaries"
 	for f in build/*; do \
 		upx $$f; \
 	done;
@@ -119,7 +120,7 @@ vet:
 	@go vet ./...
 
 PHONY+= dist-release
-dist-release:
+dist-release: shrink
 	@if [ "$(OS)" == "osx" ]; \
 	then \
 		echo "🔘 dist-release started for macOS"; \
