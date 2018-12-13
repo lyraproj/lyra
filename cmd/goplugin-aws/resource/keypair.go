@@ -11,7 +11,7 @@ import (
 type KeyPair struct {
 	PublicKeyMaterial string // Maybe should be []byte?
 	KeyName           string
-	KeyFingerprint    string
+	KeyFingerprint    string `puppet:"type=>String,kind=>given_or_derived"`
 }
 
 //KeyPairHandler creates, reads and deletes the KeyPair Resource

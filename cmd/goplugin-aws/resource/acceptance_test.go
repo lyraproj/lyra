@@ -281,7 +281,7 @@ func aKeyPair() *KeyPair {
 func anInstance() *Instance {
 	r := Instance{}
 	r.InstanceType = "t2.nano"
-	r.ImageID = "ami-f90a4880"
+	r.ImageId = "ami-f90a4880"
 	r.Tags = make(map[string]string)
 	r.Tags["created-by"] = "lyra-acceptance-test-instance"
 	r.MaxCount = 1
