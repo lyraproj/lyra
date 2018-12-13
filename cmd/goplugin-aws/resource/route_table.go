@@ -2,6 +2,7 @@ package resource
 
 import (
 	"fmt"
+
 	"github.com/hashicorp/go-hclog"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -11,41 +12,41 @@ import (
 // RouteTable is the managed resource
 type RouteTable struct {
 	VpcId           string
-	RouteTableId    string
-	SubnetId        string
-	Routes          []Route
-	Associations    []RouteTableAssociation
-	PropagatingVgws []PropagatingVgw
+	RouteTableId    string                  `puppet:"type=>String,kind=>given_or_derived"`
+	SubnetId        string                  `puppet:"type=>String,kind=>given_or_derived"`
+	Routes          []Route                 `puppet:"type=>Optional[Array[Aws::Route]],value=>[]"`
+	Associations    []RouteTableAssociation `puppet:"type=>Optional[Array[Aws::RouteTableAssociation]],value=>[]"`
+	PropagatingVgws []PropagatingVgw        `puppet:"type=>Optional[Array[Aws::PropagatingVgw]],value=>[]"`
 	Tags            map[string]string
 }
 
 // RouteTableAssociation -
 type RouteTableAssociation struct {
 	Main                    bool
-	RouteTableAssociationID string
-	RouteTableID            string
-	SubnetID                string
+	RouteTableAssociationId string
+	RouteTableId            string
+	SubnetId                string
 }
 
 // PropagatingVgw -
 type PropagatingVgw struct {
-	GatewayID string
+	GatewayId string
 }
 
 // Route -
 type Route struct {
-	DestinationCidrBlock        string
-	DestinationIpv6CidrBlock    string
-	DestinationPrefixListID     string
-	EgressOnlyInternetGatewayID string
-	GatewayID                   string
-	InstanceID                  string
-	InstanceOwnerID             string
-	NatGatewayID                string
-	NetworkInterfaceID          string
-	Origin                      string
-	State                       string
-	VpcPeeringConnectionID      string
+	DestinationCidrBlock        string `puppet:"type=>String,kind=>given_or_derived"`
+	DestinationIpv6CidrBlock    string `puppet:"type=>String,kind=>given_or_derived"`
+	DestinationPrefixListId     string `puppet:"type=>String,kind=>given_or_derived"`
+	EgressOnlyInternetGatewayId string `puppet:"type=>String,kind=>given_or_derived"`
+	GatewayId                   string `puppet:"type=>String,kind=>given_or_derived"`
+	InstanceId                  string `puppet:"type=>String,kind=>given_or_derived"`
+	InstanceOwnerId             string `puppet:"type=>String,kind=>given_or_derived"`
+	NatGatewayId                string `puppet:"type=>String,kind=>given_or_derived"`
+	NetworkInterfaceId          string `puppet:"type=>String,kind=>given_or_derived"`
+	Origin                      string `puppet:"type=>String,kind=>given_or_derived"`
+	State                       string `puppet:"type=>String,kind=>given_or_derived"`
+	VpcPeeringConnectionId      string `puppet:"type=>String,kind=>given_or_derived"`
 	Tags                        map[string]string
 }
 
@@ -141,12 +142,12 @@ func convertAssociations(ec2Associations []*ec2.RouteTableAssociation) []RouteTa
 	for _, rta := range ec2Associations {
 		association := RouteTableAssociation{
 			Main:                    *rta.Main,
-			RouteTableAssociationID: *rta.RouteTableAssociationId,
-			RouteTableID:            *rta.RouteTableId,
+			RouteTableAssociationId: *rta.RouteTableAssociationId,
+			RouteTableId:            *rta.RouteTableId,
 		}
 
 		if rta.SubnetId != nil {
-			association.SubnetID = *rta.SubnetId
+			association.SubnetId = *rta.SubnetId
 		}
 
 		result = append(result, association)
@@ -158,7 +159,7 @@ func convertPropagatingVgws(ec2PropagatingVgws []*ec2.PropagatingVgw) []Propagat
 	result := []PropagatingVgw{}
 	for _, pvgw := range ec2PropagatingVgws {
 		propagatingVgw := PropagatingVgw{
-			GatewayID: *pvgw.GatewayId,
+			GatewayId: *pvgw.GatewayId,
 		}
 		result = append(result, propagatingVgw)
 	}
@@ -172,17 +173,17 @@ func convertRoutes(ec2Routes []*ec2.Route) []Route {
 		// talk to thomas about this again as its a bit inconventient/overly complicated
 		route := Route{
 			DestinationCidrBlock: *rt.DestinationCidrBlock,
-			GatewayID:            *rt.GatewayId,
+			GatewayId:            *rt.GatewayId,
 			Origin:               *rt.Origin,
 			State:                *rt.State,
 		}
-		route.VpcPeeringConnectionID = emptyIfNil(rt.VpcPeeringConnectionId)
-		route.NetworkInterfaceID = emptyIfNil(rt.NetworkInterfaceId)
-		route.NatGatewayID = emptyIfNil(rt.NatGatewayId)
-		route.InstanceOwnerID = emptyIfNil(rt.InstanceOwnerId)
-		route.InstanceID = emptyIfNil(rt.InstanceId)
-		route.EgressOnlyInternetGatewayID = emptyIfNil(rt.EgressOnlyInternetGatewayId)
-		route.DestinationPrefixListID = emptyIfNil(rt.DestinationPrefixListId)
+		route.VpcPeeringConnectionId = emptyIfNil(rt.VpcPeeringConnectionId)
+		route.NetworkInterfaceId = emptyIfNil(rt.NetworkInterfaceId)
+		route.NatGatewayId = emptyIfNil(rt.NatGatewayId)
+		route.InstanceOwnerId = emptyIfNil(rt.InstanceOwnerId)
+		route.InstanceId = emptyIfNil(rt.InstanceId)
+		route.EgressOnlyInternetGatewayId = emptyIfNil(rt.EgressOnlyInternetGatewayId)
+		route.DestinationPrefixListId = emptyIfNil(rt.DestinationPrefixListId)
 		route.DestinationIpv6CidrBlock = emptyIfNil(rt.DestinationIpv6CidrBlock)
 
 		result = append(result, route)

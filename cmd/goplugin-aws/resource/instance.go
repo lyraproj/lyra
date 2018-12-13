@@ -4,10 +4,10 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/hashicorp/go-hclog"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/hashicorp/go-hclog"
 )
 
 const (
@@ -72,9 +72,9 @@ func (h *InstanceHandler) Read(externalID string) (*Instance, error) {
 	for _, r := range response.Reservations {
 		for _, i := range r.Instances {
 			ri := reservationInstance{
-				reservationID: r.ReservationId,
-				requesterID:   r.RequesterId,
-				ownerID:       r.OwnerId,
+				reservationId: r.ReservationId,
+				requesterId:   r.RequesterId,
+				ownerId:       r.OwnerId,
 				instance:      i,
 			}
 			instances = append(instances, ri)
@@ -117,7 +117,7 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 	instance := Instance{
 		AdditionalInfo: desired.AdditionalInfo,
 		// CreditSpecification:
-		DisableAPITermination: desired.DisableAPITermination,
+		DisableApiTermination: desired.DisableApiTermination,
 		// ElasticGpuSpecification:
 		// InstanceInitiatedShutdownBehavior:
 		// InstanceMarketOptions:
@@ -126,24 +126,24 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 	}
 	instance.AdditionalInfo = desired.AdditionalInfo
 	instance.InstanceType = emptyIfNil(actual.instance.InstanceType)
-	instance.KernelID = emptyIfNil(actual.instance.KernelId)
+	instance.KernelId = emptyIfNil(actual.instance.KernelId)
 	instance.KeyName = emptyIfNil(actual.instance.KeyName)
-	instance.ImageID = emptyIfNil(actual.instance.ImageId)
+	instance.ImageId = emptyIfNil(actual.instance.ImageId)
 	instance.EbsOptimized = falseIfNil(actual.instance.EbsOptimized)
 	instance.ClientToken = emptyIfNil(actual.instance.ClientToken)
 	instance.BlockDeviceMappings = desired.BlockDeviceMappings
 	if actual.instance.CpuOptions != nil && *actual.instance.CpuOptions != (ec2.CpuOptions{}) {
-		cpuOptions := CPUOptions{
+		cpuOptions := CpuOptions{
 			CoreCount:      *actual.instance.CpuOptions.CoreCount,
 			ThreadsPerCore: *actual.instance.CpuOptions.ThreadsPerCore,
 		}
-		instance.CPUOptions = cpuOptions
+		instance.CpuOptions = cpuOptions
 	}
 	if actual.instance.IamInstanceProfile != nil && *actual.instance.IamInstanceProfile != (ec2.IamInstanceProfile{}) {
 		iamInstanceProfile := IamInstanceProfile{
 			Arn:  *actual.instance.IamInstanceProfile.Arn,
 			Name: desired.IamInstanceProfile.Name,
-			ID:   *actual.instance.IamInstanceProfile.Id,
+			Id:   *actual.instance.IamInstanceProfile.Id,
 		}
 		instance.IamInstanceProfile = iamInstanceProfile
 	}
@@ -170,38 +170,38 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 			Affinity:         emptyIfNil(p.Affinity),
 			AvailabilityZone: emptyIfNil(p.AvailabilityZone),
 			GroupName:        emptyIfNil(p.GroupName),
-			HostID:           emptyIfNil(p.HostId),
+			HostId:           emptyIfNil(p.HostId),
 			SpreadDomain:     emptyIfNil(p.SpreadDomain),
 			Tenancy:          emptyIfNil(p.Tenancy),
 		}
 	}
 
-	instance.PrivateIPAddress = emptyIfNil(actual.instance.PrivateIpAddress)
-	instance.SubnetID = emptyIfNil(actual.instance.SubnetId)
+	instance.PrivateIpAddress = emptyIfNil(actual.instance.PrivateIpAddress)
+	instance.SubnetId = emptyIfNil(actual.instance.SubnetId)
 	instance.Tags = convertTags(actual.instance.Tags)
 
 	if len(desired.UserData) > 0 {
 		instance.UserData = desired.UserData
 	}
 
-	instance.OwnerID = emptyIfNil(actual.ownerID)
-	instance.RequesterID = emptyIfNil(actual.requesterID)
-	instance.ReservationID = emptyIfNil(actual.reservationID)
+	instance.OwnerId = emptyIfNil(actual.ownerId)
+	instance.RequesterId = emptyIfNil(actual.requesterId)
+	instance.ReservationId = emptyIfNil(actual.reservationId)
 	instance.AmiLaunchIndex = zeroIfNil(actual.instance.AmiLaunchIndex)
 	instance.Architecture = emptyIfNil(actual.instance.Architecture)
 	instance.EnaSupport = falseIfNil(actual.instance.EnaSupport)
 	instance.Hypervisor = emptyIfNil(actual.instance.Hypervisor)
-	instance.InstanceID = emptyIfNil(actual.instance.InstanceId)
+	instance.InstanceId = emptyIfNil(actual.instance.InstanceId)
 	instance.InstanceLifecycle = emptyIfNil(actual.instance.InstanceLifecycle)
 	instance.Platform = emptyIfNil(actual.instance.Platform)
 	//instance.LaunchTime = *actual.instance.LaunchTime TODO needed?
-	instance.PrivateDNSName = emptyIfNil(actual.instance.PrivateDnsName)
+	instance.PrivateDnsName = emptyIfNil(actual.instance.PrivateDnsName)
 
 	if actual.instance.ProductCodes != nil && len(actual.instance.ProductCodes) > 0 {
 		productCodes := []ProductCode{}
 		for _, pc := range actual.instance.ProductCodes {
 			p := ProductCode{
-				ProductCodeID:   *pc.ProductCodeId,
+				ProductCodeId:   *pc.ProductCodeId,
 				ProductCodeType: *pc.ProductCodeType,
 			}
 			productCodes = append(productCodes, p)
@@ -209,9 +209,9 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		instance.ProductCodes = productCodes
 	}
 
-	instance.PublicDNSName = emptyIfNil(actual.instance.PublicDnsName)
-	instance.PublicIPAddress = emptyIfNil(actual.instance.PublicIpAddress)
-	instance.RamdiskID = emptyIfNil(actual.instance.RamdiskId)
+	instance.PublicDnsName = emptyIfNil(actual.instance.PublicDnsName)
+	instance.PublicIpAddress = emptyIfNil(actual.instance.PublicIpAddress)
+	instance.RamdiskId = emptyIfNil(actual.instance.RamdiskId)
 	instance.RootDeviceName = emptyIfNil(actual.instance.RootDeviceName)
 	instance.RootDeviceType = emptyIfNil(actual.instance.RootDeviceType)
 
@@ -219,7 +219,7 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		sgs := []GroupIdentifier{}
 		for _, sg := range actual.instance.SecurityGroups {
 			gi := GroupIdentifier{
-				GroupID:   *sg.GroupId,
+				GroupId:   *sg.GroupId,
 				GroupName: *sg.GroupName,
 			}
 			sgs = append(sgs, gi)
@@ -228,7 +228,7 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 	}
 
 	instance.SourceDestCheck = falseIfNil(actual.instance.SourceDestCheck)
-	instance.SpotInstanceRequestID = emptyIfNil(actual.instance.SpotInstanceRequestId)
+	instance.SpotInstanceRequestId = emptyIfNil(actual.instance.SpotInstanceRequestId)
 	instance.SriovNetSupport = emptyIfNil(actual.instance.SriovNetSupport)
 
 	if actual.instance.State != nil && *actual.instance.State != (ec2.InstanceState{}) {
@@ -247,7 +247,7 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 
 	instance.StateTransitionReason = emptyIfNil(actual.instance.StateTransitionReason)
 	instance.VirtualizationType = emptyIfNil(actual.instance.VirtualizationType)
-	instance.VpcID = emptyIfNil(actual.instance.VpcId)
+	instance.VpcId = emptyIfNil(actual.instance.VpcId)
 
 	return &instance
 }
@@ -270,8 +270,8 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 					DeleteOnTermination: aws.Bool(m.Ebs.DeleteOnTermination),
 					Encrypted:           aws.Bool(m.Ebs.Encrypted),
 					Iops:                aws.Int64(m.Ebs.Iops),
-					KmsKeyId:            aws.String(m.Ebs.KmsKeyID),
-					SnapshotId:          aws.String(m.Ebs.SnapshotID),
+					KmsKeyId:            aws.String(m.Ebs.KmsKeyId),
+					SnapshotId:          aws.String(m.Ebs.SnapshotId),
 					VolumeSize:          aws.Int64(m.Ebs.VolumeSize),
 					VolumeType:          aws.String(m.Ebs.VolumeType),
 				}
@@ -284,17 +284,17 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 
 	rii.ClientToken = nilIfEmpty(desired.ClientToken)
 
-	if desired.CPUOptions != (CPUOptions{}) {
+	if desired.CpuOptions != (CpuOptions{}) {
 		copts := &ec2.CpuOptionsRequest{
-			CoreCount:      aws.Int64(desired.CPUOptions.CoreCount),
-			ThreadsPerCore: aws.Int64(desired.CPUOptions.ThreadsPerCore),
+			CoreCount:      aws.Int64(desired.CpuOptions.CoreCount),
+			ThreadsPerCore: aws.Int64(desired.CpuOptions.ThreadsPerCore),
 		}
 		rii.CpuOptions = copts
 	}
 
 	// TODO implement CreditSpecification
 
-	rii.DisableApiTermination = aws.Bool(desired.DisableAPITermination)
+	rii.DisableApiTermination = aws.Bool(desired.DisableApiTermination)
 	rii.EbsOptimized = aws.Bool(desired.EbsOptimized)
 
 	// TODO implement ElasticGpuSpecification
@@ -306,7 +306,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 		}
 		rii.IamInstanceProfile = iip
 	}
-	rii.ImageId = nilIfEmpty(desired.ImageID)
+	rii.ImageId = nilIfEmpty(desired.ImageId)
 	rii.InstanceInitiatedShutdownBehavior = nilIfEmpty(desired.InstanceInitiatedShutdownBehavior)
 
 	// TODO implement InstanceMarketOptions
@@ -325,12 +325,12 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 		rii.Ipv6Addresses = ipv6as
 	}
 
-	rii.KernelId = nilIfEmpty(desired.KernelID)
+	rii.KernelId = nilIfEmpty(desired.KernelId)
 	rii.KeyName = nilIfEmpty(desired.KeyName)
 
 	if desired.LaunchTemplate != (LaunchTemplateSpecification{}) {
 		lt := &ec2.LaunchTemplateSpecification{}
-		lt.LaunchTemplateId = nilIfEmpty(desired.LaunchTemplate.LaunchTemplateID)
+		lt.LaunchTemplateId = nilIfEmpty(desired.LaunchTemplate.LaunchTemplateId)
 		lt.LaunchTemplateName = nilIfEmpty(desired.LaunchTemplate.LaunchTemplateName)
 		lt.Version = nilIfEmpty(desired.LaunchTemplate.Version)
 		rii.LaunchTemplate = lt
@@ -351,7 +351,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 		nifs := []*ec2.InstanceNetworkInterfaceSpecification{}
 		for _, n := range desired.NetworkInterfaces {
 			nif := &ec2.InstanceNetworkInterfaceSpecification{
-				AssociatePublicIpAddress: aws.Bool(n.AssociatePublicIPAddress),
+				AssociatePublicIpAddress: aws.Bool(n.AssociatePublicIpAddress),
 				DeleteOnTermination:      aws.Bool(n.DeleteOnTermination),
 			}
 
@@ -361,8 +361,8 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 			if len(n.Groups) > 0 {
 				gs := []*string{}
 				for _, g := range n.Groups {
-					if len(g.GroupID) > 0 {
-						gs = append(gs, aws.String(g.GroupID))
+					if len(g.GroupId) > 0 {
+						gs = append(gs, aws.String(g.GroupId))
 					}
 				}
 				nif.Groups = gs
@@ -381,24 +381,24 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 				nif.Ipv6Addresses = ipv6as
 			}
 
-			nif.NetworkInterfaceId = nilIfEmpty(n.NetworkInterfaceID)
-			nif.PrivateIpAddress = nilIfEmpty(n.PrivateIPAddress)
+			nif.NetworkInterfaceId = nilIfEmpty(n.NetworkInterfaceId)
+			nif.PrivateIpAddress = nilIfEmpty(n.PrivateIpAddress)
 
-			if len(n.PrivateIPAddresses) > 0 {
+			if len(n.PrivateIpAddresses) > 0 {
 				pias := []*ec2.PrivateIpAddressSpecification{}
-				for _, a := range n.PrivateIPAddresses {
+				for _, a := range n.PrivateIpAddresses {
 					// TODO should we enforce the only one address can be primary here or leave it to the API
 					pia := &ec2.PrivateIpAddressSpecification{
 						Primary: aws.Bool(a.Primary),
 					}
 
-					nif.PrivateIpAddress = nilIfEmpty(n.PrivateIPAddress)
+					nif.PrivateIpAddress = nilIfEmpty(n.PrivateIpAddress)
 					pias = append(pias, pia)
 				}
 				nif.PrivateIpAddresses = pias
 			}
-			nif.SecondaryPrivateIpAddressCount = nilIfZero(n.SecondaryPrivateIPAddressCount)
-			nif.SubnetId = nilIfEmpty(n.SubnetID)
+			nif.SecondaryPrivateIpAddressCount = nilIfZero(n.SecondaryPrivateIpAddressCount)
+			nif.SubnetId = nilIfEmpty(n.SubnetId)
 
 			nifs = append(nifs, nif)
 		}
@@ -411,15 +411,15 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 		p.Affinity = nilIfEmpty(desired.Placement.Affinity)
 		p.AvailabilityZone = nilIfEmpty(desired.Placement.AvailabilityZone)
 		p.GroupName = nilIfEmpty(desired.Placement.GroupName)
-		p.HostId = nilIfEmpty(desired.Placement.HostID)
+		p.HostId = nilIfEmpty(desired.Placement.HostId)
 		p.SpreadDomain = nilIfEmpty(desired.Placement.SpreadDomain)
 		p.Tenancy = nilIfEmpty(desired.Placement.Tenancy)
 		rii.Placement = p
 	}
 
-	rii.PrivateIpAddress = nilIfEmpty(desired.PrivateIPAddress)
-	rii.RamdiskId = nilIfEmpty(desired.RamdiskID)
-	rii.SubnetId = nilIfEmpty(desired.SubnetID)
+	rii.PrivateIpAddress = nilIfEmpty(desired.PrivateIpAddress)
+	rii.RamdiskId = nilIfEmpty(desired.RamdiskId)
+	rii.SubnetId = nilIfEmpty(desired.SubnetId)
 
 	if len(desired.UserData) > 0 {
 		rii.UserData = aws.String(base64.StdEncoding.EncodeToString([]byte(desired.UserData)))
@@ -432,8 +432,8 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 			if len(sg.GroupName) > 0 {
 				sgNames = append(sgNames, &sg.GroupName)
 			}
-			if len(sg.GroupID) > 0 {
-				sgIds = append(sgIds, &sg.GroupID)
+			if len(sg.GroupId) > 0 {
+				sgIds = append(sgIds, &sg.GroupId)
 			}
 		}
 		if len(sgNames) > 0 {
@@ -457,35 +457,35 @@ func nicFromAWS(desired []InstanceNetworkInterface, actual []*ec2.InstanceNetwor
 		w := nifMap[*nif.NetworkInterfaceId]
 
 		n := InstanceNetworkInterface{
-			AssociatePublicIPAddress:       w.AssociatePublicIPAddress,
+			AssociatePublicIpAddress:       w.AssociatePublicIpAddress,
 			DeleteOnTermination:            w.DeleteOnTermination,
 			Description:                    *nif.Description,
 			DeviceIndex:                    w.DeviceIndex,
 			Ipv6AddressCount:               w.Ipv6AddressCount,
-			NetworkInterfaceID:             *nif.NetworkInterfaceId,
-			PrivateIPAddress:               *nif.PrivateIpAddress,
-			SecondaryPrivateIPAddressCount: w.SecondaryPrivateIPAddressCount,
-			SubnetID:                       *nif.SubnetId,
+			NetworkInterfaceId:             *nif.NetworkInterfaceId,
+			PrivateIpAddress:               *nif.PrivateIpAddress,
+			SecondaryPrivateIpAddressCount: w.SecondaryPrivateIpAddressCount,
+			SubnetId:                       *nif.SubnetId,
 			MacAddress:                     *nif.MacAddress,
-			OwnerID:                        *nif.OwnerId,
-			PrivateDNSName:                 *nif.PrivateDnsName,
+			OwnerId:                        *nif.OwnerId,
+			PrivateDnsName:                 *nif.PrivateDnsName,
 			SourceDestCheck:                *nif.SourceDestCheck,
 			Status:                         *nif.Status,
-			VpcID:                          *nif.VpcId,
+			VpcId:                          *nif.VpcId,
 		}
 
 		if nif.Association != nil {
 			n.Association = InstanceNetworkInterfaceAssociation{
-				IPOwnerID:     *nif.Association.IpOwnerId,
-				PublicDNSName: *nif.Association.PublicDnsName,
-				PublicIP:      *nif.Association.PublicIp,
+				IpOwnerId:     *nif.Association.IpOwnerId,
+				PublicDnsName: *nif.Association.PublicDnsName,
+				PublicIp:      *nif.Association.PublicIp,
 			}
 		}
 
 		if nif.Attachment != nil {
 			n.Attachment = InstanceNetworkInterfaceAttachment{
-				AttachTime:          *nif.Attachment.AttachTime,
-				AttachmentID:        *nif.Attachment.AttachmentId,
+				// AttachTime:          *nif.Attachment.AttachTime,
+				AttachmentId:        *nif.Attachment.AttachmentId,
 				DeleteOnTermination: *nif.Attachment.DeleteOnTermination,
 				DeviceIndex:         *nif.Attachment.DeviceIndex,
 				Status:              *nif.Attachment.Status,
@@ -496,7 +496,7 @@ func nicFromAWS(desired []InstanceNetworkInterface, actual []*ec2.InstanceNetwor
 			gis := []GroupIdentifier{}
 			for _, f := range nif.Groups {
 				gi := GroupIdentifier{
-					GroupID:   *f.GroupId,
+					GroupId:   *f.GroupId,
 					GroupName: *f.GroupName,
 				}
 				gis = append(gis, gi)
@@ -517,17 +517,17 @@ func nicFromAWS(desired []InstanceNetworkInterface, actual []*ec2.InstanceNetwor
 		}
 
 		if nif.PrivateIpAddresses != nil {
-			addresses := []InstancePrivateIPAddress{}
+			addresses := []InstancePrivateIpAddress{}
 			for _, a := range nif.PrivateIpAddresses {
 				// TODO collapse this down into just the string?
-				address := InstancePrivateIPAddress{
+				address := InstancePrivateIpAddress{
 					Primary:          *a.Primary,
-					PrivateDNSName:   *a.PrivateDnsName,
-					PrivateIPAddress: *a.PrivateIpAddress,
+					PrivateDnsName:   *a.PrivateDnsName,
+					PrivateIpAddress: *a.PrivateIpAddress,
 				}
 				addresses = append(addresses, address)
 			}
-			n.PrivateIPAddresses = addresses
+			n.PrivateIpAddresses = addresses
 		}
 
 		instanceNetworkInterfaces = append(instanceNetworkInterfaces, n)
@@ -538,7 +538,7 @@ func nicFromAWS(desired []InstanceNetworkInterface, actual []*ec2.InstanceNetwor
 func getNetworkInterfaceMap(desired []InstanceNetworkInterface) map[string]InstanceNetworkInterface {
 	nifMap := map[string]InstanceNetworkInterface{}
 	for _, ni := range desired {
-		nifMap[ni.NetworkInterfaceID] = ni
+		nifMap[ni.NetworkInterfaceId] = ni
 	}
 	return nifMap
 }
@@ -590,9 +590,9 @@ func (h *InstanceHandler) getInstance(client *ec2.EC2, desired Instance) (*Insta
 	for _, r := range describeOutput.Reservations {
 		for _, i := range r.Instances {
 			ri := reservationInstance{
-				reservationID: r.ReservationId,
-				requesterID:   r.RequesterId,
-				ownerID:       r.OwnerId,
+				reservationId: r.ReservationId,
+				requesterId:   r.RequesterId,
+				ownerId:       r.OwnerId,
 				instance:      i,
 			}
 			instances = append(instances, ri)

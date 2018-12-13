@@ -2,8 +2,9 @@ package resource
 
 import (
 	"fmt"
-	"github.com/hashicorp/go-hclog"
 	"time"
+
+	"github.com/hashicorp/go-hclog"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
@@ -13,9 +14,9 @@ const defaultRetryBackoff = 1 * time.Second
 
 // InternetGateway is the managed resource
 type InternetGateway struct {
-	InternetGatewayId string
+	InternetGatewayId string `puppet:"type=>String,kind=>given_or_derived"`
 	Tags              map[string]string
-	Attachments       []InternetGatewayAttachment
+	Attachments       []InternetGatewayAttachment `puppet:"type=>Optional[Array[Aws::InternetGatewayAttachment]],value=>[]"`
 }
 
 // InternetGatewayAttachment -
@@ -23,7 +24,7 @@ type InternetGateway struct {
 // Internet gateway.
 type InternetGatewayAttachment struct {
 	State string
-	VpcID string
+	VpcId string
 }
 
 //InternetGatewayHandler creates, reads and deletes the InternetGateway Resource
@@ -111,7 +112,7 @@ func (h *InternetGatewayHandler) fromAWS(wanted *InternetGateway, actual *ec2.In
 		for _, attachment := range actual.Attachments {
 			a := InternetGatewayAttachment{
 				State: *attachment.State,
-				VpcID: *attachment.VpcId,
+				VpcId: *attachment.VpcId,
 			}
 			attachments = append(attachments, a)
 		}

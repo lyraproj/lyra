@@ -73,9 +73,9 @@ func TestFromAWS_CanMapFields(t *testing.T) {
 	actual := h.fromAWS(desired, ri)
 	require.NotNil(t, actual)
 	require.Equal(t, "t2.supertiny", actual.InstanceType)
-	require.Equal(t, "k-id", actual.KernelID)
+	require.Equal(t, "k-id", actual.KernelId)
 	require.Empty(t, actual.KeyName, "a nil (unset) string")
-	require.Empty(t, actual.ImageID, "a pointer to an empty string")
+	require.Empty(t, actual.ImageId, "a pointer to an empty string")
 	require.False(t, actual.EbsOptimized, "a false boolean")
 	require.True(t, actual.EnaSupport, "a true boolean")
 	require.False(t, actual.SourceDestCheck, "a nil (unset) boolean")
@@ -83,22 +83,22 @@ func TestFromAWS_CanMapFields(t *testing.T) {
 	require.Equal(t, "monitoring state", actual.Monitoring.State)
 
 	require.Equal(t, "eu-west-green", actual.Placement.AvailabilityZone)
-	require.Empty(t, actual.Placement.HostID)
+	require.Empty(t, actual.Placement.HostId)
 	require.Empty(t, actual.Placement.SpreadDomain)
 
-	require.Equal(t, int64(4), actual.CPUOptions.CoreCount)
-	require.Equal(t, int64(8), actual.CPUOptions.ThreadsPerCore)
+	require.Equal(t, int64(4), actual.CpuOptions.CoreCount)
+	require.Equal(t, int64(8), actual.CpuOptions.ThreadsPerCore)
 
 	require.Equal(t, "arn-123", actual.IamInstanceProfile.Arn)
-	require.Equal(t, "id-123", actual.IamInstanceProfile.ID)
-	require.Equal(t, "id-123", actual.IamInstanceProfile.ID)
+	require.Equal(t, "id-123", actual.IamInstanceProfile.Id)
+	require.Equal(t, "id-123", actual.IamInstanceProfile.Id)
 
 	require.Len(t, actual.ProductCodes, 2)
-	require.Equal(t, "pci2", actual.ProductCodes[1].ProductCodeID)
+	require.Equal(t, "pci2", actual.ProductCodes[1].ProductCodeId)
 	require.Equal(t, "pct2", actual.ProductCodes[1].ProductCodeType)
 
 	require.Len(t, actual.SecurityGroups, 1)
-	require.Equal(t, "sgid", actual.SecurityGroups[0].GroupID)
+	require.Equal(t, "sgid", actual.SecurityGroups[0].GroupId)
 	require.Equal(t, "sgname", actual.SecurityGroups[0].GroupName)
 
 	require.Equal(t, int64(12), actual.State.Code)
@@ -119,7 +119,7 @@ func TestFromAWS_CanMapFields_WithNilChildren(t *testing.T) {
 	require.NotNil(t, actual)
 	require.NotNil(t, "blah", actual.InstanceType, "just check a basic mapping field")
 	require.Equal(t, Placement{}, actual.Placement)
-	require.Equal(t, CPUOptions{}, actual.CPUOptions)
+	require.Equal(t, CpuOptions{}, actual.CpuOptions)
 	require.Equal(t, IamInstanceProfile{}, actual.IamInstanceProfile)
 	require.Len(t, actual.ProductCodes, 0)
 	require.Len(t, actual.SecurityGroups, 0)
@@ -149,21 +149,21 @@ func Example_runInstancesInput() {
 					DeleteOnTermination: true,
 					Encrypted:           false,
 					Iops:                19,
-					KmsKeyID:            "1234",
-					SnapshotID:          "snapshot one",
+					KmsKeyId:            "1234",
+					SnapshotId:          "snapshot one",
 					VolumeSize:          22,
 					VolumeType:          "ebs one",
 				},
 			},
 		},
 		ClientToken: "client token",
-		CPUOptions: CPUOptions{
+		CpuOptions: CpuOptions{
 			ThreadsPerCore: 8,
 			CoreCount:      4,
 		},
-		DisableAPITermination:             true,
+		DisableApiTermination:             true,
 		EbsOptimized:                      true,
-		ImageID:                           "ImageOne",
+		ImageId:                           "ImageOne",
 		InstanceInitiatedShutdownBehavior: "auto",
 		InstanceType:                      "xx.tiny",
 		Ipv6AddressCount:                  12,
@@ -175,7 +175,7 @@ func Example_runInstancesInput() {
 			InstanceIpv6Address{Ipv6Address: "hex2"},
 		},
 		LaunchTemplate: LaunchTemplateSpecification{
-			LaunchTemplateID:   "ltid",
+			LaunchTemplateId:   "ltid",
 			LaunchTemplateName: "ltname",
 		},
 		MaxCount: 23,
@@ -187,11 +187,11 @@ func Example_runInstancesInput() {
 				Description: "nic 1",
 				Groups: []GroupIdentifier{
 					GroupIdentifier{
-						GroupID:   "group1",
+						GroupId:   "group1",
 						GroupName: "group1name",
 					},
 					GroupIdentifier{
-						GroupID:   "group2",
+						GroupId:   "group2",
 						GroupName: "group2name",
 					},
 				},
@@ -201,17 +201,17 @@ func Example_runInstancesInput() {
 			Affinity:         "none",
 			AvailabilityZone: "az1",
 			GroupName:        "pgroup",
-			HostID:           "phost",
+			HostId:           "phost",
 			SpreadDomain:     "spread domain",
 			Tenancy:          "tenancy",
 		},
 		SecurityGroups: []GroupIdentifier{
 			GroupIdentifier{
-				GroupID:   "group3",
+				GroupId:   "group3",
 				GroupName: "group3name",
 			},
 			GroupIdentifier{
-				GroupID:   "group4",
+				GroupId:   "group4",
 				GroupName: "group4name",
 			},
 		},
