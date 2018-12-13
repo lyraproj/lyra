@@ -182,21 +182,21 @@ func Example_runInstancesInput() {
 		Monitoring: Monitoring{
 			Enabled: false,
 		},
-		NetworkInterfaces: []InstanceNetworkInterface{
-			InstanceNetworkInterface{
-				Description: "nic 1",
-				Groups: []GroupIdentifier{
-					GroupIdentifier{
-						GroupId:   "group1",
-						GroupName: "group1name",
-					},
-					GroupIdentifier{
-						GroupId:   "group2",
-						GroupName: "group2name",
-					},
-				},
-			},
-		},
+		// NetworkInterfaces: []InstanceNetworkInterface{
+		// 	InstanceNetworkInterface{
+		// 		Description: "nic 1",
+		// 		Groups: []GroupIdentifier{
+		// 			GroupIdentifier{
+		// 				GroupId:   "group1",
+		// 				GroupName: "group1name",
+		// 			},
+		// 			GroupIdentifier{
+		// 				GroupId:   "group2",
+		// 				GroupName: "group2name",
+		// 			},
+		// 		},
+		// 	},
+		// },
 		Placement: Placement{
 			Affinity:         "none",
 			AvailabilityZone: "az1",
@@ -260,13 +260,6 @@ func Example_runInstancesInput() {
 	//     LaunchTemplateName: "ltname"
 	//   },
 	//   MaxCount: 23,
-	//   NetworkInterfaces: [{
-	//       AssociatePublicIpAddress: false,
-	//       DeleteOnTermination: false,
-	//       Description: "nic 1",
-	//       DeviceIndex: 0,
-	//       Groups: ["group1","group2"]
-	//     }],
 	//   Placement: {
 	//     Affinity: "none",
 	//     AvailabilityZone: "az1",

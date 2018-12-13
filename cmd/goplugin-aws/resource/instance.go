@@ -161,9 +161,9 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		}
 		instance.Monitoring = monitoring
 	}
-	if actual.instance.NetworkInterfaces != nil && len(actual.instance.NetworkInterfaces) > 0 {
-		instance.NetworkInterfaces = nicFromAWS(desired.NetworkInterfaces, actual.instance.NetworkInterfaces)
-	}
+	// if actual.instance.NetworkInterfaces != nil && len(actual.instance.NetworkInterfaces) > 0 {
+	// 	instance.NetworkInterfaces = nicFromAWS(desired.NetworkInterfaces, actual.instance.NetworkInterfaces)
+	// }
 	if actual.instance.Placement != nil && *actual.instance.Placement != (ec2.Placement{}) {
 		p := actual.instance.Placement
 		instance.Placement = Placement{
@@ -347,64 +347,64 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 		rii.Monitoring = m
 	}
 
-	if len(desired.NetworkInterfaces) > 0 {
-		nifs := []*ec2.InstanceNetworkInterfaceSpecification{}
-		for _, n := range desired.NetworkInterfaces {
-			nif := &ec2.InstanceNetworkInterfaceSpecification{
-				AssociatePublicIpAddress: aws.Bool(n.AssociatePublicIpAddress),
-				DeleteOnTermination:      aws.Bool(n.DeleteOnTermination),
-			}
+	// if len(desired.NetworkInterfaces) > 0 {
+	// 	nifs := []*ec2.InstanceNetworkInterfaceSpecification{}
+	// 	for _, n := range desired.NetworkInterfaces {
+	// 		nif := &ec2.InstanceNetworkInterfaceSpecification{
+	// 			AssociatePublicIpAddress: aws.Bool(n.AssociatePublicIpAddress),
+	// 			DeleteOnTermination:      aws.Bool(n.DeleteOnTermination),
+	// 		}
 
-			nif.Description = nilIfEmpty(n.Description)
-			nif.DeviceIndex = aws.Int64(n.DeviceIndex)
+	// 		nif.Description = nilIfEmpty(n.Description)
+	// 		nif.DeviceIndex = aws.Int64(n.DeviceIndex)
 
-			if len(n.Groups) > 0 {
-				gs := []*string{}
-				for _, g := range n.Groups {
-					if len(g.GroupId) > 0 {
-						gs = append(gs, aws.String(g.GroupId))
-					}
-				}
-				nif.Groups = gs
-			}
+	// 		if len(n.Groups) > 0 {
+	// 			gs := []*string{}
+	// 			for _, g := range n.Groups {
+	// 				if len(g.GroupId) > 0 {
+	// 					gs = append(gs, aws.String(g.GroupId))
+	// 				}
+	// 			}
+	// 			nif.Groups = gs
+	// 		}
 
-			nif.Ipv6AddressCount = nilIfZero(n.Ipv6AddressCount)
+	// 		nif.Ipv6AddressCount = nilIfZero(n.Ipv6AddressCount)
 
-			if len(n.Ipv6Addresses) > 0 {
-				ipv6as := []*ec2.InstanceIpv6Address{}
-				for _, a := range n.Ipv6Addresses {
-					ipv6a := &ec2.InstanceIpv6Address{
-						Ipv6Address: aws.String(a.Ipv6Address),
-					}
-					ipv6as = append(ipv6as, ipv6a)
-				}
-				nif.Ipv6Addresses = ipv6as
-			}
+	// 		if len(n.Ipv6Addresses) > 0 {
+	// 			ipv6as := []*ec2.InstanceIpv6Address{}
+	// 			for _, a := range n.Ipv6Addresses {
+	// 				ipv6a := &ec2.InstanceIpv6Address{
+	// 					Ipv6Address: aws.String(a.Ipv6Address),
+	// 				}
+	// 				ipv6as = append(ipv6as, ipv6a)
+	// 			}
+	// 			nif.Ipv6Addresses = ipv6as
+	// 		}
 
-			nif.NetworkInterfaceId = nilIfEmpty(n.NetworkInterfaceId)
-			nif.PrivateIpAddress = nilIfEmpty(n.PrivateIpAddress)
+	// 		nif.NetworkInterfaceId = nilIfEmpty(n.NetworkInterfaceId)
+	// 		nif.PrivateIpAddress = nilIfEmpty(n.PrivateIpAddress)
 
-			if len(n.PrivateIpAddresses) > 0 {
-				pias := []*ec2.PrivateIpAddressSpecification{}
-				for _, a := range n.PrivateIpAddresses {
-					// TODO should we enforce the only one address can be primary here or leave it to the API
-					pia := &ec2.PrivateIpAddressSpecification{
-						Primary: aws.Bool(a.Primary),
-					}
+	// 		// if len(n.PrivateIpAddresses) > 0 {
+	// 		// 	pias := []*ec2.PrivateIpAddressSpecification{}
+	// 		// 	for _, a := range n.PrivateIpAddresses {
+	// 		// 		// TODO should we enforce the only one address can be primary here or leave it to the API
+	// 		// 		pia := &ec2.PrivateIpAddressSpecification{
+	// 		// 			Primary: aws.Bool(a.Primary),
+	// 		// 		}
 
-					nif.PrivateIpAddress = nilIfEmpty(n.PrivateIpAddress)
-					pias = append(pias, pia)
-				}
-				nif.PrivateIpAddresses = pias
-			}
-			nif.SecondaryPrivateIpAddressCount = nilIfZero(n.SecondaryPrivateIpAddressCount)
-			nif.SubnetId = nilIfEmpty(n.SubnetId)
+	// 		// 		nif.PrivateIpAddress = nilIfEmpty(n.PrivateIpAddress)
+	// 		// 		pias = append(pias, pia)
+	// 		// 	}
+	// 		// 	nif.PrivateIpAddresses = pias
+	// 		// }
+	// 		nif.SecondaryPrivateIpAddressCount = nilIfZero(n.SecondaryPrivateIpAddressCount)
+	// 		nif.SubnetId = nilIfEmpty(n.SubnetId)
 
-			nifs = append(nifs, nif)
-		}
+	// 		nifs = append(nifs, nif)
+	// 	}
 
-		rii.NetworkInterfaces = nifs
-	}
+	// 	rii.NetworkInterfaces = nifs
+	// }
 
 	if desired.Placement != (Placement{}) {
 		p := &ec2.Placement{}
@@ -447,101 +447,101 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 	return rii
 }
 
-// TODO add an interface for conversion from AWS to our type across all providers, Marshaller/Unmarshaller
-func nicFromAWS(desired []InstanceNetworkInterface, actual []*ec2.InstanceNetworkInterface) []InstanceNetworkInterface {
-	nifMap := getNetworkInterfaceMap(desired)
+// // TODO add an interface for conversion from AWS to our type across all providers, Marshaller/Unmarshaller
+// func nicFromAWS(desired []InstanceNetworkInterface, actual []*ec2.InstanceNetworkInterface) []InstanceNetworkInterface {
+// 	nifMap := getNetworkInterfaceMap(desired)
 
-	instanceNetworkInterfaces := []InstanceNetworkInterface{}
-	for _, nif := range actual {
+// 	instanceNetworkInterfaces := []InstanceNetworkInterface{}
+// 	for _, nif := range actual {
 
-		w := nifMap[*nif.NetworkInterfaceId]
+// 		w := nifMap[*nif.NetworkInterfaceId]
 
-		n := InstanceNetworkInterface{
-			AssociatePublicIpAddress:       w.AssociatePublicIpAddress,
-			DeleteOnTermination:            w.DeleteOnTermination,
-			Description:                    *nif.Description,
-			DeviceIndex:                    w.DeviceIndex,
-			Ipv6AddressCount:               w.Ipv6AddressCount,
-			NetworkInterfaceId:             *nif.NetworkInterfaceId,
-			PrivateIpAddress:               *nif.PrivateIpAddress,
-			SecondaryPrivateIpAddressCount: w.SecondaryPrivateIpAddressCount,
-			SubnetId:                       *nif.SubnetId,
-			MacAddress:                     *nif.MacAddress,
-			OwnerId:                        *nif.OwnerId,
-			PrivateDnsName:                 *nif.PrivateDnsName,
-			SourceDestCheck:                *nif.SourceDestCheck,
-			Status:                         *nif.Status,
-			VpcId:                          *nif.VpcId,
-		}
+// 		n := InstanceNetworkInterface{
+// 			AssociatePublicIpAddress:       w.AssociatePublicIpAddress,
+// 			DeleteOnTermination:            w.DeleteOnTermination,
+// 			Description:                    *nif.Description,
+// 			DeviceIndex:                    w.DeviceIndex,
+// 			Ipv6AddressCount:               w.Ipv6AddressCount,
+// 			NetworkInterfaceId:             *nif.NetworkInterfaceId,
+// 			PrivateIpAddress:               *nif.PrivateIpAddress,
+// 			SecondaryPrivateIpAddressCount: w.SecondaryPrivateIpAddressCount,
+// 			SubnetId:                       *nif.SubnetId,
+// 			MacAddress:                     *nif.MacAddress,
+// 			OwnerId:                        *nif.OwnerId,
+// 			PrivateDnsName:                 *nif.PrivateDnsName,
+// 			SourceDestCheck:                *nif.SourceDestCheck,
+// 			Status:                         *nif.Status,
+// 			VpcId:                          *nif.VpcId,
+// 		}
 
-		if nif.Association != nil {
-			n.Association = InstanceNetworkInterfaceAssociation{
-				IpOwnerId:     *nif.Association.IpOwnerId,
-				PublicDnsName: *nif.Association.PublicDnsName,
-				PublicIp:      *nif.Association.PublicIp,
-			}
-		}
+// 		// if nif.Association != nil {
+// 		// 	n.Association = InstanceNetworkInterfaceAssociation{
+// 		// 		IpOwnerId:     *nif.Association.IpOwnerId,
+// 		// 		PublicDnsName: *nif.Association.PublicDnsName,
+// 		// 		PublicIp:      *nif.Association.PublicIp,
+// 		// 	}
+// 		// }
 
-		if nif.Attachment != nil {
-			n.Attachment = InstanceNetworkInterfaceAttachment{
-				// AttachTime:          *nif.Attachment.AttachTime,
-				AttachmentId:        *nif.Attachment.AttachmentId,
-				DeleteOnTermination: *nif.Attachment.DeleteOnTermination,
-				DeviceIndex:         *nif.Attachment.DeviceIndex,
-				Status:              *nif.Attachment.Status,
-			}
-		}
+// 		// if nif.Attachment != nil {
+// 		// 	n.Attachment = InstanceNetworkInterfaceAttachment{
+// 		// 		// AttachTime:          *nif.Attachment.AttachTime,
+// 		// 		AttachmentId:        *nif.Attachment.AttachmentId,
+// 		// 		DeleteOnTermination: *nif.Attachment.DeleteOnTermination,
+// 		// 		DeviceIndex:         *nif.Attachment.DeviceIndex,
+// 		// 		Status:              *nif.Attachment.Status,
+// 		// 	}
+// 		// }
 
-		if nif.Groups != nil {
-			gis := []GroupIdentifier{}
-			for _, f := range nif.Groups {
-				gi := GroupIdentifier{
-					GroupId:   *f.GroupId,
-					GroupName: *f.GroupName,
-				}
-				gis = append(gis, gi)
-			}
-			n.Groups = gis
-		}
+// 		if nif.Groups != nil {
+// 			gis := []GroupIdentifier{}
+// 			for _, f := range nif.Groups {
+// 				gi := GroupIdentifier{
+// 					GroupId:   *f.GroupId,
+// 					GroupName: *f.GroupName,
+// 				}
+// 				gis = append(gis, gi)
+// 			}
+// 			n.Groups = gis
+// 		}
 
-		if nif.Ipv6Addresses != nil {
-			addresses := []InstanceIpv6Address{}
-			for _, a := range nif.Ipv6Addresses {
-				// TODO collapse this down into just the string?
-				address := InstanceIpv6Address{
-					Ipv6Address: *a.Ipv6Address,
-				}
-				addresses = append(addresses, address)
-			}
-			n.Ipv6Addresses = addresses
-		}
+// 		if nif.Ipv6Addresses != nil {
+// 			addresses := []InstanceIpv6Address{}
+// 			for _, a := range nif.Ipv6Addresses {
+// 				// TODO collapse this down into just the string?
+// 				address := InstanceIpv6Address{
+// 					Ipv6Address: *a.Ipv6Address,
+// 				}
+// 				addresses = append(addresses, address)
+// 			}
+// 			n.Ipv6Addresses = addresses
+// 		}
 
-		if nif.PrivateIpAddresses != nil {
-			addresses := []InstancePrivateIpAddress{}
-			for _, a := range nif.PrivateIpAddresses {
-				// TODO collapse this down into just the string?
-				address := InstancePrivateIpAddress{
-					Primary:          *a.Primary,
-					PrivateDnsName:   *a.PrivateDnsName,
-					PrivateIpAddress: *a.PrivateIpAddress,
-				}
-				addresses = append(addresses, address)
-			}
-			n.PrivateIpAddresses = addresses
-		}
+// 		// if nif.PrivateIpAddresses != nil {
+// 		// 	addresses := []InstancePrivateIpAddress{}
+// 		// 	for _, a := range nif.PrivateIpAddresses {
+// 		// 		// TODO collapse this down into just the string?
+// 		// 		address := InstancePrivateIpAddress{
+// 		// 			Primary:          *a.Primary,
+// 		// 			PrivateDnsName:   *a.PrivateDnsName,
+// 		// 			PrivateIpAddress: *a.PrivateIpAddress,
+// 		// 		}
+// 		// 		addresses = append(addresses, address)
+// 		// 	}
+// 		// 	n.PrivateIpAddresses = addresses
+// 		// }
 
-		instanceNetworkInterfaces = append(instanceNetworkInterfaces, n)
-	}
-	return instanceNetworkInterfaces
-}
+// 		instanceNetworkInterfaces = append(instanceNetworkInterfaces, n)
+// 	}
+// 	return instanceNetworkInterfaces
+// }
 
-func getNetworkInterfaceMap(desired []InstanceNetworkInterface) map[string]InstanceNetworkInterface {
-	nifMap := map[string]InstanceNetworkInterface{}
-	for _, ni := range desired {
-		nifMap[ni.NetworkInterfaceId] = ni
-	}
-	return nifMap
-}
+// func getNetworkInterfaceMap(desired []InstanceNetworkInterface) map[string]InstanceNetworkInterface {
+// 	nifMap := map[string]InstanceNetworkInterface{}
+// 	for _, ni := range desired {
+// 		nifMap[ni.NetworkInterfaceId] = ni
+// 	}
+// 	return nifMap
+// }
 
 // The SDK waiters appear to be broken (see go-labs example) - WaitUntilInstanceRunning
 // Implmenting my own waiter
