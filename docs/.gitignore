@@ -1,0 +1,4 @@
+.firebase
+.sass-cache/
+.vuepress/dist
+node_modules

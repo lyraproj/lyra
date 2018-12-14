@@ -1,5 +1,13 @@
-Workflow
+---
+prev: false
+next: building_blocks
+---
+
+
+Workflow semantics
 ===
+
+[[toc]]
 
 A Workflow consists of a set of activities that are either declarative or imperative in nature. A `resource` of a certain type that maps to a resource provider is an example of a declarative activity whereas an `action` with code blocks is an example of an imperative activity.
 

@@ -1,9 +1,14 @@
+---
+prev: false
+next: building_blocks
+---
+
 # Architecture
 
 ## Components
 Here’s a high-level overview of the components within Lyra.
 
-<p align="center"><img src="media/architecture.png" alt="architecture"></p>
+![Architecture diagram](./media/architecture.png)
 
 ### Manifests
 
@@ -49,8 +54,7 @@ An external process described by a service definition. Examples of services are:
 
 * **Puppet-Workflow** - Language Front-end for Puppet. Produces activity definitions from Puppet manifests
 
-<p align="center"><img src="media/services.png" alt="services"></p>
-
+![Services diagram](./media/services.png)
 
 ## Principles
 
