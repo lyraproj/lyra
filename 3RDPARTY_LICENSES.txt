@@ -3,7 +3,7 @@ github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                   
 github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                                MIT License
 github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                            BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                         MIT License
-github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin                        Mozilla Public License 2.0
+github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin/internal/proto         Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/yamux                            Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/jmespath/go-jmespath                       ? (The Unlicense, 35%)
 github.com/lyraproj/lyra/vendor/github.com/leonelquinteros/gotext/plurals             MIT License
