@@ -24,7 +24,7 @@ For a more detailed view of how we think about Lyra, check out our introductory 
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
 
 2. Build the binary: `$ cd lyra; make lyra`
-2. Run the binary with the sample manifest: ` $ ./build/lyra apply attach —-debug`
+2. Run the binary with the sample manifest: ` $ ./build/lyra --debug apply attach`
 
 (You can view the sample manifest that is applied by the command above in `plugins/attach.pp`)
 
