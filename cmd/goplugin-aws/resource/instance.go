@@ -2,7 +2,6 @@ package resource
 
 import (
 	"encoding/base64"
-	"errors"
 	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -50,8 +49,8 @@ func (h *InstanceHandler) Create(desired *Instance) (*Instance, string, error) {
 	}
 	log.Debug("instance status OK", "externalID", externalID)
 	tagResource(*client, desired.Tags, &externalID)
-	actual, err := h.getInstance(client, *desired)
-	log.Debug("Created Instance", "actual", actual, "externalID", externalID)
+	actual, err := h.getInstance(client, externalID)
+	log.Debug("Created Instance", "actual", actual, "externalID", externalID, "err", err)
 	return actual, externalID, err
 }
 
@@ -564,28 +563,10 @@ func waitForInstanceState(client *ec2.EC2, externalID string) error {
 	})
 }
 
-func (h *InstanceHandler) getInstance(client *ec2.EC2, desired Instance) (*Instance, error) {
-	input := &ec2.DescribeInstancesInput{
-		Filters: []*ec2.Filter{
-			{
-				Name: aws.String("instance-state-code"),
-				// TODO what states are appropriate here, including pending/stopped/stopping as
-				// the instance *still* exists at this point so creating it again doesn't seem
-				// to be appropriate
-				Values: []*string{
-					aws.String(instanceStateCodePending),
-					aws.String(instanceStateCodeRunning),
-					aws.String(instanceStateCodeStopped),
-					aws.String(instanceStateCodeStopping),
-				},
-			},
-		},
-		MaxResults: aws.Int64(5), // TODO broad error handling question here where you actual multiple
-	}
-	// TODO what to do with reservations? (not considering spot in that question yet)
-	describeOutput, err := client.DescribeInstances(input)
-
-	// TODO currently grabbing all instances into a bucket, not doing anything smart here
+func (h *InstanceHandler) getInstance(client *ec2.EC2, externalID string) (*Instance, error) {
+	describeOutput, err := client.DescribeInstances(&ec2.DescribeInstancesInput{
+		InstanceIds: []*string{aws.String(externalID)},
+	})
 	instances := []reservationInstance{}
 	for _, r := range describeOutput.Reservations {
 		for _, i := range r.Instances {
@@ -598,18 +579,14 @@ func (h *InstanceHandler) getInstance(client *ec2.EC2, desired Instance) (*Insta
 			instances = append(instances, ri)
 		}
 	}
-
 	switch {
 	case err != nil:
 		return nil, err
 	case len(instances) > 1:
-		return nil, errors.New("more than one Instance reservation with matching logical ID found")
+		return nil, fmt.Errorf("more than one Instance reservation with matching externalID (%v) found", externalID)
 	case len(instances) == 0:
 		return nil, nil
 	}
-	result := h.fromAWS(&desired, &instances[0])
-
-	// see DescribeInstanceAttribute
-
+	result := h.fromAWS(&Instance{}, &instances[0])
 	return result, nil
 }

@@ -24,6 +24,15 @@ func Start() {
 		sb.RegisterHandler("Aws::VPCHandler", &resource.VPCHandler{}, evs[0])
 		evs = sb.RegisterTypes("Aws", resource.Subnet{})
 		sb.RegisterHandler("Aws::SubnetHandler", &resource.SubnetHandler{}, evs[0])
+		evs = sb.RegisterTypes("Aws",
+			resource.SecurityGroup{},
+			resource.UserIdGroupPair{},
+			resource.PrefixListId{},
+			resource.Ipv6Range{},
+			resource.IpRange{},
+			resource.IpPermission{},
+		)
+		sb.RegisterHandler("Aws::SecurityGroupHandler", &resource.SecurityGroupHandler{}, evs[0])
 		evs = sb.RegisterTypes("Aws", resource.InternetGateway{}, resource.InternetGatewayAttachment{})
 		sb.RegisterHandler("Aws::InternetGatewayHandler", &resource.InternetGatewayHandler{}, evs[0])
 		evs = sb.RegisterTypes("Aws", resource.KeyPair{})
