@@ -6,7 +6,9 @@ env:
 jobs:
   include:
   - stage: Test and build
-    script: make
+    script:
+    - make checklicences
+    - make
     before_deploy:
     - sudo apt-get install -y upx
     - make dist-release
