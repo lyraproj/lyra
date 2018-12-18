@@ -27,7 +27,7 @@ LICENSE_TMPFILE = LICENSE_TMPFILE.txt
 LINTIGNOREINITIALISMS = "cmd\/goplugin-aws\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
 
 PHONY+= all
-all: clean checklicences test lyra
+all: clean test lyra
 
 PHONY+= protobuf
 protobuf: tmp/bin/protoc $(GOPATH)/bin/protoc-gen-go
@@ -47,7 +47,7 @@ endif
 
 $(GOPATH)/bin/protoc-gen-go:
 	@echo "🔘 Installing protoc-gen-go"
-	go get -u github.com/golang/protobuf/protoc-gen-go
+	GO111MODULE=off go get -u github.com/golang/protobuf/protoc-gen-go
 
 PHONY+= shrink
 shrink:
@@ -71,11 +71,15 @@ $(GOPATH)/bin/licenses:
 
 PHONY+= updatelicences
 updatelicences: $(GOPATH)/bin/licenses
+	PWD=$(shell pwd)
+	@if [ "$(PWD)" != "$(GOPATH)/src/$(PACKAGE_NAME)" ]; then echo "Cannot update licenses except from gopath (i.e. $(GOPATH)/src/$(PACKAGE_NAME))"; exit 1; fi
 	$(call generate_3rdparty_licence_file,3RDPARTY_LICENSES.txt)
 
 PHONY+= checklicences
 checklicences: $(GOPATH)/bin/licenses
 	@echo "🔘 Checking for new/changed licences"
+	PWD=$(shell pwd)
+	@if [ "$(PWD)" != "$(GOPATH)/src/$(PACKAGE_NAME)" ]; then echo "Cannot check licenses except from gopath (i.e. $(GOPATH)/src/$(PACKAGE_NAME))"; exit 1; fi
 	$(call generate_3rdparty_licence_file,$(LICENSE_TMPFILE))
 	@echo "🔘  comparing current licences with committed version"
 	@if !(diff 3RDPARTY_LICENSES.txt $(LICENSE_TMPFILE)); then\
@@ -105,7 +109,7 @@ clean:
 
 $(GOPATH)/bin/golint:
 	@echo "🔘 Installing golint..."
-	go get -u golang.org/x/lint/golint
+	GO111MODULE=off go get -u golang.org/x/lint/golint
 
 PHONY+= lint
 lint: $(GOPATH)/bin/golint
@@ -137,7 +141,7 @@ dist-release:
 define build
 	@echo "🔘  building - $(1)"
 	mkdir -p build/
-	go build -a -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
+	GO111MODULE=on go build -a -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
 endef
 
 define generate_3rdparty_licence_file
