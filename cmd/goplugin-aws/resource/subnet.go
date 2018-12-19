@@ -10,15 +10,15 @@ import (
 type Subnet struct {
 	VpcId                       string // TODO what TypeDef is required to make this a property (required on present, optional on absent)
 	CidrBlock                   string
-	AvailabilityZone            string `puppet:"type=>String,kind=>given_or_derived"`
+	AvailabilityZone            string `puppet:"type=>String, value=>''"`
 	Ipv6CidrBlock               string
 	Tags                        map[string]string
 	AssignIpv6AddressOnCreation bool
 	MapPublicIpOnLaunch         bool
-	AvailableIpAddressCount     int64 `puppet:"type=>Integer,kind=>given_or_derived"`
+	AvailableIpAddressCount     int64 `puppet:"type=>Integer, value=>0"`
 	DefaultForAz                bool
 	State                       string
-	SubnetId                    string `puppet:"type=>String,kind=>given_or_derived"`
+	SubnetId                    string `puppet:"type=>String, value=>''"`
 }
 
 //SubnetHandler creates, reads and deletes the Subnet Resource

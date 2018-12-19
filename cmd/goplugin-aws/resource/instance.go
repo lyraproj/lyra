@@ -2,7 +2,6 @@ package resource
 
 import (
 	"encoding/base64"
-	"errors"
 	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -50,7 +49,7 @@ func (h *InstanceHandler) Create(desired *Instance) (*Instance, string, error) {
 	}
 	log.Debug("instance status OK", "externalID", externalID)
 	tagResource(*client, desired.Tags, &externalID)
-	actual, err := h.getInstance(client, *desired)
+	actual, err := h.getInstance(client, externalID)
 	log.Debug("Created Instance", "actual", actual, "externalID", externalID)
 	return actual, externalID, err
 }
@@ -137,36 +136,36 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 			CoreCount:      *actual.instance.CpuOptions.CoreCount,
 			ThreadsPerCore: *actual.instance.CpuOptions.ThreadsPerCore,
 		}
-		instance.CpuOptions = cpuOptions
+		instance.CpuOptions = &cpuOptions
 	}
 	if actual.instance.IamInstanceProfile != nil && *actual.instance.IamInstanceProfile != (ec2.IamInstanceProfile{}) {
 		iamInstanceProfile := IamInstanceProfile{
-			Arn:  *actual.instance.IamInstanceProfile.Arn,
-			Name: desired.IamInstanceProfile.Name,
-			Id:   *actual.instance.IamInstanceProfile.Id,
+			Arn: *actual.instance.IamInstanceProfile.Arn,
+			// Name: desired.IamInstanceProfile.Name,
+			Id: *actual.instance.IamInstanceProfile.Id,
 		}
-		instance.IamInstanceProfile = iamInstanceProfile
+		instance.IamInstanceProfile = &iamInstanceProfile
 	}
 	instance.Ipv6AddressCount = desired.Ipv6AddressCount
 	instance.Ipv6Addresses = desired.Ipv6Addresses
-	if desired.LaunchTemplate != (LaunchTemplateSpecification{}) {
+	if desired.LaunchTemplate != nil {
 		instance.LaunchTemplate = desired.LaunchTemplate
 	}
 	if actual.instance.Monitoring != nil && *actual.instance.Monitoring != (ec2.Monitoring{}) {
 		monitoring := Monitoring{
 			State: *actual.instance.Monitoring.State,
 		}
-		if desired.Monitoring != (Monitoring{}) {
+		if desired.Monitoring != nil {
 			monitoring.Enabled = desired.Monitoring.Enabled
 		}
-		instance.Monitoring = monitoring
+		instance.Monitoring = &monitoring
 	}
 	// if actual.instance.NetworkInterfaces != nil && len(actual.instance.NetworkInterfaces) > 0 {
 	// 	instance.NetworkInterfaces = nicFromAWS(desired.NetworkInterfaces, actual.instance.NetworkInterfaces)
 	// }
 	if actual.instance.Placement != nil && *actual.instance.Placement != (ec2.Placement{}) {
 		p := actual.instance.Placement
-		instance.Placement = Placement{
+		instance.Placement = &Placement{
 			Affinity:         emptyIfNil(p.Affinity),
 			AvailabilityZone: emptyIfNil(p.AvailabilityZone),
 			GroupName:        emptyIfNil(p.GroupName),
@@ -232,14 +231,14 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 	instance.SriovNetSupport = emptyIfNil(actual.instance.SriovNetSupport)
 
 	if actual.instance.State != nil && *actual.instance.State != (ec2.InstanceState{}) {
-		instance.State = InstanceState{
+		instance.State = &InstanceState{
 			Code: *actual.instance.State.Code,
 			Name: *actual.instance.State.Name,
 		}
 	}
 
 	if actual.instance.StateReason != nil && *actual.instance.StateReason != (ec2.StateReason{}) {
-		instance.StateReason = StateReason{
+		instance.StateReason = &StateReason{
 			Code:    *actual.instance.StateReason.Code,
 			Message: *actual.instance.StateReason.Message,
 		}
@@ -265,7 +264,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 				NoDevice:    aws.String(m.NoDevice),
 				VirtualName: aws.String(m.VirtualName),
 			}
-			if m.Ebs != (EbsBlockDevice{}) {
+			if m.Ebs != nil {
 				ebsbd := &ec2.EbsBlockDevice{
 					DeleteOnTermination: aws.Bool(m.Ebs.DeleteOnTermination),
 					Encrypted:           aws.Bool(m.Ebs.Encrypted),
@@ -284,7 +283,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 
 	rii.ClientToken = nilIfEmpty(desired.ClientToken)
 
-	if desired.CpuOptions != (CpuOptions{}) {
+	if desired.CpuOptions != nil {
 		copts := &ec2.CpuOptionsRequest{
 			CoreCount:      aws.Int64(desired.CpuOptions.CoreCount),
 			ThreadsPerCore: aws.Int64(desired.CpuOptions.ThreadsPerCore),
@@ -299,7 +298,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 
 	// TODO implement ElasticGpuSpecification
 
-	if desired.IamInstanceProfile != (IamInstanceProfile{}) {
+	if desired.IamInstanceProfile != nil {
 		iip := &ec2.IamInstanceProfileSpecification{
 			Arn:  aws.String(desired.IamInstanceProfile.Arn),
 			Name: aws.String(desired.IamInstanceProfile.Name),
@@ -328,7 +327,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 	rii.KernelId = nilIfEmpty(desired.KernelId)
 	rii.KeyName = nilIfEmpty(desired.KeyName)
 
-	if desired.LaunchTemplate != (LaunchTemplateSpecification{}) {
+	if desired.LaunchTemplate != nil {
 		lt := &ec2.LaunchTemplateSpecification{}
 		lt.LaunchTemplateId = nilIfEmpty(desired.LaunchTemplate.LaunchTemplateId)
 		lt.LaunchTemplateName = nilIfEmpty(desired.LaunchTemplate.LaunchTemplateName)
@@ -339,7 +338,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 	rii.MinCount = nilIfZero(desired.MinCount)
 
 	// This is a merge of the input/output monitoring objects
-	if desired.Monitoring != (Monitoring{}) {
+	if desired.Monitoring != nil {
 		m := &ec2.RunInstancesMonitoringEnabled{
 			Enabled: aws.Bool(desired.Monitoring.Enabled),
 		}
@@ -406,7 +405,7 @@ func runInstancesInput(desired Instance) *ec2.RunInstancesInput {
 	// 	rii.NetworkInterfaces = nifs
 	// }
 
-	if desired.Placement != (Placement{}) {
+	if desired.Placement != nil {
 		p := &ec2.Placement{}
 		p.Affinity = nilIfEmpty(desired.Placement.Affinity)
 		p.AvailabilityZone = nilIfEmpty(desired.Placement.AvailabilityZone)
@@ -564,28 +563,10 @@ func waitForInstanceState(client *ec2.EC2, externalID string) error {
 	})
 }
 
-func (h *InstanceHandler) getInstance(client *ec2.EC2, desired Instance) (*Instance, error) {
-	input := &ec2.DescribeInstancesInput{
-		Filters: []*ec2.Filter{
-			{
-				Name: aws.String("instance-state-code"),
-				// TODO what states are appropriate here, including pending/stopped/stopping as
-				// the instance *still* exists at this point so creating it again doesn't seem
-				// to be appropriate
-				Values: []*string{
-					aws.String(instanceStateCodePending),
-					aws.String(instanceStateCodeRunning),
-					aws.String(instanceStateCodeStopped),
-					aws.String(instanceStateCodeStopping),
-				},
-			},
-		},
-		MaxResults: aws.Int64(5), // TODO broad error handling question here where you actual multiple
-	}
-	// TODO what to do with reservations? (not considering spot in that question yet)
-	describeOutput, err := client.DescribeInstances(input)
-
-	// TODO currently grabbing all instances into a bucket, not doing anything smart here
+func (h *InstanceHandler) getInstance(client *ec2.EC2, externalID string) (*Instance, error) {
+	describeOutput, err := client.DescribeInstances(&ec2.DescribeInstancesInput{
+		InstanceIds: []*string{aws.String(externalID)},
+	})
 	instances := []reservationInstance{}
 	for _, r := range describeOutput.Reservations {
 		for _, i := range r.Instances {
@@ -598,18 +579,14 @@ func (h *InstanceHandler) getInstance(client *ec2.EC2, desired Instance) (*Insta
 			instances = append(instances, ri)
 		}
 	}
-
 	switch {
 	case err != nil:
 		return nil, err
 	case len(instances) > 1:
-		return nil, errors.New("more than one Instance reservation with matching logical ID found")
+		return nil, fmt.Errorf("more than one Instance reservation with matching externalID (%v) found", externalID)
 	case len(instances) == 0:
 		return nil, nil
 	}
-	result := h.fromAWS(&desired, &instances[0])
-
-	// see DescribeInstanceAttribute
-
+	result := h.fromAWS(&Instance{}, &instances[0])
 	return result, nil
 }

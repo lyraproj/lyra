@@ -18,6 +18,7 @@ github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekf
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
 github.com/golang/lint v0.0.0-20180702182130-06c8688daad7/go.mod h1:tluoj9z5200jBnyusfRPU2LqT6J+DAorxEvtC7LHB+E=
 github.com/golang/lint v0.0.0-20181212231659-93c0bb5c8393/go.mod h1:tluoj9z5200jBnyusfRPU2LqT6J+DAorxEvtC7LHB+E=
+github.com/golang/lint v0.0.0-20181217174547-8f45f776aaf1/go.mod h1:tluoj9z5200jBnyusfRPU2LqT6J+DAorxEvtC7LHB+E=
 github.com/golang/mock v1.1.1/go.mod h1:oTYuIxOrZwtPieC+H1uAHpcLFnEyAGVDL/k47Jfbm0A=
 github.com/golang/mock v1.2.0/go.mod h1:oTYuIxOrZwtPieC+H1uAHpcLFnEyAGVDL/k47Jfbm0A=
 github.com/golang/protobuf v1.2.0 h1:P3YflyNX/ehuJFLhxviNdFxQPkGK5cDcApsge1SqnvM=
@@ -69,6 +70,11 @@ github.com/lyraproj/puppet-evaluator v0.0.0-20181210094924-a56e0957cf4e/go.mod h
 github.com/lyraproj/puppet-evaluator v0.0.0-20181217142659-ae391a42a132/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
 github.com/lyraproj/puppet-evaluator v0.0.0-20181217152942-a88a4196d4f1 h1:/aLjbf1H2Gv7QKvGQDT+WMTMO0s7PvbVTC0ioV8YjcA=
 github.com/lyraproj/puppet-evaluator v0.0.0-20181217152942-a88a4196d4f1/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
+github.com/lyraproj/puppet-evaluator v0.0.0-20181219140551-7a196a921fba/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
+github.com/lyraproj/puppet-evaluator v0.0.0-20181219151004-0a639aaff730 h1:X7+v0GP3sY+74BOJnTjq3vv7KfyAGwxoAV6cnE/OTsM=
+github.com/lyraproj/puppet-evaluator v0.0.0-20181219151004-0a639aaff730/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
+github.com/lyraproj/puppet-evaluator v0.0.0-20181220110523-c35808ba183f h1:4PtexUpCiaXmH4+e6+xxcCfK4ItsNBnpLGuSI/rFJKg=
+github.com/lyraproj/puppet-evaluator v0.0.0-20181220110523-c35808ba183f/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
 github.com/lyraproj/puppet-parser v0.0.0-20181204211711-c9870a9ba412 h1:XwfJgpJx3gHcSkuF6/WUY3ggT+478PvI68FI1317TMs=
 github.com/lyraproj/puppet-parser v0.0.0-20181204211711-c9870a9ba412/go.mod h1:8va5g/XEw+jP9jnwEXPmanUy/hD9+6iggnaioihPLP0=
 github.com/lyraproj/puppet-parser v0.0.0-20181208173021-f0f246e04029 h1:AsY76OCNNhAevV/0jXyB4R0gk2cWyoCnSiS69nbCg0c=
@@ -92,10 +98,15 @@ github.com/lyraproj/servicesdk v0.0.0-20181210164015-44478739c189 h1:Ceg1ewcKzd5
 github.com/lyraproj/servicesdk v0.0.0-20181210164015-44478739c189/go.mod h1:oSSFmFmY1EIRDR/uy+H3gxOkUxhbdvcNwyae64oc57k=
 github.com/lyraproj/servicesdk v0.0.0-20181217152923-a34b842a6c63 h1:IPX2LY0Nhkrf0ilQb40NCxpq4pG4LsNkKIYKYNQDVlA=
 github.com/lyraproj/servicesdk v0.0.0-20181217152923-a34b842a6c63/go.mod h1:4OKpXDuJ/3mZ6d5tZvCk0p62Vay9Um5V+vOMXHRXYuM=
+github.com/lyraproj/servicesdk v0.0.0-20181219142950-09bc8fc747de/go.mod h1:UxAOgMidVQrg8Q7YB1nrShsfbBZwTIq5ED9aamLSStg=
+github.com/lyraproj/servicesdk v0.0.0-20181219151107-1fe42a9bc57c h1:ck+W3N4YkWdttJ5SFkzaMy6dbNO31mjAinYeiZx4R6Y=
+github.com/lyraproj/servicesdk v0.0.0-20181219151107-1fe42a9bc57c/go.mod h1:UxAOgMidVQrg8Q7YB1nrShsfbBZwTIq5ED9aamLSStg=
 github.com/lyraproj/wfe v0.0.0-20181204224009-943c25dc5994 h1:ZwJOq+mh/Hii9u/IwBqSF2bx2H/SnsEZxn1wiKeZD5M=
 github.com/lyraproj/wfe v0.0.0-20181204224009-943c25dc5994/go.mod h1:SVS1DHjix/qe430kkf0ezrq+X+MKHmRTtXq4vo85fac=
 github.com/lyraproj/wfe v0.0.0-20181210095014-296f89773f83 h1:RFRvams5jsbTg5c05uUjbPZvK952YVQgeft8XTm5wsM=
 github.com/lyraproj/wfe v0.0.0-20181210095014-296f89773f83/go.mod h1:IZ9YDuNZNAuSXg4ALKv6eCa7z94iwKbAKp+INGYxfoM=
+github.com/lyraproj/wfe v0.0.0-20181219151031-c98d70bbd4a4 h1:XozeK3HyG3T+3Q+GCMAKB8TUIfYqllRBeyPserP+BuM=
+github.com/lyraproj/wfe v0.0.0-20181219151031-c98d70bbd4a4/go.mod h1:lcvP3QwCpDHzmLp/3Lh3NQpnsaTi5ujPbSKRcN5TgQM=
 github.com/mattn/go-colorable v0.0.9 h1:UVL0vNpWh04HeJXV0KLcaT7r06gOH2l4OW6ddYRUIY4=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-isatty v0.0.4 h1:bnP0vzxcAdeI1zdubAl5PjU6zsERjGZb7raWodagDYs=
@@ -124,9 +135,11 @@ golang.org/x/exp v0.0.0-20180321215751-8460e604b9de/go.mod h1:CJ0aWSM057203Lf6IL
 golang.org/x/exp v0.0.0-20181206211736-68cc7b1f272e h1:gTD8phFoxK/U3l0n5zSIC8MM5MQ2N19bEwBN7cEKNso=
 golang.org/x/exp v0.0.0-20181206211736-68cc7b1f272e/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/exp v0.0.0-20181210123644-7d6377eee41f/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
+golang.org/x/exp v0.0.0-20181219184115-56fce82a7454/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/lint v0.0.0-20180702182130-06c8688daad7/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/lint v0.0.0-20181212231659-93c0bb5c8393/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
+golang.org/x/lint v0.0.0-20181217174547-8f45f776aaf1/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/net v0.0.0-20180724234803-3673e40ba225/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20180826012351-8a410e7b638d/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20181106065722-10aee1819953/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
@@ -148,6 +161,7 @@ golang.org/x/sys v0.0.0-20181208175041-ad97f365e150/go.mod h1:STP8DvDyc/dI5b8T5h
 golang.org/x/sys v0.0.0-20181210030007-2a47403f2ae5 h1:SlFRMb9PEnqzqnBRCynVOhxv4vHjB2lnIoxK6p5nzFM=
 golang.org/x/sys v0.0.0-20181210030007-2a47403f2ae5/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20181213200352-4d1cda033e06/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
+golang.org/x/sys v0.0.0-20181218192612-074acd46bca6/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/tools v0.0.0-20180525024113-a5b4c53f6e8b/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
@@ -155,6 +169,7 @@ golang.org/x/tools v0.0.0-20180828015842-6cd1fcedba52/go.mod h1:n7NCudcB/nEzxVGm
 golang.org/x/tools v0.0.0-20181207222222-4c874b978acb/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/tools v0.0.0-20181210225255-6a3e9aa2ab77/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/tools v0.0.0-20181214171254-3c39ce7b6105/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
+golang.org/x/tools v0.0.0-20181219222714-6e267b5cc78e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 gonum.org/v1/gonum v0.0.0-20181203212826-ec146a97d707 h1:5w2imp8wAiiZoSfWgBJnggK4f8+d3stbcbkeVlt9QfI=
 gonum.org/v1/gonum v0.0.0-20181203212826-ec146a97d707/go.mod h1:Y+Yx5eoAFn32cQvJDxZx5Dpnq+c3wtXuadVZAcxbbBo=
 gonum.org/v1/gonum v0.0.0-20181210083604-572d9101fe4f h1:9+rg2sMn4mRm1SsnX5UHFZEJOp/dBRE6xZ6uvnVE+XI=
@@ -169,6 +184,8 @@ google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8 h1:Nw54tB0rB7hY/N0
 google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8/go.mod h1:JiN7NxoALGmiZfu7CAH4rXhgtRTLTxftemlI0sWmxmc=
 google.golang.org/genproto v0.0.0-20181202183823-bd91e49a0898 h1:yvw+zsSmSM02Z5H3ZdEV7B7Ql7eFrjQTnmByJvK+3J8=
 google.golang.org/genproto v0.0.0-20181202183823-bd91e49a0898/go.mod h1:7Ep/1NZk928CDR8SjdVbjWNpdIf6nzjE3BTgJDr2Atg=
+google.golang.org/genproto v0.0.0-20181219182458-5a97ab628bfb h1:dQshZyyJ5W/Xk8myF4GKBak1pZW6EywJuQ8+44EQhGA=
+google.golang.org/genproto v0.0.0-20181219182458-5a97ab628bfb/go.mod h1:7Ep/1NZk928CDR8SjdVbjWNpdIf6nzjE3BTgJDr2Atg=
 google.golang.org/grpc v1.14.0/go.mod h1:yo6s7OP7yaDglbqo1J04qKzAhqBH6lvTonzMVmEdcZw=
 google.golang.org/grpc v1.16.0 h1:dz5IJGuC2BB7qXR5AyHNwAUBhZscK2xVez7mznh72sY=
 google.golang.org/grpc v1.16.0/go.mod h1:0JHn/cJsOMiMfNA9+DeHDlAU7KAAB5GDlYFpa9MZMio=

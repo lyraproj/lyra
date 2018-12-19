@@ -11,7 +11,9 @@ import (
 func Start() {
 	eval.Puppet.Do(func(c eval.Context) {
 		sb := service.NewServerBuilder(c, `Example`)
-		evs := sb.RegisterTypes("Example", resource.Person{})
+		evs := sb.RegisterTypes("Example",
+			resource.Person{},
+			resource.Address{})
 		sb.RegisterHandler("Example::PersonHandler", &resource.PersonHandler{}, evs[0])
 		s := sb.Server()
 		grpc.Serve(c, s)

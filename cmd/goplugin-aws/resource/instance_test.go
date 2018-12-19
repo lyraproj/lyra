@@ -118,13 +118,13 @@ func TestFromAWS_CanMapFields_WithNilChildren(t *testing.T) {
 	actual := h.fromAWS(desired, ri)
 	require.NotNil(t, actual)
 	require.NotNil(t, "blah", actual.InstanceType, "just check a basic mapping field")
-	require.Equal(t, Placement{}, actual.Placement)
-	require.Equal(t, CpuOptions{}, actual.CpuOptions)
-	require.Equal(t, IamInstanceProfile{}, actual.IamInstanceProfile)
+	require.Nil(t, actual.Placement)
+	require.Nil(t, actual.CpuOptions)
+	require.Nil(t, actual.IamInstanceProfile)
 	require.Len(t, actual.ProductCodes, 0)
 	require.Len(t, actual.SecurityGroups, 0)
-	require.Empty(t, actual.State.Code)
-	require.Empty(t, actual.StateReason.Code)
+	require.Nil(t, actual.State)
+	require.Nil(t, actual.StateReason)
 }
 
 func Example_runInstancesInput_empty() {
@@ -145,7 +145,7 @@ func Example_runInstancesInput() {
 				DeviceName:  "BD",
 				NoDevice:    "ND",
 				VirtualName: "VN",
-				Ebs: EbsBlockDevice{
+				Ebs: &EbsBlockDevice{
 					DeleteOnTermination: true,
 					Encrypted:           false,
 					Iops:                19,
@@ -157,7 +157,7 @@ func Example_runInstancesInput() {
 			},
 		},
 		ClientToken: "client token",
-		CpuOptions: CpuOptions{
+		CpuOptions: &CpuOptions{
 			ThreadsPerCore: 8,
 			CoreCount:      4,
 		},
@@ -167,19 +167,19 @@ func Example_runInstancesInput() {
 		InstanceInitiatedShutdownBehavior: "auto",
 		InstanceType:                      "xx.tiny",
 		Ipv6AddressCount:                  12,
-		IamInstanceProfile: IamInstanceProfile{
+		IamInstanceProfile: &IamInstanceProfile{
 			Arn: "arn-instance-profile",
 		},
 		Ipv6Addresses: []InstanceIpv6Address{
 			InstanceIpv6Address{Ipv6Address: "hexdex"},
 			InstanceIpv6Address{Ipv6Address: "hex2"},
 		},
-		LaunchTemplate: LaunchTemplateSpecification{
+		LaunchTemplate: &LaunchTemplateSpecification{
 			LaunchTemplateId:   "ltid",
 			LaunchTemplateName: "ltname",
 		},
 		MaxCount: 23,
-		Monitoring: Monitoring{
+		Monitoring: &Monitoring{
 			Enabled: false,
 		},
 		// NetworkInterfaces: []InstanceNetworkInterface{
@@ -197,7 +197,7 @@ func Example_runInstancesInput() {
 		// 		},
 		// 	},
 		// },
-		Placement: Placement{
+		Placement: &Placement{
 			Affinity:         "none",
 			AvailabilityZone: "az1",
 			GroupName:        "pgroup",
@@ -260,6 +260,9 @@ func Example_runInstancesInput() {
 	//     LaunchTemplateName: "ltname"
 	//   },
 	//   MaxCount: 23,
+	//   Monitoring: {
+	//     Enabled: false
+	//   },
 	//   Placement: {
 	//     Affinity: "none",
 	//     AvailabilityZone: "az1",

@@ -10,14 +10,14 @@ import (
 type Vpc struct {
 	AmazonProvidedIpv6CidrBlock bool
 	CidrBlock                   string
-	InstanceTenancy             string `puppet:"type=>String,kind=>given_or_derived"`
+	InstanceTenancy             string `puppet:"type=>String, value=>''"`
 	EnableDnsHostnames          bool
 	EnableDnsSupport            bool
 	Tags                        map[string]string
-	VpcId                       string `puppet:"type=>String,kind=>given_or_derived"`
+	VpcId                       string `puppet:"type=>String, value=>''"`
 	IsDefault                   bool
 	State                       string
-	DhcpOptionsId               string `puppet:"type=>String,kind=>given_or_derived"`
+	DhcpOptionsId               string `puppet:"type=>String, value=>''"`
 }
 
 //VPCHandler creates, reads and deletes the VPC Resource

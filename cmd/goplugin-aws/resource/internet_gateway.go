@@ -14,9 +14,9 @@ const defaultRetryBackoff = 1 * time.Second
 
 // InternetGateway is the managed resource
 type InternetGateway struct {
-	InternetGatewayId string `puppet:"type=>String,kind=>given_or_derived"`
+	InternetGatewayId string `puppet:"type=>String, value=>''"`
 	Tags              map[string]string
-	Attachments       []InternetGatewayAttachment `puppet:"type=>Optional[Array[Aws::InternetGatewayAttachment]],value=>[]"`
+	Attachments       []InternetGatewayAttachment `puppet:"type=>Array[Aws::InternetGatewayAttachment],value=>[]"`
 }
 
 // InternetGatewayAttachment -

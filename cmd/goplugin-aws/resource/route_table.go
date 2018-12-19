@@ -12,11 +12,11 @@ import (
 // RouteTable is the managed resource
 type RouteTable struct {
 	VpcId           string
-	RouteTableId    string                  `puppet:"type=>String,kind=>given_or_derived"`
-	SubnetId        string                  `puppet:"type=>String,kind=>given_or_derived"`
-	Routes          []Route                 `puppet:"type=>Optional[Array[Aws::Route]],value=>[]"`
-	Associations    []RouteTableAssociation `puppet:"type=>Optional[Array[Aws::RouteTableAssociation]],value=>[]"`
-	PropagatingVgws []PropagatingVgw        `puppet:"type=>Optional[Array[Aws::PropagatingVgw]],value=>[]"`
+	RouteTableId    string                  `puppet:"type=>String, value=>''"`
+	SubnetId        string                  `puppet:"type=>String, value=>''"`
+	Routes          []Route                 `puppet:"type=>Array[Aws::Route],value=>[]"`
+	Associations    []RouteTableAssociation `puppet:"type=>Array[Aws::RouteTableAssociation],value=>[]"`
+	PropagatingVgws []PropagatingVgw        `puppet:"type=>Array[Aws::PropagatingVgw],value=>[]"`
 	Tags            map[string]string
 }
 
@@ -35,18 +35,18 @@ type PropagatingVgw struct {
 
 // Route -
 type Route struct {
-	DestinationCidrBlock        string `puppet:"type=>String,kind=>given_or_derived"`
-	DestinationIpv6CidrBlock    string `puppet:"type=>String,kind=>given_or_derived"`
-	DestinationPrefixListId     string `puppet:"type=>String,kind=>given_or_derived"`
-	EgressOnlyInternetGatewayId string `puppet:"type=>String,kind=>given_or_derived"`
-	GatewayId                   string `puppet:"type=>String,kind=>given_or_derived"`
-	InstanceId                  string `puppet:"type=>String,kind=>given_or_derived"`
-	InstanceOwnerId             string `puppet:"type=>String,kind=>given_or_derived"`
-	NatGatewayId                string `puppet:"type=>String,kind=>given_or_derived"`
-	NetworkInterfaceId          string `puppet:"type=>String,kind=>given_or_derived"`
-	Origin                      string `puppet:"type=>String,kind=>given_or_derived"`
-	State                       string `puppet:"type=>String,kind=>given_or_derived"`
-	VpcPeeringConnectionId      string `puppet:"type=>String,kind=>given_or_derived"`
+	DestinationCidrBlock        string `puppet:"type=>String, value=>''"`
+	DestinationIpv6CidrBlock    string `puppet:"type=>String, value=>''"`
+	DestinationPrefixListId     string `puppet:"type=>String, value=>''"`
+	EgressOnlyInternetGatewayId string `puppet:"type=>String, value=>''"`
+	GatewayId                   string `puppet:"type=>String, value=>''"`
+	InstanceId                  string `puppet:"type=>String, value=>''"`
+	InstanceOwnerId             string `puppet:"type=>String, value=>''"`
+	NatGatewayId                string `puppet:"type=>String, value=>''"`
+	NetworkInterfaceId          string `puppet:"type=>String, value=>''"`
+	Origin                      string `puppet:"type=>String, value=>''"`
+	State                       string `puppet:"type=>String, value=>''"`
+	VpcPeeringConnectionId      string `puppet:"type=>String, value=>''"`
 	Tags                        map[string]string
 }
 

@@ -32,7 +32,7 @@ func TestAcceptance(t *testing.T) {
 	// hclog.Default().SetLevel(hclog.Debug)
 
 	vpcExternalID := createVPC(t)
-
+	sgExternalID := createSecurityGroup(t, vpcExternalID)
 	subnetExternalID := createSubnet(t, vpcExternalID)
 	rtExternalID := createRouteTable(t, vpcExternalID, subnetExternalID)
 	igExternalID := createInternetGateway(t)
@@ -44,6 +44,7 @@ func TestAcceptance(t *testing.T) {
 	deleteInternetGateway(t, igExternalID)
 	deleteRouteTable(t, rtExternalID)
 	deleteSubnet(t, subnetExternalID)
+	deleteSecurityGroup(t, sgExternalID)
 	deleteVPC(t, vpcExternalID)
 }
 
@@ -74,6 +75,36 @@ func createVPC(t *testing.T) string {
 	require.Equal(t, "lyra-acceptance-test-vpc", readVPC.Tags["created-by"])
 
 	return vpcExternalID
+}
+
+func createSecurityGroup(t *testing.T, vpcExternalID string) string {
+	sgh := SecurityGroupHandler{}
+	securityGroup := aTestSecurityGroup()
+	securityGroup.VpcId = vpcExternalID
+
+	//Create and check Security Group
+	actualSg, sgExternalID, err := sgh.Create(securityGroup)
+	require.NoError(t, err)
+	require.NotEmpty(t, sgExternalID)
+	t.Log(sgExternalID)
+	require.NotNil(t, actualSg)
+	require.Regexp(t, regexp.MustCompile("^sg-.*"), sgExternalID)
+
+	//Read and check Security Group
+	readSg, err := sgh.Read(sgExternalID)
+	require.NoError(t, err)
+	require.NotNil(t, readSg)
+	require.Equal(t, "Lyra-SG-Desc", readSg.Description)
+	require.Contains(t, readSg.Tags, "created-by")
+	require.Equal(t, "lyra-acceptance-test-sg", readSg.Tags["created-by"])
+
+	return sgExternalID
+}
+
+func deleteSecurityGroup(t *testing.T, sgExternalID string) {
+	sgh := SecurityGroupHandler{}
+	err := sgh.Delete(sgExternalID)
+	require.NoError(t, err)
 }
 
 func createSubnet(t *testing.T, vpcExternalID string) string {
@@ -242,6 +273,15 @@ func aTestVPC() *Vpc {
 	return &r
 }
 
+func aTestSecurityGroup() *SecurityGroup {
+	r := SecurityGroup{}
+	r.GroupName = "Lyra-SG"
+	r.Description = "Lyra-SG-Desc"
+	r.Tags = make(map[string]string)
+	r.Tags["created-by"] = "lyra-acceptance-test-sg"
+	return &r
+}
+
 func aTestSubnet() *Subnet {
 	r := Subnet{}
 	r.CidrBlock = "10.90.0.0/24"
@@ -286,6 +326,8 @@ func anInstance() *Instance {
 	r.Tags["created-by"] = "lyra-acceptance-test-instance"
 	r.MaxCount = 1
 	r.MinCount = 1
-	r.Monitoring.Enabled = true
+	r.Monitoring = &Monitoring{
+		Enabled: true,
+	}
 	return &r
 }
