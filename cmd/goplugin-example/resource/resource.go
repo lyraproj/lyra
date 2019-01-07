@@ -17,6 +17,17 @@ type Address struct {
 	LineOne string `puppet:"type=>String, value=>''"`
 }
 
+type OwnerRes struct {
+	Id    *string
+	Phone string
+}
+
+type ContainedRes struct {
+	Id      *string
+	OwnerId string
+	Stuff   string
+}
+
 // PersonHandler is used to perform CRUD operations on a Person resource
 type PersonHandler struct{}
 
