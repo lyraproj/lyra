@@ -31,8 +31,9 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 	client := newClient()
 	response, err := client.CreateSubnet(
 		&ec2.CreateSubnetInput{
-			CidrBlock: aws.String(desired.CidrBlock),
-			VpcId:     aws.String(desired.VpcId),
+			CidrBlock:        aws.String(desired.CidrBlock),
+			VpcId:            aws.String(desired.VpcId),
+			AvailabilityZone: desired.AvailabilityZone,
 		})
 	if err != nil {
 		log.Debug("Error creating Subnet", "error", err)
