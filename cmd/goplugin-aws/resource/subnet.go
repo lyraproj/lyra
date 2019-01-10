@@ -8,17 +8,17 @@ import (
 
 // Subnet is the managed resource
 type Subnet struct {
-	VpcId                       string // TODO what TypeDef is required to make this a property (required on present, optional on absent)
+	VpcId                       string
 	CidrBlock                   string
-	AvailabilityZone            string `puppet:"type=>String, value=>''"`
+	AvailabilityZone            *string
 	Ipv6CidrBlock               string
 	Tags                        map[string]string
 	AssignIpv6AddressOnCreation bool
 	MapPublicIpOnLaunch         bool
-	AvailableIpAddressCount     int64 `puppet:"type=>Integer, value=>0"`
+	AvailableIpAddressCount     *int64
 	DefaultForAz                bool
 	State                       string
-	SubnetId                    string `puppet:"type=>String, value=>''"`
+	SubnetId                    *string
 }
 
 //SubnetHandler creates, reads and deletes the Subnet Resource
@@ -101,14 +101,14 @@ func (h *SubnetHandler) fromAWS(desired *Subnet, actual *ec2.Subnet) *Subnet {
 	subnet := &Subnet{
 		VpcId:            *actual.VpcId,
 		CidrBlock:        *actual.CidrBlock,
-		AvailabilityZone: *actual.AvailabilityZone,
+		AvailabilityZone: actual.AvailabilityZone,
 
 		Tags:                        convertTags(actual.Tags),
 		AssignIpv6AddressOnCreation: desired.AssignIpv6AddressOnCreation, // TODO DescribeSubnetAttribute
 		MapPublicIpOnLaunch:         desired.MapPublicIpOnLaunch,         // TODO DescribeSubnetAttribute
-		AvailableIpAddressCount:     *actual.AvailableIpAddressCount,
+		AvailableIpAddressCount:     actual.AvailableIpAddressCount,
 		DefaultForAz:                *actual.DefaultForAz,
-		SubnetId:                    *actual.SubnetId,
+		SubnetId:                    actual.SubnetId,
 		State:                       *actual.State,
 	}
 

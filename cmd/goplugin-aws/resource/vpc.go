@@ -10,14 +10,14 @@ import (
 type Vpc struct {
 	AmazonProvidedIpv6CidrBlock bool
 	CidrBlock                   string
-	InstanceTenancy             string `puppet:"type=>String, value=>''"`
+	InstanceTenancy             *string `puppet:" type=>Optional[String], value=>'default' "`
 	EnableDnsHostnames          bool
 	EnableDnsSupport            bool
 	Tags                        map[string]string
-	VpcId                       string `puppet:"type=>String, value=>''"`
+	VpcId                       *string
 	IsDefault                   bool
 	State                       string
-	DhcpOptionsId               string `puppet:"type=>String, value=>''"`
+	DhcpOptionsId               *string
 }
 
 //VPCHandler creates, reads and deletes the VPC Resource
@@ -31,7 +31,7 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 	response, err := client.CreateVpc(
 		&ec2.CreateVpcInput{
 			AmazonProvidedIpv6CidrBlock: aws.Bool(desired.AmazonProvidedIpv6CidrBlock),
-			InstanceTenancy:             nilIfEmpty(desired.InstanceTenancy),
+			InstanceTenancy:             desired.InstanceTenancy,
 			CidrBlock:                   nilIfEmpty(desired.CidrBlock),
 		})
 	if err != nil {
@@ -82,6 +82,10 @@ func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
 
 // Delete a VPC
 func (h *VPCHandler) Delete(externalID string) error {
+	return deleteVPCInternal(externalID)
+}
+
+func deleteVPCInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting VPC", "externalID", externalID)
 	client := newClient()
@@ -103,11 +107,11 @@ func (h *VPCHandler) fromAWS(wanted *Vpc, actual *ec2.Vpc) *Vpc {
 		EnableDnsHostnames:          wanted.EnableDnsHostnames,          // TODO DescribeVpcAttribute
 		EnableDnsSupport:            wanted.EnableDnsSupport,            // TODO DescribeVpcAttribute
 		CidrBlock:                   *actual.CidrBlock,
-		InstanceTenancy:             *actual.InstanceTenancy,
+		InstanceTenancy:             actual.InstanceTenancy,
 		Tags:                        convertTags(actual.Tags),
-		VpcId:                       *actual.VpcId,
+		VpcId:                       actual.VpcId,
 		IsDefault:                   *actual.IsDefault,
 		State:                       *actual.State,
-		DhcpOptionsId:               *actual.DhcpOptionsId,
+		DhcpOptionsId:               actual.DhcpOptionsId,
 	}
 }

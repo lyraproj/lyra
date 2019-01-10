@@ -21,8 +21,18 @@ func Start() {
 		sb := service.NewServerBuilder(c, `Aws`)
 
 		evs := sb.RegisterTypes("Aws", resource.Vpc{})
+		sb.RegisterTypes("Aws",
+			sb.BuildResource(&resource.Vpc{}, func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`vpc_id`, `dhcp_options_id`)
+			}),
+		)
+
 		sb.RegisterHandler("Aws::VPCHandler", &resource.VPCHandler{}, evs[0])
-		evs = sb.RegisterTypes("Aws", resource.Subnet{})
+		evs = sb.RegisterTypes("Aws",
+			sb.BuildResource(&resource.Subnet{}, func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`subnet_id`, `availability_zone`, `available_ip_address_count`)
+			}),
+		)
 		sb.RegisterHandler("Aws::SubnetHandler", &resource.SubnetHandler{}, evs[0])
 		evs = sb.RegisterTypes("Aws",
 			resource.SecurityGroup{},
