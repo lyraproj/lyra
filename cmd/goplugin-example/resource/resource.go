@@ -17,11 +17,13 @@ type Address struct {
 	LineOne string `puppet:"type=>String, value=>''"`
 }
 
+//OwnerRes type to show parent in parent-child relationships
 type OwnerRes struct {
 	Id    *string
 	Phone string
 }
 
+//ContainedRes type to show child in parent-child relationships
 type ContainedRes struct {
 	Id      *string
 	OwnerId string
