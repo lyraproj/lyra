@@ -44,6 +44,7 @@ func NewRootCmd() *cobra.Command {
 
  	cmd.AddCommand(NewVersionCmd())
 	cmd.AddCommand(NewApplyCmd())
+	cmd.AddCommand(NewControllerCmd())
 	cmd.AddCommand(NewValidateCmd())
 	cmd.AddCommand(EmbeddedPluginCmd())
 
