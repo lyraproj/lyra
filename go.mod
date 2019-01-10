@@ -2,11 +2,11 @@ module github.com/lyraproj/lyra
 
 require (
 	cloud.google.com/go v0.34.0 // indirect
-	github.com/aws/aws-sdk-go v1.16.15
+	github.com/aws/aws-sdk-go v1.16.16
 	github.com/boltdb/bolt v1.3.1
 	github.com/cespare/trie v0.0.0-20150610204604-3fe1a95cbba9 // indirect
 	github.com/golang/mock v1.2.0 // indirect
-	github.com/hashicorp/go-hclog v0.0.0-20190108221824-332dc5f0a54e
+	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
@@ -18,7 +18,7 @@ require (
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190109084815-8bfbf4f0d856
 	github.com/lyraproj/puppet-workflow v0.0.0-20181219154027-66b46934b0c2
 	github.com/lyraproj/servicesdk v0.0.0-20190109085115-5a87f5e1cd59
-	github.com/lyraproj/wfe v0.0.0-20190109085134-5409a489d845
+	github.com/lyraproj/wfe v0.0.0-20190110123257-378febee5ac1
 	github.com/mattn/go-colorable v0.0.9 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
@@ -30,16 +30,17 @@ require (
 	github.com/toqueteos/trie v0.0.0-20150530104557-56fed4a05683 // indirect
 	golang.org/x/exp v0.0.0-20190104205336-ae74f88a12a8 // indirect
 	golang.org/x/lint v0.0.0-20181217174547-8f45f776aaf1 // indirect
-	golang.org/x/net v0.0.0-20190108225652-1e06a53dbb7e // indirect
+	golang.org/x/net v0.0.0-20190110044637-be1c187aa6c6 // indirect
 	golang.org/x/oauth2 v0.0.0-20181203162652-d668ce993890 // indirect
 	golang.org/x/sync v0.0.0-20181221193216-37e7f081c4d4 // indirect
-	golang.org/x/sys v0.0.0-20190108104531-7fbe1cd0fcc2 // indirect
-	golang.org/x/tools v0.0.0-20190108222858-421f03a57a64 // indirect
+	golang.org/x/sys v0.0.0-20190109145017-48ac38b7c8cb // indirect
+	golang.org/x/tools v0.0.0-20190110015856-aa033095749b // indirect
+	gonum.org/v1/gonum v0.0.0-20190110111800-20cf5b65417a // indirect
 	gonum.org/v1/netlib v0.0.0-20181224185128-3431cf544c75 // indirect
 	google.golang.org/appengine v1.4.0 // indirect
 	google.golang.org/genproto v0.0.0-20190108161440-ae2f86662275 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/src-d/enry.v1 v1.6.7
 	gopkg.in/toqueteos/substring.v1 v1.0.2 // indirect
-	honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a // indirect
+	honnef.co/go/tools v0.0.0-20190109154334-5bcec433c8ea // indirect
 )
