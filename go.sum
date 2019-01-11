@@ -94,6 +94,8 @@ github.com/lyraproj/puppet-evaluator v0.0.0-20190104213806-d43b938481a5/go.mod h
 github.com/lyraproj/puppet-evaluator v0.0.0-20190108174012-d1a11f151189/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190109084815-8bfbf4f0d856 h1:qLxAiRAd16BvVo5V4H2tj/VAUHIsgBFs/Zmq88e850Y=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190109084815-8bfbf4f0d856/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190110164640-b6d2f2955bc2 h1:/nchedVJFBHq/5u/HqiOwoiA66N7UyELtgMv4t6y4NI=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190110164640-b6d2f2955bc2/go.mod h1:zzujLCRGe29CXjx2PYphNjYQAnasgzsz+np2ww6d3Mo=
 github.com/lyraproj/puppet-parser v0.0.0-20181204211711-c9870a9ba412 h1:XwfJgpJx3gHcSkuF6/WUY3ggT+478PvI68FI1317TMs=
 github.com/lyraproj/puppet-parser v0.0.0-20181204211711-c9870a9ba412/go.mod h1:8va5g/XEw+jP9jnwEXPmanUy/hD9+6iggnaioihPLP0=
 github.com/lyraproj/puppet-parser v0.0.0-20181208173021-f0f246e04029 h1:AsY76OCNNhAevV/0jXyB4R0gk2cWyoCnSiS69nbCg0c=
@@ -224,6 +226,7 @@ golang.org/x/tools v0.0.0-20190103205943-8a6051197512/go.mod h1:n7NCudcB/nEzxVGm
 golang.org/x/tools v0.0.0-20190104182027-498d95493402/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/tools v0.0.0-20190108222858-421f03a57a64/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/tools v0.0.0-20190110015856-aa033095749b/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
+golang.org/x/tools v0.0.0-20190110163146-51295c7ec13a/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 gonum.org/v1/gonum v0.0.0-20181203212826-ec146a97d707 h1:5w2imp8wAiiZoSfWgBJnggK4f8+d3stbcbkeVlt9QfI=
 gonum.org/v1/gonum v0.0.0-20181203212826-ec146a97d707/go.mod h1:Y+Yx5eoAFn32cQvJDxZx5Dpnq+c3wtXuadVZAcxbbBo=
 gonum.org/v1/gonum v0.0.0-20181210083604-572d9101fe4f h1:9+rg2sMn4mRm1SsnX5UHFZEJOp/dBRE6xZ6uvnVE+XI=

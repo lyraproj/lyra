@@ -43,11 +43,24 @@ func Start() {
 			resource.IpPermission{},
 		)
 		sb.RegisterHandler("Aws::SecurityGroupHandler", &resource.SecurityGroupHandler{}, evs[0])
-		evs = sb.RegisterTypes("Aws", resource.InternetGateway{}, resource.InternetGatewayAttachment{})
+		evs = sb.RegisterTypes("Aws",
+			sb.BuildResource(&resource.InternetGateway{}, func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`internet_gateway_id`)
+			}),
+			resource.InternetGatewayAttachment{},
+		)
 		sb.RegisterHandler("Aws::InternetGatewayHandler", &resource.InternetGatewayHandler{}, evs[0])
 		evs = sb.RegisterTypes("Aws", resource.KeyPair{})
 		sb.RegisterHandler("Aws::KeyPairHandler", &resource.KeyPairHandler{}, evs[0])
-		evs = sb.RegisterTypes("Aws", resource.RouteTable{}, resource.Route{}, resource.RouteTableAssociation{}, resource.PropagatingVgw{})
+		evs = sb.RegisterTypes("Aws",
+			sb.BuildResource(&resource.RouteTable{}, func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`route_table_id`, `routes`)
+			}),
+			resource.Route{},
+			sb.BuildResource(&resource.RouteTableAssociation{}, func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`route_table_association_id`)
+			}),
+			resource.PropagatingVgw{})
 		sb.RegisterHandler("Aws::RouteTableHandler", &resource.RouteTableHandler{}, evs[0])
 		evs = sb.RegisterTypes("Aws",
 			resource.Instance{},

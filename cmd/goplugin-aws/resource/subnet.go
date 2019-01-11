@@ -3,6 +3,7 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -27,7 +28,9 @@ type SubnetHandler struct{}
 // Create a Subnet
 func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 	log := hclog.Default()
-	log.Debug("Creating Subnet", "desired", desired)
+	if log.IsDebug() {
+		log.Debug("Creating Subnet", "desired", spew.Sdump(desired))
+	}
 	client := newClient()
 	response, err := client.CreateSubnet(
 		&ec2.CreateSubnetInput{
@@ -54,7 +57,9 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 
 	//TODO modify attributes
 	actual := h.fromAWS(desired, response.Subnet)
-	log.Debug("Created Subnet", "actual", actual, "externalID", externalID)
+	if log.IsDebug() {
+		log.Debug("Created Subnet", "actual", spew.Sdump(actual), "externalID", externalID)
+	}
 	return actual, externalID, err
 }
 
@@ -77,7 +82,9 @@ func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
 		log.Error("Expected to find one Subnet but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.Subnets))
 	}
 	actual := h.fromAWS(&Subnet{}, response.Subnets[0])
-	log.Debug("Completed Subnet read", "actual", actual)
+	if log.IsDebug() {
+		log.Debug("Completed Subnet read", "actual", spew.Sdump(actual))
+	}
 	return actual, nil
 }
 

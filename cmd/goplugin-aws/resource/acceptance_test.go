@@ -143,7 +143,7 @@ func createRouteTable(t *testing.T, vpcExternalID string, subnetExternalID strin
 
 	rt := aRouteTable()
 	rt.VpcId = vpcExternalID
-	rt.SubnetId = subnetExternalID
+	rt.SubnetId = &subnetExternalID
 
 	//Create and check RouteTable
 	actualRT, rtExternalID, err := rth.Create(rt)
@@ -294,11 +294,12 @@ func aRouteTable() *RouteTable {
 	r := RouteTable{}
 	r.Tags = make(map[string]string)
 	r.Tags["created-by"] = "lyra-acceptance-test-rt"
-	r.Routes = []Route{
+	routes := []Route{
 		Route{
 			DestinationCidrBlock: "0.0.0.0/0",
 		},
 	}
+	r.Routes = routes
 	return &r
 }
 

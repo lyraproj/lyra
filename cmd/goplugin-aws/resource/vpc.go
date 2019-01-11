@@ -3,6 +3,7 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -26,7 +27,9 @@ type VPCHandler struct{}
 // Create a VPC
 func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 	log := hclog.Default()
-	log.Debug("Creating VPC", "desired", desired)
+	if log.IsDebug() {
+		log.Debug("Creating VPC", "desired", spew.Sdump(desired))
+	}
 	client := newClient()
 	response, err := client.CreateVpc(
 		&ec2.CreateVpcInput{
@@ -51,9 +54,10 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 		log.Debug("Error waiting for vpc resource", "externalID", externalID, "error", err)
 		return nil, "", err
 	}
-
 	actual := h.fromAWS(desired, response.Vpc)
-	log.Debug("Created VPC", "actual", actual, "externalID", externalID)
+	if log.IsDebug() {
+		log.Debug("Created VPC", "actual", spew.Sdump(actual), "externalID", externalID)
+	}
 	return actual, externalID, err
 }
 
@@ -76,7 +80,9 @@ func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
 		log.Error("Expected to find one VPC but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.Vpcs))
 	}
 	actual := h.fromAWS(&Vpc{}, response.Vpcs[0])
-	log.Debug("Completed VPC read", "actual", actual)
+	if log.IsDebug() {
+		log.Debug("Completed VPC read", "actual", spew.Sdump(actual))
+	}
 	return actual, nil
 }
 

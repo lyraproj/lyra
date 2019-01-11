@@ -5,6 +5,7 @@ require (
 	github.com/aws/aws-sdk-go v1.16.16
 	github.com/boltdb/bolt v1.3.1
 	github.com/cespare/trie v0.0.0-20150610204604-3fe1a95cbba9 // indirect
+	github.com/davecgh/go-spew v1.1.1
 	github.com/golang/mock v1.2.0 // indirect
 	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
@@ -15,7 +16,7 @@ require (
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20181209022223-4ffb7c3f8587
 	github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190109084815-8bfbf4f0d856
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190110164640-b6d2f2955bc2
 	github.com/lyraproj/puppet-workflow v0.0.0-20181219154027-66b46934b0c2
 	github.com/lyraproj/servicesdk v0.0.0-20190109085115-5a87f5e1cd59
 	github.com/lyraproj/wfe v0.0.0-20190110123257-378febee5ac1
@@ -34,7 +35,7 @@ require (
 	golang.org/x/oauth2 v0.0.0-20181203162652-d668ce993890 // indirect
 	golang.org/x/sync v0.0.0-20181221193216-37e7f081c4d4 // indirect
 	golang.org/x/sys v0.0.0-20190109145017-48ac38b7c8cb // indirect
-	golang.org/x/tools v0.0.0-20190110015856-aa033095749b // indirect
+	golang.org/x/tools v0.0.0-20190110163146-51295c7ec13a // indirect
 	gonum.org/v1/gonum v0.0.0-20190110111800-20cf5b65417a // indirect
 	gonum.org/v1/netlib v0.0.0-20181224185128-3431cf544c75 // indirect
 	google.golang.org/appengine v1.4.0 // indirect
