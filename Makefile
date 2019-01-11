@@ -24,7 +24,7 @@ LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --shor
 
 LICENSE_TMPFILE = LICENSE_TMPFILE.txt
 
-LINTIGNOREINITIALISMS = "cmd\/goplugin-aws\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
+LINTIGNOREINITIALISMS = "cmd\/goplugin-(aws|example)\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
 
 PHONY+= all
 all: clean test lyra

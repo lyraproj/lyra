@@ -1,6 +1,7 @@
 github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                             Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                         MIT License
 github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                                MIT License
+github.com/lyraproj/lyra/vendor/github.com/davecgh/go-spew/spew                       ISC License (98%)
 github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                            BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-hclog                         MIT License
 github.com/lyraproj/lyra/vendor/github.com/hashicorp/go-plugin/internal/proto         Mozilla Public License 2.0

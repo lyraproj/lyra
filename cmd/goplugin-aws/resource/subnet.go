@@ -3,22 +3,23 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
 )
 
 // Subnet is the managed resource
 type Subnet struct {
-	VpcId                       string // TODO what TypeDef is required to make this a property (required on present, optional on absent)
+	VpcId                       string
 	CidrBlock                   string
-	AvailabilityZone            string `puppet:"type=>String,kind=>given_or_derived"`
+	AvailabilityZone            *string
 	Ipv6CidrBlock               string
 	Tags                        map[string]string
 	AssignIpv6AddressOnCreation bool
 	MapPublicIpOnLaunch         bool
-	AvailableIpAddressCount     int64 `puppet:"type=>Integer,kind=>given_or_derived"`
+	AvailableIpAddressCount     *int64
 	DefaultForAz                bool
 	State                       string
-	SubnetId                    string `puppet:"type=>String,kind=>given_or_derived"`
+	SubnetId                    *string
 }
 
 //SubnetHandler creates, reads and deletes the Subnet Resource
@@ -27,12 +28,15 @@ type SubnetHandler struct{}
 // Create a Subnet
 func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 	log := hclog.Default()
-	log.Debug("Creating Subnet", "desired", desired)
+	if log.IsDebug() {
+		log.Debug("Creating Subnet", "desired", spew.Sdump(desired))
+	}
 	client := newClient()
 	response, err := client.CreateSubnet(
 		&ec2.CreateSubnetInput{
-			CidrBlock: aws.String(desired.CidrBlock),
-			VpcId:     aws.String(desired.VpcId),
+			CidrBlock:        aws.String(desired.CidrBlock),
+			VpcId:            aws.String(desired.VpcId),
+			AvailabilityZone: desired.AvailabilityZone,
 		})
 	if err != nil {
 		log.Debug("Error creating Subnet", "error", err)
@@ -53,7 +57,9 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 
 	//TODO modify attributes
 	actual := h.fromAWS(desired, response.Subnet)
-	log.Debug("Created Subnet", "actual", actual, "externalID", externalID)
+	if log.IsDebug() {
+		log.Debug("Created Subnet", "actual", spew.Sdump(actual), "externalID", externalID)
+	}
 	return actual, externalID, err
 }
 
@@ -76,7 +82,9 @@ func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
 		log.Error("Expected to find one Subnet but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.Subnets))
 	}
 	actual := h.fromAWS(&Subnet{}, response.Subnets[0])
-	log.Debug("Completed Subnet read", "actual", actual)
+	if log.IsDebug() {
+		log.Debug("Completed Subnet read", "actual", spew.Sdump(actual))
+	}
 	return actual, nil
 }
 
@@ -101,14 +109,14 @@ func (h *SubnetHandler) fromAWS(desired *Subnet, actual *ec2.Subnet) *Subnet {
 	subnet := &Subnet{
 		VpcId:            *actual.VpcId,
 		CidrBlock:        *actual.CidrBlock,
-		AvailabilityZone: *actual.AvailabilityZone,
+		AvailabilityZone: actual.AvailabilityZone,
 
 		Tags:                        convertTags(actual.Tags),
 		AssignIpv6AddressOnCreation: desired.AssignIpv6AddressOnCreation, // TODO DescribeSubnetAttribute
 		MapPublicIpOnLaunch:         desired.MapPublicIpOnLaunch,         // TODO DescribeSubnetAttribute
-		AvailableIpAddressCount:     *actual.AvailableIpAddressCount,
+		AvailableIpAddressCount:     actual.AvailableIpAddressCount,
 		DefaultForAz:                *actual.DefaultForAz,
-		SubnetId:                    *actual.SubnetId,
+		SubnetId:                    actual.SubnetId,
 		State:                       *actual.State,
 	}
 

@@ -6,8 +6,28 @@ import (
 
 // Person represents a human
 type Person struct {
-	Name string
-	Age  int64
+	Name    string   `puppet:"type=>String, value=>''"`
+	Age     int64    `puppet:"type=>Integer, value=>0"`
+	Human   bool     `puppet:"type=>Boolean, value=>false"`
+	Address *Address `puppet:"type=>Optional[Example::Address], value=>undef"`
+}
+
+// Address type
+type Address struct {
+	LineOne string `puppet:"type=>String, value=>''"`
+}
+
+//OwnerRes type to show parent in parent-child relationships
+type OwnerRes struct {
+	Id    *string
+	Phone string
+}
+
+//ContainedRes type to show child in parent-child relationships
+type ContainedRes struct {
+	Id      *string
+	OwnerId string
+	Stuff   string
 }
 
 // PersonHandler is used to perform CRUD operations on a Person resource

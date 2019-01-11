@@ -3,6 +3,7 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -10,14 +11,14 @@ import (
 type Vpc struct {
 	AmazonProvidedIpv6CidrBlock bool
 	CidrBlock                   string
-	InstanceTenancy             string `puppet:"type=>String,kind=>given_or_derived"`
+	InstanceTenancy             *string `puppet:" type=>Optional[String], value=>'default' "`
 	EnableDnsHostnames          bool
 	EnableDnsSupport            bool
 	Tags                        map[string]string
-	VpcId                       string `puppet:"type=>String,kind=>given_or_derived"`
+	VpcId                       *string
 	IsDefault                   bool
 	State                       string
-	DhcpOptionsId               string `puppet:"type=>String,kind=>given_or_derived"`
+	DhcpOptionsId               *string
 }
 
 //VPCHandler creates, reads and deletes the VPC Resource
@@ -26,12 +27,14 @@ type VPCHandler struct{}
 // Create a VPC
 func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 	log := hclog.Default()
-	log.Debug("Creating VPC", "desired", desired)
+	if log.IsDebug() {
+		log.Debug("Creating VPC", "desired", spew.Sdump(desired))
+	}
 	client := newClient()
 	response, err := client.CreateVpc(
 		&ec2.CreateVpcInput{
 			AmazonProvidedIpv6CidrBlock: aws.Bool(desired.AmazonProvidedIpv6CidrBlock),
-			InstanceTenancy:             nilIfEmpty(desired.InstanceTenancy),
+			InstanceTenancy:             desired.InstanceTenancy,
 			CidrBlock:                   nilIfEmpty(desired.CidrBlock),
 		})
 	if err != nil {
@@ -51,9 +54,10 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 		log.Debug("Error waiting for vpc resource", "externalID", externalID, "error", err)
 		return nil, "", err
 	}
-
 	actual := h.fromAWS(desired, response.Vpc)
-	log.Debug("Created VPC", "actual", actual, "externalID", externalID)
+	if log.IsDebug() {
+		log.Debug("Created VPC", "actual", spew.Sdump(actual), "externalID", externalID)
+	}
 	return actual, externalID, err
 }
 
@@ -76,12 +80,18 @@ func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
 		log.Error("Expected to find one VPC but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.Vpcs))
 	}
 	actual := h.fromAWS(&Vpc{}, response.Vpcs[0])
-	log.Debug("Completed VPC read", "actual", actual)
+	if log.IsDebug() {
+		log.Debug("Completed VPC read", "actual", spew.Sdump(actual))
+	}
 	return actual, nil
 }
 
 // Delete a VPC
 func (h *VPCHandler) Delete(externalID string) error {
+	return deleteVPCInternal(externalID)
+}
+
+func deleteVPCInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting VPC", "externalID", externalID)
 	client := newClient()
@@ -103,11 +113,11 @@ func (h *VPCHandler) fromAWS(wanted *Vpc, actual *ec2.Vpc) *Vpc {
 		EnableDnsHostnames:          wanted.EnableDnsHostnames,          // TODO DescribeVpcAttribute
 		EnableDnsSupport:            wanted.EnableDnsSupport,            // TODO DescribeVpcAttribute
 		CidrBlock:                   *actual.CidrBlock,
-		InstanceTenancy:             *actual.InstanceTenancy,
+		InstanceTenancy:             actual.InstanceTenancy,
 		Tags:                        convertTags(actual.Tags),
-		VpcId:                       *actual.VpcId,
+		VpcId:                       actual.VpcId,
 		IsDefault:                   *actual.IsDefault,
 		State:                       *actual.State,
-		DhcpOptionsId:               *actual.DhcpOptionsId,
+		DhcpOptionsId:               actual.DhcpOptionsId,
 	}
 }
