@@ -79,8 +79,9 @@ github.com/leonelquinteros/gotext v1.4.0/go.mod h1:yZGXREmoGTtBvZHNcc+Yfug49G/2s
 github.com/lyraproj/data-protobuf v0.0.0-20181204212349-91f456158233/go.mod h1:oQIFBu0fmkiSpSRROEgK5gnjQ/ZDrx3UdpRpT3791Gg=
 github.com/lyraproj/data-protobuf v0.0.0-20181217135414-3d508204b820 h1:fmQMG2XAvAhT5gt9PxXhY3+2iHJPBM1Y073MuNTZShM=
 github.com/lyraproj/data-protobuf v0.0.0-20181217135414-3d508204b820/go.mod h1:oQIFBu0fmkiSpSRROEgK5gnjQ/ZDrx3UdpRpT3791Gg=
-github.com/lyraproj/hiera v0.0.0-20181209022223-4ffb7c3f8587 h1:1XcodgEOvDublFjkSIkBs7USAegAEgboO771UsyQS/4=
 github.com/lyraproj/hiera v0.0.0-20181209022223-4ffb7c3f8587/go.mod h1:kG4rdjUqIe1a0PGgM5TYxD6RiK0lb94OJXUoj8PXtVk=
+github.com/lyraproj/hiera v0.0.0-20190114153236-e6de2935d4de h1:LJjSwuWRSYHH2ucBHv5I2o9PXVLIUKSvPUEkvfDlFlo=
+github.com/lyraproj/hiera v0.0.0-20190114153236-e6de2935d4de/go.mod h1:kG4rdjUqIe1a0PGgM5TYxD6RiK0lb94OJXUoj8PXtVk=
 github.com/lyraproj/issue v0.0.0-20181204205859-7ed1f9741f4a/go.mod h1:F3Zu9SjR6zROUIVdxgxuX0/Mi4npwgDRalQCNzCyzU0=
 github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc h1:OD9e7aHLSyJcrwG1R/8JsDVIWevC7aJH+Yd09q/8e2I=
 github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc/go.mod h1:F3Zu9SjR6zROUIVdxgxuX0/Mi4npwgDRalQCNzCyzU0=
@@ -187,12 +188,10 @@ golang.org/x/net v0.0.0-20190110200230-915654e7eabc/go.mod h1:mL1N/T3taQHkDXs73r
 golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be/go.mod h1:N/0e6XlmueqKjAGxoOufVs8QHGRruUQn6yWY3a++T0U=
 golang.org/x/oauth2 v0.0.0-20190110195249-fd3eaa146cbb h1:B7Dt1cnU6RCJTD1iFYg0SDa/UpNoDxgfT+coBHUe5Ks=
 golang.org/x/oauth2 v0.0.0-20190110195249-fd3eaa146cbb/go.mod h1:gOpvHmFTYa4IltrdGE7lF6nIHvwfUNPOp7c8zoXwtLw=
-golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f h1:wMNYb4v58l5UBM7MYRLPG6ZhfOqbKu7X5eyFl8ZhKvA=
 golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sync v0.0.0-20181108010431-42b317875d0f/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sync v0.0.0-20181221193216-37e7f081c4d4 h1:YUO/7uOKsKeq9UokNS62b8FYywz3ker1l1vDZRCRefw=
 golang.org/x/sync v0.0.0-20181221193216-37e7f081c4d4/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
-golang.org/x/sys v0.0.0-20180830151530-49385e6e1522 h1:Ve1ORMCxvRmSXBwJK+t3Oy+V2vRW2OetUQBq4rJIkZE=
 golang.org/x/sys v0.0.0-20180830151530-49385e6e1522/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20180905080454-ebe1bf3edb33/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20180909124046-d0be0721c37e/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=

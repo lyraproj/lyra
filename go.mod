@@ -9,7 +9,7 @@ require (
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20181209022223-4ffb7c3f8587
+	github.com/lyraproj/hiera v0.0.0-20190114153236-e6de2935d4de
 	github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc
 	github.com/lyraproj/lyra-operator v0.0.0-20190114135209-1e9dfba1c652
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190114104021-a0233aa3f992
@@ -25,5 +25,4 @@ require (
 	gonum.org/v1/netlib v0.0.0-20181224185128-3431cf544c75 // indirect
 	gopkg.in/src-d/enry.v1 v1.6.7
 	gopkg.in/toqueteos/substring.v1 v1.0.2 // indirect
-	gopkg.in/yaml.v2 v2.2.2
 )

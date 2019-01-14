@@ -22,11 +22,15 @@ For a more detailed view of how we think about Lyra, check out our introductory 
 
 ## Getting Started
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
-
 2. Build the binary: `$ cd lyra; make lyra`
-2. Run the binary with the sample manifest: ` $ ./build/lyra --debug apply attach`
+3. Run the binary with the sample manifest: ` $ ./build/lyra --debug apply sample`
 
-(You can view the sample manifest that is applied by the command above in `plugins/attach.pp`)
+(You can view the sample manifest that is applied by the command above in `plugins/example.pp`)
+
+## Integrating with Kubernetes
+1. Install the Lyra CRD as described in the [lyra-operator](https://github.com/lyraproj/lyra-operator/blob/master/README.md) repo
+2. Start Lyra in controller mode: ` $ ./build/lyra --debug controller`
+3. Create a Workflow resource, also described in the [lyra-operator](https://github.com/lyraproj/lyra-operator/blob/master/README.md) repo
 
 ## Project Status
 Very much in early development. Lyra is just starting and things are a bit bumpy! Star this project above to stay tuned.
@@ -38,7 +42,7 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 - [ ] Core Engine (minimal CLI)
 	- [x] Apply
 	- [ ] Destroy
-- [ ] Kubernetes custom resource definition/controller
+- [x] Kubernetes custom resource definition/controller
 - [ ] Full CLI (with preview functionality)
 - [ ] GitOps
 

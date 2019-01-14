@@ -19,7 +19,6 @@ import (
 	"github.com/lyraproj/wfe/service"
 	"github.com/lyraproj/wfe/wfe"
 	enry "gopkg.in/src-d/enry.v1"
-	yaml "gopkg.in/yaml.v2"
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
@@ -32,32 +31,11 @@ type Applicator struct {
 
 // ApplyWorkflowWithHieraData will apply the named workflow with the supplied hiera data
 func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
-	logger := logger.Get()
-
-	// Write the hiera data to a temp file
-	f, err := ioutil.TempFile("", "data-*.yaml")
-	if err != nil {
-		logger.Error("failed to create temp file for Hiera data", "err", err)
-		return
+	tp := func(ic lookup.ProviderContext, key string, _ map[string]eval.Value) (eval.Value, bool) {
+		v, ok := hieraData[key]
+		return types.WrapString(v), ok
 	}
-	bs, err := yaml.Marshal(&hieraData)
-	if err != nil {
-		logger.Error("failed to marshall Hiera data to yaml", "err", err)
-		return
-	}
-	_, err = f.Write(bs)
-	if err != nil {
-		logger.Error("failed to write Hiera data to temp file", "err", err)
-		return
-	}
-
-	hieraDataFilename := f.Name()
-
-	// Delete the temp file after we're done
-	defer deleteFile(hieraDataFilename)
-
-	// Apply the workflow
-	a.ApplyWorkflow(workflowName, hieraDataFilename)
+	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName))
 }
 
 // ApplyWorkflow will apply the named workflow getting hiera data from file
@@ -77,7 +55,12 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string) {
 		`path`:                      types.WrapString(hieraDataFilename),
 		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
 
-	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, func(c eval.Context) {
+	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, applyWithContext(workflowName))
+}
+
+func applyWithContext(workflowName string) func(eval.Context) {
+	return func(c eval.Context) {
+		logger := logger.Get()
 		loader := loader.New(logger, c.Loader())
 		loader.PreLoad(c)
 		logger.Debug("all plugins loaded")
@@ -91,7 +74,7 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string) {
 			ui.ShowApplyMessage("apply done:", workflowName)
 			logger.Debug("apply finished")
 		})
-	})
+	}
 }
 
 func apply(c eval.Context, activityID string, input eval.OrderedMap) {
@@ -118,18 +101,4 @@ func languageErrorExit(err error) {
 	ui.Message("error", fmt.Sprintf("Manifest language error: %v", err))
 	ui.Message("error", "Exiting...")
 	os.Exit(1)
-}
-
-func deleteFile(filename string) {
-	_, err := os.Stat(filename)
-	if err != nil {
-		if os.IsNotExist(err) {
-			return
-		}
-		panic(err)
-	}
-	err = os.Remove(filename)
-	if err != nil {
-		panic(err)
-	}
 }
