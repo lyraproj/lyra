@@ -4,17 +4,18 @@ import (
 	"context"
 	"fmt"
 	"github.com/hashicorp/go-plugin"
+	"github.com/lyraproj/hiera/lookup"
+	"github.com/lyraproj/hiera/provider"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/puppet-evaluator/types"
-	"github.com/lyraproj/wfe/wfe"
-	"github.com/lyraproj/hiera/lookup"
-	"github.com/lyraproj/hiera/provider"
 	"github.com/lyraproj/servicesdk/serviceapi"
 	"github.com/lyraproj/servicesdk/wfapi"
+	"github.com/lyraproj/wfe/service"
+	"github.com/lyraproj/wfe/wfe"
 	"github.com/spf13/cobra"
 	"gopkg.in/src-d/enry.v1"
 	"io/ioutil"
@@ -60,17 +61,17 @@ func runApply(cmd *cobra.Command, args []string) {
 		}
 	}
 	lookupOptions := map[string]eval.Value{
-		`path`: types.WrapString(hieraData),
+		`path`:                      types.WrapString(hieraData),
 		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
 
-	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, func(c eval.Context)  {
+	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, func(c eval.Context) {
 		loader := loader.New(logger, c.Loader())
 		loader.PreLoad(c)
 		logger.Debug("all plugins loaded")
 		c.DoWithLoader(loader, func() {
 			logger.Debug("configuring scope")
 			op := wfapi.Upsert // TODO: Command line option
-			c.Scope().Set(wfe.ActivityContextKey, types.SingletonHash2(`operation`, types.WrapInteger(int64(op))))
+			c.Scope().Set(service.ActivityContextKey, types.SingletonHash2(`operation`, types.WrapInteger(int64(op))))
 
 			logger.Debug("calling apply")
 			apply(c, args[0], eval.EMPTY_MAP) // TODO: Perhaps provide top-level input from command line args
