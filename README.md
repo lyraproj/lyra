@@ -24,9 +24,9 @@ For a more detailed view of how we think about Lyra, check out our introductory 
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
 
 2. Build the binary: `$ cd lyra; make lyra`
-2. Run the binary with the sample manifest: ` $ ./build/lyra --debug apply attach`
+2. Run the binary with the sample Workflow: ` $ ./build/lyra --debug apply sample`
 
-(You can view the sample manifest that is applied by the command above in `plugins/attach.pp`)
+(You can view the sample Workflow that is applied by the command above in `plugins/example.pp`.  There is also an AWS Workflow called `attach` in `plugins\attach.pp`.  This will use the default AWS region configured in `~/aws/config` and create real AWS resources.  The `data.yaml` file can be used to configure AWS tag data)
 
 ## Project Status
 Very much in early development. Lyra is just starting and things are a bit bumpy! Star this project above to stay tuned.

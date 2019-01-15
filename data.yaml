@@ -1,0 +1,6 @@
+aws:
+  tags:
+    created_by: lyra
+    department: engineering
+    project:    incubator
+    lifetime:   1h
