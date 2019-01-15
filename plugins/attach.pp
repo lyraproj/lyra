@@ -1,203 +1,407 @@
-type Lyra::Aws::Resource = {
+type Aws::StateReason = {
   attributes => {
-    ensure => Enum[absent, present],
-    region => String
+    code => {  type=>String, value=>'' },
+    message => {  type=>String, value=>'' },
   }
 }
 
-type Lyra::Aws::Vpc = Lyra::Aws::Resource{
+type Aws::InstanceState = {
   attributes => {
-    vpc_id => { type => Optional[String], value => 'FAKED_VPC_ID' },
-    cidr_block => String,
-    enable_dns_hostnames => Boolean,
-    enable_dns_support => Boolean
+    code => {  type=>Integer, value=>0 },
+    name => {  type=>String, value=>'' },
   }
 }
-type Lyra::Aws::VpcHandler = {
-  functions => {
-    read => Callable[[String], Optional[Lyra::Aws::Vpc]],
-    delete => Callable[[String], Boolean],
-    create => Callable[[Lyra::Aws::Vpc], Tuple[Lyra::Aws::Vpc,String]]
-  }
-}
-function lyra::aws::vpchandler::read(String $external_id) >> Optional[Lyra::Aws::Vpc] {
-  return undef
-}
-function lyra::aws::vpchandler::create(Lyra::Aws::Vpc $r) >> Tuple[Lyra::Aws::Vpc,String] {
-  $rc = Lyra::Aws::Vpc(
-    ensure => $r.ensure,
-    region => $r.region,
-    vpc_id => 'external-vpc-id',
-    cidr_block => $r.cidr_block,
-    enable_dns_hostnames => $r.enable_dns_hostnames,
-    enable_dns_support => $r.enable_dns_support
-  )
-  return [$rc,$rc.vpc_id]
-}
-function lyra::aws::vpchandler::delete(String $external_id) >> Boolean {
-  return true
-}
-register_handler(Lyra::Aws::Vpc, Lyra::Aws::VpcHandler())
 
-
-type Lyra::Aws::Subnet = Lyra::Aws::Resource{
+type Aws::GroupIdentifier = {
   attributes => {
-    subnet_id => { type => Optional[String], value => 'FAKED_SUBNET_ID' },
-    vpc_id => String,
-    cidr_block => String,
-    map_public_ip_on_launch => Boolean
+    group_id => {  type=>String, value=>'' },
+    group_name => {  type=>String, value=>'' },
   }
 }
-type Lyra::Aws::SubnetHandler = {
-  functions => {
-    read => Callable[[String], Optional[Lyra::Aws::Subnet]],
-    delete => Callable[[String], Boolean],
-    create => Callable[[Lyra::Aws::Subnet], Tuple[Lyra::Aws::Subnet,String]]
-  }
-}
-function lyra::aws::subnethandler::read(String $external_id) >> Optional[Lyra::Aws::Subnet] {
-  return undef
-}
-function lyra::aws::subnethandler::create(Lyra::Aws::Subnet $r) >> Tuple[Lyra::Aws::Subnet,String] {
-  $rc = Lyra::Aws::Subnet(
-    ensure => $r.ensure,
-    region => $r.region,
-    subnet_id => 'external-subnet-id',
-    vpc_id => $r.vpc_id,
-    cidr_block => $r.cidr_block,
-    map_public_ip_on_launch => $r.map_public_ip_on_launch
-  )
-  return [$rc,$rc.subnet_id]
-}
-function lyra::aws::subnethandler::delete(String $external_id) >> Boolean {
-  return true
-}
-register_handler(Lyra::Aws::Subnet, Lyra::Aws::SubnetHandler())
 
-
-type Lyra::Aws::Instance = Lyra::Aws::Resource{
+type Aws::ProductCode = {
   attributes => {
-    instance_id => { type => Optional[String], value => 'FAKED_INSTANCE_ID' },
-    instance_type => String,
+    product_code_id => {  type=>String, value=>'' },
+    product_code_type => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::Placement = {
+  attributes => {
+    affinity => {  type=>String, value=>'' },
+    availability_zone => {  type=>String, value=>'' },
+    group_name => {  type=>String, value=>'' },
+    host_id => {  type=>String, value=>'' },
+    spread_domain => {  type=>String, value=>'' },
+    tenancy => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::Monitoring = {
+  attributes => {
+    enabled => {  type=>Boolean, value=>false },
+    state => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::LaunchTemplateSpecification = {
+  attributes => {
+    launch_template_id => {  type=>String, value=>'' },
+    launch_template_name => {  type=>String, value=>'' },
+    version => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::InstanceIpv6Address = {
+  attributes => {
+    ipv6_address => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::IamInstanceProfile = {
+  attributes => {
+    arn => {  type=>String, value=>'' },
+    name => {  type=>String, value=>'' },
+    id => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::CpuOptions = {
+  attributes => {
+    core_count => {  type=>Integer, value=>0 },
+    threads_per_core => {  type=>Integer, value=>0 },
+  }
+}
+
+type Aws::EbsBlockDevice = {
+  attributes => {
+    delete_on_termination => {  type=>Boolean, value=>false },
+    encrypted => {  type=>Boolean, value=>false },
+    iops => {  type=>Integer, value=>0 },
+    kms_key_id => {  type=>String, value=>'' },
+    snapshot_id => {  type=>String, value=>'' },
+    volume_size => {  type=>Integer, value=>0 },
+    volume_type => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::BlockDeviceMapping = {
+  attributes => {
+    device_name => {  type=>String, value=>'' },
+    ebs => {  type=>Optional[Aws::EbsBlockDevice], value=>undef },
+    no_device => {  type=>String, value=>'' },
+    virtual_name => {  type=>String, value=>'' },
+  }
+}
+
+type Aws::Instance = {
+  attributes => {
+    additional_info => {  type=>String, value=>'' },
+    block_device_mappings => {  type=>Array[Aws::BlockDeviceMapping], value=>[] },
+    client_token => {  type=>String, value=>'' },
+    cpu_options => {  type=>Optional[Aws::CpuOptions], value=>undef},
+    disable_api_termination => { type=>Boolean, value=>false },
+    ebs_optimized => {  type=>Boolean, value=>false },
+    iam_instance_profile => {  type=>Optional[Aws::IamInstanceProfile], value=>undef },
     image_id => String,
-    key_name => String,
-    public_ip => { type => Optional[String], value => 'FAKED_PUBLIC_IP' },
-    private_ip => { type => Optional[String], value => 'FAKED_PRIVATE_IP' },
+    instance_initiated_shutdown_behavior => {  type=>String, value=>'' },
+    instance_type => String,
+    ipv6_address_count => {  type=>Integer, value=>0 },
+    ipv6_addresses => {  type=>Array[Aws::InstanceIpv6Address], value=>[] },
+    kernel_id => {  type=>String, value=>'' },
+    key_name => {  type=>String, value=>'' },
+    launch_template => {  type=>Optional[Aws::LaunchTemplateSpecification], value=>undef  },
+    max_count => Integer,
+    min_count => Integer,
+    monitoring => {  type=>Optional[Aws::Monitoring], value=>undef },
+    placement => {  type=>Optional[Aws::Placement], value=>undef },
+    private_ip_address => {  type=>String, value=>'' },
+    ramdisk_id => {  type=>String, value=>'' },
+    subnet_id => {  type=>String, value=>'' },
+    user_data => {  type=>String, value=>'' },
+    owner_id => {  type=>String, value=>'' },
+    requester_id => {  type=>String, value=>'' },
+    reservation_id => {  type=>String, value=>'' },
+    ami_launch_index => {  type=>Integer, value=>0 },
+    architecture => {  type=>String, value=>'' },
+    ena_support => {  type=>Boolean, value=>false },
+    hypervisor => {  type=>String, value=>'' },
+    instance_id => {  type=>String, value=>'' },
+    instance_lifecycle => {  type=>String, value=>'' },
+    platform => {  type=>String, value=>'' },
+    private_dns_name => {  type=>String, value=>'' },
+    product_codes => {  type=>Array[Aws::ProductCode], value=>[] },
+    public_dns_name => {  type=>String, value=>'' },
+    public_ip_address => {  type=>String, value=>'' },
+    ram_disk_id => {  type=>String, value=>'' },
+    root_device_name => {  type=>String, value=>'' },
+    root_device_type => {  type=>String, value=>'' },
+    security_groups => {  type=>Array[Aws::GroupIdentifier], value=>[] },
+    source_dest_check => {  type=>Boolean, value=>false },
+    spot_instance_request_id => {  type=>String, value=>'' },
+    sriov_net_support => {  type=>String, value=>'' },
+    state => {  type=>Optional[Aws::InstanceState], value=>undef },
+    state_reason => {  type=>Optional[Aws::StateReason], value=>undef },
+    state_transition_reason => {  type=>String, value=>'' },
+    tags => {  type=>Hash[String,String], kind=>given_or_derived },
+    virtualization_type => {  type=>String, value=>'' },
+    vpc_id => {  type=>String, value=>'' },
   }
 }
-type Lyra::Aws::InstanceHandler = {
-  functions => {
-    read => Callable[[String], Optional[Lyra::Aws::Instance]],
-    delete => Callable[[String], Boolean],
-    create => Callable[[Lyra::Aws::Instance], Tuple[Lyra::Aws::Instance,String]]
-  }
-}
-function lyra::aws::instancehandler::read(String $external_id) >> Optional[Lyra::Aws::Instance] {
-  return undef
-}
-function lyra::aws::instancehandler::create(Lyra::Aws::Instance $r) >> Tuple[Lyra::Aws::Instance,String] {
-  $rc = Lyra::Aws::Instance(
-    ensure => $r.ensure,
-    region => $r.region,
-    instance_id => 'external-instance-id',
-    instance_type => $r.instance_type,
-    image_id => $r.image_id,
-    key_name => $r.key_name,
-    public_ip => '192.168.0.20',
-    private_ip => '192.168.1.20'
-  )
-  return [$rc,$rc.instance_id]
-}
-function lyra::aws::instancehandler::delete(String $external_id) >> Boolean {
-  return true
-}
-function lyra::aws::instancehandler::update(String $external_id, Lyra::Aws::Vpc $r) >> Lyra::Aws::Instance {
-  return $resource
-}
-register_handler(Lyra::Aws::Instance, Lyra::Aws::InstanceHandler())
-
-
-type Lyra::Aws::InternetGateway = Lyra::Aws::Resource{
+type Aws::UserIdGroupPair = {
   attributes => {
-    internet_gateway_id => { type => Optional[String], value => 'FAKED_GATEWAY_ID' }
+    description => {  type=>String, value=>'' },
+    group_id => {  type=>String, value=>'' },
+    group_name => {  type=>String, value=>'' },
+    peering_status => {  type=>String, value=>'' },
+    user_id => {  type=>String, value=>'' },
+    vpc_id => {  type=>String, value=>'' },
+    vpc_peering_connection_id => {  type=>String, value=>'' },
   }
 }
-type Lyra::Aws::InternetGatewayHandler = {
-  functions => {
-    read => Callable[[String], Optional[Lyra::Aws::InternetGateway]],
-    delete => Callable[[String], Boolean],
-    create => Callable[[Lyra::Aws::InternetGateway], Tuple[Lyra::Aws::InternetGateway,String]]
+
+type Aws::PrefixListId = {
+  attributes => {
+    description => {  type=>String, value=>'' },
+    prefix_list_id => {  type=>String, value=>'' },
   }
 }
-function lyra::aws::internetGatewayhandler::read(String $external_id) >> Optional[Lyra::Aws::InternetGateway] {
-  return undef
+
+type Aws::Ipv6Range = {
+  attributes => {
+    cidr_ipv6 => {  type=>String, value=>'' },
+    description => {  type=>String, value=>'' },
+  }
 }
-function lyra::aws::internetGatewayhandler::create(Lyra::Aws::InternetGateway $r) >> Tuple[Lyra::Aws::InternetGateway,String] {
-  $rc = Lyra::Aws::InternetGateway(
-    ensure => $r.ensure,
-    region => $r.region,
-    internet_gateway_id => 'external-internet_gateway_id'
-  )
-  return [$rc,$rc.internet_gateway_id]
+
+type Aws::IpRange = {
+  attributes => {
+    cidr_ip => {  type=>String, value=>'' },
+    description => {  type=>String, value=>'' },
+  }
 }
-function lyra::aws::internetGatewayhandler::delete(String $external_id) >> Boolean {
-  return true
+
+type Aws::IpPermission = {
+  attributes => {
+    from_port => {  type=>Integer, value=>0 },
+    ip_protocol => {  type=>String, value=>'' },
+    ip_ranges => {  type=>Array[Aws::IpRange], value=>[] },
+    ipv6_ranges => {  type=>Array[Aws::Ipv6Range], value=>[] },
+    prefix_list_ids => {  type=>Array[Aws::PrefixListId], value=>[] },
+    to_port => {  type=>Integer, value=>0 },
+    user_id_group_pairs => {  type=>Array[Aws::UserIdGroupPair], value=>[] },
+  }
 }
-register_handler(Lyra::Aws::InternetGateway, Lyra::Aws::InternetGatewayHandler())
+
+type Aws::SecurityGroup = {
+  attributes => {
+    description => String,
+    group_name => String,
+    vpc_id => {  type=>String, value=>'' },
+    group_id => {  type=>String, value=>'' },
+    ip_permissions => {  type=>Array[Aws::IpPermission], value=>[] },
+    ip_permissions_egress => {  type=>Array[Aws::IpPermission], value=>[] },
+    owner_id => {  type=>String, value=>'' },
+    tags => {  type=>Hash[String,String], kind=>given_or_derived },
+  }
+}
+
+type Aws::Vpc = {
+  attributes => {
+    amazon_provided_ipv6_cidr_block => Boolean,
+    cidr_block => String,
+    instance_tenancy => { type=>Optional[String], value=>'default' },
+    enable_dns_hostnames => Boolean,
+    enable_dns_support => Boolean,
+    tags => Hash[String,String],
+    vpc_id => { type=>Optional[String], value=>undef },
+    is_default => Boolean,
+    state => String,
+    dhcp_options_id => { type=>Optional[String], value=>undef },
+  },
+  annotations => {
+    Lyra::Resource => {
+      provided_attributes => ['vpc_id', 'dhcp_options_id'],
+    },
+  },
+}
+type Aws::Subnet = {
+  attributes => {
+    vpc_id => String,
+    availability_zone => { type=>Optional[String], value=>undef },
+    cidr_block => String,
+    ipv6_cidr_block => String,
+    tags => Hash[String,String],
+    assign_ipv6_address_on_creation => Boolean,
+    map_public_ip_on_launch  => Boolean,
+    available_ip_address_count => { type=>Optional[Integer], value=>undef },
+    default_for_az => Boolean,
+    state => String,
+    subnet_id => { type=>Optional[String], value=>undef },
+  },
+  annotations => {
+    Lyra::Resource => {
+      provided_attributes => ['subnet_id', 'availability_zone', 'available_ip_address_count'],
+    },
+  },
+}
+
+type Aws::InternetGateway = {
+  attributes => {
+    internet_gateway_id => { type=>Optional[String], value=>undef },
+    tags => Hash[String,String],
+    attachments => {type=>Array[Aws::InternetGatewayAttachment],value=>[]},
+  },
+  annotations => {
+    Lyra::Resource => {
+      provided_attributes => ['internet_gateway_id'],
+    },
+  },
+}
+
+type Aws::InternetGatewayAttachment = {
+  attributes => {
+    state => String,
+    vpc_id => String,
+  }
+}
+type Aws::PropagatingVgw = {
+  attributes => {
+    gateway_id => String
+  }
+}
+type Aws::Route = {
+  attributes => {
+    destination_cidr_block => { type=>String, value=>'' },
+    destination_ipv6_cidr_block => { type=>String, value=>'' },
+    destination_prefix_list_id => { type=>String, value=>'' },
+    egress_only_internet_gateway_id => { type=>String, value=>'' },
+    gateway_id => { type=>String, value=>'' },
+    instance_id => { type=>String, value=>'' },
+    instance_owner_id => { type=>String, value=>'' },
+    nat_gateway_id => { type=>String, value=>'' },
+    network_interface_id => { type=>String, value=>'' },
+    origin => { type=>String, value=>'' },
+    state => { type=>String, value=>'' },
+    vpc_peering_connection_id => { type=>String, value=>'' },
+    tags => Hash[String,String],
+  }
+}
+
+type Aws::RouteTableAssociation = {
+  attributes => {
+    main             => Boolean,
+    route_table_association_id => { type=>Optional[String], value=>undef },
+    route_table_id            => String,
+    subnet_id                => String,
+  }
+}
+type Aws::RouteTable = {
+  attributes => {
+    vpc_id           => String,
+    route_table_id   => { type=>Optional[String], value=>undef },
+    subnet_id        => { type=>Optional[String], value=>undef },
+    routes             => { type=>Array[Aws::Route],value=>[]},
+    associations     => { type=>Array[Aws::RouteTableAssociation],value=>[]},
+    propagating_vgws => { type=>Array[Aws::PropagatingVgw],value=>[]},
+    tags => Hash[String,String]
+  },
+  annotations => {
+    Lyra::Resource => {
+      provided_attributes => ['route_table_id', 'routes'],
+    },
+  },
+}
+
+type Aws::KeyPair = {
+  attributes => {
+    public_key_material => String,
+    key_name => String,
+    key_fingerprint => { type=>String, value=>'' }
+  }
+}
+
+$route = Aws::Route(
+  destination_cidr_block => '0.0.0.0/0'
+)
+$routes = [$route]
 
 workflow attach {
-  typespace => 'lyra::aws',
+  typespace => 'aws',
   input => (
-    String $region = 'eu-west-1',
-    String $key_name = 'sample-key-name',
-    Integer $ec2_cnt = 1
+    Hash[String,String] $tags = lookup('aws.tags'),
   ),
   output => (
     String $vpc_id,
+    # String $group_id,
     String $subnet_id,
-    String $internet_gateway_id,
-    Hash[String, Struct[public_ip => String, private_ip => String]] $nodes
+    # String $internet_gateway_id,
+    # String $key_fingerprint,
+    # String $route_table_id,
   )
 } {
+  # resource instance {
+  #   input  => ($tags),
+  # }{
+  #   tags => $tags,
+  #   max_count => 1,
+  #   min_count => 1,
+  #   instance_type => 't2.nano',
+  #   image_id => 'ami-f90a4880',
+  # }
+  # resource keypair {
+  #   input  => ($tags),
+  #   output => ($key_fingerprint)
+  # }{
+  #   public_key_material => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword",
+  #   key_name => "lyra-test-kp"
+  # }
+  resource internetgateway {
+    input  => ($tags),
+    output => ($internet_gateway_id)
+  }{
+    tags => $tags,
+  }
+  resource routetable {
+    input  => ($tags, $vpc_id),
+    output => ($route_table_id)
+  }{
+    tags => $tags,
+    vpc_id => $vpc_id,
+    # routes => $routes,
+  }
   resource vpc {
-    input  => ($region),
+    input  => ($tags),
     output => ($vpc_id)
   }{
-    ensure => present,
-    region => $region,
+    amazon_provided_ipv6_cidr_block => false,
     cidr_block => '192.168.0.0/16',
-    enable_dns_hostnames => true,
-    enable_dns_support => true
+    enable_dns_hostnames => false,
+    enable_dns_support => false,
+    is_default => false,
+    state => 'available',
+    tags => $tags,
   }
-
+  # resource securitygroup {
+  #   input  => ($tags, $vpc_id),
+  #   output => ($group_id)
+  # }{
+  #   vpc_id => $vpc_id,
+  #   description => 'lyra test group',
+  #   group_name => 'lyragroup',
+  #   tags => $tags,
+  # }
   resource subnet {
-    input  => ($region, $vpc_id),
+    input  => ($tags, $vpc_id),
     output => ($subnet_id)
   }{
-    ensure => present,
-    region => $region,
     vpc_id => $vpc_id,
     cidr_block => '192.168.1.0/24',
-    map_public_ip_on_launch => true
-  }
-
-  resource instance {
-    input => ($n, $region, $key_name),
-    output => ($key = instance_id, $value = (public_ip, private_ip))
-  } $nodes = times($ec2_cnt) |$n| {
-    region => $region,
-    ensure => present,
-    instance_id => String($n, '%X'),
-    image_id => 'ami-f90a4880',
-    instance_type => 't2.nano',
-    key_name => $key_name,
-  }
-
-  resource internetgateway {
-    input => ($region),
-    output => ($internet_gateway_id)
-  } {
-    ensure => present,
-    region => $region,
+    ipv6_cidr_block => '',
+    tags => $tags,
+    assign_ipv6_address_on_creation => false,
+    map_public_ip_on_launch => false,
+    default_for_az => false,
+    state => 'available',
   }
 }
