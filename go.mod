@@ -5,6 +5,7 @@ require (
 	github.com/boltdb/bolt v1.3.1
 	github.com/cespare/trie v0.0.0-20150610204604-3fe1a95cbba9 // indirect
 	github.com/davecgh/go-spew v1.1.1
+	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
@@ -25,4 +26,5 @@ require (
 	gonum.org/v1/netlib v0.0.0-20181224185128-3431cf544c75 // indirect
 	gopkg.in/src-d/enry.v1 v1.6.7
 	gopkg.in/toqueteos/substring.v1 v1.0.2 // indirect
+	sigs.k8s.io/controller-runtime v0.1.9
 )
