@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/issue/issue"
+	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/grpc"
 	"github.com/lyraproj/servicesdk/serviceapi"
 )
@@ -159,7 +159,7 @@ func (s *subService) Parent(c eval.Context) serviceapi.Service {
 }
 
 func (s *subService) Invoke(c eval.Context, identifier, name string, arguments ...eval.Value) eval.Value {
-	args := make([]eval.Value, 2, 2 + len(arguments))
+	args := make([]eval.Value, 2, 2+len(arguments))
 	args[0] = types.WrapString(identifier)
 	args[1] = types.WrapString(name)
 	args = append(args, arguments...)
@@ -168,13 +168,16 @@ func (s *subService) Invoke(c eval.Context, identifier, name string, arguments .
 
 func (s *subService) Metadata(c eval.Context) (typeSet eval.TypeSet, definitions []serviceapi.Definition) {
 	v := s.Parent(c).Invoke(c, s.def.Identifier().Name(), "metadata").(eval.List)
-	ts := v.At(0).(eval.TypeSet)
-	dl := v.At(1).(eval.List)
-	ds := make([]serviceapi.Definition, dl.Len())
-	dl.EachWithIndex(func(d eval.Value, i int) {
-		ds[i] = d.(serviceapi.Definition)
-	})
-	return ts, ds
+	if ts, ok := v.At(0).(eval.TypeSet); ok {
+		typeSet = ts
+	}
+	if dl, ok := v.At(1).(eval.List); ok {
+		definitions = make([]serviceapi.Definition, dl.Len())
+		dl.EachWithIndex(func(d eval.Value, i int) {
+			definitions[i] = d.(serviceapi.Definition)
+		})
+	}
+	return
 }
 
 func (s *subService) State(c eval.Context, name string, input eval.OrderedMap) eval.PuppetObject {
@@ -199,6 +202,7 @@ func (l *Loader) loadPuppetDSL(c eval.Context, dir string) {
 	}
 	ppServer := x.(serviceapi.Service)
 	for _, ppFile := range ppFiles {
+		l.logger.Debug("loading Puppet DSL", "file", ppFile)
 		def := ppServer.Invoke(c, puppet.ManifestLoaderID, `load_manifest`, types.WrapString(ppFile)).(serviceapi.Definition)
 		sa := &subService{def}
 		l.SetEntry(sa.Identifier(c), eval.NewLoaderEntry(sa, nil))
