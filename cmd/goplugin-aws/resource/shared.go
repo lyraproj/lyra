@@ -33,13 +33,13 @@ func newClient() *ec2.EC2 {
 }
 
 func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string) error {
-	if len(resourceIds) == 0 || tags == nil || len(tags) == 0 {
-		hclog.Default().Debug("Nothing to tag", "resourceIds", resourceIds, "tags", tags)
+	awsTags := tagsToAws(tags)
+	return tagResource2(client, awsTags, resourceIds...)
+}
+func tagResource2(client ec2.EC2, awsTags []*ec2.Tag, resourceIds ...*string) error {
+	if len(resourceIds) == 0 || awsTags == nil || len(awsTags) == 0 {
+		hclog.Default().Debug("Nothing to tag", "resourceIds", resourceIds, "awsTags", awsTags)
 		return nil
-	}
-	awsTags := []*ec2.Tag{}
-	for k, v := range tags {
-		awsTags = append(awsTags, &ec2.Tag{Key: aws.String(k), Value: aws.String(v)})
 	}
 	_, err := client.CreateTags(
 		&ec2.CreateTagsInput{
@@ -48,11 +48,18 @@ func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string)
 			Tags:      awsTags,
 		})
 	if err != nil {
-		hclog.Default().Debug("Error tagging", "error", err, "resourceIds", resourceIds, "tags", tags, "awsTags", awsTags)
+		hclog.Default().Debug("Error tagging", "error", err, "resourceIds", resourceIds, "awsTags", awsTags)
 	}
 	return err
 }
 
+func tagsToAws(tags map[string]string) []*ec2.Tag {
+	awsTags := []*ec2.Tag{}
+	for k, v := range tags {
+		awsTags = append(awsTags, &ec2.Tag{Key: aws.String(k), Value: aws.String(v)})
+	}
+	return awsTags
+}
 func convertTags(ec2Tags []*ec2.Tag) map[string]string {
 	result := map[string]string{}
 	for _, t := range ec2Tags {
