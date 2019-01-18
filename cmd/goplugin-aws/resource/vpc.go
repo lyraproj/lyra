@@ -30,20 +30,31 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 	if log.IsDebug() {
 		log.Debug("Creating VPC", "desired", spew.Sdump(desired))
 	}
-	client := newClient()
-	response, err := client.CreateVpc(
+	vpc, externalID, err := createVpcInternal(
 		&ec2.CreateVpcInput{
 			AmazonProvidedIpv6CidrBlock: aws.Bool(desired.AmazonProvidedIpv6CidrBlock),
 			InstanceTenancy:             desired.InstanceTenancy,
 			CidrBlock:                   nilIfEmpty(desired.CidrBlock),
-		})
+		},
+		tagsToAws(desired.Tags))
+	actual := h.fromAWS(desired, vpc)
+	if log.IsDebug() {
+		log.Debug("Created VPC", "actual", spew.Sdump(actual), "externalID", externalID)
+	}
+	return actual, externalID, err
+}
+
+func createVpcInternal(input *ec2.CreateVpcInput, awsTags []*ec2.Tag) (*ec2.Vpc, string, error) {
+	log := hclog.Default()
+	client := newClient()
+	response, err := client.CreateVpc(input)
 	if err != nil {
 		log.Debug("Error creating VPC", "error", err)
 		return nil, "", err
 	}
 
 	externalID := *response.Vpc.VpcId
-	if err := tagResource(*client, desired.Tags, &externalID); err != nil {
+	if err := tagResource2(*client, awsTags, &externalID); err != nil {
 		return nil, externalID, err
 	}
 	err = client.WaitUntilVpcAvailable(
@@ -54,11 +65,7 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 		log.Debug("Error waiting for vpc resource", "externalID", externalID, "error", err)
 		return nil, "", err
 	}
-	actual := h.fromAWS(desired, response.Vpc)
-	if log.IsDebug() {
-		log.Debug("Created VPC", "actual", spew.Sdump(actual), "externalID", externalID)
-	}
-	return actual, externalID, err
+	return response.Vpc, externalID, nil
 }
 
 // Read a VPC
