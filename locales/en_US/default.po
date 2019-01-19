@@ -52,12 +52,31 @@ msgstr
 "  lyra apply my_activity --data /path/to/vars.yaml"
 
 #: cmd/lyra/cmd/apply.go:45
-msgid "applyFlagHomeDir"
-msgstr "path to root directory"
-
-#: cmd/lyra/cmd/apply.go:45
 msgid "applyFlagExtData"
 msgstr "path to external data file"
+
+#: cmd/lyra/cmd/delete.go:17
+msgid "deleteCmdUse"
+msgstr "delete <activity name>"
+
+#: cmd/lyra/cmd/delete.go:18
+msgid "deleteCmdShort"
+msgstr "Delete a Lyra activity"
+
+#: cmd/lyra/cmd/delete.go:19
+msgid "deleteCmdLong"
+msgstr "Delete a Lyra activity"
+
+#: cmd/lyra/cmd/delete.go:20
+msgid "deleteCmdExample" 
+msgstr 
+"\n"
+"  # Delete a workflow\n"
+"  lyra delete my_activity\n"
+
+#: cmd/lyra/cmd/apply.go:45
+msgid "flagHomeDir"
+msgstr "path to root directory"
 
 #: cmd/lyra/cmd/validate.go:17
 msgid "validateCmdUse"
