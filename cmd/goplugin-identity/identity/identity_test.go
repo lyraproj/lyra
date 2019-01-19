@@ -1,6 +1,7 @@
 package identity
 
 import (
+	"github.com/lyraproj/puppet-evaluator/eval"
 	"os"
 	"testing"
 
@@ -182,4 +183,144 @@ func TestErrors(t *testing.T) {
 	require.NotNil(t, id.Associate("i1", ""))
 	require.NotNil(t, id.Associate("", "e1"))
 
+}
+
+func TestSearch(t *testing.T) {
+	// Set up a clean DB
+	filename := "TestSearch.db"
+	deleteFile(filename)
+	defer deleteFile(filename)
+	id, err := NewIdentity(filename)
+	require.Nil(t, err)
+
+	// Insert something
+	require.Nil(t, id.Associate("a:i1", "e1"))
+	require.Nil(t, id.Associate("a:i2", "e2"))
+	require.Nil(t, id.Associate("b:i3", "e3"))
+	require.Nil(t, id.Associate("b:i4", "e4"))
+
+	mappings, err := id.Search("a:")
+	require.Nil(t, err)
+	require.EqualValues(t, 2, mappings.Len())
+}
+
+func TestBumpEra(t *testing.T) {
+	filename := "TestBumpEra.db"
+	deleteFile(filename)
+	defer deleteFile(filename)
+	id, err := NewIdentity(filename)
+	require.Nil(t, err)
+	require.Nil(t, id.BumpEra())
+	era, err := id.ReadEra()
+	require.Nil(t, err)
+	require.EqualValues(t, int64(1), era)
+}
+
+func TestAccessSetEra(t *testing.T) {
+	filename := "TestAccessSetEra.db"
+	deleteFile(filename)
+	defer deleteFile(filename)
+	id, err := NewIdentity(filename)
+	require.Nil(t, err)
+
+	// Insert something
+	require.Nil(t, id.Associate("a:i1", "e1"))
+	require.Nil(t, id.Associate("a:i2", "e2"))
+
+	// Check that era is zero
+	mappings, err := id.Search("a:")
+	require.Nil(t, err)
+	require.EqualValues(t, 2, mappings.Len())
+	require.EqualValues(t, int64(0), mappings.At(0).(eval.List).At(3).(eval.NumericValue).Int())
+	require.EqualValues(t, int64(0), mappings.At(1).(eval.List).At(3).(eval.NumericValue).Int())
+
+	// Bump era
+	require.Nil(t, id.BumpEra())
+
+	// Access using getExternal
+	checkGetExternal(t, id, "a:i1", "e1")
+
+	// Check that era is one on the accessed element and zero
+	// on the one that wasn't accessed
+	mappings, err = id.Search("a:")
+	require.Nil(t, err)
+	require.EqualValues(t, 2, mappings.Len())
+	require.EqualValues(t, int64(1), mappings.At(0).(eval.List).At(3).(eval.NumericValue).Int())
+	require.EqualValues(t, int64(0), mappings.At(1).(eval.List).At(3).(eval.NumericValue).Int())
+}
+
+func TestSweep(t *testing.T) {
+	filename := "TestSearchGarbage.db"
+	deleteFile(filename)
+	defer deleteFile(filename)
+	id, err := NewIdentity(filename)
+	require.Nil(t, err)
+
+	// Insert something
+	require.Nil(t, id.Associate("a:i1", "e1"))
+	require.Nil(t, id.Associate("a:i2", "e2"))
+	require.Nil(t, id.Associate("a:i3", "e3"))
+
+	// Bump era
+	require.Nil(t, id.BumpEra())
+
+	// Access using getExternal
+	checkGetExternal(t, id, "a:i1", "e1")
+	checkGetExternal(t, id, "a:i2", "e2")
+	require.Nil(t, id.RemoveInternal("a:i2"))
+
+	// Check that element that wasn't accessed is found by SearchGarbage
+	require.Nil(t, id.Sweep("a:"))
+
+	// Retrieve the garbage bin
+	garbage, err := id.Garbage()
+	require.Nil(t, err)
+	require.EqualValues(t, 2, garbage.Len())
+
+	// Accessed between BumpEra and Sweep and then explicitly removed
+	require.EqualValues(t, "e2", garbage.At(0).(eval.List).At(1).String())
+	require.EqualValues(t, int64(1), garbage.At(0).(eval.List).At(3).(eval.NumericValue).Int())
+
+	// Never accessed between BumpEra and Sweep
+	require.EqualValues(t, "e3", garbage.At(1).(eval.List).At(1).String())
+	require.EqualValues(t, int64(0), garbage.At(1).(eval.List).At(3).(eval.NumericValue).Int())
+}
+
+func TestPurge(t *testing.T) {
+	filename := "TestPurge.db"
+	deleteFile(filename)
+	defer deleteFile(filename)
+	id, err := NewIdentity(filename)
+	require.Nil(t, err)
+
+	// Insert something
+	require.Nil(t, id.Associate("a:i1", "e1"))
+	require.Nil(t, id.Associate("a:i2", "e2"))
+	require.Nil(t, id.Associate("a:i3", "e3"))
+
+	// Bump era
+	require.Nil(t, id.BumpEra())
+
+	// Access using getExternal
+	checkGetExternal(t, id, "a:i1", "e1")
+	checkGetExternal(t, id, "a:i2", "e2")
+	require.Nil(t, id.RemoveInternal("a:i2"))
+
+	// Check that element that wasn't accessed is found by SearchGarbage
+	require.Nil(t, id.Sweep("a:"))
+
+	// Purge
+	require.Nil(t, id.PurgeExternal("e1"))
+	require.Nil(t, id.PurgeInternal("a:i2"))
+
+	checkGetExternal(t, id, "a:i1", "")
+	checkGetExternal(t, id, "a:i2", "")
+
+	// Retrieve the garbage bin
+	garbage, err := id.Garbage()
+	require.Nil(t, err)
+	require.EqualValues(t, 1, garbage.Len())
+
+	// Not purged
+	require.EqualValues(t, "e3", garbage.At(0).(eval.List).At(1).String())
 }
