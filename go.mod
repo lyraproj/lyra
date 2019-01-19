@@ -1,7 +1,7 @@
 module github.com/lyraproj/lyra
 
 require (
-	github.com/aws/aws-sdk-go v1.16.21
+	github.com/aws/aws-sdk-go v1.16.22
 	github.com/boltdb/bolt v1.3.1
 	github.com/davecgh/go-spew v1.1.1
 	github.com/go-logr/logr v0.1.0
@@ -11,11 +11,11 @@ require (
 	github.com/lyraproj/hiera v0.0.0-20190114153236-e6de2935d4de
 	github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc
 	github.com/lyraproj/lyra-operator v0.0.0-20190114162440-0e4a872146a0
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190116142411-2aee65d8f315
-	github.com/lyraproj/puppet-workflow v0.0.0-20190115145541-28d82a270abb
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190119120541-966996aacfc1
+	github.com/lyraproj/puppet-workflow v0.0.0-20190119121939-926862d72603
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190117155437-eac8f20ea1b5
-	github.com/lyraproj/wfe v0.0.0-20190117155636-f45dea6bcefd
+	github.com/lyraproj/servicesdk v0.0.0-20190119121211-1908bd44546f
+	github.com/lyraproj/wfe v0.0.0-20190119121258-c6d27ce13741
 	github.com/mattn/go-colorable v0.0.9 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
