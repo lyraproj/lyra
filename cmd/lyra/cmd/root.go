@@ -42,8 +42,9 @@ func NewRootCmd() *cobra.Command {
 	cmd.SetHelpTemplate(ansi.Blue + version.LogoFiglet + ansi.Reset + ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
 
- 	cmd.AddCommand(NewVersionCmd())
+	cmd.AddCommand(NewVersionCmd())
 	cmd.AddCommand(NewApplyCmd())
+	cmd.AddCommand(NewDeleteCmd())
 	cmd.AddCommand(NewControllerCmd())
 	cmd.AddCommand(NewValidateCmd())
 	cmd.AddCommand(EmbeddedPluginCmd())

@@ -31,8 +31,8 @@ func Message(kind string, message interface{}) {
 	}
 }
 
-// ShowApplyMessage prints an attractive message to STDOUT
-func ShowApplyMessage(params ...string) {
+// ShowMessage prints an attractive message to STDOUT
+func ShowMessage(params ...string) {
 	var action = ""
 	var msg = ""
 	if len(params) > 1 {
