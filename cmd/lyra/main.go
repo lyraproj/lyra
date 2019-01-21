@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/lyraproj/lyra/cmd/lyra/cmd"
+	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
 func main() {

@@ -1,3 +1,4 @@
+github.com/lyraproj/lyra/vendor/cloud.google.com/go/compute/metadata                     Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                                Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/beorn7/perks/quantile                         MIT License (98%)
 github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                            MIT License
@@ -54,7 +55,7 @@ github.com/lyraproj/lyra/vendor/go.uber.org/multierr                            
 github.com/lyraproj/lyra/vendor/go.uber.org/zap                                          MIT License (98%)
 github.com/lyraproj/lyra/vendor/golang.org/x/crypto/ssh/terminal                         BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/golang.org/x/net                                         BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/golang.org/x/oauth2/internal                             BSD 3-clause "New" or "Revised" License (96%)
+github.com/lyraproj/lyra/vendor/golang.org/x/oauth2                                      BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/golang.org/x/text                                        BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/golang.org/x/time/rate                                   BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/gonum.org/v1/gonum                                       BSD 3-clause "New" or "Revised" License (97%)
