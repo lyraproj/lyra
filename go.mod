@@ -8,14 +8,14 @@ require (
 	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190114153236-e6de2935d4de
+	github.com/lyraproj/hiera v0.0.0-20190121224837-20bd2c5ffefb
 	github.com/lyraproj/issue v0.0.0-20181208172701-8d203563a8dc
-	github.com/lyraproj/lyra-operator v0.0.0-20190114162440-0e4a872146a0
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190119120541-966996aacfc1
-	github.com/lyraproj/puppet-workflow v0.0.0-20190119121939-926862d72603
+	github.com/lyraproj/lyra-operator v0.0.0-20190121113055-2dba76cb8b6b
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190121224504-9cbd778da25e
+	github.com/lyraproj/puppet-workflow v0.0.0-20190121225019-6ff55a4d2e14
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
 	github.com/lyraproj/servicesdk v0.0.0-20190119121211-1908bd44546f
-	github.com/lyraproj/wfe v0.0.0-20190119121258-c6d27ce13741
+	github.com/lyraproj/wfe v0.0.0-20190121224646-32d74d38984c
 	github.com/mattn/go-colorable v0.0.9 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
