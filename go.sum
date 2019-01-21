@@ -90,8 +90,9 @@ github.com/lyraproj/puppet-workflow v0.0.0-20190121225019-6ff55a4d2e14/go.mod h1
 github.com/lyraproj/semver v0.0.0-20181204205945-997412dbeb0c/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
-github.com/lyraproj/servicesdk v0.0.0-20190119121211-1908bd44546f h1:qC6DMF5hf1goTe3xokougypd1Z/GtCz+2OrOxF6nG+8=
 github.com/lyraproj/servicesdk v0.0.0-20190119121211-1908bd44546f/go.mod h1:BO8iBBHUNvE3bexG6bqUNOYwOxW9ltYTZtakTxKGVG0=
+github.com/lyraproj/servicesdk v0.0.0-20190121225535-bdf437187a7c h1:OfodMZuAXZ8c3nyhT1folA7jhovhVqfJyGvotXQsEzU=
+github.com/lyraproj/servicesdk v0.0.0-20190121225535-bdf437187a7c/go.mod h1:M9BeByi4FIEOpCpByT9Gc13Dc+215AgBDy6FpNsJf2A=
 github.com/lyraproj/wfe v0.0.0-20190121224646-32d74d38984c h1:E2SpWFSc98ZMXUieZviwC/s4GywccHf9yOjwgObCcY4=
 github.com/lyraproj/wfe v0.0.0-20190121224646-32d74d38984c/go.mod h1:M0DoPoLrtAkyQHcQlUlqYPa7w4GhnB+p0+pOlDbpkug=
 github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a h1:+J2gw7Bw77w/fbK7wnNJJDKmw1IbWft2Ul5BzrG1Qm8=
@@ -167,8 +168,9 @@ golang.org/x/net v0.0.0-20180906233101-161cd47e91fd/go.mod h1:mL1N/T3taQHkDXs73r
 golang.org/x/net v0.0.0-20181114220301-adae6a3d119a/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20181201002055-351d144fa1fc/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20190108225652-1e06a53dbb7e/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
-golang.org/x/net v0.0.0-20190110200230-915654e7eabc h1:Yx9JGxI1SBhVLFjpAkWMaO1TF+xyqtHLjZpvQboJGiM=
 golang.org/x/net v0.0.0-20190110200230-915654e7eabc/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+golang.org/x/net v0.0.0-20190119204137-ed066c81e75e h1:MDa3fSUp6MdYHouVmCCNz/zaH2a6CRcxY3VhT/K3C5Q=
+golang.org/x/net v0.0.0-20190119204137-ed066c81e75e/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be/go.mod h1:N/0e6XlmueqKjAGxoOufVs8QHGRruUQn6yWY3a++T0U=
 golang.org/x/oauth2 v0.0.0-20190110195249-fd3eaa146cbb h1:B7Dt1cnU6RCJTD1iFYg0SDa/UpNoDxgfT+coBHUe5Ks=
 golang.org/x/oauth2 v0.0.0-20190110195249-fd3eaa146cbb/go.mod h1:gOpvHmFTYa4IltrdGE7lF6nIHvwfUNPOp7c8zoXwtLw=
