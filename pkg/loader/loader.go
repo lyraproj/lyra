@@ -189,21 +189,35 @@ func (s *subService) Identifier(eval.Context) eval.TypedName {
 }
 
 func (l *Loader) loadPuppetDSL(c eval.Context, dir string) {
-	l.logger.Debug("reading Puppet DSL from filesystem", "dir", dir)
+	l.logger.Debug("reading Puppet DSL and YAML from filesystem", "dir", dir)
+
 	ppFiles, err := findFiles(dir, "*.pp")
 	if err != nil {
 		l.logger.Error("failed to load Puppet DSL", "dir", dir, "err", err)
 		return
 	}
 	l.logger.Debug("found Puppet DSL", "count", len(ppFiles))
+
+	yamlFiles, err := findFiles(dir, "*.yaml")
+	if err != nil {
+		l.logger.Error("failed to load YAML", "dir", dir, "err", err)
+		return
+	}
+	l.logger.Debug("found YAML", "count", len(yamlFiles))
+
+	allFiles := append(ppFiles, yamlFiles...)
+	if len(allFiles) == 0 {
+		return
+	}
+
 	x, ok := eval.Load(c, eval.NewTypedName(eval.NsService, `Puppet`))
 	if !ok {
 		l.logger.Error("failed to load Puppet DSL Service plugin")
 	}
 	ppServer := x.(serviceapi.Service)
-	for _, ppFile := range ppFiles {
-		l.logger.Debug("loading Puppet DSL", "file", ppFile)
-		def := ppServer.Invoke(c, puppet.ManifestLoaderID, `load_manifest`, types.WrapString(ppFile)).(serviceapi.Definition)
+	for _, f := range allFiles {
+		l.logger.Debug("loading manifest", "file", f)
+		def := ppServer.Invoke(c, puppet.ManifestLoaderID, `load_manifest`, types.WrapString(f)).(serviceapi.Definition)
 		sa := &subService{def}
 		l.SetEntry(sa.Identifier(c), eval.NewLoaderEntry(sa, nil))
 		l.loadMetadata(c, ``, nil, sa)
