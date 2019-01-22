@@ -21,11 +21,16 @@ For a more detailed view of how we think about Lyra, check out our introductory 
 
 
 ## Getting Started
+
+The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [go modules](https://github.com/golang/go/wiki/Modules) to be on.
+
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
 2. Build the binary: `$ cd lyra; make lyra`
 3. Run the binary with the sample Workflow: ` $ ./build/lyra --debug apply sample`
 
-(You can view the sample Workflow that is applied by the command above in `plugins/example.pp`.  There is also an AWS Workflow called `attach` in `plugins\attach.pp`.  This will use the default AWS region configured in `~/aws/config` and create real AWS resources.  The `data.yaml` file can be used to configure AWS tag data)
+You can view the sample Workflow that is applied by the command above in `plugins/example.pp`.  This does not touch any real-world resources.
+
+There is an AWS Workflow called `attach` in `plugins\attach.pp` (To run: ` $ ./build/lyra --debug apply attach`). This will use the default AWS region configured in `~/aws/config` and create real AWS resources.  To delete the Workflow (i.e. its resource), run ` $ ./build/lyra --debug delete attach`.  The `data.yaml` file can be used to configure AWS tag data.
 
 ## Integrating with Kubernetes
 1. Install the Lyra CRD as described in the [lyra-operator](https://github.com/lyraproj/lyra-operator/blob/master/README.md) repo
@@ -39,9 +44,9 @@ Very much in early development. Lyra is just starting and things are a bit bumpy
 Here’s a proposed roadmap for the project. Given the infancy of the project, it will change over time. We see the Lyra roadmap evolving in the following three dimensions:
 
 ### User Experience
-- [ ] Core Engine (minimal CLI)
+- [x] Core Engine (minimal CLI)
 	- [x] Apply
-	- [ ] Destroy
+	- [x] Destroy
 - [x] Kubernetes custom resource definition/controller
 - [ ] Full CLI (with preview functionality)
 - [ ] GitOps
