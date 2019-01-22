@@ -27,7 +27,7 @@ LICENSE_TMPFILE = LICENSE_TMPFILE.txt
 LINTIGNOREINITIALISMS = "cmd\/goplugin-(aws|example)\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
 
 PHONY+= all
-all: clean test lyra
+all: check-mods clean test lyra
 
 PHONY+= protobuf
 protobuf: tmp/bin/protoc $(GOPATH)/bin/protoc-gen-go
@@ -137,6 +137,12 @@ dist-release:
 		tar czf $$f.tar.gz $$f; \
 		sha256sum $$f.tar.gz | awk '{ print $1 }' > $$f.tar.gz.sha256 ; \
 	done;
+
+PHONY+= check-mods
+check-mods: 
+	@echo "🔘 Ensuring go mod is available and turned on"
+	@GO111MODULE=on go mod download || (echo "🔴 The command 'GO111MODULE=on go mod download' did not return zero exit code (exit code was $$?)"; exit 1)
+	@echo "✅ Go mod is available"
 
 define build
 	@echo "🔘  building - $(1)"
