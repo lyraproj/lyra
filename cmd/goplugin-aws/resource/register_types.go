@@ -17,16 +17,89 @@ func Server(c eval.Context) *service.Server {
 
 func registerSDKTypes(sb *service.ServerBuilder) {
 	var evs []eval.Type
+
+	//this list is generated using the test TestGetAllNestedTypes
+	//ec2.Vpc
 	evs = sb.RegisterTypes("Aws::Native",
 		ec2.Vpc{},
-		ec2.VpcCidrBlockState{},
 		ec2.VpcCidrBlockAssociation{},
+		ec2.VpcCidrBlockState{},
 		ec2.VpcIpv6CidrBlockAssociation{},
 		ec2.Tag{},
 	)
-	sb.RegisterHandler("Aws::NativeVpcHandler", &NativeVPCHandler{}, evs[0])
+	sb.RegisterHandler("Aws::NativeVpcHandler", &NativeVpcHandler{}, evs[0])
 
-	//TODO Subnet, InternetGateway, etc
+	//ec2.Subnet
+	evs = sb.RegisterTypes("Aws::Native",
+		ec2.Subnet{},
+		ec2.SubnetIpv6CidrBlockAssociation{},
+		ec2.SubnetCidrBlockState{},
+		ec2.Tag{},
+	)
+	sb.RegisterHandler("Aws::NativeSubnetHandler", &NativeSubnetHandler{}, evs[0])
+
+	//ec2.InternetGateway
+	evs = sb.RegisterTypes("Aws::Native",
+		ec2.InternetGateway{},
+		ec2.InternetGatewayAttachment{},
+		ec2.Tag{},
+	)
+	sb.RegisterHandler("Aws::NativeInternetGatewayHandler", &NativeInternetGatewayHandler{}, evs[0])
+
+	//ec2.RouteTable
+	evs = sb.RegisterTypes("Aws::Native",
+		ec2.RouteTable{},
+		ec2.Route{},
+		ec2.Tag{},
+		ec2.RouteTableAssociation{},
+		ec2.PropagatingVgw{},
+	)
+	sb.RegisterHandler("Aws::NativeRouteTableHandler", &NativeRouteTableHandler{}, evs[0])
+
+	// //ec2.KeyPairInfo
+	// evs = sb.RegisterTypes("Aws::Native",
+	// 	ec2.KeyPairInfo{},
+	// )
+	// sb.RegisterHandler("Aws::NativeKeyPairInfoHandler", &NativeKeyPairInfoHandler{}, evs[0])
+
+	//ec2.SecurityGroup
+	evs = sb.RegisterTypes("Aws::Native",
+		ec2.SecurityGroup{},
+		ec2.IpRange{},
+		ec2.Ipv6Range{},
+		ec2.PrefixListId{},
+		ec2.UserIdGroupPair{},
+		ec2.Tag{},
+		ec2.IpPermission{},
+	)
+	sb.RegisterHandler("Aws::NativeSecurityGroupHandler", &NativeSecurityGroupHandler{}, evs[0])
+
+	//ec2.Instance
+	evs = sb.RegisterTypes("Aws::Native",
+		ec2.Instance{},
+		ec2.HibernationOptions{},
+		ec2.Placement{},
+		ec2.ProductCode{},
+		ec2.Monitoring{},
+		ec2.InstanceNetworkInterface{},
+		ec2.InstanceIpv6Address{},
+		ec2.EbsInstanceBlockDevice{},
+		ec2.InstanceNetworkInterfaceAssociation{},
+		ec2.IamInstanceProfile{},
+		ec2.InstanceNetworkInterfaceAttachment{},
+		ec2.GroupIdentifier{},
+		ec2.InstancePrivateIpAddress{},
+		ec2.InstanceBlockDeviceMapping{},
+		ec2.ElasticInferenceAcceleratorAssociation{},
+		ec2.CpuOptions{},
+		ec2.LicenseConfiguration{},
+		ec2.InstanceState{},
+		ec2.StateReason{},
+		ec2.CapacityReservationSpecificationResponse{},
+		ec2.CapacityReservationTargetResponse{},
+		ec2.ElasticGpuAssociation{},
+	)
+	sb.RegisterHandler("Aws::NativeInstanceHandler", &NativeInstanceHandler{}, evs[0])
 }
 
 func registerNonSDKTypes(sb *service.ServerBuilder) {
@@ -98,4 +171,11 @@ func registerNonSDKTypes(sb *service.ServerBuilder) {
 		EbsBlockDevice{},
 	)
 	sb.RegisterHandler("Aws::InstanceHandler", &InstanceHandler{}, evs[0])
+
+	//iam.Role
+	evs = sb.RegisterTypes("Aws",
+		IamRole{},
+	)
+	sb.RegisterHandler("Aws::RoleHandler", &RoleHandler{}, evs[0])
+
 }

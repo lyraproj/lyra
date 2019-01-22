@@ -61,6 +61,9 @@ func tagsToAws(tags map[string]string) []*ec2.Tag {
 	return awsTags
 }
 func convertTags(ec2Tags []*ec2.Tag) map[string]string {
+	if ec2Tags == nil {
+		return nil
+	}
 	result := map[string]string{}
 	for _, t := range ec2Tags {
 		result[*t.Key] = *t.Value

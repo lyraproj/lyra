@@ -12,35 +12,35 @@ workflow attach {
   ),
   output => (
     String $vpc_id,
-    # String $group_id,
+    String $group_id,
     String $subnet_id,
-    # String $internet_gateway_id,
-    # String $key_fingerprint,
-    # String $route_table_id,
+    String $internet_gateway_id,
+    String $key_fingerprint,
+    String $route_table_id,
   )
 } {
-  # resource instance {
-  #   input  => ($tags),
-  # }{
-  #   tags => $tags,
-  #   max_count => 1,
-  #   min_count => 1,
-  #   instance_type => 't2.nano',
-  #   image_id => 'ami-f90a4880',
-  # }
-  # resource keypair {
-  #   input  => ($tags),
-  #   output => ($key_fingerprint)
-  # }{
-  #   public_key_material => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword",
-  #   key_name => "lyra-test-kp"
-  # }
-  # resource internetgateway {
-  #   input  => ($tags),
-  #   output => ($internet_gateway_id)
-  # }{
-  #   tags => $tags,
-  # }
+  resource instance {
+    input  => ($tags),
+  }{
+    tags => $tags,
+    max_count => 1,
+    min_count => 1,
+    instance_type => 't2.nano',
+    image_id => 'ami-f90a4880',
+  }
+  resource keypair {
+    input  => ($tags),
+    output => ($key_fingerprint)
+  }{
+    public_key_material => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword",
+    key_name => 'lyra-test-kp'
+  }
+  resource internetgateway {
+    input  => ($tags),
+    output => ($internet_gateway_id)
+  }{
+    tags => $tags,
+  }
   resource routetable {
     input  => ($tags, $vpc_id),
     output => ($route_table_id)
@@ -61,15 +61,15 @@ workflow attach {
     state => 'available',
     tags => $tags,
   }
-  # resource securitygroup {
-  #   input  => ($tags, $vpc_id),
-  #   output => ($group_id)
-  # }{
-  #   vpc_id => $vpc_id,
-  #   description => 'lyra test group',
-  #   group_name => 'lyragroup',
-  #   tags => $tags,
-  # }
+  resource securitygroup {
+    input  => ($tags, $vpc_id),
+    output => ($group_id)
+  }{
+    vpc_id => $vpc_id,
+    description => 'lyra test group',
+    group_name => 'lyragroup',
+    tags => $tags,
+  }
   resource subnet {
     input  => ($tags, $vpc_id),
     output => ($subnet_id)

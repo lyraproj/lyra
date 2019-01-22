@@ -38,13 +38,11 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 		},
 		tagsToAws(desired.Tags))
 	actual := h.fromAWS(desired, vpc)
-	if log.IsDebug() {
-		log.Debug("Created VPC", "actual", spew.Sdump(actual), "externalID", externalID)
-	}
 	return actual, externalID, err
 }
 
 func createVpcInternal(input *ec2.CreateVpcInput, awsTags []*ec2.Tag) (*ec2.Vpc, string, error) {
+
 	log := hclog.Default()
 	client := newClient()
 	response, err := client.CreateVpc(input)
@@ -65,11 +63,22 @@ func createVpcInternal(input *ec2.CreateVpcInput, awsTags []*ec2.Tag) (*ec2.Vpc,
 		log.Debug("Error waiting for vpc resource", "externalID", externalID, "error", err)
 		return nil, "", err
 	}
+	if log.IsDebug() {
+		log.Debug("Created vpc", "err", err, "externalID", externalID, "response.Vpc", spew.Sdump(response.Vpc))
+	}
 	return response.Vpc, externalID, nil
 }
 
 // Read a VPC
 func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
+	actual, err := readVpcInternal(externalID)
+	if err != nil {
+		return nil, err
+	}
+	return h.fromAWS(&Vpc{}, actual), nil
+}
+
+func readVpcInternal(externalID string) (*ec2.Vpc, error) {
 	log := hclog.Default()
 	log.Debug("Reading VPC", "externalID", externalID)
 	client := newClient()
@@ -86,11 +95,11 @@ func (h *VPCHandler) Read(externalID string) (*Vpc, error) {
 	if len(response.Vpcs) > 1 {
 		log.Error("Expected to find one VPC but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.Vpcs))
 	}
-	actual := h.fromAWS(&Vpc{}, response.Vpcs[0])
+	vpc := response.Vpcs[0]
 	if log.IsDebug() {
-		log.Debug("Completed VPC read", "actual", spew.Sdump(actual))
+		log.Debug("Completed VPC read", "actual", spew.Sdump(vpc), "err", err)
 	}
-	return actual, nil
+	return vpc, nil
 }
 
 // Delete a VPC

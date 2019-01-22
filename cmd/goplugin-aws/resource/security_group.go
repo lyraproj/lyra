@@ -3,6 +3,7 @@ package resource
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -64,8 +65,9 @@ type SecurityGroupHandler struct{}
 // Create a SecurityGroup
 func (h *SecurityGroupHandler) Create(desired *SecurityGroup) (*SecurityGroup, string, error) {
 	log := hclog.Default()
-	log.Debug("Creating SecurityGroup", "desired", desired)
-	client := newClient()
+	if log.IsDebug() {
+		log.Debug("Creating SecurityGroup", "desired", spew.Sdump(desired))
+	}
 	input := &ec2.CreateSecurityGroupInput{
 		Description: aws.String(desired.Description),
 		GroupName:   aws.String(desired.GroupName),
@@ -73,23 +75,42 @@ func (h *SecurityGroupHandler) Create(desired *SecurityGroup) (*SecurityGroup, s
 	if len(desired.VpcId) > 0 {
 		input.VpcId = aws.String(desired.VpcId)
 	}
+
+	sg, externalID, err := createSecurityGroupInternal(input,
+		tagsToAws(desired.Tags))
+	if err != nil {
+		log.Debug("Error creating SecurityGroup", "error", err)
+		return nil, "", err
+	}
+	return h.fromAWS(desired, sg), externalID, nil
+}
+
+func createSecurityGroupInternal(input *ec2.CreateSecurityGroupInput, awsTags []*ec2.Tag) (*ec2.SecurityGroup, string, error) {
+	log := hclog.Default()
+	client := newClient()
 	response, err := client.CreateSecurityGroup(input)
 	if err != nil {
 		log.Debug("Error creating SecurityGroup", "error", err)
 		return nil, "", err
 	}
 	externalID := *response.GroupId
-	if err := tagResource(*client, desired.Tags, &externalID); err != nil {
+	if err := tagResource2(*client, awsTags, &externalID); err != nil {
 		return nil, externalID, err
 	}
-
-	securityGroup, err := h.Read(externalID)
+	securityGroup, err := readSecurityGroupInternal(externalID)
 	return securityGroup, externalID, err
-
 }
 
 // Read a SecurityGroup
 func (h *SecurityGroupHandler) Read(externalID string) (*SecurityGroup, error) {
+	actual, err := readSecurityGroupInternal(externalID)
+	if err != nil {
+		return nil, err
+	}
+	return h.fromAWS(&SecurityGroup{}, actual), nil
+}
+
+func readSecurityGroupInternal(externalID string) (*ec2.SecurityGroup, error) {
 	log := hclog.Default()
 	log.Debug("Reading SecurityGroup", "externalID", externalID)
 	client := newClient()
@@ -106,13 +127,18 @@ func (h *SecurityGroupHandler) Read(externalID string) (*SecurityGroup, error) {
 	if len(response.SecurityGroups) > 1 {
 		log.Error("Expected to find one SecurityGroup but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.SecurityGroups))
 	}
-	actual := h.fromAWS(&SecurityGroup{}, response.SecurityGroups[0])
-	log.Debug("Completed SecurityGroup read", "actual", actual)
-	return actual, nil
+	sg := response.SecurityGroups[0]
+	if log.IsDebug() {
+		log.Debug("Completed InternetGateway read", "actual", spew.Sdump(sg), "err", err)
+	}
+	return sg, nil
 }
 
 // Delete a SecurityGroup
 func (h *SecurityGroupHandler) Delete(externalID string) error {
+	return deleteSecurityGroupInternal(externalID)
+}
+func deleteSecurityGroupInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting SecurityGroup", "externalID", externalID)
 	client := newClient()
