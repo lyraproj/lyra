@@ -32,11 +32,10 @@ type tuple struct {
 }
 
 type storeMeta struct {
-	Version    string
-	Timestamp  time.Time
-	Era        int64
+	Version   string
+	Timestamp time.Time
+	Era       int64
 }
-
 
 // error used internally by the identity service
 type identityError string
@@ -411,7 +410,8 @@ func (i *Identity) withDb(df func(*bolt.DB) error) (err error) {
 			} else {
 				panic(e)
 			}
-		} else {
+		} else if err == nil {
+			// Propagate error from Close, if any
 			err = e2
 		}
 	}()
