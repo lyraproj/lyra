@@ -7,6 +7,7 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb
