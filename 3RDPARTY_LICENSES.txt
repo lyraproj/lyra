@@ -27,7 +27,7 @@ github.com/lyraproj/lyra/vendor/github.com/lyraproj/hiera                       
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/issue/issue                          Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-evaluator                     Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-parser                        Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow/puppet/functions     Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow                      Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/semver/semver                        Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk                           Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe                                  Apache License 2.0
