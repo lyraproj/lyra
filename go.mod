@@ -7,13 +7,12 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
-	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb
 	github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190123103958-578b5068e92c
-	github.com/lyraproj/puppet-workflow v0.0.0-20190123105633-d497ffd15198
+	github.com/lyraproj/puppet-workflow v0.0.0-20190123141448-5ce45783ff81
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
 	github.com/lyraproj/servicesdk v0.0.0-20190121225535-bdf437187a7c
 	github.com/lyraproj/wfe v0.0.0-20190121224646-32d74d38984c

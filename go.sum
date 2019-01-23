@@ -94,6 +94,8 @@ github.com/lyraproj/puppet-workflow v0.0.0-20190122103525-5f5570c89e46 h1:CWE96b
 github.com/lyraproj/puppet-workflow v0.0.0-20190122103525-5f5570c89e46/go.mod h1:shH61hhJGwXRS6zx5PcMeTubDLwF/Fkp2SU8ejJZK54=
 github.com/lyraproj/puppet-workflow v0.0.0-20190123105633-d497ffd15198 h1:cw3L35DAieuTtBFSYie7jIkrPoYdoBU23JUYJwp5wuE=
 github.com/lyraproj/puppet-workflow v0.0.0-20190123105633-d497ffd15198/go.mod h1:G9h/W2+cpVP3HBxs6X/pCdVKst4XNNk3rnzewZrSGoc=
+github.com/lyraproj/puppet-workflow v0.0.0-20190123141448-5ce45783ff81 h1:4g3xwVEG/lhdR/ZO2b6HLMOcKcfqpO8O6yd8yDEEsis=
+github.com/lyraproj/puppet-workflow v0.0.0-20190123141448-5ce45783ff81/go.mod h1:G9h/W2+cpVP3HBxs6X/pCdVKst4XNNk3rnzewZrSGoc=
 github.com/lyraproj/semver v0.0.0-20181204205945-997412dbeb0c/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
