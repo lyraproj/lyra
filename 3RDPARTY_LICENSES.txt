@@ -1,4 +1,5 @@
 github.com/lyraproj/lyra/vendor/cloud.google.com/go/compute/metadata                     Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/appscode/jsonpatch                            Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/aws/aws-sdk-go                                Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/beorn7/perks/quantile                         MIT License (98%)
 github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                            MIT License
@@ -31,7 +32,6 @@ github.com/lyraproj/lyra/vendor/github.com/lyraproj/puppet-workflow             
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/semver/semver                        Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/servicesdk                           Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/lyraproj/wfe                                  Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/mattbaird/jsonpatch                           Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/mattn/go-colorable                            MIT License
 github.com/lyraproj/lyra/vendor/github.com/mattn/go-isatty                               MIT License (95%)
 github.com/lyraproj/lyra/vendor/github.com/matttproud/golang_protobuf_extensions/pbutil  Apache License 2.0
