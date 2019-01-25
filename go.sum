@@ -79,6 +79,8 @@ github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452/go.mod h1:a
 github.com/lyraproj/puppet-evaluator v0.0.0-20190123101558-8fe6588e638e/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190124135843-af8c63460165 h1:LypP0Q6qrh0TkscpeYFpJYxUsFVCqZsbQ6l0Cr3a3Mg=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190124135843-af8c63460165/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190124220224-0b2cf0dd23a8 h1:Oo+0o/N6h29OvBrOZfnrQyVzw2CTNC/dAz3TVtA97kM=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190124220224-0b2cf0dd23a8/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d h1:iDn6XlJAiA+BuwG6L8xsCapPpc7jz24SGj9z7NQA1sg=
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d/go.mod h1:8va5g/XEw+jP9jnwEXPmanUy/hD9+6iggnaioihPLP0=
 github.com/lyraproj/puppet-workflow v0.0.0-20190124141809-eb897937c99e h1:zohZK68yejS/WC7Y0GTqxHD0kX6LUPG1lq69TylF03s=
@@ -88,6 +90,8 @@ github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEB
 github.com/lyraproj/servicesdk v0.0.0-20190124140659-a7172b2817ef/go.mod h1:/epXb6q3tFs1TKI2n7w9ji3FCqHqvetUaHYHAbmA/Sg=
 github.com/lyraproj/servicesdk v0.0.0-20190124154553-de309d24f25f h1:mke8q1g+EO1sBOMmgX1A50LAkHZiSCRavVkA5f0irs0=
 github.com/lyraproj/servicesdk v0.0.0-20190124154553-de309d24f25f/go.mod h1:/epXb6q3tFs1TKI2n7w9ji3FCqHqvetUaHYHAbmA/Sg=
+github.com/lyraproj/servicesdk v0.0.0-20190125100148-aac636fa09b5 h1:7Xsx3iRXtsSldPRv1k/+5FKtJnO3UzgTD2mLngSLLqo=
+github.com/lyraproj/servicesdk v0.0.0-20190125100148-aac636fa09b5/go.mod h1:JMdK4bdSggKq1FW1PTMdcqzLIqLhTPHXDfhCPXVsZZs=
 github.com/lyraproj/wfe v0.0.0-20190124141441-40f9efc1bf31 h1:dQ6BQmFVZkb7ybT1/GZA4MpQdU5mq+n29MVx9cVk4Hg=
 github.com/lyraproj/wfe v0.0.0-20190124141441-40f9efc1bf31/go.mod h1:yJIzmFf4UcGrqEkWo6jrZ4U+ZoIadOhOLBcE4oDiR28=
 github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a h1:+J2gw7Bw77w/fbK7wnNJJDKmw1IbWft2Ul5BzrG1Qm8=

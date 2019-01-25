@@ -11,10 +11,10 @@ require (
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb
 	github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190124135843-af8c63460165
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190124220224-0b2cf0dd23a8
 	github.com/lyraproj/puppet-workflow v0.0.0-20190124141809-eb897937c99e
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190124154553-de309d24f25f
+	github.com/lyraproj/servicesdk v0.0.0-20190125100148-aac636fa09b5
 	github.com/lyraproj/wfe v0.0.0-20190124141441-40f9efc1bf31
 	github.com/mattn/go-colorable v0.0.9 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
