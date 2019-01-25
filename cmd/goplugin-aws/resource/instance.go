@@ -3,9 +3,9 @@ package resource
 import (
 	"encoding/base64"
 	"fmt"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -27,9 +27,25 @@ type InstanceHandler struct{}
 // Create Instance
 func (h *InstanceHandler) Create(desired *Instance) (*Instance, string, error) {
 	log := hclog.Default()
-	log.Debug("Creating Instance", "desired", desired)
+	if log.IsDebug() {
+		log.Debug("Creating Instance", "desired", spew.Sdump(desired))
+	}
+	input := runInstancesInput(*desired)
+	instance, externalID, err := createInstanceInternal(
+		input,
+		tagsToAws(desired.Tags))
+	if err != nil {
+		log.Debug("Error creating Instance", "error", err)
+		return nil, externalID, err
+	}
+	actual, externalID, err := h.fromAWS(&Instance{}, instance), externalID, nil
+	return actual, externalID, err
+}
+
+func createInstanceInternal(input *ec2.RunInstancesInput, awsTags []*ec2.Tag) (*ec2.Instance, string, error) {
+	log := hclog.Default()
 	client := newClient()
-	response, err := client.RunInstances(runInstancesInput(*desired))
+	response, err := client.RunInstances(input)
 	if err != nil {
 		log.Debug("Error creating Instance", "error", err)
 		return nil, "", err
@@ -37,25 +53,41 @@ func (h *InstanceHandler) Create(desired *Instance) (*Instance, string, error) {
 	if len(response.Instances) != 1 {
 		return nil, "", fmt.Errorf("created %v instance, not the one expected.  Full response is %v", len(response.Instances), response)
 	}
+	instance := response.Instances[0]
 	externalID := *response.Instances[0].InstanceId
-	if err := waitForInstanceState(client, externalID); err != nil {
-		// TODO should we delete here just in case? Or expect user to retry and actual instance picked up second time round?
+	err = waitForInstanceState(client, externalID)
+	if err != nil {
+		// TODO should we delete here just in case? Or expect user to retry and actual picked up second time round?
 		log.Debug("error thrown waiting for instance OK", "error", err)
 		return nil, "", err
 	}
-	if err != nil {
-		log.Debug("Error waiting for Instance resource", "externalID", externalID, "error", err)
-		return nil, "", err
-	}
 	log.Debug("instance status OK", "externalID", externalID)
-	tagResource(*client, desired.Tags, &externalID)
-	actual, err := h.getInstance(client, externalID)
-	log.Debug("Created Instance", "actual", actual, "externalID", externalID)
-	return actual, externalID, err
+	err = tagResource2(*client, awsTags, &externalID)
+	if err != nil {
+		return instance, externalID, err
+	}
+	instance, err = getInstance(client, externalID)
+	if log.IsDebug() {
+		log.Debug("Created instance", "err", err, "externalID", externalID, "instance", spew.Sdump(instance))
+	}
+	return instance, externalID, err
 }
 
 // Read Instance
 func (h *InstanceHandler) Read(externalID string) (*Instance, error) {
+	log := hclog.Default()
+	i, err := readInstanceInternal(externalID)
+	if err != nil {
+		log.Debug("Error reading Instance", "error", err)
+		return nil, err
+	}
+	actual := h.fromAWS(&Instance{}, i)
+	if log.IsDebug() {
+		log.Debug("Completed Instance read", "actual", actual)
+	}
+	return actual, err
+}
+func readInstanceInternal(externalID string) (*ec2.Instance, error) {
 	log := hclog.Default()
 	log.Debug("Reading Instance", "externalID", externalID)
 	client := newClient()
@@ -66,32 +98,31 @@ func (h *InstanceHandler) Read(externalID string) (*Instance, error) {
 	if err != nil {
 		return nil, err
 	}
-	// TODO currently grabbing all instances into a bucket, not doing anything smart here
-	instances := []reservationInstance{}
-	for _, r := range response.Reservations {
-		for _, i := range r.Instances {
-			ri := reservationInstance{
-				reservationId: r.ReservationId,
-				requesterId:   r.RequesterId,
-				ownerId:       r.OwnerId,
-				instance:      i,
-			}
-			instances = append(instances, ri)
-		}
-	}
 	if len(response.Reservations) == 0 {
 		return nil, nil
 	}
 	if len(response.Reservations) > 1 {
-		log.Error("Expected to find one Instance but found more", "externalID.  Returning the first one anyway", externalID, "count", len(response.Reservations))
+		log.Error("Expected to find one Reservation but found more", "externalID.  Returning the first one anyway", externalID, "count", len(response.Reservations))
 	}
-	actual := h.fromAWS(&Instance{}, &instances[0])
-	log.Debug("Completed Instance read", "actual", actual)
-	return actual, nil
+	for _, r := range response.Reservations {
+		if len(r.Instances) > 1 {
+			log.Error("Expected to find one Instance but found more", "externalID.", externalID, "count", len(r.Instances))
+		}
+		for _, i := range r.Instances {
+			if *i.InstanceId == externalID {
+				return i, nil
+			}
+		}
+	}
+	return nil, nil
 }
 
 // Delete Instance
 func (h *InstanceHandler) Delete(externalID string) error {
+	return deleteInstanceInternal(externalID)
+}
+
+func deleteInstanceInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting Instance", "externalID", externalID)
 	client := newClient()
@@ -108,11 +139,7 @@ func (h *InstanceHandler) Delete(externalID string) error {
 	return err
 }
 
-func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance) *Instance {
-	if actual.instance == nil {
-		return &Instance{}
-	}
-
+func (h *InstanceHandler) fromAWS(desired *Instance, actual *ec2.Instance) *Instance {
 	instance := Instance{
 		AdditionalInfo: desired.AdditionalInfo,
 		// CreditSpecification:
@@ -124,25 +151,25 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		MinCount: desired.MinCount,
 	}
 	instance.AdditionalInfo = desired.AdditionalInfo
-	instance.InstanceType = emptyIfNil(actual.instance.InstanceType)
-	instance.KernelId = emptyIfNil(actual.instance.KernelId)
-	instance.KeyName = emptyIfNil(actual.instance.KeyName)
-	instance.ImageId = emptyIfNil(actual.instance.ImageId)
-	instance.EbsOptimized = falseIfNil(actual.instance.EbsOptimized)
-	instance.ClientToken = emptyIfNil(actual.instance.ClientToken)
+	instance.InstanceType = emptyIfNil(actual.InstanceType)
+	instance.KernelId = emptyIfNil(actual.KernelId)
+	instance.KeyName = emptyIfNil(actual.KeyName)
+	instance.ImageId = emptyIfNil(actual.ImageId)
+	instance.EbsOptimized = falseIfNil(actual.EbsOptimized)
+	instance.ClientToken = emptyIfNil(actual.ClientToken)
 	instance.BlockDeviceMappings = desired.BlockDeviceMappings
-	if actual.instance.CpuOptions != nil && *actual.instance.CpuOptions != (ec2.CpuOptions{}) {
+	if actual.CpuOptions != nil && *actual.CpuOptions != (ec2.CpuOptions{}) {
 		cpuOptions := CpuOptions{
-			CoreCount:      *actual.instance.CpuOptions.CoreCount,
-			ThreadsPerCore: *actual.instance.CpuOptions.ThreadsPerCore,
+			CoreCount:      *actual.CpuOptions.CoreCount,
+			ThreadsPerCore: *actual.CpuOptions.ThreadsPerCore,
 		}
 		instance.CpuOptions = &cpuOptions
 	}
-	if actual.instance.IamInstanceProfile != nil && *actual.instance.IamInstanceProfile != (ec2.IamInstanceProfile{}) {
+	if actual.IamInstanceProfile != nil && *actual.IamInstanceProfile != (ec2.IamInstanceProfile{}) {
 		iamInstanceProfile := IamInstanceProfile{
-			Arn: *actual.instance.IamInstanceProfile.Arn,
+			Arn: *actual.IamInstanceProfile.Arn,
 			// Name: desired.IamInstanceProfile.Name,
-			Id: *actual.instance.IamInstanceProfile.Id,
+			Id: *actual.IamInstanceProfile.Id,
 		}
 		instance.IamInstanceProfile = &iamInstanceProfile
 	}
@@ -151,20 +178,20 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 	if desired.LaunchTemplate != nil {
 		instance.LaunchTemplate = desired.LaunchTemplate
 	}
-	if actual.instance.Monitoring != nil && *actual.instance.Monitoring != (ec2.Monitoring{}) {
+	if actual.Monitoring != nil && *actual.Monitoring != (ec2.Monitoring{}) {
 		monitoring := Monitoring{
-			State: *actual.instance.Monitoring.State,
+			State: *actual.Monitoring.State,
 		}
 		if desired.Monitoring != nil {
 			monitoring.Enabled = desired.Monitoring.Enabled
 		}
 		instance.Monitoring = &monitoring
 	}
-	// if actual.instance.NetworkInterfaces != nil && len(actual.instance.NetworkInterfaces) > 0 {
-	// 	instance.NetworkInterfaces = nicFromAWS(desired.NetworkInterfaces, actual.instance.NetworkInterfaces)
+	// if actual.NetworkInterfaces != nil && len(actual.NetworkInterfaces) > 0 {
+	// 	instance.NetworkInterfaces = nicFromAWS(desired.NetworkInterfaces, actual.NetworkInterfaces)
 	// }
-	if actual.instance.Placement != nil && *actual.instance.Placement != (ec2.Placement{}) {
-		p := actual.instance.Placement
+	if actual.Placement != nil && *actual.Placement != (ec2.Placement{}) {
+		p := actual.Placement
 		instance.Placement = &Placement{
 			Affinity:         emptyIfNil(p.Affinity),
 			AvailabilityZone: emptyIfNil(p.AvailabilityZone),
@@ -175,30 +202,31 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		}
 	}
 
-	instance.PrivateIpAddress = emptyIfNil(actual.instance.PrivateIpAddress)
-	instance.SubnetId = emptyIfNil(actual.instance.SubnetId)
-	instance.Tags = convertTags(actual.instance.Tags)
+	instance.PrivateIpAddress = emptyIfNil(actual.PrivateIpAddress)
+	instance.SubnetId = emptyIfNil(actual.SubnetId)
+	instance.Tags = convertTags(actual.Tags)
 
 	if len(desired.UserData) > 0 {
 		instance.UserData = desired.UserData
 	}
 
-	instance.OwnerId = emptyIfNil(actual.ownerId)
-	instance.RequesterId = emptyIfNil(actual.requesterId)
-	instance.ReservationId = emptyIfNil(actual.reservationId)
-	instance.AmiLaunchIndex = zeroIfNil(actual.instance.AmiLaunchIndex)
-	instance.Architecture = emptyIfNil(actual.instance.Architecture)
-	instance.EnaSupport = falseIfNil(actual.instance.EnaSupport)
-	instance.Hypervisor = emptyIfNil(actual.instance.Hypervisor)
-	instance.InstanceId = emptyIfNil(actual.instance.InstanceId)
-	instance.InstanceLifecycle = emptyIfNil(actual.instance.InstanceLifecycle)
-	instance.Platform = emptyIfNil(actual.instance.Platform)
-	//instance.LaunchTime = *actual.instance.LaunchTime TODO needed?
-	instance.PrivateDnsName = emptyIfNil(actual.instance.PrivateDnsName)
+	// TODO markf do we need these fields? they come from the reservation
+	// instance.OwnerId = emptyIfNil(actual.OwnerId)
+	// instance.RequesterId = emptyIfNil(actual.requesterId)
+	// instance.ReservationId = emptyIfNil(actual.reservationId)
+	instance.AmiLaunchIndex = zeroIfNil(actual.AmiLaunchIndex)
+	instance.Architecture = emptyIfNil(actual.Architecture)
+	instance.EnaSupport = falseIfNil(actual.EnaSupport)
+	instance.Hypervisor = emptyIfNil(actual.Hypervisor)
+	instance.InstanceId = emptyIfNil(actual.InstanceId)
+	instance.InstanceLifecycle = emptyIfNil(actual.InstanceLifecycle)
+	instance.Platform = emptyIfNil(actual.Platform)
+	//instance.LaunchTime = *actual.LaunchTime TODO needed?
+	instance.PrivateDnsName = emptyIfNil(actual.PrivateDnsName)
 
-	if actual.instance.ProductCodes != nil && len(actual.instance.ProductCodes) > 0 {
+	if actual.ProductCodes != nil && len(actual.ProductCodes) > 0 {
 		productCodes := []ProductCode{}
-		for _, pc := range actual.instance.ProductCodes {
+		for _, pc := range actual.ProductCodes {
 			p := ProductCode{
 				ProductCodeId:   *pc.ProductCodeId,
 				ProductCodeType: *pc.ProductCodeType,
@@ -208,15 +236,15 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		instance.ProductCodes = productCodes
 	}
 
-	instance.PublicDnsName = emptyIfNil(actual.instance.PublicDnsName)
-	instance.PublicIpAddress = emptyIfNil(actual.instance.PublicIpAddress)
-	instance.RamdiskId = emptyIfNil(actual.instance.RamdiskId)
-	instance.RootDeviceName = emptyIfNil(actual.instance.RootDeviceName)
-	instance.RootDeviceType = emptyIfNil(actual.instance.RootDeviceType)
+	instance.PublicDnsName = emptyIfNil(actual.PublicDnsName)
+	instance.PublicIpAddress = emptyIfNil(actual.PublicIpAddress)
+	instance.RamdiskId = emptyIfNil(actual.RamdiskId)
+	instance.RootDeviceName = emptyIfNil(actual.RootDeviceName)
+	instance.RootDeviceType = emptyIfNil(actual.RootDeviceType)
 
-	if actual.instance.SecurityGroups != nil && len(actual.instance.SecurityGroups) > 0 {
+	if actual.SecurityGroups != nil && len(actual.SecurityGroups) > 0 {
 		sgs := []GroupIdentifier{}
-		for _, sg := range actual.instance.SecurityGroups {
+		for _, sg := range actual.SecurityGroups {
 			gi := GroupIdentifier{
 				GroupId:   *sg.GroupId,
 				GroupName: *sg.GroupName,
@@ -226,27 +254,27 @@ func (h *InstanceHandler) fromAWS(desired *Instance, actual *reservationInstance
 		instance.SecurityGroups = sgs
 	}
 
-	instance.SourceDestCheck = falseIfNil(actual.instance.SourceDestCheck)
-	instance.SpotInstanceRequestId = emptyIfNil(actual.instance.SpotInstanceRequestId)
-	instance.SriovNetSupport = emptyIfNil(actual.instance.SriovNetSupport)
+	instance.SourceDestCheck = falseIfNil(actual.SourceDestCheck)
+	instance.SpotInstanceRequestId = emptyIfNil(actual.SpotInstanceRequestId)
+	instance.SriovNetSupport = emptyIfNil(actual.SriovNetSupport)
 
-	if actual.instance.State != nil && *actual.instance.State != (ec2.InstanceState{}) {
+	if actual.State != nil && *actual.State != (ec2.InstanceState{}) {
 		instance.State = &InstanceState{
-			Code: *actual.instance.State.Code,
-			Name: *actual.instance.State.Name,
+			Code: *actual.State.Code,
+			Name: *actual.State.Name,
 		}
 	}
 
-	if actual.instance.StateReason != nil && *actual.instance.StateReason != (ec2.StateReason{}) {
+	if actual.StateReason != nil && *actual.StateReason != (ec2.StateReason{}) {
 		instance.StateReason = &StateReason{
-			Code:    *actual.instance.StateReason.Code,
-			Message: *actual.instance.StateReason.Message,
+			Code:    *actual.StateReason.Code,
+			Message: *actual.StateReason.Message,
 		}
 	}
 
-	instance.StateTransitionReason = emptyIfNil(actual.instance.StateTransitionReason)
-	instance.VirtualizationType = emptyIfNil(actual.instance.VirtualizationType)
-	instance.VpcId = emptyIfNil(actual.instance.VpcId)
+	instance.StateTransitionReason = emptyIfNil(actual.StateTransitionReason)
+	instance.VirtualizationType = emptyIfNil(actual.VirtualizationType)
+	instance.VpcId = emptyIfNil(actual.VpcId)
 
 	return &instance
 }
@@ -563,30 +591,20 @@ func waitForInstanceState(client *ec2.EC2, externalID string) error {
 	})
 }
 
-func (h *InstanceHandler) getInstance(client *ec2.EC2, externalID string) (*Instance, error) {
+func getInstance(client *ec2.EC2, externalID string) (*ec2.Instance, error) {
 	describeOutput, err := client.DescribeInstances(&ec2.DescribeInstancesInput{
 		InstanceIds: []*string{aws.String(externalID)},
 	})
-	instances := []reservationInstance{}
+	if err != nil {
+		return nil, err
+	}
+	var instance *ec2.Instance
 	for _, r := range describeOutput.Reservations {
 		for _, i := range r.Instances {
-			ri := reservationInstance{
-				reservationId: r.ReservationId,
-				requesterId:   r.RequesterId,
-				ownerId:       r.OwnerId,
-				instance:      i,
+			if externalID == *i.InstanceId {
+				instance = i
 			}
-			instances = append(instances, ri)
 		}
 	}
-	switch {
-	case err != nil:
-		return nil, err
-	case len(instances) > 1:
-		return nil, fmt.Errorf("more than one Instance reservation with matching externalID (%v) found", externalID)
-	case len(instances) == 0:
-		return nil, nil
-	}
-	result := h.fromAWS(&Instance{}, &instances[0])
-	return result, nil
+	return instance, err
 }

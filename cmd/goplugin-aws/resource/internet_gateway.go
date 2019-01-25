@@ -35,14 +35,19 @@ func (h *InternetGatewayHandler) Create(desired *InternetGateway) (*InternetGate
 	if log.IsDebug() {
 		log.Debug("Creating InternetGateway", "desired", spew.Sdump(desired))
 	}
+	ig, externalID, err := createInternetGatewayInternal(&ec2.CreateInternetGatewayInput{},
+		tagsToAws(desired.Tags))
+	actual := h.fromAWS(desired, ig)
+	return actual, externalID, err
+}
+func createInternetGatewayInternal(input *ec2.CreateInternetGatewayInput, awsTags []*ec2.Tag) (*ec2.InternetGateway, string, error) {
+	log := hclog.Default()
 	client := newClient()
-	response, err := client.CreateInternetGateway(
-		&ec2.CreateInternetGatewayInput{})
+	response, err := client.CreateInternetGateway(input)
 	if err != nil {
 		log.Debug("Error creating InternetGateway", "error", err)
 		return nil, "", err
 	}
-
 	externalID := *response.InternetGateway.InternetGatewayId
 	if err := waitForInternetGateway(client, externalID); err != nil {
 		// TODO currently the timing between create and the id being available seems to be
@@ -51,21 +56,26 @@ func (h *InternetGatewayHandler) Create(desired *InternetGateway) (*InternetGate
 		log.Debug("error polling internet gateway", "error", err)
 		return nil, "", err
 	}
-
-	if err := tagResource(*client, desired.Tags, &externalID); err != nil {
+	if err := tagResource2(*client, awsTags, &externalID); err != nil {
 		log.Debug("error tagging internet gateway", "error", err)
 		return nil, externalID, err
 	}
-
-	actual := h.fromAWS(desired, response.InternetGateway)
 	if log.IsDebug() {
-		log.Debug("Created InternetGateway", "actual", spew.Sdump(actual), "externalID", externalID)
+		log.Debug("Created InternetGateway", "err", err, "externalID", externalID, "response.InternetGateway", spew.Sdump(response.InternetGateway))
 	}
-	return actual, externalID, err
+	return response.InternetGateway, externalID, err
 }
 
 // Read a InternetGateway
 func (h *InternetGatewayHandler) Read(externalID string) (*InternetGateway, error) {
+	ig, err := readInternetGatewayInternal(externalID)
+	if err != nil {
+		return nil, err
+	}
+	return h.fromAWS(&InternetGateway{}, ig), nil
+}
+
+func readInternetGatewayInternal(externalID string) (*ec2.InternetGateway, error) {
 	log := hclog.Default()
 	log.Debug("Reading InternetGateway", "externalID", externalID)
 	client := newClient()
@@ -82,15 +92,19 @@ func (h *InternetGatewayHandler) Read(externalID string) (*InternetGateway, erro
 	if len(response.InternetGateways) > 1 {
 		log.Error("Expected to find one InternetGateway but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.InternetGateways))
 	}
-	actual := h.fromAWS(&InternetGateway{}, response.InternetGateways[0])
+	ig := response.InternetGateways[0]
 	if log.IsDebug() {
-		log.Debug("Completed InternetGateway read", "actual", spew.Sdump(actual))
+		log.Debug("Completed InternetGateway read", "actual", spew.Sdump(ig), "err", err)
 	}
-	return actual, nil
+	return ig, nil
 }
 
 // Delete a InternetGateway
 func (h *InternetGatewayHandler) Delete(externalID string) error {
+	return deleteInternetGatewayInternal(externalID)
+}
+
+func deleteInternetGatewayInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting InternetGateway", "externalID", externalID)
 	client := newClient()

@@ -58,13 +58,20 @@ type RouteTableHandler struct{}
 func (h *RouteTableHandler) Create(desired *RouteTable) (*RouteTable, string, error) {
 	log := hclog.Default()
 	if log.IsDebug() {
-		log.Debug("Creating RouteTable", "desired", spew.Sdump(desired))
+		log.Debug("Creating VPC", "desired", spew.Sdump(desired))
 	}
+	rt, externalID, err := createRouteTableInternal(&ec2.CreateRouteTableInput{
+		VpcId: aws.String(desired.VpcId),
+	},
+		tagsToAws(desired.Tags))
+	actual := h.fromAWS(desired, rt)
+	return actual, externalID, err
+}
+
+func createRouteTableInternal(input *ec2.CreateRouteTableInput, awsTags []*ec2.Tag) (*ec2.RouteTable, string, error) {
+	log := hclog.Default()
 	client := newClient()
-	response, err := client.CreateRouteTable(
-		&ec2.CreateRouteTableInput{
-			VpcId: aws.String(desired.VpcId),
-		})
+	response, err := client.CreateRouteTable(input)
 	if err != nil {
 		log.Debug("Error creating RouteTable", "error", err)
 		return nil, "", err
@@ -76,21 +83,32 @@ func (h *RouteTableHandler) Create(desired *RouteTable) (*RouteTable, string, er
 		log.Debug("Error polling internet gateway", "error", err)
 		return nil, "", err
 	}
-	if err := tagResource(*client, desired.Tags, &externalID); err != nil {
+	if err := tagResource2(*client, awsTags, &externalID); err != nil {
 		return nil, externalID, err
 	}
-
-	actual := h.fromAWS(desired, response.RouteTable)
 	if log.IsDebug() {
-		log.Debug("Created RouteTable", "actual", spew.Sdump(actual), "externalID", externalID)
+		log.Debug("Created RouteTable", "RouteTable", spew.Sdump(response.RouteTable), "externalID", externalID)
 	}
-	return actual, externalID, err
+	return response.RouteTable, externalID, nil
 }
 
 // Read a RouteTable
 func (h *RouteTableHandler) Read(externalID string) (*RouteTable, error) {
 	log := hclog.Default()
 	log.Debug("Reading RouteTable", "externalID", externalID)
+	rt, err := readRouteTableInternal(externalID)
+	if log.IsDebug() {
+		log.Debug("Completed RouteTable read", "actual", spew.Sdump(rt), "err", err)
+	}
+	if err != nil {
+		return nil, err
+	}
+	actual := h.fromAWS(&RouteTable{}, rt)
+	return actual, nil
+}
+
+func readRouteTableInternal(externalID string) (*ec2.RouteTable, error) {
+	log := hclog.Default()
 	client := newClient()
 	response, err := client.DescribeRouteTables(
 		&ec2.DescribeRouteTablesInput{
@@ -105,15 +123,15 @@ func (h *RouteTableHandler) Read(externalID string) (*RouteTable, error) {
 	if len(response.RouteTables) > 1 {
 		log.Error("Expected to find one RouteTable but found more.  Returning the first one anyway", "externalID", externalID, "count", len(response.RouteTables))
 	}
-	actual := h.fromAWS(&RouteTable{}, response.RouteTables[0])
-	if log.IsDebug() {
-		log.Debug("Completed RouteTable read", "actual", spew.Sdump(actual))
-	}
-	return actual, nil
+	return response.RouteTables[0], nil
 }
 
 // Delete a RouteTable
 func (h *RouteTableHandler) Delete(externalID string) error {
+	return deleteRouteTableInternal(externalID)
+}
+
+func deleteRouteTableInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting RouteTable", "externalID", externalID)
 	client := newClient()

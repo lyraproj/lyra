@@ -12,65 +12,63 @@ import (
 func TestFromAWS_WhenNoInstance_ReturnsPointerToEmptyStruct(t *testing.T) {
 	h := InstanceHandler{}
 	desired := &Instance{}
-	ri := &reservationInstance{}
+	i := &ec2.Instance{}
 
-	actual := h.fromAWS(desired, ri)
+	actual := h.fromAWS(desired, i)
 	require.Equal(t, &Instance{}, actual)
 }
 
 func TestFromAWS_CanMapFields(t *testing.T) {
 	h := InstanceHandler{}
 	desired := &Instance{}
-	ri := &reservationInstance{
-		instance: &ec2.Instance{
-			InstanceType: aws.String("t2.supertiny"),
-			KernelId:     aws.String("k-id"),
-			ImageId:      aws.String(""),
-			EbsOptimized: aws.Bool(false),
-			EnaSupport:   aws.Bool(true),
-			Monitoring: &ec2.Monitoring{
-				State: aws.String("monitoring state"),
+
+	i := &ec2.Instance{
+		InstanceType: aws.String("t2.supertiny"),
+		KernelId:     aws.String("k-id"),
+		ImageId:      aws.String(""),
+		EbsOptimized: aws.Bool(false),
+		EnaSupport:   aws.Bool(true),
+		Monitoring: &ec2.Monitoring{
+			State: aws.String("monitoring state"),
+		},
+		Placement: &ec2.Placement{
+			AvailabilityZone: aws.String("eu-west-green"),
+			HostId:           aws.String(""),
+		},
+		CpuOptions: &ec2.CpuOptions{
+			CoreCount:      aws.Int64(4),
+			ThreadsPerCore: aws.Int64(8),
+		},
+		IamInstanceProfile: &ec2.IamInstanceProfile{
+			Arn: aws.String("arn-123"),
+			Id:  aws.String("id-123"),
+		},
+		ProductCodes: []*ec2.ProductCode{
+			&ec2.ProductCode{
+				ProductCodeId:   aws.String("pci"),
+				ProductCodeType: aws.String("pct"),
 			},
-			Placement: &ec2.Placement{
-				AvailabilityZone: aws.String("eu-west-green"),
-				HostId:           aws.String(""),
-			},
-			CpuOptions: &ec2.CpuOptions{
-				CoreCount:      aws.Int64(4),
-				ThreadsPerCore: aws.Int64(8),
-			},
-			IamInstanceProfile: &ec2.IamInstanceProfile{
-				Arn: aws.String("arn-123"),
-				Id:  aws.String("id-123"),
-			},
-			ProductCodes: []*ec2.ProductCode{
-				&ec2.ProductCode{
-					ProductCodeId:   aws.String("pci"),
-					ProductCodeType: aws.String("pct"),
-				},
-				&ec2.ProductCode{
-					ProductCodeId:   aws.String("pci2"),
-					ProductCodeType: aws.String("pct2"),
-				},
-			},
-			SecurityGroups: []*ec2.GroupIdentifier{
-				&ec2.GroupIdentifier{
-					GroupId:   aws.String("sgid"),
-					GroupName: aws.String("sgname"),
-				},
-			},
-			State: &ec2.InstanceState{
-				Code: aws.Int64(12),
-				Name: aws.String("in"),
-			},
-			StateReason: &ec2.StateReason{
-				Code:    aws.String("src"),
-				Message: aws.String("sr message"),
+			&ec2.ProductCode{
+				ProductCodeId:   aws.String("pci2"),
+				ProductCodeType: aws.String("pct2"),
 			},
 		},
+		SecurityGroups: []*ec2.GroupIdentifier{
+			&ec2.GroupIdentifier{
+				GroupId:   aws.String("sgid"),
+				GroupName: aws.String("sgname"),
+			},
+		},
+		State: &ec2.InstanceState{
+			Code: aws.Int64(12),
+			Name: aws.String("in"),
+		},
+		StateReason: &ec2.StateReason{
+			Code:    aws.String("src"),
+			Message: aws.String("sr message"),
+		},
 	}
-
-	actual := h.fromAWS(desired, ri)
+	actual := h.fromAWS(desired, i)
 	require.NotNil(t, actual)
 	require.Equal(t, "t2.supertiny", actual.InstanceType)
 	require.Equal(t, "k-id", actual.KernelId)
@@ -110,12 +108,10 @@ func TestFromAWS_CanMapFields(t *testing.T) {
 func TestFromAWS_CanMapFields_WithNilChildren(t *testing.T) {
 	h := InstanceHandler{}
 	desired := &Instance{}
-	ri := &reservationInstance{
-		instance: &ec2.Instance{
-			InstanceType: aws.String("blah"),
-		},
+	i := &ec2.Instance{
+		InstanceType: aws.String("blah"),
 	}
-	actual := h.fromAWS(desired, ri)
+	actual := h.fromAWS(desired, i)
 	require.NotNil(t, actual)
 	require.NotNil(t, "blah", actual.InstanceType, "just check a basic mapping field")
 	require.Nil(t, actual.Placement)

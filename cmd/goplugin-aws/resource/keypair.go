@@ -2,9 +2,9 @@ package resource
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/hashicorp/go-hclog"
-
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/davecgh/go-spew/spew"
+	"github.com/hashicorp/go-hclog"
 )
 
 // KeyPair is the managed resource
@@ -47,7 +47,9 @@ func (h *KeyPairHandler) Create(desired *KeyPair) (*KeyPair, string, error) {
 		KeyFingerprint:    *response.KeyFingerprint,
 	}
 	externalID := *response.KeyName
-	log.Debug("Created KeyPair", "actual", actual, "externalID", externalID)
+	if log.IsDebug() {
+		log.Debug("Created KeyPair", "externalID", externalID, "keypair", spew.Sdump(actual))
+	}
 	return actual, externalID, err
 }
 

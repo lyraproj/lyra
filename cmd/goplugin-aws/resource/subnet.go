@@ -31,19 +31,27 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 	if log.IsDebug() {
 		log.Debug("Creating Subnet", "desired", spew.Sdump(desired))
 	}
+	subnet, externalID, err := createSubnetInternal(&ec2.CreateSubnetInput{
+		CidrBlock:        aws.String(desired.CidrBlock),
+		VpcId:            aws.String(desired.VpcId),
+		AvailabilityZone: desired.AvailabilityZone,
+	},
+		tagsToAws(desired.Tags))
+	actual := h.fromAWS(desired, subnet)
+	return actual, externalID, err
+}
+
+func createSubnetInternal(input *ec2.CreateSubnetInput, awsTags []*ec2.Tag) (*ec2.Subnet, string, error) {
+	log := hclog.Default()
 	client := newClient()
-	response, err := client.CreateSubnet(
-		&ec2.CreateSubnetInput{
-			CidrBlock:        aws.String(desired.CidrBlock),
-			VpcId:            aws.String(desired.VpcId),
-			AvailabilityZone: desired.AvailabilityZone,
-		})
+	response, err := client.CreateSubnet(input)
+
 	if err != nil {
 		log.Debug("Error creating Subnet", "error", err)
 		return nil, "", err
 	}
 	externalID := *response.Subnet.SubnetId
-	if err := tagResource(*client, desired.Tags, &externalID); err != nil {
+	if err := tagResource2(*client, awsTags, &externalID); err != nil {
 		return nil, externalID, err
 	}
 	err = client.WaitUntilSubnetAvailable(
@@ -54,13 +62,11 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 		log.Debug("Error waiting for Subnet resource", "externalID", externalID, "error", err)
 		return nil, "", err
 	}
-
 	//TODO modify attributes
-	actual := h.fromAWS(desired, response.Subnet)
 	if log.IsDebug() {
-		log.Debug("Created Subnet", "actual", spew.Sdump(actual), "externalID", externalID)
+		log.Debug("Created Subnet", "err", err, "externalID", externalID, "subnet", spew.Sdump(response.Subnet))
 	}
-	return actual, externalID, err
+	return response.Subnet, externalID, err
 }
 
 // Read a Subnet
@@ -90,6 +96,10 @@ func (h *SubnetHandler) Read(externalID string) (*Subnet, error) {
 
 // Delete a Subnet
 func (h *SubnetHandler) Delete(externalID string) error {
+	return deleteSubnetInternal(externalID)
+}
+
+func deleteSubnetInternal(externalID string) error {
 	log := hclog.Default()
 	log.Debug("Deleting Subnet", "externalID", externalID)
 	client := newClient()
