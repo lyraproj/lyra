@@ -6,6 +6,7 @@ require (
 	dmitri.shuralyov.com/service/change v0.0.0-20190125044705-3bb9b99b3801 // indirect
 	git.apache.org/thrift.git v0.12.0 // indirect
 	github.com/Shopify/sarama v1.20.1 // indirect
+	github.com/appscode/jsonpatch v0.0.0-20190108182946-7c0e3b262f30 // indirect
 	github.com/aws/aws-sdk-go v1.16.25
 	github.com/boltdb/bolt v1.3.1
 	github.com/coreos/go-systemd v0.0.0-20181031085051-9002847aa142 // indirect
@@ -21,6 +22,7 @@ require (
 	github.com/hashicorp/go-plugin v0.0.0-20181212150838-f444068e8f5a
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/imdario/mergo v0.3.7 // indirect
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb
