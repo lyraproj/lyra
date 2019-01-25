@@ -1,5 +1,6 @@
 aws:
   tags:
+    Name:       lyra-sample
     created_by: lyra
     department: engineering
     project:    incubator

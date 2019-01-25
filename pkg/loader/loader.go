@@ -20,6 +20,7 @@ var embeddedPluginNames = []string{
 	"example",
 	"identity",
 	"aws",
+	"tfaws",
 	"puppet",
 }
 var dir = "./plugins"
