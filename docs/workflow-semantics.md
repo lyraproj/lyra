@@ -61,10 +61,12 @@ each|iterates over all elements of a hash or an array|`collection` - a hash or a
 An activity with an iteration must be declared to produce an `output` consisting of a `key` and a `value`. This is the product of each iteration. The final output from the activity is one variable named after the activity containing a Hash consisting of the key/value pair of each iteration.
 
 ### Action
-An action defines a set of functions that performs tasks related to a common subject or subjects. An action is often a specialization of some type of handling necessary for other types of activities. At present, the only relevant examples of an actions are the CRUD handlers for resource activities.
+An action implements a predefined set of functions (an interface) that performs tasks related to a subject. Lyra currently only defines one such interface, the CRUD, which is implemented by resource handlers and the only reason to write an action, is when there's a desire to implement a handler for a resource state.
+
+It is expected that Lyra will add additional interfaces in the future.
 
 ### Stateless
-Stateless defines imperative code that performs some tasks based on its input and provides some output. A Stateless activity will typically consult the `context` to determine what operation to perform during an apply.
+Stateless defines an imperative function that performs some task based on its input and provides some output.
 
 ### Resource
 A resource is a declaration of a desired state of some entity external to the workflow. The `<data or code>` block is a hash that defines this state. The block is described by an `Type` which is defined by a `handler`, an action that can perform `create`, `read`, `update`, and `delete` operations on the state.

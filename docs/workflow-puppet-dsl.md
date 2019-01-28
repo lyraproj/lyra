@@ -196,8 +196,8 @@ Workflow containing a guard in the form of a stateless activity
     workflow hello_wf {
       input => (String $hello_url = lookup('hello_url') String $cert = lookup('cert')),
     } {
-      statless ping_hello {
-        output => {$need_hello}
+      stateless ping_hello {
+        output => ($need_hello)
       } {
         $response = curl(
           url => $hello_url,
