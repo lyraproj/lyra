@@ -1,0 +1,28 @@
+attachterraformyaml:
+  typespace: awsterraform
+  input:
+    tags:
+      type: Hash[String,String]
+      lookup: aws.tags
+  output:
+    aws_vpc_id: String
+    aws_subnet_id: String
+  activities:
+    aws_vpc:
+      output: aws_vpc_id
+      state:
+        cidr_block: 192.168.0.0/16
+        instance_tenancy: default
+        tags: $tags
+    aws_subnet:
+      output: aws_subnet_id
+      state:
+        vpc_id: $aws_vpc_id
+        cidr_block: 192.168.1.0/24
+        tags: $tags
+    aws_instance:
+      state:
+        tags: $tags
+        instance_type: 't2.nano'
+        ami: 'ami-f90a4880'
+        subnet_id: $aws_subnet_id
