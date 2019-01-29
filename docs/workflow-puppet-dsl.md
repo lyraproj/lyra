@@ -52,10 +52,13 @@ yields:
 
     output => (Struct[a=>Like[<resource_type>,x1],b=>Like[<resource_type>,x2]] $o)
 
-#### guard
-an activity is considered to be a guard when it declares:
+#### when
+an activity is considered to have a guard when it declares:
 
-     guard => true
+     when => <guard expression>
+     
+the `<guard expression>` is a string containing a boolean expression consisting of variable names that are
+combined using the keywords `and` and `or`. The expression can also use parentheses to enforce evaluation order.
 
 #### sequential
 The sequential aspect of evaluation is controlled using the following syntax.
@@ -77,31 +80,37 @@ Iteration is defined by adding one of the following constructs between the `<pro
 
 ### Example
 
-Action that performs different actions on read, delete, and upsert.
+Action that performs different actions on create, read, delete, and update.
 
     action do_something {
+      handler_for => Some::Resource
       input => (String i1, String i2 = lookup('do_something::i1')),
       output => (String x, Integer y)
     } {
-      read {
-        // Code to read subjects
+      create($state) {
+        // Code to create the subject
       }
-      delete {
-        // Code to delete subjects
+      read($external_id) {
+        // Code to read the subject
       }
-      upsert {
-        // Code to perform upsert on subjects
+      update($external_id, $state) {
+        // Code to update the subject
+      }
+      delete($external_id)  {
+        // Code to delete the subject
       }
     }
 
-Read-only action.
+## Stateless
 
-    action do_something {
-      readonly => true
+### Example
+
+    stateless do_something {
       input => (String i1, String i2 = lookup('do_something::i1')),
       output => (String x, Integer y)
     } {
-      // Code to read subjects
+      // Code to do something based in input and produce output
+      return { x => $x, y => $y }
     }
 
 ## Resource
@@ -182,13 +191,13 @@ Workflow that leverages the `typespace` to infer the resource types i.e. 'lyra::
     }
 
 
-Workflow containing a guard in the form of an action
+Workflow containing a guard in the form of a stateless activity
 
     workflow hello_wf {
       input => (String $hello_url = lookup('hello_url') String $cert = lookup('cert')),
     } {
-      action need_hello {
-        guard => true
+      stateless ping_hello {
+        output => ($need_hello)
       } {
         $response = curl(
           url => $hello_url,
@@ -219,7 +228,6 @@ Workflow containing a guard in the form of a read-only resource
       ...
     } {
       resource need_hello {
-        guard => true,
         external_id => '<some external identifier>',
         type => My::Hello::Resource,       # A resource with a boolean attribute "enabled"
         output => ($need_hello = enabled)
