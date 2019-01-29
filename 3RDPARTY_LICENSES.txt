@@ -1,5 +1,6 @@
 github.com/lyraproj/lyra/vendor/cloud.google.com/go/compute/metadata                       Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/agext/levenshtein                               Apache License 2.0
+github.com/lyraproj/lyra/vendor/github.com/agl/ed25519/edwards25519                        BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/apparentlymart/go-cidr/cidr                     MIT License (98%)
 github.com/lyraproj/lyra/vendor/github.com/apparentlymart/go-textseg/textseg               ? (MIT License, 61%)
 github.com/lyraproj/lyra/vendor/github.com/appscode/jsonpatch                              Apache License 2.0
@@ -13,7 +14,6 @@ github.com/lyraproj/lyra/vendor/github.com/blang/semver                         
 github.com/lyraproj/lyra/vendor/github.com/bmatcuk/doublestar                              MIT License
 github.com/lyraproj/lyra/vendor/github.com/boltdb/bolt                                     MIT License
 github.com/lyraproj/lyra/vendor/github.com/davecgh/go-spew/spew                            ISC License (98%)
-github.com/lyraproj/lyra/vendor/github.com/fatih/color                                     MIT License
 github.com/lyraproj/lyra/vendor/github.com/go-logr/logr                                    Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/go-logr/zapr                                    Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/gogo/protobuf                                   BSD 3-clause "New" or "Revised" License (91%)
@@ -21,7 +21,6 @@ github.com/lyraproj/lyra/vendor/github.com/golang/groupcache/lru                
 github.com/lyraproj/lyra/vendor/github.com/golang/protobuf                                 BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/golang/snappy                                   BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/google/btree                                    Apache License 2.0
-github.com/lyraproj/lyra/vendor/github.com/google/go-cmp/cmp/internal                      BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/google/gofuzz                                   Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/google/uuid                                     BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/googleapis/gnostic                              Apache License 2.0
@@ -76,7 +75,6 @@ github.com/lyraproj/lyra/vendor/github.com/oklog/run                            
 github.com/lyraproj/lyra/vendor/github.com/operator-framework/operator-sdk/pkg             Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/pborman/uuid                                    BSD 3-clause "New" or "Revised" License (96%)
 github.com/lyraproj/lyra/vendor/github.com/peterbourgon/diskv                              MIT License (98%)
-github.com/lyraproj/lyra/vendor/github.com/pierrec/lz4/internal/xxh32                      BSD 3-clause "New" or "Revised" License
 github.com/lyraproj/lyra/vendor/github.com/posener/complete                                MIT License
 github.com/lyraproj/lyra/vendor/github.com/prometheus/client_golang/prometheus             Apache License 2.0
 github.com/lyraproj/lyra/vendor/github.com/prometheus/client_model/go                      Apache License 2.0
@@ -87,7 +85,6 @@ github.com/lyraproj/lyra/vendor/github.com/spf13/pflag                          
 github.com/lyraproj/lyra/vendor/github.com/terraform-providers/terraform-provider-aws/aws  Mozilla Public License 2.0
 github.com/lyraproj/lyra/vendor/github.com/toqueteos/trie                                  MIT License
 github.com/lyraproj/lyra/vendor/github.com/ulikunitz/xz                                    BSD 3-clause "New" or "Revised" License (96%)
-github.com/lyraproj/lyra/vendor/github.com/zclconf/go-cty/cty                              MIT License
 github.com/lyraproj/lyra/vendor/go.uber.org/atomic                                         MIT License (98%)
 github.com/lyraproj/lyra/vendor/go.uber.org/multierr                                       MIT License (98%)
 github.com/lyraproj/lyra/vendor/go.uber.org/zap                                            MIT License (98%)
