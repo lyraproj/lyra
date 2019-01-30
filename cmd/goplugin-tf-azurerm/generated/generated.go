@@ -13,11663 +13,572 @@ import (
 	"github.com/lyraproj/servicesdk/service"
 )
 
-func convertMap(in map[string]interface{}) map[string]string {
-	m  := map[string]string{}
-	for k,v := range in {
-		m[k] = v.(string)
-	}
-	return m
-}
-
-func unconvertMap(in map[string]string  ) map[string]interface{} {
-	m  := map[string]interface{}{}
-	for k,v := range in {
-		m[k] = v
-	}
-	return m
-}
-
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_firewall{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_firewallHandler", &Azurerm_firewallHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_security_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_groupHandler", &Azurerm_network_security_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_scheduler_job_collection{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_job_collectionHandler", &Azurerm_scheduler_job_collectionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_service_fabric_cluster{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_service_fabric_clusterHandler", &Azurerm_service_fabric_clusterHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_shared_image{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_imageHandler", &Azurerm_shared_imageHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine_scale_set{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_scale_setHandler", &Azurerm_virtual_machine_scale_setHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_azuread_application{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_applicationHandler", &Azurerm_azuread_applicationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_devspace_controller{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_devspace_controllerHandler", &Azurerm_devspace_controllerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_configuration{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_configurationHandler", &Azurerm_postgresql_configurationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_queue{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queueHandler", &Azurerm_servicebus_queueHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_dsc_nodeconfiguration{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_nodeconfigurationHandler", &Azurerm_automation_dsc_nodeconfigurationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_nat_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_ruleHandler", &Azurerm_lb_nat_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_txt_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_txt_recordHandler", &Azurerm_dns_txt_recordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interfaceHandler", &Azurerm_network_interfaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_packet_capture{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_packet_captureHandler", &Azurerm_packet_captureHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_policy_set_definition{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_set_definitionHandler", &Azurerm_policy_set_definitionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_queue{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_queueHandler", &Azurerm_storage_queueHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_share{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_shareHandler", &Azurerm_storage_shareHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_autoscale_setting{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_autoscale_settingHandler", &Azurerm_autoscale_settingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_policy{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_policyHandler", &Azurerm_dev_test_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_azuread_service_principal{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principalHandler", &Azurerm_azuread_service_principalHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_resource_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_resource_groupHandler", &Azurerm_resource_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_role_definition{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_role_definitionHandler", &Azurerm_role_definitionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_user_assigned_identity{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_user_assigned_identityHandler", &Azurerm_user_assigned_identityHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_module{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_moduleHandler", &Azurerm_automation_moduleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_azuread_service_principal_password{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principal_passwordHandler", &Azurerm_azuread_service_principal_passwordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_log_analytics_workspace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspaceHandler", &Azurerm_log_analytics_workspaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_image{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_imageHandler", &Azurerm_imageHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_metric_alertrule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_metric_alertruleHandler", &Azurerm_metric_alertruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_server{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_serverHandler", &Azurerm_mysql_serverHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface_application_gateway_backend_address_pool_association{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler", &Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface_nat_rule_association{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_nat_rule_associationHandler", &Azurerm_network_interface_nat_rule_associationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_notification_hub_namespace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_namespaceHandler", &Azurerm_notification_hub_namespaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_store{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_storeHandler", &Azurerm_data_lake_storeHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_function_app{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_function_appHandler", &Azurerm_function_appHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_traffic_manager_endpoint{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_endpointHandler", &Azurerm_traffic_manager_endpointHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mariadb_server{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_serverHandler", &Azurerm_mariadb_serverHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_notification_hub_authorization_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_authorization_ruleHandler", &Azurerm_notification_hub_authorization_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network_peering{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_peeringHandler", &Azurerm_virtual_network_peeringHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_a_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_a_recordHandler", &Azurerm_dns_a_recordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_workflow{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_workflowHandler", &Azurerm_logic_app_workflowHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_security_center_workspace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_workspaceHandler", &Azurerm_security_center_workspaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_insights{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insightsHandler", &Azurerm_application_insightsHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_namespace_authorization_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespace_authorization_ruleHandler", &Azurerm_eventhub_namespace_authorization_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_cname_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_cname_recordHandler", &Azurerm_dns_cname_recordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_nat_pool{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_poolHandler", &Azurerm_lb_nat_poolHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_trigger_recurrence{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_recurrenceHandler", &Azurerm_logic_app_trigger_recurrenceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_diagnostic_setting{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_diagnostic_settingHandler", &Azurerm_monitor_diagnostic_settingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_metric_alert{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_metric_alertHandler", &Azurerm_monitor_metric_alertHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_firewall_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_firewall_ruleHandler", &Azurerm_mysql_firewall_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_security_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_security_groupHandler", &Azurerm_application_security_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_analytics_firewall_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_firewall_ruleHandler", &Azurerm_data_lake_analytics_firewall_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_topic_authorization_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topic_authorization_ruleHandler", &Azurerm_servicebus_topic_authorization_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_active_directory_administrator{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_active_directory_administratorHandler", &Azurerm_sql_active_directory_administratorHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_iothub_consumer_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_iothub_consumer_groupHandler", &Azurerm_iothub_consumer_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_firewall_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_firewall_ruleHandler", &Azurerm_postgresql_firewall_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_recovery_services_vault{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_vaultHandler", &Azurerm_recovery_services_vaultHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_namespace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespaceHandler", &Azurerm_servicebus_namespaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_api_management{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_api_managementHandler", &Azurerm_api_managementHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_serviceHandler", &Azurerm_app_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_active_slot{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_active_slotHandler", &Azurerm_app_service_active_slotHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_custom_hostname_binding{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_custom_hostname_bindingHandler", &Azurerm_app_service_custom_hostname_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_plan{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_planHandler", &Azurerm_app_service_planHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_slot{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_slotHandler", &Azurerm_app_service_slotHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cognitive_account{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_cognitive_accountHandler", &Azurerm_cognitive_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_recovery_services_protected_vm{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protected_vmHandler", &Azurerm_recovery_services_protected_vmHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_database{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_databaseHandler", &Azurerm_sql_databaseHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_container_registry{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_container_registryHandler", &Azurerm_container_registryHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_databricks_workspace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_databricks_workspaceHandler", &Azurerm_databricks_workspaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_zone{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_zoneHandler", &Azurerm_dns_zoneHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhubHandler", &Azurerm_eventhubHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_express_route_circuit_authorization{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_authorizationHandler", &Azurerm_express_route_circuit_authorizationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_express_route_circuit{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuitHandler", &Azurerm_express_route_circuitHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_firewall_network_rule_collection{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_firewall_network_rule_collectionHandler", &Azurerm_firewall_network_rule_collectionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_access_policy{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_access_policyHandler", &Azurerm_key_vault_access_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_windows_virtual_machine{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_windows_virtual_machineHandler", &Azurerm_dev_test_windows_virtual_machineHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_ns_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_ns_recordHandler", &Azurerm_dns_ns_recordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_policy_definition{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_definitionHandler", &Azurerm_policy_definitionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_subnet_route_table_association{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_route_table_associationHandler", &Azurerm_subnet_route_table_associationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_express_route_circuit_peering{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_peeringHandler", &Azurerm_express_route_circuit_peeringHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_ruleHandler", &Azurerm_lb_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_lbHandler", &Azurerm_lbHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_action_http{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_httpHandler", &Azurerm_logic_app_action_httpHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_security_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_ruleHandler", &Azurerm_network_security_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_subscription{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscriptionHandler", &Azurerm_servicebus_subscriptionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_gateway{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_gatewayHandler", &Azurerm_application_gatewayHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_insights{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insightsHandler", &Azurerm_application_insightsHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_insights_api_key{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insights_api_keyHandler", &Azurerm_application_insights_api_keyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_security_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_security_groupHandler", &Azurerm_application_security_groupHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_account{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_accountHandler", &Azurerm_automation_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_store_file{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_store_fileHandler", &Azurerm_data_lake_store_fileHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network_gateway_connection{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gateway_connectionHandler", &Azurerm_virtual_network_gateway_connectionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_secret{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_secretHandler", &Azurerm_key_vault_secretHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_activity_log_alert{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_activity_log_alertHandler", &Azurerm_monitor_activity_log_alertHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_redis_cache{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_cacheHandler", &Azurerm_redis_cacheHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_credential{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_credentialHandler", &Azurerm_automation_credentialHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_dsc_configuration{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_configurationHandler", &Azurerm_automation_dsc_configurationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_dsc_nodeconfiguration{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_nodeconfigurationHandler", &Azurerm_automation_dsc_nodeconfigurationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_module{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_moduleHandler", &Azurerm_automation_moduleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_runbook{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_runbookHandler", &Azurerm_automation_runbookHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_schedule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_scheduleHandler", &Azurerm_automation_scheduleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_autoscale_setting{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_autoscale_settingHandler", &Azurerm_autoscale_settingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_availability_set{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_availability_setHandler", &Azurerm_availability_setHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_azuread_application{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_applicationHandler", &Azurerm_azuread_applicationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_azuread_service_principal{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principalHandler", &Azurerm_azuread_service_principalHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_azuread_service_principal_password{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principal_passwordHandler", &Azurerm_azuread_service_principal_passwordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_batch_account{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_accountHandler", &Azurerm_batch_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_batch_pool{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_poolHandler", &Azurerm_batch_poolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cdn_endpoint{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_endpointHandler", &Azurerm_cdn_endpointHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cdn_profile{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_profileHandler", &Azurerm_cdn_profileHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cognitive_account{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_cognitive_accountHandler", &Azurerm_cognitive_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_container_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_container_groupHandler", &Azurerm_container_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_container_registry{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_container_registryHandler", &Azurerm_container_registryHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_container_service{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_container_serviceHandler", &Azurerm_container_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_certificate{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_certificateHandler", &Azurerm_key_vault_certificateHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cosmosdb_account{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_cosmosdb_accountHandler", &Azurerm_cosmosdb_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_analytics_account{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_accountHandler", &Azurerm_data_lake_analytics_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_analytics_firewall_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_firewall_ruleHandler", &Azurerm_data_lake_analytics_firewall_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_store{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_storeHandler", &Azurerm_data_lake_storeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_store_file{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_store_fileHandler", &Azurerm_data_lake_store_fileHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_store_firewall_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_store_firewall_ruleHandler", &Azurerm_data_lake_store_firewall_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_databricks_workspace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_databricks_workspaceHandler", &Azurerm_databricks_workspaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_lab{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_labHandler", &Azurerm_dev_test_labHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_linux_virtual_machine{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_linux_virtual_machineHandler", &Azurerm_dev_test_linux_virtual_machineHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_policy{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_policyHandler", &Azurerm_dev_test_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_virtual_network{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_virtual_networkHandler", &Azurerm_dev_test_virtual_networkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_windows_virtual_machine{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_windows_virtual_machineHandler", &Azurerm_dev_test_windows_virtual_machineHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_devspace_controller{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_devspace_controllerHandler", &Azurerm_devspace_controllerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_a_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_a_recordHandler", &Azurerm_dns_a_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_aaaa_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_aaaa_recordHandler", &Azurerm_dns_aaaa_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_caa_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_caa_recordHandler", &Azurerm_dns_caa_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_cname_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_cname_recordHandler", &Azurerm_dns_cname_recordHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_mx_record{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_mx_recordHandler", &Azurerm_dns_mx_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_ns_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_ns_recordHandler", &Azurerm_dns_ns_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_ptr_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_ptr_recordHandler", &Azurerm_dns_ptr_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_srv_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_srv_recordHandler", &Azurerm_dns_srv_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_txt_record{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_txt_recordHandler", &Azurerm_dns_txt_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_zone{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_zoneHandler", &Azurerm_dns_zoneHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventgrid_topic{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventgrid_topicHandler", &Azurerm_eventgrid_topicHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhubHandler", &Azurerm_eventhubHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_authorization_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_authorization_ruleHandler", &Azurerm_eventhub_authorization_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_consumer_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_consumer_groupHandler", &Azurerm_eventhub_consumer_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_namespace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespaceHandler", &Azurerm_eventhub_namespaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_namespace_authorization_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespace_authorization_ruleHandler", &Azurerm_eventhub_namespace_authorization_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_express_route_circuit{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuitHandler", &Azurerm_express_route_circuitHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_express_route_circuit_authorization{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_authorizationHandler", &Azurerm_express_route_circuit_authorizationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_express_route_circuit_peering{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_peeringHandler", &Azurerm_express_route_circuit_peeringHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_firewall{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_firewallHandler", &Azurerm_firewallHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_firewall_application_rule_collection{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_firewall_application_rule_collectionHandler", &Azurerm_firewall_application_rule_collectionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_firewall_network_rule_collection{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_firewall_network_rule_collectionHandler", &Azurerm_firewall_network_rule_collectionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_function_app{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_function_appHandler", &Azurerm_function_appHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_image{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_imageHandler", &Azurerm_imageHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_iothub{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_iothubHandler", &Azurerm_iothubHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_iothub_consumer_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_iothub_consumer_groupHandler", &Azurerm_iothub_consumer_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vaultHandler", &Azurerm_key_vaultHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_access_policy{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_access_policyHandler", &Azurerm_key_vault_access_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_certificate{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_certificateHandler", &Azurerm_key_vault_certificateHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_key{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_keyHandler", &Azurerm_key_vault_keyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_secret{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_secretHandler", &Azurerm_key_vault_secretHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_kubernetes_cluster{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_kubernetes_clusterHandler", &Azurerm_kubernetes_clusterHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_lbHandler", &Azurerm_lbHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_backend_address_pool{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_backend_address_poolHandler", &Azurerm_lb_backend_address_poolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_nat_pool{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_poolHandler", &Azurerm_lb_nat_poolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_nat_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_ruleHandler", &Azurerm_lb_nat_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_probe{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_probeHandler", &Azurerm_lb_probeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_ruleHandler", &Azurerm_lb_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_local_network_gateway{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_local_network_gatewayHandler", &Azurerm_local_network_gatewayHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_log_analytics_solution{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_solutionHandler", &Azurerm_log_analytics_solutionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_log_analytics_workspace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspaceHandler", &Azurerm_log_analytics_workspaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_log_analytics_workspace_linked_service{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspace_linked_serviceHandler", &Azurerm_log_analytics_workspace_linked_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_action_custom{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_customHandler", &Azurerm_logic_app_action_customHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_action_http{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_httpHandler", &Azurerm_logic_app_action_httpHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_trigger_custom{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_customHandler", &Azurerm_logic_app_trigger_customHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_trigger_http_request{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_http_requestHandler", &Azurerm_logic_app_trigger_http_requestHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_trigger_recurrence{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_recurrenceHandler", &Azurerm_logic_app_trigger_recurrenceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_workflow{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_workflowHandler", &Azurerm_logic_app_workflowHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_managed_disk{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_managed_diskHandler", &Azurerm_managed_diskHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_management_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_management_groupHandler", &Azurerm_management_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_management_lock{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_management_lockHandler", &Azurerm_management_lockHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mariadb_database{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_databaseHandler", &Azurerm_mariadb_databaseHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mariadb_server{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_serverHandler", &Azurerm_mariadb_serverHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_metric_alertrule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_metric_alertruleHandler", &Azurerm_metric_alertruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_action_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_action_groupHandler", &Azurerm_monitor_action_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_activity_log_alert{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_activity_log_alertHandler", &Azurerm_monitor_activity_log_alertHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_diagnostic_setting{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_diagnostic_settingHandler", &Azurerm_monitor_diagnostic_settingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_log_profile{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_log_profileHandler", &Azurerm_monitor_log_profileHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_metric_alert{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_metric_alertHandler", &Azurerm_monitor_metric_alertHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mssql_elasticpool{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_mssql_elasticpoolHandler", &Azurerm_mssql_elasticpoolHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_configuration{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_configurationHandler", &Azurerm_mysql_configurationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_search_service{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_search_serviceHandler", &Azurerm_search_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_queue_authorization_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queue_authorization_ruleHandler", &Azurerm_servicebus_queue_authorization_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_custom_hostname_binding{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_custom_hostname_bindingHandler", &Azurerm_app_service_custom_hostname_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_caa_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_caa_recordHandler", &Azurerm_dns_caa_recordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_container{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_containerHandler", &Azurerm_storage_containerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine_data_disk_attachment{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_data_disk_attachmentHandler", &Azurerm_virtual_machine_data_disk_attachmentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_subscription_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscription_ruleHandler", &Azurerm_servicebus_subscription_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_firewall_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_firewall_ruleHandler", &Azurerm_sql_firewall_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_runbook{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_runbookHandler", &Azurerm_automation_runbookHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cdn_profile{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_profileHandler", &Azurerm_cdn_profileHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_ptr_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_ptr_recordHandler", &Azurerm_dns_ptr_recordHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_database{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_databaseHandler", &Azurerm_mysql_databaseHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_policy_assignment{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_assignmentHandler", &Azurerm_policy_assignmentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_server{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_serverHandler", &Azurerm_sql_serverHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_api_management{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_api_managementHandler", &Azurerm_api_managementHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_gateway{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_gatewayHandler", &Azurerm_application_gatewayHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_recovery_services_protection_policy_vm{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protection_policy_vmHandler", &Azurerm_recovery_services_protection_policy_vmHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_signalr_service{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_signalr_serviceHandler", &Azurerm_signalr_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_container_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_container_groupHandler", &Azurerm_container_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_action_custom{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_customHandler", &Azurerm_logic_app_action_customHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_notification_hub{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hubHandler", &Azurerm_notification_hubHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_database{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_databaseHandler", &Azurerm_postgresql_databaseHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_trigger_custom{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_customHandler", &Azurerm_logic_app_trigger_customHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_management_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_management_groupHandler", &Azurerm_management_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_action_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_action_groupHandler", &Azurerm_monitor_action_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_namespace_authorization_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespace_authorization_ruleHandler", &Azurerm_servicebus_namespace_authorization_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_elasticpool{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_elasticpoolHandler", &Azurerm_sql_elasticpoolHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_virtual_network_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_virtual_network_ruleHandler", &Azurerm_sql_virtual_network_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network_gateway{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gatewayHandler", &Azurerm_virtual_network_gatewayHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_credential{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_credentialHandler", &Azurerm_automation_credentialHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vaultHandler", &Azurerm_key_vaultHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface_backend_address_pool_association{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_backend_address_pool_associationHandler", &Azurerm_network_interface_backend_address_pool_associationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_public_ip{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_public_ipHandler", &Azurerm_public_ipHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_relay_namespace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_relay_namespaceHandler", &Azurerm_relay_namespaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_security_center_contact{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_contactHandler", &Azurerm_security_center_contactHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_blob{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_blobHandler", &Azurerm_storage_blobHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_subnet{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_subnetHandler", &Azurerm_subnetHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_availability_set{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_availability_setHandler", &Azurerm_availability_setHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_namespace{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespaceHandler", &Azurerm_eventhub_namespaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_networkHandler", &Azurerm_virtual_networkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_route_table{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_route_tableHandler", &Azurerm_route_tableHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_consumer_group{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_consumer_groupHandler", &Azurerm_eventhub_consumer_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_server{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_serverHandler", &Azurerm_postgresql_serverHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_monitor_log_profile{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_log_profileHandler", &Azurerm_monitor_log_profileHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_scheduler_job{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_jobHandler", &Azurerm_scheduler_jobHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_plan{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_planHandler", &Azurerm_app_service_planHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_managed_disk{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_managed_diskHandler", &Azurerm_managed_diskHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_dsc_configuration{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_configurationHandler", &Azurerm_automation_dsc_configurationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_analytics_account{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_accountHandler", &Azurerm_data_lake_analytics_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machineHandler", &Azurerm_virtual_machineHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_batch_account{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_accountHandler", &Azurerm_batch_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cdn_endpoint{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_endpointHandler", &Azurerm_cdn_endpointHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_kubernetes_cluster{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_kubernetes_clusterHandler", &Azurerm_kubernetes_clusterHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_logic_app_trigger_http_request{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_http_requestHandler", &Azurerm_logic_app_trigger_http_requestHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_redis_firewall_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_firewall_ruleHandler", &Azurerm_redis_firewall_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_shared_image_gallery{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_galleryHandler", &Azurerm_shared_image_galleryHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_subnet_network_security_group_association{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_network_security_group_associationHandler", &Azurerm_subnet_network_security_group_associationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_template_deployment{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_template_deploymentHandler", &Azurerm_template_deploymentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventhub_authorization_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_authorization_ruleHandler", &Azurerm_eventhub_authorization_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_key_vault_key{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_keyHandler", &Azurerm_key_vault_keyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_shared_image_version{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_versionHandler", &Azurerm_shared_image_versionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_iothub{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_iothubHandler", &Azurerm_iothubHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_log_analytics_workspace_linked_service{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspace_linked_serviceHandler", &Azurerm_log_analytics_workspace_linked_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_srv_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_srv_recordHandler", &Azurerm_dns_srv_recordHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_log_analytics_solution{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_solutionHandler", &Azurerm_log_analytics_solutionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_management_lock{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_management_lockHandler", &Azurerm_management_lockHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_topic{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topicHandler", &Azurerm_servicebus_topicHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service_active_slot{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_active_slotHandler", &Azurerm_app_service_active_slotHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_linux_virtual_machine{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_linux_virtual_machineHandler", &Azurerm_dev_test_linux_virtual_machineHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_virtual_network{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_virtual_networkHandler", &Azurerm_dev_test_virtual_networkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mariadb_database{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_databaseHandler", &Azurerm_mariadb_databaseHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_watcher{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_watcherHandler", &Azurerm_network_watcherHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_traffic_manager_profile{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_profileHandler", &Azurerm_traffic_manager_profileHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_application_insights_api_key{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insights_api_keyHandler", &Azurerm_application_insights_api_keyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_batch_pool{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_poolHandler", &Azurerm_batch_poolHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_virtual_network_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_virtual_network_ruleHandler", &Azurerm_postgresql_virtual_network_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_route{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_routeHandler", &Azurerm_routeHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_account{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_accountHandler", &Azurerm_storage_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine_extension{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_extensionHandler", &Azurerm_virtual_machine_extensionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_eventgrid_topic{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_eventgrid_topicHandler", &Azurerm_eventgrid_topicHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_backend_address_pool{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_backend_address_poolHandler", &Azurerm_lb_backend_address_poolHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_local_network_gateway{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_local_network_gatewayHandler", &Azurerm_local_network_gatewayHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_role_assignment{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_role_assignmentHandler", &Azurerm_role_assignmentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_cosmosdb_account{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_cosmosdb_accountHandler", &Azurerm_cosmosdb_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dev_test_lab{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_labHandler", &Azurerm_dev_test_labHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_data_lake_store_firewall_rule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_store_firewall_ruleHandler", &Azurerm_data_lake_store_firewall_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_lb_probe{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_probeHandler", &Azurerm_lb_probeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_firewall_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_firewall_ruleHandler", &Azurerm_mysql_firewall_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_server{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_serverHandler", &Azurerm_mysql_serverHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_mysql_virtual_network_rule{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_virtual_network_ruleHandler", &Azurerm_mysql_virtual_network_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_app_service{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_app_serviceHandler", &Azurerm_app_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_automation_schedule{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_scheduleHandler", &Azurerm_automation_scheduleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_snapshot{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_snapshotHandler", &Azurerm_snapshotHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_table{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_tableHandler", &Azurerm_storage_tableHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_dns_aaaa_record{})
-    sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_aaaa_recordHandler", &Azurerm_dns_aaaa_recordHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interfaceHandler", &Azurerm_network_interfaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface_application_gateway_backend_address_pool_association{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler", &Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface_backend_address_pool_association{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_backend_address_pool_associationHandler", &Azurerm_network_interface_backend_address_pool_associationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_interface_nat_rule_association{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_nat_rule_associationHandler", &Azurerm_network_interface_nat_rule_associationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_security_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_groupHandler", &Azurerm_network_security_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_security_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_ruleHandler", &Azurerm_network_security_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_network_watcher{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_network_watcherHandler", &Azurerm_network_watcherHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_notification_hub{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hubHandler", &Azurerm_notification_hubHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_notification_hub_authorization_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_authorization_ruleHandler", &Azurerm_notification_hub_authorization_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_notification_hub_namespace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_namespaceHandler", &Azurerm_notification_hub_namespaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_packet_capture{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_packet_captureHandler", &Azurerm_packet_captureHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_policy_assignment{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_assignmentHandler", &Azurerm_policy_assignmentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_policy_definition{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_definitionHandler", &Azurerm_policy_definitionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_policy_set_definition{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_set_definitionHandler", &Azurerm_policy_set_definitionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_configuration{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_configurationHandler", &Azurerm_postgresql_configurationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_database{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_databaseHandler", &Azurerm_postgresql_databaseHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_firewall_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_firewall_ruleHandler", &Azurerm_postgresql_firewall_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_server{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_serverHandler", &Azurerm_postgresql_serverHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_postgresql_virtual_network_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_virtual_network_ruleHandler", &Azurerm_postgresql_virtual_network_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_public_ip{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_public_ipHandler", &Azurerm_public_ipHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_recovery_services_protected_vm{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protected_vmHandler", &Azurerm_recovery_services_protected_vmHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_recovery_services_protection_policy_vm{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protection_policy_vmHandler", &Azurerm_recovery_services_protection_policy_vmHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_recovery_services_vault{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_vaultHandler", &Azurerm_recovery_services_vaultHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_redis_cache{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_cacheHandler", &Azurerm_redis_cacheHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_redis_firewall_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_firewall_ruleHandler", &Azurerm_redis_firewall_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_relay_namespace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_relay_namespaceHandler", &Azurerm_relay_namespaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_resource_group{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_resource_groupHandler", &Azurerm_resource_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_role_assignment{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_role_assignmentHandler", &Azurerm_role_assignmentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_role_definition{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_role_definitionHandler", &Azurerm_role_definitionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_route{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_routeHandler", &Azurerm_routeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_route_table{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_route_tableHandler", &Azurerm_route_tableHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_scheduler_job{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_jobHandler", &Azurerm_scheduler_jobHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_scheduler_job_collection{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_job_collectionHandler", &Azurerm_scheduler_job_collectionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_search_service{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_search_serviceHandler", &Azurerm_search_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_security_center_contact{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_contactHandler", &Azurerm_security_center_contactHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_security_center_subscription_pricing{})
     sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_subscription_pricingHandler", &Azurerm_security_center_subscription_pricingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_security_center_workspace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_workspaceHandler", &Azurerm_security_center_workspaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_service_fabric_cluster{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_service_fabric_clusterHandler", &Azurerm_service_fabric_clusterHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_namespace{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespaceHandler", &Azurerm_servicebus_namespaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_namespace_authorization_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespace_authorization_ruleHandler", &Azurerm_servicebus_namespace_authorization_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_queue{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queueHandler", &Azurerm_servicebus_queueHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_queue_authorization_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queue_authorization_ruleHandler", &Azurerm_servicebus_queue_authorization_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_subscription{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscriptionHandler", &Azurerm_servicebus_subscriptionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_subscription_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscription_ruleHandler", &Azurerm_servicebus_subscription_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_topic{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topicHandler", &Azurerm_servicebus_topicHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_servicebus_topic_authorization_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topic_authorization_ruleHandler", &Azurerm_servicebus_topic_authorization_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_shared_image{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_imageHandler", &Azurerm_shared_imageHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_shared_image_gallery{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_galleryHandler", &Azurerm_shared_image_galleryHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_shared_image_version{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_versionHandler", &Azurerm_shared_image_versionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_signalr_service{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_signalr_serviceHandler", &Azurerm_signalr_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_snapshot{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_snapshotHandler", &Azurerm_snapshotHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_active_directory_administrator{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_active_directory_administratorHandler", &Azurerm_sql_active_directory_administratorHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_database{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_databaseHandler", &Azurerm_sql_databaseHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_elasticpool{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_elasticpoolHandler", &Azurerm_sql_elasticpoolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_firewall_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_firewall_ruleHandler", &Azurerm_sql_firewall_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_server{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_serverHandler", &Azurerm_sql_serverHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_sql_virtual_network_rule{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_virtual_network_ruleHandler", &Azurerm_sql_virtual_network_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_account{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_accountHandler", &Azurerm_storage_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_blob{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_blobHandler", &Azurerm_storage_blobHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_container{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_containerHandler", &Azurerm_storage_containerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_queue{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_queueHandler", &Azurerm_storage_queueHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_share{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_shareHandler", &Azurerm_storage_shareHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_storage_table{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_tableHandler", &Azurerm_storage_tableHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_subnet{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_subnetHandler", &Azurerm_subnetHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_subnet_network_security_group_association{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_network_security_group_associationHandler", &Azurerm_subnet_network_security_group_associationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_subnet_route_table_association{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_route_table_associationHandler", &Azurerm_subnet_route_table_associationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_template_deployment{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_template_deploymentHandler", &Azurerm_template_deploymentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_traffic_manager_endpoint{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_endpointHandler", &Azurerm_traffic_manager_endpointHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_traffic_manager_profile{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_profileHandler", &Azurerm_traffic_manager_profileHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_user_assigned_identity{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_user_assigned_identityHandler", &Azurerm_user_assigned_identityHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machineHandler", &Azurerm_virtual_machineHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine_data_disk_attachment{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_data_disk_attachmentHandler", &Azurerm_virtual_machine_data_disk_attachmentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine_extension{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_extensionHandler", &Azurerm_virtual_machine_extensionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_machine_scale_set{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_scale_setHandler", &Azurerm_virtual_machine_scale_setHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_networkHandler", &Azurerm_virtual_networkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network_gateway{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gatewayHandler", &Azurerm_virtual_network_gatewayHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network_gateway_connection{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gateway_connectionHandler", &Azurerm_virtual_network_gateway_connectionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformAzureRM", Azurerm_virtual_network_peering{})
+    sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_peeringHandler", &Azurerm_virtual_network_peeringHandler{provider: p}, evs[0])
 }
 
-type Azurerm_firewall struct {
-     Azurerm_firewall_id *string
-     Resource_group_name string
-     Tags *map[string]string
-     Name string
-     Location string
-}
-
-
-func Azurerm_firewallMapper(r *Azurerm_firewall) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_firewallUnmapper(state map[string]interface{}) *Azurerm_firewall {
-	r := &Azurerm_firewall{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_firewall_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_firewallHandler ...
-type Azurerm_firewallHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_firewallHandler) Create(desired *Azurerm_firewall) (*Azurerm_firewall, string, error) {
-	rState := Azurerm_firewallMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_firewall", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_firewall", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_firewallUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_firewallHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_firewall", externalID)
-}
-
-type Azurerm_network_security_group struct {
-     Azurerm_network_security_group_id *string
-     Location string
-     Resource_group_name string
-     Tags *map[string]string
-     Name string
-}
-
-
-func Azurerm_network_security_groupMapper(r *Azurerm_network_security_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_security_groupUnmapper(state map[string]interface{}) *Azurerm_network_security_group {
-	r := &Azurerm_network_security_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_security_group_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_network_security_groupHandler ...
-type Azurerm_network_security_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_security_groupHandler) Create(desired *Azurerm_network_security_group) (*Azurerm_network_security_group, string, error) {
-	rState := Azurerm_network_security_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_security_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurerm_network_security_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_security_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_security_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_security_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_security_group", externalID)
-}
-
-type Azurerm_scheduler_job_collection struct {
-     Azurerm_scheduler_job_collection_id *string
-     Name string
-     Location string
-     Resource_group_name string
-     Tags *map[string]string
-     Sku string
-     State *string
-}
-
-
-func Azurerm_scheduler_job_collectionMapper(r *Azurerm_scheduler_job_collection) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["sku"] = r.Sku
-if r.State != nil {
-    config["state"] = *r.State
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_scheduler_job_collectionUnmapper(state map[string]interface{}) *Azurerm_scheduler_job_collection {
-	r := &Azurerm_scheduler_job_collection{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_scheduler_job_collection_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-	return r
-}
-
-
-// Azurerm_scheduler_job_collectionHandler ...
-type Azurerm_scheduler_job_collectionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_scheduler_job_collectionHandler) Create(desired *Azurerm_scheduler_job_collection) (*Azurerm_scheduler_job_collection, string, error) {
-	rState := Azurerm_scheduler_job_collectionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_scheduler_job_collection", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azurerm_scheduler_job_collection, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_scheduler_job_collection", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_scheduler_job_collectionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_scheduler_job_collectionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_scheduler_job_collection", externalID)
-}
-
-type Azurerm_service_fabric_cluster struct {
-     Azurerm_service_fabric_cluster_id *string
-     Resource_group_name string
-     Cluster_endpoint *string
-     Name string
-     Location string
-     Vm_image string
-     Tags *map[string]string
-     Reliability_level string
-     Upgrade_mode string
-     Cluster_code_version *string
-     Management_endpoint string
-}
-
-
-func Azurerm_service_fabric_clusterMapper(r *Azurerm_service_fabric_cluster) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Cluster_endpoint != nil {
-    config["cluster_endpoint"] = *r.Cluster_endpoint
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["vm_image"] = r.Vm_image
-    config["reliability_level"] = r.Reliability_level
-    config["upgrade_mode"] = r.Upgrade_mode
-if r.Cluster_code_version != nil {
-    config["cluster_code_version"] = *r.Cluster_code_version
-}
-    config["management_endpoint"] = r.Management_endpoint
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_service_fabric_clusterUnmapper(state map[string]interface{}) *Azurerm_service_fabric_cluster {
-	r := &Azurerm_service_fabric_cluster{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_service_fabric_cluster_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["cluster_endpoint"]; ok {
-	x := x.(string)
-	r.Cluster_endpoint = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["vm_image"]; ok {
-	r.Vm_image = x.(string)
-}
-
-if x, ok := state["reliability_level"]; ok {
-	r.Reliability_level = x.(string)
-}
-
-if x, ok := state["upgrade_mode"]; ok {
-	r.Upgrade_mode = x.(string)
-}
-
-if x, ok := state["cluster_code_version"]; ok {
-	x := x.(string)
-	r.Cluster_code_version = &x
-}
-
-if x, ok := state["management_endpoint"]; ok {
-	r.Management_endpoint = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_service_fabric_clusterHandler ...
-type Azurerm_service_fabric_clusterHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_service_fabric_clusterHandler) Create(desired *Azurerm_service_fabric_cluster) (*Azurerm_service_fabric_cluster, string, error) {
-	rState := Azurerm_service_fabric_clusterMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_service_fabric_cluster", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurerm_service_fabric_cluster, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_service_fabric_cluster", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_service_fabric_clusterUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_service_fabric_clusterHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_service_fabric_cluster", externalID)
-}
-
-type Azurerm_shared_image struct {
-     Azurerm_shared_image_id *string
-     Gallery_name string
-     Location string
-     Os_type string
-     Description *string
-     Eula *string
-     Release_note_uri *string
-     Name string
-     Resource_group_name string
-     Privacy_statement_uri *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_shared_imageMapper(r *Azurerm_shared_image) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["gallery_name"] = r.Gallery_name
-    config["location"] = r.Location
-    config["os_type"] = r.Os_type
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Eula != nil {
-    config["eula"] = *r.Eula
-}
-if r.Release_note_uri != nil {
-    config["release_note_uri"] = *r.Release_note_uri
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Privacy_statement_uri != nil {
-    config["privacy_statement_uri"] = *r.Privacy_statement_uri
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_shared_imageUnmapper(state map[string]interface{}) *Azurerm_shared_image {
-	r := &Azurerm_shared_image{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_shared_image_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["privacy_statement_uri"]; ok {
-	x := x.(string)
-	r.Privacy_statement_uri = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["gallery_name"]; ok {
-	r.Gallery_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["os_type"]; ok {
-	r.Os_type = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["eula"]; ok {
-	x := x.(string)
-	r.Eula = &x
-}
-
-if x, ok := state["release_note_uri"]; ok {
-	x := x.(string)
-	r.Release_note_uri = &x
-}
-	return r
-}
-
-
-// Azurerm_shared_imageHandler ...
-type Azurerm_shared_imageHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_shared_imageHandler) Create(desired *Azurerm_shared_image) (*Azurerm_shared_image, string, error) {
-	rState := Azurerm_shared_imageMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_shared_image", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_image, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_shared_image", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_shared_imageUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_shared_imageHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_shared_image", externalID)
-}
-
-type Azurerm_virtual_machine_scale_set struct {
-     Azurerm_virtual_machine_scale_set_id *string
-     Resource_group_name string
-     Automatic_os_upgrade *bool
-     Single_placement_group *bool
-     Overprovision *bool
-     Eviction_policy *string
-     Tags *map[string]string
-     Upgrade_policy_mode string
-     Location string
-     Name string
-     Priority *string
-     License_type *string
-     Health_probe_id *string
-}
-
-
-func Azurerm_virtual_machine_scale_setMapper(r *Azurerm_virtual_machine_scale_set) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Automatic_os_upgrade != nil {
-    config["automatic_os_upgrade"] = *r.Automatic_os_upgrade
-}
-if r.Single_placement_group != nil {
-    config["single_placement_group"] = *r.Single_placement_group
-}
-if r.Overprovision != nil {
-    config["overprovision"] = *r.Overprovision
-}
-if r.Eviction_policy != nil {
-    config["eviction_policy"] = *r.Eviction_policy
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["upgrade_policy_mode"] = r.Upgrade_policy_mode
-    config["location"] = r.Location
-    config["name"] = r.Name
-if r.Priority != nil {
-    config["priority"] = *r.Priority
-}
-if r.License_type != nil {
-    config["license_type"] = *r.License_type
-}
-if r.Health_probe_id != nil {
-    config["health_probe_id"] = *r.Health_probe_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_machine_scale_setUnmapper(state map[string]interface{}) *Azurerm_virtual_machine_scale_set {
-	r := &Azurerm_virtual_machine_scale_set{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_machine_scale_set_id = &x
-}
-
-if x, ok := state["license_type"]; ok {
-	x := x.(string)
-	r.License_type = &x
-}
-
-if x, ok := state["health_probe_id"]; ok {
-	x := x.(string)
-	r.Health_probe_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["automatic_os_upgrade"]; ok {
-	x := x.(bool)
-	r.Automatic_os_upgrade = &x
-}
-
-if x, ok := state["single_placement_group"]; ok {
-	x := x.(bool)
-	r.Single_placement_group = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["overprovision"]; ok {
-	x := x.(bool)
-	r.Overprovision = &x
-}
-
-if x, ok := state["eviction_policy"]; ok {
-	x := x.(string)
-	r.Eviction_policy = &x
-}
-
-if x, ok := state["upgrade_policy_mode"]; ok {
-	r.Upgrade_policy_mode = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["priority"]; ok {
-	x := x.(string)
-	r.Priority = &x
-}
-	return r
-}
-
-
-// Azurerm_virtual_machine_scale_setHandler ...
-type Azurerm_virtual_machine_scale_setHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_machine_scale_setHandler) Create(desired *Azurerm_virtual_machine_scale_set) (*Azurerm_virtual_machine_scale_set, string, error) {
-	rState := Azurerm_virtual_machine_scale_setMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_machine_scale_set", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azurerm_virtual_machine_scale_set, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_scale_set", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_machine_scale_setUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_machine_scale_setHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_machine_scale_set", externalID)
-}
-
-type Azurerm_azuread_application struct {
-     Azurerm_azuread_application_id *string
-     Available_to_other_tenants *bool
-     Oauth2_allow_implicit_flow *bool
-     Application_id *string
-     Name string
-     Homepage *string
-}
-
-
-func Azurerm_azuread_applicationMapper(r *Azurerm_azuread_application) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Application_id != nil {
-    config["application_id"] = *r.Application_id
-}
-    config["name"] = r.Name
-if r.Homepage != nil {
-    config["homepage"] = *r.Homepage
-}
-if r.Available_to_other_tenants != nil {
-    config["available_to_other_tenants"] = *r.Available_to_other_tenants
-}
-if r.Oauth2_allow_implicit_flow != nil {
-    config["oauth2_allow_implicit_flow"] = *r.Oauth2_allow_implicit_flow
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_azuread_applicationUnmapper(state map[string]interface{}) *Azurerm_azuread_application {
-	r := &Azurerm_azuread_application{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_azuread_application_id = &x
-}
-
-if x, ok := state["available_to_other_tenants"]; ok {
-	x := x.(bool)
-	r.Available_to_other_tenants = &x
-}
-
-if x, ok := state["oauth2_allow_implicit_flow"]; ok {
-	x := x.(bool)
-	r.Oauth2_allow_implicit_flow = &x
-}
-
-if x, ok := state["application_id"]; ok {
-	x := x.(string)
-	r.Application_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["homepage"]; ok {
-	x := x.(string)
-	r.Homepage = &x
-}
-	return r
-}
-
-
-// Azurerm_azuread_applicationHandler ...
-type Azurerm_azuread_applicationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_azuread_applicationHandler) Create(desired *Azurerm_azuread_application) (*Azurerm_azuread_application, string, error) {
-	rState := Azurerm_azuread_applicationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_azuread_application", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_azuread_application, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_azuread_application", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_azuread_applicationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_azuread_applicationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_azuread_application", externalID)
-}
-
-type Azurerm_devspace_controller struct {
-     Azurerm_devspace_controller_id *string
-     Host_suffix string
-     Target_container_host_resource_id string
-     Target_container_host_credentials_base64 string
-     Name string
-     Resource_group_name string
-     Location string
-     Tags *map[string]string
-     Data_plane_fqdn *string
-}
-
-
-func Azurerm_devspace_controllerMapper(r *Azurerm_devspace_controller) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Data_plane_fqdn != nil {
-    config["data_plane_fqdn"] = *r.Data_plane_fqdn
-}
-    config["host_suffix"] = r.Host_suffix
-    config["target_container_host_resource_id"] = r.Target_container_host_resource_id
-    config["target_container_host_credentials_base64"] = r.Target_container_host_credentials_base64
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_devspace_controllerUnmapper(state map[string]interface{}) *Azurerm_devspace_controller {
-	r := &Azurerm_devspace_controller{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_devspace_controller_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["host_suffix"]; ok {
-	r.Host_suffix = x.(string)
-}
-
-if x, ok := state["target_container_host_resource_id"]; ok {
-	r.Target_container_host_resource_id = x.(string)
-}
-
-if x, ok := state["target_container_host_credentials_base64"]; ok {
-	r.Target_container_host_credentials_base64 = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["data_plane_fqdn"]; ok {
-	x := x.(string)
-	r.Data_plane_fqdn = &x
-}
-	return r
-}
-
-
-// Azurerm_devspace_controllerHandler ...
-type Azurerm_devspace_controllerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_devspace_controllerHandler) Create(desired *Azurerm_devspace_controller) (*Azurerm_devspace_controller, string, error) {
-	rState := Azurerm_devspace_controllerMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_devspace_controller", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_devspace_controller, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_devspace_controller", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_devspace_controllerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_devspace_controllerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_devspace_controller", externalID)
-}
-
-type Azurerm_postgresql_configuration struct {
-     Azurerm_postgresql_configuration_id *string
-     Resource_group_name string
-     Server_name string
-     Value string
-     Name string
-}
-
-
-func Azurerm_postgresql_configurationMapper(r *Azurerm_postgresql_configuration) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["server_name"] = r.Server_name
-    config["value"] = r.Value
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_postgresql_configurationUnmapper(state map[string]interface{}) *Azurerm_postgresql_configuration {
-	r := &Azurerm_postgresql_configuration{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_postgresql_configuration_id = &x
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["value"]; ok {
-	r.Value = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_postgresql_configurationHandler ...
-type Azurerm_postgresql_configurationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_postgresql_configurationHandler) Create(desired *Azurerm_postgresql_configuration) (*Azurerm_postgresql_configuration, string, error) {
-	rState := Azurerm_postgresql_configurationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_postgresql_configuration", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azurerm_postgresql_configuration, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_postgresql_configuration", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_postgresql_configurationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_postgresql_configurationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_postgresql_configuration", externalID)
-}
-
-type Azurerm_servicebus_queue struct {
-     Azurerm_servicebus_queue_id *string
-     Lock_duration *string
-     Requires_duplicate_detection *bool
-     Enable_batched_operations *bool
-     Namespace_name string
-     Default_message_ttl *string
-     Enable_partitioning *bool
-     Requires_session *bool
-     Dead_lettering_on_message_expiration *bool
-     Name string
-     Location *string
-     Resource_group_name string
-     Auto_delete_on_idle *string
-     Duplicate_detection_history_time_window *string
-     Enable_express *bool
-     Support_ordering *bool
-}
-
-
-func Azurerm_servicebus_queueMapper(r *Azurerm_servicebus_queue) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Lock_duration != nil {
-    config["lock_duration"] = *r.Lock_duration
-}
-if r.Requires_duplicate_detection != nil {
-    config["requires_duplicate_detection"] = *r.Requires_duplicate_detection
-}
-if r.Enable_batched_operations != nil {
-    config["enable_batched_operations"] = *r.Enable_batched_operations
-}
-    config["namespace_name"] = r.Namespace_name
-if r.Default_message_ttl != nil {
-    config["default_message_ttl"] = *r.Default_message_ttl
-}
-if r.Enable_partitioning != nil {
-    config["enable_partitioning"] = *r.Enable_partitioning
-}
-if r.Requires_session != nil {
-    config["requires_session"] = *r.Requires_session
-}
-if r.Dead_lettering_on_message_expiration != nil {
-    config["dead_lettering_on_message_expiration"] = *r.Dead_lettering_on_message_expiration
-}
-    config["name"] = r.Name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Auto_delete_on_idle != nil {
-    config["auto_delete_on_idle"] = *r.Auto_delete_on_idle
-}
-if r.Duplicate_detection_history_time_window != nil {
-    config["duplicate_detection_history_time_window"] = *r.Duplicate_detection_history_time_window
-}
-if r.Enable_express != nil {
-    config["enable_express"] = *r.Enable_express
-}
-if r.Support_ordering != nil {
-    config["support_ordering"] = *r.Support_ordering
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_queueUnmapper(state map[string]interface{}) *Azurerm_servicebus_queue {
-	r := &Azurerm_servicebus_queue{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_queue_id = &x
-}
-
-if x, ok := state["enable_express"]; ok {
-	x := x.(bool)
-	r.Enable_express = &x
-}
-
-if x, ok := state["support_ordering"]; ok {
-	x := x.(bool)
-	r.Support_ordering = &x
-}
-
-if x, ok := state["lock_duration"]; ok {
-	x := x.(string)
-	r.Lock_duration = &x
-}
-
-if x, ok := state["requires_duplicate_detection"]; ok {
-	x := x.(bool)
-	r.Requires_duplicate_detection = &x
-}
-
-if x, ok := state["enable_batched_operations"]; ok {
-	x := x.(bool)
-	r.Enable_batched_operations = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["default_message_ttl"]; ok {
-	x := x.(string)
-	r.Default_message_ttl = &x
-}
-
-if x, ok := state["enable_partitioning"]; ok {
-	x := x.(bool)
-	r.Enable_partitioning = &x
-}
-
-if x, ok := state["requires_session"]; ok {
-	x := x.(bool)
-	r.Requires_session = &x
-}
-
-if x, ok := state["dead_lettering_on_message_expiration"]; ok {
-	x := x.(bool)
-	r.Dead_lettering_on_message_expiration = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["auto_delete_on_idle"]; ok {
-	x := x.(string)
-	r.Auto_delete_on_idle = &x
-}
-
-if x, ok := state["duplicate_detection_history_time_window"]; ok {
-	x := x.(string)
-	r.Duplicate_detection_history_time_window = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_queueHandler ...
-type Azurerm_servicebus_queueHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_queueHandler) Create(desired *Azurerm_servicebus_queue) (*Azurerm_servicebus_queue, string, error) {
-	rState := Azurerm_servicebus_queueMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_queue", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_servicebus_queue, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_queueUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_queueHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_queue", externalID)
-}
-
-type Azurerm_automation_dsc_nodeconfiguration struct {
-     Azurerm_automation_dsc_nodeconfiguration_id *string
-     Name string
-     Automation_account_name string
-     Resource_group_name string
-     Content_embedded string
-     Configuration_name *string
-}
-
-
-func Azurerm_automation_dsc_nodeconfigurationMapper(r *Azurerm_automation_dsc_nodeconfiguration) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["content_embedded"] = r.Content_embedded
-if r.Configuration_name != nil {
-    config["configuration_name"] = *r.Configuration_name
-}
-    config["name"] = r.Name
-    config["automation_account_name"] = r.Automation_account_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_automation_dsc_nodeconfigurationUnmapper(state map[string]interface{}) *Azurerm_automation_dsc_nodeconfiguration {
-	r := &Azurerm_automation_dsc_nodeconfiguration{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_dsc_nodeconfiguration_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["automation_account_name"]; ok {
-	r.Automation_account_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["content_embedded"]; ok {
-	r.Content_embedded = x.(string)
-}
-
-if x, ok := state["configuration_name"]; ok {
-	x := x.(string)
-	r.Configuration_name = &x
-}
-	return r
-}
-
-
-// Azurerm_automation_dsc_nodeconfigurationHandler ...
-type Azurerm_automation_dsc_nodeconfigurationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Create(desired *Azurerm_automation_dsc_nodeconfiguration) (*Azurerm_automation_dsc_nodeconfiguration, string, error) {
-	rState := Azurerm_automation_dsc_nodeconfigurationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_dsc_nodeconfiguration", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string) (*Azurerm_automation_dsc_nodeconfiguration, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_automation_dsc_nodeconfigurationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
-}
-
-type Azurerm_lb_nat_rule struct {
-     Azurerm_lb_nat_rule_id *string
-     Backend_ip_configuration_id *string
-     Resource_group_name string
-     Protocol string
-     Enable_floating_ip *bool
-     Frontend_ip_configuration_name string
-     Frontend_ip_configuration_id *string
-     Name string
-     Location *string
-     Loadbalancer_id string
-}
-
-
-func Azurerm_lb_nat_ruleMapper(r *Azurerm_lb_nat_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["protocol"] = r.Protocol
-if r.Enable_floating_ip != nil {
-    config["enable_floating_ip"] = *r.Enable_floating_ip
-}
-if r.Backend_ip_configuration_id != nil {
-    config["backend_ip_configuration_id"] = *r.Backend_ip_configuration_id
-}
-    config["name"] = r.Name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["loadbalancer_id"] = r.Loadbalancer_id
-    config["frontend_ip_configuration_name"] = r.Frontend_ip_configuration_name
-if r.Frontend_ip_configuration_id != nil {
-    config["frontend_ip_configuration_id"] = *r.Frontend_ip_configuration_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_lb_nat_ruleUnmapper(state map[string]interface{}) *Azurerm_lb_nat_rule {
-	r := &Azurerm_lb_nat_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_lb_nat_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["loadbalancer_id"]; ok {
-	r.Loadbalancer_id = x.(string)
-}
-
-if x, ok := state["frontend_ip_configuration_name"]; ok {
-	r.Frontend_ip_configuration_name = x.(string)
-}
-
-if x, ok := state["frontend_ip_configuration_id"]; ok {
-	x := x.(string)
-	r.Frontend_ip_configuration_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["protocol"]; ok {
-	r.Protocol = x.(string)
-}
-
-if x, ok := state["enable_floating_ip"]; ok {
-	x := x.(bool)
-	r.Enable_floating_ip = &x
-}
-
-if x, ok := state["backend_ip_configuration_id"]; ok {
-	x := x.(string)
-	r.Backend_ip_configuration_id = &x
-}
-	return r
-}
-
-
-// Azurerm_lb_nat_ruleHandler ...
-type Azurerm_lb_nat_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_lb_nat_ruleHandler) Create(desired *Azurerm_lb_nat_rule) (*Azurerm_lb_nat_rule, string, error) {
-	rState := Azurerm_lb_nat_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_lb_nat_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_lb_nat_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_lb_nat_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_lb_nat_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_lb_nat_rule", externalID)
-}
-
-type Azurerm_dns_txt_record struct {
-     Azurerm_dns_txt_record_id *string
-     Resource_group_name string
-     Zone_name string
-     Tags *map[string]string
-     Name string
-}
-
-
-func Azurerm_dns_txt_recordMapper(r *Azurerm_dns_txt_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_txt_recordUnmapper(state map[string]interface{}) *Azurerm_dns_txt_record {
-	r := &Azurerm_dns_txt_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_txt_record_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_dns_txt_recordHandler ...
-type Azurerm_dns_txt_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_txt_recordHandler) Create(desired *Azurerm_dns_txt_record) (*Azurerm_dns_txt_record, string, error) {
-	rState := Azurerm_dns_txt_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_txt_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_txt_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_txt_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_txt_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_txt_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_txt_record", externalID)
-}
-
-type Azurerm_network_interface struct {
-     Azurerm_network_interface_id *string
-     Enable_ip_forwarding *bool
-     Tags *map[string]string
-     Mac_address *string
-     Internal_dns_name_label *string
-     Internal_fqdn *string
-     Location string
-     Private_ip_address *string
-     Resource_group_name string
-     Virtual_machine_id *string
-     Enable_accelerated_networking *bool
-     Name string
-     Network_security_group_id *string
-}
-
-
-func Azurerm_network_interfaceMapper(r *Azurerm_network_interface) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Private_ip_address != nil {
-    config["private_ip_address"] = *r.Private_ip_address
-}
-    config["location"] = r.Location
-if r.Virtual_machine_id != nil {
-    config["virtual_machine_id"] = *r.Virtual_machine_id
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Network_security_group_id != nil {
-    config["network_security_group_id"] = *r.Network_security_group_id
-}
-if r.Enable_accelerated_networking != nil {
-    config["enable_accelerated_networking"] = *r.Enable_accelerated_networking
-}
-    config["name"] = r.Name
-if r.Internal_dns_name_label != nil {
-    config["internal_dns_name_label"] = *r.Internal_dns_name_label
-}
-if r.Internal_fqdn != nil {
-    config["internal_fqdn"] = *r.Internal_fqdn
-}
-if r.Enable_ip_forwarding != nil {
-    config["enable_ip_forwarding"] = *r.Enable_ip_forwarding
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Mac_address != nil {
-    config["mac_address"] = *r.Mac_address
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_interfaceUnmapper(state map[string]interface{}) *Azurerm_network_interface {
-	r := &Azurerm_network_interface{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_interface_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network_security_group_id"]; ok {
-	x := x.(string)
-	r.Network_security_group_id = &x
-}
-
-if x, ok := state["enable_accelerated_networking"]; ok {
-	x := x.(bool)
-	r.Enable_accelerated_networking = &x
-}
-
-if x, ok := state["mac_address"]; ok {
-	x := x.(string)
-	r.Mac_address = &x
-}
-
-if x, ok := state["internal_dns_name_label"]; ok {
-	x := x.(string)
-	r.Internal_dns_name_label = &x
-}
-
-if x, ok := state["internal_fqdn"]; ok {
-	x := x.(string)
-	r.Internal_fqdn = &x
-}
-
-if x, ok := state["enable_ip_forwarding"]; ok {
-	x := x.(bool)
-	r.Enable_ip_forwarding = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["private_ip_address"]; ok {
-	x := x.(string)
-	r.Private_ip_address = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["virtual_machine_id"]; ok {
-	x := x.(string)
-	r.Virtual_machine_id = &x
-}
-	return r
-}
-
-
-// Azurerm_network_interfaceHandler ...
-type Azurerm_network_interfaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_interfaceHandler) Create(desired *Azurerm_network_interface) (*Azurerm_network_interface, string, error) {
-	rState := Azurerm_network_interfaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_interface", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_network_interface, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_interface", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_interfaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_interfaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_interface", externalID)
-}
-
-type Azurerm_packet_capture struct {
-     Azurerm_packet_capture_id *string
-     Resource_group_name string
-     Network_watcher_name string
-     Name string
-     Target_resource_id string
-}
-
-
-func Azurerm_packet_captureMapper(r *Azurerm_packet_capture) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["network_watcher_name"] = r.Network_watcher_name
-    config["name"] = r.Name
-    config["target_resource_id"] = r.Target_resource_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_packet_captureUnmapper(state map[string]interface{}) *Azurerm_packet_capture {
-	r := &Azurerm_packet_capture{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_packet_capture_id = &x
-}
-
-if x, ok := state["target_resource_id"]; ok {
-	r.Target_resource_id = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network_watcher_name"]; ok {
-	r.Network_watcher_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_packet_captureHandler ...
-type Azurerm_packet_captureHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_packet_captureHandler) Create(desired *Azurerm_packet_capture) (*Azurerm_packet_capture, string, error) {
-	rState := Azurerm_packet_captureMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_packet_capture", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet_capture, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_packet_capture", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_packet_captureUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_packet_captureHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_packet_capture", externalID)
-}
-
-type Azurerm_policy_set_definition struct {
-     Azurerm_policy_set_definition_id *string
-     Display_name string
-     Description *string
-     Metadata *string
-     Parameters *string
-     Policy_definitions *string
-     Name string
-     Policy_type string
-     Management_group_id *string
-}
-
-
-func Azurerm_policy_set_definitionMapper(r *Azurerm_policy_set_definition) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Metadata != nil {
-    config["metadata"] = *r.Metadata
-}
-if r.Parameters != nil {
-    config["parameters"] = *r.Parameters
-}
-if r.Policy_definitions != nil {
-    config["policy_definitions"] = *r.Policy_definitions
-}
-    config["name"] = r.Name
-    config["policy_type"] = r.Policy_type
-if r.Management_group_id != nil {
-    config["management_group_id"] = *r.Management_group_id
-}
-    config["display_name"] = r.Display_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_policy_set_definitionUnmapper(state map[string]interface{}) *Azurerm_policy_set_definition {
-	r := &Azurerm_policy_set_definition{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_policy_set_definition_id = &x
-}
-
-if x, ok := state["policy_definitions"]; ok {
-	x := x.(string)
-	r.Policy_definitions = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["policy_type"]; ok {
-	r.Policy_type = x.(string)
-}
-
-if x, ok := state["management_group_id"]; ok {
-	x := x.(string)
-	r.Management_group_id = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["metadata"]; ok {
-	x := x.(string)
-	r.Metadata = &x
-}
-
-if x, ok := state["parameters"]; ok {
-	x := x.(string)
-	r.Parameters = &x
-}
-	return r
-}
-
-
-// Azurerm_policy_set_definitionHandler ...
-type Azurerm_policy_set_definitionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_policy_set_definitionHandler) Create(desired *Azurerm_policy_set_definition) (*Azurerm_policy_set_definition, string, error) {
-	rState := Azurerm_policy_set_definitionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_policy_set_definition", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm_policy_set_definition, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_policy_set_definition", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_policy_set_definitionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_policy_set_definitionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_policy_set_definition", externalID)
-}
-
-type Azurerm_storage_queue struct {
-     Azurerm_storage_queue_id *string
-     Name string
-     Resource_group_name string
-     Storage_account_name string
-}
-
-
-func Azurerm_storage_queueMapper(r *Azurerm_storage_queue) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["storage_account_name"] = r.Storage_account_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_storage_queueUnmapper(state map[string]interface{}) *Azurerm_storage_queue {
-	r := &Azurerm_storage_queue{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_storage_queue_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["storage_account_name"]; ok {
-	r.Storage_account_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_storage_queueHandler ...
-type Azurerm_storage_queueHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_storage_queueHandler) Create(desired *Azurerm_storage_queue) (*Azurerm_storage_queue, string, error) {
-	rState := Azurerm_storage_queueMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_storage_queue", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage_queue, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_storage_queue", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_storage_queueUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_storage_queueHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_storage_queue", externalID)
-}
-
-type Azurerm_storage_share struct {
-     Azurerm_storage_share_id *string
-     Resource_group_name string
-     Storage_account_name string
-     Url *string
-     Name string
-}
-
-
-func Azurerm_storage_shareMapper(r *Azurerm_storage_share) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Url != nil {
-    config["url"] = *r.Url
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["storage_account_name"] = r.Storage_account_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_storage_shareUnmapper(state map[string]interface{}) *Azurerm_storage_share {
-	r := &Azurerm_storage_share{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_storage_share_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["storage_account_name"]; ok {
-	r.Storage_account_name = x.(string)
-}
-
-if x, ok := state["url"]; ok {
-	x := x.(string)
-	r.Url = &x
-}
-	return r
-}
-
-
-// Azurerm_storage_shareHandler ...
-type Azurerm_storage_shareHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_storage_shareHandler) Create(desired *Azurerm_storage_share) (*Azurerm_storage_share, string, error) {
-	rState := Azurerm_storage_shareMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_storage_share", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage_share, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_storage_share", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_storage_shareUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_storage_shareHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_storage_share", externalID)
-}
-
-type Azurerm_autoscale_setting struct {
-     Azurerm_autoscale_setting_id *string
-     Location string
-     Target_resource_id string
-     Enabled *bool
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-}
-
-
-func Azurerm_autoscale_settingMapper(r *Azurerm_autoscale_setting) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-    config["target_resource_id"] = r.Target_resource_id
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_autoscale_settingUnmapper(state map[string]interface{}) *Azurerm_autoscale_setting {
-	r := &Azurerm_autoscale_setting{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_autoscale_setting_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["target_resource_id"]; ok {
-	r.Target_resource_id = x.(string)
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-	return r
-}
-
-
-// Azurerm_autoscale_settingHandler ...
-type Azurerm_autoscale_settingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_autoscale_settingHandler) Create(desired *Azurerm_autoscale_setting) (*Azurerm_autoscale_setting, string, error) {
-	rState := Azurerm_autoscale_settingMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_autoscale_setting", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_autoscale_setting, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_autoscale_setting", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_autoscale_settingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_autoscale_settingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_autoscale_setting", externalID)
-}
-
-type Azurerm_dev_test_policy struct {
-     Azurerm_dev_test_policy_id *string
-     Fact_data *string
-     Name string
-     Policy_set_name string
-     Resource_group_name string
-     Threshold string
-     Evaluator_type string
-     Lab_name string
-     Description *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_dev_test_policyMapper(r *Azurerm_dev_test_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["lab_name"] = r.Lab_name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["policy_set_name"] = r.Policy_set_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["threshold"] = r.Threshold
-    config["evaluator_type"] = r.Evaluator_type
-if r.Fact_data != nil {
-    config["fact_data"] = *r.Fact_data
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dev_test_policyUnmapper(state map[string]interface{}) *Azurerm_dev_test_policy {
-	r := &Azurerm_dev_test_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dev_test_policy_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["policy_set_name"]; ok {
-	r.Policy_set_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["threshold"]; ok {
-	r.Threshold = x.(string)
-}
-
-if x, ok := state["evaluator_type"]; ok {
-	r.Evaluator_type = x.(string)
-}
-
-if x, ok := state["fact_data"]; ok {
-	x := x.(string)
-	r.Fact_data = &x
-}
-
-if x, ok := state["lab_name"]; ok {
-	r.Lab_name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_dev_test_policyHandler ...
-type Azurerm_dev_test_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dev_test_policyHandler) Create(desired *Azurerm_dev_test_policy) (*Azurerm_dev_test_policy, string, error) {
-	rState := Azurerm_dev_test_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dev_test_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_test_policy, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dev_test_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dev_test_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dev_test_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dev_test_policy", externalID)
-}
-
-type Azurerm_azuread_service_principal struct {
-     Azurerm_azuread_service_principal_id *string
-     Application_id string
-     Display_name *string
-}
-
-
-func Azurerm_azuread_service_principalMapper(r *Azurerm_azuread_service_principal) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-    config["application_id"] = r.Application_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_azuread_service_principalUnmapper(state map[string]interface{}) *Azurerm_azuread_service_principal {
-	r := &Azurerm_azuread_service_principal{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_azuread_service_principal_id = &x
-}
-
-if x, ok := state["application_id"]; ok {
-	r.Application_id = x.(string)
-}
-
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
-	return r
-}
-
-
-// Azurerm_azuread_service_principalHandler ...
-type Azurerm_azuread_service_principalHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_azuread_service_principalHandler) Create(desired *Azurerm_azuread_service_principal) (*Azurerm_azuread_service_principal, string, error) {
-	rState := Azurerm_azuread_service_principalMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_azuread_service_principal", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azurerm_azuread_service_principal, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_azuread_service_principalUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_azuread_service_principalHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_azuread_service_principal", externalID)
-}
-
-type Azurerm_resource_group struct {
-     Azurerm_resource_group_id *string
-     Location string
-     Tags *map[string]string
-     Name string
-}
-
-
-func Azurerm_resource_groupMapper(r *Azurerm_resource_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_resource_groupUnmapper(state map[string]interface{}) *Azurerm_resource_group {
-	r := &Azurerm_resource_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_resource_group_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_resource_groupHandler ...
-type Azurerm_resource_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_resource_groupHandler) Create(desired *Azurerm_resource_group) (*Azurerm_resource_group, string, error) {
-	rState := Azurerm_resource_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_resource_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resource_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_resource_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_resource_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_resource_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_resource_group", externalID)
-}
-
-type Azurerm_role_definition struct {
-     Azurerm_role_definition_id *string
-     Scope string
-     Description *string
-     Role_definition_id *string
-     Name string
-}
-
-
-func Azurerm_role_definitionMapper(r *Azurerm_role_definition) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Role_definition_id != nil {
-    config["role_definition_id"] = *r.Role_definition_id
-}
-    config["name"] = r.Name
-    config["scope"] = r.Scope
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_role_definitionUnmapper(state map[string]interface{}) *Azurerm_role_definition {
-	r := &Azurerm_role_definition{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_role_definition_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["scope"]; ok {
-	r.Scope = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["role_definition_id"]; ok {
-	x := x.(string)
-	r.Role_definition_id = &x
-}
-	return r
-}
-
-
-// Azurerm_role_definitionHandler ...
-type Azurerm_role_definitionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_role_definitionHandler) Create(desired *Azurerm_role_definition) (*Azurerm_role_definition, string, error) {
-	rState := Azurerm_role_definitionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_role_definition", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_definition, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_role_definition", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_role_definitionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_role_definitionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_role_definition", externalID)
-}
-
-type Azurerm_user_assigned_identity struct {
-     Azurerm_user_assigned_identity_id *string
-     Principal_id *string
-     Client_id *string
-     Name string
-     Resource_group_name string
-     Location string
-     Tags *map[string]string
-}
-
-
-func Azurerm_user_assigned_identityMapper(r *Azurerm_user_assigned_identity) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Principal_id != nil {
-    config["principal_id"] = *r.Principal_id
-}
-if r.Client_id != nil {
-    config["client_id"] = *r.Client_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_user_assigned_identityUnmapper(state map[string]interface{}) *Azurerm_user_assigned_identity {
-	r := &Azurerm_user_assigned_identity{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_user_assigned_identity_id = &x
-}
-
-if x, ok := state["principal_id"]; ok {
-	x := x.(string)
-	r.Principal_id = &x
-}
-
-if x, ok := state["client_id"]; ok {
-	x := x.(string)
-	r.Client_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_user_assigned_identityHandler ...
-type Azurerm_user_assigned_identityHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_user_assigned_identityHandler) Create(desired *Azurerm_user_assigned_identity) (*Azurerm_user_assigned_identity, string, error) {
-	rState := Azurerm_user_assigned_identityMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_user_assigned_identity", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurerm_user_assigned_identity, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_user_assigned_identity", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_user_assigned_identityUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_user_assigned_identityHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_user_assigned_identity", externalID)
-}
-
-type Azurerm_automation_module struct {
-     Azurerm_automation_module_id *string
-     Name string
-     Automation_account_name string
-     Resource_group_name string
-}
-
-
-func Azurerm_automation_moduleMapper(r *Azurerm_automation_module) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["automation_account_name"] = r.Automation_account_name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_automation_moduleUnmapper(state map[string]interface{}) *Azurerm_automation_module {
-	r := &Azurerm_automation_module{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_module_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["automation_account_name"]; ok {
-	r.Automation_account_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_automation_moduleHandler ...
-type Azurerm_automation_moduleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_automation_moduleHandler) Create(desired *Azurerm_automation_module) (*Azurerm_automation_module, string, error) {
-	rState := Azurerm_automation_moduleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_module", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_automation_module, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_module", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_automation_moduleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_automation_moduleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_automation_module", externalID)
-}
-
-type Azurerm_azuread_service_principal_password struct {
-     Azurerm_azuread_service_principal_password_id *string
-     Key_id *string
-     Value string
-     Start_date *string
-     End_date string
-     Service_principal_id string
-}
-
-
-func Azurerm_azuread_service_principal_passwordMapper(r *Azurerm_azuread_service_principal_password) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["service_principal_id"] = r.Service_principal_id
-if r.Key_id != nil {
-    config["key_id"] = *r.Key_id
-}
-    config["value"] = r.Value
-if r.Start_date != nil {
-    config["start_date"] = *r.Start_date
-}
-    config["end_date"] = r.End_date
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_azuread_service_principal_passwordUnmapper(state map[string]interface{}) *Azurerm_azuread_service_principal_password {
-	r := &Azurerm_azuread_service_principal_password{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_azuread_service_principal_password_id = &x
-}
-
-if x, ok := state["value"]; ok {
-	r.Value = x.(string)
-}
-
-if x, ok := state["start_date"]; ok {
-	x := x.(string)
-	r.Start_date = &x
-}
-
-if x, ok := state["end_date"]; ok {
-	r.End_date = x.(string)
-}
-
-if x, ok := state["service_principal_id"]; ok {
-	r.Service_principal_id = x.(string)
-}
-
-if x, ok := state["key_id"]; ok {
-	x := x.(string)
-	r.Key_id = &x
-}
-	return r
-}
-
-
-// Azurerm_azuread_service_principal_passwordHandler ...
-type Azurerm_azuread_service_principal_passwordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_azuread_service_principal_passwordHandler) Create(desired *Azurerm_azuread_service_principal_password) (*Azurerm_azuread_service_principal_password, string, error) {
-	rState := Azurerm_azuread_service_principal_passwordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_azuread_service_principal_password", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID string) (*Azurerm_azuread_service_principal_password, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal_password", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_azuread_service_principal_passwordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_azuread_service_principal_passwordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_azuread_service_principal_password", externalID)
-}
-
-type Azurerm_log_analytics_workspace struct {
-     Azurerm_log_analytics_workspace_id *string
-     Sku string
-     Workspace_id *string
-     Portal_url *string
-     Primary_shared_key *string
-     Tags *map[string]string
-     Name string
-     Location string
-     Secondary_shared_key *string
-     Resource_group_name string
-}
-
-
-func Azurerm_log_analytics_workspaceMapper(r *Azurerm_log_analytics_workspace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Primary_shared_key != nil {
-    config["primary_shared_key"] = *r.Primary_shared_key
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["sku"] = r.Sku
-if r.Workspace_id != nil {
-    config["workspace_id"] = *r.Workspace_id
-}
-if r.Portal_url != nil {
-    config["portal_url"] = *r.Portal_url
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Secondary_shared_key != nil {
-    config["secondary_shared_key"] = *r.Secondary_shared_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_log_analytics_workspaceUnmapper(state map[string]interface{}) *Azurerm_log_analytics_workspace {
-	r := &Azurerm_log_analytics_workspace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_log_analytics_workspace_id = &x
-}
-
-if x, ok := state["portal_url"]; ok {
-	x := x.(string)
-	r.Portal_url = &x
-}
-
-if x, ok := state["primary_shared_key"]; ok {
-	x := x.(string)
-	r.Primary_shared_key = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-
-if x, ok := state["workspace_id"]; ok {
-	x := x.(string)
-	r.Workspace_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["secondary_shared_key"]; ok {
-	x := x.(string)
-	r.Secondary_shared_key = &x
-}
-	return r
-}
-
-
-// Azurerm_log_analytics_workspaceHandler ...
-type Azurerm_log_analytics_workspaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_log_analytics_workspaceHandler) Create(desired *Azurerm_log_analytics_workspace) (*Azurerm_log_analytics_workspace, string, error) {
-	rState := Azurerm_log_analytics_workspaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_log_analytics_workspace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_log_analytics_workspaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_log_analytics_workspaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace", externalID)
-}
-
-type Azurerm_image struct {
-     Azurerm_image_id *string
-     Source_virtual_machine_id *string
-     Tags *map[string]string
-     Name string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_imageMapper(r *Azurerm_image) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Source_virtual_machine_id != nil {
-    config["source_virtual_machine_id"] = *r.Source_virtual_machine_id
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_imageUnmapper(state map[string]interface{}) *Azurerm_image {
-	r := &Azurerm_image{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_image_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["source_virtual_machine_id"]; ok {
-	x := x.(string)
-	r.Source_virtual_machine_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_imageHandler ...
-type Azurerm_imageHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_imageHandler) Create(desired *Azurerm_image) (*Azurerm_image, string, error) {
-	rState := Azurerm_imageMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_image", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_image", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_imageUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_imageHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_image", externalID)
-}
-
-type Azurerm_metric_alertrule struct {
-     Azurerm_metric_alertrule_id *string
-     Metric_name string
-     Resource_group_name string
-     Period string
-     Aggregation string
-     Name string
-     Location string
-     Operator string
-     Tags *map[string]string
-     Description *string
-     Enabled *bool
-     Resource_id string
-}
-
-
-func Azurerm_metric_alertruleMapper(r *Azurerm_metric_alertrule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-    config["operator"] = r.Operator
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-    config["resource_id"] = r.Resource_id
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-    config["metric_name"] = r.Metric_name
-    config["period"] = r.Period
-    config["aggregation"] = r.Aggregation
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_metric_alertruleUnmapper(state map[string]interface{}) *Azurerm_metric_alertrule {
-	r := &Azurerm_metric_alertrule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_metric_alertrule_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["period"]; ok {
-	r.Period = x.(string)
-}
-
-if x, ok := state["aggregation"]; ok {
-	r.Aggregation = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["operator"]; ok {
-	r.Operator = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-
-if x, ok := state["resource_id"]; ok {
-	r.Resource_id = x.(string)
-}
-
-if x, ok := state["metric_name"]; ok {
-	r.Metric_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_metric_alertruleHandler ...
-type Azurerm_metric_alertruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_metric_alertruleHandler) Create(desired *Azurerm_metric_alertrule) (*Azurerm_metric_alertrule, string, error) {
-	rState := Azurerm_metric_alertruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_metric_alertrule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metric_alertrule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_metric_alertrule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_metric_alertruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_metric_alertruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_metric_alertrule", externalID)
-}
-
-type Azurerm_mysql_server struct {
-     Azurerm_mysql_server_id *string
-     Tags *map[string]string
-     Location string
-     Resource_group_name string
-     Administrator_login string
-     Administrator_login_password string
-     Version string
-     Name string
-     Fqdn *string
-     Ssl_enforcement string
-}
-
-
-func Azurerm_mysql_serverMapper(r *Azurerm_mysql_server) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["administrator_login"] = r.Administrator_login
-    config["administrator_login_password"] = r.Administrator_login_password
-    config["version"] = r.Version
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["ssl_enforcement"] = r.Ssl_enforcement
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_mysql_serverUnmapper(state map[string]interface{}) *Azurerm_mysql_server {
-	r := &Azurerm_mysql_server{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mysql_server_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["administrator_login"]; ok {
-	r.Administrator_login = x.(string)
-}
-
-if x, ok := state["administrator_login_password"]; ok {
-	r.Administrator_login_password = x.(string)
-}
-
-if x, ok := state["version"]; ok {
-	r.Version = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["ssl_enforcement"]; ok {
-	r.Ssl_enforcement = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_mysql_serverHandler ...
-type Azurerm_mysql_serverHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_mysql_serverHandler) Create(desired *Azurerm_mysql_server) (*Azurerm_mysql_server, string, error) {
-	rState := Azurerm_mysql_serverMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mysql_server", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_server, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mysql_server", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mysql_serverUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_mysql_serverHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mysql_server", externalID)
-}
-
-type Azurerm_network_interface_application_gateway_backend_address_pool_association struct {
-     Azurerm_network_interface_application_gateway_backend_address_pool_association_id *string
-     Network_interface_id string
-     Ip_configuration_name string
-     Backend_address_pool_id string
-}
-
-
-func Azurerm_network_interface_application_gateway_backend_address_pool_associationMapper(r *Azurerm_network_interface_application_gateway_backend_address_pool_association) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["network_interface_id"] = r.Network_interface_id
-    config["ip_configuration_name"] = r.Ip_configuration_name
-    config["backend_address_pool_id"] = r.Backend_address_pool_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_interface_application_gateway_backend_address_pool_associationUnmapper(state map[string]interface{}) *Azurerm_network_interface_application_gateway_backend_address_pool_association {
-	r := &Azurerm_network_interface_application_gateway_backend_address_pool_association{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_interface_application_gateway_backend_address_pool_association_id = &x
-}
-
-if x, ok := state["network_interface_id"]; ok {
-	r.Network_interface_id = x.(string)
-}
-
-if x, ok := state["ip_configuration_name"]; ok {
-	r.Ip_configuration_name = x.(string)
-}
-
-if x, ok := state["backend_address_pool_id"]; ok {
-	r.Backend_address_pool_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler ...
-type Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_application_gateway_backend_address_pool_association) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, string, error) {
-	rState := Azurerm_network_interface_application_gateway_backend_address_pool_associationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_interface_application_gateway_backend_address_pool_associationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
-}
-
-type Azurerm_network_interface_nat_rule_association struct {
-     Azurerm_network_interface_nat_rule_association_id *string
-     Nat_rule_id string
-     Network_interface_id string
-     Ip_configuration_name string
-}
-
-
-func Azurerm_network_interface_nat_rule_associationMapper(r *Azurerm_network_interface_nat_rule_association) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["network_interface_id"] = r.Network_interface_id
-    config["ip_configuration_name"] = r.Ip_configuration_name
-    config["nat_rule_id"] = r.Nat_rule_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_interface_nat_rule_associationUnmapper(state map[string]interface{}) *Azurerm_network_interface_nat_rule_association {
-	r := &Azurerm_network_interface_nat_rule_association{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_interface_nat_rule_association_id = &x
-}
-
-if x, ok := state["network_interface_id"]; ok {
-	r.Network_interface_id = x.(string)
-}
-
-if x, ok := state["ip_configuration_name"]; ok {
-	r.Ip_configuration_name = x.(string)
-}
-
-if x, ok := state["nat_rule_id"]; ok {
-	r.Nat_rule_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_network_interface_nat_rule_associationHandler ...
-type Azurerm_network_interface_nat_rule_associationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_interface_nat_rule_associationHandler) Create(desired *Azurerm_network_interface_nat_rule_association) (*Azurerm_network_interface_nat_rule_association, string, error) {
-	rState := Azurerm_network_interface_nat_rule_associationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_interface_nat_rule_association", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID string) (*Azurerm_network_interface_nat_rule_association, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_interface_nat_rule_associationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_interface_nat_rule_associationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
-}
-
-type Azurerm_notification_hub_namespace struct {
-     Azurerm_notification_hub_namespace_id *string
-     Name string
-     Resource_group_name string
-     Location string
-     Enabled *bool
-     Namespace_type string
-     Servicebus_endpoint *string
-}
-
-
-func Azurerm_notification_hub_namespaceMapper(r *Azurerm_notification_hub_namespace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-    config["namespace_type"] = r.Namespace_type
-if r.Servicebus_endpoint != nil {
-    config["servicebus_endpoint"] = *r.Servicebus_endpoint
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_notification_hub_namespaceUnmapper(state map[string]interface{}) *Azurerm_notification_hub_namespace {
-	r := &Azurerm_notification_hub_namespace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_notification_hub_namespace_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-
-if x, ok := state["namespace_type"]; ok {
-	r.Namespace_type = x.(string)
-}
-
-if x, ok := state["servicebus_endpoint"]; ok {
-	x := x.(string)
-	r.Servicebus_endpoint = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_notification_hub_namespaceHandler ...
-type Azurerm_notification_hub_namespaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_notification_hub_namespaceHandler) Create(desired *Azurerm_notification_hub_namespace) (*Azurerm_notification_hub_namespace, string, error) {
-	rState := Azurerm_notification_hub_namespaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_notification_hub_namespace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Azurerm_notification_hub_namespace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_notification_hub_namespace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_notification_hub_namespaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_notification_hub_namespaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_notification_hub_namespace", externalID)
-}
-
-type Azurerm_data_lake_store struct {
-     Azurerm_data_lake_store_id *string
-     Name string
-     Resource_group_name string
-     Encryption_state *string
-     Firewall_state *string
-     Endpoint *string
-     Location string
-     Tier *string
-     Encryption_type *string
-     Firewall_allow_azure_ips *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_data_lake_storeMapper(r *Azurerm_data_lake_store) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-if r.Tier != nil {
-    config["tier"] = *r.Tier
-}
-if r.Encryption_type != nil {
-    config["encryption_type"] = *r.Encryption_type
-}
-if r.Firewall_allow_azure_ips != nil {
-    config["firewall_allow_azure_ips"] = *r.Firewall_allow_azure_ips
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Encryption_state != nil {
-    config["encryption_state"] = *r.Encryption_state
-}
-if r.Firewall_state != nil {
-    config["firewall_state"] = *r.Firewall_state
-}
-if r.Endpoint != nil {
-    config["endpoint"] = *r.Endpoint
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_data_lake_storeUnmapper(state map[string]interface{}) *Azurerm_data_lake_store {
-	r := &Azurerm_data_lake_store{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_data_lake_store_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["tier"]; ok {
-	x := x.(string)
-	r.Tier = &x
-}
-
-if x, ok := state["encryption_type"]; ok {
-	x := x.(string)
-	r.Encryption_type = &x
-}
-
-if x, ok := state["firewall_allow_azure_ips"]; ok {
-	x := x.(string)
-	r.Firewall_allow_azure_ips = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["encryption_state"]; ok {
-	x := x.(string)
-	r.Encryption_state = &x
-}
-
-if x, ok := state["firewall_state"]; ok {
-	x := x.(string)
-	r.Firewall_state = &x
-}
-
-if x, ok := state["endpoint"]; ok {
-	x := x.(string)
-	r.Endpoint = &x
-}
-	return r
-}
-
-
-// Azurerm_data_lake_storeHandler ...
-type Azurerm_data_lake_storeHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_data_lake_storeHandler) Create(desired *Azurerm_data_lake_store) (*Azurerm_data_lake_store, string, error) {
-	rState := Azurerm_data_lake_storeMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_data_lake_store", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_lake_store, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_data_lake_store", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_data_lake_storeUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_data_lake_storeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_data_lake_store", externalID)
-}
-
-type Azurerm_function_app struct {
-     Azurerm_function_app_id *string
-     App_service_plan_id string
-     Enabled *bool
-     Version *string
-     Enable_builtin_logging *bool
-     Default_hostname *string
-     Name string
-     Resource_group_name string
-     Location string
-     Https_only *bool
-     Storage_connection_string string
-     Tags *map[string]string
-     Outbound_ip_addresses *string
-     Client_affinity_enabled *bool
-}
-
-
-func Azurerm_function_appMapper(r *Azurerm_function_app) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-if r.Https_only != nil {
-    config["https_only"] = *r.Https_only
-}
-    config["storage_connection_string"] = r.Storage_connection_string
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Outbound_ip_addresses != nil {
-    config["outbound_ip_addresses"] = *r.Outbound_ip_addresses
-}
-if r.Client_affinity_enabled != nil {
-    config["client_affinity_enabled"] = *r.Client_affinity_enabled
-}
-    config["app_service_plan_id"] = r.App_service_plan_id
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-if r.Version != nil {
-    config["version"] = *r.Version
-}
-if r.Enable_builtin_logging != nil {
-    config["enable_builtin_logging"] = *r.Enable_builtin_logging
-}
-if r.Default_hostname != nil {
-    config["default_hostname"] = *r.Default_hostname
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_function_appUnmapper(state map[string]interface{}) *Azurerm_function_app {
-	r := &Azurerm_function_app{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_function_app_id = &x
-}
-
-if x, ok := state["storage_connection_string"]; ok {
-	r.Storage_connection_string = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["outbound_ip_addresses"]; ok {
-	x := x.(string)
-	r.Outbound_ip_addresses = &x
-}
-
-if x, ok := state["client_affinity_enabled"]; ok {
-	x := x.(bool)
-	r.Client_affinity_enabled = &x
-}
-
-if x, ok := state["app_service_plan_id"]; ok {
-	r.App_service_plan_id = x.(string)
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-
-if x, ok := state["version"]; ok {
-	x := x.(string)
-	r.Version = &x
-}
-
-if x, ok := state["enable_builtin_logging"]; ok {
-	x := x.(bool)
-	r.Enable_builtin_logging = &x
-}
-
-if x, ok := state["default_hostname"]; ok {
-	x := x.(string)
-	r.Default_hostname = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["https_only"]; ok {
-	x := x.(bool)
-	r.Https_only = &x
-}
-	return r
-}
-
-
-// Azurerm_function_appHandler ...
-type Azurerm_function_appHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_function_appHandler) Create(desired *Azurerm_function_app) (*Azurerm_function_app, string, error) {
-	rState := Azurerm_function_appMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_function_app", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function_app, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_function_app", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_function_appUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_function_appHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_function_app", externalID)
-}
-
-type Azurerm_traffic_manager_endpoint struct {
-     Azurerm_traffic_manager_endpoint_id *string
-     Endpoint_monitor_status *string
-     Name string
-     Profile_name string
-     Target *string
-     Target_resource_id *string
-     Endpoint_status *string
-     Resource_group_name string
-     Resource_type string
-     Endpoint_location *string
-}
-
-
-func Azurerm_traffic_manager_endpointMapper(r *Azurerm_traffic_manager_endpoint) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["resource_type"] = r.Resource_type
-if r.Endpoint_location != nil {
-    config["endpoint_location"] = *r.Endpoint_location
-}
-if r.Endpoint_monitor_status != nil {
-    config["endpoint_monitor_status"] = *r.Endpoint_monitor_status
-}
-    config["name"] = r.Name
-    config["profile_name"] = r.Profile_name
-if r.Target != nil {
-    config["target"] = *r.Target
-}
-if r.Target_resource_id != nil {
-    config["target_resource_id"] = *r.Target_resource_id
-}
-if r.Endpoint_status != nil {
-    config["endpoint_status"] = *r.Endpoint_status
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_traffic_manager_endpointUnmapper(state map[string]interface{}) *Azurerm_traffic_manager_endpoint {
-	r := &Azurerm_traffic_manager_endpoint{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_traffic_manager_endpoint_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["resource_type"]; ok {
-	r.Resource_type = x.(string)
-}
-
-if x, ok := state["endpoint_location"]; ok {
-	x := x.(string)
-	r.Endpoint_location = &x
-}
-
-if x, ok := state["endpoint_monitor_status"]; ok {
-	x := x.(string)
-	r.Endpoint_monitor_status = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["profile_name"]; ok {
-	r.Profile_name = x.(string)
-}
-
-if x, ok := state["target"]; ok {
-	x := x.(string)
-	r.Target = &x
-}
-
-if x, ok := state["target_resource_id"]; ok {
-	x := x.(string)
-	r.Target_resource_id = &x
-}
-
-if x, ok := state["endpoint_status"]; ok {
-	x := x.(string)
-	r.Endpoint_status = &x
-}
-	return r
-}
-
-
-// Azurerm_traffic_manager_endpointHandler ...
-type Azurerm_traffic_manager_endpointHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_traffic_manager_endpointHandler) Create(desired *Azurerm_traffic_manager_endpoint) (*Azurerm_traffic_manager_endpoint, string, error) {
-	rState := Azurerm_traffic_manager_endpointMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_traffic_manager_endpoint", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azurerm_traffic_manager_endpoint, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_endpoint", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_traffic_manager_endpointUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_traffic_manager_endpointHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_traffic_manager_endpoint", externalID)
-}
-
-type Azurerm_mariadb_server struct {
-     Azurerm_mariadb_server_id *string
-     Name string
-     Location string
-     Fqdn *string
-     Ssl_enforcement string
-     Tags *map[string]string
-     Resource_group_name string
-     Administrator_login string
-     Administrator_login_password string
-     Version string
-}
-
-
-func Azurerm_mariadb_serverMapper(r *Azurerm_mariadb_server) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-    config["version"] = r.Version
-    config["ssl_enforcement"] = r.Ssl_enforcement
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["administrator_login"] = r.Administrator_login
-    config["administrator_login_password"] = r.Administrator_login_password
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_mariadb_serverUnmapper(state map[string]interface{}) *Azurerm_mariadb_server {
-	r := &Azurerm_mariadb_server{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mariadb_server_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["administrator_login"]; ok {
-	r.Administrator_login = x.(string)
-}
-
-if x, ok := state["administrator_login_password"]; ok {
-	r.Administrator_login_password = x.(string)
-}
-
-if x, ok := state["version"]; ok {
-	r.Version = x.(string)
-}
-
-if x, ok := state["ssl_enforcement"]; ok {
-	r.Ssl_enforcement = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_mariadb_serverHandler ...
-type Azurerm_mariadb_serverHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_mariadb_serverHandler) Create(desired *Azurerm_mariadb_server) (*Azurerm_mariadb_server, string, error) {
-	rState := Azurerm_mariadb_serverMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mariadb_server", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariadb_server, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mariadb_server", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mariadb_serverUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_mariadb_serverHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mariadb_server", externalID)
-}
-
-type Azurerm_notification_hub_authorization_rule struct {
-     Azurerm_notification_hub_authorization_rule_id *string
-     Manage *bool
-     Send *bool
-     Listen *bool
-     Primary_access_key *string
-     Secondary_access_key *string
-     Name string
-     Notification_hub_name string
-     Namespace_name string
-     Resource_group_name string
-}
-
-
-func Azurerm_notification_hub_authorization_ruleMapper(r *Azurerm_notification_hub_authorization_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["notification_hub_name"] = r.Notification_hub_name
-if r.Manage != nil {
-    config["manage"] = *r.Manage
-}
-if r.Send != nil {
-    config["send"] = *r.Send
-}
-if r.Listen != nil {
-    config["listen"] = *r.Listen
-}
-if r.Primary_access_key != nil {
-    config["primary_access_key"] = *r.Primary_access_key
-}
-if r.Secondary_access_key != nil {
-    config["secondary_access_key"] = *r.Secondary_access_key
-}
-    config["namespace_name"] = r.Namespace_name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_notification_hub_authorization_ruleUnmapper(state map[string]interface{}) *Azurerm_notification_hub_authorization_rule {
-	r := &Azurerm_notification_hub_authorization_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_notification_hub_authorization_rule_id = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["send"]; ok {
-	x := x.(bool)
-	r.Send = &x
-}
-
-if x, ok := state["listen"]; ok {
-	x := x.(bool)
-	r.Listen = &x
-}
-
-if x, ok := state["primary_access_key"]; ok {
-	x := x.(string)
-	r.Primary_access_key = &x
-}
-
-if x, ok := state["secondary_access_key"]; ok {
-	x := x.(string)
-	r.Secondary_access_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["notification_hub_name"]; ok {
-	r.Notification_hub_name = x.(string)
-}
-
-if x, ok := state["manage"]; ok {
-	x := x.(bool)
-	r.Manage = &x
-}
-	return r
-}
-
-
-// Azurerm_notification_hub_authorization_ruleHandler ...
-type Azurerm_notification_hub_authorization_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_notification_hub_authorization_ruleHandler) Create(desired *Azurerm_notification_hub_authorization_rule) (*Azurerm_notification_hub_authorization_rule, string, error) {
-	rState := Azurerm_notification_hub_authorization_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_notification_hub_authorization_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID string) (*Azurerm_notification_hub_authorization_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_notification_hub_authorization_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_notification_hub_authorization_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
-}
-
-type Azurerm_virtual_network_peering struct {
-     Azurerm_virtual_network_peering_id *string
-     Name string
-     Resource_group_name string
-     Virtual_network_name string
-     Remote_virtual_network_id string
-     Allow_virtual_network_access *bool
-     Allow_forwarded_traffic *bool
-     Allow_gateway_transit *bool
-     Use_remote_gateways *bool
-}
-
-
-func Azurerm_virtual_network_peeringMapper(r *Azurerm_virtual_network_peering) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Allow_forwarded_traffic != nil {
-    config["allow_forwarded_traffic"] = *r.Allow_forwarded_traffic
-}
-if r.Allow_gateway_transit != nil {
-    config["allow_gateway_transit"] = *r.Allow_gateway_transit
-}
-if r.Use_remote_gateways != nil {
-    config["use_remote_gateways"] = *r.Use_remote_gateways
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["virtual_network_name"] = r.Virtual_network_name
-    config["remote_virtual_network_id"] = r.Remote_virtual_network_id
-if r.Allow_virtual_network_access != nil {
-    config["allow_virtual_network_access"] = *r.Allow_virtual_network_access
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_network_peeringUnmapper(state map[string]interface{}) *Azurerm_virtual_network_peering {
-	r := &Azurerm_virtual_network_peering{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_network_peering_id = &x
-}
-
-if x, ok := state["remote_virtual_network_id"]; ok {
-	r.Remote_virtual_network_id = x.(string)
-}
-
-if x, ok := state["allow_virtual_network_access"]; ok {
-	x := x.(bool)
-	r.Allow_virtual_network_access = &x
-}
-
-if x, ok := state["allow_forwarded_traffic"]; ok {
-	x := x.(bool)
-	r.Allow_forwarded_traffic = &x
-}
-
-if x, ok := state["allow_gateway_transit"]; ok {
-	x := x.(bool)
-	r.Allow_gateway_transit = &x
-}
-
-if x, ok := state["use_remote_gateways"]; ok {
-	x := x.(bool)
-	r.Use_remote_gateways = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["virtual_network_name"]; ok {
-	r.Virtual_network_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_virtual_network_peeringHandler ...
-type Azurerm_virtual_network_peeringHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_network_peeringHandler) Create(desired *Azurerm_virtual_network_peering) (*Azurerm_virtual_network_peering, string, error) {
-	rState := Azurerm_virtual_network_peeringMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_network_peering", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azurerm_virtual_network_peering, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_network_peering", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_network_peeringUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_network_peeringHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_network_peering", externalID)
-}
-
-type Azurerm_dns_a_record struct {
-     Azurerm_dns_a_record_id *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Zone_name string
-}
-
-
-func Azurerm_dns_a_recordMapper(r *Azurerm_dns_a_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_a_recordUnmapper(state map[string]interface{}) *Azurerm_dns_a_record {
-	r := &Azurerm_dns_a_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_a_record_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dns_a_recordHandler ...
-type Azurerm_dns_a_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_a_recordHandler) Create(desired *Azurerm_dns_a_record) (*Azurerm_dns_a_record, string, error) {
-	rState := Azurerm_dns_a_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_a_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_a_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_a_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_a_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_a_record", externalID)
-}
-
-type Azurerm_logic_app_workflow struct {
-     Azurerm_logic_app_workflow_id *string
-     Tags *map[string]string
-     Access_endpoint *string
-     Name string
-     Location string
-     Resource_group_name string
-     Workflow_schema *string
-     Workflow_version *string
-}
-
-
-func Azurerm_logic_app_workflowMapper(r *Azurerm_logic_app_workflow) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Access_endpoint != nil {
-    config["access_endpoint"] = *r.Access_endpoint
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Workflow_schema != nil {
-    config["workflow_schema"] = *r.Workflow_schema
-}
-if r.Workflow_version != nil {
-    config["workflow_version"] = *r.Workflow_version
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_logic_app_workflowUnmapper(state map[string]interface{}) *Azurerm_logic_app_workflow {
-	r := &Azurerm_logic_app_workflow{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_logic_app_workflow_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["access_endpoint"]; ok {
-	x := x.(string)
-	r.Access_endpoint = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["workflow_schema"]; ok {
-	x := x.(string)
-	r.Workflow_schema = &x
-}
-
-if x, ok := state["workflow_version"]; ok {
-	x := x.(string)
-	r.Workflow_version = &x
-}
-	return r
-}
-
-
-// Azurerm_logic_app_workflowHandler ...
-type Azurerm_logic_app_workflowHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_logic_app_workflowHandler) Create(desired *Azurerm_logic_app_workflow) (*Azurerm_logic_app_workflow, string, error) {
-	rState := Azurerm_logic_app_workflowMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_logic_app_workflow", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_logic_app_workflow, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_logic_app_workflow", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_logic_app_workflowUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_logic_app_workflowHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_logic_app_workflow", externalID)
-}
-
-type Azurerm_security_center_workspace struct {
-     Azurerm_security_center_workspace_id *string
-     Scope string
-     Workspace_id string
-}
-
-
-func Azurerm_security_center_workspaceMapper(r *Azurerm_security_center_workspace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["scope"] = r.Scope
-    config["workspace_id"] = r.Workspace_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_security_center_workspaceUnmapper(state map[string]interface{}) *Azurerm_security_center_workspace {
-	r := &Azurerm_security_center_workspace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_security_center_workspace_id = &x
-}
-
-if x, ok := state["workspace_id"]; ok {
-	r.Workspace_id = x.(string)
-}
-
-if x, ok := state["scope"]; ok {
-	r.Scope = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_security_center_workspaceHandler ...
-type Azurerm_security_center_workspaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_security_center_workspaceHandler) Create(desired *Azurerm_security_center_workspace) (*Azurerm_security_center_workspace, string, error) {
-	rState := Azurerm_security_center_workspaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_security_center_workspace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azurerm_security_center_workspace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_security_center_workspace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_security_center_workspaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_security_center_workspaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_security_center_workspace", externalID)
-}
-
-type Azurerm_application_insights struct {
-     Azurerm_application_insights_id *string
-     Tags *map[string]string
-     App_id *string
-     Instrumentation_key *string
-     Name string
-     Resource_group_name string
-     Location string
-     Application_type string
-}
-
-
-func Azurerm_application_insightsMapper(r *Azurerm_application_insights) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-    config["application_type"] = r.Application_type
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.App_id != nil {
-    config["app_id"] = *r.App_id
-}
-if r.Instrumentation_key != nil {
-    config["instrumentation_key"] = *r.Instrumentation_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_application_insightsUnmapper(state map[string]interface{}) *Azurerm_application_insights {
-	r := &Azurerm_application_insights{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_application_insights_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["app_id"]; ok {
-	x := x.(string)
-	r.App_id = &x
-}
-
-if x, ok := state["instrumentation_key"]; ok {
-	x := x.(string)
-	r.Instrumentation_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["application_type"]; ok {
-	r.Application_type = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_application_insightsHandler ...
-type Azurerm_application_insightsHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_application_insightsHandler) Create(desired *Azurerm_application_insights) (*Azurerm_application_insights, string, error) {
-	rState := Azurerm_application_insightsMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_application_insights", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_application_insights, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_application_insights", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_application_insightsUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_application_insightsHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_application_insights", externalID)
-}
-
-type Azurerm_eventhub_namespace_authorization_rule struct {
-     Azurerm_eventhub_namespace_authorization_rule_id *string
-     Resource_group_name string
-     Send *bool
-     Manage *bool
-     Primary_key *string
-     Primary_connection_string *string
-     Namespace_name string
-     Location *string
-     Name string
-     Secondary_connection_string *string
-     Listen *bool
-     Secondary_key *string
-}
-
-
-func Azurerm_eventhub_namespace_authorization_ruleMapper(r *Azurerm_eventhub_namespace_authorization_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Send != nil {
-    config["send"] = *r.Send
-}
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-    config["namespace_name"] = r.Namespace_name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["name"] = r.Name
-if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-if r.Listen != nil {
-    config["listen"] = *r.Listen
-}
-if r.Manage != nil {
-    config["manage"] = *r.Manage
-}
-if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_eventhub_namespace_authorization_ruleUnmapper(state map[string]interface{}) *Azurerm_eventhub_namespace_authorization_rule {
-	r := &Azurerm_eventhub_namespace_authorization_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_eventhub_namespace_authorization_rule_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["send"]; ok {
-	x := x.(bool)
-	r.Send = &x
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-
-if x, ok := state["listen"]; ok {
-	x := x.(bool)
-	r.Listen = &x
-}
-
-if x, ok := state["manage"]; ok {
-	x := x.(bool)
-	r.Manage = &x
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-	return r
-}
-
-
-// Azurerm_eventhub_namespace_authorization_ruleHandler ...
-type Azurerm_eventhub_namespace_authorization_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Create(desired *Azurerm_eventhub_namespace_authorization_rule) (*Azurerm_eventhub_namespace_authorization_rule, string, error) {
-	rState := Azurerm_eventhub_namespace_authorization_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_eventhub_namespace_authorization_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_namespace_authorization_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_eventhub_namespace_authorization_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
-}
-
-type Azurerm_dns_cname_record struct {
-     Azurerm_dns_cname_record_id *string
-     Resource_group_name string
-     Zone_name string
-     Records *string
-     Record string
-     Tags *map[string]string
-     Name string
-}
-
-
-func Azurerm_dns_cname_recordMapper(r *Azurerm_dns_cname_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Records != nil {
-    config["records"] = *r.Records
-}
-    config["record"] = r.Record
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_cname_recordUnmapper(state map[string]interface{}) *Azurerm_dns_cname_record {
-	r := &Azurerm_dns_cname_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_cname_record_id = &x
-}
-
-if x, ok := state["records"]; ok {
-	x := x.(string)
-	r.Records = &x
-}
-
-if x, ok := state["record"]; ok {
-	r.Record = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dns_cname_recordHandler ...
-type Azurerm_dns_cname_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_cname_recordHandler) Create(desired *Azurerm_dns_cname_record) (*Azurerm_dns_cname_record, string, error) {
-	rState := Azurerm_dns_cname_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_cname_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_cname_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_cname_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_cname_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_cname_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_cname_record", externalID)
-}
-
-type Azurerm_lb_nat_pool struct {
-     Azurerm_lb_nat_pool_id *string
-     Name string
-     Loadbalancer_id string
-     Frontend_ip_configuration_name string
-     Frontend_ip_configuration_id *string
-     Location *string
-     Resource_group_name string
-     Protocol string
-}
-
-
-func Azurerm_lb_nat_poolMapper(r *Azurerm_lb_nat_pool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["protocol"] = r.Protocol
-    config["frontend_ip_configuration_name"] = r.Frontend_ip_configuration_name
-if r.Frontend_ip_configuration_id != nil {
-    config["frontend_ip_configuration_id"] = *r.Frontend_ip_configuration_id
-}
-    config["name"] = r.Name
-    config["loadbalancer_id"] = r.Loadbalancer_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_lb_nat_poolUnmapper(state map[string]interface{}) *Azurerm_lb_nat_pool {
-	r := &Azurerm_lb_nat_pool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_lb_nat_pool_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["protocol"]; ok {
-	r.Protocol = x.(string)
-}
-
-if x, ok := state["frontend_ip_configuration_name"]; ok {
-	r.Frontend_ip_configuration_name = x.(string)
-}
-
-if x, ok := state["frontend_ip_configuration_id"]; ok {
-	x := x.(string)
-	r.Frontend_ip_configuration_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["loadbalancer_id"]; ok {
-	r.Loadbalancer_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_lb_nat_poolHandler ...
-type Azurerm_lb_nat_poolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_lb_nat_poolHandler) Create(desired *Azurerm_lb_nat_pool) (*Azurerm_lb_nat_pool, string, error) {
-	rState := Azurerm_lb_nat_poolMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_lb_nat_pool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_pool, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_lb_nat_pool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_lb_nat_poolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_lb_nat_poolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_lb_nat_pool", externalID)
-}
-
-type Azurerm_logic_app_trigger_recurrence struct {
-     Azurerm_logic_app_trigger_recurrence_id *string
-     Logic_app_id string
-     Frequency string
-     Name string
-}
-
-
-func Azurerm_logic_app_trigger_recurrenceMapper(r *Azurerm_logic_app_trigger_recurrence) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["logic_app_id"] = r.Logic_app_id
-    config["frequency"] = r.Frequency
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_logic_app_trigger_recurrenceUnmapper(state map[string]interface{}) *Azurerm_logic_app_trigger_recurrence {
-	r := &Azurerm_logic_app_trigger_recurrence{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_logic_app_trigger_recurrence_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["logic_app_id"]; ok {
-	r.Logic_app_id = x.(string)
-}
-
-if x, ok := state["frequency"]; ok {
-	r.Frequency = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_logic_app_trigger_recurrenceHandler ...
-type Azurerm_logic_app_trigger_recurrenceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_logic_app_trigger_recurrenceHandler) Create(desired *Azurerm_logic_app_trigger_recurrence) (*Azurerm_logic_app_trigger_recurrence, string, error) {
-	rState := Azurerm_logic_app_trigger_recurrenceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_logic_app_trigger_recurrence", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*Azurerm_logic_app_trigger_recurrence, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_logic_app_trigger_recurrenceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_logic_app_trigger_recurrenceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
-}
-
-type Azurerm_monitor_diagnostic_setting struct {
-     Azurerm_monitor_diagnostic_setting_id *string
-     Eventhub_name *string
-     Eventhub_authorization_rule_id *string
-     Log_analytics_workspace_id *string
-     Storage_account_id *string
-     Name string
-     Target_resource_id string
-}
-
-
-func Azurerm_monitor_diagnostic_settingMapper(r *Azurerm_monitor_diagnostic_setting) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["target_resource_id"] = r.Target_resource_id
-if r.Eventhub_name != nil {
-    config["eventhub_name"] = *r.Eventhub_name
-}
-if r.Eventhub_authorization_rule_id != nil {
-    config["eventhub_authorization_rule_id"] = *r.Eventhub_authorization_rule_id
-}
-if r.Log_analytics_workspace_id != nil {
-    config["log_analytics_workspace_id"] = *r.Log_analytics_workspace_id
-}
-if r.Storage_account_id != nil {
-    config["storage_account_id"] = *r.Storage_account_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_monitor_diagnostic_settingUnmapper(state map[string]interface{}) *Azurerm_monitor_diagnostic_setting {
-	r := &Azurerm_monitor_diagnostic_setting{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_monitor_diagnostic_setting_id = &x
-}
-
-if x, ok := state["log_analytics_workspace_id"]; ok {
-	x := x.(string)
-	r.Log_analytics_workspace_id = &x
-}
-
-if x, ok := state["storage_account_id"]; ok {
-	x := x.(string)
-	r.Storage_account_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["target_resource_id"]; ok {
-	r.Target_resource_id = x.(string)
-}
-
-if x, ok := state["eventhub_name"]; ok {
-	x := x.(string)
-	r.Eventhub_name = &x
-}
-
-if x, ok := state["eventhub_authorization_rule_id"]; ok {
-	x := x.(string)
-	r.Eventhub_authorization_rule_id = &x
-}
-	return r
-}
-
-
-// Azurerm_monitor_diagnostic_settingHandler ...
-type Azurerm_monitor_diagnostic_settingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_monitor_diagnostic_settingHandler) Create(desired *Azurerm_monitor_diagnostic_setting) (*Azurerm_monitor_diagnostic_setting, string, error) {
-	rState := Azurerm_monitor_diagnostic_settingMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_monitor_diagnostic_setting", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Azurerm_monitor_diagnostic_setting, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_monitor_diagnostic_settingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_monitor_diagnostic_settingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
-}
-
-type Azurerm_monitor_metric_alert struct {
-     Azurerm_monitor_metric_alert_id *string
-     Description *string
-     Enabled *bool
-     Frequency *string
-     Tags *map[string]string
-     Name string
-     Auto_mitigate *bool
-     Window_size *string
-     Resource_group_name string
-}
-
-
-func Azurerm_monitor_metric_alertMapper(r *Azurerm_monitor_metric_alert) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Auto_mitigate != nil {
-    config["auto_mitigate"] = *r.Auto_mitigate
-}
-if r.Window_size != nil {
-    config["window_size"] = *r.Window_size
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-if r.Frequency != nil {
-    config["frequency"] = *r.Frequency
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_monitor_metric_alertUnmapper(state map[string]interface{}) *Azurerm_monitor_metric_alert {
-	r := &Azurerm_monitor_metric_alert{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_monitor_metric_alert_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-
-if x, ok := state["frequency"]; ok {
-	x := x.(string)
-	r.Frequency = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["auto_mitigate"]; ok {
-	x := x.(bool)
-	r.Auto_mitigate = &x
-}
-
-if x, ok := state["window_size"]; ok {
-	x := x.(string)
-	r.Window_size = &x
-}
-	return r
-}
-
-
-// Azurerm_monitor_metric_alertHandler ...
-type Azurerm_monitor_metric_alertHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_monitor_metric_alertHandler) Create(desired *Azurerm_monitor_metric_alert) (*Azurerm_monitor_metric_alert, string, error) {
-	rState := Azurerm_monitor_metric_alertMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_monitor_metric_alert", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_monitor_metric_alert, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_monitor_metric_alert", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_monitor_metric_alertUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_monitor_metric_alertHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_monitor_metric_alert", externalID)
-}
-
-type Azurerm_mysql_firewall_rule struct {
-     Azurerm_mysql_firewall_rule_id *string
-     Start_ip_address string
-     End_ip_address string
-     Name string
-     Resource_group_name string
-     Server_name string
-}
-
-
-func Azurerm_mysql_firewall_ruleMapper(r *Azurerm_mysql_firewall_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["start_ip_address"] = r.Start_ip_address
-    config["end_ip_address"] = r.End_ip_address
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_mysql_firewall_ruleUnmapper(state map[string]interface{}) *Azurerm_mysql_firewall_rule {
-	r := &Azurerm_mysql_firewall_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mysql_firewall_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["start_ip_address"]; ok {
-	r.Start_ip_address = x.(string)
-}
-
-if x, ok := state["end_ip_address"]; ok {
-	r.End_ip_address = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_mysql_firewall_ruleHandler ...
-type Azurerm_mysql_firewall_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_mysql_firewall_ruleHandler) Create(desired *Azurerm_mysql_firewall_rule) (*Azurerm_mysql_firewall_rule, string, error) {
-	rState := Azurerm_mysql_firewall_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mysql_firewall_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_mysql_firewall_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mysql_firewall_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mysql_firewall_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_mysql_firewall_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mysql_firewall_rule", externalID)
-}
-
-type Azurerm_application_security_group struct {
-     Azurerm_application_security_group_id *string
-     Name string
-     Location string
-     Resource_group_name string
-     Tags *map[string]string
-}
-
-
-func Azurerm_application_security_groupMapper(r *Azurerm_application_security_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_application_security_groupUnmapper(state map[string]interface{}) *Azurerm_application_security_group {
-	r := &Azurerm_application_security_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_application_security_group_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_application_security_groupHandler ...
-type Azurerm_application_security_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_application_security_groupHandler) Create(desired *Azurerm_application_security_group) (*Azurerm_application_security_group, string, error) {
-	rState := Azurerm_application_security_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_application_security_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Azurerm_application_security_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_application_security_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_application_security_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_application_security_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_application_security_group", externalID)
-}
-
-type Azurerm_data_lake_analytics_firewall_rule struct {
-     Azurerm_data_lake_analytics_firewall_rule_id *string
-     Name string
-     Account_name string
-     Resource_group_name string
-     Start_ip_address string
-     End_ip_address string
-}
-
-
-func Azurerm_data_lake_analytics_firewall_ruleMapper(r *Azurerm_data_lake_analytics_firewall_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["start_ip_address"] = r.Start_ip_address
-    config["end_ip_address"] = r.End_ip_address
-    config["name"] = r.Name
-    config["account_name"] = r.Account_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_data_lake_analytics_firewall_ruleUnmapper(state map[string]interface{}) *Azurerm_data_lake_analytics_firewall_rule {
-	r := &Azurerm_data_lake_analytics_firewall_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_data_lake_analytics_firewall_rule_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["start_ip_address"]; ok {
-	r.Start_ip_address = x.(string)
-}
-
-if x, ok := state["end_ip_address"]; ok {
-	r.End_ip_address = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["account_name"]; ok {
-	r.Account_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_data_lake_analytics_firewall_ruleHandler ...
-type Azurerm_data_lake_analytics_firewall_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Create(desired *Azurerm_data_lake_analytics_firewall_rule) (*Azurerm_data_lake_analytics_firewall_rule, string, error) {
-	rState := Azurerm_data_lake_analytics_firewall_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_data_lake_analytics_firewall_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_analytics_firewall_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_data_lake_analytics_firewall_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
-}
-
-type Azurerm_servicebus_topic_authorization_rule struct {
-     Azurerm_servicebus_topic_authorization_rule_id *string
-     Primary_key *string
-     Primary_connection_string *string
-     Secondary_connection_string *string
-     Namespace_name string
-     Topic_name string
-     Manage *bool
-     Send *bool
-     Secondary_key *string
-     Name string
-     Resource_group_name string
-     Listen *bool
-}
-
-
-func Azurerm_servicebus_topic_authorization_ruleMapper(r *Azurerm_servicebus_topic_authorization_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Listen != nil {
-    config["listen"] = *r.Listen
-}
-if r.Send != nil {
-    config["send"] = *r.Send
-}
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-    config["namespace_name"] = r.Namespace_name
-    config["topic_name"] = r.Topic_name
-if r.Manage != nil {
-    config["manage"] = *r.Manage
-}
-if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_topic_authorization_ruleUnmapper(state map[string]interface{}) *Azurerm_servicebus_topic_authorization_rule {
-	r := &Azurerm_servicebus_topic_authorization_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_topic_authorization_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["listen"]; ok {
-	x := x.(bool)
-	r.Listen = &x
-}
-
-if x, ok := state["send"]; ok {
-	x := x.(bool)
-	r.Send = &x
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["topic_name"]; ok {
-	r.Topic_name = x.(string)
-}
-
-if x, ok := state["manage"]; ok {
-	x := x.(bool)
-	r.Manage = &x
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_topic_authorization_ruleHandler ...
-type Azurerm_servicebus_topic_authorization_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Create(desired *Azurerm_servicebus_topic_authorization_rule) (*Azurerm_servicebus_topic_authorization_rule, string, error) {
-	rState := Azurerm_servicebus_topic_authorization_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_topic_authorization_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_topic_authorization_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_topic_authorization_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
-}
-
-type Azurerm_sql_active_directory_administrator struct {
-     Azurerm_sql_active_directory_administrator_id *string
-     Server_name string
-     Resource_group_name string
-     Login string
-     Object_id string
-     Tenant_id string
-}
-
-
-func Azurerm_sql_active_directory_administratorMapper(r *Azurerm_sql_active_directory_administrator) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["object_id"] = r.Object_id
-    config["tenant_id"] = r.Tenant_id
-    config["server_name"] = r.Server_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["login"] = r.Login
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_sql_active_directory_administratorUnmapper(state map[string]interface{}) *Azurerm_sql_active_directory_administrator {
-	r := &Azurerm_sql_active_directory_administrator{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_sql_active_directory_administrator_id = &x
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["login"]; ok {
-	r.Login = x.(string)
-}
-
-if x, ok := state["object_id"]; ok {
-	r.Object_id = x.(string)
-}
-
-if x, ok := state["tenant_id"]; ok {
-	r.Tenant_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_sql_active_directory_administratorHandler ...
-type Azurerm_sql_active_directory_administratorHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_sql_active_directory_administratorHandler) Create(desired *Azurerm_sql_active_directory_administrator) (*Azurerm_sql_active_directory_administrator, string, error) {
-	rState := Azurerm_sql_active_directory_administratorMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_sql_active_directory_administrator", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID string) (*Azurerm_sql_active_directory_administrator, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_sql_active_directory_administrator", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_sql_active_directory_administratorUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_sql_active_directory_administratorHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_sql_active_directory_administrator", externalID)
-}
-
-type Azurerm_iothub_consumer_group struct {
-     Azurerm_iothub_consumer_group_id *string
-     Eventhub_endpoint_name string
-     Resource_group_name string
-     Name string
-     Iothub_name string
-}
-
-
-func Azurerm_iothub_consumer_groupMapper(r *Azurerm_iothub_consumer_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["iothub_name"] = r.Iothub_name
-    config["eventhub_endpoint_name"] = r.Eventhub_endpoint_name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_iothub_consumer_groupUnmapper(state map[string]interface{}) *Azurerm_iothub_consumer_group {
-	r := &Azurerm_iothub_consumer_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_iothub_consumer_group_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["iothub_name"]; ok {
-	r.Iothub_name = x.(string)
-}
-
-if x, ok := state["eventhub_endpoint_name"]; ok {
-	r.Eventhub_endpoint_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_iothub_consumer_groupHandler ...
-type Azurerm_iothub_consumer_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_iothub_consumer_groupHandler) Create(desired *Azurerm_iothub_consumer_group) (*Azurerm_iothub_consumer_group, string, error) {
-	rState := Azurerm_iothub_consumer_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_iothub_consumer_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm_iothub_consumer_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_iothub_consumer_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_iothub_consumer_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_iothub_consumer_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_iothub_consumer_group", externalID)
-}
-
-type Azurerm_postgresql_firewall_rule struct {
-     Azurerm_postgresql_firewall_rule_id *string
-     Resource_group_name string
-     Server_name string
-     Start_ip_address string
-     End_ip_address string
-     Name string
-}
-
-
-func Azurerm_postgresql_firewall_ruleMapper(r *Azurerm_postgresql_firewall_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["start_ip_address"] = r.Start_ip_address
-    config["end_ip_address"] = r.End_ip_address
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_postgresql_firewall_ruleUnmapper(state map[string]interface{}) *Azurerm_postgresql_firewall_rule {
-	r := &Azurerm_postgresql_firewall_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_postgresql_firewall_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["start_ip_address"]; ok {
-	r.Start_ip_address = x.(string)
-}
-
-if x, ok := state["end_ip_address"]; ok {
-	r.End_ip_address = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_postgresql_firewall_ruleHandler ...
-type Azurerm_postgresql_firewall_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_postgresql_firewall_ruleHandler) Create(desired *Azurerm_postgresql_firewall_rule) (*Azurerm_postgresql_firewall_rule, string, error) {
-	rState := Azurerm_postgresql_firewall_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_postgresql_firewall_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azurerm_postgresql_firewall_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_postgresql_firewall_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_postgresql_firewall_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_postgresql_firewall_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_postgresql_firewall_rule", externalID)
-}
-
-type Azurerm_recovery_services_vault struct {
-     Azurerm_recovery_services_vault_id *string
-     Resource_group_name string
-     Tags *map[string]string
-     Sku string
-     Name string
-     Location string
-}
-
-
-func Azurerm_recovery_services_vaultMapper(r *Azurerm_recovery_services_vault) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["sku"] = r.Sku
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_recovery_services_vaultUnmapper(state map[string]interface{}) *Azurerm_recovery_services_vault {
-	r := &Azurerm_recovery_services_vault{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_recovery_services_vault_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_recovery_services_vaultHandler ...
-type Azurerm_recovery_services_vaultHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_recovery_services_vaultHandler) Create(desired *Azurerm_recovery_services_vault) (*Azurerm_recovery_services_vault, string, error) {
-	rState := Azurerm_recovery_services_vaultMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_recovery_services_vault", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azurerm_recovery_services_vault, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_recovery_services_vault", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_recovery_services_vaultUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_recovery_services_vaultHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_recovery_services_vault", externalID)
-}
-
-type Azurerm_servicebus_namespace struct {
-     Azurerm_servicebus_namespace_id *string
-     Location string
-     Resource_group_name string
-     Name string
-     Sku string
-     Default_primary_connection_string *string
-     Default_secondary_connection_string *string
-     Default_primary_key *string
-     Default_secondary_key *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_servicebus_namespaceMapper(r *Azurerm_servicebus_namespace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Default_secondary_key != nil {
-    config["default_secondary_key"] = *r.Default_secondary_key
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["sku"] = r.Sku
-if r.Default_primary_connection_string != nil {
-    config["default_primary_connection_string"] = *r.Default_primary_connection_string
-}
-if r.Default_secondary_connection_string != nil {
-    config["default_secondary_connection_string"] = *r.Default_secondary_connection_string
-}
-if r.Default_primary_key != nil {
-    config["default_primary_key"] = *r.Default_primary_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_namespaceUnmapper(state map[string]interface{}) *Azurerm_servicebus_namespace {
-	r := &Azurerm_servicebus_namespace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_namespace_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["default_primary_key"]; ok {
-	x := x.(string)
-	r.Default_primary_key = &x
-}
-
-if x, ok := state["default_secondary_key"]; ok {
-	x := x.(string)
-	r.Default_secondary_key = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-
-if x, ok := state["default_primary_connection_string"]; ok {
-	x := x.(string)
-	r.Default_primary_connection_string = &x
-}
-
-if x, ok := state["default_secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Default_secondary_connection_string = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_namespaceHandler ...
-type Azurerm_servicebus_namespaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_namespaceHandler) Create(desired *Azurerm_servicebus_namespace) (*Azurerm_servicebus_namespace, string, error) {
-	rState := Azurerm_servicebus_namespaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_namespace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_servicebus_namespace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_namespaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_namespaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_namespace", externalID)
-}
-
-type Azurerm_app_service_slot struct {
-     Azurerm_app_service_slot_id *string
-     Tags *map[string]string
-     Name string
-     App_service_plan_id string
-     Client_affinity_enabled *bool
-     Https_only *bool
-     Default_site_hostname *string
-     Location string
-     App_service_name string
-     Resource_group_name string
-     Enabled *bool
-}
-
-
-func Azurerm_app_service_slotMapper(r *Azurerm_app_service_slot) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["app_service_plan_id"] = r.App_service_plan_id
-if r.Client_affinity_enabled != nil {
-    config["client_affinity_enabled"] = *r.Client_affinity_enabled
-}
-if r.Https_only != nil {
-    config["https_only"] = *r.Https_only
-}
-if r.Default_site_hostname != nil {
-    config["default_site_hostname"] = *r.Default_site_hostname
-}
-    config["location"] = r.Location
-    config["app_service_name"] = r.App_service_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_app_service_slotUnmapper(state map[string]interface{}) *Azurerm_app_service_slot {
-	r := &Azurerm_app_service_slot{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_app_service_slot_id = &x
-}
-
-if x, ok := state["https_only"]; ok {
-	x := x.(bool)
-	r.Https_only = &x
-}
-
-if x, ok := state["default_site_hostname"]; ok {
-	x := x.(string)
-	r.Default_site_hostname = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["app_service_name"]; ok {
-	r.App_service_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["app_service_plan_id"]; ok {
-	r.App_service_plan_id = x.(string)
-}
-
-if x, ok := state["client_affinity_enabled"]; ok {
-	x := x.(bool)
-	r.Client_affinity_enabled = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_app_service_slotHandler ...
-type Azurerm_app_service_slotHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_app_service_slotHandler) Create(desired *Azurerm_app_service_slot) (*Azurerm_app_service_slot, string, error) {
-	rState := Azurerm_app_service_slotMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_app_service_slot", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_service_slot, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_app_service_slot", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_app_service_slotUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_app_service_slotHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_app_service_slot", externalID)
-}
-
-type Azurerm_cognitive_account struct {
-     Azurerm_cognitive_account_id *string
-     Name string
-     Location string
-     Resource_group_name string
-     Kind string
-     Tags *map[string]string
-     Endpoint *string
-}
-
-
-func Azurerm_cognitive_accountMapper(r *Azurerm_cognitive_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["kind"] = r.Kind
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Endpoint != nil {
-    config["endpoint"] = *r.Endpoint
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_cognitive_accountUnmapper(state map[string]interface{}) *Azurerm_cognitive_account {
-	r := &Azurerm_cognitive_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_cognitive_account_id = &x
-}
-
-if x, ok := state["kind"]; ok {
-	r.Kind = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["endpoint"]; ok {
-	x := x.(string)
-	r.Endpoint = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_cognitive_accountHandler ...
-type Azurerm_cognitive_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_cognitive_accountHandler) Create(desired *Azurerm_cognitive_account) (*Azurerm_cognitive_account, string, error) {
-	rState := Azurerm_cognitive_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_cognitive_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cognitive_account, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_cognitive_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_cognitive_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_cognitive_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_cognitive_account", externalID)
-}
-
-type Azurerm_recovery_services_protected_vm struct {
-     Azurerm_recovery_services_protected_vm_id *string
-     Recovery_vault_name string
-     Source_vm_id string
-     Backup_policy_id string
-     Tags *map[string]string
-     Resource_group_name string
-}
-
-
-func Azurerm_recovery_services_protected_vmMapper(r *Azurerm_recovery_services_protected_vm) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["source_vm_id"] = r.Source_vm_id
-    config["backup_policy_id"] = r.Backup_policy_id
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["recovery_vault_name"] = r.Recovery_vault_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_recovery_services_protected_vmUnmapper(state map[string]interface{}) *Azurerm_recovery_services_protected_vm {
-	r := &Azurerm_recovery_services_protected_vm{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_recovery_services_protected_vm_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["recovery_vault_name"]; ok {
-	r.Recovery_vault_name = x.(string)
-}
-
-if x, ok := state["source_vm_id"]; ok {
-	r.Source_vm_id = x.(string)
-}
-
-if x, ok := state["backup_policy_id"]; ok {
-	r.Backup_policy_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_recovery_services_protected_vmHandler ...
-type Azurerm_recovery_services_protected_vmHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_recovery_services_protected_vmHandler) Create(desired *Azurerm_recovery_services_protected_vm) (*Azurerm_recovery_services_protected_vm, string, error) {
-	rState := Azurerm_recovery_services_protected_vmMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_recovery_services_protected_vm", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protected_vm, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protected_vm", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_recovery_services_protected_vmUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_recovery_services_protected_vmHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_recovery_services_protected_vm", externalID)
-}
-
-type Azurerm_sql_database struct {
-     Azurerm_sql_database_id *string
-     Encryption *string
-     Resource_group_name string
-     Create_mode *string
-     Source_database_id *string
-     Max_size_bytes *string
-     Source_database_deletion_date *string
-     Elastic_pool_name *string
-     Tags *map[string]string
-     Restore_point_in_time *string
-     Collation *string
-     Requested_service_objective_name *string
-     Default_secondary_location *string
-     Name string
-     Creation_date *string
-     Location string
-     Server_name string
-     Edition *string
-     Requested_service_objective_id *string
-}
-
-
-func Azurerm_sql_databaseMapper(r *Azurerm_sql_database) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Creation_date != nil {
-    config["creation_date"] = *r.Creation_date
-}
-    config["location"] = r.Location
-    config["server_name"] = r.Server_name
-if r.Edition != nil {
-    config["edition"] = *r.Edition
-}
-if r.Requested_service_objective_id != nil {
-    config["requested_service_objective_id"] = *r.Requested_service_objective_id
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Create_mode != nil {
-    config["create_mode"] = *r.Create_mode
-}
-if r.Source_database_id != nil {
-    config["source_database_id"] = *r.Source_database_id
-}
-if r.Max_size_bytes != nil {
-    config["max_size_bytes"] = *r.Max_size_bytes
-}
-if r.Source_database_deletion_date != nil {
-    config["source_database_deletion_date"] = *r.Source_database_deletion_date
-}
-if r.Elastic_pool_name != nil {
-    config["elastic_pool_name"] = *r.Elastic_pool_name
-}
-if r.Encryption != nil {
-    config["encryption"] = *r.Encryption
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Restore_point_in_time != nil {
-    config["restore_point_in_time"] = *r.Restore_point_in_time
-}
-if r.Collation != nil {
-    config["collation"] = *r.Collation
-}
-if r.Requested_service_objective_name != nil {
-    config["requested_service_objective_name"] = *r.Requested_service_objective_name
-}
-if r.Default_secondary_location != nil {
-    config["default_secondary_location"] = *r.Default_secondary_location
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_sql_databaseUnmapper(state map[string]interface{}) *Azurerm_sql_database {
-	r := &Azurerm_sql_database{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_sql_database_id = &x
-}
-
-if x, ok := state["requested_service_objective_name"]; ok {
-	x := x.(string)
-	r.Requested_service_objective_name = &x
-}
-
-if x, ok := state["default_secondary_location"]; ok {
-	x := x.(string)
-	r.Default_secondary_location = &x
-}
-
-if x, ok := state["restore_point_in_time"]; ok {
-	x := x.(string)
-	r.Restore_point_in_time = &x
-}
-
-if x, ok := state["collation"]; ok {
-	x := x.(string)
-	r.Collation = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["creation_date"]; ok {
-	x := x.(string)
-	r.Creation_date = &x
-}
-
-if x, ok := state["requested_service_objective_id"]; ok {
-	x := x.(string)
-	r.Requested_service_objective_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["edition"]; ok {
-	x := x.(string)
-	r.Edition = &x
-}
-
-if x, ok := state["max_size_bytes"]; ok {
-	x := x.(string)
-	r.Max_size_bytes = &x
-}
-
-if x, ok := state["source_database_deletion_date"]; ok {
-	x := x.(string)
-	r.Source_database_deletion_date = &x
-}
-
-if x, ok := state["elastic_pool_name"]; ok {
-	x := x.(string)
-	r.Elastic_pool_name = &x
-}
-
-if x, ok := state["encryption"]; ok {
-	x := x.(string)
-	r.Encryption = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["create_mode"]; ok {
-	x := x.(string)
-	r.Create_mode = &x
-}
-
-if x, ok := state["source_database_id"]; ok {
-	x := x.(string)
-	r.Source_database_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_sql_databaseHandler ...
-type Azurerm_sql_databaseHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_sql_databaseHandler) Create(desired *Azurerm_sql_database) (*Azurerm_sql_database, string, error) {
-	rState := Azurerm_sql_databaseMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_sql_database", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_database, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_sql_database", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_sql_databaseUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_sql_databaseHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_sql_database", externalID)
-}
-
-type Azurerm_container_registry struct {
-     Azurerm_container_registry_id *string
-     Location string
-     Admin_enabled *bool
-     Storage_account_id *string
-     Login_server *string
-     Admin_username *string
-     Admin_password *string
-     Name string
-     Resource_group_name string
-     Sku *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_container_registryMapper(r *Azurerm_container_registry) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Sku != nil {
-    config["sku"] = *r.Sku
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Storage_account_id != nil {
-    config["storage_account_id"] = *r.Storage_account_id
-}
-if r.Login_server != nil {
-    config["login_server"] = *r.Login_server
-}
-if r.Admin_username != nil {
-    config["admin_username"] = *r.Admin_username
-}
-if r.Admin_password != nil {
-    config["admin_password"] = *r.Admin_password
-}
-    config["location"] = r.Location
-if r.Admin_enabled != nil {
-    config["admin_enabled"] = *r.Admin_enabled
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_container_registryUnmapper(state map[string]interface{}) *Azurerm_container_registry {
-	r := &Azurerm_container_registry{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_container_registry_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["admin_enabled"]; ok {
-	x := x.(bool)
-	r.Admin_enabled = &x
-}
-
-if x, ok := state["storage_account_id"]; ok {
-	x := x.(string)
-	r.Storage_account_id = &x
-}
-
-if x, ok := state["login_server"]; ok {
-	x := x.(string)
-	r.Login_server = &x
-}
-
-if x, ok := state["admin_username"]; ok {
-	x := x.(string)
-	r.Admin_username = &x
-}
-
-if x, ok := state["admin_password"]; ok {
-	x := x.(string)
-	r.Admin_password = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	x := x.(string)
-	r.Sku = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_container_registryHandler ...
-type Azurerm_container_registryHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_container_registryHandler) Create(desired *Azurerm_container_registry) (*Azurerm_container_registry, string, error) {
-	rState := Azurerm_container_registryMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_container_registry", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_container_registry, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_container_registry", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_container_registryUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_container_registryHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_container_registry", externalID)
-}
-
-type Azurerm_databricks_workspace struct {
-     Azurerm_databricks_workspace_id *string
-     Sku string
-     Tags *map[string]string
-     Managed_resource_group_name *string
-     Managed_resource_group_id *string
-     Name string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_databricks_workspaceMapper(r *Azurerm_databricks_workspace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Managed_resource_group_name != nil {
-    config["managed_resource_group_name"] = *r.Managed_resource_group_name
-}
-if r.Managed_resource_group_id != nil {
-    config["managed_resource_group_id"] = *r.Managed_resource_group_id
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["sku"] = r.Sku
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_databricks_workspaceUnmapper(state map[string]interface{}) *Azurerm_databricks_workspace {
-	r := &Azurerm_databricks_workspace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_databricks_workspace_id = &x
-}
-
-if x, ok := state["managed_resource_group_name"]; ok {
-	x := x.(string)
-	r.Managed_resource_group_name = &x
-}
-
-if x, ok := state["managed_resource_group_id"]; ok {
-	x := x.(string)
-	r.Managed_resource_group_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_databricks_workspaceHandler ...
-type Azurerm_databricks_workspaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_databricks_workspaceHandler) Create(desired *Azurerm_databricks_workspace) (*Azurerm_databricks_workspace, string, error) {
-	rState := Azurerm_databricks_workspaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_databricks_workspace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_databricks_workspace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_databricks_workspace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_databricks_workspaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_databricks_workspaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_databricks_workspace", externalID)
-}
-
-type Azurerm_dns_zone struct {
-     Azurerm_dns_zone_id *string
-     Zone_type *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-}
-
-
-func Azurerm_dns_zoneMapper(r *Azurerm_dns_zone) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Zone_type != nil {
-    config["zone_type"] = *r.Zone_type
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_zoneUnmapper(state map[string]interface{}) *Azurerm_dns_zone {
-	r := &Azurerm_dns_zone{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_zone_id = &x
-}
-
-if x, ok := state["zone_type"]; ok {
-	x := x.(string)
-	r.Zone_type = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dns_zoneHandler ...
-type Azurerm_dns_zoneHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_zoneHandler) Create(desired *Azurerm_dns_zone) (*Azurerm_dns_zone, string, error) {
-	rState := Azurerm_dns_zoneMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_zone", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_zone", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_zoneUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_zoneHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_zone", externalID)
-}
-
-type Azurerm_eventhub struct {
-     Azurerm_eventhub_id *string
-     Resource_group_name string
-     Location *string
-     Name string
-     Namespace_name string
-}
-
-
-func Azurerm_eventhubMapper(r *Azurerm_eventhub) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["name"] = r.Name
-    config["namespace_name"] = r.Namespace_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_eventhubUnmapper(state map[string]interface{}) *Azurerm_eventhub {
-	r := &Azurerm_eventhub{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_eventhub_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_eventhubHandler ...
-type Azurerm_eventhubHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_eventhubHandler) Create(desired *Azurerm_eventhub) (*Azurerm_eventhub, string, error) {
-	rState := Azurerm_eventhubMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_eventhub", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_eventhub", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_eventhubUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_eventhubHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_eventhub", externalID)
-}
-
-type Azurerm_express_route_circuit_authorization struct {
-     Azurerm_express_route_circuit_authorization_id *string
-     Name string
-     Resource_group_name string
-     Express_route_circuit_name string
-     Authorization_key *string
-     Authorization_use_status *string
-}
-
-
-func Azurerm_express_route_circuit_authorizationMapper(r *Azurerm_express_route_circuit_authorization) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Authorization_use_status != nil {
-    config["authorization_use_status"] = *r.Authorization_use_status
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["express_route_circuit_name"] = r.Express_route_circuit_name
-if r.Authorization_key != nil {
-    config["authorization_key"] = *r.Authorization_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_express_route_circuit_authorizationUnmapper(state map[string]interface{}) *Azurerm_express_route_circuit_authorization {
-	r := &Azurerm_express_route_circuit_authorization{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_express_route_circuit_authorization_id = &x
-}
-
-if x, ok := state["express_route_circuit_name"]; ok {
-	r.Express_route_circuit_name = x.(string)
-}
-
-if x, ok := state["authorization_key"]; ok {
-	x := x.(string)
-	r.Authorization_key = &x
-}
-
-if x, ok := state["authorization_use_status"]; ok {
-	x := x.(string)
-	r.Authorization_use_status = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_express_route_circuit_authorizationHandler ...
-type Azurerm_express_route_circuit_authorizationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_express_route_circuit_authorizationHandler) Create(desired *Azurerm_express_route_circuit_authorization) (*Azurerm_express_route_circuit_authorization, string, error) {
-	rState := Azurerm_express_route_circuit_authorizationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_express_route_circuit_authorization", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID string) (*Azurerm_express_route_circuit_authorization, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_authorization", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_express_route_circuit_authorizationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_express_route_circuit_authorizationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_express_route_circuit_authorization", externalID)
-}
-
-type Azurerm_express_route_circuit struct {
-     Azurerm_express_route_circuit_id *string
-     Resource_group_name string
-     Location string
-     Service_provider_name string
-     Name string
-     Peering_location string
-     Allow_classic_operations *bool
-     Service_provider_provisioning_state *string
-     Service_key *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_express_route_circuitMapper(r *Azurerm_express_route_circuit) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-    config["service_provider_name"] = r.Service_provider_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["peering_location"] = r.Peering_location
-if r.Allow_classic_operations != nil {
-    config["allow_classic_operations"] = *r.Allow_classic_operations
-}
-if r.Service_provider_provisioning_state != nil {
-    config["service_provider_provisioning_state"] = *r.Service_provider_provisioning_state
-}
-if r.Service_key != nil {
-    config["service_key"] = *r.Service_key
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_express_route_circuitUnmapper(state map[string]interface{}) *Azurerm_express_route_circuit {
-	r := &Azurerm_express_route_circuit{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_express_route_circuit_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["service_provider_name"]; ok {
-	r.Service_provider_name = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["peering_location"]; ok {
-	r.Peering_location = x.(string)
-}
-
-if x, ok := state["allow_classic_operations"]; ok {
-	x := x.(bool)
-	r.Allow_classic_operations = &x
-}
-
-if x, ok := state["service_provider_provisioning_state"]; ok {
-	x := x.(string)
-	r.Service_provider_provisioning_state = &x
-}
-
-if x, ok := state["service_key"]; ok {
-	x := x.(string)
-	r.Service_key = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_express_route_circuitHandler ...
-type Azurerm_express_route_circuitHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_express_route_circuitHandler) Create(desired *Azurerm_express_route_circuit) (*Azurerm_express_route_circuit, string, error) {
-	rState := Azurerm_express_route_circuitMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_express_route_circuit", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm_express_route_circuit, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_express_route_circuitUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_express_route_circuitHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_express_route_circuit", externalID)
-}
-
-type Azurerm_firewall_network_rule_collection struct {
-     Azurerm_firewall_network_rule_collection_id *string
-     Name string
-     Azure_firewall_name string
-     Resource_group_name string
-     Action string
-}
-
-
-func Azurerm_firewall_network_rule_collectionMapper(r *Azurerm_firewall_network_rule_collection) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["action"] = r.Action
-    config["name"] = r.Name
-    config["azure_firewall_name"] = r.Azure_firewall_name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_firewall_network_rule_collectionUnmapper(state map[string]interface{}) *Azurerm_firewall_network_rule_collection {
-	r := &Azurerm_firewall_network_rule_collection{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_firewall_network_rule_collection_id = &x
-}
-
-if x, ok := state["azure_firewall_name"]; ok {
-	r.Azure_firewall_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["action"]; ok {
-	r.Action = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_firewall_network_rule_collectionHandler ...
-type Azurerm_firewall_network_rule_collectionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_firewall_network_rule_collectionHandler) Create(desired *Azurerm_firewall_network_rule_collection) (*Azurerm_firewall_network_rule_collection, string, error) {
-	rState := Azurerm_firewall_network_rule_collectionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_firewall_network_rule_collection", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_network_rule_collection, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_firewall_network_rule_collection", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_firewall_network_rule_collectionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_firewall_network_rule_collectionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_firewall_network_rule_collection", externalID)
-}
-
-type Azurerm_key_vault_access_policy struct {
-     Azurerm_key_vault_access_policy_id *string
-     Resource_group_name string
-     Tenant_id string
-     Object_id string
-     Application_id *string
-     Vault_name string
-}
-
-
-func Azurerm_key_vault_access_policyMapper(r *Azurerm_key_vault_access_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["tenant_id"] = r.Tenant_id
-    config["object_id"] = r.Object_id
-if r.Application_id != nil {
-    config["application_id"] = *r.Application_id
-}
-    config["vault_name"] = r.Vault_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_key_vault_access_policyUnmapper(state map[string]interface{}) *Azurerm_key_vault_access_policy {
-	r := &Azurerm_key_vault_access_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_key_vault_access_policy_id = &x
-}
-
-if x, ok := state["vault_name"]; ok {
-	r.Vault_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tenant_id"]; ok {
-	r.Tenant_id = x.(string)
-}
-
-if x, ok := state["object_id"]; ok {
-	r.Object_id = x.(string)
-}
-
-if x, ok := state["application_id"]; ok {
-	x := x.(string)
-	r.Application_id = &x
-}
-	return r
-}
-
-
-// Azurerm_key_vault_access_policyHandler ...
-type Azurerm_key_vault_access_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_key_vault_access_policyHandler) Create(desired *Azurerm_key_vault_access_policy) (*Azurerm_key_vault_access_policy, string, error) {
-	rState := Azurerm_key_vault_access_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_key_vault_access_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azurerm_key_vault_access_policy, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_key_vault_access_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_key_vault_access_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_key_vault_access_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_key_vault_access_policy", externalID)
-}
-
-type Azurerm_dev_test_windows_virtual_machine struct {
-     Azurerm_dev_test_windows_virtual_machine_id *string
-     Fqdn *string
-     Lab_name string
-     Username string
-     Size string
-     Password string
-     Storage_type string
-     Lab_subnet_name string
-     Lab_virtual_network_id string
-     Allow_claim *bool
-     Name string
-     Location string
-     Disallow_public_ip_address *bool
-     Notes *string
-     Tags *map[string]string
-     Unique_identifier *string
-     Resource_group_name string
-}
-
-
-func Azurerm_dev_test_windows_virtual_machineMapper(r *Azurerm_dev_test_windows_virtual_machine) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Unique_identifier != nil {
-    config["unique_identifier"] = *r.Unique_identifier
-}
-    config["lab_name"] = r.Lab_name
-    config["username"] = r.Username
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-    config["storage_type"] = r.Storage_type
-    config["lab_subnet_name"] = r.Lab_subnet_name
-    config["lab_virtual_network_id"] = r.Lab_virtual_network_id
-if r.Allow_claim != nil {
-    config["allow_claim"] = *r.Allow_claim
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["size"] = r.Size
-    config["password"] = r.Password
-if r.Disallow_public_ip_address != nil {
-    config["disallow_public_ip_address"] = *r.Disallow_public_ip_address
-}
-if r.Notes != nil {
-    config["notes"] = *r.Notes
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dev_test_windows_virtual_machineUnmapper(state map[string]interface{}) *Azurerm_dev_test_windows_virtual_machine {
-	r := &Azurerm_dev_test_windows_virtual_machine{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dev_test_windows_virtual_machine_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["size"]; ok {
-	r.Size = x.(string)
-}
-
-if x, ok := state["password"]; ok {
-	r.Password = x.(string)
-}
-
-if x, ok := state["storage_type"]; ok {
-	r.Storage_type = x.(string)
-}
-
-if x, ok := state["lab_subnet_name"]; ok {
-	r.Lab_subnet_name = x.(string)
-}
-
-if x, ok := state["lab_virtual_network_id"]; ok {
-	r.Lab_virtual_network_id = x.(string)
-}
-
-if x, ok := state["allow_claim"]; ok {
-	x := x.(bool)
-	r.Allow_claim = &x
-}
-
-if x, ok := state["disallow_public_ip_address"]; ok {
-	x := x.(bool)
-	r.Disallow_public_ip_address = &x
-}
-
-if x, ok := state["notes"]; ok {
-	x := x.(string)
-	r.Notes = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["unique_identifier"]; ok {
-	x := x.(string)
-	r.Unique_identifier = &x
-}
-
-if x, ok := state["lab_name"]; ok {
-	r.Lab_name = x.(string)
-}
-
-if x, ok := state["username"]; ok {
-	r.Username = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-	return r
-}
-
-
-// Azurerm_dev_test_windows_virtual_machineHandler ...
-type Azurerm_dev_test_windows_virtual_machineHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dev_test_windows_virtual_machineHandler) Create(desired *Azurerm_dev_test_windows_virtual_machine) (*Azurerm_dev_test_windows_virtual_machine, string, error) {
-	rState := Azurerm_dev_test_windows_virtual_machineMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dev_test_windows_virtual_machine", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_windows_virtual_machine, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dev_test_windows_virtual_machineUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dev_test_windows_virtual_machineHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
-}
-
-type Azurerm_dns_ns_record struct {
-     Azurerm_dns_ns_record_id *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Zone_name string
-}
-
-
-func Azurerm_dns_ns_recordMapper(r *Azurerm_dns_ns_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_ns_recordUnmapper(state map[string]interface{}) *Azurerm_dns_ns_record {
-	r := &Azurerm_dns_ns_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_ns_record_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dns_ns_recordHandler ...
-type Azurerm_dns_ns_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_ns_recordHandler) Create(desired *Azurerm_dns_ns_record) (*Azurerm_dns_ns_record, string, error) {
-	rState := Azurerm_dns_ns_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_ns_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_ns_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_ns_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_ns_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_ns_record", externalID)
-}
-
-type Azurerm_policy_definition struct {
-     Azurerm_policy_definition_id *string
-     Name string
-     Management_group_id *string
-     Display_name string
-     Parameters *string
-     Policy_type string
-     Mode string
-     Description *string
-     Policy_rule *string
-     Metadata *string
-}
-
-
-func Azurerm_policy_definitionMapper(r *Azurerm_policy_definition) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["display_name"] = r.Display_name
-if r.Parameters != nil {
-    config["parameters"] = *r.Parameters
-}
-    config["name"] = r.Name
-if r.Management_group_id != nil {
-    config["management_group_id"] = *r.Management_group_id
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Policy_rule != nil {
-    config["policy_rule"] = *r.Policy_rule
-}
-if r.Metadata != nil {
-    config["metadata"] = *r.Metadata
-}
-    config["policy_type"] = r.Policy_type
-    config["mode"] = r.Mode
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_policy_definitionUnmapper(state map[string]interface{}) *Azurerm_policy_definition {
-	r := &Azurerm_policy_definition{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_policy_definition_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["management_group_id"]; ok {
-	x := x.(string)
-	r.Management_group_id = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["parameters"]; ok {
-	x := x.(string)
-	r.Parameters = &x
-}
-
-if x, ok := state["policy_type"]; ok {
-	r.Policy_type = x.(string)
-}
-
-if x, ok := state["mode"]; ok {
-	r.Mode = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["policy_rule"]; ok {
-	x := x.(string)
-	r.Policy_rule = &x
-}
-
-if x, ok := state["metadata"]; ok {
-	x := x.(string)
-	r.Metadata = &x
-}
-	return r
-}
-
-
-// Azurerm_policy_definitionHandler ...
-type Azurerm_policy_definitionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_policy_definitionHandler) Create(desired *Azurerm_policy_definition) (*Azurerm_policy_definition, string, error) {
-	rState := Azurerm_policy_definitionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_policy_definition", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_policy_definition, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_policy_definition", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_policy_definitionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_policy_definitionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_policy_definition", externalID)
-}
-
-type Azurerm_subnet_route_table_association struct {
-     Azurerm_subnet_route_table_association_id *string
-     Subnet_id string
-     Route_table_id string
-}
-
-
-func Azurerm_subnet_route_table_associationMapper(r *Azurerm_subnet_route_table_association) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["subnet_id"] = r.Subnet_id
-    config["route_table_id"] = r.Route_table_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_subnet_route_table_associationUnmapper(state map[string]interface{}) *Azurerm_subnet_route_table_association {
-	r := &Azurerm_subnet_route_table_association{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_subnet_route_table_association_id = &x
-}
-
-if x, ok := state["route_table_id"]; ok {
-	r.Route_table_id = x.(string)
-}
-
-if x, ok := state["subnet_id"]; ok {
-	r.Subnet_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_subnet_route_table_associationHandler ...
-type Azurerm_subnet_route_table_associationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_subnet_route_table_associationHandler) Create(desired *Azurerm_subnet_route_table_association) (*Azurerm_subnet_route_table_association, string, error) {
-	rState := Azurerm_subnet_route_table_associationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_subnet_route_table_association", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) (*Azurerm_subnet_route_table_association, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_subnet_route_table_association", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_subnet_route_table_associationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_subnet_route_table_associationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_subnet_route_table_association", externalID)
-}
-
-type Azurerm_express_route_circuit_peering struct {
-     Azurerm_express_route_circuit_peering_id *string
-     Secondary_azure_port *string
-     Resource_group_name string
-     Secondary_peer_address_prefix string
-     Shared_key *string
-     Primary_azure_port *string
-     Peering_type string
-     Express_route_circuit_name string
-     Primary_peer_address_prefix string
-}
-
-
-func Azurerm_express_route_circuit_peeringMapper(r *Azurerm_express_route_circuit_peering) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Secondary_azure_port != nil {
-    config["secondary_azure_port"] = *r.Secondary_azure_port
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["secondary_peer_address_prefix"] = r.Secondary_peer_address_prefix
-if r.Shared_key != nil {
-    config["shared_key"] = *r.Shared_key
-}
-if r.Primary_azure_port != nil {
-    config["primary_azure_port"] = *r.Primary_azure_port
-}
-    config["peering_type"] = r.Peering_type
-    config["express_route_circuit_name"] = r.Express_route_circuit_name
-    config["primary_peer_address_prefix"] = r.Primary_peer_address_prefix
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_express_route_circuit_peeringUnmapper(state map[string]interface{}) *Azurerm_express_route_circuit_peering {
-	r := &Azurerm_express_route_circuit_peering{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_express_route_circuit_peering_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["secondary_peer_address_prefix"]; ok {
-	r.Secondary_peer_address_prefix = x.(string)
-}
-
-if x, ok := state["shared_key"]; ok {
-	x := x.(string)
-	r.Shared_key = &x
-}
-
-if x, ok := state["secondary_azure_port"]; ok {
-	x := x.(string)
-	r.Secondary_azure_port = &x
-}
-
-if x, ok := state["peering_type"]; ok {
-	r.Peering_type = x.(string)
-}
-
-if x, ok := state["express_route_circuit_name"]; ok {
-	r.Express_route_circuit_name = x.(string)
-}
-
-if x, ok := state["primary_peer_address_prefix"]; ok {
-	r.Primary_peer_address_prefix = x.(string)
-}
-
-if x, ok := state["primary_azure_port"]; ok {
-	x := x.(string)
-	r.Primary_azure_port = &x
-}
-	return r
-}
-
-
-// Azurerm_express_route_circuit_peeringHandler ...
-type Azurerm_express_route_circuit_peeringHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_express_route_circuit_peeringHandler) Create(desired *Azurerm_express_route_circuit_peering) (*Azurerm_express_route_circuit_peering, string, error) {
-	rState := Azurerm_express_route_circuit_peeringMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_express_route_circuit_peering", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (*Azurerm_express_route_circuit_peering, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_peering", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_express_route_circuit_peeringUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_express_route_circuit_peeringHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_express_route_circuit_peering", externalID)
-}
-
-type Azurerm_lb_rule struct {
-     Azurerm_lb_rule_id *string
-     Frontend_ip_configuration_name string
-     Frontend_ip_configuration_id *string
-     Resource_group_name string
-     Load_distribution *string
-     Enable_floating_ip *bool
-     Backend_address_pool_id *string
-     Probe_id *string
-     Location *string
-     Loadbalancer_id string
-     Protocol string
-     Name string
-}
-
-
-func Azurerm_lb_ruleMapper(r *Azurerm_lb_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.Backend_address_pool_id != nil {
-    config["backend_address_pool_id"] = *r.Backend_address_pool_id
-}
-if r.Probe_id != nil {
-    config["probe_id"] = *r.Probe_id
-}
-    config["name"] = r.Name
-    config["loadbalancer_id"] = r.Loadbalancer_id
-    config["protocol"] = r.Protocol
-    config["resource_group_name"] = r.Resource_group_name
-    config["frontend_ip_configuration_name"] = r.Frontend_ip_configuration_name
-if r.Frontend_ip_configuration_id != nil {
-    config["frontend_ip_configuration_id"] = *r.Frontend_ip_configuration_id
-}
-if r.Enable_floating_ip != nil {
-    config["enable_floating_ip"] = *r.Enable_floating_ip
-}
-if r.Load_distribution != nil {
-    config["load_distribution"] = *r.Load_distribution
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_lb_ruleUnmapper(state map[string]interface{}) *Azurerm_lb_rule {
-	r := &Azurerm_lb_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_lb_rule_id = &x
-}
-
-if x, ok := state["frontend_ip_configuration_id"]; ok {
-	x := x.(string)
-	r.Frontend_ip_configuration_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["frontend_ip_configuration_name"]; ok {
-	r.Frontend_ip_configuration_name = x.(string)
-}
-
-if x, ok := state["enable_floating_ip"]; ok {
-	x := x.(bool)
-	r.Enable_floating_ip = &x
-}
-
-if x, ok := state["load_distribution"]; ok {
-	x := x.(string)
-	r.Load_distribution = &x
-}
-
-if x, ok := state["probe_id"]; ok {
-	x := x.(string)
-	r.Probe_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["backend_address_pool_id"]; ok {
-	x := x.(string)
-	r.Backend_address_pool_id = &x
-}
-
-if x, ok := state["protocol"]; ok {
-	r.Protocol = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["loadbalancer_id"]; ok {
-	r.Loadbalancer_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_lb_ruleHandler ...
-type Azurerm_lb_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_lb_ruleHandler) Create(desired *Azurerm_lb_rule) (*Azurerm_lb_rule, string, error) {
-	rState := Azurerm_lb_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_lb_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_lb_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_lb_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_lb_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_lb_rule", externalID)
-}
-
-type Azurerm_lb struct {
-     Azurerm_lb_id *string
-     Private_ip_address *string
-     Tags *map[string]string
-     Name string
-     Location string
-     Resource_group_name string
-     Sku *string
-}
-
-
-func Azurerm_lbMapper(r *Azurerm_lb) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Private_ip_address != nil {
-    config["private_ip_address"] = *r.Private_ip_address
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Sku != nil {
-    config["sku"] = *r.Sku
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_lbUnmapper(state map[string]interface{}) *Azurerm_lb {
-	r := &Azurerm_lb{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_lb_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	x := x.(string)
-	r.Sku = &x
-}
-
-if x, ok := state["private_ip_address"]; ok {
-	x := x.(string)
-	r.Private_ip_address = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_lbHandler ...
-type Azurerm_lbHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_lbHandler) Create(desired *Azurerm_lb) (*Azurerm_lb, string, error) {
-	rState := Azurerm_lbMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_lb", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_lb", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_lbUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_lbHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_lb", externalID)
-}
-
-type Azurerm_logic_app_action_http struct {
-     Azurerm_logic_app_action_http_id *string
-     Name string
-     Logic_app_id string
-     Method string
-     Uri string
-     Body *string
-}
-
-
-func Azurerm_logic_app_action_httpMapper(r *Azurerm_logic_app_action_http) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["logic_app_id"] = r.Logic_app_id
-    config["method"] = r.Method
-    config["uri"] = r.Uri
-if r.Body != nil {
-    config["body"] = *r.Body
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_logic_app_action_httpUnmapper(state map[string]interface{}) *Azurerm_logic_app_action_http {
-	r := &Azurerm_logic_app_action_http{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_logic_app_action_http_id = &x
-}
-
-if x, ok := state["uri"]; ok {
-	r.Uri = x.(string)
-}
-
-if x, ok := state["body"]; ok {
-	x := x.(string)
-	r.Body = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["logic_app_id"]; ok {
-	r.Logic_app_id = x.(string)
-}
-
-if x, ok := state["method"]; ok {
-	r.Method = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_logic_app_action_httpHandler ...
-type Azurerm_logic_app_action_httpHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_logic_app_action_httpHandler) Create(desired *Azurerm_logic_app_action_http) (*Azurerm_logic_app_action_http, string, error) {
-	rState := Azurerm_logic_app_action_httpMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_logic_app_action_http", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm_logic_app_action_http, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_http", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_logic_app_action_httpUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_logic_app_action_httpHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_logic_app_action_http", externalID)
-}
-
-type Azurerm_network_security_rule struct {
-     Azurerm_network_security_rule_id *string
-     Network_security_group_name string
-     Destination_address_prefix *string
-     Name string
-     Direction string
-     Destination_port_range *string
-     Protocol string
-     Description *string
-     Source_port_range *string
-     Source_address_prefix *string
-     Access string
-     Resource_group_name string
-}
-
-
-func Azurerm_network_security_ruleMapper(r *Azurerm_network_security_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-    config["protocol"] = r.Protocol
-if r.Source_address_prefix != nil {
-    config["source_address_prefix"] = *r.Source_address_prefix
-}
-    config["access"] = r.Access
-    config["resource_group_name"] = r.Resource_group_name
-if r.Source_port_range != nil {
-    config["source_port_range"] = *r.Source_port_range
-}
-if r.Destination_address_prefix != nil {
-    config["destination_address_prefix"] = *r.Destination_address_prefix
-}
-    config["name"] = r.Name
-    config["network_security_group_name"] = r.Network_security_group_name
-if r.Destination_port_range != nil {
-    config["destination_port_range"] = *r.Destination_port_range
-}
-    config["direction"] = r.Direction
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_security_ruleUnmapper(state map[string]interface{}) *Azurerm_network_security_rule {
-	r := &Azurerm_network_security_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_security_rule_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["source_port_range"]; ok {
-	x := x.(string)
-	r.Source_port_range = &x
-}
-
-if x, ok := state["source_address_prefix"]; ok {
-	x := x.(string)
-	r.Source_address_prefix = &x
-}
-
-if x, ok := state["access"]; ok {
-	r.Access = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network_security_group_name"]; ok {
-	r.Network_security_group_name = x.(string)
-}
-
-if x, ok := state["destination_address_prefix"]; ok {
-	x := x.(string)
-	r.Destination_address_prefix = &x
-}
-
-if x, ok := state["destination_port_range"]; ok {
-	x := x.(string)
-	r.Destination_port_range = &x
-}
-
-if x, ok := state["direction"]; ok {
-	r.Direction = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["protocol"]; ok {
-	r.Protocol = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_network_security_ruleHandler ...
-type Azurerm_network_security_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_security_ruleHandler) Create(desired *Azurerm_network_security_rule) (*Azurerm_network_security_rule, string, error) {
-	rState := Azurerm_network_security_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_security_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm_network_security_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_security_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_security_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_security_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_security_rule", externalID)
-}
-
-type Azurerm_servicebus_subscription struct {
-     Azurerm_servicebus_subscription_id *string
-     Namespace_name string
-     Topic_name string
-     Lock_duration *string
-     Name string
-     Location *string
-     Enable_batched_operations *bool
-     Requires_session *bool
-     Default_message_ttl *string
-     Dead_lettering_on_message_expiration *bool
-     Dead_lettering_on_filter_evaluation_exceptions *bool
-     Resource_group_name string
-     Auto_delete_on_idle *string
-     Forward_to *string
-}
-
-
-func Azurerm_servicebus_subscriptionMapper(r *Azurerm_servicebus_subscription) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.Enable_batched_operations != nil {
-    config["enable_batched_operations"] = *r.Enable_batched_operations
-}
-if r.Requires_session != nil {
-    config["requires_session"] = *r.Requires_session
-}
-if r.Default_message_ttl != nil {
-    config["default_message_ttl"] = *r.Default_message_ttl
-}
-if r.Dead_lettering_on_message_expiration != nil {
-    config["dead_lettering_on_message_expiration"] = *r.Dead_lettering_on_message_expiration
-}
-if r.Dead_lettering_on_filter_evaluation_exceptions != nil {
-    config["dead_lettering_on_filter_evaluation_exceptions"] = *r.Dead_lettering_on_filter_evaluation_exceptions
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Auto_delete_on_idle != nil {
-    config["auto_delete_on_idle"] = *r.Auto_delete_on_idle
-}
-if r.Forward_to != nil {
-    config["forward_to"] = *r.Forward_to
-}
-    config["namespace_name"] = r.Namespace_name
-    config["topic_name"] = r.Topic_name
-if r.Lock_duration != nil {
-    config["lock_duration"] = *r.Lock_duration
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_subscriptionUnmapper(state map[string]interface{}) *Azurerm_servicebus_subscription {
-	r := &Azurerm_servicebus_subscription{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_subscription_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["auto_delete_on_idle"]; ok {
-	x := x.(string)
-	r.Auto_delete_on_idle = &x
-}
-
-if x, ok := state["forward_to"]; ok {
-	x := x.(string)
-	r.Forward_to = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["topic_name"]; ok {
-	r.Topic_name = x.(string)
-}
-
-if x, ok := state["lock_duration"]; ok {
-	x := x.(string)
-	r.Lock_duration = &x
-}
-
-if x, ok := state["requires_session"]; ok {
-	x := x.(bool)
-	r.Requires_session = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["enable_batched_operations"]; ok {
-	x := x.(bool)
-	r.Enable_batched_operations = &x
-}
-
-if x, ok := state["dead_lettering_on_filter_evaluation_exceptions"]; ok {
-	x := x.(bool)
-	r.Dead_lettering_on_filter_evaluation_exceptions = &x
-}
-
-if x, ok := state["default_message_ttl"]; ok {
-	x := x.(string)
-	r.Default_message_ttl = &x
-}
-
-if x, ok := state["dead_lettering_on_message_expiration"]; ok {
-	x := x.(bool)
-	r.Dead_lettering_on_message_expiration = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_subscriptionHandler ...
-type Azurerm_servicebus_subscriptionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_subscriptionHandler) Create(desired *Azurerm_servicebus_subscription) (*Azurerm_servicebus_subscription, string, error) {
-	rState := Azurerm_servicebus_subscriptionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_subscription", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azurerm_servicebus_subscription, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_subscriptionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_subscriptionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_subscription", externalID)
-}
-
-type Azurerm_automation_account struct {
-     Azurerm_automation_account_id *string
-     Tags *map[string]string
-     Dsc_server_endpoint *string
-     Dsc_primary_access_key *string
-     Dsc_secondary_access_key *string
-     Name string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_automation_accountMapper(r *Azurerm_automation_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Dsc_server_endpoint != nil {
-    config["dsc_server_endpoint"] = *r.Dsc_server_endpoint
-}
-if r.Dsc_primary_access_key != nil {
-    config["dsc_primary_access_key"] = *r.Dsc_primary_access_key
-}
-if r.Dsc_secondary_access_key != nil {
-    config["dsc_secondary_access_key"] = *r.Dsc_secondary_access_key
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_automation_accountUnmapper(state map[string]interface{}) *Azurerm_automation_account {
-	r := &Azurerm_automation_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_account_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["dsc_server_endpoint"]; ok {
-	x := x.(string)
-	r.Dsc_server_endpoint = &x
-}
-
-if x, ok := state["dsc_primary_access_key"]; ok {
-	x := x.(string)
-	r.Dsc_primary_access_key = &x
-}
-
-if x, ok := state["dsc_secondary_access_key"]; ok {
-	x := x.(string)
-	r.Dsc_secondary_access_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_automation_accountHandler ...
-type Azurerm_automation_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_automation_accountHandler) Create(desired *Azurerm_automation_account) (*Azurerm_automation_account, string, error) {
-	rState := Azurerm_automation_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_automation_account, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_automation_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_automation_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_automation_account", externalID)
-}
-
-type Azurerm_data_lake_store_file struct {
-     Azurerm_data_lake_store_file_id *string
-     Account_name string
-     Remote_file_path string
-     Local_file_path string
-}
-
-
-func Azurerm_data_lake_store_fileMapper(r *Azurerm_data_lake_store_file) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["account_name"] = r.Account_name
-    config["remote_file_path"] = r.Remote_file_path
-    config["local_file_path"] = r.Local_file_path
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_data_lake_store_fileUnmapper(state map[string]interface{}) *Azurerm_data_lake_store_file {
-	r := &Azurerm_data_lake_store_file{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_data_lake_store_file_id = &x
-}
-
-if x, ok := state["account_name"]; ok {
-	r.Account_name = x.(string)
-}
-
-if x, ok := state["remote_file_path"]; ok {
-	r.Remote_file_path = x.(string)
-}
-
-if x, ok := state["local_file_path"]; ok {
-	r.Local_file_path = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_data_lake_store_fileHandler ...
-type Azurerm_data_lake_store_fileHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_data_lake_store_fileHandler) Create(desired *Azurerm_data_lake_store_file) (*Azurerm_data_lake_store_file, string, error) {
-	rState := Azurerm_data_lake_store_fileMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_data_lake_store_file", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_data_lake_store_file, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_file", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_data_lake_store_fileUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_data_lake_store_fileHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_data_lake_store_file", externalID)
-}
-
-type Azurerm_virtual_network_gateway_connection struct {
-     Azurerm_virtual_network_gateway_connection_id *string
-     Use_policy_based_traffic_selectors *bool
-     Virtual_network_gateway_id string
-     Enable_bgp *bool
-     Express_route_circuit_id *string
-     Peer_virtual_network_gateway_id *string
-     Resource_group_name string
-     Authorization_key *string
-     Local_network_gateway_id *string
-     Shared_key *string
-     Resource_type string
-     Tags *map[string]string
-     Name string
-     Location string
-}
-
-
-func Azurerm_virtual_network_gateway_connectionMapper(r *Azurerm_virtual_network_gateway_connection) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Enable_bgp != nil {
-    config["enable_bgp"] = *r.Enable_bgp
-}
-if r.Use_policy_based_traffic_selectors != nil {
-    config["use_policy_based_traffic_selectors"] = *r.Use_policy_based_traffic_selectors
-}
-    config["virtual_network_gateway_id"] = r.Virtual_network_gateway_id
-if r.Authorization_key != nil {
-    config["authorization_key"] = *r.Authorization_key
-}
-if r.Express_route_circuit_id != nil {
-    config["express_route_circuit_id"] = *r.Express_route_circuit_id
-}
-if r.Peer_virtual_network_gateway_id != nil {
-    config["peer_virtual_network_gateway_id"] = *r.Peer_virtual_network_gateway_id
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Shared_key != nil {
-    config["shared_key"] = *r.Shared_key
-}
-if r.Local_network_gateway_id != nil {
-    config["local_network_gateway_id"] = *r.Local_network_gateway_id
-}
-    config["location"] = r.Location
-    config["resource_type"] = r.Resource_type
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_network_gateway_connectionUnmapper(state map[string]interface{}) *Azurerm_virtual_network_gateway_connection {
-	r := &Azurerm_virtual_network_gateway_connection{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_network_gateway_connection_id = &x
-}
-
-if x, ok := state["authorization_key"]; ok {
-	x := x.(string)
-	r.Authorization_key = &x
-}
-
-if x, ok := state["express_route_circuit_id"]; ok {
-	x := x.(string)
-	r.Express_route_circuit_id = &x
-}
-
-if x, ok := state["peer_virtual_network_gateway_id"]; ok {
-	x := x.(string)
-	r.Peer_virtual_network_gateway_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["shared_key"]; ok {
-	x := x.(string)
-	r.Shared_key = &x
-}
-
-if x, ok := state["local_network_gateway_id"]; ok {
-	x := x.(string)
-	r.Local_network_gateway_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_type"]; ok {
-	r.Resource_type = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["enable_bgp"]; ok {
-	x := x.(bool)
-	r.Enable_bgp = &x
-}
-
-if x, ok := state["use_policy_based_traffic_selectors"]; ok {
-	x := x.(bool)
-	r.Use_policy_based_traffic_selectors = &x
-}
-
-if x, ok := state["virtual_network_gateway_id"]; ok {
-	r.Virtual_network_gateway_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_virtual_network_gateway_connectionHandler ...
-type Azurerm_virtual_network_gateway_connectionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_network_gateway_connectionHandler) Create(desired *Azurerm_virtual_network_gateway_connection) (*Azurerm_virtual_network_gateway_connection, string, error) {
-	rState := Azurerm_virtual_network_gateway_connectionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_network_gateway_connection", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID string) (*Azurerm_virtual_network_gateway_connection, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_network_gateway_connectionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_network_gateway_connectionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
-}
-
-type Azurerm_key_vault_secret struct {
-     Azurerm_key_vault_secret_id *string
-     Name string
-     Vault_uri string
-     Value string
-     Content_type *string
-     Version *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_key_vault_secretMapper(r *Azurerm_key_vault_secret) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["vault_uri"] = r.Vault_uri
-    config["value"] = r.Value
-if r.Content_type != nil {
-    config["content_type"] = *r.Content_type
-}
-if r.Version != nil {
-    config["version"] = *r.Version
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_key_vault_secretUnmapper(state map[string]interface{}) *Azurerm_key_vault_secret {
-	r := &Azurerm_key_vault_secret{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_key_vault_secret_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["vault_uri"]; ok {
-	r.Vault_uri = x.(string)
-}
-
-if x, ok := state["value"]; ok {
-	r.Value = x.(string)
-}
-
-if x, ok := state["content_type"]; ok {
-	x := x.(string)
-	r.Content_type = &x
-}
-
-if x, ok := state["version"]; ok {
-	x := x.(string)
-	r.Version = &x
-}
-	return r
-}
-
-
-// Azurerm_key_vault_secretHandler ...
-type Azurerm_key_vault_secretHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_key_vault_secretHandler) Create(desired *Azurerm_key_vault_secret) (*Azurerm_key_vault_secret, string, error) {
-	rState := Azurerm_key_vault_secretMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_key_vault_secret", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_vault_secret, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_key_vault_secret", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_key_vault_secretUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_key_vault_secretHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_key_vault_secret", externalID)
-}
-
-type Azurerm_monitor_activity_log_alert struct {
-     Azurerm_monitor_activity_log_alert_id *string
-     Description *string
-     Enabled *bool
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-}
-
-
-func Azurerm_monitor_activity_log_alertMapper(r *Azurerm_monitor_activity_log_alert) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_monitor_activity_log_alertUnmapper(state map[string]interface{}) *Azurerm_monitor_activity_log_alert {
-	r := &Azurerm_monitor_activity_log_alert{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_monitor_activity_log_alert_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_monitor_activity_log_alertHandler ...
-type Azurerm_monitor_activity_log_alertHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_monitor_activity_log_alertHandler) Create(desired *Azurerm_monitor_activity_log_alert) (*Azurerm_monitor_activity_log_alert, string, error) {
-	rState := Azurerm_monitor_activity_log_alertMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_monitor_activity_log_alert", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Azurerm_monitor_activity_log_alert, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_monitor_activity_log_alert", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_monitor_activity_log_alertUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_monitor_activity_log_alertHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_monitor_activity_log_alert", externalID)
-}
-
-type Azurerm_redis_cache struct {
-     Azurerm_redis_cache_id *string
-     Tags *map[string]string
-     Location string
-     Sku_name string
-     Subnet_id *string
-     Private_static_ip_address *string
-     Enable_non_ssl_port *bool
-     Hostname *string
-     Primary_access_key *string
-     Secondary_access_key *string
-     Name string
-     Resource_group_name string
-     Family string
-}
-
-
-func Azurerm_redis_cacheMapper(r *Azurerm_redis_cache) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["family"] = r.Family
-    config["name"] = r.Name
-    config["sku_name"] = r.Sku_name
-if r.Subnet_id != nil {
-    config["subnet_id"] = *r.Subnet_id
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["location"] = r.Location
-if r.Private_static_ip_address != nil {
-    config["private_static_ip_address"] = *r.Private_static_ip_address
-}
-if r.Hostname != nil {
-    config["hostname"] = *r.Hostname
-}
-if r.Primary_access_key != nil {
-    config["primary_access_key"] = *r.Primary_access_key
-}
-if r.Secondary_access_key != nil {
-    config["secondary_access_key"] = *r.Secondary_access_key
-}
-if r.Enable_non_ssl_port != nil {
-    config["enable_non_ssl_port"] = *r.Enable_non_ssl_port
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_redis_cacheUnmapper(state map[string]interface{}) *Azurerm_redis_cache {
-	r := &Azurerm_redis_cache{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_redis_cache_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["sku_name"]; ok {
-	r.Sku_name = x.(string)
-}
-
-if x, ok := state["subnet_id"]; ok {
-	x := x.(string)
-	r.Subnet_id = &x
-}
-
-if x, ok := state["private_static_ip_address"]; ok {
-	x := x.(string)
-	r.Private_static_ip_address = &x
-}
-
-if x, ok := state["enable_non_ssl_port"]; ok {
-	x := x.(bool)
-	r.Enable_non_ssl_port = &x
-}
-
-if x, ok := state["hostname"]; ok {
-	x := x.(string)
-	r.Hostname = &x
-}
-
-if x, ok := state["primary_access_key"]; ok {
-	x := x.(string)
-	r.Primary_access_key = &x
-}
-
-if x, ok := state["secondary_access_key"]; ok {
-	x := x.(string)
-	r.Secondary_access_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["family"]; ok {
-	r.Family = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_redis_cacheHandler ...
-type Azurerm_redis_cacheHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_redis_cacheHandler) Create(desired *Azurerm_redis_cache) (*Azurerm_redis_cache, string, error) {
-	rState := Azurerm_redis_cacheMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_redis_cache", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cache, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_redis_cache", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_redis_cacheUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_redis_cacheHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_redis_cache", externalID)
-}
-
-type Azurerm_container_service struct {
-     Azurerm_container_service_id *string
-     Name string
-     Location string
-     Orchestration_platform string
-     Resource_group_name string
-     Tags *map[string]string
-}
-
-
-func Azurerm_container_serviceMapper(r *Azurerm_container_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["orchestration_platform"] = r.Orchestration_platform
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_container_serviceUnmapper(state map[string]interface{}) *Azurerm_container_service {
-	r := &Azurerm_container_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_container_service_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["orchestration_platform"]; ok {
-	r.Orchestration_platform = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_container_serviceHandler ...
-type Azurerm_container_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_container_serviceHandler) Create(desired *Azurerm_container_service) (*Azurerm_container_service, string, error) {
-	rState := Azurerm_container_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_container_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_container_service, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_container_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_container_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_container_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_container_service", externalID)
-}
-
-type Azurerm_key_vault_certificate struct {
-     Azurerm_key_vault_certificate_id *string
-     Tags *map[string]string
-     Vault_uri string
-     Version *string
-     Secret_id *string
-     Certificate_data *string
-     Thumbprint *string
-     Name string
-}
-
-
-func Azurerm_key_vault_certificateMapper(r *Azurerm_key_vault_certificate) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Version != nil {
-    config["version"] = *r.Version
-}
-if r.Secret_id != nil {
-    config["secret_id"] = *r.Secret_id
-}
-if r.Certificate_data != nil {
-    config["certificate_data"] = *r.Certificate_data
-}
-if r.Thumbprint != nil {
-    config["thumbprint"] = *r.Thumbprint
-}
-    config["vault_uri"] = r.Vault_uri
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_key_vault_certificateUnmapper(state map[string]interface{}) *Azurerm_key_vault_certificate {
-	r := &Azurerm_key_vault_certificate{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_key_vault_certificate_id = &x
-}
-
-if x, ok := state["vault_uri"]; ok {
-	r.Vault_uri = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["thumbprint"]; ok {
-	x := x.(string)
-	r.Thumbprint = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["version"]; ok {
-	x := x.(string)
-	r.Version = &x
-}
-
-if x, ok := state["secret_id"]; ok {
-	x := x.(string)
-	r.Secret_id = &x
-}
-
-if x, ok := state["certificate_data"]; ok {
-	x := x.(string)
-	r.Certificate_data = &x
-}
-	return r
-}
-
-
-// Azurerm_key_vault_certificateHandler ...
-type Azurerm_key_vault_certificateHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_key_vault_certificateHandler) Create(desired *Azurerm_key_vault_certificate) (*Azurerm_key_vault_certificate, string, error) {
-	rState := Azurerm_key_vault_certificateMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_key_vault_certificate", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm_key_vault_certificate, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_key_vault_certificate", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_key_vault_certificateUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_key_vault_certificateHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_key_vault_certificate", externalID)
-}
-
-type Azurerm_dns_mx_record struct {
-     Azurerm_dns_mx_record_id *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Zone_name string
-}
-
-
-func Azurerm_dns_mx_recordMapper(r *Azurerm_dns_mx_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["zone_name"] = r.Zone_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_mx_recordUnmapper(state map[string]interface{}) *Azurerm_dns_mx_record {
-	r := &Azurerm_dns_mx_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_mx_record_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dns_mx_recordHandler ...
-type Azurerm_dns_mx_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_mx_recordHandler) Create(desired *Azurerm_dns_mx_record) (*Azurerm_dns_mx_record, string, error) {
-	rState := Azurerm_dns_mx_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_mx_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_mx_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_mx_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_mx_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_mx_record", externalID)
-}
-
-type Azurerm_firewall_application_rule_collection struct {
-     Azurerm_firewall_application_rule_collection_id *string
-     Name string
-     Azure_firewall_name string
-     Resource_group_name string
-     Action string
-}
-
-
-func Azurerm_firewall_application_rule_collectionMapper(r *Azurerm_firewall_application_rule_collection) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["action"] = r.Action
-    config["name"] = r.Name
-    config["azure_firewall_name"] = r.Azure_firewall_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_firewall_application_rule_collectionUnmapper(state map[string]interface{}) *Azurerm_firewall_application_rule_collection {
-	r := &Azurerm_firewall_application_rule_collection{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_firewall_application_rule_collection_id = &x
-}
-
-if x, ok := state["azure_firewall_name"]; ok {
-	r.Azure_firewall_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["action"]; ok {
-	r.Action = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_firewall_application_rule_collectionHandler ...
-type Azurerm_firewall_application_rule_collectionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_firewall_application_rule_collectionHandler) Create(desired *Azurerm_firewall_application_rule_collection) (*Azurerm_firewall_application_rule_collection, string, error) {
-	rState := Azurerm_firewall_application_rule_collectionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_firewall_application_rule_collection", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_application_rule_collection, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_firewall_application_rule_collection", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_firewall_application_rule_collectionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_firewall_application_rule_collectionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_firewall_application_rule_collection", externalID)
-}
-
-type Azurerm_mssql_elasticpool struct {
-     Azurerm_mssql_elasticpool_id *string
-     Tags *map[string]string
-     Name string
-     Zone_redundant *bool
-     Location string
-     Resource_group_name string
-     Server_name string
-}
-
-
-func Azurerm_mssql_elasticpoolMapper(r *Azurerm_mssql_elasticpool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Zone_redundant != nil {
-    config["zone_redundant"] = *r.Zone_redundant
-}
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_mssql_elasticpoolUnmapper(state map[string]interface{}) *Azurerm_mssql_elasticpool {
-	r := &Azurerm_mssql_elasticpool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mssql_elasticpool_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["zone_redundant"]; ok {
-	x := x.(bool)
-	r.Zone_redundant = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_mssql_elasticpoolHandler ...
-type Azurerm_mssql_elasticpoolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_mssql_elasticpoolHandler) Create(desired *Azurerm_mssql_elasticpool) (*Azurerm_mssql_elasticpool, string, error) {
-	rState := Azurerm_mssql_elasticpoolMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mssql_elasticpool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mssql_elasticpool, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mssql_elasticpool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mssql_elasticpoolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_mssql_elasticpoolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mssql_elasticpool", externalID)
-}
-
-type Azurerm_mysql_configuration struct {
-     Azurerm_mysql_configuration_id *string
-     Name string
-     Resource_group_name string
-     Server_name string
-     Value string
-}
-
-
-func Azurerm_mysql_configurationMapper(r *Azurerm_mysql_configuration) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["value"] = r.Value
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_mysql_configurationUnmapper(state map[string]interface{}) *Azurerm_mysql_configuration {
-	r := &Azurerm_mysql_configuration{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mysql_configuration_id = &x
-}
-
-if x, ok := state["value"]; ok {
-	r.Value = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_mysql_configurationHandler ...
-type Azurerm_mysql_configurationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_mysql_configurationHandler) Create(desired *Azurerm_mysql_configuration) (*Azurerm_mysql_configuration, string, error) {
-	rState := Azurerm_mysql_configurationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mysql_configuration", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_mysql_configuration, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mysql_configuration", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mysql_configurationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_mysql_configurationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mysql_configuration", externalID)
-}
-
-type Azurerm_search_service struct {
-     Azurerm_search_service_id *string
-     Name string
-     Location string
-     Sku string
-     Secondary_key *string
-     Resource_group_name string
-     Primary_key *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_search_serviceMapper(r *Azurerm_search_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["sku"] = r.Sku
-if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_search_serviceUnmapper(state map[string]interface{}) *Azurerm_search_service {
-	r := &Azurerm_search_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_search_service_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-	return r
-}
-
-
-// Azurerm_search_serviceHandler ...
-type Azurerm_search_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_search_serviceHandler) Create(desired *Azurerm_search_service) (*Azurerm_search_service, string, error) {
-	rState := Azurerm_search_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_search_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search_service, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_search_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_search_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_search_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_search_service", externalID)
-}
-
-type Azurerm_servicebus_queue_authorization_rule struct {
-     Azurerm_servicebus_queue_authorization_rule_id *string
-     Send *bool
-     Manage *bool
-     Secondary_key *string
-     Secondary_connection_string *string
-     Listen *bool
-     Primary_key *string
-     Primary_connection_string *string
-     Name string
-     Namespace_name string
-     Queue_name string
-     Resource_group_name string
-}
-
-
-func Azurerm_servicebus_queue_authorization_ruleMapper(r *Azurerm_servicebus_queue_authorization_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-    config["name"] = r.Name
-    config["namespace_name"] = r.Namespace_name
-    config["queue_name"] = r.Queue_name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Send != nil {
-    config["send"] = *r.Send
-}
-if r.Manage != nil {
-    config["manage"] = *r.Manage
-}
-if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-if r.Listen != nil {
-    config["listen"] = *r.Listen
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_queue_authorization_ruleUnmapper(state map[string]interface{}) *Azurerm_servicebus_queue_authorization_rule {
-	r := &Azurerm_servicebus_queue_authorization_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_queue_authorization_rule_id = &x
-}
-
-if x, ok := state["manage"]; ok {
-	x := x.(bool)
-	r.Manage = &x
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-
-if x, ok := state["listen"]; ok {
-	x := x.(bool)
-	r.Listen = &x
-}
-
-if x, ok := state["send"]; ok {
-	x := x.(bool)
-	r.Send = &x
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["queue_name"]; ok {
-	r.Queue_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_queue_authorization_ruleHandler ...
-type Azurerm_servicebus_queue_authorization_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Create(desired *Azurerm_servicebus_queue_authorization_rule) (*Azurerm_servicebus_queue_authorization_rule, string, error) {
-	rState := Azurerm_servicebus_queue_authorization_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_queue_authorization_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_queue_authorization_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_queue_authorization_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
-}
-
-type Azurerm_app_service_custom_hostname_binding struct {
-     Azurerm_app_service_custom_hostname_binding_id *string
-     Resource_group_name string
-     App_service_name string
-     Hostname string
-}
-
-
-func Azurerm_app_service_custom_hostname_bindingMapper(r *Azurerm_app_service_custom_hostname_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["hostname"] = r.Hostname
-    config["resource_group_name"] = r.Resource_group_name
-    config["app_service_name"] = r.App_service_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_app_service_custom_hostname_bindingUnmapper(state map[string]interface{}) *Azurerm_app_service_custom_hostname_binding {
-	r := &Azurerm_app_service_custom_hostname_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_app_service_custom_hostname_binding_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["app_service_name"]; ok {
-	r.App_service_name = x.(string)
-}
-
-if x, ok := state["hostname"]; ok {
-	r.Hostname = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_app_service_custom_hostname_bindingHandler ...
-type Azurerm_app_service_custom_hostname_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_app_service_custom_hostname_bindingHandler) Create(desired *Azurerm_app_service_custom_hostname_binding) (*Azurerm_app_service_custom_hostname_binding, string, error) {
-	rState := Azurerm_app_service_custom_hostname_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_app_service_custom_hostname_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID string) (*Azurerm_app_service_custom_hostname_binding, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_app_service_custom_hostname_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_app_service_custom_hostname_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
-}
-
-type Azurerm_dns_caa_record struct {
-     Azurerm_dns_caa_record_id *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Zone_name string
-}
-
-
-func Azurerm_dns_caa_recordMapper(r *Azurerm_dns_caa_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_caa_recordUnmapper(state map[string]interface{}) *Azurerm_dns_caa_record {
-	r := &Azurerm_dns_caa_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_caa_record_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dns_caa_recordHandler ...
-type Azurerm_dns_caa_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_caa_recordHandler) Create(desired *Azurerm_dns_caa_record) (*Azurerm_dns_caa_record, string, error) {
-	rState := Azurerm_dns_caa_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_caa_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_caa_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_caa_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_caa_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_caa_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_caa_record", externalID)
-}
-
-type Azurerm_storage_container struct {
-     Azurerm_storage_container_id *string
-     Container_access_type *string
-     Name string
-     Resource_group_name string
-     Storage_account_name string
-}
-
-
-func Azurerm_storage_containerMapper(r *Azurerm_storage_container) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["storage_account_name"] = r.Storage_account_name
-if r.Container_access_type != nil {
-    config["container_access_type"] = *r.Container_access_type
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_storage_containerUnmapper(state map[string]interface{}) *Azurerm_storage_container {
-	r := &Azurerm_storage_container{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_storage_container_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["storage_account_name"]; ok {
-	r.Storage_account_name = x.(string)
-}
-
-if x, ok := state["container_access_type"]; ok {
-	x := x.(string)
-	r.Container_access_type = &x
-}
-	return r
-}
-
-
-// Azurerm_storage_containerHandler ...
-type Azurerm_storage_containerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_storage_containerHandler) Create(desired *Azurerm_storage_container) (*Azurerm_storage_container, string, error) {
-	rState := Azurerm_storage_containerMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_storage_container", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_storage_container, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_storage_container", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_storage_containerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_storage_containerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_storage_container", externalID)
-}
-
-type Azurerm_virtual_machine_data_disk_attachment struct {
-     Azurerm_virtual_machine_data_disk_attachment_id *string
-     Managed_disk_id string
-     Virtual_machine_id string
-     Caching string
-     Create_option *string
-     Write_accelerator_enabled *bool
-}
-
-
-func Azurerm_virtual_machine_data_disk_attachmentMapper(r *Azurerm_virtual_machine_data_disk_attachment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["managed_disk_id"] = r.Managed_disk_id
-    config["virtual_machine_id"] = r.Virtual_machine_id
-    config["caching"] = r.Caching
-if r.Create_option != nil {
-    config["create_option"] = *r.Create_option
-}
-if r.Write_accelerator_enabled != nil {
-    config["write_accelerator_enabled"] = *r.Write_accelerator_enabled
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_machine_data_disk_attachmentUnmapper(state map[string]interface{}) *Azurerm_virtual_machine_data_disk_attachment {
-	r := &Azurerm_virtual_machine_data_disk_attachment{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_machine_data_disk_attachment_id = &x
-}
-
-if x, ok := state["caching"]; ok {
-	r.Caching = x.(string)
-}
-
-if x, ok := state["create_option"]; ok {
-	x := x.(string)
-	r.Create_option = &x
-}
-
-if x, ok := state["write_accelerator_enabled"]; ok {
-	x := x.(bool)
-	r.Write_accelerator_enabled = &x
-}
-
-if x, ok := state["managed_disk_id"]; ok {
-	r.Managed_disk_id = x.(string)
-}
-
-if x, ok := state["virtual_machine_id"]; ok {
-	r.Virtual_machine_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_virtual_machine_data_disk_attachmentHandler ...
-type Azurerm_virtual_machine_data_disk_attachmentHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Create(desired *Azurerm_virtual_machine_data_disk_attachment) (*Azurerm_virtual_machine_data_disk_attachment, string, error) {
-	rState := Azurerm_virtual_machine_data_disk_attachmentMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_machine_data_disk_attachment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID string) (*Azurerm_virtual_machine_data_disk_attachment, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_machine_data_disk_attachmentUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
-}
-
-type Azurerm_servicebus_subscription_rule struct {
-     Azurerm_servicebus_subscription_rule_id *string
-     Subscription_name string
-     Filter_type string
-     Action *string
-     Sql_filter *string
-     Name string
-     Resource_group_name string
-     Namespace_name string
-     Topic_name string
-}
-
-
-func Azurerm_servicebus_subscription_ruleMapper(r *Azurerm_servicebus_subscription_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["subscription_name"] = r.Subscription_name
-    config["filter_type"] = r.Filter_type
-if r.Action != nil {
-    config["action"] = *r.Action
-}
-    config["topic_name"] = r.Topic_name
-if r.Sql_filter != nil {
-    config["sql_filter"] = *r.Sql_filter
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["namespace_name"] = r.Namespace_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_subscription_ruleUnmapper(state map[string]interface{}) *Azurerm_servicebus_subscription_rule {
-	r := &Azurerm_servicebus_subscription_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_subscription_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["topic_name"]; ok {
-	r.Topic_name = x.(string)
-}
-
-if x, ok := state["sql_filter"]; ok {
-	x := x.(string)
-	r.Sql_filter = &x
-}
-
-if x, ok := state["subscription_name"]; ok {
-	r.Subscription_name = x.(string)
-}
-
-if x, ok := state["filter_type"]; ok {
-	r.Filter_type = x.(string)
-}
-
-if x, ok := state["action"]; ok {
-	x := x.(string)
-	r.Action = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_subscription_ruleHandler ...
-type Azurerm_servicebus_subscription_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_subscription_ruleHandler) Create(desired *Azurerm_servicebus_subscription_rule) (*Azurerm_servicebus_subscription_rule, string, error) {
-	rState := Azurerm_servicebus_subscription_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_subscription_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*Azurerm_servicebus_subscription_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_subscription_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_subscription_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_subscription_rule", externalID)
-}
-
-type Azurerm_sql_firewall_rule struct {
-     Azurerm_sql_firewall_rule_id *string
-     Name string
-     Resource_group_name string
-     Server_name string
-     Start_ip_address string
-     End_ip_address string
-}
-
-
-func Azurerm_sql_firewall_ruleMapper(r *Azurerm_sql_firewall_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["start_ip_address"] = r.Start_ip_address
-    config["end_ip_address"] = r.End_ip_address
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_sql_firewall_ruleUnmapper(state map[string]interface{}) *Azurerm_sql_firewall_rule {
-	r := &Azurerm_sql_firewall_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_sql_firewall_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["start_ip_address"]; ok {
-	r.Start_ip_address = x.(string)
-}
-
-if x, ok := state["end_ip_address"]; ok {
-	r.End_ip_address = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_sql_firewall_ruleHandler ...
-type Azurerm_sql_firewall_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_sql_firewall_ruleHandler) Create(desired *Azurerm_sql_firewall_rule) (*Azurerm_sql_firewall_rule, string, error) {
-	rState := Azurerm_sql_firewall_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_sql_firewall_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql_firewall_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_sql_firewall_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_sql_firewall_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_sql_firewall_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_sql_firewall_rule", externalID)
-}
-
-type Azurerm_automation_runbook struct {
-     Azurerm_automation_runbook_id *string
-     Tags *map[string]string
-     Log_verbose bool
-     Description *string
-     Location string
-     Resource_group_name string
-     Runbook_type string
-     Log_progress bool
-     Content *string
-     Name string
-     Account_name string
-}
-
-
-func Azurerm_automation_runbookMapper(r *Azurerm_automation_runbook) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["log_verbose"] = r.Log_verbose
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["account_name"] = r.Account_name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["runbook_type"] = r.Runbook_type
-    config["log_progress"] = r.Log_progress
-if r.Content != nil {
-    config["content"] = *r.Content
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_automation_runbookUnmapper(state map[string]interface{}) *Azurerm_automation_runbook {
-	r := &Azurerm_automation_runbook{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_runbook_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["account_name"]; ok {
-	r.Account_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["runbook_type"]; ok {
-	r.Runbook_type = x.(string)
-}
-
-if x, ok := state["log_progress"]; ok {
-	r.Log_progress = x.(bool)
-}
-
-if x, ok := state["content"]; ok {
-	x := x.(string)
-	r.Content = &x
-}
-
-if x, ok := state["log_verbose"]; ok {
-	r.Log_verbose = x.(bool)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_automation_runbookHandler ...
-type Azurerm_automation_runbookHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_automation_runbookHandler) Create(desired *Azurerm_automation_runbook) (*Azurerm_automation_runbook, string, error) {
-	rState := Azurerm_automation_runbookMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_runbook", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_automation_runbook, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_runbook", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_automation_runbookUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_automation_runbookHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_automation_runbook", externalID)
-}
-
-type Azurerm_cdn_profile struct {
-     Azurerm_cdn_profile_id *string
-     Name string
-     Location string
-     Resource_group_name string
-     Sku string
-     Tags *map[string]string
-}
-
-
-func Azurerm_cdn_profileMapper(r *Azurerm_cdn_profile) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["sku"] = r.Sku
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_cdn_profileUnmapper(state map[string]interface{}) *Azurerm_cdn_profile {
-	r := &Azurerm_cdn_profile{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_cdn_profile_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
 
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
+type Azurerm_api_management_additional_location_1269 struct {
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Azurerm_api_management_additional_location_1269_id *string `lyra:"ignore"`
 
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
+    Gateway_regional_url *string
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
+    Location string
 
+    Public_ip_addresses *[]string
 
-// Azurerm_cdn_profileHandler ...
-type Azurerm_cdn_profileHandler struct {
-	provider *schema.Provider
 }
 
-// Create ...
-func (h *Azurerm_cdn_profileHandler) Create(desired *Azurerm_cdn_profile) (*Azurerm_cdn_profile, string, error) {
-	rState := Azurerm_cdn_profileMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_cdn_profile", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+type Azurerm_api_management_certificate_1270 struct {
 
-// Read ...
-func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profile, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_cdn_profile", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_cdn_profileUnmapper(actual), nil
-}
+    Azurerm_api_management_certificate_1270_id *string `lyra:"ignore"`
 
-// Delete ...
-func (h *Azurerm_cdn_profileHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_cdn_profile", externalID)
-}
+    Certificate_password string
 
-type Azurerm_dns_ptr_record struct {
-     Azurerm_dns_ptr_record_id *string
-     Resource_group_name string
-     Zone_name string
-     Tags *map[string]string
-     Name string
-}
+    Encoded_certificate string
 
+    Store_name string
 
-func Azurerm_dns_ptr_recordMapper(r *Azurerm_dns_ptr_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
 }
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
 
-func Azurerm_dns_ptr_recordUnmapper(state map[string]interface{}) *Azurerm_dns_ptr_record {
-	r := &Azurerm_dns_ptr_record{}
+type Azurerm_api_management_hostname_configuration_1271_management_1272 struct {
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_ptr_record_id = &x
-}
+    Azurerm_api_management_hostname_configuration_1271_management_1272_id *string `lyra:"ignore"`
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Certificate *string
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Certificate_password *string
 
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
+    Host_name string
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
+    Key_vault_id *string
 
+    Negotiate_client_certificate *bool
 
-// Azurerm_dns_ptr_recordHandler ...
-type Azurerm_dns_ptr_recordHandler struct {
-	provider *schema.Provider
 }
 
-// Create ...
-func (h *Azurerm_dns_ptr_recordHandler) Create(desired *Azurerm_dns_ptr_record) (*Azurerm_dns_ptr_record, string, error) {
-	rState := Azurerm_dns_ptr_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_ptr_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+type Azurerm_api_management_hostname_configuration_1271_portal_1273 struct {
 
-// Read ...
-func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_ptr_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_ptr_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_ptr_recordUnmapper(actual), nil
-}
+    Azurerm_api_management_hostname_configuration_1271_portal_1273_id *string `lyra:"ignore"`
 
-// Delete ...
-func (h *Azurerm_dns_ptr_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_ptr_record", externalID)
-}
+    Certificate *string
 
-type Azurerm_mysql_database struct {
-     Azurerm_mysql_database_id *string
-     Charset string
-     Collation string
-     Name string
-     Resource_group_name string
-     Server_name string
-}
+    Certificate_password *string
 
+    Host_name string
 
-func Azurerm_mysql_databaseMapper(r *Azurerm_mysql_database) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["charset"] = r.Charset
-    config["collation"] = r.Collation
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Key_vault_id *string
 
-func Azurerm_mysql_databaseUnmapper(state map[string]interface{}) *Azurerm_mysql_database {
-	r := &Azurerm_mysql_database{}
+    Negotiate_client_certificate *bool
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mysql_database_id = &x
 }
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+type Azurerm_api_management_hostname_configuration_1271_proxy_1274 struct {
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Azurerm_api_management_hostname_configuration_1271_proxy_1274_id *string `lyra:"ignore"`
 
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
+    Certificate *string
 
-if x, ok := state["charset"]; ok {
-	r.Charset = x.(string)
-}
+    Certificate_password *string
 
-if x, ok := state["collation"]; ok {
-	r.Collation = x.(string)
-}
-	return r
-}
+    Default_ssl_binding *bool
 
+    Host_name string
 
-// Azurerm_mysql_databaseHandler ...
-type Azurerm_mysql_databaseHandler struct {
-	provider *schema.Provider
-}
+    Key_vault_id *string
 
-// Create ...
-func (h *Azurerm_mysql_databaseHandler) Create(desired *Azurerm_mysql_database) (*Azurerm_mysql_database, string, error) {
-	rState := Azurerm_mysql_databaseMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mysql_database", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    Negotiate_client_certificate *bool
 
-// Read ...
-func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_database, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mysql_database", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mysql_databaseUnmapper(actual), nil
 }
 
-// Delete ...
-func (h *Azurerm_mysql_databaseHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mysql_database", externalID)
-}
+type Azurerm_api_management_hostname_configuration_1271_scm_1275 struct {
 
-type Azurerm_policy_assignment struct {
-     Azurerm_policy_assignment_id *string
-     Description *string
-     Policy_definition_id string
-     Scope string
-     Display_name *string
-     Location *string
-     Parameters *string
-     Name string
-}
+    Azurerm_api_management_hostname_configuration_1271_scm_1275_id *string `lyra:"ignore"`
 
+    Certificate *string
 
-func Azurerm_policy_assignmentMapper(r *Azurerm_policy_assignment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["scope"] = r.Scope
-if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.Parameters != nil {
-    config["parameters"] = *r.Parameters
-}
-    config["policy_definition_id"] = r.Policy_definition_id
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Certificate_password *string
 
-func Azurerm_policy_assignmentUnmapper(state map[string]interface{}) *Azurerm_policy_assignment {
-	r := &Azurerm_policy_assignment{}
+    Host_name string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_policy_assignment_id = &x
-}
+    Key_vault_id *string
 
-if x, ok := state["policy_definition_id"]; ok {
-	r.Policy_definition_id = x.(string)
-}
+    Negotiate_client_certificate *bool
 
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
 }
 
-if x, ok := state["parameters"]; ok {
-	x := x.(string)
-	r.Parameters = &x
-}
+type Azurerm_api_management_hostname_configuration_1271 struct {
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Azurerm_api_management_hostname_configuration_1271_id *string `lyra:"ignore"`
 
-if x, ok := state["scope"]; ok {
-	r.Scope = x.(string)
-}
+    Management *Azurerm_api_management_hostname_configuration_1271_management_1272
 
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
+    Portal *Azurerm_api_management_hostname_configuration_1271_portal_1273
 
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-	return r
-}
+    Proxy *Azurerm_api_management_hostname_configuration_1271_proxy_1274
 
+    Scm *Azurerm_api_management_hostname_configuration_1271_scm_1275
 
-// Azurerm_policy_assignmentHandler ...
-type Azurerm_policy_assignmentHandler struct {
-	provider *schema.Provider
 }
 
-// Create ...
-func (h *Azurerm_policy_assignmentHandler) Create(desired *Azurerm_policy_assignment) (*Azurerm_policy_assignment, string, error) {
-	rState := Azurerm_policy_assignmentMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_policy_assignment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+type Azurerm_api_management_identity_1276 struct {
 
-// Read ...
-func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_policy_assignment, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_policy_assignment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_policy_assignmentUnmapper(actual), nil
-}
+    Azurerm_api_management_identity_1276_id *string `lyra:"ignore"`
 
-// Delete ...
-func (h *Azurerm_policy_assignmentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_policy_assignment", externalID)
-}
+    Principal_id *string
 
-type Azurerm_sql_server struct {
-     Azurerm_sql_server_id *string
-     Name string
-     Location string
-     Resource_group_name string
-     Version string
-     Administrator_login string
-     Administrator_login_password string
-     Fully_qualified_domain_name *string
-     Tags *map[string]string
-}
+    Tenant_id *string
 
+    Type string
 
-func Azurerm_sql_serverMapper(r *Azurerm_sql_server) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Fully_qualified_domain_name != nil {
-    config["fully_qualified_domain_name"] = *r.Fully_qualified_domain_name
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
 }
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["version"] = r.Version
-    config["administrator_login"] = r.Administrator_login
-    config["administrator_login_password"] = r.Administrator_login_password
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
 
-func Azurerm_sql_serverUnmapper(state map[string]interface{}) *Azurerm_sql_server {
-	r := &Azurerm_sql_server{}
+type Azurerm_api_management_security_1277 struct {
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_sql_server_id = &x
-}
+    Azurerm_api_management_security_1277_id *string `lyra:"ignore"`
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Disable_backend_ssl30 *bool
 
-if x, ok := state["version"]; ok {
-	r.Version = x.(string)
-}
+    Disable_backend_tls10 *bool
 
-if x, ok := state["administrator_login"]; ok {
-	r.Administrator_login = x.(string)
-}
+    Disable_backend_tls11 *bool
 
-if x, ok := state["administrator_login_password"]; ok {
-	r.Administrator_login_password = x.(string)
-}
+    Disable_frontend_ssl30 *bool
 
-if x, ok := state["fully_qualified_domain_name"]; ok {
-	x := x.(string)
-	r.Fully_qualified_domain_name = &x
-}
+    Disable_frontend_tls10 *bool
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
+    Disable_frontend_tls11 *bool
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Disable_triple_des_chipers *bool
 
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
 }
 
+type Azurerm_api_management_sku_1278 struct {
 
-// Azurerm_sql_serverHandler ...
-type Azurerm_sql_serverHandler struct {
-	provider *schema.Provider
-}
+    Azurerm_api_management_sku_1278_id *string `lyra:"ignore"`
 
-// Create ...
-func (h *Azurerm_sql_serverHandler) Create(desired *Azurerm_sql_server) (*Azurerm_sql_server, string, error) {
-	rState := Azurerm_sql_serverMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_sql_server", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    Capacity int
 
-// Read ...
-func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_sql_server", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_sql_serverUnmapper(actual), nil
-}
+    Name string
 
-// Delete ...
-func (h *Azurerm_sql_serverHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_sql_server", externalID)
 }
 
 type Azurerm_api_management struct {
-     Azurerm_api_management_id *string
-     Tags *map[string]string
-     Portal_url *string
-     Management_api_url *string
-     Name string
-     Publisher_name string
-     Location string
-     Notification_sender_email *string
-     Gateway_regional_url *string
-     Scm_url *string
-     Resource_group_name string
-     Publisher_email string
-     Gateway_url *string
-}
 
+    Azurerm_api_management_id *string `lyra:"ignore"`
 
-func Azurerm_api_managementMapper(r *Azurerm_api_management) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Scm_url != nil {
-    config["scm_url"] = *r.Scm_url
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["publisher_email"] = r.Publisher_email
-if r.Notification_sender_email != nil {
-    config["notification_sender_email"] = *r.Notification_sender_email
-}
-if r.Gateway_regional_url != nil {
-    config["gateway_regional_url"] = *r.Gateway_regional_url
-}
-if r.Gateway_url != nil {
-    config["gateway_url"] = *r.Gateway_url
-}
-if r.Portal_url != nil {
-    config["portal_url"] = *r.Portal_url
-}
-if r.Management_api_url != nil {
-    config["management_api_url"] = *r.Management_api_url
-}
-    config["name"] = r.Name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["location"] = r.Location
-    config["publisher_name"] = r.Publisher_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Additional_location *Azurerm_api_management_additional_location_1269
 
-func Azurerm_api_managementUnmapper(state map[string]interface{}) *Azurerm_api_management {
-	r := &Azurerm_api_management{}
+    Certificate *Azurerm_api_management_certificate_1270
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_api_management_id = &x
-}
+    Gateway_regional_url *string
 
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
+    Gateway_url *string
 
-if x, ok := state["publisher_name"]; ok {
-	r.Publisher_name = x.(string)
-}
+    Hostname_configuration *Azurerm_api_management_hostname_configuration_1271
 
-if x, ok := state["notification_sender_email"]; ok {
-	x := x.(string)
-	r.Notification_sender_email = &x
-}
+    Identity *Azurerm_api_management_identity_1276
 
-if x, ok := state["gateway_regional_url"]; ok {
-	x := x.(string)
-	r.Gateway_regional_url = &x
-}
+    Location string
 
-if x, ok := state["scm_url"]; ok {
-	x := x.(string)
-	r.Scm_url = &x
-}
+    Management_api_url *string
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Name string
 
-if x, ok := state["publisher_email"]; ok {
-	r.Publisher_email = x.(string)
-}
+    Notification_sender_email *string
 
-if x, ok := state["gateway_url"]; ok {
-	x := x.(string)
-	r.Gateway_url = &x
-}
+    Portal_url *string
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
+    Public_ip_addresses *[]string
 
-if x, ok := state["portal_url"]; ok {
-	x := x.(string)
-	r.Portal_url = &x
-}
+    Publisher_email string
 
-if x, ok := state["management_api_url"]; ok {
-	x := x.(string)
-	r.Management_api_url = &x
-}
+    Publisher_name string
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
+    Resource_group_name string
 
+    Scm_url *string
+
+    Security *Azurerm_api_management_security_1277
+
+    Sku Azurerm_api_management_sku_1278
+
+    Tags *map[string]string
+
+}
 
 // Azurerm_api_managementHandler ...
 type Azurerm_api_managementHandler struct {
@@ -11678,8 +587,10 @@ type Azurerm_api_managementHandler struct {
 
 // Create ...
 func (h *Azurerm_api_managementHandler) Create(desired *Azurerm_api_management) (*Azurerm_api_management, string, error) {
-	rState := Azurerm_api_managementMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_api_management", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_api_management", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -11692,11 +603,13 @@ func (h *Azurerm_api_managementHandler) Create(desired *Azurerm_api_management) 
 
 // Read ...
 func (h *Azurerm_api_managementHandler) Read(externalID string) (*Azurerm_api_management, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_api_management", externalID)
+	id, actual, err := bridge.Read(h.provider, "azurerm_api_management", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_api_managementUnmapper(actual), nil
+	x := &Azurerm_api_management{ Azurerm_api_management_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -11704,8007 +617,149 @@ func (h *Azurerm_api_managementHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "azurerm_api_management", externalID)
 }
 
-type Azurerm_application_gateway struct {
-     Azurerm_application_gateway_id *string
-     Tags *map[string]string
-     Name string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_application_gatewayMapper(r *Azurerm_application_gateway) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_application_gatewayUnmapper(state map[string]interface{}) *Azurerm_application_gateway {
-	r := &Azurerm_application_gateway{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_application_gateway_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_application_gatewayHandler ...
-type Azurerm_application_gatewayHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_application_gatewayHandler) Create(desired *Azurerm_application_gateway) (*Azurerm_application_gateway, string, error) {
-	rState := Azurerm_application_gatewayMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_application_gateway", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_application_gateway, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_application_gateway", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_application_gatewayUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_application_gatewayHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_application_gateway", externalID)
-}
-
-type Azurerm_recovery_services_protection_policy_vm struct {
-     Azurerm_recovery_services_protection_policy_vm_id *string
-     Recovery_vault_name string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Timezone *string
-}
-
-
-func Azurerm_recovery_services_protection_policy_vmMapper(r *Azurerm_recovery_services_protection_policy_vm) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["recovery_vault_name"] = r.Recovery_vault_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Timezone != nil {
-    config["timezone"] = *r.Timezone
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_recovery_services_protection_policy_vmUnmapper(state map[string]interface{}) *Azurerm_recovery_services_protection_policy_vm {
-	r := &Azurerm_recovery_services_protection_policy_vm{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_recovery_services_protection_policy_vm_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["timezone"]; ok {
-	x := x.(string)
-	r.Timezone = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["recovery_vault_name"]; ok {
-	r.Recovery_vault_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_recovery_services_protection_policy_vmHandler ...
-type Azurerm_recovery_services_protection_policy_vmHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_recovery_services_protection_policy_vmHandler) Create(desired *Azurerm_recovery_services_protection_policy_vm) (*Azurerm_recovery_services_protection_policy_vm, string, error) {
-	rState := Azurerm_recovery_services_protection_policy_vmMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_recovery_services_protection_policy_vm", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protection_policy_vm, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_recovery_services_protection_policy_vmUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_recovery_services_protection_policy_vmHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
-}
-
-type Azurerm_signalr_service struct {
-     Azurerm_signalr_service_id *string
-     Resource_group_name string
-     Hostname *string
-     Ip_address *string
-     Tags *map[string]string
-     Name string
-     Location string
-}
-
-
-func Azurerm_signalr_serviceMapper(r *Azurerm_signalr_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Ip_address != nil {
-    config["ip_address"] = *r.Ip_address
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Hostname != nil {
-    config["hostname"] = *r.Hostname
-}
-    config["location"] = r.Location
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_signalr_serviceUnmapper(state map[string]interface{}) *Azurerm_signalr_service {
-	r := &Azurerm_signalr_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_signalr_service_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["hostname"]; ok {
-	x := x.(string)
-	r.Hostname = &x
-}
-
-if x, ok := state["ip_address"]; ok {
-	x := x.(string)
-	r.Ip_address = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_signalr_serviceHandler ...
-type Azurerm_signalr_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_signalr_serviceHandler) Create(desired *Azurerm_signalr_service) (*Azurerm_signalr_service, string, error) {
-	rState := Azurerm_signalr_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_signalr_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signalr_service, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_signalr_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_signalr_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_signalr_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_signalr_service", externalID)
-}
-
-type Azurerm_container_group struct {
-     Azurerm_container_group_id *string
-     Fqdn *string
-     Resource_group_name string
-     Os_type string
-     Tags *map[string]string
-     Restart_policy *string
-     Dns_name_label *string
-     Name string
-     Location string
-     Ip_address_type *string
-     Ip_address *string
-}
-
-
-func Azurerm_container_groupMapper(r *Azurerm_container_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-if r.Ip_address_type != nil {
-    config["ip_address_type"] = *r.Ip_address_type
-}
-if r.Ip_address != nil {
-    config["ip_address"] = *r.Ip_address
-}
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["os_type"] = r.Os_type
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Restart_policy != nil {
-    config["restart_policy"] = *r.Restart_policy
-}
-if r.Dns_name_label != nil {
-    config["dns_name_label"] = *r.Dns_name_label
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_container_groupUnmapper(state map[string]interface{}) *Azurerm_container_group {
-	r := &Azurerm_container_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_container_group_id = &x
-}
-
-if x, ok := state["ip_address_type"]; ok {
-	x := x.(string)
-	r.Ip_address_type = &x
-}
-
-if x, ok := state["ip_address"]; ok {
-	x := x.(string)
-	r.Ip_address = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["restart_policy"]; ok {
-	x := x.(string)
-	r.Restart_policy = &x
-}
-
-if x, ok := state["dns_name_label"]; ok {
-	x := x.(string)
-	r.Dns_name_label = &x
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["os_type"]; ok {
-	r.Os_type = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_container_groupHandler ...
-type Azurerm_container_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_container_groupHandler) Create(desired *Azurerm_container_group) (*Azurerm_container_group, string, error) {
-	rState := Azurerm_container_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_container_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_container_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_container_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_container_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_container_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_container_group", externalID)
-}
-
-type Azurerm_logic_app_action_custom struct {
-     Azurerm_logic_app_action_custom_id *string
-     Name string
-     Logic_app_id string
-     Body string
-}
-
-
-func Azurerm_logic_app_action_customMapper(r *Azurerm_logic_app_action_custom) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["logic_app_id"] = r.Logic_app_id
-    config["body"] = r.Body
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_logic_app_action_customUnmapper(state map[string]interface{}) *Azurerm_logic_app_action_custom {
-	r := &Azurerm_logic_app_action_custom{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_logic_app_action_custom_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["logic_app_id"]; ok {
-	r.Logic_app_id = x.(string)
-}
-
-if x, ok := state["body"]; ok {
-	r.Body = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_logic_app_action_customHandler ...
-type Azurerm_logic_app_action_customHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_logic_app_action_customHandler) Create(desired *Azurerm_logic_app_action_custom) (*Azurerm_logic_app_action_custom, string, error) {
-	rState := Azurerm_logic_app_action_customMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_logic_app_action_custom", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azurerm_logic_app_action_custom, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_custom", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_logic_app_action_customUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_logic_app_action_customHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_logic_app_action_custom", externalID)
-}
-
-type Azurerm_notification_hub struct {
-     Azurerm_notification_hub_id *string
-     Name string
-     Namespace_name string
-     Resource_group_name string
-     Location string
-}
-
-
-func Azurerm_notification_hubMapper(r *Azurerm_notification_hub) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-    config["name"] = r.Name
-    config["namespace_name"] = r.Namespace_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_notification_hubUnmapper(state map[string]interface{}) *Azurerm_notification_hub {
-	r := &Azurerm_notification_hub{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_notification_hub_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_notification_hubHandler ...
-type Azurerm_notification_hubHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_notification_hubHandler) Create(desired *Azurerm_notification_hub) (*Azurerm_notification_hub, string, error) {
-	rState := Azurerm_notification_hubMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_notification_hub", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_notification_hub, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_notification_hub", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_notification_hubUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_notification_hubHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_notification_hub", externalID)
-}
-
-type Azurerm_postgresql_database struct {
-     Azurerm_postgresql_database_id *string
-     Charset string
-     Collation string
-     Name string
-     Resource_group_name string
-     Server_name string
-}
-
-
-func Azurerm_postgresql_databaseMapper(r *Azurerm_postgresql_database) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["charset"] = r.Charset
-    config["collation"] = r.Collation
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_postgresql_databaseUnmapper(state map[string]interface{}) *Azurerm_postgresql_database {
-	r := &Azurerm_postgresql_database{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_postgresql_database_id = &x
-}
-
-if x, ok := state["charset"]; ok {
-	r.Charset = x.(string)
-}
-
-if x, ok := state["collation"]; ok {
-	r.Collation = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_postgresql_databaseHandler ...
-type Azurerm_postgresql_databaseHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_postgresql_databaseHandler) Create(desired *Azurerm_postgresql_database) (*Azurerm_postgresql_database, string, error) {
-	rState := Azurerm_postgresql_databaseMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_postgresql_database", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_postgresql_database, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_postgresql_database", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_postgresql_databaseUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_postgresql_databaseHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_postgresql_database", externalID)
-}
-
-type Azurerm_logic_app_trigger_custom struct {
-     Azurerm_logic_app_trigger_custom_id *string
-     Name string
-     Logic_app_id string
-     Body string
-}
-
-
-func Azurerm_logic_app_trigger_customMapper(r *Azurerm_logic_app_trigger_custom) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["logic_app_id"] = r.Logic_app_id
-    config["body"] = r.Body
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_logic_app_trigger_customUnmapper(state map[string]interface{}) *Azurerm_logic_app_trigger_custom {
-	r := &Azurerm_logic_app_trigger_custom{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_logic_app_trigger_custom_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["logic_app_id"]; ok {
-	r.Logic_app_id = x.(string)
-}
-
-if x, ok := state["body"]; ok {
-	r.Body = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_logic_app_trigger_customHandler ...
-type Azurerm_logic_app_trigger_customHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_logic_app_trigger_customHandler) Create(desired *Azurerm_logic_app_trigger_custom) (*Azurerm_logic_app_trigger_custom, string, error) {
-	rState := Azurerm_logic_app_trigger_customMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_logic_app_trigger_custom", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azurerm_logic_app_trigger_custom, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_custom", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_logic_app_trigger_customUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_logic_app_trigger_customHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_custom", externalID)
-}
-
-type Azurerm_management_group struct {
-     Azurerm_management_group_id *string
-     Parent_management_group_id *string
-     Group_id *string
-     Display_name *string
-}
-
-
-func Azurerm_management_groupMapper(r *Azurerm_management_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Group_id != nil {
-    config["group_id"] = *r.Group_id
-}
-if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-if r.Parent_management_group_id != nil {
-    config["parent_management_group_id"] = *r.Parent_management_group_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_management_groupUnmapper(state map[string]interface{}) *Azurerm_management_group {
-	r := &Azurerm_management_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_management_group_id = &x
-}
-
-if x, ok := state["group_id"]; ok {
-	x := x.(string)
-	r.Group_id = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
-
-if x, ok := state["parent_management_group_id"]; ok {
-	x := x.(string)
-	r.Parent_management_group_id = &x
-}
-	return r
-}
-
-
-// Azurerm_management_groupHandler ...
-type Azurerm_management_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_management_groupHandler) Create(desired *Azurerm_management_group) (*Azurerm_management_group, string, error) {
-	rState := Azurerm_management_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_management_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_management_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_management_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_management_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_management_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_management_group", externalID)
-}
-
-type Azurerm_monitor_action_group struct {
-     Azurerm_monitor_action_group_id *string
-     Name string
-     Resource_group_name string
-     Short_name string
-     Enabled *bool
-     Tags *map[string]string
-}
-
-
-func Azurerm_monitor_action_groupMapper(r *Azurerm_monitor_action_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["short_name"] = r.Short_name
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_monitor_action_groupUnmapper(state map[string]interface{}) *Azurerm_monitor_action_group {
-	r := &Azurerm_monitor_action_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_monitor_action_group_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["short_name"]; ok {
-	r.Short_name = x.(string)
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-	return r
-}
-
-
-// Azurerm_monitor_action_groupHandler ...
-type Azurerm_monitor_action_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_monitor_action_groupHandler) Create(desired *Azurerm_monitor_action_group) (*Azurerm_monitor_action_group, string, error) {
-	rState := Azurerm_monitor_action_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_monitor_action_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_monitor_action_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_monitor_action_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_monitor_action_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_monitor_action_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_monitor_action_group", externalID)
-}
-
-type Azurerm_servicebus_namespace_authorization_rule struct {
-     Azurerm_servicebus_namespace_authorization_rule_id *string
-     Manage *bool
-     Primary_key *string
-     Name string
-     Resource_group_name string
-     Secondary_connection_string *string
-     Listen *bool
-     Send *bool
-     Namespace_name string
-     Primary_connection_string *string
-     Secondary_key *string
-}
-
-
-func Azurerm_servicebus_namespace_authorization_ruleMapper(r *Azurerm_servicebus_namespace_authorization_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["namespace_name"] = r.Namespace_name
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-if r.Manage != nil {
-    config["manage"] = *r.Manage
-}
-if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-if r.Listen != nil {
-    config["listen"] = *r.Listen
-}
-if r.Send != nil {
-    config["send"] = *r.Send
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_namespace_authorization_ruleUnmapper(state map[string]interface{}) *Azurerm_servicebus_namespace_authorization_rule {
-	r := &Azurerm_servicebus_namespace_authorization_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_namespace_authorization_rule_id = &x
-}
-
-if x, ok := state["manage"]; ok {
-	x := x.(bool)
-	r.Manage = &x
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-
-if x, ok := state["listen"]; ok {
-	x := x.(bool)
-	r.Listen = &x
-}
-
-if x, ok := state["send"]; ok {
-	x := x.(bool)
-	r.Send = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_namespace_authorization_ruleHandler ...
-type Azurerm_servicebus_namespace_authorization_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Create(desired *Azurerm_servicebus_namespace_authorization_rule) (*Azurerm_servicebus_namespace_authorization_rule, string, error) {
-	rState := Azurerm_servicebus_namespace_authorization_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_namespace_authorization_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_namespace_authorization_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_namespace_authorization_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
-}
-
-type Azurerm_sql_elasticpool struct {
-     Azurerm_sql_elasticpool_id *string
-     Name string
-     Location string
-     Server_name string
-     Edition string
-     Creation_date *string
-     Tags *map[string]string
-     Resource_group_name string
-}
-
-
-func Azurerm_sql_elasticpoolMapper(r *Azurerm_sql_elasticpool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Creation_date != nil {
-    config["creation_date"] = *r.Creation_date
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["server_name"] = r.Server_name
-    config["edition"] = r.Edition
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_sql_elasticpoolUnmapper(state map[string]interface{}) *Azurerm_sql_elasticpool {
-	r := &Azurerm_sql_elasticpool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_sql_elasticpool_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["edition"]; ok {
-	r.Edition = x.(string)
-}
-
-if x, ok := state["creation_date"]; ok {
-	x := x.(string)
-	r.Creation_date = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_sql_elasticpoolHandler ...
-type Azurerm_sql_elasticpoolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_sql_elasticpoolHandler) Create(desired *Azurerm_sql_elasticpool) (*Azurerm_sql_elasticpool, string, error) {
-	rState := Azurerm_sql_elasticpoolMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_sql_elasticpool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_elasticpool, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_sql_elasticpool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_sql_elasticpoolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_sql_elasticpoolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_sql_elasticpool", externalID)
-}
-
-type Azurerm_sql_virtual_network_rule struct {
-     Azurerm_sql_virtual_network_rule_id *string
-     Name string
-     Resource_group_name string
-     Server_name string
-     Subnet_id string
-     Ignore_missing_vnet_service_endpoint *bool
-}
-
-
-func Azurerm_sql_virtual_network_ruleMapper(r *Azurerm_sql_virtual_network_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["subnet_id"] = r.Subnet_id
-if r.Ignore_missing_vnet_service_endpoint != nil {
-    config["ignore_missing_vnet_service_endpoint"] = *r.Ignore_missing_vnet_service_endpoint
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_sql_virtual_network_ruleUnmapper(state map[string]interface{}) *Azurerm_sql_virtual_network_rule {
-	r := &Azurerm_sql_virtual_network_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_sql_virtual_network_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["subnet_id"]; ok {
-	r.Subnet_id = x.(string)
-}
-
-if x, ok := state["ignore_missing_vnet_service_endpoint"]; ok {
-	x := x.(bool)
-	r.Ignore_missing_vnet_service_endpoint = &x
-}
-	return r
-}
-
-
-// Azurerm_sql_virtual_network_ruleHandler ...
-type Azurerm_sql_virtual_network_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_sql_virtual_network_ruleHandler) Create(desired *Azurerm_sql_virtual_network_rule) (*Azurerm_sql_virtual_network_rule, string, error) {
-	rState := Azurerm_sql_virtual_network_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_sql_virtual_network_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_sql_virtual_network_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_sql_virtual_network_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_sql_virtual_network_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_sql_virtual_network_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_sql_virtual_network_rule", externalID)
-}
-
-type Azurerm_virtual_network_gateway struct {
-     Azurerm_virtual_network_gateway_id *string
-     Default_local_network_gateway_id *string
-     Name string
-     Resource_group_name string
-     Resource_type string
-     Vpn_type *string
-     Enable_bgp *bool
-     Sku string
-     Location string
-     Active_active *bool
-     Tags *map[string]string
-}
-
-
-func Azurerm_virtual_network_gatewayMapper(r *Azurerm_virtual_network_gateway) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["location"] = r.Location
-if r.Active_active != nil {
-    config["active_active"] = *r.Active_active
-}
-    config["resource_type"] = r.Resource_type
-if r.Vpn_type != nil {
-    config["vpn_type"] = *r.Vpn_type
-}
-if r.Enable_bgp != nil {
-    config["enable_bgp"] = *r.Enable_bgp
-}
-    config["sku"] = r.Sku
-if r.Default_local_network_gateway_id != nil {
-    config["default_local_network_gateway_id"] = *r.Default_local_network_gateway_id
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_network_gatewayUnmapper(state map[string]interface{}) *Azurerm_virtual_network_gateway {
-	r := &Azurerm_virtual_network_gateway{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_network_gateway_id = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["active_active"]; ok {
-	x := x.(bool)
-	r.Active_active = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["default_local_network_gateway_id"]; ok {
-	x := x.(string)
-	r.Default_local_network_gateway_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["resource_type"]; ok {
-	r.Resource_type = x.(string)
-}
-
-if x, ok := state["vpn_type"]; ok {
-	x := x.(string)
-	r.Vpn_type = &x
-}
-
-if x, ok := state["enable_bgp"]; ok {
-	x := x.(bool)
-	r.Enable_bgp = &x
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_virtual_network_gatewayHandler ...
-type Azurerm_virtual_network_gatewayHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_network_gatewayHandler) Create(desired *Azurerm_virtual_network_gateway) (*Azurerm_virtual_network_gateway, string, error) {
-	rState := Azurerm_virtual_network_gatewayMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_network_gateway", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azurerm_virtual_network_gateway, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_network_gatewayUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_network_gatewayHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway", externalID)
-}
-
-type Azurerm_automation_credential struct {
-     Azurerm_automation_credential_id *string
-     Description *string
-     Name string
-     Resource_group_name string
-     Account_name string
-     Username string
-     Password string
-}
-
-
-func Azurerm_automation_credentialMapper(r *Azurerm_automation_credential) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["account_name"] = r.Account_name
-    config["username"] = r.Username
-    config["password"] = r.Password
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_automation_credentialUnmapper(state map[string]interface{}) *Azurerm_automation_credential {
-	r := &Azurerm_automation_credential{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_credential_id = &x
-}
-
-if x, ok := state["username"]; ok {
-	r.Username = x.(string)
-}
-
-if x, ok := state["password"]; ok {
-	r.Password = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["account_name"]; ok {
-	r.Account_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_automation_credentialHandler ...
-type Azurerm_automation_credentialHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_automation_credentialHandler) Create(desired *Azurerm_automation_credential) (*Azurerm_automation_credential, string, error) {
-	rState := Azurerm_automation_credentialMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_credential", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm_automation_credential, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_credential", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_automation_credentialUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_automation_credentialHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_automation_credential", externalID)
-}
-
-type Azurerm_key_vault struct {
-     Azurerm_key_vault_id *string
-     Tenant_id string
-     Enabled_for_deployment *bool
-     Name string
-     Vault_uri *string
-     Enabled_for_disk_encryption *bool
-     Enabled_for_template_deployment *bool
-     Tags *map[string]string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_key_vaultMapper(r *Azurerm_key_vault) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["tenant_id"] = r.Tenant_id
-if r.Enabled_for_deployment != nil {
-    config["enabled_for_deployment"] = *r.Enabled_for_deployment
-}
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Vault_uri != nil {
-    config["vault_uri"] = *r.Vault_uri
-}
-if r.Enabled_for_disk_encryption != nil {
-    config["enabled_for_disk_encryption"] = *r.Enabled_for_disk_encryption
-}
-if r.Enabled_for_template_deployment != nil {
-    config["enabled_for_template_deployment"] = *r.Enabled_for_template_deployment
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_key_vaultUnmapper(state map[string]interface{}) *Azurerm_key_vault {
-	r := &Azurerm_key_vault{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_key_vault_id = &x
-}
-
-if x, ok := state["tenant_id"]; ok {
-	r.Tenant_id = x.(string)
-}
-
-if x, ok := state["enabled_for_deployment"]; ok {
-	x := x.(bool)
-	r.Enabled_for_deployment = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["vault_uri"]; ok {
-	x := x.(string)
-	r.Vault_uri = &x
-}
-
-if x, ok := state["enabled_for_disk_encryption"]; ok {
-	x := x.(bool)
-	r.Enabled_for_disk_encryption = &x
-}
-
-if x, ok := state["enabled_for_template_deployment"]; ok {
-	x := x.(bool)
-	r.Enabled_for_template_deployment = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_key_vaultHandler ...
-type Azurerm_key_vaultHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_key_vaultHandler) Create(desired *Azurerm_key_vault) (*Azurerm_key_vault, string, error) {
-	rState := Azurerm_key_vaultMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_key_vault", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_key_vault", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_key_vaultUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_key_vaultHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_key_vault", externalID)
-}
-
-type Azurerm_network_interface_backend_address_pool_association struct {
-     Azurerm_network_interface_backend_address_pool_association_id *string
-     Network_interface_id string
-     Ip_configuration_name string
-     Backend_address_pool_id string
-}
-
-
-func Azurerm_network_interface_backend_address_pool_associationMapper(r *Azurerm_network_interface_backend_address_pool_association) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["ip_configuration_name"] = r.Ip_configuration_name
-    config["backend_address_pool_id"] = r.Backend_address_pool_id
-    config["network_interface_id"] = r.Network_interface_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_interface_backend_address_pool_associationUnmapper(state map[string]interface{}) *Azurerm_network_interface_backend_address_pool_association {
-	r := &Azurerm_network_interface_backend_address_pool_association{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_interface_backend_address_pool_association_id = &x
-}
-
-if x, ok := state["backend_address_pool_id"]; ok {
-	r.Backend_address_pool_id = x.(string)
-}
-
-if x, ok := state["network_interface_id"]; ok {
-	r.Network_interface_id = x.(string)
-}
-
-if x, ok := state["ip_configuration_name"]; ok {
-	r.Ip_configuration_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_network_interface_backend_address_pool_associationHandler ...
-type Azurerm_network_interface_backend_address_pool_associationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_backend_address_pool_association) (*Azurerm_network_interface_backend_address_pool_association, string, error) {
-	rState := Azurerm_network_interface_backend_address_pool_associationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_interface_backend_address_pool_association", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_backend_address_pool_association, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_interface_backend_address_pool_associationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
-}
-
-type Azurerm_public_ip struct {
-     Azurerm_public_ip_id *string
-     Resource_group_name string
-     Allocation_method *string
-     Public_ip_address_allocation *string
-     Ip_version *string
-     Location string
-     Fqdn *string
-     Tags *map[string]string
-     Name string
-     Sku *string
-     Domain_name_label *string
-     Ip_address *string
-     Reverse_fqdn *string
-}
-
-
-func Azurerm_public_ipMapper(r *Azurerm_public_ip) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Sku != nil {
-    config["sku"] = *r.Sku
-}
-if r.Domain_name_label != nil {
-    config["domain_name_label"] = *r.Domain_name_label
-}
-if r.Ip_address != nil {
-    config["ip_address"] = *r.Ip_address
-}
-    config["name"] = r.Name
-if r.Reverse_fqdn != nil {
-    config["reverse_fqdn"] = *r.Reverse_fqdn
-}
-if r.Allocation_method != nil {
-    config["allocation_method"] = *r.Allocation_method
-}
-if r.Public_ip_address_allocation != nil {
-    config["public_ip_address_allocation"] = *r.Public_ip_address_allocation
-}
-if r.Ip_version != nil {
-    config["ip_version"] = *r.Ip_version
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["location"] = r.Location
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_public_ipUnmapper(state map[string]interface{}) *Azurerm_public_ip {
-	r := &Azurerm_public_ip{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_public_ip_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["ip_address"]; ok {
-	x := x.(string)
-	r.Ip_address = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	x := x.(string)
-	r.Sku = &x
-}
-
-if x, ok := state["domain_name_label"]; ok {
-	x := x.(string)
-	r.Domain_name_label = &x
-}
-
-if x, ok := state["reverse_fqdn"]; ok {
-	x := x.(string)
-	r.Reverse_fqdn = &x
-}
-
-if x, ok := state["ip_version"]; ok {
-	x := x.(string)
-	r.Ip_version = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["allocation_method"]; ok {
-	x := x.(string)
-	r.Allocation_method = &x
-}
-
-if x, ok := state["public_ip_address_allocation"]; ok {
-	x := x.(string)
-	r.Public_ip_address_allocation = &x
-}
-	return r
-}
-
-
-// Azurerm_public_ipHandler ...
-type Azurerm_public_ipHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_public_ipHandler) Create(desired *Azurerm_public_ip) (*Azurerm_public_ip, string, error) {
-	rState := Azurerm_public_ipMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_public_ip", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_public_ip", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_public_ipUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_public_ipHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_public_ip", externalID)
-}
-
-type Azurerm_relay_namespace struct {
-     Azurerm_relay_namespace_id *string
-     Secondary_key *string
-     Tags *map[string]string
-     Name string
-     Metric_id *string
-     Secondary_connection_string *string
-     Primary_connection_string *string
-     Primary_key *string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_relay_namespaceMapper(r *Azurerm_relay_namespace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-if r.Metric_id != nil {
-    config["metric_id"] = *r.Metric_id
-}
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_relay_namespaceUnmapper(state map[string]interface{}) *Azurerm_relay_namespace {
-	r := &Azurerm_relay_namespace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_relay_namespace_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["metric_id"]; ok {
-	x := x.(string)
-	r.Metric_id = &x
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-	return r
-}
-
-
-// Azurerm_relay_namespaceHandler ...
-type Azurerm_relay_namespaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_relay_namespaceHandler) Create(desired *Azurerm_relay_namespace) (*Azurerm_relay_namespace, string, error) {
-	rState := Azurerm_relay_namespaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_relay_namespace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay_namespace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_relay_namespace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_relay_namespaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_relay_namespaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_relay_namespace", externalID)
-}
-
-type Azurerm_security_center_contact struct {
-     Azurerm_security_center_contact_id *string
-     Email string
-     Phone string
-     Alert_notifications bool
-     Alerts_to_admins bool
-}
-
-
-func Azurerm_security_center_contactMapper(r *Azurerm_security_center_contact) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["phone"] = r.Phone
-    config["alert_notifications"] = r.Alert_notifications
-    config["alerts_to_admins"] = r.Alerts_to_admins
-    config["email"] = r.Email
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_security_center_contactUnmapper(state map[string]interface{}) *Azurerm_security_center_contact {
-	r := &Azurerm_security_center_contact{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_security_center_contact_id = &x
-}
-
-if x, ok := state["alerts_to_admins"]; ok {
-	r.Alerts_to_admins = x.(bool)
-}
-
-if x, ok := state["email"]; ok {
-	r.Email = x.(string)
-}
-
-if x, ok := state["phone"]; ok {
-	r.Phone = x.(string)
-}
-
-if x, ok := state["alert_notifications"]; ok {
-	r.Alert_notifications = x.(bool)
-}
-	return r
-}
-
-
-// Azurerm_security_center_contactHandler ...
-type Azurerm_security_center_contactHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_security_center_contactHandler) Create(desired *Azurerm_security_center_contact) (*Azurerm_security_center_contact, string, error) {
-	rState := Azurerm_security_center_contactMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_security_center_contact", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azurerm_security_center_contact, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_security_center_contact", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_security_center_contactUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_security_center_contactHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_security_center_contact", externalID)
-}
-
-type Azurerm_storage_blob struct {
-     Azurerm_storage_blob_id *string
-     Source *string
-     Source_uri *string
-     Url *string
-     Resource_group_name string
-     Content_type *string
-     Resource_type *string
-     Name string
-     Storage_account_name string
-     Storage_container_name string
-}
-
-
-func Azurerm_storage_blobMapper(r *Azurerm_storage_blob) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["storage_account_name"] = r.Storage_account_name
-    config["storage_container_name"] = r.Storage_container_name
-if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-    config["name"] = r.Name
-if r.Content_type != nil {
-    config["content_type"] = *r.Content_type
-}
-if r.Source != nil {
-    config["source"] = *r.Source
-}
-if r.Source_uri != nil {
-    config["source_uri"] = *r.Source_uri
-}
-if r.Url != nil {
-    config["url"] = *r.Url
-}
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_storage_blobUnmapper(state map[string]interface{}) *Azurerm_storage_blob {
-	r := &Azurerm_storage_blob{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_storage_blob_id = &x
-}
-
-if x, ok := state["url"]; ok {
-	x := x.(string)
-	r.Url = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["content_type"]; ok {
-	x := x.(string)
-	r.Content_type = &x
-}
-
-if x, ok := state["source"]; ok {
-	x := x.(string)
-	r.Source = &x
-}
-
-if x, ok := state["source_uri"]; ok {
-	x := x.(string)
-	r.Source_uri = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["storage_account_name"]; ok {
-	r.Storage_account_name = x.(string)
-}
-
-if x, ok := state["storage_container_name"]; ok {
-	r.Storage_container_name = x.(string)
-}
-
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-	return r
-}
-
-
-// Azurerm_storage_blobHandler ...
-type Azurerm_storage_blobHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_storage_blobHandler) Create(desired *Azurerm_storage_blob) (*Azurerm_storage_blob, string, error) {
-	rState := Azurerm_storage_blobMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_storage_blob", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_blob, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_storage_blob", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_storage_blobUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_storage_blobHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_storage_blob", externalID)
-}
-
-type Azurerm_subnet struct {
-     Azurerm_subnet_id *string
-     Name string
-     Network_security_group_id *string
-     Route_table_id *string
-     Resource_group_name string
-     Virtual_network_name string
-     Address_prefix string
-}
-
-
-func Azurerm_subnetMapper(r *Azurerm_subnet) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["address_prefix"] = r.Address_prefix
-    config["resource_group_name"] = r.Resource_group_name
-    config["virtual_network_name"] = r.Virtual_network_name
-if r.Route_table_id != nil {
-    config["route_table_id"] = *r.Route_table_id
-}
-    config["name"] = r.Name
-if r.Network_security_group_id != nil {
-    config["network_security_group_id"] = *r.Network_security_group_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_subnetUnmapper(state map[string]interface{}) *Azurerm_subnet {
-	r := &Azurerm_subnet{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_subnet_id = &x
-}
-
-if x, ok := state["route_table_id"]; ok {
-	x := x.(string)
-	r.Route_table_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network_security_group_id"]; ok {
-	x := x.(string)
-	r.Network_security_group_id = &x
-}
-
-if x, ok := state["address_prefix"]; ok {
-	r.Address_prefix = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["virtual_network_name"]; ok {
-	r.Virtual_network_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_subnetHandler ...
-type Azurerm_subnetHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_subnetHandler) Create(desired *Azurerm_subnet) (*Azurerm_subnet, string, error) {
-	rState := Azurerm_subnetMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_subnet", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_subnet", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_subnetUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_subnetHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_subnet", externalID)
-}
-
-type Azurerm_availability_set struct {
-     Azurerm_availability_set_id *string
-     Managed *bool
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Location string
-}
-
-
-func Azurerm_availability_setMapper(r *Azurerm_availability_set) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Managed != nil {
-    config["managed"] = *r.Managed
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_availability_setUnmapper(state map[string]interface{}) *Azurerm_availability_set {
-	r := &Azurerm_availability_set{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_availability_set_id = &x
-}
-
-if x, ok := state["managed"]; ok {
-	x := x.(bool)
-	r.Managed = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_availability_setHandler ...
-type Azurerm_availability_setHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_availability_setHandler) Create(desired *Azurerm_availability_set) (*Azurerm_availability_set, string, error) {
-	rState := Azurerm_availability_setMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_availability_set", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_availability_set, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_availability_set", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_availability_setUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_availability_setHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_availability_set", externalID)
-}
-
-type Azurerm_eventhub_namespace struct {
-     Azurerm_eventhub_namespace_id *string
-     Default_primary_key *string
-     Location string
-     Auto_inflate_enabled *bool
-     Kafka_enabled *bool
-     Default_primary_connection_string *string
-     Default_secondary_connection_string *string
-     Default_secondary_key *string
-     Name string
-     Resource_group_name string
-     Sku string
-     Tags *map[string]string
-}
-
-
-func Azurerm_eventhub_namespaceMapper(r *Azurerm_eventhub_namespace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-if r.Auto_inflate_enabled != nil {
-    config["auto_inflate_enabled"] = *r.Auto_inflate_enabled
-}
-if r.Default_primary_key != nil {
-    config["default_primary_key"] = *r.Default_primary_key
-}
-if r.Default_secondary_key != nil {
-    config["default_secondary_key"] = *r.Default_secondary_key
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["sku"] = r.Sku
-if r.Kafka_enabled != nil {
-    config["kafka_enabled"] = *r.Kafka_enabled
-}
-if r.Default_primary_connection_string != nil {
-    config["default_primary_connection_string"] = *r.Default_primary_connection_string
-}
-if r.Default_secondary_connection_string != nil {
-    config["default_secondary_connection_string"] = *r.Default_secondary_connection_string
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_eventhub_namespaceUnmapper(state map[string]interface{}) *Azurerm_eventhub_namespace {
-	r := &Azurerm_eventhub_namespace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_eventhub_namespace_id = &x
-}
-
-if x, ok := state["default_secondary_key"]; ok {
-	x := x.(string)
-	r.Default_secondary_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["sku"]; ok {
-	r.Sku = x.(string)
-}
-
-if x, ok := state["kafka_enabled"]; ok {
-	x := x.(bool)
-	r.Kafka_enabled = &x
-}
-
-if x, ok := state["default_primary_connection_string"]; ok {
-	x := x.(string)
-	r.Default_primary_connection_string = &x
-}
-
-if x, ok := state["default_secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Default_secondary_connection_string = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["auto_inflate_enabled"]; ok {
-	x := x.(bool)
-	r.Auto_inflate_enabled = &x
-}
-
-if x, ok := state["default_primary_key"]; ok {
-	x := x.(string)
-	r.Default_primary_key = &x
-}
-	return r
-}
-
-
-// Azurerm_eventhub_namespaceHandler ...
-type Azurerm_eventhub_namespaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_eventhub_namespaceHandler) Create(desired *Azurerm_eventhub_namespace) (*Azurerm_eventhub_namespace, string, error) {
-	rState := Azurerm_eventhub_namespaceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_eventhub_namespace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_eventhub_namespace, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_eventhub_namespaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_eventhub_namespaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_eventhub_namespace", externalID)
-}
-
-type Azurerm_virtual_network struct {
-     Azurerm_virtual_network_id *string
-     Resource_group_name string
-     Location string
-     Tags *map[string]string
-     Name string
-}
-
-
-func Azurerm_virtual_networkMapper(r *Azurerm_virtual_network) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_networkUnmapper(state map[string]interface{}) *Azurerm_virtual_network {
-	r := &Azurerm_virtual_network{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_network_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_virtual_networkHandler ...
-type Azurerm_virtual_networkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_networkHandler) Create(desired *Azurerm_virtual_network) (*Azurerm_virtual_network, string, error) {
-	rState := Azurerm_virtual_networkMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_network", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtual_network, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_network", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_networkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_networkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_network", externalID)
-}
-
-type Azurerm_route_table struct {
-     Azurerm_route_table_id *string
-     Tags *map[string]string
-     Name string
-     Location string
-     Resource_group_name string
-     Disable_bgp_route_propagation *bool
-}
-
-
-func Azurerm_route_tableMapper(r *Azurerm_route_table) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Disable_bgp_route_propagation != nil {
-    config["disable_bgp_route_propagation"] = *r.Disable_bgp_route_propagation
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_route_tableUnmapper(state map[string]interface{}) *Azurerm_route_table {
-	r := &Azurerm_route_table{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_route_table_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["disable_bgp_route_propagation"]; ok {
-	x := x.(bool)
-	r.Disable_bgp_route_propagation = &x
-}
-	return r
-}
-
-
-// Azurerm_route_tableHandler ...
-type Azurerm_route_tableHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_route_tableHandler) Create(desired *Azurerm_route_table) (*Azurerm_route_table, string, error) {
-	rState := Azurerm_route_tableMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_route_table", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_table, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_route_table", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_route_tableUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_route_tableHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_route_table", externalID)
-}
-
-type Azurerm_eventhub_consumer_group struct {
-     Azurerm_eventhub_consumer_group_id *string
-     Namespace_name string
-     Eventhub_name string
-     Resource_group_name string
-     Location *string
-     User_metadata *string
-     Name string
-}
-
-
-func Azurerm_eventhub_consumer_groupMapper(r *Azurerm_eventhub_consumer_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["eventhub_name"] = r.Eventhub_name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.User_metadata != nil {
-    config["user_metadata"] = *r.User_metadata
-}
-    config["name"] = r.Name
-    config["namespace_name"] = r.Namespace_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_eventhub_consumer_groupUnmapper(state map[string]interface{}) *Azurerm_eventhub_consumer_group {
-	r := &Azurerm_eventhub_consumer_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_eventhub_consumer_group_id = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["eventhub_name"]; ok {
-	r.Eventhub_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["user_metadata"]; ok {
-	x := x.(string)
-	r.User_metadata = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_eventhub_consumer_groupHandler ...
-type Azurerm_eventhub_consumer_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_eventhub_consumer_groupHandler) Create(desired *Azurerm_eventhub_consumer_group) (*Azurerm_eventhub_consumer_group, string, error) {
-	rState := Azurerm_eventhub_consumer_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_eventhub_consumer_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azurerm_eventhub_consumer_group, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_eventhub_consumer_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_eventhub_consumer_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_eventhub_consumer_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_eventhub_consumer_group", externalID)
-}
-
-type Azurerm_postgresql_server struct {
-     Azurerm_postgresql_server_id *string
-     Version string
-     Fqdn *string
-     Resource_group_name string
-     Administrator_login string
-     Administrator_login_password string
-     Ssl_enforcement string
-     Tags *map[string]string
-     Name string
-     Location string
-}
-
-
-func Azurerm_postgresql_serverMapper(r *Azurerm_postgresql_server) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["administrator_login"] = r.Administrator_login
-    config["version"] = r.Version
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-    config["ssl_enforcement"] = r.Ssl_enforcement
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["administrator_login_password"] = r.Administrator_login_password
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_postgresql_serverUnmapper(state map[string]interface{}) *Azurerm_postgresql_server {
-	r := &Azurerm_postgresql_server{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_postgresql_server_id = &x
-}
-
-if x, ok := state["administrator_login_password"]; ok {
-	r.Administrator_login_password = x.(string)
-}
-
-if x, ok := state["ssl_enforcement"]; ok {
-	r.Ssl_enforcement = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["version"]; ok {
-	r.Version = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["administrator_login"]; ok {
-	r.Administrator_login = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_postgresql_serverHandler ...
-type Azurerm_postgresql_serverHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_postgresql_serverHandler) Create(desired *Azurerm_postgresql_server) (*Azurerm_postgresql_server, string, error) {
-	rState := Azurerm_postgresql_serverMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_postgresql_server", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_postgresql_server, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_postgresql_server", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_postgresql_serverUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_postgresql_serverHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_postgresql_server", externalID)
-}
-
-type Azurerm_monitor_log_profile struct {
-     Azurerm_monitor_log_profile_id *string
-     Name string
-     Storage_account_id *string
-     Servicebus_rule_id *string
-}
-
-
-func Azurerm_monitor_log_profileMapper(r *Azurerm_monitor_log_profile) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Storage_account_id != nil {
-    config["storage_account_id"] = *r.Storage_account_id
-}
-if r.Servicebus_rule_id != nil {
-    config["servicebus_rule_id"] = *r.Servicebus_rule_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_monitor_log_profileUnmapper(state map[string]interface{}) *Azurerm_monitor_log_profile {
-	r := &Azurerm_monitor_log_profile{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_monitor_log_profile_id = &x
-}
-
-if x, ok := state["storage_account_id"]; ok {
-	x := x.(string)
-	r.Storage_account_id = &x
-}
-
-if x, ok := state["servicebus_rule_id"]; ok {
-	x := x.(string)
-	r.Servicebus_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_monitor_log_profileHandler ...
-type Azurerm_monitor_log_profileHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_monitor_log_profileHandler) Create(desired *Azurerm_monitor_log_profile) (*Azurerm_monitor_log_profile, string, error) {
-	rState := Azurerm_monitor_log_profileMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_monitor_log_profile", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_monitor_log_profile, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_monitor_log_profile", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_monitor_log_profileUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_monitor_log_profileHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_monitor_log_profile", externalID)
-}
-
-type Azurerm_scheduler_job struct {
-     Azurerm_scheduler_job_id *string
-     Name string
-     Resource_group_name string
-     Job_collection_name string
-     Start_time *string
-     State *string
-}
-
-
-func Azurerm_scheduler_jobMapper(r *Azurerm_scheduler_job) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["job_collection_name"] = r.Job_collection_name
-if r.Start_time != nil {
-    config["start_time"] = *r.Start_time
-}
-if r.State != nil {
-    config["state"] = *r.State
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_scheduler_jobUnmapper(state map[string]interface{}) *Azurerm_scheduler_job {
-	r := &Azurerm_scheduler_job{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_scheduler_job_id = &x
-}
-
-if x, ok := state["job_collection_name"]; ok {
-	r.Job_collection_name = x.(string)
-}
-
-if x, ok := state["start_time"]; ok {
-	x := x.(string)
-	r.Start_time = &x
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_scheduler_jobHandler ...
-type Azurerm_scheduler_jobHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_scheduler_jobHandler) Create(desired *Azurerm_scheduler_job) (*Azurerm_scheduler_job, string, error) {
-	rState := Azurerm_scheduler_jobMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_scheduler_job", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_scheduler_job, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_scheduler_job", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_scheduler_jobUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_scheduler_jobHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_scheduler_job", externalID)
-}
-
-type Azurerm_app_service_plan struct {
-     Azurerm_app_service_plan_id *string
-     Kind *string
-     Name string
-     Resource_group_name string
-     App_service_environment_id *string
-     Per_site_scaling *bool
-     Reserved *bool
-     Tags *map[string]string
-     Location string
-}
-
-
-func Azurerm_app_service_planMapper(r *Azurerm_app_service_plan) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.App_service_environment_id != nil {
-    config["app_service_environment_id"] = *r.App_service_environment_id
-}
-if r.Per_site_scaling != nil {
-    config["per_site_scaling"] = *r.Per_site_scaling
-}
-if r.Reserved != nil {
-    config["reserved"] = *r.Reserved
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Kind != nil {
-    config["kind"] = *r.Kind
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_app_service_planUnmapper(state map[string]interface{}) *Azurerm_app_service_plan {
-	r := &Azurerm_app_service_plan{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_app_service_plan_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["kind"]; ok {
-	x := x.(string)
-	r.Kind = &x
-}
-
-if x, ok := state["per_site_scaling"]; ok {
-	x := x.(bool)
-	r.Per_site_scaling = &x
-}
-
-if x, ok := state["reserved"]; ok {
-	x := x.(bool)
-	r.Reserved = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["app_service_environment_id"]; ok {
-	x := x.(string)
-	r.App_service_environment_id = &x
-}
-	return r
-}
-
-
-// Azurerm_app_service_planHandler ...
-type Azurerm_app_service_planHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_app_service_planHandler) Create(desired *Azurerm_app_service_plan) (*Azurerm_app_service_plan, string, error) {
-	rState := Azurerm_app_service_planMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_app_service_plan", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_service_plan, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_app_service_plan", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_app_service_planUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_app_service_planHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_app_service_plan", externalID)
-}
-
-type Azurerm_managed_disk struct {
-     Azurerm_managed_disk_id *string
-     Source_uri *string
-     Source_resource_id *string
-     Image_reference_id *string
-     Name string
-     Location string
-     Resource_group_name string
-     Storage_account_type string
-     Create_option string
-     Os_type *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_managed_diskMapper(r *Azurerm_managed_disk) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["storage_account_type"] = r.Storage_account_type
-    config["create_option"] = r.Create_option
-if r.Source_uri != nil {
-    config["source_uri"] = *r.Source_uri
-}
-if r.Source_resource_id != nil {
-    config["source_resource_id"] = *r.Source_resource_id
-}
-if r.Image_reference_id != nil {
-    config["image_reference_id"] = *r.Image_reference_id
-}
-if r.Os_type != nil {
-    config["os_type"] = *r.Os_type
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_managed_diskUnmapper(state map[string]interface{}) *Azurerm_managed_disk {
-	r := &Azurerm_managed_disk{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_managed_disk_id = &x
-}
-
-if x, ok := state["create_option"]; ok {
-	r.Create_option = x.(string)
-}
-
-if x, ok := state["source_uri"]; ok {
-	x := x.(string)
-	r.Source_uri = &x
-}
-
-if x, ok := state["source_resource_id"]; ok {
-	x := x.(string)
-	r.Source_resource_id = &x
-}
-
-if x, ok := state["image_reference_id"]; ok {
-	x := x.(string)
-	r.Image_reference_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["storage_account_type"]; ok {
-	r.Storage_account_type = x.(string)
-}
-
-if x, ok := state["os_type"]; ok {
-	x := x.(string)
-	r.Os_type = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_managed_diskHandler ...
-type Azurerm_managed_diskHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_managed_diskHandler) Create(desired *Azurerm_managed_disk) (*Azurerm_managed_disk, string, error) {
-	rState := Azurerm_managed_diskMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_managed_disk", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_disk, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_managed_disk", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_managed_diskUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_managed_diskHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_managed_disk", externalID)
-}
-
-type Azurerm_automation_dsc_configuration struct {
-     Azurerm_automation_dsc_configuration_id *string
-     Content_embedded string
-     Resource_group_name string
-     Location string
-     Log_verbose *bool
-     Description *string
-     State *string
-     Name string
-     Automation_account_name string
-}
-
-
-func Azurerm_automation_dsc_configurationMapper(r *Azurerm_automation_dsc_configuration) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Log_verbose != nil {
-    config["log_verbose"] = *r.Log_verbose
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.State != nil {
-    config["state"] = *r.State
-}
-    config["name"] = r.Name
-    config["automation_account_name"] = r.Automation_account_name
-    config["content_embedded"] = r.Content_embedded
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_automation_dsc_configurationUnmapper(state map[string]interface{}) *Azurerm_automation_dsc_configuration {
-	r := &Azurerm_automation_dsc_configuration{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_dsc_configuration_id = &x
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["automation_account_name"]; ok {
-	r.Automation_account_name = x.(string)
-}
-
-if x, ok := state["content_embedded"]; ok {
-	r.Content_embedded = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["log_verbose"]; ok {
-	x := x.(bool)
-	r.Log_verbose = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-	return r
-}
-
-
-// Azurerm_automation_dsc_configurationHandler ...
-type Azurerm_automation_dsc_configurationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_automation_dsc_configurationHandler) Create(desired *Azurerm_automation_dsc_configuration) (*Azurerm_automation_dsc_configuration, string, error) {
-	rState := Azurerm_automation_dsc_configurationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_dsc_configuration", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*Azurerm_automation_dsc_configuration, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_configuration", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_automation_dsc_configurationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_automation_dsc_configurationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_automation_dsc_configuration", externalID)
-}
-
-type Azurerm_data_lake_analytics_account struct {
-     Azurerm_data_lake_analytics_account_id *string
-     Location string
-     Resource_group_name string
-     Tier *string
-     Default_store_account_name string
-     Tags *map[string]string
-     Name string
-}
-
-
-func Azurerm_data_lake_analytics_accountMapper(r *Azurerm_data_lake_analytics_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tier != nil {
-    config["tier"] = *r.Tier
-}
-    config["default_store_account_name"] = r.Default_store_account_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_data_lake_analytics_accountUnmapper(state map[string]interface{}) *Azurerm_data_lake_analytics_account {
-	r := &Azurerm_data_lake_analytics_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_data_lake_analytics_account_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tier"]; ok {
-	x := x.(string)
-	r.Tier = &x
-}
-
-if x, ok := state["default_store_account_name"]; ok {
-	r.Default_store_account_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_data_lake_analytics_accountHandler ...
-type Azurerm_data_lake_analytics_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_data_lake_analytics_accountHandler) Create(desired *Azurerm_data_lake_analytics_account) (*Azurerm_data_lake_analytics_account, string, error) {
-	rState := Azurerm_data_lake_analytics_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_data_lake_analytics_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*Azurerm_data_lake_analytics_account, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_data_lake_analytics_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_data_lake_analytics_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_account", externalID)
-}
-
-type Azurerm_virtual_machine struct {
-     Azurerm_virtual_machine_id *string
-     Primary_network_interface_id *string
-     Name string
-     Resource_group_name string
-     Delete_os_disk_on_termination *bool
-     Delete_data_disks_on_termination *bool
-     Tags *map[string]string
-     Vm_size string
-     Location string
-     Availability_set_id *string
-     License_type *string
-}
-
-
-func Azurerm_virtual_machineMapper(r *Azurerm_virtual_machine) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Primary_network_interface_id != nil {
-    config["primary_network_interface_id"] = *r.Primary_network_interface_id
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Delete_os_disk_on_termination != nil {
-    config["delete_os_disk_on_termination"] = *r.Delete_os_disk_on_termination
-}
-if r.Delete_data_disks_on_termination != nil {
-    config["delete_data_disks_on_termination"] = *r.Delete_data_disks_on_termination
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["vm_size"] = r.Vm_size
-    config["location"] = r.Location
-if r.Availability_set_id != nil {
-    config["availability_set_id"] = *r.Availability_set_id
-}
-if r.License_type != nil {
-    config["license_type"] = *r.License_type
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_machineUnmapper(state map[string]interface{}) *Azurerm_virtual_machine {
-	r := &Azurerm_virtual_machine{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_machine_id = &x
-}
-
-if x, ok := state["delete_os_disk_on_termination"]; ok {
-	x := x.(bool)
-	r.Delete_os_disk_on_termination = &x
-}
-
-if x, ok := state["delete_data_disks_on_termination"]; ok {
-	x := x.(bool)
-	r.Delete_data_disks_on_termination = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["availability_set_id"]; ok {
-	x := x.(string)
-	r.Availability_set_id = &x
-}
-
-if x, ok := state["vm_size"]; ok {
-	r.Vm_size = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["license_type"]; ok {
-	x := x.(string)
-	r.License_type = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["primary_network_interface_id"]; ok {
-	x := x.(string)
-	r.Primary_network_interface_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_virtual_machineHandler ...
-type Azurerm_virtual_machineHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_machineHandler) Create(desired *Azurerm_virtual_machine) (*Azurerm_virtual_machine, string, error) {
-	rState := Azurerm_virtual_machineMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_machine", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtual_machine, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_machine", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_machineUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_machineHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_machine", externalID)
-}
-
-type Azurerm_batch_account struct {
-     Azurerm_batch_account_id *string
-     Storage_account_id *string
-     Pool_allocation_mode *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Location string
-}
-
-
-func Azurerm_batch_accountMapper(r *Azurerm_batch_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Pool_allocation_mode != nil {
-    config["pool_allocation_mode"] = *r.Pool_allocation_mode
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-if r.Storage_account_id != nil {
-    config["storage_account_id"] = *r.Storage_account_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_batch_accountUnmapper(state map[string]interface{}) *Azurerm_batch_account {
-	r := &Azurerm_batch_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_batch_account_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["storage_account_id"]; ok {
-	x := x.(string)
-	r.Storage_account_id = &x
-}
-
-if x, ok := state["pool_allocation_mode"]; ok {
-	x := x.(string)
-	r.Pool_allocation_mode = &x
-}
-	return r
-}
-
-
-// Azurerm_batch_accountHandler ...
-type Azurerm_batch_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_batch_accountHandler) Create(desired *Azurerm_batch_account) (*Azurerm_batch_account, string, error) {
-	rState := Azurerm_batch_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_batch_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_account, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_batch_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_batch_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_batch_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_batch_account", externalID)
-}
-
-type Azurerm_cdn_endpoint struct {
-     Azurerm_cdn_endpoint_id *string
-     Location string
-     Origin_host_header *string
-     Probe_path *string
-     Optimization_type *string
-     Host_name *string
-     Is_http_allowed *bool
-     Querystring_caching_behaviour *string
-     Is_compression_enabled *bool
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Profile_name string
-     Is_https_allowed *bool
-     Origin_path *string
-}
-
-
-func Azurerm_cdn_endpointMapper(r *Azurerm_cdn_endpoint) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["profile_name"] = r.Profile_name
-if r.Is_https_allowed != nil {
-    config["is_https_allowed"] = *r.Is_https_allowed
-}
-if r.Origin_path != nil {
-    config["origin_path"] = *r.Origin_path
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-if r.Origin_host_header != nil {
-    config["origin_host_header"] = *r.Origin_host_header
-}
-if r.Probe_path != nil {
-    config["probe_path"] = *r.Probe_path
-}
-if r.Optimization_type != nil {
-    config["optimization_type"] = *r.Optimization_type
-}
-if r.Host_name != nil {
-    config["host_name"] = *r.Host_name
-}
-    config["location"] = r.Location
-if r.Querystring_caching_behaviour != nil {
-    config["querystring_caching_behaviour"] = *r.Querystring_caching_behaviour
-}
-if r.Is_compression_enabled != nil {
-    config["is_compression_enabled"] = *r.Is_compression_enabled
-}
-if r.Is_http_allowed != nil {
-    config["is_http_allowed"] = *r.Is_http_allowed
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_cdn_endpointUnmapper(state map[string]interface{}) *Azurerm_cdn_endpoint {
-	r := &Azurerm_cdn_endpoint{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_cdn_endpoint_id = &x
-}
-
-if x, ok := state["optimization_type"]; ok {
-	x := x.(string)
-	r.Optimization_type = &x
-}
-
-if x, ok := state["host_name"]; ok {
-	x := x.(string)
-	r.Host_name = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["origin_host_header"]; ok {
-	x := x.(string)
-	r.Origin_host_header = &x
-}
-
-if x, ok := state["probe_path"]; ok {
-	x := x.(string)
-	r.Probe_path = &x
-}
-
-if x, ok := state["is_compression_enabled"]; ok {
-	x := x.(bool)
-	r.Is_compression_enabled = &x
-}
-
-if x, ok := state["is_http_allowed"]; ok {
-	x := x.(bool)
-	r.Is_http_allowed = &x
-}
-
-if x, ok := state["querystring_caching_behaviour"]; ok {
-	x := x.(string)
-	r.Querystring_caching_behaviour = &x
-}
-
-if x, ok := state["is_https_allowed"]; ok {
-	x := x.(bool)
-	r.Is_https_allowed = &x
-}
-
-if x, ok := state["origin_path"]; ok {
-	x := x.(string)
-	r.Origin_path = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["profile_name"]; ok {
-	r.Profile_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_cdn_endpointHandler ...
-type Azurerm_cdn_endpointHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_cdn_endpointHandler) Create(desired *Azurerm_cdn_endpoint) (*Azurerm_cdn_endpoint, string, error) {
-	rState := Azurerm_cdn_endpointMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_cdn_endpoint", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endpoint, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_cdn_endpoint", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_cdn_endpointUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_cdn_endpointHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_cdn_endpoint", externalID)
-}
-
-type Azurerm_kubernetes_cluster struct {
-     Azurerm_kubernetes_cluster_id *string
-     Kubernetes_version *string
-     Tags *map[string]string
-     Kube_admin_config_raw *string
-     Kube_config_raw *string
-     Resource_group_name string
-     Name string
-     Location string
-     Dns_prefix string
-     Fqdn *string
-     Node_resource_group *string
-}
-
-
-func Azurerm_kubernetes_clusterMapper(r *Azurerm_kubernetes_cluster) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-if r.Node_resource_group != nil {
-    config["node_resource_group"] = *r.Node_resource_group
-}
-    config["location"] = r.Location
-    config["dns_prefix"] = r.Dns_prefix
-if r.Kube_admin_config_raw != nil {
-    config["kube_admin_config_raw"] = *r.Kube_admin_config_raw
-}
-if r.Kube_config_raw != nil {
-    config["kube_config_raw"] = *r.Kube_config_raw
-}
-if r.Kubernetes_version != nil {
-    config["kubernetes_version"] = *r.Kubernetes_version
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_kubernetes_clusterUnmapper(state map[string]interface{}) *Azurerm_kubernetes_cluster {
-	r := &Azurerm_kubernetes_cluster{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_kubernetes_cluster_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["dns_prefix"]; ok {
-	r.Dns_prefix = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["node_resource_group"]; ok {
-	x := x.(string)
-	r.Node_resource_group = &x
-}
-
-if x, ok := state["kubernetes_version"]; ok {
-	x := x.(string)
-	r.Kubernetes_version = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["kube_admin_config_raw"]; ok {
-	x := x.(string)
-	r.Kube_admin_config_raw = &x
-}
-
-if x, ok := state["kube_config_raw"]; ok {
-	x := x.(string)
-	r.Kube_config_raw = &x
-}
-	return r
-}
-
-
-// Azurerm_kubernetes_clusterHandler ...
-type Azurerm_kubernetes_clusterHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_kubernetes_clusterHandler) Create(desired *Azurerm_kubernetes_cluster) (*Azurerm_kubernetes_cluster, string, error) {
-	rState := Azurerm_kubernetes_clusterMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_kubernetes_cluster", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_kubernetes_cluster, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_kubernetes_cluster", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_kubernetes_clusterUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_kubernetes_clusterHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_kubernetes_cluster", externalID)
-}
-
-type Azurerm_logic_app_trigger_http_request struct {
-     Azurerm_logic_app_trigger_http_request_id *string
-     Name string
-     Logic_app_id string
-     Schema string
-     Method *string
-     Relative_path *string
-}
-
-
-func Azurerm_logic_app_trigger_http_requestMapper(r *Azurerm_logic_app_trigger_http_request) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["logic_app_id"] = r.Logic_app_id
-    config["schema"] = r.Schema
-if r.Method != nil {
-    config["method"] = *r.Method
-}
-if r.Relative_path != nil {
-    config["relative_path"] = *r.Relative_path
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_logic_app_trigger_http_requestUnmapper(state map[string]interface{}) *Azurerm_logic_app_trigger_http_request {
-	r := &Azurerm_logic_app_trigger_http_request{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_logic_app_trigger_http_request_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["logic_app_id"]; ok {
-	r.Logic_app_id = x.(string)
-}
-
-if x, ok := state["schema"]; ok {
-	r.Schema = x.(string)
-}
-
-if x, ok := state["method"]; ok {
-	x := x.(string)
-	r.Method = &x
-}
-
-if x, ok := state["relative_path"]; ok {
-	x := x.(string)
-	r.Relative_path = &x
-}
-	return r
-}
-
-
-// Azurerm_logic_app_trigger_http_requestHandler ...
-type Azurerm_logic_app_trigger_http_requestHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_logic_app_trigger_http_requestHandler) Create(desired *Azurerm_logic_app_trigger_http_request) (*Azurerm_logic_app_trigger_http_request, string, error) {
-	rState := Azurerm_logic_app_trigger_http_requestMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_logic_app_trigger_http_request", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) (*Azurerm_logic_app_trigger_http_request, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_logic_app_trigger_http_requestUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_logic_app_trigger_http_requestHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
-}
-
-type Azurerm_redis_firewall_rule struct {
-     Azurerm_redis_firewall_rule_id *string
-     Name string
-     Redis_cache_name string
-     Resource_group_name string
-     Start_ip string
-     End_ip string
-}
-
-
-func Azurerm_redis_firewall_ruleMapper(r *Azurerm_redis_firewall_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["redis_cache_name"] = r.Redis_cache_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["start_ip"] = r.Start_ip
-    config["end_ip"] = r.End_ip
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_redis_firewall_ruleUnmapper(state map[string]interface{}) *Azurerm_redis_firewall_rule {
-	r := &Azurerm_redis_firewall_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_redis_firewall_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["redis_cache_name"]; ok {
-	r.Redis_cache_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["start_ip"]; ok {
-	r.Start_ip = x.(string)
-}
-
-if x, ok := state["end_ip"]; ok {
-	r.End_ip = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_redis_firewall_ruleHandler ...
-type Azurerm_redis_firewall_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_redis_firewall_ruleHandler) Create(desired *Azurerm_redis_firewall_rule) (*Azurerm_redis_firewall_rule, string, error) {
-	rState := Azurerm_redis_firewall_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_redis_firewall_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_redis_firewall_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_redis_firewall_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_redis_firewall_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_redis_firewall_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_redis_firewall_rule", externalID)
-}
-
-type Azurerm_shared_image_gallery struct {
-     Azurerm_shared_image_gallery_id *string
-     Name string
-     Resource_group_name string
-     Location string
-     Description *string
-     Tags *map[string]string
-     Unique_name *string
-}
-
-
-func Azurerm_shared_image_galleryMapper(r *Azurerm_shared_image_gallery) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["location"] = r.Location
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Unique_name != nil {
-    config["unique_name"] = *r.Unique_name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_shared_image_galleryUnmapper(state map[string]interface{}) *Azurerm_shared_image_gallery {
-	r := &Azurerm_shared_image_gallery{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_shared_image_gallery_id = &x
-}
-
-if x, ok := state["unique_name"]; ok {
-	x := x.(string)
-	r.Unique_name = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_shared_image_galleryHandler ...
-type Azurerm_shared_image_galleryHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_shared_image_galleryHandler) Create(desired *Azurerm_shared_image_gallery) (*Azurerm_shared_image_gallery, string, error) {
-	rState := Azurerm_shared_image_galleryMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_shared_image_gallery", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_shared_image_gallery, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_shared_image_gallery", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_shared_image_galleryUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_shared_image_galleryHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_shared_image_gallery", externalID)
-}
-
-type Azurerm_subnet_network_security_group_association struct {
-     Azurerm_subnet_network_security_group_association_id *string
-     Subnet_id string
-     Network_security_group_id string
-}
-
-
-func Azurerm_subnet_network_security_group_associationMapper(r *Azurerm_subnet_network_security_group_association) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["subnet_id"] = r.Subnet_id
-    config["network_security_group_id"] = r.Network_security_group_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_subnet_network_security_group_associationUnmapper(state map[string]interface{}) *Azurerm_subnet_network_security_group_association {
-	r := &Azurerm_subnet_network_security_group_association{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_subnet_network_security_group_association_id = &x
-}
-
-if x, ok := state["subnet_id"]; ok {
-	r.Subnet_id = x.(string)
-}
-
-if x, ok := state["network_security_group_id"]; ok {
-	r.Network_security_group_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_subnet_network_security_group_associationHandler ...
-type Azurerm_subnet_network_security_group_associationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_subnet_network_security_group_associationHandler) Create(desired *Azurerm_subnet_network_security_group_association) (*Azurerm_subnet_network_security_group_association, string, error) {
-	rState := Azurerm_subnet_network_security_group_associationMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_subnet_network_security_group_association", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_subnet_network_security_group_associationHandler) Read(externalID string) (*Azurerm_subnet_network_security_group_association, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_subnet_network_security_group_association", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_subnet_network_security_group_associationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_subnet_network_security_group_associationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_subnet_network_security_group_association", externalID)
-}
-
-type Azurerm_template_deployment struct {
-     Azurerm_template_deployment_id *string
-     Parameters_body *string
-     Deployment_mode string
-     Name string
-     Resource_group_name string
-     Template_body *string
-}
-
-
-func Azurerm_template_deploymentMapper(r *Azurerm_template_deployment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Template_body != nil {
-    config["template_body"] = *r.Template_body
-}
-if r.Parameters_body != nil {
-    config["parameters_body"] = *r.Parameters_body
-}
-    config["deployment_mode"] = r.Deployment_mode
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_template_deploymentUnmapper(state map[string]interface{}) *Azurerm_template_deployment {
-	r := &Azurerm_template_deployment{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_template_deployment_id = &x
-}
-
-if x, ok := state["parameters_body"]; ok {
-	x := x.(string)
-	r.Parameters_body = &x
-}
-
-if x, ok := state["deployment_mode"]; ok {
-	r.Deployment_mode = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["template_body"]; ok {
-	x := x.(string)
-	r.Template_body = &x
-}
-	return r
-}
-
-
-// Azurerm_template_deploymentHandler ...
-type Azurerm_template_deploymentHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_template_deploymentHandler) Create(desired *Azurerm_template_deployment) (*Azurerm_template_deployment, string, error) {
-	rState := Azurerm_template_deploymentMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_template_deployment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_template_deployment, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_template_deployment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_template_deploymentUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_template_deploymentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_template_deployment", externalID)
-}
-
-type Azurerm_eventhub_authorization_rule struct {
-     Azurerm_eventhub_authorization_rule_id *string
-     Listen *bool
-     Primary_connection_string *string
-     Name string
-     Resource_group_name string
-     Location *string
-     Send *bool
-     Manage *bool
-     Primary_key *string
-     Secondary_key *string
-     Namespace_name string
-     Eventhub_name string
-     Secondary_connection_string *string
-}
-
-
-func Azurerm_eventhub_authorization_ruleMapper(r *Azurerm_eventhub_authorization_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["eventhub_name"] = r.Eventhub_name
-if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-if r.Send != nil {
-    config["send"] = *r.Send
-}
-if r.Manage != nil {
-    config["manage"] = *r.Manage
-}
-if r.Primary_key != nil {
-    config["primary_key"] = *r.Primary_key
-}
-if r.Secondary_key != nil {
-    config["secondary_key"] = *r.Secondary_key
-}
-    config["namespace_name"] = r.Namespace_name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.Listen != nil {
-    config["listen"] = *r.Listen
-}
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_eventhub_authorization_ruleUnmapper(state map[string]interface{}) *Azurerm_eventhub_authorization_rule {
-	r := &Azurerm_eventhub_authorization_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_eventhub_authorization_rule_id = &x
-}
-
-if x, ok := state["secondary_key"]; ok {
-	x := x.(string)
-	r.Secondary_key = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["eventhub_name"]; ok {
-	r.Eventhub_name = x.(string)
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-
-if x, ok := state["send"]; ok {
-	x := x.(bool)
-	r.Send = &x
-}
-
-if x, ok := state["manage"]; ok {
-	x := x.(bool)
-	r.Manage = &x
-}
-
-if x, ok := state["primary_key"]; ok {
-	x := x.(string)
-	r.Primary_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["listen"]; ok {
-	x := x.(bool)
-	r.Listen = &x
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-	return r
-}
-
-
-// Azurerm_eventhub_authorization_ruleHandler ...
-type Azurerm_eventhub_authorization_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_eventhub_authorization_ruleHandler) Create(desired *Azurerm_eventhub_authorization_rule) (*Azurerm_eventhub_authorization_rule, string, error) {
-	rState := Azurerm_eventhub_authorization_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_eventhub_authorization_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_authorization_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_eventhub_authorization_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_eventhub_authorization_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_eventhub_authorization_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_eventhub_authorization_rule", externalID)
-}
-
-type Azurerm_key_vault_key struct {
-     Azurerm_key_vault_key_id *string
-     Version *string
-     N *string
-     E *string
-     Tags *map[string]string
-     Vault_uri string
-     Key_type string
-     Name string
-}
-
-
-func Azurerm_key_vault_keyMapper(r *Azurerm_key_vault_key) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["vault_uri"] = r.Vault_uri
-if r.Version != nil {
-    config["version"] = *r.Version
-}
-if r.N != nil {
-    config["n"] = *r.N
-}
-if r.E != nil {
-    config["e"] = *r.E
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["key_type"] = r.Key_type
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_key_vault_keyUnmapper(state map[string]interface{}) *Azurerm_key_vault_key {
-	r := &Azurerm_key_vault_key{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_key_vault_key_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["key_type"]; ok {
-	r.Key_type = x.(string)
-}
-
-if x, ok := state["version"]; ok {
-	x := x.(string)
-	r.Version = &x
-}
-
-if x, ok := state["n"]; ok {
-	x := x.(string)
-	r.N = &x
-}
-
-if x, ok := state["e"]; ok {
-	x := x.(string)
-	r.E = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["vault_uri"]; ok {
-	r.Vault_uri = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_key_vault_keyHandler ...
-type Azurerm_key_vault_keyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_key_vault_keyHandler) Create(desired *Azurerm_key_vault_key) (*Azurerm_key_vault_key, string, error) {
-	rState := Azurerm_key_vault_keyMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_key_vault_key", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vault_key, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_key_vault_key", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_key_vault_keyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_key_vault_keyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_key_vault_key", externalID)
-}
-
-type Azurerm_shared_image_version struct {
-     Azurerm_shared_image_version_id *string
-     Exclude_from_latest *bool
-     Name string
-     Image_name string
-     Location string
-     Gallery_name string
-     Resource_group_name string
-     Managed_image_id string
-     Tags *map[string]string
-}
-
-
-func Azurerm_shared_image_versionMapper(r *Azurerm_shared_image_version) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Exclude_from_latest != nil {
-    config["exclude_from_latest"] = *r.Exclude_from_latest
-}
-    config["name"] = r.Name
-    config["image_name"] = r.Image_name
-    config["location"] = r.Location
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["gallery_name"] = r.Gallery_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["managed_image_id"] = r.Managed_image_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_shared_image_versionUnmapper(state map[string]interface{}) *Azurerm_shared_image_version {
-	r := &Azurerm_shared_image_version{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_shared_image_version_id = &x
-}
-
-if x, ok := state["exclude_from_latest"]; ok {
-	x := x.(bool)
-	r.Exclude_from_latest = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["image_name"]; ok {
-	r.Image_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["gallery_name"]; ok {
-	r.Gallery_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["managed_image_id"]; ok {
-	r.Managed_image_id = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_shared_image_versionHandler ...
-type Azurerm_shared_image_versionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_shared_image_versionHandler) Create(desired *Azurerm_shared_image_version) (*Azurerm_shared_image_version, string, error) {
-	rState := Azurerm_shared_image_versionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_shared_image_version", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_shared_image_version, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_shared_image_version", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_shared_image_versionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_shared_image_versionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_shared_image_version", externalID)
-}
-
-type Azurerm_iothub struct {
-     Azurerm_iothub_id *string
-     Name string
-     Resource_type *string
-     Hostname *string
-     Event_hub_operations_endpoint *string
-     Event_hub_events_path *string
-     Event_hub_operations_path *string
-     Tags *map[string]string
-     Resource_group_name string
-     Event_hub_events_endpoint *string
-     Location string
-}
-
-
-func Azurerm_iothubMapper(r *Azurerm_iothub) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Event_hub_operations_path != nil {
-    config["event_hub_operations_path"] = *r.Event_hub_operations_path
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-if r.Hostname != nil {
-    config["hostname"] = *r.Hostname
-}
-if r.Event_hub_operations_endpoint != nil {
-    config["event_hub_operations_endpoint"] = *r.Event_hub_operations_endpoint
-}
-if r.Event_hub_events_path != nil {
-    config["event_hub_events_path"] = *r.Event_hub_events_path
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Event_hub_events_endpoint != nil {
-    config["event_hub_events_endpoint"] = *r.Event_hub_events_endpoint
-}
-    config["location"] = r.Location
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_iothubUnmapper(state map[string]interface{}) *Azurerm_iothub {
-	r := &Azurerm_iothub{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_iothub_id = &x
-}
-
-if x, ok := state["event_hub_events_endpoint"]; ok {
-	x := x.(string)
-	r.Event_hub_events_endpoint = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-
-if x, ok := state["hostname"]; ok {
-	x := x.(string)
-	r.Hostname = &x
-}
-
-if x, ok := state["event_hub_operations_endpoint"]; ok {
-	x := x.(string)
-	r.Event_hub_operations_endpoint = &x
-}
-
-if x, ok := state["event_hub_events_path"]; ok {
-	x := x.(string)
-	r.Event_hub_events_path = &x
-}
-
-if x, ok := state["event_hub_operations_path"]; ok {
-	x := x.(string)
-	r.Event_hub_operations_path = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_iothubHandler ...
-type Azurerm_iothubHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_iothubHandler) Create(desired *Azurerm_iothub) (*Azurerm_iothub, string, error) {
-	rState := Azurerm_iothubMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_iothub", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_iothub", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_iothubUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_iothubHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_iothub", externalID)
-}
-
-type Azurerm_log_analytics_workspace_linked_service struct {
-     Azurerm_log_analytics_workspace_linked_service_id *string
-     Linked_service_name *string
-     Name *string
-     Tags *map[string]string
-     Resource_group_name string
-     Workspace_name string
-}
-
-
-func Azurerm_log_analytics_workspace_linked_serviceMapper(r *Azurerm_log_analytics_workspace_linked_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["workspace_name"] = r.Workspace_name
-if r.Linked_service_name != nil {
-    config["linked_service_name"] = *r.Linked_service_name
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_log_analytics_workspace_linked_serviceUnmapper(state map[string]interface{}) *Azurerm_log_analytics_workspace_linked_service {
-	r := &Azurerm_log_analytics_workspace_linked_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_log_analytics_workspace_linked_service_id = &x
-}
-
-if x, ok := state["linked_service_name"]; ok {
-	x := x.(string)
-	r.Linked_service_name = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["workspace_name"]; ok {
-	r.Workspace_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_log_analytics_workspace_linked_serviceHandler ...
-type Azurerm_log_analytics_workspace_linked_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Create(desired *Azurerm_log_analytics_workspace_linked_service) (*Azurerm_log_analytics_workspace_linked_service, string, error) {
-	rState := Azurerm_log_analytics_workspace_linked_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_log_analytics_workspace_linked_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace_linked_service, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_log_analytics_workspace_linked_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
-}
-
-type Azurerm_dns_srv_record struct {
-     Azurerm_dns_srv_record_id *string
-     Zone_name string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-}
-
-
-func Azurerm_dns_srv_recordMapper(r *Azurerm_dns_srv_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dns_srv_recordUnmapper(state map[string]interface{}) *Azurerm_dns_srv_record {
-	r := &Azurerm_dns_srv_record{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_srv_record_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_dns_srv_recordHandler ...
-type Azurerm_dns_srv_recordHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dns_srv_recordHandler) Create(desired *Azurerm_dns_srv_record) (*Azurerm_dns_srv_record, string, error) {
-	rState := Azurerm_dns_srv_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_srv_record", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_srv_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_srv_record", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dns_srv_recordUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dns_srv_recordHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dns_srv_record", externalID)
-}
-
-type Azurerm_log_analytics_solution struct {
-     Azurerm_log_analytics_solution_id *string
-     Solution_name string
-     Workspace_name string
-     Workspace_resource_id string
-     Location string
-     Resource_group_name string
-}
-
-
-func Azurerm_log_analytics_solutionMapper(r *Azurerm_log_analytics_solution) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["solution_name"] = r.Solution_name
-    config["workspace_name"] = r.Workspace_name
-    config["workspace_resource_id"] = r.Workspace_resource_id
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_log_analytics_solutionUnmapper(state map[string]interface{}) *Azurerm_log_analytics_solution {
-	r := &Azurerm_log_analytics_solution{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_log_analytics_solution_id = &x
-}
-
-if x, ok := state["solution_name"]; ok {
-	r.Solution_name = x.(string)
-}
-
-if x, ok := state["workspace_name"]; ok {
-	r.Workspace_name = x.(string)
-}
-
-if x, ok := state["workspace_resource_id"]; ok {
-	r.Workspace_resource_id = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_log_analytics_solutionHandler ...
-type Azurerm_log_analytics_solutionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_log_analytics_solutionHandler) Create(desired *Azurerm_log_analytics_solution) (*Azurerm_log_analytics_solution, string, error) {
-	rState := Azurerm_log_analytics_solutionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_log_analytics_solution", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurerm_log_analytics_solution, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_log_analytics_solution", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_log_analytics_solutionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_log_analytics_solutionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_log_analytics_solution", externalID)
-}
-
-type Azurerm_management_lock struct {
-     Azurerm_management_lock_id *string
-     Name string
-     Scope string
-     Lock_level string
-     Notes *string
-}
-
-
-func Azurerm_management_lockMapper(r *Azurerm_management_lock) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["scope"] = r.Scope
-    config["lock_level"] = r.Lock_level
-if r.Notes != nil {
-    config["notes"] = *r.Notes
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_management_lockUnmapper(state map[string]interface{}) *Azurerm_management_lock {
-	r := &Azurerm_management_lock{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_management_lock_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["scope"]; ok {
-	r.Scope = x.(string)
-}
-
-if x, ok := state["lock_level"]; ok {
-	r.Lock_level = x.(string)
-}
-
-if x, ok := state["notes"]; ok {
-	x := x.(string)
-	r.Notes = &x
-}
-	return r
-}
-
-
-// Azurerm_management_lockHandler ...
-type Azurerm_management_lockHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_management_lockHandler) Create(desired *Azurerm_management_lock) (*Azurerm_management_lock, string, error) {
-	rState := Azurerm_management_lockMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_management_lock", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_management_lock, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_management_lock", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_management_lockUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_management_lockHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_management_lock", externalID)
-}
-
-type Azurerm_servicebus_topic struct {
-     Azurerm_servicebus_topic_id *string
-     Default_message_ttl *string
-     Enable_express *bool
-     Requires_duplicate_detection *bool
-     Support_ordering *bool
-     Namespace_name string
-     Location *string
-     Status *string
-     Duplicate_detection_history_time_window *string
-     Enable_batched_operations *bool
-     Enable_partitioning *bool
-     Enable_filtering_messages_before_publishing *bool
-     Resource_group_name string
-     Auto_delete_on_idle *string
-     Name string
-}
-
-
-func Azurerm_servicebus_topicMapper(r *Azurerm_servicebus_topic) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Requires_duplicate_detection != nil {
-    config["requires_duplicate_detection"] = *r.Requires_duplicate_detection
-}
-if r.Support_ordering != nil {
-    config["support_ordering"] = *r.Support_ordering
-}
-if r.Default_message_ttl != nil {
-    config["default_message_ttl"] = *r.Default_message_ttl
-}
-if r.Enable_express != nil {
-    config["enable_express"] = *r.Enable_express
-}
-if r.Status != nil {
-    config["status"] = *r.Status
-}
-if r.Duplicate_detection_history_time_window != nil {
-    config["duplicate_detection_history_time_window"] = *r.Duplicate_detection_history_time_window
-}
-if r.Enable_batched_operations != nil {
-    config["enable_batched_operations"] = *r.Enable_batched_operations
-}
-if r.Enable_partitioning != nil {
-    config["enable_partitioning"] = *r.Enable_partitioning
-}
-if r.Enable_filtering_messages_before_publishing != nil {
-    config["enable_filtering_messages_before_publishing"] = *r.Enable_filtering_messages_before_publishing
-}
-    config["namespace_name"] = r.Namespace_name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Auto_delete_on_idle != nil {
-    config["auto_delete_on_idle"] = *r.Auto_delete_on_idle
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_servicebus_topicUnmapper(state map[string]interface{}) *Azurerm_servicebus_topic {
-	r := &Azurerm_servicebus_topic{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_servicebus_topic_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["requires_duplicate_detection"]; ok {
-	x := x.(bool)
-	r.Requires_duplicate_detection = &x
-}
-
-if x, ok := state["support_ordering"]; ok {
-	x := x.(bool)
-	r.Support_ordering = &x
-}
-
-if x, ok := state["default_message_ttl"]; ok {
-	x := x.(string)
-	r.Default_message_ttl = &x
-}
-
-if x, ok := state["enable_express"]; ok {
-	x := x.(bool)
-	r.Enable_express = &x
-}
-
-if x, ok := state["status"]; ok {
-	x := x.(string)
-	r.Status = &x
-}
-
-if x, ok := state["duplicate_detection_history_time_window"]; ok {
-	x := x.(string)
-	r.Duplicate_detection_history_time_window = &x
-}
-
-if x, ok := state["enable_batched_operations"]; ok {
-	x := x.(bool)
-	r.Enable_batched_operations = &x
-}
-
-if x, ok := state["enable_partitioning"]; ok {
-	x := x.(bool)
-	r.Enable_partitioning = &x
-}
-
-if x, ok := state["enable_filtering_messages_before_publishing"]; ok {
-	x := x.(bool)
-	r.Enable_filtering_messages_before_publishing = &x
-}
-
-if x, ok := state["namespace_name"]; ok {
-	r.Namespace_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["auto_delete_on_idle"]; ok {
-	x := x.(string)
-	r.Auto_delete_on_idle = &x
-}
-	return r
-}
-
-
-// Azurerm_servicebus_topicHandler ...
-type Azurerm_servicebus_topicHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_servicebus_topicHandler) Create(desired *Azurerm_servicebus_topic) (*Azurerm_servicebus_topic, string, error) {
-	rState := Azurerm_servicebus_topicMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_servicebus_topic", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_servicebus_topic, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_servicebus_topicUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_servicebus_topicHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_servicebus_topic", externalID)
-}
-
-type Azurerm_app_service_active_slot struct {
-     Azurerm_app_service_active_slot_id *string
-     Resource_group_name string
-     App_service_name string
-     App_service_slot_name string
-}
-
-
-func Azurerm_app_service_active_slotMapper(r *Azurerm_app_service_active_slot) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["app_service_name"] = r.App_service_name
-    config["app_service_slot_name"] = r.App_service_slot_name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_app_service_active_slotUnmapper(state map[string]interface{}) *Azurerm_app_service_active_slot {
-	r := &Azurerm_app_service_active_slot{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_app_service_active_slot_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["app_service_name"]; ok {
-	r.App_service_name = x.(string)
-}
-
-if x, ok := state["app_service_slot_name"]; ok {
-	r.App_service_slot_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_app_service_active_slotHandler ...
-type Azurerm_app_service_active_slotHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_app_service_active_slotHandler) Create(desired *Azurerm_app_service_active_slot) (*Azurerm_app_service_active_slot, string, error) {
-	rState := Azurerm_app_service_active_slotMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_app_service_active_slot", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azurerm_app_service_active_slot, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_app_service_active_slot", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_app_service_active_slotUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_app_service_active_slotHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_app_service_active_slot", externalID)
-}
-
-type Azurerm_dev_test_linux_virtual_machine struct {
-     Azurerm_dev_test_linux_virtual_machine_id *string
-     Lab_virtual_network_id string
-     Lab_name string
-     Resource_group_name string
-     Location string
-     Size string
-     Storage_type string
-     Ssh_key *string
-     Name string
-     Username string
-     Notes *string
-     Tags *map[string]string
-     Fqdn *string
-     Lab_subnet_name string
-     Allow_claim *bool
-     Disallow_public_ip_address *bool
-     Password *string
-     Unique_identifier *string
-}
-
-
-func Azurerm_dev_test_linux_virtual_machineMapper(r *Azurerm_dev_test_linux_virtual_machine) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-    config["size"] = r.Size
-    config["storage_type"] = r.Storage_type
-if r.Ssh_key != nil {
-    config["ssh_key"] = *r.Ssh_key
-}
-    config["lab_name"] = r.Lab_name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Notes != nil {
-    config["notes"] = *r.Notes
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-    config["name"] = r.Name
-    config["username"] = r.Username
-if r.Disallow_public_ip_address != nil {
-    config["disallow_public_ip_address"] = *r.Disallow_public_ip_address
-}
-if r.Password != nil {
-    config["password"] = *r.Password
-}
-if r.Unique_identifier != nil {
-    config["unique_identifier"] = *r.Unique_identifier
-}
-    config["lab_subnet_name"] = r.Lab_subnet_name
-if r.Allow_claim != nil {
-    config["allow_claim"] = *r.Allow_claim
-}
-    config["lab_virtual_network_id"] = r.Lab_virtual_network_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dev_test_linux_virtual_machineUnmapper(state map[string]interface{}) *Azurerm_dev_test_linux_virtual_machine {
-	r := &Azurerm_dev_test_linux_virtual_machine{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dev_test_linux_virtual_machine_id = &x
-}
-
-if x, ok := state["ssh_key"]; ok {
-	x := x.(string)
-	r.Ssh_key = &x
-}
-
-if x, ok := state["lab_name"]; ok {
-	r.Lab_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["size"]; ok {
-	r.Size = x.(string)
-}
-
-if x, ok := state["storage_type"]; ok {
-	r.Storage_type = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["username"]; ok {
-	r.Username = x.(string)
-}
-
-if x, ok := state["notes"]; ok {
-	x := x.(string)
-	r.Notes = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-
-if x, ok := state["unique_identifier"]; ok {
-	x := x.(string)
-	r.Unique_identifier = &x
-}
-
-if x, ok := state["lab_subnet_name"]; ok {
-	r.Lab_subnet_name = x.(string)
-}
-
-if x, ok := state["allow_claim"]; ok {
-	x := x.(bool)
-	r.Allow_claim = &x
-}
-
-if x, ok := state["disallow_public_ip_address"]; ok {
-	x := x.(bool)
-	r.Disallow_public_ip_address = &x
-}
-
-if x, ok := state["password"]; ok {
-	x := x.(string)
-	r.Password = &x
-}
-
-if x, ok := state["lab_virtual_network_id"]; ok {
-	r.Lab_virtual_network_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_dev_test_linux_virtual_machineHandler ...
-type Azurerm_dev_test_linux_virtual_machineHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dev_test_linux_virtual_machineHandler) Create(desired *Azurerm_dev_test_linux_virtual_machine) (*Azurerm_dev_test_linux_virtual_machine, string, error) {
-	rState := Azurerm_dev_test_linux_virtual_machineMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dev_test_linux_virtual_machine", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_linux_virtual_machine, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dev_test_linux_virtual_machineUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dev_test_linux_virtual_machineHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
-}
-
-type Azurerm_dev_test_virtual_network struct {
-     Azurerm_dev_test_virtual_network_id *string
-     Unique_identifier *string
-     Name string
-     Lab_name string
-     Resource_group_name string
-     Description *string
-     Tags *map[string]string
-}
-
-
-func Azurerm_dev_test_virtual_networkMapper(r *Azurerm_dev_test_virtual_network) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Unique_identifier != nil {
-    config["unique_identifier"] = *r.Unique_identifier
-}
-    config["name"] = r.Name
-    config["lab_name"] = r.Lab_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dev_test_virtual_networkUnmapper(state map[string]interface{}) *Azurerm_dev_test_virtual_network {
-	r := &Azurerm_dev_test_virtual_network{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dev_test_virtual_network_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["unique_identifier"]; ok {
-	x := x.(string)
-	r.Unique_identifier = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["lab_name"]; ok {
-	r.Lab_name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-	return r
-}
-
-
-// Azurerm_dev_test_virtual_networkHandler ...
-type Azurerm_dev_test_virtual_networkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_dev_test_virtual_networkHandler) Create(desired *Azurerm_dev_test_virtual_network) (*Azurerm_dev_test_virtual_network, string, error) {
-	rState := Azurerm_dev_test_virtual_networkMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dev_test_virtual_network", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azurerm_dev_test_virtual_network, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dev_test_virtual_network", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dev_test_virtual_networkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_dev_test_virtual_networkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dev_test_virtual_network", externalID)
-}
-
-type Azurerm_mariadb_database struct {
-     Azurerm_mariadb_database_id *string
-     Name string
-     Resource_group_name string
-     Server_name string
-     Charset string
-     Collation string
-}
-
-
-func Azurerm_mariadb_databaseMapper(r *Azurerm_mariadb_database) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["charset"] = r.Charset
-    config["collation"] = r.Collation
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_mariadb_databaseUnmapper(state map[string]interface{}) *Azurerm_mariadb_database {
-	r := &Azurerm_mariadb_database{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mariadb_database_id = &x
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["charset"]; ok {
-	r.Charset = x.(string)
-}
-
-if x, ok := state["collation"]; ok {
-	r.Collation = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_mariadb_databaseHandler ...
-type Azurerm_mariadb_databaseHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_mariadb_databaseHandler) Create(desired *Azurerm_mariadb_database) (*Azurerm_mariadb_database, string, error) {
-	rState := Azurerm_mariadb_databaseMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mariadb_database", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mariadb_database, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mariadb_database", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mariadb_databaseUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_mariadb_databaseHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mariadb_database", externalID)
-}
-
-type Azurerm_network_watcher struct {
-     Azurerm_network_watcher_id *string
-     Name string
-     Resource_group_name string
-     Location string
-     Tags *map[string]string
-}
-
-
-func Azurerm_network_watcherMapper(r *Azurerm_network_watcher) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_network_watcherUnmapper(state map[string]interface{}) *Azurerm_network_watcher {
-	r := &Azurerm_network_watcher{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_network_watcher_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_network_watcherHandler ...
-type Azurerm_network_watcherHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_network_watcherHandler) Create(desired *Azurerm_network_watcher) (*Azurerm_network_watcher, string, error) {
-	rState := Azurerm_network_watcherMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_network_watcher", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_network_watcher, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_network_watcher", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_network_watcherUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_network_watcherHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_network_watcher", externalID)
-}
-
-type Azurerm_traffic_manager_profile struct {
-     Azurerm_traffic_manager_profile_id *string
-     Tags *map[string]string
-     Name string
-     Resource_group_name string
-     Profile_status *string
-     Traffic_routing_method string
-     Fqdn *string
-}
-
-
-func Azurerm_traffic_manager_profileMapper(r *Azurerm_traffic_manager_profile) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Profile_status != nil {
-    config["profile_status"] = *r.Profile_status
-}
-    config["traffic_routing_method"] = r.Traffic_routing_method
-if r.Fqdn != nil {
-    config["fqdn"] = *r.Fqdn
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_traffic_manager_profileUnmapper(state map[string]interface{}) *Azurerm_traffic_manager_profile {
-	r := &Azurerm_traffic_manager_profile{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_traffic_manager_profile_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["profile_status"]; ok {
-	x := x.(string)
-	r.Profile_status = &x
-}
-
-if x, ok := state["traffic_routing_method"]; ok {
-	r.Traffic_routing_method = x.(string)
-}
-
-if x, ok := state["fqdn"]; ok {
-	x := x.(string)
-	r.Fqdn = &x
-}
-	return r
-}
-
-
-// Azurerm_traffic_manager_profileHandler ...
-type Azurerm_traffic_manager_profileHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_traffic_manager_profileHandler) Create(desired *Azurerm_traffic_manager_profile) (*Azurerm_traffic_manager_profile, string, error) {
-	rState := Azurerm_traffic_manager_profileMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_traffic_manager_profile", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azurerm_traffic_manager_profile, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_profile", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_traffic_manager_profileUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_traffic_manager_profileHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_traffic_manager_profile", externalID)
-}
-
-type Azurerm_application_insights_api_key struct {
-     Azurerm_application_insights_api_key_id *string
-     Name string
-     Application_insights_id string
-     Api_key *string
-}
-
-
-func Azurerm_application_insights_api_keyMapper(r *Azurerm_application_insights_api_key) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Api_key != nil {
-    config["api_key"] = *r.Api_key
-}
-    config["name"] = r.Name
-    config["application_insights_id"] = r.Application_insights_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_application_insights_api_keyUnmapper(state map[string]interface{}) *Azurerm_application_insights_api_key {
-	r := &Azurerm_application_insights_api_key{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_application_insights_api_key_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["application_insights_id"]; ok {
-	r.Application_insights_id = x.(string)
-}
-
-if x, ok := state["api_key"]; ok {
-	x := x.(string)
-	r.Api_key = &x
-}
-	return r
-}
-
-
-// Azurerm_application_insights_api_keyHandler ...
-type Azurerm_application_insights_api_keyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_application_insights_api_keyHandler) Create(desired *Azurerm_application_insights_api_key) (*Azurerm_application_insights_api_key, string, error) {
-	rState := Azurerm_application_insights_api_keyMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_application_insights_api_key", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*Azurerm_application_insights_api_key, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_application_insights_api_key", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_application_insights_api_keyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_application_insights_api_keyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_application_insights_api_key", externalID)
-}
-
-type Azurerm_batch_pool struct {
-     Azurerm_batch_pool_id *string
-     Name string
-     Account_name string
-     Display_name *string
-     Vm_size string
-     Node_agent_sku_id string
-     Stop_pending_resize_operation *bool
-     Resource_group_name string
-}
-
-
-func Azurerm_batch_poolMapper(r *Azurerm_batch_pool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["account_name"] = r.Account_name
-if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-    config["vm_size"] = r.Vm_size
-    config["node_agent_sku_id"] = r.Node_agent_sku_id
-if r.Stop_pending_resize_operation != nil {
-    config["stop_pending_resize_operation"] = *r.Stop_pending_resize_operation
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_batch_poolUnmapper(state map[string]interface{}) *Azurerm_batch_pool {
-	r := &Azurerm_batch_pool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_batch_pool_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["account_name"]; ok {
-	r.Account_name = x.(string)
-}
-
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
-
-if x, ok := state["vm_size"]; ok {
-	r.Vm_size = x.(string)
-}
-
-if x, ok := state["node_agent_sku_id"]; ok {
-	r.Node_agent_sku_id = x.(string)
-}
-
-if x, ok := state["stop_pending_resize_operation"]; ok {
-	x := x.(bool)
-	r.Stop_pending_resize_operation = &x
-}
-	return r
-}
-
-
-// Azurerm_batch_poolHandler ...
-type Azurerm_batch_poolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_batch_poolHandler) Create(desired *Azurerm_batch_pool) (*Azurerm_batch_pool, string, error) {
-	rState := Azurerm_batch_poolMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_batch_pool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_batch_pool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_batch_poolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_batch_poolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_batch_pool", externalID)
-}
-
-type Azurerm_postgresql_virtual_network_rule struct {
-     Azurerm_postgresql_virtual_network_rule_id *string
-     Subnet_id string
-     Ignore_missing_vnet_service_endpoint *bool
-     Name string
-     Resource_group_name string
-     Server_name string
-}
-
-
-func Azurerm_postgresql_virtual_network_ruleMapper(r *Azurerm_postgresql_virtual_network_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["subnet_id"] = r.Subnet_id
-if r.Ignore_missing_vnet_service_endpoint != nil {
-    config["ignore_missing_vnet_service_endpoint"] = *r.Ignore_missing_vnet_service_endpoint
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_postgresql_virtual_network_ruleUnmapper(state map[string]interface{}) *Azurerm_postgresql_virtual_network_rule {
-	r := &Azurerm_postgresql_virtual_network_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_postgresql_virtual_network_rule_id = &x
-}
-
-if x, ok := state["ignore_missing_vnet_service_endpoint"]; ok {
-	x := x.(bool)
-	r.Ignore_missing_vnet_service_endpoint = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
-
-if x, ok := state["subnet_id"]; ok {
-	r.Subnet_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_postgresql_virtual_network_ruleHandler ...
-type Azurerm_postgresql_virtual_network_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_postgresql_virtual_network_ruleHandler) Create(desired *Azurerm_postgresql_virtual_network_rule) (*Azurerm_postgresql_virtual_network_rule, string, error) {
-	rState := Azurerm_postgresql_virtual_network_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_postgresql_virtual_network_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_postgresql_virtual_network_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_postgresql_virtual_network_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_postgresql_virtual_network_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
-}
-
-type Azurerm_route struct {
-     Azurerm_route_id *string
-     Name string
-     Resource_group_name string
-     Route_table_name string
-     Address_prefix string
-     Next_hop_type string
-     Next_hop_in_ip_address *string
-}
-
-
-func Azurerm_routeMapper(r *Azurerm_route) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["route_table_name"] = r.Route_table_name
-    config["address_prefix"] = r.Address_prefix
-    config["next_hop_type"] = r.Next_hop_type
-if r.Next_hop_in_ip_address != nil {
-    config["next_hop_in_ip_address"] = *r.Next_hop_in_ip_address
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_routeUnmapper(state map[string]interface{}) *Azurerm_route {
-	r := &Azurerm_route{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_route_id = &x
-}
-
-if x, ok := state["next_hop_type"]; ok {
-	r.Next_hop_type = x.(string)
-}
-
-if x, ok := state["next_hop_in_ip_address"]; ok {
-	x := x.(string)
-	r.Next_hop_in_ip_address = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["route_table_name"]; ok {
-	r.Route_table_name = x.(string)
-}
-
-if x, ok := state["address_prefix"]; ok {
-	r.Address_prefix = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_routeHandler ...
-type Azurerm_routeHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_routeHandler) Create(desired *Azurerm_route) (*Azurerm_route, string, error) {
-	rState := Azurerm_routeMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_route", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_route", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_routeUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_routeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_route", externalID)
-}
-
-type Azurerm_storage_account struct {
-     Azurerm_storage_account_id *string
-     Account_encryption_source *string
-     Primary_connection_string *string
-     Primary_file_endpoint *string
-     Account_replication_type string
-     Enable_blob_encryption *bool
-     Enable_https_traffic_only *bool
-     Secondary_table_endpoint *string
-     Primary_access_key *string
-     Resource_group_name string
-     Account_kind *string
-     Account_type *string
-     Secondary_location *string
-     Tags *map[string]string
-     Access_tier *string
-     Primary_location *string
-     Primary_table_endpoint *string
-     Primary_blob_connection_string *string
-     Secondary_blob_connection_string *string
-     Name string
-     Account_tier string
-     Enable_file_encryption *bool
-     Secondary_blob_endpoint *string
-     Primary_queue_endpoint *string
-     Secondary_access_key *string
-     Secondary_connection_string *string
-     Location string
-     Primary_blob_endpoint *string
-     Secondary_queue_endpoint *string
-}
-
-
-func Azurerm_storage_accountMapper(r *Azurerm_storage_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["account_tier"] = r.Account_tier
-if r.Enable_file_encryption != nil {
-    config["enable_file_encryption"] = *r.Enable_file_encryption
-}
-if r.Secondary_blob_endpoint != nil {
-    config["secondary_blob_endpoint"] = *r.Secondary_blob_endpoint
-}
-if r.Primary_queue_endpoint != nil {
-    config["primary_queue_endpoint"] = *r.Primary_queue_endpoint
-}
-if r.Secondary_access_key != nil {
-    config["secondary_access_key"] = *r.Secondary_access_key
-}
-if r.Secondary_connection_string != nil {
-    config["secondary_connection_string"] = *r.Secondary_connection_string
-}
-    config["name"] = r.Name
-if r.Primary_blob_endpoint != nil {
-    config["primary_blob_endpoint"] = *r.Primary_blob_endpoint
-}
-if r.Secondary_queue_endpoint != nil {
-    config["secondary_queue_endpoint"] = *r.Secondary_queue_endpoint
-}
-    config["location"] = r.Location
-if r.Primary_connection_string != nil {
-    config["primary_connection_string"] = *r.Primary_connection_string
-}
-if r.Account_encryption_source != nil {
-    config["account_encryption_source"] = *r.Account_encryption_source
-}
-if r.Primary_file_endpoint != nil {
-    config["primary_file_endpoint"] = *r.Primary_file_endpoint
-}
-if r.Enable_blob_encryption != nil {
-    config["enable_blob_encryption"] = *r.Enable_blob_encryption
-}
-if r.Enable_https_traffic_only != nil {
-    config["enable_https_traffic_only"] = *r.Enable_https_traffic_only
-}
-if r.Secondary_table_endpoint != nil {
-    config["secondary_table_endpoint"] = *r.Secondary_table_endpoint
-}
-if r.Primary_access_key != nil {
-    config["primary_access_key"] = *r.Primary_access_key
-}
-    config["account_replication_type"] = r.Account_replication_type
-if r.Account_kind != nil {
-    config["account_kind"] = *r.Account_kind
-}
-if r.Account_type != nil {
-    config["account_type"] = *r.Account_type
-}
-if r.Secondary_location != nil {
-    config["secondary_location"] = *r.Secondary_location
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Primary_location != nil {
-    config["primary_location"] = *r.Primary_location
-}
-if r.Primary_table_endpoint != nil {
-    config["primary_table_endpoint"] = *r.Primary_table_endpoint
-}
-if r.Primary_blob_connection_string != nil {
-    config["primary_blob_connection_string"] = *r.Primary_blob_connection_string
-}
-if r.Secondary_blob_connection_string != nil {
-    config["secondary_blob_connection_string"] = *r.Secondary_blob_connection_string
-}
-if r.Access_tier != nil {
-    config["access_tier"] = *r.Access_tier
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_storage_accountUnmapper(state map[string]interface{}) *Azurerm_storage_account {
-	r := &Azurerm_storage_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_storage_account_id = &x
-}
-
-if x, ok := state["secondary_location"]; ok {
-	x := x.(string)
-	r.Secondary_location = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["account_kind"]; ok {
-	x := x.(string)
-	r.Account_kind = &x
-}
-
-if x, ok := state["account_type"]; ok {
-	x := x.(string)
-	r.Account_type = &x
-}
-
-if x, ok := state["primary_blob_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_blob_connection_string = &x
-}
-
-if x, ok := state["secondary_blob_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_blob_connection_string = &x
-}
-
-if x, ok := state["access_tier"]; ok {
-	x := x.(string)
-	r.Access_tier = &x
-}
-
-if x, ok := state["primary_location"]; ok {
-	x := x.(string)
-	r.Primary_location = &x
-}
-
-if x, ok := state["primary_table_endpoint"]; ok {
-	x := x.(string)
-	r.Primary_table_endpoint = &x
-}
-
-if x, ok := state["secondary_blob_endpoint"]; ok {
-	x := x.(string)
-	r.Secondary_blob_endpoint = &x
-}
-
-if x, ok := state["primary_queue_endpoint"]; ok {
-	x := x.(string)
-	r.Primary_queue_endpoint = &x
-}
-
-if x, ok := state["secondary_access_key"]; ok {
-	x := x.(string)
-	r.Secondary_access_key = &x
-}
-
-if x, ok := state["secondary_connection_string"]; ok {
-	x := x.(string)
-	r.Secondary_connection_string = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["account_tier"]; ok {
-	r.Account_tier = x.(string)
-}
-
-if x, ok := state["enable_file_encryption"]; ok {
-	x := x.(bool)
-	r.Enable_file_encryption = &x
-}
-
-if x, ok := state["secondary_queue_endpoint"]; ok {
-	x := x.(string)
-	r.Secondary_queue_endpoint = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["primary_blob_endpoint"]; ok {
-	x := x.(string)
-	r.Primary_blob_endpoint = &x
-}
-
-if x, ok := state["account_encryption_source"]; ok {
-	x := x.(string)
-	r.Account_encryption_source = &x
-}
-
-if x, ok := state["primary_connection_string"]; ok {
-	x := x.(string)
-	r.Primary_connection_string = &x
-}
-
-if x, ok := state["primary_file_endpoint"]; ok {
-	x := x.(string)
-	r.Primary_file_endpoint = &x
-}
-
-if x, ok := state["secondary_table_endpoint"]; ok {
-	x := x.(string)
-	r.Secondary_table_endpoint = &x
-}
-
-if x, ok := state["primary_access_key"]; ok {
-	x := x.(string)
-	r.Primary_access_key = &x
-}
-
-if x, ok := state["account_replication_type"]; ok {
-	r.Account_replication_type = x.(string)
-}
-
-if x, ok := state["enable_blob_encryption"]; ok {
-	x := x.(bool)
-	r.Enable_blob_encryption = &x
-}
-
-if x, ok := state["enable_https_traffic_only"]; ok {
-	x := x.(bool)
-	r.Enable_https_traffic_only = &x
-}
-	return r
-}
-
-
-// Azurerm_storage_accountHandler ...
-type Azurerm_storage_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_storage_accountHandler) Create(desired *Azurerm_storage_account) (*Azurerm_storage_account, string, error) {
-	rState := Azurerm_storage_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_storage_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_storage_account, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_storage_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_storage_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_storage_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_storage_account", externalID)
-}
-
-type Azurerm_virtual_machine_extension struct {
-     Azurerm_virtual_machine_extension_id *string
-     Resource_type string
-     Type_handler_version string
-     Auto_upgrade_minor_version *bool
-     Settings *string
-     Protected_settings *string
-     Name string
-     Location string
-     Virtual_machine_name string
-     Resource_group_name string
-     Publisher string
-     Tags *map[string]string
-}
-
-
-func Azurerm_virtual_machine_extensionMapper(r *Azurerm_virtual_machine_extension) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_type"] = r.Resource_type
-    config["type_handler_version"] = r.Type_handler_version
-if r.Auto_upgrade_minor_version != nil {
-    config["auto_upgrade_minor_version"] = *r.Auto_upgrade_minor_version
-}
-if r.Settings != nil {
-    config["settings"] = *r.Settings
-}
-if r.Protected_settings != nil {
-    config["protected_settings"] = *r.Protected_settings
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["virtual_machine_name"] = r.Virtual_machine_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["publisher"] = r.Publisher
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_virtual_machine_extensionUnmapper(state map[string]interface{}) *Azurerm_virtual_machine_extension {
-	r := &Azurerm_virtual_machine_extension{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_virtual_machine_extension_id = &x
-}
-
-if x, ok := state["auto_upgrade_minor_version"]; ok {
-	x := x.(bool)
-	r.Auto_upgrade_minor_version = &x
-}
-
-if x, ok := state["settings"]; ok {
-	x := x.(string)
-	r.Settings = &x
-}
-
-if x, ok := state["protected_settings"]; ok {
-	x := x.(string)
-	r.Protected_settings = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["virtual_machine_name"]; ok {
-	r.Virtual_machine_name = x.(string)
-}
-
-if x, ok := state["resource_type"]; ok {
-	r.Resource_type = x.(string)
-}
-
-if x, ok := state["type_handler_version"]; ok {
-	r.Type_handler_version = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["publisher"]; ok {
-	r.Publisher = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-	return r
-}
-
-
-// Azurerm_virtual_machine_extensionHandler ...
-type Azurerm_virtual_machine_extensionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_virtual_machine_extensionHandler) Create(desired *Azurerm_virtual_machine_extension) (*Azurerm_virtual_machine_extension, string, error) {
-	rState := Azurerm_virtual_machine_extensionMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_virtual_machine_extension", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azurerm_virtual_machine_extension, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_extension", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_virtual_machine_extensionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_virtual_machine_extensionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_virtual_machine_extension", externalID)
-}
-
-type Azurerm_eventgrid_topic struct {
-     Azurerm_eventgrid_topic_id *string
-     Location string
-     Resource_group_name string
-     Tags *map[string]string
-     Endpoint *string
-     Primary_access_key *string
-     Secondary_access_key *string
-     Name string
-}
-
+type Azurerm_app_service_connection_string_1279 struct {
 
-func Azurerm_eventgrid_topicMapper(r *Azurerm_eventgrid_topic) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Endpoint != nil {
-    config["endpoint"] = *r.Endpoint
-}
-if r.Primary_access_key != nil {
-    config["primary_access_key"] = *r.Primary_access_key
-}
-if r.Secondary_access_key != nil {
-    config["secondary_access_key"] = *r.Secondary_access_key
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_eventgrid_topicUnmapper(state map[string]interface{}) *Azurerm_eventgrid_topic {
-	r := &Azurerm_eventgrid_topic{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_eventgrid_topic_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["endpoint"]; ok {
-	x := x.(string)
-	r.Endpoint = &x
-}
-
-if x, ok := state["primary_access_key"]; ok {
-	x := x.(string)
-	r.Primary_access_key = &x
-}
-
-if x, ok := state["secondary_access_key"]; ok {
-	x := x.(string)
-	r.Secondary_access_key = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_eventgrid_topicHandler ...
-type Azurerm_eventgrid_topicHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_eventgrid_topicHandler) Create(desired *Azurerm_eventgrid_topic) (*Azurerm_eventgrid_topic, string, error) {
-	rState := Azurerm_eventgrid_topicMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_eventgrid_topic", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_eventgrid_topic, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_eventgrid_topic", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_eventgrid_topicUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_eventgrid_topicHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_eventgrid_topic", externalID)
-}
-
-type Azurerm_lb_backend_address_pool struct {
-     Azurerm_lb_backend_address_pool_id *string
-     Location *string
-     Resource_group_name string
-     Loadbalancer_id string
-     Name string
-}
-
-
-func Azurerm_lb_backend_address_poolMapper(r *Azurerm_lb_backend_address_pool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["resource_group_name"] = r.Resource_group_name
-    config["loadbalancer_id"] = r.Loadbalancer_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_lb_backend_address_poolUnmapper(state map[string]interface{}) *Azurerm_lb_backend_address_pool {
-	r := &Azurerm_lb_backend_address_pool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_lb_backend_address_pool_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["loadbalancer_id"]; ok {
-	r.Loadbalancer_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_lb_backend_address_poolHandler ...
-type Azurerm_lb_backend_address_poolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_lb_backend_address_poolHandler) Create(desired *Azurerm_lb_backend_address_pool) (*Azurerm_lb_backend_address_pool, string, error) {
-	rState := Azurerm_lb_backend_address_poolMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_lb_backend_address_pool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azurerm_lb_backend_address_pool, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_lb_backend_address_pool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_lb_backend_address_poolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_lb_backend_address_poolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_lb_backend_address_pool", externalID)
-}
-
-type Azurerm_local_network_gateway struct {
-     Azurerm_local_network_gateway_id *string
-     Tags *map[string]string
-     Name string
-     Location string
-     Resource_group_name string
-     Gateway_address string
-}
-
-
-func Azurerm_local_network_gatewayMapper(r *Azurerm_local_network_gateway) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-    config["gateway_address"] = r.Gateway_address
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_local_network_gatewayUnmapper(state map[string]interface{}) *Azurerm_local_network_gateway {
-	r := &Azurerm_local_network_gateway{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_local_network_gateway_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["gateway_address"]; ok {
-	r.Gateway_address = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_local_network_gatewayHandler ...
-type Azurerm_local_network_gatewayHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_local_network_gatewayHandler) Create(desired *Azurerm_local_network_gateway) (*Azurerm_local_network_gateway, string, error) {
-	rState := Azurerm_local_network_gatewayMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_local_network_gateway", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm_local_network_gateway, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_local_network_gateway", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_local_network_gatewayUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_local_network_gatewayHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_local_network_gateway", externalID)
-}
-
-type Azurerm_role_assignment struct {
-     Azurerm_role_assignment_id *string
-     Name *string
-     Scope string
-     Role_definition_id *string
-     Role_definition_name *string
-     Principal_id string
-}
-
-
-func Azurerm_role_assignmentMapper(r *Azurerm_role_assignment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["principal_id"] = r.Principal_id
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-    config["scope"] = r.Scope
-if r.Role_definition_id != nil {
-    config["role_definition_id"] = *r.Role_definition_id
-}
-if r.Role_definition_name != nil {
-    config["role_definition_name"] = *r.Role_definition_name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_role_assignmentUnmapper(state map[string]interface{}) *Azurerm_role_assignment {
-	r := &Azurerm_role_assignment{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_role_assignment_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["scope"]; ok {
-	r.Scope = x.(string)
-}
-
-if x, ok := state["role_definition_id"]; ok {
-	x := x.(string)
-	r.Role_definition_id = &x
-}
-
-if x, ok := state["role_definition_name"]; ok {
-	x := x.(string)
-	r.Role_definition_name = &x
-}
-
-if x, ok := state["principal_id"]; ok {
-	r.Principal_id = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_role_assignmentHandler ...
-type Azurerm_role_assignmentHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_role_assignmentHandler) Create(desired *Azurerm_role_assignment) (*Azurerm_role_assignment, string, error) {
-	rState := Azurerm_role_assignmentMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_role_assignment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_assignment, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_role_assignment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_role_assignmentUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_role_assignmentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_role_assignment", externalID)
-}
-
-type Azurerm_cosmosdb_account struct {
-     Azurerm_cosmosdb_account_id *string
-     Is_virtual_network_filter_enabled *bool
-     Enable_multiple_write_locations *bool
-     Secondary_readonly_master_key *string
-     Endpoint *string
-     Secondary_master_key *string
-     Location string
-     Tags *map[string]string
-     Primary_master_key *string
-     Primary_readonly_master_key *string
-     Resource_group_name string
-     Offer_type string
-     Kind *string
-     Ip_range_filter *string
-     Enable_automatic_failover *bool
-     Name string
-}
-
-
-func Azurerm_cosmosdb_accountMapper(r *Azurerm_cosmosdb_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Secondary_master_key != nil {
-    config["secondary_master_key"] = *r.Secondary_master_key
-}
-    config["location"] = r.Location
-if r.Endpoint != nil {
-    config["endpoint"] = *r.Endpoint
-}
-if r.Primary_master_key != nil {
-    config["primary_master_key"] = *r.Primary_master_key
-}
-if r.Primary_readonly_master_key != nil {
-    config["primary_readonly_master_key"] = *r.Primary_readonly_master_key
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Ip_range_filter != nil {
-    config["ip_range_filter"] = *r.Ip_range_filter
-}
-if r.Enable_automatic_failover != nil {
-    config["enable_automatic_failover"] = *r.Enable_automatic_failover
-}
-    config["name"] = r.Name
-    config["offer_type"] = r.Offer_type
-if r.Kind != nil {
-    config["kind"] = *r.Kind
-}
-if r.Enable_multiple_write_locations != nil {
-    config["enable_multiple_write_locations"] = *r.Enable_multiple_write_locations
-}
-if r.Secondary_readonly_master_key != nil {
-    config["secondary_readonly_master_key"] = *r.Secondary_readonly_master_key
-}
-if r.Is_virtual_network_filter_enabled != nil {
-    config["is_virtual_network_filter_enabled"] = *r.Is_virtual_network_filter_enabled
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_cosmosdb_accountUnmapper(state map[string]interface{}) *Azurerm_cosmosdb_account {
-	r := &Azurerm_cosmosdb_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_cosmosdb_account_id = &x
-}
-
-if x, ok := state["enable_multiple_write_locations"]; ok {
-	x := x.(bool)
-	r.Enable_multiple_write_locations = &x
-}
-
-if x, ok := state["secondary_readonly_master_key"]; ok {
-	x := x.(string)
-	r.Secondary_readonly_master_key = &x
-}
-
-if x, ok := state["is_virtual_network_filter_enabled"]; ok {
-	x := x.(bool)
-	r.Is_virtual_network_filter_enabled = &x
-}
-
-if x, ok := state["secondary_master_key"]; ok {
-	x := x.(string)
-	r.Secondary_master_key = &x
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["endpoint"]; ok {
-	x := x.(string)
-	r.Endpoint = &x
-}
-
-if x, ok := state["primary_master_key"]; ok {
-	x := x.(string)
-	r.Primary_master_key = &x
-}
-
-if x, ok := state["primary_readonly_master_key"]; ok {
-	x := x.(string)
-	r.Primary_readonly_master_key = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["ip_range_filter"]; ok {
-	x := x.(string)
-	r.Ip_range_filter = &x
-}
-
-if x, ok := state["enable_automatic_failover"]; ok {
-	x := x.(bool)
-	r.Enable_automatic_failover = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["offer_type"]; ok {
-	r.Offer_type = x.(string)
-}
-
-if x, ok := state["kind"]; ok {
-	x := x.(string)
-	r.Kind = &x
-}
-	return r
-}
-
-
-// Azurerm_cosmosdb_accountHandler ...
-type Azurerm_cosmosdb_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Azurerm_cosmosdb_accountHandler) Create(desired *Azurerm_cosmosdb_account) (*Azurerm_cosmosdb_account, string, error) {
-	rState := Azurerm_cosmosdb_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_cosmosdb_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosmosdb_account, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_cosmosdb_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_cosmosdb_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Azurerm_cosmosdb_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_cosmosdb_account", externalID)
-}
-
-type Azurerm_dev_test_lab struct {
-     Azurerm_dev_test_lab_id *string
-     Tags *map[string]string
-     Artifacts_storage_account_id *string
-     Default_storage_account_id *string
-     Premium_data_disk_storage_account_id *string
-     Unique_identifier *string
-     Name string
-     Location string
-     Resource_group_name string
-     Storage_type *string
-     Default_premium_storage_account_id *string
-     Key_vault_id *string
-}
-
-
-func Azurerm_dev_test_labMapper(r *Azurerm_dev_test_lab) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Unique_identifier != nil {
-    config["unique_identifier"] = *r.Unique_identifier
-}
-    config["name"] = r.Name
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Storage_type != nil {
-    config["storage_type"] = *r.Storage_type
-}
-if r.Default_premium_storage_account_id != nil {
-    config["default_premium_storage_account_id"] = *r.Default_premium_storage_account_id
-}
-if r.Key_vault_id != nil {
-    config["key_vault_id"] = *r.Key_vault_id
-}
-if r.Premium_data_disk_storage_account_id != nil {
-    config["premium_data_disk_storage_account_id"] = *r.Premium_data_disk_storage_account_id
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Artifacts_storage_account_id != nil {
-    config["artifacts_storage_account_id"] = *r.Artifacts_storage_account_id
-}
-if r.Default_storage_account_id != nil {
-    config["default_storage_account_id"] = *r.Default_storage_account_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_dev_test_labUnmapper(state map[string]interface{}) *Azurerm_dev_test_lab {
-	r := &Azurerm_dev_test_lab{}
+    Azurerm_app_service_connection_string_1279_id *string `lyra:"ignore"`
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dev_test_lab_id = &x
-}
-
-if x, ok := state["default_storage_account_id"]; ok {
-	x := x.(string)
-	r.Default_storage_account_id = &x
-}
-
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
-
-if x, ok := state["artifacts_storage_account_id"]; ok {
-	x := x.(string)
-	r.Artifacts_storage_account_id = &x
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["storage_type"]; ok {
-	x := x.(string)
-	r.Storage_type = &x
-}
-
-if x, ok := state["default_premium_storage_account_id"]; ok {
-	x := x.(string)
-	r.Default_premium_storage_account_id = &x
-}
-
-if x, ok := state["key_vault_id"]; ok {
-	x := x.(string)
-	r.Key_vault_id = &x
-}
-
-if x, ok := state["premium_data_disk_storage_account_id"]; ok {
-	x := x.(string)
-	r.Premium_data_disk_storage_account_id = &x
-}
-
-if x, ok := state["unique_identifier"]; ok {
-	x := x.(string)
-	r.Unique_identifier = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Name string
 
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
+    Type string
 
+    Value string
 
-// Azurerm_dev_test_labHandler ...
-type Azurerm_dev_test_labHandler struct {
-	provider *schema.Provider
 }
 
-// Create ...
-func (h *Azurerm_dev_test_labHandler) Create(desired *Azurerm_dev_test_lab) (*Azurerm_dev_test_lab, string, error) {
-	rState := Azurerm_dev_test_labMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dev_test_lab", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+type Azurerm_app_service_identity_1280 struct {
 
-// Read ...
-func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test_lab, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dev_test_lab", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_dev_test_labUnmapper(actual), nil
-}
+    Azurerm_app_service_identity_1280_id *string `lyra:"ignore"`
 
-// Delete ...
-func (h *Azurerm_dev_test_labHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_dev_test_lab", externalID)
-}
+    Principal_id *string
 
-type Azurerm_data_lake_store_firewall_rule struct {
-     Azurerm_data_lake_store_firewall_rule_id *string
-     Resource_group_name string
-     Start_ip_address string
-     End_ip_address string
-     Name string
-     Account_name string
-}
+    Tenant_id *string
 
+    Type string
 
-func Azurerm_data_lake_store_firewall_ruleMapper(r *Azurerm_data_lake_store_firewall_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["account_name"] = r.Account_name
-    config["resource_group_name"] = r.Resource_group_name
-    config["start_ip_address"] = r.Start_ip_address
-    config["end_ip_address"] = r.End_ip_address
-return &terraform.ResourceConfig{
-		Config: config,
-	}
 }
-
-func Azurerm_data_lake_store_firewall_ruleUnmapper(state map[string]interface{}) *Azurerm_data_lake_store_firewall_rule {
-	r := &Azurerm_data_lake_store_firewall_rule{}
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_data_lake_store_firewall_rule_id = &x
-}
+type Azurerm_app_service_site_config_1281_ip_restriction_1282 struct {
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Azurerm_app_service_site_config_1281_ip_restriction_1282_id *string `lyra:"ignore"`
 
-if x, ok := state["account_name"]; ok {
-	r.Account_name = x.(string)
-}
+    Ip_address string
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Subnet_mask *string
 
-if x, ok := state["start_ip_address"]; ok {
-	r.Start_ip_address = x.(string)
 }
 
-if x, ok := state["end_ip_address"]; ok {
-	r.End_ip_address = x.(string)
-}
-	return r
-}
+type Azurerm_app_service_site_config_1281 struct {
 
+    Azurerm_app_service_site_config_1281_id *string `lyra:"ignore"`
 
-// Azurerm_data_lake_store_firewall_ruleHandler ...
-type Azurerm_data_lake_store_firewall_ruleHandler struct {
-	provider *schema.Provider
-}
+    Always_on *bool
 
-// Create ...
-func (h *Azurerm_data_lake_store_firewall_ruleHandler) Create(desired *Azurerm_data_lake_store_firewall_rule) (*Azurerm_data_lake_store_firewall_rule, string, error) {
-	rState := Azurerm_data_lake_store_firewall_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_data_lake_store_firewall_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    App_command_line *string
 
-// Read ...
-func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_store_firewall_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_data_lake_store_firewall_ruleUnmapper(actual), nil
-}
+    Default_documents *[]string
 
-// Delete ...
-func (h *Azurerm_data_lake_store_firewall_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
-}
+    Dotnet_framework_version *string
 
-type Azurerm_lb_probe struct {
-     Azurerm_lb_probe_id *string
-     Request_path *string
-     Location *string
-     Loadbalancer_id string
-     Name string
-     Resource_group_name string
-     Protocol *string
-}
+    Ftps_state *string
 
+    Http2_enabled *bool
 
-func Azurerm_lb_probeMapper(r *Azurerm_lb_probe) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Protocol != nil {
-    config["protocol"] = *r.Protocol
-}
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["loadbalancer_id"] = r.Loadbalancer_id
-if r.Request_path != nil {
-    config["request_path"] = *r.Request_path
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Ip_restriction *Azurerm_app_service_site_config_1281_ip_restriction_1282
 
-func Azurerm_lb_probeUnmapper(state map[string]interface{}) *Azurerm_lb_probe {
-	r := &Azurerm_lb_probe{}
+    Java_container *string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_lb_probe_id = &x
-}
+    Java_container_version *string
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Java_version *string
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Linux_fx_version *string
 
-if x, ok := state["protocol"]; ok {
-	x := x.(string)
-	r.Protocol = &x
-}
+    Local_mysql_enabled *bool
 
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
+    Managed_pipeline_mode *string
 
-if x, ok := state["loadbalancer_id"]; ok {
-	r.Loadbalancer_id = x.(string)
-}
+    Min_tls_version *string
 
-if x, ok := state["request_path"]; ok {
-	x := x.(string)
-	r.Request_path = &x
-}
-	return r
-}
+    Php_version *string
 
+    Python_version *string
 
-// Azurerm_lb_probeHandler ...
-type Azurerm_lb_probeHandler struct {
-	provider *schema.Provider
-}
+    Remote_debugging_enabled *bool
 
-// Create ...
-func (h *Azurerm_lb_probeHandler) Create(desired *Azurerm_lb_probe) (*Azurerm_lb_probe, string, error) {
-	rState := Azurerm_lb_probeMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_lb_probe", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    Remote_debugging_version *string
 
-// Read ...
-func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_lb_probe", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_lb_probeUnmapper(actual), nil
-}
+    Scm_type *string
 
-// Delete ...
-func (h *Azurerm_lb_probeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_lb_probe", externalID)
-}
+    Use_32_bit_worker_process *bool
 
-type Azurerm_mysql_virtual_network_rule struct {
-     Azurerm_mysql_virtual_network_rule_id *string
-     Resource_group_name string
-     Server_name string
-     Subnet_id string
-     Name string
-}
+    Virtual_network_name *string
 
+    Websockets_enabled *bool
 
-func Azurerm_mysql_virtual_network_ruleMapper(r *Azurerm_mysql_virtual_network_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["server_name"] = r.Server_name
-    config["subnet_id"] = r.Subnet_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
 }
 
-func Azurerm_mysql_virtual_network_ruleUnmapper(state map[string]interface{}) *Azurerm_mysql_virtual_network_rule {
-	r := &Azurerm_mysql_virtual_network_rule{}
+type Azurerm_app_service_site_credential_1283 struct {
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_mysql_virtual_network_rule_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Azurerm_app_service_site_credential_1283_id *string `lyra:"ignore"`
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Password *string
 
-if x, ok := state["server_name"]; ok {
-	r.Server_name = x.(string)
-}
+    Username *string
 
-if x, ok := state["subnet_id"]; ok {
-	r.Subnet_id = x.(string)
-}
-	return r
 }
 
+type Azurerm_app_service_source_control_1284 struct {
 
-// Azurerm_mysql_virtual_network_ruleHandler ...
-type Azurerm_mysql_virtual_network_ruleHandler struct {
-	provider *schema.Provider
-}
+    Azurerm_app_service_source_control_1284_id *string `lyra:"ignore"`
 
-// Create ...
-func (h *Azurerm_mysql_virtual_network_ruleHandler) Create(desired *Azurerm_mysql_virtual_network_rule) (*Azurerm_mysql_virtual_network_rule, string, error) {
-	rState := Azurerm_mysql_virtual_network_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_mysql_virtual_network_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    Branch *string
 
-// Read ...
-func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_mysql_virtual_network_rule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Azurerm_mysql_virtual_network_ruleUnmapper(actual), nil
-}
+    Repo_url *string
 
-// Delete ...
-func (h *Azurerm_mysql_virtual_network_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
 }
 
 type Azurerm_app_service struct {
-     Azurerm_app_service_id *string
-     App_service_plan_id string
-     Default_site_hostname *string
-     Location string
-     Https_only *bool
-     Resource_group_name string
-     Client_affinity_enabled *bool
-     Tags *map[string]string
-     Outbound_ip_addresses *string
-     Possible_outbound_ip_addresses *string
-     Name string
-     Enabled *bool
-}
 
+    Azurerm_app_service_id *string `lyra:"ignore"`
 
-func Azurerm_app_serviceMapper(r *Azurerm_app_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["app_service_plan_id"] = r.App_service_plan_id
-if r.Default_site_hostname != nil {
-    config["default_site_hostname"] = *r.Default_site_hostname
-}
-    config["location"] = r.Location
-if r.Client_affinity_enabled != nil {
-    config["client_affinity_enabled"] = *r.Client_affinity_enabled
-}
-if r.Https_only != nil {
-    config["https_only"] = *r.Https_only
-}
-    config["resource_group_name"] = r.Resource_group_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-if r.Outbound_ip_addresses != nil {
-    config["outbound_ip_addresses"] = *r.Outbound_ip_addresses
-}
-if r.Possible_outbound_ip_addresses != nil {
-    config["possible_outbound_ip_addresses"] = *r.Possible_outbound_ip_addresses
-}
-    config["name"] = r.Name
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    App_service_plan_id string
 
-func Azurerm_app_serviceUnmapper(state map[string]interface{}) *Azurerm_app_service {
-	r := &Azurerm_app_service{}
+    App_settings *map[string]string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_app_service_id = &x
-}
+    Client_affinity_enabled *bool
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Connection_string *Azurerm_app_service_connection_string_1279
 
-if x, ok := state["client_affinity_enabled"]; ok {
-	x := x.(bool)
-	r.Client_affinity_enabled = &x
-}
+    Default_site_hostname *string
 
-if x, ok := state["https_only"]; ok {
-	x := x.(bool)
-	r.Https_only = &x
-}
+    Enabled *bool
 
-if x, ok := state["possible_outbound_ip_addresses"]; ok {
-	x := x.(string)
-	r.Possible_outbound_ip_addresses = &x
-}
+    Https_only *bool
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Identity *Azurerm_app_service_identity_1280
 
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
+    Location string
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
-}
+    Name string
 
-if x, ok := state["outbound_ip_addresses"]; ok {
-	x := x.(string)
-	r.Outbound_ip_addresses = &x
-}
+    Outbound_ip_addresses *string
 
-if x, ok := state["app_service_plan_id"]; ok {
-	r.App_service_plan_id = x.(string)
-}
+    Possible_outbound_ip_addresses *string
 
-if x, ok := state["default_site_hostname"]; ok {
-	x := x.(string)
-	r.Default_site_hostname = &x
-}
+    Resource_group_name string
 
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
-}
+    Site_config *Azurerm_app_service_site_config_1281
 
+    Site_credential *Azurerm_app_service_site_credential_1283
+
+    Source_control *Azurerm_app_service_source_control_1284
+
+    Tags *map[string]string
+
+}
 
 // Azurerm_app_serviceHandler ...
 type Azurerm_app_serviceHandler struct {
@@ -19713,8 +768,10 @@ type Azurerm_app_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_app_serviceHandler) Create(desired *Azurerm_app_service) (*Azurerm_app_service, string, error) {
-	rState := Azurerm_app_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_app_service", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_app_service", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -19727,11 +784,13 @@ func (h *Azurerm_app_serviceHandler) Create(desired *Azurerm_app_service) (*Azur
 
 // Read ...
 func (h *Azurerm_app_serviceHandler) Read(externalID string) (*Azurerm_app_service, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_app_service", externalID)
+	id, actual, err := bridge.Read(h.provider, "azurerm_app_service", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_app_serviceUnmapper(actual), nil
+	x := &Azurerm_app_service{ Azurerm_app_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -19739,100 +798,1297 @@ func (h *Azurerm_app_serviceHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "azurerm_app_service", externalID)
 }
 
-type Azurerm_automation_schedule struct {
-     Azurerm_automation_schedule_id *string
-     Account_name *string
-     Start_time *string
-     Expiry_time *string
-     Description *string
-     Timezone *string
-     Name string
-     Resource_group_name string
-     Automation_account_name *string
-     Frequency string
+type Azurerm_app_service_active_slot struct {
+
+    Azurerm_app_service_active_slot_id *string `lyra:"ignore"`
+
+    App_service_name string
+
+    App_service_slot_name string
+
+    Resource_group_name string
+
 }
 
+// Azurerm_app_service_active_slotHandler ...
+type Azurerm_app_service_active_slotHandler struct {
+	provider *schema.Provider
+}
 
-func Azurerm_automation_scheduleMapper(r *Azurerm_automation_schedule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Timezone != nil {
-    config["timezone"] = *r.Timezone
-}
-    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-if r.Automation_account_name != nil {
-    config["automation_account_name"] = *r.Automation_account_name
-}
-    config["frequency"] = r.Frequency
-if r.Expiry_time != nil {
-    config["expiry_time"] = *r.Expiry_time
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Account_name != nil {
-    config["account_name"] = *r.Account_name
-}
-if r.Start_time != nil {
-    config["start_time"] = *r.Start_time
-}
-return &terraform.ResourceConfig{
-		Config: config,
+// Create ...
+func (h *Azurerm_app_service_active_slotHandler) Create(desired *Azurerm_app_service_active_slot) (*Azurerm_app_service_active_slot, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
 	}
+	id, err := bridge.Create(h.provider, "azurerm_app_service_active_slot", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
-func Azurerm_automation_scheduleUnmapper(state map[string]interface{}) *Azurerm_automation_schedule {
-	r := &Azurerm_automation_schedule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_automation_schedule_id = &x
+// Read ...
+func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azurerm_app_service_active_slot, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_active_slot", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_app_service_active_slot{ Azurerm_app_service_active_slot_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
-if x, ok := state["expiry_time"]; ok {
-	x := x.(string)
-	r.Expiry_time = &x
+// Delete ...
+func (h *Azurerm_app_service_active_slotHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_app_service_active_slot", externalID)
 }
 
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
+type Azurerm_app_service_custom_hostname_binding struct {
+
+    Azurerm_app_service_custom_hostname_binding_id *string `lyra:"ignore"`
+
+    App_service_name string
+
+    Hostname string
+
+    Resource_group_name string
+
 }
 
-if x, ok := state["timezone"]; ok {
-	x := x.(string)
-	r.Timezone = &x
+// Azurerm_app_service_custom_hostname_bindingHandler ...
+type Azurerm_app_service_custom_hostname_bindingHandler struct {
+	provider *schema.Provider
 }
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
+// Create ...
+func (h *Azurerm_app_service_custom_hostname_bindingHandler) Create(desired *Azurerm_app_service_custom_hostname_binding) (*Azurerm_app_service_custom_hostname_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_app_service_custom_hostname_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
+// Read ...
+func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID string) (*Azurerm_app_service_custom_hostname_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_app_service_custom_hostname_binding{ Azurerm_app_service_custom_hostname_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
-if x, ok := state["automation_account_name"]; ok {
-	x := x.(string)
-	r.Automation_account_name = &x
+// Delete ...
+func (h *Azurerm_app_service_custom_hostname_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
 }
 
-if x, ok := state["frequency"]; ok {
-	r.Frequency = x.(string)
+type Azurerm_app_service_plan_properties_1285 struct {
+
+    Azurerm_app_service_plan_properties_1285_id *string `lyra:"ignore"`
+
+    App_service_environment_id *string
+
+    Per_site_scaling *bool
+
+    Reserved *bool
+
 }
 
-if x, ok := state["account_name"]; ok {
-	x := x.(string)
-	r.Account_name = &x
+type Azurerm_app_service_plan_sku_1286 struct {
+
+    Azurerm_app_service_plan_sku_1286_id *string `lyra:"ignore"`
+
+    Capacity *int
+
+    Size string
+
+    Tier string
+
 }
 
-if x, ok := state["start_time"]; ok {
-	x := x.(string)
-	r.Start_time = &x
-}
-	return r
+type Azurerm_app_service_plan struct {
+
+    Azurerm_app_service_plan_id *string `lyra:"ignore"`
+
+    App_service_environment_id *string
+
+    Kind *string
+
+    Location string
+
+    Maximum_number_of_workers *int
+
+    Name string
+
+    Per_site_scaling *bool
+
+    Properties *Azurerm_app_service_plan_properties_1285
+
+    Reserved *bool
+
+    Resource_group_name string
+
+    Sku Azurerm_app_service_plan_sku_1286
+
+    Tags *map[string]string
+
 }
 
+// Azurerm_app_service_planHandler ...
+type Azurerm_app_service_planHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_app_service_planHandler) Create(desired *Azurerm_app_service_plan) (*Azurerm_app_service_plan, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_app_service_plan", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_service_plan, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_plan", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_app_service_plan{ Azurerm_app_service_plan_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_app_service_planHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_app_service_plan", externalID)
+}
+
+type Azurerm_app_service_slot_connection_string_1287 struct {
+
+    Azurerm_app_service_slot_connection_string_1287_id *string `lyra:"ignore"`
+
+    Name string
+
+    Type string
+
+    Value string
+
+}
+
+type Azurerm_app_service_slot_identity_1288 struct {
+
+    Azurerm_app_service_slot_identity_1288_id *string `lyra:"ignore"`
+
+    Principal_id *string
+
+    Tenant_id *string
+
+    Type string
+
+}
+
+type Azurerm_app_service_slot_site_config_1289_ip_restriction_1290 struct {
+
+    Azurerm_app_service_slot_site_config_1289_ip_restriction_1290_id *string `lyra:"ignore"`
+
+    Ip_address string
+
+    Subnet_mask *string
+
+}
+
+type Azurerm_app_service_slot_site_config_1289 struct {
+
+    Azurerm_app_service_slot_site_config_1289_id *string `lyra:"ignore"`
+
+    Always_on *bool
+
+    App_command_line *string
+
+    Default_documents *[]string
+
+    Dotnet_framework_version *string
+
+    Ftps_state *string
+
+    Http2_enabled *bool
+
+    Ip_restriction *Azurerm_app_service_slot_site_config_1289_ip_restriction_1290
+
+    Java_container *string
+
+    Java_container_version *string
+
+    Java_version *string
+
+    Linux_fx_version *string
+
+    Local_mysql_enabled *bool
+
+    Managed_pipeline_mode *string
+
+    Min_tls_version *string
+
+    Php_version *string
+
+    Python_version *string
+
+    Remote_debugging_enabled *bool
+
+    Remote_debugging_version *string
+
+    Scm_type *string
+
+    Use_32_bit_worker_process *bool
+
+    Virtual_network_name *string
+
+    Websockets_enabled *bool
+
+}
+
+type Azurerm_app_service_slot struct {
+
+    Azurerm_app_service_slot_id *string `lyra:"ignore"`
+
+    App_service_name string
+
+    App_service_plan_id string
+
+    App_settings *map[string]string
+
+    Client_affinity_enabled *bool
+
+    Connection_string *Azurerm_app_service_slot_connection_string_1287
+
+    Default_site_hostname *string
+
+    Enabled *bool
+
+    Https_only *bool
+
+    Identity *Azurerm_app_service_slot_identity_1288
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Site_config *Azurerm_app_service_slot_site_config_1289
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_app_service_slotHandler ...
+type Azurerm_app_service_slotHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_app_service_slotHandler) Create(desired *Azurerm_app_service_slot) (*Azurerm_app_service_slot, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_app_service_slot", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_service_slot, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_slot", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_app_service_slot{ Azurerm_app_service_slot_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_app_service_slotHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_app_service_slot", externalID)
+}
+
+type Azurerm_application_gateway_authentication_certificate_1291 struct {
+
+    Azurerm_application_gateway_authentication_certificate_1291_id *string `lyra:"ignore"`
+
+    Data string
+
+    Id *string
+
+    Name string
+
+}
+
+type Azurerm_application_gateway_backend_address_pool_1292 struct {
+
+    Azurerm_application_gateway_backend_address_pool_1292_id *string `lyra:"ignore"`
+
+    Fqdn_list *[]string
+
+    Id *string
+
+    Ip_address_list *[]string
+
+    Name string
+
+}
+
+type Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294 struct {
+
+    Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Name string
+
+}
+
+type Azurerm_application_gateway_backend_http_settings_1293 struct {
+
+    Azurerm_application_gateway_backend_http_settings_1293_id *string `lyra:"ignore"`
+
+    Authentication_certificate *Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294
+
+    Cookie_based_affinity string
+
+    Id *string
+
+    Name string
+
+    Port int
+
+    Probe_id *string
+
+    Probe_name *string
+
+    Protocol string
+
+    Request_timeout *int
+
+}
+
+type Azurerm_application_gateway_frontend_ip_configuration_1295 struct {
+
+    Azurerm_application_gateway_frontend_ip_configuration_1295_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Name string
+
+    Private_ip_address *string
+
+    Private_ip_address_allocation *string
+
+    Public_ip_address_id *string
+
+    Subnet_id *string
+
+}
+
+type Azurerm_application_gateway_frontend_port_1296 struct {
+
+    Azurerm_application_gateway_frontend_port_1296_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Name string
+
+    Port int
+
+}
+
+type Azurerm_application_gateway_gateway_ip_configuration_1297 struct {
+
+    Azurerm_application_gateway_gateway_ip_configuration_1297_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Name string
+
+    Subnet_id string
+
+}
+
+type Azurerm_application_gateway_http_listener_1298 struct {
+
+    Azurerm_application_gateway_http_listener_1298_id *string `lyra:"ignore"`
+
+    Frontend_ip_configuration_id *string
+
+    Frontend_ip_configuration_name string
+
+    Frontend_port_id *string
+
+    Frontend_port_name string
+
+    Host_name *string
+
+    Id *string
+
+    Name string
+
+    Protocol string
+
+    Require_sni *bool
+
+    Ssl_certificate_id *string
+
+    Ssl_certificate_name *string
+
+}
+
+type Azurerm_application_gateway_probe_1299_match_1300 struct {
+
+    Azurerm_application_gateway_probe_1299_match_1300_id *string `lyra:"ignore"`
+
+    Body *string
+
+    Status_code *[]string
+
+}
+
+type Azurerm_application_gateway_probe_1299 struct {
+
+    Azurerm_application_gateway_probe_1299_id *string `lyra:"ignore"`
+
+    Host string
+
+    Id *string
+
+    Interval int
+
+    Match *Azurerm_application_gateway_probe_1299_match_1300
+
+    Minimum_servers *int
+
+    Name string
+
+    Path string
+
+    Protocol string
+
+    Timeout int
+
+    Unhealthy_threshold int
+
+}
+
+type Azurerm_application_gateway_request_routing_rule_1301 struct {
+
+    Azurerm_application_gateway_request_routing_rule_1301_id *string `lyra:"ignore"`
+
+    Backend_address_pool_id *string
+
+    Backend_address_pool_name *string
+
+    Backend_http_settings_id *string
+
+    Backend_http_settings_name *string
+
+    Http_listener_id *string
+
+    Http_listener_name string
+
+    Id *string
+
+    Name string
+
+    Rule_type string
+
+    Url_path_map_id *string
+
+    Url_path_map_name *string
+
+}
+
+type Azurerm_application_gateway_sku_1302 struct {
+
+    Azurerm_application_gateway_sku_1302_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_application_gateway_ssl_certificate_1303 struct {
+
+    Azurerm_application_gateway_ssl_certificate_1303_id *string `lyra:"ignore"`
+
+    Data string
+
+    Id *string
+
+    Name string
+
+    Password string
+
+    Public_cert_data *string
+
+}
+
+type Azurerm_application_gateway_url_path_map_1304_path_rule_1305 struct {
+
+    Azurerm_application_gateway_url_path_map_1304_path_rule_1305_id *string `lyra:"ignore"`
+
+    Backend_address_pool_id *string
+
+    Backend_address_pool_name string
+
+    Backend_http_settings_id *string
+
+    Backend_http_settings_name string
+
+    Id *string
+
+    Name string
+
+    Paths []string
+
+}
+
+type Azurerm_application_gateway_url_path_map_1304 struct {
+
+    Azurerm_application_gateway_url_path_map_1304_id *string `lyra:"ignore"`
+
+    Default_backend_address_pool_id *string
+
+    Default_backend_address_pool_name string
+
+    Default_backend_http_settings_id *string
+
+    Default_backend_http_settings_name string
+
+    Id *string
+
+    Name string
+
+    Path_rule Azurerm_application_gateway_url_path_map_1304_path_rule_1305
+
+}
+
+type Azurerm_application_gateway_waf_configuration_1306 struct {
+
+    Azurerm_application_gateway_waf_configuration_1306_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Firewall_mode string
+
+    Rule_set_type *string
+
+    Rule_set_version string
+
+}
+
+type Azurerm_application_gateway struct {
+
+    Azurerm_application_gateway_id *string `lyra:"ignore"`
+
+    Authentication_certificate *Azurerm_application_gateway_authentication_certificate_1291
+
+    Backend_address_pool Azurerm_application_gateway_backend_address_pool_1292
+
+    Backend_http_settings Azurerm_application_gateway_backend_http_settings_1293
+
+    Disabled_ssl_protocols *[]string
+
+    Frontend_ip_configuration Azurerm_application_gateway_frontend_ip_configuration_1295
+
+    Frontend_port Azurerm_application_gateway_frontend_port_1296
+
+    Gateway_ip_configuration Azurerm_application_gateway_gateway_ip_configuration_1297
+
+    Http_listener Azurerm_application_gateway_http_listener_1298
+
+    Location string
+
+    Name string
+
+    Probe *Azurerm_application_gateway_probe_1299
+
+    Request_routing_rule Azurerm_application_gateway_request_routing_rule_1301
+
+    Resource_group_name string
+
+    Sku Azurerm_application_gateway_sku_1302
+
+    Ssl_certificate *Azurerm_application_gateway_ssl_certificate_1303
+
+    Tags *map[string]string
+
+    Url_path_map *Azurerm_application_gateway_url_path_map_1304
+
+    Waf_configuration *Azurerm_application_gateway_waf_configuration_1306
+
+}
+
+// Azurerm_application_gatewayHandler ...
+type Azurerm_application_gatewayHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_application_gatewayHandler) Create(desired *Azurerm_application_gateway) (*Azurerm_application_gateway, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_application_gateway", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_application_gateway, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_application_gateway", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_application_gateway{ Azurerm_application_gateway_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_application_gatewayHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_application_gateway", externalID)
+}
+
+type Azurerm_application_insights struct {
+
+    Azurerm_application_insights_id *string `lyra:"ignore"`
+
+    App_id *string
+
+    Application_type string
+
+    Instrumentation_key *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_application_insightsHandler ...
+type Azurerm_application_insightsHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_application_insightsHandler) Create(desired *Azurerm_application_insights) (*Azurerm_application_insights, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_application_insights", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_application_insights, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_application_insights", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_application_insights{ Azurerm_application_insights_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_application_insightsHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_application_insights", externalID)
+}
+
+type Azurerm_application_insights_api_key struct {
+
+    Azurerm_application_insights_api_key_id *string `lyra:"ignore"`
+
+    Api_key *string
+
+    Application_insights_id string
+
+    Name string
+
+    Read_permissions *[]string
+
+    Write_permissions *[]string
+
+}
+
+// Azurerm_application_insights_api_keyHandler ...
+type Azurerm_application_insights_api_keyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_application_insights_api_keyHandler) Create(desired *Azurerm_application_insights_api_key) (*Azurerm_application_insights_api_key, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_application_insights_api_key", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*Azurerm_application_insights_api_key, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_application_insights_api_key", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_application_insights_api_key{ Azurerm_application_insights_api_key_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_application_insights_api_keyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_application_insights_api_key", externalID)
+}
+
+type Azurerm_application_security_group struct {
+
+    Azurerm_application_security_group_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_application_security_groupHandler ...
+type Azurerm_application_security_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_application_security_groupHandler) Create(desired *Azurerm_application_security_group) (*Azurerm_application_security_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_application_security_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Azurerm_application_security_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_application_security_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_application_security_group{ Azurerm_application_security_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_application_security_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_application_security_group", externalID)
+}
+
+type Azurerm_automation_account_sku_1307 struct {
+
+    Azurerm_automation_account_sku_1307_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Azurerm_automation_account struct {
+
+    Azurerm_automation_account_id *string `lyra:"ignore"`
+
+    Dsc_primary_access_key *string
+
+    Dsc_secondary_access_key *string
+
+    Dsc_server_endpoint *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku Azurerm_automation_account_sku_1307
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_automation_accountHandler ...
+type Azurerm_automation_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_automation_accountHandler) Create(desired *Azurerm_automation_account) (*Azurerm_automation_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_automation_account, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_automation_account{ Azurerm_automation_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_automation_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_automation_account", externalID)
+}
+
+type Azurerm_automation_credential struct {
+
+    Azurerm_automation_credential_id *string `lyra:"ignore"`
+
+    Account_name string
+
+    Description *string
+
+    Name string
+
+    Password string
+
+    Resource_group_name string
+
+    Username string
+
+}
+
+// Azurerm_automation_credentialHandler ...
+type Azurerm_automation_credentialHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_automation_credentialHandler) Create(desired *Azurerm_automation_credential) (*Azurerm_automation_credential, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_credential", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm_automation_credential, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_credential", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_automation_credential{ Azurerm_automation_credential_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_automation_credentialHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_automation_credential", externalID)
+}
+
+type Azurerm_automation_dsc_configuration struct {
+
+    Azurerm_automation_dsc_configuration_id *string `lyra:"ignore"`
+
+    Automation_account_name string
+
+    Content_embedded string
+
+    Description *string
+
+    Location string
+
+    Log_verbose *bool
+
+    Name string
+
+    Resource_group_name string
+
+    State *string
+
+}
+
+// Azurerm_automation_dsc_configurationHandler ...
+type Azurerm_automation_dsc_configurationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_automation_dsc_configurationHandler) Create(desired *Azurerm_automation_dsc_configuration) (*Azurerm_automation_dsc_configuration, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_dsc_configuration", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*Azurerm_automation_dsc_configuration, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_configuration", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_automation_dsc_configuration{ Azurerm_automation_dsc_configuration_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_automation_dsc_configurationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_automation_dsc_configuration", externalID)
+}
+
+type Azurerm_automation_dsc_nodeconfiguration struct {
+
+    Azurerm_automation_dsc_nodeconfiguration_id *string `lyra:"ignore"`
+
+    Automation_account_name string
+
+    Configuration_name *string
+
+    Content_embedded string
+
+    Name string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_automation_dsc_nodeconfigurationHandler ...
+type Azurerm_automation_dsc_nodeconfigurationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Create(desired *Azurerm_automation_dsc_nodeconfiguration) (*Azurerm_automation_dsc_nodeconfiguration, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_dsc_nodeconfiguration", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string) (*Azurerm_automation_dsc_nodeconfiguration, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_automation_dsc_nodeconfiguration{ Azurerm_automation_dsc_nodeconfiguration_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
+}
+
+type Azurerm_automation_module_module_link_1308_hash_1309 struct {
+
+    Azurerm_automation_module_module_link_1308_hash_1309_id *string `lyra:"ignore"`
+
+    Algorithm string
+
+    Value string
+
+}
+
+type Azurerm_automation_module_module_link_1308 struct {
+
+    Azurerm_automation_module_module_link_1308_id *string `lyra:"ignore"`
+
+    Hash *Azurerm_automation_module_module_link_1308_hash_1309
+
+    Uri string
+
+}
+
+type Azurerm_automation_module struct {
+
+    Azurerm_automation_module_id *string `lyra:"ignore"`
+
+    Automation_account_name string
+
+    Module_link Azurerm_automation_module_module_link_1308
+
+    Name string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_automation_moduleHandler ...
+type Azurerm_automation_moduleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_automation_moduleHandler) Create(desired *Azurerm_automation_module) (*Azurerm_automation_module, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_module", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_automation_module, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_module", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_automation_module{ Azurerm_automation_module_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_automation_moduleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_automation_module", externalID)
+}
+
+type Azurerm_automation_runbook_publish_content_link_1310_hash_1311 struct {
+
+    Azurerm_automation_runbook_publish_content_link_1310_hash_1311_id *string `lyra:"ignore"`
+
+    Algorithm string
+
+    Value string
+
+}
+
+type Azurerm_automation_runbook_publish_content_link_1310 struct {
+
+    Azurerm_automation_runbook_publish_content_link_1310_id *string `lyra:"ignore"`
+
+    Hash *Azurerm_automation_runbook_publish_content_link_1310_hash_1311
+
+    Uri string
+
+    Version *string
+
+}
+
+type Azurerm_automation_runbook struct {
+
+    Azurerm_automation_runbook_id *string `lyra:"ignore"`
+
+    Account_name string
+
+    Content *string
+
+    Description *string
+
+    Location string
+
+    Log_progress bool
+
+    Log_verbose bool
+
+    Name string
+
+    Publish_content_link Azurerm_automation_runbook_publish_content_link_1310
+
+    Resource_group_name string
+
+    Runbook_type string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_automation_runbookHandler ...
+type Azurerm_automation_runbookHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_automation_runbookHandler) Create(desired *Azurerm_automation_runbook) (*Azurerm_automation_runbook, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_runbook", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_automation_runbook, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_runbook", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_automation_runbook{ Azurerm_automation_runbook_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_automation_runbookHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_automation_runbook", externalID)
+}
+
+type Azurerm_automation_schedule_monthly_occurrence_1312 struct {
+
+    Azurerm_automation_schedule_monthly_occurrence_1312_id *string `lyra:"ignore"`
+
+    Day string
+
+    Occurrence int
+
+}
+
+type Azurerm_automation_schedule struct {
+
+    Azurerm_automation_schedule_id *string `lyra:"ignore"`
+
+    Account_name *string
+
+    Automation_account_name *string
+
+    Description *string
+
+    Expiry_time *string
+
+    Frequency string
+
+    Interval *int
+
+    Month_days *[]int
+
+    Monthly_occurrence *Azurerm_automation_schedule_monthly_occurrence_1312
+
+    Name string
+
+    Resource_group_name string
+
+    Start_time *string
+
+    Timezone *string
+
+    Week_days *[]string
+
+}
 
 // Azurerm_automation_scheduleHandler ...
 type Azurerm_automation_scheduleHandler struct {
@@ -19841,8 +2097,10 @@ type Azurerm_automation_scheduleHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_scheduleHandler) Create(desired *Azurerm_automation_schedule) (*Azurerm_automation_schedule, string, error) {
-	rState := Azurerm_automation_scheduleMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_automation_schedule", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_automation_schedule", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -19855,11 +2113,13 @@ func (h *Azurerm_automation_scheduleHandler) Create(desired *Azurerm_automation_
 
 // Read ...
 func (h *Azurerm_automation_scheduleHandler) Read(externalID string) (*Azurerm_automation_schedule, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_automation_schedule", externalID)
+	id, actual, err := bridge.Read(h.provider, "azurerm_automation_schedule", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_automation_scheduleUnmapper(actual), nil
+	x := &Azurerm_automation_schedule{ Azurerm_automation_schedule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -19867,98 +2127,171 @@ func (h *Azurerm_automation_scheduleHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "azurerm_automation_schedule", externalID)
 }
 
-type Azurerm_snapshot struct {
-     Azurerm_snapshot_id *string
-     Storage_account_id *string
-     Tags *map[string]string
-     Location string
-     Resource_group_name string
-     Source_uri *string
-     Source_resource_id *string
-     Name string
-     Create_option string
+type Azurerm_autoscale_setting_notification_1313_email_1314 struct {
+
+    Azurerm_autoscale_setting_notification_1313_email_1314_id *string `lyra:"ignore"`
+
+    Custom_emails *[]string
+
+    Send_to_subscription_administrator *bool
+
+    Send_to_subscription_co_administrator *bool
+
 }
 
+type Azurerm_autoscale_setting_notification_1313_webhook_1315 struct {
 
-func Azurerm_snapshotMapper(r *Azurerm_snapshot) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["create_option"] = r.Create_option
-if r.Source_uri != nil {
-    config["source_uri"] = *r.Source_uri
-}
-if r.Source_resource_id != nil {
-    config["source_resource_id"] = *r.Source_resource_id
-}
-    config["location"] = r.Location
-    config["resource_group_name"] = r.Resource_group_name
-if r.Storage_account_id != nil {
-    config["storage_account_id"] = *r.Storage_account_id
-}
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
+    Azurerm_autoscale_setting_notification_1313_webhook_1315_id *string `lyra:"ignore"`
+
+    Properties *map[string]string
+
+    Service_uri string
+
 }
 
-func Azurerm_snapshotUnmapper(state map[string]interface{}) *Azurerm_snapshot {
-	r := &Azurerm_snapshot{}
+type Azurerm_autoscale_setting_notification_1313 struct {
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_snapshot_id = &x
+    Azurerm_autoscale_setting_notification_1313_id *string `lyra:"ignore"`
+
+    Email *Azurerm_autoscale_setting_notification_1313_email_1314
+
+    Webhook *Azurerm_autoscale_setting_notification_1313_webhook_1315
+
 }
 
-if x, ok := state["create_option"]; ok {
-	r.Create_option = x.(string)
+type Azurerm_autoscale_setting_profile_1316_capacity_1317 struct {
+
+    Azurerm_autoscale_setting_profile_1316_capacity_1317_id *string `lyra:"ignore"`
+
+    Default int
+
+    Maximum int
+
+    Minimum int
+
 }
 
-if x, ok := state["source_uri"]; ok {
-	x := x.(string)
-	r.Source_uri = &x
+type Azurerm_autoscale_setting_profile_1316_fixed_date_1318 struct {
+
+    Azurerm_autoscale_setting_profile_1316_fixed_date_1318_id *string `lyra:"ignore"`
+
+    End string
+
+    Start string
+
+    Timezone *string
+
 }
 
-if x, ok := state["source_resource_id"]; ok {
-	x := x.(string)
-	r.Source_resource_id = &x
+type Azurerm_autoscale_setting_profile_1316_recurrence_1319 struct {
+
+    Azurerm_autoscale_setting_profile_1316_recurrence_1319_id *string `lyra:"ignore"`
+
+    Days []string
+
+    Hours []int
+
+    Minutes []int
+
+    Timezone *string
+
 }
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
+type Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321 struct {
+
+    Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321_id *string `lyra:"ignore"`
+
+    Metric_name string
+
+    Metric_resource_id string
+
+    Operator string
+
+    Statistic string
+
+    Threshold float64
+
+    Time_aggregation string
+
+    Time_grain string
+
+    Time_window string
+
 }
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
+type Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322 struct {
+
+    Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322_id *string `lyra:"ignore"`
+
+    Cooldown string
+
+    Direction string
+
+    Type string
+
+    Value int
+
 }
 
-if x, ok := state["storage_account_id"]; ok {
-	x := x.(string)
-	r.Storage_account_id = &x
+type Azurerm_autoscale_setting_profile_1316_rule_1320 struct {
+
+    Azurerm_autoscale_setting_profile_1316_rule_1320_id *string `lyra:"ignore"`
+
+    Metric_trigger Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321
+
+    Scale_action Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322
+
 }
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
+type Azurerm_autoscale_setting_profile_1316 struct {
+
+    Azurerm_autoscale_setting_profile_1316_id *string `lyra:"ignore"`
+
+    Capacity Azurerm_autoscale_setting_profile_1316_capacity_1317
+
+    Fixed_date *Azurerm_autoscale_setting_profile_1316_fixed_date_1318
+
+    Name string
+
+    Recurrence *Azurerm_autoscale_setting_profile_1316_recurrence_1319
+
+    Rule *Azurerm_autoscale_setting_profile_1316_rule_1320
+
 }
 
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-	return r
+type Azurerm_autoscale_setting struct {
+
+    Azurerm_autoscale_setting_id *string `lyra:"ignore"`
+
+    Enabled *bool
+
+    Location string
+
+    Name string
+
+    Notification *Azurerm_autoscale_setting_notification_1313
+
+    Profile Azurerm_autoscale_setting_profile_1316
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Target_resource_id string
+
 }
 
-
-// Azurerm_snapshotHandler ...
-type Azurerm_snapshotHandler struct {
+// Azurerm_autoscale_settingHandler ...
+type Azurerm_autoscale_settingHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_snapshot, string, error) {
-	rState := Azurerm_snapshotMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_snapshot", rState)
+func (h *Azurerm_autoscale_settingHandler) Create(desired *Azurerm_autoscale_setting) (*Azurerm_autoscale_setting, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_autoscale_setting", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -19970,69 +2303,52 @@ func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_sn
 }
 
 // Read ...
-func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_snapshot", externalID)
+func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_autoscale_setting, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_autoscale_setting", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_snapshotUnmapper(actual), nil
+	x := &Azurerm_autoscale_setting{ Azurerm_autoscale_setting_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
-func (h *Azurerm_snapshotHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_snapshot", externalID)
+func (h *Azurerm_autoscale_settingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_autoscale_setting", externalID)
 }
 
-type Azurerm_storage_table struct {
-     Azurerm_storage_table_id *string
-     Resource_group_name string
-     Storage_account_name string
-     Name string
+type Azurerm_availability_set struct {
+
+    Azurerm_availability_set_id *string `lyra:"ignore"`
+
+    Location string
+
+    Managed *bool
+
+    Name string
+
+    Platform_fault_domain_count *int
+
+    Platform_update_domain_count *int
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
 }
 
-
-func Azurerm_storage_tableMapper(r *Azurerm_storage_table) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_group_name"] = r.Resource_group_name
-    config["storage_account_name"] = r.Storage_account_name
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Azurerm_storage_tableUnmapper(state map[string]interface{}) *Azurerm_storage_table {
-	r := &Azurerm_storage_table{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_storage_table_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
-
-if x, ok := state["storage_account_name"]; ok {
-	r.Storage_account_name = x.(string)
-}
-	return r
-}
-
-
-// Azurerm_storage_tableHandler ...
-type Azurerm_storage_tableHandler struct {
+// Azurerm_availability_setHandler ...
+type Azurerm_availability_setHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*Azurerm_storage_table, string, error) {
-	rState := Azurerm_storage_tableMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_storage_table", rState)
+func (h *Azurerm_availability_setHandler) Create(desired *Azurerm_availability_set) (*Azurerm_availability_set, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_availability_set", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -20044,68 +2360,1961 @@ func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*
 }
 
 // Read ...
-func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage_table, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_storage_table", externalID)
+func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_availability_set, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_availability_set", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_storage_tableUnmapper(actual), nil
+	x := &Azurerm_availability_set{ Azurerm_availability_set_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
-func (h *Azurerm_storage_tableHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "azurerm_storage_table", externalID)
+func (h *Azurerm_availability_setHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_availability_set", externalID)
+}
+
+type Azurerm_azuread_application struct {
+
+    Azurerm_azuread_application_id *string `lyra:"ignore"`
+
+    Application_id *string
+
+    Available_to_other_tenants *bool
+
+    Homepage *string
+
+    Identifier_uris *[]string
+
+    Name string
+
+    Oauth2_allow_implicit_flow *bool
+
+    Reply_urls *[]string
+
+}
+
+// Azurerm_azuread_applicationHandler ...
+type Azurerm_azuread_applicationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_azuread_applicationHandler) Create(desired *Azurerm_azuread_application) (*Azurerm_azuread_application, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_azuread_application", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_azuread_application, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_application", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_azuread_application{ Azurerm_azuread_application_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_azuread_applicationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_azuread_application", externalID)
+}
+
+type Azurerm_azuread_service_principal struct {
+
+    Azurerm_azuread_service_principal_id *string `lyra:"ignore"`
+
+    Application_id string
+
+    Display_name *string
+
+}
+
+// Azurerm_azuread_service_principalHandler ...
+type Azurerm_azuread_service_principalHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_azuread_service_principalHandler) Create(desired *Azurerm_azuread_service_principal) (*Azurerm_azuread_service_principal, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_azuread_service_principal", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azurerm_azuread_service_principal, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_azuread_service_principal{ Azurerm_azuread_service_principal_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_azuread_service_principalHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_azuread_service_principal", externalID)
+}
+
+type Azurerm_azuread_service_principal_password struct {
+
+    Azurerm_azuread_service_principal_password_id *string `lyra:"ignore"`
+
+    End_date string
+
+    Key_id *string
+
+    Service_principal_id string
+
+    Start_date *string
+
+    Value string
+
+}
+
+// Azurerm_azuread_service_principal_passwordHandler ...
+type Azurerm_azuread_service_principal_passwordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_azuread_service_principal_passwordHandler) Create(desired *Azurerm_azuread_service_principal_password) (*Azurerm_azuread_service_principal_password, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_azuread_service_principal_password", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID string) (*Azurerm_azuread_service_principal_password, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal_password", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_azuread_service_principal_password{ Azurerm_azuread_service_principal_password_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_azuread_service_principal_passwordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_azuread_service_principal_password", externalID)
+}
+
+type Azurerm_batch_account struct {
+
+    Azurerm_batch_account_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Pool_allocation_mode *string
+
+    Resource_group_name string
+
+    Storage_account_id *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_batch_accountHandler ...
+type Azurerm_batch_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_batch_accountHandler) Create(desired *Azurerm_batch_account) (*Azurerm_batch_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_batch_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_account, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_batch_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_batch_account{ Azurerm_batch_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_batch_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_batch_account", externalID)
+}
+
+type Azurerm_batch_pool_auto_scale_1323 struct {
+
+    Azurerm_batch_pool_auto_scale_1323_id *string `lyra:"ignore"`
+
+    Evaluation_interval *string
+
+    Formula string
+
+}
+
+type Azurerm_batch_pool_fixed_scale_1324 struct {
+
+    Azurerm_batch_pool_fixed_scale_1324_id *string `lyra:"ignore"`
+
+    Resize_timeout *string
+
+    Target_dedicated_nodes *int
+
+    Target_low_priority_nodes *int
+
+}
+
+type Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327 struct {
+
+    Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327_id *string `lyra:"ignore"`
+
+    Elevation_level *string
+
+    Scope *string
+
+}
+
+type Azurerm_batch_pool_start_task_1325_user_identity_1326 struct {
+
+    Azurerm_batch_pool_start_task_1325_user_identity_1326_id *string `lyra:"ignore"`
+
+    Auto_user *Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327
+
+    User_name *string
+
+}
+
+type Azurerm_batch_pool_start_task_1325 struct {
+
+    Azurerm_batch_pool_start_task_1325_id *string `lyra:"ignore"`
+
+    Command_line string
+
+    Environment *map[string]string
+
+    Max_task_retry_count *int
+
+    User_identity Azurerm_batch_pool_start_task_1325_user_identity_1326
+
+    Wait_for_success *bool
+
+}
+
+type Azurerm_batch_pool_storage_image_reference_1328 struct {
+
+    Azurerm_batch_pool_storage_image_reference_1328_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Offer string
+
+    Publisher string
+
+    Sku string
+
+    Version string
+
+}
+
+type Azurerm_batch_pool struct {
+
+    Azurerm_batch_pool_id *string `lyra:"ignore"`
+
+    Account_name string
+
+    Auto_scale *Azurerm_batch_pool_auto_scale_1323
+
+    Display_name *string
+
+    Fixed_scale *Azurerm_batch_pool_fixed_scale_1324
+
+    Name string
+
+    Node_agent_sku_id string
+
+    Resource_group_name string
+
+    Start_task *Azurerm_batch_pool_start_task_1325
+
+    Stop_pending_resize_operation *bool
+
+    Storage_image_reference Azurerm_batch_pool_storage_image_reference_1328
+
+    Vm_size string
+
+}
+
+// Azurerm_batch_poolHandler ...
+type Azurerm_batch_poolHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_batch_poolHandler) Create(desired *Azurerm_batch_pool) (*Azurerm_batch_pool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_batch_pool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_batch_pool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_batch_pool{ Azurerm_batch_pool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_batch_poolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_batch_pool", externalID)
+}
+
+type Azurerm_cdn_endpoint_geo_filter_1329 struct {
+
+    Azurerm_cdn_endpoint_geo_filter_1329_id *string `lyra:"ignore"`
+
+    Action string
+
+    Country_codes []string
+
+    Relative_path string
+
+}
+
+type Azurerm_cdn_endpoint_origin_1330 struct {
+
+    Azurerm_cdn_endpoint_origin_1330_id *string `lyra:"ignore"`
+
+    Host_name string
+
+    Http_port *int
+
+    Https_port *int
+
+    Name string
+
+}
+
+type Azurerm_cdn_endpoint struct {
+
+    Azurerm_cdn_endpoint_id *string `lyra:"ignore"`
+
+    Content_types_to_compress *[]string
+
+    Geo_filter *Azurerm_cdn_endpoint_geo_filter_1329
+
+    Host_name *string
+
+    Is_compression_enabled *bool
+
+    Is_http_allowed *bool
+
+    Is_https_allowed *bool
+
+    Location string
+
+    Name string
+
+    Optimization_type *string
+
+    Origin Azurerm_cdn_endpoint_origin_1330
+
+    Origin_host_header *string
+
+    Origin_path *string
+
+    Probe_path *string
+
+    Profile_name string
+
+    Querystring_caching_behaviour *string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_cdn_endpointHandler ...
+type Azurerm_cdn_endpointHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_cdn_endpointHandler) Create(desired *Azurerm_cdn_endpoint) (*Azurerm_cdn_endpoint, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_cdn_endpoint", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endpoint, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_cdn_endpoint", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_cdn_endpoint{ Azurerm_cdn_endpoint_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_cdn_endpointHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_cdn_endpoint", externalID)
+}
+
+type Azurerm_cdn_profile struct {
+
+    Azurerm_cdn_profile_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_cdn_profileHandler ...
+type Azurerm_cdn_profileHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_cdn_profileHandler) Create(desired *Azurerm_cdn_profile) (*Azurerm_cdn_profile, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_cdn_profile", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profile, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_cdn_profile", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_cdn_profile{ Azurerm_cdn_profile_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_cdn_profileHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_cdn_profile", externalID)
+}
+
+type Azurerm_cognitive_account_sku_1331 struct {
+
+    Azurerm_cognitive_account_sku_1331_id *string `lyra:"ignore"`
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_cognitive_account struct {
+
+    Azurerm_cognitive_account_id *string `lyra:"ignore"`
+
+    Endpoint *string
+
+    Kind string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku Azurerm_cognitive_account_sku_1331
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_cognitive_accountHandler ...
+type Azurerm_cognitive_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_cognitive_accountHandler) Create(desired *Azurerm_cognitive_account) (*Azurerm_cognitive_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_cognitive_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cognitive_account, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_cognitive_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_cognitive_account{ Azurerm_cognitive_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_cognitive_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_cognitive_account", externalID)
+}
+
+type Azurerm_container_group_container_1332_ports_1333 struct {
+
+    Azurerm_container_group_container_1332_ports_1333_id *string `lyra:"ignore"`
+
+    Port *int
+
+    Protocol *string
+
+}
+
+type Azurerm_container_group_container_1332_volume_1334 struct {
+
+    Azurerm_container_group_container_1332_volume_1334_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Share_name string
+
+    Storage_account_key string
+
+    Storage_account_name string
+
+}
+
+type Azurerm_container_group_container_1332 struct {
+
+    Azurerm_container_group_container_1332_id *string `lyra:"ignore"`
+
+    Command *string
+
+    Commands *[]string
+
+    Cpu float64
+
+    Environment_variables *map[string]string
+
+    Image string
+
+    Memory float64
+
+    Name string
+
+    Port *int
+
+    Ports *Azurerm_container_group_container_1332_ports_1333
+
+    Protocol *string
+
+    Secure_environment_variables *map[string]string
+
+    Volume *Azurerm_container_group_container_1332_volume_1334
+
+}
+
+type Azurerm_container_group_image_registry_credential_1335 struct {
+
+    Azurerm_container_group_image_registry_credential_1335_id *string `lyra:"ignore"`
+
+    Password string
+
+    Server string
+
+    Username string
+
+}
+
+type Azurerm_container_group struct {
+
+    Azurerm_container_group_id *string `lyra:"ignore"`
+
+    Container Azurerm_container_group_container_1332
+
+    Dns_name_label *string
+
+    Fqdn *string
+
+    Image_registry_credential *Azurerm_container_group_image_registry_credential_1335
+
+    Ip_address *string
+
+    Ip_address_type *string
+
+    Location string
+
+    Name string
+
+    Os_type string
+
+    Resource_group_name string
+
+    Restart_policy *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_container_groupHandler ...
+type Azurerm_container_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_container_groupHandler) Create(desired *Azurerm_container_group) (*Azurerm_container_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_container_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_container_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_container_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_container_group{ Azurerm_container_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_container_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_container_group", externalID)
+}
+
+type Azurerm_container_registry_storage_account_1336 struct {
+
+    Azurerm_container_registry_storage_account_1336_id *string `lyra:"ignore"`
+
+    Access_key string
+
+    Name string
+
+}
+
+type Azurerm_container_registry struct {
+
+    Azurerm_container_registry_id *string `lyra:"ignore"`
+
+    Admin_enabled *bool
+
+    Admin_password *string
+
+    Admin_username *string
+
+    Georeplication_locations *[]string
+
+    Location string
+
+    Login_server *string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku *string
+
+    Storage_account *Azurerm_container_registry_storage_account_1336
+
+    Storage_account_id *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_container_registryHandler ...
+type Azurerm_container_registryHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_container_registryHandler) Create(desired *Azurerm_container_registry) (*Azurerm_container_registry, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_container_registry", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_container_registry, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_container_registry", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_container_registry{ Azurerm_container_registry_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_container_registryHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_container_registry", externalID)
+}
+
+type Azurerm_container_service_agent_pool_profile_1337 struct {
+
+    Azurerm_container_service_agent_pool_profile_1337_id *string `lyra:"ignore"`
+
+    Count *int
+
+    Dns_prefix string
+
+    Fqdn *string
+
+    Name string
+
+    Vm_size string
+
+}
+
+type Azurerm_container_service_diagnostics_profile_1338 struct {
+
+    Azurerm_container_service_diagnostics_profile_1338_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Storage_uri *string
+
+}
+
+type Azurerm_container_service_linux_profile_1339_ssh_key_1340 struct {
+
+    Azurerm_container_service_linux_profile_1339_ssh_key_1340_id *string `lyra:"ignore"`
+
+    Key_data string
+
+}
+
+type Azurerm_container_service_linux_profile_1339 struct {
+
+    Azurerm_container_service_linux_profile_1339_id *string `lyra:"ignore"`
+
+    Admin_username string
+
+    Ssh_key Azurerm_container_service_linux_profile_1339_ssh_key_1340
+
+}
+
+type Azurerm_container_service_master_profile_1341 struct {
+
+    Azurerm_container_service_master_profile_1341_id *string `lyra:"ignore"`
+
+    Count *int
+
+    Dns_prefix string
+
+    Fqdn *string
+
+}
+
+type Azurerm_container_service_service_principal_1342 struct {
+
+    Azurerm_container_service_service_principal_1342_id *string `lyra:"ignore"`
+
+    Client_id string
+
+    Client_secret string
+
+}
+
+type Azurerm_container_service struct {
+
+    Azurerm_container_service_id *string `lyra:"ignore"`
+
+    Agent_pool_profile Azurerm_container_service_agent_pool_profile_1337
+
+    Diagnostics_profile Azurerm_container_service_diagnostics_profile_1338
+
+    Linux_profile Azurerm_container_service_linux_profile_1339
+
+    Location string
+
+    Master_profile Azurerm_container_service_master_profile_1341
+
+    Name string
+
+    Orchestration_platform string
+
+    Resource_group_name string
+
+    Service_principal *Azurerm_container_service_service_principal_1342
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_container_serviceHandler ...
+type Azurerm_container_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_container_serviceHandler) Create(desired *Azurerm_container_service) (*Azurerm_container_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_container_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_container_service, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_container_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_container_service{ Azurerm_container_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_container_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_container_service", externalID)
+}
+
+type Azurerm_cosmosdb_account_capabilities_1343 struct {
+
+    Azurerm_cosmosdb_account_capabilities_1343_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Azurerm_cosmosdb_account_consistency_policy_1344 struct {
+
+    Azurerm_cosmosdb_account_consistency_policy_1344_id *string `lyra:"ignore"`
+
+    Consistency_level string
+
+    Max_interval_in_seconds *int
+
+    Max_staleness_prefix *int
+
+}
+
+type Azurerm_cosmosdb_account_failover_policy_1345 struct {
+
+    Azurerm_cosmosdb_account_failover_policy_1345_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Location string
+
+    Priority int
+
+}
+
+type Azurerm_cosmosdb_account_geo_location_1346 struct {
+
+    Azurerm_cosmosdb_account_geo_location_1346_id *string `lyra:"ignore"`
+
+    Failover_priority int
+
+    Id *string
+
+    Location string
+
+    Prefix *string
+
+}
+
+type Azurerm_cosmosdb_account_virtual_network_rule_1347 struct {
+
+    Azurerm_cosmosdb_account_virtual_network_rule_1347_id *string `lyra:"ignore"`
+
+    Id string
+
+}
+
+type Azurerm_cosmosdb_account struct {
+
+    Azurerm_cosmosdb_account_id *string `lyra:"ignore"`
+
+    Capabilities *Azurerm_cosmosdb_account_capabilities_1343
+
+    Connection_strings *[]string
+
+    Consistency_policy Azurerm_cosmosdb_account_consistency_policy_1344
+
+    Enable_automatic_failover *bool
+
+    Enable_multiple_write_locations *bool
+
+    Endpoint *string
+
+    Failover_policy *Azurerm_cosmosdb_account_failover_policy_1345
+
+    Geo_location *Azurerm_cosmosdb_account_geo_location_1346
+
+    Ip_range_filter *string
+
+    Is_virtual_network_filter_enabled *bool
+
+    Kind *string
+
+    Location string
+
+    Name string
+
+    Offer_type string
+
+    Primary_master_key *string
+
+    Primary_readonly_master_key *string
+
+    Read_endpoints *[]string
+
+    Resource_group_name string
+
+    Secondary_master_key *string
+
+    Secondary_readonly_master_key *string
+
+    Tags *map[string]string
+
+    Virtual_network_rule *Azurerm_cosmosdb_account_virtual_network_rule_1347
+
+    Write_endpoints *[]string
+
+}
+
+// Azurerm_cosmosdb_accountHandler ...
+type Azurerm_cosmosdb_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_cosmosdb_accountHandler) Create(desired *Azurerm_cosmosdb_account) (*Azurerm_cosmosdb_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_cosmosdb_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosmosdb_account, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_cosmosdb_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_cosmosdb_account{ Azurerm_cosmosdb_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_cosmosdb_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_cosmosdb_account", externalID)
+}
+
+type Azurerm_data_lake_analytics_account struct {
+
+    Azurerm_data_lake_analytics_account_id *string `lyra:"ignore"`
+
+    Default_store_account_name string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Tier *string
+
+}
+
+// Azurerm_data_lake_analytics_accountHandler ...
+type Azurerm_data_lake_analytics_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_data_lake_analytics_accountHandler) Create(desired *Azurerm_data_lake_analytics_account) (*Azurerm_data_lake_analytics_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_data_lake_analytics_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*Azurerm_data_lake_analytics_account, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_data_lake_analytics_account{ Azurerm_data_lake_analytics_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_data_lake_analytics_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_account", externalID)
+}
+
+type Azurerm_data_lake_analytics_firewall_rule struct {
+
+    Azurerm_data_lake_analytics_firewall_rule_id *string `lyra:"ignore"`
+
+    Account_name string
+
+    End_ip_address string
+
+    Name string
+
+    Resource_group_name string
+
+    Start_ip_address string
+
+}
+
+// Azurerm_data_lake_analytics_firewall_ruleHandler ...
+type Azurerm_data_lake_analytics_firewall_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Create(desired *Azurerm_data_lake_analytics_firewall_rule) (*Azurerm_data_lake_analytics_firewall_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_data_lake_analytics_firewall_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_analytics_firewall_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_data_lake_analytics_firewall_rule{ Azurerm_data_lake_analytics_firewall_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
+}
+
+type Azurerm_data_lake_store struct {
+
+    Azurerm_data_lake_store_id *string `lyra:"ignore"`
+
+    Encryption_state *string
+
+    Encryption_type *string
+
+    Endpoint *string
+
+    Firewall_allow_azure_ips *string
+
+    Firewall_state *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Tier *string
+
+}
+
+// Azurerm_data_lake_storeHandler ...
+type Azurerm_data_lake_storeHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_data_lake_storeHandler) Create(desired *Azurerm_data_lake_store) (*Azurerm_data_lake_store, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_data_lake_store", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_lake_store, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_data_lake_store{ Azurerm_data_lake_store_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_data_lake_storeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_data_lake_store", externalID)
+}
+
+type Azurerm_data_lake_store_file struct {
+
+    Azurerm_data_lake_store_file_id *string `lyra:"ignore"`
+
+    Account_name string
+
+    Local_file_path string
+
+    Remote_file_path string
+
+}
+
+// Azurerm_data_lake_store_fileHandler ...
+type Azurerm_data_lake_store_fileHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_data_lake_store_fileHandler) Create(desired *Azurerm_data_lake_store_file) (*Azurerm_data_lake_store_file, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_data_lake_store_file", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_data_lake_store_file, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_file", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_data_lake_store_file{ Azurerm_data_lake_store_file_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_data_lake_store_fileHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_data_lake_store_file", externalID)
+}
+
+type Azurerm_data_lake_store_firewall_rule struct {
+
+    Azurerm_data_lake_store_firewall_rule_id *string `lyra:"ignore"`
+
+    Account_name string
+
+    End_ip_address string
+
+    Name string
+
+    Resource_group_name string
+
+    Start_ip_address string
+
+}
+
+// Azurerm_data_lake_store_firewall_ruleHandler ...
+type Azurerm_data_lake_store_firewall_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_data_lake_store_firewall_ruleHandler) Create(desired *Azurerm_data_lake_store_firewall_rule) (*Azurerm_data_lake_store_firewall_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_data_lake_store_firewall_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_store_firewall_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_data_lake_store_firewall_rule{ Azurerm_data_lake_store_firewall_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_data_lake_store_firewall_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
+}
+
+type Azurerm_databricks_workspace struct {
+
+    Azurerm_databricks_workspace_id *string `lyra:"ignore"`
+
+    Location string
+
+    Managed_resource_group_id *string
+
+    Managed_resource_group_name *string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_databricks_workspaceHandler ...
+type Azurerm_databricks_workspaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_databricks_workspaceHandler) Create(desired *Azurerm_databricks_workspace) (*Azurerm_databricks_workspace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_databricks_workspace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_databricks_workspace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_databricks_workspace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_databricks_workspace{ Azurerm_databricks_workspace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_databricks_workspaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_databricks_workspace", externalID)
+}
+
+type Azurerm_dev_test_lab struct {
+
+    Azurerm_dev_test_lab_id *string `lyra:"ignore"`
+
+    Artifacts_storage_account_id *string
+
+    Default_premium_storage_account_id *string
+
+    Default_storage_account_id *string
+
+    Key_vault_id *string
+
+    Location string
+
+    Name string
+
+    Premium_data_disk_storage_account_id *string
+
+    Resource_group_name string
+
+    Storage_type *string
+
+    Tags *map[string]string
+
+    Unique_identifier *string
+
+}
+
+// Azurerm_dev_test_labHandler ...
+type Azurerm_dev_test_labHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dev_test_labHandler) Create(desired *Azurerm_dev_test_lab) (*Azurerm_dev_test_lab, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dev_test_lab", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test_lab, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_lab", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dev_test_lab{ Azurerm_dev_test_lab_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dev_test_labHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dev_test_lab", externalID)
+}
+
+type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348 struct {
+
+    Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348_id *string `lyra:"ignore"`
+
+    Offer string
+
+    Publisher string
+
+    Sku string
+
+    Version string
+
+}
+
+type Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349 struct {
+
+    Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349_id *string `lyra:"ignore"`
+
+    Backend_port int
+
+    Frontend_port *int
+
+    Protocol string
+
+}
+
+type Azurerm_dev_test_linux_virtual_machine struct {
+
+    Azurerm_dev_test_linux_virtual_machine_id *string `lyra:"ignore"`
+
+    Allow_claim *bool
+
+    Disallow_public_ip_address *bool
+
+    Fqdn *string
+
+    Gallery_image_reference Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348
+
+    Inbound_nat_rule *Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349
+
+    Lab_name string
+
+    Lab_subnet_name string
+
+    Lab_virtual_network_id string
+
+    Location string
+
+    Name string
+
+    Notes *string
+
+    Password *string
+
+    Resource_group_name string
+
+    Size string
+
+    Ssh_key *string
+
+    Storage_type string
+
+    Tags *map[string]string
+
+    Unique_identifier *string
+
+    Username string
+
+}
+
+// Azurerm_dev_test_linux_virtual_machineHandler ...
+type Azurerm_dev_test_linux_virtual_machineHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dev_test_linux_virtual_machineHandler) Create(desired *Azurerm_dev_test_linux_virtual_machine) (*Azurerm_dev_test_linux_virtual_machine, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dev_test_linux_virtual_machine", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_linux_virtual_machine, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dev_test_linux_virtual_machine{ Azurerm_dev_test_linux_virtual_machine_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dev_test_linux_virtual_machineHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
+}
+
+type Azurerm_dev_test_policy struct {
+
+    Azurerm_dev_test_policy_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Evaluator_type string
+
+    Fact_data *string
+
+    Lab_name string
+
+    Name string
+
+    Policy_set_name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Threshold string
+
+}
+
+// Azurerm_dev_test_policyHandler ...
+type Azurerm_dev_test_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dev_test_policyHandler) Create(desired *Azurerm_dev_test_policy) (*Azurerm_dev_test_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dev_test_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_test_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dev_test_policy{ Azurerm_dev_test_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dev_test_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dev_test_policy", externalID)
+}
+
+type Azurerm_dev_test_virtual_network_subnet_1350 struct {
+
+    Azurerm_dev_test_virtual_network_subnet_1350_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Use_in_virtual_machine_creation *string
+
+    Use_public_ip_address *string
+
+}
+
+type Azurerm_dev_test_virtual_network struct {
+
+    Azurerm_dev_test_virtual_network_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Lab_name string
+
+    Name string
+
+    Resource_group_name string
+
+    Subnet *Azurerm_dev_test_virtual_network_subnet_1350
+
+    Tags *map[string]string
+
+    Unique_identifier *string
+
+}
+
+// Azurerm_dev_test_virtual_networkHandler ...
+type Azurerm_dev_test_virtual_networkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dev_test_virtual_networkHandler) Create(desired *Azurerm_dev_test_virtual_network) (*Azurerm_dev_test_virtual_network, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dev_test_virtual_network", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azurerm_dev_test_virtual_network, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_virtual_network", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dev_test_virtual_network{ Azurerm_dev_test_virtual_network_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dev_test_virtual_networkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dev_test_virtual_network", externalID)
+}
+
+type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351 struct {
+
+    Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351_id *string `lyra:"ignore"`
+
+    Offer string
+
+    Publisher string
+
+    Sku string
+
+    Version string
+
+}
+
+type Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352 struct {
+
+    Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352_id *string `lyra:"ignore"`
+
+    Backend_port int
+
+    Frontend_port *int
+
+    Protocol string
+
+}
+
+type Azurerm_dev_test_windows_virtual_machine struct {
+
+    Azurerm_dev_test_windows_virtual_machine_id *string `lyra:"ignore"`
+
+    Allow_claim *bool
+
+    Disallow_public_ip_address *bool
+
+    Fqdn *string
+
+    Gallery_image_reference Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351
+
+    Inbound_nat_rule *Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352
+
+    Lab_name string
+
+    Lab_subnet_name string
+
+    Lab_virtual_network_id string
+
+    Location string
+
+    Name string
+
+    Notes *string
+
+    Password string
+
+    Resource_group_name string
+
+    Size string
+
+    Storage_type string
+
+    Tags *map[string]string
+
+    Unique_identifier *string
+
+    Username string
+
+}
+
+// Azurerm_dev_test_windows_virtual_machineHandler ...
+type Azurerm_dev_test_windows_virtual_machineHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dev_test_windows_virtual_machineHandler) Create(desired *Azurerm_dev_test_windows_virtual_machine) (*Azurerm_dev_test_windows_virtual_machine, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dev_test_windows_virtual_machine", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_windows_virtual_machine, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dev_test_windows_virtual_machine{ Azurerm_dev_test_windows_virtual_machine_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dev_test_windows_virtual_machineHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
+}
+
+type Azurerm_devspace_controller_sku_1353 struct {
+
+    Azurerm_devspace_controller_sku_1353_id *string `lyra:"ignore"`
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_devspace_controller struct {
+
+    Azurerm_devspace_controller_id *string `lyra:"ignore"`
+
+    Data_plane_fqdn *string
+
+    Host_suffix string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku Azurerm_devspace_controller_sku_1353
+
+    Tags *map[string]string
+
+    Target_container_host_credentials_base64 string
+
+    Target_container_host_resource_id string
+
+}
+
+// Azurerm_devspace_controllerHandler ...
+type Azurerm_devspace_controllerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_devspace_controllerHandler) Create(desired *Azurerm_devspace_controller) (*Azurerm_devspace_controller, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_devspace_controller", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_devspace_controller, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_devspace_controller", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_devspace_controller{ Azurerm_devspace_controller_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_devspace_controllerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_devspace_controller", externalID)
+}
+
+type Azurerm_dns_a_record struct {
+
+    Azurerm_dns_a_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Records []string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_a_recordHandler ...
+type Azurerm_dns_a_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_a_recordHandler) Create(desired *Azurerm_dns_a_record) (*Azurerm_dns_a_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_a_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_a_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_a_record{ Azurerm_dns_a_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_a_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_a_record", externalID)
 }
 
 type Azurerm_dns_aaaa_record struct {
-     Azurerm_dns_aaaa_record_id *string
-     Name string
-     Resource_group_name string
-     Zone_name string
-     Tags *map[string]string
-}
 
+    Azurerm_dns_aaaa_record_id *string `lyra:"ignore"`
 
-func Azurerm_dns_aaaa_recordMapper(r *Azurerm_dns_aaaa_record) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["resource_group_name"] = r.Resource_group_name
-    config["zone_name"] = r.Zone_name
-if r.Tags != nil {
-    config["tags"] = unconvertMap(*r.Tags)
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Name string
 
-func Azurerm_dns_aaaa_recordUnmapper(state map[string]interface{}) *Azurerm_dns_aaaa_record {
-	r := &Azurerm_dns_aaaa_record{}
+    Records []string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_dns_aaaa_record_id = &x
-}
+    Resource_group_name string
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+    Tags *map[string]string
 
-if x, ok := state["resource_group_name"]; ok {
-	r.Resource_group_name = x.(string)
-}
+    Ttl int
 
-if x, ok := state["zone_name"]; ok {
-	r.Zone_name = x.(string)
-}
+    Zone_name string
 
-if x, ok := state["tags"]; ok {
-	x := convertMap(x.(map[string]interface{}))
-	r.Tags = &x
 }
-	return r
-}
-
 
 // Azurerm_dns_aaaa_recordHandler ...
 type Azurerm_dns_aaaa_recordHandler struct {
@@ -20114,8 +4323,10 @@ type Azurerm_dns_aaaa_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_aaaa_recordHandler) Create(desired *Azurerm_dns_aaaa_record) (*Azurerm_dns_aaaa_record, string, error) {
-	rState := Azurerm_dns_aaaa_recordMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_dns_aaaa_record", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_aaaa_record", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -20128,11 +4339,13 @@ func (h *Azurerm_dns_aaaa_recordHandler) Create(desired *Azurerm_dns_aaaa_record
 
 // Read ...
 func (h *Azurerm_dns_aaaa_recordHandler) Read(externalID string) (*Azurerm_dns_aaaa_record, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_dns_aaaa_record", externalID)
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_aaaa_record", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_dns_aaaa_recordUnmapper(actual), nil
+	x := &Azurerm_dns_aaaa_record{ Azurerm_dns_aaaa_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -20140,34 +4353,7253 @@ func (h *Azurerm_dns_aaaa_recordHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "azurerm_dns_aaaa_record", externalID)
 }
 
-type Azurerm_security_center_subscription_pricing struct {
-     Azurerm_security_center_subscription_pricing_id *string
-     Tier string
+type Azurerm_dns_caa_record_record_1354 struct {
+
+    Azurerm_dns_caa_record_record_1354_id *string `lyra:"ignore"`
+
+    Flags int
+
+    Tag string
+
+    Value string
+
 }
 
+type Azurerm_dns_caa_record struct {
 
-func Azurerm_security_center_subscription_pricingMapper(r *Azurerm_security_center_subscription_pricing) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["tier"] = r.Tier
-return &terraform.ResourceConfig{
-		Config: config,
+    Azurerm_dns_caa_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Record Azurerm_dns_caa_record_record_1354
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_caa_recordHandler ...
+type Azurerm_dns_caa_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_caa_recordHandler) Create(desired *Azurerm_dns_caa_record) (*Azurerm_dns_caa_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
 	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_caa_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
-func Azurerm_security_center_subscription_pricingUnmapper(state map[string]interface{}) *Azurerm_security_center_subscription_pricing {
-	r := &Azurerm_security_center_subscription_pricing{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Azurerm_security_center_subscription_pricing_id = &x
+// Read ...
+func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_caa_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_caa_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_caa_record{ Azurerm_dns_caa_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
-if x, ok := state["tier"]; ok {
-	r.Tier = x.(string)
-}
-	return r
+// Delete ...
+func (h *Azurerm_dns_caa_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_caa_record", externalID)
 }
 
+type Azurerm_dns_cname_record struct {
+
+    Azurerm_dns_cname_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Record string
+
+    Records *string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_cname_recordHandler ...
+type Azurerm_dns_cname_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_cname_recordHandler) Create(desired *Azurerm_dns_cname_record) (*Azurerm_dns_cname_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_cname_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_cname_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_cname_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_cname_record{ Azurerm_dns_cname_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_cname_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_cname_record", externalID)
+}
+
+type Azurerm_dns_mx_record_record_1355 struct {
+
+    Azurerm_dns_mx_record_record_1355_id *string `lyra:"ignore"`
+
+    Exchange string
+
+    Preference string
+
+}
+
+type Azurerm_dns_mx_record struct {
+
+    Azurerm_dns_mx_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Record Azurerm_dns_mx_record_record_1355
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_mx_recordHandler ...
+type Azurerm_dns_mx_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_mx_recordHandler) Create(desired *Azurerm_dns_mx_record) (*Azurerm_dns_mx_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_mx_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_mx_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_mx_record{ Azurerm_dns_mx_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_mx_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_mx_record", externalID)
+}
+
+type Azurerm_dns_ns_record_record_1356 struct {
+
+    Azurerm_dns_ns_record_record_1356_id *string `lyra:"ignore"`
+
+    Nsdname string
+
+}
+
+type Azurerm_dns_ns_record struct {
+
+    Azurerm_dns_ns_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Record *Azurerm_dns_ns_record_record_1356
+
+    Records *[]string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_ns_recordHandler ...
+type Azurerm_dns_ns_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_ns_recordHandler) Create(desired *Azurerm_dns_ns_record) (*Azurerm_dns_ns_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_ns_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_ns_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_ns_record{ Azurerm_dns_ns_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_ns_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_ns_record", externalID)
+}
+
+type Azurerm_dns_ptr_record struct {
+
+    Azurerm_dns_ptr_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Records []string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_ptr_recordHandler ...
+type Azurerm_dns_ptr_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_ptr_recordHandler) Create(desired *Azurerm_dns_ptr_record) (*Azurerm_dns_ptr_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_ptr_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_ptr_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_ptr_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_ptr_record{ Azurerm_dns_ptr_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_ptr_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_ptr_record", externalID)
+}
+
+type Azurerm_dns_srv_record_record_1357 struct {
+
+    Azurerm_dns_srv_record_record_1357_id *string `lyra:"ignore"`
+
+    Port int
+
+    Priority int
+
+    Target string
+
+    Weight int
+
+}
+
+type Azurerm_dns_srv_record struct {
+
+    Azurerm_dns_srv_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Record Azurerm_dns_srv_record_record_1357
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_srv_recordHandler ...
+type Azurerm_dns_srv_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_srv_recordHandler) Create(desired *Azurerm_dns_srv_record) (*Azurerm_dns_srv_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_srv_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_srv_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_srv_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_srv_record{ Azurerm_dns_srv_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_srv_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_srv_record", externalID)
+}
+
+type Azurerm_dns_txt_record_record_1358 struct {
+
+    Azurerm_dns_txt_record_record_1358_id *string `lyra:"ignore"`
+
+    Value string
+
+}
+
+type Azurerm_dns_txt_record struct {
+
+    Azurerm_dns_txt_record_id *string `lyra:"ignore"`
+
+    Name string
+
+    Record Azurerm_dns_txt_record_record_1358
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Ttl int
+
+    Zone_name string
+
+}
+
+// Azurerm_dns_txt_recordHandler ...
+type Azurerm_dns_txt_recordHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_txt_recordHandler) Create(desired *Azurerm_dns_txt_record) (*Azurerm_dns_txt_record, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_txt_record", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_txt_record, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_txt_record", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_txt_record{ Azurerm_dns_txt_record_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_txt_recordHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_txt_record", externalID)
+}
+
+type Azurerm_dns_zone struct {
+
+    Azurerm_dns_zone_id *string `lyra:"ignore"`
+
+    Max_number_of_record_sets *int
+
+    Name string
+
+    Name_servers *[]string
+
+    Number_of_record_sets *int
+
+    Registration_virtual_network_ids *[]string
+
+    Resolution_virtual_network_ids *[]string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Zone_type *string
+
+}
+
+// Azurerm_dns_zoneHandler ...
+type Azurerm_dns_zoneHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_dns_zoneHandler) Create(desired *Azurerm_dns_zone) (*Azurerm_dns_zone, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_dns_zone", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_dns_zone", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_dns_zone{ Azurerm_dns_zone_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_dns_zoneHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_dns_zone", externalID)
+}
+
+type Azurerm_eventgrid_topic struct {
+
+    Azurerm_eventgrid_topic_id *string `lyra:"ignore"`
+
+    Endpoint *string
+
+    Location string
+
+    Name string
+
+    Primary_access_key *string
+
+    Resource_group_name string
+
+    Secondary_access_key *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_eventgrid_topicHandler ...
+type Azurerm_eventgrid_topicHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_eventgrid_topicHandler) Create(desired *Azurerm_eventgrid_topic) (*Azurerm_eventgrid_topic, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_eventgrid_topic", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_eventgrid_topic, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_eventgrid_topic", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_eventgrid_topic{ Azurerm_eventgrid_topic_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_eventgrid_topicHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_eventgrid_topic", externalID)
+}
+
+type Azurerm_eventhub_capture_description_1359_destination_1360 struct {
+
+    Azurerm_eventhub_capture_description_1359_destination_1360_id *string `lyra:"ignore"`
+
+    Archive_name_format string
+
+    Blob_container_name string
+
+    Name string
+
+    Storage_account_id string
+
+}
+
+type Azurerm_eventhub_capture_description_1359 struct {
+
+    Azurerm_eventhub_capture_description_1359_id *string `lyra:"ignore"`
+
+    Destination Azurerm_eventhub_capture_description_1359_destination_1360
+
+    Enabled bool
+
+    Encoding string
+
+    Interval_in_seconds *int
+
+    Size_limit_in_bytes *int
+
+}
+
+type Azurerm_eventhub struct {
+
+    Azurerm_eventhub_id *string `lyra:"ignore"`
+
+    Capture_description *Azurerm_eventhub_capture_description_1359
+
+    Location *string
+
+    Message_retention int
+
+    Name string
+
+    Namespace_name string
+
+    Partition_count int
+
+    Partition_ids *[]string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_eventhubHandler ...
+type Azurerm_eventhubHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_eventhubHandler) Create(desired *Azurerm_eventhub) (*Azurerm_eventhub, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_eventhub", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_eventhub{ Azurerm_eventhub_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_eventhubHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_eventhub", externalID)
+}
+
+type Azurerm_eventhub_authorization_rule struct {
+
+    Azurerm_eventhub_authorization_rule_id *string `lyra:"ignore"`
+
+    Eventhub_name string
+
+    Listen *bool
+
+    Location *string
+
+    Manage *bool
+
+    Name string
+
+    Namespace_name string
+
+    Primary_connection_string *string
+
+    Primary_key *string
+
+    Resource_group_name string
+
+    Secondary_connection_string *string
+
+    Secondary_key *string
+
+    Send *bool
+
+}
+
+// Azurerm_eventhub_authorization_ruleHandler ...
+type Azurerm_eventhub_authorization_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_eventhub_authorization_ruleHandler) Create(desired *Azurerm_eventhub_authorization_rule) (*Azurerm_eventhub_authorization_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_eventhub_authorization_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_authorization_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_authorization_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_eventhub_authorization_rule{ Azurerm_eventhub_authorization_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_eventhub_authorization_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_eventhub_authorization_rule", externalID)
+}
+
+type Azurerm_eventhub_consumer_group struct {
+
+    Azurerm_eventhub_consumer_group_id *string `lyra:"ignore"`
+
+    Eventhub_name string
+
+    Location *string
+
+    Name string
+
+    Namespace_name string
+
+    Resource_group_name string
+
+    User_metadata *string
+
+}
+
+// Azurerm_eventhub_consumer_groupHandler ...
+type Azurerm_eventhub_consumer_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_eventhub_consumer_groupHandler) Create(desired *Azurerm_eventhub_consumer_group) (*Azurerm_eventhub_consumer_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_eventhub_consumer_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azurerm_eventhub_consumer_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_consumer_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_eventhub_consumer_group{ Azurerm_eventhub_consumer_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_eventhub_consumer_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_eventhub_consumer_group", externalID)
+}
+
+type Azurerm_eventhub_namespace struct {
+
+    Azurerm_eventhub_namespace_id *string `lyra:"ignore"`
+
+    Auto_inflate_enabled *bool
+
+    Capacity *int
+
+    Default_primary_connection_string *string
+
+    Default_primary_key *string
+
+    Default_secondary_connection_string *string
+
+    Default_secondary_key *string
+
+    Kafka_enabled *bool
+
+    Location string
+
+    Maximum_throughput_units *int
+
+    Name string
+
+    Resource_group_name string
+
+    Sku string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_eventhub_namespaceHandler ...
+type Azurerm_eventhub_namespaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_eventhub_namespaceHandler) Create(desired *Azurerm_eventhub_namespace) (*Azurerm_eventhub_namespace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_eventhub_namespace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_eventhub_namespace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_eventhub_namespace{ Azurerm_eventhub_namespace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_eventhub_namespaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_eventhub_namespace", externalID)
+}
+
+type Azurerm_eventhub_namespace_authorization_rule struct {
+
+    Azurerm_eventhub_namespace_authorization_rule_id *string `lyra:"ignore"`
+
+    Listen *bool
+
+    Location *string
+
+    Manage *bool
+
+    Name string
+
+    Namespace_name string
+
+    Primary_connection_string *string
+
+    Primary_key *string
+
+    Resource_group_name string
+
+    Secondary_connection_string *string
+
+    Secondary_key *string
+
+    Send *bool
+
+}
+
+// Azurerm_eventhub_namespace_authorization_ruleHandler ...
+type Azurerm_eventhub_namespace_authorization_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Create(desired *Azurerm_eventhub_namespace_authorization_rule) (*Azurerm_eventhub_namespace_authorization_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_eventhub_namespace_authorization_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_namespace_authorization_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_eventhub_namespace_authorization_rule{ Azurerm_eventhub_namespace_authorization_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
+}
+
+type Azurerm_express_route_circuit_sku_1361 struct {
+
+    Azurerm_express_route_circuit_sku_1361_id *string `lyra:"ignore"`
+
+    Family string
+
+    Tier string
+
+}
+
+type Azurerm_express_route_circuit struct {
+
+    Azurerm_express_route_circuit_id *string `lyra:"ignore"`
+
+    Allow_classic_operations *bool
+
+    Bandwidth_in_mbps int
+
+    Location string
+
+    Name string
+
+    Peering_location string
+
+    Resource_group_name string
+
+    Service_key *string
+
+    Service_provider_name string
+
+    Service_provider_provisioning_state *string
+
+    Sku Azurerm_express_route_circuit_sku_1361
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_express_route_circuitHandler ...
+type Azurerm_express_route_circuitHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_express_route_circuitHandler) Create(desired *Azurerm_express_route_circuit) (*Azurerm_express_route_circuit, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_express_route_circuit", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm_express_route_circuit, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_express_route_circuit{ Azurerm_express_route_circuit_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_express_route_circuitHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_express_route_circuit", externalID)
+}
+
+type Azurerm_express_route_circuit_authorization struct {
+
+    Azurerm_express_route_circuit_authorization_id *string `lyra:"ignore"`
+
+    Authorization_key *string
+
+    Authorization_use_status *string
+
+    Express_route_circuit_name string
+
+    Name string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_express_route_circuit_authorizationHandler ...
+type Azurerm_express_route_circuit_authorizationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_express_route_circuit_authorizationHandler) Create(desired *Azurerm_express_route_circuit_authorization) (*Azurerm_express_route_circuit_authorization, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_express_route_circuit_authorization", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID string) (*Azurerm_express_route_circuit_authorization, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_authorization", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_express_route_circuit_authorization{ Azurerm_express_route_circuit_authorization_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_express_route_circuit_authorizationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_express_route_circuit_authorization", externalID)
+}
+
+type Azurerm_express_route_circuit_peering_microsoft_peering_config_1362 struct {
+
+    Azurerm_express_route_circuit_peering_microsoft_peering_config_1362_id *string `lyra:"ignore"`
+
+    Advertised_public_prefixes []string
+
+}
+
+type Azurerm_express_route_circuit_peering struct {
+
+    Azurerm_express_route_circuit_peering_id *string `lyra:"ignore"`
+
+    Azure_asn *int
+
+    Express_route_circuit_name string
+
+    Microsoft_peering_config *Azurerm_express_route_circuit_peering_microsoft_peering_config_1362
+
+    Peer_asn *int
+
+    Peering_type string
+
+    Primary_azure_port *string
+
+    Primary_peer_address_prefix string
+
+    Resource_group_name string
+
+    Secondary_azure_port *string
+
+    Secondary_peer_address_prefix string
+
+    Shared_key *string
+
+    Vlan_id int
+
+}
+
+// Azurerm_express_route_circuit_peeringHandler ...
+type Azurerm_express_route_circuit_peeringHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_express_route_circuit_peeringHandler) Create(desired *Azurerm_express_route_circuit_peering) (*Azurerm_express_route_circuit_peering, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_express_route_circuit_peering", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (*Azurerm_express_route_circuit_peering, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_peering", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_express_route_circuit_peering{ Azurerm_express_route_circuit_peering_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_express_route_circuit_peeringHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_express_route_circuit_peering", externalID)
+}
+
+type Azurerm_firewall_ip_configuration_1363 struct {
+
+    Azurerm_firewall_ip_configuration_1363_id *string `lyra:"ignore"`
+
+    Internal_public_ip_address_id *string
+
+    Name string
+
+    Private_ip_address *string
+
+    Public_ip_address_id *string
+
+    Subnet_id string
+
+}
+
+type Azurerm_firewall struct {
+
+    Azurerm_firewall_id *string `lyra:"ignore"`
+
+    Ip_configuration Azurerm_firewall_ip_configuration_1363
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_firewallHandler ...
+type Azurerm_firewallHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_firewallHandler) Create(desired *Azurerm_firewall) (*Azurerm_firewall, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_firewall", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_firewall", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_firewall{ Azurerm_firewall_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_firewallHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_firewall", externalID)
+}
+
+type Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365 struct {
+
+    Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365_id *string `lyra:"ignore"`
+
+    Port *int
+
+    Type string
+
+}
+
+type Azurerm_firewall_application_rule_collection_rule_1364 struct {
+
+    Azurerm_firewall_application_rule_collection_rule_1364_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Fqdn_tags *[]string
+
+    Name string
+
+    Protocol *Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365
+
+    Source_addresses []string
+
+    Target_fqdns *[]string
+
+}
+
+type Azurerm_firewall_application_rule_collection struct {
+
+    Azurerm_firewall_application_rule_collection_id *string `lyra:"ignore"`
+
+    Action string
+
+    Azure_firewall_name string
+
+    Name string
+
+    Priority int
+
+    Resource_group_name string
+
+    Rule Azurerm_firewall_application_rule_collection_rule_1364
+
+}
+
+// Azurerm_firewall_application_rule_collectionHandler ...
+type Azurerm_firewall_application_rule_collectionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_firewall_application_rule_collectionHandler) Create(desired *Azurerm_firewall_application_rule_collection) (*Azurerm_firewall_application_rule_collection, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_firewall_application_rule_collection", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_application_rule_collection, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_firewall_application_rule_collection", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_firewall_application_rule_collection{ Azurerm_firewall_application_rule_collection_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_firewall_application_rule_collectionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_firewall_application_rule_collection", externalID)
+}
+
+type Azurerm_firewall_network_rule_collection_rule_1366 struct {
+
+    Azurerm_firewall_network_rule_collection_rule_1366_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Destination_addresses []string
+
+    Destination_ports []string
+
+    Name string
+
+    Protocols []string
+
+    Source_addresses []string
+
+}
+
+type Azurerm_firewall_network_rule_collection struct {
+
+    Azurerm_firewall_network_rule_collection_id *string `lyra:"ignore"`
+
+    Action string
+
+    Azure_firewall_name string
+
+    Name string
+
+    Priority int
+
+    Resource_group_name string
+
+    Rule Azurerm_firewall_network_rule_collection_rule_1366
+
+}
+
+// Azurerm_firewall_network_rule_collectionHandler ...
+type Azurerm_firewall_network_rule_collectionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_firewall_network_rule_collectionHandler) Create(desired *Azurerm_firewall_network_rule_collection) (*Azurerm_firewall_network_rule_collection, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_firewall_network_rule_collection", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_network_rule_collection, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_firewall_network_rule_collection", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_firewall_network_rule_collection{ Azurerm_firewall_network_rule_collection_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_firewall_network_rule_collectionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_firewall_network_rule_collection", externalID)
+}
+
+type Azurerm_function_app_connection_string_1367 struct {
+
+    Azurerm_function_app_connection_string_1367_id *string `lyra:"ignore"`
+
+    Name string
+
+    Type string
+
+    Value string
+
+}
+
+type Azurerm_function_app_identity_1368 struct {
+
+    Azurerm_function_app_identity_1368_id *string `lyra:"ignore"`
+
+    Principal_id *string
+
+    Tenant_id *string
+
+    Type string
+
+}
+
+type Azurerm_function_app_site_config_1369 struct {
+
+    Azurerm_function_app_site_config_1369_id *string `lyra:"ignore"`
+
+    Always_on *bool
+
+    Use_32_bit_worker_process *bool
+
+    Websockets_enabled *bool
+
+}
+
+type Azurerm_function_app_site_credential_1370 struct {
+
+    Azurerm_function_app_site_credential_1370_id *string `lyra:"ignore"`
+
+    Password *string
+
+    Username *string
+
+}
+
+type Azurerm_function_app struct {
+
+    Azurerm_function_app_id *string `lyra:"ignore"`
+
+    App_service_plan_id string
+
+    App_settings *map[string]string
+
+    Client_affinity_enabled *bool
+
+    Connection_string *Azurerm_function_app_connection_string_1367
+
+    Default_hostname *string
+
+    Enable_builtin_logging *bool
+
+    Enabled *bool
+
+    Https_only *bool
+
+    Identity *Azurerm_function_app_identity_1368
+
+    Location string
+
+    Name string
+
+    Outbound_ip_addresses *string
+
+    Resource_group_name string
+
+    Site_config *Azurerm_function_app_site_config_1369
+
+    Site_credential *Azurerm_function_app_site_credential_1370
+
+    Storage_connection_string string
+
+    Tags *map[string]string
+
+    Version *string
+
+}
+
+// Azurerm_function_appHandler ...
+type Azurerm_function_appHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_function_appHandler) Create(desired *Azurerm_function_app) (*Azurerm_function_app, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_function_app", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function_app, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_function_app", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_function_app{ Azurerm_function_app_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_function_appHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_function_app", externalID)
+}
+
+type Azurerm_image_data_disk_1371 struct {
+
+    Azurerm_image_data_disk_1371_id *string `lyra:"ignore"`
+
+    Blob_uri *string
+
+    Caching *string
+
+    Lun *int
+
+    Managed_disk_id *string
+
+    Size_gb *int
+
+}
+
+type Azurerm_image_os_disk_1372 struct {
+
+    Azurerm_image_os_disk_1372_id *string `lyra:"ignore"`
+
+    Blob_uri *string
+
+    Caching *string
+
+    Managed_disk_id *string
+
+    Os_state *string
+
+    Os_type *string
+
+    Size_gb *int
+
+}
+
+type Azurerm_image struct {
+
+    Azurerm_image_id *string `lyra:"ignore"`
+
+    Data_disk *Azurerm_image_data_disk_1371
+
+    Location string
+
+    Name string
+
+    Os_disk *Azurerm_image_os_disk_1372
+
+    Resource_group_name string
+
+    Source_virtual_machine_id *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_imageHandler ...
+type Azurerm_imageHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_imageHandler) Create(desired *Azurerm_image) (*Azurerm_image, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_image", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_image", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_image{ Azurerm_image_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_imageHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_image", externalID)
+}
+
+type Azurerm_iothub_endpoint_1373 struct {
+
+    Azurerm_iothub_endpoint_1373_id *string `lyra:"ignore"`
+
+    Batch_frequency_in_seconds *int
+
+    Connection_string string
+
+    Container_name *string
+
+    Encoding *string
+
+    File_name_format *string
+
+    Max_chunk_size_in_bytes *int
+
+    Name string
+
+    Type string
+
+}
+
+type Azurerm_iothub_route_1374 struct {
+
+    Azurerm_iothub_route_1374_id *string `lyra:"ignore"`
+
+    Condition *string
+
+    Enabled bool
+
+    Endpoint_names []string
+
+    Name string
+
+    Source string
+
+}
+
+type Azurerm_iothub_shared_access_policy_1375 struct {
+
+    Azurerm_iothub_shared_access_policy_1375_id *string `lyra:"ignore"`
+
+    Key_name *string
+
+    Permissions *string
+
+    Primary_key *string
+
+    Secondary_key *string
+
+}
+
+type Azurerm_iothub_sku_1376 struct {
+
+    Azurerm_iothub_sku_1376_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_iothub struct {
+
+    Azurerm_iothub_id *string `lyra:"ignore"`
+
+    Endpoint *Azurerm_iothub_endpoint_1373
+
+    Event_hub_events_endpoint *string
+
+    Event_hub_events_path *string
+
+    Event_hub_operations_endpoint *string
+
+    Event_hub_operations_path *string
+
+    Hostname *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Route *Azurerm_iothub_route_1374
+
+    Shared_access_policy *Azurerm_iothub_shared_access_policy_1375
+
+    Sku Azurerm_iothub_sku_1376
+
+    Tags *map[string]string
+
+    Type *string
+
+}
+
+// Azurerm_iothubHandler ...
+type Azurerm_iothubHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_iothubHandler) Create(desired *Azurerm_iothub) (*Azurerm_iothub, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_iothub", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_iothub", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_iothub{ Azurerm_iothub_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_iothubHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_iothub", externalID)
+}
+
+type Azurerm_iothub_consumer_group struct {
+
+    Azurerm_iothub_consumer_group_id *string `lyra:"ignore"`
+
+    Eventhub_endpoint_name string
+
+    Iothub_name string
+
+    Name string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_iothub_consumer_groupHandler ...
+type Azurerm_iothub_consumer_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_iothub_consumer_groupHandler) Create(desired *Azurerm_iothub_consumer_group) (*Azurerm_iothub_consumer_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_iothub_consumer_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm_iothub_consumer_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_iothub_consumer_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_iothub_consumer_group{ Azurerm_iothub_consumer_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_iothub_consumer_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_iothub_consumer_group", externalID)
+}
+
+type Azurerm_key_vault_access_policy_1377 struct {
+
+    Azurerm_key_vault_access_policy_1377_id *string `lyra:"ignore"`
+
+    Application_id *string
+
+    Certificate_permissions *[]string
+
+    Key_permissions *[]string
+
+    Object_id string
+
+    Secret_permissions *[]string
+
+    Tenant_id string
+
+}
+
+type Azurerm_key_vault_network_acls_1378 struct {
+
+    Azurerm_key_vault_network_acls_1378_id *string `lyra:"ignore"`
+
+    Bypass string
+
+    Default_action string
+
+    Ip_rules *[]string
+
+    Virtual_network_subnet_ids *[]string
+
+}
+
+type Azurerm_key_vault_sku_1379 struct {
+
+    Azurerm_key_vault_sku_1379_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Azurerm_key_vault struct {
+
+    Azurerm_key_vault_id *string `lyra:"ignore"`
+
+    Access_policy *Azurerm_key_vault_access_policy_1377
+
+    Enabled_for_deployment *bool
+
+    Enabled_for_disk_encryption *bool
+
+    Enabled_for_template_deployment *bool
+
+    Location string
+
+    Name string
+
+    Network_acls *Azurerm_key_vault_network_acls_1378
+
+    Resource_group_name string
+
+    Sku Azurerm_key_vault_sku_1379
+
+    Tags *map[string]string
+
+    Tenant_id string
+
+    Vault_uri *string
+
+}
+
+// Azurerm_key_vaultHandler ...
+type Azurerm_key_vaultHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_key_vaultHandler) Create(desired *Azurerm_key_vault) (*Azurerm_key_vault, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_key_vault", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_key_vault{ Azurerm_key_vault_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_key_vaultHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_key_vault", externalID)
+}
+
+type Azurerm_key_vault_access_policy struct {
+
+    Azurerm_key_vault_access_policy_id *string `lyra:"ignore"`
+
+    Application_id *string
+
+    Certificate_permissions *[]string
+
+    Key_permissions *[]string
+
+    Object_id string
+
+    Resource_group_name string
+
+    Secret_permissions *[]string
+
+    Tenant_id string
+
+    Vault_name string
+
+}
+
+// Azurerm_key_vault_access_policyHandler ...
+type Azurerm_key_vault_access_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_key_vault_access_policyHandler) Create(desired *Azurerm_key_vault_access_policy) (*Azurerm_key_vault_access_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_key_vault_access_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azurerm_key_vault_access_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_access_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_key_vault_access_policy{ Azurerm_key_vault_access_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_key_vault_access_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_key_vault_access_policy", externalID)
+}
+
+type Azurerm_key_vault_certificate_certificate_1380 struct {
+
+    Azurerm_key_vault_certificate_certificate_1380_id *string `lyra:"ignore"`
+
+    Contents string
+
+    Password *string
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383_id *string `lyra:"ignore"`
+
+    Exportable bool
+
+    Key_size int
+
+    Key_type string
+
+    Reuse_key bool
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385_id *string `lyra:"ignore"`
+
+    Action_type string
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386_id *string `lyra:"ignore"`
+
+    Days_before_expiry *int
+
+    Lifetime_percentage *int
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_id *string `lyra:"ignore"`
+
+    Action Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385
+
+    Trigger Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387_id *string `lyra:"ignore"`
+
+    Content_type string
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389_id *string `lyra:"ignore"`
+
+    Dns_names *[]string
+
+    Emails *[]string
+
+    Upns *[]string
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_id *string `lyra:"ignore"`
+
+    Extended_key_usage *[]string
+
+    Key_usage []string
+
+    Subject string
+
+    Subject_alternative_names *Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389
+
+    Validity_in_months int
+
+}
+
+type Azurerm_key_vault_certificate_certificate_policy_1381 struct {
+
+    Azurerm_key_vault_certificate_certificate_policy_1381_id *string `lyra:"ignore"`
+
+    Issuer_parameters Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382
+
+    Key_properties Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383
+
+    Lifetime_action *Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384
+
+    Secret_properties Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387
+
+    X509_certificate_properties *Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388
+
+}
+
+type Azurerm_key_vault_certificate struct {
+
+    Azurerm_key_vault_certificate_id *string `lyra:"ignore"`
+
+    Certificate *Azurerm_key_vault_certificate_certificate_1380
+
+    Certificate_data *string
+
+    Certificate_policy Azurerm_key_vault_certificate_certificate_policy_1381
+
+    Name string
+
+    Secret_id *string
+
+    Tags *map[string]string
+
+    Thumbprint *string
+
+    Vault_uri string
+
+    Version *string
+
+}
+
+// Azurerm_key_vault_certificateHandler ...
+type Azurerm_key_vault_certificateHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_key_vault_certificateHandler) Create(desired *Azurerm_key_vault_certificate) (*Azurerm_key_vault_certificate, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_key_vault_certificate", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm_key_vault_certificate, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_certificate", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_key_vault_certificate{ Azurerm_key_vault_certificate_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_key_vault_certificateHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_key_vault_certificate", externalID)
+}
+
+type Azurerm_key_vault_key struct {
+
+    Azurerm_key_vault_key_id *string `lyra:"ignore"`
+
+    E *string
+
+    Key_opts []string
+
+    Key_size int
+
+    Key_type string
+
+    N *string
+
+    Name string
+
+    Tags *map[string]string
+
+    Vault_uri string
+
+    Version *string
+
+}
+
+// Azurerm_key_vault_keyHandler ...
+type Azurerm_key_vault_keyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_key_vault_keyHandler) Create(desired *Azurerm_key_vault_key) (*Azurerm_key_vault_key, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_key_vault_key", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vault_key, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_key", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_key_vault_key{ Azurerm_key_vault_key_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_key_vault_keyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_key_vault_key", externalID)
+}
+
+type Azurerm_key_vault_secret struct {
+
+    Azurerm_key_vault_secret_id *string `lyra:"ignore"`
+
+    Content_type *string
+
+    Name string
+
+    Tags *map[string]string
+
+    Value string
+
+    Vault_uri string
+
+    Version *string
+
+}
+
+// Azurerm_key_vault_secretHandler ...
+type Azurerm_key_vault_secretHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_key_vault_secretHandler) Create(desired *Azurerm_key_vault_secret) (*Azurerm_key_vault_secret, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_key_vault_secret", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_vault_secret, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_secret", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_key_vault_secret{ Azurerm_key_vault_secret_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_key_vault_secretHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_key_vault_secret", externalID)
+}
+
+type Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391 struct {
+
+    Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Subnet_name string
+
+}
+
+type Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392 struct {
+
+    Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Http_application_routing_zone_name *string
+
+}
+
+type Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393 struct {
+
+    Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Log_analytics_workspace_id string
+
+}
+
+type Azurerm_kubernetes_cluster_addon_profile_1390 struct {
+
+    Azurerm_kubernetes_cluster_addon_profile_1390_id *string `lyra:"ignore"`
+
+    Aci_connector_linux *Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391
+
+    Http_application_routing *Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392
+
+    Oms_agent *Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393
+
+}
+
+type Azurerm_kubernetes_cluster_agent_pool_profile_1394 struct {
+
+    Azurerm_kubernetes_cluster_agent_pool_profile_1394_id *string `lyra:"ignore"`
+
+    Count *int
+
+    Dns_prefix *string
+
+    Fqdn *string
+
+    Max_pods *int
+
+    Name string
+
+    Os_disk_size_gb *int
+
+    Os_type *string
+
+    Vm_size string
+
+    Vnet_subnet_id *string
+
+}
+
+type Azurerm_kubernetes_cluster_kube_admin_config_1395 struct {
+
+    Azurerm_kubernetes_cluster_kube_admin_config_1395_id *string `lyra:"ignore"`
+
+    Client_certificate *string
+
+    Client_key *string
+
+    Cluster_ca_certificate *string
+
+    Host *string
+
+    Password *string
+
+    Username *string
+
+}
+
+type Azurerm_kubernetes_cluster_kube_config_1396 struct {
+
+    Azurerm_kubernetes_cluster_kube_config_1396_id *string `lyra:"ignore"`
+
+    Client_certificate *string
+
+    Client_key *string
+
+    Cluster_ca_certificate *string
+
+    Host *string
+
+    Password *string
+
+    Username *string
+
+}
+
+type Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398 struct {
+
+    Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398_id *string `lyra:"ignore"`
+
+    Key_data string
+
+}
+
+type Azurerm_kubernetes_cluster_linux_profile_1397 struct {
+
+    Azurerm_kubernetes_cluster_linux_profile_1397_id *string `lyra:"ignore"`
+
+    Admin_username string
+
+    Ssh_key Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398
+
+}
+
+type Azurerm_kubernetes_cluster_network_profile_1399 struct {
+
+    Azurerm_kubernetes_cluster_network_profile_1399_id *string `lyra:"ignore"`
+
+    Dns_service_ip *string
+
+    Docker_bridge_cidr *string
+
+    Network_plugin string
+
+    Pod_cidr *string
+
+    Service_cidr *string
+
+}
+
+type Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401 struct {
+
+    Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401_id *string `lyra:"ignore"`
+
+    Client_app_id string
+
+    Server_app_id string
+
+    Server_app_secret string
+
+    Tenant_id *string
+
+}
+
+type Azurerm_kubernetes_cluster_role_based_access_control_1400 struct {
+
+    Azurerm_kubernetes_cluster_role_based_access_control_1400_id *string `lyra:"ignore"`
+
+    Azure_active_directory *Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401
+
+    Enabled bool
+
+}
+
+type Azurerm_kubernetes_cluster_service_principal_1402 struct {
+
+    Azurerm_kubernetes_cluster_service_principal_1402_id *string `lyra:"ignore"`
+
+    Client_id string
+
+    Client_secret string
+
+}
+
+type Azurerm_kubernetes_cluster struct {
+
+    Azurerm_kubernetes_cluster_id *string `lyra:"ignore"`
+
+    Addon_profile *Azurerm_kubernetes_cluster_addon_profile_1390
+
+    Agent_pool_profile Azurerm_kubernetes_cluster_agent_pool_profile_1394
+
+    Dns_prefix string
+
+    Fqdn *string
+
+    Kube_admin_config *Azurerm_kubernetes_cluster_kube_admin_config_1395
+
+    Kube_admin_config_raw *string
+
+    Kube_config *Azurerm_kubernetes_cluster_kube_config_1396
+
+    Kube_config_raw *string
+
+    Kubernetes_version *string
+
+    Linux_profile *Azurerm_kubernetes_cluster_linux_profile_1397
+
+    Location string
+
+    Name string
+
+    Network_profile *Azurerm_kubernetes_cluster_network_profile_1399
+
+    Node_resource_group *string
+
+    Resource_group_name string
+
+    Role_based_access_control *Azurerm_kubernetes_cluster_role_based_access_control_1400
+
+    Service_principal Azurerm_kubernetes_cluster_service_principal_1402
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_kubernetes_clusterHandler ...
+type Azurerm_kubernetes_clusterHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_kubernetes_clusterHandler) Create(desired *Azurerm_kubernetes_cluster) (*Azurerm_kubernetes_cluster, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_kubernetes_cluster", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_kubernetes_cluster, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_kubernetes_cluster", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_kubernetes_cluster{ Azurerm_kubernetes_cluster_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_kubernetes_clusterHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_kubernetes_cluster", externalID)
+}
+
+type Azurerm_lb_frontend_ip_configuration_1403 struct {
+
+    Azurerm_lb_frontend_ip_configuration_1403_id *string `lyra:"ignore"`
+
+    Inbound_nat_rules *[]string
+
+    Load_balancer_rules *[]string
+
+    Name string
+
+    Private_ip_address *string
+
+    Private_ip_address_allocation *string
+
+    Public_ip_address_id *string
+
+    Subnet_id *string
+
+    Zones *[]string
+
+}
+
+type Azurerm_lb struct {
+
+    Azurerm_lb_id *string `lyra:"ignore"`
+
+    Frontend_ip_configuration *Azurerm_lb_frontend_ip_configuration_1403
+
+    Location string
+
+    Name string
+
+    Private_ip_address *string
+
+    Private_ip_addresses *[]string
+
+    Resource_group_name string
+
+    Sku *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_lbHandler ...
+type Azurerm_lbHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_lbHandler) Create(desired *Azurerm_lb) (*Azurerm_lb, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_lb", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_lb", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_lb{ Azurerm_lb_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_lbHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_lb", externalID)
+}
+
+type Azurerm_lb_backend_address_pool struct {
+
+    Azurerm_lb_backend_address_pool_id *string `lyra:"ignore"`
+
+    Backend_ip_configurations *[]string
+
+    Load_balancing_rules *[]string
+
+    Loadbalancer_id string
+
+    Location *string
+
+    Name string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_lb_backend_address_poolHandler ...
+type Azurerm_lb_backend_address_poolHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_lb_backend_address_poolHandler) Create(desired *Azurerm_lb_backend_address_pool) (*Azurerm_lb_backend_address_pool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_lb_backend_address_pool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azurerm_lb_backend_address_pool, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_lb_backend_address_pool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_lb_backend_address_pool{ Azurerm_lb_backend_address_pool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_lb_backend_address_poolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_lb_backend_address_pool", externalID)
+}
+
+type Azurerm_lb_nat_pool struct {
+
+    Azurerm_lb_nat_pool_id *string `lyra:"ignore"`
+
+    Backend_port int
+
+    Frontend_ip_configuration_id *string
+
+    Frontend_ip_configuration_name string
+
+    Frontend_port_end int
+
+    Frontend_port_start int
+
+    Loadbalancer_id string
+
+    Location *string
+
+    Name string
+
+    Protocol string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_lb_nat_poolHandler ...
+type Azurerm_lb_nat_poolHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_lb_nat_poolHandler) Create(desired *Azurerm_lb_nat_pool) (*Azurerm_lb_nat_pool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_lb_nat_pool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_pool, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_lb_nat_pool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_lb_nat_pool{ Azurerm_lb_nat_pool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_lb_nat_poolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_lb_nat_pool", externalID)
+}
+
+type Azurerm_lb_nat_rule struct {
+
+    Azurerm_lb_nat_rule_id *string `lyra:"ignore"`
+
+    Backend_ip_configuration_id *string
+
+    Backend_port int
+
+    Enable_floating_ip *bool
+
+    Frontend_ip_configuration_id *string
+
+    Frontend_ip_configuration_name string
+
+    Frontend_port int
+
+    Loadbalancer_id string
+
+    Location *string
+
+    Name string
+
+    Protocol string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_lb_nat_ruleHandler ...
+type Azurerm_lb_nat_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_lb_nat_ruleHandler) Create(desired *Azurerm_lb_nat_rule) (*Azurerm_lb_nat_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_lb_nat_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_lb_nat_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_lb_nat_rule{ Azurerm_lb_nat_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_lb_nat_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_lb_nat_rule", externalID)
+}
+
+type Azurerm_lb_probe struct {
+
+    Azurerm_lb_probe_id *string `lyra:"ignore"`
+
+    Interval_in_seconds *int
+
+    Load_balancer_rules *[]string
+
+    Loadbalancer_id string
+
+    Location *string
+
+    Name string
+
+    Number_of_probes *int
+
+    Port int
+
+    Protocol *string
+
+    Request_path *string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_lb_probeHandler ...
+type Azurerm_lb_probeHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_lb_probeHandler) Create(desired *Azurerm_lb_probe) (*Azurerm_lb_probe, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_lb_probe", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_lb_probe", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_lb_probe{ Azurerm_lb_probe_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_lb_probeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_lb_probe", externalID)
+}
+
+type Azurerm_lb_rule struct {
+
+    Azurerm_lb_rule_id *string `lyra:"ignore"`
+
+    Backend_address_pool_id *string
+
+    Backend_port int
+
+    Enable_floating_ip *bool
+
+    Frontend_ip_configuration_id *string
+
+    Frontend_ip_configuration_name string
+
+    Frontend_port int
+
+    Idle_timeout_in_minutes *int
+
+    Load_distribution *string
+
+    Loadbalancer_id string
+
+    Location *string
+
+    Name string
+
+    Probe_id *string
+
+    Protocol string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_lb_ruleHandler ...
+type Azurerm_lb_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_lb_ruleHandler) Create(desired *Azurerm_lb_rule) (*Azurerm_lb_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_lb_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_lb_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_lb_rule{ Azurerm_lb_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_lb_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_lb_rule", externalID)
+}
+
+type Azurerm_local_network_gateway_bgp_settings_1404 struct {
+
+    Azurerm_local_network_gateway_bgp_settings_1404_id *string `lyra:"ignore"`
+
+    Asn int
+
+    Bgp_peering_address string
+
+    Peer_weight *int
+
+}
+
+type Azurerm_local_network_gateway struct {
+
+    Azurerm_local_network_gateway_id *string `lyra:"ignore"`
+
+    Address_space []string
+
+    Bgp_settings *Azurerm_local_network_gateway_bgp_settings_1404
+
+    Gateway_address string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_local_network_gatewayHandler ...
+type Azurerm_local_network_gatewayHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_local_network_gatewayHandler) Create(desired *Azurerm_local_network_gateway) (*Azurerm_local_network_gateway, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_local_network_gateway", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm_local_network_gateway, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_local_network_gateway", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_local_network_gateway{ Azurerm_local_network_gateway_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_local_network_gatewayHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_local_network_gateway", externalID)
+}
+
+type Azurerm_log_analytics_solution_plan_1405 struct {
+
+    Azurerm_log_analytics_solution_plan_1405_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Product string
+
+    Promotion_code *string
+
+    Publisher string
+
+}
+
+type Azurerm_log_analytics_solution struct {
+
+    Azurerm_log_analytics_solution_id *string `lyra:"ignore"`
+
+    Location string
+
+    Plan Azurerm_log_analytics_solution_plan_1405
+
+    Resource_group_name string
+
+    Solution_name string
+
+    Workspace_name string
+
+    Workspace_resource_id string
+
+}
+
+// Azurerm_log_analytics_solutionHandler ...
+type Azurerm_log_analytics_solutionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_log_analytics_solutionHandler) Create(desired *Azurerm_log_analytics_solution) (*Azurerm_log_analytics_solution, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_log_analytics_solution", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurerm_log_analytics_solution, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_solution", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_log_analytics_solution{ Azurerm_log_analytics_solution_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_log_analytics_solutionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_log_analytics_solution", externalID)
+}
+
+type Azurerm_log_analytics_workspace struct {
+
+    Azurerm_log_analytics_workspace_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Portal_url *string
+
+    Primary_shared_key *string
+
+    Resource_group_name string
+
+    Retention_in_days *int
+
+    Secondary_shared_key *string
+
+    Sku string
+
+    Tags *map[string]string
+
+    Workspace_id *string
+
+}
+
+// Azurerm_log_analytics_workspaceHandler ...
+type Azurerm_log_analytics_workspaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_log_analytics_workspaceHandler) Create(desired *Azurerm_log_analytics_workspace) (*Azurerm_log_analytics_workspace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_log_analytics_workspace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_log_analytics_workspace{ Azurerm_log_analytics_workspace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_log_analytics_workspaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace", externalID)
+}
+
+type Azurerm_log_analytics_workspace_linked_service struct {
+
+    Azurerm_log_analytics_workspace_linked_service_id *string `lyra:"ignore"`
+
+    Linked_service_name *string
+
+    Linked_service_properties map[string]string
+
+    Name *string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Workspace_name string
+
+}
+
+// Azurerm_log_analytics_workspace_linked_serviceHandler ...
+type Azurerm_log_analytics_workspace_linked_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Create(desired *Azurerm_log_analytics_workspace_linked_service) (*Azurerm_log_analytics_workspace_linked_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_log_analytics_workspace_linked_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace_linked_service, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_log_analytics_workspace_linked_service{ Azurerm_log_analytics_workspace_linked_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
+}
+
+type Azurerm_logic_app_action_custom struct {
+
+    Azurerm_logic_app_action_custom_id *string `lyra:"ignore"`
+
+    Body string
+
+    Logic_app_id string
+
+    Name string
+
+}
+
+// Azurerm_logic_app_action_customHandler ...
+type Azurerm_logic_app_action_customHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_logic_app_action_customHandler) Create(desired *Azurerm_logic_app_action_custom) (*Azurerm_logic_app_action_custom, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_logic_app_action_custom", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azurerm_logic_app_action_custom, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_custom", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_logic_app_action_custom{ Azurerm_logic_app_action_custom_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_logic_app_action_customHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_logic_app_action_custom", externalID)
+}
+
+type Azurerm_logic_app_action_http struct {
+
+    Azurerm_logic_app_action_http_id *string `lyra:"ignore"`
+
+    Body *string
+
+    Headers *map[string]string
+
+    Logic_app_id string
+
+    Method string
+
+    Name string
+
+    Uri string
+
+}
+
+// Azurerm_logic_app_action_httpHandler ...
+type Azurerm_logic_app_action_httpHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_logic_app_action_httpHandler) Create(desired *Azurerm_logic_app_action_http) (*Azurerm_logic_app_action_http, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_logic_app_action_http", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm_logic_app_action_http, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_http", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_logic_app_action_http{ Azurerm_logic_app_action_http_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_logic_app_action_httpHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_logic_app_action_http", externalID)
+}
+
+type Azurerm_logic_app_trigger_custom struct {
+
+    Azurerm_logic_app_trigger_custom_id *string `lyra:"ignore"`
+
+    Body string
+
+    Logic_app_id string
+
+    Name string
+
+}
+
+// Azurerm_logic_app_trigger_customHandler ...
+type Azurerm_logic_app_trigger_customHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_logic_app_trigger_customHandler) Create(desired *Azurerm_logic_app_trigger_custom) (*Azurerm_logic_app_trigger_custom, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_logic_app_trigger_custom", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azurerm_logic_app_trigger_custom, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_custom", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_logic_app_trigger_custom{ Azurerm_logic_app_trigger_custom_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_logic_app_trigger_customHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_custom", externalID)
+}
+
+type Azurerm_logic_app_trigger_http_request struct {
+
+    Azurerm_logic_app_trigger_http_request_id *string `lyra:"ignore"`
+
+    Logic_app_id string
+
+    Method *string
+
+    Name string
+
+    Relative_path *string
+
+    Schema string
+
+}
+
+// Azurerm_logic_app_trigger_http_requestHandler ...
+type Azurerm_logic_app_trigger_http_requestHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_logic_app_trigger_http_requestHandler) Create(desired *Azurerm_logic_app_trigger_http_request) (*Azurerm_logic_app_trigger_http_request, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_logic_app_trigger_http_request", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) (*Azurerm_logic_app_trigger_http_request, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_logic_app_trigger_http_request{ Azurerm_logic_app_trigger_http_request_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_logic_app_trigger_http_requestHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
+}
+
+type Azurerm_logic_app_trigger_recurrence struct {
+
+    Azurerm_logic_app_trigger_recurrence_id *string `lyra:"ignore"`
+
+    Frequency string
+
+    Interval int
+
+    Logic_app_id string
+
+    Name string
+
+}
+
+// Azurerm_logic_app_trigger_recurrenceHandler ...
+type Azurerm_logic_app_trigger_recurrenceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_logic_app_trigger_recurrenceHandler) Create(desired *Azurerm_logic_app_trigger_recurrence) (*Azurerm_logic_app_trigger_recurrence, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_logic_app_trigger_recurrence", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*Azurerm_logic_app_trigger_recurrence, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_logic_app_trigger_recurrence{ Azurerm_logic_app_trigger_recurrence_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_logic_app_trigger_recurrenceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
+}
+
+type Azurerm_logic_app_workflow struct {
+
+    Azurerm_logic_app_workflow_id *string `lyra:"ignore"`
+
+    Access_endpoint *string
+
+    Location string
+
+    Name string
+
+    Parameters *map[string]string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Workflow_schema *string
+
+    Workflow_version *string
+
+}
+
+// Azurerm_logic_app_workflowHandler ...
+type Azurerm_logic_app_workflowHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_logic_app_workflowHandler) Create(desired *Azurerm_logic_app_workflow) (*Azurerm_logic_app_workflow, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_logic_app_workflow", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_logic_app_workflow, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_workflow", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_logic_app_workflow{ Azurerm_logic_app_workflow_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_logic_app_workflowHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_logic_app_workflow", externalID)
+}
+
+type Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407 struct {
+
+    Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407_id *string `lyra:"ignore"`
+
+    Secret_url string
+
+    Source_vault_id string
+
+}
+
+type Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408 struct {
+
+    Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408_id *string `lyra:"ignore"`
+
+    Key_url string
+
+    Source_vault_id string
+
+}
+
+type Azurerm_managed_disk_encryption_settings_1406 struct {
+
+    Azurerm_managed_disk_encryption_settings_1406_id *string `lyra:"ignore"`
+
+    Disk_encryption_key *Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407
+
+    Enabled bool
+
+    Key_encryption_key *Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408
+
+}
+
+type Azurerm_managed_disk struct {
+
+    Azurerm_managed_disk_id *string `lyra:"ignore"`
+
+    Create_option string
+
+    Disk_size_gb *int
+
+    Encryption_settings *Azurerm_managed_disk_encryption_settings_1406
+
+    Image_reference_id *string
+
+    Location string
+
+    Name string
+
+    Os_type *string
+
+    Resource_group_name string
+
+    Source_resource_id *string
+
+    Source_uri *string
+
+    Storage_account_type string
+
+    Tags *map[string]string
+
+    Zones *[]string
+
+}
+
+// Azurerm_managed_diskHandler ...
+type Azurerm_managed_diskHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_managed_diskHandler) Create(desired *Azurerm_managed_disk) (*Azurerm_managed_disk, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_managed_disk", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_disk, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_managed_disk", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_managed_disk{ Azurerm_managed_disk_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_managed_diskHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_managed_disk", externalID)
+}
+
+type Azurerm_management_group struct {
+
+    Azurerm_management_group_id *string `lyra:"ignore"`
+
+    Display_name *string
+
+    Group_id *string
+
+    Parent_management_group_id *string
+
+    Subscription_ids *[]string
+
+}
+
+// Azurerm_management_groupHandler ...
+type Azurerm_management_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_management_groupHandler) Create(desired *Azurerm_management_group) (*Azurerm_management_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_management_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_management_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_management_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_management_group{ Azurerm_management_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_management_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_management_group", externalID)
+}
+
+type Azurerm_management_lock struct {
+
+    Azurerm_management_lock_id *string `lyra:"ignore"`
+
+    Lock_level string
+
+    Name string
+
+    Notes *string
+
+    Scope string
+
+}
+
+// Azurerm_management_lockHandler ...
+type Azurerm_management_lockHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_management_lockHandler) Create(desired *Azurerm_management_lock) (*Azurerm_management_lock, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_management_lock", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_management_lock, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_management_lock", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_management_lock{ Azurerm_management_lock_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_management_lockHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_management_lock", externalID)
+}
+
+type Azurerm_mariadb_database struct {
+
+    Azurerm_mariadb_database_id *string `lyra:"ignore"`
+
+    Charset string
+
+    Collation string
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+}
+
+// Azurerm_mariadb_databaseHandler ...
+type Azurerm_mariadb_databaseHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mariadb_databaseHandler) Create(desired *Azurerm_mariadb_database) (*Azurerm_mariadb_database, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mariadb_database", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mariadb_database, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mariadb_database", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mariadb_database{ Azurerm_mariadb_database_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mariadb_databaseHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mariadb_database", externalID)
+}
+
+type Azurerm_mariadb_server_sku_1409 struct {
+
+    Azurerm_mariadb_server_sku_1409_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Family string
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_mariadb_server_storage_profile_1410 struct {
+
+    Azurerm_mariadb_server_storage_profile_1410_id *string `lyra:"ignore"`
+
+    Backup_retention_days *int
+
+    Geo_redundant_backup *string
+
+    Storage_mb int
+
+}
+
+type Azurerm_mariadb_server struct {
+
+    Azurerm_mariadb_server_id *string `lyra:"ignore"`
+
+    Administrator_login string
+
+    Administrator_login_password string
+
+    Fqdn *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku Azurerm_mariadb_server_sku_1409
+
+    Ssl_enforcement string
+
+    Storage_profile Azurerm_mariadb_server_storage_profile_1410
+
+    Tags *map[string]string
+
+    Version string
+
+}
+
+// Azurerm_mariadb_serverHandler ...
+type Azurerm_mariadb_serverHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mariadb_serverHandler) Create(desired *Azurerm_mariadb_server) (*Azurerm_mariadb_server, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mariadb_server", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariadb_server, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mariadb_server", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mariadb_server{ Azurerm_mariadb_server_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mariadb_serverHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mariadb_server", externalID)
+}
+
+type Azurerm_metric_alertrule_email_action_1411 struct {
+
+    Azurerm_metric_alertrule_email_action_1411_id *string `lyra:"ignore"`
+
+    Custom_emails *[]string
+
+    Send_to_service_owners *bool
+
+}
+
+type Azurerm_metric_alertrule_webhook_action_1412 struct {
+
+    Azurerm_metric_alertrule_webhook_action_1412_id *string `lyra:"ignore"`
+
+    Properties *map[string]string
+
+    Service_uri string
+
+}
+
+type Azurerm_metric_alertrule struct {
+
+    Azurerm_metric_alertrule_id *string `lyra:"ignore"`
+
+    Aggregation string
+
+    Description *string
+
+    Email_action *Azurerm_metric_alertrule_email_action_1411
+
+    Enabled *bool
+
+    Location string
+
+    Metric_name string
+
+    Name string
+
+    Operator string
+
+    Period string
+
+    Resource_group_name string
+
+    Resource_id string
+
+    Tags *map[string]string
+
+    Threshold float64
+
+    Webhook_action *Azurerm_metric_alertrule_webhook_action_1412
+
+}
+
+// Azurerm_metric_alertruleHandler ...
+type Azurerm_metric_alertruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_metric_alertruleHandler) Create(desired *Azurerm_metric_alertrule) (*Azurerm_metric_alertrule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_metric_alertrule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metric_alertrule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_metric_alertrule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_metric_alertrule{ Azurerm_metric_alertrule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_metric_alertruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_metric_alertrule", externalID)
+}
+
+type Azurerm_monitor_action_group_email_receiver_1413 struct {
+
+    Azurerm_monitor_action_group_email_receiver_1413_id *string `lyra:"ignore"`
+
+    Email_address string
+
+    Name string
+
+}
+
+type Azurerm_monitor_action_group_sms_receiver_1414 struct {
+
+    Azurerm_monitor_action_group_sms_receiver_1414_id *string `lyra:"ignore"`
+
+    Country_code string
+
+    Name string
+
+    Phone_number string
+
+}
+
+type Azurerm_monitor_action_group_webhook_receiver_1415 struct {
+
+    Azurerm_monitor_action_group_webhook_receiver_1415_id *string `lyra:"ignore"`
+
+    Name string
+
+    Service_uri string
+
+}
+
+type Azurerm_monitor_action_group struct {
+
+    Azurerm_monitor_action_group_id *string `lyra:"ignore"`
+
+    Email_receiver *Azurerm_monitor_action_group_email_receiver_1413
+
+    Enabled *bool
+
+    Name string
+
+    Resource_group_name string
+
+    Short_name string
+
+    Sms_receiver *Azurerm_monitor_action_group_sms_receiver_1414
+
+    Tags *map[string]string
+
+    Webhook_receiver *Azurerm_monitor_action_group_webhook_receiver_1415
+
+}
+
+// Azurerm_monitor_action_groupHandler ...
+type Azurerm_monitor_action_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_monitor_action_groupHandler) Create(desired *Azurerm_monitor_action_group) (*Azurerm_monitor_action_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_monitor_action_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_monitor_action_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_action_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_monitor_action_group{ Azurerm_monitor_action_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_monitor_action_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_monitor_action_group", externalID)
+}
+
+type Azurerm_monitor_activity_log_alert_action_1416 struct {
+
+    Azurerm_monitor_activity_log_alert_action_1416_id *string `lyra:"ignore"`
+
+    Action_group_id string
+
+    Webhook_properties *map[string]string
+
+}
+
+type Azurerm_monitor_activity_log_alert_criteria_1417 struct {
+
+    Azurerm_monitor_activity_log_alert_criteria_1417_id *string `lyra:"ignore"`
+
+    Caller *string
+
+    Category string
+
+    Level *string
+
+    Operation_name *string
+
+    Resource_group *string
+
+    Resource_id *string
+
+    Resource_provider *string
+
+    Resource_type *string
+
+    Status *string
+
+    Sub_status *string
+
+}
+
+type Azurerm_monitor_activity_log_alert struct {
+
+    Azurerm_monitor_activity_log_alert_id *string `lyra:"ignore"`
+
+    Action *Azurerm_monitor_activity_log_alert_action_1416
+
+    Criteria Azurerm_monitor_activity_log_alert_criteria_1417
+
+    Description *string
+
+    Enabled *bool
+
+    Name string
+
+    Resource_group_name string
+
+    Scopes []string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_monitor_activity_log_alertHandler ...
+type Azurerm_monitor_activity_log_alertHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_monitor_activity_log_alertHandler) Create(desired *Azurerm_monitor_activity_log_alert) (*Azurerm_monitor_activity_log_alert, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_monitor_activity_log_alert", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Azurerm_monitor_activity_log_alert, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_activity_log_alert", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_monitor_activity_log_alert{ Azurerm_monitor_activity_log_alert_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_monitor_activity_log_alertHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_monitor_activity_log_alert", externalID)
+}
+
+type Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419 struct {
+
+    Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419_id *string `lyra:"ignore"`
+
+    Days *int
+
+    Enabled bool
+
+}
+
+type Azurerm_monitor_diagnostic_setting_log_1418 struct {
+
+    Azurerm_monitor_diagnostic_setting_log_1418_id *string `lyra:"ignore"`
+
+    Category string
+
+    Enabled *bool
+
+    Retention_policy Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419
+
+}
+
+type Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421 struct {
+
+    Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421_id *string `lyra:"ignore"`
+
+    Days *int
+
+    Enabled bool
+
+}
+
+type Azurerm_monitor_diagnostic_setting_metric_1420 struct {
+
+    Azurerm_monitor_diagnostic_setting_metric_1420_id *string `lyra:"ignore"`
+
+    Category string
+
+    Enabled *bool
+
+    Retention_policy Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421
+
+}
+
+type Azurerm_monitor_diagnostic_setting struct {
+
+    Azurerm_monitor_diagnostic_setting_id *string `lyra:"ignore"`
+
+    Eventhub_authorization_rule_id *string
+
+    Eventhub_name *string
+
+    Log *Azurerm_monitor_diagnostic_setting_log_1418
+
+    Log_analytics_workspace_id *string
+
+    Metric *Azurerm_monitor_diagnostic_setting_metric_1420
+
+    Name string
+
+    Storage_account_id *string
+
+    Target_resource_id string
+
+}
+
+// Azurerm_monitor_diagnostic_settingHandler ...
+type Azurerm_monitor_diagnostic_settingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_monitor_diagnostic_settingHandler) Create(desired *Azurerm_monitor_diagnostic_setting) (*Azurerm_monitor_diagnostic_setting, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_monitor_diagnostic_setting", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Azurerm_monitor_diagnostic_setting, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_monitor_diagnostic_setting{ Azurerm_monitor_diagnostic_setting_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_monitor_diagnostic_settingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
+}
+
+type Azurerm_monitor_log_profile_retention_policy_1422 struct {
+
+    Azurerm_monitor_log_profile_retention_policy_1422_id *string `lyra:"ignore"`
+
+    Days *int
+
+    Enabled bool
+
+}
+
+type Azurerm_monitor_log_profile struct {
+
+    Azurerm_monitor_log_profile_id *string `lyra:"ignore"`
+
+    Categories []string
+
+    Locations []string
+
+    Name string
+
+    Retention_policy Azurerm_monitor_log_profile_retention_policy_1422
+
+    Servicebus_rule_id *string
+
+    Storage_account_id *string
+
+}
+
+// Azurerm_monitor_log_profileHandler ...
+type Azurerm_monitor_log_profileHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_monitor_log_profileHandler) Create(desired *Azurerm_monitor_log_profile) (*Azurerm_monitor_log_profile, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_monitor_log_profile", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_monitor_log_profile, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_log_profile", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_monitor_log_profile{ Azurerm_monitor_log_profile_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_monitor_log_profileHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_monitor_log_profile", externalID)
+}
+
+type Azurerm_monitor_metric_alert_action_1423 struct {
+
+    Azurerm_monitor_metric_alert_action_1423_id *string `lyra:"ignore"`
+
+    Action_group_id string
+
+    Webhook_properties *map[string]string
+
+}
+
+type Azurerm_monitor_metric_alert_criteria_1424_dimension_1425 struct {
+
+    Azurerm_monitor_metric_alert_criteria_1424_dimension_1425_id *string `lyra:"ignore"`
+
+    Name string
+
+    Operator string
+
+    Values []string
+
+}
+
+type Azurerm_monitor_metric_alert_criteria_1424 struct {
+
+    Azurerm_monitor_metric_alert_criteria_1424_id *string `lyra:"ignore"`
+
+    Aggregation string
+
+    Dimension *Azurerm_monitor_metric_alert_criteria_1424_dimension_1425
+
+    Metric_name string
+
+    Metric_namespace string
+
+    Operator string
+
+    Threshold float64
+
+}
+
+type Azurerm_monitor_metric_alert struct {
+
+    Azurerm_monitor_metric_alert_id *string `lyra:"ignore"`
+
+    Action *Azurerm_monitor_metric_alert_action_1423
+
+    Auto_mitigate *bool
+
+    Criteria Azurerm_monitor_metric_alert_criteria_1424
+
+    Description *string
+
+    Enabled *bool
+
+    Frequency *string
+
+    Name string
+
+    Resource_group_name string
+
+    Scopes []string
+
+    Severity *int
+
+    Tags *map[string]string
+
+    Window_size *string
+
+}
+
+// Azurerm_monitor_metric_alertHandler ...
+type Azurerm_monitor_metric_alertHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_monitor_metric_alertHandler) Create(desired *Azurerm_monitor_metric_alert) (*Azurerm_monitor_metric_alert, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_monitor_metric_alert", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_monitor_metric_alert, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_metric_alert", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_monitor_metric_alert{ Azurerm_monitor_metric_alert_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_monitor_metric_alertHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_monitor_metric_alert", externalID)
+}
+
+type Azurerm_mssql_elasticpool_elastic_pool_properties_1426 struct {
+
+    Azurerm_mssql_elasticpool_elastic_pool_properties_1426_id *string `lyra:"ignore"`
+
+    Creation_date *string
+
+    License_type *string
+
+    Max_size_bytes *int
+
+    State *string
+
+    Zone_redundant *bool
+
+}
+
+type Azurerm_mssql_elasticpool_per_database_settings_1427 struct {
+
+    Azurerm_mssql_elasticpool_per_database_settings_1427_id *string `lyra:"ignore"`
+
+    Max_capacity float64
+
+    Min_capacity float64
+
+}
+
+type Azurerm_mssql_elasticpool_sku_1428 struct {
+
+    Azurerm_mssql_elasticpool_sku_1428_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Family *string
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_mssql_elasticpool struct {
+
+    Azurerm_mssql_elasticpool_id *string `lyra:"ignore"`
+
+    Elastic_pool_properties *Azurerm_mssql_elasticpool_elastic_pool_properties_1426
+
+    Location string
+
+    Max_size_bytes *int
+
+    Name string
+
+    Per_database_settings Azurerm_mssql_elasticpool_per_database_settings_1427
+
+    Resource_group_name string
+
+    Server_name string
+
+    Sku Azurerm_mssql_elasticpool_sku_1428
+
+    Tags *map[string]string
+
+    Zone_redundant *bool
+
+}
+
+// Azurerm_mssql_elasticpoolHandler ...
+type Azurerm_mssql_elasticpoolHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mssql_elasticpoolHandler) Create(desired *Azurerm_mssql_elasticpool) (*Azurerm_mssql_elasticpool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mssql_elasticpool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mssql_elasticpool, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mssql_elasticpool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mssql_elasticpool{ Azurerm_mssql_elasticpool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mssql_elasticpoolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mssql_elasticpool", externalID)
+}
+
+type Azurerm_mysql_configuration struct {
+
+    Azurerm_mysql_configuration_id *string `lyra:"ignore"`
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Value string
+
+}
+
+// Azurerm_mysql_configurationHandler ...
+type Azurerm_mysql_configurationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mysql_configurationHandler) Create(desired *Azurerm_mysql_configuration) (*Azurerm_mysql_configuration, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mysql_configuration", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_mysql_configuration, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_configuration", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mysql_configuration{ Azurerm_mysql_configuration_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mysql_configurationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mysql_configuration", externalID)
+}
+
+type Azurerm_mysql_database struct {
+
+    Azurerm_mysql_database_id *string `lyra:"ignore"`
+
+    Charset string
+
+    Collation string
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+}
+
+// Azurerm_mysql_databaseHandler ...
+type Azurerm_mysql_databaseHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mysql_databaseHandler) Create(desired *Azurerm_mysql_database) (*Azurerm_mysql_database, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mysql_database", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_database, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_database", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mysql_database{ Azurerm_mysql_database_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mysql_databaseHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mysql_database", externalID)
+}
+
+type Azurerm_mysql_firewall_rule struct {
+
+    Azurerm_mysql_firewall_rule_id *string `lyra:"ignore"`
+
+    End_ip_address string
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Start_ip_address string
+
+}
+
+// Azurerm_mysql_firewall_ruleHandler ...
+type Azurerm_mysql_firewall_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mysql_firewall_ruleHandler) Create(desired *Azurerm_mysql_firewall_rule) (*Azurerm_mysql_firewall_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mysql_firewall_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_mysql_firewall_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_firewall_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mysql_firewall_rule{ Azurerm_mysql_firewall_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mysql_firewall_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mysql_firewall_rule", externalID)
+}
+
+type Azurerm_mysql_server_sku_1429 struct {
+
+    Azurerm_mysql_server_sku_1429_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Family string
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_mysql_server_storage_profile_1430 struct {
+
+    Azurerm_mysql_server_storage_profile_1430_id *string `lyra:"ignore"`
+
+    Backup_retention_days *int
+
+    Geo_redundant_backup *string
+
+    Storage_mb int
+
+}
+
+type Azurerm_mysql_server struct {
+
+    Azurerm_mysql_server_id *string `lyra:"ignore"`
+
+    Administrator_login string
+
+    Administrator_login_password string
+
+    Fqdn *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku Azurerm_mysql_server_sku_1429
+
+    Ssl_enforcement string
+
+    Storage_profile Azurerm_mysql_server_storage_profile_1430
+
+    Tags *map[string]string
+
+    Version string
+
+}
+
+// Azurerm_mysql_serverHandler ...
+type Azurerm_mysql_serverHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mysql_serverHandler) Create(desired *Azurerm_mysql_server) (*Azurerm_mysql_server, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mysql_server", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_server, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_server", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mysql_server{ Azurerm_mysql_server_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mysql_serverHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mysql_server", externalID)
+}
+
+type Azurerm_mysql_virtual_network_rule struct {
+
+    Azurerm_mysql_virtual_network_rule_id *string `lyra:"ignore"`
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Subnet_id string
+
+}
+
+// Azurerm_mysql_virtual_network_ruleHandler ...
+type Azurerm_mysql_virtual_network_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_mysql_virtual_network_ruleHandler) Create(desired *Azurerm_mysql_virtual_network_rule) (*Azurerm_mysql_virtual_network_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_mysql_virtual_network_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_mysql_virtual_network_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_mysql_virtual_network_rule{ Azurerm_mysql_virtual_network_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_mysql_virtual_network_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
+}
+
+type Azurerm_network_interface_ip_configuration_1431 struct {
+
+    Azurerm_network_interface_ip_configuration_1431_id *string `lyra:"ignore"`
+
+    Application_gateway_backend_address_pools_ids *[]string
+
+    Application_security_group_ids *[]string
+
+    Load_balancer_backend_address_pools_ids *[]string
+
+    Load_balancer_inbound_nat_rules_ids *[]string
+
+    Name string
+
+    Primary *bool
+
+    Private_ip_address *string
+
+    Private_ip_address_allocation string
+
+    Private_ip_address_version *string
+
+    Public_ip_address_id *string
+
+    Subnet_id *string
+
+}
+
+type Azurerm_network_interface struct {
+
+    Azurerm_network_interface_id *string `lyra:"ignore"`
+
+    Applied_dns_servers *[]string
+
+    Dns_servers *[]string
+
+    Enable_accelerated_networking *bool
+
+    Enable_ip_forwarding *bool
+
+    Internal_dns_name_label *string
+
+    Internal_fqdn *string
+
+    Ip_configuration Azurerm_network_interface_ip_configuration_1431
+
+    Location string
+
+    Mac_address *string
+
+    Name string
+
+    Network_security_group_id *string
+
+    Private_ip_address *string
+
+    Private_ip_addresses *[]string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Virtual_machine_id *string
+
+}
+
+// Azurerm_network_interfaceHandler ...
+type Azurerm_network_interfaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_interfaceHandler) Create(desired *Azurerm_network_interface) (*Azurerm_network_interface, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_interface", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_network_interface, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_interface{ Azurerm_network_interface_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_interfaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_interface", externalID)
+}
+
+type Azurerm_network_interface_application_gateway_backend_address_pool_association struct {
+
+    Azurerm_network_interface_application_gateway_backend_address_pool_association_id *string `lyra:"ignore"`
+
+    Backend_address_pool_id string
+
+    Ip_configuration_name string
+
+    Network_interface_id string
+
+}
+
+// Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler ...
+type Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_application_gateway_backend_address_pool_association) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_interface_application_gateway_backend_address_pool_association{ Azurerm_network_interface_application_gateway_backend_address_pool_association_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
+}
+
+type Azurerm_network_interface_backend_address_pool_association struct {
+
+    Azurerm_network_interface_backend_address_pool_association_id *string `lyra:"ignore"`
+
+    Backend_address_pool_id string
+
+    Ip_configuration_name string
+
+    Network_interface_id string
+
+}
+
+// Azurerm_network_interface_backend_address_pool_associationHandler ...
+type Azurerm_network_interface_backend_address_pool_associationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_backend_address_pool_association) (*Azurerm_network_interface_backend_address_pool_association, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_interface_backend_address_pool_association", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_backend_address_pool_association, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_interface_backend_address_pool_association{ Azurerm_network_interface_backend_address_pool_association_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
+}
+
+type Azurerm_network_interface_nat_rule_association struct {
+
+    Azurerm_network_interface_nat_rule_association_id *string `lyra:"ignore"`
+
+    Ip_configuration_name string
+
+    Nat_rule_id string
+
+    Network_interface_id string
+
+}
+
+// Azurerm_network_interface_nat_rule_associationHandler ...
+type Azurerm_network_interface_nat_rule_associationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_interface_nat_rule_associationHandler) Create(desired *Azurerm_network_interface_nat_rule_association) (*Azurerm_network_interface_nat_rule_association, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_interface_nat_rule_association", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID string) (*Azurerm_network_interface_nat_rule_association, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_interface_nat_rule_association{ Azurerm_network_interface_nat_rule_association_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_interface_nat_rule_associationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
+}
+
+type Azurerm_network_security_group_security_rule_1432 struct {
+
+    Azurerm_network_security_group_security_rule_1432_id *string `lyra:"ignore"`
+
+    Access string
+
+    Description *string
+
+    Destination_address_prefix *string
+
+    Destination_address_prefixes *[]string
+
+    Destination_application_security_group_ids *[]string
+
+    Destination_port_range *string
+
+    Destination_port_ranges *[]string
+
+    Direction string
+
+    Name string
+
+    Priority int
+
+    Protocol string
+
+    Source_address_prefix *string
+
+    Source_address_prefixes *[]string
+
+    Source_application_security_group_ids *[]string
+
+    Source_port_range *string
+
+    Source_port_ranges *[]string
+
+}
+
+type Azurerm_network_security_group struct {
+
+    Azurerm_network_security_group_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Security_rule *Azurerm_network_security_group_security_rule_1432
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_network_security_groupHandler ...
+type Azurerm_network_security_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_security_groupHandler) Create(desired *Azurerm_network_security_group) (*Azurerm_network_security_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_security_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurerm_network_security_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_security_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_security_group{ Azurerm_network_security_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_security_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_security_group", externalID)
+}
+
+type Azurerm_network_security_rule struct {
+
+    Azurerm_network_security_rule_id *string `lyra:"ignore"`
+
+    Access string
+
+    Description *string
+
+    Destination_address_prefix *string
+
+    Destination_address_prefixes *[]string
+
+    Destination_application_security_group_ids *[]string
+
+    Destination_port_range *string
+
+    Destination_port_ranges *[]string
+
+    Direction string
+
+    Name string
+
+    Network_security_group_name string
+
+    Priority int
+
+    Protocol string
+
+    Resource_group_name string
+
+    Source_address_prefix *string
+
+    Source_address_prefixes *[]string
+
+    Source_application_security_group_ids *[]string
+
+    Source_port_range *string
+
+    Source_port_ranges *[]string
+
+}
+
+// Azurerm_network_security_ruleHandler ...
+type Azurerm_network_security_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_security_ruleHandler) Create(desired *Azurerm_network_security_rule) (*Azurerm_network_security_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_security_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm_network_security_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_security_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_security_rule{ Azurerm_network_security_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_security_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_security_rule", externalID)
+}
+
+type Azurerm_network_watcher struct {
+
+    Azurerm_network_watcher_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_network_watcherHandler ...
+type Azurerm_network_watcherHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_network_watcherHandler) Create(desired *Azurerm_network_watcher) (*Azurerm_network_watcher, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_network_watcher", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_network_watcher, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_network_watcher", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_network_watcher{ Azurerm_network_watcher_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_network_watcherHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_network_watcher", externalID)
+}
+
+type Azurerm_notification_hub_apns_credential_1433 struct {
+
+    Azurerm_notification_hub_apns_credential_1433_id *string `lyra:"ignore"`
+
+    Application_mode string
+
+    Bundle_id string
+
+    Key_id string
+
+    Team_id string
+
+    Token string
+
+}
+
+type Azurerm_notification_hub_gcm_credential_1434 struct {
+
+    Azurerm_notification_hub_gcm_credential_1434_id *string `lyra:"ignore"`
+
+    Api_key string
+
+}
+
+type Azurerm_notification_hub struct {
+
+    Azurerm_notification_hub_id *string `lyra:"ignore"`
+
+    Apns_credential *Azurerm_notification_hub_apns_credential_1433
+
+    Gcm_credential *Azurerm_notification_hub_gcm_credential_1434
+
+    Location string
+
+    Name string
+
+    Namespace_name string
+
+    Resource_group_name string
+
+}
+
+// Azurerm_notification_hubHandler ...
+type Azurerm_notification_hubHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_notification_hubHandler) Create(desired *Azurerm_notification_hub) (*Azurerm_notification_hub, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_notification_hub", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_notification_hub, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_notification_hub{ Azurerm_notification_hub_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_notification_hubHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_notification_hub", externalID)
+}
+
+type Azurerm_notification_hub_authorization_rule struct {
+
+    Azurerm_notification_hub_authorization_rule_id *string `lyra:"ignore"`
+
+    Listen *bool
+
+    Manage *bool
+
+    Name string
+
+    Namespace_name string
+
+    Notification_hub_name string
+
+    Primary_access_key *string
+
+    Resource_group_name string
+
+    Secondary_access_key *string
+
+    Send *bool
+
+}
+
+// Azurerm_notification_hub_authorization_ruleHandler ...
+type Azurerm_notification_hub_authorization_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_notification_hub_authorization_ruleHandler) Create(desired *Azurerm_notification_hub_authorization_rule) (*Azurerm_notification_hub_authorization_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_notification_hub_authorization_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID string) (*Azurerm_notification_hub_authorization_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_notification_hub_authorization_rule{ Azurerm_notification_hub_authorization_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_notification_hub_authorization_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
+}
+
+type Azurerm_notification_hub_namespace_sku_1435 struct {
+
+    Azurerm_notification_hub_namespace_sku_1435_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Azurerm_notification_hub_namespace struct {
+
+    Azurerm_notification_hub_namespace_id *string `lyra:"ignore"`
+
+    Enabled *bool
+
+    Location string
+
+    Name string
+
+    Namespace_type string
+
+    Resource_group_name string
+
+    Servicebus_endpoint *string
+
+    Sku Azurerm_notification_hub_namespace_sku_1435
+
+}
+
+// Azurerm_notification_hub_namespaceHandler ...
+type Azurerm_notification_hub_namespaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_notification_hub_namespaceHandler) Create(desired *Azurerm_notification_hub_namespace) (*Azurerm_notification_hub_namespace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_notification_hub_namespace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Azurerm_notification_hub_namespace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub_namespace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_notification_hub_namespace{ Azurerm_notification_hub_namespace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_notification_hub_namespaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_notification_hub_namespace", externalID)
+}
+
+type Azurerm_packet_capture_filter_1436 struct {
+
+    Azurerm_packet_capture_filter_1436_id *string `lyra:"ignore"`
+
+    Local_ip_address *string
+
+    Local_port *string
+
+    Protocol string
+
+    Remote_ip_address *string
+
+    Remote_port *string
+
+}
+
+type Azurerm_packet_capture_storage_location_1437 struct {
+
+    Azurerm_packet_capture_storage_location_1437_id *string `lyra:"ignore"`
+
+    File_path *string
+
+    Storage_account_id *string
+
+    Storage_path *string
+
+}
+
+type Azurerm_packet_capture struct {
+
+    Azurerm_packet_capture_id *string `lyra:"ignore"`
+
+    Filter *Azurerm_packet_capture_filter_1436
+
+    Maximum_bytes_per_packet *int
+
+    Maximum_bytes_per_session *int
+
+    Maximum_capture_duration *int
+
+    Name string
+
+    Network_watcher_name string
+
+    Resource_group_name string
+
+    Storage_location Azurerm_packet_capture_storage_location_1437
+
+    Target_resource_id string
+
+}
+
+// Azurerm_packet_captureHandler ...
+type Azurerm_packet_captureHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_packet_captureHandler) Create(desired *Azurerm_packet_capture) (*Azurerm_packet_capture, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_packet_capture", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet_capture, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_packet_capture", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_packet_capture{ Azurerm_packet_capture_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_packet_captureHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_packet_capture", externalID)
+}
+
+type Azurerm_policy_assignment_identity_1438 struct {
+
+    Azurerm_policy_assignment_identity_1438_id *string `lyra:"ignore"`
+
+    Principal_id *string
+
+    Tenant_id *string
+
+    Type *string
+
+}
+
+type Azurerm_policy_assignment struct {
+
+    Azurerm_policy_assignment_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Display_name *string
+
+    Identity *Azurerm_policy_assignment_identity_1438
+
+    Location *string
+
+    Name string
+
+    Not_scopes *[]string
+
+    Parameters *string
+
+    Policy_definition_id string
+
+    Scope string
+
+}
+
+// Azurerm_policy_assignmentHandler ...
+type Azurerm_policy_assignmentHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_policy_assignmentHandler) Create(desired *Azurerm_policy_assignment) (*Azurerm_policy_assignment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_policy_assignment", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_policy_assignment, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_policy_assignment", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_policy_assignment{ Azurerm_policy_assignment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_policy_assignmentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_policy_assignment", externalID)
+}
+
+type Azurerm_policy_definition struct {
+
+    Azurerm_policy_definition_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Display_name string
+
+    Management_group_id *string
+
+    Metadata *string
+
+    Mode string
+
+    Name string
+
+    Parameters *string
+
+    Policy_rule *string
+
+    Policy_type string
+
+}
+
+// Azurerm_policy_definitionHandler ...
+type Azurerm_policy_definitionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_policy_definitionHandler) Create(desired *Azurerm_policy_definition) (*Azurerm_policy_definition, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_policy_definition", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_policy_definition, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_policy_definition", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_policy_definition{ Azurerm_policy_definition_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_policy_definitionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_policy_definition", externalID)
+}
+
+type Azurerm_policy_set_definition struct {
+
+    Azurerm_policy_set_definition_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Display_name string
+
+    Management_group_id *string
+
+    Metadata *string
+
+    Name string
+
+    Parameters *string
+
+    Policy_definitions *string
+
+    Policy_type string
+
+}
+
+// Azurerm_policy_set_definitionHandler ...
+type Azurerm_policy_set_definitionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_policy_set_definitionHandler) Create(desired *Azurerm_policy_set_definition) (*Azurerm_policy_set_definition, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_policy_set_definition", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm_policy_set_definition, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_policy_set_definition", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_policy_set_definition{ Azurerm_policy_set_definition_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_policy_set_definitionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_policy_set_definition", externalID)
+}
+
+type Azurerm_postgresql_configuration struct {
+
+    Azurerm_postgresql_configuration_id *string `lyra:"ignore"`
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Value string
+
+}
+
+// Azurerm_postgresql_configurationHandler ...
+type Azurerm_postgresql_configurationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_postgresql_configurationHandler) Create(desired *Azurerm_postgresql_configuration) (*Azurerm_postgresql_configuration, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_postgresql_configuration", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azurerm_postgresql_configuration, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_configuration", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_postgresql_configuration{ Azurerm_postgresql_configuration_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_postgresql_configurationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_postgresql_configuration", externalID)
+}
+
+type Azurerm_postgresql_database struct {
+
+    Azurerm_postgresql_database_id *string `lyra:"ignore"`
+
+    Charset string
+
+    Collation string
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+}
+
+// Azurerm_postgresql_databaseHandler ...
+type Azurerm_postgresql_databaseHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_postgresql_databaseHandler) Create(desired *Azurerm_postgresql_database) (*Azurerm_postgresql_database, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_postgresql_database", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_postgresql_database, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_database", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_postgresql_database{ Azurerm_postgresql_database_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_postgresql_databaseHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_postgresql_database", externalID)
+}
+
+type Azurerm_postgresql_firewall_rule struct {
+
+    Azurerm_postgresql_firewall_rule_id *string `lyra:"ignore"`
+
+    End_ip_address string
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Start_ip_address string
+
+}
+
+// Azurerm_postgresql_firewall_ruleHandler ...
+type Azurerm_postgresql_firewall_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_postgresql_firewall_ruleHandler) Create(desired *Azurerm_postgresql_firewall_rule) (*Azurerm_postgresql_firewall_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_postgresql_firewall_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azurerm_postgresql_firewall_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_firewall_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_postgresql_firewall_rule{ Azurerm_postgresql_firewall_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_postgresql_firewall_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_postgresql_firewall_rule", externalID)
+}
+
+type Azurerm_postgresql_server_sku_1439 struct {
+
+    Azurerm_postgresql_server_sku_1439_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Family string
+
+    Name string
+
+    Tier string
+
+}
+
+type Azurerm_postgresql_server_storage_profile_1440 struct {
+
+    Azurerm_postgresql_server_storage_profile_1440_id *string `lyra:"ignore"`
+
+    Backup_retention_days *int
+
+    Geo_redundant_backup *string
+
+    Storage_mb int
+
+}
+
+type Azurerm_postgresql_server struct {
+
+    Azurerm_postgresql_server_id *string `lyra:"ignore"`
+
+    Administrator_login string
+
+    Administrator_login_password string
+
+    Fqdn *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku Azurerm_postgresql_server_sku_1439
+
+    Ssl_enforcement string
+
+    Storage_profile Azurerm_postgresql_server_storage_profile_1440
+
+    Tags *map[string]string
+
+    Version string
+
+}
+
+// Azurerm_postgresql_serverHandler ...
+type Azurerm_postgresql_serverHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_postgresql_serverHandler) Create(desired *Azurerm_postgresql_server) (*Azurerm_postgresql_server, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_postgresql_server", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_postgresql_server, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_server", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_postgresql_server{ Azurerm_postgresql_server_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_postgresql_serverHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_postgresql_server", externalID)
+}
+
+type Azurerm_postgresql_virtual_network_rule struct {
+
+    Azurerm_postgresql_virtual_network_rule_id *string `lyra:"ignore"`
+
+    Ignore_missing_vnet_service_endpoint *bool
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Subnet_id string
+
+}
+
+// Azurerm_postgresql_virtual_network_ruleHandler ...
+type Azurerm_postgresql_virtual_network_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_postgresql_virtual_network_ruleHandler) Create(desired *Azurerm_postgresql_virtual_network_rule) (*Azurerm_postgresql_virtual_network_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_postgresql_virtual_network_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_postgresql_virtual_network_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_postgresql_virtual_network_rule{ Azurerm_postgresql_virtual_network_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_postgresql_virtual_network_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
+}
+
+type Azurerm_public_ip struct {
+
+    Azurerm_public_ip_id *string `lyra:"ignore"`
+
+    Allocation_method *string
+
+    Domain_name_label *string
+
+    Fqdn *string
+
+    Idle_timeout_in_minutes *int
+
+    Ip_address *string
+
+    Ip_version *string
+
+    Location string
+
+    Name string
+
+    Public_ip_address_allocation *string
+
+    Resource_group_name string
+
+    Reverse_fqdn *string
+
+    Sku *string
+
+    Tags *map[string]string
+
+    Zones *[]string
+
+}
+
+// Azurerm_public_ipHandler ...
+type Azurerm_public_ipHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_public_ipHandler) Create(desired *Azurerm_public_ip) (*Azurerm_public_ip, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_public_ip", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_public_ip", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_public_ip{ Azurerm_public_ip_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_public_ipHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_public_ip", externalID)
+}
+
+type Azurerm_recovery_services_protected_vm struct {
+
+    Azurerm_recovery_services_protected_vm_id *string `lyra:"ignore"`
+
+    Backup_policy_id string
+
+    Recovery_vault_name string
+
+    Resource_group_name string
+
+    Source_vm_id string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_recovery_services_protected_vmHandler ...
+type Azurerm_recovery_services_protected_vmHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_recovery_services_protected_vmHandler) Create(desired *Azurerm_recovery_services_protected_vm) (*Azurerm_recovery_services_protected_vm, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_recovery_services_protected_vm", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protected_vm, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protected_vm", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_recovery_services_protected_vm{ Azurerm_recovery_services_protected_vm_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_recovery_services_protected_vmHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_recovery_services_protected_vm", externalID)
+}
+
+type Azurerm_recovery_services_protection_policy_vm_backup_1441 struct {
+
+    Azurerm_recovery_services_protection_policy_vm_backup_1441_id *string `lyra:"ignore"`
+
+    Frequency string
+
+    Time string
+
+    Weekdays *[]string
+
+}
+
+type Azurerm_recovery_services_protection_policy_vm_retention_daily_1442 struct {
+
+    Azurerm_recovery_services_protection_policy_vm_retention_daily_1442_id *string `lyra:"ignore"`
+
+    Count int
+
+}
+
+type Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443 struct {
+
+    Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443_id *string `lyra:"ignore"`
+
+    Count int
+
+    Weekdays []string
+
+    Weeks []string
+
+}
+
+type Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444 struct {
+
+    Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444_id *string `lyra:"ignore"`
+
+    Count int
+
+    Weekdays []string
+
+}
+
+type Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445 struct {
+
+    Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445_id *string `lyra:"ignore"`
+
+    Count int
+
+    Months []string
+
+    Weekdays []string
+
+    Weeks []string
+
+}
+
+type Azurerm_recovery_services_protection_policy_vm struct {
+
+    Azurerm_recovery_services_protection_policy_vm_id *string `lyra:"ignore"`
+
+    Backup Azurerm_recovery_services_protection_policy_vm_backup_1441
+
+    Name string
+
+    Recovery_vault_name string
+
+    Resource_group_name string
+
+    Retention_daily *Azurerm_recovery_services_protection_policy_vm_retention_daily_1442
+
+    Retention_monthly *Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443
+
+    Retention_weekly *Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444
+
+    Retention_yearly *Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445
+
+    Tags *map[string]string
+
+    Timezone *string
+
+}
+
+// Azurerm_recovery_services_protection_policy_vmHandler ...
+type Azurerm_recovery_services_protection_policy_vmHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_recovery_services_protection_policy_vmHandler) Create(desired *Azurerm_recovery_services_protection_policy_vm) (*Azurerm_recovery_services_protection_policy_vm, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_recovery_services_protection_policy_vm", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protection_policy_vm, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_recovery_services_protection_policy_vm{ Azurerm_recovery_services_protection_policy_vm_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_recovery_services_protection_policy_vmHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
+}
+
+type Azurerm_recovery_services_vault struct {
+
+    Azurerm_recovery_services_vault_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_recovery_services_vaultHandler ...
+type Azurerm_recovery_services_vaultHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_recovery_services_vaultHandler) Create(desired *Azurerm_recovery_services_vault) (*Azurerm_recovery_services_vault, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_recovery_services_vault", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azurerm_recovery_services_vault, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_vault", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_recovery_services_vault{ Azurerm_recovery_services_vault_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_recovery_services_vaultHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_recovery_services_vault", externalID)
+}
+
+type Azurerm_redis_cache_patch_schedule_1446 struct {
+
+    Azurerm_redis_cache_patch_schedule_1446_id *string `lyra:"ignore"`
+
+    Day_of_week string
+
+    Start_hour_utc *int
+
+}
+
+type Azurerm_redis_cache_redis_configuration_1447 struct {
+
+    Azurerm_redis_cache_redis_configuration_1447_id *string `lyra:"ignore"`
+
+    Maxclients *int
+
+    Maxmemory_delta *int
+
+    Maxmemory_policy *string
+
+    Maxmemory_reserved *int
+
+    Notify_keyspace_events *string
+
+    Rdb_backup_enabled *bool
+
+    Rdb_backup_frequency *int
+
+    Rdb_backup_max_snapshot_count *int
+
+    Rdb_storage_connection_string *string
+
+}
+
+type Azurerm_redis_cache struct {
+
+    Azurerm_redis_cache_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Enable_non_ssl_port *bool
+
+    Family string
+
+    Hostname *string
+
+    Location string
+
+    Name string
+
+    Patch_schedule *Azurerm_redis_cache_patch_schedule_1446
+
+    Port *int
+
+    Primary_access_key *string
+
+    Private_static_ip_address *string
+
+    Redis_configuration Azurerm_redis_cache_redis_configuration_1447
+
+    Resource_group_name string
+
+    Secondary_access_key *string
+
+    Shard_count *int
+
+    Sku_name string
+
+    Ssl_port *int
+
+    Subnet_id *string
+
+    Tags *map[string]string
+
+    Zones *[]string
+
+}
+
+// Azurerm_redis_cacheHandler ...
+type Azurerm_redis_cacheHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_redis_cacheHandler) Create(desired *Azurerm_redis_cache) (*Azurerm_redis_cache, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_redis_cache", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cache, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_redis_cache", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_redis_cache{ Azurerm_redis_cache_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_redis_cacheHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_redis_cache", externalID)
+}
+
+type Azurerm_redis_firewall_rule struct {
+
+    Azurerm_redis_firewall_rule_id *string `lyra:"ignore"`
+
+    End_ip string
+
+    Name string
+
+    Redis_cache_name string
+
+    Resource_group_name string
+
+    Start_ip string
+
+}
+
+// Azurerm_redis_firewall_ruleHandler ...
+type Azurerm_redis_firewall_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_redis_firewall_ruleHandler) Create(desired *Azurerm_redis_firewall_rule) (*Azurerm_redis_firewall_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_redis_firewall_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_redis_firewall_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_redis_firewall_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_redis_firewall_rule{ Azurerm_redis_firewall_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_redis_firewall_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_redis_firewall_rule", externalID)
+}
+
+type Azurerm_relay_namespace_sku_1448 struct {
+
+    Azurerm_relay_namespace_sku_1448_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Azurerm_relay_namespace struct {
+
+    Azurerm_relay_namespace_id *string `lyra:"ignore"`
+
+    Location string
+
+    Metric_id *string
+
+    Name string
+
+    Primary_connection_string *string
+
+    Primary_key *string
+
+    Resource_group_name string
+
+    Secondary_connection_string *string
+
+    Secondary_key *string
+
+    Sku Azurerm_relay_namespace_sku_1448
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_relay_namespaceHandler ...
+type Azurerm_relay_namespaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_relay_namespaceHandler) Create(desired *Azurerm_relay_namespace) (*Azurerm_relay_namespace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_relay_namespace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay_namespace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_relay_namespace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_relay_namespace{ Azurerm_relay_namespace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_relay_namespaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_relay_namespace", externalID)
+}
+
+type Azurerm_resource_group struct {
+
+    Azurerm_resource_group_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_resource_groupHandler ...
+type Azurerm_resource_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_resource_groupHandler) Create(desired *Azurerm_resource_group) (*Azurerm_resource_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_resource_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resource_group, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_resource_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_resource_group{ Azurerm_resource_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_resource_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_resource_group", externalID)
+}
+
+type Azurerm_role_assignment struct {
+
+    Azurerm_role_assignment_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Principal_id string
+
+    Role_definition_id *string
+
+    Role_definition_name *string
+
+    Scope string
+
+}
+
+// Azurerm_role_assignmentHandler ...
+type Azurerm_role_assignmentHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_role_assignmentHandler) Create(desired *Azurerm_role_assignment) (*Azurerm_role_assignment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_role_assignment", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_assignment, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_role_assignment", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_role_assignment{ Azurerm_role_assignment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_role_assignmentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_role_assignment", externalID)
+}
+
+type Azurerm_role_definition_permissions_1449 struct {
+
+    Azurerm_role_definition_permissions_1449_id *string `lyra:"ignore"`
+
+    Actions *[]string
+
+    Data_actions *[]string
+
+    Not_actions *[]string
+
+    Not_data_actions *[]string
+
+}
+
+type Azurerm_role_definition struct {
+
+    Azurerm_role_definition_id *string `lyra:"ignore"`
+
+    Assignable_scopes []string
+
+    Description *string
+
+    Name string
+
+    Permissions Azurerm_role_definition_permissions_1449
+
+    Role_definition_id *string
+
+    Scope string
+
+}
+
+// Azurerm_role_definitionHandler ...
+type Azurerm_role_definitionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_role_definitionHandler) Create(desired *Azurerm_role_definition) (*Azurerm_role_definition, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_role_definition", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_definition, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_role_definition", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_role_definition{ Azurerm_role_definition_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_role_definitionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_role_definition", externalID)
+}
+
+type Azurerm_route struct {
+
+    Azurerm_route_id *string `lyra:"ignore"`
+
+    Address_prefix string
+
+    Name string
+
+    Next_hop_in_ip_address *string
+
+    Next_hop_type string
+
+    Resource_group_name string
+
+    Route_table_name string
+
+}
+
+// Azurerm_routeHandler ...
+type Azurerm_routeHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_routeHandler) Create(desired *Azurerm_route) (*Azurerm_route, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_route", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_route", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_route{ Azurerm_route_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_routeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_route", externalID)
+}
+
+type Azurerm_route_table_route_1450 struct {
+
+    Azurerm_route_table_route_1450_id *string `lyra:"ignore"`
+
+    Address_prefix string
+
+    Name string
+
+    Next_hop_in_ip_address *string
+
+    Next_hop_type string
+
+}
+
+type Azurerm_route_table struct {
+
+    Azurerm_route_table_id *string `lyra:"ignore"`
+
+    Disable_bgp_route_propagation *bool
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Route *Azurerm_route_table_route_1450
+
+    Subnets *[]string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_route_tableHandler ...
+type Azurerm_route_tableHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_route_tableHandler) Create(desired *Azurerm_route_table) (*Azurerm_route_table, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_route_table", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_table, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_route_table", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_route_table{ Azurerm_route_table_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_route_tableHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_route_table", externalID)
+}
+
+type Azurerm_scheduler_job_action_storage_queue_1451 struct {
+
+    Azurerm_scheduler_job_action_storage_queue_1451_id *string `lyra:"ignore"`
+
+    Message string
+
+    Sas_token string
+
+    Storage_account_name string
+
+    Storage_queue_name string
+
+}
+
+type Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453 struct {
+
+    Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453_id *string `lyra:"ignore"`
+
+    Audience *string
+
+    Client_id string
+
+    Secret string
+
+    Tenant_id string
+
+}
+
+type Azurerm_scheduler_job_action_web_1452_authentication_basic_1454 struct {
+
+    Azurerm_scheduler_job_action_web_1452_authentication_basic_1454_id *string `lyra:"ignore"`
+
+    Password string
+
+    Username string
+
+}
+
+type Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455 struct {
+
+    Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455_id *string `lyra:"ignore"`
+
+    Expiration *string
+
+    Password string
+
+    Pfx string
+
+    Subject_name *string
+
+    Thumbprint *string
+
+}
+
+type Azurerm_scheduler_job_action_web_1452 struct {
+
+    Azurerm_scheduler_job_action_web_1452_id *string `lyra:"ignore"`
+
+    Authentication_active_directory *Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453
+
+    Authentication_basic *Azurerm_scheduler_job_action_web_1452_authentication_basic_1454
+
+    Authentication_certificate *Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455
+
+    Body *string
+
+    Headers *map[string]string
+
+    Method string
+
+    Url string
+
+}
+
+type Azurerm_scheduler_job_error_action_storage_queue_1456 struct {
+
+    Azurerm_scheduler_job_error_action_storage_queue_1456_id *string `lyra:"ignore"`
+
+    Message string
+
+    Sas_token string
+
+    Storage_account_name string
+
+    Storage_queue_name string
+
+}
+
+type Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458 struct {
+
+    Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458_id *string `lyra:"ignore"`
+
+    Audience *string
+
+    Client_id string
+
+    Secret string
+
+    Tenant_id string
+
+}
+
+type Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459 struct {
+
+    Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459_id *string `lyra:"ignore"`
+
+    Password string
+
+    Username string
+
+}
+
+type Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460 struct {
+
+    Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460_id *string `lyra:"ignore"`
+
+    Expiration *string
+
+    Password string
+
+    Pfx string
+
+    Subject_name *string
+
+    Thumbprint *string
+
+}
+
+type Azurerm_scheduler_job_error_action_web_1457 struct {
+
+    Azurerm_scheduler_job_error_action_web_1457_id *string `lyra:"ignore"`
+
+    Authentication_active_directory *Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458
+
+    Authentication_basic *Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459
+
+    Authentication_certificate *Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460
+
+    Body *string
+
+    Headers *map[string]string
+
+    Method string
+
+    Url string
+
+}
+
+type Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462 struct {
+
+    Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462_id *string `lyra:"ignore"`
+
+    Day string
+
+    Occurrence int
+
+}
+
+type Azurerm_scheduler_job_recurrence_1461 struct {
+
+    Azurerm_scheduler_job_recurrence_1461_id *string `lyra:"ignore"`
+
+    Count *int
+
+    End_time *string
+
+    Frequency string
+
+    Hours *[]int
+
+    Interval *int
+
+    Minutes *[]int
+
+    Month_days *[]int
+
+    Monthly_occurrences *Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462
+
+    Week_days *[]string
+
+}
+
+type Azurerm_scheduler_job_retry_1463 struct {
+
+    Azurerm_scheduler_job_retry_1463_id *string `lyra:"ignore"`
+
+    Count *int
+
+    Interval *string
+
+}
+
+type Azurerm_scheduler_job struct {
+
+    Azurerm_scheduler_job_id *string `lyra:"ignore"`
+
+    Action_storage_queue *Azurerm_scheduler_job_action_storage_queue_1451
+
+    Action_web *Azurerm_scheduler_job_action_web_1452
+
+    Error_action_storage_queue *Azurerm_scheduler_job_error_action_storage_queue_1456
+
+    Error_action_web *Azurerm_scheduler_job_error_action_web_1457
+
+    Job_collection_name string
+
+    Name string
+
+    Recurrence *Azurerm_scheduler_job_recurrence_1461
+
+    Resource_group_name string
+
+    Retry *Azurerm_scheduler_job_retry_1463
+
+    Start_time *string
+
+    State *string
+
+}
+
+// Azurerm_scheduler_jobHandler ...
+type Azurerm_scheduler_jobHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_scheduler_jobHandler) Create(desired *Azurerm_scheduler_job) (*Azurerm_scheduler_job, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_scheduler_job", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_scheduler_job, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_scheduler_job", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_scheduler_job{ Azurerm_scheduler_job_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_scheduler_jobHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_scheduler_job", externalID)
+}
+
+type Azurerm_scheduler_job_collection_quota_1464 struct {
+
+    Azurerm_scheduler_job_collection_quota_1464_id *string `lyra:"ignore"`
+
+    Max_job_count *int
+
+    Max_recurrence_frequency string
+
+    Max_recurrence_interval *int
+
+    Max_retry_interval *int
+
+}
+
+type Azurerm_scheduler_job_collection struct {
+
+    Azurerm_scheduler_job_collection_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Quota *Azurerm_scheduler_job_collection_quota_1464
+
+    Resource_group_name string
+
+    Sku string
+
+    State *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_scheduler_job_collectionHandler ...
+type Azurerm_scheduler_job_collectionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_scheduler_job_collectionHandler) Create(desired *Azurerm_scheduler_job_collection) (*Azurerm_scheduler_job_collection, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_scheduler_job_collection", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azurerm_scheduler_job_collection, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_scheduler_job_collection", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_scheduler_job_collection{ Azurerm_scheduler_job_collection_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_scheduler_job_collectionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_scheduler_job_collection", externalID)
+}
+
+type Azurerm_search_service struct {
+
+    Azurerm_search_service_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Partition_count *int
+
+    Primary_key *string
+
+    Replica_count *int
+
+    Resource_group_name string
+
+    Secondary_key *string
+
+    Sku string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_search_serviceHandler ...
+type Azurerm_search_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_search_serviceHandler) Create(desired *Azurerm_search_service) (*Azurerm_search_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_search_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search_service, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_search_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_search_service{ Azurerm_search_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_search_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_search_service", externalID)
+}
+
+type Azurerm_security_center_contact struct {
+
+    Azurerm_security_center_contact_id *string `lyra:"ignore"`
+
+    Alert_notifications bool
+
+    Alerts_to_admins bool
+
+    Email string
+
+    Phone string
+
+}
+
+// Azurerm_security_center_contactHandler ...
+type Azurerm_security_center_contactHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_security_center_contactHandler) Create(desired *Azurerm_security_center_contact) (*Azurerm_security_center_contact, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_security_center_contact", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azurerm_security_center_contact, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_contact", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_security_center_contact{ Azurerm_security_center_contact_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_security_center_contactHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_security_center_contact", externalID)
+}
+
+type Azurerm_security_center_subscription_pricing struct {
+
+    Azurerm_security_center_subscription_pricing_id *string `lyra:"ignore"`
+
+    Tier string
+
+}
 
 // Azurerm_security_center_subscription_pricingHandler ...
 type Azurerm_security_center_subscription_pricingHandler struct {
@@ -20176,8 +11608,10 @@ type Azurerm_security_center_subscription_pricingHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Create(desired *Azurerm_security_center_subscription_pricing) (*Azurerm_security_center_subscription_pricing, string, error) {
-	rState := Azurerm_security_center_subscription_pricingMapper(desired)
-	id, err := bridge.Create(h.provider, "azurerm_security_center_subscription_pricing", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_security_center_subscription_pricing", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -20190,11 +11624,13 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Read(externalID string) (*Azurerm_security_center_subscription_pricing, error) {
-	actual, err := bridge.Read(h.provider, "azurerm_security_center_subscription_pricing", externalID)
+	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_subscription_pricing", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Azurerm_security_center_subscription_pricingUnmapper(actual), nil
+	x := &Azurerm_security_center_subscription_pricing{ Azurerm_security_center_subscription_pricing_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -20202,3 +11638,3570 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Delete(externalID 
 	return bridge.Delete(h.provider, "azurerm_security_center_subscription_pricing", externalID)
 }
 
+type Azurerm_security_center_workspace struct {
+
+    Azurerm_security_center_workspace_id *string `lyra:"ignore"`
+
+    Scope string
+
+    Workspace_id string
+
+}
+
+// Azurerm_security_center_workspaceHandler ...
+type Azurerm_security_center_workspaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_security_center_workspaceHandler) Create(desired *Azurerm_security_center_workspace) (*Azurerm_security_center_workspace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_security_center_workspace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azurerm_security_center_workspace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_workspace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_security_center_workspace{ Azurerm_security_center_workspace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_security_center_workspaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_security_center_workspace", externalID)
+}
+
+type Azurerm_service_fabric_cluster_azure_active_directory_1465 struct {
+
+    Azurerm_service_fabric_cluster_azure_active_directory_1465_id *string `lyra:"ignore"`
+
+    Client_application_id string
+
+    Cluster_application_id string
+
+    Tenant_id string
+
+}
+
+type Azurerm_service_fabric_cluster_certificate_1466 struct {
+
+    Azurerm_service_fabric_cluster_certificate_1466_id *string `lyra:"ignore"`
+
+    Thumbprint string
+
+    Thumbprint_secondary *string
+
+    X509_store_name string
+
+}
+
+type Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467 struct {
+
+    Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467_id *string `lyra:"ignore"`
+
+    Is_admin bool
+
+    Thumbprint string
+
+}
+
+type Azurerm_service_fabric_cluster_diagnostics_config_1468 struct {
+
+    Azurerm_service_fabric_cluster_diagnostics_config_1468_id *string `lyra:"ignore"`
+
+    Blob_endpoint string
+
+    Protected_account_key_name string
+
+    Queue_endpoint string
+
+    Storage_account_name string
+
+    Table_endpoint string
+
+}
+
+type Azurerm_service_fabric_cluster_fabric_settings_1469 struct {
+
+    Azurerm_service_fabric_cluster_fabric_settings_1469_id *string `lyra:"ignore"`
+
+    Name string
+
+    Parameters *map[string]string
+
+}
+
+type Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471 struct {
+
+    Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471_id *string `lyra:"ignore"`
+
+    End_port int
+
+    Start_port int
+
+}
+
+type Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472 struct {
+
+    Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472_id *string `lyra:"ignore"`
+
+    End_port int
+
+    Start_port int
+
+}
+
+type Azurerm_service_fabric_cluster_node_type_1470 struct {
+
+    Azurerm_service_fabric_cluster_node_type_1470_id *string `lyra:"ignore"`
+
+    Application_ports *Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471
+
+    Client_endpoint_port int
+
+    Durability_level *string
+
+    Ephemeral_ports *Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472
+
+    Http_endpoint_port int
+
+    Instance_count int
+
+    Is_primary bool
+
+    Name string
+
+    Reverse_proxy_endpoint_port *int
+
+}
+
+type Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473 struct {
+
+    Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473_id *string `lyra:"ignore"`
+
+    Thumbprint string
+
+    Thumbprint_secondary *string
+
+    X509_store_name string
+
+}
+
+type Azurerm_service_fabric_cluster struct {
+
+    Azurerm_service_fabric_cluster_id *string `lyra:"ignore"`
+
+    Add_on_features *[]string
+
+    Azure_active_directory *Azurerm_service_fabric_cluster_azure_active_directory_1465
+
+    Certificate *Azurerm_service_fabric_cluster_certificate_1466
+
+    Client_certificate_thumbprint *Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467
+
+    Cluster_code_version *string
+
+    Cluster_endpoint *string
+
+    Diagnostics_config *Azurerm_service_fabric_cluster_diagnostics_config_1468
+
+    Fabric_settings *Azurerm_service_fabric_cluster_fabric_settings_1469
+
+    Location string
+
+    Management_endpoint string
+
+    Name string
+
+    Node_type Azurerm_service_fabric_cluster_node_type_1470
+
+    Reliability_level string
+
+    Resource_group_name string
+
+    Reverse_proxy_certificate *Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473
+
+    Tags *map[string]string
+
+    Upgrade_mode string
+
+    Vm_image string
+
+}
+
+// Azurerm_service_fabric_clusterHandler ...
+type Azurerm_service_fabric_clusterHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_service_fabric_clusterHandler) Create(desired *Azurerm_service_fabric_cluster) (*Azurerm_service_fabric_cluster, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_service_fabric_cluster", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurerm_service_fabric_cluster, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_service_fabric_cluster", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_service_fabric_cluster{ Azurerm_service_fabric_cluster_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_service_fabric_clusterHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_service_fabric_cluster", externalID)
+}
+
+type Azurerm_servicebus_namespace struct {
+
+    Azurerm_servicebus_namespace_id *string `lyra:"ignore"`
+
+    Capacity *int
+
+    Default_primary_connection_string *string
+
+    Default_primary_key *string
+
+    Default_secondary_connection_string *string
+
+    Default_secondary_key *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_servicebus_namespaceHandler ...
+type Azurerm_servicebus_namespaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_namespaceHandler) Create(desired *Azurerm_servicebus_namespace) (*Azurerm_servicebus_namespace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_namespace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_servicebus_namespace, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_namespace{ Azurerm_servicebus_namespace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_namespaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_namespace", externalID)
+}
+
+type Azurerm_servicebus_namespace_authorization_rule struct {
+
+    Azurerm_servicebus_namespace_authorization_rule_id *string `lyra:"ignore"`
+
+    Listen *bool
+
+    Manage *bool
+
+    Name string
+
+    Namespace_name string
+
+    Primary_connection_string *string
+
+    Primary_key *string
+
+    Resource_group_name string
+
+    Secondary_connection_string *string
+
+    Secondary_key *string
+
+    Send *bool
+
+}
+
+// Azurerm_servicebus_namespace_authorization_ruleHandler ...
+type Azurerm_servicebus_namespace_authorization_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Create(desired *Azurerm_servicebus_namespace_authorization_rule) (*Azurerm_servicebus_namespace_authorization_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_namespace_authorization_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_namespace_authorization_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_namespace_authorization_rule{ Azurerm_servicebus_namespace_authorization_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
+}
+
+type Azurerm_servicebus_queue struct {
+
+    Azurerm_servicebus_queue_id *string `lyra:"ignore"`
+
+    Auto_delete_on_idle *string
+
+    Dead_lettering_on_message_expiration *bool
+
+    Default_message_ttl *string
+
+    Duplicate_detection_history_time_window *string
+
+    Enable_batched_operations *bool
+
+    Enable_express *bool
+
+    Enable_partitioning *bool
+
+    Location *string
+
+    Lock_duration *string
+
+    Max_delivery_count *int
+
+    Max_size_in_megabytes *int
+
+    Name string
+
+    Namespace_name string
+
+    Requires_duplicate_detection *bool
+
+    Requires_session *bool
+
+    Resource_group_name string
+
+    Support_ordering *bool
+
+}
+
+// Azurerm_servicebus_queueHandler ...
+type Azurerm_servicebus_queueHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_queueHandler) Create(desired *Azurerm_servicebus_queue) (*Azurerm_servicebus_queue, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_queue", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_servicebus_queue, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_queue{ Azurerm_servicebus_queue_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_queueHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_queue", externalID)
+}
+
+type Azurerm_servicebus_queue_authorization_rule struct {
+
+    Azurerm_servicebus_queue_authorization_rule_id *string `lyra:"ignore"`
+
+    Listen *bool
+
+    Manage *bool
+
+    Name string
+
+    Namespace_name string
+
+    Primary_connection_string *string
+
+    Primary_key *string
+
+    Queue_name string
+
+    Resource_group_name string
+
+    Secondary_connection_string *string
+
+    Secondary_key *string
+
+    Send *bool
+
+}
+
+// Azurerm_servicebus_queue_authorization_ruleHandler ...
+type Azurerm_servicebus_queue_authorization_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Create(desired *Azurerm_servicebus_queue_authorization_rule) (*Azurerm_servicebus_queue_authorization_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_queue_authorization_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_queue_authorization_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_queue_authorization_rule{ Azurerm_servicebus_queue_authorization_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
+}
+
+type Azurerm_servicebus_subscription struct {
+
+    Azurerm_servicebus_subscription_id *string `lyra:"ignore"`
+
+    Auto_delete_on_idle *string
+
+    Dead_lettering_on_filter_evaluation_exceptions *bool
+
+    Dead_lettering_on_message_expiration *bool
+
+    Default_message_ttl *string
+
+    Enable_batched_operations *bool
+
+    Forward_to *string
+
+    Location *string
+
+    Lock_duration *string
+
+    Max_delivery_count int
+
+    Name string
+
+    Namespace_name string
+
+    Requires_session *bool
+
+    Resource_group_name string
+
+    Topic_name string
+
+}
+
+// Azurerm_servicebus_subscriptionHandler ...
+type Azurerm_servicebus_subscriptionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_subscriptionHandler) Create(desired *Azurerm_servicebus_subscription) (*Azurerm_servicebus_subscription, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_subscription", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azurerm_servicebus_subscription, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_subscription{ Azurerm_servicebus_subscription_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_subscriptionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_subscription", externalID)
+}
+
+type Azurerm_servicebus_subscription_rule_correlation_filter_1474 struct {
+
+    Azurerm_servicebus_subscription_rule_correlation_filter_1474_id *string `lyra:"ignore"`
+
+    Content_type *string
+
+    Correlation_id *string
+
+    Label *string
+
+    Message_id *string
+
+    Reply_to *string
+
+    Reply_to_session_id *string
+
+    Session_id *string
+
+    To *string
+
+}
+
+type Azurerm_servicebus_subscription_rule struct {
+
+    Azurerm_servicebus_subscription_rule_id *string `lyra:"ignore"`
+
+    Action *string
+
+    Correlation_filter *Azurerm_servicebus_subscription_rule_correlation_filter_1474
+
+    Filter_type string
+
+    Name string
+
+    Namespace_name string
+
+    Resource_group_name string
+
+    Sql_filter *string
+
+    Subscription_name string
+
+    Topic_name string
+
+}
+
+// Azurerm_servicebus_subscription_ruleHandler ...
+type Azurerm_servicebus_subscription_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_subscription_ruleHandler) Create(desired *Azurerm_servicebus_subscription_rule) (*Azurerm_servicebus_subscription_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_subscription_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*Azurerm_servicebus_subscription_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_subscription_rule{ Azurerm_servicebus_subscription_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_subscription_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_subscription_rule", externalID)
+}
+
+type Azurerm_servicebus_topic struct {
+
+    Azurerm_servicebus_topic_id *string `lyra:"ignore"`
+
+    Auto_delete_on_idle *string
+
+    Default_message_ttl *string
+
+    Duplicate_detection_history_time_window *string
+
+    Enable_batched_operations *bool
+
+    Enable_express *bool
+
+    Enable_filtering_messages_before_publishing *bool
+
+    Enable_partitioning *bool
+
+    Location *string
+
+    Max_size_in_megabytes *int
+
+    Name string
+
+    Namespace_name string
+
+    Requires_duplicate_detection *bool
+
+    Resource_group_name string
+
+    Status *string
+
+    Support_ordering *bool
+
+}
+
+// Azurerm_servicebus_topicHandler ...
+type Azurerm_servicebus_topicHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_topicHandler) Create(desired *Azurerm_servicebus_topic) (*Azurerm_servicebus_topic, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_topic", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_servicebus_topic, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_topic{ Azurerm_servicebus_topic_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_topicHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_topic", externalID)
+}
+
+type Azurerm_servicebus_topic_authorization_rule struct {
+
+    Azurerm_servicebus_topic_authorization_rule_id *string `lyra:"ignore"`
+
+    Listen *bool
+
+    Manage *bool
+
+    Name string
+
+    Namespace_name string
+
+    Primary_connection_string *string
+
+    Primary_key *string
+
+    Resource_group_name string
+
+    Secondary_connection_string *string
+
+    Secondary_key *string
+
+    Send *bool
+
+    Topic_name string
+
+}
+
+// Azurerm_servicebus_topic_authorization_ruleHandler ...
+type Azurerm_servicebus_topic_authorization_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Create(desired *Azurerm_servicebus_topic_authorization_rule) (*Azurerm_servicebus_topic_authorization_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_servicebus_topic_authorization_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_topic_authorization_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_servicebus_topic_authorization_rule{ Azurerm_servicebus_topic_authorization_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
+}
+
+type Azurerm_shared_image_identifier_1475 struct {
+
+    Azurerm_shared_image_identifier_1475_id *string `lyra:"ignore"`
+
+    Offer string
+
+    Publisher string
+
+    Sku string
+
+}
+
+type Azurerm_shared_image struct {
+
+    Azurerm_shared_image_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Eula *string
+
+    Gallery_name string
+
+    Identifier Azurerm_shared_image_identifier_1475
+
+    Location string
+
+    Name string
+
+    Os_type string
+
+    Privacy_statement_uri *string
+
+    Release_note_uri *string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_shared_imageHandler ...
+type Azurerm_shared_imageHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_shared_imageHandler) Create(desired *Azurerm_shared_image) (*Azurerm_shared_image, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_shared_image", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_image, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_shared_image{ Azurerm_shared_image_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_shared_imageHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_shared_image", externalID)
+}
+
+type Azurerm_shared_image_gallery struct {
+
+    Azurerm_shared_image_gallery_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Unique_name *string
+
+}
+
+// Azurerm_shared_image_galleryHandler ...
+type Azurerm_shared_image_galleryHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_shared_image_galleryHandler) Create(desired *Azurerm_shared_image_gallery) (*Azurerm_shared_image_gallery, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_shared_image_gallery", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_shared_image_gallery, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image_gallery", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_shared_image_gallery{ Azurerm_shared_image_gallery_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_shared_image_galleryHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_shared_image_gallery", externalID)
+}
+
+type Azurerm_shared_image_version_target_region_1476 struct {
+
+    Azurerm_shared_image_version_target_region_1476_id *string `lyra:"ignore"`
+
+    Name string
+
+    Regional_replica_count int
+
+}
+
+type Azurerm_shared_image_version struct {
+
+    Azurerm_shared_image_version_id *string `lyra:"ignore"`
+
+    Exclude_from_latest *bool
+
+    Gallery_name string
+
+    Image_name string
+
+    Location string
+
+    Managed_image_id string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Target_region Azurerm_shared_image_version_target_region_1476
+
+}
+
+// Azurerm_shared_image_versionHandler ...
+type Azurerm_shared_image_versionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_shared_image_versionHandler) Create(desired *Azurerm_shared_image_version) (*Azurerm_shared_image_version, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_shared_image_version", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_shared_image_version, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image_version", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_shared_image_version{ Azurerm_shared_image_version_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_shared_image_versionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_shared_image_version", externalID)
+}
+
+type Azurerm_signalr_service_sku_1477 struct {
+
+    Azurerm_signalr_service_sku_1477_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Name string
+
+}
+
+type Azurerm_signalr_service struct {
+
+    Azurerm_signalr_service_id *string `lyra:"ignore"`
+
+    Hostname *string
+
+    Ip_address *string
+
+    Location string
+
+    Name string
+
+    Public_port *int
+
+    Resource_group_name string
+
+    Server_port *int
+
+    Sku Azurerm_signalr_service_sku_1477
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_signalr_serviceHandler ...
+type Azurerm_signalr_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_signalr_serviceHandler) Create(desired *Azurerm_signalr_service) (*Azurerm_signalr_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_signalr_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signalr_service, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_signalr_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_signalr_service{ Azurerm_signalr_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_signalr_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_signalr_service", externalID)
+}
+
+type Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479 struct {
+
+    Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479_id *string `lyra:"ignore"`
+
+    Secret_url string
+
+    Source_vault_id string
+
+}
+
+type Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480 struct {
+
+    Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480_id *string `lyra:"ignore"`
+
+    Key_url string
+
+    Source_vault_id string
+
+}
+
+type Azurerm_snapshot_encryption_settings_1478 struct {
+
+    Azurerm_snapshot_encryption_settings_1478_id *string `lyra:"ignore"`
+
+    Disk_encryption_key *Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479
+
+    Enabled bool
+
+    Key_encryption_key *Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480
+
+}
+
+type Azurerm_snapshot struct {
+
+    Azurerm_snapshot_id *string `lyra:"ignore"`
+
+    Create_option string
+
+    Disk_size_gb *int
+
+    Encryption_settings *Azurerm_snapshot_encryption_settings_1478
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Source_resource_id *string
+
+    Source_uri *string
+
+    Storage_account_id *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_snapshotHandler ...
+type Azurerm_snapshotHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_snapshot, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_snapshot", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_snapshot", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_snapshot{ Azurerm_snapshot_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_snapshotHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_snapshot", externalID)
+}
+
+type Azurerm_sql_active_directory_administrator struct {
+
+    Azurerm_sql_active_directory_administrator_id *string `lyra:"ignore"`
+
+    Login string
+
+    Object_id string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Tenant_id string
+
+}
+
+// Azurerm_sql_active_directory_administratorHandler ...
+type Azurerm_sql_active_directory_administratorHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_sql_active_directory_administratorHandler) Create(desired *Azurerm_sql_active_directory_administrator) (*Azurerm_sql_active_directory_administrator, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_sql_active_directory_administrator", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID string) (*Azurerm_sql_active_directory_administrator, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_sql_active_directory_administrator", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_sql_active_directory_administrator{ Azurerm_sql_active_directory_administrator_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_sql_active_directory_administratorHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_sql_active_directory_administrator", externalID)
+}
+
+type Azurerm_sql_database_import_1481 struct {
+
+    Azurerm_sql_database_import_1481_id *string `lyra:"ignore"`
+
+    Administrator_login string
+
+    Administrator_login_password string
+
+    Authentication_type string
+
+    Operation_mode *string
+
+    Storage_key string
+
+    Storage_key_type string
+
+    Storage_uri string
+
+}
+
+type Azurerm_sql_database_threat_detection_policy_1482 struct {
+
+    Azurerm_sql_database_threat_detection_policy_1482_id *string `lyra:"ignore"`
+
+    Disabled_alerts *[]string
+
+    Email_account_admins *string
+
+    Email_addresses *[]string
+
+    Retention_days *int
+
+    State *string
+
+    Storage_account_access_key *string
+
+    Storage_endpoint *string
+
+    Use_server_default *string
+
+}
+
+type Azurerm_sql_database struct {
+
+    Azurerm_sql_database_id *string `lyra:"ignore"`
+
+    Collation *string
+
+    Create_mode *string
+
+    Creation_date *string
+
+    Default_secondary_location *string
+
+    Edition *string
+
+    Elastic_pool_name *string
+
+    Encryption *string
+
+    Import *Azurerm_sql_database_import_1481
+
+    Location string
+
+    Max_size_bytes *string
+
+    Name string
+
+    Requested_service_objective_id *string
+
+    Requested_service_objective_name *string
+
+    Resource_group_name string
+
+    Restore_point_in_time *string
+
+    Server_name string
+
+    Source_database_deletion_date *string
+
+    Source_database_id *string
+
+    Tags *map[string]string
+
+    Threat_detection_policy *Azurerm_sql_database_threat_detection_policy_1482
+
+}
+
+// Azurerm_sql_databaseHandler ...
+type Azurerm_sql_databaseHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_sql_databaseHandler) Create(desired *Azurerm_sql_database) (*Azurerm_sql_database, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_sql_database", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_database, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_sql_database", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_sql_database{ Azurerm_sql_database_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_sql_databaseHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_sql_database", externalID)
+}
+
+type Azurerm_sql_elasticpool struct {
+
+    Azurerm_sql_elasticpool_id *string `lyra:"ignore"`
+
+    Creation_date *string
+
+    Db_dtu_max *int
+
+    Db_dtu_min *int
+
+    Dtu int
+
+    Edition string
+
+    Location string
+
+    Name string
+
+    Pool_size *int
+
+    Resource_group_name string
+
+    Server_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_sql_elasticpoolHandler ...
+type Azurerm_sql_elasticpoolHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_sql_elasticpoolHandler) Create(desired *Azurerm_sql_elasticpool) (*Azurerm_sql_elasticpool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_sql_elasticpool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_elasticpool, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_sql_elasticpool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_sql_elasticpool{ Azurerm_sql_elasticpool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_sql_elasticpoolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_sql_elasticpool", externalID)
+}
+
+type Azurerm_sql_firewall_rule struct {
+
+    Azurerm_sql_firewall_rule_id *string `lyra:"ignore"`
+
+    End_ip_address string
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Start_ip_address string
+
+}
+
+// Azurerm_sql_firewall_ruleHandler ...
+type Azurerm_sql_firewall_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_sql_firewall_ruleHandler) Create(desired *Azurerm_sql_firewall_rule) (*Azurerm_sql_firewall_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_sql_firewall_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql_firewall_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_sql_firewall_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_sql_firewall_rule{ Azurerm_sql_firewall_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_sql_firewall_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_sql_firewall_rule", externalID)
+}
+
+type Azurerm_sql_server struct {
+
+    Azurerm_sql_server_id *string `lyra:"ignore"`
+
+    Administrator_login string
+
+    Administrator_login_password string
+
+    Fully_qualified_domain_name *string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Version string
+
+}
+
+// Azurerm_sql_serverHandler ...
+type Azurerm_sql_serverHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_sql_serverHandler) Create(desired *Azurerm_sql_server) (*Azurerm_sql_server, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_sql_server", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_sql_server", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_sql_server{ Azurerm_sql_server_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_sql_serverHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_sql_server", externalID)
+}
+
+type Azurerm_sql_virtual_network_rule struct {
+
+    Azurerm_sql_virtual_network_rule_id *string `lyra:"ignore"`
+
+    Ignore_missing_vnet_service_endpoint *bool
+
+    Name string
+
+    Resource_group_name string
+
+    Server_name string
+
+    Subnet_id string
+
+}
+
+// Azurerm_sql_virtual_network_ruleHandler ...
+type Azurerm_sql_virtual_network_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_sql_virtual_network_ruleHandler) Create(desired *Azurerm_sql_virtual_network_rule) (*Azurerm_sql_virtual_network_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_sql_virtual_network_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_sql_virtual_network_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_sql_virtual_network_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_sql_virtual_network_rule{ Azurerm_sql_virtual_network_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_sql_virtual_network_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_sql_virtual_network_rule", externalID)
+}
+
+type Azurerm_storage_account_custom_domain_1483 struct {
+
+    Azurerm_storage_account_custom_domain_1483_id *string `lyra:"ignore"`
+
+    Name string
+
+    Use_subdomain *bool
+
+}
+
+type Azurerm_storage_account_identity_1484 struct {
+
+    Azurerm_storage_account_identity_1484_id *string `lyra:"ignore"`
+
+    Principal_id *string
+
+    Tenant_id *string
+
+    Type string
+
+}
+
+type Azurerm_storage_account_network_rules_1485 struct {
+
+    Azurerm_storage_account_network_rules_1485_id *string `lyra:"ignore"`
+
+    Bypass *[]string
+
+    Ip_rules *[]string
+
+    Virtual_network_subnet_ids *[]string
+
+}
+
+type Azurerm_storage_account struct {
+
+    Azurerm_storage_account_id *string `lyra:"ignore"`
+
+    Access_tier *string
+
+    Account_encryption_source *string
+
+    Account_kind *string
+
+    Account_replication_type string
+
+    Account_tier string
+
+    Account_type *string
+
+    Custom_domain *Azurerm_storage_account_custom_domain_1483
+
+    Enable_blob_encryption *bool
+
+    Enable_file_encryption *bool
+
+    Enable_https_traffic_only *bool
+
+    Identity *Azurerm_storage_account_identity_1484
+
+    Location string
+
+    Name string
+
+    Network_rules *Azurerm_storage_account_network_rules_1485
+
+    Primary_access_key *string
+
+    Primary_blob_connection_string *string
+
+    Primary_blob_endpoint *string
+
+    Primary_connection_string *string
+
+    Primary_file_endpoint *string
+
+    Primary_location *string
+
+    Primary_queue_endpoint *string
+
+    Primary_table_endpoint *string
+
+    Resource_group_name string
+
+    Secondary_access_key *string
+
+    Secondary_blob_connection_string *string
+
+    Secondary_blob_endpoint *string
+
+    Secondary_connection_string *string
+
+    Secondary_location *string
+
+    Secondary_queue_endpoint *string
+
+    Secondary_table_endpoint *string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_storage_accountHandler ...
+type Azurerm_storage_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_storage_accountHandler) Create(desired *Azurerm_storage_account) (*Azurerm_storage_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_storage_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_storage_account, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_storage_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_storage_account{ Azurerm_storage_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_storage_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_storage_account", externalID)
+}
+
+type Azurerm_storage_blob struct {
+
+    Azurerm_storage_blob_id *string `lyra:"ignore"`
+
+    Attempts *int
+
+    Content_type *string
+
+    Name string
+
+    Parallelism *int
+
+    Resource_group_name string
+
+    Size *int
+
+    Source *string
+
+    Source_uri *string
+
+    Storage_account_name string
+
+    Storage_container_name string
+
+    Type *string
+
+    Url *string
+
+}
+
+// Azurerm_storage_blobHandler ...
+type Azurerm_storage_blobHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_storage_blobHandler) Create(desired *Azurerm_storage_blob) (*Azurerm_storage_blob, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_storage_blob", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_blob, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_storage_blob", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_storage_blob{ Azurerm_storage_blob_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_storage_blobHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_storage_blob", externalID)
+}
+
+type Azurerm_storage_container struct {
+
+    Azurerm_storage_container_id *string `lyra:"ignore"`
+
+    Container_access_type *string
+
+    Name string
+
+    Properties *map[string]string
+
+    Resource_group_name string
+
+    Storage_account_name string
+
+}
+
+// Azurerm_storage_containerHandler ...
+type Azurerm_storage_containerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_storage_containerHandler) Create(desired *Azurerm_storage_container) (*Azurerm_storage_container, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_storage_container", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_storage_container, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_storage_container", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_storage_container{ Azurerm_storage_container_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_storage_containerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_storage_container", externalID)
+}
+
+type Azurerm_storage_queue struct {
+
+    Azurerm_storage_queue_id *string `lyra:"ignore"`
+
+    Name string
+
+    Resource_group_name string
+
+    Storage_account_name string
+
+}
+
+// Azurerm_storage_queueHandler ...
+type Azurerm_storage_queueHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_storage_queueHandler) Create(desired *Azurerm_storage_queue) (*Azurerm_storage_queue, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_storage_queue", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage_queue, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_storage_queue", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_storage_queue{ Azurerm_storage_queue_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_storage_queueHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_storage_queue", externalID)
+}
+
+type Azurerm_storage_share struct {
+
+    Azurerm_storage_share_id *string `lyra:"ignore"`
+
+    Name string
+
+    Quota *int
+
+    Resource_group_name string
+
+    Storage_account_name string
+
+    Url *string
+
+}
+
+// Azurerm_storage_shareHandler ...
+type Azurerm_storage_shareHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_storage_shareHandler) Create(desired *Azurerm_storage_share) (*Azurerm_storage_share, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_storage_share", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage_share, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_storage_share", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_storage_share{ Azurerm_storage_share_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_storage_shareHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_storage_share", externalID)
+}
+
+type Azurerm_storage_table struct {
+
+    Azurerm_storage_table_id *string `lyra:"ignore"`
+
+    Name string
+
+    Resource_group_name string
+
+    Storage_account_name string
+
+}
+
+// Azurerm_storage_tableHandler ...
+type Azurerm_storage_tableHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*Azurerm_storage_table, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_storage_table", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage_table, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_storage_table", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_storage_table{ Azurerm_storage_table_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_storage_tableHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_storage_table", externalID)
+}
+
+type Azurerm_subnet_delegation_1486_service_delegation_1487 struct {
+
+    Azurerm_subnet_delegation_1486_service_delegation_1487_id *string `lyra:"ignore"`
+
+    Actions *[]string
+
+    Name string
+
+}
+
+type Azurerm_subnet_delegation_1486 struct {
+
+    Azurerm_subnet_delegation_1486_id *string `lyra:"ignore"`
+
+    Name string
+
+    Service_delegation Azurerm_subnet_delegation_1486_service_delegation_1487
+
+}
+
+type Azurerm_subnet struct {
+
+    Azurerm_subnet_id *string `lyra:"ignore"`
+
+    Address_prefix string
+
+    Delegation *Azurerm_subnet_delegation_1486
+
+    Ip_configurations *[]string
+
+    Name string
+
+    Network_security_group_id *string
+
+    Resource_group_name string
+
+    Route_table_id *string
+
+    Service_endpoints *[]string
+
+    Virtual_network_name string
+
+}
+
+// Azurerm_subnetHandler ...
+type Azurerm_subnetHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_subnetHandler) Create(desired *Azurerm_subnet) (*Azurerm_subnet, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_subnet", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_subnet", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_subnet{ Azurerm_subnet_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_subnetHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_subnet", externalID)
+}
+
+type Azurerm_subnet_network_security_group_association struct {
+
+    Azurerm_subnet_network_security_group_association_id *string `lyra:"ignore"`
+
+    Network_security_group_id string
+
+    Subnet_id string
+
+}
+
+// Azurerm_subnet_network_security_group_associationHandler ...
+type Azurerm_subnet_network_security_group_associationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_subnet_network_security_group_associationHandler) Create(desired *Azurerm_subnet_network_security_group_association) (*Azurerm_subnet_network_security_group_association, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_subnet_network_security_group_association", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_subnet_network_security_group_associationHandler) Read(externalID string) (*Azurerm_subnet_network_security_group_association, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_subnet_network_security_group_association", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_subnet_network_security_group_association{ Azurerm_subnet_network_security_group_association_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_subnet_network_security_group_associationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_subnet_network_security_group_association", externalID)
+}
+
+type Azurerm_subnet_route_table_association struct {
+
+    Azurerm_subnet_route_table_association_id *string `lyra:"ignore"`
+
+    Route_table_id string
+
+    Subnet_id string
+
+}
+
+// Azurerm_subnet_route_table_associationHandler ...
+type Azurerm_subnet_route_table_associationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_subnet_route_table_associationHandler) Create(desired *Azurerm_subnet_route_table_association) (*Azurerm_subnet_route_table_association, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_subnet_route_table_association", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) (*Azurerm_subnet_route_table_association, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_subnet_route_table_association", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_subnet_route_table_association{ Azurerm_subnet_route_table_association_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_subnet_route_table_associationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_subnet_route_table_association", externalID)
+}
+
+type Azurerm_template_deployment struct {
+
+    Azurerm_template_deployment_id *string `lyra:"ignore"`
+
+    Deployment_mode string
+
+    Name string
+
+    Outputs *map[string]string
+
+    Parameters *map[string]string
+
+    Parameters_body *string
+
+    Resource_group_name string
+
+    Template_body *string
+
+}
+
+// Azurerm_template_deploymentHandler ...
+type Azurerm_template_deploymentHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_template_deploymentHandler) Create(desired *Azurerm_template_deployment) (*Azurerm_template_deployment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_template_deployment", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_template_deployment, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_template_deployment", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_template_deployment{ Azurerm_template_deployment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_template_deploymentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_template_deployment", externalID)
+}
+
+type Azurerm_traffic_manager_endpoint struct {
+
+    Azurerm_traffic_manager_endpoint_id *string `lyra:"ignore"`
+
+    Endpoint_location *string
+
+    Endpoint_monitor_status *string
+
+    Endpoint_status *string
+
+    Geo_mappings *[]string
+
+    Min_child_endpoints *int
+
+    Name string
+
+    Priority *int
+
+    Profile_name string
+
+    Resource_group_name string
+
+    Target *string
+
+    Target_resource_id *string
+
+    Type string
+
+    Weight *int
+
+}
+
+// Azurerm_traffic_manager_endpointHandler ...
+type Azurerm_traffic_manager_endpointHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_traffic_manager_endpointHandler) Create(desired *Azurerm_traffic_manager_endpoint) (*Azurerm_traffic_manager_endpoint, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_traffic_manager_endpoint", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azurerm_traffic_manager_endpoint, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_endpoint", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_traffic_manager_endpoint{ Azurerm_traffic_manager_endpoint_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_traffic_manager_endpointHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_traffic_manager_endpoint", externalID)
+}
+
+type Azurerm_traffic_manager_profile_dns_config_1488 struct {
+
+    Azurerm_traffic_manager_profile_dns_config_1488_id *string `lyra:"ignore"`
+
+    Relative_name string
+
+    Ttl int
+
+}
+
+type Azurerm_traffic_manager_profile_monitor_config_1489 struct {
+
+    Azurerm_traffic_manager_profile_monitor_config_1489_id *string `lyra:"ignore"`
+
+    Path *string
+
+    Port int
+
+    Protocol string
+
+}
+
+type Azurerm_traffic_manager_profile struct {
+
+    Azurerm_traffic_manager_profile_id *string `lyra:"ignore"`
+
+    Dns_config Azurerm_traffic_manager_profile_dns_config_1488
+
+    Fqdn *string
+
+    Monitor_config Azurerm_traffic_manager_profile_monitor_config_1489
+
+    Name string
+
+    Profile_status *string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+    Traffic_routing_method string
+
+}
+
+// Azurerm_traffic_manager_profileHandler ...
+type Azurerm_traffic_manager_profileHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_traffic_manager_profileHandler) Create(desired *Azurerm_traffic_manager_profile) (*Azurerm_traffic_manager_profile, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_traffic_manager_profile", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azurerm_traffic_manager_profile, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_profile", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_traffic_manager_profile{ Azurerm_traffic_manager_profile_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_traffic_manager_profileHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_traffic_manager_profile", externalID)
+}
+
+type Azurerm_user_assigned_identity struct {
+
+    Azurerm_user_assigned_identity_id *string `lyra:"ignore"`
+
+    Client_id *string
+
+    Location string
+
+    Name string
+
+    Principal_id *string
+
+    Resource_group_name string
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_user_assigned_identityHandler ...
+type Azurerm_user_assigned_identityHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_user_assigned_identityHandler) Create(desired *Azurerm_user_assigned_identity) (*Azurerm_user_assigned_identity, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_user_assigned_identity", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurerm_user_assigned_identity, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_user_assigned_identity", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_user_assigned_identity{ Azurerm_user_assigned_identity_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_user_assigned_identityHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_user_assigned_identity", externalID)
+}
+
+type Azurerm_virtual_machine_boot_diagnostics_1490 struct {
+
+    Azurerm_virtual_machine_boot_diagnostics_1490_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Storage_uri string
+
+}
+
+type Azurerm_virtual_machine_identity_1491 struct {
+
+    Azurerm_virtual_machine_identity_1491_id *string `lyra:"ignore"`
+
+    Identity_ids *[]string
+
+    Principal_id *string
+
+    Type string
+
+}
+
+type Azurerm_virtual_machine_os_profile_1492 struct {
+
+    Azurerm_virtual_machine_os_profile_1492_id *string `lyra:"ignore"`
+
+    Admin_password *string
+
+    Admin_username string
+
+    Computer_name string
+
+    Custom_data *string
+
+}
+
+type Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494 struct {
+
+    Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494_id *string `lyra:"ignore"`
+
+    Key_data string
+
+    Path string
+
+}
+
+type Azurerm_virtual_machine_os_profile_linux_config_1493 struct {
+
+    Azurerm_virtual_machine_os_profile_linux_config_1493_id *string `lyra:"ignore"`
+
+    Disable_password_authentication bool
+
+    Ssh_keys *Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494
+
+}
+
+type Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496 struct {
+
+    Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496_id *string `lyra:"ignore"`
+
+    Certificate_store *string
+
+    Certificate_url string
+
+}
+
+type Azurerm_virtual_machine_os_profile_secrets_1495 struct {
+
+    Azurerm_virtual_machine_os_profile_secrets_1495_id *string `lyra:"ignore"`
+
+    Source_vault_id string
+
+    Vault_certificates *Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496
+
+}
+
+type Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498 struct {
+
+    Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498_id *string `lyra:"ignore"`
+
+    Component string
+
+    Content string
+
+    Pass string
+
+    Setting_name string
+
+}
+
+type Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499 struct {
+
+    Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499_id *string `lyra:"ignore"`
+
+    Certificate_url *string
+
+    Protocol string
+
+}
+
+type Azurerm_virtual_machine_os_profile_windows_config_1497 struct {
+
+    Azurerm_virtual_machine_os_profile_windows_config_1497_id *string `lyra:"ignore"`
+
+    Additional_unattend_config *Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498
+
+    Enable_automatic_upgrades *bool
+
+    Provision_vm_agent *bool
+
+    Timezone *string
+
+    Winrm *Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499
+
+}
+
+type Azurerm_virtual_machine_plan_1500 struct {
+
+    Azurerm_virtual_machine_plan_1500_id *string `lyra:"ignore"`
+
+    Name string
+
+    Product string
+
+    Publisher string
+
+}
+
+type Azurerm_virtual_machine_storage_data_disk_1501 struct {
+
+    Azurerm_virtual_machine_storage_data_disk_1501_id *string `lyra:"ignore"`
+
+    Caching *string
+
+    Create_option string
+
+    Disk_size_gb *int
+
+    Lun int
+
+    Managed_disk_id *string
+
+    Managed_disk_type *string
+
+    Name string
+
+    Vhd_uri *string
+
+    Write_accelerator_enabled *bool
+
+}
+
+type Azurerm_virtual_machine_storage_image_reference_1502 struct {
+
+    Azurerm_virtual_machine_storage_image_reference_1502_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Offer *string
+
+    Publisher *string
+
+    Sku *string
+
+    Version *string
+
+}
+
+type Azurerm_virtual_machine_storage_os_disk_1503 struct {
+
+    Azurerm_virtual_machine_storage_os_disk_1503_id *string `lyra:"ignore"`
+
+    Caching *string
+
+    Create_option string
+
+    Disk_size_gb *int
+
+    Image_uri *string
+
+    Managed_disk_id *string
+
+    Managed_disk_type *string
+
+    Name string
+
+    Os_type *string
+
+    Vhd_uri *string
+
+    Write_accelerator_enabled *bool
+
+}
+
+type Azurerm_virtual_machine struct {
+
+    Azurerm_virtual_machine_id *string `lyra:"ignore"`
+
+    Availability_set_id *string
+
+    Boot_diagnostics *Azurerm_virtual_machine_boot_diagnostics_1490
+
+    Delete_data_disks_on_termination *bool
+
+    Delete_os_disk_on_termination *bool
+
+    Identity *Azurerm_virtual_machine_identity_1491
+
+    License_type *string
+
+    Location string
+
+    Name string
+
+    Network_interface_ids []string
+
+    Os_profile *Azurerm_virtual_machine_os_profile_1492
+
+    Os_profile_linux_config *Azurerm_virtual_machine_os_profile_linux_config_1493
+
+    Os_profile_secrets *Azurerm_virtual_machine_os_profile_secrets_1495
+
+    Os_profile_windows_config *Azurerm_virtual_machine_os_profile_windows_config_1497
+
+    Plan *Azurerm_virtual_machine_plan_1500
+
+    Primary_network_interface_id *string
+
+    Resource_group_name string
+
+    Storage_data_disk *Azurerm_virtual_machine_storage_data_disk_1501
+
+    Storage_image_reference *Azurerm_virtual_machine_storage_image_reference_1502
+
+    Storage_os_disk Azurerm_virtual_machine_storage_os_disk_1503
+
+    Tags *map[string]string
+
+    Vm_size string
+
+    Zones *[]string
+
+}
+
+// Azurerm_virtual_machineHandler ...
+type Azurerm_virtual_machineHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_machineHandler) Create(desired *Azurerm_virtual_machine) (*Azurerm_virtual_machine, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_machine", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtual_machine, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_machine{ Azurerm_virtual_machine_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_machineHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_machine", externalID)
+}
+
+type Azurerm_virtual_machine_data_disk_attachment struct {
+
+    Azurerm_virtual_machine_data_disk_attachment_id *string `lyra:"ignore"`
+
+    Caching string
+
+    Create_option *string
+
+    Lun int
+
+    Managed_disk_id string
+
+    Virtual_machine_id string
+
+    Write_accelerator_enabled *bool
+
+}
+
+// Azurerm_virtual_machine_data_disk_attachmentHandler ...
+type Azurerm_virtual_machine_data_disk_attachmentHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Create(desired *Azurerm_virtual_machine_data_disk_attachment) (*Azurerm_virtual_machine_data_disk_attachment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_machine_data_disk_attachment", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID string) (*Azurerm_virtual_machine_data_disk_attachment, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_machine_data_disk_attachment{ Azurerm_virtual_machine_data_disk_attachment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
+}
+
+type Azurerm_virtual_machine_extension struct {
+
+    Azurerm_virtual_machine_extension_id *string `lyra:"ignore"`
+
+    Auto_upgrade_minor_version *bool
+
+    Location string
+
+    Name string
+
+    Protected_settings *string
+
+    Publisher string
+
+    Resource_group_name string
+
+    Settings *string
+
+    Tags *map[string]string
+
+    Type string
+
+    Type_handler_version string
+
+    Virtual_machine_name string
+
+}
+
+// Azurerm_virtual_machine_extensionHandler ...
+type Azurerm_virtual_machine_extensionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_machine_extensionHandler) Create(desired *Azurerm_virtual_machine_extension) (*Azurerm_virtual_machine_extension, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_machine_extension", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azurerm_virtual_machine_extension, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_extension", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_machine_extension{ Azurerm_virtual_machine_extension_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_machine_extensionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_machine_extension", externalID)
+}
+
+type Azurerm_virtual_machine_scale_set_boot_diagnostics_1504 struct {
+
+    Azurerm_virtual_machine_scale_set_boot_diagnostics_1504_id *string `lyra:"ignore"`
+
+    Enabled *bool
+
+    Storage_uri string
+
+}
+
+type Azurerm_virtual_machine_scale_set_extension_1505 struct {
+
+    Azurerm_virtual_machine_scale_set_extension_1505_id *string `lyra:"ignore"`
+
+    Auto_upgrade_minor_version *bool
+
+    Name string
+
+    Protected_settings *string
+
+    Publisher string
+
+    Settings *string
+
+    Type string
+
+    Type_handler_version string
+
+}
+
+type Azurerm_virtual_machine_scale_set_identity_1506 struct {
+
+    Azurerm_virtual_machine_scale_set_identity_1506_id *string `lyra:"ignore"`
+
+    Identity_ids *[]string
+
+    Principal_id *string
+
+    Type string
+
+}
+
+type Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508 struct {
+
+    Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508_id *string `lyra:"ignore"`
+
+    Dns_servers []string
+
+}
+
+type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510 struct {
+
+    Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510_id *string `lyra:"ignore"`
+
+    Domain_name_label string
+
+    Idle_timeout int
+
+    Name string
+
+}
+
+type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509 struct {
+
+    Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_id *string `lyra:"ignore"`
+
+    Application_gateway_backend_address_pool_ids *[]string
+
+    Application_security_group_ids *[]string
+
+    Load_balancer_backend_address_pool_ids *[]string
+
+    Load_balancer_inbound_nat_rules_ids *[]string
+
+    Name string
+
+    Primary bool
+
+    Public_ip_address_configuration *Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510
+
+    Subnet_id string
+
+}
+
+type Azurerm_virtual_machine_scale_set_network_profile_1507 struct {
+
+    Azurerm_virtual_machine_scale_set_network_profile_1507_id *string `lyra:"ignore"`
+
+    Accelerated_networking *bool
+
+    Dns_settings *Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508
+
+    Ip_configuration Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509
+
+    Ip_forwarding *bool
+
+    Name string
+
+    Network_security_group_id *string
+
+    Primary bool
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_1511 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_1511_id *string `lyra:"ignore"`
+
+    Admin_password *string
+
+    Admin_username string
+
+    Computer_name_prefix string
+
+    Custom_data *string
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513_id *string `lyra:"ignore"`
+
+    Key_data *string
+
+    Path string
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_id *string `lyra:"ignore"`
+
+    Disable_password_authentication *bool
+
+    Ssh_keys *Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515_id *string `lyra:"ignore"`
+
+    Certificate_store *string
+
+    Certificate_url string
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_id *string `lyra:"ignore"`
+
+    Source_vault_id string
+
+    Vault_certificates *Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517_id *string `lyra:"ignore"`
+
+    Component string
+
+    Content string
+
+    Pass string
+
+    Setting_name string
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518_id *string `lyra:"ignore"`
+
+    Certificate_url *string
+
+    Protocol string
+
+}
+
+type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516 struct {
+
+    Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_id *string `lyra:"ignore"`
+
+    Additional_unattend_config *Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517
+
+    Enable_automatic_upgrades *bool
+
+    Provision_vm_agent *bool
+
+    Winrm *Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518
+
+}
+
+type Azurerm_virtual_machine_scale_set_plan_1519 struct {
+
+    Azurerm_virtual_machine_scale_set_plan_1519_id *string `lyra:"ignore"`
+
+    Name string
+
+    Product string
+
+    Publisher string
+
+}
+
+type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520 struct {
+
+    Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520_id *string `lyra:"ignore"`
+
+    Max_batch_instance_percent *int
+
+    Max_unhealthy_instance_percent *int
+
+    Max_unhealthy_upgraded_instance_percent *int
+
+    Pause_time_between_batches *string
+
+}
+
+type Azurerm_virtual_machine_scale_set_sku_1521 struct {
+
+    Azurerm_virtual_machine_scale_set_sku_1521_id *string `lyra:"ignore"`
+
+    Capacity int
+
+    Name string
+
+    Tier *string
+
+}
+
+type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522 struct {
+
+    Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522_id *string `lyra:"ignore"`
+
+    Caching *string
+
+    Create_option string
+
+    Disk_size_gb *int
+
+    Lun int
+
+    Managed_disk_type *string
+
+}
+
+type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523 struct {
+
+    Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523_id *string `lyra:"ignore"`
+
+    Id *string
+
+    Offer *string
+
+    Publisher *string
+
+    Sku *string
+
+    Version *string
+
+}
+
+type Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524 struct {
+
+    Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524_id *string `lyra:"ignore"`
+
+    Caching *string
+
+    Create_option string
+
+    Image *string
+
+    Managed_disk_type *string
+
+    Name *string
+
+    Os_type *string
+
+    Vhd_containers *[]string
+
+}
+
+type Azurerm_virtual_machine_scale_set struct {
+
+    Azurerm_virtual_machine_scale_set_id *string `lyra:"ignore"`
+
+    Automatic_os_upgrade *bool
+
+    Boot_diagnostics *Azurerm_virtual_machine_scale_set_boot_diagnostics_1504
+
+    Eviction_policy *string
+
+    Extension *Azurerm_virtual_machine_scale_set_extension_1505
+
+    Health_probe_id *string
+
+    Identity *Azurerm_virtual_machine_scale_set_identity_1506
+
+    License_type *string
+
+    Location string
+
+    Name string
+
+    Network_profile Azurerm_virtual_machine_scale_set_network_profile_1507
+
+    Os_profile Azurerm_virtual_machine_scale_set_os_profile_1511
+
+    Os_profile_linux_config *Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512
+
+    Os_profile_secrets *Azurerm_virtual_machine_scale_set_os_profile_secrets_1514
+
+    Os_profile_windows_config *Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516
+
+    Overprovision *bool
+
+    Plan *Azurerm_virtual_machine_scale_set_plan_1519
+
+    Priority *string
+
+    Resource_group_name string
+
+    Rolling_upgrade_policy *Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520
+
+    Single_placement_group *bool
+
+    Sku Azurerm_virtual_machine_scale_set_sku_1521
+
+    Storage_profile_data_disk *Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522
+
+    Storage_profile_image_reference *Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523
+
+    Storage_profile_os_disk Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524
+
+    Tags *map[string]string
+
+    Upgrade_policy_mode string
+
+    Zones *[]string
+
+}
+
+// Azurerm_virtual_machine_scale_setHandler ...
+type Azurerm_virtual_machine_scale_setHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_machine_scale_setHandler) Create(desired *Azurerm_virtual_machine_scale_set) (*Azurerm_virtual_machine_scale_set, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_machine_scale_set", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azurerm_virtual_machine_scale_set, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_scale_set", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_machine_scale_set{ Azurerm_virtual_machine_scale_set_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_machine_scale_setHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_machine_scale_set", externalID)
+}
+
+type Azurerm_virtual_network_subnet_1525 struct {
+
+    Azurerm_virtual_network_subnet_1525_id *string `lyra:"ignore"`
+
+    Address_prefix string
+
+    Id *string
+
+    Name string
+
+    Security_group *string
+
+}
+
+type Azurerm_virtual_network struct {
+
+    Azurerm_virtual_network_id *string `lyra:"ignore"`
+
+    Address_space []string
+
+    Dns_servers *[]string
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Subnet *Azurerm_virtual_network_subnet_1525
+
+    Tags *map[string]string
+
+}
+
+// Azurerm_virtual_networkHandler ...
+type Azurerm_virtual_networkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_networkHandler) Create(desired *Azurerm_virtual_network) (*Azurerm_virtual_network, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_network", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtual_network, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_network{ Azurerm_virtual_network_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_networkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_network", externalID)
+}
+
+type Azurerm_virtual_network_gateway_bgp_settings_1526 struct {
+
+    Azurerm_virtual_network_gateway_bgp_settings_1526_id *string `lyra:"ignore"`
+
+    Asn *int
+
+    Peer_weight *int
+
+    Peering_address *string
+
+}
+
+type Azurerm_virtual_network_gateway_ip_configuration_1527 struct {
+
+    Azurerm_virtual_network_gateway_ip_configuration_1527_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Private_ip_address_allocation *string
+
+    Public_ip_address_id *string
+
+    Subnet_id string
+
+}
+
+type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529 struct {
+
+    Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529_id *string `lyra:"ignore"`
+
+    Name string
+
+    Thumbprint string
+
+}
+
+type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530 struct {
+
+    Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530_id *string `lyra:"ignore"`
+
+    Name string
+
+    Public_cert_data string
+
+}
+
+type Azurerm_virtual_network_gateway_vpn_client_configuration_1528 struct {
+
+    Azurerm_virtual_network_gateway_vpn_client_configuration_1528_id *string `lyra:"ignore"`
+
+    Address_space []string
+
+    Radius_server_address *string
+
+    Radius_server_secret *string
+
+    Revoked_certificate *Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529
+
+    Root_certificate *Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530
+
+    Vpn_client_protocols *[]string
+
+}
+
+type Azurerm_virtual_network_gateway struct {
+
+    Azurerm_virtual_network_gateway_id *string `lyra:"ignore"`
+
+    Active_active *bool
+
+    Bgp_settings *Azurerm_virtual_network_gateway_bgp_settings_1526
+
+    Default_local_network_gateway_id *string
+
+    Enable_bgp *bool
+
+    Ip_configuration Azurerm_virtual_network_gateway_ip_configuration_1527
+
+    Location string
+
+    Name string
+
+    Resource_group_name string
+
+    Sku string
+
+    Tags *map[string]string
+
+    Type string
+
+    Vpn_client_configuration *Azurerm_virtual_network_gateway_vpn_client_configuration_1528
+
+    Vpn_type *string
+
+}
+
+// Azurerm_virtual_network_gatewayHandler ...
+type Azurerm_virtual_network_gatewayHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_network_gatewayHandler) Create(desired *Azurerm_virtual_network_gateway) (*Azurerm_virtual_network_gateway, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_network_gateway", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azurerm_virtual_network_gateway, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_network_gateway{ Azurerm_virtual_network_gateway_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_network_gatewayHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway", externalID)
+}
+
+type Azurerm_virtual_network_gateway_connection_ipsec_policy_1531 struct {
+
+    Azurerm_virtual_network_gateway_connection_ipsec_policy_1531_id *string `lyra:"ignore"`
+
+    Dh_group string
+
+    Ike_encryption string
+
+    Ike_integrity string
+
+    Ipsec_encryption string
+
+    Ipsec_integrity string
+
+    Pfs_group string
+
+    Sa_datasize *int
+
+    Sa_lifetime *int
+
+}
+
+type Azurerm_virtual_network_gateway_connection struct {
+
+    Azurerm_virtual_network_gateway_connection_id *string `lyra:"ignore"`
+
+    Authorization_key *string
+
+    Enable_bgp *bool
+
+    Express_route_circuit_id *string
+
+    Ipsec_policy *Azurerm_virtual_network_gateway_connection_ipsec_policy_1531
+
+    Local_network_gateway_id *string
+
+    Location string
+
+    Name string
+
+    Peer_virtual_network_gateway_id *string
+
+    Resource_group_name string
+
+    Routing_weight *int
+
+    Shared_key *string
+
+    Tags *map[string]string
+
+    Type string
+
+    Use_policy_based_traffic_selectors *bool
+
+    Virtual_network_gateway_id string
+
+}
+
+// Azurerm_virtual_network_gateway_connectionHandler ...
+type Azurerm_virtual_network_gateway_connectionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_network_gateway_connectionHandler) Create(desired *Azurerm_virtual_network_gateway_connection) (*Azurerm_virtual_network_gateway_connection, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_network_gateway_connection", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID string) (*Azurerm_virtual_network_gateway_connection, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_network_gateway_connection{ Azurerm_virtual_network_gateway_connection_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_network_gateway_connectionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
+}
+
+type Azurerm_virtual_network_peering struct {
+
+    Azurerm_virtual_network_peering_id *string `lyra:"ignore"`
+
+    Allow_forwarded_traffic *bool
+
+    Allow_gateway_transit *bool
+
+    Allow_virtual_network_access *bool
+
+    Name string
+
+    Remote_virtual_network_id string
+
+    Resource_group_name string
+
+    Use_remote_gateways *bool
+
+    Virtual_network_name string
+
+}
+
+// Azurerm_virtual_network_peeringHandler ...
+type Azurerm_virtual_network_peeringHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Azurerm_virtual_network_peeringHandler) Create(desired *Azurerm_virtual_network_peering) (*Azurerm_virtual_network_peering, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "azurerm_virtual_network_peering", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azurerm_virtual_network_peering, error) {
+	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_peering", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Azurerm_virtual_network_peering{ Azurerm_virtual_network_peering_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Azurerm_virtual_network_peeringHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "azurerm_virtual_network_peering", externalID)
+}

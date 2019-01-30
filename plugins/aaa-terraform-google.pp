@@ -14,7 +14,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'serving_status' => {
+        'auth_domain' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -26,11 +26,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'gcr_domain' => {
+        'default_hostname' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'auth_domain' => {
+        'feature_settings' => {
+          'type' => Optional[Google_app_engine_application_feature_settings_1532],
+          'value' => undef
+        },
+        'gcr_domain' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -39,12 +43,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'default_hostname' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
+        'serving_status' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'url_dispatch_rule' => {
+          'type' => Optional[Google_app_engine_application_url_dispatch_rule_1533],
           'value' => undef
         }
       }
@@ -60,22 +68,58 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_app_engine_application]]
       }
     },
+    Google_app_engine_application_feature_settings_1532 => {
+      attributes => {
+        'google_app_engine_application_feature_settings_1532_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'split_health_checks' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_app_engine_application_url_dispatch_rule_1533 => {
+      attributes => {
+        'google_app_engine_application_url_dispatch_rule_1533_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'domain' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_bigquery_dataset => {
       attributes => {
         'google_bigquery_dataset_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
-          'type' => Optional[String],
+        'access' => {
+          'type' => Optional[Google_bigquery_dataset_access_1534],
+          'value' => undef
+        },
+        'creation_time' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'dataset_id' => String,
-        'project' => {
-          'type' => Optional[String],
+        'default_table_expiration_ms' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
-        'location' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -87,7 +131,23 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'last_modified_time' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'location' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -104,27 +164,61 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_bigquery_dataset]]
       }
     },
+    Google_bigquery_dataset_access_1534 => {
+      attributes => {
+        'google_bigquery_dataset_access_1534_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'domain' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'group_by_email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'special_group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'user_by_email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'view' => {
+          'type' => Optional[Google_bigquery_dataset_access_1534_view_1535],
+          'value' => undef
+        }
+      }
+    },
+    Google_bigquery_dataset_access_1534_view_1535 => {
+      attributes => {
+        'google_bigquery_dataset_access_1534_view_1535_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dataset_id' => String,
+        'project_id' => String,
+        'table_id' => String
+      }
+    },
     Google_bigquery_table => {
       attributes => {
         'google_bigquery_table_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'creation_time' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'dataset_id' => String,
-        'resource_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'friendly_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'table_id' => String,
-        'schema' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -132,16 +226,61 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
+        'expiration_time' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'friendly_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'last_modified_time' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'location' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'num_bytes' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'num_long_term_bytes' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'num_rows' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'schema' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'table_id' => String,
+        'time_partitioning' => {
+          'type' => Optional[Google_bigquery_table_time_partitioning_1536],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'view' => {
+          'type' => Optional[Google_bigquery_table_view_1537],
           'value' => undef
         }
       }
@@ -157,13 +296,47 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_bigquery_table]]
       }
     },
+    Google_bigquery_table_time_partitioning_1536 => {
+      attributes => {
+        'google_bigquery_table_time_partitioning_1536_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'expiration_ms' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'field' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'type' => String
+      }
+    },
+    Google_bigquery_table_view_1537 => {
+      attributes => {
+        'google_bigquery_table_view_1537_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'query' => String,
+        'use_legacy_sql' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
     Google_bigtable_instance => {
       attributes => {
         'google_bigtable_instance_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'zone' => {
+        'cluster' => {
+          'type' => Optional[Google_bigtable_instance_cluster_1538],
+          'value' => undef
+        },
+        'cluster_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -171,20 +344,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'storage_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'cluster_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'instance_type' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'num_nodes' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'storage_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -201,16 +378,44 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_bigtable_instance]]
       }
     },
+    Google_bigtable_instance_cluster_1538 => {
+      attributes => {
+        'google_bigtable_instance_cluster_1538_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'num_nodes' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'storage_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_bigtable_table => {
       attributes => {
         'google_bigtable_table_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'instance_name' => String,
+        'name' => String,
         'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'split_keys' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         }
       }
@@ -232,12 +437,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
+        'billing_account_id' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'billing_account_id' => String
+        'members' => Array[String],
+        'role' => String
       }
     },
     Google_billing_account_iam_bindingHandler => {
@@ -257,13 +463,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
-        'member' => String,
+        'billing_account_id' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'billing_account_id' => String
+        'member' => String,
+        'role' => String
       }
     },
     Google_billing_account_iam_memberHandler => {
@@ -283,12 +489,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
+        'billing_account_id' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'billing_account_id' => String
+        'policy_data' => String
       }
     },
     Google_billing_account_iam_policyHandler => {
@@ -308,12 +514,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
+        'attestation_authority_note' => Google_binary_authorization_attestor_attestation_authority_note_1539,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'description' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -330,12 +537,55 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_binary_authorization_attestor]]
       }
     },
+    Google_binary_authorization_attestor_attestation_authority_note_1539 => {
+      attributes => {
+        'google_binary_authorization_attestor_attestation_authority_note_1539_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'delegation_service_account_email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'note_reference' => String,
+        'public_keys' => {
+          'type' => Optional[Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540],
+          'value' => undef
+        }
+      }
+    },
+    Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540 => {
+      attributes => {
+        'google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ascii_armored_pgp_public_key' => String,
+        'comment' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'id' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_binary_authorization_policy => {
       attributes => {
         'google_binary_authorization_policy_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'admission_whitelist_patterns' => {
+          'type' => Optional[Google_binary_authorization_policy_admission_whitelist_patterns_1541],
+          'value' => undef
+        },
+        'cluster_admission_rules' => {
+          'type' => Optional[Google_binary_authorization_policy_cluster_admission_rules_1542],
+          'value' => undef
+        },
+        'default_admission_rule' => Google_binary_authorization_policy_default_admission_rule_1543,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -357,13 +607,64 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_binary_authorization_policy]]
       }
     },
+    Google_binary_authorization_policy_admission_whitelist_patterns_1541 => {
+      attributes => {
+        'google_binary_authorization_policy_admission_whitelist_patterns_1541_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name_pattern' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_binary_authorization_policy_cluster_admission_rules_1542 => {
+      attributes => {
+        'google_binary_authorization_policy_cluster_admission_rules_1542_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster' => String,
+        'enforcement_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'evaluation_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'require_attestations_by' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_binary_authorization_policy_default_admission_rule_1543 => {
+      attributes => {
+        'google_binary_authorization_policy_default_admission_rule_1543_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enforcement_mode' => String,
+        'evaluation_mode' => String,
+        'require_attestations_by' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
     Google_cloudbuild_trigger => {
       attributes => {
         'google_cloudbuild_trigger_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
+        'build' => {
+          'type' => Optional[Google_cloudbuild_trigger_build_1544],
+          'value' => undef
+        },
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -371,8 +672,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'substitutions' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'trigger_template' => {
+          'type' => Optional[Google_cloudbuild_trigger_trigger_template_1546],
           'value' => undef
         }
       }
@@ -388,23 +697,84 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_cloudbuild_trigger]]
       }
     },
+    Google_cloudbuild_trigger_build_1544 => {
+      attributes => {
+        'google_cloudbuild_trigger_build_1544_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'images' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'step' => {
+          'type' => Optional[Google_cloudbuild_trigger_build_1544_step_1545],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_cloudbuild_trigger_build_1544_step_1545 => {
+      attributes => {
+        'google_cloudbuild_trigger_build_1544_step_1545_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'args' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_cloudbuild_trigger_trigger_template_1546 => {
+      attributes => {
+        'google_cloudbuild_trigger_trigger_template_1546_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'branch_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'commit_sha' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dir' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'repo_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tag_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_cloudfunctions_function => {
       attributes => {
         'google_cloudfunctions_function_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_archive_bucket' => String,
-        'source_archive_object' => String,
-        'runtime' => {
-          'type' => Optional[String],
+        'available_memory_mb' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
-        'https_trigger_url' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -413,12 +783,43 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'trigger_topic' => {
+        'environment_variables' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'event_trigger' => {
+          'type' => Optional[Google_cloudfunctions_function_event_trigger_1547],
+          'value' => undef
+        },
+        'https_trigger_url' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'retry_on_failure' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'runtime' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_archive_bucket' => String,
+        'source_archive_object' => String,
+        'timeout' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'trigger_bucket' => {
@@ -429,11 +830,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'retry_on_failure' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'region' => {
+        'trigger_topic' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -450,12 +847,52 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_cloudfunctions_function]]
       }
     },
+    Google_cloudfunctions_function_event_trigger_1547 => {
+      attributes => {
+        'google_cloudfunctions_function_event_trigger_1547_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'event_type' => String,
+        'failure_policy' => {
+          'type' => Optional[Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548],
+          'value' => undef
+        },
+        'resource' => String
+      }
+    },
+    Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548 => {
+      attributes => {
+        'google_cloudfunctions_function_event_trigger_1547_failure_policy_1548_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'retry' => Boolean
+      }
+    },
     Google_cloudiot_registry => {
       attributes => {
         'google_cloudiot_registry_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'credentials' => {
+          'type' => Optional[Google_cloudiot_registry_credentials_1549],
+          'value' => undef
+        },
+        'event_notification_config' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'http_config' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'mqtt_config' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -464,7 +901,10 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String
+        'state_notification_config' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
       }
     },
     Google_cloudiot_registryHandler => {
@@ -478,18 +918,38 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_cloudiot_registry]]
       }
     },
+    Google_cloudiot_registry_credentials_1549 => {
+      attributes => {
+        'google_cloudiot_registry_credentials_1549_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_key_certificate' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
     Google_composer_environment => {
       attributes => {
         'google_composer_environment_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'config' => {
+          'type' => Optional[Google_composer_environment_config_1550],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'name' => String,
-        'region' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
+        'region' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -506,17 +966,61 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_composer_environment]]
       }
     },
-    Google_compute_address => {
+    Google_composer_environment_config_1550 => {
       attributes => {
-        'google_compute_address_id' => {
+        'google_composer_environment_config_1550_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'airflow_uri' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
+        'dag_gcs_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'gke_cluster' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'node_config' => {
+          'type' => Optional[Google_composer_environment_config_1550_node_config_1551],
+          'value' => undef
+        },
+        'node_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'software_config' => {
+          'type' => Optional[Google_composer_environment_config_1550_software_config_1552],
+          'value' => undef
+        }
+      }
+    },
+    Google_composer_environment_config_1550_node_config_1551 => {
+      attributes => {
+        'google_composer_environment_config_1550_node_config_1551_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'oauth_scopes' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'service_account' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -524,11 +1028,43 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'label_fingerprint' => {
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_composer_environment_config_1550_software_config_1552 => {
+      attributes => {
+        'google_composer_environment_config_1550_software_config_1552_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
+        'airflow_config_overrides' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'env_variables' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'image_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'pypi_packages' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_address => {
+      attributes => {
+        'google_compute_address_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -540,11 +1076,32 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
         'network_tier' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -552,7 +1109,14 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'users' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
       }
     },
     Google_compute_addressHandler => {
@@ -576,12 +1140,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'disk' => String,
+        'instance' => String,
         'mode' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'disk' => String,
-        'instance' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -609,6 +1173,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'autoscaling_policy' => Google_compute_autoscaler_autoscaling_policy_1553,
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -617,17 +1191,8 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'target' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -644,9 +1209,73 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_autoscaler]]
       }
     },
+    Google_compute_autoscaler_autoscaling_policy_1553 => {
+      attributes => {
+        'google_compute_autoscaler_autoscaling_policy_1553_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cooldown_period' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'cpu_utilization' => {
+          'type' => Optional[Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554],
+          'value' => undef
+        },
+        'load_balancing_utilization' => {
+          'type' => Optional[Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555],
+          'value' => undef
+        },
+        'max_replicas' => Integer,
+        'metric' => {
+          'type' => Optional[Google_compute_autoscaler_autoscaling_policy_1553_metric_1556],
+          'value' => undef
+        },
+        'min_replicas' => Integer
+      }
+    },
+    Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554 => {
+      attributes => {
+        'google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target' => Float
+      }
+    },
+    Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555 => {
+      attributes => {
+        'google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target' => Float
+      }
+    },
+    Google_compute_autoscaler_autoscaling_policy_1553_metric_1556 => {
+      attributes => {
+        'google_compute_autoscaler_autoscaling_policy_1553_metric_1556_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'target' => Float,
+        'type' => String
+      }
+    },
     Google_compute_backend_bucket => {
       attributes => {
         'google_compute_backend_bucket_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bucket_name' => String,
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -654,21 +1283,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'creation_timestamp' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
         'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'bucket_name' => String,
-        'name' => String,
-        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -691,16 +1311,23 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
-          'type' => Optional[String],
+        'backend' => {
+          'type' => Optional[Google_compute_backend_service_backend_1557],
           'value' => undef
         },
-        'name' => String,
+        'cdn_policy' => {
+          'type' => Optional[Google_compute_backend_service_cdn_policy_1558],
+          'value' => undef
+        },
+        'connection_draining_timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'custom_request_headers' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'security_policy' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -712,6 +1339,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'health_checks' => Array[String],
+        'iap' => {
+          'type' => Optional[Google_compute_backend_service_iap_1560],
+          'value' => undef
+        },
+        'name' => String,
         'port_name' => {
           'type' => Optional[String],
           'value' => undef
@@ -724,12 +1357,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'security_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'session_affinity' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
-          'type' => Optional[String],
+        'timeout_sec' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -745,33 +1390,123 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_backend_service]]
       }
     },
+    Google_compute_backend_service_backend_1557 => {
+      attributes => {
+        'google_compute_backend_service_backend_1557_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'balancing_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'capacity_scaler' => {
+          'type' => Optional[Float],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_connections' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_connections_per_instance' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_rate' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_rate_per_instance' => {
+          'type' => Optional[Float],
+          'value' => undef
+        },
+        'max_utilization' => {
+          'type' => Optional[Float],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_backend_service_cdn_policy_1558 => {
+      attributes => {
+        'google_compute_backend_service_cdn_policy_1558_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cache_key_policy' => {
+          'type' => Optional[Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559 => {
+      attributes => {
+        'google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'include_host' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'include_protocol' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'include_query_string' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'query_string_blacklist' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'query_string_whitelist' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_backend_service_iap_1560 => {
+      attributes => {
+        'google_compute_backend_service_iap_1560_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'oauth2_client_id' => String,
+        'oauth2_client_secret' => String
+      }
+    },
     Google_compute_disk => {
       attributes => {
         'google_compute_disk_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'last_attach_timestamp' => {
+        'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_image_id' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_snapshot_id' => {
+        'disk_encryption_key' => {
+          'type' => Optional[Google_compute_disk_disk_encryption_key_1561],
+          'value' => undef
+        },
+        'disk_encryption_key_raw' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot' => {
+        'disk_encryption_key_sha256' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -783,32 +1518,60 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'last_attach_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'last_detach_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'creation_timestamp' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'disk_encryption_key_sha256' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => String,
-        'zone' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'disk_encryption_key_raw' => {
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'snapshot' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_image_encryption_key' => {
+          'type' => Optional[Google_compute_disk_source_image_encryption_key_1562],
+          'value' => undef
+        },
+        'source_image_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_snapshot_encryption_key' => {
+          'type' => Optional[Google_compute_disk_source_snapshot_encryption_key_1563],
+          'value' => undef
+        },
+        'source_snapshot_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'users' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -825,13 +1588,81 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_disk]]
       }
     },
+    Google_compute_disk_disk_encryption_key_1561 => {
+      attributes => {
+        'google_compute_disk_disk_encryption_key_1561_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_disk_source_image_encryption_key_1562 => {
+      attributes => {
+        'google_compute_disk_source_image_encryption_key_1562_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_disk_source_snapshot_encryption_key_1563 => {
+      attributes => {
+        'google_compute_disk_source_snapshot_encryption_key_1563_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_firewall => {
       attributes => {
         'google_compute_firewall_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'allow' => {
+          'type' => Optional[Google_compute_firewall_allow_1564],
+          'value' => undef
+        },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'deny' => {
+          'type' => Optional[Google_compute_firewall_deny_1565],
+          'value' => undef
+        },
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'destination_ranges' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'direction' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -843,24 +1674,40 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => String,
-        'direction' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'creation_timestamp' => {
-          'type' => Optional[String],
+        'network' => String,
+        'priority' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'network' => String
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_ranges' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'source_service_accounts' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'source_tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'target_service_accounts' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'target_tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
       }
     },
     Google_compute_firewallHandler => {
@@ -874,29 +1721,47 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_firewall]]
       }
     },
+    Google_compute_firewall_allow_1564 => {
+      attributes => {
+        'google_compute_firewall_allow_1564_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ports' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'protocol' => String
+      }
+    },
+    Google_compute_firewall_deny_1565 => {
+      attributes => {
+        'google_compute_firewall_deny_1565_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ports' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'protocol' => String
+      }
+    },
     Google_compute_forwarding_rule => {
       attributes => {
         'google_compute_forwarding_rule_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'backend_service' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'service_label' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'subnetwork' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'label_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -908,27 +1773,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'port_range' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'region' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'backend_service' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'ip_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'load_balancing_scheme' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'network' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -936,11 +1798,27 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'target' => {
+        'port_range' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
+        'ports' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_label' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -948,8 +1826,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'load_balancing_scheme' => {
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -972,36 +1853,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'network' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'purpose' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'creation_timestamp' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'label_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1009,7 +1861,44 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'ip_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'prefix_length' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'purpose' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1032,24 +1921,6 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'target' => String,
-        'ip_protocol' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'label_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ip_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -1058,7 +1929,28 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'ip_protocol' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
         'port_range' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1069,7 +1961,8 @@ type TerraformGoogle = TypeSet[{
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'target' => String
       }
     },
     Google_compute_global_forwarding_ruleHandler => {
@@ -1089,12 +1982,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'resource_type' => {
-          'type' => Optional[String],
+        'check_interval_sec' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
-        'project' => {
+        'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1102,12 +1994,45 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
+        'healthy_threshold' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'http_health_check' => {
+          'type' => Optional[Google_compute_health_check_http_health_check_1566],
+          'value' => undef
+        },
+        'https_health_check' => {
+          'type' => Optional[Google_compute_health_check_https_health_check_1567],
+          'value' => undef
+        },
+        'name' => String,
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
         'self_link' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'ssl_health_check' => {
+          'type' => Optional[Google_compute_health_check_ssl_health_check_1568],
+          'value' => undef
+        },
+        'tcp_health_check' => {
+          'type' => Optional[Google_compute_health_check_tcp_health_check_1569],
+          'value' => undef
+        },
+        'timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'unhealthy_threshold' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -1123,22 +2048,9 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_health_check]]
       }
     },
-    Google_compute_http_health_check => {
+    Google_compute_health_check_http_health_check_1566 => {
       attributes => {
-        'google_compute_http_health_check_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'description' => {
+        'google_compute_health_check_http_health_check_1566_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1146,12 +2058,149 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'proxy_header' => {
           'type' => Optional[String],
           'value' => undef
         },
         'request_path' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'response' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_health_check_https_health_check_1567 => {
+      attributes => {
+        'google_compute_health_check_https_health_check_1567_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'host' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'proxy_header' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request_path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'response' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_health_check_ssl_health_check_1568 => {
+      attributes => {
+        'google_compute_health_check_ssl_health_check_1568_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'proxy_header' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'response' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_health_check_tcp_health_check_1569 => {
+      attributes => {
+        'google_compute_health_check_tcp_health_check_1569_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'proxy_header' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'response' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_http_health_check => {
+      attributes => {
+        'google_compute_http_health_check_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'check_interval_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'healthy_threshold' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'host' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request_path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'unhealthy_threshold' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -1173,20 +2222,36 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'request_path' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'host' => {
-          'type' => Optional[String],
+        'check_interval_sec' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'healthy_threshold' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'host' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request_path' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1194,8 +2259,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
+        'timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'unhealthy_threshold' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -1217,12 +2286,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'description' => {
-          'type' => Optional[String],
+        'create_timeout' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
-        'project' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1230,15 +2298,32 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_disk' => {
+        'label_fingerprint' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'licenses' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'name' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_disk' => {
+          'type' => Optional[Google_compute_image_raw_disk_1570],
           'value' => undef
         },
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'label_fingerprint' => {
+        'source_disk' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1255,46 +2340,26 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_image]]
       }
     },
+    Google_compute_image_raw_disk_1570 => {
+      attributes => {
+        'google_compute_image_raw_disk_1570_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'container_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha1' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => String
+      }
+    },
     Google_compute_instance => {
       attributes => {
         'google_compute_instance_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'metadata_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'deletion_protection' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'machine_type' => String,
-        'min_cpu_platform' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'metadata_startup_script' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cpu_platform' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1302,7 +2367,40 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'project' => {
+        'attached_disk' => {
+          'type' => Optional[Google_compute_instance_attached_disk_1571],
+          'value' => undef
+        },
+        'boot_disk' => Google_compute_instance_boot_disk_1572,
+        'can_ip_forward' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'cpu_platform' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'create_timeout' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'deletion_protection' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk' => {
+          'type' => Optional[Google_compute_instance_disk_1574],
+          'value' => undef
+        },
+        'guest_accelerator' => {
+          'type' => Optional[Google_compute_instance_guest_accelerator_1575],
+          'value' => undef
+        },
+        'instance_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1310,12 +2408,62 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'can_ip_forward' => {
-          'type' => Optional[Boolean],
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'instance_id' => {
+        'machine_type' => String,
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'metadata_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata_startup_script' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'min_cpu_platform' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'network' => {
+          'type' => Optional[Google_compute_instance_network_1576],
+          'value' => undef
+        },
+        'network_interface' => Google_compute_instance_network_interface_1577,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scheduling' => {
+          'type' => Optional[Google_compute_instance_scheduling_1580],
+          'value' => undef
+        },
+        'scratch_disk' => {
+          'type' => Optional[Google_compute_instance_scratch_disk_1581],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[Google_compute_instance_service_account_1582],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'tags_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1332,30 +2480,146 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_instance]]
       }
     },
+    Google_compute_instance_attached_disk_1571 => {
+      attributes => {
+        'google_compute_instance_attached_disk_1571_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'device_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_raw' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => String
+      }
+    },
+    Google_compute_instance_boot_disk_1572 => {
+      attributes => {
+        'google_compute_instance_boot_disk_1572_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'device_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_raw' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'initialize_params' => {
+          'type' => Optional[Google_compute_instance_boot_disk_1572_initialize_params_1573],
+          'value' => undef
+        },
+        'source' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_boot_disk_1572_initialize_params_1573 => {
+      attributes => {
+        'google_compute_instance_boot_disk_1572_initialize_params_1573_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_disk_1574 => {
+      attributes => {
+        'google_compute_instance_disk_1574_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'device_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_raw' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scratch' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_instance_from_template => {
       attributes => {
         'google_compute_instance_from_template_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'label_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'deletion_protection' => {
+        'allow_stopping_for_update' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'machine_type' => {
-          'type' => Optional[String],
+        'attached_disk' => {
+          'type' => Optional[Google_compute_instance_from_template_attached_disk_1583],
           'value' => undef
         },
-        'name' => String,
-        'allow_stopping_for_update' => {
+        'boot_disk' => {
+          'type' => Optional[Google_compute_instance_from_template_boot_disk_1584],
+          'value' => undef
+        },
+        'can_ip_forward' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -1363,15 +2627,39 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags_fingerprint' => {
+        'deletion_protection' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'description' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'guest_accelerator' => {
+          'type' => Optional[Google_compute_instance_from_template_guest_accelerator_1586],
+          'value' => undef
+        },
+        'instance_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'metadata_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1379,20 +2667,41 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'can_ip_forward' => {
-          'type' => Optional[Boolean],
+        'min_cpu_platform' => {
+          'type' => Optional[String],
           'value' => undef
         },
-        'instance_id' => {
+        'name' => String,
+        'network_interface' => {
+          'type' => Optional[Google_compute_instance_from_template_network_interface_1587],
+          'value' => undef
+        },
+        'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'scheduling' => {
+          'type' => Optional[Google_compute_instance_from_template_scheduling_1590],
+          'value' => undef
+        },
+        'scratch_disk' => {
+          'type' => Optional[Google_compute_instance_from_template_scratch_disk_1591],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[Google_compute_instance_from_template_service_account_1592],
           'value' => undef
         },
         'source_instance_template' => String,
-        'description' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         },
-        'min_cpu_platform' => {
+        'tags_fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1413,15 +2722,232 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_instance_from_template]]
       }
     },
+    Google_compute_instance_from_template_attached_disk_1583 => {
+      attributes => {
+        'google_compute_instance_from_template_attached_disk_1583_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'device_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_raw' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => String
+      }
+    },
+    Google_compute_instance_from_template_boot_disk_1584 => {
+      attributes => {
+        'google_compute_instance_from_template_boot_disk_1584_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'device_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_raw' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key_sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'initialize_params' => {
+          'type' => Optional[Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585],
+          'value' => undef
+        },
+        'source' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585 => {
+      attributes => {
+        'google_compute_instance_from_template_boot_disk_1584_initialize_params_1585_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_guest_accelerator_1586 => {
+      attributes => {
+        'google_compute_instance_from_template_guest_accelerator_1586_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Google_compute_instance_from_template_network_interface_1587 => {
+      attributes => {
+        'google_compute_instance_from_template_network_interface_1587_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'access_config' => {
+          'type' => Optional[Google_compute_instance_from_template_network_interface_1587_access_config_1588],
+          'value' => undef
+        },
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alias_ip_range' => {
+          'type' => Optional[Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork_project' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_network_interface_1587_access_config_1588 => {
+      attributes => {
+        'google_compute_instance_from_template_network_interface_1587_access_config_1588_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'assigned_nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_tier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_ptr_domain_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589 => {
+      attributes => {
+        'google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_cidr_range' => String,
+        'subnetwork_range_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_scheduling_1590 => {
+      attributes => {
+        'google_compute_instance_from_template_scheduling_1590_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'automatic_restart' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'on_host_maintenance' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_scratch_disk_1591 => {
+      attributes => {
+        'google_compute_instance_from_template_scratch_disk_1591_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'interface' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_from_template_service_account_1592 => {
+      attributes => {
+        'google_compute_instance_from_template_service_account_1592_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scopes' => Array[String]
+      }
+    },
     Google_compute_instance_group => {
       attributes => {
         'google_compute_instance_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'instances' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'name' => String,
+        'named_port' => {
+          'type' => Optional[Google_compute_instance_group_named_port_1593],
           'value' => undef
         },
         'network' => {
@@ -1434,6 +2960,10 @@ type TerraformGoogle = TypeSet[{
         },
         'self_link' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'size' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'zone' => {
@@ -1459,33 +2989,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_group' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'update_strategy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'wait_for_instances' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'name' => String,
-        'zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
+        'auto_healing_policies' => {
+          'type' => Optional[Google_compute_instance_group_manager_auto_healing_policies_1594],
           'value' => undef
         },
         'base_instance_name' => String,
-        'instance_template' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1493,7 +3002,52 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_template' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'named_port' => {
+          'type' => Optional[Google_compute_instance_group_manager_named_port_1595],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rolling_update_policy' => {
+          'type' => Optional[Google_compute_instance_group_manager_rolling_update_policy_1596],
+          'value' => undef
+        },
         'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target_pools' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'target_size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'update_strategy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[Google_compute_instance_group_manager_version_1597],
+          'value' => undef
+        },
+        'wait_for_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1510,6 +3064,253 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_instance_group_manager]]
       }
     },
+    Google_compute_instance_group_manager_auto_healing_policies_1594 => {
+      attributes => {
+        'google_compute_instance_group_manager_auto_healing_policies_1594_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'health_check' => String,
+        'initial_delay_sec' => Integer
+      }
+    },
+    Google_compute_instance_group_manager_named_port_1595 => {
+      attributes => {
+        'google_compute_instance_group_manager_named_port_1595_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'port' => Integer
+      }
+    },
+    Google_compute_instance_group_manager_rolling_update_policy_1596 => {
+      attributes => {
+        'google_compute_instance_group_manager_rolling_update_policy_1596_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_surge_fixed' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_surge_percent' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_unavailable_fixed' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_unavailable_percent' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'min_ready_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'minimal_action' => String,
+        'type' => String
+      }
+    },
+    Google_compute_instance_group_manager_version_1597 => {
+      attributes => {
+        'google_compute_instance_group_manager_version_1597_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_template' => String,
+        'name' => String,
+        'target_size' => {
+          'type' => Optional[Google_compute_instance_group_manager_version_1597_target_size_1598],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_group_manager_version_1597_target_size_1598 => {
+      attributes => {
+        'google_compute_instance_group_manager_version_1597_target_size_1598_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'fixed' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'percent' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_group_named_port_1593 => {
+      attributes => {
+        'google_compute_instance_group_named_port_1593_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'port' => Integer
+      }
+    },
+    Google_compute_instance_guest_accelerator_1575 => {
+      attributes => {
+        'google_compute_instance_guest_accelerator_1575_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Google_compute_instance_network_1576 => {
+      attributes => {
+        'google_compute_instance_network_1576_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'external_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'internal_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => String
+      }
+    },
+    Google_compute_instance_network_interface_1577 => {
+      attributes => {
+        'google_compute_instance_network_interface_1577_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'access_config' => {
+          'type' => Optional[Google_compute_instance_network_interface_1577_access_config_1578],
+          'value' => undef
+        },
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alias_ip_range' => {
+          'type' => Optional[Google_compute_instance_network_interface_1577_alias_ip_range_1579],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork_project' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_network_interface_1577_access_config_1578 => {
+      attributes => {
+        'google_compute_instance_network_interface_1577_access_config_1578_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'assigned_nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_tier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_ptr_domain_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_network_interface_1577_alias_ip_range_1579 => {
+      attributes => {
+        'google_compute_instance_network_interface_1577_alias_ip_range_1579_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_cidr_range' => String,
+        'subnetwork_range_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_scheduling_1580 => {
+      attributes => {
+        'google_compute_instance_scheduling_1580_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'automatic_restart' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'on_host_maintenance' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_scratch_disk_1581 => {
+      attributes => {
+        'google_compute_instance_scratch_disk_1581_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'interface' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_service_account_1582 => {
+      attributes => {
+        'google_compute_instance_service_account_1582_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scopes' => Array[String]
+      }
+    },
     Google_compute_instance_template => {
       attributes => {
         'google_compute_instance_template_id' => {
@@ -1520,26 +3321,6 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'instance_description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'on_host_maintenance' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'can_ip_forward' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -1548,11 +3329,33 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'disk' => Google_compute_instance_template_disk_1599,
+        'guest_accelerator' => {
+          'type' => Optional[Google_compute_instance_template_guest_accelerator_1601],
+          'value' => undef
+        },
+        'instance_description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'machine_type' => String,
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'metadata_fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         },
         'metadata_startup_script' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'min_cpu_platform' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1564,12 +3367,39 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'machine_type' => String,
+        'network_interface' => {
+          'type' => Optional[Google_compute_instance_template_network_interface_1602],
+          'value' => undef
+        },
+        'on_host_maintenance' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'region' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'min_cpu_platform' => {
+        'scheduling' => {
+          'type' => Optional[Google_compute_instance_template_scheduling_1605],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[Google_compute_instance_template_service_account_1606],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'tags_fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1586,9 +3416,193 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_instance_template]]
       }
     },
+    Google_compute_instance_template_disk_1599 => {
+      attributes => {
+        'google_compute_instance_template_disk_1599_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'boot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'device_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key' => {
+          'type' => Optional[Google_compute_instance_template_disk_1599_disk_encryption_key_1600],
+          'value' => undef
+        },
+        'disk_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'interface' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_image' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_template_disk_1599_disk_encryption_key_1600 => {
+      attributes => {
+        'google_compute_instance_template_disk_1599_disk_encryption_key_1600_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_template_guest_accelerator_1601 => {
+      attributes => {
+        'google_compute_instance_template_guest_accelerator_1601_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Google_compute_instance_template_network_interface_1602 => {
+      attributes => {
+        'google_compute_instance_template_network_interface_1602_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'access_config' => {
+          'type' => Optional[Google_compute_instance_template_network_interface_1602_access_config_1603],
+          'value' => undef
+        },
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alias_ip_range' => {
+          'type' => Optional[Google_compute_instance_template_network_interface_1602_alias_ip_range_1604],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork_project' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_template_network_interface_1602_access_config_1603 => {
+      attributes => {
+        'google_compute_instance_template_network_interface_1602_access_config_1603_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'assigned_nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_tier' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_template_network_interface_1602_alias_ip_range_1604 => {
+      attributes => {
+        'google_compute_instance_template_network_interface_1602_alias_ip_range_1604_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_cidr_range' => String,
+        'subnetwork_range_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_template_scheduling_1605 => {
+      attributes => {
+        'google_compute_instance_template_scheduling_1605_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'automatic_restart' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'on_host_maintenance' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_instance_template_service_account_1606 => {
+      attributes => {
+        'google_compute_instance_template_service_account_1606_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scopes' => Array[String]
+      }
+    },
     Google_compute_interconnect_attachment => {
       attributes => {
         'google_compute_interconnect_attachment_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cloud_router_ip_address' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1600,17 +3614,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'google_reference_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
+        'interconnect' => String,
+        'name' => String,
+        'private_interconnect_info' => {
+          'type' => Optional[Google_compute_interconnect_attachment_private_interconnect_info_1607],
           'value' => undef
         },
-        'router' => String,
-        'name' => String,
-        'description' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1618,15 +3636,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'cloud_router_ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'router' => String,
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'interconnect' => String
+        }
       }
     },
     Google_compute_interconnect_attachmentHandler => {
@@ -1640,17 +3654,29 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_interconnect_attachment]]
       }
     },
+    Google_compute_interconnect_attachment_private_interconnect_info_1607 => {
+      attributes => {
+        'google_compute_interconnect_attachment_private_interconnect_info_1607_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tag8021q' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_network => {
       attributes => {
         'google_compute_network_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
+        'auto_create_subnetworks' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
-        'routing_mode' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1662,17 +3688,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'routing_mode' => {
           'type' => Optional[String],
           'value' => undef
         },
         'self_link' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'auto_create_subnetworks' => {
-          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -1694,13 +3720,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'network' => String,
-        'peer_network' => String,
         'auto_create_routes' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'name' => String,
+        'network' => String,
+        'peer_network' => String,
         'state' => {
           'type' => Optional[String],
           'value' => undef
@@ -1728,6 +3754,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'metadata' => Hash[String, String],
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -1752,11 +3779,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'key' => String,
-        'value' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'value' => String
       }
     },
     Google_compute_project_metadata_itemHandler => {
@@ -1776,13 +3803,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
+        'autoscaling_policy' => Google_compute_region_autoscaler_autoscaling_policy_1608,
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'target' => String,
-        'description' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1790,14 +3821,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'target' => String
       }
     },
     Google_compute_region_autoscalerHandler => {
@@ -1811,17 +3839,90 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_region_autoscaler]]
       }
     },
+    Google_compute_region_autoscaler_autoscaling_policy_1608 => {
+      attributes => {
+        'google_compute_region_autoscaler_autoscaling_policy_1608_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cooldown_period' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'cpu_utilization' => {
+          'type' => Optional[Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609],
+          'value' => undef
+        },
+        'load_balancing_utilization' => {
+          'type' => Optional[Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610],
+          'value' => undef
+        },
+        'max_replicas' => Integer,
+        'metric' => {
+          'type' => Optional[Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611],
+          'value' => undef
+        },
+        'min_replicas' => Integer
+      }
+    },
+    Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609 => {
+      attributes => {
+        'google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target' => Float
+      }
+    },
+    Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610 => {
+      attributes => {
+        'google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target' => Float
+      }
+    },
+    Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611 => {
+      attributes => {
+        'google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'target' => Float,
+        'type' => String
+      }
+    },
     Google_compute_region_backend_service => {
       attributes => {
         'google_compute_region_backend_service_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'backend' => {
+          'type' => Optional[Google_compute_region_backend_service_backend_1612],
+          'value' => undef
+        },
+        'connection_draining_timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'health_checks' => Array[String],
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'session_affinity' => {
+        'protocol' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1833,19 +3934,14 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'session_affinity' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'fingerprint' => {
-          'type' => Optional[String],
+        'timeout_sec' => {
+          'type' => Optional[Integer],
           'value' => undef
-        },
-        'protocol' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Google_compute_region_backend_serviceHandler => {
@@ -1859,9 +3955,9 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_region_backend_service]]
       }
     },
-    Google_compute_region_disk => {
+    Google_compute_region_backend_service_backend_1612 => {
       attributes => {
-        'google_compute_region_disk_id' => {
+        'google_compute_region_backend_service_backend_1612_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1869,7 +3965,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_type' => {
+        'group' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_region_disk => {
+      attributes => {
+        'google_compute_region_disk_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1877,20 +3981,32 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'last_detach_timestamp' => {
+        'description' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_encryption_key' => {
+          'type' => Optional[Google_compute_region_disk_disk_encryption_key_1613],
+          'value' => undef
+        },
+        'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'last_attach_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_snapshot_id' => {
+        'last_detach_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'snapshot' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1898,16 +4014,33 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'label_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'replica_zones' => Array[String],
         'self_link' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'snapshot' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_snapshot_encryption_key' => {
+          'type' => Optional[Google_compute_region_disk_source_snapshot_encryption_key_1614],
+          'value' => undef
+        },
+        'source_snapshot_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'users' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         }
       }
@@ -1923,31 +4056,58 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_region_disk]]
       }
     },
+    Google_compute_region_disk_disk_encryption_key_1613 => {
+      attributes => {
+        'google_compute_region_disk_disk_encryption_key_1613_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_region_disk_source_snapshot_encryption_key_1614 => {
+      attributes => {
+        'google_compute_region_disk_source_snapshot_encryption_key_1614_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_region_instance_group_manager => {
       attributes => {
         'google_compute_region_instance_group_manager_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'update_strategy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'wait_for_instances' => {
-          'type' => Optional[Boolean],
+        'auto_healing_policies' => {
+          'type' => Optional[Google_compute_region_instance_group_manager_auto_healing_policies_1615],
           'value' => undef
         },
         'base_instance_name' => String,
-        'instance_template' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'region' => String,
-        'fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'distribution_policy_zones' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1955,13 +4115,46 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_template' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name' => String,
+        'named_port' => {
+          'type' => Optional[Google_compute_region_instance_group_manager_named_port_1616],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'region' => String,
+        'rolling_update_policy' => {
+          'type' => Optional[Google_compute_region_instance_group_manager_rolling_update_policy_1617],
+          'value' => undef
+        },
         'self_link' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'target_pools' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'target_size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'update_strategy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[Google_compute_region_instance_group_manager_version_1618],
+          'value' => undef
+        },
+        'wait_for_instances' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -1977,17 +4170,89 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_region_instance_group_manager]]
       }
     },
+    Google_compute_region_instance_group_manager_auto_healing_policies_1615 => {
+      attributes => {
+        'google_compute_region_instance_group_manager_auto_healing_policies_1615_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'health_check' => String,
+        'initial_delay_sec' => Integer
+      }
+    },
+    Google_compute_region_instance_group_manager_named_port_1616 => {
+      attributes => {
+        'google_compute_region_instance_group_manager_named_port_1616_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'port' => Integer
+      }
+    },
+    Google_compute_region_instance_group_manager_rolling_update_policy_1617 => {
+      attributes => {
+        'google_compute_region_instance_group_manager_rolling_update_policy_1617_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_surge_fixed' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_surge_percent' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_unavailable_fixed' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'max_unavailable_percent' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'min_ready_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'minimal_action' => String,
+        'type' => String
+      }
+    },
+    Google_compute_region_instance_group_manager_version_1618 => {
+      attributes => {
+        'google_compute_region_instance_group_manager_version_1618_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_template' => String,
+        'name' => String,
+        'target_size' => {
+          'type' => Optional[Google_compute_region_instance_group_manager_version_1618_target_size_1619],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_region_instance_group_manager_version_1618_target_size_1619 => {
+      attributes => {
+        'google_compute_region_instance_group_manager_version_1618_target_size_1619_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'fixed' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'percent' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_route => {
       attributes => {
         'google_compute_route_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'next_hop_vpn_tunnel' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'next_hop_network' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1995,11 +4260,14 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'dest_range' => String,
+        'name' => String,
+        'network' => String,
         'next_hop_gateway' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'next_hop_ip' => {
+        'next_hop_instance' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2007,19 +4275,32 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'network' => String,
-        'self_link' => {
+        'next_hop_ip' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'dest_range' => String,
-        'next_hop_instance' => {
+        'next_hop_network' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'next_hop_vpn_tunnel' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'priority' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         }
       }
@@ -2041,7 +4322,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'bgp' => {
+          'type' => Optional[Google_compute_router_bgp_1620],
+          'value' => undef
+        },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'network' => String,
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2049,20 +4344,10 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String,
-        'network' => String
+        }
       }
     },
     Google_compute_routerHandler => {
@@ -2076,19 +4361,54 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_router]]
       }
     },
+    Google_compute_router_bgp_1620 => {
+      attributes => {
+        'google_compute_router_bgp_1620_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'advertise_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'advertised_groups' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'advertised_ip_ranges' => {
+          'type' => Optional[Google_compute_router_bgp_1620_advertised_ip_ranges_1621],
+          'value' => undef
+        },
+        'asn' => Integer
+      }
+    },
+    Google_compute_router_bgp_1620_advertised_ip_ranges_1621 => {
+      attributes => {
+        'google_compute_router_bgp_1620_advertised_ip_ranges_1621_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'range' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_router_interface => {
       attributes => {
         'google_compute_router_interface_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'router' => String,
-        'vpn_tunnel' => String,
         'ip_range' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -2096,7 +4416,9 @@ type TerraformGoogle = TypeSet[{
         'region' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'router' => String,
+        'vpn_tunnel' => String
       }
     },
     Google_compute_router_interfaceHandler => {
@@ -2116,19 +4438,47 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
-          'type' => Optional[String],
+        'icmp_idle_timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'min_ports_per_vm' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'name' => String,
         'nat_ip_allocate_option' => String,
+        'nat_ips' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
           'type' => Optional[String],
           'value' => undef
         },
         'router' => String,
         'source_subnetwork_ip_ranges_to_nat' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[Google_compute_router_nat_subnetwork_1622],
+          'value' => undef
+        },
+        'tcp_established_idle_timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'tcp_transitory_idle_timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'udp_idle_timeout_sec' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -2144,15 +4494,41 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_router_nat]]
       }
     },
+    Google_compute_router_nat_subnetwork_1622 => {
+      attributes => {
+        'google_compute_router_nat_subnetwork_1622_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'secondary_ip_range_names' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'source_ip_ranges_to_nat' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_router_peer => {
       attributes => {
         'google_compute_router_peer_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'router' => String,
+        'advertised_route_priority' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'interface' => String,
         'ip_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'peer_asn' => Integer,
+        'peer_ip_address' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2160,15 +4536,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'interface' => String,
-        'peer_ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'region' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'router' => String
       }
     },
     Google_compute_router_peerHandler => {
@@ -2188,20 +4560,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rule' => {
+          'type' => Optional[Google_compute_security_policy_rule_1623],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2216,6 +4592,44 @@ type TerraformGoogle = TypeSet[{
         'read' => Callable[
           [String],
           Optional[Google_compute_security_policy]]
+      }
+    },
+    Google_compute_security_policy_rule_1623 => {
+      attributes => {
+        'google_compute_security_policy_rule_1623_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'action' => String,
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'match' => Google_compute_security_policy_rule_1623_match_1624,
+        'preview' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'priority' => Integer
+      }
+    },
+    Google_compute_security_policy_rule_1623_match_1624 => {
+      attributes => {
+        'google_compute_security_policy_rule_1623_match_1624_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'config' => Google_compute_security_policy_rule_1623_match_1624_config_1625,
+        'versioned_expr' => String
+      }
+    },
+    Google_compute_security_policy_rule_1623_match_1624_config_1625 => {
+      attributes => {
+        'google_compute_security_policy_rule_1623_match_1624_config_1625_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'src_ip_ranges' => Array[String]
       }
     },
     Google_compute_shared_vpc_host_project => {
@@ -2265,24 +4679,44 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_disk' => String,
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_disk_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot_encryption_key_raw' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'zone' => {
-          'type' => Optional[String],
+        'disk_size_gb' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'label_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'licenses' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'name' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'snapshot_encryption_key' => {
+          'type' => Optional[Google_compute_snapshot_snapshot_encryption_key_1626],
+          'value' => undef
+        },
+        'snapshot_encryption_key_raw' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2290,7 +4724,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
+        'snapshot_id' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'source_disk' => String,
+        'source_disk_encryption_key' => {
+          'type' => Optional[Google_compute_snapshot_source_disk_encryption_key_1627],
+          'value' => undef
+        },
         'source_disk_encryption_key_raw' => {
           'type' => Optional[String],
           'value' => undef
@@ -2299,15 +4741,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
+        'source_disk_link' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
-          'type' => Optional[String],
+        'storage_bytes' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
-        'project' => {
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2324,6 +4766,34 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_snapshot]]
       }
     },
+    Google_compute_snapshot_snapshot_encryption_key_1626 => {
+      attributes => {
+        'google_compute_snapshot_snapshot_encryption_key_1626_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sha256' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_snapshot_source_disk_encryption_key_1627 => {
+      attributes => {
+        'google_compute_snapshot_source_disk_encryption_key_1627_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'raw_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_compute_ssl_certificate => {
       attributes => {
         'google_compute_ssl_certificate_id' => {
@@ -2331,24 +4801,28 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'certificate' => String,
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key' => String,
-        'description' => {
-          'type' => Optional[String],
+        'certificate_id' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_key' => String,
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2375,7 +4849,32 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'creation_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'custom_features' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enabled_features' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'min_tls_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'profile' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2386,24 +4885,7 @@ type TerraformGoogle = TypeSet[{
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'min_tls_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'profile' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'creation_timestamp' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Google_compute_ssl_policyHandler => {
@@ -2423,25 +4905,10 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ip_cidr_range' => String,
-        'network' => String,
-        'gateway_address' => {
+        'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -2450,15 +4917,34 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'gateway_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_cidr_range' => String,
+        'name' => String,
+        'network' => String,
         'private_ip_google_access' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'region' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'creation_timestamp' => {
+        'secondary_ip_range' => {
+          'type' => Optional[Google_compute_subnetwork_secondary_ip_range_1628],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2481,12 +4967,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'subnetwork' => String,
-        'role' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'members' => Array[String],
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -2494,7 +4979,9 @@ type TerraformGoogle = TypeSet[{
         'region' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'role' => String,
+        'subnetwork' => String
       }
     },
     Google_compute_subnetwork_iam_bindingHandler => {
@@ -2514,21 +5001,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'member' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'region' => {
           'type' => Optional[String],
           'value' => undef
         },
         'role' => String,
-        'member' => String,
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'subnetwork' => String,
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'subnetwork' => String
       }
     },
     Google_compute_subnetwork_iam_memberHandler => {
@@ -2548,7 +5035,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'subnetwork' => String,
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'policy_data' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -2557,11 +5048,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'subnetwork' => String
       }
     },
     Google_compute_subnetwork_iam_policyHandler => {
@@ -2575,15 +5062,19 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_subnetwork_iam_policy]]
       }
     },
-    Google_compute_target_http_proxy => {
+    Google_compute_subnetwork_secondary_ip_range_1628 => {
       attributes => {
-        'google_compute_target_http_proxy_id' => {
+        'google_compute_subnetwork_secondary_ip_range_1628_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'url_map' => String,
-        'description' => {
+        'ip_cidr_range' => String,
+        'range_name' => String
+      }
+    },
+    Google_compute_target_http_proxy => {
+      attributes => {
+        'google_compute_target_http_proxy_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2591,14 +5082,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'proxy_id' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'url_map' => String
       }
     },
     Google_compute_target_http_proxyHandler => {
@@ -2618,32 +5119,37 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'quic_override' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'ssl_policy' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'url_map' => String,
-        'description' => {
+        'proxy_id' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'quic_override' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ssl_certificates' => Array[String],
+        'ssl_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'url_map' => String
       }
     },
     Google_compute_target_https_proxyHandler => {
@@ -2663,6 +5169,27 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'backup_pool' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'failover_ratio' => {
+          'type' => Optional[Float],
+          'value' => undef
+        },
+        'health_checks' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'instances' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -2676,15 +5203,6 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'session_affinity' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'backup_pool' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2707,19 +5225,8 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ssl_policy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'backend_service' => String,
         'creation_timestamp' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2727,12 +5234,28 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'proxy_header' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'backend_service' => String,
-        'name' => String
+        'proxy_id' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ssl_certificates' => Array[String],
+        'ssl_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Google_compute_target_ssl_proxyHandler => {
@@ -2752,25 +5275,29 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'backend_service' => String,
         'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'backend_service' => String,
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'proxy_header' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'proxy_id' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2793,12 +5320,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'default_service' => String,
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -2807,12 +5329,29 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'host_rule' => {
+          'type' => Optional[Google_compute_url_map_host_rule_1629],
+          'value' => undef
+        },
         'map_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'path_matcher' => {
+          'type' => Optional[Google_compute_url_map_path_matcher_1630],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'test' => {
+          'type' => Optional[Google_compute_url_map_test_1632],
           'value' => undef
         }
       }
@@ -2828,13 +5367,66 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_compute_url_map]]
       }
     },
-    Google_compute_vpn_gateway => {
+    Google_compute_url_map_host_rule_1629 => {
       attributes => {
-        'google_compute_vpn_gateway_id' => {
+        'google_compute_url_map_host_rule_1629_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'hosts' => Array[String],
+        'path_matcher' => String
+      }
+    },
+    Google_compute_url_map_path_matcher_1630 => {
+      attributes => {
+        'google_compute_url_map_path_matcher_1630_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_service' => String,
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'path_rule' => {
+          'type' => Optional[Google_compute_url_map_path_matcher_1630_path_rule_1631],
+          'value' => undef
+        }
+      }
+    },
+    Google_compute_url_map_path_matcher_1630_path_rule_1631 => {
+      attributes => {
+        'google_compute_url_map_path_matcher_1630_path_rule_1631_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'paths' => Array[String],
+        'service' => String
+      }
+    },
+    Google_compute_url_map_test_1632 => {
+      attributes => {
+        'google_compute_url_map_test_1632_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'host' => String,
+        'path' => String,
+        'service' => String
+      }
+    },
+    Google_compute_vpn_gateway => {
+      attributes => {
+        'google_compute_vpn_gateway_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2842,17 +5434,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
         'network' => String,
-        'description' => {
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2875,12 +5471,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'self_link' => {
+        'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'creation_timestamp' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2888,21 +5483,25 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'ike_version' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'label_fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'local_traffic_selector' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'name' => String,
+        'peer_ip' => String,
         'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'shared_secret_hash' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'shared_secret' => String,
-        'target_vpn_gateway' => String,
-        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2910,11 +5509,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'peer_ip' => String,
+        'remote_traffic_selector' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'router' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'shared_secret' => String,
+        'shared_secret_hash' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target_vpn_gateway' => String
       }
     },
     Google_compute_vpn_tunnelHandler => {
@@ -2934,6 +5546,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'attestation_authority' => Google_container_analysis_note_attestation_authority_1633,
         'name' => String,
         'project' => {
           'type' => Optional[String],
@@ -2952,81 +5565,47 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_container_analysis_note]]
       }
     },
+    Google_container_analysis_note_attestation_authority_1633 => {
+      attributes => {
+        'google_container_analysis_note_attestation_authority_1633_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'hint' => Google_container_analysis_note_attestation_authority_1633_hint_1634
+      }
+    },
+    Google_container_analysis_note_attestation_authority_1633_hint_1634 => {
+      attributes => {
+        'google_container_analysis_note_attestation_authority_1633_hint_1634_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'human_readable_name' => String
+      }
+    },
     Google_container_cluster => {
       attributes => {
         'google_container_cluster_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'node_version' => {
-          'type' => Optional[String],
+        'additional_zones' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         },
-        'region' => {
-          'type' => Optional[String],
+        'addons_config' => {
+          'type' => Optional[Google_container_cluster_addons_config_1635],
           'value' => undef
         },
-        'enable_legacy_abac' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'min_master_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'master_version' => {
-          'type' => Optional[String],
+        'cluster_autoscaling' => {
+          'type' => Optional[Google_container_cluster_cluster_autoscaling_1640],
           'value' => undef
         },
         'cluster_ipv4_cidr' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'enable_kubernetes_alpha' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'logging_service' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'monitoring_service' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'subnetwork' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'endpoint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_cluster' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'enable_tpu' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'remove_default_node_pool' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'network' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3034,11 +5613,123 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'enable_kubernetes_alpha' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'enable_legacy_abac' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'enable_tpu' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'initial_node_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'instance_group_urls' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'ip_allocation_policy' => {
+          'type' => Optional[Google_container_cluster_ip_allocation_policy_1642],
+          'value' => undef
+        },
+        'logging_service' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'maintenance_policy' => {
+          'type' => Optional[Google_container_cluster_maintenance_policy_1643],
+          'value' => undef
+        },
+        'master_auth' => {
+          'type' => Optional[Google_container_cluster_master_auth_1645],
+          'value' => undef
+        },
+        'master_authorized_networks_config' => {
+          'type' => Optional[Google_container_cluster_master_authorized_networks_config_1647],
+          'value' => undef
+        },
         'master_ipv4_cidr_block' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String
+        'master_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'min_master_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'monitoring_service' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_policy' => {
+          'type' => Optional[Google_container_cluster_network_policy_1649],
+          'value' => undef
+        },
+        'node_config' => {
+          'type' => Optional[Google_container_cluster_node_config_1650],
+          'value' => undef
+        },
+        'node_pool' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654],
+          'value' => undef
+        },
+        'node_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'pod_security_policy_config' => {
+          'type' => Optional[Google_container_cluster_pod_security_policy_config_1661],
+          'value' => undef
+        },
+        'private_cluster' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'private_cluster_config' => {
+          'type' => Optional[Google_container_cluster_private_cluster_config_1662],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'remove_default_node_pool' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'resource_labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Google_container_clusterHandler => {
@@ -3052,17 +5743,362 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_container_cluster]]
       }
     },
-    Google_container_node_pool => {
+    Google_container_cluster_addons_config_1635 => {
       attributes => {
-        'google_container_node_pool_id' => {
+        'google_container_cluster_addons_config_1635_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'zone' => {
+        'horizontal_pod_autoscaling' => {
+          'type' => Optional[Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636],
+          'value' => undef
+        },
+        'http_load_balancing' => {
+          'type' => Optional[Google_container_cluster_addons_config_1635_http_load_balancing_1637],
+          'value' => undef
+        },
+        'kubernetes_dashboard' => {
+          'type' => Optional[Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638],
+          'value' => undef
+        },
+        'network_policy_config' => {
+          'type' => Optional[Google_container_cluster_addons_config_1635_network_policy_config_1639],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636 => {
+      attributes => {
+        'google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'cluster' => String,
+        'disabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_addons_config_1635_http_load_balancing_1637 => {
+      attributes => {
+        'google_container_cluster_addons_config_1635_http_load_balancing_1637_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638 => {
+      attributes => {
+        'google_container_cluster_addons_config_1635_kubernetes_dashboard_1638_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_addons_config_1635_network_policy_config_1639 => {
+      attributes => {
+        'google_container_cluster_addons_config_1635_network_policy_config_1639_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_cluster_autoscaling_1640 => {
+      attributes => {
+        'google_container_cluster_cluster_autoscaling_1640_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enabled' => Boolean,
+        'resource_limits' => {
+          'type' => Optional[Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641 => {
+      attributes => {
+        'google_container_cluster_cluster_autoscaling_1640_resource_limits_1641_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'maximum' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'minimum' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'resource_type' => String
+      }
+    },
+    Google_container_cluster_ip_allocation_policy_1642 => {
+      attributes => {
+        'google_container_cluster_ip_allocation_policy_1642_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_ipv4_cidr_block' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_secondary_range_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'create_subnetwork' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'services_ipv4_cidr_block' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'services_secondary_range_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_maintenance_policy_1643 => {
+      attributes => {
+        'google_container_cluster_maintenance_policy_1643_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'daily_maintenance_window' => Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644
+      }
+    },
+    Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644 => {
+      attributes => {
+        'google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'duration' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'start_time' => String
+      }
+    },
+    Google_container_cluster_master_auth_1645 => {
+      attributes => {
+        'google_container_cluster_master_auth_1645_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'client_certificate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'client_certificate_config' => {
+          'type' => Optional[Google_container_cluster_master_auth_1645_client_certificate_config_1646],
+          'value' => undef
+        },
+        'client_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_ca_certificate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'password' => String,
+        'username' => String
+      }
+    },
+    Google_container_cluster_master_auth_1645_client_certificate_config_1646 => {
+      attributes => {
+        'google_container_cluster_master_auth_1645_client_certificate_config_1646_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'issue_client_certificate' => Boolean
+      }
+    },
+    Google_container_cluster_master_authorized_networks_config_1647 => {
+      attributes => {
+        'google_container_cluster_master_authorized_networks_config_1647_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cidr_blocks' => {
+          'type' => Optional[Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648 => {
+      attributes => {
+        'google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cidr_block' => String,
+        'display_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_network_policy_1649 => {
+      attributes => {
+        'google_container_cluster_network_policy_1649_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'provider' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_node_config_1650 => {
+      attributes => {
+        'google_container_cluster_node_config_1650_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'guest_accelerator' => {
+          'type' => Optional[Google_container_cluster_node_config_1650_guest_accelerator_1651],
+          'value' => undef
+        },
+        'image_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'local_ssd_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'min_cpu_platform' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'oauth_scopes' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'taint' => {
+          'type' => Optional[Google_container_cluster_node_config_1650_taint_1652],
+          'value' => undef
+        },
+        'workload_metadata_config' => {
+          'type' => Optional[Google_container_cluster_node_config_1650_workload_metadata_config_1653],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_node_config_1650_guest_accelerator_1651 => {
+      attributes => {
+        'google_container_cluster_node_config_1650_guest_accelerator_1651_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Google_container_cluster_node_config_1650_taint_1652 => {
+      attributes => {
+        'google_container_cluster_node_config_1650_taint_1652_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'effect' => String,
+        'key' => String,
+        'value' => String
+      }
+    },
+    Google_container_cluster_node_config_1650_workload_metadata_config_1653 => {
+      attributes => {
+        'google_container_cluster_node_config_1650_workload_metadata_config_1653_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'node_metadata' => String
+      }
+    },
+    Google_container_cluster_node_pool_1654 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'autoscaling' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654_autoscaling_1655],
+          'value' => undef
+        },
+        'initial_node_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'instance_group_urls' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'management' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654_management_1656],
+          'value' => undef
+        },
+        'max_pods_per_node' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -3071,7 +6107,229 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'node_config' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654_node_config_1657],
+          'value' => undef
+        },
+        'node_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_node_pool_1654_autoscaling_1655 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_autoscaling_1655_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_node_count' => Integer,
+        'min_node_count' => Integer
+      }
+    },
+    Google_container_cluster_node_pool_1654_management_1656 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_management_1656_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_repair' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'auto_upgrade' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_node_pool_1654_node_config_1657 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_node_config_1657_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'guest_accelerator' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658],
+          'value' => undef
+        },
+        'image_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'local_ssd_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'min_cpu_platform' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'oauth_scopes' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'taint' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654_node_config_1657_taint_1659],
+          'value' => undef
+        },
+        'workload_metadata_config' => {
+          'type' => Optional[Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Google_container_cluster_node_pool_1654_node_config_1657_taint_1659 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_node_config_1657_taint_1659_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'effect' => String,
+        'key' => String,
+        'value' => String
+      }
+    },
+    Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660 => {
+      attributes => {
+        'google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'node_metadata' => String
+      }
+    },
+    Google_container_cluster_pod_security_policy_config_1661 => {
+      attributes => {
+        'google_container_cluster_pod_security_policy_config_1661_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enabled' => Boolean
+      }
+    },
+    Google_container_cluster_private_cluster_config_1662 => {
+      attributes => {
+        'google_container_cluster_private_cluster_config_1662_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_private_endpoint' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'enable_private_nodes' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'master_ipv4_cidr_block' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_node_pool => {
+      attributes => {
+        'google_container_node_pool_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'autoscaling' => {
+          'type' => Optional[Google_container_node_pool_autoscaling_1663],
+          'value' => undef
+        },
+        'cluster' => String,
+        'initial_node_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'instance_group_urls' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'management' => {
+          'type' => Optional[Google_container_node_pool_management_1664],
+          'value' => undef
+        },
+        'max_pods_per_node' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'node_config' => {
+          'type' => Optional[Google_container_node_pool_node_config_1665],
+          'value' => undef
+        },
+        'node_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3079,7 +6337,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3096,9 +6354,150 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_container_node_pool]]
       }
     },
+    Google_container_node_pool_autoscaling_1663 => {
+      attributes => {
+        'google_container_node_pool_autoscaling_1663_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_node_count' => Integer,
+        'min_node_count' => Integer
+      }
+    },
+    Google_container_node_pool_management_1664 => {
+      attributes => {
+        'google_container_node_pool_management_1664_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_repair' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'auto_upgrade' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_node_pool_node_config_1665 => {
+      attributes => {
+        'google_container_node_pool_node_config_1665_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'guest_accelerator' => {
+          'type' => Optional[Google_container_node_pool_node_config_1665_guest_accelerator_1666],
+          'value' => undef
+        },
+        'image_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'local_ssd_count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'min_cpu_platform' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'oauth_scopes' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'taint' => {
+          'type' => Optional[Google_container_node_pool_node_config_1665_taint_1667],
+          'value' => undef
+        },
+        'workload_metadata_config' => {
+          'type' => Optional[Google_container_node_pool_node_config_1665_workload_metadata_config_1668],
+          'value' => undef
+        }
+      }
+    },
+    Google_container_node_pool_node_config_1665_guest_accelerator_1666 => {
+      attributes => {
+        'google_container_node_pool_node_config_1665_guest_accelerator_1666_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Google_container_node_pool_node_config_1665_taint_1667 => {
+      attributes => {
+        'google_container_node_pool_node_config_1665_taint_1667_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'effect' => String,
+        'key' => String,
+        'value' => String
+      }
+    },
+    Google_container_node_pool_node_config_1665_workload_metadata_config_1668 => {
+      attributes => {
+        'google_container_node_pool_node_config_1665_workload_metadata_config_1668_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'node_metadata' => String
+      }
+    },
     Google_dataflow_job => {
       attributes => {
         'google_dataflow_job_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_workers' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'name' => String,
+        'on_delete' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'parameters' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3106,22 +6505,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'template_gcs_path' => String,
-        'temp_gcs_location' => String,
-        'zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'on_delete' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'state' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'temp_gcs_location' => String,
+        'template_gcs_path' => String,
+        'zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3144,6 +6534,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cluster_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -3151,8 +6550,7 @@ type TerraformGoogle = TypeSet[{
         'region' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Google_dataproc_clusterHandler => {
@@ -3166,17 +6564,246 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_dataproc_cluster]]
       }
     },
+    Google_dataproc_cluster_cluster_config_1669 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bucket' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'delete_autogen_bucket' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'gce_cluster_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670],
+          'value' => undef
+        },
+        'initialization_action' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_initialization_action_1671],
+          'value' => undef
+        },
+        'master_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_master_config_1672],
+          'value' => undef
+        },
+        'preemptible_worker_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674],
+          'value' => undef
+        },
+        'software_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_software_config_1676],
+          'value' => undef
+        },
+        'staging_bucket' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'worker_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_worker_config_1677],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'internal_ip_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'metadata' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_account' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_account_scopes' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_initialization_action_1671 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_initialization_action_1671_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'script' => String,
+        'timeout_sec' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_master_config_1672 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_master_config_1672_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673],
+          'value' => undef
+        },
+        'instance_names' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'num_instances' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'boot_disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'boot_disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'num_local_ssds' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675],
+          'value' => undef
+        },
+        'instance_names' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'num_instances' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'boot_disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_software_config_1676 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_software_config_1676_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'override_properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_worker_config_1677 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_worker_config_1677_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disk_config' => {
+          'type' => Optional[Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678],
+          'value' => undef
+        },
+        'instance_names' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'machine_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'num_instances' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678 => {
+      attributes => {
+        'google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'boot_disk_size_gb' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'boot_disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'num_local_ssds' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
     Google_dataproc_job => {
       attributes => {
         'google_dataproc_job_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'driver_output_resource_uri' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3184,12 +6811,61 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
+        'driver_output_resource_uri' => {
           'type' => Optional[String],
           'value' => undef
         },
         'force_delete' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'hadoop_config' => {
+          'type' => Optional[Google_dataproc_job_hadoop_config_1679],
+          'value' => undef
+        },
+        'hive_config' => {
+          'type' => Optional[Google_dataproc_job_hive_config_1681],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'pig_config' => {
+          'type' => Optional[Google_dataproc_job_pig_config_1682],
+          'value' => undef
+        },
+        'placement' => Google_dataproc_job_placement_1684,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'pyspark_config' => {
+          'type' => Optional[Google_dataproc_job_pyspark_config_1685],
+          'value' => undef
+        },
+        'reference' => {
+          'type' => Optional[Google_dataproc_job_reference_1687],
+          'value' => undef
+        },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scheduling' => {
+          'type' => Optional[Google_dataproc_job_scheduling_1688],
+          'value' => undef
+        },
+        'spark_config' => {
+          'type' => Optional[Google_dataproc_job_spark_config_1689],
+          'value' => undef
+        },
+        'sparksql_config' => {
+          'type' => Optional[Google_dataproc_job_sparksql_config_1691],
+          'value' => undef
+        },
+        'status' => {
+          'type' => Optional[Google_dataproc_job_status_1693],
           'value' => undef
         }
       }
@@ -3205,22 +6881,368 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_dataproc_job]]
       }
     },
+    Google_dataproc_job_hadoop_config_1679 => {
+      attributes => {
+        'google_dataproc_job_hadoop_config_1679_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'archive_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'args' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'jar_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'logging_config' => {
+          'type' => Optional[Google_dataproc_job_hadoop_config_1679_logging_config_1680],
+          'value' => undef
+        },
+        'main_class' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'main_jar_file_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_hadoop_config_1679_logging_config_1680 => {
+      attributes => {
+        'google_dataproc_job_hadoop_config_1679_logging_config_1680_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'driver_log_levels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_hive_config_1681 => {
+      attributes => {
+        'google_dataproc_job_hive_config_1681_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'continue_on_failure' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'jar_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'query_file_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'query_list' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'script_variables' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_pig_config_1682 => {
+      attributes => {
+        'google_dataproc_job_pig_config_1682_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'continue_on_failure' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'jar_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'logging_config' => {
+          'type' => Optional[Google_dataproc_job_pig_config_1682_logging_config_1683],
+          'value' => undef
+        },
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'query_file_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'query_list' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'script_variables' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_pig_config_1682_logging_config_1683 => {
+      attributes => {
+        'google_dataproc_job_pig_config_1682_logging_config_1683_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'driver_log_levels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_placement_1684 => {
+      attributes => {
+        'google_dataproc_job_placement_1684_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_name' => String,
+        'cluster_uuid' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_pyspark_config_1685 => {
+      attributes => {
+        'google_dataproc_job_pyspark_config_1685_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'archive_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'args' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'jar_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'logging_config' => {
+          'type' => Optional[Google_dataproc_job_pyspark_config_1685_logging_config_1686],
+          'value' => undef
+        },
+        'main_python_file_uri' => String,
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'python_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_pyspark_config_1685_logging_config_1686 => {
+      attributes => {
+        'google_dataproc_job_pyspark_config_1685_logging_config_1686_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'driver_log_levels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_reference_1687 => {
+      attributes => {
+        'google_dataproc_job_reference_1687_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'job_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_scheduling_1688 => {
+      attributes => {
+        'google_dataproc_job_scheduling_1688_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_failures_per_hour' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_spark_config_1689 => {
+      attributes => {
+        'google_dataproc_job_spark_config_1689_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'archive_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'args' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'jar_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'logging_config' => {
+          'type' => Optional[Google_dataproc_job_spark_config_1689_logging_config_1690],
+          'value' => undef
+        },
+        'main_class' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'main_jar_file_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_spark_config_1689_logging_config_1690 => {
+      attributes => {
+        'google_dataproc_job_spark_config_1689_logging_config_1690_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'driver_log_levels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_sparksql_config_1691 => {
+      attributes => {
+        'google_dataproc_job_sparksql_config_1691_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'jar_file_uris' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'logging_config' => {
+          'type' => Optional[Google_dataproc_job_sparksql_config_1691_logging_config_1692],
+          'value' => undef
+        },
+        'properties' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'query_file_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'query_list' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'script_variables' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_sparksql_config_1691_logging_config_1692 => {
+      attributes => {
+        'google_dataproc_job_sparksql_config_1691_logging_config_1692_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'driver_log_levels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_dataproc_job_status_1693 => {
+      attributes => {
+        'google_dataproc_job_status_1693_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'details' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'state' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'state_start_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'substate' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_dns_managed_zone => {
       attributes => {
         'google_dns_managed_zone_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'dns_name' => String,
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
+        'name_servers' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         },
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'dns_name' => String
+        }
       }
     },
     Google_dns_managed_zoneHandler => {
@@ -3242,11 +7264,13 @@ type TerraformGoogle = TypeSet[{
         },
         'managed_zone' => String,
         'name' => String,
-        'resource_type' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'rrdatas' => Array[String],
+        'ttl' => Integer,
+        'type' => String
       }
     },
     Google_dns_record_setHandler => {
@@ -3266,25 +7290,8 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'service_name' => String,
-        'openapi_config' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'protoc_output' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'grpc_config' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'protoc_output_base64' => {
-          'type' => Optional[String],
+        'apis' => {
+          'type' => Optional[Google_endpoints_service_apis_1694],
           'value' => undef
         },
         'config_id' => {
@@ -3294,7 +7301,32 @@ type TerraformGoogle = TypeSet[{
         'dns_address' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'endpoints' => {
+          'type' => Optional[Google_endpoints_service_endpoints_1696],
+          'value' => undef
+        },
+        'grpc_config' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'openapi_config' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'protoc_output' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'protoc_output_base64' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_name' => String
       }
     },
     Google_endpoints_serviceHandler => {
@@ -3308,16 +7340,81 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_endpoints_service]]
       }
     },
+    Google_endpoints_service_apis_1694 => {
+      attributes => {
+        'google_endpoints_service_apis_1694_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'methods' => {
+          'type' => Optional[Google_endpoints_service_apis_1694_methods_1695],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'syntax' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_endpoints_service_apis_1694_methods_1695 => {
+      attributes => {
+        'google_endpoints_service_apis_1694_methods_1695_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'response_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'syntax' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_endpoints_service_endpoints_1696 => {
+      attributes => {
+        'google_endpoints_service_endpoints_1696_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_filestore_instance => {
       attributes => {
         'google_filestore_instance_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'tier' => String,
-        'zone' => String,
         'create_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3325,14 +7422,19 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'file_shares' => Google_filestore_instance_file_shares_1697,
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => String,
+        'networks' => Google_filestore_instance_networks_1698,
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'tier' => String,
+        'zone' => String
       }
     },
     Google_filestore_instanceHandler => {
@@ -3346,26 +7448,54 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_filestore_instance]]
       }
     },
+    Google_filestore_instance_file_shares_1697 => {
+      attributes => {
+        'google_filestore_instance_file_shares_1697_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'capacity_gb' => Integer,
+        'name' => String
+      }
+    },
+    Google_filestore_instance_networks_1698 => {
+      attributes => {
+        'google_filestore_instance_networks_1698_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_addresses' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'modes' => Array[String],
+        'network' => String,
+        'reserved_ip_range' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_folder => {
       attributes => {
         'google_folder_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'parent' => String,
-        'display_name' => String,
-        'name' => {
+        'create_time' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'display_name' => String,
         'lifecycle_state' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'create_time' => {
+        'name' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'parent' => String
       }
     },
     Google_folderHandler => {
@@ -3390,6 +7520,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'folder' => String,
+        'members' => Array[String],
         'role' => String
       }
     },
@@ -3410,13 +7541,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'folder' => String
+        'folder' => String,
+        'member' => String,
+        'role' => String
       }
     },
     Google_folder_iam_memberHandler => {
@@ -3436,12 +7567,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'folder' => String
+        'folder' => String,
+        'policy_data' => String
       }
     },
     Google_folder_iam_policyHandler => {
@@ -3461,14 +7592,30 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'update_time' => {
+        'boolean_policy' => {
+          'type' => Optional[Google_folder_organization_policy_boolean_policy_1699],
+          'value' => undef
+        },
+        'constraint' => String,
+        'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
         'folder' => String,
-        'constraint' => String,
-        'etag' => {
+        'list_policy' => {
+          'type' => Optional[Google_folder_organization_policy_list_policy_1700],
+          'value' => undef
+        },
+        'restore_policy' => {
+          'type' => Optional[Google_folder_organization_policy_restore_policy_1703],
+          'value' => undef
+        },
+        'update_time' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -3484,14 +7631,84 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_folder_organization_policy]]
       }
     },
+    Google_folder_organization_policy_boolean_policy_1699 => {
+      attributes => {
+        'google_folder_organization_policy_boolean_policy_1699_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enforced' => Boolean
+      }
+    },
+    Google_folder_organization_policy_list_policy_1700 => {
+      attributes => {
+        'google_folder_organization_policy_list_policy_1700_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'allow' => {
+          'type' => Optional[Google_folder_organization_policy_list_policy_1700_allow_1701],
+          'value' => undef
+        },
+        'deny' => {
+          'type' => Optional[Google_folder_organization_policy_list_policy_1700_deny_1702],
+          'value' => undef
+        },
+        'suggested_value' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_folder_organization_policy_list_policy_1700_allow_1701 => {
+      attributes => {
+        'google_folder_organization_policy_list_policy_1700_allow_1701_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'all' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_folder_organization_policy_list_policy_1700_deny_1702 => {
+      attributes => {
+        'google_folder_organization_policy_list_policy_1700_deny_1702_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'all' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_folder_organization_policy_restore_policy_1703 => {
+      attributes => {
+        'google_folder_organization_policy_restore_policy_1703_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default' => Boolean
+      }
+    },
     Google_kms_crypto_key => {
       attributes => {
         'google_kms_crypto_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'key_ring' => String,
+        'name' => String,
         'rotation_period' => {
           'type' => Optional[String],
           'value' => undef
@@ -3519,12 +7736,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
+        'crypto_key_id' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'crypto_key_id' => String
+        'members' => Array[String],
+        'role' => String
       }
     },
     Google_kms_crypto_key_iam_bindingHandler => {
@@ -3544,12 +7762,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'member' => String,
+        'crypto_key_id' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'crypto_key_id' => String,
+        'member' => String,
         'role' => String
       }
     },
@@ -3571,6 +7789,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'location' => String,
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -3578,8 +7797,7 @@ type TerraformGoogle = TypeSet[{
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Google_kms_key_ringHandler => {
@@ -3599,11 +7817,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'key_ring_id' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'key_ring_id' => String,
+        'members' => Array[String],
         'role' => String
       }
     },
@@ -3624,13 +7843,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'key_ring_id' => String
+        'key_ring_id' => String,
+        'member' => String,
+        'role' => String
       }
     },
     Google_kms_key_ring_iam_memberHandler => {
@@ -3650,12 +7869,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'key_ring_id' => String
+        'key_ring_id' => String,
+        'policy_data' => String
       }
     },
     Google_kms_key_ring_iam_policyHandler => {
@@ -3675,8 +7894,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'filter' => String,
-        'name' => String,
+        'billing_account' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -3685,7 +7903,8 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'billing_account' => String
+        'filter' => String,
+        'name' => String
       }
     },
     Google_logging_billing_account_exclusionHandler => {
@@ -3706,12 +7925,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'billing_account' => String,
-        'name' => String,
         'destination' => String,
         'filter' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'writer_identity' => {
           'type' => Optional[String],
           'value' => undef
@@ -3735,9 +7954,6 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'filter' => String,
-        'name' => String,
-        'folder' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -3745,7 +7961,10 @@ type TerraformGoogle = TypeSet[{
         'disabled' => {
           'type' => Optional[Boolean],
           'value' => undef
-        }
+        },
+        'filter' => String,
+        'folder' => String,
+        'name' => String
       }
     },
     Google_logging_folder_exclusionHandler => {
@@ -3765,19 +7984,19 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'destination' => String,
         'filter' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'writer_identity' => {
           'type' => Optional[String],
           'value' => undef
         },
         'folder' => String,
         'include_children' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'name' => String,
+        'writer_identity' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -3799,17 +8018,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'disabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'org_id' => String,
         'filter' => String,
         'name' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'org_id' => String
       }
     },
     Google_logging_organization_exclusionHandler => {
@@ -3829,21 +8048,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'destination' => String,
         'filter' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'writer_identity' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'org_id' => String,
         'include_children' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'name' => String,
-        'destination' => String
+        'org_id' => String,
+        'writer_identity' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Google_logging_organization_sinkHandler => {
@@ -3867,16 +8086,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'disabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'filter' => String,
-        'name' => String
+        'name' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Google_logging_project_exclusionHandler => {
@@ -3896,10 +8115,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'writer_identity' => {
+        'destination' => String,
+        'filter' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -3908,9 +8129,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'name' => String,
-        'destination' => String,
-        'filter' => {
+        'writer_identity' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3933,17 +8152,30 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'combiner' => String,
+        'conditions' => Google_monitoring_alert_policy_conditions_1704,
+        'creation_record' => {
+          'type' => Optional[Google_monitoring_alert_policy_creation_record_1712],
+          'value' => undef
+        },
+        'display_name' => String,
         'enabled' => Boolean,
+        'labels' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'combiner' => String,
+        'notification_channels' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'display_name' => String
+        }
       }
     },
     Google_monitoring_alert_policyHandler => {
@@ -3957,17 +8189,205 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_monitoring_alert_policy]]
       }
     },
-    Google_monitoring_group => {
+    Google_monitoring_alert_policy_conditions_1704 => {
       attributes => {
-        'google_monitoring_group_id' => {
+        'google_monitoring_alert_policy_conditions_1704_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'condition_absent' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_absent_1705],
+          'value' => undef
+        },
+        'condition_threshold' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708],
+          'value' => undef
+        },
+        'display_name' => String,
         'name' => {
           'type' => Optional[String],
           'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_absent_1705_id' => {
+          'type' => Optional[String],
+          'value' => undef
         },
-        'project' => {
+        'aggregations' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706],
+          'value' => undef
+        },
+        'duration' => String,
+        'filter' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'trigger' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alignment_period' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cross_series_reducer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'group_by_fields' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'per_series_aligner' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'percent' => {
+          'type' => Optional[Float],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'aggregations' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709],
+          'value' => undef
+        },
+        'comparison' => String,
+        'denominator_aggregations' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710],
+          'value' => undef
+        },
+        'denominator_filter' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'duration' => String,
+        'filter' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'threshold_value' => {
+          'type' => Optional[Float],
+          'value' => undef
+        },
+        'trigger' => {
+          'type' => Optional[Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alignment_period' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cross_series_reducer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'group_by_fields' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'per_series_aligner' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alignment_period' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cross_series_reducer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'group_by_fields' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'per_series_aligner' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711 => {
+      attributes => {
+        'google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'count' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'percent' => {
+          'type' => Optional[Float],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_alert_policy_creation_record_1712 => {
+      attributes => {
+        'google_monitoring_alert_policy_creation_record_1712_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'mutate_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'mutated_by' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_group => {
+      attributes => {
+        'google_monitoring_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3977,7 +8397,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'parent_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4000,20 +8428,20 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'display_name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'verification_status' => {
+        'display_name' => String,
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4021,7 +8449,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_type' => String
+        'type' => String,
+        'user_labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'verification_status' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Google_monitoring_notification_channelHandler => {
@@ -4041,8 +8477,29 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'content_matchers' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_content_matchers_1713],
+          'value' => undef
+        },
+        'display_name' => String,
+        'http_check' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_http_check_1714],
+          'value' => undef
+        },
+        'internal_checkers' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_internal_checkers_1716],
+          'value' => undef
+        },
         'is_internal' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'monitored_resource' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_monitored_resource_1717],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'period' => {
@@ -4053,12 +8510,19 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'timeout' => String,
-        'name' => {
-          'type' => Optional[String],
+        'resource_group' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_resource_group_1718],
           'value' => undef
         },
-        'display_name' => String
+        'selected_regions' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'tcp_check' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_tcp_check_1719],
+          'value' => undef
+        },
+        'timeout' => String
       }
     },
     Google_monitoring_uptime_check_configHandler => {
@@ -4072,18 +8536,142 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_monitoring_uptime_check_config]]
       }
     },
+    Google_monitoring_uptime_check_config_content_matchers_1713 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_content_matchers_1713_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'content' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_uptime_check_config_http_check_1714 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_http_check_1714_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auth_info' => {
+          'type' => Optional[Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715],
+          'value' => undef
+        },
+        'headers' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'mask_headers' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'use_ssl' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_http_check_1714_auth_info_1715_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'password' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'username' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_uptime_check_config_internal_checkers_1716 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_internal_checkers_1716_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'display_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'gcp_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'peer_project_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_uptime_check_config_monitored_resource_1717 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_monitored_resource_1717_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => Hash[String, String],
+        'type' => String
+      }
+    },
+    Google_monitoring_uptime_check_config_resource_group_1718 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_resource_group_1718_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'group_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'resource_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_monitoring_uptime_check_config_tcp_check_1719 => {
+      attributes => {
+        'google_monitoring_uptime_check_config_tcp_check_1719_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'port' => Integer
+      }
+    },
     Google_organization_iam_binding => {
       attributes => {
         'google_organization_iam_binding_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'org_id' => String
+        'members' => Array[String],
+        'org_id' => String,
+        'role' => String
       }
     },
     Google_organization_iam_bindingHandler => {
@@ -4103,21 +8691,22 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role_id' => String,
-        'org_id' => String,
-        'title' => String,
-        'stage' => {
-          'type' => Optional[String],
+        'deleted' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'deleted' => {
-          'type' => Optional[Boolean],
+        'org_id' => String,
+        'permissions' => Array[String],
+        'role_id' => String,
+        'stage' => {
+          'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'title' => String
       }
     },
     Google_organization_iam_custom_roleHandler => {
@@ -4137,11 +8726,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'member' => String,
         'org_id' => String,
         'role' => String
       }
@@ -4163,12 +8752,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'org_id' => String
+        'org_id' => String,
+        'policy_data' => String
       }
     },
     Google_organization_iam_policyHandler => {
@@ -4188,16 +8777,32 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'boolean_policy' => {
+          'type' => Optional[Google_organization_policy_boolean_policy_1720],
+          'value' => undef
+        },
+        'constraint' => String,
         'etag' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'list_policy' => {
+          'type' => Optional[Google_organization_policy_list_policy_1721],
+          'value' => undef
+        },
+        'org_id' => String,
+        'restore_policy' => {
+          'type' => Optional[Google_organization_policy_restore_policy_1724],
           'value' => undef
         },
         'update_time' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'constraint' => String,
-        'org_id' => String
+        'version' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
       }
     },
     Google_organization_policyHandler => {
@@ -4211,18 +8816,91 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_organization_policy]]
       }
     },
+    Google_organization_policy_boolean_policy_1720 => {
+      attributes => {
+        'google_organization_policy_boolean_policy_1720_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enforced' => Boolean
+      }
+    },
+    Google_organization_policy_list_policy_1721 => {
+      attributes => {
+        'google_organization_policy_list_policy_1721_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'allow' => {
+          'type' => Optional[Google_organization_policy_list_policy_1721_allow_1722],
+          'value' => undef
+        },
+        'deny' => {
+          'type' => Optional[Google_organization_policy_list_policy_1721_deny_1723],
+          'value' => undef
+        },
+        'suggested_value' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_organization_policy_list_policy_1721_allow_1722 => {
+      attributes => {
+        'google_organization_policy_list_policy_1721_allow_1722_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'all' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_organization_policy_list_policy_1721_deny_1723 => {
+      attributes => {
+        'google_organization_policy_list_policy_1721_deny_1723_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'all' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_organization_policy_restore_policy_1724 => {
+      attributes => {
+        'google_organization_policy_restore_policy_1724_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default' => Boolean
+      }
+    },
     Google_project => {
       attributes => {
         'google_project_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'skip_delete' => {
+        'app_engine' => {
+          'type' => Optional[Google_project_app_engine_1725],
+          'value' => undef
+        },
+        'auto_create_network' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'name' => String,
-        'org_id' => {
+        'billing_account' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4230,25 +8908,30 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => {
-          'type' => Optional[String],
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
+        'name' => String,
         'number' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'billing_account' => {
+        'org_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'project_id' => String,
-        'auto_create_network' => {
-          'type' => Optional[Boolean],
+        'policy_data' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'policy_etag' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'project_id' => String,
+        'skip_delete' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -4264,21 +8947,102 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_project]]
       }
     },
+    Google_project_app_engine_1725 => {
+      attributes => {
+        'google_project_app_engine_1725_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auth_domain' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'code_bucket' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_bucket' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_hostname' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'feature_settings' => {
+          'type' => Optional[Google_project_app_engine_1725_feature_settings_1726],
+          'value' => undef
+        },
+        'gcr_domain' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'location_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'serving_status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'url_dispatch_rule' => {
+          'type' => Optional[Google_project_app_engine_1725_url_dispatch_rule_1727],
+          'value' => undef
+        }
+      }
+    },
+    Google_project_app_engine_1725_feature_settings_1726 => {
+      attributes => {
+        'google_project_app_engine_1725_feature_settings_1726_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'split_health_checks' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_project_app_engine_1725_url_dispatch_rule_1727 => {
+      attributes => {
+        'google_project_app_engine_1725_url_dispatch_rule_1727_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'domain' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_project_iam_binding => {
       attributes => {
         'google_project_iam_binding_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'members' => Array[String],
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'role' => String
       }
     },
     Google_project_iam_bindingHandler => {
@@ -4298,24 +9062,25 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'title' => String,
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'stage' => {
-          'type' => Optional[String],
+        'deleted' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'deleted' => {
-          'type' => Optional[Boolean],
+        'permissions' => Array[String],
+        'project' => {
+          'type' => Optional[String],
           'value' => undef
         },
-        'role_id' => String
+        'role_id' => String,
+        'stage' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'title' => String
       }
     },
     Google_project_iam_custom_roleHandler => {
@@ -4335,16 +9100,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'member' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'role' => String
       }
     },
     Google_project_iam_memberHandler => {
@@ -4364,12 +9129,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
+        'authoritative' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
-        'policy_data' => String,
-        'authoritative' => {
+        'disable_project' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -4377,12 +9141,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'restore_policy' => {
+        'policy_data' => String,
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'disable_project' => {
-          'type' => Optional[Boolean],
+        'restore_policy' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -4404,14 +9169,30 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'boolean_policy' => {
+          'type' => Optional[Google_project_organization_policy_boolean_policy_1728],
+          'value' => undef
+        },
         'constraint' => String,
-        'project' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'list_policy' => {
+          'type' => Optional[Google_project_organization_policy_list_policy_1729],
+          'value' => undef
+        },
+        'project' => String,
+        'restore_policy' => {
+          'type' => Optional[Google_project_organization_policy_restore_policy_1732],
+          'value' => undef
+        },
         'update_time' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[Integer],
           'value' => undef
         }
       }
@@ -4427,21 +9208,91 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_project_organization_policy]]
       }
     },
+    Google_project_organization_policy_boolean_policy_1728 => {
+      attributes => {
+        'google_project_organization_policy_boolean_policy_1728_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enforced' => Boolean
+      }
+    },
+    Google_project_organization_policy_list_policy_1729 => {
+      attributes => {
+        'google_project_organization_policy_list_policy_1729_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'allow' => {
+          'type' => Optional[Google_project_organization_policy_list_policy_1729_allow_1730],
+          'value' => undef
+        },
+        'deny' => {
+          'type' => Optional[Google_project_organization_policy_list_policy_1729_deny_1731],
+          'value' => undef
+        },
+        'suggested_value' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_project_organization_policy_list_policy_1729_allow_1730 => {
+      attributes => {
+        'google_project_organization_policy_list_policy_1729_allow_1730_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'all' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_project_organization_policy_list_policy_1729_deny_1731 => {
+      attributes => {
+        'google_project_organization_policy_list_policy_1729_deny_1731_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'all' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_project_organization_policy_restore_policy_1732 => {
+      attributes => {
+        'google_project_organization_policy_restore_policy_1732_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default' => Boolean
+      }
+    },
     Google_project_service => {
       attributes => {
         'google_project_service_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'service' => String,
+        'disable_on_destroy' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'disable_on_destroy' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
+        'service' => String
       }
     },
     Google_project_serviceHandler => {
@@ -4461,14 +9312,15 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'disable_on_destroy' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'disable_on_destroy' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
+        'services' => Array[String]
       }
     },
     Google_project_servicesHandler => {
@@ -4516,16 +9368,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'topic' => String,
-        'project' => {
-          'type' => Optional[String],
+        'ack_deadline_seconds' => {
+          'type' => Optional[Integer],
           'value' => undef
         },
+        'name' => String,
         'path' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'push_config' => {
+          'type' => Optional[Google_pubsub_subscription_push_config_1733],
+          'value' => undef
+        },
+        'topic' => String
       }
     },
     Google_pubsub_subscriptionHandler => {
@@ -4545,11 +9405,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
+        'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'etag' => {
+        'members' => Array[String],
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4574,17 +9435,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'subscription' => String,
+        'member' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String
+        'role' => String,
+        'subscription' => String
       }
     },
     Google_pubsub_subscription_iam_memberHandler => {
@@ -4604,16 +9465,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'subscription' => String,
+        'policy_data' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'subscription' => String
       }
     },
     Google_pubsub_subscription_iam_policyHandler => {
@@ -4625,6 +9486,19 @@ type TerraformGoogle = TypeSet[{
         'read' => Callable[
           [String],
           Optional[Google_pubsub_subscription_iam_policy]]
+      }
+    },
+    Google_pubsub_subscription_push_config_1733 => {
+      attributes => {
+        'google_pubsub_subscription_push_config_1733_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'attributes' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'push_endpoint' => String
       }
     },
     Google_pubsub_topic => {
@@ -4661,12 +9535,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'topic' => String,
+        'members' => Array[String],
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String
+        'role' => String,
+        'topic' => String
       }
     },
     Google_pubsub_topic_iam_bindingHandler => {
@@ -4686,17 +9561,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'topic' => String,
+        'member' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'role' => String,
+        'topic' => String
       }
     },
     Google_pubsub_topic_iam_memberHandler => {
@@ -4716,16 +9591,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'topic' => String,
+        'policy_data' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'topic' => String
       }
     },
     Google_pubsub_topic_iam_policyHandler => {
@@ -4745,40 +9620,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'current_location_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'host' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'location_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'alternative_location_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'reserved_ip_range' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'region' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'create_time' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4786,11 +9628,57 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'create_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'current_location_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'display_name' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'host' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'location_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'memory_size_gb' => Integer,
+        'name' => String,
+        'port' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'redis_configs' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'redis_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'reserved_ip_range' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tier' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4823,7 +9711,8 @@ type TerraformGoogle = TypeSet[{
         },
         'origin' => String,
         'parent' => String,
-        'reason' => String
+        'reason' => String,
+        'restrictions' => Array[String]
       }
     },
     Google_resource_manager_lienHandler => {
@@ -4843,11 +9732,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -4871,12 +9760,9 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'parent' => String,
         'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'value' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4888,7 +9774,10 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String
+        'value' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Google_runtimeconfig_variableHandler => {
@@ -4908,11 +9797,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'email' => {
+        'account_id' => String,
+        'display_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'unique_id' => {
+        'email' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4920,8 +9810,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'account_id' => String,
-        'display_name' => {
+        'policy_data' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4929,7 +9818,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => {
+        'unique_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4952,12 +9841,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'service_account_id' => String,
-        'role' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'members' => Array[String],
+        'role' => String,
+        'service_account_id' => String
       }
     },
     Google_service_account_iam_bindingHandler => {
@@ -4977,13 +9867,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'service_account_id' => String,
-        'role' => String
+        'member' => String,
+        'role' => String,
+        'service_account_id' => String
       }
     },
     Google_service_account_iam_memberHandler => {
@@ -5003,11 +9893,11 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'policy_data' => String,
         'service_account_id' => String
       }
     },
@@ -5028,28 +9918,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'service_account_id' => String,
-        'pgp_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_key_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'key_algorithm' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key_type' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5057,19 +9926,40 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'pgp_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_key_encrypted' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_key_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_key_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'public_key' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'public_key_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_account_id' => String,
         'valid_after' => {
           'type' => Optional[String],
           'value' => undef
         },
         'valid_before' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key_encrypted' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5092,12 +9982,16 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'url' => {
+        'name' => String,
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'project' => {
+        'size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'url' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5118,6 +10012,10 @@ type TerraformGoogle = TypeSet[{
       attributes => {
         'google_spanner_database_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'ddl' => {
+          'type' => Optional[Array[String]],
           'value' => undef
         },
         'instance' => String,
@@ -5149,17 +10047,18 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role' => String,
+        'database' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
         'instance' => String,
-        'database' => String
+        'members' => Array[String],
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role' => String
       }
     },
     Google_spanner_database_iam_bindingHandler => {
@@ -5179,18 +10078,18 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role' => String,
-        'member' => String,
+        'database' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
         'instance' => String,
-        'database' => String
+        'member' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role' => String
       }
     },
     Google_spanner_database_iam_memberHandler => {
@@ -5210,13 +10109,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'database' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
         'instance' => String,
-        'database' => String,
+        'policy_data' => String,
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -5241,11 +10140,19 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'config' => String,
+        'display_name' => String,
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'display_name' => String,
+        'num_nodes' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -5273,16 +10180,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'instance' => String
+        'instance' => String,
+        'members' => Array[String],
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role' => String
       }
     },
     Google_spanner_instance_iam_bindingHandler => {
@@ -5302,17 +10210,17 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role' => String,
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'instance' => String
+        'instance' => String,
+        'member' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role' => String
       }
     },
     Google_spanner_instance_iam_memberHandler => {
@@ -5332,13 +10240,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'instance' => String,
-        'project' => {
+        'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'instance' => String,
         'policy_data' => String,
-        'etag' => {
+        'project' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5361,21 +10269,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'instance' => String,
-        'project' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'charset' => {
           'type' => Optional[String],
           'value' => undef
         },
         'collation' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance' => String,
+        'name' => String,
+        'project' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5398,10 +10306,6 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'region' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'connection_name' => {
           'type' => Optional[String],
           'value' => undef
@@ -5414,6 +10318,14 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'ip_address' => {
+          'type' => Optional[Google_sql_database_instance_ip_address_1734],
+          'value' => undef
+        },
+        'master_instance_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -5422,18 +10334,27 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'service_account_email_address' => {
+        'region' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'master_instance_name' => {
-          'type' => Optional[String],
+        'replica_configuration' => {
+          'type' => Optional[Google_sql_database_instance_replica_configuration_1735],
           'value' => undef
         },
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'server_ca_cert' => {
+          'type' => Optional[Google_sql_database_instance_server_ca_cert_1736],
+          'value' => undef
+        },
+        'service_account_email_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'settings' => Google_sql_database_instance_settings_1737
       }
     },
     Google_sql_database_instanceHandler => {
@@ -5447,9 +10368,85 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_sql_database_instance]]
       }
     },
-    Google_sql_ssl_cert => {
+    Google_sql_database_instance_ip_address_1734 => {
       attributes => {
-        'google_sql_ssl_cert_id' => {
+        'google_sql_database_instance_ip_address_1734_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'time_to_retire' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_replica_configuration_1735 => {
+      attributes => {
+        'google_sql_database_instance_replica_configuration_1735_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ca_certificate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'client_certificate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'client_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'connect_retry_interval' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'dump_file_path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'failover_target' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'master_heartbeat_period' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'password' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ssl_cipher' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'username' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'verify_server_certificate' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_server_ca_cert_1736 => {
+      attributes => {
+        'google_sql_database_instance_server_ca_cert_1736_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cert' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'common_name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5457,16 +10454,230 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'private_key' => {
+        'expiration_time' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'instance' => String,
-        'cert' => {
+        'sha1_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'activation_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'authorized_gae_applications' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'availability_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'backup_configuration' => {
+          'type' => Optional[Google_sql_database_instance_settings_1737_backup_configuration_1738],
+          'value' => undef
+        },
+        'crash_safe_replication' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'database_flags' => {
+          'type' => Optional[Google_sql_database_instance_settings_1737_database_flags_1739],
+          'value' => undef
+        },
+        'disk_autoresize' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'disk_size' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'disk_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_configuration' => {
+          'type' => Optional[Google_sql_database_instance_settings_1737_ip_configuration_1740],
+          'value' => undef
+        },
+        'location_preference' => {
+          'type' => Optional[Google_sql_database_instance_settings_1737_location_preference_1742],
+          'value' => undef
+        },
+        'maintenance_window' => {
+          'type' => Optional[Google_sql_database_instance_settings_1737_maintenance_window_1743],
+          'value' => undef
+        },
+        'pricing_plan' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'replication_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tier' => String,
+        'user_labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'version' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737_backup_configuration_1738 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_backup_configuration_1738_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'binary_log_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'start_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737_database_flags_1739 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_database_flags_1739_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'value' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737_ip_configuration_1740 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_ip_configuration_1740_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'authorized_networks' => {
+          'type' => Optional[Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741],
+          'value' => undef
+        },
+        'ipv4_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'private_network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'require_ssl' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'expiration_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'value' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737_location_preference_1742 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_location_preference_1742_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'follow_gae_application' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_database_instance_settings_1737_maintenance_window_1743 => {
+      attributes => {
+        'google_sql_database_instance_settings_1737_maintenance_window_1743_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'day' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'hour' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'update_track' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_sql_ssl_cert => {
+      attributes => {
+        'google_sql_ssl_cert_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cert' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cert_serial_number' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'common_name' => String,
+        'create_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'expiration_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance' => String,
+        'private_key' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5475,11 +10686,6 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'sha1_fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'common_name' => String,
-        'cert_serial_number' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5535,6 +10741,39 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cors' => {
+          'type' => Optional[Google_storage_bucket_cors_1744],
+          'value' => undef
+        },
+        'encryption' => {
+          'type' => Optional[Google_storage_bucket_encryption_1745],
+          'value' => undef
+        },
+        'force_destroy' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'lifecycle_rule' => {
+          'type' => Optional[Google_storage_bucket_lifecycle_rule_1746],
+          'value' => undef
+        },
+        'location' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'logging' => {
+          'type' => Optional[Google_storage_bucket_logging_1749],
+          'value' => undef
+        },
+        'name' => String,
+        'predefined_acl' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -5543,25 +10782,20 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'force_destroy' => {
-          'type' => Optional[Boolean],
+        'storage_class' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'url' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'location' => {
-          'type' => Optional[String],
+        'versioning' => {
+          'type' => Optional[Google_storage_bucket_versioning_1750],
           'value' => undef
         },
-        'predefined_acl' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_class' => {
-          'type' => Optional[String],
+        'website' => {
+          'type' => Optional[Google_storage_bucket_website_1751],
           'value' => undef
         }
       }
@@ -5591,6 +10825,10 @@ type TerraformGoogle = TypeSet[{
         'predefined_acl' => {
           'type' => Optional[String],
           'value' => undef
+        },
+        'role_entity' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
         }
       }
     },
@@ -5605,18 +10843,52 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_storage_bucket_acl]]
       }
     },
+    Google_storage_bucket_cors_1744 => {
+      attributes => {
+        'google_storage_bucket_cors_1744_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'max_age_seconds' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'method' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'origin' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'response_header' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Google_storage_bucket_encryption_1745 => {
+      attributes => {
+        'google_storage_bucket_encryption_1745_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_kms_key_name' => String
+      }
+    },
     Google_storage_bucket_iam_binding => {
       attributes => {
         'google_storage_bucket_iam_binding_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'bucket' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'role' => String,
-        'bucket' => String
+        'members' => Array[String],
+        'role' => String
       }
     },
     Google_storage_bucket_iam_bindingHandler => {
@@ -5637,12 +10909,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'bucket' => String,
-        'role' => String,
-        'member' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'member' => String,
+        'role' => String
       }
     },
     Google_storage_bucket_iam_memberHandler => {
@@ -5662,12 +10934,12 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_data' => String,
+        'bucket' => String,
         'etag' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String
+        'policy_data' => String
       }
     },
     Google_storage_bucket_iam_policyHandler => {
@@ -5681,17 +10953,19 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_storage_bucket_iam_policy]]
       }
     },
-    Google_storage_bucket_object => {
+    Google_storage_bucket_lifecycle_rule_1746 => {
       attributes => {
-        'google_storage_bucket_object_id' => {
+        'google_storage_bucket_lifecycle_rule_1746_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'content_disposition' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'source' => {
+        'action' => Google_storage_bucket_lifecycle_rule_1746_action_1747,
+        'condition' => Google_storage_bucket_lifecycle_rule_1746_condition_1748
+      }
+    },
+    Google_storage_bucket_lifecycle_rule_1746_action_1747 => {
+      attributes => {
+        'google_storage_bucket_lifecycle_rule_1746_action_1747_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5699,17 +10973,70 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'cache_control' => {
+        'type' => String
+      }
+    },
+    Google_storage_bucket_lifecycle_rule_1746_condition_1748 => {
+      attributes => {
+        'google_storage_bucket_lifecycle_rule_1746_condition_1748_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'md5hash' => {
+        'age' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'created_before' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'is_live' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'matches_storage_class' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'num_newer_versions' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        }
+      }
+    },
+    Google_storage_bucket_logging_1749 => {
+      attributes => {
+        'google_storage_bucket_logging_1749_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'log_bucket' => String,
+        'log_object_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Google_storage_bucket_object => {
+      attributes => {
+        'google_storage_bucket_object_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'bucket' => String,
-        'crc32c' => {
+        'cache_control' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'content' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'content_disposition' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'content_encoding' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5721,11 +11048,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'content' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'predefined_acl' => {
+        'crc32c' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5733,7 +11056,20 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'content_encoding' => {
+        'md5hash' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'predefined_acl' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'storage_class' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5750,12 +11086,41 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_storage_bucket_object]]
       }
     },
+    Google_storage_bucket_versioning_1750 => {
+      attributes => {
+        'google_storage_bucket_versioning_1750_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Google_storage_bucket_website_1751 => {
+      attributes => {
+        'google_storage_bucket_website_1751_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'main_page_suffix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'not_found_page' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_storage_default_object_access_control => {
       attributes => {
         'google_storage_default_object_access_control_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'bucket' => String,
         'domain' => {
           'type' => Optional[String],
           'value' => undef
@@ -5764,17 +11129,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'object' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'entity' => String,
-        'role' => String,
         'entity_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String
+        'generation' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'object' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project_team' => {
+          'type' => Optional[Google_storage_default_object_access_control_project_team_1752],
+          'value' => undef
+        },
+        'role' => String
       }
     },
     Google_storage_default_object_access_controlHandler => {
@@ -5788,13 +11160,33 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_storage_default_object_access_control]]
       }
     },
+    Google_storage_default_object_access_control_project_team_1752 => {
+      attributes => {
+        'google_storage_default_object_access_control_project_team_1752_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project_number' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'team' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_storage_default_object_acl => {
       attributes => {
         'google_storage_default_object_acl_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String
+        'bucket' => String,
+        'role_entity' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
       }
     },
     Google_storage_default_object_aclHandler => {
@@ -5814,16 +11206,24 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'bucket' => String,
+        'custom_attributes' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'event_types' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
         'object_name_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'payload_format' => String,
         'self_link' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String,
-        'payload_format' => String,
         'topic' => String
       }
     },
@@ -5844,7 +11244,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'entity' => String,
+        'bucket' => String,
         'domain' => {
           'type' => Optional[String],
           'value' => undef
@@ -5853,13 +11253,21 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String,
-        'role' => String,
+        'entity' => String,
         'entity_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'object' => String
+        'generation' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'object' => String,
+        'project_team' => {
+          'type' => Optional[Google_storage_object_access_control_project_team_1753],
+          'value' => undef
+        },
+        'role' => String
       }
     },
     Google_storage_object_access_controlHandler => {
@@ -5873,18 +11281,38 @@ type TerraformGoogle = TypeSet[{
           Optional[Google_storage_object_access_control]]
       }
     },
+    Google_storage_object_access_control_project_team_1753 => {
+      attributes => {
+        'google_storage_object_access_control_project_team_1753_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'project_number' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'team' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
     Google_storage_object_acl => {
       attributes => {
         'google_storage_object_acl_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'bucket' => String,
+        'object' => String,
         'predefined_acl' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String,
-        'object' => String
+        'role_entity' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
       }
     },
     Google_storage_object_aclHandler => {
