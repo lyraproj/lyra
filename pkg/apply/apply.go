@@ -37,11 +37,20 @@ func (e cmdError) Error() string {
 
 // ApplyWorkflowWithHieraData will apply the named workflow with the supplied hiera data
 func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
+	a.applyWithHieraData(workflowName, hieraData, wfapi.Upsert)
+}
+
+func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wfapi.Operation) {
 	tp := func(ic lookup.ProviderContext, key string, _ map[string]eval.Value) (eval.Value, bool) {
 		v, ok := hieraData[key]
 		return types.WrapString(v), ok
 	}
-	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName, wfapi.Upsert))
+	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName, intent))
+}
+
+// DeleteWorkflowWithHieraData will delete the named workflow with the supplied hiera data
+func (a *Applicator) DeleteWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
+	a.applyWithHieraData(workflowName, hieraData, wfapi.Delete)
 }
 
 // ApplyWorkflow will apply the named workflow getting hiera data from file
