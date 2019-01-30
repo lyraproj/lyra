@@ -1,17 +1,21 @@
 
-# this file is called aaws.pp so that it is processed before attach.pp as it contains types that are needed by the attach workflow
-# the content of this file can be generated, ref TestGeneratePuppetTypes in register_types_test.go
-type AwsTerraform = TypeSet[{
+# this file is prefixed "aaa" so that it is processed first as it contains types that are needed by other workflows
+# this file is generated
+type TerraformAws = TypeSet[{
   pcore_uri => 'http://puppet.com/2016.1/pcore',
   pcore_version => '1.0.0',
   name_authority => 'http://puppet.com/2016.1/runtime',
-  name => 'AwsTerraform',
+  name => 'TerraformAws',
   version => '0.1.0',
   types => {
     Aws_acm_certificate => {
       attributes => {
         'aws_acm_certificate_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'certificate_body' => {
@@ -30,15 +34,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'domain_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'domain_name' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -81,19 +81,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'certificate_chain' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'not_after' => {
+        'certificate_signing_request' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -105,11 +93,27 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'certificate' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'certificate_signing_request' => {
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'resource_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'certificate_chain' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -117,11 +121,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_type' => {
+        'not_after' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -144,15 +144,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'enable_deletion_protection' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'enable_http2' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'ip_address_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'vpc_id' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'zone_id' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -160,31 +168,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enable_http2' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'load_balancer_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'enable_deletion_protection' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'dns_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
+        'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -196,8 +184,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dns_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'vpc_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -300,11 +300,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'protocol' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'target_type' => {
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -312,15 +308,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name_prefix' => {
-          'type' => Optional[String],
+        'proxy_protocol_v2' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
+        'target_type' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -328,12 +320,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'arn_suffix' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'proxy_protocol_v2' => {
-          'type' => Optional[Boolean],
+        'protocol' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name_prefix' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -355,12 +355,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'target_group_arn' => String,
         'target_id' => String,
         'availability_zone' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'target_group_arn' => String
       }
     },
     Aws_alb_target_group_attachmentHandler => {
@@ -380,15 +380,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'kernel_id' => {
+        'ramdisk_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'ramdisk_id' => {
+        'kernel_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -400,10 +396,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'image_location' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
+        'manage_ebs_snapshots' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'name' => String,
         'architecture' => {
           'type' => Optional[String],
           'value' => undef
@@ -420,15 +421,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'image_location' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'manage_ebs_snapshots' => {
-          'type' => Optional[Boolean],
+        'description' => {
+          'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_amiHandler => {
@@ -448,33 +448,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ena_support' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'kms_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'manage_ebs_snapshots' => {
-          'type' => Optional[Boolean],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'name' => String,
-        'virtualization_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'kernel_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'source_ami_id' => String,
-        'source_ami_region' => String,
         'sriov_net_support' => {
           'type' => Optional[String],
           'value' => undef
@@ -483,7 +466,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'ramdisk_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -495,16 +482,29 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'virtualization_type' => {
+          'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ena_support' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'kernel_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_ami_region' => String,
         'image_location' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'ramdisk_id' => {
-          'type' => Optional[String],
+        'manage_ebs_snapshots' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -526,14 +526,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'snapshot_without_reboot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'sriov_net_support' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'architecture' => {
           'type' => Optional[String],
           'value' => undef
@@ -542,25 +534,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'kernel_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => String,
-        'ena_support' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'ramdisk_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'root_snapshot_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_instance_id' => String,
-        'description' => {
+        'snapshot_without_reboot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'sriov_net_support' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kernel_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -572,6 +559,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ena_support' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'ramdisk_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -579,7 +578,8 @@ type AwsTerraform = TypeSet[{
         'virtualization_type' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'source_instance_id' => String
       }
     },
     Aws_ami_from_instanceHandler => {
@@ -643,6 +643,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'value' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -658,12 +663,7 @@ type AwsTerraform = TypeSet[{
         'last_updated_date' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'value' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_api_gateway_api_keyHandler => {
@@ -683,16 +683,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'identity_source' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'rest_api_id' => String,
+        'name' => String,
         'resource_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'authorizer_credentials' => {
+        'identity_validation_expression' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -700,8 +696,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'identity_validation_expression' => {
+        'identity_source' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rest_api_id' => String,
+        'authorizer_credentials' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -753,6 +753,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'pem_encoded_certificate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -762,10 +766,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'expiration_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'pem_encoded_certificate' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -875,24 +875,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cloudfront_zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'regional_zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'certificate_chain' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'cloudfront_domain_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'domain_name' => String,
-        'regional_certificate_arn' => {
+        'certificate_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'regional_certificate_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'regional_domain_name' => {
+        'certificate_upload_date' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -904,23 +904,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'certificate_arn' => {
+        'cloudfront_domain_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'certificate_upload_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cloudfront_zone_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'regional_zone_id' => {
+        'regional_certificate_name' => {
           'type' => Optional[String],
           'value' => undef
         },
         'certificate_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'regional_domain_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'regional_certificate_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -968,8 +968,34 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'content_handling' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cache_namespace' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'resource_id' => String,
         'http_method' => String,
+        'resource_type' => String,
+        'connection_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request_parameters_in_json' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'passthrough_behavior' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rest_api_id' => String,
         'connection_type' => {
           'type' => Optional[String],
           'value' => undef
@@ -978,33 +1004,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'request_parameters_in_json' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cache_namespace' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'rest_api_id' => String,
-        'uri' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'integration_http_method' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'content_handling' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'passthrough_behavior' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_type' => String,
-        'connection_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1027,22 +1027,22 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'status_code' => String,
         'selection_pattern' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'rest_api_id' => String,
+        'http_method' => String,
         'response_parameters_in_json' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'rest_api_id' => String,
-        'resource_id' => String,
-        'http_method' => String,
         'content_handling' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'resource_id' => String,
+        'status_code' => String
       }
     },
     Aws_api_gateway_integration_responseHandler => {
@@ -1062,22 +1062,22 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'request_validator_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'http_method' => String,
+        'rest_api_id' => String,
+        'resource_id' => String,
         'authorization' => String,
         'authorizer_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'request_validator_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'http_method' => String,
         'api_key_required' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'rest_api_id' => String,
-        'resource_id' => String,
         'request_parameters_in_json' => {
           'type' => Optional[String],
           'value' => undef
@@ -1128,9 +1128,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'stage_name' => String,
         'method_path' => String,
-        'rest_api_id' => String
+        'rest_api_id' => String,
+        'stage_name' => String
       }
     },
     Aws_api_gateway_method_settingsHandler => {
@@ -1150,17 +1150,17 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'schema' => {
           'type' => Optional[String],
           'value' => undef
         },
         'content_type' => String,
         'rest_api_id' => String,
-        'name' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'name' => String
       }
     },
     Aws_api_gateway_modelHandler => {
@@ -1180,6 +1180,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'rest_api_id' => String,
         'name' => String,
         'validate_request_body' => {
           'type' => Optional[Boolean],
@@ -1188,8 +1189,7 @@ type AwsTerraform = TypeSet[{
         'validate_request_parameters' => {
           'type' => Optional[Boolean],
           'value' => undef
-        },
-        'rest_api_id' => String
+        }
       }
     },
     Aws_api_gateway_request_validatorHandler => {
@@ -1209,13 +1209,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'rest_api_id' => String,
         'parent_id' => String,
         'path_part' => String,
         'path' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'rest_api_id' => String
+        }
       }
     },
     Aws_api_gateway_resourceHandler => {
@@ -1235,7 +1235,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'body' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1243,7 +1247,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'body' => {
+        'name' => String,
+        'api_key_source' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1255,12 +1260,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'api_key_source' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'policy' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1283,7 +1283,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'documentation_version' => {
+        'cache_cluster_size' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1291,25 +1291,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'cache_cluster_size' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'rest_api_id' => String,
         'client_certificate_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'deployment_id' => String,
-        'rest_api_id' => String,
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'cache_cluster_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'documentation_version' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1317,7 +1308,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cache_cluster_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'deployment_id' => String,
         'stage_name' => String,
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'xray_tracing_enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -1341,12 +1341,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'product_code' => {
+        'name' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'description' => {
+        'product_code' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1423,9 +1423,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cookie_name' => String,
         'name' => String,
-        'load_balancer' => String,
-        'cookie_name' => String
+        'load_balancer' => String
       }
     },
     Aws_app_cookie_stickiness_policyHandler => {
@@ -1445,26 +1445,26 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'resource_id' => String,
+        'name' => String,
+        'service_namespace' => String,
+        'adjustment_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'policy_type' => {
           'type' => Optional[String],
           'value' => undef
         },
         'scalable_dimension' => String,
-        'resource_id' => String,
-        'adjustment_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'metric_aggregation_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'service_namespace' => String
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_appautoscaling_policyHandler => {
@@ -1484,7 +1484,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'start_time' => {
+        'end_time' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1492,21 +1492,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'service_namespace' => String,
         'resource_id' => String,
         'scalable_dimension' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'start_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'schedule' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'end_time' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_appautoscaling_scheduled_actionHandler => {
@@ -1526,13 +1526,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_id' => String,
         'role_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
         'scalable_dimension' => String,
-        'service_namespace' => String
+        'service_namespace' => String,
+        'resource_id' => String
       }
     },
     Aws_appautoscaling_targetHandler => {
@@ -1584,10 +1584,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'last_updated_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => String,
         'mesh_name' => String,
         'virtual_router_name' => String,
@@ -1596,6 +1592,10 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'created_date' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'last_updated_date' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1618,6 +1618,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'created_date' => {
           'type' => Optional[String],
           'value' => undef
@@ -1627,11 +1631,7 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'mesh_name' => String,
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'mesh_name' => String
       }
     },
     Aws_appmesh_virtual_nodeHandler => {
@@ -1651,10 +1651,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'created_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'last_updated_date' => {
           'type' => Optional[String],
           'value' => undef
@@ -1662,6 +1658,10 @@ type AwsTerraform = TypeSet[{
         'name' => String,
         'mesh_name' => String,
         'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'created_date' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1684,6 +1684,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'api_id' => String,
         'expires' => {
           'type' => Optional[String],
           'value' => undef
@@ -1691,12 +1696,7 @@ type AwsTerraform = TypeSet[{
         'key' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'api_id' => String
+        }
       }
     },
     Aws_appsync_api_keyHandler => {
@@ -1717,16 +1717,16 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'api_id' => String,
+        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'resource_type' => String,
         'service_role_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'resource_type' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -1750,12 +1750,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'authentication_type' => String,
-        'name' => String
+        'authentication_type' => String
       }
     },
     Aws_appsync_graphql_apiHandler => {
@@ -1854,19 +1854,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'service_linked_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'health_check_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'metrics_granularity' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1874,19 +1866,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'protect_from_scale_in' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'service_linked_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'force_delete' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'placement_group' => {
+        'metrics_granularity' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'launch_configuration' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -1894,7 +1882,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'launch_configuration' => {
+        'protect_from_scale_in' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'placement_group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -1975,21 +1975,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'autoscaling_group_name' => String,
-        'metric_aggregation_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'adjustment_type' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'autoscaling_group_name' => String,
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'policy_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metric_aggregation_type' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2018,15 +2018,15 @@ type AwsTerraform = TypeSet[{
         },
         'scheduled_action_name' => String,
         'autoscaling_group_name' => String,
-        'start_time' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'end_time' => {
           'type' => Optional[String],
           'value' => undef
         },
         'recurrence' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'start_time' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2050,11 +2050,8 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'compute_environment_name' => String,
-        'ecc_cluster_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ecs_cluster_arn' => {
+        'service_role' => String,
+        'state' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2062,13 +2059,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'service_role' => String,
-        'state' => {
+        'resource_type' => String,
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_type' => String,
-        'arn' => {
+        'ecc_cluster_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ecs_cluster_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2150,7 +2150,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'budget_type' => String,
-        'limit_amount' => String,
         'limit_unit' => String,
         'time_unit' => String,
         'account_id' => {
@@ -2165,6 +2164,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'limit_amount' => String,
         'time_period_start' => String,
         'time_period_end' => {
           'type' => Optional[String],
@@ -2189,10 +2189,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'owner_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'subnet_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -2208,6 +2204,10 @@ type AwsTerraform = TypeSet[{
         'name' => String,
         'instance_type' => String,
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'owner_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2230,20 +2230,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'template_body' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'template_url' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'on_failure' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'disable_rollback' => {
-          'type' => Optional[Boolean],
+        'policy_url' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
@@ -2254,12 +2246,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
+        'template_body' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'disable_rollback' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'policy_body' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_url' => {
+        'name' => String,
+        'template_url' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2282,22 +2282,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'retain_on_delete' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'is_ipv6_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'status' => {
           'type' => Optional[String],
           'value' => undef
@@ -2306,27 +2290,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'price_class' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'web_acl_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'hosted_zone_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_root_object' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'http_version' => {
+        'comment' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2334,12 +2298,48 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'comment' => {
+        'last_modified_time' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'retain_on_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'hosted_zone_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'enabled' => Boolean,
-        'last_modified_time' => {
+        'is_ipv6_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'default_root_object' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'price_class' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'http_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'web_acl_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2453,20 +2453,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'source_backup_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
         'hsm_type' => String,
-        'vpc_id' => {
+        'cluster_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'cluster_id' => {
+        'vpc_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2489,6 +2489,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ip_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'hsm_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'hsm_state' => {
           'type' => Optional[String],
           'value' => undef
@@ -2499,18 +2511,6 @@ type AwsTerraform = TypeSet[{
         },
         'cluster_id' => String,
         'subnet_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'availability_zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'hsm_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2533,11 +2533,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'enable_logging' => {
+        's3_bucket_name' => String,
+        'cloud_watch_logs_group_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'is_organization_trail' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         's3_key_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -2546,16 +2555,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        's3_bucket_name' => String,
-        'cloud_watch_logs_role_arn' => {
-          'type' => Optional[String],
+        'enable_log_file_validation' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'enable_logging' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'include_global_service_events' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'enable_log_file_validation' => {
+        'is_multi_region_trail' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -2563,27 +2579,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'cloud_watch_logs_group_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'is_multi_region_trail' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'is_organization_trail' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'home_region' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'cloud_watch_logs_role_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2707,21 +2707,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'rule' => String,
-        'target_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'input' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => String,
         'input_path' => {
           'type' => Optional[String],
           'value' => undef
         },
         'role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rule' => String,
+        'arn' => String,
+        'target_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2770,8 +2770,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'access_policy' => String,
-        'destination_name' => String
+        'destination_name' => String,
+        'access_policy' => String
       }
     },
     Aws_cloudwatch_log_destination_policyHandler => {
@@ -2898,6 +2898,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'destination_arn' => String,
+        'filter_pattern' => String,
         'log_group_name' => String,
         'role_arn' => {
           'type' => Optional[String],
@@ -2906,10 +2909,7 @@ type AwsTerraform = TypeSet[{
         'distribution' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String,
-        'destination_arn' => String,
-        'filter_pattern' => String
+        }
       }
     },
     Aws_cloudwatch_log_subscription_filterHandler => {
@@ -2929,19 +2929,27 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'unit' => {
+        'alarm_description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'alarm_name' => String,
-        'namespace' => String,
-        'metric_name' => String,
-        'arn' => {
+        'extended_statistic' => {
           'type' => Optional[String],
           'value' => undef
         },
         'comparison_operator' => String,
-        'extended_statistic' => {
+        'alarm_name' => String,
+        'metric_name' => String,
+        'evaluate_low_sample_count_percentiles' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'namespace' => String,
+        'statistic' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2949,19 +2957,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'evaluate_low_sample_count_percentiles' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'statistic' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'actions_enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'alarm_description' => {
+        'unit' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -2984,7 +2984,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'service_role' => String,
+        'encryption_key' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -2992,22 +2998,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'service_role' => String,
         'badge_url' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'encryption_key' => {
+        'description' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -3029,10 +3029,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'url' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'project_name' => String,
         'branch_filter' => {
           'type' => Optional[String],
@@ -3043,6 +3039,10 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'secret' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'url' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3065,6 +3065,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'clone_url_http' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'clone_url_ssh' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_branch' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'repository_name' => String,
         'description' => {
           'type' => Optional[String],
@@ -3075,18 +3087,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'repository_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'clone_url_http' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'clone_url_ssh' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_branch' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3189,13 +3189,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'deployment_group_name' => String,
         'service_role_arn' => String,
-        'app_name' => String,
         'deployment_config_name' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'app_name' => String,
+        'deployment_group_name' => String
       }
     },
     Aws_codedeploy_deployment_groupHandler => {
@@ -3215,12 +3215,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'role_arn' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'role_arn' => String
+        'name' => String
       }
     },
     Aws_codepipelineHandler => {
@@ -3240,14 +3240,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'target_pipeline' => String,
+        'authentication' => String,
         'name' => String,
         'url' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'target_action' => String,
-        'target_pipeline' => String,
-        'authentication' => String
+        'target_action' => String
       }
     },
     Aws_codepipeline_webhookHandler => {
@@ -3319,9 +3319,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'provider_name' => String,
         'provider_type' => String,
-        'user_pool_id' => String,
-        'provider_name' => String
+        'user_pool_id' => String
       }
     },
     Aws_cognito_identity_providerHandler => {
@@ -3341,9 +3341,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'user_pool_id' => String,
         'identifier' => String,
-        'name' => String,
-        'user_pool_id' => String
+        'name' => String
       }
     },
     Aws_cognito_resource_serverHandler => {
@@ -3392,16 +3392,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'email_verification_subject' => {
+        'email_verification_message' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'sms_verification_message' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'last_modified_date' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'email_verification_message' => {
+        'creation_date' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3409,11 +3417,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'sms_verification_message' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'email_verification_subject' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3422,14 +3430,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'mfa_configuration' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'creation_date' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3452,14 +3452,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'default_redirect_uri' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'client_secret' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'generate_secret' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -3468,6 +3460,14 @@ type AwsTerraform = TypeSet[{
         'name' => String,
         'allowed_oauth_flows_user_pool_client' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'default_redirect_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'client_secret' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -3489,6 +3489,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cloudfront_distribution_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         's3_bucket' => {
           'type' => Optional[String],
           'value' => undef
@@ -3504,10 +3508,6 @@ type AwsTerraform = TypeSet[{
         },
         'user_pool_id' => String,
         'aws_account_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cloudfront_distribution_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3619,11 +3619,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role_arn' => String,
         'name' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'role_arn' => String
       }
     },
     Aws_config_configuration_recorderHandler => {
@@ -3664,11 +3664,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        's3_bucket_name' => String,
         's3_key_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -3676,7 +3671,12 @@ type AwsTerraform = TypeSet[{
         'sns_topic_arn' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        's3_bucket_name' => String
       }
     },
     Aws_config_delivery_channelHandler => {
@@ -3696,12 +3696,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_type' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'ip_address' => String
+        'ip_address' => String,
+        'resource_type' => String
       }
     },
     Aws_customer_gatewayHandler => {
@@ -3721,6 +3721,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'ip_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -3730,14 +3738,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'activation_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3796,10 +3796,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'uri' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -3808,6 +3804,10 @@ type AwsTerraform = TypeSet[{
         'subdirectory' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'uri' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -3829,6 +3829,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         's3_bucket_arn' => String,
         'subdirectory' => String,
         'tags' => {
@@ -3836,10 +3840,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'uri' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3862,11 +3862,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'destination_location_arn' => String,
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'source_location_arn' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -3877,6 +3872,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'cloudwatch_log_group_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'destination_location_arn' => String,
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -3899,34 +3899,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'notification_topic_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_name' => String,
-        'node_type' => String,
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'iam_role_arn' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'maintenance_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'configuration_endpoint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'parameter_group_name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -3934,7 +3907,34 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'node_type' => String,
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'parameter_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'cluster_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_name' => String,
+        'configuration_endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'iam_role_arn' => String,
+        'notification_topic_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4009,7 +4009,37 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'source_db_cluster_snapshot_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'db_cluster_snapshot_identifier' => String,
+        'db_cluster_identifier' => String,
+        'db_cluster_snapshot_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'snapshot_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'engine' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'license_model' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4018,36 +4048,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'vpc_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'source_db_cluster_snapshot_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'db_cluster_snapshot_identifier' => String,
-        'db_cluster_snapshot_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'license_model' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'db_cluster_identifier' => String,
-        'kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'status' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4070,8 +4070,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'enabled' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'name_prefix' => {
@@ -4079,23 +4095,7 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'sns_topic' => String,
-        'source_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'customer_aws_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4118,7 +4118,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'endpoint' => {
+        'engine' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4126,48 +4126,31 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'iam_database_authentication_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'username' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'password' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'multi_az' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'copy_tags_to_snapshot' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'maintenance_window' => {
+        'timezone' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'publicly_accessible' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'deletion_protection' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'storage_encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'apply_immediately' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'backup_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'auto_minor_version_upgrade' => {
-          'type' => Optional[Boolean],
           'value' => undef
         },
         'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_class' => String,
-        'snapshot_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4175,23 +4158,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'identifier_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'license_model' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'allow_major_version_upgrade' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'option_group_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'domain_iam_role_name' => {
+        'ca_cert_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4199,31 +4170,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'replicate_source_db' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'timezone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'domain' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'parameter_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'kms_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'address' => {
+        'storage_encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'publicly_accessible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'replicate_source_db' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4231,19 +4190,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'availability_zone' => {
+        'identifier_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
         'final_snapshot_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'db_subnet_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ca_cert_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4255,8 +4206,45 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'engine' => {
+        'availability_zone' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'backup_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'db_subnet_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_minor_version_upgrade' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'deletion_protection' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'instance_class' => String,
+        'apply_immediately' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'hosted_zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'allow_major_version_upgrade' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'resource_id' => {
@@ -4267,24 +4255,36 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'hosted_zone_id' => {
+        'domain' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'iam_database_authentication_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'password' => {
+        'license_model' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'multi_az' => {
-          'type' => Optional[Boolean],
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'snapshot_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'parameter_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'maintenance_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'domain_iam_role_name' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -4306,6 +4306,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'major_engine_version' => String,
+        'option_group_description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -4322,12 +4327,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'engine_name' => String,
-        'major_engine_version' => String,
-        'option_group_description' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'engine_name' => String
       }
     },
     Aws_db_option_groupHandler => {
@@ -4387,6 +4387,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -4394,12 +4399,7 @@ type AwsTerraform = TypeSet[{
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_db_security_groupHandler => {
@@ -4419,50 +4419,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'vpc_id' => {
+        'source_region' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'db_snapshot_identifier' => String,
-        'db_instance_identifier' => String,
-        'availability_zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'license_model' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'option_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'db_snapshot_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'engine' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_type' => {
           'type' => Optional[String],
           'value' => undef
         },
         'encrypted' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'status' => {
-          'type' => Optional[String],
           'value' => undef
         },
         'engine_version' => {
@@ -4473,12 +4444,41 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_region' => {
+        'snapshot_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'db_instance_identifier' => String,
+        'db_snapshot_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'vpc_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'option_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'storage_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -4539,11 +4539,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'vpc_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_network_acl_id' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -4551,7 +4546,12 @@ type AwsTerraform = TypeSet[{
         'owner_id' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'vpc_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_network_acl_id' => String
       }
     },
     Aws_default_network_aclHandler => {
@@ -4571,10 +4571,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'owner_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -4582,6 +4578,10 @@ type AwsTerraform = TypeSet[{
         'default_route_table_id' => String,
         'vpc_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -4603,19 +4603,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'owner_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'revoke_rules_on_delete' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'vpc_id' => {
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'owner_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4623,7 +4619,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'name' => {
+        'vpc_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4646,10 +4646,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'owner_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'ipv6_cidr_block' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'availability_zone' => String,
         'availability_zone_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -4662,28 +4667,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'owner_id' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'vpc_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'availability_zone' => String,
+        'cidr_block' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'ipv6_cidr_block_association_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'cidr_block' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4710,19 +4710,27 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'dhcp_options_id' => {
+        'default_security_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'ipv6_cidr_block' => {
+        'arn' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_dns_hostnames' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'ipv6_association_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_dns_support' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'default_network_acl_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_security_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4730,7 +4738,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ipv6_association_id' => {
+        'ipv6_cidr_block' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -4738,12 +4746,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'instance_tenancy' => {
-          'type' => Optional[String],
+        'enable_classiclink' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
-        'enable_dns_support' => {
-          'type' => Optional[Boolean],
+        'instance_tenancy' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'enable_classiclink_dns_support' => {
@@ -4754,23 +4762,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'arn' => {
+        'dhcp_options_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'owner_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'cidr_block' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enable_dns_hostnames' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'enable_classiclink' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'owner_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -4793,10 +4793,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'owner_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -4815,6 +4811,10 @@ type AwsTerraform = TypeSet[{
         },
         'netbios_node_type' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -4881,32 +4881,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'edition' => {
+        'access_url' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'password' => String,
-        'alias' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enable_sso' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'security_group_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'resource_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'size' => {
           'type' => Optional[String],
           'value' => undef
@@ -4915,12 +4894,33 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'access_url' => {
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'alias' => {
           'type' => Optional[String],
           'value' => undef
         },
         'description' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'security_group_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'resource_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'edition' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'enable_sso' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -4967,6 +4967,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'certificate_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'certificate_id' => String,
         'certificate_pem' => {
           'type' => Optional[String],
           'value' => undef
@@ -4974,12 +4979,7 @@ type AwsTerraform = TypeSet[{
         'certificate_wallet' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'certificate_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'certificate_id' => String
+        }
       }
     },
     Aws_dms_certificateHandler => {
@@ -4999,6 +4999,37 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'endpoint_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_access_role' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_name' => String,
+        'database_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'endpoint_id' => String,
+        'endpoint_type' => String,
+        'extra_connection_attributes' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ssl_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'username' => {
           'type' => Optional[String],
           'value' => undef
@@ -5007,41 +5038,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'extra_connection_attributes' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'kms_key_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'password' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'endpoint_type' => String,
-        'engine_name' => String,
-        'service_access_role' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ssl_mode' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'database_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'endpoint_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'endpoint_id' => String,
         'server_name' => {
           'type' => Optional[String],
           'value' => undef
@@ -5065,8 +5065,29 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'apply_immediately' => {
-          'type' => Optional[Boolean],
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preferred_maintenance_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'replication_instance_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'replication_subnet_group_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'replication_instance_id' => String,
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'auto_minor_version_upgrade' => {
@@ -5081,36 +5102,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'replication_instance_class' => String,
+        'apply_immediately' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'availability_zone' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'replication_instance_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'replication_instance_id' => String,
-        'replication_subnet_group_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'kms_key_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'preferred_maintenance_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'replication_instance_class' => String
+        }
       }
     },
     Aws_dms_replication_instanceHandler => {
@@ -5167,24 +5167,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'migration_type' => String,
         'replication_instance_arn' => String,
+        'table_mappings' => String,
+        'migration_type' => String,
         'replication_task_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'replication_task_id' => String,
         'replication_task_settings' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'target_endpoint_arn' => String,
-        'replication_task_id' => String,
         'source_endpoint_arn' => String,
-        'table_mappings' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
-        }
+        },
+        'target_endpoint_arn' => String
       }
     },
     Aws_dms_replication_taskHandler => {
@@ -5204,15 +5204,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'family' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -5222,6 +5213,15 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'family' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5244,14 +5244,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -5261,6 +5253,14 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -5283,7 +5283,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'address_family' => String,
         'virtual_interface_id' => String,
         'amazon_address' => {
           'type' => Optional[String],
@@ -5300,7 +5299,8 @@ type AwsTerraform = TypeSet[{
         'bgp_status' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'address_family' => String
       }
     },
     Aws_dx_bgp_peerHandler => {
@@ -5320,11 +5320,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
         'bandwidth' => String,
         'location' => String,
         'jumbo_frame_capable' => {
@@ -5334,7 +5329,12 @@ type AwsTerraform = TypeSet[{
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
-        }
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String
       }
     },
     Aws_dx_connectionHandler => {
@@ -5354,8 +5354,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'lag_id' => String,
-        'connection_id' => String
+        'connection_id' => String,
+        'lag_id' => String
       }
     },
     Aws_dx_connection_associationHandler => {
@@ -5375,8 +5375,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'amazon_side_asn' => String,
-        'name' => String
+        'name' => String,
+        'amazon_side_asn' => String
       }
     },
     Aws_dx_gatewayHandler => {
@@ -5396,8 +5396,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'dx_gateway_id' => String,
-        'vpn_gateway_id' => String
+        'vpn_gateway_id' => String,
+        'dx_gateway_id' => String
       }
     },
     Aws_dx_gateway_associationHandler => {
@@ -5417,30 +5417,30 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'connection_id' => String,
         'name' => String,
         'bgp_auth_key' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'address_family' => String,
         'customer_address' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'amazon_address' => {
-          'type' => Optional[String],
+        'jumbo_frame_capable' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'connection_id' => String,
-        'owner_account_id' => String,
-        'jumbo_frame_capable' => {
-          'type' => Optional[Boolean],
+        'address_family' => String,
+        'amazon_address' => {
+          'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'owner_account_id' => String
       }
     },
     Aws_dx_hosted_private_virtual_interfaceHandler => {
@@ -5496,26 +5496,26 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'amazon_address' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'owner_account_id' => String,
-        'connection_id' => String,
         'bgp_auth_key' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'amazon_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'connection_id' => String,
+        'name' => String,
         'address_family' => String,
         'customer_address' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        'owner_account_id' => String
       }
     },
     Aws_dx_hosted_public_virtual_interfaceHandler => {
@@ -5563,10 +5563,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -5576,6 +5572,10 @@ type AwsTerraform = TypeSet[{
         'location' => String,
         'force_destroy' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -5597,14 +5597,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'address_family' => String,
-        'connection_id' => String,
-        'bgp_auth_key' => {
+        'amazon_address' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'amazon_address' => {
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'vpn_gateway_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bgp_auth_key' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5612,24 +5617,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'dx_gateway_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'name' => String,
+        'address_family' => String,
         'customer_address' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'vpn_gateway_id' => {
+        'connection_id' => String,
+        'dx_gateway_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -5651,15 +5651,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'connection_id' => String,
+        'name' => String,
         'bgp_auth_key' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'address_family' => String,
+        'customer_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'amazon_address' => {
           'type' => Optional[String],
           'value' => undef
@@ -5668,12 +5669,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'connection_id' => String,
-        'name' => String,
-        'customer_address' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'address_family' => String
       }
     },
     Aws_dx_public_virtual_interfaceHandler => {
@@ -5717,13 +5717,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'hash_key' => String,
         'stream_enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'stream_view_type' => {
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'stream_label' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5731,6 +5734,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'range_key' => {
           'type' => Optional[String],
           'value' => undef
@@ -5739,16 +5743,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'stream_view_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'stream_arn' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'stream_label' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -5770,13 +5770,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'table_name' => String,
         'hash_key' => String,
         'range_key' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'item' => String,
-        'table_name' => String
+        'item' => String
       }
     },
     Aws_dynamodb_table_itemHandler => {
@@ -5796,7 +5796,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'volume_id' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -5809,15 +5808,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'data_encryption_key_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'volume_id' => String,
         'encrypted' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'data_encryption_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5844,12 +5844,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_region' => String,
-        'description' => {
+        'source_snapshot_id' => String,
+        'volume_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'owner_id' => {
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5861,11 +5861,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'data_encryption_key_id' => {
+          'type' => Optional[String],
           'value' => undef
         },
-        'volume_id' => {
+        'source_region' => String,
+        'owner_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -5873,11 +5874,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'data_encryption_key_id' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
-        },
-        'source_snapshot_id' => String
+        }
       }
     },
     Aws_ebs_snapshot_copyHandler => {
@@ -5897,6 +5897,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'snapshot_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'availability_zone' => String,
         'encrypted' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -5905,21 +5918,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'snapshot_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'availability_zone' => String,
         'resource_type' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -5941,6 +5941,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_platform' => String,
+        'instance_type' => String,
+        'tenancy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ebs_optimized' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'end_date' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'end_date_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'ephemeral_storage' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -5949,29 +5967,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'instance_type' => String,
+        'availability_zone' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
-        },
-        'end_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ebs_optimized' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'end_date_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_platform' => String,
-        'tenancy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'availability_zone' => String
+        }
       }
     },
     Aws_ec2_capacity_reservationHandler => {
@@ -5991,7 +5991,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'replace_unhealthy_instances' => {
+        'terminate_instances' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -5999,20 +5999,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'terminate_instances' => {
+        'replace_unhealthy_instances' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'resource_type' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'excess_capacity_termination_policy' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'resource_type' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -6034,27 +6034,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_accept_shared_attachments' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_route_table_propagation' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'dns_support' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'propagation_default_route_table_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'vpn_ecmp_support' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6070,12 +6054,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'owner_id' => {
+        'default_route_table_propagation' => {
           'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'vpn_ecmp_support' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_accept_shared_attachments' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dns_support' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'owner_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -6119,6 +6119,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'transit_gateway_id' => String,
         'default_association_route_table' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -6126,12 +6131,7 @@ type AwsTerraform = TypeSet[{
         'default_propagation_route_table' => {
           'type' => Optional[Boolean],
           'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'transit_gateway_id' => String
+        }
       }
     },
     Aws_ec2_transit_gateway_route_tableHandler => {
@@ -6209,23 +6209,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'dns_support' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'transit_gateway_default_route_table_propagation' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'transit_gateway_id' => String,
-        'vpc_owner_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'ipv6_support' => {
           'type' => Optional[String],
           'value' => undef
@@ -6234,7 +6217,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'vpc_id' => String
+        'transit_gateway_default_route_table_propagation' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'vpc_id' => String,
+        'dns_support' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'transit_gateway_id' => String,
+        'vpc_owner_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_ec2_transit_gateway_vpc_attachmentHandler => {
@@ -6254,12 +6254,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'repository' => String,
         'policy' => String,
         'registry_id' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'repository' => String
+        }
       }
     },
     Aws_ecr_lifecycle_policyHandler => {
@@ -6279,6 +6279,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -6294,8 +6295,7 @@ type AwsTerraform = TypeSet[{
         'repository_url' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_ecr_repositoryHandler => {
@@ -6368,24 +6368,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'enable_ecs_managed_tags' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'launch_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'propagate_tags' => {
           'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'enable_ecs_managed_tags' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'iam_role' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster' => {
-          'type' => Optional[String],
           'value' => undef
         },
         'platform_version' => {
@@ -6397,8 +6393,12 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => String,
+        'cluster' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'task_definition' => String,
-        'launch_type' => {
+        'iam_role' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -6421,12 +6421,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'task_role_arn' => {
+        'container_definitions' => String,
+        'memory' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'network_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ipc_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'task_role_arn' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'arn' => {
@@ -6437,26 +6446,17 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'family' => String,
-        'network_mode' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'container_definitions' => String,
-        'ipc_mode' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'pid_mode' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'execution_role_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'memory' => {
+        'family' => String,
+        'pid_mode' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -6478,19 +6478,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'reference_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'dns_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'creation_token' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'performance_mode' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6502,16 +6490,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'throughput_mode' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'creation_token' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'reference_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'performance_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dns_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -6533,6 +6533,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'ip_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'subnet_id' => String,
         'network_interface_id' => {
           'type' => Optional[String],
@@ -6546,11 +6550,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'file_system_id' => String,
-        'ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'file_system_id' => String
       }
     },
     Aws_efs_mount_targetHandler => {
@@ -6590,24 +6590,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'network_interface' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'vpc' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'instance' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'network_interface' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'associate_with_private_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'allocation_id' => {
@@ -6626,7 +6626,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'associate_with_private_ip' => {
+        'private_ip' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6653,18 +6653,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'instance_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network_interface_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'public_ip' => {
           'type' => Optional[String],
           'value' => undef
@@ -6675,6 +6663,18 @@ type AwsTerraform = TypeSet[{
         },
         'allow_reassociation' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'instance_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_interface_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_ip_address' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -6696,11 +6696,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'version' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'name' => String,
+        'role_arn' => String,
+        'version' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6708,8 +6710,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'role_arn' => String,
         'endpoint' => {
           'type' => Optional[String],
           'value' => undef
@@ -6761,16 +6761,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'application' => String,
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'bucket' => String,
         'key' => String,
         'name' => String,
         'force_delete' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'application' => String,
-        'description' => {
-          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -6792,6 +6792,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'solution_stack_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'application' => String,
         'description' => {
           'type' => Optional[String],
@@ -6800,12 +6805,7 @@ type AwsTerraform = TypeSet[{
         'environment_id' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'solution_stack_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_elastic_beanstalk_configuration_templateHandler => {
@@ -6825,36 +6825,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'platform_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'version_label' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'template_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'poll_interval' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'tier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cname_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'solution_stack_name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6862,7 +6833,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'version_label' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cname_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'platform_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6870,8 +6853,25 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'poll_interval' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'application' => String,
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'solution_stack_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -6894,29 +6894,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'parameter_group_name' => {
+        'node_type' => {
           'type' => Optional[String],
           'value' => undef
         },
         'subnet_group_name' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_id' => String,
-        'engine' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'apply_immediately' => {
-          'type' => Optional[Boolean],
           'value' => undef
         },
         'availability_zone' => {
@@ -6927,11 +6910,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'notification_topic_arn' => {
+        'parameter_group_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'replication_group_id' => {
+        'apply_immediately' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'az_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'notification_topic_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6939,7 +6934,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'az_mode' => {
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'cluster_id' => String,
+        'engine' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -6947,16 +6947,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'node_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'engine_version' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'replication_group_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'snapshot_window' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -6978,12 +6978,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'family' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_elasticache_parameter_groupHandler => {
@@ -7003,31 +7003,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'auth_token' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'transit_encryption_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'notification_topic_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'primary_endpoint_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'configuration_endpoint_address' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7035,31 +7011,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'automatic_failover_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'snapshot_window' => {
+        'snapshot_name' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'engine' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'subnet_group_name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'at_rest_encryption_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'auto_minor_version_upgrade' => {
+        'automatic_failover_enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -7067,16 +7027,56 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'replication_group_id' => String,
-        'apply_immediately' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'node_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'replication_group_description' => String
+        'snapshot_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'apply_immediately' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'notification_topic_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'replication_group_description' => String,
+        'configuration_endpoint_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'primary_endpoint_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auth_token' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_minor_version_upgrade' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'at_rest_encryption_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'transit_encryption_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'engine' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'replication_group_id' => String
       }
     },
     Aws_elasticache_replication_groupHandler => {
@@ -7144,24 +7144,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'access_policies' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'kibana_endpoint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'domain_name' => String,
-        'domain_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'elasticsearch_version' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7170,6 +7153,23 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'elasticsearch_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'access_policies' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'domain_name' => String,
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'domain_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -7225,12 +7225,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'role' => String,
         'input_bucket' => String,
         'name' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'role' => String
+        }
       }
     },
     Aws_elastictranscoder_pipelineHandler => {
@@ -7250,12 +7250,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'container' => String,
-        'description' => {
+        'resource_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_type' => {
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7263,7 +7262,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => {
+        'container' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -7294,23 +7294,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'source_security_group_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
+        'connection_draining' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'dns_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'zone_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7318,16 +7306,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_security_group' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'connection_draining' => {
-          'type' => Optional[Boolean],
+        'source_security_group_id' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'name' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'source_security_group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -7370,15 +7370,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'termination_protection' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'log_uri' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_state' => {
+        'autoscaling_role' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7386,40 +7378,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'autoscaling_role' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'master_instance_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'master_public_dns' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'core_instance_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'configurations_json' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'security_configuration' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'custom_ami_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'additional_info' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7427,13 +7386,54 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'name' => String,
+        'master_instance_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'scale_down_behavior' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'release_label' => String,
-        'service_role' => String,
+        'cluster_state' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'termination_protection' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'custom_ami_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'core_instance_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'log_uri' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'configurations' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'service_role' => String,
+        'additional_info' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'master_public_dns' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'release_label' => String,
+        'configurations_json' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -7456,6 +7456,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cluster_id' => String,
         'instance_type' => String,
         'status' => {
           'type' => Optional[String],
@@ -7468,8 +7469,7 @@ type AwsTerraform = TypeSet[{
         'ebs_optimized' => {
           'type' => Optional[Boolean],
           'value' => undef
-        },
-        'cluster_id' => String
+        }
       }
     },
     Aws_emr_instance_groupHandler => {
@@ -7489,16 +7489,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
         'configuration' => String,
         'creation_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -7521,6 +7521,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'iam_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'log_destination' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'log_destination_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'log_group_name' => {
           'type' => Optional[String],
           'value' => undef
@@ -7537,19 +7549,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'traffic_type' => String,
-        'iam_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'log_destination' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'log_destination_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'traffic_type' => String
       }
     },
     Aws_flow_logHandler => {
@@ -7569,12 +7569,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'description' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'name' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -7622,6 +7622,17 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'build_id' => String,
+        'name' => String,
+        'ec2_instance_type' => String,
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'new_game_session_protection_policy' => {
           'type' => Optional[String],
           'value' => undef
@@ -7629,18 +7640,7 @@ type AwsTerraform = TypeSet[{
         'operating_system' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'build_id' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ec2_instance_type' => String,
-        'name' => String
+        }
       }
     },
     Aws_gamelift_fleetHandler => {
@@ -7684,6 +7684,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'name' => String,
         'location' => {
           'type' => Optional[String],
@@ -7695,10 +7699,6 @@ type AwsTerraform = TypeSet[{
         },
         'access_policy' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -7746,15 +7746,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'ip_address_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'name' => String,
-        'ip_address_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'name' => String
       }
     },
     Aws_globalaccelerator_acceleratorHandler => {
@@ -7806,21 +7806,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'catalog_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'database_name' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'owner' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'table_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'view_original_text' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -7828,10 +7818,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'view_original_text' => {
+        'catalog_id' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'database_name' => String,
+        'owner' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String
       }
     },
     Aws_glue_catalog_tableHandler => {
@@ -7903,7 +7903,17 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'table_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name' => String,
+        'database_name' => String,
+        'role' => String,
         'schedule' => {
           'type' => Optional[String],
           'value' => undef
@@ -7913,16 +7923,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'security_configuration' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'database_name' => String,
-        'role' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'table_prefix' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -7945,12 +7945,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'role_arn' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'security_configuration' => {
           'type' => Optional[String],
           'value' => undef
@@ -7994,6 +7994,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'resource_type' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -8006,8 +8007,7 @@ type AwsTerraform = TypeSet[{
         'schedule' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'resource_type' => String
+        }
       }
     },
     Aws_glue_triggerHandler => {
@@ -8027,15 +8027,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'finding_publishing_frequency' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'enable' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'account_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'finding_publishing_frequency' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -8058,11 +8058,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'activate' => Boolean,
         'detector_id' => String,
         'name' => String,
         'format' => String,
-        'location' => String,
-        'activate' => Boolean
+        'location' => String
       }
     },
     Aws_guardduty_ipsetHandler => {
@@ -8082,6 +8082,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'email' => String,
+        'relationship_status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'invite' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -8095,12 +8100,7 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'account_id' => String,
-        'detector_id' => String,
-        'email' => String,
-        'relationship_status' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'detector_id' => String
       }
     },
     Aws_guardduty_memberHandler => {
@@ -8120,11 +8120,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'location' => String,
+        'activate' => Boolean,
         'detector_id' => String,
         'name' => String,
-        'format' => String,
-        'location' => String,
-        'activate' => Boolean
+        'format' => String
       }
     },
     Aws_guardduty_threatintelsetHandler => {
@@ -8141,10 +8141,6 @@ type AwsTerraform = TypeSet[{
     Aws_iam_access_key => {
       attributes => {
         'aws_iam_access_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'status' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -8168,7 +8164,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'user' => String
+        'user' => String,
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_iam_access_keyHandler => {
@@ -8208,19 +8208,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'hard_expiry' => {
+        'require_lowercase_characters' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'require_uppercase_characters' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'require_symbols' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'allow_users_to_change_password' => {
+        'require_numbers' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -8228,11 +8220,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'require_lowercase_characters' => {
+        'require_symbols' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'require_numbers' => {
+        'require_uppercase_characters' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'allow_users_to_change_password' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'hard_expiry' => {
           'type' => Optional[Boolean],
           'value' => undef
         }
@@ -8255,16 +8255,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
         'unique_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'path' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -8287,8 +8287,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'group' => String,
-        'name' => String
+        'name' => String,
+        'group' => String
       }
     },
     Aws_iam_group_membershipHandler => {
@@ -8358,6 +8358,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'role' => {
           'type' => Optional[String],
           'value' => undef
@@ -8371,18 +8383,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'unique_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'path' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -8429,11 +8429,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy' => String,
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -8447,6 +8442,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'policy' => String,
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -8469,8 +8469,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'policy_arn' => String
+        'policy_arn' => String,
+        'name' => String
       }
     },
     Aws_iam_policy_attachmentHandler => {
@@ -8490,10 +8490,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'assume_role_policy' => String,
         'force_detach_policies' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -8502,33 +8511,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'unique_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name_prefix' => {
+        'permissions_boundary' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'assume_role_policy' => String,
         'create_date' => {
           'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'unique_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'path' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'permissions_boundary' => {
-          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -8629,6 +8629,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'private_key' => String,
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -8643,11 +8648,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'path' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key' => String,
-        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -8670,18 +8670,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'path' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'create_date' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'unique_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -8696,6 +8684,18 @@ type AwsTerraform = TypeSet[{
         },
         'aws_service_name' => String,
         'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'create_date' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -8718,6 +8718,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'force_destroy' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -8737,10 +8741,6 @@ type AwsTerraform = TypeSet[{
         },
         'permissions_boundary' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'force_destroy' => {
-          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -8782,6 +8782,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'user' => String,
         'pgp_key' => String,
         'password_reset_required' => {
           'type' => Optional[Boolean],
@@ -8794,8 +8795,7 @@ type AwsTerraform = TypeSet[{
         'encrypted_password' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'user' => String
+        }
       }
     },
     Aws_iam_user_login_profileHandler => {
@@ -8815,6 +8815,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'policy' => String,
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -8823,8 +8824,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'user' => String,
-        'policy' => String
+        'user' => String
       }
     },
     Aws_iam_user_policyHandler => {
@@ -8865,6 +8865,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'public_key' => String,
+        'encoding' => String,
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'ssh_public_key_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -8873,13 +8879,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'username' => String,
-        'public_key' => String,
-        'encoding' => String,
-        'status' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'username' => String
       }
     },
     Aws_iam_user_ssh_keyHandler => {
@@ -8976,7 +8976,27 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'primary_network_interface_id' => {
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'ebs_optimized' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'instance_initiated_shutdown_behavior' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'monitoring' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'host_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'availability_zone' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -8984,7 +9004,45 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_state' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tenancy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ami' => String,
+        'public_dns' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'user_data_base64' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'associate_public_ip_address' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'placement_group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_type' => String,
+        'source_dest_check' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'get_password_data' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'private_ip' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -8996,19 +9054,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'private_dns' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'user_data_base64' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_dns' => {
+        'password_data' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9016,20 +9062,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_dest_check' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'iam_instance_profile' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'associate_public_ip_address' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'instance_type' => String,
-        'instance_initiated_shutdown_behavior' => {
+        'private_dns' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9037,15 +9070,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'get_password_data' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'password_data' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_state' => {
+        'primary_network_interface_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9053,32 +9078,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'host_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ami' => String,
-        'availability_zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tenancy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'monitoring' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'ebs_optimized' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'placement_group' => {
+        'iam_instance_profile' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9101,16 +9101,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'owner_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'vpc_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'owner_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -9132,12 +9132,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'csr' => String,
         'active' => Boolean,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'csr' => String
       }
     },
     Aws_iot_certificateHandler => {
@@ -9157,7 +9157,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'policy' => String,
         'arn' => {
           'type' => Optional[String],
@@ -9166,7 +9165,8 @@ type AwsTerraform = TypeSet[{
         'default_version_id' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'name' => String
       }
     },
     Aws_iot_policyHandler => {
@@ -9207,7 +9207,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'thing_type_name' => {
           'type' => Optional[String],
           'value' => undef
@@ -9219,7 +9218,8 @@ type AwsTerraform = TypeSet[{
         'arn' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'name' => String
       }
     },
     Aws_iot_thingHandler => {
@@ -9289,6 +9289,7 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'sql_version' => String,
+        'enabled' => Boolean,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -9298,7 +9299,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'enabled' => Boolean,
         'sql' => String
       }
     },
@@ -9319,16 +9319,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'public_key' => String,
-        'fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'key_name' => {
           'type' => Optional[String],
           'value' => undef
         },
         'key_name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_key' => String,
+        'fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9356,10 +9356,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'code' => {
           'type' => Optional[String],
           'value' => undef
@@ -9368,11 +9364,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'last_update_timestamp' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'last_update_timestamp' => {
+        'status' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9395,11 +9395,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'destination' => String,
         'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'version_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9408,11 +9405,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'destination_id' => {
+        'version_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'destination' => String
+        'destination_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_kinesis_firehose_delivery_streamHandler => {
@@ -9468,11 +9468,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'target_key_id' => String,
-        'target_key_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -9482,6 +9477,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'target_key_id' => String,
+        'target_key_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9504,11 +9504,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'retire_on_delete' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'grant_id' => {
+        'key_id' => String,
+        'retiring_principal' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9520,9 +9517,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'key_id' => String,
         'grantee_principal' => String,
-        'retiring_principal' => {
+        'retire_on_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'grant_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9545,23 +9545,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'enable_key_rotation' => {
-          'type' => Optional[Boolean],
+        'key_usage' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'key_usage' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9573,8 +9569,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'enable_key_rotation' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'key_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -9596,6 +9596,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'function_name' => String,
+        'function_version' => String,
+        'name' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -9607,10 +9610,7 @@ type AwsTerraform = TypeSet[{
         'description' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'function_name' => String,
-        'function_version' => String,
-        'name' => String
+        }
       }
     },
     Aws_lambda_aliasHandler => {
@@ -9630,7 +9630,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'state_transition_reason' => {
+        'state' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9639,11 +9639,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'last_modified' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'last_modified' => {
+        'function_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9651,7 +9655,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'state' => {
+        'state_transition_reason' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9661,10 +9665,6 @@ type AwsTerraform = TypeSet[{
         },
         'function_name' => String,
         'starting_position' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'function_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9687,34 +9687,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        's3_object_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'handler' => String,
         'role' => String,
         'runtime' => String,
-        'filename' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        's3_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'last_modified' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9722,19 +9697,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'qualified_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'source_code_hash' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'kms_key_arn' => {
+        'last_modified' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9744,6 +9711,39 @@ type AwsTerraform = TypeSet[{
         },
         'function_name' => String,
         'invoke_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'handler' => String,
+        'version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        's3_object_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_code_hash' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'filename' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        's3_key' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -9766,23 +9766,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'created_date' => {
+        's3_object_version' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'source_code_hash' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'layer_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        's3_key' => {
+        's3_bucket' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9790,27 +9778,39 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        's3_object_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'license_info' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'layer_name' => String,
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_code_hash' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        's3_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'created_date' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'filename' => {
           'type' => Optional[String],
           'value' => undef
         },
-        's3_bucket' => {
+        'layer_arn' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'layer_name' => String
       }
     },
     Aws_lambda_layer_versionHandler => {
@@ -9830,16 +9830,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'statement_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'event_source_token' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'function_name' => String,
-        'principal' => String,
         'qualifier' => {
           'type' => Optional[String],
           'value' => undef
@@ -9852,11 +9842,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'statement_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'statement_id_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'action' => String
+        'action' => String,
+        'principal' => String,
+        'event_source_token' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'function_name' => String
       }
     },
     Aws_lambda_permissionHandler => {
@@ -9876,24 +9876,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'image_id' => String,
-        'enable_monitoring' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'instance_type' => String,
-        'iam_instance_profile' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ebs_optimized' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -9910,6 +9892,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_type' => String,
+        'iam_instance_profile' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ebs_optimized' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'placement_tenancy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_monitoring' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image_id' => String,
         'user_data' => {
           'type' => Optional[String],
           'value' => undef
@@ -9920,10 +9924,6 @@ type AwsTerraform = TypeSet[{
         },
         'associate_public_ip_address' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'placement_tenancy' => {
-          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -9945,6 +9945,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -9953,11 +9957,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ebs_optimized' => {
+        'instance_initiated_shutdown_behavior' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9965,11 +9965,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'name_prefix' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9977,7 +9981,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'instance_initiated_shutdown_behavior' => {
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'ebs_optimized' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_type' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -9986,18 +9998,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'key_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'image_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_type' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -10020,43 +10020,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'enable_http2' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'vpc_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn_suffix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'load_balancer_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'internal' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'zone_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enable_deletion_protection' => {
+        'enable_cross_zone_load_balancing' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -10064,7 +10028,43 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'vpc_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'internal' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'enable_http2' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'load_balancer_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_deletion_protection' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'dns_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn_suffix' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10072,8 +10072,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'enable_cross_zone_load_balancing' => {
-          'type' => Optional[Boolean],
+        'name' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -10218,7 +10218,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'protocol' => {
+        'proxy_protocol_v2' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'arn_suffix' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10226,24 +10230,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'arn_suffix' => {
+        'protocol' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'proxy_protocol_v2' => {
-          'type' => Optional[Boolean],
           'value' => undef
         },
         'target_type' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'name' => {
@@ -10273,12 +10273,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'target_group_arn' => String,
-        'target_id' => String,
         'availability_zone' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'target_group_arn' => String,
+        'target_id' => String
       }
     },
     Aws_lb_target_group_attachmentHandler => {
@@ -10319,11 +10319,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -10332,7 +10327,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'license_counting_type' => String
+        'license_counting_type' => String,
+        'name' => String,
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
       }
     },
     Aws_licensemanager_license_configurationHandler => {
@@ -10352,11 +10352,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'domain_name' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'domain_name' => String
+        }
       }
     },
     Aws_lightsail_domainHandler => {
@@ -10376,18 +10376,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'blueprint_id' => String,
-        'bundle_id' => String,
-        'is_static_ip' => {
-          'type' => Optional[Boolean],
+        'private_ip_address' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'username' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'user_data' => {
+        'availability_zone' => String,
+        'key_pair_name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10399,11 +10397,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ipv6_address' => {
-          'type' => Optional[String],
+        'bundle_id' => String,
+        'is_static_ip' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
-        'private_ip_address' => {
+        'blueprint_id' => String,
+        'ipv6_address' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10411,8 +10411,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'availability_zone' => String,
-        'key_pair_name' => {
+        'name' => String,
+        'user_data' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -10435,23 +10435,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'encrypted_private_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'fingerprint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'private_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'encrypted_fingerprint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'encrypted_private_key' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10467,7 +10459,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'encrypted_fingerprint' => {
+        'public_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'fingerprint' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -10490,7 +10490,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'ip_address' => {
           'type' => Optional[String],
           'value' => undef
@@ -10502,7 +10501,8 @@ type AwsTerraform = TypeSet[{
         'support_code' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'name' => String
       }
     },
     Aws_lightsail_static_ipHandler => {
@@ -10625,12 +10625,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'member_account_id' => {
+        'bucket_name' => String,
+        'prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket_name' => String,
-        'prefix' => {
+        'member_account_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -10653,12 +10653,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'vpc_id' => String,
+        'route_table_id' => String,
         'original_route_table_id' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'vpc_id' => String,
-        'route_table_id' => String
+        }
       }
     },
     Aws_main_route_table_associationHandler => {
@@ -10755,32 +10755,32 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'broker_name' => String,
+        'apply_immediately' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'deployment_mode' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'engine_version' => String,
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'broker_name' => String,
         'engine_type' => String,
         'publicly_accessible' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'host_instance_type' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'apply_immediately' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'auto_minor_version_upgrade' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'engine_version' => String,
-        'host_instance_type' => String,
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -10802,14 +10802,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'data' => String,
         'description' => {
           'type' => Optional[String],
@@ -10817,7 +10809,15 @@ type AwsTerraform = TypeSet[{
         },
         'engine_type' => String,
         'engine_version' => String,
-        'name' => String
+        'name' => String,
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_mq_configurationHandler => {
@@ -10837,8 +10837,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'allocation_id' => String,
-        'subnet_id' => String,
         'network_interface_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -10854,7 +10852,9 @@ type AwsTerraform = TypeSet[{
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
-        }
+        },
+        'allocation_id' => String,
+        'subnet_id' => String
       }
     },
     Aws_nat_gatewayHandler => {
@@ -10874,23 +10874,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'hosted_zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'apply_immediately' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'neptune_cluster_parameter_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'iam_database_authentication_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'cluster_resource_id' => {
+        'kms_key_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10898,52 +10890,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'snapshot_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_identifier_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'replication_source_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'neptune_subnet_group_name' => {
+        'snapshot_identifier' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'hosted_zone_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'skip_final_snapshot' => {
-          'type' => Optional[Boolean],
           'value' => undef
         },
         'cluster_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'engine' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'final_snapshot_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'kms_key_arn' => {
-          'type' => Optional[String],
+        'iam_database_authentication_enabled' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'preferred_backup_window' => {
@@ -10954,12 +10914,52 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'neptune_subnet_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_identifier_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'neptune_cluster_parameter_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'storage_encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_resource_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'skip_final_snapshot' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'endpoint' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'final_snapshot_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -10981,11 +10981,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'dbi_resource_id' => {
+        'address' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_minor_version_upgrade' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_identifier' => String,
         'engine' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -10997,60 +11014,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'endpoint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'preferred_backup_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'auto_minor_version_upgrade' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_class' => String,
         'publicly_accessible' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'writer' => {
-          'type' => Optional[Boolean],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'apply_immediately' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'availability_zone' => {
+        'dbi_resource_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'cluster_identifier' => String,
         'identifier_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -11061,6 +11036,31 @@ type AwsTerraform = TypeSet[{
         },
         'neptune_subnet_group_name' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'preferred_backup_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'apply_immediately' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_class' => String,
+        'storage_encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'writer' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -11082,7 +11082,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'family' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -11102,7 +11101,8 @@ type AwsTerraform = TypeSet[{
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'family' => String
       }
     },
     Aws_neptune_cluster_parameter_groupHandler => {
@@ -11122,25 +11122,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'license_model' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'db_cluster_identifier' => String,
         'snapshot_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'db_cluster_identifier' => String,
-        'status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'db_cluster_snapshot_identifier' => String,
-        'source_db_cluster_snapshot_arn' => {
+        'db_cluster_snapshot_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11152,15 +11139,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'db_cluster_snapshot_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'engine' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'source_db_cluster_snapshot_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'storage_encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'db_cluster_snapshot_identifier' => String,
         'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'license_model' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -11191,10 +11191,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -11203,6 +11199,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'sns_topic_arn' => String,
         'source_type' => {
           'type' => Optional[String],
           'value' => undef
@@ -11211,7 +11208,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'sns_topic_arn' => String
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        }
       }
     },
     Aws_neptune_event_subscriptionHandler => {
@@ -11264,6 +11264,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -11278,10 +11282,6 @@ type AwsTerraform = TypeSet[{
         },
         'description' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -11303,16 +11303,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'vpc_id' => String,
+        'subnet_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'owner_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'vpc_id' => String,
-        'subnet_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -11339,17 +11339,17 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'icmp_code' => {
+        'cidr_block' => {
           'type' => Optional[String],
           'value' => undef
         },
         'protocol' => String,
         'rule_action' => String,
-        'cidr_block' => {
+        'icmp_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'icmp_type' => {
+        'icmp_code' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11377,6 +11377,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'private_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'private_dns_name' => {
           'type' => Optional[String],
           'value' => undef
@@ -11393,11 +11397,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'subnet_id' => String,
-        'private_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'subnet_id' => String
       }
     },
     Aws_network_interfaceHandler => {
@@ -11417,6 +11417,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_id' => String,
         'network_interface_id' => String,
         'attachment_id' => {
           'type' => Optional[String],
@@ -11425,8 +11426,7 @@ type AwsTerraform = TypeSet[{
         'status' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'instance_id' => String
+        }
       }
     },
     Aws_network_interface_attachmentHandler => {
@@ -11471,30 +11471,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'aws_flow_ruby_settings' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'data_source_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => String,
-        'short_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'rails_env' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'data_source_database_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_type' => String,
-        'stack_id' => String,
         'auto_bundle_on_deploy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'aws_flow_ruby_settings' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11502,12 +11484,30 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'data_source_database_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'short_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'resource_type' => String,
+        'stack_id' => String,
+        'rails_env' => {
           'type' => Optional[String],
           'value' => undef
         },
         'enable_ssl' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'data_source_arn' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -11529,25 +11529,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_assign_elastic_ips' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'custom_json' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
         'auto_assign_public_ips' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'use_ebs_optimized_instances' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'elastic_load_balancer' => {
-          'type' => Optional[String],
           'value' => undef
         },
         'auto_healing' => {
@@ -11558,7 +11541,25 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'stack_id' => String,
         'custom_instance_profile_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'name' => String,
+        'auto_assign_elastic_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'elastic_load_balancer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'custom_json' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11566,7 +11567,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'stack_id' => String,
         'short_name' => String
       }
     },
@@ -11587,14 +11587,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'username' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'auto_healing' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -11603,12 +11595,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'stack_id' => String,
-        'url' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'custom_json' => {
+        'elastic_load_balancer' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11616,24 +11603,37 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'auto_assign_elastic_ips' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'custom_instance_profile_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'use_ebs_optimized_instances' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'url' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'password' => String,
+        'auto_assign_elastic_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'custom_json' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'username' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'stack_id' => String,
         'auto_assign_public_ips' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'elastic_load_balancer' => {
+        'custom_instance_profile_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -11656,30 +11656,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'stack_id' => String,
-        'use_ebs_optimized_instances' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'stats_password' => String,
-        'stats_url' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'auto_assign_public_ips' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'elastic_load_balancer' => {
+        'custom_json' => {
           'type' => Optional[String],
           'value' => undef
         },
         'auto_healing' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'stats_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'elastic_load_balancer' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'install_updates_on_boot' => {
@@ -11690,7 +11680,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'healthcheck_url' => {
+        'custom_instance_profile_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11698,26 +11688,36 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_assign_elastic_ips' => {
-          'type' => Optional[Boolean],
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'stats_url' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'stats_user' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'custom_instance_profile_arn' => {
+        'healthcheck_url' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'custom_json' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'stats_enabled' => {
+        'auto_assign_elastic_ips' => {
           'type' => Optional[Boolean],
           'value' => undef
-        }
+        },
+        'auto_assign_public_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'stack_id' => String,
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'stats_password' => String
       }
     },
     Aws_opsworks_haproxy_layerHandler => {
@@ -11737,15 +11737,136 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ami_id' => {
+        'public_ip' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_scaling_type' => {
+        'registered_by' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'architecture' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ec2_instance_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'reported_os_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'root_device_volume_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'delete_eip' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'elastic_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'reported_agent_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'reported_os_family' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'infrastructure_class' => {
           'type' => Optional[String],
           'value' => undef
         },
         'instance_profile_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'root_device_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_dns' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_dns' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'reported_os_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ami_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'delete_ebs' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'ebs_optimized' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'instance_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ssh_key_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'state' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnet_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'last_service_error_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'stack_id' => String,
+        'tenancy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'virtualization_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'agent_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'created_at' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'os' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'platform' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'install_updates_on_boot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'private_ip' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11757,136 +11878,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'stack_id' => String,
+        'auto_scaling_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'availability_zone' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'delete_ebs' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'ec2_instance_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'install_updates_on_boot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'tenancy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'ecs_cluster_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'infrastructure_class' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'os' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'root_device_volume_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'state' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'virtualization_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_dns' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'registered_by' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'reported_os_family' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'reported_os_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'reported_os_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'subnet_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'created_at' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'last_service_error_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'platform' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_dns' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ebs_optimized' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'instance_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'reported_agent_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'root_device_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ssh_key_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'agent_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'architecture' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'delete_eip' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'elastic_ip' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -11913,16 +11913,53 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'custom_json' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'drain_elb_on_shutdown' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'app_server_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'auto_assign_public_ips' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'custom_json' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'install_updates_on_boot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'app_server' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'jvm_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_assign_elastic_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'auto_healing' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'stack_id' => String,
+        'jvm_options' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'custom_instance_profile_arn' => {
@@ -11933,45 +11970,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'app_server' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'app_server_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'auto_assign_elastic_ips' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'install_updates_on_boot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'stack_id' => String,
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'jvm_options' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'elastic_load_balancer' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'use_ebs_optimized_instances' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'jvm_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'auto_healing' => {
-          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -11993,19 +11993,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_assign_public_ips' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'elastic_load_balancer' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'auto_assign_elastic_ips' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'custom_json' => {
+        'stack_id' => String,
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'custom_instance_profile_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12013,25 +12010,28 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'install_updates_on_boot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'stack_id' => String,
-        'custom_instance_profile_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'drain_elb_on_shutdown' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'use_ebs_optimized_instances' => {
-          'type' => Optional[Boolean],
+        'elastic_load_balancer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'custom_json' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'name' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_assign_public_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'install_updates_on_boot' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -12053,19 +12053,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'elastic_load_balancer' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'auto_healing' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'drain_elb_on_shutdown' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'auto_assign_public_ips' => {
+        'use_ebs_optimized_instances' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -12073,16 +12065,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'stack_id' => String,
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'root_password_on_all_instances' => {
+        'drain_elb_on_shutdown' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'custom_instance_profile_arn' => {
+        'stack_id' => String,
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12094,7 +12082,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'use_ebs_optimized_instances' => {
+        'elastic_load_balancer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'auto_assign_public_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'custom_instance_profile_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'root_password_on_all_instances' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -12121,15 +12121,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'drain_elb_on_shutdown' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'auto_assign_public_ips' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'use_ebs_optimized_instances' => {
+        'install_updates_on_boot' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -12137,33 +12129,41 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'nodejs_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'auto_assign_elastic_ips' => {
+        'auto_assign_public_ips' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'elastic_load_balancer' => {
-          'type' => Optional[String],
           'value' => undef
         },
         'auto_healing' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'nodejs_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'custom_json' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'install_updates_on_boot' => {
+        'drain_elb_on_shutdown' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'stack_id' => String,
         'custom_instance_profile_arn' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'elastic_load_balancer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'stack_id' => String,
+        'auto_assign_elastic_ips' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -12185,14 +12185,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'allow_ssh' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'allow_sudo' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'user_arn' => String,
         'level' => {
           'type' => Optional[String],
@@ -12200,6 +12192,14 @@ type AwsTerraform = TypeSet[{
         },
         'stack_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'allow_ssh' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'allow_sudo' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -12221,7 +12221,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'custom_instance_profile_arn' => {
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12230,15 +12230,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'stack_id' => String,
-        'use_ebs_optimized_instances' => {
+        'auto_assign_public_ips' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'auto_assign_elastic_ips' => {
+        'use_ebs_optimized_instances' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
@@ -12246,20 +12242,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'install_updates_on_boot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'drain_elb_on_shutdown' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'auto_assign_public_ips' => {
+        'auto_assign_elastic_ips' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'custom_instance_profile_arn' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'elastic_load_balancer' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'install_updates_on_boot' => {
-          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -12289,28 +12289,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'drain_elb_on_shutdown' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'stack_id' => String,
         'app_server' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_assign_public_ips' => {
+        'manage_bundler' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'elastic_load_balancer' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'custom_json' => {
-          'type' => Optional[String],
+        'stack_id' => String,
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'ruby_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bundler_version' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12318,7 +12314,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'name' => {
+        'elastic_load_balancer' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12326,8 +12322,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'use_ebs_optimized_instances' => {
-          'type' => Optional[Boolean],
+        'name' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'passenger_version' => {
@@ -12338,12 +12334,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'manage_bundler' => {
+        'auto_assign_public_ips' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'bundler_version' => {
+        'custom_json' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'drain_elb_on_shutdown' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -12365,10 +12365,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'rds_db_instance_arn' => String,
         'db_password' => String,
         'db_user' => String,
-        'stack_id' => String
+        'stack_id' => String,
+        'rds_db_instance_arn' => String
       }
     },
     Aws_opsworks_rds_db_instanceHandler => {
@@ -12388,20 +12388,40 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'custom_json' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_ssh_key_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_subnet_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'vpc_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'agent_version' => {
-          'type' => Optional[String],
+        'manage_berkshelf' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'berkshelf_version' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'custom_json' => {
+        'default_os' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'use_opsworks_security_groups' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'tags' => {
@@ -12412,13 +12432,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'stack_endpoint' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'default_instance_profile_arn' => String,
         'color' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'configuration_manager_name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12426,7 +12448,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'default_ssh_key_name' => {
+        'hostname_theme' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12434,40 +12456,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'hostname_theme' => {
+        'stack_endpoint' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'use_opsworks_security_groups' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'arn' => {
+        'agent_version' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'region' => String,
         'service_role_arn' => String,
-        'configuration_manager_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'manage_berkshelf' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'default_availability_zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_os' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_subnet_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'default_instance_profile_arn' => String
       }
     },
     Aws_opsworks_stackHandler => {
@@ -12487,6 +12487,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'auto_assign_public_ips' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'use_ebs_optimized_instances' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'drain_elb_on_shutdown' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'custom_instance_profile_arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -12495,13 +12507,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'drain_elb_on_shutdown' => {
+        'auto_healing' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'stack_id' => String,
-        'name' => {
-          'type' => Optional[String],
           'value' => undef
         },
         'auto_assign_elastic_ips' => {
@@ -12512,20 +12519,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'custom_json' => {
+        'stack_id' => String,
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'auto_healing' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'use_ebs_optimized_instances' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'auto_assign_public_ips' => {
-          'type' => Optional[Boolean],
+        'custom_json' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -12576,18 +12576,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'iam_user_access_to_billing' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'joined_method' => {
           'type' => Optional[String],
           'value' => undef
@@ -12601,7 +12589,19 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'email' => String
+        'email' => String,
+        'iam_user_access_to_billing' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_organizations_accountHandler => {
@@ -12621,14 +12621,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'master_account_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'feature_set' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -12638,6 +12630,14 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'master_account_email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'master_account_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'feature_set' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -12660,7 +12660,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'resource_type' => {
           'type' => Optional[String],
           'value' => undef
@@ -12673,7 +12672,8 @@ type AwsTerraform = TypeSet[{
         'description' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'name' => String
       }
     },
     Aws_organizations_policyHandler => {
@@ -12693,8 +12693,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy_id' => String,
-        'target_id' => String
+        'target_id' => String,
+        'policy_id' => String
       }
     },
     Aws_organizations_policy_attachmentHandler => {
@@ -12714,13 +12714,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'application_id' => String,
-        'client_id' => String,
-        'client_secret' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
-        }
+        },
+        'application_id' => String,
+        'client_id' => String,
+        'client_secret' => String
       }
     },
     Aws_pinpoint_adm_channelHandler => {
@@ -12740,7 +12740,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'certificate' => {
+        'bundle_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12748,12 +12748,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'team_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_key' => {
-          'type' => Optional[String],
+        'enabled' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'token_key' => {
@@ -12765,12 +12761,16 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'application_id' => String,
-        'bundle_id' => {
+        'certificate' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'enabled' => {
-          'type' => Optional[Boolean],
+        'private_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'team_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -12796,11 +12796,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'team_id' => {
+        'certificate' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'token_key' => {
+        'team_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12809,19 +12809,19 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'application_id' => String,
-        'certificate' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_authentication_method' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'private_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'token_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_authentication_method' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -12844,11 +12844,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'application_id' => String,
+        'default_authentication_method' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'default_authentication_method' => {
+        'token_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12871,12 +12876,7 @@ type AwsTerraform = TypeSet[{
         'token_key' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'token_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'application_id' => String
+        }
       }
     },
     Aws_pinpoint_apns_voip_channelHandler => {
@@ -12896,28 +12896,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'certificate' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'token_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'token_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'team_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'application_id' => String,
         'bundle_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'certificate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'default_authentication_method' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'team_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -12926,6 +12918,14 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'private_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'token_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'token_key_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -12979,13 +12979,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'api_key' => String,
         'secret_key' => String,
         'application_id' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
-        },
-        'api_key' => String
+        }
       }
     },
     Aws_pinpoint_baidu_channelHandler => {
@@ -13005,14 +13005,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'role_arn' => String,
-        'application_id' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'from_address' => String,
-        'identity' => String
+        'identity' => String,
+        'role_arn' => String,
+        'application_id' => String
       }
     },
     Aws_pinpoint_email_channelHandler => {
@@ -13152,6 +13152,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
         'allow_external_principals' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -13159,8 +13160,7 @@ type AwsTerraform = TypeSet[{
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
-        },
-        'name' => String
+        }
       }
     },
     Aws_ram_resource_shareHandler => {
@@ -13180,87 +13180,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_resource_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'database_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'master_password' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'preferred_maintenance_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'engine_mode' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'master_username' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'final_snapshot_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'skip_final_snapshot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'global_cluster_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'hosted_zone_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'deletion_protection' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'source_region' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'db_cluster_parameter_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_identifier_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'reader_endpoint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'engine' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'preferred_backup_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_identifier' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13272,15 +13192,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'replication_source_identifier' => {
+        'preferred_maintenance_window' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'engine_version' => {
+        'master_password' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13288,12 +13204,96 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'cluster_identifier_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'reader_endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'final_snapshot_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preferred_backup_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'db_cluster_parameter_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'hosted_zone_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_mode' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'database_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'db_subnet_group_name' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'skip_final_snapshot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'snapshot_identifier' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'storage_encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'replication_source_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'global_cluster_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'master_username' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_resource_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'deletion_protection' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -13315,17 +13315,17 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_endpoint_identifier' => String,
         'cluster_identifier' => String,
         'custom_endpoint_type' => String,
         'endpoint' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_endpoint_identifier' => String
+        }
       }
     },
     Aws_rds_cluster_endpointHandler => {
@@ -13349,61 +13349,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'dbi_resource_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'cluster_identifier' => String,
-        'instance_class' => String,
-        'copy_tags_to_snapshot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'preferred_maintenance_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'endpoint' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'engine_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'db_parameter_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'performance_insights_kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'performance_insights_enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'monitoring_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'preferred_backup_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'kms_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13411,12 +13357,32 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'availability_zone' => {
+        'preferred_maintenance_window' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'identifier' => {
+        'performance_insights_kms_key_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_key_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'storage_encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'writer' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'publicly_accessible' => {
@@ -13427,16 +13393,50 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'performance_insights_enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_class' => String,
+        'dbi_resource_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_identifier' => String,
+        'endpoint' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'monitoring_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preferred_backup_window' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'engine_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'copy_tags_to_snapshot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'identifier_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
         'db_subnet_group_name' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'writer' => {
-          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -13458,6 +13458,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'family' => String,
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -13468,15 +13477,6 @@ type AwsTerraform = TypeSet[{
         },
         'name_prefix' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'family' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -13495,6 +13495,11 @@ type AwsTerraform = TypeSet[{
     Aws_rds_global_cluster => {
       attributes => {
         'aws_rds_global_cluster_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'global_cluster_identifier' => String,
+        'global_cluster_resource_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13521,11 +13526,6 @@ type AwsTerraform = TypeSet[{
         'engine_version' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'global_cluster_identifier' => String,
-        'global_cluster_resource_id' => {
-          'type' => Optional[String],
-          'value' => undef
         }
       }
     },
@@ -13546,11 +13546,73 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'cluster_parameter_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dns_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'final_snapshot_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'owner_account' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'database_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cluster_identifier' => String,
         'cluster_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'availability_zone' => {
+        'cluster_subnet_group_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'publicly_accessible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'node_type' => String,
+        'encrypted' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'cluster_revision_number' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_logging' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'snapshot_cluster_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'allow_version_upgrade' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'elastic_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'skip_final_snapshot' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'snapshot_identifier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preferred_maintenance_window' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13562,36 +13624,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'cluster_subnet_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'skip_final_snapshot' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'final_snapshot_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_identifier' => String,
-        'preferred_maintenance_window' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enhanced_vpc_routing' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'dns_name' => {
+        'master_username' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13599,64 +13632,31 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'snapshot_cluster_identifier' => {
+        'cluster_version' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'database_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'publicly_accessible' => {
+        'enhanced_vpc_routing' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'availability_zone' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'master_username' => {
+        'kms_key_id' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_parameter_group_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'allow_version_upgrade' => {
-          'type' => Optional[Boolean],
           'value' => undef
         },
         'endpoint' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'enable_logging' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'bucket_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'snapshot_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'owner_account' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'node_type' => String,
-        'cluster_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'elastic_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cluster_revision_number' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -13679,7 +13679,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'severity' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sns_topic_arn' => String,
+        'source_type' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13687,20 +13701,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'source_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'name' => String,
-        'sns_topic_arn' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -13724,12 +13724,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'family' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'name' => String,
-        'family' => String
+        }
       }
     },
     Aws_redshift_parameter_groupHandler => {
@@ -13773,13 +13773,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'snapshot_copy_grant_name' => String,
         'kms_key_id' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -13829,7 +13829,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -13837,7 +13836,8 @@ type AwsTerraform = TypeSet[{
         'arn' => {
           'type' => Optional[String],
           'value' => undef
-        }
+        },
+        'name' => String
       }
     },
     Aws_resourcegroups_groupHandler => {
@@ -13857,14 +13857,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'state' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'vpc_peering_connection_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'destination_ipv6_cidr_block' => {
           'type' => Optional[String],
           'value' => undef
@@ -13873,15 +13865,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'origin' => {
+        'instance_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'transit_gateway_id' => {
+        'route_table_id' => String,
+        'vpc_peering_connection_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'destination_prefix_list_id' => {
+        'gateway_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13889,24 +13882,31 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'route_table_id' => String,
-        'nat_gateway_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'network_interface_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'destination_cidr_block' => {
+        'origin' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'gateway_id' => {
+        'destination_prefix_list_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'nat_gateway_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'state' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'transit_gateway_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'destination_cidr_block' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -13945,31 +13945,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'search_string' => {
+        'cloudwatch_alarm_region' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'cloudwatch_alarm_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'enable_sni' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'insufficient_data_health_status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_path' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -13977,8 +13957,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'cloudwatch_alarm_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'insufficient_data_health_status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'reference_name' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'resource_type' => String,
@@ -13986,8 +13978,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'cloudwatch_alarm_region' => {
+        'resource_path' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'search_string' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_sni' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -14030,30 +14030,30 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'resource_type' => String,
-        'zone_id' => String,
+        'name' => String,
+        'fqdn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'failover' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'multivalue_answer_routing_policy' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'health_check_id' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'allow_overwrite' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'fqdn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'resource_type' => String,
+        'zone_id' => String,
         'set_identifier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'failover' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'health_check_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14076,6 +14076,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'vpc_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'vpc_region' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -14085,23 +14093,15 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => String,
+        'comment' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'zone_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'delegation_set_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'comment' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'vpc_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'vpc_region' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14188,8 +14188,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'subnet_id' => String,
-        'route_table_id' => String
+        'route_table_id' => String,
+        'subnet_id' => String
       }
     },
     Aws_route_table_associationHandler => {
@@ -14209,6 +14209,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'restrict_public_buckets' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'account_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'block_public_acls' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -14219,14 +14227,6 @@ type AwsTerraform = TypeSet[{
         },
         'ignore_public_acls' => {
           'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'restrict_public_buckets' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'account_id' => {
-          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -14248,11 +14248,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'region' => {
+          'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'website_domain' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14268,11 +14268,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'hosted_zone_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'region' => {
+        'website_endpoint' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14280,23 +14276,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket_prefix' => {
+        'policy' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'website_domain' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'request_payer' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'acceleration_status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'website_endpoint' => {
+        'hosted_zone_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14304,7 +14288,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'policy' => {
+        'acceleration_status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'bucket_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'request_payer' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14327,13 +14327,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'included_object_versions' => String,
         'bucket' => String,
         'name' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
-        },
-        'included_object_versions' => String
+        }
       }
     },
     Aws_s3_bucket_inventoryHandler => {
@@ -14394,37 +14394,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'server_side_encryption' => {
+        'content_encoding' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'version_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'source' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'storage_class' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'content_base64' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'bucket' => String,
-        'key' => String,
-        'acl' => {
+        'content_disposition' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'content_encoding' => {
+        'content_language' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14436,15 +14419,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'cache_control' => {
+        'storage_class' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'content_disposition' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'content_language' => {
+        'server_side_encryption' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14452,11 +14431,32 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'key' => String,
+        'version_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cache_control' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'content_base64' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'website_redirect' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'acl' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14479,8 +14479,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'bucket' => String,
-        'policy' => String
+        'policy' => String,
+        'bucket' => String
       }
     },
     Aws_s3_bucket_policyHandler => {
@@ -14536,14 +14536,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name' => String,
         'role_arn' => String,
         'instance_type' => String,
@@ -14552,6 +14544,14 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'kms_key_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14578,19 +14578,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'kms_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'policy' => {
+        'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14598,15 +14590,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => {
+        'kms_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name_prefix' => {
+        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14629,11 +14629,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'secret_id' => String,
-        'secret_string' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'secret_binary' => {
           'type' => Optional[String],
           'value' => undef
@@ -14643,6 +14638,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'secret_id' => String,
+        'secret_string' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14665,23 +14665,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'vpc_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'revoke_rules_on_delete' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'name_prefix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -14694,6 +14678,22 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'description' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'revoke_rules_on_delete' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14716,21 +14716,21 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'source_security_group_id' => {
+        'security_group_id' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
         'resource_type' => String,
-        'protocol' => String,
-        'security_group_id' => String,
+        'source_security_group_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'self' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
+        'protocol' => String
       }
     },
     Aws_security_group_ruleHandler => {
@@ -14813,12 +14813,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'name' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'description' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14874,16 +14874,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'hosted_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
         'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'hosted_zone' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14906,12 +14906,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'arn' => {
+        'name' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'description' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -14934,6 +14934,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'provider_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -14945,14 +14953,6 @@ type AwsTerraform = TypeSet[{
         'name' => String,
         'description' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'provider_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -15111,12 +15111,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'configuration_set_name' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
-        }
+        },
+        'name' => String,
+        'configuration_set_name' => String
       }
     },
     Aws_ses_event_destinationHandler => {
@@ -15136,12 +15136,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'identity' => String,
         'topic_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'notification_type' => String
+        'notification_type' => String,
+        'identity' => String
       }
     },
     Aws_ses_identity_notification_topicHandler => {
@@ -15161,9 +15161,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy' => String,
         'name' => String,
-        'cidr' => String
+        'cidr' => String,
+        'policy' => String
       }
     },
     Aws_ses_receipt_filterHandler => {
@@ -15183,7 +15183,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'after' => {
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tls_policy' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15193,11 +15197,7 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'tls_policy' => {
+        'after' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15300,6 +15300,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => String,
+        'role_arn' => String,
         'creation_date' => {
           'type' => Optional[String],
           'value' => undef
@@ -15312,9 +15314,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'definition' => String,
-        'name' => String,
-        'role_arn' => String
+        'definition' => String
       }
     },
     Aws_sfn_state_machineHandler => {
@@ -15375,6 +15375,33 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'failure_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'success_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'platform' => String,
+        'platform_credential' => String,
+        'event_endpoint_deleted_topic_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'event_endpoint_updated_topic_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'platform_principal' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'success_feedback_sample_rate' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -15384,33 +15411,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'event_endpoint_created_topic_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'event_endpoint_updated_topic_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'success_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'success_feedback_sample_rate' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => String,
-        'platform' => String,
-        'platform_credential' => String,
-        'event_endpoint_deleted_topic_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'failure_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'platform_principal' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15433,14 +15433,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'default_sms_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'usage_report_s3_bucket' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'monthly_spend_limit' => {
           'type' => Optional[String],
           'value' => undef
@@ -15454,6 +15446,14 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'default_sender_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_sms_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'usage_report_s3_bucket' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15476,6 +15476,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'http_failure_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'sqs_failure_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -15484,7 +15492,39 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'lambda_success_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'delivery_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'application_success_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'http_success_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'application_failure_feedback_role_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_master_key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15493,46 +15533,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'sqs_success_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'application_failure_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'sqs_failure_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'delivery_policy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'http_success_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'kms_master_key_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'lambda_success_feedback_role_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'policy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'http_failure_feedback_role_arn' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15555,8 +15555,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'policy' => String,
-        'arn' => String
+        'arn' => String,
+        'policy' => String
       }
     },
     Aws_sns_topic_policyHandler => {
@@ -15576,6 +15576,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'protocol' => String,
+        'topic_arn' => String,
+        'delivery_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'endpoint' => String,
         'endpoint_auto_confirms' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -15589,13 +15596,6 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'filter_policy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'protocol' => String,
-        'endpoint' => String,
-        'topic_arn' => String,
-        'delivery_policy' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15642,15 +15642,23 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'instance_interruption_behaviour' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'client_token' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'wait_for_fulfillment' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'replace_unhealthy_instances' => {
+        'terminate_instances_with_expiration' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'client_token' => {
+        'valid_until' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15658,7 +15666,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'instance_interruption_behaviour' => {
+        'excess_capacity_termination_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'spot_price' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15671,24 +15683,12 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'iam_fleet_role' => String,
-        'spot_price' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'terminate_instances_with_expiration' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'valid_until' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'fleet_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'excess_capacity_termination_policy' => {
-          'type' => Optional[String],
+        'replace_unhealthy_instances' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -15710,67 +15710,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'spot_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'wait_for_fulfillment' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'user_data' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'user_data_base64' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'source_dest_check' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'password_data' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'primary_network_interface_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_state' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_initiated_shutdown_behavior' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tenancy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'placement_group' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'spot_price' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'spot_instance_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_interruption_behaviour' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'availability_zone' => {
+        'spot_request_state' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15779,44 +15719,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'private_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_dns' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network_interface_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ami' => String,
-        'ebs_optimized' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'valid_until' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'private_dns' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'iam_instance_profile' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'spot_request_state' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
+        'instance_state' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15824,19 +15727,100 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'launch_group' => {
-          'type' => Optional[String],
+        'monitoring' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'spot_bid_status' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'spot_instance_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'placement_group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_dns' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'spot_price' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source_dest_check' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'user_data_base64' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'instance_initiated_shutdown_behavior' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'host_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_interface_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'private_dns' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ami' => String,
+        'key_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'password_data' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'user_data' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'primary_network_interface_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ebs_optimized' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'wait_for_fulfillment' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'valid_from' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'key_name' => {
+        'valid_until' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15844,16 +15828,32 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'monitoring' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'host_id' => {
+        'instance_interruption_behaviour' => {
           'type' => Optional[String],
           'value' => undef
         },
         'associate_public_ip_address' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'iam_instance_profile' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tenancy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'spot_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'launch_group' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -15875,7 +15875,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'kms_master_key_id' => {
+        'arn' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -15883,8 +15883,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'name_prefix' => {
+        'policy' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'content_based_deduplication' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'redrive_policy' => {
@@ -15895,19 +15899,15 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'content_based_deduplication' => {
-          'type' => Optional[Boolean],
+        'name_prefix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'kms_master_key_id' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'policy' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15951,6 +15951,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -15965,10 +15969,6 @@ type AwsTerraform = TypeSet[{
         },
         'iam_role' => String,
         'activation_code' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -15991,16 +15991,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'association_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'name' => String,
         'schedule_expression' => {
           'type' => Optional[String],
           'value' => undef
         },
         'association_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'association_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16036,13 +16036,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'document_type' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'content' => String,
-        'default_version' => {
+        'schema_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'created_date' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16050,19 +16053,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'hash' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'hash_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'schema_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'status' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16070,7 +16061,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'created_date' => {
+        'default_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'hash' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16079,6 +16074,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'owner' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'document_type' => String,
+        'status' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -16101,17 +16101,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'schedule' => String,
+        'allow_unassociated_targets' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'schedule_timezone' => {
+        'end_date' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'end_date' => {
+        'schedule_timezone' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16119,10 +16121,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'allow_unassociated_targets' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
+        'schedule' => String,
+        'name' => String
       }
     },
     Aws_ssm_maintenance_windowHandler => {
@@ -16142,12 +16142,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'window_id' => String,
+        'resource_type' => String,
         'owner_information' => {
           'type' => Optional[String],
           'value' => undef
-        },
-        'window_id' => String,
-        'resource_type' => String
+        }
       }
     },
     Aws_ssm_maintenance_window_targetHandler => {
@@ -16167,8 +16167,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'max_concurrency' => String,
-        'max_errors' => String,
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -16178,9 +16176,11 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'window_id' => String,
-        'task_type' => String,
+        'service_role_arn' => String,
         'task_arn' => String,
-        'service_role_arn' => String
+        'max_concurrency' => String,
+        'max_errors' => String,
+        'task_type' => String
       }
     },
     Aws_ssm_maintenance_window_taskHandler => {
@@ -16200,12 +16200,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'resource_type' => String,
+        'value' => String,
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'key_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'overwrite' => {
-          'type' => Optional[Boolean],
+        'allowed_pattern' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
@@ -16213,18 +16219,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'value' => String,
+        'overwrite' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'resource_type' => String,
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'allowed_pattern' => {
-          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -16246,16 +16246,16 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => String,
-        'description' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'operating_system' => {
           'type' => Optional[String],
           'value' => undef
         },
         'approved_patches_compliance_level' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => String,
+        'description' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -16278,8 +16278,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'baseline_id' => String,
-        'patch_group' => String
+        'patch_group' => String,
+        'baseline_id' => String
       }
     },
     Aws_ssm_patch_groupHandler => {
@@ -16340,7 +16340,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'target_name' => String,
+        'target_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'volume_arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'arn' => {
           'type' => Optional[String],
           'value' => undef
@@ -16349,25 +16356,18 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'gateway_arn' => String,
+        'network_interface_id' => String,
         'snapshot_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'volume_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network_interface_id' => String,
+        'gateway_arn' => String,
         'source_volume_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'target_arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'volume_arn' => {
+        'target_name' => String,
+        'volume_id' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -16390,21 +16390,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'gateway_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'gateway_ip_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'gateway_name' => String,
-        'gateway_timezone' => String,
         'gateway_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'activation_key' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16412,6 +16398,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'activation_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'gateway_name' => String,
+        'gateway_timezone' => String,
         'smb_guest_password' => {
           'type' => Optional[String],
           'value' => undef
@@ -16421,6 +16413,14 @@ type AwsTerraform = TypeSet[{
           'value' => undef
         },
         'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'gateway_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'gateway_ip_address' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -16443,35 +16443,19 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'requester_pays' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'fileshare_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'gateway_arn' => String,
+        'location_arn' => String,
         'object_acl' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'role_arn' => String,
-        'squash' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'location_arn' => String,
         'read_only' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'gateway_arn' => String,
-        'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'default_storage_class' => {
-          'type' => Optional[String],
+        'role_arn' => String,
+        'guess_mime_type_enabled' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'kms_encrypted' => {
@@ -16482,8 +16466,24 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'guess_mime_type_enabled' => {
+        'squash' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'requester_pays' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'arn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_storage_class' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'fileshare_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -16505,17 +16505,30 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'kms_encrypted' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'kms_key_arn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'location_arn' => String,
         'requester_pays' => {
           'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'role_arn' => String,
+        'authentication' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'default_storage_class' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'fileshare_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'location_arn' => String,
+        'object_acl' => {
+          'type' => Optional[String],
           'value' => undef
         },
         'read_only' => {
@@ -16531,23 +16544,10 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'authentication' => {
-          'type' => Optional[String],
+        'kms_encrypted' => {
+          'type' => Optional[Boolean],
           'value' => undef
-        },
-        'default_storage_class' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'fileshare_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'object_acl' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role_arn' => String
+        }
       }
     },
     Aws_storagegateway_smb_file_shareHandler => {
@@ -16609,13 +16609,13 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'cidr_block' => String,
-        'availability_zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'cidr_block' => String,
+        'assign_ipv6_address_on_creation' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'ipv6_cidr_block_association_id' => {
@@ -16624,6 +16624,10 @@ type AwsTerraform = TypeSet[{
         },
         'arn' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'map_public_ip_on_launch' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'owner_id' => {
@@ -16635,16 +16639,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'availability_zone_id' => {
+        'availability_zone' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'map_public_ip_on_launch' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'assign_ipv6_address_on_creation' => {
-          'type' => Optional[Boolean],
+        'availability_zone_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -16666,10 +16666,6 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'name_prefix' => {
           'type' => Optional[String],
           'value' => undef
@@ -16678,7 +16674,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'workflow_execution_retention_period_in_days' => String
+        'workflow_execution_retention_period_in_days' => String,
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
       }
     },
     Aws_swf_domainHandler => {
@@ -16696,10 +16696,6 @@ type AwsTerraform = TypeSet[{
       attributes => {
         'aws_transfer_server_id' => {
           'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'arn' => {
@@ -16729,6 +16725,10 @@ type AwsTerraform = TypeSet[{
         'force_destroy' => {
           'type' => Optional[Boolean],
           'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
         }
       }
     },
@@ -16749,9 +16749,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'body' => String,
         'server_id' => String,
-        'user_name' => String
+        'user_name' => String,
+        'body' => String
       }
     },
     Aws_transfer_ssh_keyHandler => {
@@ -16771,6 +16771,14 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'home_directory' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'role' => String,
         'server_id' => String,
         'tags' => {
@@ -16779,14 +16787,6 @@ type AwsTerraform = TypeSet[{
         },
         'user_name' => String,
         'arn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'home_directory' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'policy' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -16839,40 +16839,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'default_network_acl_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'dhcp_options_id' => {
+        'default_route_table_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'ipv6_cidr_block' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'owner_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'cidr_block' => String,
-        'enable_dns_support' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'enable_classiclink' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'assign_generated_ipv6_cidr_block' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'main_route_table_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'ipv6_association_id' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -16884,24 +16855,53 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
+        'assign_generated_ipv6_cidr_block' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'dhcp_options_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'ipv6_association_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_dns_support' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'enable_classiclink_dns_support' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
+        'main_route_table_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'owner_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'cidr_block' => String,
+        'instance_tenancy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'enable_classiclink' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'default_network_acl_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'default_security_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'default_route_table_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instance_tenancy' => {
-          'type' => Optional[String],
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
           'value' => undef
         }
       }
@@ -16979,30 +16979,30 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'service_name' => String,
+        'policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'vpc_id' => String,
         'vpc_endpoint_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'service_name' => String,
-        'vpc_id' => String,
-        'state' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'prefix_list_id' => {
-          'type' => Optional[String],
+        'private_dns_enabled' => {
+          'type' => Optional[Boolean],
           'value' => undef
         },
         'auto_accept' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'policy' => {
+        'state' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'private_dns_enabled' => {
-          'type' => Optional[Boolean],
+        'prefix_list_id' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -17081,12 +17081,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'acceptance_required' => Boolean,
-        'service_name' => {
+        'service_type' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'service_type' => {
+        'service_name' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -17094,6 +17093,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'acceptance_required' => Boolean,
         'state' => {
           'type' => Optional[String],
           'value' => undef
@@ -17180,26 +17180,26 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'peer_owner_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'peer_vpc_id' => String,
-        'vpc_id' => String,
-        'accept_status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'auto_accept' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'peer_region' => {
+        'accept_status' => {
           'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'peer_owner_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'vpc_id' => String,
+        'peer_region' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -17225,6 +17225,11 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'vpc_peering_connection_id' => String,
+        'accept_status' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'peer_vpc_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -17237,17 +17242,12 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'vpc_peering_connection_id' => String,
-        'auto_accept' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'accept_status' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'auto_accept' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }
@@ -17289,60 +17289,7 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'tunnel1_cgw_inside_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tunnel2_vgw_inside_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tunnel2_bgp_asn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'transit_gateway_id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tunnel1_preshared_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'customer_gateway_configuration' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'static_routes_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'tunnel1_inside_cidr' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'tunnel2_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'tunnel1_bgp_asn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'customer_gateway_id' => String,
-        'tunnel2_inside_cidr' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tunnel2_preshared_key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'tunnel1_vgw_inside_address' => {
           'type' => Optional[String],
           'value' => undef
         },
@@ -17350,12 +17297,65 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'tunnel2_bgp_asn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'customer_gateway_id' => String,
+        'transit_gateway_id' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tunnel1_vgw_inside_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'customer_gateway_configuration' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tunnel1_cgw_inside_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tunnel1_bgp_asn' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'vpn_gateway_id' => {
           'type' => Optional[String],
           'value' => undef
         },
+        'tunnel1_inside_cidr' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tags' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
         'resource_type' => String,
+        'tunnel2_preshared_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
         'tunnel1_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tunnel2_vgw_inside_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'static_routes_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'tunnel1_preshared_key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'tunnel2_inside_cidr' => {
           'type' => Optional[String],
           'value' => undef
         }
@@ -17399,20 +17399,20 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'availability_zone' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'amazon_side_asn' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
         'vpc_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'tags' => {
           'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'availability_zone' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'amazon_side_asn' => {
+          'type' => Optional[String],
           'value' => undef
         }
       }
@@ -17434,8 +17434,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'vpc_id' => String,
-        'vpn_gateway_id' => String
+        'vpn_gateway_id' => String,
+        'vpc_id' => String
       }
     },
     Aws_vpn_gateway_attachmentHandler => {
@@ -17455,8 +17455,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'route_table_id' => String,
-        'vpn_gateway_id' => String
+        'vpn_gateway_id' => String,
+        'route_table_id' => String
       }
     },
     Aws_vpn_gateway_route_propagationHandler => {
@@ -17540,9 +17540,9 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
+        'rate_key' => String,
         'name' => String,
-        'metric_name' => String,
-        'rate_key' => String
+        'metric_name' => String
       }
     },
     Aws_waf_rate_based_ruleHandler => {
@@ -17684,8 +17684,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metric_name' => String,
-        'name' => String
+        'name' => String,
+        'metric_name' => String
       }
     },
     Aws_waf_web_aclHandler => {
@@ -17933,8 +17933,8 @@ type AwsTerraform = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metric_name' => String,
-        'name' => String
+        'name' => String,
+        'metric_name' => String
       }
     },
     Aws_wafregional_web_aclHandler => {

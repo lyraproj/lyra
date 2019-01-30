@@ -1,38 +1,38 @@
-package tfaws
+package handler
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/lyraproj/lyra/cmd/goplugin-tf-aws/generated"
+	"github.com/lyraproj/lyra/cmd/goplugin-tf-google/generated"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/grpc"
 	"github.com/lyraproj/servicesdk/service"
-	"github.com/terraform-providers/terraform-provider-aws/aws"
+	"github.com/terraform-providers/terraform-provider-google/google"
 )
 
-func initTerraformProvider() *schema.Provider {
+// Namespace of this server
+func Namespace() string {
+	return "TerraformGoogle"
+}
+
+// Server configures the Terraform provider and creates an instance of the server
+func Server(c eval.Context) *service.Server {
 	config := &terraform.ResourceConfig{
 		Config: map[string]interface{}{
-			"region": "eu-west-1",
+			// "foo": "bar",
 		},
 	}
-	p := aws.Provider().(*schema.Provider)
+	p := google.Provider().(*schema.Provider)
 	err := p.Configure(config)
 	if err != nil {
 		panic(err)
 	}
-	return p
-}
-
-// Server creates an instance of the server
-func Server(c eval.Context) *service.Server {
-	sb := service.NewServerBuilder(c, `AwsTerraform`)
-	p := initTerraformProvider()
+	sb := service.NewServerBuilder(c, Namespace())
 	generated.Initialize(sb, p)
 	return sb.Server()
 }
 
-// Start this provider
+// Start this server running
 func Start() {
 	eval.Puppet.Do(func(c eval.Context) {
 		grpc.Serve(c, Server(c))

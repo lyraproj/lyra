@@ -1,28 +1,28 @@
 package main
 
 import (
-	"bytes"
-	"fmt"
-
-	"github.com/lyraproj/lyra/cmd/goplugin-tf-aws/tfaws"
-
+	aws "github.com/lyraproj/lyra/cmd/goplugin-tf-aws/handler"
+	google "github.com/lyraproj/lyra/cmd/goplugin-tf-google/handler"
+	kubernetes "github.com/lyraproj/lyra/cmd/goplugin-tf-kubernetes/handler"
+	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/puppet-evaluator/eval"
 )
 
 func main() {
-
 	eval.Puppet.Do(func(c eval.Context) {
-		s := tfaws.Server(c)
-		typeSet, _ := s.Metadata(c)
-		b := bytes.NewBufferString("")
 
-		//this can be used to as the definiion of the typeset in a .pp file e.g. type Aws = TypeSet[{
-		typeSet.ToString(b, eval.PRETTY_EXPANDED, nil)
-		fmt.Printf(`
-# this file is called aaws.pp so that it is processed before attach.pp as it contains types that are needed by the attach workflow
-# the content of this file can be generated, ref TestGeneratePuppetTypes in register_types_test.go
-type AwsTerraform = `)
-		fmt.Println(b.String())
+		// AWS - you will need default AWS credentials available or this step will fail
+		bridge.GeneratePP(c, aws.Server(c), aws.Namespace(), "plugins/aaa-terraform-aws.pp")
+
+		// Kubernetes - you will need default Kubernetes credentials available or this step will fail
+
+		bridge.GeneratePP(c, kubernetes.Server(c), kubernetes.Namespace(), "plugins/aaa-terraform-kubernetes.pp")
+
+		// Google - you will need Gcloud credentials available e.g. export GOOGLE_APPLICATION_CREDENTIALS=~/gcp.json
+		bridge.GeneratePP(c, google.Server(c), google.Namespace(), "plugins/aaa-terraform-google.pp")
+
+		// Azure - you will need login credentials available or this step will fail
+		// bridge.GeneratePP(c, azurerm.Server(c), azurerm.Namespace(), "plugins/aaa-terraform-azurerm.pp")
+
 	})
-
 }

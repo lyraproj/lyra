@@ -1,5 +1,5 @@
 attachterraformyaml:
-  typespace: awsterraform
+  typespace: TerraformAws
   input:
     tags:
       type: Hash[String,String]

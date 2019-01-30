@@ -1,7 +1,7 @@
 # This workflow relies on types in aawsterraform.pp (it is so-named because files are read in alphabetical order)
 # The contents of that file can be generated: refer to TestGeneratePuppetTypes in register_types_test.go
 workflow attachterraform {
-  typespace => 'awsterraform',
+  typespace => 'TerraformAws',
   input => (
     Hash[String,String] $tags = lookup('aws.tags'),
   ),
