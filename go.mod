@@ -6,6 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.16.26
 	github.com/boltdb/bolt v1.3.1
 	github.com/davecgh/go-spew v1.1.1
+	github.com/dnaeon/go-vcr v1.0.1 // indirect
 	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-azure-helpers v0.0.0-20190129193224-166dfd221bb2 // indirect
 	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
