@@ -25,6 +25,8 @@ require (
 	github.com/stretchr/testify v1.3.0
 	github.com/terraform-providers/terraform-provider-aws v1.57.0
 	github.com/toqueteos/trie v1.0.0 // indirect
+	gonum.org/v1/netlib v0.0.0-20190119082159-9be13e02fd56 // indirect
+	google.golang.org/genproto v0.0.0-20190128161407-8ac453e89fca // indirect
 	gopkg.in/src-d/enry.v1 v1.6.7
 	gopkg.in/toqueteos/substring.v1 v1.0.2 // indirect
 	k8s.io/client-go v10.0.0+incompatible

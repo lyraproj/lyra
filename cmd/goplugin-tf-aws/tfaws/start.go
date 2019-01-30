@@ -24,7 +24,8 @@ func initTerraformProvider() *schema.Provider {
 	return p
 }
 
-func server(c eval.Context) *service.Server {
+// Server creates an instance of the server
+func Server(c eval.Context) *service.Server {
 	sb := service.NewServerBuilder(c, `AwsTerraform`)
 	p := initTerraformProvider()
 	generated.Initialize(sb, p)
@@ -34,6 +35,6 @@ func server(c eval.Context) *service.Server {
 // Start this provider
 func Start() {
 	eval.Puppet.Do(func(c eval.Context) {
-		grpc.Serve(c, server(c))
+		grpc.Serve(c, Server(c))
 	})
 }
