@@ -6,7 +6,10 @@ import (
 	"github.com/lyraproj/lyra/cmd/goplugin-aws/aws"
 	"github.com/lyraproj/lyra/cmd/goplugin-example/example"
 	"github.com/lyraproj/lyra/cmd/goplugin-identity/identity"
-	"github.com/lyraproj/lyra/cmd/goplugin-tf-aws/tfaws"
+	tfaws "github.com/lyraproj/lyra/cmd/goplugin-tf-aws/handler"
+	tfazurerm "github.com/lyraproj/lyra/cmd/goplugin-tf-azurerm/handler"
+	tfgoogle "github.com/lyraproj/lyra/cmd/goplugin-tf-google/handler"
+	tfkubernetes "github.com/lyraproj/lyra/cmd/goplugin-tf-kubernetes/handler"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/puppet-workflow/puppet"
 	"github.com/spf13/cobra"
@@ -37,6 +40,12 @@ func startPlugin(cmd *cobra.Command, args []string) {
 		aws.Start()
 	case "tfaws":
 		tfaws.Start()
+	case "tfazurerm":
+		tfazurerm.Start()
+	case "tfgoogle":
+		tfgoogle.Start()
+	case "tfkubernetes":
+		tfkubernetes.Start()
 	case "puppet":
 		puppet.Start(`Puppet`)
 	default:
