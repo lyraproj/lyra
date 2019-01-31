@@ -2,7 +2,6 @@ module github.com/lyraproj/lyra
 
 require (
 	github.com/Azure/azure-sdk-for-go v24.1.0+incompatible // indirect
-	github.com/appscode/jsonpatch v0.0.0-20190108182946-7c0e3b262f30 // indirect
 	github.com/aws/aws-sdk-go v1.16.26
 	github.com/boltdb/bolt v1.3.1
 	github.com/davecgh/go-spew v1.1.1
@@ -16,7 +15,7 @@ require (
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb
-	github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452
+	github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190124220224-0b2cf0dd23a8
 	github.com/lyraproj/puppet-workflow v0.0.0-20190124163310-8d895f8b4c17
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
