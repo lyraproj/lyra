@@ -15,6 +15,8 @@ endif
 
 PHONY=
 
+HAS_REQUIRED_GO := $(shell go version | grep -E 'go[2-9]|go1.1[2-9]|go1.11.[4-9]')
+
 PACKAGE_NAME = github.com/lyraproj/lyra
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTag=$(shell git describe --all --exact-match `git rev-parse HEAD` | grep tags | sed 's/tags\///')"
@@ -140,6 +142,13 @@ dist-release:
 
 PHONY+= check-mods
 check-mods: 
+	@echo "🔘 Ensuring go version is 1.11.4 or later"
+	@if [ "$(HAS_REQUIRED_GO)" == "" ]; \
+	then \
+		echo "🔴 must be running Go version 1.11.4 or later"; \
+		exit 1; \
+	fi	
+	@echo "✅ Go version is sufficient"
 	@echo "🔘 Ensuring go mod is available and turned on"
 	@GO111MODULE=on go mod download || (echo "🔴 The command 'GO111MODULE=on go mod download' did not return zero exit code (exit code was $$?)"; exit 1)
 	@echo "✅ Go mod is available"
