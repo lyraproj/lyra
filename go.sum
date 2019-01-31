@@ -210,6 +210,8 @@ github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb h1:R3ukQUNWJTypfOAZ
 github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb/go.mod h1:F3Zu9SjR6zROUIVdxgxuX0/Mi4npwgDRalQCNzCyzU0=
 github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452 h1:SX2j4H7zpWl+A56a0niMvncnicyMLeU4h9qwkeqgXrk=
 github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452/go.mod h1:aaq4Bh6tQ/TKf7VM11exVlOsoGrbDlfo1iDa6u4t5Z8=
+github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa h1:lvxuFcOXmEJAqhy57+Y51LtpSZeuPE/n5oBvDoxbIG8=
+github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa/go.mod h1:qdyl7pK0Fby7xOP71U7M4yM1WEy2nYvE+eJOccpruQk=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190123101558-8fe6588e638e/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190124135843-af8c63460165/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190124220224-0b2cf0dd23a8 h1:Oo+0o/N6h29OvBrOZfnrQyVzw2CTNC/dAz3TVtA97kM=
@@ -276,6 +278,8 @@ github.com/onsi/gomega v1.4.3/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/openzipkin/zipkin-go v0.1.1/go.mod h1:NtoC/o8u3JlF1lSlyPNswIbeQH9bJTmOf0Erfk+hxe8=
 github.com/operator-framework/operator-sdk v0.3.0 h1:MHBAwot3D4ssTwnlemupOkLNIj/Ohjfy/nF/zDRg1gA=
 github.com/operator-framework/operator-sdk v0.3.0/go.mod h1:iVyukRkam5JZa8AnjYf+/G3rk7JI1+M6GsU0sq0B9NA=
+github.com/operator-framework/operator-sdk v0.4.0 h1:5LKhvld7AZZaFkbA5Uvt3y/BSjXgtmjNrM1mJHY/+CI=
+github.com/operator-framework/operator-sdk v0.4.0/go.mod h1:iVyukRkam5JZa8AnjYf+/G3rk7JI1+M6GsU0sq0B9NA=
 github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709 h1:zNBQb37RGLmJybyMcs983HfUfpkw9OTFD9tbBfAViHE=
 github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709/go.mod h1:VyrYX9gd7irzKovcSS6BIIEwPRkP2Wm2m9ufcdFSJ34=
 github.com/peterbourgon/diskv v2.0.1+incompatible h1:UBdAOUP5p4RWqPBg048CAvpKN+vxiaj6gdUUzhl4XmI=
@@ -412,6 +416,8 @@ golang.org/x/sys v0.0.0-20180909124046-d0be0721c37e/go.mod h1:STP8DvDyc/dI5b8T5h
 golang.org/x/sys v0.0.0-20181116152217-5ac8a444bdc5/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190109145017-48ac38b7c8cb h1:1w588/yEchbPNpa9sEvOcMZYbWHedwJjg4VOAdDHWHk=
 golang.org/x/sys v0.0.0-20190109145017-48ac38b7c8cb/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
+golang.org/x/sys v0.0.0-20190124100055-b90733256f2e h1:3GIlrlVLfkoipSReOMNAgApI0ajnalyLa/EZHHca/XI=
+golang.org/x/sys v0.0.0-20190124100055-b90733256f2e/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/text v0.0.0-20171024115504-6eab0e8f74e8/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
@@ -471,6 +477,8 @@ k8s.io/apiextensions-apiserver v0.0.0-20190103235604-e7617803aceb/go.mod h1:Ixke
 k8s.io/apimachinery v0.0.0-20181227073029-9c4c36654334/go.mod h1:ccL7Eh7zubPUSh9A3USN90/OzHNSVN6zxzde07TDCL0=
 k8s.io/apimachinery v0.0.0-20190104073114-849b284f3b75 h1:dLhsGWh58R0WYgTCX6ZdaqSz2FltMZsk+ByHsUgMWRU=
 k8s.io/apimachinery v0.0.0-20190104073114-849b284f3b75/go.mod h1:ccL7Eh7zubPUSh9A3USN90/OzHNSVN6zxzde07TDCL0=
+k8s.io/apimachinery v0.0.0-20190126155707-0e6dcdd1b5ce h1:CzCioXa348Dzt9UuYrvxRrLGpL1ZV50QpyBHt01SYj4=
+k8s.io/apimachinery v0.0.0-20190126155707-0e6dcdd1b5ce/go.mod h1:ccL7Eh7zubPUSh9A3USN90/OzHNSVN6zxzde07TDCL0=
 k8s.io/client-go v10.0.0+incompatible h1:F1IqCqw7oMBzDkqlcBymRq1450wD0eNqLE9jzUrIi34=
 k8s.io/client-go v10.0.0+incompatible/go.mod h1:7vJpHMYJwNQCWgzmNV+VYUl1zCObLyodBc8nIyt8L5s=
 k8s.io/klog v0.1.0 h1:I5HMfc/DtuVaGR1KPwUrTc476K8NCqNBldC7H4dYEzk=
