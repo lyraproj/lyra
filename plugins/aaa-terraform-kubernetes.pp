@@ -326,12 +326,12 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'automount_service_account_token' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
         'default_secret_name' => {
           'type' => Optional[String],
+          'value' => undef
+        },
+        'automount_service_account_token' => {
+          'type' => Optional[Boolean],
           'value' => undef
         }
       }

@@ -18,9 +18,9 @@ func main() {
 	bridge.Generate(kubernetes.Provider().(*schema.Provider), "TerraformKubernetes", "cmd/goplugin-tf-kubernetes/generated/generated.go")
 
 	// Azure
-	bridge.Generate(google.Provider().(*schema.Provider), "TerraformAzureRM", "cmd/goplugin-tf-google/generated/generated.go")
+	bridge.Generate(azurerm.Provider().(*schema.Provider), "TerraformAzureRM", "cmd/goplugin-tf-azurerm/generated/generated.go")
 
 	// GCP
-	bridge.Generate(azurerm.Provider().(*schema.Provider), "TerraformGoogle", "cmd/goplugin-tf-azurerm/generated/generated.go")
+	bridge.Generate(google.Provider().(*schema.Provider), "TerraformGoogle", "cmd/goplugin-tf-google/generated/generated.go")
 
 }
