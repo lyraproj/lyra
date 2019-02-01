@@ -31,277 +31,44 @@ func unconvertMap(in map[string]string  ) map[string]interface{} {
 
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_network_policy{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_network_policyHandler", &Kubernetes_network_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_replication_controller{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_replication_controllerHandler", &Kubernetes_replication_controllerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_secret{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_secretHandler", &Kubernetes_secretHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_config_map{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_config_mapHandler", &Kubernetes_config_mapHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_horizontal_pod_autoscaler{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_horizontal_pod_autoscalerHandler", &Kubernetes_horizontal_pod_autoscalerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_namespace{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_namespaceHandler", &Kubernetes_namespaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volumeHandler", &Kubernetes_persistent_volumeHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service_account{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_service_accountHandler", &Kubernetes_service_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_storage_class{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_storage_classHandler", &Kubernetes_storage_classHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_cluster_role_binding{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_cluster_role_bindingHandler", &Kubernetes_cluster_role_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume_claim{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volume_claimHandler", &Kubernetes_persistent_volume_claimHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role_binding{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_role_bindingHandler", &Kubernetes_role_bindingHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_resource_quota{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_resource_quotaHandler", &Kubernetes_resource_quotaHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_roleHandler", &Kubernetes_roleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_stateful_set{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_stateful_setHandler", &Kubernetes_stateful_setHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_deployment{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_deploymentHandler", &Kubernetes_deploymentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_limit_range{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_limit_rangeHandler", &Kubernetes_limit_rangeHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume_claim{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volume_claimHandler", &Kubernetes_persistent_volume_claimHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_pod{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_podHandler", &Kubernetes_podHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_serviceHandler", &Kubernetes_serviceHandler{provider: p}, evs[0])
-}
-
-type Kubernetes_network_policy struct {
-     Kubernetes_network_policy_id *string
-}
-
-
-func Kubernetes_network_policyMapper(r *Kubernetes_network_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_network_policyUnmapper(state map[string]interface{}) *Kubernetes_network_policy {
-	r := &Kubernetes_network_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_network_policy_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_network_policyHandler ...
-type Kubernetes_network_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_policy) (*Kubernetes_network_policy, string, error) {
-	rState := Kubernetes_network_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_network_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_network_policy, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_network_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_network_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_network_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_network_policy", externalID)
-}
-
-type Kubernetes_replication_controller struct {
-     Kubernetes_replication_controller_id *string
-}
-
-
-func Kubernetes_replication_controllerMapper(r *Kubernetes_replication_controller) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_replication_controllerUnmapper(state map[string]interface{}) *Kubernetes_replication_controller {
-	r := &Kubernetes_replication_controller{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_replication_controller_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_replication_controllerHandler ...
-type Kubernetes_replication_controllerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_replication_controller) (*Kubernetes_replication_controller, string, error) {
-	rState := Kubernetes_replication_controllerMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_replication_controller", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kubernetes_replication_controller, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_replication_controller", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_replication_controllerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_replication_controllerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_replication_controller", externalID)
-}
-
-type Kubernetes_secret struct {
-     Kubernetes_secret_id *string
-     Resource_type *string
-}
-
-
-func Kubernetes_secretMapper(r *Kubernetes_secret) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_secretUnmapper(state map[string]interface{}) *Kubernetes_secret {
-	r := &Kubernetes_secret{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_secret_id = &x
-}
-
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-	return r
-}
-
-
-// Kubernetes_secretHandler ...
-type Kubernetes_secretHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernetes_secret, string, error) {
-	rState := Kubernetes_secretMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_secret", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_secret", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_secretUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_secretHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_secret", externalID)
-}
-
-type Kubernetes_config_map struct {
-     Kubernetes_config_map_id *string
-}
-
-
-func Kubernetes_config_mapMapper(r *Kubernetes_config_map) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_config_mapUnmapper(state map[string]interface{}) *Kubernetes_config_map {
-	r := &Kubernetes_config_map{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_config_map_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_config_mapHandler ...
-type Kubernetes_config_mapHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*Kubernetes_config_map, string, error) {
-	rState := Kubernetes_config_mapMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_config_map", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_config_map, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_config_map", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_config_mapUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_config_mapHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_config_map", externalID)
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_config_map{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_config_mapHandler", &Kubernetes_config_mapHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_deployment{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_deploymentHandler", &Kubernetes_deploymentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volumeHandler", &Kubernetes_persistent_volumeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_pod{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_podHandler", &Kubernetes_podHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_roleHandler", &Kubernetes_roleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_storage_class{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_storage_classHandler", &Kubernetes_storage_classHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_namespace{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_namespaceHandler", &Kubernetes_namespaceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_network_policy{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_network_policyHandler", &Kubernetes_network_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service_account{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_service_accountHandler", &Kubernetes_service_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_cluster_role_binding{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_cluster_role_bindingHandler", &Kubernetes_cluster_role_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_replication_controller{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_replication_controllerHandler", &Kubernetes_replication_controllerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_stateful_set{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_stateful_setHandler", &Kubernetes_stateful_setHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_limit_range{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_limit_rangeHandler", &Kubernetes_limit_rangeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_secret{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_secretHandler", &Kubernetes_secretHandler{provider: p}, evs[0])
 }
 
 type Kubernetes_horizontal_pod_autoscaler struct {
@@ -360,168 +127,47 @@ func (h *Kubernetes_horizontal_pod_autoscalerHandler) Delete(externalID string) 
 	return bridge.Delete(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
 }
 
-type Kubernetes_namespace struct {
-     Kubernetes_namespace_id *string
+type Kubernetes_persistent_volume_claim struct {
+     Kubernetes_persistent_volume_claim_id *string
+     Wait_until_bound *bool
 }
 
 
-func Kubernetes_namespaceMapper(r *Kubernetes_namespace) *terraform.ResourceConfig {
+func Kubernetes_persistent_volume_claimMapper(r *Kubernetes_persistent_volume_claim) *terraform.ResourceConfig {
 	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_namespaceUnmapper(state map[string]interface{}) *Kubernetes_namespace {
-	r := &Kubernetes_namespace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_namespace_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_namespaceHandler ...
-type Kubernetes_namespaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Kubernetes_namespace, string, error) {
-	rState := Kubernetes_namespaceMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_namespace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_namespace, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_namespace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_namespaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_namespaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_namespace", externalID)
-}
-
-type Kubernetes_persistent_volume struct {
-     Kubernetes_persistent_volume_id *string
-}
-
-
-func Kubernetes_persistent_volumeMapper(r *Kubernetes_persistent_volume) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_persistent_volumeUnmapper(state map[string]interface{}) *Kubernetes_persistent_volume {
-	r := &Kubernetes_persistent_volume{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_persistent_volume_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_persistent_volumeHandler ...
-type Kubernetes_persistent_volumeHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persistent_volume) (*Kubernetes_persistent_volume, string, error) {
-	rState := Kubernetes_persistent_volumeMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernetes_persistent_volume, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_persistent_volumeUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_persistent_volumeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_persistent_volume", externalID)
-}
-
-type Kubernetes_service_account struct {
-     Kubernetes_service_account_id *string
-     Automount_service_account_token *bool
-     Default_secret_name *string
-}
-
-
-func Kubernetes_service_accountMapper(r *Kubernetes_service_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Automount_service_account_token != nil {
-    config["automount_service_account_token"] = *r.Automount_service_account_token
-}
-if r.Default_secret_name != nil {
-    config["default_secret_name"] = *r.Default_secret_name
+ 	if r.Wait_until_bound != nil {
+    config["wait_until_bound"] = *r.Wait_until_bound
 }
 return &terraform.ResourceConfig{
 		Config: config,
 	}
 }
 
-func Kubernetes_service_accountUnmapper(state map[string]interface{}) *Kubernetes_service_account {
-	r := &Kubernetes_service_account{}
+func Kubernetes_persistent_volume_claimUnmapper(state map[string]interface{}) *Kubernetes_persistent_volume_claim {
+	r := &Kubernetes_persistent_volume_claim{}
 
 if x, ok := state["external_id"]; ok {
 	x := x.(string)
-	r.Kubernetes_service_account_id = &x
+	r.Kubernetes_persistent_volume_claim_id = &x
 }
 
-if x, ok := state["default_secret_name"]; ok {
-	x := x.(string)
-	r.Default_secret_name = &x
-}
-
-if x, ok := state["automount_service_account_token"]; ok {
+if x, ok := state["wait_until_bound"]; ok {
 	x := x.(bool)
-	r.Automount_service_account_token = &x
+	r.Wait_until_bound = &x
 }
 	return r
 }
 
 
-// Kubernetes_service_accountHandler ...
-type Kubernetes_service_accountHandler struct {
+// Kubernetes_persistent_volume_claimHandler ...
+type Kubernetes_persistent_volume_claimHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_account) (*Kubernetes_service_account, string, error) {
-	rState := Kubernetes_service_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_service_account", rState)
+func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_persistent_volume_claim) (*Kubernetes_persistent_volume_claim, string, error) {
+	rState := Kubernetes_persistent_volume_claimMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume_claim", rState)
 	if err != nil {
 		return nil, "", err
 	}
@@ -533,153 +179,17 @@ func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_a
 }
 
 // Read ...
-func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes_service_account, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_service_account", externalID)
+func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Kubernetes_persistent_volume_claim, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume_claim", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_service_accountUnmapper(actual), nil
+	return Kubernetes_persistent_volume_claimUnmapper(actual), nil
 }
 
 // Delete ...
-func (h *Kubernetes_service_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_service_account", externalID)
-}
-
-type Kubernetes_storage_class struct {
-     Kubernetes_storage_class_id *string
-     Storage_provisioner string
-     Reclaim_policy *string
-     Volume_binding_mode *string
-}
-
-
-func Kubernetes_storage_classMapper(r *Kubernetes_storage_class) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["storage_provisioner"] = r.Storage_provisioner
-if r.Reclaim_policy != nil {
-    config["reclaim_policy"] = *r.Reclaim_policy
-}
-if r.Volume_binding_mode != nil {
-    config["volume_binding_mode"] = *r.Volume_binding_mode
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_storage_classUnmapper(state map[string]interface{}) *Kubernetes_storage_class {
-	r := &Kubernetes_storage_class{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_storage_class_id = &x
-}
-
-if x, ok := state["storage_provisioner"]; ok {
-	r.Storage_provisioner = x.(string)
-}
-
-if x, ok := state["reclaim_policy"]; ok {
-	x := x.(string)
-	r.Reclaim_policy = &x
-}
-
-if x, ok := state["volume_binding_mode"]; ok {
-	x := x.(string)
-	r.Volume_binding_mode = &x
-}
-	return r
-}
-
-
-// Kubernetes_storage_classHandler ...
-type Kubernetes_storage_classHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_class) (*Kubernetes_storage_class, string, error) {
-	rState := Kubernetes_storage_classMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_storage_class", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_storage_class, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_storage_class", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_storage_classUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_storage_classHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_storage_class", externalID)
-}
-
-type Kubernetes_cluster_role_binding struct {
-     Kubernetes_cluster_role_binding_id *string
-}
-
-
-func Kubernetes_cluster_role_bindingMapper(r *Kubernetes_cluster_role_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_cluster_role_bindingUnmapper(state map[string]interface{}) *Kubernetes_cluster_role_binding {
-	r := &Kubernetes_cluster_role_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_cluster_role_binding_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_cluster_role_bindingHandler ...
-type Kubernetes_cluster_role_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_cluster_role_binding) (*Kubernetes_cluster_role_binding, string, error) {
-	rState := Kubernetes_cluster_role_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_cluster_role_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kubernetes_cluster_role_binding, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_cluster_role_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_cluster_role_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_cluster_role_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_cluster_role_binding", externalID)
+func (h *Kubernetes_persistent_volume_claimHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_persistent_volume_claim", externalID)
 }
 
 type Kubernetes_role_binding struct {
@@ -794,38 +304,38 @@ func (h *Kubernetes_resource_quotaHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "kubernetes_resource_quota", externalID)
 }
 
-type Kubernetes_role struct {
-     Kubernetes_role_id *string
+type Kubernetes_service struct {
+     Kubernetes_service_id *string
 }
 
 
-func Kubernetes_roleMapper(r *Kubernetes_role) *terraform.ResourceConfig {
+func Kubernetes_serviceMapper(r *Kubernetes_service) *terraform.ResourceConfig {
 	config := map[string]interface{}{}
  	return &terraform.ResourceConfig{
 		Config: config,
 	}
 }
 
-func Kubernetes_roleUnmapper(state map[string]interface{}) *Kubernetes_role {
-	r := &Kubernetes_role{}
+func Kubernetes_serviceUnmapper(state map[string]interface{}) *Kubernetes_service {
+	r := &Kubernetes_service{}
 
 if x, ok := state["external_id"]; ok {
 	x := x.(string)
-	r.Kubernetes_role_id = &x
+	r.Kubernetes_service_id = &x
 }
 	return r
 }
 
 
-// Kubernetes_roleHandler ...
-type Kubernetes_roleHandler struct {
+// Kubernetes_serviceHandler ...
+type Kubernetes_serviceHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_role, string, error) {
-	rState := Kubernetes_roleMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_role", rState)
+func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubernetes_service, string, error) {
+	rState := Kubernetes_serviceMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_service", rState)
 	if err != nil {
 		return nil, "", err
 	}
@@ -837,51 +347,51 @@ func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_r
 }
 
 // Read ...
-func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_role", externalID)
+func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_service", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_roleUnmapper(actual), nil
+	return Kubernetes_serviceUnmapper(actual), nil
 }
 
 // Delete ...
-func (h *Kubernetes_roleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_role", externalID)
+func (h *Kubernetes_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_service", externalID)
 }
 
-type Kubernetes_stateful_set struct {
-     Kubernetes_stateful_set_id *string
+type Kubernetes_config_map struct {
+     Kubernetes_config_map_id *string
 }
 
 
-func Kubernetes_stateful_setMapper(r *Kubernetes_stateful_set) *terraform.ResourceConfig {
+func Kubernetes_config_mapMapper(r *Kubernetes_config_map) *terraform.ResourceConfig {
 	config := map[string]interface{}{}
  	return &terraform.ResourceConfig{
 		Config: config,
 	}
 }
 
-func Kubernetes_stateful_setUnmapper(state map[string]interface{}) *Kubernetes_stateful_set {
-	r := &Kubernetes_stateful_set{}
+func Kubernetes_config_mapUnmapper(state map[string]interface{}) *Kubernetes_config_map {
+	r := &Kubernetes_config_map{}
 
 if x, ok := state["external_id"]; ok {
 	x := x.(string)
-	r.Kubernetes_stateful_set_id = &x
+	r.Kubernetes_config_map_id = &x
 }
 	return r
 }
 
 
-// Kubernetes_stateful_setHandler ...
-type Kubernetes_stateful_setHandler struct {
+// Kubernetes_config_mapHandler ...
+type Kubernetes_config_mapHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set) (*Kubernetes_stateful_set, string, error) {
-	rState := Kubernetes_stateful_setMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_stateful_set", rState)
+func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*Kubernetes_config_map, string, error) {
+	rState := Kubernetes_config_mapMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_config_map", rState)
 	if err != nil {
 		return nil, "", err
 	}
@@ -893,17 +403,17 @@ func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set
 }
 
 // Read ...
-func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_stateful_set, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_stateful_set", externalID)
+func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_config_map, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_config_map", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_stateful_setUnmapper(actual), nil
+	return Kubernetes_config_mapUnmapper(actual), nil
 }
 
 // Delete ...
-func (h *Kubernetes_stateful_setHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_stateful_set", externalID)
+func (h *Kubernetes_config_mapHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_config_map", externalID)
 }
 
 type Kubernetes_deployment struct {
@@ -962,38 +472,38 @@ func (h *Kubernetes_deploymentHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "kubernetes_deployment", externalID)
 }
 
-type Kubernetes_limit_range struct {
-     Kubernetes_limit_range_id *string
+type Kubernetes_persistent_volume struct {
+     Kubernetes_persistent_volume_id *string
 }
 
 
-func Kubernetes_limit_rangeMapper(r *Kubernetes_limit_range) *terraform.ResourceConfig {
+func Kubernetes_persistent_volumeMapper(r *Kubernetes_persistent_volume) *terraform.ResourceConfig {
 	config := map[string]interface{}{}
  	return &terraform.ResourceConfig{
 		Config: config,
 	}
 }
 
-func Kubernetes_limit_rangeUnmapper(state map[string]interface{}) *Kubernetes_limit_range {
-	r := &Kubernetes_limit_range{}
+func Kubernetes_persistent_volumeUnmapper(state map[string]interface{}) *Kubernetes_persistent_volume {
+	r := &Kubernetes_persistent_volume{}
 
 if x, ok := state["external_id"]; ok {
 	x := x.(string)
-	r.Kubernetes_limit_range_id = &x
+	r.Kubernetes_persistent_volume_id = &x
 }
 	return r
 }
 
 
-// Kubernetes_limit_rangeHandler ...
-type Kubernetes_limit_rangeHandler struct {
+// Kubernetes_persistent_volumeHandler ...
+type Kubernetes_persistent_volumeHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) (*Kubernetes_limit_range, string, error) {
-	rState := Kubernetes_limit_rangeMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_limit_range", rState)
+func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persistent_volume) (*Kubernetes_persistent_volume, string, error) {
+	rState := Kubernetes_persistent_volumeMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume", rState)
 	if err != nil {
 		return nil, "", err
 	}
@@ -1005,82 +515,17 @@ func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) 
 }
 
 // Read ...
-func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_limit_range, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_limit_range", externalID)
+func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernetes_persistent_volume, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_limit_rangeUnmapper(actual), nil
+	return Kubernetes_persistent_volumeUnmapper(actual), nil
 }
 
 // Delete ...
-func (h *Kubernetes_limit_rangeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_limit_range", externalID)
-}
-
-type Kubernetes_persistent_volume_claim struct {
-     Kubernetes_persistent_volume_claim_id *string
-     Wait_until_bound *bool
-}
-
-
-func Kubernetes_persistent_volume_claimMapper(r *Kubernetes_persistent_volume_claim) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Wait_until_bound != nil {
-    config["wait_until_bound"] = *r.Wait_until_bound
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_persistent_volume_claimUnmapper(state map[string]interface{}) *Kubernetes_persistent_volume_claim {
-	r := &Kubernetes_persistent_volume_claim{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_persistent_volume_claim_id = &x
-}
-
-if x, ok := state["wait_until_bound"]; ok {
-	x := x.(bool)
-	r.Wait_until_bound = &x
-}
-	return r
-}
-
-
-// Kubernetes_persistent_volume_claimHandler ...
-type Kubernetes_persistent_volume_claimHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_persistent_volume_claim) (*Kubernetes_persistent_volume_claim, string, error) {
-	rState := Kubernetes_persistent_volume_claimMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume_claim", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Kubernetes_persistent_volume_claim, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume_claim", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_persistent_volume_claimUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_persistent_volume_claimHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_persistent_volume_claim", externalID)
+func (h *Kubernetes_persistent_volumeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_persistent_volume", externalID)
 }
 
 type Kubernetes_pod struct {
@@ -1139,38 +584,38 @@ func (h *Kubernetes_podHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "kubernetes_pod", externalID)
 }
 
-type Kubernetes_service struct {
-     Kubernetes_service_id *string
+type Kubernetes_role struct {
+     Kubernetes_role_id *string
 }
 
 
-func Kubernetes_serviceMapper(r *Kubernetes_service) *terraform.ResourceConfig {
+func Kubernetes_roleMapper(r *Kubernetes_role) *terraform.ResourceConfig {
 	config := map[string]interface{}{}
  	return &terraform.ResourceConfig{
 		Config: config,
 	}
 }
 
-func Kubernetes_serviceUnmapper(state map[string]interface{}) *Kubernetes_service {
-	r := &Kubernetes_service{}
+func Kubernetes_roleUnmapper(state map[string]interface{}) *Kubernetes_role {
+	r := &Kubernetes_role{}
 
 if x, ok := state["external_id"]; ok {
 	x := x.(string)
-	r.Kubernetes_service_id = &x
+	r.Kubernetes_role_id = &x
 }
 	return r
 }
 
 
-// Kubernetes_serviceHandler ...
-type Kubernetes_serviceHandler struct {
+// Kubernetes_roleHandler ...
+type Kubernetes_roleHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubernetes_service, string, error) {
-	rState := Kubernetes_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_service", rState)
+func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_role, string, error) {
+	rState := Kubernetes_roleMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_role", rState)
 	if err != nil {
 		return nil, "", err
 	}
@@ -1182,16 +627,571 @@ func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubern
 }
 
 // Read ...
-func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_service", externalID)
+func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_role", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_serviceUnmapper(actual), nil
+	return Kubernetes_roleUnmapper(actual), nil
 }
 
 // Delete ...
-func (h *Kubernetes_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_service", externalID)
+func (h *Kubernetes_roleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_role", externalID)
+}
+
+type Kubernetes_storage_class struct {
+     Kubernetes_storage_class_id *string
+     Storage_provisioner string
+     Reclaim_policy *string
+     Volume_binding_mode *string
+}
+
+
+func Kubernetes_storage_classMapper(r *Kubernetes_storage_class) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	    config["storage_provisioner"] = r.Storage_provisioner
+if r.Reclaim_policy != nil {
+    config["reclaim_policy"] = *r.Reclaim_policy
+}
+if r.Volume_binding_mode != nil {
+    config["volume_binding_mode"] = *r.Volume_binding_mode
+}
+return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_storage_classUnmapper(state map[string]interface{}) *Kubernetes_storage_class {
+	r := &Kubernetes_storage_class{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_storage_class_id = &x
+}
+
+if x, ok := state["reclaim_policy"]; ok {
+	x := x.(string)
+	r.Reclaim_policy = &x
+}
+
+if x, ok := state["volume_binding_mode"]; ok {
+	x := x.(string)
+	r.Volume_binding_mode = &x
+}
+
+if x, ok := state["storage_provisioner"]; ok {
+	r.Storage_provisioner = x.(string)
+}
+	return r
+}
+
+
+// Kubernetes_storage_classHandler ...
+type Kubernetes_storage_classHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_class) (*Kubernetes_storage_class, string, error) {
+	rState := Kubernetes_storage_classMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_storage_class", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_storage_class, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_storage_class", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_storage_classUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_storage_classHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_storage_class", externalID)
+}
+
+type Kubernetes_namespace struct {
+     Kubernetes_namespace_id *string
+}
+
+
+func Kubernetes_namespaceMapper(r *Kubernetes_namespace) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_namespaceUnmapper(state map[string]interface{}) *Kubernetes_namespace {
+	r := &Kubernetes_namespace{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_namespace_id = &x
+}
+	return r
+}
+
+
+// Kubernetes_namespaceHandler ...
+type Kubernetes_namespaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Kubernetes_namespace, string, error) {
+	rState := Kubernetes_namespaceMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_namespace", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_namespace, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_namespace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_namespaceUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_namespaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_namespace", externalID)
+}
+
+type Kubernetes_network_policy struct {
+     Kubernetes_network_policy_id *string
+}
+
+
+func Kubernetes_network_policyMapper(r *Kubernetes_network_policy) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_network_policyUnmapper(state map[string]interface{}) *Kubernetes_network_policy {
+	r := &Kubernetes_network_policy{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_network_policy_id = &x
+}
+	return r
+}
+
+
+// Kubernetes_network_policyHandler ...
+type Kubernetes_network_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_policy) (*Kubernetes_network_policy, string, error) {
+	rState := Kubernetes_network_policyMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_network_policy", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_network_policy, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_network_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_network_policyUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_network_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_network_policy", externalID)
+}
+
+type Kubernetes_service_account struct {
+     Kubernetes_service_account_id *string
+     Default_secret_name *string
+     Automount_service_account_token *bool
+}
+
+
+func Kubernetes_service_accountMapper(r *Kubernetes_service_account) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	if r.Automount_service_account_token != nil {
+    config["automount_service_account_token"] = *r.Automount_service_account_token
+}
+if r.Default_secret_name != nil {
+    config["default_secret_name"] = *r.Default_secret_name
+}
+return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_service_accountUnmapper(state map[string]interface{}) *Kubernetes_service_account {
+	r := &Kubernetes_service_account{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_service_account_id = &x
+}
+
+if x, ok := state["automount_service_account_token"]; ok {
+	x := x.(bool)
+	r.Automount_service_account_token = &x
+}
+
+if x, ok := state["default_secret_name"]; ok {
+	x := x.(string)
+	r.Default_secret_name = &x
+}
+	return r
+}
+
+
+// Kubernetes_service_accountHandler ...
+type Kubernetes_service_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_account) (*Kubernetes_service_account, string, error) {
+	rState := Kubernetes_service_accountMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_service_account", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes_service_account, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_service_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_service_accountUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_service_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_service_account", externalID)
+}
+
+type Kubernetes_cluster_role_binding struct {
+     Kubernetes_cluster_role_binding_id *string
+}
+
+
+func Kubernetes_cluster_role_bindingMapper(r *Kubernetes_cluster_role_binding) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_cluster_role_bindingUnmapper(state map[string]interface{}) *Kubernetes_cluster_role_binding {
+	r := &Kubernetes_cluster_role_binding{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_cluster_role_binding_id = &x
+}
+	return r
+}
+
+
+// Kubernetes_cluster_role_bindingHandler ...
+type Kubernetes_cluster_role_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_cluster_role_binding) (*Kubernetes_cluster_role_binding, string, error) {
+	rState := Kubernetes_cluster_role_bindingMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_cluster_role_binding", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kubernetes_cluster_role_binding, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_cluster_role_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_cluster_role_bindingUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_cluster_role_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_cluster_role_binding", externalID)
+}
+
+type Kubernetes_replication_controller struct {
+     Kubernetes_replication_controller_id *string
+}
+
+
+func Kubernetes_replication_controllerMapper(r *Kubernetes_replication_controller) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_replication_controllerUnmapper(state map[string]interface{}) *Kubernetes_replication_controller {
+	r := &Kubernetes_replication_controller{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_replication_controller_id = &x
+}
+	return r
+}
+
+
+// Kubernetes_replication_controllerHandler ...
+type Kubernetes_replication_controllerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_replication_controller) (*Kubernetes_replication_controller, string, error) {
+	rState := Kubernetes_replication_controllerMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_replication_controller", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kubernetes_replication_controller, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_replication_controller", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_replication_controllerUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_replication_controllerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_replication_controller", externalID)
+}
+
+type Kubernetes_stateful_set struct {
+     Kubernetes_stateful_set_id *string
+}
+
+
+func Kubernetes_stateful_setMapper(r *Kubernetes_stateful_set) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_stateful_setUnmapper(state map[string]interface{}) *Kubernetes_stateful_set {
+	r := &Kubernetes_stateful_set{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_stateful_set_id = &x
+}
+	return r
+}
+
+
+// Kubernetes_stateful_setHandler ...
+type Kubernetes_stateful_setHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set) (*Kubernetes_stateful_set, string, error) {
+	rState := Kubernetes_stateful_setMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_stateful_set", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_stateful_set, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_stateful_set", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_stateful_setUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_stateful_setHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_stateful_set", externalID)
+}
+
+type Kubernetes_limit_range struct {
+     Kubernetes_limit_range_id *string
+}
+
+
+func Kubernetes_limit_rangeMapper(r *Kubernetes_limit_range) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_limit_rangeUnmapper(state map[string]interface{}) *Kubernetes_limit_range {
+	r := &Kubernetes_limit_range{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_limit_range_id = &x
+}
+	return r
+}
+
+
+// Kubernetes_limit_rangeHandler ...
+type Kubernetes_limit_rangeHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) (*Kubernetes_limit_range, string, error) {
+	rState := Kubernetes_limit_rangeMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_limit_range", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_limit_range, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_limit_range", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_limit_rangeUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_limit_rangeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_limit_range", externalID)
+}
+
+type Kubernetes_secret struct {
+     Kubernetes_secret_id *string
+     Resource_type *string
+}
+
+
+func Kubernetes_secretMapper(r *Kubernetes_secret) *terraform.ResourceConfig {
+	config := map[string]interface{}{}
+ 	if r.Resource_type != nil {
+    config["resource_type"] = *r.Resource_type
+}
+return &terraform.ResourceConfig{
+		Config: config,
+	}
+}
+
+func Kubernetes_secretUnmapper(state map[string]interface{}) *Kubernetes_secret {
+	r := &Kubernetes_secret{}
+
+if x, ok := state["external_id"]; ok {
+	x := x.(string)
+	r.Kubernetes_secret_id = &x
+}
+
+if x, ok := state["resource_type"]; ok {
+	x := x.(string)
+	r.Resource_type = &x
+}
+	return r
+}
+
+
+// Kubernetes_secretHandler ...
+type Kubernetes_secretHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernetes_secret, string, error) {
+	rState := Kubernetes_secretMapper(desired)
+	id, err := bridge.Create(h.provider, "kubernetes_secret", rState)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, error) {
+	actual, err := bridge.Read(h.provider, "kubernetes_secret", externalID)
+	if err != nil {
+		return nil, err
+	}
+	return Kubernetes_secretUnmapper(actual), nil
+}
+
+// Delete ...
+func (h *Kubernetes_secretHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_secret", externalID)
 }
 
