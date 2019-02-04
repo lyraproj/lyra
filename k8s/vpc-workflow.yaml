@@ -1,0 +1,7 @@
+apiVersion: lyra.example.com/v1alpha1
+kind: Workflow
+metadata:
+  name: vpc-workflow
+spec:
+  workflowName: "aws_vpc_yaml"
+  refreshTime: 65

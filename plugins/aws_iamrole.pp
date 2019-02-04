@@ -1,4 +1,4 @@
-workflow iamrole {
+workflow aws_iamrole {
   typespace => 'aws',
   input => (
     Hash[String,String] $tags = lookup('aws.tags'),
