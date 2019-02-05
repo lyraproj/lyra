@@ -45,14 +45,14 @@ func Create(p *schema.Provider, resourceType string, resourceConfig *terraform.R
 }
 
 // Read a resource using the Terrform provider
-func Read(p *schema.Provider, resourceType string, id string) (map[string]interface{}, error) {
+func Read(p *schema.Provider, resourceType string, id string) (string, map[string]interface{}, error) {
 	info := &terraform.InstanceInfo{Type: resourceType}
 	state := &terraform.InstanceState{ID: id}
 	newstate, err := p.Refresh(info, state)
 	if err != nil {
-		return nil, err
+		return "", nil, err
 	}
-	return expand(id, newstate), nil
+	return id, expand(newstate), nil
 }
 
 // Delete a resource using the Terrform provider
@@ -64,11 +64,10 @@ func Delete(p *schema.Provider, resourceType string, id string) error {
 	return err
 }
 
-func expand(id string, state *terraform.InstanceState) map[string]interface{} {
+func expand(state *terraform.InstanceState) map[string]interface{} {
 	var outs map[string]interface{}
 	if state != nil {
 		outs = make(map[string]interface{})
-		outs["external_id"] = id
 		attrs := state.Attributes
 		for _, key := range flatmap.Map(attrs).Keys() {
 			outs[key] = flatmap.Expand(attrs, key)

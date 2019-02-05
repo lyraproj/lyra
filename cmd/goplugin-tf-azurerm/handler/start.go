@@ -10,13 +10,15 @@ import (
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm"
 )
 
-// Namespace of this server
-func Namespace() string {
-	return "TerraformAzureRM"
+// Server configures the Terraform provider and creates an instance of the server
+func Server(c eval.Context, configuredProvider *schema.Provider) *service.Server {
+	sb := service.NewServerBuilder(c, "TerraformAzureRM")
+	generated.Initialize(sb, configuredProvider)
+	return sb.Server()
 }
 
-// Server configures the Terraform provider and creates an instance of the server
-func Server(c eval.Context) *service.Server {
+// Start this server running
+func Start() {
 	config := &terraform.ResourceConfig{
 		Config: map[string]interface{}{
 			// "foo": "bar",
@@ -27,14 +29,7 @@ func Server(c eval.Context) *service.Server {
 	if err != nil {
 		panic(err)
 	}
-	sb := service.NewServerBuilder(c, Namespace())
-	generated.Initialize(sb, p)
-	return sb.Server()
-}
-
-// Start this server running
-func Start() {
 	eval.Puppet.Do(func(c eval.Context) {
-		grpc.Serve(c, Server(c))
+		grpc.Serve(c, Server(c, p))
 	})
 }
