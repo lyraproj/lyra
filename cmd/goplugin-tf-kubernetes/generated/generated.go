@@ -13,921 +13,94 @@ import (
 	"github.com/lyraproj/servicesdk/service"
 )
 
-func convertMap(in map[string]interface{}) map[string]string {
-	m  := map[string]string{}
-	for k,v := range in {
-		m[k] = v.(string)
-	}
-	return m
-}
-
-func unconvertMap(in map[string]string  ) map[string]interface{} {
-	m  := map[string]interface{}{}
-	for k,v := range in {
-		m[k] = v
-	}
-	return m
-}
-
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_horizontal_pod_autoscaler{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_horizontal_pod_autoscalerHandler", &Kubernetes_horizontal_pod_autoscalerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume_claim{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volume_claimHandler", &Kubernetes_persistent_volume_claimHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role_binding{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_role_bindingHandler", &Kubernetes_role_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_resource_quota{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_resource_quotaHandler", &Kubernetes_resource_quotaHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_serviceHandler", &Kubernetes_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_cluster_role_binding{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_cluster_role_bindingHandler", &Kubernetes_cluster_role_bindingHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_config_map{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_config_mapHandler", &Kubernetes_config_mapHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_deployment{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_deploymentHandler", &Kubernetes_deploymentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volumeHandler", &Kubernetes_persistent_volumeHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_pod{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_podHandler", &Kubernetes_podHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_roleHandler", &Kubernetes_roleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_storage_class{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_storage_classHandler", &Kubernetes_storage_classHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_horizontal_pod_autoscaler{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_horizontal_pod_autoscalerHandler", &Kubernetes_horizontal_pod_autoscalerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_limit_range{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_limit_rangeHandler", &Kubernetes_limit_rangeHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_namespace{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_namespaceHandler", &Kubernetes_namespaceHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_network_policy{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_network_policyHandler", &Kubernetes_network_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service_account{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_service_accountHandler", &Kubernetes_service_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_cluster_role_binding{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_cluster_role_bindingHandler", &Kubernetes_cluster_role_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volumeHandler", &Kubernetes_persistent_volumeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_persistent_volume_claim{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volume_claimHandler", &Kubernetes_persistent_volume_claimHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_pod{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_podHandler", &Kubernetes_podHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_replication_controller{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_replication_controllerHandler", &Kubernetes_replication_controllerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_stateful_set{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_stateful_setHandler", &Kubernetes_stateful_setHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_limit_range{})
-    sb.RegisterHandler("TerraformKubernetes::Kubernetes_limit_rangeHandler", &Kubernetes_limit_rangeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_resource_quota{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_resource_quotaHandler", &Kubernetes_resource_quotaHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_roleHandler", &Kubernetes_roleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_role_binding{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_role_bindingHandler", &Kubernetes_role_bindingHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_secret{})
     sb.RegisterHandler("TerraformKubernetes::Kubernetes_secretHandler", &Kubernetes_secretHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_serviceHandler", &Kubernetes_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_service_account{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_service_accountHandler", &Kubernetes_service_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_stateful_set{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_stateful_setHandler", &Kubernetes_stateful_setHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformKubernetes", Kubernetes_storage_class{})
+    sb.RegisterHandler("TerraformKubernetes::Kubernetes_storage_classHandler", &Kubernetes_storage_classHandler{provider: p}, evs[0])
 }
 
-type Kubernetes_horizontal_pod_autoscaler struct {
-     Kubernetes_horizontal_pod_autoscaler_id *string
-}
-
-
-func Kubernetes_horizontal_pod_autoscalerMapper(r *Kubernetes_horizontal_pod_autoscaler) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_horizontal_pod_autoscalerUnmapper(state map[string]interface{}) *Kubernetes_horizontal_pod_autoscaler {
-	r := &Kubernetes_horizontal_pod_autoscaler{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_horizontal_pod_autoscaler_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_horizontal_pod_autoscalerHandler ...
-type Kubernetes_horizontal_pod_autoscalerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_horizontal_pod_autoscalerHandler) Create(desired *Kubernetes_horizontal_pod_autoscaler) (*Kubernetes_horizontal_pod_autoscaler, string, error) {
-	rState := Kubernetes_horizontal_pod_autoscalerMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_horizontal_pod_autoscaler", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_horizontal_pod_autoscalerHandler) Read(externalID string) (*Kubernetes_horizontal_pod_autoscaler, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_horizontal_pod_autoscalerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_horizontal_pod_autoscalerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
-}
-
-type Kubernetes_persistent_volume_claim struct {
-     Kubernetes_persistent_volume_claim_id *string
-     Wait_until_bound *bool
-}
-
-
-func Kubernetes_persistent_volume_claimMapper(r *Kubernetes_persistent_volume_claim) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Wait_until_bound != nil {
-    config["wait_until_bound"] = *r.Wait_until_bound
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_persistent_volume_claimUnmapper(state map[string]interface{}) *Kubernetes_persistent_volume_claim {
-	r := &Kubernetes_persistent_volume_claim{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_persistent_volume_claim_id = &x
-}
-
-if x, ok := state["wait_until_bound"]; ok {
-	x := x.(bool)
-	r.Wait_until_bound = &x
-}
-	return r
-}
-
-
-// Kubernetes_persistent_volume_claimHandler ...
-type Kubernetes_persistent_volume_claimHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_persistent_volume_claim) (*Kubernetes_persistent_volume_claim, string, error) {
-	rState := Kubernetes_persistent_volume_claimMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume_claim", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Kubernetes_persistent_volume_claim, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume_claim", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_persistent_volume_claimUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_persistent_volume_claimHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_persistent_volume_claim", externalID)
-}
-
-type Kubernetes_role_binding struct {
-     Kubernetes_role_binding_id *string
-}
-
-
-func Kubernetes_role_bindingMapper(r *Kubernetes_role_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_role_bindingUnmapper(state map[string]interface{}) *Kubernetes_role_binding {
-	r := &Kubernetes_role_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_role_binding_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_role_bindingHandler ...
-type Kubernetes_role_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_role_bindingHandler) Create(desired *Kubernetes_role_binding) (*Kubernetes_role_binding, string, error) {
-	rState := Kubernetes_role_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_role_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_role_bindingHandler) Read(externalID string) (*Kubernetes_role_binding, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_role_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_role_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_role_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_role_binding", externalID)
-}
-
-type Kubernetes_resource_quota struct {
-     Kubernetes_resource_quota_id *string
-}
-
-
-func Kubernetes_resource_quotaMapper(r *Kubernetes_resource_quota) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_resource_quotaUnmapper(state map[string]interface{}) *Kubernetes_resource_quota {
-	r := &Kubernetes_resource_quota{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_resource_quota_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_resource_quotaHandler ...
-type Kubernetes_resource_quotaHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_resource_quotaHandler) Create(desired *Kubernetes_resource_quota) (*Kubernetes_resource_quota, string, error) {
-	rState := Kubernetes_resource_quotaMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_resource_quota", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_resource_quotaHandler) Read(externalID string) (*Kubernetes_resource_quota, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_resource_quota", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_resource_quotaUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_resource_quotaHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_resource_quota", externalID)
-}
-
-type Kubernetes_service struct {
-     Kubernetes_service_id *string
-}
-
-
-func Kubernetes_serviceMapper(r *Kubernetes_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_serviceUnmapper(state map[string]interface{}) *Kubernetes_service {
-	r := &Kubernetes_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_service_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_serviceHandler ...
-type Kubernetes_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubernetes_service, string, error) {
-	rState := Kubernetes_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_service", externalID)
-}
-
-type Kubernetes_config_map struct {
-     Kubernetes_config_map_id *string
-}
-
-
-func Kubernetes_config_mapMapper(r *Kubernetes_config_map) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_config_mapUnmapper(state map[string]interface{}) *Kubernetes_config_map {
-	r := &Kubernetes_config_map{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_config_map_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_config_mapHandler ...
-type Kubernetes_config_mapHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*Kubernetes_config_map, string, error) {
-	rState := Kubernetes_config_mapMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_config_map", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_config_map, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_config_map", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_config_mapUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_config_mapHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_config_map", externalID)
-}
-
-type Kubernetes_deployment struct {
-     Kubernetes_deployment_id *string
-}
-
-
-func Kubernetes_deploymentMapper(r *Kubernetes_deployment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_deploymentUnmapper(state map[string]interface{}) *Kubernetes_deployment {
-	r := &Kubernetes_deployment{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_deployment_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_deploymentHandler ...
-type Kubernetes_deploymentHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_deploymentHandler) Create(desired *Kubernetes_deployment) (*Kubernetes_deployment, string, error) {
-	rState := Kubernetes_deploymentMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_deployment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
 
-// Read ...
-func (h *Kubernetes_deploymentHandler) Read(externalID string) (*Kubernetes_deployment, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_deployment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_deploymentUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_deploymentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_deployment", externalID)
-}
-
-type Kubernetes_persistent_volume struct {
-     Kubernetes_persistent_volume_id *string
-}
-
-
-func Kubernetes_persistent_volumeMapper(r *Kubernetes_persistent_volume) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_persistent_volumeUnmapper(state map[string]interface{}) *Kubernetes_persistent_volume {
-	r := &Kubernetes_persistent_volume{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_persistent_volume_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_persistent_volumeHandler ...
-type Kubernetes_persistent_volumeHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persistent_volume) (*Kubernetes_persistent_volume, string, error) {
-	rState := Kubernetes_persistent_volumeMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernetes_persistent_volume, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_persistent_volumeUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_persistent_volumeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_persistent_volume", externalID)
-}
-
-type Kubernetes_pod struct {
-     Kubernetes_pod_id *string
-}
-
-
-func Kubernetes_podMapper(r *Kubernetes_pod) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_podUnmapper(state map[string]interface{}) *Kubernetes_pod {
-	r := &Kubernetes_pod{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_pod_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_podHandler ...
-type Kubernetes_podHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_podHandler) Create(desired *Kubernetes_pod) (*Kubernetes_pod, string, error) {
-	rState := Kubernetes_podMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_pod", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_podHandler) Read(externalID string) (*Kubernetes_pod, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_pod", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_podUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_podHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_pod", externalID)
-}
-
-type Kubernetes_role struct {
-     Kubernetes_role_id *string
-}
-
-
-func Kubernetes_roleMapper(r *Kubernetes_role) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_roleUnmapper(state map[string]interface{}) *Kubernetes_role {
-	r := &Kubernetes_role{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_role_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_roleHandler ...
-type Kubernetes_roleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_role, string, error) {
-	rState := Kubernetes_roleMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_role", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_role", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_roleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_roleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_role", externalID)
-}
-
-type Kubernetes_storage_class struct {
-     Kubernetes_storage_class_id *string
-     Storage_provisioner string
-     Reclaim_policy *string
-     Volume_binding_mode *string
-}
-
-
-func Kubernetes_storage_classMapper(r *Kubernetes_storage_class) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["storage_provisioner"] = r.Storage_provisioner
-if r.Reclaim_policy != nil {
-    config["reclaim_policy"] = *r.Reclaim_policy
-}
-if r.Volume_binding_mode != nil {
-    config["volume_binding_mode"] = *r.Volume_binding_mode
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_storage_classUnmapper(state map[string]interface{}) *Kubernetes_storage_class {
-	r := &Kubernetes_storage_class{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_storage_class_id = &x
-}
-
-if x, ok := state["reclaim_policy"]; ok {
-	x := x.(string)
-	r.Reclaim_policy = &x
-}
-
-if x, ok := state["volume_binding_mode"]; ok {
-	x := x.(string)
-	r.Volume_binding_mode = &x
-}
-
-if x, ok := state["storage_provisioner"]; ok {
-	r.Storage_provisioner = x.(string)
-}
-	return r
-}
-
-
-// Kubernetes_storage_classHandler ...
-type Kubernetes_storage_classHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_class) (*Kubernetes_storage_class, string, error) {
-	rState := Kubernetes_storage_classMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_storage_class", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_storage_class, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_storage_class", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_storage_classUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_storage_classHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_storage_class", externalID)
-}
-
-type Kubernetes_namespace struct {
-     Kubernetes_namespace_id *string
-}
-
-
-func Kubernetes_namespaceMapper(r *Kubernetes_namespace) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_namespaceUnmapper(state map[string]interface{}) *Kubernetes_namespace {
-	r := &Kubernetes_namespace{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_namespace_id = &x
-}
-	return r
-}
-
+type Kubernetes_cluster_role_binding_metadata_589 struct {
 
-// Kubernetes_namespaceHandler ...
-type Kubernetes_namespaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Kubernetes_namespace, string, error) {
-	rState := Kubernetes_namespaceMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_namespace", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_namespace, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_namespace", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_namespaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Kubernetes_namespaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_namespace", externalID)
-}
-
-type Kubernetes_network_policy struct {
-     Kubernetes_network_policy_id *string
-}
-
-
-func Kubernetes_network_policyMapper(r *Kubernetes_network_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_network_policyUnmapper(state map[string]interface{}) *Kubernetes_network_policy {
-	r := &Kubernetes_network_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_network_policy_id = &x
-}
-	return r
-}
+    Kubernetes_cluster_role_binding_metadata_589_id *string `lyra:"ignore"`
 
+    Annotations *map[string]string
 
-// Kubernetes_network_policyHandler ...
-type Kubernetes_network_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_policy) (*Kubernetes_network_policy, string, error) {
-	rState := Kubernetes_network_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_network_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_network_policy, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_network_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_network_policyUnmapper(actual), nil
-}
+    Generation *int
 
-// Delete ...
-func (h *Kubernetes_network_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_network_policy", externalID)
-}
+    Labels *map[string]string
 
-type Kubernetes_service_account struct {
-     Kubernetes_service_account_id *string
-     Default_secret_name *string
-     Automount_service_account_token *bool
-}
+    Name *string
 
+    Resource_version *string
 
-func Kubernetes_service_accountMapper(r *Kubernetes_service_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Automount_service_account_token != nil {
-    config["automount_service_account_token"] = *r.Automount_service_account_token
-}
-if r.Default_secret_name != nil {
-    config["default_secret_name"] = *r.Default_secret_name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Self_link *string
 
-func Kubernetes_service_accountUnmapper(state map[string]interface{}) *Kubernetes_service_account {
-	r := &Kubernetes_service_account{}
+    Uid *string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_service_account_id = &x
 }
 
-if x, ok := state["automount_service_account_token"]; ok {
-	x := x.(bool)
-	r.Automount_service_account_token = &x
-}
+type Kubernetes_cluster_role_binding_subject_590 struct {
 
-if x, ok := state["default_secret_name"]; ok {
-	x := x.(string)
-	r.Default_secret_name = &x
-}
-	return r
-}
+    Kubernetes_cluster_role_binding_subject_590_id *string `lyra:"ignore"`
 
+    Api_group *string
 
-// Kubernetes_service_accountHandler ...
-type Kubernetes_service_accountHandler struct {
-	provider *schema.Provider
-}
+    Kind string
 
-// Create ...
-func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_account) (*Kubernetes_service_account, string, error) {
-	rState := Kubernetes_service_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_service_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    Name string
 
-// Read ...
-func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes_service_account, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_service_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Kubernetes_service_accountUnmapper(actual), nil
-}
+    Namespace *string
 
-// Delete ...
-func (h *Kubernetes_service_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_service_account", externalID)
 }
 
 type Kubernetes_cluster_role_binding struct {
-     Kubernetes_cluster_role_binding_id *string
+
+    Kubernetes_cluster_role_binding_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_cluster_role_binding_metadata_589
+
+    Role_ref map[string]string
+
+    Subject Kubernetes_cluster_role_binding_subject_590
+
 }
-
-
-func Kubernetes_cluster_role_bindingMapper(r *Kubernetes_cluster_role_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_cluster_role_bindingUnmapper(state map[string]interface{}) *Kubernetes_cluster_role_binding {
-	r := &Kubernetes_cluster_role_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_cluster_role_binding_id = &x
-}
-	return r
-}
-
 
 // Kubernetes_cluster_role_bindingHandler ...
 type Kubernetes_cluster_role_bindingHandler struct {
@@ -936,8 +109,10 @@ type Kubernetes_cluster_role_bindingHandler struct {
 
 // Create ...
 func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_cluster_role_binding) (*Kubernetes_cluster_role_binding, string, error) {
-	rState := Kubernetes_cluster_role_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_cluster_role_binding", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_cluster_role_binding", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -950,11 +125,13 @@ func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_clus
 
 // Read ...
 func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kubernetes_cluster_role_binding, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_cluster_role_binding", externalID)
+	id, actual, err := bridge.Read(h.provider, "kubernetes_cluster_role_binding", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_cluster_role_bindingUnmapper(actual), nil
+	x := &Kubernetes_cluster_role_binding{ Kubernetes_cluster_role_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -962,38 +139,51 @@ func (h *Kubernetes_cluster_role_bindingHandler) Delete(externalID string) error
 	return bridge.Delete(h.provider, "kubernetes_cluster_role_binding", externalID)
 }
 
-type Kubernetes_replication_controller struct {
-     Kubernetes_replication_controller_id *string
+type Kubernetes_config_map_metadata_591 struct {
+
+    Kubernetes_config_map_metadata_591_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
 }
 
+type Kubernetes_config_map struct {
 
-func Kubernetes_replication_controllerMapper(r *Kubernetes_replication_controller) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
+    Kubernetes_config_map_id *string `lyra:"ignore"`
+
+    Data *map[string]string
+
+    Metadata Kubernetes_config_map_metadata_591
+
 }
 
-func Kubernetes_replication_controllerUnmapper(state map[string]interface{}) *Kubernetes_replication_controller {
-	r := &Kubernetes_replication_controller{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_replication_controller_id = &x
-}
-	return r
-}
-
-
-// Kubernetes_replication_controllerHandler ...
-type Kubernetes_replication_controllerHandler struct {
+// Kubernetes_config_mapHandler ...
+type Kubernetes_config_mapHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_replication_controller) (*Kubernetes_replication_controller, string, error) {
-	rState := Kubernetes_replication_controllerMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_replication_controller", rState)
+func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*Kubernetes_config_map, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_config_map", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -1005,51 +195,1674 @@ func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_re
 }
 
 // Read ...
-func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kubernetes_replication_controller, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_replication_controller", externalID)
+func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_config_map, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_config_map", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_replication_controllerUnmapper(actual), nil
+	x := &Kubernetes_config_map{ Kubernetes_config_map_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
-func (h *Kubernetes_replication_controllerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_replication_controller", externalID)
+func (h *Kubernetes_config_mapHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_config_map", externalID)
 }
 
-type Kubernetes_stateful_set struct {
-     Kubernetes_stateful_set_id *string
+type Kubernetes_deployment_metadata_592 struct {
+
+    Kubernetes_deployment_metadata_592_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
 }
 
+type Kubernetes_deployment_spec_593_selector_594_match_expressions_595 struct {
 
-func Kubernetes_stateful_setMapper(r *Kubernetes_stateful_set) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
+    Kubernetes_deployment_spec_593_selector_594_match_expressions_595_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
 }
 
-func Kubernetes_stateful_setUnmapper(state map[string]interface{}) *Kubernetes_stateful_set {
-	r := &Kubernetes_stateful_set{}
+type Kubernetes_deployment_spec_593_selector_594 struct {
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_stateful_set_id = &x
+    Kubernetes_deployment_spec_593_selector_594_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_deployment_spec_593_selector_594_match_expressions_595
+
+    Match_labels *map[string]string
+
 }
-	return r
+
+type Kubernetes_deployment_spec_593_strategy_596_rolling_update_597 struct {
+
+    Kubernetes_deployment_spec_593_strategy_596_rolling_update_597_id *string `lyra:"ignore"`
+
+    Max_surge *string
+
+    Max_unavailable *string
+
 }
 
+type Kubernetes_deployment_spec_593_strategy_596 struct {
 
-// Kubernetes_stateful_setHandler ...
-type Kubernetes_stateful_setHandler struct {
+    Kubernetes_deployment_spec_593_strategy_596_id *string `lyra:"ignore"`
+
+    Rolling_update *Kubernetes_deployment_spec_593_strategy_596_rolling_update_597
+
+    Type *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_metadata_599 struct {
+
+    Kubernetes_deployment_spec_593_template_598_metadata_599_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_config_map_key_ref_604 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_config_map_key_ref_604_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_field_ref_605 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_field_ref_605_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_resource_field_ref_606 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_resource_field_ref_606_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_secret_key_ref_607 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_secret_key_ref_607_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_config_map_key_ref_604
+
+    Field_ref *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_field_ref_605
+
+    Resource_field_ref *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_resource_field_ref_606
+
+    Secret_key_ref *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_secret_key_ref_607
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_config_map_ref_609 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_config_map_ref_609_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_secret_ref_610 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_secret_ref_610_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_config_map_ref_609
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_secret_ref_610
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_exec_613 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_exec_613_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614_http_header_615 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614_http_header_615_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614_http_header_615
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_tcp_socket_616 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_tcp_socket_616_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_exec_613
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_tcp_socket_616
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_exec_618 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_exec_618_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619_http_header_620 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619_http_header_620_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619_http_header_620
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_tcp_socket_621 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_tcp_socket_621_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_exec_618
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_tcp_socket_621
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612
+
+    Pre_stop *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_exec_623 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_exec_623_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624_http_header_625 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624_http_header_625_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624_http_header_625
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_tcp_socket_626 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_tcp_socket_626_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_exec_623
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_tcp_socket_626
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_port_627 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_port_627_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_exec_629 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_exec_629_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630_http_header_631 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630_http_header_631_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630_http_header_631
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_tcp_socket_632 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_tcp_socket_632_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_exec_629
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_tcp_socket_632
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_limits_634 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_limits_634_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_requests_635 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_requests_635_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_limits_634
+
+    Requests *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_requests_635
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_capabilities_637 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_capabilities_637_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_se_linux_options_638 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_se_linux_options_638_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_capabilities_637
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_se_linux_options_638
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_volume_mount_639 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_volume_mount_639_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_container_601 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_container_601_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602
+
+    Env_from *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611
+
+    Liveness_probe *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622
+
+    Name string
+
+    Port *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_port_627
+
+    Readiness_probe *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628
+
+    Resources *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633
+
+    Security_context *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_deployment_spec_593_template_598_spec_600_container_601_volume_mount_639
+
+    Working_dir *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_image_pull_secrets_640 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_image_pull_secrets_640_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_config_map_key_ref_644 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_config_map_key_ref_644_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_field_ref_645 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_field_ref_645_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_resource_field_ref_646 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_resource_field_ref_646_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_secret_key_ref_647 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_secret_key_ref_647_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_config_map_key_ref_644
+
+    Field_ref *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_field_ref_645
+
+    Resource_field_ref *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_resource_field_ref_646
+
+    Secret_key_ref *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_secret_key_ref_647
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_config_map_ref_649 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_config_map_ref_649_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_secret_ref_650 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_secret_ref_650_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_config_map_ref_649
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_secret_ref_650
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_exec_653 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_exec_653_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654_http_header_655 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654_http_header_655_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654_http_header_655
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_tcp_socket_656 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_tcp_socket_656_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_exec_653
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_tcp_socket_656
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_exec_658 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_exec_658_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659_http_header_660 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659_http_header_660_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659_http_header_660
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_tcp_socket_661 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_tcp_socket_661_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_exec_658
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_tcp_socket_661
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652
+
+    Pre_stop *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_exec_663 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_exec_663_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664_http_header_665 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664_http_header_665_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664_http_header_665
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_tcp_socket_666 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_tcp_socket_666_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_exec_663
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_tcp_socket_666
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_port_667 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_port_667_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_exec_669 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_exec_669_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670_http_header_671 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670_http_header_671_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670_http_header_671
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_tcp_socket_672 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_tcp_socket_672_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_exec_669
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_tcp_socket_672
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_limits_674 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_limits_674_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_requests_675 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_requests_675_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_limits_674
+
+    Requests *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_requests_675
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_capabilities_677 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_capabilities_677_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_se_linux_options_678 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_se_linux_options_678_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_capabilities_677
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_se_linux_options_678
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_volume_mount_679 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_volume_mount_679_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642
+
+    Env_from *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651
+
+    Liveness_probe *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662
+
+    Name string
+
+    Port *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_port_667
+
+    Readiness_probe *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668
+
+    Resources *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673
+
+    Security_context *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_volume_mount_679
+
+    Working_dir *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_se_linux_options_681 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_se_linux_options_681_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_id *string `lyra:"ignore"`
+
+    Fs_group *int
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_se_linux_options_681
+
+    Supplemental_groups *[]int
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_aws_elastic_block_store_683 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_aws_elastic_block_store_683_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_disk_684 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_disk_684_id *string `lyra:"ignore"`
+
+    Caching_mode string
+
+    Data_disk_uri string
+
+    Disk_name string
+
+    Fs_type *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_file_685 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_file_685_id *string `lyra:"ignore"`
+
+    Read_only *bool
+
+    Secret_name string
+
+    Share_name string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686_secret_ref_687 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686_secret_ref_687_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686_id *string `lyra:"ignore"`
+
+    Monitors []string
+
+    Path *string
+
+    Read_only *bool
+
+    Secret_file *string
+
+    Secret_ref *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686_secret_ref_687
+
+    User *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_cinder_688 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_cinder_688_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689_items_690 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689_items_690_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689_items_690
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_field_ref_693 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_field_ref_693_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_resource_field_ref_694 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_resource_field_ref_694_id *string `lyra:"ignore"`
+
+    Container_name string
+
+    Quantity *string
+
+    Resource string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_id *string `lyra:"ignore"`
+
+    Field_ref Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_field_ref_693
+
+    Mode *int
+
+    Path string
+
+    Resource_field_ref *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_resource_field_ref_694
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_empty_dir_695 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_empty_dir_695_id *string `lyra:"ignore"`
+
+    Medium *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_fc_696 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_fc_696_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Lun int
+
+    Read_only *bool
+
+    Target_ww_ns []string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697_secret_ref_698 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697_secret_ref_698_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697_id *string `lyra:"ignore"`
+
+    Driver string
+
+    Fs_type *string
+
+    Options *map[string]string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697_secret_ref_698
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flocker_699 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flocker_699_id *string `lyra:"ignore"`
+
+    Dataset_name *string
+
+    Dataset_uuid *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_gce_persistent_disk_700 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_gce_persistent_disk_700_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Pd_name string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_git_repo_701 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_git_repo_701_id *string `lyra:"ignore"`
+
+    Directory *string
+
+    Repository *string
+
+    Revision *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_glusterfs_702 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_glusterfs_702_id *string `lyra:"ignore"`
+
+    Endpoints_name string
+
+    Path string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_host_path_703 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_host_path_703_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_iscsi_704 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_iscsi_704_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Iqn string
+
+    Iscsi_interface *string
+
+    Lun *int
+
+    Read_only *bool
+
+    Target_portal string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_local_705 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_local_705_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_nfs_706 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_nfs_706_id *string `lyra:"ignore"`
+
+    Path string
+
+    Read_only *bool
+
+    Server string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_persistent_volume_claim_707 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_persistent_volume_claim_707_id *string `lyra:"ignore"`
+
+    Claim_name *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_photon_persistent_disk_708 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_photon_persistent_disk_708_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Pd_id string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_quobyte_709 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_quobyte_709_id *string `lyra:"ignore"`
+
+    Group *string
+
+    Read_only *bool
+
+    Registry string
+
+    User *string
+
+    Volume string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710_secret_ref_711 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710_secret_ref_711_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710_id *string `lyra:"ignore"`
+
+    Ceph_monitors []string
+
+    Fs_type *string
+
+    Keyring *string
+
+    Rados_user *string
+
+    Rbd_image string
+
+    Rbd_pool *string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710_secret_ref_711
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_items_713 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_items_713_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_items_713
+
+    Optional *bool
+
+    Secret_name *string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_vsphere_volume_714 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_vsphere_volume_714_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Volume_path string
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_id *string `lyra:"ignore"`
+
+    Aws_elastic_block_store *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_aws_elastic_block_store_683
+
+    Azure_disk *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_disk_684
+
+    Azure_file *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_file_685
+
+    Ceph_fs *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686
+
+    Cinder *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_cinder_688
+
+    Config_map *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689
+
+    Downward_api *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691
+
+    Empty_dir *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_empty_dir_695
+
+    Fc *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_fc_696
+
+    Flex_volume *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697
+
+    Flocker *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flocker_699
+
+    Gce_persistent_disk *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_gce_persistent_disk_700
+
+    Git_repo *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_git_repo_701
+
+    Glusterfs *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_glusterfs_702
+
+    Host_path *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_host_path_703
+
+    Iscsi *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_iscsi_704
+
+    Local *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_local_705
+
+    Name *string
+
+    Nfs *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_nfs_706
+
+    Persistent_volume_claim *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_persistent_volume_claim_707
+
+    Photon_persistent_disk *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_photon_persistent_disk_708
+
+    Quobyte *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_quobyte_709
+
+    Rbd *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710
+
+    Secret *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712
+
+    Vsphere_volume *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_vsphere_volume_714
+
+}
+
+type Kubernetes_deployment_spec_593_template_598_spec_600 struct {
+
+    Kubernetes_deployment_spec_593_template_598_spec_600_id *string `lyra:"ignore"`
+
+    Active_deadline_seconds *int
+
+    Container *Kubernetes_deployment_spec_593_template_598_spec_600_container_601
+
+    Dns_policy *string
+
+    Host_ipc *bool
+
+    Host_network *bool
+
+    Host_pid *bool
+
+    Hostname *string
+
+    Image_pull_secrets *Kubernetes_deployment_spec_593_template_598_spec_600_image_pull_secrets_640
+
+    Init_container *Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641
+
+    Node_name *string
+
+    Node_selector *map[string]string
+
+    Restart_policy *string
+
+    Security_context *Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680
+
+    Service_account_name *string
+
+    Subdomain *string
+
+    Termination_grace_period_seconds *int
+
+    Volume *Kubernetes_deployment_spec_593_template_598_spec_600_volume_682
+
+}
+
+type Kubernetes_deployment_spec_593_template_598 struct {
+
+    Kubernetes_deployment_spec_593_template_598_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_deployment_spec_593_template_598_metadata_599
+
+    Spec Kubernetes_deployment_spec_593_template_598_spec_600
+
+}
+
+type Kubernetes_deployment_spec_593 struct {
+
+    Kubernetes_deployment_spec_593_id *string `lyra:"ignore"`
+
+    Min_ready_seconds *int
+
+    Paused *bool
+
+    Progress_deadline_seconds *int
+
+    Replicas *int
+
+    Revision_history_limit *int
+
+    Selector *Kubernetes_deployment_spec_593_selector_594
+
+    Strategy *Kubernetes_deployment_spec_593_strategy_596
+
+    Template Kubernetes_deployment_spec_593_template_598
+
+}
+
+type Kubernetes_deployment struct {
+
+    Kubernetes_deployment_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_deployment_metadata_592
+
+    Spec Kubernetes_deployment_spec_593
+
+}
+
+// Kubernetes_deploymentHandler ...
+type Kubernetes_deploymentHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set) (*Kubernetes_stateful_set, string, error) {
-	rState := Kubernetes_stateful_setMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_stateful_set", rState)
+func (h *Kubernetes_deploymentHandler) Create(desired *Kubernetes_deployment) (*Kubernetes_deployment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_deployment", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -1061,41 +1874,177 @@ func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set
 }
 
 // Read ...
-func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_stateful_set, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_stateful_set", externalID)
+func (h *Kubernetes_deploymentHandler) Read(externalID string) (*Kubernetes_deployment, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_deployment", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_stateful_setUnmapper(actual), nil
+	x := &Kubernetes_deployment{ Kubernetes_deployment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
-func (h *Kubernetes_stateful_setHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "kubernetes_stateful_set", externalID)
+func (h *Kubernetes_deploymentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_deployment", externalID)
+}
+
+type Kubernetes_horizontal_pod_autoscaler_metadata_715 struct {
+
+    Kubernetes_horizontal_pod_autoscaler_metadata_715_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_horizontal_pod_autoscaler_spec_716_scale_target_ref_717 struct {
+
+    Kubernetes_horizontal_pod_autoscaler_spec_716_scale_target_ref_717_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Kind string
+
+    Name string
+
+}
+
+type Kubernetes_horizontal_pod_autoscaler_spec_716 struct {
+
+    Kubernetes_horizontal_pod_autoscaler_spec_716_id *string `lyra:"ignore"`
+
+    Max_replicas int
+
+    Min_replicas *int
+
+    Scale_target_ref Kubernetes_horizontal_pod_autoscaler_spec_716_scale_target_ref_717
+
+    Target_cpu_utilization_percentage *int
+
+}
+
+type Kubernetes_horizontal_pod_autoscaler struct {
+
+    Kubernetes_horizontal_pod_autoscaler_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_horizontal_pod_autoscaler_metadata_715
+
+    Spec Kubernetes_horizontal_pod_autoscaler_spec_716
+
+}
+
+// Kubernetes_horizontal_pod_autoscalerHandler ...
+type Kubernetes_horizontal_pod_autoscalerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_horizontal_pod_autoscalerHandler) Create(desired *Kubernetes_horizontal_pod_autoscaler) (*Kubernetes_horizontal_pod_autoscaler, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_horizontal_pod_autoscaler", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_horizontal_pod_autoscalerHandler) Read(externalID string) (*Kubernetes_horizontal_pod_autoscaler, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_horizontal_pod_autoscaler{ Kubernetes_horizontal_pod_autoscaler_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_horizontal_pod_autoscalerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
+}
+
+type Kubernetes_limit_range_metadata_718 struct {
+
+    Kubernetes_limit_range_metadata_718_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_limit_range_spec_719_limit_720 struct {
+
+    Kubernetes_limit_range_spec_719_limit_720_id *string `lyra:"ignore"`
+
+    Default *map[string]string
+
+    Default_request *map[string]string
+
+    Max *map[string]string
+
+    Max_limit_request_ratio *map[string]string
+
+    Min *map[string]string
+
+    Type *string
+
+}
+
+type Kubernetes_limit_range_spec_719 struct {
+
+    Kubernetes_limit_range_spec_719_id *string `lyra:"ignore"`
+
+    Limit *Kubernetes_limit_range_spec_719_limit_720
+
 }
 
 type Kubernetes_limit_range struct {
-     Kubernetes_limit_range_id *string
+
+    Kubernetes_limit_range_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_limit_range_metadata_718
+
+    Spec *Kubernetes_limit_range_spec_719
+
 }
-
-
-func Kubernetes_limit_rangeMapper(r *Kubernetes_limit_range) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Kubernetes_limit_rangeUnmapper(state map[string]interface{}) *Kubernetes_limit_range {
-	r := &Kubernetes_limit_range{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_limit_range_id = &x
-}
-	return r
-}
-
 
 // Kubernetes_limit_rangeHandler ...
 type Kubernetes_limit_rangeHandler struct {
@@ -1104,8 +2053,10 @@ type Kubernetes_limit_rangeHandler struct {
 
 // Create ...
 func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) (*Kubernetes_limit_range, string, error) {
-	rState := Kubernetes_limit_rangeMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_limit_range", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_limit_range", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -1118,11 +2069,13 @@ func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) 
 
 // Read ...
 func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_limit_range, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_limit_range", externalID)
+	id, actual, err := bridge.Read(h.provider, "kubernetes_limit_range", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_limit_rangeUnmapper(actual), nil
+	x := &Kubernetes_limit_range{ Kubernetes_limit_range_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -1130,37 +2083,5916 @@ func (h *Kubernetes_limit_rangeHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "kubernetes_limit_range", externalID)
 }
 
-type Kubernetes_secret struct {
-     Kubernetes_secret_id *string
-     Resource_type *string
+type Kubernetes_namespace_metadata_721 struct {
+
+    Kubernetes_namespace_metadata_721_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
 }
 
+type Kubernetes_namespace struct {
 
-func Kubernetes_secretMapper(r *Kubernetes_secret) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
+    Kubernetes_namespace_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_namespace_metadata_721
+
 }
-return &terraform.ResourceConfig{
-		Config: config,
+
+// Kubernetes_namespaceHandler ...
+type Kubernetes_namespaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Kubernetes_namespace, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
 	}
+	id, err := bridge.Create(h.provider, "kubernetes_namespace", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
-func Kubernetes_secretUnmapper(state map[string]interface{}) *Kubernetes_secret {
-	r := &Kubernetes_secret{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Kubernetes_secret_id = &x
+// Read ...
+func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_namespace, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_namespace", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_namespace{ Kubernetes_namespace_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-	return r
+// Delete ...
+func (h *Kubernetes_namespaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_namespace", externalID)
 }
 
+type Kubernetes_network_policy_metadata_722 struct {
+
+    Kubernetes_network_policy_metadata_722_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_ports_725 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_ports_725_id *string `lyra:"ignore"`
+
+    Port *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_to_726_ip_block_727 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_to_726_ip_block_727_id *string `lyra:"ignore"`
+
+    Cidr *string
+
+    Except *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728_match_expressions_729 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728_match_expressions_729_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728_match_expressions_729
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_match_expressions_731 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_match_expressions_731_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_match_expressions_731
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724_to_726 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_to_726_id *string `lyra:"ignore"`
+
+    Ip_block *Kubernetes_network_policy_spec_723_egress_724_to_726_ip_block_727
+
+    Namespace_selector *Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728
+
+    Pod_selector *Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730
+
+}
+
+type Kubernetes_network_policy_spec_723_egress_724 struct {
+
+    Kubernetes_network_policy_spec_723_egress_724_id *string `lyra:"ignore"`
+
+    Ports *Kubernetes_network_policy_spec_723_egress_724_ports_725
+
+    To *Kubernetes_network_policy_spec_723_egress_724_to_726
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_from_733_ip_block_734 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_from_733_ip_block_734_id *string `lyra:"ignore"`
+
+    Cidr *string
+
+    Except *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735_match_expressions_736 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735_match_expressions_736_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735_match_expressions_736
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_match_expressions_738 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_match_expressions_738_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_match_expressions_738
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_from_733 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_from_733_id *string `lyra:"ignore"`
+
+    Ip_block *Kubernetes_network_policy_spec_723_ingress_732_from_733_ip_block_734
+
+    Namespace_selector *Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735
+
+    Pod_selector *Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732_ports_739 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_ports_739_id *string `lyra:"ignore"`
+
+    Port *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_network_policy_spec_723_ingress_732 struct {
+
+    Kubernetes_network_policy_spec_723_ingress_732_id *string `lyra:"ignore"`
+
+    From *Kubernetes_network_policy_spec_723_ingress_732_from_733
+
+    Ports *Kubernetes_network_policy_spec_723_ingress_732_ports_739
+
+}
+
+type Kubernetes_network_policy_spec_723_pod_selector_740_match_expressions_741 struct {
+
+    Kubernetes_network_policy_spec_723_pod_selector_740_match_expressions_741_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_network_policy_spec_723_pod_selector_740 struct {
+
+    Kubernetes_network_policy_spec_723_pod_selector_740_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_network_policy_spec_723_pod_selector_740_match_expressions_741
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_network_policy_spec_723 struct {
+
+    Kubernetes_network_policy_spec_723_id *string `lyra:"ignore"`
+
+    Egress *Kubernetes_network_policy_spec_723_egress_724
+
+    Ingress *Kubernetes_network_policy_spec_723_ingress_732
+
+    Pod_selector Kubernetes_network_policy_spec_723_pod_selector_740
+
+    Policy_types []string
+
+}
+
+type Kubernetes_network_policy struct {
+
+    Kubernetes_network_policy_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_network_policy_metadata_722
+
+    Spec Kubernetes_network_policy_spec_723
+
+}
+
+// Kubernetes_network_policyHandler ...
+type Kubernetes_network_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_policy) (*Kubernetes_network_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_network_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_network_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_network_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_network_policy{ Kubernetes_network_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_network_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_network_policy", externalID)
+}
+
+type Kubernetes_persistent_volume_metadata_742 struct {
+
+    Kubernetes_persistent_volume_metadata_742_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_expressions_747 struct {
+
+    Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_expressions_747_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_fields_748 struct {
+
+    Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_fields_748_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746 struct {
+
+    Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_expressions_747
+
+    Match_fields *Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_fields_748
+
+}
+
+type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745 struct {
+
+    Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_id *string `lyra:"ignore"`
+
+    Node_selector_term *Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746
+
+}
+
+type Kubernetes_persistent_volume_spec_743_node_affinity_744 struct {
+
+    Kubernetes_persistent_volume_spec_743_node_affinity_744_id *string `lyra:"ignore"`
+
+    Required *Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_aws_elastic_block_store_750 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_aws_elastic_block_store_750_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_disk_751 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_disk_751_id *string `lyra:"ignore"`
+
+    Caching_mode string
+
+    Data_disk_uri string
+
+    Disk_name string
+
+    Fs_type *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_file_752 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_file_752_id *string `lyra:"ignore"`
+
+    Read_only *bool
+
+    Secret_name string
+
+    Share_name string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753_secret_ref_754 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753_secret_ref_754_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753_id *string `lyra:"ignore"`
+
+    Monitors []string
+
+    Path *string
+
+    Read_only *bool
+
+    Secret_file *string
+
+    Secret_ref *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753_secret_ref_754
+
+    User *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_cinder_755 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_cinder_755_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_fc_756 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_fc_756_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Lun int
+
+    Read_only *bool
+
+    Target_ww_ns []string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757_secret_ref_758 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757_secret_ref_758_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757_id *string `lyra:"ignore"`
+
+    Driver string
+
+    Fs_type *string
+
+    Options *map[string]string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757_secret_ref_758
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flocker_759 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flocker_759_id *string `lyra:"ignore"`
+
+    Dataset_name *string
+
+    Dataset_uuid *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_gce_persistent_disk_760 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_gce_persistent_disk_760_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Pd_name string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_glusterfs_761 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_glusterfs_761_id *string `lyra:"ignore"`
+
+    Endpoints_name string
+
+    Path string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_host_path_762 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_host_path_762_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_iscsi_763 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_iscsi_763_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Iqn string
+
+    Iscsi_interface *string
+
+    Lun *int
+
+    Read_only *bool
+
+    Target_portal string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_local_764 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_local_764_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_nfs_765 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_nfs_765_id *string `lyra:"ignore"`
+
+    Path string
+
+    Read_only *bool
+
+    Server string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_photon_persistent_disk_766 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_photon_persistent_disk_766_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Pd_id string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_quobyte_767 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_quobyte_767_id *string `lyra:"ignore"`
+
+    Group *string
+
+    Read_only *bool
+
+    Registry string
+
+    User *string
+
+    Volume string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768_secret_ref_769 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768_secret_ref_769_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768_id *string `lyra:"ignore"`
+
+    Ceph_monitors []string
+
+    Fs_type *string
+
+    Keyring *string
+
+    Rados_user *string
+
+    Rbd_image string
+
+    Rbd_pool *string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768_secret_ref_769
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_vsphere_volume_770 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_vsphere_volume_770_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Volume_path string
+
+}
+
+type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749 struct {
+
+    Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_id *string `lyra:"ignore"`
+
+    Aws_elastic_block_store *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_aws_elastic_block_store_750
+
+    Azure_disk *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_disk_751
+
+    Azure_file *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_file_752
+
+    Ceph_fs *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753
+
+    Cinder *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_cinder_755
+
+    Fc *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_fc_756
+
+    Flex_volume *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757
+
+    Flocker *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flocker_759
+
+    Gce_persistent_disk *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_gce_persistent_disk_760
+
+    Glusterfs *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_glusterfs_761
+
+    Host_path *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_host_path_762
+
+    Iscsi *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_iscsi_763
+
+    Local *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_local_764
+
+    Nfs *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_nfs_765
+
+    Photon_persistent_disk *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_photon_persistent_disk_766
+
+    Quobyte *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_quobyte_767
+
+    Rbd *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768
+
+    Vsphere_volume *Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_vsphere_volume_770
+
+}
+
+type Kubernetes_persistent_volume_spec_743 struct {
+
+    Kubernetes_persistent_volume_spec_743_id *string `lyra:"ignore"`
+
+    Access_modes []string
+
+    Capacity map[string]string
+
+    Node_affinity *Kubernetes_persistent_volume_spec_743_node_affinity_744
+
+    Persistent_volume_reclaim_policy *string
+
+    Persistent_volume_source Kubernetes_persistent_volume_spec_743_persistent_volume_source_749
+
+    Storage_class_name *string
+
+}
+
+type Kubernetes_persistent_volume struct {
+
+    Kubernetes_persistent_volume_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_persistent_volume_metadata_742
+
+    Spec Kubernetes_persistent_volume_spec_743
+
+}
+
+// Kubernetes_persistent_volumeHandler ...
+type Kubernetes_persistent_volumeHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persistent_volume) (*Kubernetes_persistent_volume, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernetes_persistent_volume, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_persistent_volume{ Kubernetes_persistent_volume_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_persistent_volumeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_persistent_volume", externalID)
+}
+
+type Kubernetes_persistent_volume_claim_metadata_771 struct {
+
+    Kubernetes_persistent_volume_claim_metadata_771_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_persistent_volume_claim_spec_772_resources_773 struct {
+
+    Kubernetes_persistent_volume_claim_spec_772_resources_773_id *string `lyra:"ignore"`
+
+    Limits *map[string]string
+
+    Requests *map[string]string
+
+}
+
+type Kubernetes_persistent_volume_claim_spec_772_selector_774_match_expressions_775 struct {
+
+    Kubernetes_persistent_volume_claim_spec_772_selector_774_match_expressions_775_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_persistent_volume_claim_spec_772_selector_774 struct {
+
+    Kubernetes_persistent_volume_claim_spec_772_selector_774_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_persistent_volume_claim_spec_772_selector_774_match_expressions_775
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_persistent_volume_claim_spec_772 struct {
+
+    Kubernetes_persistent_volume_claim_spec_772_id *string `lyra:"ignore"`
+
+    Access_modes []string
+
+    Resources Kubernetes_persistent_volume_claim_spec_772_resources_773
+
+    Selector *Kubernetes_persistent_volume_claim_spec_772_selector_774
+
+    Storage_class_name *string
+
+    Volume_name *string
+
+}
+
+type Kubernetes_persistent_volume_claim struct {
+
+    Kubernetes_persistent_volume_claim_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_persistent_volume_claim_metadata_771
+
+    Spec Kubernetes_persistent_volume_claim_spec_772
+
+    Wait_until_bound *bool
+
+}
+
+// Kubernetes_persistent_volume_claimHandler ...
+type Kubernetes_persistent_volume_claimHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_persistent_volume_claim) (*Kubernetes_persistent_volume_claim, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_persistent_volume_claim", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Kubernetes_persistent_volume_claim, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume_claim", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_persistent_volume_claim{ Kubernetes_persistent_volume_claim_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_persistent_volume_claimHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_persistent_volume_claim", externalID)
+}
+
+type Kubernetes_pod_metadata_776 struct {
+
+    Kubernetes_pod_metadata_776_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_config_map_key_ref_781 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_779_value_from_780_config_map_key_ref_781_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_field_ref_782 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_779_value_from_780_field_ref_782_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_resource_field_ref_783 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_779_value_from_780_resource_field_ref_783_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_secret_key_ref_784 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_779_value_from_780_secret_key_ref_784_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_779_value_from_780 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_779_value_from_780_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_pod_spec_777_container_778_env_779_value_from_780_config_map_key_ref_781
+
+    Field_ref *Kubernetes_pod_spec_777_container_778_env_779_value_from_780_field_ref_782
+
+    Resource_field_ref *Kubernetes_pod_spec_777_container_778_env_779_value_from_780_resource_field_ref_783
+
+    Secret_key_ref *Kubernetes_pod_spec_777_container_778_env_779_value_from_780_secret_key_ref_784
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_779 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_779_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_pod_spec_777_container_778_env_779_value_from_780
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_from_785_config_map_ref_786 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_from_785_config_map_ref_786_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_from_785_secret_ref_787 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_from_785_secret_ref_787_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_pod_spec_777_container_778_env_from_785 struct {
+
+    Kubernetes_pod_spec_777_container_778_env_from_785_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_pod_spec_777_container_778_env_from_785_config_map_ref_786
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_pod_spec_777_container_778_env_from_785_secret_ref_787
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_exec_790 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_exec_790_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791_http_header_792 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791_http_header_792_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791_http_header_792
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_tcp_socket_793 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_tcp_socket_793_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_exec_790
+
+    Http_get *Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791
+
+    Tcp_socket *Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_tcp_socket_793
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_exec_795 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_exec_795_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796_http_header_797 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796_http_header_797_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796_http_header_797
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_tcp_socket_798 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_tcp_socket_798_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_exec_795
+
+    Http_get *Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796
+
+    Tcp_socket *Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_tcp_socket_798
+
+}
+
+type Kubernetes_pod_spec_777_container_778_lifecycle_788 struct {
+
+    Kubernetes_pod_spec_777_container_778_lifecycle_788_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789
+
+    Pre_stop *Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794
+
+}
+
+type Kubernetes_pod_spec_777_container_778_liveness_probe_799_exec_800 struct {
+
+    Kubernetes_pod_spec_777_container_778_liveness_probe_799_exec_800_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_http_header_802 struct {
+
+    Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_http_header_802_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801 struct {
+
+    Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_http_header_802
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_liveness_probe_799_tcp_socket_803 struct {
+
+    Kubernetes_pod_spec_777_container_778_liveness_probe_799_tcp_socket_803_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_liveness_probe_799 struct {
+
+    Kubernetes_pod_spec_777_container_778_liveness_probe_799_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_container_778_liveness_probe_799_exec_800
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_pod_spec_777_container_778_liveness_probe_799_tcp_socket_803
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_pod_spec_777_container_778_port_804 struct {
+
+    Kubernetes_pod_spec_777_container_778_port_804_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_readiness_probe_805_exec_806 struct {
+
+    Kubernetes_pod_spec_777_container_778_readiness_probe_805_exec_806_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_http_header_808 struct {
+
+    Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_http_header_808_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807 struct {
+
+    Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_http_header_808
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_readiness_probe_805_tcp_socket_809 struct {
+
+    Kubernetes_pod_spec_777_container_778_readiness_probe_805_tcp_socket_809_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_readiness_probe_805 struct {
+
+    Kubernetes_pod_spec_777_container_778_readiness_probe_805_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_container_778_readiness_probe_805_exec_806
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_pod_spec_777_container_778_readiness_probe_805_tcp_socket_809
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_pod_spec_777_container_778_resources_810_limits_811 struct {
+
+    Kubernetes_pod_spec_777_container_778_resources_810_limits_811_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_resources_810_requests_812 struct {
+
+    Kubernetes_pod_spec_777_container_778_resources_810_requests_812_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_resources_810 struct {
+
+    Kubernetes_pod_spec_777_container_778_resources_810_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_pod_spec_777_container_778_resources_810_limits_811
+
+    Requests *Kubernetes_pod_spec_777_container_778_resources_810_requests_812
+
+}
+
+type Kubernetes_pod_spec_777_container_778_security_context_813_capabilities_814 struct {
+
+    Kubernetes_pod_spec_777_container_778_security_context_813_capabilities_814_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_security_context_813_se_linux_options_815 struct {
+
+    Kubernetes_pod_spec_777_container_778_security_context_813_se_linux_options_815_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778_security_context_813 struct {
+
+    Kubernetes_pod_spec_777_container_778_security_context_813_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_pod_spec_777_container_778_security_context_813_capabilities_814
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_pod_spec_777_container_778_security_context_813_se_linux_options_815
+
+}
+
+type Kubernetes_pod_spec_777_container_778_volume_mount_816 struct {
+
+    Kubernetes_pod_spec_777_container_778_volume_mount_816_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_pod_spec_777_container_778 struct {
+
+    Kubernetes_pod_spec_777_container_778_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_pod_spec_777_container_778_env_779
+
+    Env_from *Kubernetes_pod_spec_777_container_778_env_from_785
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_pod_spec_777_container_778_lifecycle_788
+
+    Liveness_probe *Kubernetes_pod_spec_777_container_778_liveness_probe_799
+
+    Name string
+
+    Port *Kubernetes_pod_spec_777_container_778_port_804
+
+    Readiness_probe *Kubernetes_pod_spec_777_container_778_readiness_probe_805
+
+    Resources *Kubernetes_pod_spec_777_container_778_resources_810
+
+    Security_context *Kubernetes_pod_spec_777_container_778_security_context_813
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_pod_spec_777_container_778_volume_mount_816
+
+    Working_dir *string
+
+}
+
+type Kubernetes_pod_spec_777_image_pull_secrets_817 struct {
+
+    Kubernetes_pod_spec_777_image_pull_secrets_817_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_config_map_key_ref_821 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_config_map_key_ref_821_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_field_ref_822 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_field_ref_822_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_resource_field_ref_823 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_resource_field_ref_823_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_secret_key_ref_824 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_secret_key_ref_824_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_config_map_key_ref_821
+
+    Field_ref *Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_field_ref_822
+
+    Resource_field_ref *Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_resource_field_ref_823
+
+    Secret_key_ref *Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_secret_key_ref_824
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_819 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_819_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_from_825_config_map_ref_826 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_from_825_config_map_ref_826_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_from_825_secret_ref_827 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_from_825_secret_ref_827_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_env_from_825 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_env_from_825_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_pod_spec_777_init_container_818_env_from_825_config_map_ref_826
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_pod_spec_777_init_container_818_env_from_825_secret_ref_827
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_exec_830 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_exec_830_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831_http_header_832 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831_http_header_832_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831_http_header_832
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_tcp_socket_833 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_tcp_socket_833_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_exec_830
+
+    Http_get *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831
+
+    Tcp_socket *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_tcp_socket_833
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_exec_835 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_exec_835_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836_http_header_837 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836_http_header_837_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836_http_header_837
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_tcp_socket_838 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_tcp_socket_838_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_exec_835
+
+    Http_get *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836
+
+    Tcp_socket *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_tcp_socket_838
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_lifecycle_828 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_lifecycle_828_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829
+
+    Pre_stop *Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_exec_840 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_exec_840_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_http_header_842 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_http_header_842_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_http_header_842
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_tcp_socket_843 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_tcp_socket_843_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_exec_840
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_tcp_socket_843
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_port_844 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_port_844_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_exec_846 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_exec_846_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847_http_header_848 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847_http_header_848_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847_http_header_848
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_tcp_socket_849 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_tcp_socket_849_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_exec_846
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_tcp_socket_849
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_resources_850_limits_851 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_resources_850_limits_851_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_resources_850_requests_852 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_resources_850_requests_852_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_resources_850 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_resources_850_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_pod_spec_777_init_container_818_resources_850_limits_851
+
+    Requests *Kubernetes_pod_spec_777_init_container_818_resources_850_requests_852
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_security_context_853_capabilities_854 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_security_context_853_capabilities_854_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_security_context_853_se_linux_options_855 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_security_context_853_se_linux_options_855_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_security_context_853 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_security_context_853_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_pod_spec_777_init_container_818_security_context_853_capabilities_854
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_pod_spec_777_init_container_818_security_context_853_se_linux_options_855
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818_volume_mount_856 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_volume_mount_856_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_pod_spec_777_init_container_818 struct {
+
+    Kubernetes_pod_spec_777_init_container_818_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_pod_spec_777_init_container_818_env_819
+
+    Env_from *Kubernetes_pod_spec_777_init_container_818_env_from_825
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_pod_spec_777_init_container_818_lifecycle_828
+
+    Liveness_probe *Kubernetes_pod_spec_777_init_container_818_liveness_probe_839
+
+    Name string
+
+    Port *Kubernetes_pod_spec_777_init_container_818_port_844
+
+    Readiness_probe *Kubernetes_pod_spec_777_init_container_818_readiness_probe_845
+
+    Resources *Kubernetes_pod_spec_777_init_container_818_resources_850
+
+    Security_context *Kubernetes_pod_spec_777_init_container_818_security_context_853
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_pod_spec_777_init_container_818_volume_mount_856
+
+    Working_dir *string
+
+}
+
+type Kubernetes_pod_spec_777_security_context_857_se_linux_options_858 struct {
+
+    Kubernetes_pod_spec_777_security_context_857_se_linux_options_858_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_pod_spec_777_security_context_857 struct {
+
+    Kubernetes_pod_spec_777_security_context_857_id *string `lyra:"ignore"`
+
+    Fs_group *int
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_pod_spec_777_security_context_857_se_linux_options_858
+
+    Supplemental_groups *[]int
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_aws_elastic_block_store_860 struct {
+
+    Kubernetes_pod_spec_777_volume_859_aws_elastic_block_store_860_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_azure_disk_861 struct {
+
+    Kubernetes_pod_spec_777_volume_859_azure_disk_861_id *string `lyra:"ignore"`
+
+    Caching_mode string
+
+    Data_disk_uri string
+
+    Disk_name string
+
+    Fs_type *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_azure_file_862 struct {
+
+    Kubernetes_pod_spec_777_volume_859_azure_file_862_id *string `lyra:"ignore"`
+
+    Read_only *bool
+
+    Secret_name string
+
+    Share_name string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_ceph_fs_863_secret_ref_864 struct {
+
+    Kubernetes_pod_spec_777_volume_859_ceph_fs_863_secret_ref_864_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_ceph_fs_863 struct {
+
+    Kubernetes_pod_spec_777_volume_859_ceph_fs_863_id *string `lyra:"ignore"`
+
+    Monitors []string
+
+    Path *string
+
+    Read_only *bool
+
+    Secret_file *string
+
+    Secret_ref *Kubernetes_pod_spec_777_volume_859_ceph_fs_863_secret_ref_864
+
+    User *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_cinder_865 struct {
+
+    Kubernetes_pod_spec_777_volume_859_cinder_865_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_config_map_866_items_867 struct {
+
+    Kubernetes_pod_spec_777_volume_859_config_map_866_items_867_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_config_map_866 struct {
+
+    Kubernetes_pod_spec_777_volume_859_config_map_866_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_pod_spec_777_volume_859_config_map_866_items_867
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_field_ref_870 struct {
+
+    Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_field_ref_870_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_resource_field_ref_871 struct {
+
+    Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_resource_field_ref_871_id *string `lyra:"ignore"`
+
+    Container_name string
+
+    Quantity *string
+
+    Resource string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869 struct {
+
+    Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_id *string `lyra:"ignore"`
+
+    Field_ref Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_field_ref_870
+
+    Mode *int
+
+    Path string
+
+    Resource_field_ref *Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_resource_field_ref_871
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_downward_api_868 struct {
+
+    Kubernetes_pod_spec_777_volume_859_downward_api_868_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_empty_dir_872 struct {
+
+    Kubernetes_pod_spec_777_volume_859_empty_dir_872_id *string `lyra:"ignore"`
+
+    Medium *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_fc_873 struct {
+
+    Kubernetes_pod_spec_777_volume_859_fc_873_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Lun int
+
+    Read_only *bool
+
+    Target_ww_ns []string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_flex_volume_874_secret_ref_875 struct {
+
+    Kubernetes_pod_spec_777_volume_859_flex_volume_874_secret_ref_875_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_flex_volume_874 struct {
+
+    Kubernetes_pod_spec_777_volume_859_flex_volume_874_id *string `lyra:"ignore"`
+
+    Driver string
+
+    Fs_type *string
+
+    Options *map[string]string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_pod_spec_777_volume_859_flex_volume_874_secret_ref_875
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_flocker_876 struct {
+
+    Kubernetes_pod_spec_777_volume_859_flocker_876_id *string `lyra:"ignore"`
+
+    Dataset_name *string
+
+    Dataset_uuid *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_gce_persistent_disk_877 struct {
+
+    Kubernetes_pod_spec_777_volume_859_gce_persistent_disk_877_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Pd_name string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_git_repo_878 struct {
+
+    Kubernetes_pod_spec_777_volume_859_git_repo_878_id *string `lyra:"ignore"`
+
+    Directory *string
+
+    Repository *string
+
+    Revision *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_glusterfs_879 struct {
+
+    Kubernetes_pod_spec_777_volume_859_glusterfs_879_id *string `lyra:"ignore"`
+
+    Endpoints_name string
+
+    Path string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_host_path_880 struct {
+
+    Kubernetes_pod_spec_777_volume_859_host_path_880_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_iscsi_881 struct {
+
+    Kubernetes_pod_spec_777_volume_859_iscsi_881_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Iqn string
+
+    Iscsi_interface *string
+
+    Lun *int
+
+    Read_only *bool
+
+    Target_portal string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_local_882 struct {
+
+    Kubernetes_pod_spec_777_volume_859_local_882_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_nfs_883 struct {
+
+    Kubernetes_pod_spec_777_volume_859_nfs_883_id *string `lyra:"ignore"`
+
+    Path string
+
+    Read_only *bool
+
+    Server string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_persistent_volume_claim_884 struct {
+
+    Kubernetes_pod_spec_777_volume_859_persistent_volume_claim_884_id *string `lyra:"ignore"`
+
+    Claim_name *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_photon_persistent_disk_885 struct {
+
+    Kubernetes_pod_spec_777_volume_859_photon_persistent_disk_885_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Pd_id string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_quobyte_886 struct {
+
+    Kubernetes_pod_spec_777_volume_859_quobyte_886_id *string `lyra:"ignore"`
+
+    Group *string
+
+    Read_only *bool
+
+    Registry string
+
+    User *string
+
+    Volume string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_rbd_887_secret_ref_888 struct {
+
+    Kubernetes_pod_spec_777_volume_859_rbd_887_secret_ref_888_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_rbd_887 struct {
+
+    Kubernetes_pod_spec_777_volume_859_rbd_887_id *string `lyra:"ignore"`
+
+    Ceph_monitors []string
+
+    Fs_type *string
+
+    Keyring *string
+
+    Rados_user *string
+
+    Rbd_image string
+
+    Rbd_pool *string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_pod_spec_777_volume_859_rbd_887_secret_ref_888
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_secret_889_items_890 struct {
+
+    Kubernetes_pod_spec_777_volume_859_secret_889_items_890_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_secret_889 struct {
+
+    Kubernetes_pod_spec_777_volume_859_secret_889_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_pod_spec_777_volume_859_secret_889_items_890
+
+    Optional *bool
+
+    Secret_name *string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859_vsphere_volume_891 struct {
+
+    Kubernetes_pod_spec_777_volume_859_vsphere_volume_891_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Volume_path string
+
+}
+
+type Kubernetes_pod_spec_777_volume_859 struct {
+
+    Kubernetes_pod_spec_777_volume_859_id *string `lyra:"ignore"`
+
+    Aws_elastic_block_store *Kubernetes_pod_spec_777_volume_859_aws_elastic_block_store_860
+
+    Azure_disk *Kubernetes_pod_spec_777_volume_859_azure_disk_861
+
+    Azure_file *Kubernetes_pod_spec_777_volume_859_azure_file_862
+
+    Ceph_fs *Kubernetes_pod_spec_777_volume_859_ceph_fs_863
+
+    Cinder *Kubernetes_pod_spec_777_volume_859_cinder_865
+
+    Config_map *Kubernetes_pod_spec_777_volume_859_config_map_866
+
+    Downward_api *Kubernetes_pod_spec_777_volume_859_downward_api_868
+
+    Empty_dir *Kubernetes_pod_spec_777_volume_859_empty_dir_872
+
+    Fc *Kubernetes_pod_spec_777_volume_859_fc_873
+
+    Flex_volume *Kubernetes_pod_spec_777_volume_859_flex_volume_874
+
+    Flocker *Kubernetes_pod_spec_777_volume_859_flocker_876
+
+    Gce_persistent_disk *Kubernetes_pod_spec_777_volume_859_gce_persistent_disk_877
+
+    Git_repo *Kubernetes_pod_spec_777_volume_859_git_repo_878
+
+    Glusterfs *Kubernetes_pod_spec_777_volume_859_glusterfs_879
+
+    Host_path *Kubernetes_pod_spec_777_volume_859_host_path_880
+
+    Iscsi *Kubernetes_pod_spec_777_volume_859_iscsi_881
+
+    Local *Kubernetes_pod_spec_777_volume_859_local_882
+
+    Name *string
+
+    Nfs *Kubernetes_pod_spec_777_volume_859_nfs_883
+
+    Persistent_volume_claim *Kubernetes_pod_spec_777_volume_859_persistent_volume_claim_884
+
+    Photon_persistent_disk *Kubernetes_pod_spec_777_volume_859_photon_persistent_disk_885
+
+    Quobyte *Kubernetes_pod_spec_777_volume_859_quobyte_886
+
+    Rbd *Kubernetes_pod_spec_777_volume_859_rbd_887
+
+    Secret *Kubernetes_pod_spec_777_volume_859_secret_889
+
+    Vsphere_volume *Kubernetes_pod_spec_777_volume_859_vsphere_volume_891
+
+}
+
+type Kubernetes_pod_spec_777 struct {
+
+    Kubernetes_pod_spec_777_id *string `lyra:"ignore"`
+
+    Active_deadline_seconds *int
+
+    Container *Kubernetes_pod_spec_777_container_778
+
+    Dns_policy *string
+
+    Host_ipc *bool
+
+    Host_network *bool
+
+    Host_pid *bool
+
+    Hostname *string
+
+    Image_pull_secrets *Kubernetes_pod_spec_777_image_pull_secrets_817
+
+    Init_container *Kubernetes_pod_spec_777_init_container_818
+
+    Node_name *string
+
+    Node_selector *map[string]string
+
+    Restart_policy *string
+
+    Security_context *Kubernetes_pod_spec_777_security_context_857
+
+    Service_account_name *string
+
+    Subdomain *string
+
+    Termination_grace_period_seconds *int
+
+    Volume *Kubernetes_pod_spec_777_volume_859
+
+}
+
+type Kubernetes_pod struct {
+
+    Kubernetes_pod_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_pod_metadata_776
+
+    Spec Kubernetes_pod_spec_777
+
+}
+
+// Kubernetes_podHandler ...
+type Kubernetes_podHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_podHandler) Create(desired *Kubernetes_pod) (*Kubernetes_pod, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_pod", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_podHandler) Read(externalID string) (*Kubernetes_pod, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_pod", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_pod{ Kubernetes_pod_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_podHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_pod", externalID)
+}
+
+type Kubernetes_replication_controller_metadata_892 struct {
+
+    Kubernetes_replication_controller_metadata_892_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_config_map_key_ref_898 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_config_map_key_ref_898_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_field_ref_899 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_field_ref_899_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_resource_field_ref_900 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_resource_field_ref_900_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_secret_key_ref_901 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_secret_key_ref_901_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_config_map_key_ref_898
+
+    Field_ref *Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_field_ref_899
+
+    Resource_field_ref *Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_resource_field_ref_900
+
+    Secret_key_ref *Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_secret_key_ref_901
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_config_map_ref_903 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_config_map_ref_903_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_secret_ref_904 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_secret_ref_904_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_config_map_ref_903
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_secret_ref_904
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_exec_907 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_exec_907_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908_http_header_909 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908_http_header_909_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908_http_header_909
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_tcp_socket_910 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_tcp_socket_910_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_exec_907
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_tcp_socket_910
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_exec_912 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_exec_912_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913_http_header_914 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913_http_header_914_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913_http_header_914
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_tcp_socket_915 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_tcp_socket_915_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_exec_912
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_tcp_socket_915
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906
+
+    Pre_stop *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_exec_917 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_exec_917_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918_http_header_919 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918_http_header_919_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918_http_header_919
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_tcp_socket_920 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_tcp_socket_920_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_exec_917
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_tcp_socket_920
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_port_921 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_port_921_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_exec_923 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_exec_923_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924_http_header_925 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924_http_header_925_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924_http_header_925
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_tcp_socket_926 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_tcp_socket_926_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_exec_923
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_tcp_socket_926
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_limits_928 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_limits_928_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_requests_929 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_requests_929_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_limits_928
+
+    Requests *Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_requests_929
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_capabilities_931 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_capabilities_931_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_se_linux_options_932 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_se_linux_options_932_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_capabilities_931
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_se_linux_options_932
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895_volume_mount_933 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_volume_mount_933_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_container_895 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_container_895_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_replication_controller_spec_893_template_894_container_895_env_896
+
+    Env_from *Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905
+
+    Liveness_probe *Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916
+
+    Name string
+
+    Port *Kubernetes_replication_controller_spec_893_template_894_container_895_port_921
+
+    Readiness_probe *Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922
+
+    Resources *Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927
+
+    Security_context *Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_replication_controller_spec_893_template_894_container_895_volume_mount_933
+
+    Working_dir *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_image_pull_secrets_934 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_image_pull_secrets_934_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_config_map_key_ref_938 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_config_map_key_ref_938_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_field_ref_939 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_field_ref_939_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_resource_field_ref_940 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_resource_field_ref_940_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_secret_key_ref_941 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_secret_key_ref_941_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_config_map_key_ref_938
+
+    Field_ref *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_field_ref_939
+
+    Resource_field_ref *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_resource_field_ref_940
+
+    Secret_key_ref *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_secret_key_ref_941
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_config_map_ref_943 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_config_map_ref_943_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_secret_ref_944 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_secret_ref_944_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_config_map_ref_943
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_secret_ref_944
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_exec_947 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_exec_947_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948_http_header_949 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948_http_header_949_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948_http_header_949
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_tcp_socket_950 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_tcp_socket_950_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_exec_947
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_tcp_socket_950
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_exec_952 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_exec_952_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953_http_header_954 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953_http_header_954_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953_http_header_954
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_tcp_socket_955 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_tcp_socket_955_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_exec_952
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_tcp_socket_955
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946
+
+    Pre_stop *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_exec_957 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_exec_957_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958_http_header_959 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958_http_header_959_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958_http_header_959
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_tcp_socket_960 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_tcp_socket_960_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_exec_957
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_tcp_socket_960
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_port_961 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_port_961_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_exec_963 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_exec_963_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964_http_header_965 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964_http_header_965_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964_http_header_965
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_tcp_socket_966 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_tcp_socket_966_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_exec_963
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_tcp_socket_966
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_limits_968 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_limits_968_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_requests_969 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_requests_969_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_limits_968
+
+    Requests *Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_requests_969
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_capabilities_971 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_capabilities_971_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_se_linux_options_972 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_se_linux_options_972_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_capabilities_971
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_se_linux_options_972
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935_volume_mount_973 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_volume_mount_973_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_init_container_935 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_init_container_935_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936
+
+    Env_from *Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945
+
+    Liveness_probe *Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956
+
+    Name string
+
+    Port *Kubernetes_replication_controller_spec_893_template_894_init_container_935_port_961
+
+    Readiness_probe *Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962
+
+    Resources *Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967
+
+    Security_context *Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_replication_controller_spec_893_template_894_init_container_935_volume_mount_973
+
+    Working_dir *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_metadata_974 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_metadata_974_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_security_context_975_se_linux_options_976 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_security_context_975_se_linux_options_976_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_security_context_975 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_security_context_975_id *string `lyra:"ignore"`
+
+    Fs_group *int
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_replication_controller_spec_893_template_894_security_context_975_se_linux_options_976
+
+    Supplemental_groups *[]int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_config_map_key_ref_981 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_config_map_key_ref_981_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_field_ref_982 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_field_ref_982_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_resource_field_ref_983 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_resource_field_ref_983_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_secret_key_ref_984 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_secret_key_ref_984_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_config_map_key_ref_981
+
+    Field_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_field_ref_982
+
+    Resource_field_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_resource_field_ref_983
+
+    Secret_key_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_secret_key_ref_984
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_config_map_ref_986 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_config_map_ref_986_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_secret_ref_987 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_secret_ref_987_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_config_map_ref_986
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_secret_ref_987
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_exec_990 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_exec_990_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991_http_header_992 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991_http_header_992_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991_http_header_992
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_tcp_socket_993 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_tcp_socket_993_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_exec_990
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_tcp_socket_993
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_exec_995 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_exec_995_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996_http_header_997 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996_http_header_997_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996_http_header_997
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_tcp_socket_998 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_tcp_socket_998_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_exec_995
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_tcp_socket_998
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989
+
+    Pre_stop *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_exec_1000 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_exec_1000_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001_http_header_1002 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001_http_header_1002_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001_http_header_1002
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_tcp_socket_1003 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_tcp_socket_1003_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_exec_1000
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_tcp_socket_1003
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_port_1004 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_port_1004_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_exec_1006 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_exec_1006_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007_http_header_1008 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007_http_header_1008_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007_http_header_1008
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_tcp_socket_1009 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_tcp_socket_1009_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_exec_1006
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_tcp_socket_1009
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_limits_1011 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_limits_1011_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_requests_1012 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_requests_1012_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_limits_1011
+
+    Requests *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_requests_1012
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_capabilities_1014 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_capabilities_1014_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_se_linux_options_1015 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_se_linux_options_1015_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_capabilities_1014
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_se_linux_options_1015
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_volume_mount_1016 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_volume_mount_1016_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979
+
+    Env_from *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988
+
+    Liveness_probe *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999
+
+    Name string
+
+    Port *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_port_1004
+
+    Readiness_probe *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005
+
+    Resources *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010
+
+    Security_context *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_volume_mount_1016
+
+    Working_dir *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_image_pull_secrets_1017 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_image_pull_secrets_1017_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_config_map_key_ref_1021 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_config_map_key_ref_1021_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_field_ref_1022 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_field_ref_1022_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_resource_field_ref_1023 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_resource_field_ref_1023_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_secret_key_ref_1024 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_secret_key_ref_1024_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_config_map_key_ref_1021
+
+    Field_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_field_ref_1022
+
+    Resource_field_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_resource_field_ref_1023
+
+    Secret_key_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_secret_key_ref_1024
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_config_map_ref_1026 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_config_map_ref_1026_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_secret_ref_1027 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_secret_ref_1027_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_config_map_ref_1026
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_secret_ref_1027
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_exec_1030 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_exec_1030_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031_http_header_1032 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031_http_header_1032_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031_http_header_1032
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_tcp_socket_1033 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_tcp_socket_1033_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_exec_1030
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_tcp_socket_1033
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_exec_1035 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_exec_1035_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036_http_header_1037 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036_http_header_1037_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036_http_header_1037
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_tcp_socket_1038 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_tcp_socket_1038_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_exec_1035
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_tcp_socket_1038
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029
+
+    Pre_stop *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_exec_1040 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_exec_1040_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041_http_header_1042 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041_http_header_1042_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041_http_header_1042
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_tcp_socket_1043 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_tcp_socket_1043_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_exec_1040
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_tcp_socket_1043
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_port_1044 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_port_1044_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_exec_1046 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_exec_1046_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047_http_header_1048 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047_http_header_1048_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047_http_header_1048
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_tcp_socket_1049 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_tcp_socket_1049_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_exec_1046
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_tcp_socket_1049
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_limits_1051 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_limits_1051_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_requests_1052 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_requests_1052_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_limits_1051
+
+    Requests *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_requests_1052
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_capabilities_1054 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_capabilities_1054_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_se_linux_options_1055 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_se_linux_options_1055_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_capabilities_1054
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_se_linux_options_1055
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_volume_mount_1056 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_volume_mount_1056_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019
+
+    Env_from *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028
+
+    Liveness_probe *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039
+
+    Name string
+
+    Port *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_port_1044
+
+    Readiness_probe *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045
+
+    Resources *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050
+
+    Security_context *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_volume_mount_1056
+
+    Working_dir *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057_se_linux_options_1058 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057_se_linux_options_1058_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057_id *string `lyra:"ignore"`
+
+    Fs_group *int
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057_se_linux_options_1058
+
+    Supplemental_groups *[]int
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_aws_elastic_block_store_1060 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_aws_elastic_block_store_1060_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_disk_1061 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_disk_1061_id *string `lyra:"ignore"`
+
+    Caching_mode string
+
+    Data_disk_uri string
+
+    Disk_name string
+
+    Fs_type *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_file_1062 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_file_1062_id *string `lyra:"ignore"`
+
+    Read_only *bool
+
+    Secret_name string
+
+    Share_name string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063_secret_ref_1064 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063_secret_ref_1064_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063_id *string `lyra:"ignore"`
+
+    Monitors []string
+
+    Path *string
+
+    Read_only *bool
+
+    Secret_file *string
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063_secret_ref_1064
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_cinder_1065 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_cinder_1065_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066_items_1067 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066_items_1067_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066_items_1067
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_field_ref_1070 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_field_ref_1070_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_resource_field_ref_1071 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_resource_field_ref_1071_id *string `lyra:"ignore"`
+
+    Container_name string
+
+    Quantity *string
+
+    Resource string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_id *string `lyra:"ignore"`
+
+    Field_ref Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_field_ref_1070
+
+    Mode *int
+
+    Path string
+
+    Resource_field_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_resource_field_ref_1071
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_empty_dir_1072 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_empty_dir_1072_id *string `lyra:"ignore"`
+
+    Medium *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_fc_1073 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_fc_1073_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Lun int
+
+    Read_only *bool
+
+    Target_ww_ns []string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074_secret_ref_1075 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074_secret_ref_1075_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074_id *string `lyra:"ignore"`
+
+    Driver string
+
+    Fs_type *string
+
+    Options *map[string]string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074_secret_ref_1075
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flocker_1076 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flocker_1076_id *string `lyra:"ignore"`
+
+    Dataset_name *string
+
+    Dataset_uuid *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_gce_persistent_disk_1077 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_gce_persistent_disk_1077_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Pd_name string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_git_repo_1078 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_git_repo_1078_id *string `lyra:"ignore"`
+
+    Directory *string
+
+    Repository *string
+
+    Revision *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_glusterfs_1079 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_glusterfs_1079_id *string `lyra:"ignore"`
+
+    Endpoints_name string
+
+    Path string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_host_path_1080 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_host_path_1080_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_iscsi_1081 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_iscsi_1081_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Iqn string
+
+    Iscsi_interface *string
+
+    Lun *int
+
+    Read_only *bool
+
+    Target_portal string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_local_1082 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_local_1082_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_nfs_1083 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_nfs_1083_id *string `lyra:"ignore"`
+
+    Path string
+
+    Read_only *bool
+
+    Server string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_persistent_volume_claim_1084 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_persistent_volume_claim_1084_id *string `lyra:"ignore"`
+
+    Claim_name *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_photon_persistent_disk_1085 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_photon_persistent_disk_1085_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Pd_id string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_quobyte_1086 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_quobyte_1086_id *string `lyra:"ignore"`
+
+    Group *string
+
+    Read_only *bool
+
+    Registry string
+
+    User *string
+
+    Volume string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087_secret_ref_1088 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087_secret_ref_1088_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087_id *string `lyra:"ignore"`
+
+    Ceph_monitors []string
+
+    Fs_type *string
+
+    Keyring *string
+
+    Rados_user *string
+
+    Rbd_image string
+
+    Rbd_pool *string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087_secret_ref_1088
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089_items_1090 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089_items_1090_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089_items_1090
+
+    Optional *bool
+
+    Secret_name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_vsphere_volume_1091 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_vsphere_volume_1091_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Volume_path string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_id *string `lyra:"ignore"`
+
+    Aws_elastic_block_store *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_aws_elastic_block_store_1060
+
+    Azure_disk *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_disk_1061
+
+    Azure_file *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_file_1062
+
+    Ceph_fs *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063
+
+    Cinder *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_cinder_1065
+
+    Config_map *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066
+
+    Downward_api *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068
+
+    Empty_dir *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_empty_dir_1072
+
+    Fc *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_fc_1073
+
+    Flex_volume *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074
+
+    Flocker *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flocker_1076
+
+    Gce_persistent_disk *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_gce_persistent_disk_1077
+
+    Git_repo *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_git_repo_1078
+
+    Glusterfs *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_glusterfs_1079
+
+    Host_path *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_host_path_1080
+
+    Iscsi *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_iscsi_1081
+
+    Local *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_local_1082
+
+    Name *string
+
+    Nfs *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_nfs_1083
+
+    Persistent_volume_claim *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_persistent_volume_claim_1084
+
+    Photon_persistent_disk *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_photon_persistent_disk_1085
+
+    Quobyte *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_quobyte_1086
+
+    Rbd *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087
+
+    Secret *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089
+
+    Vsphere_volume *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_vsphere_volume_1091
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_spec_977 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_spec_977_id *string `lyra:"ignore"`
+
+    Active_deadline_seconds *int
+
+    Container *Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978
+
+    Dns_policy *string
+
+    Host_ipc *bool
+
+    Host_network *bool
+
+    Host_pid *bool
+
+    Hostname *string
+
+    Image_pull_secrets *Kubernetes_replication_controller_spec_893_template_894_spec_977_image_pull_secrets_1017
+
+    Init_container *Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018
+
+    Node_name *string
+
+    Node_selector *map[string]string
+
+    Restart_policy *string
+
+    Security_context *Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057
+
+    Service_account_name *string
+
+    Subdomain *string
+
+    Termination_grace_period_seconds *int
+
+    Volume *Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_aws_elastic_block_store_1093 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_aws_elastic_block_store_1093_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_disk_1094 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_disk_1094_id *string `lyra:"ignore"`
+
+    Caching_mode string
+
+    Data_disk_uri string
+
+    Disk_name string
+
+    Fs_type *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_file_1095 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_file_1095_id *string `lyra:"ignore"`
+
+    Read_only *bool
+
+    Secret_name string
+
+    Share_name string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096_secret_ref_1097 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096_secret_ref_1097_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096_id *string `lyra:"ignore"`
+
+    Monitors []string
+
+    Path *string
+
+    Read_only *bool
+
+    Secret_file *string
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096_secret_ref_1097
+
+    User *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_cinder_1098 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_cinder_1098_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099_items_1100 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099_items_1100_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099_items_1100
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_field_ref_1103 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_field_ref_1103_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_resource_field_ref_1104 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_resource_field_ref_1104_id *string `lyra:"ignore"`
+
+    Container_name string
+
+    Quantity *string
+
+    Resource string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_id *string `lyra:"ignore"`
+
+    Field_ref Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_field_ref_1103
+
+    Mode *int
+
+    Path string
+
+    Resource_field_ref *Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_resource_field_ref_1104
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_empty_dir_1105 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_empty_dir_1105_id *string `lyra:"ignore"`
+
+    Medium *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_fc_1106 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_fc_1106_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Lun int
+
+    Read_only *bool
+
+    Target_ww_ns []string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107_secret_ref_1108 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107_secret_ref_1108_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107_id *string `lyra:"ignore"`
+
+    Driver string
+
+    Fs_type *string
+
+    Options *map[string]string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107_secret_ref_1108
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flocker_1109 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_flocker_1109_id *string `lyra:"ignore"`
+
+    Dataset_name *string
+
+    Dataset_uuid *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_gce_persistent_disk_1110 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_gce_persistent_disk_1110_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Pd_name string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_git_repo_1111 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_git_repo_1111_id *string `lyra:"ignore"`
+
+    Directory *string
+
+    Repository *string
+
+    Revision *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_glusterfs_1112 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_glusterfs_1112_id *string `lyra:"ignore"`
+
+    Endpoints_name string
+
+    Path string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_host_path_1113 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_host_path_1113_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_iscsi_1114 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_iscsi_1114_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Iqn string
+
+    Iscsi_interface *string
+
+    Lun *int
+
+    Read_only *bool
+
+    Target_portal string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_local_1115 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_local_1115_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_nfs_1116 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_nfs_1116_id *string `lyra:"ignore"`
+
+    Path string
+
+    Read_only *bool
+
+    Server string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_persistent_volume_claim_1117 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_persistent_volume_claim_1117_id *string `lyra:"ignore"`
+
+    Claim_name *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_photon_persistent_disk_1118 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_photon_persistent_disk_1118_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Pd_id string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_quobyte_1119 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_quobyte_1119_id *string `lyra:"ignore"`
+
+    Group *string
+
+    Read_only *bool
+
+    Registry string
+
+    User *string
+
+    Volume string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120_secret_ref_1121 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120_secret_ref_1121_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120_id *string `lyra:"ignore"`
+
+    Ceph_monitors []string
+
+    Fs_type *string
+
+    Keyring *string
+
+    Rados_user *string
+
+    Rbd_image string
+
+    Rbd_pool *string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120_secret_ref_1121
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122_items_1123 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122_items_1123_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122_items_1123
+
+    Optional *bool
+
+    Secret_name *string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092_vsphere_volume_1124 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_vsphere_volume_1124_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Volume_path string
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894_volume_1092 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_volume_1092_id *string `lyra:"ignore"`
+
+    Aws_elastic_block_store *Kubernetes_replication_controller_spec_893_template_894_volume_1092_aws_elastic_block_store_1093
+
+    Azure_disk *Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_disk_1094
+
+    Azure_file *Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_file_1095
+
+    Ceph_fs *Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096
+
+    Cinder *Kubernetes_replication_controller_spec_893_template_894_volume_1092_cinder_1098
+
+    Config_map *Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099
+
+    Downward_api *Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101
+
+    Empty_dir *Kubernetes_replication_controller_spec_893_template_894_volume_1092_empty_dir_1105
+
+    Fc *Kubernetes_replication_controller_spec_893_template_894_volume_1092_fc_1106
+
+    Flex_volume *Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107
+
+    Flocker *Kubernetes_replication_controller_spec_893_template_894_volume_1092_flocker_1109
+
+    Gce_persistent_disk *Kubernetes_replication_controller_spec_893_template_894_volume_1092_gce_persistent_disk_1110
+
+    Git_repo *Kubernetes_replication_controller_spec_893_template_894_volume_1092_git_repo_1111
+
+    Glusterfs *Kubernetes_replication_controller_spec_893_template_894_volume_1092_glusterfs_1112
+
+    Host_path *Kubernetes_replication_controller_spec_893_template_894_volume_1092_host_path_1113
+
+    Iscsi *Kubernetes_replication_controller_spec_893_template_894_volume_1092_iscsi_1114
+
+    Local *Kubernetes_replication_controller_spec_893_template_894_volume_1092_local_1115
+
+    Name *string
+
+    Nfs *Kubernetes_replication_controller_spec_893_template_894_volume_1092_nfs_1116
+
+    Persistent_volume_claim *Kubernetes_replication_controller_spec_893_template_894_volume_1092_persistent_volume_claim_1117
+
+    Photon_persistent_disk *Kubernetes_replication_controller_spec_893_template_894_volume_1092_photon_persistent_disk_1118
+
+    Quobyte *Kubernetes_replication_controller_spec_893_template_894_volume_1092_quobyte_1119
+
+    Rbd *Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120
+
+    Secret *Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122
+
+    Vsphere_volume *Kubernetes_replication_controller_spec_893_template_894_volume_1092_vsphere_volume_1124
+
+}
+
+type Kubernetes_replication_controller_spec_893_template_894 struct {
+
+    Kubernetes_replication_controller_spec_893_template_894_id *string `lyra:"ignore"`
+
+    Active_deadline_seconds *int
+
+    Container *Kubernetes_replication_controller_spec_893_template_894_container_895
+
+    Dns_policy *string
+
+    Host_ipc *bool
+
+    Host_network *bool
+
+    Host_pid *bool
+
+    Hostname *string
+
+    Image_pull_secrets *Kubernetes_replication_controller_spec_893_template_894_image_pull_secrets_934
+
+    Init_container *Kubernetes_replication_controller_spec_893_template_894_init_container_935
+
+    Metadata *Kubernetes_replication_controller_spec_893_template_894_metadata_974
+
+    Node_name *string
+
+    Node_selector *map[string]string
+
+    Restart_policy *string
+
+    Security_context *Kubernetes_replication_controller_spec_893_template_894_security_context_975
+
+    Service_account_name *string
+
+    Spec *Kubernetes_replication_controller_spec_893_template_894_spec_977
+
+    Subdomain *string
+
+    Termination_grace_period_seconds *int
+
+    Volume *Kubernetes_replication_controller_spec_893_template_894_volume_1092
+
+}
+
+type Kubernetes_replication_controller_spec_893 struct {
+
+    Kubernetes_replication_controller_spec_893_id *string `lyra:"ignore"`
+
+    Min_ready_seconds *int
+
+    Replicas *int
+
+    Selector map[string]string
+
+    Template Kubernetes_replication_controller_spec_893_template_894
+
+}
+
+type Kubernetes_replication_controller struct {
+
+    Kubernetes_replication_controller_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_replication_controller_metadata_892
+
+    Spec Kubernetes_replication_controller_spec_893
+
+}
+
+// Kubernetes_replication_controllerHandler ...
+type Kubernetes_replication_controllerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_replication_controller) (*Kubernetes_replication_controller, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_replication_controller", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kubernetes_replication_controller, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_replication_controller", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_replication_controller{ Kubernetes_replication_controller_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_replication_controllerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_replication_controller", externalID)
+}
+
+type Kubernetes_resource_quota_metadata_1125 struct {
+
+    Kubernetes_resource_quota_metadata_1125_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_resource_quota_spec_1126 struct {
+
+    Kubernetes_resource_quota_spec_1126_id *string `lyra:"ignore"`
+
+    Hard *map[string]string
+
+    Scopes *[]string
+
+}
+
+type Kubernetes_resource_quota struct {
+
+    Kubernetes_resource_quota_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_resource_quota_metadata_1125
+
+    Spec *Kubernetes_resource_quota_spec_1126
+
+}
+
+// Kubernetes_resource_quotaHandler ...
+type Kubernetes_resource_quotaHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_resource_quotaHandler) Create(desired *Kubernetes_resource_quota) (*Kubernetes_resource_quota, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_resource_quota", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_resource_quotaHandler) Read(externalID string) (*Kubernetes_resource_quota, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_resource_quota", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_resource_quota{ Kubernetes_resource_quota_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_resource_quotaHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_resource_quota", externalID)
+}
+
+type Kubernetes_role_metadata_1127 struct {
+
+    Kubernetes_role_metadata_1127_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_role_rule_1128 struct {
+
+    Kubernetes_role_rule_1128_id *string `lyra:"ignore"`
+
+    Api_groups []string
+
+    Resource_names *[]string
+
+    Resources []string
+
+    Verbs []string
+
+}
+
+type Kubernetes_role struct {
+
+    Kubernetes_role_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_role_metadata_1127
+
+    Rule Kubernetes_role_rule_1128
+
+}
+
+// Kubernetes_roleHandler ...
+type Kubernetes_roleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_role, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_role", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_role", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_role{ Kubernetes_role_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_roleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_role", externalID)
+}
+
+type Kubernetes_role_binding_metadata_1129 struct {
+
+    Kubernetes_role_binding_metadata_1129_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_role_binding_subject_1130 struct {
+
+    Kubernetes_role_binding_subject_1130_id *string `lyra:"ignore"`
+
+    Api_group *string
+
+    Kind string
+
+    Name string
+
+    Namespace *string
+
+}
+
+type Kubernetes_role_binding struct {
+
+    Kubernetes_role_binding_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_role_binding_metadata_1129
+
+    Role_ref map[string]string
+
+    Subject Kubernetes_role_binding_subject_1130
+
+}
+
+// Kubernetes_role_bindingHandler ...
+type Kubernetes_role_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_role_bindingHandler) Create(desired *Kubernetes_role_binding) (*Kubernetes_role_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_role_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_role_bindingHandler) Read(externalID string) (*Kubernetes_role_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_role_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_role_binding{ Kubernetes_role_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_role_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_role_binding", externalID)
+}
+
+type Kubernetes_secret_metadata_1131 struct {
+
+    Kubernetes_secret_metadata_1131_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_secret struct {
+
+    Kubernetes_secret_id *string `lyra:"ignore"`
+
+    Data *map[string]string
+
+    Metadata Kubernetes_secret_metadata_1131
+
+    Type *string
+
+}
 
 // Kubernetes_secretHandler ...
 type Kubernetes_secretHandler struct {
@@ -1169,8 +8001,10 @@ type Kubernetes_secretHandler struct {
 
 // Create ...
 func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernetes_secret, string, error) {
-	rState := Kubernetes_secretMapper(desired)
-	id, err := bridge.Create(h.provider, "kubernetes_secret", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_secret", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -1183,11 +8017,13 @@ func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernet
 
 // Read ...
 func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, error) {
-	actual, err := bridge.Read(h.provider, "kubernetes_secret", externalID)
+	id, actual, err := bridge.Read(h.provider, "kubernetes_secret", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Kubernetes_secretUnmapper(actual), nil
+	x := &Kubernetes_secret{ Kubernetes_secret_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -1195,3 +8031,2050 @@ func (h *Kubernetes_secretHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "kubernetes_secret", externalID)
 }
 
+type Kubernetes_service_load_balancer_ingress_1132 struct {
+
+    Kubernetes_service_load_balancer_ingress_1132_id *string `lyra:"ignore"`
+
+    Hostname *string
+
+    Ip *string
+
+}
+
+type Kubernetes_service_metadata_1133 struct {
+
+    Kubernetes_service_metadata_1133_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_service_spec_1134_port_1135 struct {
+
+    Kubernetes_service_spec_1134_port_1135_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Node_port *int
+
+    Port int
+
+    Protocol *string
+
+    Target_port *string
+
+}
+
+type Kubernetes_service_spec_1134 struct {
+
+    Kubernetes_service_spec_1134_id *string `lyra:"ignore"`
+
+    Cluster_ip *string
+
+    External_ips *[]string
+
+    External_name *string
+
+    Load_balancer_ip *string
+
+    Load_balancer_source_ranges *[]string
+
+    Port *Kubernetes_service_spec_1134_port_1135
+
+    Selector *map[string]string
+
+    Session_affinity *string
+
+    Type *string
+
+}
+
+type Kubernetes_service struct {
+
+    Kubernetes_service_id *string `lyra:"ignore"`
+
+    Load_balancer_ingress *Kubernetes_service_load_balancer_ingress_1132
+
+    Metadata Kubernetes_service_metadata_1133
+
+    Spec Kubernetes_service_spec_1134
+
+}
+
+// Kubernetes_serviceHandler ...
+type Kubernetes_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubernetes_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_service{ Kubernetes_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_service", externalID)
+}
+
+type Kubernetes_service_account_image_pull_secret_1136 struct {
+
+    Kubernetes_service_account_image_pull_secret_1136_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_service_account_metadata_1137 struct {
+
+    Kubernetes_service_account_metadata_1137_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_service_account_secret_1138 struct {
+
+    Kubernetes_service_account_secret_1138_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_service_account struct {
+
+    Kubernetes_service_account_id *string `lyra:"ignore"`
+
+    Automount_service_account_token *bool
+
+    Default_secret_name *string
+
+    Image_pull_secret *Kubernetes_service_account_image_pull_secret_1136
+
+    Metadata Kubernetes_service_account_metadata_1137
+
+    Secret *Kubernetes_service_account_secret_1138
+
+}
+
+// Kubernetes_service_accountHandler ...
+type Kubernetes_service_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_account) (*Kubernetes_service_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_service_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes_service_account, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_service_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_service_account{ Kubernetes_service_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_service_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_service_account", externalID)
+}
+
+type Kubernetes_stateful_set_metadata_1139 struct {
+
+    Kubernetes_stateful_set_metadata_1139_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_selector_1141_match_expressions_1142 struct {
+
+    Kubernetes_stateful_set_spec_1140_selector_1141_match_expressions_1142_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_selector_1141 struct {
+
+    Kubernetes_stateful_set_spec_1140_selector_1141_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_stateful_set_spec_1140_selector_1141_match_expressions_1142
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_metadata_1144 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_metadata_1144_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_config_map_key_ref_1149 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_config_map_key_ref_1149_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_field_ref_1150 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_field_ref_1150_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_resource_field_ref_1151 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_resource_field_ref_1151_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_secret_key_ref_1152 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_secret_key_ref_1152_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_config_map_key_ref_1149
+
+    Field_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_field_ref_1150
+
+    Resource_field_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_resource_field_ref_1151
+
+    Secret_key_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_secret_key_ref_1152
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_config_map_ref_1154 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_config_map_ref_1154_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_secret_ref_1155 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_secret_ref_1155_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_config_map_ref_1154
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_secret_ref_1155
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_exec_1158 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_exec_1158_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159_http_header_1160 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159_http_header_1160_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159_http_header_1160
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_tcp_socket_1161 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_tcp_socket_1161_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_exec_1158
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_tcp_socket_1161
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_exec_1163 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_exec_1163_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164_http_header_1165 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164_http_header_1165_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164_http_header_1165
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_tcp_socket_1166 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_tcp_socket_1166_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_exec_1163
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_tcp_socket_1166
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157
+
+    Pre_stop *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_exec_1168 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_exec_1168_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169_http_header_1170 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169_http_header_1170_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169_http_header_1170
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_tcp_socket_1171 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_tcp_socket_1171_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_exec_1168
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_tcp_socket_1171
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_port_1172 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_port_1172_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_exec_1174 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_exec_1174_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175_http_header_1176 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175_http_header_1176_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175_http_header_1176
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_tcp_socket_1177 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_tcp_socket_1177_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_exec_1174
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_tcp_socket_1177
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_limits_1179 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_limits_1179_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_requests_1180 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_requests_1180_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_limits_1179
+
+    Requests *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_requests_1180
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_capabilities_1182 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_capabilities_1182_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_se_linux_options_1183 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_se_linux_options_1183_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_capabilities_1182
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_se_linux_options_1183
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_volume_mount_1184 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_volume_mount_1184_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147
+
+    Env_from *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156
+
+    Liveness_probe *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167
+
+    Name string
+
+    Port *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_port_1172
+
+    Readiness_probe *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173
+
+    Resources *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178
+
+    Security_context *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_volume_mount_1184
+
+    Working_dir *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_image_pull_secrets_1185 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_image_pull_secrets_1185_id *string `lyra:"ignore"`
+
+    Name string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_config_map_key_ref_1189 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_config_map_key_ref_1189_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_field_ref_1190 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_field_ref_1190_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_resource_field_ref_1191 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_resource_field_ref_1191_id *string `lyra:"ignore"`
+
+    Container_name *string
+
+    Resource string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_secret_key_ref_1192 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_secret_key_ref_1192_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_id *string `lyra:"ignore"`
+
+    Config_map_key_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_config_map_key_ref_1189
+
+    Field_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_field_ref_1190
+
+    Resource_field_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_resource_field_ref_1191
+
+    Secret_key_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_secret_key_ref_1192
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_id *string `lyra:"ignore"`
+
+    Name string
+
+    Value *string
+
+    Value_from *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_config_map_ref_1194 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_config_map_ref_1194_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_secret_ref_1195 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_secret_ref_1195_id *string `lyra:"ignore"`
+
+    Name string
+
+    Optional *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_id *string `lyra:"ignore"`
+
+    Config_map_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_config_map_ref_1194
+
+    Prefix *string
+
+    Secret_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_secret_ref_1195
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_exec_1198 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_exec_1198_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199_http_header_1200 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199_http_header_1200_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199_http_header_1200
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_tcp_socket_1201 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_tcp_socket_1201_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_exec_1198
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_tcp_socket_1201
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_exec_1203 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_exec_1203_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204_http_header_1205 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204_http_header_1205_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204_http_header_1205
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_tcp_socket_1206 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_tcp_socket_1206_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_exec_1203
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_tcp_socket_1206
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_id *string `lyra:"ignore"`
+
+    Post_start *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197
+
+    Pre_stop *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_exec_1208 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_exec_1208_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209_http_header_1210 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209_http_header_1210_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209_http_header_1210
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_tcp_socket_1211 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_tcp_socket_1211_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_exec_1208
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_tcp_socket_1211
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_port_1212 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_port_1212_id *string `lyra:"ignore"`
+
+    Container_port int
+
+    Host_ip *string
+
+    Host_port *int
+
+    Name *string
+
+    Protocol *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_exec_1214 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_exec_1214_id *string `lyra:"ignore"`
+
+    Command *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215_http_header_1216 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215_http_header_1216_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Http_header *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215_http_header_1216
+
+    Path *string
+
+    Port *string
+
+    Scheme *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_tcp_socket_1217 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_tcp_socket_1217_id *string `lyra:"ignore"`
+
+    Port string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_id *string `lyra:"ignore"`
+
+    Exec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_exec_1214
+
+    Failure_threshold *int
+
+    Http_get *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215
+
+    Initial_delay_seconds *int
+
+    Period_seconds *int
+
+    Success_threshold *int
+
+    Tcp_socket *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_tcp_socket_1217
+
+    Timeout_seconds *int
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_limits_1219 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_limits_1219_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_requests_1220 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_requests_1220_id *string `lyra:"ignore"`
+
+    Cpu *string
+
+    Memory *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_id *string `lyra:"ignore"`
+
+    Limits *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_limits_1219
+
+    Requests *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_requests_1220
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_capabilities_1222 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_capabilities_1222_id *string `lyra:"ignore"`
+
+    Add *[]string
+
+    Drop *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_se_linux_options_1223 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_se_linux_options_1223_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_id *string `lyra:"ignore"`
+
+    Allow_privilege_escalation *bool
+
+    Capabilities *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_capabilities_1222
+
+    Privileged *bool
+
+    Read_only_root_filesystem *bool
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_se_linux_options_1223
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_volume_mount_1224 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_volume_mount_1224_id *string `lyra:"ignore"`
+
+    Mount_path string
+
+    Name string
+
+    Read_only *bool
+
+    Sub_path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_id *string `lyra:"ignore"`
+
+    Args *[]string
+
+    Command *[]string
+
+    Env *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187
+
+    Env_from *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193
+
+    Image *string
+
+    Image_pull_policy *string
+
+    Lifecycle *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196
+
+    Liveness_probe *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207
+
+    Name string
+
+    Port *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_port_1212
+
+    Readiness_probe *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213
+
+    Resources *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218
+
+    Security_context *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221
+
+    Stdin *bool
+
+    Stdin_once *bool
+
+    Termination_message_path *string
+
+    Tty *bool
+
+    Volume_mount *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_volume_mount_1224
+
+    Working_dir *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225_se_linux_options_1226 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225_se_linux_options_1226_id *string `lyra:"ignore"`
+
+    Level *string
+
+    Role *string
+
+    Type *string
+
+    User *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225_id *string `lyra:"ignore"`
+
+    Fs_group *int
+
+    Run_as_non_root *bool
+
+    Run_as_user *int
+
+    Se_linux_options *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225_se_linux_options_1226
+
+    Supplemental_groups *[]int
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_aws_elastic_block_store_1228 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_aws_elastic_block_store_1228_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_disk_1229 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_disk_1229_id *string `lyra:"ignore"`
+
+    Caching_mode string
+
+    Data_disk_uri string
+
+    Disk_name string
+
+    Fs_type *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_file_1230 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_file_1230_id *string `lyra:"ignore"`
+
+    Read_only *bool
+
+    Secret_name string
+
+    Share_name string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231_secret_ref_1232 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231_secret_ref_1232_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231_id *string `lyra:"ignore"`
+
+    Monitors []string
+
+    Path *string
+
+    Read_only *bool
+
+    Secret_file *string
+
+    Secret_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231_secret_ref_1232
+
+    User *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_cinder_1233 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_cinder_1233_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Read_only *bool
+
+    Volume_id string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234_items_1235 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234_items_1235_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234_items_1235
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_field_ref_1238 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_field_ref_1238_id *string `lyra:"ignore"`
+
+    Api_version *string
+
+    Field_path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_resource_field_ref_1239 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_resource_field_ref_1239_id *string `lyra:"ignore"`
+
+    Container_name string
+
+    Quantity *string
+
+    Resource string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_id *string `lyra:"ignore"`
+
+    Field_ref Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_field_ref_1238
+
+    Mode *int
+
+    Path string
+
+    Resource_field_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_resource_field_ref_1239
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_empty_dir_1240 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_empty_dir_1240_id *string `lyra:"ignore"`
+
+    Medium *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_fc_1241 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_fc_1241_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Lun int
+
+    Read_only *bool
+
+    Target_ww_ns []string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242_secret_ref_1243 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242_secret_ref_1243_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242_id *string `lyra:"ignore"`
+
+    Driver string
+
+    Fs_type *string
+
+    Options *map[string]string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242_secret_ref_1243
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flocker_1244 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flocker_1244_id *string `lyra:"ignore"`
+
+    Dataset_name *string
+
+    Dataset_uuid *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_gce_persistent_disk_1245 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_gce_persistent_disk_1245_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Partition *int
+
+    Pd_name string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_git_repo_1246 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_git_repo_1246_id *string `lyra:"ignore"`
+
+    Directory *string
+
+    Repository *string
+
+    Revision *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_glusterfs_1247 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_glusterfs_1247_id *string `lyra:"ignore"`
+
+    Endpoints_name string
+
+    Path string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_host_path_1248 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_host_path_1248_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_iscsi_1249 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_iscsi_1249_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Iqn string
+
+    Iscsi_interface *string
+
+    Lun *int
+
+    Read_only *bool
+
+    Target_portal string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_local_1250 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_local_1250_id *string `lyra:"ignore"`
+
+    Path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_nfs_1251 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_nfs_1251_id *string `lyra:"ignore"`
+
+    Path string
+
+    Read_only *bool
+
+    Server string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_persistent_volume_claim_1252 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_persistent_volume_claim_1252_id *string `lyra:"ignore"`
+
+    Claim_name *string
+
+    Read_only *bool
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_photon_persistent_disk_1253 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_photon_persistent_disk_1253_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Pd_id string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_quobyte_1254 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_quobyte_1254_id *string `lyra:"ignore"`
+
+    Group *string
+
+    Read_only *bool
+
+    Registry string
+
+    User *string
+
+    Volume string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255_secret_ref_1256 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255_secret_ref_1256_id *string `lyra:"ignore"`
+
+    Name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255_id *string `lyra:"ignore"`
+
+    Ceph_monitors []string
+
+    Fs_type *string
+
+    Keyring *string
+
+    Rados_user *string
+
+    Rbd_image string
+
+    Rbd_pool *string
+
+    Read_only *bool
+
+    Secret_ref *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255_secret_ref_1256
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257_items_1258 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257_items_1258_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Mode *int
+
+    Path *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257_id *string `lyra:"ignore"`
+
+    Default_mode *int
+
+    Items *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257_items_1258
+
+    Optional *bool
+
+    Secret_name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_vsphere_volume_1259 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_vsphere_volume_1259_id *string `lyra:"ignore"`
+
+    Fs_type *string
+
+    Volume_path string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_id *string `lyra:"ignore"`
+
+    Aws_elastic_block_store *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_aws_elastic_block_store_1228
+
+    Azure_disk *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_disk_1229
+
+    Azure_file *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_file_1230
+
+    Ceph_fs *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231
+
+    Cinder *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_cinder_1233
+
+    Config_map *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234
+
+    Downward_api *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236
+
+    Empty_dir *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_empty_dir_1240
+
+    Fc *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_fc_1241
+
+    Flex_volume *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242
+
+    Flocker *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flocker_1244
+
+    Gce_persistent_disk *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_gce_persistent_disk_1245
+
+    Git_repo *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_git_repo_1246
+
+    Glusterfs *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_glusterfs_1247
+
+    Host_path *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_host_path_1248
+
+    Iscsi *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_iscsi_1249
+
+    Local *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_local_1250
+
+    Name *string
+
+    Nfs *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_nfs_1251
+
+    Persistent_volume_claim *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_persistent_volume_claim_1252
+
+    Photon_persistent_disk *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_photon_persistent_disk_1253
+
+    Quobyte *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_quobyte_1254
+
+    Rbd *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255
+
+    Secret *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257
+
+    Vsphere_volume *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_vsphere_volume_1259
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_id *string `lyra:"ignore"`
+
+    Active_deadline_seconds *int
+
+    Container *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146
+
+    Dns_policy *string
+
+    Host_ipc *bool
+
+    Host_network *bool
+
+    Host_pid *bool
+
+    Hostname *string
+
+    Image_pull_secrets *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_image_pull_secrets_1185
+
+    Init_container *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186
+
+    Node_name *string
+
+    Node_selector *map[string]string
+
+    Restart_policy *string
+
+    Security_context *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225
+
+    Service_account_name *string
+
+    Subdomain *string
+
+    Termination_grace_period_seconds *int
+
+    Volume *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227
+
+}
+
+type Kubernetes_stateful_set_spec_1140_template_1143 struct {
+
+    Kubernetes_stateful_set_spec_1140_template_1143_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_stateful_set_spec_1140_template_1143_metadata_1144
+
+    Spec *Kubernetes_stateful_set_spec_1140_template_1143_spec_1145
+
+}
+
+type Kubernetes_stateful_set_spec_1140_update_strategy_1260_rolling_update_1261 struct {
+
+    Kubernetes_stateful_set_spec_1140_update_strategy_1260_rolling_update_1261_id *string `lyra:"ignore"`
+
+    Partition *int
+
+}
+
+type Kubernetes_stateful_set_spec_1140_update_strategy_1260 struct {
+
+    Kubernetes_stateful_set_spec_1140_update_strategy_1260_id *string `lyra:"ignore"`
+
+    Rolling_update *Kubernetes_stateful_set_spec_1140_update_strategy_1260_rolling_update_1261
+
+    Type *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_metadata_1263 struct {
+
+    Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_metadata_1263_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Namespace *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_resources_1265 struct {
+
+    Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_resources_1265_id *string `lyra:"ignore"`
+
+    Limits *map[string]string
+
+    Requests *map[string]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266_match_expressions_1267 struct {
+
+    Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266_match_expressions_1267_id *string `lyra:"ignore"`
+
+    Key *string
+
+    Operator *string
+
+    Values *[]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266 struct {
+
+    Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266_id *string `lyra:"ignore"`
+
+    Match_expressions *Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266_match_expressions_1267
+
+    Match_labels *map[string]string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264 struct {
+
+    Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_id *string `lyra:"ignore"`
+
+    Access_modes []string
+
+    Resources Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_resources_1265
+
+    Selector *Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266
+
+    Storage_class_name *string
+
+    Volume_name *string
+
+}
+
+type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262 struct {
+
+    Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_metadata_1263
+
+    Spec Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264
+
+}
+
+type Kubernetes_stateful_set_spec_1140 struct {
+
+    Kubernetes_stateful_set_spec_1140_id *string `lyra:"ignore"`
+
+    Pod_management_policy *string
+
+    Replicas *int
+
+    Revision_history_limit *int
+
+    Selector Kubernetes_stateful_set_spec_1140_selector_1141
+
+    Service_name string
+
+    Template Kubernetes_stateful_set_spec_1140_template_1143
+
+    Update_strategy *Kubernetes_stateful_set_spec_1140_update_strategy_1260
+
+    Volume_claim_template *Kubernetes_stateful_set_spec_1140_volume_claim_template_1262
+
+}
+
+type Kubernetes_stateful_set struct {
+
+    Kubernetes_stateful_set_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_stateful_set_metadata_1139
+
+    Spec Kubernetes_stateful_set_spec_1140
+
+}
+
+// Kubernetes_stateful_setHandler ...
+type Kubernetes_stateful_setHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set) (*Kubernetes_stateful_set, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_stateful_set", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_stateful_set, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_stateful_set", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_stateful_set{ Kubernetes_stateful_set_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_stateful_setHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_stateful_set", externalID)
+}
+
+type Kubernetes_storage_class_metadata_1268 struct {
+
+    Kubernetes_storage_class_metadata_1268_id *string `lyra:"ignore"`
+
+    Annotations *map[string]string
+
+    Generate_name *string
+
+    Generation *int
+
+    Labels *map[string]string
+
+    Name *string
+
+    Resource_version *string
+
+    Self_link *string
+
+    Uid *string
+
+}
+
+type Kubernetes_storage_class struct {
+
+    Kubernetes_storage_class_id *string `lyra:"ignore"`
+
+    Metadata Kubernetes_storage_class_metadata_1268
+
+    Parameters *map[string]string
+
+    Reclaim_policy *string
+
+    Storage_provisioner string
+
+    Volume_binding_mode *string
+
+}
+
+// Kubernetes_storage_classHandler ...
+type Kubernetes_storage_classHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_class) (*Kubernetes_storage_class, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "kubernetes_storage_class", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_storage_class, error) {
+	id, actual, err := bridge.Read(h.provider, "kubernetes_storage_class", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Kubernetes_storage_class{ Kubernetes_storage_class_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Kubernetes_storage_classHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "kubernetes_storage_class", externalID)
+}

@@ -3,13 +3,14 @@ package loader
 import (
 	"context"
 	"fmt"
-	"github.com/lyraproj/puppet-evaluator/types"
-	"github.com/lyraproj/puppet-workflow/puppet"
 	"os"
 	"os/exec"
 	"path/filepath"
 
-	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/puppet-evaluator/types"
+	"github.com/lyraproj/puppet-workflow/puppet"
+
+	hclog "github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/issue/issue"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/grpc"
@@ -17,12 +18,16 @@ import (
 )
 
 var embeddedPluginNames = []string{
+	"aws",
 	"example",
 	"identity",
-	"aws",
-	"tfaws",
 	"puppet",
+	"tfaws",
+	"tfazurerm",
+	"tfgoogle",
+	"tfkubernetes",
 }
+
 var dir = "./plugins"
 
 // Loader implements the Loader API from go-servicesdk

@@ -13,8720 +13,366 @@ import (
 	"github.com/lyraproj/servicesdk/service"
 )
 
-func convertMap(in map[string]interface{}) map[string]string {
-	m  := map[string]string{}
-	for k,v := range in {
-		m[k] = v.(string)
-	}
-	return m
-}
-
-func unconvertMap(in map[string]string  ) map[string]interface{} {
-	m  := map[string]interface{}{}
-	for k,v := range in {
-		m[k] = v
-	}
-	return m
-}
-
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_ssl_certificate{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_certificateHandler", &Google_compute_ssl_certificateHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_uptime_check_config{})
-    sb.RegisterHandler("TerraformGoogle::Google_monitoring_uptime_check_configHandler", &Google_monitoring_uptime_check_configHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_app_engine_application{})
+    sb.RegisterHandler("TerraformGoogle::Google_app_engine_applicationHandler", &Google_app_engine_applicationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_bigquery_dataset{})
+    sb.RegisterHandler("TerraformGoogle::Google_bigquery_datasetHandler", &Google_bigquery_datasetHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_bigquery_table{})
+    sb.RegisterHandler("TerraformGoogle::Google_bigquery_tableHandler", &Google_bigquery_tableHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_bigtable_instance{})
+    sb.RegisterHandler("TerraformGoogle::Google_bigtable_instanceHandler", &Google_bigtable_instanceHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_bigtable_table{})
     sb.RegisterHandler("TerraformGoogle::Google_bigtable_tableHandler", &Google_bigtable_tableHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_ssl_cert{})
-    sb.RegisterHandler("TerraformGoogle::Google_sql_ssl_certHandler", &Google_sql_ssl_certHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_instanceHandler", &Google_compute_instanceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_dataproc_job{})
-    sb.RegisterHandler("TerraformGoogle::Google_dataproc_jobHandler", &Google_dataproc_jobHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_address{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_addressHandler", &Google_compute_addressHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_router{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_routerHandler", &Google_compute_routerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_backend_service{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_region_backend_serviceHandler", &Google_compute_region_backend_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_backend_service{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_backend_serviceHandler", &Google_compute_backend_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_subnetworkHandler", &Google_compute_subnetworkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_notification{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_notificationHandler", &Google_storage_notificationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project{})
-    sb.RegisterHandler("TerraformGoogle::Google_projectHandler", &Google_projectHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_iam_policyHandler", &Google_project_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_global_address{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_global_addressHandler", &Google_compute_global_addressHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_group_manager{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_instance_group_managerHandler", &Google_compute_instance_group_managerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_cloudiot_registry{})
-    sb.RegisterHandler("TerraformGoogle::Google_cloudiot_registryHandler", &Google_cloudiot_registryHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_endpoints_service{})
-    sb.RegisterHandler("TerraformGoogle::Google_endpoints_serviceHandler", &Google_endpoints_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_billing_account_exclusion{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_exclusionHandler", &Google_logging_billing_account_exclusionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_folder{})
-    sb.RegisterHandler("TerraformGoogle::Google_folderHandler", &Google_folderHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_iam_memberHandler", &Google_project_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_forwarding_rule{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_forwarding_ruleHandler", &Google_compute_forwarding_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_container_cluster{})
-    sb.RegisterHandler("TerraformGoogle::Google_container_clusterHandler", &Google_container_clusterHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_bindingHandler", &Google_pubsub_topic_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_interconnect_attachment{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_interconnect_attachmentHandler", &Google_compute_interconnect_attachmentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_service{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_serviceHandler", &Google_project_serviceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_bindingHandler", &Google_organization_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_runtimeconfig_variable{})
-    sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_variableHandler", &Google_runtimeconfig_variableHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_bindingHandler", &Google_spanner_database_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_bucketHandler", &Google_storage_bucketHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_autoscaler{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_autoscalerHandler", &Google_compute_autoscalerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_dns_managed_zone{})
-    sb.RegisterHandler("TerraformGoogle::Google_dns_managed_zoneHandler", &Google_dns_managed_zoneHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_pool{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_target_poolHandler", &Google_compute_target_poolHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_bindingHandler", &Google_storage_bucket_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_redis_instance{})
-    sb.RegisterHandler("TerraformGoogle::Google_redis_instanceHandler", &Google_redis_instanceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_notification_channel{})
-    sb.RegisterHandler("TerraformGoogle::Google_monitoring_notification_channelHandler", &Google_monitoring_notification_channelHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_billing_account_iam_binding{})
     sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_bindingHandler", &Google_billing_account_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_project_sink{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_project_sinkHandler", &Google_logging_project_sinkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_memberHandler", &Google_kms_key_ring_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_instanceHandler", &Google_spanner_instanceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_https_proxy{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_target_https_proxyHandler", &Google_compute_target_https_proxyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_memberHandler", &Google_pubsub_subscription_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_billing_account_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_memberHandler", &Google_billing_account_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_billing_account_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_policyHandler", &Google_billing_account_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_binary_authorization_attestor{})
+    sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_attestorHandler", &Google_binary_authorization_attestorHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_binary_authorization_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_policyHandler", &Google_binary_authorization_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_cloudbuild_trigger{})
+    sb.RegisterHandler("TerraformGoogle::Google_cloudbuild_triggerHandler", &Google_cloudbuild_triggerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_cloudfunctions_function{})
+    sb.RegisterHandler("TerraformGoogle::Google_cloudfunctions_functionHandler", &Google_cloudfunctions_functionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_cloudiot_registry{})
+    sb.RegisterHandler("TerraformGoogle::Google_cloudiot_registryHandler", &Google_cloudiot_registryHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_composer_environment{})
+    sb.RegisterHandler("TerraformGoogle::Google_composer_environmentHandler", &Google_composer_environmentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_address{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_addressHandler", &Google_compute_addressHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_attached_disk{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_attached_diskHandler", &Google_compute_attached_diskHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_autoscaler{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_autoscalerHandler", &Google_compute_autoscalerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_backend_bucket{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_backend_bucketHandler", &Google_compute_backend_bucketHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_backend_service{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_backend_serviceHandler", &Google_compute_backend_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_disk{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_diskHandler", &Google_compute_diskHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_firewall{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_firewallHandler", &Google_compute_firewallHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_forwarding_rule{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_forwarding_ruleHandler", &Google_compute_forwarding_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_global_address{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_global_addressHandler", &Google_compute_global_addressHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_global_forwarding_rule{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_global_forwarding_ruleHandler", &Google_compute_global_forwarding_ruleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_health_check{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_health_checkHandler", &Google_compute_health_checkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_http_health_check{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_http_health_checkHandler", &Google_compute_http_health_checkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_https_health_check{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_https_health_checkHandler", &Google_compute_https_health_checkHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_image{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_imageHandler", &Google_compute_imageHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_memberHandler", &Google_spanner_instance_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_instanceHandler", &Google_compute_instanceHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_from_template{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_instance_from_templateHandler", &Google_compute_instance_from_templateHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_memberHandler", &Google_spanner_database_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_policyHandler", &Google_compute_subnetwork_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_group{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_instance_groupHandler", &Google_compute_instance_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_group_manager{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_instance_group_managerHandler", &Google_compute_instance_group_managerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_template{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_instance_templateHandler", &Google_compute_instance_templateHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_interconnect_attachment{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_interconnect_attachmentHandler", &Google_compute_interconnect_attachmentHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_network{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_networkHandler", &Google_compute_networkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_network_peering{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_network_peeringHandler", &Google_compute_network_peeringHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_project_metadata{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_project_metadataHandler", &Google_compute_project_metadataHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_project_metadata_item{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_project_metadata_itemHandler", &Google_compute_project_metadata_itemHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_object_acl{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_object_aclHandler", &Google_storage_object_aclHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_router_interface{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_router_interfaceHandler", &Google_compute_router_interfaceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_memberHandler", &Google_storage_bucket_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_disk{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_diskHandler", &Google_compute_diskHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_database_instance{})
-    sb.RegisterHandler("TerraformGoogle::Google_sql_database_instanceHandler", &Google_sql_database_instanceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_organization_sink{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_organization_sinkHandler", &Google_logging_organization_sinkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_database{})
-    sb.RegisterHandler("TerraformGoogle::Google_sql_databaseHandler", &Google_sql_databaseHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_crypto_key_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_key_iam_bindingHandler", &Google_kms_crypto_key_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_custom_role{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_iam_custom_roleHandler", &Google_project_iam_custom_roleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_template{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_instance_templateHandler", &Google_compute_instance_templateHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_policyHandler", &Google_spanner_instance_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_folder_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_folder_iam_policyHandler", &Google_folder_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_runtimeconfig_config{})
-    sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_configHandler", &Google_runtimeconfig_configHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_policyHandler", &Google_organization_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_cloudbuild_trigger{})
-    sb.RegisterHandler("TerraformGoogle::Google_cloudbuild_triggerHandler", &Google_cloudbuild_triggerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_group{})
-    sb.RegisterHandler("TerraformGoogle::Google_monitoring_groupHandler", &Google_monitoring_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ringHandler", &Google_kms_key_ringHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_memberHandler", &Google_organization_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_usage_export_bucket{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_usage_export_bucketHandler", &Google_project_usage_export_bucketHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_binary_authorization_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_policyHandler", &Google_binary_authorization_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_tcp_proxy{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_target_tcp_proxyHandler", &Google_compute_target_tcp_proxyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_organization_policyHandler", &Google_organization_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_acl{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_aclHandler", &Google_storage_bucket_aclHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_databaseHandler", &Google_spanner_databaseHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_billing_account_sink{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_sinkHandler", &Google_logging_billing_account_sinkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_bigquery_dataset{})
-    sb.RegisterHandler("TerraformGoogle::Google_bigquery_datasetHandler", &Google_bigquery_datasetHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_app_engine_application{})
-    sb.RegisterHandler("TerraformGoogle::Google_app_engine_applicationHandler", &Google_app_engine_applicationHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_crypto_key{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_keyHandler", &Google_kms_crypto_keyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_object{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_objectHandler", &Google_storage_bucket_objectHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_bindingHandler", &Google_kms_key_ring_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_folder_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_folder_iam_memberHandler", &Google_folder_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_https_health_check{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_https_health_checkHandler", &Google_compute_https_health_checkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_disk{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_region_diskHandler", &Google_compute_region_diskHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_network_peering{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_network_peeringHandler", &Google_compute_network_peeringHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_resource_manager_lien{})
-    sb.RegisterHandler("TerraformGoogle::Google_resource_manager_lienHandler", &Google_resource_manager_lienHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_folder_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_folder_iam_bindingHandler", &Google_folder_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_instance_group_manager{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_region_instance_group_managerHandler", &Google_compute_region_instance_group_managerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_memberHandler", &Google_service_account_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_dataproc_cluster{})
-    sb.RegisterHandler("TerraformGoogle::Google_dataproc_clusterHandler", &Google_dataproc_clusterHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_dataflow_job{})
-    sb.RegisterHandler("TerraformGoogle::Google_dataflow_jobHandler", &Google_dataflow_jobHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_custom_role{})
-    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_custom_roleHandler", &Google_organization_iam_custom_roleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_security_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_security_policyHandler", &Google_compute_security_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_global_forwarding_rule{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_global_forwarding_ruleHandler", &Google_compute_global_forwarding_ruleHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_default_object_access_control{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_access_controlHandler", &Google_storage_default_object_access_controlHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_policyHandler", &Google_storage_bucket_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_policyHandler", &Google_pubsub_topic_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_shared_vpc_service_project{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_service_projectHandler", &Google_compute_shared_vpc_service_projectHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topicHandler", &Google_pubsub_topicHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_url_map{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_url_mapHandler", &Google_compute_url_mapHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_health_check{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_health_checkHandler", &Google_compute_health_checkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_object_access_control{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_object_access_controlHandler", &Google_storage_object_access_controlHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_autoscaler{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_region_autoscalerHandler", &Google_compute_region_autoscalerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_services{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_servicesHandler", &Google_project_servicesHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_bindingHandler", &Google_compute_subnetwork_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_shared_vpc_host_project{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_host_projectHandler", &Google_compute_shared_vpc_host_projectHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_project_exclusion{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_project_exclusionHandler", &Google_logging_project_exclusionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_snapshot{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_snapshotHandler", &Google_compute_snapshotHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_firewall{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_firewallHandler", &Google_compute_firewallHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_alert_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_monitoring_alert_policyHandler", &Google_monitoring_alert_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_memberHandler", &Google_pubsub_topic_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_billing_account_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_policyHandler", &Google_billing_account_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_bindingHandler", &Google_pubsub_subscription_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_key{})
-    sb.RegisterHandler("TerraformGoogle::Google_service_account_keyHandler", &Google_service_account_keyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_attached_disk{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_attached_diskHandler", &Google_compute_attached_diskHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_ssl_proxy{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_target_ssl_proxyHandler", &Google_compute_target_ssl_proxyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_container_analysis_note{})
-    sb.RegisterHandler("TerraformGoogle::Google_container_analysis_noteHandler", &Google_container_analysis_noteHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_sourcerepo_repository{})
-    sb.RegisterHandler("TerraformGoogle::Google_sourcerepo_repositoryHandler", &Google_sourcerepo_repositoryHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account{})
-    sb.RegisterHandler("TerraformGoogle::Google_service_accountHandler", &Google_service_accountHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_policyHandler", &Google_pubsub_subscription_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_folder_sink{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_folder_sinkHandler", &Google_logging_folder_sinkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_composer_environment{})
-    sb.RegisterHandler("TerraformGoogle::Google_composer_environmentHandler", &Google_composer_environmentHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_default_object_acl{})
-    sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_aclHandler", &Google_storage_default_object_aclHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_policyHandler", &Google_spanner_database_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_policyHandler", &Google_kms_key_ring_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_bindingHandler", &Google_service_account_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_http_health_check{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_http_health_checkHandler", &Google_compute_http_health_checkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_organization_exclusion{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_organization_exclusionHandler", &Google_logging_organization_exclusionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_vpn_gateway{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_gatewayHandler", &Google_compute_vpn_gatewayHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_cloudfunctions_function{})
-    sb.RegisterHandler("TerraformGoogle::Google_cloudfunctions_functionHandler", &Google_cloudfunctions_functionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_iam_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_policyHandler", &Google_service_account_iam_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_iam_bindingHandler", &Google_project_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_binary_authorization_attestor{})
-    sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_attestorHandler", &Google_binary_authorization_attestorHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_vpn_tunnel{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_tunnelHandler", &Google_compute_vpn_tunnelHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_bigquery_table{})
-    sb.RegisterHandler("TerraformGoogle::Google_bigquery_tableHandler", &Google_bigquery_tableHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_instance_group{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_instance_groupHandler", &Google_compute_instance_groupHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_user{})
-    sb.RegisterHandler("TerraformGoogle::Google_sql_userHandler", &Google_sql_userHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance_iam_binding{})
-    sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_bindingHandler", &Google_spanner_instance_iam_bindingHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_folder_exclusion{})
-    sb.RegisterHandler("TerraformGoogle::Google_logging_folder_exclusionHandler", &Google_logging_folder_exclusionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_crypto_key_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_key_iam_memberHandler", &Google_kms_crypto_key_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_container_node_pool{})
-    sb.RegisterHandler("TerraformGoogle::Google_container_node_poolHandler", &Google_container_node_poolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_backend_service{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_region_backend_serviceHandler", &Google_compute_region_backend_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_disk{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_region_diskHandler", &Google_compute_region_diskHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_region_instance_group_manager{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_region_instance_group_managerHandler", &Google_compute_region_instance_group_managerHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_route{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_routeHandler", &Google_compute_routeHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_router{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_routerHandler", &Google_compute_routerHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_router_interface{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_router_interfaceHandler", &Google_compute_router_interfaceHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_router_nat{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_router_natHandler", &Google_compute_router_natHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_project_organization_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_project_organization_policyHandler", &Google_project_organization_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_ssl_policy{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_policyHandler", &Google_compute_ssl_policyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_filestore_instance{})
-    sb.RegisterHandler("TerraformGoogle::Google_filestore_instanceHandler", &Google_filestore_instanceHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_router_peer{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_router_peerHandler", &Google_compute_router_peerHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_dns_record_set{})
-    sb.RegisterHandler("TerraformGoogle::Google_dns_record_setHandler", &Google_dns_record_setHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_security_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_security_policyHandler", &Google_compute_security_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_shared_vpc_host_project{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_host_projectHandler", &Google_compute_shared_vpc_host_projectHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_shared_vpc_service_project{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_service_projectHandler", &Google_compute_shared_vpc_service_projectHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_snapshot{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_snapshotHandler", &Google_compute_snapshotHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_ssl_certificate{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_certificateHandler", &Google_compute_ssl_certificateHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_ssl_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_policyHandler", &Google_compute_ssl_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_subnetworkHandler", &Google_compute_subnetworkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_bindingHandler", &Google_compute_subnetwork_iam_bindingHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork_iam_member{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_memberHandler", &Google_compute_subnetwork_iam_memberHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_backend_bucket{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_backend_bucketHandler", &Google_compute_backend_bucketHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription{})
-    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscriptionHandler", &Google_pubsub_subscriptionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_bigtable_instance{})
-    sb.RegisterHandler("TerraformGoogle::Google_bigtable_instanceHandler", &Google_bigtable_instanceHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_network{})
-    sb.RegisterHandler("TerraformGoogle::Google_compute_networkHandler", &Google_compute_networkHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGoogle", Google_billing_account_iam_member{})
-    sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_memberHandler", &Google_billing_account_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_subnetwork_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_policyHandler", &Google_compute_subnetwork_iam_policyHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_http_proxy{})
     sb.RegisterHandler("TerraformGoogle::Google_compute_target_http_proxyHandler", &Google_compute_target_http_proxyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_https_proxy{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_target_https_proxyHandler", &Google_compute_target_https_proxyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_pool{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_target_poolHandler", &Google_compute_target_poolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_ssl_proxy{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_target_ssl_proxyHandler", &Google_compute_target_ssl_proxyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_target_tcp_proxy{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_target_tcp_proxyHandler", &Google_compute_target_tcp_proxyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_url_map{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_url_mapHandler", &Google_compute_url_mapHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_vpn_gateway{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_gatewayHandler", &Google_compute_vpn_gatewayHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_compute_vpn_tunnel{})
+    sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_tunnelHandler", &Google_compute_vpn_tunnelHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_container_analysis_note{})
+    sb.RegisterHandler("TerraformGoogle::Google_container_analysis_noteHandler", &Google_container_analysis_noteHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_container_cluster{})
+    sb.RegisterHandler("TerraformGoogle::Google_container_clusterHandler", &Google_container_clusterHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_container_node_pool{})
+    sb.RegisterHandler("TerraformGoogle::Google_container_node_poolHandler", &Google_container_node_poolHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_dataflow_job{})
+    sb.RegisterHandler("TerraformGoogle::Google_dataflow_jobHandler", &Google_dataflow_jobHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_dataproc_cluster{})
+    sb.RegisterHandler("TerraformGoogle::Google_dataproc_clusterHandler", &Google_dataproc_clusterHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_dataproc_job{})
+    sb.RegisterHandler("TerraformGoogle::Google_dataproc_jobHandler", &Google_dataproc_jobHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_dns_managed_zone{})
+    sb.RegisterHandler("TerraformGoogle::Google_dns_managed_zoneHandler", &Google_dns_managed_zoneHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_dns_record_set{})
+    sb.RegisterHandler("TerraformGoogle::Google_dns_record_setHandler", &Google_dns_record_setHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_endpoints_service{})
+    sb.RegisterHandler("TerraformGoogle::Google_endpoints_serviceHandler", &Google_endpoints_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_filestore_instance{})
+    sb.RegisterHandler("TerraformGoogle::Google_filestore_instanceHandler", &Google_filestore_instanceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_folder{})
+    sb.RegisterHandler("TerraformGoogle::Google_folderHandler", &Google_folderHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_folder_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_folder_iam_bindingHandler", &Google_folder_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_folder_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_folder_iam_memberHandler", &Google_folder_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_folder_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_folder_iam_policyHandler", &Google_folder_iam_policyHandler{provider: p}, evs[0])
     evs = sb.RegisterTypes("TerraformGoogle", Google_folder_organization_policy{})
     sb.RegisterHandler("TerraformGoogle::Google_folder_organization_policyHandler", &Google_folder_organization_policyHandler{provider: p}, evs[0])
-}
-
-type Google_compute_ssl_certificate struct {
-     Google_compute_ssl_certificate_id *string
-     Certificate string
-     Name *string
-     Project *string
-     Private_key string
-     Description *string
-     Creation_timestamp *string
-     Name_prefix *string
-     Self_link *string
-}
-
-
-func Google_compute_ssl_certificateMapper(r *Google_compute_ssl_certificate) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Name_prefix != nil {
-    config["name_prefix"] = *r.Name_prefix
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["private_key"] = r.Private_key
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["certificate"] = r.Certificate
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_ssl_certificateUnmapper(state map[string]interface{}) *Google_compute_ssl_certificate {
-	r := &Google_compute_ssl_certificate{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_ssl_certificate_id = &x
-}
-
-if x, ok := state["certificate"]; ok {
-	r.Certificate = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["private_key"]; ok {
-	r.Private_key = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["name_prefix"]; ok {
-	x := x.(string)
-	r.Name_prefix = &x
-}
-	return r
-}
-
-
-// Google_compute_ssl_certificateHandler ...
-type Google_compute_ssl_certificateHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_ssl_certificateHandler) Create(desired *Google_compute_ssl_certificate) (*Google_compute_ssl_certificate, string, error) {
-	rState := Google_compute_ssl_certificateMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_ssl_certificate", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_ssl_certificateHandler) Read(externalID string) (*Google_compute_ssl_certificate, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_ssl_certificate", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_ssl_certificateUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_ssl_certificateHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_ssl_certificate", externalID)
-}
-
-type Google_monitoring_uptime_check_config struct {
-     Google_monitoring_uptime_check_config_id *string
-     Is_internal *bool
-     Period *string
-     Project *string
-     Timeout string
-     Name *string
-     Display_name string
-}
-
-
-func Google_monitoring_uptime_check_configMapper(r *Google_monitoring_uptime_check_config) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["display_name"] = r.Display_name
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["timeout"] = r.Timeout
-if r.Is_internal != nil {
-    config["is_internal"] = *r.Is_internal
-}
-if r.Period != nil {
-    config["period"] = *r.Period
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_monitoring_uptime_check_configUnmapper(state map[string]interface{}) *Google_monitoring_uptime_check_config {
-	r := &Google_monitoring_uptime_check_config{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_monitoring_uptime_check_config_id = &x
-}
-
-if x, ok := state["period"]; ok {
-	x := x.(string)
-	r.Period = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["timeout"]; ok {
-	r.Timeout = x.(string)
-}
-
-if x, ok := state["is_internal"]; ok {
-	x := x.(bool)
-	r.Is_internal = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-	return r
-}
-
-
-// Google_monitoring_uptime_check_configHandler ...
-type Google_monitoring_uptime_check_configHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_monitoring_uptime_check_configHandler) Create(desired *Google_monitoring_uptime_check_config) (*Google_monitoring_uptime_check_config, string, error) {
-	rState := Google_monitoring_uptime_check_configMapper(desired)
-	id, err := bridge.Create(h.provider, "google_monitoring_uptime_check_config", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_monitoring_uptime_check_configHandler) Read(externalID string) (*Google_monitoring_uptime_check_config, error) {
-	actual, err := bridge.Read(h.provider, "google_monitoring_uptime_check_config", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_monitoring_uptime_check_configUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_monitoring_uptime_check_configHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_monitoring_uptime_check_config", externalID)
-}
-
-type Google_bigtable_table struct {
-     Google_bigtable_table_id *string
-     Name string
-     Instance_name string
-     Project *string
-}
-
-
-func Google_bigtable_tableMapper(r *Google_bigtable_table) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["name"] = r.Name
-    config["instance_name"] = r.Instance_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_bigtable_tableUnmapper(state map[string]interface{}) *Google_bigtable_table {
-	r := &Google_bigtable_table{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_bigtable_table_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["instance_name"]; ok {
-	r.Instance_name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_bigtable_tableHandler ...
-type Google_bigtable_tableHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_bigtable_tableHandler) Create(desired *Google_bigtable_table) (*Google_bigtable_table, string, error) {
-	rState := Google_bigtable_tableMapper(desired)
-	id, err := bridge.Create(h.provider, "google_bigtable_table", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_bigtable_tableHandler) Read(externalID string) (*Google_bigtable_table, error) {
-	actual, err := bridge.Read(h.provider, "google_bigtable_table", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_bigtable_tableUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_bigtable_tableHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_bigtable_table", externalID)
-}
-
-type Google_sql_ssl_cert struct {
-     Google_sql_ssl_cert_id *string
-     Create_time *string
-     Private_key *string
-     Instance string
-     Cert *string
-     Expiration_time *string
-     Server_ca_cert *string
-     Sha1_fingerprint *string
-     Common_name string
-     Cert_serial_number *string
-}
-
-
-func Google_sql_ssl_certMapper(r *Google_sql_ssl_cert) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Private_key != nil {
-    config["private_key"] = *r.Private_key
-}
-    config["instance"] = r.Instance
-if r.Cert != nil {
-    config["cert"] = *r.Cert
-}
-if r.Create_time != nil {
-    config["create_time"] = *r.Create_time
-}
-if r.Server_ca_cert != nil {
-    config["server_ca_cert"] = *r.Server_ca_cert
-}
-if r.Sha1_fingerprint != nil {
-    config["sha1_fingerprint"] = *r.Sha1_fingerprint
-}
-    config["common_name"] = r.Common_name
-if r.Cert_serial_number != nil {
-    config["cert_serial_number"] = *r.Cert_serial_number
-}
-if r.Expiration_time != nil {
-    config["expiration_time"] = *r.Expiration_time
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_sql_ssl_certUnmapper(state map[string]interface{}) *Google_sql_ssl_cert {
-	r := &Google_sql_ssl_cert{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_sql_ssl_cert_id = &x
-}
-
-if x, ok := state["private_key"]; ok {
-	x := x.(string)
-	r.Private_key = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["cert"]; ok {
-	x := x.(string)
-	r.Cert = &x
-}
-
-if x, ok := state["create_time"]; ok {
-	x := x.(string)
-	r.Create_time = &x
-}
-
-if x, ok := state["server_ca_cert"]; ok {
-	x := x.(string)
-	r.Server_ca_cert = &x
-}
-
-if x, ok := state["sha1_fingerprint"]; ok {
-	x := x.(string)
-	r.Sha1_fingerprint = &x
-}
-
-if x, ok := state["common_name"]; ok {
-	r.Common_name = x.(string)
-}
-
-if x, ok := state["cert_serial_number"]; ok {
-	x := x.(string)
-	r.Cert_serial_number = &x
-}
-
-if x, ok := state["expiration_time"]; ok {
-	x := x.(string)
-	r.Expiration_time = &x
-}
-	return r
-}
-
-
-// Google_sql_ssl_certHandler ...
-type Google_sql_ssl_certHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_sql_ssl_certHandler) Create(desired *Google_sql_ssl_cert) (*Google_sql_ssl_cert, string, error) {
-	rState := Google_sql_ssl_certMapper(desired)
-	id, err := bridge.Create(h.provider, "google_sql_ssl_cert", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_sql_ssl_certHandler) Read(externalID string) (*Google_sql_ssl_cert, error) {
-	actual, err := bridge.Read(h.provider, "google_sql_ssl_cert", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_sql_ssl_certUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_sql_ssl_certHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_sql_ssl_cert", externalID)
-}
-
-type Google_compute_instance struct {
-     Google_compute_instance_id *string
-     Metadata_fingerprint *string
-     Description *string
-     Deletion_protection *bool
-     Zone *string
-     Machine_type string
-     Min_cpu_platform *string
-     Tags_fingerprint *string
-     Metadata_startup_script *string
-     Cpu_platform *string
-     Self_link *string
-     Allow_stopping_for_update *bool
-     Project *string
-     Label_fingerprint *string
-     Name string
-     Can_ip_forward *bool
-     Instance_id *string
-}
-
-
-func Google_compute_instanceMapper(r *Google_compute_instance) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Min_cpu_platform != nil {
-    config["min_cpu_platform"] = *r.Min_cpu_platform
-}
-if r.Tags_fingerprint != nil {
-    config["tags_fingerprint"] = *r.Tags_fingerprint
-}
-    config["machine_type"] = r.Machine_type
-if r.Metadata_startup_script != nil {
-    config["metadata_startup_script"] = *r.Metadata_startup_script
-}
-if r.Cpu_platform != nil {
-    config["cpu_platform"] = *r.Cpu_platform
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Allow_stopping_for_update != nil {
-    config["allow_stopping_for_update"] = *r.Allow_stopping_for_update
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Can_ip_forward != nil {
-    config["can_ip_forward"] = *r.Can_ip_forward
-}
-if r.Instance_id != nil {
-    config["instance_id"] = *r.Instance_id
-}
-    config["name"] = r.Name
-if r.Deletion_protection != nil {
-    config["deletion_protection"] = *r.Deletion_protection
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Metadata_fingerprint != nil {
-    config["metadata_fingerprint"] = *r.Metadata_fingerprint
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_instanceUnmapper(state map[string]interface{}) *Google_compute_instance {
-	r := &Google_compute_instance{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_instance_id = &x
-}
-
-if x, ok := state["machine_type"]; ok {
-	r.Machine_type = x.(string)
-}
-
-if x, ok := state["min_cpu_platform"]; ok {
-	x := x.(string)
-	r.Min_cpu_platform = &x
-}
-
-if x, ok := state["tags_fingerprint"]; ok {
-	x := x.(string)
-	r.Tags_fingerprint = &x
-}
-
-if x, ok := state["metadata_startup_script"]; ok {
-	x := x.(string)
-	r.Metadata_startup_script = &x
-}
-
-if x, ok := state["cpu_platform"]; ok {
-	x := x.(string)
-	r.Cpu_platform = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["allow_stopping_for_update"]; ok {
-	x := x.(bool)
-	r.Allow_stopping_for_update = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["can_ip_forward"]; ok {
-	x := x.(bool)
-	r.Can_ip_forward = &x
-}
-
-if x, ok := state["instance_id"]; ok {
-	x := x.(string)
-	r.Instance_id = &x
-}
-
-if x, ok := state["metadata_fingerprint"]; ok {
-	x := x.(string)
-	r.Metadata_fingerprint = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["deletion_protection"]; ok {
-	x := x.(bool)
-	r.Deletion_protection = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-	return r
-}
-
-
-// Google_compute_instanceHandler ...
-type Google_compute_instanceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_instanceHandler) Create(desired *Google_compute_instance) (*Google_compute_instance, string, error) {
-	rState := Google_compute_instanceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_instance", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_instanceHandler) Read(externalID string) (*Google_compute_instance, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_instance", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_instanceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_instanceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_instance", externalID)
-}
-
-type Google_dataproc_job struct {
-     Google_dataproc_job_id *string
-     Project *string
-     Driver_output_resource_uri *string
-     Driver_controls_files_uri *string
-     Region *string
-     Force_delete *bool
-}
-
-
-func Google_dataproc_jobMapper(r *Google_dataproc_job) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Driver_output_resource_uri != nil {
-    config["driver_output_resource_uri"] = *r.Driver_output_resource_uri
-}
-if r.Driver_controls_files_uri != nil {
-    config["driver_controls_files_uri"] = *r.Driver_controls_files_uri
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Force_delete != nil {
-    config["force_delete"] = *r.Force_delete
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_dataproc_jobUnmapper(state map[string]interface{}) *Google_dataproc_job {
-	r := &Google_dataproc_job{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_dataproc_job_id = &x
-}
-
-if x, ok := state["driver_controls_files_uri"]; ok {
-	x := x.(string)
-	r.Driver_controls_files_uri = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["driver_output_resource_uri"]; ok {
-	x := x.(string)
-	r.Driver_output_resource_uri = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["force_delete"]; ok {
-	x := x.(bool)
-	r.Force_delete = &x
-}
-	return r
-}
-
-
-// Google_dataproc_jobHandler ...
-type Google_dataproc_jobHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_dataproc_jobHandler) Create(desired *Google_dataproc_job) (*Google_dataproc_job, string, error) {
-	rState := Google_dataproc_jobMapper(desired)
-	id, err := bridge.Create(h.provider, "google_dataproc_job", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_dataproc_jobHandler) Read(externalID string) (*Google_dataproc_job, error) {
-	actual, err := bridge.Read(h.provider, "google_dataproc_job", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_dataproc_jobUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_dataproc_jobHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_dataproc_job", externalID)
-}
-
-type Google_compute_address struct {
-     Google_compute_address_id *string
-     Description *string
-     Region *string
-     Subnetwork *string
-     Label_fingerprint *string
-     Project *string
-     Address *string
-     Address_type *string
-     Network_tier *string
-     Creation_timestamp *string
-     Self_link *string
-     Name string
-}
-
-
-func Google_compute_addressMapper(r *Google_compute_address) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Network_tier != nil {
-    config["network_tier"] = *r.Network_tier
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Address != nil {
-    config["address"] = *r.Address
-}
-if r.Address_type != nil {
-    config["address_type"] = *r.Address_type
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Subnetwork != nil {
-    config["subnetwork"] = *r.Subnetwork
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_addressUnmapper(state map[string]interface{}) *Google_compute_address {
-	r := &Google_compute_address{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_address_id = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network_tier"]; ok {
-	x := x.(string)
-	r.Network_tier = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["subnetwork"]; ok {
-	x := x.(string)
-	r.Subnetwork = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["address"]; ok {
-	x := x.(string)
-	r.Address = &x
-}
-
-if x, ok := state["address_type"]; ok {
-	x := x.(string)
-	r.Address_type = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-	return r
-}
-
-
-// Google_compute_addressHandler ...
-type Google_compute_addressHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_addressHandler) Create(desired *Google_compute_address) (*Google_compute_address, string, error) {
-	rState := Google_compute_addressMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_address", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_addressHandler) Read(externalID string) (*Google_compute_address, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_address", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_addressUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_addressHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_address", externalID)
-}
-
-type Google_compute_router struct {
-     Google_compute_router_id *string
-     Description *string
-     Region *string
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
-     Name string
-     Network string
-}
-
-
-func Google_compute_routerMapper(r *Google_compute_router) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["network"] = r.Network
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_routerUnmapper(state map[string]interface{}) *Google_compute_router {
-	r := &Google_compute_router{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_router_id = &x
-}
-
-if x, ok := state["network"]; ok {
-	r.Network = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_routerHandler ...
-type Google_compute_routerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_routerHandler) Create(desired *Google_compute_router) (*Google_compute_router, string, error) {
-	rState := Google_compute_routerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_router", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_routerHandler) Read(externalID string) (*Google_compute_router, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_router", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_routerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_routerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_router", externalID)
-}
-
-type Google_compute_region_backend_service struct {
-     Google_compute_region_backend_service_id *string
-     Project *string
-     Session_affinity *string
-     Region *string
-     Self_link *string
-     Description *string
-     Fingerprint *string
-     Protocol *string
-     Name string
-}
-
-
-func Google_compute_region_backend_serviceMapper(r *Google_compute_region_backend_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Session_affinity != nil {
-    config["session_affinity"] = *r.Session_affinity
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-    config["name"] = r.Name
-if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Protocol != nil {
-    config["protocol"] = *r.Protocol
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_region_backend_serviceUnmapper(state map[string]interface{}) *Google_compute_region_backend_service {
-	r := &Google_compute_region_backend_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_region_backend_service_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-
-if x, ok := state["protocol"]; ok {
-	x := x.(string)
-	r.Protocol = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["session_affinity"]; ok {
-	x := x.(string)
-	r.Session_affinity = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_region_backend_serviceHandler ...
-type Google_compute_region_backend_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_region_backend_serviceHandler) Create(desired *Google_compute_region_backend_service) (*Google_compute_region_backend_service, string, error) {
-	rState := Google_compute_region_backend_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_region_backend_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_region_backend_serviceHandler) Read(externalID string) (*Google_compute_region_backend_service, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_region_backend_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_region_backend_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_region_backend_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_region_backend_service", externalID)
-}
-
-type Google_compute_backend_service struct {
-     Google_compute_backend_service_id *string
-     Self_link *string
-     Name string
-     Description *string
-     Security_policy *string
-     Enable_cdn *bool
-     Fingerprint *string
-     Port_name *string
-     Project *string
-     Protocol *string
-     Session_affinity *string
-     Region *string
-}
-
-
-func Google_compute_backend_serviceMapper(r *Google_compute_backend_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Port_name != nil {
-    config["port_name"] = *r.Port_name
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Security_policy != nil {
-    config["security_policy"] = *r.Security_policy
-}
-if r.Enable_cdn != nil {
-    config["enable_cdn"] = *r.Enable_cdn
-}
-if r.Protocol != nil {
-    config["protocol"] = *r.Protocol
-}
-if r.Session_affinity != nil {
-    config["session_affinity"] = *r.Session_affinity
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_backend_serviceUnmapper(state map[string]interface{}) *Google_compute_backend_service {
-	r := &Google_compute_backend_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_backend_service_id = &x
-}
-
-if x, ok := state["protocol"]; ok {
-	x := x.(string)
-	r.Protocol = &x
-}
-
-if x, ok := state["session_affinity"]; ok {
-	x := x.(string)
-	r.Session_affinity = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["port_name"]; ok {
-	x := x.(string)
-	r.Port_name = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["security_policy"]; ok {
-	x := x.(string)
-	r.Security_policy = &x
-}
-
-if x, ok := state["enable_cdn"]; ok {
-	x := x.(bool)
-	r.Enable_cdn = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-	return r
-}
-
-
-// Google_compute_backend_serviceHandler ...
-type Google_compute_backend_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_backend_serviceHandler) Create(desired *Google_compute_backend_service) (*Google_compute_backend_service, string, error) {
-	rState := Google_compute_backend_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_backend_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_backend_serviceHandler) Read(externalID string) (*Google_compute_backend_service, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_backend_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_backend_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_backend_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_backend_service", externalID)
-}
-
-type Google_compute_subnetwork struct {
-     Google_compute_subnetwork_id *string
-     Ip_cidr_range string
-     Network string
-     Gateway_address *string
-     Project *string
-     Fingerprint *string
-     Self_link *string
-     Name string
-     Description *string
-     Enable_flow_logs *bool
-     Private_ip_google_access *bool
-     Region *string
-     Creation_timestamp *string
-}
-
-
-func Google_compute_subnetworkMapper(r *Google_compute_subnetwork) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["ip_cidr_range"] = r.Ip_cidr_range
-    config["network"] = r.Network
-if r.Gateway_address != nil {
-    config["gateway_address"] = *r.Gateway_address
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Enable_flow_logs != nil {
-    config["enable_flow_logs"] = *r.Enable_flow_logs
-}
-if r.Private_ip_google_access != nil {
-    config["private_ip_google_access"] = *r.Private_ip_google_access
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_subnetworkUnmapper(state map[string]interface{}) *Google_compute_subnetwork {
-	r := &Google_compute_subnetwork{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_subnetwork_id = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enable_flow_logs"]; ok {
-	x := x.(bool)
-	r.Enable_flow_logs = &x
-}
-
-if x, ok := state["private_ip_google_access"]; ok {
-	x := x.(bool)
-	r.Private_ip_google_access = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["ip_cidr_range"]; ok {
-	r.Ip_cidr_range = x.(string)
-}
-
-if x, ok := state["network"]; ok {
-	r.Network = x.(string)
-}
-
-if x, ok := state["gateway_address"]; ok {
-	x := x.(string)
-	r.Gateway_address = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_subnetworkHandler ...
-type Google_compute_subnetworkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_subnetworkHandler) Create(desired *Google_compute_subnetwork) (*Google_compute_subnetwork, string, error) {
-	rState := Google_compute_subnetworkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_subnetwork", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_subnetworkHandler) Read(externalID string) (*Google_compute_subnetwork, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_subnetwork", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_subnetworkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_subnetworkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_subnetwork", externalID)
-}
-
-type Google_storage_notification struct {
-     Google_storage_notification_id *string
-     Object_name_prefix *string
-     Self_link *string
-     Bucket string
-     Payload_format string
-     Topic string
-}
-
-
-func Google_storage_notificationMapper(r *Google_storage_notification) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Object_name_prefix != nil {
-    config["object_name_prefix"] = *r.Object_name_prefix
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["bucket"] = r.Bucket
-    config["payload_format"] = r.Payload_format
-    config["topic"] = r.Topic
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_notificationUnmapper(state map[string]interface{}) *Google_storage_notification {
-	r := &Google_storage_notification{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_notification_id = &x
-}
-
-if x, ok := state["object_name_prefix"]; ok {
-	x := x.(string)
-	r.Object_name_prefix = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["payload_format"]; ok {
-	r.Payload_format = x.(string)
-}
-
-if x, ok := state["topic"]; ok {
-	r.Topic = x.(string)
-}
-	return r
-}
-
-
-// Google_storage_notificationHandler ...
-type Google_storage_notificationHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_notificationHandler) Create(desired *Google_storage_notification) (*Google_storage_notification, string, error) {
-	rState := Google_storage_notificationMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_notification", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_notificationHandler) Read(externalID string) (*Google_storage_notification, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_notification", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_notificationUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_notificationHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_notification", externalID)
-}
-
-type Google_project struct {
-     Google_project_id *string
-     Skip_delete *bool
-     Name string
-     Org_id *string
-     Folder_id *string
-     Policy_data *string
-     Number *string
-     Billing_account *string
-     Project_id string
-     Auto_create_network *bool
-     Policy_etag *string
-}
-
-
-func Google_projectMapper(r *Google_project) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Number != nil {
-    config["number"] = *r.Number
-}
-if r.Billing_account != nil {
-    config["billing_account"] = *r.Billing_account
-}
-if r.Skip_delete != nil {
-    config["skip_delete"] = *r.Skip_delete
-}
-    config["name"] = r.Name
-if r.Org_id != nil {
-    config["org_id"] = *r.Org_id
-}
-if r.Folder_id != nil {
-    config["folder_id"] = *r.Folder_id
-}
-if r.Policy_data != nil {
-    config["policy_data"] = *r.Policy_data
-}
-    config["project_id"] = r.Project_id
-if r.Auto_create_network != nil {
-    config["auto_create_network"] = *r.Auto_create_network
-}
-if r.Policy_etag != nil {
-    config["policy_etag"] = *r.Policy_etag
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_projectUnmapper(state map[string]interface{}) *Google_project {
-	r := &Google_project{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_id = &x
-}
-
-if x, ok := state["org_id"]; ok {
-	x := x.(string)
-	r.Org_id = &x
-}
-
-if x, ok := state["folder_id"]; ok {
-	x := x.(string)
-	r.Folder_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	x := x.(string)
-	r.Policy_data = &x
-}
-
-if x, ok := state["number"]; ok {
-	x := x.(string)
-	r.Number = &x
-}
-
-if x, ok := state["billing_account"]; ok {
-	x := x.(string)
-	r.Billing_account = &x
-}
-
-if x, ok := state["skip_delete"]; ok {
-	x := x.(bool)
-	r.Skip_delete = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["policy_etag"]; ok {
-	x := x.(string)
-	r.Policy_etag = &x
-}
-
-if x, ok := state["project_id"]; ok {
-	r.Project_id = x.(string)
-}
-
-if x, ok := state["auto_create_network"]; ok {
-	x := x.(bool)
-	r.Auto_create_network = &x
-}
-	return r
-}
-
-
-// Google_projectHandler ...
-type Google_projectHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_projectHandler) Create(desired *Google_project) (*Google_project, string, error) {
-	rState := Google_projectMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_projectHandler) Read(externalID string) (*Google_project, error) {
-	actual, err := bridge.Read(h.provider, "google_project", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_projectUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_projectHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project", externalID)
-}
-
-type Google_project_iam_policy struct {
-     Google_project_iam_policy_id *string
-     Project *string
-     Policy_data string
-     Authoritative *bool
-     Etag *string
-     Restore_policy *string
-     Disable_project *bool
-}
-
-
-func Google_project_iam_policyMapper(r *Google_project_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["policy_data"] = r.Policy_data
-if r.Authoritative != nil {
-    config["authoritative"] = *r.Authoritative
-}
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Restore_policy != nil {
-    config["restore_policy"] = *r.Restore_policy
-}
-if r.Disable_project != nil {
-    config["disable_project"] = *r.Disable_project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_iam_policyUnmapper(state map[string]interface{}) *Google_project_iam_policy {
-	r := &Google_project_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_iam_policy_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["authoritative"]; ok {
-	x := x.(bool)
-	r.Authoritative = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["restore_policy"]; ok {
-	x := x.(string)
-	r.Restore_policy = &x
-}
-
-if x, ok := state["disable_project"]; ok {
-	x := x.(bool)
-	r.Disable_project = &x
-}
-	return r
-}
-
-
-// Google_project_iam_policyHandler ...
-type Google_project_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_iam_policyHandler) Create(desired *Google_project_iam_policy) (*Google_project_iam_policy, string, error) {
-	rState := Google_project_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_iam_policyHandler) Read(externalID string) (*Google_project_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_project_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_iam_policy", externalID)
-}
-
-type Google_compute_global_address struct {
-     Google_compute_global_address_id *string
-     Network *string
-     Purpose *string
-     Name string
-     Description *string
-     Address *string
-     Creation_timestamp *string
-     Label_fingerprint *string
-     Project *string
-     Self_link *string
-     Address_type *string
-     Ip_version *string
-}
-
-
-func Google_compute_global_addressMapper(r *Google_compute_global_address) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Address_type != nil {
-    config["address_type"] = *r.Address_type
-}
-if r.Ip_version != nil {
-    config["ip_version"] = *r.Ip_version
-}
-if r.Address != nil {
-    config["address"] = *r.Address
-}
-if r.Network != nil {
-    config["network"] = *r.Network
-}
-if r.Purpose != nil {
-    config["purpose"] = *r.Purpose
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_global_addressUnmapper(state map[string]interface{}) *Google_compute_global_address {
-	r := &Google_compute_global_address{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_global_address_id = &x
-}
-
-if x, ok := state["ip_version"]; ok {
-	x := x.(string)
-	r.Ip_version = &x
-}
-
-if x, ok := state["address"]; ok {
-	x := x.(string)
-	r.Address = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["address_type"]; ok {
-	x := x.(string)
-	r.Address_type = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["network"]; ok {
-	x := x.(string)
-	r.Network = &x
-}
-
-if x, ok := state["purpose"]; ok {
-	x := x.(string)
-	r.Purpose = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_global_addressHandler ...
-type Google_compute_global_addressHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_global_addressHandler) Create(desired *Google_compute_global_address) (*Google_compute_global_address, string, error) {
-	rState := Google_compute_global_addressMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_global_address", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_global_addressHandler) Read(externalID string) (*Google_compute_global_address, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_global_address", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_global_addressUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_global_addressHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_global_address", externalID)
-}
-
-type Google_compute_instance_group_manager struct {
-     Google_compute_instance_group_manager_id *string
-     Description *string
-     Instance_group *string
-     Update_strategy *string
-     Wait_for_instances *bool
-     Name string
-     Zone *string
-     Project *string
-     Base_instance_name string
-     Instance_template *string
-     Fingerprint *string
-     Self_link *string
-}
-
-
-func Google_compute_instance_group_managerMapper(r *Google_compute_instance_group_manager) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Instance_group != nil {
-    config["instance_group"] = *r.Instance_group
-}
-if r.Update_strategy != nil {
-    config["update_strategy"] = *r.Update_strategy
-}
-if r.Wait_for_instances != nil {
-    config["wait_for_instances"] = *r.Wait_for_instances
-}
-    config["name"] = r.Name
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["base_instance_name"] = r.Base_instance_name
-if r.Instance_template != nil {
-    config["instance_template"] = *r.Instance_template
-}
-if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_instance_group_managerUnmapper(state map[string]interface{}) *Google_compute_instance_group_manager {
-	r := &Google_compute_instance_group_manager{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_instance_group_manager_id = &x
-}
-
-if x, ok := state["instance_template"]; ok {
-	x := x.(string)
-	r.Instance_template = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["base_instance_name"]; ok {
-	r.Base_instance_name = x.(string)
-}
-
-if x, ok := state["instance_group"]; ok {
-	x := x.(string)
-	r.Instance_group = &x
-}
-
-if x, ok := state["update_strategy"]; ok {
-	x := x.(string)
-	r.Update_strategy = &x
-}
-
-if x, ok := state["wait_for_instances"]; ok {
-	x := x.(bool)
-	r.Wait_for_instances = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_instance_group_managerHandler ...
-type Google_compute_instance_group_managerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_instance_group_managerHandler) Create(desired *Google_compute_instance_group_manager) (*Google_compute_instance_group_manager, string, error) {
-	rState := Google_compute_instance_group_managerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_instance_group_manager", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_instance_group_managerHandler) Read(externalID string) (*Google_compute_instance_group_manager, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_instance_group_manager", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_instance_group_managerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_instance_group_managerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_instance_group_manager", externalID)
-}
-
-type Google_cloudiot_registry struct {
-     Google_cloudiot_registry_id *string
-     Project *string
-     Region *string
-     Name string
-}
-
-
-func Google_cloudiot_registryMapper(r *Google_cloudiot_registry) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_cloudiot_registryUnmapper(state map[string]interface{}) *Google_cloudiot_registry {
-	r := &Google_cloudiot_registry{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_cloudiot_registry_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-	return r
-}
-
-
-// Google_cloudiot_registryHandler ...
-type Google_cloudiot_registryHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_cloudiot_registryHandler) Create(desired *Google_cloudiot_registry) (*Google_cloudiot_registry, string, error) {
-	rState := Google_cloudiot_registryMapper(desired)
-	id, err := bridge.Create(h.provider, "google_cloudiot_registry", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_cloudiot_registryHandler) Read(externalID string) (*Google_cloudiot_registry, error) {
-	actual, err := bridge.Read(h.provider, "google_cloudiot_registry", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_cloudiot_registryUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_cloudiot_registryHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_cloudiot_registry", externalID)
-}
-
-type Google_endpoints_service struct {
-     Google_endpoints_service_id *string
-     Service_name string
-     Openapi_config *string
-     Protoc_output *string
-     Project *string
-     Grpc_config *string
-     Protoc_output_base64 *string
-     Config_id *string
-     Dns_address *string
-}
-
-
-func Google_endpoints_serviceMapper(r *Google_endpoints_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["service_name"] = r.Service_name
-if r.Openapi_config != nil {
-    config["openapi_config"] = *r.Openapi_config
-}
-if r.Protoc_output != nil {
-    config["protoc_output"] = *r.Protoc_output
-}
-if r.Dns_address != nil {
-    config["dns_address"] = *r.Dns_address
-}
-if r.Grpc_config != nil {
-    config["grpc_config"] = *r.Grpc_config
-}
-if r.Protoc_output_base64 != nil {
-    config["protoc_output_base64"] = *r.Protoc_output_base64
-}
-if r.Config_id != nil {
-    config["config_id"] = *r.Config_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_endpoints_serviceUnmapper(state map[string]interface{}) *Google_endpoints_service {
-	r := &Google_endpoints_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_endpoints_service_id = &x
-}
-
-if x, ok := state["protoc_output"]; ok {
-	x := x.(string)
-	r.Protoc_output = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["service_name"]; ok {
-	r.Service_name = x.(string)
-}
-
-if x, ok := state["openapi_config"]; ok {
-	x := x.(string)
-	r.Openapi_config = &x
-}
-
-if x, ok := state["config_id"]; ok {
-	x := x.(string)
-	r.Config_id = &x
-}
-
-if x, ok := state["dns_address"]; ok {
-	x := x.(string)
-	r.Dns_address = &x
-}
-
-if x, ok := state["grpc_config"]; ok {
-	x := x.(string)
-	r.Grpc_config = &x
-}
-
-if x, ok := state["protoc_output_base64"]; ok {
-	x := x.(string)
-	r.Protoc_output_base64 = &x
-}
-	return r
-}
-
-
-// Google_endpoints_serviceHandler ...
-type Google_endpoints_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_endpoints_serviceHandler) Create(desired *Google_endpoints_service) (*Google_endpoints_service, string, error) {
-	rState := Google_endpoints_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_endpoints_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_endpoints_serviceHandler) Read(externalID string) (*Google_endpoints_service, error) {
-	actual, err := bridge.Read(h.provider, "google_endpoints_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_endpoints_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_endpoints_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_endpoints_service", externalID)
-}
-
-type Google_logging_billing_account_exclusion struct {
-     Google_logging_billing_account_exclusion_id *string
-     Filter string
-     Name string
-     Description *string
-     Disabled *bool
-     Billing_account string
-}
-
-
-func Google_logging_billing_account_exclusionMapper(r *Google_logging_billing_account_exclusion) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["filter"] = r.Filter
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Disabled != nil {
-    config["disabled"] = *r.Disabled
-}
-    config["billing_account"] = r.Billing_account
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_billing_account_exclusionUnmapper(state map[string]interface{}) *Google_logging_billing_account_exclusion {
-	r := &Google_logging_billing_account_exclusion{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_billing_account_exclusion_id = &x
-}
-
-if x, ok := state["billing_account"]; ok {
-	r.Billing_account = x.(string)
-}
-
-if x, ok := state["filter"]; ok {
-	r.Filter = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["disabled"]; ok {
-	x := x.(bool)
-	r.Disabled = &x
-}
-	return r
-}
-
-
-// Google_logging_billing_account_exclusionHandler ...
-type Google_logging_billing_account_exclusionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_billing_account_exclusionHandler) Create(desired *Google_logging_billing_account_exclusion) (*Google_logging_billing_account_exclusion, string, error) {
-	rState := Google_logging_billing_account_exclusionMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_billing_account_exclusion", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_billing_account_exclusionHandler) Read(externalID string) (*Google_logging_billing_account_exclusion, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_billing_account_exclusion", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_billing_account_exclusionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_billing_account_exclusionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_billing_account_exclusion", externalID)
-}
-
-type Google_folder struct {
-     Google_folder_id *string
-     Parent string
-     Display_name string
-     Name *string
-     Lifecycle_state *string
-     Create_time *string
-}
-
-
-func Google_folderMapper(r *Google_folder) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Lifecycle_state != nil {
-    config["lifecycle_state"] = *r.Lifecycle_state
-}
-if r.Create_time != nil {
-    config["create_time"] = *r.Create_time
-}
-    config["parent"] = r.Parent
-    config["display_name"] = r.Display_name
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_folderUnmapper(state map[string]interface{}) *Google_folder {
-	r := &Google_folder{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_folder_id = &x
-}
-
-if x, ok := state["create_time"]; ok {
-	x := x.(string)
-	r.Create_time = &x
-}
-
-if x, ok := state["parent"]; ok {
-	r.Parent = x.(string)
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["lifecycle_state"]; ok {
-	x := x.(string)
-	r.Lifecycle_state = &x
-}
-	return r
-}
-
-
-// Google_folderHandler ...
-type Google_folderHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_folderHandler) Create(desired *Google_folder) (*Google_folder, string, error) {
-	rState := Google_folderMapper(desired)
-	id, err := bridge.Create(h.provider, "google_folder", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_folderHandler) Read(externalID string) (*Google_folder, error) {
-	actual, err := bridge.Read(h.provider, "google_folder", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_folderUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_folderHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_folder", externalID)
-}
-
-type Google_project_iam_member struct {
-     Google_project_iam_member_id *string
-     Role string
-     Member string
-     Etag *string
-     Project *string
-}
-
-
-func Google_project_iam_memberMapper(r *Google_project_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_iam_memberUnmapper(state map[string]interface{}) *Google_project_iam_member {
-	r := &Google_project_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_iam_member_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_project_iam_memberHandler ...
-type Google_project_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_iam_memberHandler) Create(desired *Google_project_iam_member) (*Google_project_iam_member, string, error) {
-	rState := Google_project_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_iam_memberHandler) Read(externalID string) (*Google_project_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_project_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_iam_member", externalID)
-}
-
-type Google_compute_forwarding_rule struct {
-     Google_compute_forwarding_rule_id *string
-     Description *string
-     Service_label *string
-     Subnetwork *string
-     Label_fingerprint *string
-     Self_link *string
-     Ip_address *string
-     Ip_protocol *string
-     Port_range *string
-     Project *string
-     Network *string
-     Region *string
-     Backend_service *string
-     Ip_version *string
-     Network_tier *string
-     Target *string
-     Creation_timestamp *string
-     Service_name *string
-     Name string
-     Load_balancing_scheme *string
-}
-
-
-func Google_compute_forwarding_ruleMapper(r *Google_compute_forwarding_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Network != nil {
-    config["network"] = *r.Network
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Backend_service != nil {
-    config["backend_service"] = *r.Backend_service
-}
-if r.Ip_version != nil {
-    config["ip_version"] = *r.Ip_version
-}
-if r.Network_tier != nil {
-    config["network_tier"] = *r.Network_tier
-}
-if r.Target != nil {
-    config["target"] = *r.Target
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Service_name != nil {
-    config["service_name"] = *r.Service_name
-}
-    config["name"] = r.Name
-if r.Load_balancing_scheme != nil {
-    config["load_balancing_scheme"] = *r.Load_balancing_scheme
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Service_label != nil {
-    config["service_label"] = *r.Service_label
-}
-if r.Subnetwork != nil {
-    config["subnetwork"] = *r.Subnetwork
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Ip_address != nil {
-    config["ip_address"] = *r.Ip_address
-}
-if r.Ip_protocol != nil {
-    config["ip_protocol"] = *r.Ip_protocol
-}
-if r.Port_range != nil {
-    config["port_range"] = *r.Port_range
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_forwarding_ruleUnmapper(state map[string]interface{}) *Google_compute_forwarding_rule {
-	r := &Google_compute_forwarding_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_forwarding_rule_id = &x
-}
-
-if x, ok := state["service_name"]; ok {
-	x := x.(string)
-	r.Service_name = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["load_balancing_scheme"]; ok {
-	x := x.(string)
-	r.Load_balancing_scheme = &x
-}
-
-if x, ok := state["network_tier"]; ok {
-	x := x.(string)
-	r.Network_tier = &x
-}
-
-if x, ok := state["target"]; ok {
-	x := x.(string)
-	r.Target = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["subnetwork"]; ok {
-	x := x.(string)
-	r.Subnetwork = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["ip_address"]; ok {
-	x := x.(string)
-	r.Ip_address = &x
-}
-
-if x, ok := state["ip_protocol"]; ok {
-	x := x.(string)
-	r.Ip_protocol = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["service_label"]; ok {
-	x := x.(string)
-	r.Service_label = &x
-}
-
-if x, ok := state["port_range"]; ok {
-	x := x.(string)
-	r.Port_range = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["backend_service"]; ok {
-	x := x.(string)
-	r.Backend_service = &x
-}
-
-if x, ok := state["ip_version"]; ok {
-	x := x.(string)
-	r.Ip_version = &x
-}
-
-if x, ok := state["network"]; ok {
-	x := x.(string)
-	r.Network = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-	return r
-}
-
-
-// Google_compute_forwarding_ruleHandler ...
-type Google_compute_forwarding_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_forwarding_ruleHandler) Create(desired *Google_compute_forwarding_rule) (*Google_compute_forwarding_rule, string, error) {
-	rState := Google_compute_forwarding_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_forwarding_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_forwarding_ruleHandler) Read(externalID string) (*Google_compute_forwarding_rule, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_forwarding_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_forwarding_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_forwarding_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_forwarding_rule", externalID)
-}
-
-type Google_container_cluster struct {
-     Google_container_cluster_id *string
-     Node_version *string
-     Region *string
-     Enable_legacy_abac *bool
-     Min_master_version *string
-     Master_version *string
-     Cluster_ipv4_cidr *string
-     Enable_kubernetes_alpha *bool
-     Logging_service *string
-     Monitoring_service *string
-     Subnetwork *string
-     Endpoint *string
-     Private_cluster *bool
-     Enable_tpu *bool
-     Description *string
-     Project *string
-     Zone *string
-     Remove_default_node_pool *bool
-     Network *string
-     Enable_binary_authorization *bool
-     Master_ipv4_cidr_block *string
-     Name string
-}
-
-
-func Google_container_clusterMapper(r *Google_container_cluster) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Remove_default_node_pool != nil {
-    config["remove_default_node_pool"] = *r.Remove_default_node_pool
-}
-if r.Network != nil {
-    config["network"] = *r.Network
-}
-if r.Master_ipv4_cidr_block != nil {
-    config["master_ipv4_cidr_block"] = *r.Master_ipv4_cidr_block
-}
-    config["name"] = r.Name
-if r.Enable_binary_authorization != nil {
-    config["enable_binary_authorization"] = *r.Enable_binary_authorization
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Node_version != nil {
-    config["node_version"] = *r.Node_version
-}
-if r.Master_version != nil {
-    config["master_version"] = *r.Master_version
-}
-if r.Enable_legacy_abac != nil {
-    config["enable_legacy_abac"] = *r.Enable_legacy_abac
-}
-if r.Min_master_version != nil {
-    config["min_master_version"] = *r.Min_master_version
-}
-if r.Monitoring_service != nil {
-    config["monitoring_service"] = *r.Monitoring_service
-}
-if r.Subnetwork != nil {
-    config["subnetwork"] = *r.Subnetwork
-}
-if r.Endpoint != nil {
-    config["endpoint"] = *r.Endpoint
-}
-if r.Private_cluster != nil {
-    config["private_cluster"] = *r.Private_cluster
-}
-if r.Cluster_ipv4_cidr != nil {
-    config["cluster_ipv4_cidr"] = *r.Cluster_ipv4_cidr
-}
-if r.Enable_kubernetes_alpha != nil {
-    config["enable_kubernetes_alpha"] = *r.Enable_kubernetes_alpha
-}
-if r.Logging_service != nil {
-    config["logging_service"] = *r.Logging_service
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Enable_tpu != nil {
-    config["enable_tpu"] = *r.Enable_tpu
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_container_clusterUnmapper(state map[string]interface{}) *Google_container_cluster {
-	r := &Google_container_cluster{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_container_cluster_id = &x
-}
-
-if x, ok := state["endpoint"]; ok {
-	x := x.(string)
-	r.Endpoint = &x
-}
-
-if x, ok := state["private_cluster"]; ok {
-	x := x.(bool)
-	r.Private_cluster = &x
-}
-
-if x, ok := state["cluster_ipv4_cidr"]; ok {
-	x := x.(string)
-	r.Cluster_ipv4_cidr = &x
-}
-
-if x, ok := state["enable_kubernetes_alpha"]; ok {
-	x := x.(bool)
-	r.Enable_kubernetes_alpha = &x
-}
-
-if x, ok := state["logging_service"]; ok {
-	x := x.(string)
-	r.Logging_service = &x
-}
-
-if x, ok := state["monitoring_service"]; ok {
-	x := x.(string)
-	r.Monitoring_service = &x
-}
-
-if x, ok := state["subnetwork"]; ok {
-	x := x.(string)
-	r.Subnetwork = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enable_tpu"]; ok {
-	x := x.(bool)
-	r.Enable_tpu = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["remove_default_node_pool"]; ok {
-	x := x.(bool)
-	r.Remove_default_node_pool = &x
-}
-
-if x, ok := state["network"]; ok {
-	x := x.(string)
-	r.Network = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["enable_binary_authorization"]; ok {
-	x := x.(bool)
-	r.Enable_binary_authorization = &x
-}
-
-if x, ok := state["master_ipv4_cidr_block"]; ok {
-	x := x.(string)
-	r.Master_ipv4_cidr_block = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["node_version"]; ok {
-	x := x.(string)
-	r.Node_version = &x
-}
-
-if x, ok := state["enable_legacy_abac"]; ok {
-	x := x.(bool)
-	r.Enable_legacy_abac = &x
-}
-
-if x, ok := state["min_master_version"]; ok {
-	x := x.(string)
-	r.Min_master_version = &x
-}
-
-if x, ok := state["master_version"]; ok {
-	x := x.(string)
-	r.Master_version = &x
-}
-	return r
-}
-
-
-// Google_container_clusterHandler ...
-type Google_container_clusterHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_container_clusterHandler) Create(desired *Google_container_cluster) (*Google_container_cluster, string, error) {
-	rState := Google_container_clusterMapper(desired)
-	id, err := bridge.Create(h.provider, "google_container_cluster", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_container_clusterHandler) Read(externalID string) (*Google_container_cluster, error) {
-	actual, err := bridge.Read(h.provider, "google_container_cluster", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_container_clusterUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_container_clusterHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_container_cluster", externalID)
-}
-
-type Google_pubsub_topic_iam_binding struct {
-     Google_pubsub_topic_iam_binding_id *string
-     Etag *string
-     Topic string
-     Project *string
-     Role string
-}
-
-
-func Google_pubsub_topic_iam_bindingMapper(r *Google_pubsub_topic_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["topic"] = r.Topic
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_topic_iam_bindingUnmapper(state map[string]interface{}) *Google_pubsub_topic_iam_binding {
-	r := &Google_pubsub_topic_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_topic_iam_binding_id = &x
-}
-
-if x, ok := state["topic"]; ok {
-	r.Topic = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_pubsub_topic_iam_bindingHandler ...
-type Google_pubsub_topic_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_topic_iam_bindingHandler) Create(desired *Google_pubsub_topic_iam_binding) (*Google_pubsub_topic_iam_binding, string, error) {
-	rState := Google_pubsub_topic_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_topic_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_topic_iam_bindingHandler) Read(externalID string) (*Google_pubsub_topic_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_topic_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_topic_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_topic_iam_binding", externalID)
-}
-
-type Google_compute_interconnect_attachment struct {
-     Google_compute_interconnect_attachment_id *string
-     Creation_timestamp *string
-     Customer_router_ip_address *string
-     Google_reference_id *string
-     Project *string
-     Router string
-     Name string
-     Description *string
-     Region *string
-     Cloud_router_ip_address *string
-     Self_link *string
-     Interconnect string
-}
-
-
-func Google_compute_interconnect_attachmentMapper(r *Google_compute_interconnect_attachment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Cloud_router_ip_address != nil {
-    config["cloud_router_ip_address"] = *r.Cloud_router_ip_address
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["interconnect"] = r.Interconnect
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["router"] = r.Router
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Customer_router_ip_address != nil {
-    config["customer_router_ip_address"] = *r.Customer_router_ip_address
-}
-if r.Google_reference_id != nil {
-    config["google_reference_id"] = *r.Google_reference_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_interconnect_attachmentUnmapper(state map[string]interface{}) *Google_compute_interconnect_attachment {
-	r := &Google_compute_interconnect_attachment{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_interconnect_attachment_id = &x
-}
-
-if x, ok := state["interconnect"]; ok {
-	r.Interconnect = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["cloud_router_ip_address"]; ok {
-	x := x.(string)
-	r.Cloud_router_ip_address = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["router"]; ok {
-	r.Router = x.(string)
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["customer_router_ip_address"]; ok {
-	x := x.(string)
-	r.Customer_router_ip_address = &x
-}
-
-if x, ok := state["google_reference_id"]; ok {
-	x := x.(string)
-	r.Google_reference_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_interconnect_attachmentHandler ...
-type Google_compute_interconnect_attachmentHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_interconnect_attachmentHandler) Create(desired *Google_compute_interconnect_attachment) (*Google_compute_interconnect_attachment, string, error) {
-	rState := Google_compute_interconnect_attachmentMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_interconnect_attachment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_interconnect_attachmentHandler) Read(externalID string) (*Google_compute_interconnect_attachment, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_interconnect_attachment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_interconnect_attachmentUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_interconnect_attachmentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_interconnect_attachment", externalID)
-}
-
-type Google_project_service struct {
-     Google_project_service_id *string
-     Service string
-     Project *string
-     Disable_on_destroy *bool
-}
-
-
-func Google_project_serviceMapper(r *Google_project_service) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["service"] = r.Service
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Disable_on_destroy != nil {
-    config["disable_on_destroy"] = *r.Disable_on_destroy
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_serviceUnmapper(state map[string]interface{}) *Google_project_service {
-	r := &Google_project_service{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_service_id = &x
-}
-
-if x, ok := state["service"]; ok {
-	r.Service = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["disable_on_destroy"]; ok {
-	x := x.(bool)
-	r.Disable_on_destroy = &x
-}
-	return r
-}
-
-
-// Google_project_serviceHandler ...
-type Google_project_serviceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_serviceHandler) Create(desired *Google_project_service) (*Google_project_service, string, error) {
-	rState := Google_project_serviceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_service", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_serviceHandler) Read(externalID string) (*Google_project_service, error) {
-	actual, err := bridge.Read(h.provider, "google_project_service", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_serviceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_serviceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_service", externalID)
-}
-
-type Google_organization_iam_binding struct {
-     Google_organization_iam_binding_id *string
-     Role string
-     Etag *string
-     Org_id string
-}
-
-
-func Google_organization_iam_bindingMapper(r *Google_organization_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["org_id"] = r.Org_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_organization_iam_bindingUnmapper(state map[string]interface{}) *Google_organization_iam_binding {
-	r := &Google_organization_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_organization_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-	return r
-}
-
-
-// Google_organization_iam_bindingHandler ...
-type Google_organization_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_organization_iam_bindingHandler) Create(desired *Google_organization_iam_binding) (*Google_organization_iam_binding, string, error) {
-	rState := Google_organization_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_organization_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_organization_iam_bindingHandler) Read(externalID string) (*Google_organization_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_organization_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_organization_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_organization_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_organization_iam_binding", externalID)
-}
-
-type Google_runtimeconfig_variable struct {
-     Google_runtimeconfig_variable_id *string
-     Parent string
-     Project *string
-     Value *string
-     Text *string
-     Update_time *string
-     Name string
-}
-
-
-func Google_runtimeconfig_variableMapper(r *Google_runtimeconfig_variable) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Update_time != nil {
-    config["update_time"] = *r.Update_time
-}
-    config["name"] = r.Name
-    config["parent"] = r.Parent
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Value != nil {
-    config["value"] = *r.Value
-}
-if r.Text != nil {
-    config["text"] = *r.Text
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_runtimeconfig_variableUnmapper(state map[string]interface{}) *Google_runtimeconfig_variable {
-	r := &Google_runtimeconfig_variable{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_runtimeconfig_variable_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["parent"]; ok {
-	r.Parent = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["value"]; ok {
-	x := x.(string)
-	r.Value = &x
-}
-
-if x, ok := state["text"]; ok {
-	x := x.(string)
-	r.Text = &x
-}
-
-if x, ok := state["update_time"]; ok {
-	x := x.(string)
-	r.Update_time = &x
-}
-	return r
-}
-
-
-// Google_runtimeconfig_variableHandler ...
-type Google_runtimeconfig_variableHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_runtimeconfig_variableHandler) Create(desired *Google_runtimeconfig_variable) (*Google_runtimeconfig_variable, string, error) {
-	rState := Google_runtimeconfig_variableMapper(desired)
-	id, err := bridge.Create(h.provider, "google_runtimeconfig_variable", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_runtimeconfig_variableHandler) Read(externalID string) (*Google_runtimeconfig_variable, error) {
-	actual, err := bridge.Read(h.provider, "google_runtimeconfig_variable", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_runtimeconfig_variableUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_runtimeconfig_variableHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_runtimeconfig_variable", externalID)
-}
-
-type Google_spanner_database_iam_binding struct {
-     Google_spanner_database_iam_binding_id *string
-     Project *string
-     Role string
-     Etag *string
-     Instance string
-     Database string
-}
-
-
-func Google_spanner_database_iam_bindingMapper(r *Google_spanner_database_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["instance"] = r.Instance
-    config["database"] = r.Database
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_database_iam_bindingUnmapper(state map[string]interface{}) *Google_spanner_database_iam_binding {
-	r := &Google_spanner_database_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_database_iam_binding_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["database"]; ok {
-	r.Database = x.(string)
-}
-	return r
-}
-
-
-// Google_spanner_database_iam_bindingHandler ...
-type Google_spanner_database_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_database_iam_bindingHandler) Create(desired *Google_spanner_database_iam_binding) (*Google_spanner_database_iam_binding, string, error) {
-	rState := Google_spanner_database_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_database_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_database_iam_bindingHandler) Read(externalID string) (*Google_spanner_database_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_database_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_database_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_database_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_database_iam_binding", externalID)
-}
-
-type Google_storage_bucket struct {
-     Google_storage_bucket_id *string
-     Project *string
-     Self_link *string
-     Name string
-     Force_destroy *bool
-     Url *string
-     Location *string
-     Predefined_acl *string
-     Storage_class *string
-}
-
-
-func Google_storage_bucketMapper(r *Google_storage_bucket) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Url != nil {
-    config["url"] = *r.Url
-}
-    config["name"] = r.Name
-if r.Force_destroy != nil {
-    config["force_destroy"] = *r.Force_destroy
-}
-if r.Storage_class != nil {
-    config["storage_class"] = *r.Storage_class
-}
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.Predefined_acl != nil {
-    config["predefined_acl"] = *r.Predefined_acl
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_bucketUnmapper(state map[string]interface{}) *Google_storage_bucket {
-	r := &Google_storage_bucket{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_bucket_id = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["force_destroy"]; ok {
-	x := x.(bool)
-	r.Force_destroy = &x
-}
-
-if x, ok := state["url"]; ok {
-	x := x.(string)
-	r.Url = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["predefined_acl"]; ok {
-	x := x.(string)
-	r.Predefined_acl = &x
-}
-
-if x, ok := state["storage_class"]; ok {
-	x := x.(string)
-	r.Storage_class = &x
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-	return r
-}
-
-
-// Google_storage_bucketHandler ...
-type Google_storage_bucketHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_bucketHandler) Create(desired *Google_storage_bucket) (*Google_storage_bucket, string, error) {
-	rState := Google_storage_bucketMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_bucket", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_bucketHandler) Read(externalID string) (*Google_storage_bucket, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_bucket", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_bucketUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_bucketHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_bucket", externalID)
-}
-
-type Google_compute_autoscaler struct {
-     Google_compute_autoscaler_id *string
-     Project *string
-     Self_link *string
-     Name string
-     Target string
-     Description *string
-     Zone *string
-     Creation_timestamp *string
-}
-
-
-func Google_compute_autoscalerMapper(r *Google_compute_autoscaler) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-    config["target"] = r.Target
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_autoscalerUnmapper(state map[string]interface{}) *Google_compute_autoscaler {
-	r := &Google_compute_autoscaler{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_autoscaler_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["target"]; ok {
-	r.Target = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-	return r
-}
-
-
-// Google_compute_autoscalerHandler ...
-type Google_compute_autoscalerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_autoscalerHandler) Create(desired *Google_compute_autoscaler) (*Google_compute_autoscaler, string, error) {
-	rState := Google_compute_autoscalerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_autoscaler", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_autoscalerHandler) Read(externalID string) (*Google_compute_autoscaler, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_autoscaler", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_autoscalerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_autoscalerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_autoscaler", externalID)
-}
-
-type Google_dns_managed_zone struct {
-     Google_dns_managed_zone_id *string
-     Name string
-     Description *string
-     Project *string
-     Dns_name string
-}
-
-
-func Google_dns_managed_zoneMapper(r *Google_dns_managed_zone) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["dns_name"] = r.Dns_name
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_dns_managed_zoneUnmapper(state map[string]interface{}) *Google_dns_managed_zone {
-	r := &Google_dns_managed_zone{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_dns_managed_zone_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["dns_name"]; ok {
-	r.Dns_name = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Google_dns_managed_zoneHandler ...
-type Google_dns_managed_zoneHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_dns_managed_zoneHandler) Create(desired *Google_dns_managed_zone) (*Google_dns_managed_zone, string, error) {
-	rState := Google_dns_managed_zoneMapper(desired)
-	id, err := bridge.Create(h.provider, "google_dns_managed_zone", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_dns_managed_zoneHandler) Read(externalID string) (*Google_dns_managed_zone, error) {
-	actual, err := bridge.Read(h.provider, "google_dns_managed_zone", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_dns_managed_zoneUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_dns_managed_zoneHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_dns_managed_zone", externalID)
-}
-
-type Google_compute_target_pool struct {
-     Google_compute_target_pool_id *string
-     Project *string
-     Region *string
-     Self_link *string
-     Session_affinity *string
-     Name string
-     Backup_pool *string
-     Description *string
-}
-
-
-func Google_compute_target_poolMapper(r *Google_compute_target_pool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Backup_pool != nil {
-    config["backup_pool"] = *r.Backup_pool
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Session_affinity != nil {
-    config["session_affinity"] = *r.Session_affinity
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_target_poolUnmapper(state map[string]interface{}) *Google_compute_target_pool {
-	r := &Google_compute_target_pool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_target_pool_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["session_affinity"]; ok {
-	x := x.(string)
-	r.Session_affinity = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["backup_pool"]; ok {
-	x := x.(string)
-	r.Backup_pool = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-	return r
-}
-
-
-// Google_compute_target_poolHandler ...
-type Google_compute_target_poolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_target_poolHandler) Create(desired *Google_compute_target_pool) (*Google_compute_target_pool, string, error) {
-	rState := Google_compute_target_poolMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_target_pool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_target_poolHandler) Read(externalID string) (*Google_compute_target_pool, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_target_pool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_target_poolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_target_poolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_target_pool", externalID)
-}
-
-type Google_storage_bucket_iam_binding struct {
-     Google_storage_bucket_iam_binding_id *string
-     Etag *string
-     Role string
-     Bucket string
-}
-
-
-func Google_storage_bucket_iam_bindingMapper(r *Google_storage_bucket_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["role"] = r.Role
-    config["bucket"] = r.Bucket
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_bucket_iam_bindingUnmapper(state map[string]interface{}) *Google_storage_bucket_iam_binding {
-	r := &Google_storage_bucket_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_bucket_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_storage_bucket_iam_bindingHandler ...
-type Google_storage_bucket_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_bucket_iam_bindingHandler) Create(desired *Google_storage_bucket_iam_binding) (*Google_storage_bucket_iam_binding, string, error) {
-	rState := Google_storage_bucket_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_bucket_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_bucket_iam_bindingHandler) Read(externalID string) (*Google_storage_bucket_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_bucket_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_bucket_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_bucket_iam_binding", externalID)
-}
-
-type Google_redis_instance struct {
-     Google_redis_instance_id *string
-     Current_location_id *string
-     Host *string
-     Name string
-     Location_id *string
-     Alternative_location_id *string
-     Reserved_ip_range *string
-     Region *string
-     Create_time *string
-     Tier *string
-     Project *string
-     Authorized_network *string
-     Display_name *string
-     Redis_version *string
-}
-
-
-func Google_redis_instanceMapper(r *Google_redis_instance) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Reserved_ip_range != nil {
-    config["reserved_ip_range"] = *r.Reserved_ip_range
-}
-if r.Alternative_location_id != nil {
-    config["alternative_location_id"] = *r.Alternative_location_id
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Create_time != nil {
-    config["create_time"] = *r.Create_time
-}
-if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-if r.Redis_version != nil {
-    config["redis_version"] = *r.Redis_version
-}
-if r.Tier != nil {
-    config["tier"] = *r.Tier
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Authorized_network != nil {
-    config["authorized_network"] = *r.Authorized_network
-}
-if r.Location_id != nil {
-    config["location_id"] = *r.Location_id
-}
-if r.Current_location_id != nil {
-    config["current_location_id"] = *r.Current_location_id
-}
-if r.Host != nil {
-    config["host"] = *r.Host
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_redis_instanceUnmapper(state map[string]interface{}) *Google_redis_instance {
-	r := &Google_redis_instance{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_redis_instance_id = &x
-}
-
-if x, ok := state["authorized_network"]; ok {
-	x := x.(string)
-	r.Authorized_network = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
-
-if x, ok := state["redis_version"]; ok {
-	x := x.(string)
-	r.Redis_version = &x
-}
-
-if x, ok := state["tier"]; ok {
-	x := x.(string)
-	r.Tier = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location_id"]; ok {
-	x := x.(string)
-	r.Location_id = &x
-}
-
-if x, ok := state["current_location_id"]; ok {
-	x := x.(string)
-	r.Current_location_id = &x
-}
-
-if x, ok := state["host"]; ok {
-	x := x.(string)
-	r.Host = &x
-}
-
-if x, ok := state["alternative_location_id"]; ok {
-	x := x.(string)
-	r.Alternative_location_id = &x
-}
-
-if x, ok := state["reserved_ip_range"]; ok {
-	x := x.(string)
-	r.Reserved_ip_range = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["create_time"]; ok {
-	x := x.(string)
-	r.Create_time = &x
-}
-	return r
-}
-
-
-// Google_redis_instanceHandler ...
-type Google_redis_instanceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_redis_instanceHandler) Create(desired *Google_redis_instance) (*Google_redis_instance, string, error) {
-	rState := Google_redis_instanceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_redis_instance", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_redis_instanceHandler) Read(externalID string) (*Google_redis_instance, error) {
-	actual, err := bridge.Read(h.provider, "google_redis_instance", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_redis_instanceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_redis_instanceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_redis_instance", externalID)
-}
-
-type Google_monitoring_notification_channel struct {
-     Google_monitoring_notification_channel_id *string
-     Enabled *bool
-     Name *string
-     Display_name string
-     Description *string
-     Verification_status *string
-     Project *string
-     Resource_type string
-}
-
-
-func Google_monitoring_notification_channelMapper(r *Google_monitoring_notification_channel) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["resource_type"] = r.Resource_type
-if r.Verification_status != nil {
-    config["verification_status"] = *r.Verification_status
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["display_name"] = r.Display_name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Enabled != nil {
-    config["enabled"] = *r.Enabled
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_monitoring_notification_channelUnmapper(state map[string]interface{}) *Google_monitoring_notification_channel {
-	r := &Google_monitoring_notification_channel{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_monitoring_notification_channel_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["resource_type"]; ok {
-	r.Resource_type = x.(string)
-}
-
-if x, ok := state["verification_status"]; ok {
-	x := x.(string)
-	r.Verification_status = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enabled"]; ok {
-	x := x.(bool)
-	r.Enabled = &x
-}
-	return r
-}
-
-
-// Google_monitoring_notification_channelHandler ...
-type Google_monitoring_notification_channelHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_monitoring_notification_channelHandler) Create(desired *Google_monitoring_notification_channel) (*Google_monitoring_notification_channel, string, error) {
-	rState := Google_monitoring_notification_channelMapper(desired)
-	id, err := bridge.Create(h.provider, "google_monitoring_notification_channel", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_monitoring_notification_channelHandler) Read(externalID string) (*Google_monitoring_notification_channel, error) {
-	actual, err := bridge.Read(h.provider, "google_monitoring_notification_channel", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_monitoring_notification_channelUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_monitoring_notification_channelHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_monitoring_notification_channel", externalID)
-}
-
-type Google_billing_account_iam_binding struct {
-     Google_billing_account_iam_binding_id *string
-     Role string
-     Etag *string
-     Billing_account_id string
-}
-
-
-func Google_billing_account_iam_bindingMapper(r *Google_billing_account_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["billing_account_id"] = r.Billing_account_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_billing_account_iam_bindingUnmapper(state map[string]interface{}) *Google_billing_account_iam_binding {
-	r := &Google_billing_account_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_billing_account_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["billing_account_id"]; ok {
-	r.Billing_account_id = x.(string)
-}
-	return r
-}
-
-
-// Google_billing_account_iam_bindingHandler ...
-type Google_billing_account_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_billing_account_iam_bindingHandler) Create(desired *Google_billing_account_iam_binding) (*Google_billing_account_iam_binding, string, error) {
-	rState := Google_billing_account_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_billing_account_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_billing_account_iam_bindingHandler) Read(externalID string) (*Google_billing_account_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_billing_account_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_billing_account_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_billing_account_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_billing_account_iam_binding", externalID)
-}
-
-type Google_logging_project_sink struct {
-     Google_logging_project_sink_id *string
-     Writer_identity *string
-     Project *string
-     Unique_writer_identity *bool
-     Name string
-     Destination string
-     Filter *string
-}
-
-
-func Google_logging_project_sinkMapper(r *Google_logging_project_sink) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["destination"] = r.Destination
-if r.Filter != nil {
-    config["filter"] = *r.Filter
-}
-if r.Writer_identity != nil {
-    config["writer_identity"] = *r.Writer_identity
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Unique_writer_identity != nil {
-    config["unique_writer_identity"] = *r.Unique_writer_identity
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_project_sinkUnmapper(state map[string]interface{}) *Google_logging_project_sink {
-	r := &Google_logging_project_sink{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_project_sink_id = &x
-}
-
-if x, ok := state["filter"]; ok {
-	x := x.(string)
-	r.Filter = &x
-}
-
-if x, ok := state["writer_identity"]; ok {
-	x := x.(string)
-	r.Writer_identity = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["unique_writer_identity"]; ok {
-	x := x.(bool)
-	r.Unique_writer_identity = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["destination"]; ok {
-	r.Destination = x.(string)
-}
-	return r
-}
-
-
-// Google_logging_project_sinkHandler ...
-type Google_logging_project_sinkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_project_sinkHandler) Create(desired *Google_logging_project_sink) (*Google_logging_project_sink, string, error) {
-	rState := Google_logging_project_sinkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_project_sink", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_project_sinkHandler) Read(externalID string) (*Google_logging_project_sink, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_project_sink", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_project_sinkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_project_sinkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_project_sink", externalID)
-}
-
-type Google_kms_key_ring_iam_member struct {
-     Google_kms_key_ring_iam_member_id *string
-     Role string
-     Member string
-     Etag *string
-     Key_ring_id string
-}
-
-
-func Google_kms_key_ring_iam_memberMapper(r *Google_kms_key_ring_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["key_ring_id"] = r.Key_ring_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_kms_key_ring_iam_memberUnmapper(state map[string]interface{}) *Google_kms_key_ring_iam_member {
-	r := &Google_kms_key_ring_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_key_ring_iam_member_id = &x
-}
-
-if x, ok := state["key_ring_id"]; ok {
-	r.Key_ring_id = x.(string)
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_kms_key_ring_iam_memberHandler ...
-type Google_kms_key_ring_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_kms_key_ring_iam_memberHandler) Create(desired *Google_kms_key_ring_iam_member) (*Google_kms_key_ring_iam_member, string, error) {
-	rState := Google_kms_key_ring_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_key_ring_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_kms_key_ring_iam_memberHandler) Read(externalID string) (*Google_kms_key_ring_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_kms_key_ring_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_kms_key_ring_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_key_ring_iam_member", externalID)
-}
-
-type Google_spanner_instance struct {
-     Google_spanner_instance_id *string
-     Config string
-     Name *string
-     Display_name string
-     Project *string
-     State *string
-}
-
-
-func Google_spanner_instanceMapper(r *Google_spanner_instance) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.State != nil {
-    config["state"] = *r.State
-}
-    config["config"] = r.Config
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-    config["display_name"] = r.Display_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_instanceUnmapper(state map[string]interface{}) *Google_spanner_instance {
-	r := &Google_spanner_instance{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_instance_id = &x
-}
-
-if x, ok := state["config"]; ok {
-	r.Config = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-	return r
-}
-
-
-// Google_spanner_instanceHandler ...
-type Google_spanner_instanceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_instanceHandler) Create(desired *Google_spanner_instance) (*Google_spanner_instance, string, error) {
-	rState := Google_spanner_instanceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_instance", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_instanceHandler) Read(externalID string) (*Google_spanner_instance, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_instance", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_instanceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_instanceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_instance", externalID)
-}
-
-type Google_compute_target_https_proxy struct {
-     Google_compute_target_https_proxy_id *string
-     Self_link *string
-     Name string
-     Quic_override *string
-     Creation_timestamp *string
-     Ssl_policy *string
-     Project *string
-     Url_map string
-     Description *string
-}
-
-
-func Google_compute_target_https_proxyMapper(r *Google_compute_target_https_proxy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Quic_override != nil {
-    config["quic_override"] = *r.Quic_override
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["url_map"] = r.Url_map
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Ssl_policy != nil {
-    config["ssl_policy"] = *r.Ssl_policy
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_target_https_proxyUnmapper(state map[string]interface{}) *Google_compute_target_https_proxy {
-	r := &Google_compute_target_https_proxy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_target_https_proxy_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["quic_override"]; ok {
-	x := x.(string)
-	r.Quic_override = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["url_map"]; ok {
-	r.Url_map = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["ssl_policy"]; ok {
-	x := x.(string)
-	r.Ssl_policy = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_target_https_proxyHandler ...
-type Google_compute_target_https_proxyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_target_https_proxyHandler) Create(desired *Google_compute_target_https_proxy) (*Google_compute_target_https_proxy, string, error) {
-	rState := Google_compute_target_https_proxyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_target_https_proxy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_target_https_proxyHandler) Read(externalID string) (*Google_compute_target_https_proxy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_target_https_proxy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_target_https_proxyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_target_https_proxyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_target_https_proxy", externalID)
-}
-
-type Google_pubsub_subscription_iam_member struct {
-     Google_pubsub_subscription_iam_member_id *string
-     Member string
-     Etag *string
-     Subscription string
-     Project *string
-     Role string
-}
-
-
-func Google_pubsub_subscription_iam_memberMapper(r *Google_pubsub_subscription_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["subscription"] = r.Subscription
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_subscription_iam_memberUnmapper(state map[string]interface{}) *Google_pubsub_subscription_iam_member {
-	r := &Google_pubsub_subscription_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_subscription_iam_member_id = &x
-}
-
-if x, ok := state["subscription"]; ok {
-	r.Subscription = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_pubsub_subscription_iam_memberHandler ...
-type Google_pubsub_subscription_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_subscription_iam_memberHandler) Create(desired *Google_pubsub_subscription_iam_member) (*Google_pubsub_subscription_iam_member, string, error) {
-	rState := Google_pubsub_subscription_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_subscription_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_subscription_iam_memberHandler) Read(externalID string) (*Google_pubsub_subscription_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_subscription_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_subscription_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_member", externalID)
-}
-
-type Google_compute_image struct {
-     Google_compute_image_id *string
-     Name string
-     Description *string
-     Project *string
-     Family *string
-     Source_disk *string
-     Self_link *string
-     Label_fingerprint *string
-}
-
-
-func Google_compute_imageMapper(r *Google_compute_image) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Family != nil {
-    config["family"] = *r.Family
-}
-if r.Source_disk != nil {
-    config["source_disk"] = *r.Source_disk
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_imageUnmapper(state map[string]interface{}) *Google_compute_image {
-	r := &Google_compute_image{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_image_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["family"]; ok {
-	x := x.(string)
-	r.Family = &x
-}
-
-if x, ok := state["source_disk"]; ok {
-	x := x.(string)
-	r.Source_disk = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-	return r
-}
-
-
-// Google_compute_imageHandler ...
-type Google_compute_imageHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_imageHandler) Create(desired *Google_compute_image) (*Google_compute_image, string, error) {
-	rState := Google_compute_imageMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_image", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_imageHandler) Read(externalID string) (*Google_compute_image, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_image", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_imageUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_imageHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_image", externalID)
-}
-
-type Google_spanner_instance_iam_member struct {
-     Google_spanner_instance_iam_member_id *string
-     Project *string
-     Role string
-     Member string
-     Etag *string
-     Instance string
-}
-
-
-func Google_spanner_instance_iam_memberMapper(r *Google_spanner_instance_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["instance"] = r.Instance
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["role"] = r.Role
-    config["member"] = r.Member
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_instance_iam_memberUnmapper(state map[string]interface{}) *Google_spanner_instance_iam_member {
-	r := &Google_spanner_instance_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_instance_iam_member_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_spanner_instance_iam_memberHandler ...
-type Google_spanner_instance_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_instance_iam_memberHandler) Create(desired *Google_spanner_instance_iam_member) (*Google_spanner_instance_iam_member, string, error) {
-	rState := Google_spanner_instance_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_instance_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_instance_iam_memberHandler) Read(externalID string) (*Google_spanner_instance_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_instance_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_instance_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_instance_iam_member", externalID)
-}
-
-type Google_compute_instance_from_template struct {
-     Google_compute_instance_from_template_id *string
-     Label_fingerprint *string
-     Project *string
-     Deletion_protection *bool
-     Machine_type *string
-     Name string
-     Allow_stopping_for_update *bool
-     Cpu_platform *string
-     Tags_fingerprint *string
-     Metadata_fingerprint *string
-     Self_link *string
-     Metadata_startup_script *string
-     Can_ip_forward *bool
-     Instance_id *string
-     Source_instance_template string
-     Description *string
-     Min_cpu_platform *string
-     Zone *string
-}
-
-
-func Google_compute_instance_from_templateMapper(r *Google_compute_instance_from_template) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Can_ip_forward != nil {
-    config["can_ip_forward"] = *r.Can_ip_forward
-}
-if r.Instance_id != nil {
-    config["instance_id"] = *r.Instance_id
-}
-    config["source_instance_template"] = r.Source_instance_template
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Min_cpu_platform != nil {
-    config["min_cpu_platform"] = *r.Min_cpu_platform
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Deletion_protection != nil {
-    config["deletion_protection"] = *r.Deletion_protection
-}
-if r.Machine_type != nil {
-    config["machine_type"] = *r.Machine_type
-}
-    config["name"] = r.Name
-if r.Allow_stopping_for_update != nil {
-    config["allow_stopping_for_update"] = *r.Allow_stopping_for_update
-}
-if r.Cpu_platform != nil {
-    config["cpu_platform"] = *r.Cpu_platform
-}
-if r.Tags_fingerprint != nil {
-    config["tags_fingerprint"] = *r.Tags_fingerprint
-}
-if r.Metadata_fingerprint != nil {
-    config["metadata_fingerprint"] = *r.Metadata_fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Metadata_startup_script != nil {
-    config["metadata_startup_script"] = *r.Metadata_startup_script
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_instance_from_templateUnmapper(state map[string]interface{}) *Google_compute_instance_from_template {
-	r := &Google_compute_instance_from_template{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_instance_from_template_id = &x
-}
-
-if x, ok := state["cpu_platform"]; ok {
-	x := x.(string)
-	r.Cpu_platform = &x
-}
-
-if x, ok := state["tags_fingerprint"]; ok {
-	x := x.(string)
-	r.Tags_fingerprint = &x
-}
-
-if x, ok := state["metadata_fingerprint"]; ok {
-	x := x.(string)
-	r.Metadata_fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["metadata_startup_script"]; ok {
-	x := x.(string)
-	r.Metadata_startup_script = &x
-}
-
-if x, ok := state["can_ip_forward"]; ok {
-	x := x.(bool)
-	r.Can_ip_forward = &x
-}
-
-if x, ok := state["instance_id"]; ok {
-	x := x.(string)
-	r.Instance_id = &x
-}
-
-if x, ok := state["source_instance_template"]; ok {
-	r.Source_instance_template = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["min_cpu_platform"]; ok {
-	x := x.(string)
-	r.Min_cpu_platform = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["deletion_protection"]; ok {
-	x := x.(bool)
-	r.Deletion_protection = &x
-}
-
-if x, ok := state["machine_type"]; ok {
-	x := x.(string)
-	r.Machine_type = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["allow_stopping_for_update"]; ok {
-	x := x.(bool)
-	r.Allow_stopping_for_update = &x
-}
-	return r
-}
-
-
-// Google_compute_instance_from_templateHandler ...
-type Google_compute_instance_from_templateHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_instance_from_templateHandler) Create(desired *Google_compute_instance_from_template) (*Google_compute_instance_from_template, string, error) {
-	rState := Google_compute_instance_from_templateMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_instance_from_template", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_instance_from_templateHandler) Read(externalID string) (*Google_compute_instance_from_template, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_instance_from_template", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_instance_from_templateUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_instance_from_templateHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_instance_from_template", externalID)
-}
-
-type Google_spanner_database_iam_member struct {
-     Google_spanner_database_iam_member_id *string
-     Project *string
-     Role string
-     Member string
-     Etag *string
-     Instance string
-     Database string
-}
-
-
-func Google_spanner_database_iam_memberMapper(r *Google_spanner_database_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["instance"] = r.Instance
-    config["database"] = r.Database
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_database_iam_memberUnmapper(state map[string]interface{}) *Google_spanner_database_iam_member {
-	r := &Google_spanner_database_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_database_iam_member_id = &x
-}
-
-if x, ok := state["database"]; ok {
-	r.Database = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-	return r
-}
-
-
-// Google_spanner_database_iam_memberHandler ...
-type Google_spanner_database_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_database_iam_memberHandler) Create(desired *Google_spanner_database_iam_member) (*Google_spanner_database_iam_member, string, error) {
-	rState := Google_spanner_database_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_database_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_database_iam_memberHandler) Read(externalID string) (*Google_spanner_database_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_database_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_database_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_database_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_database_iam_member", externalID)
-}
-
-type Google_compute_subnetwork_iam_policy struct {
-     Google_compute_subnetwork_iam_policy_id *string
-     Subnetwork string
-     Project *string
-     Region *string
-     Policy_data string
-     Etag *string
-}
-
-
-func Google_compute_subnetwork_iam_policyMapper(r *Google_compute_subnetwork_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["subnetwork"] = r.Subnetwork
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_subnetwork_iam_policyUnmapper(state map[string]interface{}) *Google_compute_subnetwork_iam_policy {
-	r := &Google_compute_subnetwork_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_subnetwork_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["subnetwork"]; ok {
-	r.Subnetwork = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-	return r
-}
-
-
-// Google_compute_subnetwork_iam_policyHandler ...
-type Google_compute_subnetwork_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_subnetwork_iam_policyHandler) Create(desired *Google_compute_subnetwork_iam_policy) (*Google_compute_subnetwork_iam_policy, string, error) {
-	rState := Google_compute_subnetwork_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_subnetwork_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_subnetwork_iam_policyHandler) Read(externalID string) (*Google_compute_subnetwork_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_subnetwork_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_subnetwork_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_policy", externalID)
-}
-
-type Google_compute_project_metadata struct {
-     Google_compute_project_metadata_id *string
-     Project *string
-}
-
-
-func Google_compute_project_metadataMapper(r *Google_compute_project_metadata) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_project_metadataUnmapper(state map[string]interface{}) *Google_compute_project_metadata {
-	r := &Google_compute_project_metadata{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_project_metadata_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_project_metadataHandler ...
-type Google_compute_project_metadataHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_project_metadataHandler) Create(desired *Google_compute_project_metadata) (*Google_compute_project_metadata, string, error) {
-	rState := Google_compute_project_metadataMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_project_metadata", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_project_metadataHandler) Read(externalID string) (*Google_compute_project_metadata, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_project_metadata", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_project_metadataUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_project_metadataHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_project_metadata", externalID)
-}
-
-type Google_compute_project_metadata_item struct {
-     Google_compute_project_metadata_item_id *string
-     Key string
-     Value string
-     Project *string
-}
-
-
-func Google_compute_project_metadata_itemMapper(r *Google_compute_project_metadata_item) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["key"] = r.Key
-    config["value"] = r.Value
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_project_metadata_itemUnmapper(state map[string]interface{}) *Google_compute_project_metadata_item {
-	r := &Google_compute_project_metadata_item{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_project_metadata_item_id = &x
-}
-
-if x, ok := state["key"]; ok {
-	r.Key = x.(string)
-}
-
-if x, ok := state["value"]; ok {
-	r.Value = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_project_metadata_itemHandler ...
-type Google_compute_project_metadata_itemHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_project_metadata_itemHandler) Create(desired *Google_compute_project_metadata_item) (*Google_compute_project_metadata_item, string, error) {
-	rState := Google_compute_project_metadata_itemMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_project_metadata_item", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_project_metadata_itemHandler) Read(externalID string) (*Google_compute_project_metadata_item, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_project_metadata_item", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_project_metadata_itemUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_project_metadata_itemHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_project_metadata_item", externalID)
-}
-
-type Google_storage_object_acl struct {
-     Google_storage_object_acl_id *string
-     Predefined_acl *string
-     Bucket string
-     Object string
-}
-
-
-func Google_storage_object_aclMapper(r *Google_storage_object_acl) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["bucket"] = r.Bucket
-    config["object"] = r.Object
-if r.Predefined_acl != nil {
-    config["predefined_acl"] = *r.Predefined_acl
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_object_aclUnmapper(state map[string]interface{}) *Google_storage_object_acl {
-	r := &Google_storage_object_acl{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_object_acl_id = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["object"]; ok {
-	r.Object = x.(string)
-}
-
-if x, ok := state["predefined_acl"]; ok {
-	x := x.(string)
-	r.Predefined_acl = &x
-}
-	return r
-}
-
-
-// Google_storage_object_aclHandler ...
-type Google_storage_object_aclHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_object_aclHandler) Create(desired *Google_storage_object_acl) (*Google_storage_object_acl, string, error) {
-	rState := Google_storage_object_aclMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_object_acl", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_object_aclHandler) Read(externalID string) (*Google_storage_object_acl, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_object_acl", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_object_aclUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_object_aclHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_object_acl", externalID)
-}
-
-type Google_compute_router_interface struct {
-     Google_compute_router_interface_id *string
-     Name string
-     Router string
-     Vpn_tunnel string
-     Ip_range *string
-     Project *string
-     Region *string
-}
-
-
-func Google_compute_router_interfaceMapper(r *Google_compute_router_interface) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Ip_range != nil {
-    config["ip_range"] = *r.Ip_range
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-    config["name"] = r.Name
-    config["router"] = r.Router
-    config["vpn_tunnel"] = r.Vpn_tunnel
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_router_interfaceUnmapper(state map[string]interface{}) *Google_compute_router_interface {
-	r := &Google_compute_router_interface{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_router_interface_id = &x
-}
-
-if x, ok := state["vpn_tunnel"]; ok {
-	r.Vpn_tunnel = x.(string)
-}
-
-if x, ok := state["ip_range"]; ok {
-	x := x.(string)
-	r.Ip_range = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["router"]; ok {
-	r.Router = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_router_interfaceHandler ...
-type Google_compute_router_interfaceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_router_interfaceHandler) Create(desired *Google_compute_router_interface) (*Google_compute_router_interface, string, error) {
-	rState := Google_compute_router_interfaceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_router_interface", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_router_interfaceHandler) Read(externalID string) (*Google_compute_router_interface, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_router_interface", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_router_interfaceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_router_interfaceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_router_interface", externalID)
-}
-
-type Google_storage_bucket_iam_member struct {
-     Google_storage_bucket_iam_member_id *string
-     Bucket string
-     Role string
-     Member string
-     Etag *string
-}
-
-
-func Google_storage_bucket_iam_memberMapper(r *Google_storage_bucket_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["bucket"] = r.Bucket
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_bucket_iam_memberUnmapper(state map[string]interface{}) *Google_storage_bucket_iam_member {
-	r := &Google_storage_bucket_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_bucket_iam_member_id = &x
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-	return r
-}
-
-
-// Google_storage_bucket_iam_memberHandler ...
-type Google_storage_bucket_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_bucket_iam_memberHandler) Create(desired *Google_storage_bucket_iam_member) (*Google_storage_bucket_iam_member, string, error) {
-	rState := Google_storage_bucket_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_bucket_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_bucket_iam_memberHandler) Read(externalID string) (*Google_storage_bucket_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_bucket_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_bucket_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_bucket_iam_member", externalID)
-}
-
-type Google_compute_disk struct {
-     Google_compute_disk_id *string
-     Last_attach_timestamp *string
-     Source_image_id *string
-     Source_snapshot_id *string
-     Project *string
-     Self_link *string
-     Snapshot *string
-     Image *string
-     Label_fingerprint *string
-     Last_detach_timestamp *string
-     Description *string
-     Resource_type *string
-     Creation_timestamp *string
-     Disk_encryption_key_sha256 *string
-     Name string
-     Zone *string
-     Disk_encryption_key_raw *string
-}
-
-
-func Google_compute_diskMapper(r *Google_compute_disk) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Disk_encryption_key_raw != nil {
-    config["disk_encryption_key_raw"] = *r.Disk_encryption_key_raw
-}
-if r.Last_attach_timestamp != nil {
-    config["last_attach_timestamp"] = *r.Last_attach_timestamp
-}
-if r.Source_image_id != nil {
-    config["source_image_id"] = *r.Source_image_id
-}
-if r.Source_snapshot_id != nil {
-    config["source_snapshot_id"] = *r.Source_snapshot_id
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Snapshot != nil {
-    config["snapshot"] = *r.Snapshot
-}
-if r.Image != nil {
-    config["image"] = *r.Image
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Last_detach_timestamp != nil {
-    config["last_detach_timestamp"] = *r.Last_detach_timestamp
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Disk_encryption_key_sha256 != nil {
-    config["disk_encryption_key_sha256"] = *r.Disk_encryption_key_sha256
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_diskUnmapper(state map[string]interface{}) *Google_compute_disk {
-	r := &Google_compute_disk{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_disk_id = &x
-}
-
-if x, ok := state["last_attach_timestamp"]; ok {
-	x := x.(string)
-	r.Last_attach_timestamp = &x
-}
-
-if x, ok := state["source_image_id"]; ok {
-	x := x.(string)
-	r.Source_image_id = &x
-}
-
-if x, ok := state["source_snapshot_id"]; ok {
-	x := x.(string)
-	r.Source_snapshot_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["snapshot"]; ok {
-	x := x.(string)
-	r.Snapshot = &x
-}
-
-if x, ok := state["image"]; ok {
-	x := x.(string)
-	r.Image = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["last_detach_timestamp"]; ok {
-	x := x.(string)
-	r.Last_detach_timestamp = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["disk_encryption_key_sha256"]; ok {
-	x := x.(string)
-	r.Disk_encryption_key_sha256 = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["disk_encryption_key_raw"]; ok {
-	x := x.(string)
-	r.Disk_encryption_key_raw = &x
-}
-	return r
-}
-
-
-// Google_compute_diskHandler ...
-type Google_compute_diskHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_diskHandler) Create(desired *Google_compute_disk) (*Google_compute_disk, string, error) {
-	rState := Google_compute_diskMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_disk", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_diskHandler) Read(externalID string) (*Google_compute_disk, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_disk", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_diskUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_diskHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_disk", externalID)
-}
-
-type Google_sql_database_instance struct {
-     Google_sql_database_instance_id *string
-     Region *string
-     Connection_name *string
-     Database_version *string
-     First_ip_address *string
-     Name *string
-     Project *string
-     Service_account_email_address *string
-     Master_instance_name *string
-     Self_link *string
-}
-
-
-func Google_sql_database_instanceMapper(r *Google_sql_database_instance) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Master_instance_name != nil {
-    config["master_instance_name"] = *r.Master_instance_name
-}
-if r.Database_version != nil {
-    config["database_version"] = *r.Database_version
-}
-if r.First_ip_address != nil {
-    config["first_ip_address"] = *r.First_ip_address
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Connection_name != nil {
-    config["connection_name"] = *r.Connection_name
-}
-if r.Service_account_email_address != nil {
-    config["service_account_email_address"] = *r.Service_account_email_address
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_sql_database_instanceUnmapper(state map[string]interface{}) *Google_sql_database_instance {
-	r := &Google_sql_database_instance{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_sql_database_instance_id = &x
-}
-
-if x, ok := state["master_instance_name"]; ok {
-	x := x.(string)
-	r.Master_instance_name = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["connection_name"]; ok {
-	x := x.(string)
-	r.Connection_name = &x
-}
-
-if x, ok := state["database_version"]; ok {
-	x := x.(string)
-	r.Database_version = &x
-}
-
-if x, ok := state["first_ip_address"]; ok {
-	x := x.(string)
-	r.First_ip_address = &x
-}
-
-if x, ok := state["service_account_email_address"]; ok {
-	x := x.(string)
-	r.Service_account_email_address = &x
-}
-	return r
-}
-
-
-// Google_sql_database_instanceHandler ...
-type Google_sql_database_instanceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_sql_database_instanceHandler) Create(desired *Google_sql_database_instance) (*Google_sql_database_instance, string, error) {
-	rState := Google_sql_database_instanceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_sql_database_instance", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_sql_database_instanceHandler) Read(externalID string) (*Google_sql_database_instance, error) {
-	actual, err := bridge.Read(h.provider, "google_sql_database_instance", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_sql_database_instanceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_sql_database_instanceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_sql_database_instance", externalID)
-}
-
-type Google_logging_organization_sink struct {
-     Google_logging_organization_sink_id *string
-     Filter *string
-     Writer_identity *string
-     Org_id string
-     Include_children *bool
-     Name string
-     Destination string
-}
-
-
-func Google_logging_organization_sinkMapper(r *Google_logging_organization_sink) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Writer_identity != nil {
-    config["writer_identity"] = *r.Writer_identity
-}
-    config["org_id"] = r.Org_id
-if r.Include_children != nil {
-    config["include_children"] = *r.Include_children
-}
-    config["name"] = r.Name
-    config["destination"] = r.Destination
-if r.Filter != nil {
-    config["filter"] = *r.Filter
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_organization_sinkUnmapper(state map[string]interface{}) *Google_logging_organization_sink {
-	r := &Google_logging_organization_sink{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_organization_sink_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["destination"]; ok {
-	r.Destination = x.(string)
-}
-
-if x, ok := state["filter"]; ok {
-	x := x.(string)
-	r.Filter = &x
-}
-
-if x, ok := state["writer_identity"]; ok {
-	x := x.(string)
-	r.Writer_identity = &x
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-
-if x, ok := state["include_children"]; ok {
-	x := x.(bool)
-	r.Include_children = &x
-}
-	return r
-}
-
-
-// Google_logging_organization_sinkHandler ...
-type Google_logging_organization_sinkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_organization_sinkHandler) Create(desired *Google_logging_organization_sink) (*Google_logging_organization_sink, string, error) {
-	rState := Google_logging_organization_sinkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_organization_sink", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_organization_sinkHandler) Read(externalID string) (*Google_logging_organization_sink, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_organization_sink", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_organization_sinkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_organization_sinkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_organization_sink", externalID)
-}
-
-type Google_sql_database struct {
-     Google_sql_database_id *string
-     Name string
-     Instance string
-     Project *string
-     Self_link *string
-     Charset *string
-     Collation *string
-}
-
-
-func Google_sql_databaseMapper(r *Google_sql_database) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Charset != nil {
-    config["charset"] = *r.Charset
-}
-if r.Collation != nil {
-    config["collation"] = *r.Collation
-}
-    config["name"] = r.Name
-    config["instance"] = r.Instance
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_sql_databaseUnmapper(state map[string]interface{}) *Google_sql_database {
-	r := &Google_sql_database{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_sql_database_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["charset"]; ok {
-	x := x.(string)
-	r.Charset = &x
-}
-
-if x, ok := state["collation"]; ok {
-	x := x.(string)
-	r.Collation = &x
-}
-	return r
-}
-
-
-// Google_sql_databaseHandler ...
-type Google_sql_databaseHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_sql_databaseHandler) Create(desired *Google_sql_database) (*Google_sql_database, string, error) {
-	rState := Google_sql_databaseMapper(desired)
-	id, err := bridge.Create(h.provider, "google_sql_database", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_sql_databaseHandler) Read(externalID string) (*Google_sql_database, error) {
-	actual, err := bridge.Read(h.provider, "google_sql_database", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_sql_databaseUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_sql_databaseHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_sql_database", externalID)
-}
-
-type Google_kms_crypto_key_iam_binding struct {
-     Google_kms_crypto_key_iam_binding_id *string
-     Role string
-     Etag *string
-     Crypto_key_id string
-}
-
-
-func Google_kms_crypto_key_iam_bindingMapper(r *Google_kms_crypto_key_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["crypto_key_id"] = r.Crypto_key_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_kms_crypto_key_iam_bindingUnmapper(state map[string]interface{}) *Google_kms_crypto_key_iam_binding {
-	r := &Google_kms_crypto_key_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_crypto_key_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["crypto_key_id"]; ok {
-	r.Crypto_key_id = x.(string)
-}
-	return r
-}
-
-
-// Google_kms_crypto_key_iam_bindingHandler ...
-type Google_kms_crypto_key_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_kms_crypto_key_iam_bindingHandler) Create(desired *Google_kms_crypto_key_iam_binding) (*Google_kms_crypto_key_iam_binding, string, error) {
-	rState := Google_kms_crypto_key_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_crypto_key_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_kms_crypto_key_iam_bindingHandler) Read(externalID string) (*Google_kms_crypto_key_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_crypto_key_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_kms_crypto_key_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_kms_crypto_key_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_crypto_key_iam_binding", externalID)
-}
-
-type Google_project_iam_custom_role struct {
-     Google_project_iam_custom_role_id *string
-     Title string
-     Project *string
-     Stage *string
-     Description *string
-     Deleted *bool
-     Role_id string
-}
-
-
-func Google_project_iam_custom_roleMapper(r *Google_project_iam_custom_role) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Stage != nil {
-    config["stage"] = *r.Stage
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Deleted != nil {
-    config["deleted"] = *r.Deleted
-}
-    config["role_id"] = r.Role_id
-    config["title"] = r.Title
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_iam_custom_roleUnmapper(state map[string]interface{}) *Google_project_iam_custom_role {
-	r := &Google_project_iam_custom_role{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_iam_custom_role_id = &x
-}
-
-if x, ok := state["role_id"]; ok {
-	r.Role_id = x.(string)
-}
-
-if x, ok := state["title"]; ok {
-	r.Title = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["stage"]; ok {
-	x := x.(string)
-	r.Stage = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["deleted"]; ok {
-	x := x.(bool)
-	r.Deleted = &x
-}
-	return r
-}
-
-
-// Google_project_iam_custom_roleHandler ...
-type Google_project_iam_custom_roleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_iam_custom_roleHandler) Create(desired *Google_project_iam_custom_role) (*Google_project_iam_custom_role, string, error) {
-	rState := Google_project_iam_custom_roleMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_iam_custom_role", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_iam_custom_roleHandler) Read(externalID string) (*Google_project_iam_custom_role, error) {
-	actual, err := bridge.Read(h.provider, "google_project_iam_custom_role", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_iam_custom_roleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_iam_custom_roleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_iam_custom_role", externalID)
-}
-
-type Google_compute_instance_template struct {
-     Google_compute_instance_template_id *string
-     Automatic_restart *bool
-     Instance_description *string
-     On_host_maintenance *string
-     Project *string
-     Self_link *string
-     Tags_fingerprint *string
-     Can_ip_forward *bool
-     Description *string
-     Metadata_fingerprint *string
-     Metadata_startup_script *string
-     Name *string
-     Name_prefix *string
-     Machine_type string
-     Region *string
-     Min_cpu_platform *string
-}
-
-
-func Google_compute_instance_templateMapper(r *Google_compute_instance_template) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Metadata_startup_script != nil {
-    config["metadata_startup_script"] = *r.Metadata_startup_script
-}
-if r.Min_cpu_platform != nil {
-    config["min_cpu_platform"] = *r.Min_cpu_platform
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Name_prefix != nil {
-    config["name_prefix"] = *r.Name_prefix
-}
-    config["machine_type"] = r.Machine_type
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Tags_fingerprint != nil {
-    config["tags_fingerprint"] = *r.Tags_fingerprint
-}
-if r.Automatic_restart != nil {
-    config["automatic_restart"] = *r.Automatic_restart
-}
-if r.Instance_description != nil {
-    config["instance_description"] = *r.Instance_description
-}
-if r.On_host_maintenance != nil {
-    config["on_host_maintenance"] = *r.On_host_maintenance
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Can_ip_forward != nil {
-    config["can_ip_forward"] = *r.Can_ip_forward
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Metadata_fingerprint != nil {
-    config["metadata_fingerprint"] = *r.Metadata_fingerprint
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_instance_templateUnmapper(state map[string]interface{}) *Google_compute_instance_template {
-	r := &Google_compute_instance_template{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_instance_template_id = &x
-}
-
-if x, ok := state["metadata_startup_script"]; ok {
-	x := x.(string)
-	r.Metadata_startup_script = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["name_prefix"]; ok {
-	x := x.(string)
-	r.Name_prefix = &x
-}
-
-if x, ok := state["machine_type"]; ok {
-	r.Machine_type = x.(string)
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["min_cpu_platform"]; ok {
-	x := x.(string)
-	r.Min_cpu_platform = &x
-}
-
-if x, ok := state["automatic_restart"]; ok {
-	x := x.(bool)
-	r.Automatic_restart = &x
-}
-
-if x, ok := state["instance_description"]; ok {
-	x := x.(string)
-	r.Instance_description = &x
-}
-
-if x, ok := state["on_host_maintenance"]; ok {
-	x := x.(string)
-	r.On_host_maintenance = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["tags_fingerprint"]; ok {
-	x := x.(string)
-	r.Tags_fingerprint = &x
-}
-
-if x, ok := state["can_ip_forward"]; ok {
-	x := x.(bool)
-	r.Can_ip_forward = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["metadata_fingerprint"]; ok {
-	x := x.(string)
-	r.Metadata_fingerprint = &x
-}
-	return r
-}
-
-
-// Google_compute_instance_templateHandler ...
-type Google_compute_instance_templateHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_instance_templateHandler) Create(desired *Google_compute_instance_template) (*Google_compute_instance_template, string, error) {
-	rState := Google_compute_instance_templateMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_instance_template", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_instance_templateHandler) Read(externalID string) (*Google_compute_instance_template, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_instance_template", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_instance_templateUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_instance_templateHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_instance_template", externalID)
-}
-
-type Google_spanner_instance_iam_policy struct {
-     Google_spanner_instance_iam_policy_id *string
-     Instance string
-     Project *string
-     Policy_data string
-     Etag *string
-}
-
-
-func Google_spanner_instance_iam_policyMapper(r *Google_spanner_instance_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["instance"] = r.Instance
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_instance_iam_policyUnmapper(state map[string]interface{}) *Google_spanner_instance_iam_policy {
-	r := &Google_spanner_instance_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_instance_iam_policy_id = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_spanner_instance_iam_policyHandler ...
-type Google_spanner_instance_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_instance_iam_policyHandler) Create(desired *Google_spanner_instance_iam_policy) (*Google_spanner_instance_iam_policy, string, error) {
-	rState := Google_spanner_instance_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_instance_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_instance_iam_policyHandler) Read(externalID string) (*Google_spanner_instance_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_instance_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_instance_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_instance_iam_policy", externalID)
-}
-
-type Google_folder_iam_policy struct {
-     Google_folder_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Folder string
-}
-
-
-func Google_folder_iam_policyMapper(r *Google_folder_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["folder"] = r.Folder
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_folder_iam_policyUnmapper(state map[string]interface{}) *Google_folder_iam_policy {
-	r := &Google_folder_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_folder_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["folder"]; ok {
-	r.Folder = x.(string)
-}
-	return r
-}
-
-
-// Google_folder_iam_policyHandler ...
-type Google_folder_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_folder_iam_policyHandler) Create(desired *Google_folder_iam_policy) (*Google_folder_iam_policy, string, error) {
-	rState := Google_folder_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_folder_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_folder_iam_policyHandler) Read(externalID string) (*Google_folder_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_folder_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_folder_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_folder_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_folder_iam_policy", externalID)
-}
-
-type Google_runtimeconfig_config struct {
-     Google_runtimeconfig_config_id *string
-     Name string
-     Description *string
-     Project *string
-}
-
-
-func Google_runtimeconfig_configMapper(r *Google_runtimeconfig_config) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_runtimeconfig_configUnmapper(state map[string]interface{}) *Google_runtimeconfig_config {
-	r := &Google_runtimeconfig_config{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_runtimeconfig_config_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_runtimeconfig_configHandler ...
-type Google_runtimeconfig_configHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_runtimeconfig_configHandler) Create(desired *Google_runtimeconfig_config) (*Google_runtimeconfig_config, string, error) {
-	rState := Google_runtimeconfig_configMapper(desired)
-	id, err := bridge.Create(h.provider, "google_runtimeconfig_config", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_runtimeconfig_configHandler) Read(externalID string) (*Google_runtimeconfig_config, error) {
-	actual, err := bridge.Read(h.provider, "google_runtimeconfig_config", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_runtimeconfig_configUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_runtimeconfig_configHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_runtimeconfig_config", externalID)
-}
-
-type Google_organization_iam_policy struct {
-     Google_organization_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Org_id string
-}
-
-
-func Google_organization_iam_policyMapper(r *Google_organization_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["org_id"] = r.Org_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_organization_iam_policyUnmapper(state map[string]interface{}) *Google_organization_iam_policy {
-	r := &Google_organization_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_organization_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-	return r
-}
-
-
-// Google_organization_iam_policyHandler ...
-type Google_organization_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_organization_iam_policyHandler) Create(desired *Google_organization_iam_policy) (*Google_organization_iam_policy, string, error) {
-	rState := Google_organization_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_organization_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_organization_iam_policyHandler) Read(externalID string) (*Google_organization_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_organization_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_organization_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_organization_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_organization_iam_policy", externalID)
-}
-
-type Google_cloudbuild_trigger struct {
-     Google_cloudbuild_trigger_id *string
-     Project *string
-     Filename *string
-     Description *string
-}
-
-
-func Google_cloudbuild_triggerMapper(r *Google_cloudbuild_trigger) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Filename != nil {
-    config["filename"] = *r.Filename
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_cloudbuild_triggerUnmapper(state map[string]interface{}) *Google_cloudbuild_trigger {
-	r := &Google_cloudbuild_trigger{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_cloudbuild_trigger_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["filename"]; ok {
-	x := x.(string)
-	r.Filename = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-	return r
-}
-
-
-// Google_cloudbuild_triggerHandler ...
-type Google_cloudbuild_triggerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_cloudbuild_triggerHandler) Create(desired *Google_cloudbuild_trigger) (*Google_cloudbuild_trigger, string, error) {
-	rState := Google_cloudbuild_triggerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_cloudbuild_trigger", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_cloudbuild_triggerHandler) Read(externalID string) (*Google_cloudbuild_trigger, error) {
-	actual, err := bridge.Read(h.provider, "google_cloudbuild_trigger", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_cloudbuild_triggerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_cloudbuild_triggerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_cloudbuild_trigger", externalID)
-}
-
-type Google_monitoring_group struct {
-     Google_monitoring_group_id *string
-     Name *string
-     Project *string
-     Display_name string
-     Filter string
-     Is_cluster *bool
-     Parent_name *string
-}
-
-
-func Google_monitoring_groupMapper(r *Google_monitoring_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["display_name"] = r.Display_name
-    config["filter"] = r.Filter
-if r.Is_cluster != nil {
-    config["is_cluster"] = *r.Is_cluster
-}
-if r.Parent_name != nil {
-    config["parent_name"] = *r.Parent_name
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_monitoring_groupUnmapper(state map[string]interface{}) *Google_monitoring_group {
-	r := &Google_monitoring_group{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_monitoring_group_id = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["filter"]; ok {
-	r.Filter = x.(string)
-}
-
-if x, ok := state["is_cluster"]; ok {
-	x := x.(bool)
-	r.Is_cluster = &x
-}
-
-if x, ok := state["parent_name"]; ok {
-	x := x.(string)
-	r.Parent_name = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_monitoring_groupHandler ...
-type Google_monitoring_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_monitoring_groupHandler) Create(desired *Google_monitoring_group) (*Google_monitoring_group, string, error) {
-	rState := Google_monitoring_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "google_monitoring_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_monitoring_groupHandler) Read(externalID string) (*Google_monitoring_group, error) {
-	actual, err := bridge.Read(h.provider, "google_monitoring_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_monitoring_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_monitoring_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_monitoring_group", externalID)
-}
-
-type Google_kms_key_ring struct {
-     Google_kms_key_ring_id *string
-     Location string
-     Project *string
-     Self_link *string
-     Name string
-}
-
-
-func Google_kms_key_ringMapper(r *Google_kms_key_ring) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["location"] = r.Location
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_kms_key_ringUnmapper(state map[string]interface{}) *Google_kms_key_ring {
-	r := &Google_kms_key_ring{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_key_ring_id = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["location"]; ok {
-	r.Location = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_kms_key_ringHandler ...
-type Google_kms_key_ringHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_kms_key_ringHandler) Create(desired *Google_kms_key_ring) (*Google_kms_key_ring, string, error) {
-	rState := Google_kms_key_ringMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_key_ring", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_kms_key_ringHandler) Read(externalID string) (*Google_kms_key_ring, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_key_ring", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_kms_key_ringUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_kms_key_ringHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_key_ring", externalID)
-}
-
-type Google_organization_iam_member struct {
-     Google_organization_iam_member_id *string
-     Member string
-     Etag *string
-     Org_id string
-     Role string
-}
-
-
-func Google_organization_iam_memberMapper(r *Google_organization_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["org_id"] = r.Org_id
-    config["role"] = r.Role
-    config["member"] = r.Member
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_organization_iam_memberUnmapper(state map[string]interface{}) *Google_organization_iam_member {
-	r := &Google_organization_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_organization_iam_member_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-	return r
-}
-
-
-// Google_organization_iam_memberHandler ...
-type Google_organization_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_organization_iam_memberHandler) Create(desired *Google_organization_iam_member) (*Google_organization_iam_member, string, error) {
-	rState := Google_organization_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_organization_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_organization_iam_memberHandler) Read(externalID string) (*Google_organization_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_organization_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_organization_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_organization_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_organization_iam_member", externalID)
-}
-
-type Google_project_usage_export_bucket struct {
-     Google_project_usage_export_bucket_id *string
-     Bucket_name string
-     Prefix *string
-     Project *string
-}
-
-
-func Google_project_usage_export_bucketMapper(r *Google_project_usage_export_bucket) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Prefix != nil {
-    config["prefix"] = *r.Prefix
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["bucket_name"] = r.Bucket_name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_usage_export_bucketUnmapper(state map[string]interface{}) *Google_project_usage_export_bucket {
-	r := &Google_project_usage_export_bucket{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_usage_export_bucket_id = &x
-}
-
-if x, ok := state["prefix"]; ok {
-	x := x.(string)
-	r.Prefix = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["bucket_name"]; ok {
-	r.Bucket_name = x.(string)
-}
-	return r
-}
-
-
-// Google_project_usage_export_bucketHandler ...
-type Google_project_usage_export_bucketHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_usage_export_bucketHandler) Create(desired *Google_project_usage_export_bucket) (*Google_project_usage_export_bucket, string, error) {
-	rState := Google_project_usage_export_bucketMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_usage_export_bucket", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_usage_export_bucketHandler) Read(externalID string) (*Google_project_usage_export_bucket, error) {
-	actual, err := bridge.Read(h.provider, "google_project_usage_export_bucket", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_usage_export_bucketUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_usage_export_bucketHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_usage_export_bucket", externalID)
-}
-
-type Google_binary_authorization_policy struct {
-     Google_binary_authorization_policy_id *string
-     Description *string
-     Project *string
-}
-
-
-func Google_binary_authorization_policyMapper(r *Google_binary_authorization_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_binary_authorization_policyUnmapper(state map[string]interface{}) *Google_binary_authorization_policy {
-	r := &Google_binary_authorization_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_binary_authorization_policy_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_binary_authorization_policyHandler ...
-type Google_binary_authorization_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_binary_authorization_policyHandler) Create(desired *Google_binary_authorization_policy) (*Google_binary_authorization_policy, string, error) {
-	rState := Google_binary_authorization_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_binary_authorization_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_binary_authorization_policyHandler) Read(externalID string) (*Google_binary_authorization_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_binary_authorization_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_binary_authorization_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_binary_authorization_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_binary_authorization_policy", externalID)
-}
-
-type Google_compute_target_tcp_proxy struct {
-     Google_compute_target_tcp_proxy_id *string
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
-     Backend_service string
-     Name string
-     Description *string
-     Proxy_header *string
-}
-
-
-func Google_compute_target_tcp_proxyMapper(r *Google_compute_target_tcp_proxy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Proxy_header != nil {
-    config["proxy_header"] = *r.Proxy_header
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["backend_service"] = r.Backend_service
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_target_tcp_proxyUnmapper(state map[string]interface{}) *Google_compute_target_tcp_proxy {
-	r := &Google_compute_target_tcp_proxy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_target_tcp_proxy_id = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["backend_service"]; ok {
-	r.Backend_service = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["proxy_header"]; ok {
-	x := x.(string)
-	r.Proxy_header = &x
-}
-	return r
-}
-
-
-// Google_compute_target_tcp_proxyHandler ...
-type Google_compute_target_tcp_proxyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_target_tcp_proxyHandler) Create(desired *Google_compute_target_tcp_proxy) (*Google_compute_target_tcp_proxy, string, error) {
-	rState := Google_compute_target_tcp_proxyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_target_tcp_proxy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_target_tcp_proxyHandler) Read(externalID string) (*Google_compute_target_tcp_proxy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_target_tcp_proxy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_target_tcp_proxyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_target_tcp_proxyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_target_tcp_proxy", externalID)
-}
-
-type Google_organization_policy struct {
-     Google_organization_policy_id *string
-     Etag *string
-     Update_time *string
-     Constraint string
-     Org_id string
-}
-
-
-func Google_organization_policyMapper(r *Google_organization_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Update_time != nil {
-    config["update_time"] = *r.Update_time
-}
-    config["constraint"] = r.Constraint
-    config["org_id"] = r.Org_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_organization_policyUnmapper(state map[string]interface{}) *Google_organization_policy {
-	r := &Google_organization_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_organization_policy_id = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["update_time"]; ok {
-	x := x.(string)
-	r.Update_time = &x
-}
-
-if x, ok := state["constraint"]; ok {
-	r.Constraint = x.(string)
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-	return r
-}
-
-
-// Google_organization_policyHandler ...
-type Google_organization_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_organization_policyHandler) Create(desired *Google_organization_policy) (*Google_organization_policy, string, error) {
-	rState := Google_organization_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_organization_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_organization_policyHandler) Read(externalID string) (*Google_organization_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_organization_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_organization_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_organization_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_organization_policy", externalID)
-}
-
-type Google_storage_bucket_acl struct {
-     Google_storage_bucket_acl_id *string
-     Bucket string
-     Default_acl *string
-     Predefined_acl *string
-}
-
-
-func Google_storage_bucket_aclMapper(r *Google_storage_bucket_acl) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["bucket"] = r.Bucket
-if r.Default_acl != nil {
-    config["default_acl"] = *r.Default_acl
-}
-if r.Predefined_acl != nil {
-    config["predefined_acl"] = *r.Predefined_acl
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_bucket_aclUnmapper(state map[string]interface{}) *Google_storage_bucket_acl {
-	r := &Google_storage_bucket_acl{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_bucket_acl_id = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["default_acl"]; ok {
-	x := x.(string)
-	r.Default_acl = &x
-}
-
-if x, ok := state["predefined_acl"]; ok {
-	x := x.(string)
-	r.Predefined_acl = &x
-}
-	return r
-}
-
-
-// Google_storage_bucket_aclHandler ...
-type Google_storage_bucket_aclHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_bucket_aclHandler) Create(desired *Google_storage_bucket_acl) (*Google_storage_bucket_acl, string, error) {
-	rState := Google_storage_bucket_aclMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_bucket_acl", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_bucket_aclHandler) Read(externalID string) (*Google_storage_bucket_acl, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_bucket_acl", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_bucket_aclUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_bucket_aclHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_bucket_acl", externalID)
-}
-
-type Google_spanner_database struct {
-     Google_spanner_database_id *string
-     Instance string
-     Name string
-     Project *string
-     State *string
-}
-
-
-func Google_spanner_databaseMapper(r *Google_spanner_database) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["instance"] = r.Instance
-    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.State != nil {
-    config["state"] = *r.State
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_databaseUnmapper(state map[string]interface{}) *Google_spanner_database {
-	r := &Google_spanner_database{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_database_id = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-	return r
-}
-
-
-// Google_spanner_databaseHandler ...
-type Google_spanner_databaseHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_databaseHandler) Create(desired *Google_spanner_database) (*Google_spanner_database, string, error) {
-	rState := Google_spanner_databaseMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_database", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_databaseHandler) Read(externalID string) (*Google_spanner_database, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_database", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_databaseUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_databaseHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_database", externalID)
-}
-
-type Google_logging_billing_account_sink struct {
-     Google_logging_billing_account_sink_id *string
-     Billing_account string
-     Name string
-     Destination string
-     Filter *string
-     Writer_identity *string
-}
-
-
-func Google_logging_billing_account_sinkMapper(r *Google_logging_billing_account_sink) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["destination"] = r.Destination
-if r.Filter != nil {
-    config["filter"] = *r.Filter
-}
-if r.Writer_identity != nil {
-    config["writer_identity"] = *r.Writer_identity
-}
-    config["billing_account"] = r.Billing_account
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_billing_account_sinkUnmapper(state map[string]interface{}) *Google_logging_billing_account_sink {
-	r := &Google_logging_billing_account_sink{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_billing_account_sink_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["destination"]; ok {
-	r.Destination = x.(string)
-}
-
-if x, ok := state["filter"]; ok {
-	x := x.(string)
-	r.Filter = &x
-}
-
-if x, ok := state["writer_identity"]; ok {
-	x := x.(string)
-	r.Writer_identity = &x
-}
-
-if x, ok := state["billing_account"]; ok {
-	r.Billing_account = x.(string)
-}
-	return r
-}
-
-
-// Google_logging_billing_account_sinkHandler ...
-type Google_logging_billing_account_sinkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_billing_account_sinkHandler) Create(desired *Google_logging_billing_account_sink) (*Google_logging_billing_account_sink, string, error) {
-	rState := Google_logging_billing_account_sinkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_billing_account_sink", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_billing_account_sinkHandler) Read(externalID string) (*Google_logging_billing_account_sink, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_billing_account_sink", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_billing_account_sinkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_billing_account_sinkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_billing_account_sink", externalID)
-}
-
-type Google_bigquery_dataset struct {
-     Google_bigquery_dataset_id *string
-     Self_link *string
-     Dataset_id string
-     Project *string
-     Location *string
-     Etag *string
-     Friendly_name *string
-     Description *string
-}
-
-
-func Google_bigquery_datasetMapper(r *Google_bigquery_dataset) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Friendly_name != nil {
-    config["friendly_name"] = *r.Friendly_name
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["dataset_id"] = r.Dataset_id
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_bigquery_datasetUnmapper(state map[string]interface{}) *Google_bigquery_dataset {
-	r := &Google_bigquery_dataset{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_bigquery_dataset_id = &x
-}
-
-if x, ok := state["dataset_id"]; ok {
-	r.Dataset_id = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["friendly_name"]; ok {
-	x := x.(string)
-	r.Friendly_name = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_bigquery_datasetHandler ...
-type Google_bigquery_datasetHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_bigquery_datasetHandler) Create(desired *Google_bigquery_dataset) (*Google_bigquery_dataset, string, error) {
-	rState := Google_bigquery_datasetMapper(desired)
-	id, err := bridge.Create(h.provider, "google_bigquery_dataset", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_bigquery_datasetHandler) Read(externalID string) (*Google_bigquery_dataset, error) {
-	actual, err := bridge.Read(h.provider, "google_bigquery_dataset", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_bigquery_datasetUnmapper(actual), nil
-}
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_crypto_key{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_keyHandler", &Google_kms_crypto_keyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_crypto_key_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_key_iam_bindingHandler", &Google_kms_crypto_key_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_crypto_key_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_key_iam_memberHandler", &Google_kms_crypto_key_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ringHandler", &Google_kms_key_ringHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_bindingHandler", &Google_kms_key_ring_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_memberHandler", &Google_kms_key_ring_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_kms_key_ring_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_policyHandler", &Google_kms_key_ring_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_billing_account_exclusion{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_exclusionHandler", &Google_logging_billing_account_exclusionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_billing_account_sink{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_sinkHandler", &Google_logging_billing_account_sinkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_folder_exclusion{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_folder_exclusionHandler", &Google_logging_folder_exclusionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_folder_sink{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_folder_sinkHandler", &Google_logging_folder_sinkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_organization_exclusion{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_organization_exclusionHandler", &Google_logging_organization_exclusionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_organization_sink{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_organization_sinkHandler", &Google_logging_organization_sinkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_project_exclusion{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_project_exclusionHandler", &Google_logging_project_exclusionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_logging_project_sink{})
+    sb.RegisterHandler("TerraformGoogle::Google_logging_project_sinkHandler", &Google_logging_project_sinkHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_alert_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_monitoring_alert_policyHandler", &Google_monitoring_alert_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_group{})
+    sb.RegisterHandler("TerraformGoogle::Google_monitoring_groupHandler", &Google_monitoring_groupHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_notification_channel{})
+    sb.RegisterHandler("TerraformGoogle::Google_monitoring_notification_channelHandler", &Google_monitoring_notification_channelHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_monitoring_uptime_check_config{})
+    sb.RegisterHandler("TerraformGoogle::Google_monitoring_uptime_check_configHandler", &Google_monitoring_uptime_check_configHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_bindingHandler", &Google_organization_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_custom_role{})
+    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_custom_roleHandler", &Google_organization_iam_custom_roleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_memberHandler", &Google_organization_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_organization_iam_policyHandler", &Google_organization_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_organization_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_organization_policyHandler", &Google_organization_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project{})
+    sb.RegisterHandler("TerraformGoogle::Google_projectHandler", &Google_projectHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_iam_bindingHandler", &Google_project_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_custom_role{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_iam_custom_roleHandler", &Google_project_iam_custom_roleHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_iam_memberHandler", &Google_project_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_iam_policyHandler", &Google_project_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_organization_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_organization_policyHandler", &Google_project_organization_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_service{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_serviceHandler", &Google_project_serviceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_services{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_servicesHandler", &Google_project_servicesHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_project_usage_export_bucket{})
+    sb.RegisterHandler("TerraformGoogle::Google_project_usage_export_bucketHandler", &Google_project_usage_export_bucketHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscriptionHandler", &Google_pubsub_subscriptionHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_bindingHandler", &Google_pubsub_subscription_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_memberHandler", &Google_pubsub_subscription_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_subscription_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_policyHandler", &Google_pubsub_subscription_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topicHandler", &Google_pubsub_topicHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_bindingHandler", &Google_pubsub_topic_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_memberHandler", &Google_pubsub_topic_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_pubsub_topic_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_policyHandler", &Google_pubsub_topic_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_redis_instance{})
+    sb.RegisterHandler("TerraformGoogle::Google_redis_instanceHandler", &Google_redis_instanceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_resource_manager_lien{})
+    sb.RegisterHandler("TerraformGoogle::Google_resource_manager_lienHandler", &Google_resource_manager_lienHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_runtimeconfig_config{})
+    sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_configHandler", &Google_runtimeconfig_configHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_runtimeconfig_variable{})
+    sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_variableHandler", &Google_runtimeconfig_variableHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account{})
+    sb.RegisterHandler("TerraformGoogle::Google_service_accountHandler", &Google_service_accountHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_bindingHandler", &Google_service_account_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_memberHandler", &Google_service_account_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_policyHandler", &Google_service_account_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_service_account_key{})
+    sb.RegisterHandler("TerraformGoogle::Google_service_account_keyHandler", &Google_service_account_keyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_sourcerepo_repository{})
+    sb.RegisterHandler("TerraformGoogle::Google_sourcerepo_repositoryHandler", &Google_sourcerepo_repositoryHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_databaseHandler", &Google_spanner_databaseHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_bindingHandler", &Google_spanner_database_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_memberHandler", &Google_spanner_database_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_database_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_policyHandler", &Google_spanner_database_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_instanceHandler", &Google_spanner_instanceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_bindingHandler", &Google_spanner_instance_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_memberHandler", &Google_spanner_instance_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_spanner_instance_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_policyHandler", &Google_spanner_instance_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_database{})
+    sb.RegisterHandler("TerraformGoogle::Google_sql_databaseHandler", &Google_sql_databaseHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_database_instance{})
+    sb.RegisterHandler("TerraformGoogle::Google_sql_database_instanceHandler", &Google_sql_database_instanceHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_ssl_cert{})
+    sb.RegisterHandler("TerraformGoogle::Google_sql_ssl_certHandler", &Google_sql_ssl_certHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_sql_user{})
+    sb.RegisterHandler("TerraformGoogle::Google_sql_userHandler", &Google_sql_userHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_bucketHandler", &Google_storage_bucketHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_acl{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_aclHandler", &Google_storage_bucket_aclHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_iam_binding{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_bindingHandler", &Google_storage_bucket_iam_bindingHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_iam_member{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_memberHandler", &Google_storage_bucket_iam_memberHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_iam_policy{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_policyHandler", &Google_storage_bucket_iam_policyHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_bucket_object{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_objectHandler", &Google_storage_bucket_objectHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_default_object_access_control{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_access_controlHandler", &Google_storage_default_object_access_controlHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_default_object_acl{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_aclHandler", &Google_storage_default_object_aclHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_notification{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_notificationHandler", &Google_storage_notificationHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_object_access_control{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_object_access_controlHandler", &Google_storage_object_access_controlHandler{provider: p}, evs[0])
+    evs = sb.RegisterTypes("TerraformGoogle", Google_storage_object_acl{})
+    sb.RegisterHandler("TerraformGoogle::Google_storage_object_aclHandler", &Google_storage_object_aclHandler{provider: p}, evs[0])
+}
+
+
+type Google_app_engine_application_feature_settings_1532 struct {
+
+    Google_app_engine_application_feature_settings_1532_id *string `lyra:"ignore"`
+
+    Split_health_checks *bool
+
+}
+
+type Google_app_engine_application_url_dispatch_rule_1533 struct {
+
+    Google_app_engine_application_url_dispatch_rule_1533_id *string `lyra:"ignore"`
+
+    Domain *string
+
+    Path *string
+
+    Service *string
 
-// Delete ...
-func (h *Google_bigquery_datasetHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_bigquery_dataset", externalID)
 }
 
 type Google_app_engine_application struct {
-     Google_app_engine_application_id *string
-     Serving_status *string
-     Code_bucket *string
-     Default_bucket *string
-     Gcr_domain *string
-     Auth_domain *string
-     Location_id string
-     Name *string
-     Default_hostname *string
-     Project *string
-}
 
+    Google_app_engine_application_id *string `lyra:"ignore"`
 
-func Google_app_engine_applicationMapper(r *Google_app_engine_application) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Serving_status != nil {
-    config["serving_status"] = *r.Serving_status
-}
-if r.Code_bucket != nil {
-    config["code_bucket"] = *r.Code_bucket
-}
-if r.Default_bucket != nil {
-    config["default_bucket"] = *r.Default_bucket
-}
-if r.Gcr_domain != nil {
-    config["gcr_domain"] = *r.Gcr_domain
-}
-if r.Auth_domain != nil {
-    config["auth_domain"] = *r.Auth_domain
-}
-    config["location_id"] = r.Location_id
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Default_hostname != nil {
-    config["default_hostname"] = *r.Default_hostname
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Auth_domain *string
 
-func Google_app_engine_applicationUnmapper(state map[string]interface{}) *Google_app_engine_application {
-	r := &Google_app_engine_application{}
+    Code_bucket *string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_app_engine_application_id = &x
-}
+    Default_bucket *string
 
-if x, ok := state["auth_domain"]; ok {
-	x := x.(string)
-	r.Auth_domain = &x
-}
+    Default_hostname *string
 
-if x, ok := state["serving_status"]; ok {
-	x := x.(string)
-	r.Serving_status = &x
-}
+    Feature_settings *Google_app_engine_application_feature_settings_1532
 
-if x, ok := state["code_bucket"]; ok {
-	x := x.(string)
-	r.Code_bucket = &x
-}
+    Gcr_domain *string
 
-if x, ok := state["default_bucket"]; ok {
-	x := x.(string)
-	r.Default_bucket = &x
-}
+    Location_id string
 
-if x, ok := state["gcr_domain"]; ok {
-	x := x.(string)
-	r.Gcr_domain = &x
-}
+    Name *string
 
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
+    Project *string
 
-if x, ok := state["location_id"]; ok {
-	r.Location_id = x.(string)
-}
+    Serving_status *string
 
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
+    Url_dispatch_rule *Google_app_engine_application_url_dispatch_rule_1533
 
-if x, ok := state["default_hostname"]; ok {
-	x := x.(string)
-	r.Default_hostname = &x
 }
-	return r
-}
-
 
 // Google_app_engine_applicationHandler ...
 type Google_app_engine_applicationHandler struct {
@@ -8735,8 +381,10 @@ type Google_app_engine_applicationHandler struct {
 
 // Create ...
 func (h *Google_app_engine_applicationHandler) Create(desired *Google_app_engine_application) (*Google_app_engine_application, string, error) {
-	rState := Google_app_engine_applicationMapper(desired)
-	id, err := bridge.Create(h.provider, "google_app_engine_application", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_app_engine_application", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -8749,11 +397,13 @@ func (h *Google_app_engine_applicationHandler) Create(desired *Google_app_engine
 
 // Read ...
 func (h *Google_app_engine_applicationHandler) Read(externalID string) (*Google_app_engine_application, error) {
-	actual, err := bridge.Read(h.provider, "google_app_engine_application", externalID)
+	id, actual, err := bridge.Read(h.provider, "google_app_engine_application", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_app_engine_applicationUnmapper(actual), nil
+	x := &Google_app_engine_application{ Google_app_engine_application_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -8761,68 +411,77 @@ func (h *Google_app_engine_applicationHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "google_app_engine_application", externalID)
 }
 
-type Google_kms_crypto_key struct {
-     Google_kms_crypto_key_id *string
-     Name string
-     Key_ring string
-     Rotation_period *string
-     Self_link *string
+type Google_bigquery_dataset_access_1534_view_1535 struct {
+
+    Google_bigquery_dataset_access_1534_view_1535_id *string `lyra:"ignore"`
+
+    Dataset_id string
+
+    Project_id string
+
+    Table_id string
+
 }
 
+type Google_bigquery_dataset_access_1534 struct {
 
-func Google_kms_crypto_keyMapper(r *Google_kms_crypto_key) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Rotation_period != nil {
-    config["rotation_period"] = *r.Rotation_period
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-    config["key_ring"] = r.Key_ring
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Google_bigquery_dataset_access_1534_id *string `lyra:"ignore"`
 
-func Google_kms_crypto_keyUnmapper(state map[string]interface{}) *Google_kms_crypto_key {
-	r := &Google_kms_crypto_key{}
+    Domain *string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_crypto_key_id = &x
+    Group_by_email *string
+
+    Role *string
+
+    Special_group *string
+
+    User_by_email *string
+
+    View *Google_bigquery_dataset_access_1534_view_1535
+
 }
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
+type Google_bigquery_dataset struct {
+
+    Google_bigquery_dataset_id *string `lyra:"ignore"`
+
+    Access *Google_bigquery_dataset_access_1534
+
+    Creation_time *int
+
+    Dataset_id string
+
+    Default_table_expiration_ms *int
+
+    Description *string
+
+    Etag *string
+
+    Friendly_name *string
+
+    Labels *map[string]string
+
+    Last_modified_time *int
+
+    Location *string
+
+    Project *string
+
+    Self_link *string
+
 }
 
-if x, ok := state["key_ring"]; ok {
-	r.Key_ring = x.(string)
-}
-
-if x, ok := state["rotation_period"]; ok {
-	x := x.(string)
-	r.Rotation_period = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_kms_crypto_keyHandler ...
-type Google_kms_crypto_keyHandler struct {
+// Google_bigquery_datasetHandler ...
+type Google_bigquery_datasetHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Google_kms_crypto_keyHandler) Create(desired *Google_kms_crypto_key) (*Google_kms_crypto_key, string, error) {
-	rState := Google_kms_crypto_keyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_crypto_key", rState)
+func (h *Google_bigquery_datasetHandler) Create(desired *Google_bigquery_dataset) (*Google_bigquery_dataset, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_bigquery_dataset", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -8834,5719 +493,86 @@ func (h *Google_kms_crypto_keyHandler) Create(desired *Google_kms_crypto_key) (*
 }
 
 // Read ...
-func (h *Google_kms_crypto_keyHandler) Read(externalID string) (*Google_kms_crypto_key, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_crypto_key", externalID)
+func (h *Google_bigquery_datasetHandler) Read(externalID string) (*Google_bigquery_dataset, error) {
+	id, actual, err := bridge.Read(h.provider, "google_bigquery_dataset", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_kms_crypto_keyUnmapper(actual), nil
+	x := &Google_bigquery_dataset{ Google_bigquery_dataset_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
-func (h *Google_kms_crypto_keyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_crypto_key", externalID)
+func (h *Google_bigquery_datasetHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_bigquery_dataset", externalID)
 }
 
-type Google_storage_bucket_object struct {
-     Google_storage_bucket_object_id *string
-     Content_disposition *string
-     Source *string
-     Storage_class *string
-     Cache_control *string
-     Name string
-     Md5hash *string
-     Bucket string
-     Crc32c *string
-     Content_language *string
-     Content_type *string
-     Content *string
-     Predefined_acl *string
-     Detect_md5hash *string
-     Content_encoding *string
-}
-
-
-func Google_storage_bucket_objectMapper(r *Google_storage_bucket_object) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Md5hash != nil {
-    config["md5hash"] = *r.Md5hash
-}
-    config["bucket"] = r.Bucket
-    config["name"] = r.Name
-if r.Crc32c != nil {
-    config["crc32c"] = *r.Crc32c
-}
-if r.Content_type != nil {
-    config["content_type"] = *r.Content_type
-}
-if r.Content != nil {
-    config["content"] = *r.Content
-}
-if r.Predefined_acl != nil {
-    config["predefined_acl"] = *r.Predefined_acl
-}
-if r.Detect_md5hash != nil {
-    config["detect_md5hash"] = *r.Detect_md5hash
-}
-if r.Content_encoding != nil {
-    config["content_encoding"] = *r.Content_encoding
-}
-if r.Content_language != nil {
-    config["content_language"] = *r.Content_language
-}
-if r.Source != nil {
-    config["source"] = *r.Source
-}
-if r.Storage_class != nil {
-    config["storage_class"] = *r.Storage_class
-}
-if r.Cache_control != nil {
-    config["cache_control"] = *r.Cache_control
-}
-if r.Content_disposition != nil {
-    config["content_disposition"] = *r.Content_disposition
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_bucket_objectUnmapper(state map[string]interface{}) *Google_storage_bucket_object {
-	r := &Google_storage_bucket_object{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_bucket_object_id = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["md5hash"]; ok {
-	x := x.(string)
-	r.Md5hash = &x
-}
-
-if x, ok := state["crc32c"]; ok {
-	x := x.(string)
-	r.Crc32c = &x
-}
-
-if x, ok := state["predefined_acl"]; ok {
-	x := x.(string)
-	r.Predefined_acl = &x
-}
-
-if x, ok := state["detect_md5hash"]; ok {
-	x := x.(string)
-	r.Detect_md5hash = &x
-}
-
-if x, ok := state["content_encoding"]; ok {
-	x := x.(string)
-	r.Content_encoding = &x
-}
-
-if x, ok := state["content_language"]; ok {
-	x := x.(string)
-	r.Content_language = &x
-}
-
-if x, ok := state["content_type"]; ok {
-	x := x.(string)
-	r.Content_type = &x
-}
-
-if x, ok := state["content"]; ok {
-	x := x.(string)
-	r.Content = &x
-}
-
-if x, ok := state["cache_control"]; ok {
-	x := x.(string)
-	r.Cache_control = &x
-}
-
-if x, ok := state["content_disposition"]; ok {
-	x := x.(string)
-	r.Content_disposition = &x
-}
-
-if x, ok := state["source"]; ok {
-	x := x.(string)
-	r.Source = &x
-}
-
-if x, ok := state["storage_class"]; ok {
-	x := x.(string)
-	r.Storage_class = &x
-}
-	return r
-}
-
-
-// Google_storage_bucket_objectHandler ...
-type Google_storage_bucket_objectHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_bucket_objectHandler) Create(desired *Google_storage_bucket_object) (*Google_storage_bucket_object, string, error) {
-	rState := Google_storage_bucket_objectMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_bucket_object", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_bucket_objectHandler) Read(externalID string) (*Google_storage_bucket_object, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_bucket_object", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_bucket_objectUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_bucket_objectHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_bucket_object", externalID)
-}
-
-type Google_kms_key_ring_iam_binding struct {
-     Google_kms_key_ring_iam_binding_id *string
-     Key_ring_id string
-     Etag *string
-     Role string
-}
-
-
-func Google_kms_key_ring_iam_bindingMapper(r *Google_kms_key_ring_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["role"] = r.Role
-    config["key_ring_id"] = r.Key_ring_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_kms_key_ring_iam_bindingUnmapper(state map[string]interface{}) *Google_kms_key_ring_iam_binding {
-	r := &Google_kms_key_ring_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_key_ring_iam_binding_id = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["key_ring_id"]; ok {
-	r.Key_ring_id = x.(string)
-}
-	return r
-}
-
-
-// Google_kms_key_ring_iam_bindingHandler ...
-type Google_kms_key_ring_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_kms_key_ring_iam_bindingHandler) Create(desired *Google_kms_key_ring_iam_binding) (*Google_kms_key_ring_iam_binding, string, error) {
-	rState := Google_kms_key_ring_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_key_ring_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_kms_key_ring_iam_bindingHandler) Read(externalID string) (*Google_kms_key_ring_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_kms_key_ring_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_kms_key_ring_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_key_ring_iam_binding", externalID)
-}
-
-type Google_folder_iam_member struct {
-     Google_folder_iam_member_id *string
-     Role string
-     Member string
-     Etag *string
-     Folder string
-}
-
-
-func Google_folder_iam_memberMapper(r *Google_folder_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["folder"] = r.Folder
-    config["role"] = r.Role
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_folder_iam_memberUnmapper(state map[string]interface{}) *Google_folder_iam_member {
-	r := &Google_folder_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_folder_iam_member_id = &x
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["folder"]; ok {
-	r.Folder = x.(string)
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-	return r
-}
-
-
-// Google_folder_iam_memberHandler ...
-type Google_folder_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_folder_iam_memberHandler) Create(desired *Google_folder_iam_member) (*Google_folder_iam_member, string, error) {
-	rState := Google_folder_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_folder_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_folder_iam_memberHandler) Read(externalID string) (*Google_folder_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_folder_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_folder_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_folder_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_folder_iam_member", externalID)
-}
-
-type Google_compute_https_health_check struct {
-     Google_compute_https_health_check_id *string
-     Request_path *string
-     Name string
-     Host *string
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
-     Description *string
-}
-
-
-func Google_compute_https_health_checkMapper(r *Google_compute_https_health_check) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Host != nil {
-    config["host"] = *r.Host
-}
-if r.Request_path != nil {
-    config["request_path"] = *r.Request_path
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_https_health_checkUnmapper(state map[string]interface{}) *Google_compute_https_health_check {
-	r := &Google_compute_https_health_check{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_https_health_check_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["host"]; ok {
-	x := x.(string)
-	r.Host = &x
-}
-
-if x, ok := state["request_path"]; ok {
-	x := x.(string)
-	r.Request_path = &x
-}
-	return r
-}
-
-
-// Google_compute_https_health_checkHandler ...
-type Google_compute_https_health_checkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_https_health_checkHandler) Create(desired *Google_compute_https_health_check) (*Google_compute_https_health_check, string, error) {
-	rState := Google_compute_https_health_checkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_https_health_check", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_https_health_checkHandler) Read(externalID string) (*Google_compute_https_health_check, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_https_health_check", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_https_health_checkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_https_health_checkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_https_health_check", externalID)
-}
-
-type Google_compute_region_disk struct {
-     Google_compute_region_disk_id *string
-     Description *string
-     Resource_type *string
-     Creation_timestamp *string
-     Last_detach_timestamp *string
-     Last_attach_timestamp *string
-     Source_snapshot_id *string
-     Name string
-     Snapshot *string
-     Region *string
-     Project *string
-     Label_fingerprint *string
-     Self_link *string
-}
-
-
-func Google_compute_region_diskMapper(r *Google_compute_region_disk) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Last_detach_timestamp != nil {
-    config["last_detach_timestamp"] = *r.Last_detach_timestamp
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Snapshot != nil {
-    config["snapshot"] = *r.Snapshot
-}
-if r.Last_attach_timestamp != nil {
-    config["last_attach_timestamp"] = *r.Last_attach_timestamp
-}
-if r.Source_snapshot_id != nil {
-    config["source_snapshot_id"] = *r.Source_snapshot_id
-}
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_region_diskUnmapper(state map[string]interface{}) *Google_compute_region_disk {
-	r := &Google_compute_region_disk{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_region_disk_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["last_detach_timestamp"]; ok {
-	x := x.(string)
-	r.Last_detach_timestamp = &x
-}
-
-if x, ok := state["last_attach_timestamp"]; ok {
-	x := x.(string)
-	r.Last_attach_timestamp = &x
-}
-
-if x, ok := state["source_snapshot_id"]; ok {
-	x := x.(string)
-	r.Source_snapshot_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["snapshot"]; ok {
-	x := x.(string)
-	r.Snapshot = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_region_diskHandler ...
-type Google_compute_region_diskHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_region_diskHandler) Create(desired *Google_compute_region_disk) (*Google_compute_region_disk, string, error) {
-	rState := Google_compute_region_diskMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_region_disk", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_region_diskHandler) Read(externalID string) (*Google_compute_region_disk, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_region_disk", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_region_diskUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_region_diskHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_region_disk", externalID)
-}
-
-type Google_compute_network_peering struct {
-     Google_compute_network_peering_id *string
-     Name string
-     Network string
-     Peer_network string
-     Auto_create_routes *bool
-     State *string
-     State_details *string
-}
-
-
-func Google_compute_network_peeringMapper(r *Google_compute_network_peering) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["network"] = r.Network
-    config["peer_network"] = r.Peer_network
-if r.Auto_create_routes != nil {
-    config["auto_create_routes"] = *r.Auto_create_routes
-}
-if r.State != nil {
-    config["state"] = *r.State
-}
-if r.State_details != nil {
-    config["state_details"] = *r.State_details
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_network_peeringUnmapper(state map[string]interface{}) *Google_compute_network_peering {
-	r := &Google_compute_network_peering{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_network_peering_id = &x
-}
-
-if x, ok := state["auto_create_routes"]; ok {
-	x := x.(bool)
-	r.Auto_create_routes = &x
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-
-if x, ok := state["state_details"]; ok {
-	x := x.(string)
-	r.State_details = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network"]; ok {
-	r.Network = x.(string)
-}
-
-if x, ok := state["peer_network"]; ok {
-	r.Peer_network = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_network_peeringHandler ...
-type Google_compute_network_peeringHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_network_peeringHandler) Create(desired *Google_compute_network_peering) (*Google_compute_network_peering, string, error) {
-	rState := Google_compute_network_peeringMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_network_peering", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_network_peeringHandler) Read(externalID string) (*Google_compute_network_peering, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_network_peering", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_network_peeringUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_network_peeringHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_network_peering", externalID)
-}
-
-type Google_resource_manager_lien struct {
-     Google_resource_manager_lien_id *string
-     Create_time *string
-     Name *string
-     Origin string
-     Parent string
-     Reason string
-}
-
-
-func Google_resource_manager_lienMapper(r *Google_resource_manager_lien) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["reason"] = r.Reason
-if r.Create_time != nil {
-    config["create_time"] = *r.Create_time
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-    config["origin"] = r.Origin
-    config["parent"] = r.Parent
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_resource_manager_lienUnmapper(state map[string]interface{}) *Google_resource_manager_lien {
-	r := &Google_resource_manager_lien{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_resource_manager_lien_id = &x
-}
-
-if x, ok := state["origin"]; ok {
-	r.Origin = x.(string)
-}
-
-if x, ok := state["parent"]; ok {
-	r.Parent = x.(string)
-}
-
-if x, ok := state["reason"]; ok {
-	r.Reason = x.(string)
-}
-
-if x, ok := state["create_time"]; ok {
-	x := x.(string)
-	r.Create_time = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-	return r
-}
-
-
-// Google_resource_manager_lienHandler ...
-type Google_resource_manager_lienHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_resource_manager_lienHandler) Create(desired *Google_resource_manager_lien) (*Google_resource_manager_lien, string, error) {
-	rState := Google_resource_manager_lienMapper(desired)
-	id, err := bridge.Create(h.provider, "google_resource_manager_lien", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_resource_manager_lienHandler) Read(externalID string) (*Google_resource_manager_lien, error) {
-	actual, err := bridge.Read(h.provider, "google_resource_manager_lien", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_resource_manager_lienUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_resource_manager_lienHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_resource_manager_lien", externalID)
-}
-
-type Google_folder_iam_binding struct {
-     Google_folder_iam_binding_id *string
-     Etag *string
-     Folder string
-     Role string
-}
-
-
-func Google_folder_iam_bindingMapper(r *Google_folder_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["folder"] = r.Folder
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_folder_iam_bindingUnmapper(state map[string]interface{}) *Google_folder_iam_binding {
-	r := &Google_folder_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_folder_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["folder"]; ok {
-	r.Folder = x.(string)
-}
-	return r
-}
-
-
-// Google_folder_iam_bindingHandler ...
-type Google_folder_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_folder_iam_bindingHandler) Create(desired *Google_folder_iam_binding) (*Google_folder_iam_binding, string, error) {
-	rState := Google_folder_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_folder_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_folder_iam_bindingHandler) Read(externalID string) (*Google_folder_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_folder_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_folder_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_folder_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_folder_iam_binding", externalID)
-}
-
-type Google_compute_region_instance_group_manager struct {
-     Google_compute_region_instance_group_manager_id *string
-     Update_strategy *string
-     Wait_for_instances *bool
-     Base_instance_name string
-     Instance_template *string
-     Region string
-     Fingerprint *string
-     Description *string
-     Instance_group *string
-     Name string
-     Project *string
-     Self_link *string
-}
-
-
-func Google_compute_region_instance_group_managerMapper(r *Google_compute_region_instance_group_manager) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Instance_group != nil {
-    config["instance_group"] = *r.Instance_group
-}
-    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Update_strategy != nil {
-    config["update_strategy"] = *r.Update_strategy
-}
-if r.Wait_for_instances != nil {
-    config["wait_for_instances"] = *r.Wait_for_instances
-}
-    config["base_instance_name"] = r.Base_instance_name
-if r.Instance_template != nil {
-    config["instance_template"] = *r.Instance_template
-}
-    config["region"] = r.Region
-if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_region_instance_group_managerUnmapper(state map[string]interface{}) *Google_compute_region_instance_group_manager {
-	r := &Google_compute_region_instance_group_manager{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_region_instance_group_manager_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["instance_group"]; ok {
-	x := x.(string)
-	r.Instance_group = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-
-if x, ok := state["update_strategy"]; ok {
-	x := x.(string)
-	r.Update_strategy = &x
-}
-
-if x, ok := state["wait_for_instances"]; ok {
-	x := x.(bool)
-	r.Wait_for_instances = &x
-}
-
-if x, ok := state["base_instance_name"]; ok {
-	r.Base_instance_name = x.(string)
-}
-
-if x, ok := state["instance_template"]; ok {
-	x := x.(string)
-	r.Instance_template = &x
-}
-
-if x, ok := state["region"]; ok {
-	r.Region = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_region_instance_group_managerHandler ...
-type Google_compute_region_instance_group_managerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_region_instance_group_managerHandler) Create(desired *Google_compute_region_instance_group_manager) (*Google_compute_region_instance_group_manager, string, error) {
-	rState := Google_compute_region_instance_group_managerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_region_instance_group_manager", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_region_instance_group_managerHandler) Read(externalID string) (*Google_compute_region_instance_group_manager, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_region_instance_group_manager", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_region_instance_group_managerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_region_instance_group_managerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_region_instance_group_manager", externalID)
-}
-
-type Google_service_account_iam_member struct {
-     Google_service_account_iam_member_id *string
-     Member string
-     Etag *string
-     Service_account_id string
-     Role string
-}
-
-
-func Google_service_account_iam_memberMapper(r *Google_service_account_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["service_account_id"] = r.Service_account_id
-    config["role"] = r.Role
-    config["member"] = r.Member
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_service_account_iam_memberUnmapper(state map[string]interface{}) *Google_service_account_iam_member {
-	r := &Google_service_account_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_service_account_iam_member_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["service_account_id"]; ok {
-	r.Service_account_id = x.(string)
-}
-	return r
-}
-
-
-// Google_service_account_iam_memberHandler ...
-type Google_service_account_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_service_account_iam_memberHandler) Create(desired *Google_service_account_iam_member) (*Google_service_account_iam_member, string, error) {
-	rState := Google_service_account_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_service_account_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_service_account_iam_memberHandler) Read(externalID string) (*Google_service_account_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_service_account_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_service_account_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_service_account_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_service_account_iam_member", externalID)
-}
-
-type Google_dataproc_cluster struct {
-     Google_dataproc_cluster_id *string
-     Project *string
-     Region *string
-     Name string
-}
-
-
-func Google_dataproc_clusterMapper(r *Google_dataproc_cluster) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_dataproc_clusterUnmapper(state map[string]interface{}) *Google_dataproc_cluster {
-	r := &Google_dataproc_cluster{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_dataproc_cluster_id = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_dataproc_clusterHandler ...
-type Google_dataproc_clusterHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_dataproc_clusterHandler) Create(desired *Google_dataproc_cluster) (*Google_dataproc_cluster, string, error) {
-	rState := Google_dataproc_clusterMapper(desired)
-	id, err := bridge.Create(h.provider, "google_dataproc_cluster", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_dataproc_clusterHandler) Read(externalID string) (*Google_dataproc_cluster, error) {
-	actual, err := bridge.Read(h.provider, "google_dataproc_cluster", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_dataproc_clusterUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_dataproc_clusterHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_dataproc_cluster", externalID)
-}
-
-type Google_dataflow_job struct {
-     Google_dataflow_job_id *string
-     Region *string
-     Project *string
-     Name string
-     Template_gcs_path string
-     Temp_gcs_location string
-     Zone *string
-     On_delete *string
-     State *string
-}
-
-
-func Google_dataflow_jobMapper(r *Google_dataflow_job) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["name"] = r.Name
-    config["template_gcs_path"] = r.Template_gcs_path
-    config["temp_gcs_location"] = r.Temp_gcs_location
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.On_delete != nil {
-    config["on_delete"] = *r.On_delete
-}
-if r.State != nil {
-    config["state"] = *r.State
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_dataflow_jobUnmapper(state map[string]interface{}) *Google_dataflow_job {
-	r := &Google_dataflow_job{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_dataflow_job_id = &x
-}
-
-if x, ok := state["state"]; ok {
-	x := x.(string)
-	r.State = &x
-}
-
-if x, ok := state["on_delete"]; ok {
-	x := x.(string)
-	r.On_delete = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["template_gcs_path"]; ok {
-	r.Template_gcs_path = x.(string)
-}
-
-if x, ok := state["temp_gcs_location"]; ok {
-	r.Temp_gcs_location = x.(string)
-}
-	return r
-}
-
-
-// Google_dataflow_jobHandler ...
-type Google_dataflow_jobHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_dataflow_jobHandler) Create(desired *Google_dataflow_job) (*Google_dataflow_job, string, error) {
-	rState := Google_dataflow_jobMapper(desired)
-	id, err := bridge.Create(h.provider, "google_dataflow_job", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_dataflow_jobHandler) Read(externalID string) (*Google_dataflow_job, error) {
-	actual, err := bridge.Read(h.provider, "google_dataflow_job", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_dataflow_jobUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_dataflow_jobHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_dataflow_job", externalID)
-}
-
-type Google_organization_iam_custom_role struct {
-     Google_organization_iam_custom_role_id *string
-     Role_id string
-     Org_id string
-     Title string
-     Stage *string
-     Description *string
-     Deleted *bool
-}
-
-
-func Google_organization_iam_custom_roleMapper(r *Google_organization_iam_custom_role) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Stage != nil {
-    config["stage"] = *r.Stage
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Deleted != nil {
-    config["deleted"] = *r.Deleted
-}
-    config["role_id"] = r.Role_id
-    config["org_id"] = r.Org_id
-    config["title"] = r.Title
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_organization_iam_custom_roleUnmapper(state map[string]interface{}) *Google_organization_iam_custom_role {
-	r := &Google_organization_iam_custom_role{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_organization_iam_custom_role_id = &x
-}
-
-if x, ok := state["role_id"]; ok {
-	r.Role_id = x.(string)
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-
-if x, ok := state["title"]; ok {
-	r.Title = x.(string)
-}
-
-if x, ok := state["stage"]; ok {
-	x := x.(string)
-	r.Stage = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["deleted"]; ok {
-	x := x.(bool)
-	r.Deleted = &x
-}
-	return r
-}
-
-
-// Google_organization_iam_custom_roleHandler ...
-type Google_organization_iam_custom_roleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_organization_iam_custom_roleHandler) Create(desired *Google_organization_iam_custom_role) (*Google_organization_iam_custom_role, string, error) {
-	rState := Google_organization_iam_custom_roleMapper(desired)
-	id, err := bridge.Create(h.provider, "google_organization_iam_custom_role", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_organization_iam_custom_roleHandler) Read(externalID string) (*Google_organization_iam_custom_role, error) {
-	actual, err := bridge.Read(h.provider, "google_organization_iam_custom_role", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_organization_iam_custom_roleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_organization_iam_custom_roleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_organization_iam_custom_role", externalID)
-}
-
-type Google_compute_security_policy struct {
-     Google_compute_security_policy_id *string
-     Fingerprint *string
-     Self_link *string
-     Name string
-     Description *string
-     Project *string
-}
-
-
-func Google_compute_security_policyMapper(r *Google_compute_security_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_security_policyUnmapper(state map[string]interface{}) *Google_compute_security_policy {
-	r := &Google_compute_security_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_security_policy_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_security_policyHandler ...
-type Google_compute_security_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_security_policyHandler) Create(desired *Google_compute_security_policy) (*Google_compute_security_policy, string, error) {
-	rState := Google_compute_security_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_security_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_security_policyHandler) Read(externalID string) (*Google_compute_security_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_security_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_security_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_security_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_security_policy", externalID)
-}
-
-type Google_compute_global_forwarding_rule struct {
-     Google_compute_global_forwarding_rule_id *string
-     Name string
-     Target string
-     Ip_protocol *string
-     Label_fingerprint *string
-     Ip_version *string
-     Project *string
-     Description *string
-     Ip_address *string
-     Port_range *string
-     Region *string
-     Self_link *string
-}
-
-
-func Google_compute_global_forwarding_ruleMapper(r *Google_compute_global_forwarding_rule) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Ip_address != nil {
-    config["ip_address"] = *r.Ip_address
-}
-if r.Port_range != nil {
-    config["port_range"] = *r.Port_range
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["name"] = r.Name
-    config["target"] = r.Target
-if r.Ip_protocol != nil {
-    config["ip_protocol"] = *r.Ip_protocol
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Ip_version != nil {
-    config["ip_version"] = *r.Ip_version
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_global_forwarding_ruleUnmapper(state map[string]interface{}) *Google_compute_global_forwarding_rule {
-	r := &Google_compute_global_forwarding_rule{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_global_forwarding_rule_id = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["ip_address"]; ok {
-	x := x.(string)
-	r.Ip_address = &x
-}
-
-if x, ok := state["port_range"]; ok {
-	x := x.(string)
-	r.Port_range = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["ip_version"]; ok {
-	x := x.(string)
-	r.Ip_version = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["target"]; ok {
-	r.Target = x.(string)
-}
-
-if x, ok := state["ip_protocol"]; ok {
-	x := x.(string)
-	r.Ip_protocol = &x
-}
-	return r
-}
-
-
-// Google_compute_global_forwarding_ruleHandler ...
-type Google_compute_global_forwarding_ruleHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_global_forwarding_ruleHandler) Create(desired *Google_compute_global_forwarding_rule) (*Google_compute_global_forwarding_rule, string, error) {
-	rState := Google_compute_global_forwarding_ruleMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_global_forwarding_rule", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_global_forwarding_ruleHandler) Read(externalID string) (*Google_compute_global_forwarding_rule, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_global_forwarding_rule", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_global_forwarding_ruleUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_global_forwarding_ruleHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_global_forwarding_rule", externalID)
-}
-
-type Google_storage_default_object_access_control struct {
-     Google_storage_default_object_access_control_id *string
-     Domain *string
-     Email *string
-     Object *string
-     Entity string
-     Role string
-     Entity_id *string
-     Bucket string
-}
-
-
-func Google_storage_default_object_access_controlMapper(r *Google_storage_default_object_access_control) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Object != nil {
-    config["object"] = *r.Object
-}
-if r.Domain != nil {
-    config["domain"] = *r.Domain
-}
-if r.Email != nil {
-    config["email"] = *r.Email
-}
-    config["bucket"] = r.Bucket
-    config["entity"] = r.Entity
-    config["role"] = r.Role
-if r.Entity_id != nil {
-    config["entity_id"] = *r.Entity_id
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_default_object_access_controlUnmapper(state map[string]interface{}) *Google_storage_default_object_access_control {
-	r := &Google_storage_default_object_access_control{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_default_object_access_control_id = &x
-}
-
-if x, ok := state["object"]; ok {
-	x := x.(string)
-	r.Object = &x
-}
-
-if x, ok := state["domain"]; ok {
-	x := x.(string)
-	r.Domain = &x
-}
-
-if x, ok := state["email"]; ok {
-	x := x.(string)
-	r.Email = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["entity"]; ok {
-	r.Entity = x.(string)
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["entity_id"]; ok {
-	x := x.(string)
-	r.Entity_id = &x
-}
-	return r
-}
-
-
-// Google_storage_default_object_access_controlHandler ...
-type Google_storage_default_object_access_controlHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_default_object_access_controlHandler) Create(desired *Google_storage_default_object_access_control) (*Google_storage_default_object_access_control, string, error) {
-	rState := Google_storage_default_object_access_controlMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_default_object_access_control", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_default_object_access_controlHandler) Read(externalID string) (*Google_storage_default_object_access_control, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_default_object_access_control", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_default_object_access_controlUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_default_object_access_controlHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_default_object_access_control", externalID)
-}
-
-type Google_storage_bucket_iam_policy struct {
-     Google_storage_bucket_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Bucket string
-}
-
-
-func Google_storage_bucket_iam_policyMapper(r *Google_storage_bucket_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["bucket"] = r.Bucket
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_bucket_iam_policyUnmapper(state map[string]interface{}) *Google_storage_bucket_iam_policy {
-	r := &Google_storage_bucket_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_bucket_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-	return r
-}
-
-
-// Google_storage_bucket_iam_policyHandler ...
-type Google_storage_bucket_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_bucket_iam_policyHandler) Create(desired *Google_storage_bucket_iam_policy) (*Google_storage_bucket_iam_policy, string, error) {
-	rState := Google_storage_bucket_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_bucket_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_bucket_iam_policyHandler) Read(externalID string) (*Google_storage_bucket_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_bucket_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_bucket_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_bucket_iam_policy", externalID)
-}
-
-type Google_pubsub_topic_iam_policy struct {
-     Google_pubsub_topic_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Topic string
-     Project *string
-}
-
-
-func Google_pubsub_topic_iam_policyMapper(r *Google_pubsub_topic_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["topic"] = r.Topic
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_topic_iam_policyUnmapper(state map[string]interface{}) *Google_pubsub_topic_iam_policy {
-	r := &Google_pubsub_topic_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_topic_iam_policy_id = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["topic"]; ok {
-	r.Topic = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-	return r
-}
-
-
-// Google_pubsub_topic_iam_policyHandler ...
-type Google_pubsub_topic_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_topic_iam_policyHandler) Create(desired *Google_pubsub_topic_iam_policy) (*Google_pubsub_topic_iam_policy, string, error) {
-	rState := Google_pubsub_topic_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_topic_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_topic_iam_policyHandler) Read(externalID string) (*Google_pubsub_topic_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_topic_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_topic_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_topic_iam_policy", externalID)
-}
-
-type Google_compute_shared_vpc_service_project struct {
-     Google_compute_shared_vpc_service_project_id *string
-     Host_project string
-     Service_project string
-}
-
-
-func Google_compute_shared_vpc_service_projectMapper(r *Google_compute_shared_vpc_service_project) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["host_project"] = r.Host_project
-    config["service_project"] = r.Service_project
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_shared_vpc_service_projectUnmapper(state map[string]interface{}) *Google_compute_shared_vpc_service_project {
-	r := &Google_compute_shared_vpc_service_project{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_shared_vpc_service_project_id = &x
-}
-
-if x, ok := state["host_project"]; ok {
-	r.Host_project = x.(string)
-}
-
-if x, ok := state["service_project"]; ok {
-	r.Service_project = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_shared_vpc_service_projectHandler ...
-type Google_compute_shared_vpc_service_projectHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_shared_vpc_service_projectHandler) Create(desired *Google_compute_shared_vpc_service_project) (*Google_compute_shared_vpc_service_project, string, error) {
-	rState := Google_compute_shared_vpc_service_projectMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_shared_vpc_service_project", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_shared_vpc_service_projectHandler) Read(externalID string) (*Google_compute_shared_vpc_service_project, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_shared_vpc_service_project", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_shared_vpc_service_projectUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_shared_vpc_service_projectHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_shared_vpc_service_project", externalID)
-}
-
-type Google_pubsub_topic struct {
-     Google_pubsub_topic_id *string
-     Name string
-     Project *string
-}
-
-
-func Google_pubsub_topicMapper(r *Google_pubsub_topic) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_topicUnmapper(state map[string]interface{}) *Google_pubsub_topic {
-	r := &Google_pubsub_topic{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_topic_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_pubsub_topicHandler ...
-type Google_pubsub_topicHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_topicHandler) Create(desired *Google_pubsub_topic) (*Google_pubsub_topic, string, error) {
-	rState := Google_pubsub_topicMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_topic", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_topicHandler) Read(externalID string) (*Google_pubsub_topic, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_topic", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_topicUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_topicHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_topic", externalID)
-}
-
-type Google_compute_url_map struct {
-     Google_compute_url_map_id *string
-     Self_link *string
-     Default_service string
-     Name string
-     Description *string
-     Fingerprint *string
-     Map_id *string
-     Project *string
-}
-
-
-func Google_compute_url_mapMapper(r *Google_compute_url_map) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Map_id != nil {
-    config["map_id"] = *r.Map_id
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["default_service"] = r.Default_service
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_url_mapUnmapper(state map[string]interface{}) *Google_compute_url_map {
-	r := &Google_compute_url_map{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_url_map_id = &x
-}
-
-if x, ok := state["map_id"]; ok {
-	x := x.(string)
-	r.Map_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["default_service"]; ok {
-	r.Default_service = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-	return r
-}
-
-
-// Google_compute_url_mapHandler ...
-type Google_compute_url_mapHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_url_mapHandler) Create(desired *Google_compute_url_map) (*Google_compute_url_map, string, error) {
-	rState := Google_compute_url_mapMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_url_map", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_url_mapHandler) Read(externalID string) (*Google_compute_url_map, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_url_map", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_url_mapUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_url_mapHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_url_map", externalID)
-}
-
-type Google_compute_health_check struct {
-     Google_compute_health_check_id *string
-     Name string
-     Resource_type *string
-     Project *string
-     Description *string
-     Creation_timestamp *string
-     Self_link *string
-}
-
-
-func Google_compute_health_checkMapper(r *Google_compute_health_check) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_health_checkUnmapper(state map[string]interface{}) *Google_compute_health_check {
-	r := &Google_compute_health_check{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_health_check_id = &x
-}
-
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_health_checkHandler ...
-type Google_compute_health_checkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_health_checkHandler) Create(desired *Google_compute_health_check) (*Google_compute_health_check, string, error) {
-	rState := Google_compute_health_checkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_health_check", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_health_checkHandler) Read(externalID string) (*Google_compute_health_check, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_health_check", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_health_checkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_health_checkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_health_check", externalID)
-}
-
-type Google_storage_object_access_control struct {
-     Google_storage_object_access_control_id *string
-     Entity string
-     Domain *string
-     Email *string
-     Bucket string
-     Role string
-     Entity_id *string
-     Object string
-}
-
-
-func Google_storage_object_access_controlMapper(r *Google_storage_object_access_control) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Domain != nil {
-    config["domain"] = *r.Domain
-}
-if r.Email != nil {
-    config["email"] = *r.Email
-}
-    config["bucket"] = r.Bucket
-    config["entity"] = r.Entity
-if r.Entity_id != nil {
-    config["entity_id"] = *r.Entity_id
-}
-    config["object"] = r.Object
-    config["role"] = r.Role
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_object_access_controlUnmapper(state map[string]interface{}) *Google_storage_object_access_control {
-	r := &Google_storage_object_access_control{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_object_access_control_id = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-
-if x, ok := state["entity"]; ok {
-	r.Entity = x.(string)
-}
-
-if x, ok := state["domain"]; ok {
-	x := x.(string)
-	r.Domain = &x
-}
-
-if x, ok := state["email"]; ok {
-	x := x.(string)
-	r.Email = &x
-}
-
-if x, ok := state["object"]; ok {
-	r.Object = x.(string)
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["entity_id"]; ok {
-	x := x.(string)
-	r.Entity_id = &x
-}
-	return r
-}
-
-
-// Google_storage_object_access_controlHandler ...
-type Google_storage_object_access_controlHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_object_access_controlHandler) Create(desired *Google_storage_object_access_control) (*Google_storage_object_access_control, string, error) {
-	rState := Google_storage_object_access_controlMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_object_access_control", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_object_access_controlHandler) Read(externalID string) (*Google_storage_object_access_control, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_object_access_control", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_object_access_controlUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_object_access_controlHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_object_access_control", externalID)
-}
-
-type Google_compute_region_autoscaler struct {
-     Google_compute_region_autoscaler_id *string
-     Self_link *string
-     Name string
-     Target string
-     Description *string
-     Region *string
-     Creation_timestamp *string
-     Project *string
-}
-
-
-func Google_compute_region_autoscalerMapper(r *Google_compute_region_autoscaler) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["target"] = r.Target
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_region_autoscalerUnmapper(state map[string]interface{}) *Google_compute_region_autoscaler {
-	r := &Google_compute_region_autoscaler{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_region_autoscaler_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["target"]; ok {
-	r.Target = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_region_autoscalerHandler ...
-type Google_compute_region_autoscalerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_region_autoscalerHandler) Create(desired *Google_compute_region_autoscaler) (*Google_compute_region_autoscaler, string, error) {
-	rState := Google_compute_region_autoscalerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_region_autoscaler", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_region_autoscalerHandler) Read(externalID string) (*Google_compute_region_autoscaler, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_region_autoscaler", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_region_autoscalerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_region_autoscalerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_region_autoscaler", externalID)
-}
-
-type Google_project_services struct {
-     Google_project_services_id *string
-     Project *string
-     Disable_on_destroy *bool
-}
-
-
-func Google_project_servicesMapper(r *Google_project_services) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Disable_on_destroy != nil {
-    config["disable_on_destroy"] = *r.Disable_on_destroy
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_servicesUnmapper(state map[string]interface{}) *Google_project_services {
-	r := &Google_project_services{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_services_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["disable_on_destroy"]; ok {
-	x := x.(bool)
-	r.Disable_on_destroy = &x
-}
-	return r
-}
-
-
-// Google_project_servicesHandler ...
-type Google_project_servicesHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_servicesHandler) Create(desired *Google_project_services) (*Google_project_services, string, error) {
-	rState := Google_project_servicesMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_services", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_servicesHandler) Read(externalID string) (*Google_project_services, error) {
-	actual, err := bridge.Read(h.provider, "google_project_services", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_servicesUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_servicesHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_services", externalID)
-}
-
-type Google_compute_subnetwork_iam_binding struct {
-     Google_compute_subnetwork_iam_binding_id *string
-     Subnetwork string
-     Role string
-     Etag *string
-     Project *string
-     Region *string
-}
-
-
-func Google_compute_subnetwork_iam_bindingMapper(r *Google_compute_subnetwork_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["subnetwork"] = r.Subnetwork
-    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_subnetwork_iam_bindingUnmapper(state map[string]interface{}) *Google_compute_subnetwork_iam_binding {
-	r := &Google_compute_subnetwork_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_subnetwork_iam_binding_id = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["subnetwork"]; ok {
-	r.Subnetwork = x.(string)
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_subnetwork_iam_bindingHandler ...
-type Google_compute_subnetwork_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_subnetwork_iam_bindingHandler) Create(desired *Google_compute_subnetwork_iam_binding) (*Google_compute_subnetwork_iam_binding, string, error) {
-	rState := Google_compute_subnetwork_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_subnetwork_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_subnetwork_iam_bindingHandler) Read(externalID string) (*Google_compute_subnetwork_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_subnetwork_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_subnetwork_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_binding", externalID)
-}
-
-type Google_compute_shared_vpc_host_project struct {
-     Google_compute_shared_vpc_host_project_id *string
-     Project string
-}
-
-
-func Google_compute_shared_vpc_host_projectMapper(r *Google_compute_shared_vpc_host_project) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["project"] = r.Project
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_shared_vpc_host_projectUnmapper(state map[string]interface{}) *Google_compute_shared_vpc_host_project {
-	r := &Google_compute_shared_vpc_host_project{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_shared_vpc_host_project_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	r.Project = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_shared_vpc_host_projectHandler ...
-type Google_compute_shared_vpc_host_projectHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_shared_vpc_host_projectHandler) Create(desired *Google_compute_shared_vpc_host_project) (*Google_compute_shared_vpc_host_project, string, error) {
-	rState := Google_compute_shared_vpc_host_projectMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_shared_vpc_host_project", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_shared_vpc_host_projectHandler) Read(externalID string) (*Google_compute_shared_vpc_host_project, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_shared_vpc_host_project", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_shared_vpc_host_projectUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_shared_vpc_host_projectHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_shared_vpc_host_project", externalID)
-}
-
-type Google_logging_project_exclusion struct {
-     Google_logging_project_exclusion_id *string
-     Description *string
-     Project *string
-     Disabled *bool
-     Filter string
-     Name string
-}
-
-
-func Google_logging_project_exclusionMapper(r *Google_logging_project_exclusion) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Disabled != nil {
-    config["disabled"] = *r.Disabled
-}
-    config["filter"] = r.Filter
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_project_exclusionUnmapper(state map[string]interface{}) *Google_logging_project_exclusion {
-	r := &Google_logging_project_exclusion{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_project_exclusion_id = &x
-}
-
-if x, ok := state["disabled"]; ok {
-	x := x.(bool)
-	r.Disabled = &x
-}
-
-if x, ok := state["filter"]; ok {
-	r.Filter = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_logging_project_exclusionHandler ...
-type Google_logging_project_exclusionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_project_exclusionHandler) Create(desired *Google_logging_project_exclusion) (*Google_logging_project_exclusion, string, error) {
-	rState := Google_logging_project_exclusionMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_project_exclusion", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_project_exclusionHandler) Read(externalID string) (*Google_logging_project_exclusion, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_project_exclusion", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_project_exclusionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_project_exclusionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_project_exclusion", externalID)
-}
-
-type Google_compute_snapshot struct {
-     Google_compute_snapshot_id *string
-     Source_disk string
-     Description *string
-     Source_disk_link *string
-     Snapshot_encryption_key_raw *string
-     Zone *string
-     Label_fingerprint *string
-     Snapshot_encryption_key_sha256 *string
-     Name string
-     Source_disk_encryption_key_raw *string
-     Source_disk_encryption_key_sha256 *string
-     Self_link *string
-     Creation_timestamp *string
-     Project *string
-}
-
-
-func Google_compute_snapshotMapper(r *Google_compute_snapshot) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Source_disk_encryption_key_raw != nil {
-    config["source_disk_encryption_key_raw"] = *r.Source_disk_encryption_key_raw
-}
-if r.Source_disk_encryption_key_sha256 != nil {
-    config["source_disk_encryption_key_sha256"] = *r.Source_disk_encryption_key_sha256
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Source_disk_link != nil {
-    config["source_disk_link"] = *r.Source_disk_link
-}
-if r.Snapshot_encryption_key_raw != nil {
-    config["snapshot_encryption_key_raw"] = *r.Snapshot_encryption_key_raw
-}
-    config["source_disk"] = r.Source_disk
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Snapshot_encryption_key_sha256 != nil {
-    config["snapshot_encryption_key_sha256"] = *r.Snapshot_encryption_key_sha256
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_snapshotUnmapper(state map[string]interface{}) *Google_compute_snapshot {
-	r := &Google_compute_snapshot{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_snapshot_id = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["source_disk_encryption_key_raw"]; ok {
-	x := x.(string)
-	r.Source_disk_encryption_key_raw = &x
-}
-
-if x, ok := state["source_disk_encryption_key_sha256"]; ok {
-	x := x.(string)
-	r.Source_disk_encryption_key_sha256 = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["source_disk_link"]; ok {
-	x := x.(string)
-	r.Source_disk_link = &x
-}
-
-if x, ok := state["snapshot_encryption_key_raw"]; ok {
-	x := x.(string)
-	r.Snapshot_encryption_key_raw = &x
-}
-
-if x, ok := state["source_disk"]; ok {
-	r.Source_disk = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["snapshot_encryption_key_sha256"]; ok {
-	x := x.(string)
-	r.Snapshot_encryption_key_sha256 = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-	return r
-}
-
-
-// Google_compute_snapshotHandler ...
-type Google_compute_snapshotHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_snapshotHandler) Create(desired *Google_compute_snapshot) (*Google_compute_snapshot, string, error) {
-	rState := Google_compute_snapshotMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_snapshot", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_snapshotHandler) Read(externalID string) (*Google_compute_snapshot, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_snapshot", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_snapshotUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_snapshotHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_snapshot", externalID)
-}
-
-type Google_compute_firewall struct {
-     Google_compute_firewall_id *string
-     Description *string
-     Disabled *bool
-     Enable_logging *bool
-     Self_link *string
-     Name string
-     Direction *string
-     Creation_timestamp *string
-     Project *string
-     Network string
-}
-
-
-func Google_compute_firewallMapper(r *Google_compute_firewall) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Disabled != nil {
-    config["disabled"] = *r.Disabled
-}
-if r.Enable_logging != nil {
-    config["enable_logging"] = *r.Enable_logging
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Direction != nil {
-    config["direction"] = *r.Direction
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["network"] = r.Network
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_firewallUnmapper(state map[string]interface{}) *Google_compute_firewall {
-	r := &Google_compute_firewall{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_firewall_id = &x
-}
-
-if x, ok := state["disabled"]; ok {
-	x := x.(bool)
-	r.Disabled = &x
-}
-
-if x, ok := state["enable_logging"]; ok {
-	x := x.(bool)
-	r.Enable_logging = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["direction"]; ok {
-	x := x.(string)
-	r.Direction = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["network"]; ok {
-	r.Network = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_firewallHandler ...
-type Google_compute_firewallHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_firewallHandler) Create(desired *Google_compute_firewall) (*Google_compute_firewall, string, error) {
-	rState := Google_compute_firewallMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_firewall", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_firewallHandler) Read(externalID string) (*Google_compute_firewall, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_firewall", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_firewallUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_firewallHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_firewall", externalID)
-}
-
-type Google_monitoring_alert_policy struct {
-     Google_monitoring_alert_policy_id *string
-     Enabled bool
-     Name *string
-     Combiner string
-     Project *string
-     Display_name string
-}
-
-
-func Google_monitoring_alert_policyMapper(r *Google_monitoring_alert_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["display_name"] = r.Display_name
-    config["enabled"] = r.Enabled
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-    config["combiner"] = r.Combiner
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_monitoring_alert_policyUnmapper(state map[string]interface{}) *Google_monitoring_alert_policy {
-	r := &Google_monitoring_alert_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_monitoring_alert_policy_id = &x
-}
-
-if x, ok := state["display_name"]; ok {
-	r.Display_name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["enabled"]; ok {
-	r.Enabled = x.(bool)
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["combiner"]; ok {
-	r.Combiner = x.(string)
-}
-	return r
-}
-
-
-// Google_monitoring_alert_policyHandler ...
-type Google_monitoring_alert_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_monitoring_alert_policyHandler) Create(desired *Google_monitoring_alert_policy) (*Google_monitoring_alert_policy, string, error) {
-	rState := Google_monitoring_alert_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_monitoring_alert_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_monitoring_alert_policyHandler) Read(externalID string) (*Google_monitoring_alert_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_monitoring_alert_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_monitoring_alert_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_monitoring_alert_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_monitoring_alert_policy", externalID)
-}
-
-type Google_pubsub_topic_iam_member struct {
-     Google_pubsub_topic_iam_member_id *string
-     Role string
-     Member string
-     Etag *string
-     Topic string
-     Project *string
-}
-
-
-func Google_pubsub_topic_iam_memberMapper(r *Google_pubsub_topic_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["topic"] = r.Topic
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_topic_iam_memberUnmapper(state map[string]interface{}) *Google_pubsub_topic_iam_member {
-	r := &Google_pubsub_topic_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_topic_iam_member_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["topic"]; ok {
-	r.Topic = x.(string)
-}
-	return r
-}
-
-
-// Google_pubsub_topic_iam_memberHandler ...
-type Google_pubsub_topic_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_topic_iam_memberHandler) Create(desired *Google_pubsub_topic_iam_member) (*Google_pubsub_topic_iam_member, string, error) {
-	rState := Google_pubsub_topic_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_topic_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_topic_iam_memberHandler) Read(externalID string) (*Google_pubsub_topic_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_topic_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_topic_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_topic_iam_member", externalID)
-}
-
-type Google_billing_account_iam_policy struct {
-     Google_billing_account_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Billing_account_id string
-}
-
-
-func Google_billing_account_iam_policyMapper(r *Google_billing_account_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["billing_account_id"] = r.Billing_account_id
-    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_billing_account_iam_policyUnmapper(state map[string]interface{}) *Google_billing_account_iam_policy {
-	r := &Google_billing_account_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_billing_account_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["billing_account_id"]; ok {
-	r.Billing_account_id = x.(string)
-}
-	return r
-}
-
-
-// Google_billing_account_iam_policyHandler ...
-type Google_billing_account_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_billing_account_iam_policyHandler) Create(desired *Google_billing_account_iam_policy) (*Google_billing_account_iam_policy, string, error) {
-	rState := Google_billing_account_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_billing_account_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_billing_account_iam_policyHandler) Read(externalID string) (*Google_billing_account_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_billing_account_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_billing_account_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_billing_account_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_billing_account_iam_policy", externalID)
-}
-
-type Google_pubsub_subscription_iam_binding struct {
-     Google_pubsub_subscription_iam_binding_id *string
-     Project *string
-     Etag *string
-     Role string
-     Subscription string
-}
-
-
-func Google_pubsub_subscription_iam_bindingMapper(r *Google_pubsub_subscription_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["role"] = r.Role
-    config["subscription"] = r.Subscription
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_subscription_iam_bindingUnmapper(state map[string]interface{}) *Google_pubsub_subscription_iam_binding {
-	r := &Google_pubsub_subscription_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_subscription_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["subscription"]; ok {
-	r.Subscription = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_pubsub_subscription_iam_bindingHandler ...
-type Google_pubsub_subscription_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_subscription_iam_bindingHandler) Create(desired *Google_pubsub_subscription_iam_binding) (*Google_pubsub_subscription_iam_binding, string, error) {
-	rState := Google_pubsub_subscription_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_subscription_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_subscription_iam_bindingHandler) Read(externalID string) (*Google_pubsub_subscription_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_subscription_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_subscription_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_binding", externalID)
-}
-
-type Google_service_account_key struct {
-     Google_service_account_key_id *string
-     Service_account_id string
-     Pgp_key *string
-     Public_key_type *string
-     Private_key *string
-     Private_key_fingerprint *string
-     Key_algorithm *string
-     Private_key_type *string
-     Name *string
-     Public_key *string
-     Valid_after *string
-     Valid_before *string
-     Private_key_encrypted *string
-}
-
-
-func Google_service_account_keyMapper(r *Google_service_account_key) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Public_key != nil {
-    config["public_key"] = *r.Public_key
-}
-if r.Valid_after != nil {
-    config["valid_after"] = *r.Valid_after
-}
-if r.Valid_before != nil {
-    config["valid_before"] = *r.Valid_before
-}
-if r.Private_key_encrypted != nil {
-    config["private_key_encrypted"] = *r.Private_key_encrypted
-}
-if r.Private_key_fingerprint != nil {
-    config["private_key_fingerprint"] = *r.Private_key_fingerprint
-}
-if r.Key_algorithm != nil {
-    config["key_algorithm"] = *r.Key_algorithm
-}
-if r.Private_key_type != nil {
-    config["private_key_type"] = *r.Private_key_type
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Private_key != nil {
-    config["private_key"] = *r.Private_key
-}
-    config["service_account_id"] = r.Service_account_id
-if r.Pgp_key != nil {
-    config["pgp_key"] = *r.Pgp_key
-}
-if r.Public_key_type != nil {
-    config["public_key_type"] = *r.Public_key_type
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_service_account_keyUnmapper(state map[string]interface{}) *Google_service_account_key {
-	r := &Google_service_account_key{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_service_account_key_id = &x
-}
-
-if x, ok := state["pgp_key"]; ok {
-	x := x.(string)
-	r.Pgp_key = &x
-}
-
-if x, ok := state["public_key_type"]; ok {
-	x := x.(string)
-	r.Public_key_type = &x
-}
-
-if x, ok := state["private_key"]; ok {
-	x := x.(string)
-	r.Private_key = &x
-}
-
-if x, ok := state["service_account_id"]; ok {
-	r.Service_account_id = x.(string)
-}
-
-if x, ok := state["private_key_type"]; ok {
-	x := x.(string)
-	r.Private_key_type = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["public_key"]; ok {
-	x := x.(string)
-	r.Public_key = &x
-}
-
-if x, ok := state["valid_after"]; ok {
-	x := x.(string)
-	r.Valid_after = &x
-}
-
-if x, ok := state["valid_before"]; ok {
-	x := x.(string)
-	r.Valid_before = &x
-}
-
-if x, ok := state["private_key_encrypted"]; ok {
-	x := x.(string)
-	r.Private_key_encrypted = &x
-}
-
-if x, ok := state["private_key_fingerprint"]; ok {
-	x := x.(string)
-	r.Private_key_fingerprint = &x
-}
-
-if x, ok := state["key_algorithm"]; ok {
-	x := x.(string)
-	r.Key_algorithm = &x
-}
-	return r
-}
-
-
-// Google_service_account_keyHandler ...
-type Google_service_account_keyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_service_account_keyHandler) Create(desired *Google_service_account_key) (*Google_service_account_key, string, error) {
-	rState := Google_service_account_keyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_service_account_key", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_service_account_keyHandler) Read(externalID string) (*Google_service_account_key, error) {
-	actual, err := bridge.Read(h.provider, "google_service_account_key", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_service_account_keyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_service_account_keyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_service_account_key", externalID)
-}
-
-type Google_compute_attached_disk struct {
-     Google_compute_attached_disk_id *string
-     Device_name *string
-     Mode *string
-     Disk string
-     Instance string
-     Project *string
-     Zone *string
-}
-
-
-func Google_compute_attached_diskMapper(r *Google_compute_attached_disk) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["disk"] = r.Disk
-    config["instance"] = r.Instance
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Device_name != nil {
-    config["device_name"] = *r.Device_name
-}
-if r.Mode != nil {
-    config["mode"] = *r.Mode
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_attached_diskUnmapper(state map[string]interface{}) *Google_compute_attached_disk {
-	r := &Google_compute_attached_disk{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_attached_disk_id = &x
-}
-
-if x, ok := state["mode"]; ok {
-	x := x.(string)
-	r.Mode = &x
-}
-
-if x, ok := state["disk"]; ok {
-	r.Disk = x.(string)
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["device_name"]; ok {
-	x := x.(string)
-	r.Device_name = &x
-}
-	return r
-}
-
-
-// Google_compute_attached_diskHandler ...
-type Google_compute_attached_diskHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_attached_diskHandler) Create(desired *Google_compute_attached_disk) (*Google_compute_attached_disk, string, error) {
-	rState := Google_compute_attached_diskMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_attached_disk", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_attached_diskHandler) Read(externalID string) (*Google_compute_attached_disk, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_attached_disk", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_attached_diskUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_attached_diskHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_attached_disk", externalID)
-}
-
-type Google_compute_target_ssl_proxy struct {
-     Google_compute_target_ssl_proxy_id *string
-     Ssl_policy *string
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
-     Description *string
-     Proxy_header *string
-     Backend_service string
-     Name string
-}
-
-
-func Google_compute_target_ssl_proxyMapper(r *Google_compute_target_ssl_proxy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["backend_service"] = r.Backend_service
-    config["name"] = r.Name
-if r.Proxy_header != nil {
-    config["proxy_header"] = *r.Proxy_header
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Ssl_policy != nil {
-    config["ssl_policy"] = *r.Ssl_policy
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_target_ssl_proxyUnmapper(state map[string]interface{}) *Google_compute_target_ssl_proxy {
-	r := &Google_compute_target_ssl_proxy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_target_ssl_proxy_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["ssl_policy"]; ok {
-	x := x.(string)
-	r.Ssl_policy = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["backend_service"]; ok {
-	r.Backend_service = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["proxy_header"]; ok {
-	x := x.(string)
-	r.Proxy_header = &x
-}
-	return r
-}
-
-
-// Google_compute_target_ssl_proxyHandler ...
-type Google_compute_target_ssl_proxyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_target_ssl_proxyHandler) Create(desired *Google_compute_target_ssl_proxy) (*Google_compute_target_ssl_proxy, string, error) {
-	rState := Google_compute_target_ssl_proxyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_target_ssl_proxy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_target_ssl_proxyHandler) Read(externalID string) (*Google_compute_target_ssl_proxy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_target_ssl_proxy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_target_ssl_proxyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_target_ssl_proxyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_target_ssl_proxy", externalID)
-}
-
-type Google_container_analysis_note struct {
-     Google_container_analysis_note_id *string
-     Name string
-     Project *string
-}
-
-
-func Google_container_analysis_noteMapper(r *Google_container_analysis_note) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_container_analysis_noteUnmapper(state map[string]interface{}) *Google_container_analysis_note {
-	r := &Google_container_analysis_note{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_container_analysis_note_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_container_analysis_noteHandler ...
-type Google_container_analysis_noteHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_container_analysis_noteHandler) Create(desired *Google_container_analysis_note) (*Google_container_analysis_note, string, error) {
-	rState := Google_container_analysis_noteMapper(desired)
-	id, err := bridge.Create(h.provider, "google_container_analysis_note", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_container_analysis_noteHandler) Read(externalID string) (*Google_container_analysis_note, error) {
-	actual, err := bridge.Read(h.provider, "google_container_analysis_note", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_container_analysis_noteUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_container_analysis_noteHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_container_analysis_note", externalID)
-}
-
-type Google_sourcerepo_repository struct {
-     Google_sourcerepo_repository_id *string
-     Url *string
-     Name string
-     Project *string
-}
-
-
-func Google_sourcerepo_repositoryMapper(r *Google_sourcerepo_repository) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Url != nil {
-    config["url"] = *r.Url
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_sourcerepo_repositoryUnmapper(state map[string]interface{}) *Google_sourcerepo_repository {
-	r := &Google_sourcerepo_repository{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_sourcerepo_repository_id = &x
-}
-
-if x, ok := state["url"]; ok {
-	x := x.(string)
-	r.Url = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_sourcerepo_repositoryHandler ...
-type Google_sourcerepo_repositoryHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_sourcerepo_repositoryHandler) Create(desired *Google_sourcerepo_repository) (*Google_sourcerepo_repository, string, error) {
-	rState := Google_sourcerepo_repositoryMapper(desired)
-	id, err := bridge.Create(h.provider, "google_sourcerepo_repository", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_sourcerepo_repositoryHandler) Read(externalID string) (*Google_sourcerepo_repository, error) {
-	actual, err := bridge.Read(h.provider, "google_sourcerepo_repository", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_sourcerepo_repositoryUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_sourcerepo_repositoryHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_sourcerepo_repository", externalID)
-}
-
-type Google_service_account struct {
-     Google_service_account_id *string
-     Email *string
-     Unique_id *string
-     Name *string
-     Account_id string
-     Display_name *string
-     Project *string
-     Policy_data *string
-}
-
-
-func Google_service_accountMapper(r *Google_service_account) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Policy_data != nil {
-    config["policy_data"] = *r.Policy_data
-}
-if r.Email != nil {
-    config["email"] = *r.Email
-}
-if r.Unique_id != nil {
-    config["unique_id"] = *r.Unique_id
-}
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-    config["account_id"] = r.Account_id
-if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_service_accountUnmapper(state map[string]interface{}) *Google_service_account {
-	r := &Google_service_account{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_service_account_id = &x
-}
-
-if x, ok := state["email"]; ok {
-	x := x.(string)
-	r.Email = &x
-}
-
-if x, ok := state["unique_id"]; ok {
-	x := x.(string)
-	r.Unique_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["account_id"]; ok {
-	r.Account_id = x.(string)
-}
-
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	x := x.(string)
-	r.Policy_data = &x
-}
-	return r
-}
-
-
-// Google_service_accountHandler ...
-type Google_service_accountHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_service_accountHandler) Create(desired *Google_service_account) (*Google_service_account, string, error) {
-	rState := Google_service_accountMapper(desired)
-	id, err := bridge.Create(h.provider, "google_service_account", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_service_accountHandler) Read(externalID string) (*Google_service_account, error) {
-	actual, err := bridge.Read(h.provider, "google_service_account", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_service_accountUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_service_accountHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_service_account", externalID)
-}
-
-type Google_pubsub_subscription_iam_policy struct {
-     Google_pubsub_subscription_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Subscription string
-     Project *string
-}
-
-
-func Google_pubsub_subscription_iam_policyMapper(r *Google_pubsub_subscription_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["subscription"] = r.Subscription
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_subscription_iam_policyUnmapper(state map[string]interface{}) *Google_pubsub_subscription_iam_policy {
-	r := &Google_pubsub_subscription_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_subscription_iam_policy_id = &x
-}
-
-if x, ok := state["subscription"]; ok {
-	r.Subscription = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_pubsub_subscription_iam_policyHandler ...
-type Google_pubsub_subscription_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_subscription_iam_policyHandler) Create(desired *Google_pubsub_subscription_iam_policy) (*Google_pubsub_subscription_iam_policy, string, error) {
-	rState := Google_pubsub_subscription_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_subscription_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_subscription_iam_policyHandler) Read(externalID string) (*Google_pubsub_subscription_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_subscription_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_subscription_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_policy", externalID)
-}
-
-type Google_logging_folder_sink struct {
-     Google_logging_folder_sink_id *string
-     Name string
-     Destination string
-     Filter *string
-     Writer_identity *string
-     Folder string
-     Include_children *bool
-}
-
-
-func Google_logging_folder_sinkMapper(r *Google_logging_folder_sink) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["destination"] = r.Destination
-if r.Filter != nil {
-    config["filter"] = *r.Filter
-}
-if r.Writer_identity != nil {
-    config["writer_identity"] = *r.Writer_identity
-}
-    config["folder"] = r.Folder
-if r.Include_children != nil {
-    config["include_children"] = *r.Include_children
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_folder_sinkUnmapper(state map[string]interface{}) *Google_logging_folder_sink {
-	r := &Google_logging_folder_sink{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_folder_sink_id = &x
-}
-
-if x, ok := state["filter"]; ok {
-	x := x.(string)
-	r.Filter = &x
-}
-
-if x, ok := state["writer_identity"]; ok {
-	x := x.(string)
-	r.Writer_identity = &x
-}
-
-if x, ok := state["folder"]; ok {
-	r.Folder = x.(string)
-}
-
-if x, ok := state["include_children"]; ok {
-	x := x.(bool)
-	r.Include_children = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["destination"]; ok {
-	r.Destination = x.(string)
-}
-	return r
-}
-
-
-// Google_logging_folder_sinkHandler ...
-type Google_logging_folder_sinkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_folder_sinkHandler) Create(desired *Google_logging_folder_sink) (*Google_logging_folder_sink, string, error) {
-	rState := Google_logging_folder_sinkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_folder_sink", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_folder_sinkHandler) Read(externalID string) (*Google_logging_folder_sink, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_folder_sink", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_folder_sinkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_folder_sinkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_folder_sink", externalID)
-}
-
-type Google_composer_environment struct {
-     Google_composer_environment_id *string
-     Name string
-     Region *string
-     Project *string
-}
-
-
-func Google_composer_environmentMapper(r *Google_composer_environment) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_composer_environmentUnmapper(state map[string]interface{}) *Google_composer_environment {
-	r := &Google_composer_environment{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_composer_environment_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_composer_environmentHandler ...
-type Google_composer_environmentHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_composer_environmentHandler) Create(desired *Google_composer_environment) (*Google_composer_environment, string, error) {
-	rState := Google_composer_environmentMapper(desired)
-	id, err := bridge.Create(h.provider, "google_composer_environment", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_composer_environmentHandler) Read(externalID string) (*Google_composer_environment, error) {
-	actual, err := bridge.Read(h.provider, "google_composer_environment", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_composer_environmentUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_composer_environmentHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_composer_environment", externalID)
-}
-
-type Google_storage_default_object_acl struct {
-     Google_storage_default_object_acl_id *string
-     Bucket string
-}
-
-
-func Google_storage_default_object_aclMapper(r *Google_storage_default_object_acl) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["bucket"] = r.Bucket
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_storage_default_object_aclUnmapper(state map[string]interface{}) *Google_storage_default_object_acl {
-	r := &Google_storage_default_object_acl{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_storage_default_object_acl_id = &x
-}
-
-if x, ok := state["bucket"]; ok {
-	r.Bucket = x.(string)
-}
-	return r
-}
-
-
-// Google_storage_default_object_aclHandler ...
-type Google_storage_default_object_aclHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_storage_default_object_aclHandler) Create(desired *Google_storage_default_object_acl) (*Google_storage_default_object_acl, string, error) {
-	rState := Google_storage_default_object_aclMapper(desired)
-	id, err := bridge.Create(h.provider, "google_storage_default_object_acl", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_storage_default_object_aclHandler) Read(externalID string) (*Google_storage_default_object_acl, error) {
-	actual, err := bridge.Read(h.provider, "google_storage_default_object_acl", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_storage_default_object_aclUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_storage_default_object_aclHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_storage_default_object_acl", externalID)
-}
-
-type Google_spanner_database_iam_policy struct {
-     Google_spanner_database_iam_policy_id *string
-     Etag *string
-     Policy_data string
-     Instance string
-     Database string
-     Project *string
-}
-
-
-func Google_spanner_database_iam_policyMapper(r *Google_spanner_database_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-    config["instance"] = r.Instance
-    config["database"] = r.Database
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_database_iam_policyUnmapper(state map[string]interface{}) *Google_spanner_database_iam_policy {
-	r := &Google_spanner_database_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_database_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["database"]; ok {
-	r.Database = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_spanner_database_iam_policyHandler ...
-type Google_spanner_database_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_database_iam_policyHandler) Create(desired *Google_spanner_database_iam_policy) (*Google_spanner_database_iam_policy, string, error) {
-	rState := Google_spanner_database_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_database_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_database_iam_policyHandler) Read(externalID string) (*Google_spanner_database_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_database_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_database_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_database_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_database_iam_policy", externalID)
-}
-
-type Google_kms_key_ring_iam_policy struct {
-     Google_kms_key_ring_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Key_ring_id string
-}
-
-
-func Google_kms_key_ring_iam_policyMapper(r *Google_kms_key_ring_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["key_ring_id"] = r.Key_ring_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_kms_key_ring_iam_policyUnmapper(state map[string]interface{}) *Google_kms_key_ring_iam_policy {
-	r := &Google_kms_key_ring_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_key_ring_iam_policy_id = &x
-}
-
-if x, ok := state["key_ring_id"]; ok {
-	r.Key_ring_id = x.(string)
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
-
-
-// Google_kms_key_ring_iam_policyHandler ...
-type Google_kms_key_ring_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_kms_key_ring_iam_policyHandler) Create(desired *Google_kms_key_ring_iam_policy) (*Google_kms_key_ring_iam_policy, string, error) {
-	rState := Google_kms_key_ring_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_key_ring_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_kms_key_ring_iam_policyHandler) Read(externalID string) (*Google_kms_key_ring_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_kms_key_ring_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_kms_key_ring_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_key_ring_iam_policy", externalID)
-}
-
-type Google_service_account_iam_binding struct {
-     Google_service_account_iam_binding_id *string
-     Service_account_id string
-     Role string
-     Etag *string
-}
-
-
-func Google_service_account_iam_bindingMapper(r *Google_service_account_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["service_account_id"] = r.Service_account_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_service_account_iam_bindingUnmapper(state map[string]interface{}) *Google_service_account_iam_binding {
-	r := &Google_service_account_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_service_account_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["service_account_id"]; ok {
-	r.Service_account_id = x.(string)
-}
-	return r
-}
-
-
-// Google_service_account_iam_bindingHandler ...
-type Google_service_account_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_service_account_iam_bindingHandler) Create(desired *Google_service_account_iam_binding) (*Google_service_account_iam_binding, string, error) {
-	rState := Google_service_account_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_service_account_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_service_account_iam_bindingHandler) Read(externalID string) (*Google_service_account_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_service_account_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_service_account_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_service_account_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_service_account_iam_binding", externalID)
-}
-
-type Google_compute_http_health_check struct {
-     Google_compute_http_health_check_id *string
-     Project *string
-     Self_link *string
-     Name string
-     Description *string
-     Host *string
-     Creation_timestamp *string
-     Request_path *string
-}
-
-
-func Google_compute_http_health_checkMapper(r *Google_compute_http_health_check) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Host != nil {
-    config["host"] = *r.Host
-}
-if r.Request_path != nil {
-    config["request_path"] = *r.Request_path
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_http_health_checkUnmapper(state map[string]interface{}) *Google_compute_http_health_check {
-	r := &Google_compute_http_health_check{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_http_health_check_id = &x
-}
-
-if x, ok := state["request_path"]; ok {
-	x := x.(string)
-	r.Request_path = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
+type Google_bigquery_table_time_partitioning_1536 struct {
 
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["host"]; ok {
-	x := x.(string)
-	r.Host = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_http_health_checkHandler ...
-type Google_compute_http_health_checkHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_http_health_checkHandler) Create(desired *Google_compute_http_health_check) (*Google_compute_http_health_check, string, error) {
-	rState := Google_compute_http_health_checkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_http_health_check", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_http_health_checkHandler) Read(externalID string) (*Google_compute_http_health_check, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_http_health_check", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_http_health_checkUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_http_health_checkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_http_health_check", externalID)
-}
-
-type Google_logging_organization_exclusion struct {
-     Google_logging_organization_exclusion_id *string
-     Disabled *bool
-     Org_id string
-     Filter string
-     Name string
-     Description *string
-}
-
-
-func Google_logging_organization_exclusionMapper(r *Google_logging_organization_exclusion) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["filter"] = r.Filter
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Disabled != nil {
-    config["disabled"] = *r.Disabled
-}
-    config["org_id"] = r.Org_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_organization_exclusionUnmapper(state map[string]interface{}) *Google_logging_organization_exclusion {
-	r := &Google_logging_organization_exclusion{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_organization_exclusion_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["disabled"]; ok {
-	x := x.(bool)
-	r.Disabled = &x
-}
-
-if x, ok := state["org_id"]; ok {
-	r.Org_id = x.(string)
-}
-
-if x, ok := state["filter"]; ok {
-	r.Filter = x.(string)
-}
-	return r
-}
-
-
-// Google_logging_organization_exclusionHandler ...
-type Google_logging_organization_exclusionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_organization_exclusionHandler) Create(desired *Google_logging_organization_exclusion) (*Google_logging_organization_exclusion, string, error) {
-	rState := Google_logging_organization_exclusionMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_organization_exclusion", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_organization_exclusionHandler) Read(externalID string) (*Google_logging_organization_exclusion, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_organization_exclusion", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_organization_exclusionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_organization_exclusionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_organization_exclusion", externalID)
-}
-
-type Google_compute_vpn_gateway struct {
-     Google_compute_vpn_gateway_id *string
-     Region *string
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
-     Name string
-     Network string
-     Description *string
-}
-
-
-func Google_compute_vpn_gatewayMapper(r *Google_compute_vpn_gateway) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-    config["network"] = r.Network
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_vpn_gatewayUnmapper(state map[string]interface{}) *Google_compute_vpn_gateway {
-	r := &Google_compute_vpn_gateway{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_vpn_gateway_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network"]; ok {
-	r.Network = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_vpn_gatewayHandler ...
-type Google_compute_vpn_gatewayHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_vpn_gatewayHandler) Create(desired *Google_compute_vpn_gateway) (*Google_compute_vpn_gateway, string, error) {
-	rState := Google_compute_vpn_gatewayMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_vpn_gateway", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_vpn_gatewayHandler) Read(externalID string) (*Google_compute_vpn_gateway, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_vpn_gateway", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_vpn_gatewayUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_vpn_gatewayHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_vpn_gateway", externalID)
-}
-
-type Google_cloudfunctions_function struct {
-     Google_cloudfunctions_function_id *string
-     Source_archive_bucket string
-     Source_archive_object string
-     Runtime *string
-     Https_trigger_url *string
-     Name string
-     Description *string
-     Entry_point *string
-     Trigger_topic *string
-     Project *string
-     Trigger_bucket *string
-     Trigger_http *bool
-     Retry_on_failure *bool
-     Region *string
-}
-
-
-func Google_cloudfunctions_functionMapper(r *Google_cloudfunctions_function) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Retry_on_failure != nil {
-    config["retry_on_failure"] = *r.Retry_on_failure
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Trigger_bucket != nil {
-    config["trigger_bucket"] = *r.Trigger_bucket
-}
-if r.Trigger_http != nil {
-    config["trigger_http"] = *r.Trigger_http
-}
-if r.Runtime != nil {
-    config["runtime"] = *r.Runtime
-}
-if r.Https_trigger_url != nil {
-    config["https_trigger_url"] = *r.Https_trigger_url
-}
-    config["source_archive_bucket"] = r.Source_archive_bucket
-    config["source_archive_object"] = r.Source_archive_object
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Entry_point != nil {
-    config["entry_point"] = *r.Entry_point
-}
-if r.Trigger_topic != nil {
-    config["trigger_topic"] = *r.Trigger_topic
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_cloudfunctions_functionUnmapper(state map[string]interface{}) *Google_cloudfunctions_function {
-	r := &Google_cloudfunctions_function{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_cloudfunctions_function_id = &x
-}
-
-if x, ok := state["entry_point"]; ok {
-	x := x.(string)
-	r.Entry_point = &x
-}
-
-if x, ok := state["trigger_topic"]; ok {
-	x := x.(string)
-	r.Trigger_topic = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["retry_on_failure"]; ok {
-	x := x.(bool)
-	r.Retry_on_failure = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["trigger_bucket"]; ok {
-	x := x.(string)
-	r.Trigger_bucket = &x
-}
-
-if x, ok := state["trigger_http"]; ok {
-	x := x.(bool)
-	r.Trigger_http = &x
-}
-
-if x, ok := state["runtime"]; ok {
-	x := x.(string)
-	r.Runtime = &x
-}
-
-if x, ok := state["https_trigger_url"]; ok {
-	x := x.(string)
-	r.Https_trigger_url = &x
-}
-
-if x, ok := state["source_archive_bucket"]; ok {
-	r.Source_archive_bucket = x.(string)
-}
-
-if x, ok := state["source_archive_object"]; ok {
-	r.Source_archive_object = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-	return r
-}
-
-
-// Google_cloudfunctions_functionHandler ...
-type Google_cloudfunctions_functionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_cloudfunctions_functionHandler) Create(desired *Google_cloudfunctions_function) (*Google_cloudfunctions_function, string, error) {
-	rState := Google_cloudfunctions_functionMapper(desired)
-	id, err := bridge.Create(h.provider, "google_cloudfunctions_function", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_cloudfunctions_functionHandler) Read(externalID string) (*Google_cloudfunctions_function, error) {
-	actual, err := bridge.Read(h.provider, "google_cloudfunctions_function", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_cloudfunctions_functionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_cloudfunctions_functionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_cloudfunctions_function", externalID)
-}
-
-type Google_service_account_iam_policy struct {
-     Google_service_account_iam_policy_id *string
-     Policy_data string
-     Etag *string
-     Service_account_id string
-}
-
-
-func Google_service_account_iam_policyMapper(r *Google_service_account_iam_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["service_account_id"] = r.Service_account_id
-    config["policy_data"] = r.Policy_data
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_service_account_iam_policyUnmapper(state map[string]interface{}) *Google_service_account_iam_policy {
-	r := &Google_service_account_iam_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_service_account_iam_policy_id = &x
-}
-
-if x, ok := state["policy_data"]; ok {
-	r.Policy_data = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["service_account_id"]; ok {
-	r.Service_account_id = x.(string)
-}
-	return r
-}
-
-
-// Google_service_account_iam_policyHandler ...
-type Google_service_account_iam_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_service_account_iam_policyHandler) Create(desired *Google_service_account_iam_policy) (*Google_service_account_iam_policy, string, error) {
-	rState := Google_service_account_iam_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_service_account_iam_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_service_account_iam_policyHandler) Read(externalID string) (*Google_service_account_iam_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_service_account_iam_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_service_account_iam_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_service_account_iam_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_service_account_iam_policy", externalID)
-}
-
-type Google_project_iam_binding struct {
-     Google_project_iam_binding_id *string
-     Role string
-     Etag *string
-     Project *string
-}
-
-
-func Google_project_iam_bindingMapper(r *Google_project_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_iam_bindingUnmapper(state map[string]interface{}) *Google_project_iam_binding {
-	r := &Google_project_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_iam_binding_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_project_iam_bindingHandler ...
-type Google_project_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_iam_bindingHandler) Create(desired *Google_project_iam_binding) (*Google_project_iam_binding, string, error) {
-	rState := Google_project_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_iam_bindingHandler) Read(externalID string) (*Google_project_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_project_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_iam_binding", externalID)
-}
-
-type Google_binary_authorization_attestor struct {
-     Google_binary_authorization_attestor_id *string
-     Project *string
-     Name string
-     Description *string
-}
-
+    Google_bigquery_table_time_partitioning_1536_id *string `lyra:"ignore"`
 
-func Google_binary_authorization_attestorMapper(r *Google_binary_authorization_attestor) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_binary_authorization_attestorUnmapper(state map[string]interface{}) *Google_binary_authorization_attestor {
-	r := &Google_binary_authorization_attestor{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_binary_authorization_attestor_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_binary_authorization_attestorHandler ...
-type Google_binary_authorization_attestorHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_binary_authorization_attestorHandler) Create(desired *Google_binary_authorization_attestor) (*Google_binary_authorization_attestor, string, error) {
-	rState := Google_binary_authorization_attestorMapper(desired)
-	id, err := bridge.Create(h.provider, "google_binary_authorization_attestor", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_binary_authorization_attestorHandler) Read(externalID string) (*Google_binary_authorization_attestor, error) {
-	actual, err := bridge.Read(h.provider, "google_binary_authorization_attestor", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_binary_authorization_attestorUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_binary_authorization_attestorHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_binary_authorization_attestor", externalID)
-}
-
-type Google_compute_vpn_tunnel struct {
-     Google_compute_vpn_tunnel_id *string
-     Self_link *string
-     Name string
-     Creation_timestamp *string
-     Detailed_status *string
-     Label_fingerprint *string
-     Project *string
-     Shared_secret_hash *string
-     Shared_secret string
-     Target_vpn_gateway string
-     Description *string
-     Region *string
-     Peer_ip string
-     Router *string
-}
-
-
-func Google_compute_vpn_tunnelMapper(r *Google_compute_vpn_tunnel) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["peer_ip"] = r.Peer_ip
-if r.Router != nil {
-    config["router"] = *r.Router
-}
-    config["name"] = r.Name
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Detailed_status != nil {
-    config["detailed_status"] = *r.Detailed_status
-}
-if r.Label_fingerprint != nil {
-    config["label_fingerprint"] = *r.Label_fingerprint
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["shared_secret"] = r.Shared_secret
-    config["target_vpn_gateway"] = r.Target_vpn_gateway
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Shared_secret_hash != nil {
-    config["shared_secret_hash"] = *r.Shared_secret_hash
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_vpn_tunnelUnmapper(state map[string]interface{}) *Google_compute_vpn_tunnel {
-	r := &Google_compute_vpn_tunnel{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_vpn_tunnel_id = &x
-}
-
-if x, ok := state["label_fingerprint"]; ok {
-	x := x.(string)
-	r.Label_fingerprint = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["detailed_status"]; ok {
-	x := x.(string)
-	r.Detailed_status = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["shared_secret_hash"]; ok {
-	x := x.(string)
-	r.Shared_secret_hash = &x
-}
-
-if x, ok := state["shared_secret"]; ok {
-	r.Shared_secret = x.(string)
-}
-
-if x, ok := state["target_vpn_gateway"]; ok {
-	r.Target_vpn_gateway = x.(string)
-}
+    Expiration_ms *int
 
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
+    Field *string
 
-if x, ok := state["peer_ip"]; ok {
-	r.Peer_ip = x.(string)
-}
+    Type string
 
-if x, ok := state["router"]; ok {
-	x := x.(string)
-	r.Router = &x
-}
-	return r
 }
 
+type Google_bigquery_table_view_1537 struct {
 
-// Google_compute_vpn_tunnelHandler ...
-type Google_compute_vpn_tunnelHandler struct {
-	provider *schema.Provider
-}
+    Google_bigquery_table_view_1537_id *string `lyra:"ignore"`
 
-// Create ...
-func (h *Google_compute_vpn_tunnelHandler) Create(desired *Google_compute_vpn_tunnel) (*Google_compute_vpn_tunnel, string, error) {
-	rState := Google_compute_vpn_tunnelMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_vpn_tunnel", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
+    Query string
 
-// Read ...
-func (h *Google_compute_vpn_tunnelHandler) Read(externalID string) (*Google_compute_vpn_tunnel, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_vpn_tunnel", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_vpn_tunnelUnmapper(actual), nil
-}
+    Use_legacy_sql *bool
 
-// Delete ...
-func (h *Google_compute_vpn_tunnelHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_vpn_tunnel", externalID)
 }
 
 type Google_bigquery_table struct {
-     Google_bigquery_table_id *string
-     Dataset_id string
-     Resource_type *string
-     Project *string
-     Friendly_name *string
-     Table_id string
-     Schema *string
-     Etag *string
-     Self_link *string
-     Description *string
-     Location *string
-}
 
+    Google_bigquery_table_id *string `lyra:"ignore"`
 
-func Google_bigquery_tableMapper(r *Google_bigquery_table) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Friendly_name != nil {
-    config["friendly_name"] = *r.Friendly_name
-}
-    config["table_id"] = r.Table_id
-if r.Schema != nil {
-    config["schema"] = *r.Schema
-}
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Location != nil {
-    config["location"] = *r.Location
-}
-    config["dataset_id"] = r.Dataset_id
-if r.Resource_type != nil {
-    config["resource_type"] = *r.Resource_type
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Creation_time *int
 
-func Google_bigquery_tableUnmapper(state map[string]interface{}) *Google_bigquery_table {
-	r := &Google_bigquery_table{}
+    Dataset_id string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_bigquery_table_id = &x
-}
+    Description *string
 
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
+    Etag *string
 
-if x, ok := state["location"]; ok {
-	x := x.(string)
-	r.Location = &x
-}
+    Expiration_time *int
 
-if x, ok := state["dataset_id"]; ok {
-	r.Dataset_id = x.(string)
-}
+    Friendly_name *string
 
-if x, ok := state["resource_type"]; ok {
-	x := x.(string)
-	r.Resource_type = &x
-}
+    Labels *map[string]string
 
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
+    Last_modified_time *int
 
-if x, ok := state["friendly_name"]; ok {
-	x := x.(string)
-	r.Friendly_name = &x
-}
+    Location *string
 
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
+    Num_bytes *int
 
-if x, ok := state["table_id"]; ok {
-	r.Table_id = x.(string)
-}
+    Num_long_term_bytes *int
 
-if x, ok := state["schema"]; ok {
-	x := x.(string)
-	r.Schema = &x
-}
+    Num_rows *int
 
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-	return r
-}
+    Project *string
 
+    Schema *string
+
+    Self_link *string
+
+    Table_id string
+
+    Time_partitioning *Google_bigquery_table_time_partitioning_1536
+
+    Type *string
+
+    View *Google_bigquery_table_view_1537
+
+}
 
 // Google_bigquery_tableHandler ...
 type Google_bigquery_tableHandler struct {
@@ -14555,8 +581,10 @@ type Google_bigquery_tableHandler struct {
 
 // Create ...
 func (h *Google_bigquery_tableHandler) Create(desired *Google_bigquery_table) (*Google_bigquery_table, string, error) {
-	rState := Google_bigquery_tableMapper(desired)
-	id, err := bridge.Create(h.provider, "google_bigquery_table", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_bigquery_table", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -14569,11 +597,13 @@ func (h *Google_bigquery_tableHandler) Create(desired *Google_bigquery_table) (*
 
 // Read ...
 func (h *Google_bigquery_tableHandler) Read(externalID string) (*Google_bigquery_table, error) {
-	actual, err := bridge.Read(h.provider, "google_bigquery_table", externalID)
+	id, actual, err := bridge.Read(h.provider, "google_bigquery_table", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_bigquery_tableUnmapper(actual), nil
+	x := &Google_bigquery_table{ Google_bigquery_table_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -14581,1737 +611,43 @@ func (h *Google_bigquery_tableHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "google_bigquery_table", externalID)
 }
 
-type Google_compute_instance_group struct {
-     Google_compute_instance_group_id *string
-     Name string
-     Description *string
-     Network *string
-     Project *string
-     Self_link *string
-     Zone *string
-}
+type Google_bigtable_instance_cluster_1538 struct {
 
+    Google_bigtable_instance_cluster_1538_id *string `lyra:"ignore"`
 
-func Google_compute_instance_groupMapper(r *Google_compute_instance_group) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Network != nil {
-    config["network"] = *r.Network
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Cluster_id *string
 
-func Google_compute_instance_groupUnmapper(state map[string]interface{}) *Google_compute_instance_group {
-	r := &Google_compute_instance_group{}
+    Num_nodes *int
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_instance_group_id = &x
-}
+    Storage_type *string
 
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
+    Zone *string
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["network"]; ok {
-	x := x.(string)
-	r.Network = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-	return r
-}
-
-
-// Google_compute_instance_groupHandler ...
-type Google_compute_instance_groupHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_instance_groupHandler) Create(desired *Google_compute_instance_group) (*Google_compute_instance_group, string, error) {
-	rState := Google_compute_instance_groupMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_instance_group", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_instance_groupHandler) Read(externalID string) (*Google_compute_instance_group, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_instance_group", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_instance_groupUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_instance_groupHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_instance_group", externalID)
-}
-
-type Google_sql_user struct {
-     Google_sql_user_id *string
-     Host *string
-     Instance string
-     Name string
-     Password *string
-     Project *string
-}
-
-
-func Google_sql_userMapper(r *Google_sql_user) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Host != nil {
-    config["host"] = *r.Host
-}
-    config["instance"] = r.Instance
-    config["name"] = r.Name
-if r.Password != nil {
-    config["password"] = *r.Password
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_sql_userUnmapper(state map[string]interface{}) *Google_sql_user {
-	r := &Google_sql_user{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_sql_user_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["host"]; ok {
-	x := x.(string)
-	r.Host = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["password"]; ok {
-	x := x.(string)
-	r.Password = &x
-}
-	return r
-}
-
-
-// Google_sql_userHandler ...
-type Google_sql_userHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_sql_userHandler) Create(desired *Google_sql_user) (*Google_sql_user, string, error) {
-	rState := Google_sql_userMapper(desired)
-	id, err := bridge.Create(h.provider, "google_sql_user", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_sql_userHandler) Read(externalID string) (*Google_sql_user, error) {
-	actual, err := bridge.Read(h.provider, "google_sql_user", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_sql_userUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_sql_userHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_sql_user", externalID)
-}
-
-type Google_spanner_instance_iam_binding struct {
-     Google_spanner_instance_iam_binding_id *string
-     Project *string
-     Role string
-     Etag *string
-     Instance string
-}
-
-
-func Google_spanner_instance_iam_bindingMapper(r *Google_spanner_instance_iam_binding) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["instance"] = r.Instance
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_spanner_instance_iam_bindingUnmapper(state map[string]interface{}) *Google_spanner_instance_iam_binding {
-	r := &Google_spanner_instance_iam_binding{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_spanner_instance_iam_binding_id = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["instance"]; ok {
-	r.Instance = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-	return r
-}
-
-
-// Google_spanner_instance_iam_bindingHandler ...
-type Google_spanner_instance_iam_bindingHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_spanner_instance_iam_bindingHandler) Create(desired *Google_spanner_instance_iam_binding) (*Google_spanner_instance_iam_binding, string, error) {
-	rState := Google_spanner_instance_iam_bindingMapper(desired)
-	id, err := bridge.Create(h.provider, "google_spanner_instance_iam_binding", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_spanner_instance_iam_bindingHandler) Read(externalID string) (*Google_spanner_instance_iam_binding, error) {
-	actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_binding", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_spanner_instance_iam_bindingUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_spanner_instance_iam_bindingHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_spanner_instance_iam_binding", externalID)
-}
-
-type Google_logging_folder_exclusion struct {
-     Google_logging_folder_exclusion_id *string
-     Filter string
-     Name string
-     Folder string
-     Description *string
-     Disabled *bool
-}
-
-
-func Google_logging_folder_exclusionMapper(r *Google_logging_folder_exclusion) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Disabled != nil {
-    config["disabled"] = *r.Disabled
-}
-    config["filter"] = r.Filter
-    config["name"] = r.Name
-    config["folder"] = r.Folder
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_logging_folder_exclusionUnmapper(state map[string]interface{}) *Google_logging_folder_exclusion {
-	r := &Google_logging_folder_exclusion{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_logging_folder_exclusion_id = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["disabled"]; ok {
-	x := x.(bool)
-	r.Disabled = &x
-}
-
-if x, ok := state["filter"]; ok {
-	r.Filter = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["folder"]; ok {
-	r.Folder = x.(string)
-}
-	return r
-}
-
-
-// Google_logging_folder_exclusionHandler ...
-type Google_logging_folder_exclusionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_logging_folder_exclusionHandler) Create(desired *Google_logging_folder_exclusion) (*Google_logging_folder_exclusion, string, error) {
-	rState := Google_logging_folder_exclusionMapper(desired)
-	id, err := bridge.Create(h.provider, "google_logging_folder_exclusion", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_logging_folder_exclusionHandler) Read(externalID string) (*Google_logging_folder_exclusion, error) {
-	actual, err := bridge.Read(h.provider, "google_logging_folder_exclusion", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_logging_folder_exclusionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_logging_folder_exclusionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_logging_folder_exclusion", externalID)
-}
-
-type Google_kms_crypto_key_iam_member struct {
-     Google_kms_crypto_key_iam_member_id *string
-     Member string
-     Etag *string
-     Crypto_key_id string
-     Role string
-}
-
-
-func Google_kms_crypto_key_iam_memberMapper(r *Google_kms_crypto_key_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["crypto_key_id"] = r.Crypto_key_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_kms_crypto_key_iam_memberUnmapper(state map[string]interface{}) *Google_kms_crypto_key_iam_member {
-	r := &Google_kms_crypto_key_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_kms_crypto_key_iam_member_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["crypto_key_id"]; ok {
-	r.Crypto_key_id = x.(string)
-}
-	return r
-}
-
-
-// Google_kms_crypto_key_iam_memberHandler ...
-type Google_kms_crypto_key_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_kms_crypto_key_iam_memberHandler) Create(desired *Google_kms_crypto_key_iam_member) (*Google_kms_crypto_key_iam_member, string, error) {
-	rState := Google_kms_crypto_key_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_kms_crypto_key_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_kms_crypto_key_iam_memberHandler) Read(externalID string) (*Google_kms_crypto_key_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_kms_crypto_key_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_kms_crypto_key_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_kms_crypto_key_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_kms_crypto_key_iam_member", externalID)
-}
-
-type Google_container_node_pool struct {
-     Google_container_node_pool_id *string
-     Zone *string
-     Cluster string
-     Name *string
-     Name_prefix *string
-     Project *string
-     Version *string
-     Region *string
-}
-
-
-func Google_container_node_poolMapper(r *Google_container_node_pool) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Region != nil {
-    config["region"] = *r.Region
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-    config["cluster"] = r.Cluster
-if r.Name != nil {
-    config["name"] = *r.Name
-}
-if r.Name_prefix != nil {
-    config["name_prefix"] = *r.Name_prefix
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Version != nil {
-    config["version"] = *r.Version
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_container_node_poolUnmapper(state map[string]interface{}) *Google_container_node_pool {
-	r := &Google_container_node_pool{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_container_node_pool_id = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["cluster"]; ok {
-	r.Cluster = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	x := x.(string)
-	r.Name = &x
-}
-
-if x, ok := state["name_prefix"]; ok {
-	x := x.(string)
-	r.Name_prefix = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
-
-if x, ok := state["version"]; ok {
-	x := x.(string)
-	r.Version = &x
-}
-	return r
-}
-
-
-// Google_container_node_poolHandler ...
-type Google_container_node_poolHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_container_node_poolHandler) Create(desired *Google_container_node_pool) (*Google_container_node_pool, string, error) {
-	rState := Google_container_node_poolMapper(desired)
-	id, err := bridge.Create(h.provider, "google_container_node_pool", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_container_node_poolHandler) Read(externalID string) (*Google_container_node_pool, error) {
-	actual, err := bridge.Read(h.provider, "google_container_node_pool", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_container_node_poolUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_container_node_poolHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_container_node_pool", externalID)
-}
-
-type Google_compute_route struct {
-     Google_compute_route_id *string
-     Next_hop_vpn_tunnel *string
-     Next_hop_network *string
-     Description *string
-     Next_hop_gateway *string
-     Next_hop_ip *string
-     Next_hop_instance_zone *string
-     Name string
-     Network string
-     Self_link *string
-     Dest_range string
-     Next_hop_instance *string
-     Project *string
-}
-
-
-func Google_compute_routeMapper(r *Google_compute_route) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["network"] = r.Network
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["dest_range"] = r.Dest_range
-if r.Next_hop_instance != nil {
-    config["next_hop_instance"] = *r.Next_hop_instance
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Next_hop_vpn_tunnel != nil {
-    config["next_hop_vpn_tunnel"] = *r.Next_hop_vpn_tunnel
-}
-if r.Next_hop_network != nil {
-    config["next_hop_network"] = *r.Next_hop_network
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Next_hop_gateway != nil {
-    config["next_hop_gateway"] = *r.Next_hop_gateway
-}
-if r.Next_hop_ip != nil {
-    config["next_hop_ip"] = *r.Next_hop_ip
-}
-if r.Next_hop_instance_zone != nil {
-    config["next_hop_instance_zone"] = *r.Next_hop_instance_zone
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_routeUnmapper(state map[string]interface{}) *Google_compute_route {
-	r := &Google_compute_route{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_route_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["dest_range"]; ok {
-	r.Dest_range = x.(string)
-}
-
-if x, ok := state["next_hop_instance"]; ok {
-	x := x.(string)
-	r.Next_hop_instance = &x
-}
-
-if x, ok := state["next_hop_vpn_tunnel"]; ok {
-	x := x.(string)
-	r.Next_hop_vpn_tunnel = &x
-}
-
-if x, ok := state["next_hop_network"]; ok {
-	x := x.(string)
-	r.Next_hop_network = &x
-}
-
-if x, ok := state["next_hop_ip"]; ok {
-	x := x.(string)
-	r.Next_hop_ip = &x
-}
-
-if x, ok := state["next_hop_instance_zone"]; ok {
-	x := x.(string)
-	r.Next_hop_instance_zone = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["next_hop_gateway"]; ok {
-	x := x.(string)
-	r.Next_hop_gateway = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["network"]; ok {
-	r.Network = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_routeHandler ...
-type Google_compute_routeHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_routeHandler) Create(desired *Google_compute_route) (*Google_compute_route, string, error) {
-	rState := Google_compute_routeMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_route", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_routeHandler) Read(externalID string) (*Google_compute_route, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_route", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_routeUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_routeHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_route", externalID)
-}
-
-type Google_compute_router_nat struct {
-     Google_compute_router_nat_id *string
-     Region *string
-     Name string
-     Nat_ip_allocate_option string
-     Project *string
-     Router string
-     Source_subnetwork_ip_ranges_to_nat *string
-}
-
-
-func Google_compute_router_natMapper(r *Google_compute_router_nat) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["nat_ip_allocate_option"] = r.Nat_ip_allocate_option
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-    config["router"] = r.Router
-if r.Source_subnetwork_ip_ranges_to_nat != nil {
-    config["source_subnetwork_ip_ranges_to_nat"] = *r.Source_subnetwork_ip_ranges_to_nat
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_router_natUnmapper(state map[string]interface{}) *Google_compute_router_nat {
-	r := &Google_compute_router_nat{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_router_nat_id = &x
-}
-
-if x, ok := state["nat_ip_allocate_option"]; ok {
-	r.Nat_ip_allocate_option = x.(string)
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["source_subnetwork_ip_ranges_to_nat"]; ok {
-	x := x.(string)
-	r.Source_subnetwork_ip_ranges_to_nat = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["router"]; ok {
-	r.Router = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_router_natHandler ...
-type Google_compute_router_natHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_router_natHandler) Create(desired *Google_compute_router_nat) (*Google_compute_router_nat, string, error) {
-	rState := Google_compute_router_natMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_router_nat", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_router_natHandler) Read(externalID string) (*Google_compute_router_nat, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_router_nat", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_router_natUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_router_natHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_router_nat", externalID)
-}
-
-type Google_project_organization_policy struct {
-     Google_project_organization_policy_id *string
-     Constraint string
-     Project string
-     Etag *string
-     Update_time *string
-}
-
-
-func Google_project_organization_policyMapper(r *Google_project_organization_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["constraint"] = r.Constraint
-    config["project"] = r.Project
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Update_time != nil {
-    config["update_time"] = *r.Update_time
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_project_organization_policyUnmapper(state map[string]interface{}) *Google_project_organization_policy {
-	r := &Google_project_organization_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_project_organization_policy_id = &x
-}
-
-if x, ok := state["constraint"]; ok {
-	r.Constraint = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	r.Project = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["update_time"]; ok {
-	x := x.(string)
-	r.Update_time = &x
-}
-	return r
-}
-
-
-// Google_project_organization_policyHandler ...
-type Google_project_organization_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_project_organization_policyHandler) Create(desired *Google_project_organization_policy) (*Google_project_organization_policy, string, error) {
-	rState := Google_project_organization_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_project_organization_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_project_organization_policyHandler) Read(externalID string) (*Google_project_organization_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_project_organization_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_project_organization_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_project_organization_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_project_organization_policy", externalID)
-}
-
-type Google_compute_ssl_policy struct {
-     Google_compute_ssl_policy_id *string
-     Fingerprint *string
-     Project *string
-     Self_link *string
-     Description *string
-     Min_tls_version *string
-     Profile *string
-     Creation_timestamp *string
-     Name string
-}
-
-
-func Google_compute_ssl_policyMapper(r *Google_compute_ssl_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Fingerprint != nil {
-    config["fingerprint"] = *r.Fingerprint
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Min_tls_version != nil {
-    config["min_tls_version"] = *r.Min_tls_version
-}
-if r.Profile != nil {
-    config["profile"] = *r.Profile
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_ssl_policyUnmapper(state map[string]interface{}) *Google_compute_ssl_policy {
-	r := &Google_compute_ssl_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_ssl_policy_id = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["fingerprint"]; ok {
-	x := x.(string)
-	r.Fingerprint = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["min_tls_version"]; ok {
-	x := x.(string)
-	r.Min_tls_version = &x
-}
-
-if x, ok := state["profile"]; ok {
-	x := x.(string)
-	r.Profile = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_ssl_policyHandler ...
-type Google_compute_ssl_policyHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_ssl_policyHandler) Create(desired *Google_compute_ssl_policy) (*Google_compute_ssl_policy, string, error) {
-	rState := Google_compute_ssl_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_ssl_policy", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_ssl_policyHandler) Read(externalID string) (*Google_compute_ssl_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_ssl_policy", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_ssl_policyUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_ssl_policyHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_ssl_policy", externalID)
-}
-
-type Google_filestore_instance struct {
-     Google_filestore_instance_id *string
-     Name string
-     Tier string
-     Zone string
-     Create_time *string
-     Etag *string
-     Project *string
-     Description *string
-}
-
-
-func Google_filestore_instanceMapper(r *Google_filestore_instance) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Create_time != nil {
-    config["create_time"] = *r.Create_time
-}
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["name"] = r.Name
-    config["tier"] = r.Tier
-    config["zone"] = r.Zone
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_filestore_instanceUnmapper(state map[string]interface{}) *Google_filestore_instance {
-	r := &Google_filestore_instance{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_filestore_instance_id = &x
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["create_time"]; ok {
-	x := x.(string)
-	r.Create_time = &x
-}
-
-if x, ok := state["tier"]; ok {
-	r.Tier = x.(string)
-}
-
-if x, ok := state["zone"]; ok {
-	r.Zone = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Google_filestore_instanceHandler ...
-type Google_filestore_instanceHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_filestore_instanceHandler) Create(desired *Google_filestore_instance) (*Google_filestore_instance, string, error) {
-	rState := Google_filestore_instanceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_filestore_instance", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_filestore_instanceHandler) Read(externalID string) (*Google_filestore_instance, error) {
-	actual, err := bridge.Read(h.provider, "google_filestore_instance", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_filestore_instanceUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_filestore_instanceHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_filestore_instance", externalID)
-}
-
-type Google_compute_router_peer struct {
-     Google_compute_router_peer_id *string
-     Name string
-     Router string
-     Ip_address *string
-     Project *string
-     Interface string
-     Peer_ip_address *string
-     Region *string
-}
-
-
-func Google_compute_router_peerMapper(r *Google_compute_router_peer) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["name"] = r.Name
-    config["router"] = r.Router
-if r.Ip_address != nil {
-    config["ip_address"] = *r.Ip_address
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["interface"] = r.Interface
-if r.Peer_ip_address != nil {
-    config["peer_ip_address"] = *r.Peer_ip_address
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_router_peerUnmapper(state map[string]interface{}) *Google_compute_router_peer {
-	r := &Google_compute_router_peer{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_router_peer_id = &x
-}
-
-if x, ok := state["interface"]; ok {
-	r.Interface = x.(string)
-}
-
-if x, ok := state["peer_ip_address"]; ok {
-	x := x.(string)
-	r.Peer_ip_address = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["router"]; ok {
-	r.Router = x.(string)
-}
-
-if x, ok := state["ip_address"]; ok {
-	x := x.(string)
-	r.Ip_address = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_router_peerHandler ...
-type Google_compute_router_peerHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_router_peerHandler) Create(desired *Google_compute_router_peer) (*Google_compute_router_peer, string, error) {
-	rState := Google_compute_router_peerMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_router_peer", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_router_peerHandler) Read(externalID string) (*Google_compute_router_peer, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_router_peer", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_router_peerUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_router_peerHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_router_peer", externalID)
-}
-
-type Google_dns_record_set struct {
-     Google_dns_record_set_id *string
-     Managed_zone string
-     Name string
-     Resource_type string
-     Project *string
-}
-
-
-func Google_dns_record_setMapper(r *Google_dns_record_set) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-    config["managed_zone"] = r.Managed_zone
-    config["name"] = r.Name
-    config["resource_type"] = r.Resource_type
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_dns_record_setUnmapper(state map[string]interface{}) *Google_dns_record_set {
-	r := &Google_dns_record_set{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_dns_record_set_id = &x
-}
-
-if x, ok := state["resource_type"]; ok {
-	r.Resource_type = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["managed_zone"]; ok {
-	r.Managed_zone = x.(string)
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-	return r
-}
-
-
-// Google_dns_record_setHandler ...
-type Google_dns_record_setHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_dns_record_setHandler) Create(desired *Google_dns_record_set) (*Google_dns_record_set, string, error) {
-	rState := Google_dns_record_setMapper(desired)
-	id, err := bridge.Create(h.provider, "google_dns_record_set", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_dns_record_setHandler) Read(externalID string) (*Google_dns_record_set, error) {
-	actual, err := bridge.Read(h.provider, "google_dns_record_set", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_dns_record_setUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_dns_record_setHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_dns_record_set", externalID)
-}
-
-type Google_compute_subnetwork_iam_member struct {
-     Google_compute_subnetwork_iam_member_id *string
-     Region *string
-     Role string
-     Member string
-     Etag *string
-     Subnetwork string
-     Project *string
-}
-
-
-func Google_compute_subnetwork_iam_memberMapper(r *Google_compute_subnetwork_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["subnetwork"] = r.Subnetwork
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Region != nil {
-    config["region"] = *r.Region
-}
-    config["role"] = r.Role
-    config["member"] = r.Member
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_subnetwork_iam_memberUnmapper(state map[string]interface{}) *Google_compute_subnetwork_iam_member {
-	r := &Google_compute_subnetwork_iam_member{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_subnetwork_iam_member_id = &x
-}
-
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
-
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
-}
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["subnetwork"]; ok {
-	r.Subnetwork = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["region"]; ok {
-	x := x.(string)
-	r.Region = &x
-}
-	return r
-}
-
-
-// Google_compute_subnetwork_iam_memberHandler ...
-type Google_compute_subnetwork_iam_memberHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_subnetwork_iam_memberHandler) Create(desired *Google_compute_subnetwork_iam_member) (*Google_compute_subnetwork_iam_member, string, error) {
-	rState := Google_compute_subnetwork_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_subnetwork_iam_member", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_subnetwork_iam_memberHandler) Read(externalID string) (*Google_compute_subnetwork_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_member", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_subnetwork_iam_memberUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_subnetwork_iam_memberHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_member", externalID)
-}
-
-type Google_compute_backend_bucket struct {
-     Google_compute_backend_bucket_id *string
-     Enable_cdn *bool
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
-     Bucket_name string
-     Name string
-     Description *string
-}
-
-
-func Google_compute_backend_bucketMapper(r *Google_compute_backend_bucket) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Enable_cdn != nil {
-    config["enable_cdn"] = *r.Enable_cdn
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["bucket_name"] = r.Bucket_name
-    config["name"] = r.Name
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_backend_bucketUnmapper(state map[string]interface{}) *Google_compute_backend_bucket {
-	r := &Google_compute_backend_bucket{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_backend_bucket_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["enable_cdn"]; ok {
-	x := x.(bool)
-	r.Enable_cdn = &x
-}
-
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["bucket_name"]; ok {
-	r.Bucket_name = x.(string)
-}
-	return r
-}
-
-
-// Google_compute_backend_bucketHandler ...
-type Google_compute_backend_bucketHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_compute_backend_bucketHandler) Create(desired *Google_compute_backend_bucket) (*Google_compute_backend_bucket, string, error) {
-	rState := Google_compute_backend_bucketMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_backend_bucket", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_compute_backend_bucketHandler) Read(externalID string) (*Google_compute_backend_bucket, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_backend_bucket", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_compute_backend_bucketUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_compute_backend_bucketHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_backend_bucket", externalID)
-}
-
-type Google_pubsub_subscription struct {
-     Google_pubsub_subscription_id *string
-     Topic string
-     Project *string
-     Path *string
-     Name string
-}
-
-
-func Google_pubsub_subscriptionMapper(r *Google_pubsub_subscription) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Path != nil {
-    config["path"] = *r.Path
-}
-    config["name"] = r.Name
-    config["topic"] = r.Topic
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_pubsub_subscriptionUnmapper(state map[string]interface{}) *Google_pubsub_subscription {
-	r := &Google_pubsub_subscription{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_pubsub_subscription_id = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["topic"]; ok {
-	r.Topic = x.(string)
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-
-if x, ok := state["path"]; ok {
-	x := x.(string)
-	r.Path = &x
-}
-	return r
-}
-
-
-// Google_pubsub_subscriptionHandler ...
-type Google_pubsub_subscriptionHandler struct {
-	provider *schema.Provider
-}
-
-// Create ...
-func (h *Google_pubsub_subscriptionHandler) Create(desired *Google_pubsub_subscription) (*Google_pubsub_subscription, string, error) {
-	rState := Google_pubsub_subscriptionMapper(desired)
-	id, err := bridge.Create(h.provider, "google_pubsub_subscription", rState)
-	if err != nil {
-		return nil, "", err
-	}
-	actual, err := h.Read(id)
-	if err != nil {
-		return nil, "", err
-	}
-	return actual, id, nil
-}
-
-// Read ...
-func (h *Google_pubsub_subscriptionHandler) Read(externalID string) (*Google_pubsub_subscription, error) {
-	actual, err := bridge.Read(h.provider, "google_pubsub_subscription", externalID)
-	if err != nil {
-		return nil, err
-	}
-	return Google_pubsub_subscriptionUnmapper(actual), nil
-}
-
-// Delete ...
-func (h *Google_pubsub_subscriptionHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_pubsub_subscription", externalID)
 }
 
 type Google_bigtable_instance struct {
-     Google_bigtable_instance_id *string
-     Zone *string
-     Display_name *string
-     Storage_type *string
-     Name string
-     Cluster_id *string
-     Instance_type *string
-     Project *string
-}
 
+    Google_bigtable_instance_id *string `lyra:"ignore"`
 
-func Google_bigtable_instanceMapper(r *Google_bigtable_instance) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Instance_type != nil {
-    config["instance_type"] = *r.Instance_type
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Storage_type != nil {
-    config["storage_type"] = *r.Storage_type
-}
-    config["name"] = r.Name
-if r.Cluster_id != nil {
-    config["cluster_id"] = *r.Cluster_id
-}
-if r.Zone != nil {
-    config["zone"] = *r.Zone
-}
-if r.Display_name != nil {
-    config["display_name"] = *r.Display_name
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Cluster *Google_bigtable_instance_cluster_1538
 
-func Google_bigtable_instanceUnmapper(state map[string]interface{}) *Google_bigtable_instance {
-	r := &Google_bigtable_instance{}
+    Cluster_id *string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_bigtable_instance_id = &x
-}
+    Display_name *string
 
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
+    Instance_type *string
 
-if x, ok := state["instance_type"]; ok {
-	x := x.(string)
-	r.Instance_type = &x
-}
+    Name string
 
-if x, ok := state["cluster_id"]; ok {
-	x := x.(string)
-	r.Cluster_id = &x
-}
+    Num_nodes *int
 
-if x, ok := state["zone"]; ok {
-	x := x.(string)
-	r.Zone = &x
-}
+    Project *string
 
-if x, ok := state["display_name"]; ok {
-	x := x.(string)
-	r.Display_name = &x
-}
+    Storage_type *string
 
-if x, ok := state["storage_type"]; ok {
-	x := x.(string)
-	r.Storage_type = &x
-}
+    Zone *string
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
 }
-	return r
-}
-
 
 // Google_bigtable_instanceHandler ...
 type Google_bigtable_instanceHandler struct {
@@ -16320,8 +656,10 @@ type Google_bigtable_instanceHandler struct {
 
 // Create ...
 func (h *Google_bigtable_instanceHandler) Create(desired *Google_bigtable_instance) (*Google_bigtable_instance, string, error) {
-	rState := Google_bigtable_instanceMapper(desired)
-	id, err := bridge.Create(h.provider, "google_bigtable_instance", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_bigtable_instance", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -16334,11 +672,13 @@ func (h *Google_bigtable_instanceHandler) Create(desired *Google_bigtable_instan
 
 // Read ...
 func (h *Google_bigtable_instanceHandler) Read(externalID string) (*Google_bigtable_instance, error) {
-	actual, err := bridge.Read(h.provider, "google_bigtable_instance", externalID)
+	id, actual, err := bridge.Read(h.provider, "google_bigtable_instance", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_bigtable_instanceUnmapper(actual), nil
+	x := &Google_bigtable_instance{ Google_bigtable_instance_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -16346,107 +686,31 @@ func (h *Google_bigtable_instanceHandler) Delete(externalID string) error {
 	return bridge.Delete(h.provider, "google_bigtable_instance", externalID)
 }
 
-type Google_compute_network struct {
-     Google_compute_network_id *string
-     Description *string
-     Routing_mode *string
-     Gateway_ipv4 *string
-     Ipv4_range *string
-     Project *string
-     Self_link *string
-     Name string
-     Auto_create_subnetworks *bool
+type Google_bigtable_table struct {
+
+    Google_bigtable_table_id *string `lyra:"ignore"`
+
+    Instance_name string
+
+    Name string
+
+    Project *string
+
+    Split_keys *[]string
+
 }
 
-
-func Google_compute_networkMapper(r *Google_compute_network) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-if r.Auto_create_subnetworks != nil {
-    config["auto_create_subnetworks"] = *r.Auto_create_subnetworks
-}
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Routing_mode != nil {
-    config["routing_mode"] = *r.Routing_mode
-}
-if r.Gateway_ipv4 != nil {
-    config["gateway_ipv4"] = *r.Gateway_ipv4
-}
-if r.Ipv4_range != nil {
-    config["ipv4_range"] = *r.Ipv4_range
-}
-if r.Project != nil {
-    config["project"] = *r.Project
-}
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
-
-func Google_compute_networkUnmapper(state map[string]interface{}) *Google_compute_network {
-	r := &Google_compute_network{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_network_id = &x
-}
-
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
-}
-
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
-}
-
-if x, ok := state["auto_create_subnetworks"]; ok {
-	x := x.(bool)
-	r.Auto_create_subnetworks = &x
-}
-
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
-}
-
-if x, ok := state["routing_mode"]; ok {
-	x := x.(string)
-	r.Routing_mode = &x
-}
-
-if x, ok := state["gateway_ipv4"]; ok {
-	x := x.(string)
-	r.Gateway_ipv4 = &x
-}
-
-if x, ok := state["ipv4_range"]; ok {
-	x := x.(string)
-	r.Ipv4_range = &x
-}
-
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
-}
-	return r
-}
-
-
-// Google_compute_networkHandler ...
-type Google_compute_networkHandler struct {
+// Google_bigtable_tableHandler ...
+type Google_bigtable_tableHandler struct {
 	provider *schema.Provider
 }
 
 // Create ...
-func (h *Google_compute_networkHandler) Create(desired *Google_compute_network) (*Google_compute_network, string, error) {
-	rState := Google_compute_networkMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_network", rState)
+func (h *Google_bigtable_tableHandler) Create(desired *Google_bigtable_table) (*Google_bigtable_table, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_bigtable_table", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -16458,68 +722,85 @@ func (h *Google_compute_networkHandler) Create(desired *Google_compute_network) 
 }
 
 // Read ...
-func (h *Google_compute_networkHandler) Read(externalID string) (*Google_compute_network, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_network", externalID)
+func (h *Google_bigtable_tableHandler) Read(externalID string) (*Google_bigtable_table, error) {
+	id, actual, err := bridge.Read(h.provider, "google_bigtable_table", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_compute_networkUnmapper(actual), nil
+	x := &Google_bigtable_table{ Google_bigtable_table_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
-func (h *Google_compute_networkHandler) Delete(externalID string) error {
-	return bridge.Delete(h.provider, "google_compute_network", externalID)
+func (h *Google_bigtable_tableHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_bigtable_table", externalID)
+}
+
+type Google_billing_account_iam_binding struct {
+
+    Google_billing_account_iam_binding_id *string `lyra:"ignore"`
+
+    Billing_account_id string
+
+    Etag *string
+
+    Members []string
+
+    Role string
+
+}
+
+// Google_billing_account_iam_bindingHandler ...
+type Google_billing_account_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_billing_account_iam_bindingHandler) Create(desired *Google_billing_account_iam_binding) (*Google_billing_account_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_billing_account_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_billing_account_iam_bindingHandler) Read(externalID string) (*Google_billing_account_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_billing_account_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_billing_account_iam_binding{ Google_billing_account_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_billing_account_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_billing_account_iam_binding", externalID)
 }
 
 type Google_billing_account_iam_member struct {
-     Google_billing_account_iam_member_id *string
-     Role string
-     Member string
-     Etag *string
-     Billing_account_id string
-}
 
+    Google_billing_account_iam_member_id *string `lyra:"ignore"`
 
-func Google_billing_account_iam_memberMapper(r *Google_billing_account_iam_member) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["role"] = r.Role
-    config["member"] = r.Member
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-    config["billing_account_id"] = r.Billing_account_id
-return &terraform.ResourceConfig{
-		Config: config,
-	}
-}
+    Billing_account_id string
 
-func Google_billing_account_iam_memberUnmapper(state map[string]interface{}) *Google_billing_account_iam_member {
-	r := &Google_billing_account_iam_member{}
+    Etag *string
 
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_billing_account_iam_member_id = &x
-}
+    Member string
 
-if x, ok := state["role"]; ok {
-	r.Role = x.(string)
-}
+    Role string
 
-if x, ok := state["member"]; ok {
-	r.Member = x.(string)
 }
-
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
-}
-
-if x, ok := state["billing_account_id"]; ok {
-	r.Billing_account_id = x.(string)
-}
-	return r
-}
-
 
 // Google_billing_account_iam_memberHandler ...
 type Google_billing_account_iam_memberHandler struct {
@@ -16528,8 +809,10 @@ type Google_billing_account_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_billing_account_iam_memberHandler) Create(desired *Google_billing_account_iam_member) (*Google_billing_account_iam_member, string, error) {
-	rState := Google_billing_account_iam_memberMapper(desired)
-	id, err := bridge.Create(h.provider, "google_billing_account_iam_member", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_billing_account_iam_member", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -16542,11 +825,13 @@ func (h *Google_billing_account_iam_memberHandler) Create(desired *Google_billin
 
 // Read ...
 func (h *Google_billing_account_iam_memberHandler) Read(externalID string) (*Google_billing_account_iam_member, error) {
-	actual, err := bridge.Read(h.provider, "google_billing_account_iam_member", externalID)
+	id, actual, err := bridge.Read(h.provider, "google_billing_account_iam_member", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_billing_account_iam_memberUnmapper(actual), nil
+	x := &Google_billing_account_iam_member{ Google_billing_account_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -16554,76 +839,4425 @@ func (h *Google_billing_account_iam_memberHandler) Delete(externalID string) err
 	return bridge.Delete(h.provider, "google_billing_account_iam_member", externalID)
 }
 
-type Google_compute_target_http_proxy struct {
-     Google_compute_target_http_proxy_id *string
-     Name string
-     Url_map string
-     Description *string
-     Creation_timestamp *string
-     Project *string
-     Self_link *string
+type Google_billing_account_iam_policy struct {
+
+    Google_billing_account_iam_policy_id *string `lyra:"ignore"`
+
+    Billing_account_id string
+
+    Etag *string
+
+    Policy_data string
+
 }
 
+// Google_billing_account_iam_policyHandler ...
+type Google_billing_account_iam_policyHandler struct {
+	provider *schema.Provider
+}
 
-func Google_compute_target_http_proxyMapper(r *Google_compute_target_http_proxy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	if r.Project != nil {
-    config["project"] = *r.Project
-}
-if r.Self_link != nil {
-    config["self_link"] = *r.Self_link
-}
-    config["name"] = r.Name
-    config["url_map"] = r.Url_map
-if r.Description != nil {
-    config["description"] = *r.Description
-}
-if r.Creation_timestamp != nil {
-    config["creation_timestamp"] = *r.Creation_timestamp
-}
-return &terraform.ResourceConfig{
-		Config: config,
+// Create ...
+func (h *Google_billing_account_iam_policyHandler) Create(desired *Google_billing_account_iam_policy) (*Google_billing_account_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
 	}
+	id, err := bridge.Create(h.provider, "google_billing_account_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
-func Google_compute_target_http_proxyUnmapper(state map[string]interface{}) *Google_compute_target_http_proxy {
-	r := &Google_compute_target_http_proxy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_compute_target_http_proxy_id = &x
+// Read ...
+func (h *Google_billing_account_iam_policyHandler) Read(externalID string) (*Google_billing_account_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_billing_account_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_billing_account_iam_policy{ Google_billing_account_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
-if x, ok := state["project"]; ok {
-	x := x.(string)
-	r.Project = &x
+// Delete ...
+func (h *Google_billing_account_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_billing_account_iam_policy", externalID)
 }
 
-if x, ok := state["self_link"]; ok {
-	x := x.(string)
-	r.Self_link = &x
+type Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540 struct {
+
+    Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540_id *string `lyra:"ignore"`
+
+    Ascii_armored_pgp_public_key string
+
+    Comment *string
+
+    Id *string
+
 }
 
-if x, ok := state["name"]; ok {
-	r.Name = x.(string)
+type Google_binary_authorization_attestor_attestation_authority_note_1539 struct {
+
+    Google_binary_authorization_attestor_attestation_authority_note_1539_id *string `lyra:"ignore"`
+
+    Delegation_service_account_email *string
+
+    Note_reference string
+
+    Public_keys *Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540
+
 }
 
-if x, ok := state["url_map"]; ok {
-	r.Url_map = x.(string)
+type Google_binary_authorization_attestor struct {
+
+    Google_binary_authorization_attestor_id *string `lyra:"ignore"`
+
+    Attestation_authority_note Google_binary_authorization_attestor_attestation_authority_note_1539
+
+    Description *string
+
+    Name string
+
+    Project *string
+
 }
 
-if x, ok := state["description"]; ok {
-	x := x.(string)
-	r.Description = &x
+// Google_binary_authorization_attestorHandler ...
+type Google_binary_authorization_attestorHandler struct {
+	provider *schema.Provider
 }
 
-if x, ok := state["creation_timestamp"]; ok {
-	x := x.(string)
-	r.Creation_timestamp = &x
-}
-	return r
+// Create ...
+func (h *Google_binary_authorization_attestorHandler) Create(desired *Google_binary_authorization_attestor) (*Google_binary_authorization_attestor, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_binary_authorization_attestor", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
+// Read ...
+func (h *Google_binary_authorization_attestorHandler) Read(externalID string) (*Google_binary_authorization_attestor, error) {
+	id, actual, err := bridge.Read(h.provider, "google_binary_authorization_attestor", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_binary_authorization_attestor{ Google_binary_authorization_attestor_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_binary_authorization_attestorHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_binary_authorization_attestor", externalID)
+}
+
+type Google_binary_authorization_policy_admission_whitelist_patterns_1541 struct {
+
+    Google_binary_authorization_policy_admission_whitelist_patterns_1541_id *string `lyra:"ignore"`
+
+    Name_pattern *string
+
+}
+
+type Google_binary_authorization_policy_cluster_admission_rules_1542 struct {
+
+    Google_binary_authorization_policy_cluster_admission_rules_1542_id *string `lyra:"ignore"`
+
+    Cluster string
+
+    Enforcement_mode *string
+
+    Evaluation_mode *string
+
+    Require_attestations_by *[]string
+
+}
+
+type Google_binary_authorization_policy_default_admission_rule_1543 struct {
+
+    Google_binary_authorization_policy_default_admission_rule_1543_id *string `lyra:"ignore"`
+
+    Enforcement_mode string
+
+    Evaluation_mode string
+
+    Require_attestations_by *[]string
+
+}
+
+type Google_binary_authorization_policy struct {
+
+    Google_binary_authorization_policy_id *string `lyra:"ignore"`
+
+    Admission_whitelist_patterns *Google_binary_authorization_policy_admission_whitelist_patterns_1541
+
+    Cluster_admission_rules *Google_binary_authorization_policy_cluster_admission_rules_1542
+
+    Default_admission_rule Google_binary_authorization_policy_default_admission_rule_1543
+
+    Description *string
+
+    Project *string
+
+}
+
+// Google_binary_authorization_policyHandler ...
+type Google_binary_authorization_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_binary_authorization_policyHandler) Create(desired *Google_binary_authorization_policy) (*Google_binary_authorization_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_binary_authorization_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_binary_authorization_policyHandler) Read(externalID string) (*Google_binary_authorization_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_binary_authorization_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_binary_authorization_policy{ Google_binary_authorization_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_binary_authorization_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_binary_authorization_policy", externalID)
+}
+
+type Google_cloudbuild_trigger_build_1544_step_1545 struct {
+
+    Google_cloudbuild_trigger_build_1544_step_1545_id *string `lyra:"ignore"`
+
+    Args *string
+
+    Name *string
+
+}
+
+type Google_cloudbuild_trigger_build_1544 struct {
+
+    Google_cloudbuild_trigger_build_1544_id *string `lyra:"ignore"`
+
+    Images *[]string
+
+    Step *Google_cloudbuild_trigger_build_1544_step_1545
+
+    Tags *[]string
+
+}
+
+type Google_cloudbuild_trigger_trigger_template_1546 struct {
+
+    Google_cloudbuild_trigger_trigger_template_1546_id *string `lyra:"ignore"`
+
+    Branch_name *string
+
+    Commit_sha *string
+
+    Dir *string
+
+    Project *string
+
+    Repo_name *string
+
+    Tag_name *string
+
+}
+
+type Google_cloudbuild_trigger struct {
+
+    Google_cloudbuild_trigger_id *string `lyra:"ignore"`
+
+    Build *Google_cloudbuild_trigger_build_1544
+
+    Description *string
+
+    Filename *string
+
+    Project *string
+
+    Substitutions *map[string]string
+
+    Trigger_template *Google_cloudbuild_trigger_trigger_template_1546
+
+}
+
+// Google_cloudbuild_triggerHandler ...
+type Google_cloudbuild_triggerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_cloudbuild_triggerHandler) Create(desired *Google_cloudbuild_trigger) (*Google_cloudbuild_trigger, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_cloudbuild_trigger", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_cloudbuild_triggerHandler) Read(externalID string) (*Google_cloudbuild_trigger, error) {
+	id, actual, err := bridge.Read(h.provider, "google_cloudbuild_trigger", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_cloudbuild_trigger{ Google_cloudbuild_trigger_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_cloudbuild_triggerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_cloudbuild_trigger", externalID)
+}
+
+type Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548 struct {
+
+    Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548_id *string `lyra:"ignore"`
+
+    Retry bool
+
+}
+
+type Google_cloudfunctions_function_event_trigger_1547 struct {
+
+    Google_cloudfunctions_function_event_trigger_1547_id *string `lyra:"ignore"`
+
+    Event_type string
+
+    Failure_policy *Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548
+
+    Resource string
+
+}
+
+type Google_cloudfunctions_function struct {
+
+    Google_cloudfunctions_function_id *string `lyra:"ignore"`
+
+    Available_memory_mb *int
+
+    Description *string
+
+    Entry_point *string
+
+    Environment_variables *map[string]string
+
+    Event_trigger *Google_cloudfunctions_function_event_trigger_1547
+
+    Https_trigger_url *string
+
+    Labels *map[string]string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+    Retry_on_failure *bool
+
+    Runtime *string
+
+    Source_archive_bucket string
+
+    Source_archive_object string
+
+    Timeout *int
+
+    Trigger_bucket *string
+
+    Trigger_http *bool
+
+    Trigger_topic *string
+
+}
+
+// Google_cloudfunctions_functionHandler ...
+type Google_cloudfunctions_functionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_cloudfunctions_functionHandler) Create(desired *Google_cloudfunctions_function) (*Google_cloudfunctions_function, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_cloudfunctions_function", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_cloudfunctions_functionHandler) Read(externalID string) (*Google_cloudfunctions_function, error) {
+	id, actual, err := bridge.Read(h.provider, "google_cloudfunctions_function", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_cloudfunctions_function{ Google_cloudfunctions_function_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_cloudfunctions_functionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_cloudfunctions_function", externalID)
+}
+
+type Google_cloudiot_registry_credentials_1549 struct {
+
+    Google_cloudiot_registry_credentials_1549_id *string `lyra:"ignore"`
+
+    Public_key_certificate *map[string]string
+
+}
+
+type Google_cloudiot_registry struct {
+
+    Google_cloudiot_registry_id *string `lyra:"ignore"`
+
+    Credentials *Google_cloudiot_registry_credentials_1549
+
+    Event_notification_config *map[string]string
+
+    Http_config *map[string]string
+
+    Mqtt_config *map[string]string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+    State_notification_config *map[string]string
+
+}
+
+// Google_cloudiot_registryHandler ...
+type Google_cloudiot_registryHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_cloudiot_registryHandler) Create(desired *Google_cloudiot_registry) (*Google_cloudiot_registry, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_cloudiot_registry", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_cloudiot_registryHandler) Read(externalID string) (*Google_cloudiot_registry, error) {
+	id, actual, err := bridge.Read(h.provider, "google_cloudiot_registry", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_cloudiot_registry{ Google_cloudiot_registry_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_cloudiot_registryHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_cloudiot_registry", externalID)
+}
+
+type Google_composer_environment_config_1550_node_config_1551 struct {
+
+    Google_composer_environment_config_1550_node_config_1551_id *string `lyra:"ignore"`
+
+    Disk_size_gb *int
+
+    Machine_type *string
+
+    Network *string
+
+    Oauth_scopes *[]string
+
+    Service_account *string
+
+    Subnetwork *string
+
+    Tags *[]string
+
+    Zone *string
+
+}
+
+type Google_composer_environment_config_1550_software_config_1552 struct {
+
+    Google_composer_environment_config_1550_software_config_1552_id *string `lyra:"ignore"`
+
+    Airflow_config_overrides *map[string]string
+
+    Env_variables *map[string]string
+
+    Image_version *string
+
+    Pypi_packages *map[string]string
+
+}
+
+type Google_composer_environment_config_1550 struct {
+
+    Google_composer_environment_config_1550_id *string `lyra:"ignore"`
+
+    Airflow_uri *string
+
+    Dag_gcs_prefix *string
+
+    Gke_cluster *string
+
+    Node_config *Google_composer_environment_config_1550_node_config_1551
+
+    Node_count *int
+
+    Software_config *Google_composer_environment_config_1550_software_config_1552
+
+}
+
+type Google_composer_environment struct {
+
+    Google_composer_environment_id *string `lyra:"ignore"`
+
+    Config *Google_composer_environment_config_1550
+
+    Labels *map[string]string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+}
+
+// Google_composer_environmentHandler ...
+type Google_composer_environmentHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_composer_environmentHandler) Create(desired *Google_composer_environment) (*Google_composer_environment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_composer_environment", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_composer_environmentHandler) Read(externalID string) (*Google_composer_environment, error) {
+	id, actual, err := bridge.Read(h.provider, "google_composer_environment", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_composer_environment{ Google_composer_environment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_composer_environmentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_composer_environment", externalID)
+}
+
+type Google_compute_address struct {
+
+    Google_compute_address_id *string `lyra:"ignore"`
+
+    Address *string
+
+    Address_type *string
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Name string
+
+    Network_tier *string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+    Subnetwork *string
+
+    Users *[]string
+
+}
+
+// Google_compute_addressHandler ...
+type Google_compute_addressHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_addressHandler) Create(desired *Google_compute_address) (*Google_compute_address, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_address", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_addressHandler) Read(externalID string) (*Google_compute_address, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_address", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_address{ Google_compute_address_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_addressHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_address", externalID)
+}
+
+type Google_compute_attached_disk struct {
+
+    Google_compute_attached_disk_id *string `lyra:"ignore"`
+
+    Device_name *string
+
+    Disk string
+
+    Instance string
+
+    Mode *string
+
+    Project *string
+
+    Zone *string
+
+}
+
+// Google_compute_attached_diskHandler ...
+type Google_compute_attached_diskHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_attached_diskHandler) Create(desired *Google_compute_attached_disk) (*Google_compute_attached_disk, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_attached_disk", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_attached_diskHandler) Read(externalID string) (*Google_compute_attached_disk, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_attached_disk", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_attached_disk{ Google_compute_attached_disk_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_attached_diskHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_attached_disk", externalID)
+}
+
+type Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554 struct {
+
+    Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554_id *string `lyra:"ignore"`
+
+    Target float64
+
+}
+
+type Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555 struct {
+
+    Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555_id *string `lyra:"ignore"`
+
+    Target float64
+
+}
+
+type Google_compute_autoscaler_autoscaling_policy_1553_metric_1556 struct {
+
+    Google_compute_autoscaler_autoscaling_policy_1553_metric_1556_id *string `lyra:"ignore"`
+
+    Name string
+
+    Target float64
+
+    Type string
+
+}
+
+type Google_compute_autoscaler_autoscaling_policy_1553 struct {
+
+    Google_compute_autoscaler_autoscaling_policy_1553_id *string `lyra:"ignore"`
+
+    Cooldown_period *int
+
+    Cpu_utilization *Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554
+
+    Load_balancing_utilization *Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555
+
+    Max_replicas int
+
+    Metric *Google_compute_autoscaler_autoscaling_policy_1553_metric_1556
+
+    Min_replicas int
+
+}
+
+type Google_compute_autoscaler struct {
+
+    Google_compute_autoscaler_id *string `lyra:"ignore"`
+
+    Autoscaling_policy Google_compute_autoscaler_autoscaling_policy_1553
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+    Target string
+
+    Zone *string
+
+}
+
+// Google_compute_autoscalerHandler ...
+type Google_compute_autoscalerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_autoscalerHandler) Create(desired *Google_compute_autoscaler) (*Google_compute_autoscaler, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_autoscaler", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_autoscalerHandler) Read(externalID string) (*Google_compute_autoscaler, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_autoscaler", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_autoscaler{ Google_compute_autoscaler_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_autoscalerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_autoscaler", externalID)
+}
+
+type Google_compute_backend_bucket struct {
+
+    Google_compute_backend_bucket_id *string `lyra:"ignore"`
+
+    Bucket_name string
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Enable_cdn *bool
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+}
+
+// Google_compute_backend_bucketHandler ...
+type Google_compute_backend_bucketHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_backend_bucketHandler) Create(desired *Google_compute_backend_bucket) (*Google_compute_backend_bucket, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_backend_bucket", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_backend_bucketHandler) Read(externalID string) (*Google_compute_backend_bucket, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_backend_bucket", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_backend_bucket{ Google_compute_backend_bucket_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_backend_bucketHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_backend_bucket", externalID)
+}
+
+type Google_compute_backend_service_backend_1557 struct {
+
+    Google_compute_backend_service_backend_1557_id *string `lyra:"ignore"`
+
+    Balancing_mode *string
+
+    Capacity_scaler *float64
+
+    Description *string
+
+    Group *string
+
+    Max_connections *int
+
+    Max_connections_per_instance *int
+
+    Max_rate *int
+
+    Max_rate_per_instance *float64
+
+    Max_utilization *float64
+
+}
+
+type Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559 struct {
+
+    Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559_id *string `lyra:"ignore"`
+
+    Include_host *bool
+
+    Include_protocol *bool
+
+    Include_query_string *bool
+
+    Query_string_blacklist *[]string
+
+    Query_string_whitelist *[]string
+
+}
+
+type Google_compute_backend_service_cdn_policy_1558 struct {
+
+    Google_compute_backend_service_cdn_policy_1558_id *string `lyra:"ignore"`
+
+    Cache_key_policy *Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559
+
+}
+
+type Google_compute_backend_service_iap_1560 struct {
+
+    Google_compute_backend_service_iap_1560_id *string `lyra:"ignore"`
+
+    Oauth2_client_id string
+
+    Oauth2_client_secret string
+
+}
+
+type Google_compute_backend_service struct {
+
+    Google_compute_backend_service_id *string `lyra:"ignore"`
+
+    Backend *Google_compute_backend_service_backend_1557
+
+    Cdn_policy *Google_compute_backend_service_cdn_policy_1558
+
+    Connection_draining_timeout_sec *int
+
+    Custom_request_headers *[]string
+
+    Description *string
+
+    Enable_cdn *bool
+
+    Fingerprint *string
+
+    Health_checks []string
+
+    Iap *Google_compute_backend_service_iap_1560
+
+    Name string
+
+    Port_name *string
+
+    Project *string
+
+    Protocol *string
+
+    Region *string
+
+    Security_policy *string
+
+    Self_link *string
+
+    Session_affinity *string
+
+    Timeout_sec *int
+
+}
+
+// Google_compute_backend_serviceHandler ...
+type Google_compute_backend_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_backend_serviceHandler) Create(desired *Google_compute_backend_service) (*Google_compute_backend_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_backend_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_backend_serviceHandler) Read(externalID string) (*Google_compute_backend_service, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_backend_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_backend_service{ Google_compute_backend_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_backend_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_backend_service", externalID)
+}
+
+type Google_compute_disk_disk_encryption_key_1561 struct {
+
+    Google_compute_disk_disk_encryption_key_1561_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+    Sha256 *string
+
+}
+
+type Google_compute_disk_source_image_encryption_key_1562 struct {
+
+    Google_compute_disk_source_image_encryption_key_1562_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+    Sha256 *string
+
+}
+
+type Google_compute_disk_source_snapshot_encryption_key_1563 struct {
+
+    Google_compute_disk_source_snapshot_encryption_key_1563_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+    Sha256 *string
+
+}
+
+type Google_compute_disk struct {
+
+    Google_compute_disk_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Disk_encryption_key *Google_compute_disk_disk_encryption_key_1561
+
+    Disk_encryption_key_raw *string
+
+    Disk_encryption_key_sha256 *string
+
+    Image *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Last_attach_timestamp *string
+
+    Last_detach_timestamp *string
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+    Size *int
+
+    Snapshot *string
+
+    Source_image_encryption_key *Google_compute_disk_source_image_encryption_key_1562
+
+    Source_image_id *string
+
+    Source_snapshot_encryption_key *Google_compute_disk_source_snapshot_encryption_key_1563
+
+    Source_snapshot_id *string
+
+    Type *string
+
+    Users *[]string
+
+    Zone *string
+
+}
+
+// Google_compute_diskHandler ...
+type Google_compute_diskHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_diskHandler) Create(desired *Google_compute_disk) (*Google_compute_disk, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_disk", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_diskHandler) Read(externalID string) (*Google_compute_disk, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_disk", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_disk{ Google_compute_disk_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_diskHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_disk", externalID)
+}
+
+type Google_compute_firewall_allow_1564 struct {
+
+    Google_compute_firewall_allow_1564_id *string `lyra:"ignore"`
+
+    Ports *[]string
+
+    Protocol string
+
+}
+
+type Google_compute_firewall_deny_1565 struct {
+
+    Google_compute_firewall_deny_1565_id *string `lyra:"ignore"`
+
+    Ports *[]string
+
+    Protocol string
+
+}
+
+type Google_compute_firewall struct {
+
+    Google_compute_firewall_id *string `lyra:"ignore"`
+
+    Allow *Google_compute_firewall_allow_1564
+
+    Creation_timestamp *string
+
+    Deny *Google_compute_firewall_deny_1565
+
+    Description *string
+
+    Destination_ranges *[]string
+
+    Direction *string
+
+    Disabled *bool
+
+    Enable_logging *bool
+
+    Name string
+
+    Network string
+
+    Priority *int
+
+    Project *string
+
+    Self_link *string
+
+    Source_ranges *[]string
+
+    Source_service_accounts *[]string
+
+    Source_tags *[]string
+
+    Target_service_accounts *[]string
+
+    Target_tags *[]string
+
+}
+
+// Google_compute_firewallHandler ...
+type Google_compute_firewallHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_firewallHandler) Create(desired *Google_compute_firewall) (*Google_compute_firewall, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_firewall", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_firewallHandler) Read(externalID string) (*Google_compute_firewall, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_firewall", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_firewall{ Google_compute_firewall_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_firewallHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_firewall", externalID)
+}
+
+type Google_compute_forwarding_rule struct {
+
+    Google_compute_forwarding_rule_id *string `lyra:"ignore"`
+
+    Backend_service *string
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Ip_address *string
+
+    Ip_protocol *string
+
+    Ip_version *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Load_balancing_scheme *string
+
+    Name string
+
+    Network *string
+
+    Network_tier *string
+
+    Port_range *string
+
+    Ports *[]string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+    Service_label *string
+
+    Service_name *string
+
+    Subnetwork *string
+
+    Target *string
+
+}
+
+// Google_compute_forwarding_ruleHandler ...
+type Google_compute_forwarding_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_forwarding_ruleHandler) Create(desired *Google_compute_forwarding_rule) (*Google_compute_forwarding_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_forwarding_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_forwarding_ruleHandler) Read(externalID string) (*Google_compute_forwarding_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_forwarding_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_forwarding_rule{ Google_compute_forwarding_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_forwarding_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_forwarding_rule", externalID)
+}
+
+type Google_compute_global_address struct {
+
+    Google_compute_global_address_id *string `lyra:"ignore"`
+
+    Address *string
+
+    Address_type *string
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Ip_version *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Name string
+
+    Network *string
+
+    Prefix_length *int
+
+    Project *string
+
+    Purpose *string
+
+    Self_link *string
+
+}
+
+// Google_compute_global_addressHandler ...
+type Google_compute_global_addressHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_global_addressHandler) Create(desired *Google_compute_global_address) (*Google_compute_global_address, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_global_address", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_global_addressHandler) Read(externalID string) (*Google_compute_global_address, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_global_address", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_global_address{ Google_compute_global_address_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_global_addressHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_global_address", externalID)
+}
+
+type Google_compute_global_forwarding_rule struct {
+
+    Google_compute_global_forwarding_rule_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Ip_address *string
+
+    Ip_protocol *string
+
+    Ip_version *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Name string
+
+    Port_range *string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+    Target string
+
+}
+
+// Google_compute_global_forwarding_ruleHandler ...
+type Google_compute_global_forwarding_ruleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_global_forwarding_ruleHandler) Create(desired *Google_compute_global_forwarding_rule) (*Google_compute_global_forwarding_rule, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_global_forwarding_rule", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_global_forwarding_ruleHandler) Read(externalID string) (*Google_compute_global_forwarding_rule, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_global_forwarding_rule", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_global_forwarding_rule{ Google_compute_global_forwarding_rule_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_global_forwarding_ruleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_global_forwarding_rule", externalID)
+}
+
+type Google_compute_health_check_http_health_check_1566 struct {
+
+    Google_compute_health_check_http_health_check_1566_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Port *int
+
+    Proxy_header *string
+
+    Request_path *string
+
+    Response *string
+
+}
+
+type Google_compute_health_check_https_health_check_1567 struct {
+
+    Google_compute_health_check_https_health_check_1567_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Port *int
+
+    Proxy_header *string
+
+    Request_path *string
+
+    Response *string
+
+}
+
+type Google_compute_health_check_ssl_health_check_1568 struct {
+
+    Google_compute_health_check_ssl_health_check_1568_id *string `lyra:"ignore"`
+
+    Port *int
+
+    Proxy_header *string
+
+    Request *string
+
+    Response *string
+
+}
+
+type Google_compute_health_check_tcp_health_check_1569 struct {
+
+    Google_compute_health_check_tcp_health_check_1569_id *string `lyra:"ignore"`
+
+    Port *int
+
+    Proxy_header *string
+
+    Request *string
+
+    Response *string
+
+}
+
+type Google_compute_health_check struct {
+
+    Google_compute_health_check_id *string `lyra:"ignore"`
+
+    Check_interval_sec *int
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Healthy_threshold *int
+
+    Http_health_check *Google_compute_health_check_http_health_check_1566
+
+    Https_health_check *Google_compute_health_check_https_health_check_1567
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+    Ssl_health_check *Google_compute_health_check_ssl_health_check_1568
+
+    Tcp_health_check *Google_compute_health_check_tcp_health_check_1569
+
+    Timeout_sec *int
+
+    Type *string
+
+    Unhealthy_threshold *int
+
+}
+
+// Google_compute_health_checkHandler ...
+type Google_compute_health_checkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_health_checkHandler) Create(desired *Google_compute_health_check) (*Google_compute_health_check, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_health_check", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_health_checkHandler) Read(externalID string) (*Google_compute_health_check, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_health_check", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_health_check{ Google_compute_health_check_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_health_checkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_health_check", externalID)
+}
+
+type Google_compute_http_health_check struct {
+
+    Google_compute_http_health_check_id *string `lyra:"ignore"`
+
+    Check_interval_sec *int
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Healthy_threshold *int
+
+    Host *string
+
+    Name string
+
+    Port *int
+
+    Project *string
+
+    Request_path *string
+
+    Self_link *string
+
+    Timeout_sec *int
+
+    Unhealthy_threshold *int
+
+}
+
+// Google_compute_http_health_checkHandler ...
+type Google_compute_http_health_checkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_http_health_checkHandler) Create(desired *Google_compute_http_health_check) (*Google_compute_http_health_check, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_http_health_check", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_http_health_checkHandler) Read(externalID string) (*Google_compute_http_health_check, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_http_health_check", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_http_health_check{ Google_compute_http_health_check_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_http_health_checkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_http_health_check", externalID)
+}
+
+type Google_compute_https_health_check struct {
+
+    Google_compute_https_health_check_id *string `lyra:"ignore"`
+
+    Check_interval_sec *int
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Healthy_threshold *int
+
+    Host *string
+
+    Name string
+
+    Port *int
+
+    Project *string
+
+    Request_path *string
+
+    Self_link *string
+
+    Timeout_sec *int
+
+    Unhealthy_threshold *int
+
+}
+
+// Google_compute_https_health_checkHandler ...
+type Google_compute_https_health_checkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_https_health_checkHandler) Create(desired *Google_compute_https_health_check) (*Google_compute_https_health_check, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_https_health_check", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_https_health_checkHandler) Read(externalID string) (*Google_compute_https_health_check, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_https_health_check", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_https_health_check{ Google_compute_https_health_check_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_https_health_checkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_https_health_check", externalID)
+}
+
+type Google_compute_image_raw_disk_1570 struct {
+
+    Google_compute_image_raw_disk_1570_id *string `lyra:"ignore"`
+
+    Container_type *string
+
+    Sha1 *string
+
+    Source string
+
+}
+
+type Google_compute_image struct {
+
+    Google_compute_image_id *string `lyra:"ignore"`
+
+    Create_timeout *int
+
+    Description *string
+
+    Family *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Licenses *[]string
+
+    Name string
+
+    Project *string
+
+    Raw_disk *Google_compute_image_raw_disk_1570
+
+    Self_link *string
+
+    Source_disk *string
+
+}
+
+// Google_compute_imageHandler ...
+type Google_compute_imageHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_imageHandler) Create(desired *Google_compute_image) (*Google_compute_image, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_image", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_imageHandler) Read(externalID string) (*Google_compute_image, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_image", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_image{ Google_compute_image_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_imageHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_image", externalID)
+}
+
+type Google_compute_instance_attached_disk_1571 struct {
+
+    Google_compute_instance_attached_disk_1571_id *string `lyra:"ignore"`
+
+    Device_name *string
+
+    Disk_encryption_key_raw *string
+
+    Disk_encryption_key_sha256 *string
+
+    Mode *string
+
+    Source string
+
+}
+
+type Google_compute_instance_boot_disk_1572_initialize_params_1573 struct {
+
+    Google_compute_instance_boot_disk_1572_initialize_params_1573_id *string `lyra:"ignore"`
+
+    Image *string
+
+    Size *int
+
+    Type *string
+
+}
+
+type Google_compute_instance_boot_disk_1572 struct {
+
+    Google_compute_instance_boot_disk_1572_id *string `lyra:"ignore"`
+
+    Auto_delete *bool
+
+    Device_name *string
+
+    Disk_encryption_key_raw *string
+
+    Disk_encryption_key_sha256 *string
+
+    Initialize_params *Google_compute_instance_boot_disk_1572_initialize_params_1573
+
+    Source *string
+
+}
+
+type Google_compute_instance_disk_1574 struct {
+
+    Google_compute_instance_disk_1574_id *string `lyra:"ignore"`
+
+    Auto_delete *bool
+
+    Device_name *string
+
+    Disk *string
+
+    Disk_encryption_key_raw *string
+
+    Disk_encryption_key_sha256 *string
+
+    Image *string
+
+    Scratch *bool
+
+    Size *int
+
+    Type *string
+
+}
+
+type Google_compute_instance_guest_accelerator_1575 struct {
+
+    Google_compute_instance_guest_accelerator_1575_id *string `lyra:"ignore"`
+
+    Count int
+
+    Type string
+
+}
+
+type Google_compute_instance_network_1576 struct {
+
+    Google_compute_instance_network_1576_id *string `lyra:"ignore"`
+
+    Address *string
+
+    External_address *string
+
+    Internal_address *string
+
+    Name *string
+
+    Source string
+
+}
+
+type Google_compute_instance_network_interface_1577_access_config_1578 struct {
+
+    Google_compute_instance_network_interface_1577_access_config_1578_id *string `lyra:"ignore"`
+
+    Assigned_nat_ip *string
+
+    Nat_ip *string
+
+    Network_tier *string
+
+    Public_ptr_domain_name *string
+
+}
+
+type Google_compute_instance_network_interface_1577_alias_ip_range_1579 struct {
+
+    Google_compute_instance_network_interface_1577_alias_ip_range_1579_id *string `lyra:"ignore"`
+
+    Ip_cidr_range string
+
+    Subnetwork_range_name *string
+
+}
+
+type Google_compute_instance_network_interface_1577 struct {
+
+    Google_compute_instance_network_interface_1577_id *string `lyra:"ignore"`
+
+    Access_config *Google_compute_instance_network_interface_1577_access_config_1578
+
+    Address *string
+
+    Alias_ip_range *Google_compute_instance_network_interface_1577_alias_ip_range_1579
+
+    Name *string
+
+    Network *string
+
+    Network_ip *string
+
+    Subnetwork *string
+
+    Subnetwork_project *string
+
+}
+
+type Google_compute_instance_scheduling_1580 struct {
+
+    Google_compute_instance_scheduling_1580_id *string `lyra:"ignore"`
+
+    Automatic_restart *bool
+
+    On_host_maintenance *string
+
+    Preemptible *bool
+
+}
+
+type Google_compute_instance_scratch_disk_1581 struct {
+
+    Google_compute_instance_scratch_disk_1581_id *string `lyra:"ignore"`
+
+    Interface *string
+
+}
+
+type Google_compute_instance_service_account_1582 struct {
+
+    Google_compute_instance_service_account_1582_id *string `lyra:"ignore"`
+
+    Email *string
+
+    Scopes []string
+
+}
+
+type Google_compute_instance struct {
+
+    Google_compute_instance_id *string `lyra:"ignore"`
+
+    Allow_stopping_for_update *bool
+
+    Attached_disk *Google_compute_instance_attached_disk_1571
+
+    Boot_disk Google_compute_instance_boot_disk_1572
+
+    Can_ip_forward *bool
+
+    Cpu_platform *string
+
+    Create_timeout *int
+
+    Deletion_protection *bool
+
+    Description *string
+
+    Disk *Google_compute_instance_disk_1574
+
+    Guest_accelerator *Google_compute_instance_guest_accelerator_1575
+
+    Instance_id *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Machine_type string
+
+    Metadata *map[string]string
+
+    Metadata_fingerprint *string
+
+    Metadata_startup_script *string
+
+    Min_cpu_platform *string
+
+    Name string
+
+    Network *Google_compute_instance_network_1576
+
+    Network_interface Google_compute_instance_network_interface_1577
+
+    Project *string
+
+    Scheduling *Google_compute_instance_scheduling_1580
+
+    Scratch_disk *Google_compute_instance_scratch_disk_1581
+
+    Self_link *string
+
+    Service_account *Google_compute_instance_service_account_1582
+
+    Tags *[]string
+
+    Tags_fingerprint *string
+
+    Zone *string
+
+}
+
+// Google_compute_instanceHandler ...
+type Google_compute_instanceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_instanceHandler) Create(desired *Google_compute_instance) (*Google_compute_instance, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_instance", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_instanceHandler) Read(externalID string) (*Google_compute_instance, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_instance", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_instance{ Google_compute_instance_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_instanceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_instance", externalID)
+}
+
+type Google_compute_instance_from_template_attached_disk_1583 struct {
+
+    Google_compute_instance_from_template_attached_disk_1583_id *string `lyra:"ignore"`
+
+    Device_name *string
+
+    Disk_encryption_key_raw *string
+
+    Disk_encryption_key_sha256 *string
+
+    Mode *string
+
+    Source string
+
+}
+
+type Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585 struct {
+
+    Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585_id *string `lyra:"ignore"`
+
+    Image *string
+
+    Size *int
+
+    Type *string
+
+}
+
+type Google_compute_instance_from_template_boot_disk_1584 struct {
+
+    Google_compute_instance_from_template_boot_disk_1584_id *string `lyra:"ignore"`
+
+    Auto_delete *bool
+
+    Device_name *string
+
+    Disk_encryption_key_raw *string
+
+    Disk_encryption_key_sha256 *string
+
+    Initialize_params *Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585
+
+    Source *string
+
+}
+
+type Google_compute_instance_from_template_guest_accelerator_1586 struct {
+
+    Google_compute_instance_from_template_guest_accelerator_1586_id *string `lyra:"ignore"`
+
+    Count int
+
+    Type string
+
+}
+
+type Google_compute_instance_from_template_network_interface_1587_access_config_1588 struct {
+
+    Google_compute_instance_from_template_network_interface_1587_access_config_1588_id *string `lyra:"ignore"`
+
+    Assigned_nat_ip *string
+
+    Nat_ip *string
+
+    Network_tier *string
+
+    Public_ptr_domain_name *string
+
+}
+
+type Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589 struct {
+
+    Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589_id *string `lyra:"ignore"`
+
+    Ip_cidr_range string
+
+    Subnetwork_range_name *string
+
+}
+
+type Google_compute_instance_from_template_network_interface_1587 struct {
+
+    Google_compute_instance_from_template_network_interface_1587_id *string `lyra:"ignore"`
+
+    Access_config *Google_compute_instance_from_template_network_interface_1587_access_config_1588
+
+    Address *string
+
+    Alias_ip_range *Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589
+
+    Name *string
+
+    Network *string
+
+    Network_ip *string
+
+    Subnetwork *string
+
+    Subnetwork_project *string
+
+}
+
+type Google_compute_instance_from_template_scheduling_1590 struct {
+
+    Google_compute_instance_from_template_scheduling_1590_id *string `lyra:"ignore"`
+
+    Automatic_restart *bool
+
+    On_host_maintenance *string
+
+    Preemptible *bool
+
+}
+
+type Google_compute_instance_from_template_scratch_disk_1591 struct {
+
+    Google_compute_instance_from_template_scratch_disk_1591_id *string `lyra:"ignore"`
+
+    Interface *string
+
+}
+
+type Google_compute_instance_from_template_service_account_1592 struct {
+
+    Google_compute_instance_from_template_service_account_1592_id *string `lyra:"ignore"`
+
+    Email *string
+
+    Scopes []string
+
+}
+
+type Google_compute_instance_from_template struct {
+
+    Google_compute_instance_from_template_id *string `lyra:"ignore"`
+
+    Allow_stopping_for_update *bool
+
+    Attached_disk *Google_compute_instance_from_template_attached_disk_1583
+
+    Boot_disk *Google_compute_instance_from_template_boot_disk_1584
+
+    Can_ip_forward *bool
+
+    Cpu_platform *string
+
+    Deletion_protection *bool
+
+    Description *string
+
+    Guest_accelerator *Google_compute_instance_from_template_guest_accelerator_1586
+
+    Instance_id *string
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Machine_type *string
+
+    Metadata *map[string]string
+
+    Metadata_fingerprint *string
+
+    Metadata_startup_script *string
+
+    Min_cpu_platform *string
+
+    Name string
+
+    Network_interface *Google_compute_instance_from_template_network_interface_1587
+
+    Project *string
+
+    Scheduling *Google_compute_instance_from_template_scheduling_1590
+
+    Scratch_disk *Google_compute_instance_from_template_scratch_disk_1591
+
+    Self_link *string
+
+    Service_account *Google_compute_instance_from_template_service_account_1592
+
+    Source_instance_template string
+
+    Tags *[]string
+
+    Tags_fingerprint *string
+
+    Zone *string
+
+}
+
+// Google_compute_instance_from_templateHandler ...
+type Google_compute_instance_from_templateHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_instance_from_templateHandler) Create(desired *Google_compute_instance_from_template) (*Google_compute_instance_from_template, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_instance_from_template", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_instance_from_templateHandler) Read(externalID string) (*Google_compute_instance_from_template, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_instance_from_template", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_instance_from_template{ Google_compute_instance_from_template_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_instance_from_templateHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_instance_from_template", externalID)
+}
+
+type Google_compute_instance_group_named_port_1593 struct {
+
+    Google_compute_instance_group_named_port_1593_id *string `lyra:"ignore"`
+
+    Name string
+
+    Port int
+
+}
+
+type Google_compute_instance_group struct {
+
+    Google_compute_instance_group_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Instances *[]string
+
+    Name string
+
+    Named_port *Google_compute_instance_group_named_port_1593
+
+    Network *string
+
+    Project *string
+
+    Self_link *string
+
+    Size *int
+
+    Zone *string
+
+}
+
+// Google_compute_instance_groupHandler ...
+type Google_compute_instance_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_instance_groupHandler) Create(desired *Google_compute_instance_group) (*Google_compute_instance_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_instance_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_instance_groupHandler) Read(externalID string) (*Google_compute_instance_group, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_instance_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_instance_group{ Google_compute_instance_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_instance_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_instance_group", externalID)
+}
+
+type Google_compute_instance_group_manager_auto_healing_policies_1594 struct {
+
+    Google_compute_instance_group_manager_auto_healing_policies_1594_id *string `lyra:"ignore"`
+
+    Health_check string
+
+    Initial_delay_sec int
+
+}
+
+type Google_compute_instance_group_manager_named_port_1595 struct {
+
+    Google_compute_instance_group_manager_named_port_1595_id *string `lyra:"ignore"`
+
+    Name string
+
+    Port int
+
+}
+
+type Google_compute_instance_group_manager_rolling_update_policy_1596 struct {
+
+    Google_compute_instance_group_manager_rolling_update_policy_1596_id *string `lyra:"ignore"`
+
+    Max_surge_fixed *int
+
+    Max_surge_percent *int
+
+    Max_unavailable_fixed *int
+
+    Max_unavailable_percent *int
+
+    Min_ready_sec *int
+
+    Minimal_action string
+
+    Type string
+
+}
+
+type Google_compute_instance_group_manager_version_1597_target_size_1598 struct {
+
+    Google_compute_instance_group_manager_version_1597_target_size_1598_id *string `lyra:"ignore"`
+
+    Fixed *int
+
+    Percent *int
+
+}
+
+type Google_compute_instance_group_manager_version_1597 struct {
+
+    Google_compute_instance_group_manager_version_1597_id *string `lyra:"ignore"`
+
+    Instance_template string
+
+    Name string
+
+    Target_size *Google_compute_instance_group_manager_version_1597_target_size_1598
+
+}
+
+type Google_compute_instance_group_manager struct {
+
+    Google_compute_instance_group_manager_id *string `lyra:"ignore"`
+
+    Auto_healing_policies *Google_compute_instance_group_manager_auto_healing_policies_1594
+
+    Base_instance_name string
+
+    Description *string
+
+    Fingerprint *string
+
+    Instance_group *string
+
+    Instance_template *string
+
+    Name string
+
+    Named_port *Google_compute_instance_group_manager_named_port_1595
+
+    Project *string
+
+    Rolling_update_policy *Google_compute_instance_group_manager_rolling_update_policy_1596
+
+    Self_link *string
+
+    Target_pools *[]string
+
+    Target_size *int
+
+    Update_strategy *string
+
+    Version *Google_compute_instance_group_manager_version_1597
+
+    Wait_for_instances *bool
+
+    Zone *string
+
+}
+
+// Google_compute_instance_group_managerHandler ...
+type Google_compute_instance_group_managerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_instance_group_managerHandler) Create(desired *Google_compute_instance_group_manager) (*Google_compute_instance_group_manager, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_instance_group_manager", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_instance_group_managerHandler) Read(externalID string) (*Google_compute_instance_group_manager, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_instance_group_manager", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_instance_group_manager{ Google_compute_instance_group_manager_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_instance_group_managerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_instance_group_manager", externalID)
+}
+
+type Google_compute_instance_template_disk_1599_disk_encryption_key_1600 struct {
+
+    Google_compute_instance_template_disk_1599_disk_encryption_key_1600_id *string `lyra:"ignore"`
+
+    Kms_key_self_link *string
+
+}
+
+type Google_compute_instance_template_disk_1599 struct {
+
+    Google_compute_instance_template_disk_1599_id *string `lyra:"ignore"`
+
+    Auto_delete *bool
+
+    Boot *bool
+
+    Device_name *string
+
+    Disk_encryption_key *Google_compute_instance_template_disk_1599_disk_encryption_key_1600
+
+    Disk_name *string
+
+    Disk_size_gb *int
+
+    Disk_type *string
+
+    Interface *string
+
+    Mode *string
+
+    Source *string
+
+    Source_image *string
+
+    Type *string
+
+}
+
+type Google_compute_instance_template_guest_accelerator_1601 struct {
+
+    Google_compute_instance_template_guest_accelerator_1601_id *string `lyra:"ignore"`
+
+    Count int
+
+    Type string
+
+}
+
+type Google_compute_instance_template_network_interface_1602_access_config_1603 struct {
+
+    Google_compute_instance_template_network_interface_1602_access_config_1603_id *string `lyra:"ignore"`
+
+    Assigned_nat_ip *string
+
+    Nat_ip *string
+
+    Network_tier *string
+
+}
+
+type Google_compute_instance_template_network_interface_1602_alias_ip_range_1604 struct {
+
+    Google_compute_instance_template_network_interface_1602_alias_ip_range_1604_id *string `lyra:"ignore"`
+
+    Ip_cidr_range string
+
+    Subnetwork_range_name *string
+
+}
+
+type Google_compute_instance_template_network_interface_1602 struct {
+
+    Google_compute_instance_template_network_interface_1602_id *string `lyra:"ignore"`
+
+    Access_config *Google_compute_instance_template_network_interface_1602_access_config_1603
+
+    Address *string
+
+    Alias_ip_range *Google_compute_instance_template_network_interface_1602_alias_ip_range_1604
+
+    Network *string
+
+    Network_ip *string
+
+    Subnetwork *string
+
+    Subnetwork_project *string
+
+}
+
+type Google_compute_instance_template_scheduling_1605 struct {
+
+    Google_compute_instance_template_scheduling_1605_id *string `lyra:"ignore"`
+
+    Automatic_restart *bool
+
+    On_host_maintenance *string
+
+    Preemptible *bool
+
+}
+
+type Google_compute_instance_template_service_account_1606 struct {
+
+    Google_compute_instance_template_service_account_1606_id *string `lyra:"ignore"`
+
+    Email *string
+
+    Scopes []string
+
+}
+
+type Google_compute_instance_template struct {
+
+    Google_compute_instance_template_id *string `lyra:"ignore"`
+
+    Automatic_restart *bool
+
+    Can_ip_forward *bool
+
+    Description *string
+
+    Disk Google_compute_instance_template_disk_1599
+
+    Guest_accelerator *Google_compute_instance_template_guest_accelerator_1601
+
+    Instance_description *string
+
+    Labels *map[string]string
+
+    Machine_type string
+
+    Metadata *map[string]string
+
+    Metadata_fingerprint *string
+
+    Metadata_startup_script *string
+
+    Min_cpu_platform *string
+
+    Name *string
+
+    Name_prefix *string
+
+    Network_interface *Google_compute_instance_template_network_interface_1602
+
+    On_host_maintenance *string
+
+    Project *string
+
+    Region *string
+
+    Scheduling *Google_compute_instance_template_scheduling_1605
+
+    Self_link *string
+
+    Service_account *Google_compute_instance_template_service_account_1606
+
+    Tags *[]string
+
+    Tags_fingerprint *string
+
+}
+
+// Google_compute_instance_templateHandler ...
+type Google_compute_instance_templateHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_instance_templateHandler) Create(desired *Google_compute_instance_template) (*Google_compute_instance_template, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_instance_template", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_instance_templateHandler) Read(externalID string) (*Google_compute_instance_template, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_instance_template", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_instance_template{ Google_compute_instance_template_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_instance_templateHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_instance_template", externalID)
+}
+
+type Google_compute_interconnect_attachment_private_interconnect_info_1607 struct {
+
+    Google_compute_interconnect_attachment_private_interconnect_info_1607_id *string `lyra:"ignore"`
+
+    Tag8021q *int
+
+}
+
+type Google_compute_interconnect_attachment struct {
+
+    Google_compute_interconnect_attachment_id *string `lyra:"ignore"`
+
+    Cloud_router_ip_address *string
+
+    Creation_timestamp *string
+
+    Customer_router_ip_address *string
+
+    Description *string
+
+    Google_reference_id *string
+
+    Interconnect string
+
+    Name string
+
+    Private_interconnect_info *Google_compute_interconnect_attachment_private_interconnect_info_1607
+
+    Project *string
+
+    Region *string
+
+    Router string
+
+    Self_link *string
+
+}
+
+// Google_compute_interconnect_attachmentHandler ...
+type Google_compute_interconnect_attachmentHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_interconnect_attachmentHandler) Create(desired *Google_compute_interconnect_attachment) (*Google_compute_interconnect_attachment, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_interconnect_attachment", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_interconnect_attachmentHandler) Read(externalID string) (*Google_compute_interconnect_attachment, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_interconnect_attachment", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_interconnect_attachment{ Google_compute_interconnect_attachment_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_interconnect_attachmentHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_interconnect_attachment", externalID)
+}
+
+type Google_compute_network struct {
+
+    Google_compute_network_id *string `lyra:"ignore"`
+
+    Auto_create_subnetworks *bool
+
+    Description *string
+
+    Gateway_ipv4 *string
+
+    Ipv4_range *string
+
+    Name string
+
+    Project *string
+
+    Routing_mode *string
+
+    Self_link *string
+
+}
+
+// Google_compute_networkHandler ...
+type Google_compute_networkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_networkHandler) Create(desired *Google_compute_network) (*Google_compute_network, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_network", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_networkHandler) Read(externalID string) (*Google_compute_network, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_network", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_network{ Google_compute_network_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_networkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_network", externalID)
+}
+
+type Google_compute_network_peering struct {
+
+    Google_compute_network_peering_id *string `lyra:"ignore"`
+
+    Auto_create_routes *bool
+
+    Name string
+
+    Network string
+
+    Peer_network string
+
+    State *string
+
+    State_details *string
+
+}
+
+// Google_compute_network_peeringHandler ...
+type Google_compute_network_peeringHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_network_peeringHandler) Create(desired *Google_compute_network_peering) (*Google_compute_network_peering, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_network_peering", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_network_peeringHandler) Read(externalID string) (*Google_compute_network_peering, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_network_peering", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_network_peering{ Google_compute_network_peering_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_network_peeringHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_network_peering", externalID)
+}
+
+type Google_compute_project_metadata struct {
+
+    Google_compute_project_metadata_id *string `lyra:"ignore"`
+
+    Metadata map[string]string
+
+    Project *string
+
+}
+
+// Google_compute_project_metadataHandler ...
+type Google_compute_project_metadataHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_project_metadataHandler) Create(desired *Google_compute_project_metadata) (*Google_compute_project_metadata, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_project_metadata", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_project_metadataHandler) Read(externalID string) (*Google_compute_project_metadata, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_project_metadata", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_project_metadata{ Google_compute_project_metadata_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_project_metadataHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_project_metadata", externalID)
+}
+
+type Google_compute_project_metadata_item struct {
+
+    Google_compute_project_metadata_item_id *string `lyra:"ignore"`
+
+    Key string
+
+    Project *string
+
+    Value string
+
+}
+
+// Google_compute_project_metadata_itemHandler ...
+type Google_compute_project_metadata_itemHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_project_metadata_itemHandler) Create(desired *Google_compute_project_metadata_item) (*Google_compute_project_metadata_item, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_project_metadata_item", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_project_metadata_itemHandler) Read(externalID string) (*Google_compute_project_metadata_item, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_project_metadata_item", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_project_metadata_item{ Google_compute_project_metadata_item_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_project_metadata_itemHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_project_metadata_item", externalID)
+}
+
+type Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609 struct {
+
+    Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609_id *string `lyra:"ignore"`
+
+    Target float64
+
+}
+
+type Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610 struct {
+
+    Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610_id *string `lyra:"ignore"`
+
+    Target float64
+
+}
+
+type Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611 struct {
+
+    Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611_id *string `lyra:"ignore"`
+
+    Name string
+
+    Target float64
+
+    Type string
+
+}
+
+type Google_compute_region_autoscaler_autoscaling_policy_1608 struct {
+
+    Google_compute_region_autoscaler_autoscaling_policy_1608_id *string `lyra:"ignore"`
+
+    Cooldown_period *int
+
+    Cpu_utilization *Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609
+
+    Load_balancing_utilization *Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610
+
+    Max_replicas int
+
+    Metric *Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611
+
+    Min_replicas int
+
+}
+
+type Google_compute_region_autoscaler struct {
+
+    Google_compute_region_autoscaler_id *string `lyra:"ignore"`
+
+    Autoscaling_policy Google_compute_region_autoscaler_autoscaling_policy_1608
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+    Target string
+
+}
+
+// Google_compute_region_autoscalerHandler ...
+type Google_compute_region_autoscalerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_region_autoscalerHandler) Create(desired *Google_compute_region_autoscaler) (*Google_compute_region_autoscaler, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_region_autoscaler", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_region_autoscalerHandler) Read(externalID string) (*Google_compute_region_autoscaler, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_region_autoscaler", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_region_autoscaler{ Google_compute_region_autoscaler_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_region_autoscalerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_region_autoscaler", externalID)
+}
+
+type Google_compute_region_backend_service_backend_1612 struct {
+
+    Google_compute_region_backend_service_backend_1612_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Group *string
+
+}
+
+type Google_compute_region_backend_service struct {
+
+    Google_compute_region_backend_service_id *string `lyra:"ignore"`
+
+    Backend *Google_compute_region_backend_service_backend_1612
+
+    Connection_draining_timeout_sec *int
+
+    Description *string
+
+    Fingerprint *string
+
+    Health_checks []string
+
+    Name string
+
+    Project *string
+
+    Protocol *string
+
+    Region *string
+
+    Self_link *string
+
+    Session_affinity *string
+
+    Timeout_sec *int
+
+}
+
+// Google_compute_region_backend_serviceHandler ...
+type Google_compute_region_backend_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_region_backend_serviceHandler) Create(desired *Google_compute_region_backend_service) (*Google_compute_region_backend_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_region_backend_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_region_backend_serviceHandler) Read(externalID string) (*Google_compute_region_backend_service, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_region_backend_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_region_backend_service{ Google_compute_region_backend_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_region_backend_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_region_backend_service", externalID)
+}
+
+type Google_compute_region_disk_disk_encryption_key_1613 struct {
+
+    Google_compute_region_disk_disk_encryption_key_1613_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+    Sha256 *string
+
+}
+
+type Google_compute_region_disk_source_snapshot_encryption_key_1614 struct {
+
+    Google_compute_region_disk_source_snapshot_encryption_key_1614_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+    Sha256 *string
+
+}
+
+type Google_compute_region_disk struct {
+
+    Google_compute_region_disk_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Disk_encryption_key *Google_compute_region_disk_disk_encryption_key_1613
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Last_attach_timestamp *string
+
+    Last_detach_timestamp *string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+    Replica_zones []string
+
+    Self_link *string
+
+    Size *int
+
+    Snapshot *string
+
+    Source_snapshot_encryption_key *Google_compute_region_disk_source_snapshot_encryption_key_1614
+
+    Source_snapshot_id *string
+
+    Type *string
+
+    Users *[]string
+
+}
+
+// Google_compute_region_diskHandler ...
+type Google_compute_region_diskHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_region_diskHandler) Create(desired *Google_compute_region_disk) (*Google_compute_region_disk, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_region_disk", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_region_diskHandler) Read(externalID string) (*Google_compute_region_disk, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_region_disk", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_region_disk{ Google_compute_region_disk_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_region_diskHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_region_disk", externalID)
+}
+
+type Google_compute_region_instance_group_manager_auto_healing_policies_1615 struct {
+
+    Google_compute_region_instance_group_manager_auto_healing_policies_1615_id *string `lyra:"ignore"`
+
+    Health_check string
+
+    Initial_delay_sec int
+
+}
+
+type Google_compute_region_instance_group_manager_named_port_1616 struct {
+
+    Google_compute_region_instance_group_manager_named_port_1616_id *string `lyra:"ignore"`
+
+    Name string
+
+    Port int
+
+}
+
+type Google_compute_region_instance_group_manager_rolling_update_policy_1617 struct {
+
+    Google_compute_region_instance_group_manager_rolling_update_policy_1617_id *string `lyra:"ignore"`
+
+    Max_surge_fixed *int
+
+    Max_surge_percent *int
+
+    Max_unavailable_fixed *int
+
+    Max_unavailable_percent *int
+
+    Min_ready_sec *int
+
+    Minimal_action string
+
+    Type string
+
+}
+
+type Google_compute_region_instance_group_manager_version_1618_target_size_1619 struct {
+
+    Google_compute_region_instance_group_manager_version_1618_target_size_1619_id *string `lyra:"ignore"`
+
+    Fixed *int
+
+    Percent *int
+
+}
+
+type Google_compute_region_instance_group_manager_version_1618 struct {
+
+    Google_compute_region_instance_group_manager_version_1618_id *string `lyra:"ignore"`
+
+    Instance_template string
+
+    Name string
+
+    Target_size *Google_compute_region_instance_group_manager_version_1618_target_size_1619
+
+}
+
+type Google_compute_region_instance_group_manager struct {
+
+    Google_compute_region_instance_group_manager_id *string `lyra:"ignore"`
+
+    Auto_healing_policies *Google_compute_region_instance_group_manager_auto_healing_policies_1615
+
+    Base_instance_name string
+
+    Description *string
+
+    Distribution_policy_zones *[]string
+
+    Fingerprint *string
+
+    Instance_group *string
+
+    Instance_template *string
+
+    Name string
+
+    Named_port *Google_compute_region_instance_group_manager_named_port_1616
+
+    Project *string
+
+    Region string
+
+    Rolling_update_policy *Google_compute_region_instance_group_manager_rolling_update_policy_1617
+
+    Self_link *string
+
+    Target_pools *[]string
+
+    Target_size *int
+
+    Update_strategy *string
+
+    Version *Google_compute_region_instance_group_manager_version_1618
+
+    Wait_for_instances *bool
+
+}
+
+// Google_compute_region_instance_group_managerHandler ...
+type Google_compute_region_instance_group_managerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_region_instance_group_managerHandler) Create(desired *Google_compute_region_instance_group_manager) (*Google_compute_region_instance_group_manager, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_region_instance_group_manager", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_region_instance_group_managerHandler) Read(externalID string) (*Google_compute_region_instance_group_manager, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_region_instance_group_manager", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_region_instance_group_manager{ Google_compute_region_instance_group_manager_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_region_instance_group_managerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_region_instance_group_manager", externalID)
+}
+
+type Google_compute_route struct {
+
+    Google_compute_route_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Dest_range string
+
+    Name string
+
+    Network string
+
+    Next_hop_gateway *string
+
+    Next_hop_instance *string
+
+    Next_hop_instance_zone *string
+
+    Next_hop_ip *string
+
+    Next_hop_network *string
+
+    Next_hop_vpn_tunnel *string
+
+    Priority *int
+
+    Project *string
+
+    Self_link *string
+
+    Tags *[]string
+
+}
+
+// Google_compute_routeHandler ...
+type Google_compute_routeHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_routeHandler) Create(desired *Google_compute_route) (*Google_compute_route, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_route", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_routeHandler) Read(externalID string) (*Google_compute_route, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_route", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_route{ Google_compute_route_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_routeHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_route", externalID)
+}
+
+type Google_compute_router_bgp_1620_advertised_ip_ranges_1621 struct {
+
+    Google_compute_router_bgp_1620_advertised_ip_ranges_1621_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Range *string
+
+}
+
+type Google_compute_router_bgp_1620 struct {
+
+    Google_compute_router_bgp_1620_id *string `lyra:"ignore"`
+
+    Advertise_mode *string
+
+    Advertised_groups *[]string
+
+    Advertised_ip_ranges *Google_compute_router_bgp_1620_advertised_ip_ranges_1621
+
+    Asn int
+
+}
+
+type Google_compute_router struct {
+
+    Google_compute_router_id *string `lyra:"ignore"`
+
+    Bgp *Google_compute_router_bgp_1620
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Network string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+}
+
+// Google_compute_routerHandler ...
+type Google_compute_routerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_routerHandler) Create(desired *Google_compute_router) (*Google_compute_router, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_router", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_routerHandler) Read(externalID string) (*Google_compute_router, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_router", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_router{ Google_compute_router_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_routerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_router", externalID)
+}
+
+type Google_compute_router_interface struct {
+
+    Google_compute_router_interface_id *string `lyra:"ignore"`
+
+    Ip_range *string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+    Router string
+
+    Vpn_tunnel string
+
+}
+
+// Google_compute_router_interfaceHandler ...
+type Google_compute_router_interfaceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_router_interfaceHandler) Create(desired *Google_compute_router_interface) (*Google_compute_router_interface, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_router_interface", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_router_interfaceHandler) Read(externalID string) (*Google_compute_router_interface, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_router_interface", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_router_interface{ Google_compute_router_interface_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_router_interfaceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_router_interface", externalID)
+}
+
+type Google_compute_router_nat_subnetwork_1622 struct {
+
+    Google_compute_router_nat_subnetwork_1622_id *string `lyra:"ignore"`
+
+    Name string
+
+    Secondary_ip_range_names *[]string
+
+    Source_ip_ranges_to_nat *[]string
+
+}
+
+type Google_compute_router_nat struct {
+
+    Google_compute_router_nat_id *string `lyra:"ignore"`
+
+    Icmp_idle_timeout_sec *int
+
+    Min_ports_per_vm *int
+
+    Name string
+
+    Nat_ip_allocate_option string
+
+    Nat_ips *[]string
+
+    Project *string
+
+    Region *string
+
+    Router string
+
+    Source_subnetwork_ip_ranges_to_nat *string
+
+    Subnetwork *Google_compute_router_nat_subnetwork_1622
+
+    Tcp_established_idle_timeout_sec *int
+
+    Tcp_transitory_idle_timeout_sec *int
+
+    Udp_idle_timeout_sec *int
+
+}
+
+// Google_compute_router_natHandler ...
+type Google_compute_router_natHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_router_natHandler) Create(desired *Google_compute_router_nat) (*Google_compute_router_nat, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_router_nat", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_router_natHandler) Read(externalID string) (*Google_compute_router_nat, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_router_nat", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_router_nat{ Google_compute_router_nat_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_router_natHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_router_nat", externalID)
+}
+
+type Google_compute_router_peer struct {
+
+    Google_compute_router_peer_id *string `lyra:"ignore"`
+
+    Advertised_route_priority *int
+
+    Interface string
+
+    Ip_address *string
+
+    Name string
+
+    Peer_asn int
+
+    Peer_ip_address *string
+
+    Project *string
+
+    Region *string
+
+    Router string
+
+}
+
+// Google_compute_router_peerHandler ...
+type Google_compute_router_peerHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_router_peerHandler) Create(desired *Google_compute_router_peer) (*Google_compute_router_peer, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_router_peer", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_router_peerHandler) Read(externalID string) (*Google_compute_router_peer, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_router_peer", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_router_peer{ Google_compute_router_peer_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_router_peerHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_router_peer", externalID)
+}
+
+type Google_compute_security_policy_rule_1623_match_1624_config_1625 struct {
+
+    Google_compute_security_policy_rule_1623_match_1624_config_1625_id *string `lyra:"ignore"`
+
+    Src_ip_ranges []string
+
+}
+
+type Google_compute_security_policy_rule_1623_match_1624 struct {
+
+    Google_compute_security_policy_rule_1623_match_1624_id *string `lyra:"ignore"`
+
+    Config Google_compute_security_policy_rule_1623_match_1624_config_1625
+
+    Versioned_expr string
+
+}
+
+type Google_compute_security_policy_rule_1623 struct {
+
+    Google_compute_security_policy_rule_1623_id *string `lyra:"ignore"`
+
+    Action string
+
+    Description *string
+
+    Match Google_compute_security_policy_rule_1623_match_1624
+
+    Preview *bool
+
+    Priority int
+
+}
+
+type Google_compute_security_policy struct {
+
+    Google_compute_security_policy_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Fingerprint *string
+
+    Name string
+
+    Project *string
+
+    Rule *Google_compute_security_policy_rule_1623
+
+    Self_link *string
+
+}
+
+// Google_compute_security_policyHandler ...
+type Google_compute_security_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_security_policyHandler) Create(desired *Google_compute_security_policy) (*Google_compute_security_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_security_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_security_policyHandler) Read(externalID string) (*Google_compute_security_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_security_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_security_policy{ Google_compute_security_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_security_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_security_policy", externalID)
+}
+
+type Google_compute_shared_vpc_host_project struct {
+
+    Google_compute_shared_vpc_host_project_id *string `lyra:"ignore"`
+
+    Project string
+
+}
+
+// Google_compute_shared_vpc_host_projectHandler ...
+type Google_compute_shared_vpc_host_projectHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_shared_vpc_host_projectHandler) Create(desired *Google_compute_shared_vpc_host_project) (*Google_compute_shared_vpc_host_project, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_shared_vpc_host_project", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_shared_vpc_host_projectHandler) Read(externalID string) (*Google_compute_shared_vpc_host_project, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_shared_vpc_host_project", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_shared_vpc_host_project{ Google_compute_shared_vpc_host_project_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_shared_vpc_host_projectHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_shared_vpc_host_project", externalID)
+}
+
+type Google_compute_shared_vpc_service_project struct {
+
+    Google_compute_shared_vpc_service_project_id *string `lyra:"ignore"`
+
+    Host_project string
+
+    Service_project string
+
+}
+
+// Google_compute_shared_vpc_service_projectHandler ...
+type Google_compute_shared_vpc_service_projectHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_shared_vpc_service_projectHandler) Create(desired *Google_compute_shared_vpc_service_project) (*Google_compute_shared_vpc_service_project, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_shared_vpc_service_project", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_shared_vpc_service_projectHandler) Read(externalID string) (*Google_compute_shared_vpc_service_project, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_shared_vpc_service_project", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_shared_vpc_service_project{ Google_compute_shared_vpc_service_project_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_shared_vpc_service_projectHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_shared_vpc_service_project", externalID)
+}
+
+type Google_compute_snapshot_snapshot_encryption_key_1626 struct {
+
+    Google_compute_snapshot_snapshot_encryption_key_1626_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+    Sha256 *string
+
+}
+
+type Google_compute_snapshot_source_disk_encryption_key_1627 struct {
+
+    Google_compute_snapshot_source_disk_encryption_key_1627_id *string `lyra:"ignore"`
+
+    Raw_key *string
+
+}
+
+type Google_compute_snapshot struct {
+
+    Google_compute_snapshot_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Disk_size_gb *int
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Licenses *[]string
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+    Snapshot_encryption_key *Google_compute_snapshot_snapshot_encryption_key_1626
+
+    Snapshot_encryption_key_raw *string
+
+    Snapshot_encryption_key_sha256 *string
+
+    Snapshot_id *int
+
+    Source_disk string
+
+    Source_disk_encryption_key *Google_compute_snapshot_source_disk_encryption_key_1627
+
+    Source_disk_encryption_key_raw *string
+
+    Source_disk_encryption_key_sha256 *string
+
+    Source_disk_link *string
+
+    Storage_bytes *int
+
+    Zone *string
+
+}
+
+// Google_compute_snapshotHandler ...
+type Google_compute_snapshotHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_snapshotHandler) Create(desired *Google_compute_snapshot) (*Google_compute_snapshot, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_snapshot", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_snapshotHandler) Read(externalID string) (*Google_compute_snapshot, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_snapshot", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_snapshot{ Google_compute_snapshot_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_snapshotHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_snapshot", externalID)
+}
+
+type Google_compute_ssl_certificate struct {
+
+    Google_compute_ssl_certificate_id *string `lyra:"ignore"`
+
+    Certificate string
+
+    Certificate_id *int
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name *string
+
+    Name_prefix *string
+
+    Private_key string
+
+    Project *string
+
+    Self_link *string
+
+}
+
+// Google_compute_ssl_certificateHandler ...
+type Google_compute_ssl_certificateHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_ssl_certificateHandler) Create(desired *Google_compute_ssl_certificate) (*Google_compute_ssl_certificate, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_ssl_certificate", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_ssl_certificateHandler) Read(externalID string) (*Google_compute_ssl_certificate, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_ssl_certificate", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_ssl_certificate{ Google_compute_ssl_certificate_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_ssl_certificateHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_ssl_certificate", externalID)
+}
+
+type Google_compute_ssl_policy struct {
+
+    Google_compute_ssl_policy_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Custom_features *[]string
+
+    Description *string
+
+    Enabled_features *[]string
+
+    Fingerprint *string
+
+    Min_tls_version *string
+
+    Name string
+
+    Profile *string
+
+    Project *string
+
+    Self_link *string
+
+}
+
+// Google_compute_ssl_policyHandler ...
+type Google_compute_ssl_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_ssl_policyHandler) Create(desired *Google_compute_ssl_policy) (*Google_compute_ssl_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_ssl_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_ssl_policyHandler) Read(externalID string) (*Google_compute_ssl_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_ssl_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_ssl_policy{ Google_compute_ssl_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_ssl_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_ssl_policy", externalID)
+}
+
+type Google_compute_subnetwork_secondary_ip_range_1628 struct {
+
+    Google_compute_subnetwork_secondary_ip_range_1628_id *string `lyra:"ignore"`
+
+    Ip_cidr_range string
+
+    Range_name string
+
+}
+
+type Google_compute_subnetwork struct {
+
+    Google_compute_subnetwork_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Enable_flow_logs *bool
+
+    Fingerprint *string
+
+    Gateway_address *string
+
+    Ip_cidr_range string
+
+    Name string
+
+    Network string
+
+    Private_ip_google_access *bool
+
+    Project *string
+
+    Region *string
+
+    Secondary_ip_range *Google_compute_subnetwork_secondary_ip_range_1628
+
+    Self_link *string
+
+}
+
+// Google_compute_subnetworkHandler ...
+type Google_compute_subnetworkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_subnetworkHandler) Create(desired *Google_compute_subnetwork) (*Google_compute_subnetwork, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_subnetwork", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_subnetworkHandler) Read(externalID string) (*Google_compute_subnetwork, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_subnetwork{ Google_compute_subnetwork_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_subnetworkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_subnetwork", externalID)
+}
+
+type Google_compute_subnetwork_iam_binding struct {
+
+    Google_compute_subnetwork_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Members []string
+
+    Project *string
+
+    Region *string
+
+    Role string
+
+    Subnetwork string
+
+}
+
+// Google_compute_subnetwork_iam_bindingHandler ...
+type Google_compute_subnetwork_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_subnetwork_iam_bindingHandler) Create(desired *Google_compute_subnetwork_iam_binding) (*Google_compute_subnetwork_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_subnetwork_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_subnetwork_iam_bindingHandler) Read(externalID string) (*Google_compute_subnetwork_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_subnetwork_iam_binding{ Google_compute_subnetwork_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_subnetwork_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_binding", externalID)
+}
+
+type Google_compute_subnetwork_iam_member struct {
+
+    Google_compute_subnetwork_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Member string
+
+    Project *string
+
+    Region *string
+
+    Role string
+
+    Subnetwork string
+
+}
+
+// Google_compute_subnetwork_iam_memberHandler ...
+type Google_compute_subnetwork_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_subnetwork_iam_memberHandler) Create(desired *Google_compute_subnetwork_iam_member) (*Google_compute_subnetwork_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_subnetwork_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_subnetwork_iam_memberHandler) Read(externalID string) (*Google_compute_subnetwork_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_subnetwork_iam_member{ Google_compute_subnetwork_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_subnetwork_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_member", externalID)
+}
+
+type Google_compute_subnetwork_iam_policy struct {
+
+    Google_compute_subnetwork_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Policy_data string
+
+    Project *string
+
+    Region *string
+
+    Subnetwork string
+
+}
+
+// Google_compute_subnetwork_iam_policyHandler ...
+type Google_compute_subnetwork_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_subnetwork_iam_policyHandler) Create(desired *Google_compute_subnetwork_iam_policy) (*Google_compute_subnetwork_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_subnetwork_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_subnetwork_iam_policyHandler) Read(externalID string) (*Google_compute_subnetwork_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_subnetwork_iam_policy{ Google_compute_subnetwork_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_subnetwork_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_policy", externalID)
+}
+
+type Google_compute_target_http_proxy struct {
+
+    Google_compute_target_http_proxy_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+    Proxy_id *int
+
+    Self_link *string
+
+    Url_map string
+
+}
 
 // Google_compute_target_http_proxyHandler ...
 type Google_compute_target_http_proxyHandler struct {
@@ -16632,8 +5266,10 @@ type Google_compute_target_http_proxyHandler struct {
 
 // Create ...
 func (h *Google_compute_target_http_proxyHandler) Create(desired *Google_compute_target_http_proxy) (*Google_compute_target_http_proxy, string, error) {
-	rState := Google_compute_target_http_proxyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_compute_target_http_proxy", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_target_http_proxy", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -16646,11 +5282,13 @@ func (h *Google_compute_target_http_proxyHandler) Create(desired *Google_compute
 
 // Read ...
 func (h *Google_compute_target_http_proxyHandler) Read(externalID string) (*Google_compute_target_http_proxy, error) {
-	actual, err := bridge.Read(h.provider, "google_compute_target_http_proxy", externalID)
+	id, actual, err := bridge.Read(h.provider, "google_compute_target_http_proxy", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_compute_target_http_proxyUnmapper(actual), nil
+	x := &Google_compute_target_http_proxy{ Google_compute_target_http_proxy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -16658,58 +5296,2302 @@ func (h *Google_compute_target_http_proxyHandler) Delete(externalID string) erro
 	return bridge.Delete(h.provider, "google_compute_target_http_proxy", externalID)
 }
 
-type Google_folder_organization_policy struct {
-     Google_folder_organization_policy_id *string
-     Update_time *string
-     Folder string
-     Constraint string
-     Etag *string
+type Google_compute_target_https_proxy struct {
+
+    Google_compute_target_https_proxy_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+    Proxy_id *int
+
+    Quic_override *string
+
+    Self_link *string
+
+    Ssl_certificates []string
+
+    Ssl_policy *string
+
+    Url_map string
+
 }
 
+// Google_compute_target_https_proxyHandler ...
+type Google_compute_target_https_proxyHandler struct {
+	provider *schema.Provider
+}
 
-func Google_folder_organization_policyMapper(r *Google_folder_organization_policy) *terraform.ResourceConfig {
-	config := map[string]interface{}{}
- 	    config["folder"] = r.Folder
-    config["constraint"] = r.Constraint
-if r.Etag != nil {
-    config["etag"] = *r.Etag
-}
-if r.Update_time != nil {
-    config["update_time"] = *r.Update_time
-}
-return &terraform.ResourceConfig{
-		Config: config,
+// Create ...
+func (h *Google_compute_target_https_proxyHandler) Create(desired *Google_compute_target_https_proxy) (*Google_compute_target_https_proxy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
 	}
+	id, err := bridge.Create(h.provider, "google_compute_target_https_proxy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
-func Google_folder_organization_policyUnmapper(state map[string]interface{}) *Google_folder_organization_policy {
-	r := &Google_folder_organization_policy{}
-
-if x, ok := state["external_id"]; ok {
-	x := x.(string)
-	r.Google_folder_organization_policy_id = &x
+// Read ...
+func (h *Google_compute_target_https_proxyHandler) Read(externalID string) (*Google_compute_target_https_proxy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_target_https_proxy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_target_https_proxy{ Google_compute_target_https_proxy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
-if x, ok := state["folder"]; ok {
-	r.Folder = x.(string)
+// Delete ...
+func (h *Google_compute_target_https_proxyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_target_https_proxy", externalID)
 }
 
-if x, ok := state["constraint"]; ok {
-	r.Constraint = x.(string)
+type Google_compute_target_pool struct {
+
+    Google_compute_target_pool_id *string `lyra:"ignore"`
+
+    Backup_pool *string
+
+    Description *string
+
+    Failover_ratio *float64
+
+    Health_checks *[]string
+
+    Instances *[]string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+    Session_affinity *string
+
 }
 
-if x, ok := state["etag"]; ok {
-	x := x.(string)
-	r.Etag = &x
+// Google_compute_target_poolHandler ...
+type Google_compute_target_poolHandler struct {
+	provider *schema.Provider
 }
 
-if x, ok := state["update_time"]; ok {
-	x := x.(string)
-	r.Update_time = &x
-}
-	return r
+// Create ...
+func (h *Google_compute_target_poolHandler) Create(desired *Google_compute_target_pool) (*Google_compute_target_pool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_target_pool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
 }
 
+// Read ...
+func (h *Google_compute_target_poolHandler) Read(externalID string) (*Google_compute_target_pool, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_target_pool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_target_pool{ Google_compute_target_pool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_target_poolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_target_pool", externalID)
+}
+
+type Google_compute_target_ssl_proxy struct {
+
+    Google_compute_target_ssl_proxy_id *string `lyra:"ignore"`
+
+    Backend_service string
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+    Proxy_header *string
+
+    Proxy_id *int
+
+    Self_link *string
+
+    Ssl_certificates []string
+
+    Ssl_policy *string
+
+}
+
+// Google_compute_target_ssl_proxyHandler ...
+type Google_compute_target_ssl_proxyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_target_ssl_proxyHandler) Create(desired *Google_compute_target_ssl_proxy) (*Google_compute_target_ssl_proxy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_target_ssl_proxy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_target_ssl_proxyHandler) Read(externalID string) (*Google_compute_target_ssl_proxy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_target_ssl_proxy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_target_ssl_proxy{ Google_compute_target_ssl_proxy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_target_ssl_proxyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_target_ssl_proxy", externalID)
+}
+
+type Google_compute_target_tcp_proxy struct {
+
+    Google_compute_target_tcp_proxy_id *string `lyra:"ignore"`
+
+    Backend_service string
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+    Proxy_header *string
+
+    Proxy_id *int
+
+    Self_link *string
+
+}
+
+// Google_compute_target_tcp_proxyHandler ...
+type Google_compute_target_tcp_proxyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_target_tcp_proxyHandler) Create(desired *Google_compute_target_tcp_proxy) (*Google_compute_target_tcp_proxy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_target_tcp_proxy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_target_tcp_proxyHandler) Read(externalID string) (*Google_compute_target_tcp_proxy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_target_tcp_proxy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_target_tcp_proxy{ Google_compute_target_tcp_proxy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_target_tcp_proxyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_target_tcp_proxy", externalID)
+}
+
+type Google_compute_url_map_host_rule_1629 struct {
+
+    Google_compute_url_map_host_rule_1629_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Hosts []string
+
+    Path_matcher string
+
+}
+
+type Google_compute_url_map_path_matcher_1630_path_rule_1631 struct {
+
+    Google_compute_url_map_path_matcher_1630_path_rule_1631_id *string `lyra:"ignore"`
+
+    Paths []string
+
+    Service string
+
+}
+
+type Google_compute_url_map_path_matcher_1630 struct {
+
+    Google_compute_url_map_path_matcher_1630_id *string `lyra:"ignore"`
+
+    Default_service string
+
+    Description *string
+
+    Name string
+
+    Path_rule *Google_compute_url_map_path_matcher_1630_path_rule_1631
+
+}
+
+type Google_compute_url_map_test_1632 struct {
+
+    Google_compute_url_map_test_1632_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Host string
+
+    Path string
+
+    Service string
+
+}
+
+type Google_compute_url_map struct {
+
+    Google_compute_url_map_id *string `lyra:"ignore"`
+
+    Default_service string
+
+    Description *string
+
+    Fingerprint *string
+
+    Host_rule *Google_compute_url_map_host_rule_1629
+
+    Map_id *string
+
+    Name string
+
+    Path_matcher *Google_compute_url_map_path_matcher_1630
+
+    Project *string
+
+    Self_link *string
+
+    Test *Google_compute_url_map_test_1632
+
+}
+
+// Google_compute_url_mapHandler ...
+type Google_compute_url_mapHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_url_mapHandler) Create(desired *Google_compute_url_map) (*Google_compute_url_map, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_url_map", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_url_mapHandler) Read(externalID string) (*Google_compute_url_map, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_url_map", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_url_map{ Google_compute_url_map_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_url_mapHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_url_map", externalID)
+}
+
+type Google_compute_vpn_gateway struct {
+
+    Google_compute_vpn_gateway_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Name string
+
+    Network string
+
+    Project *string
+
+    Region *string
+
+    Self_link *string
+
+}
+
+// Google_compute_vpn_gatewayHandler ...
+type Google_compute_vpn_gatewayHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_vpn_gatewayHandler) Create(desired *Google_compute_vpn_gateway) (*Google_compute_vpn_gateway, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_vpn_gateway", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_vpn_gatewayHandler) Read(externalID string) (*Google_compute_vpn_gateway, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_vpn_gateway", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_vpn_gateway{ Google_compute_vpn_gateway_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_vpn_gatewayHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_vpn_gateway", externalID)
+}
+
+type Google_compute_vpn_tunnel struct {
+
+    Google_compute_vpn_tunnel_id *string `lyra:"ignore"`
+
+    Creation_timestamp *string
+
+    Description *string
+
+    Detailed_status *string
+
+    Ike_version *int
+
+    Label_fingerprint *string
+
+    Labels *map[string]string
+
+    Local_traffic_selector *[]string
+
+    Name string
+
+    Peer_ip string
+
+    Project *string
+
+    Region *string
+
+    Remote_traffic_selector *[]string
+
+    Router *string
+
+    Self_link *string
+
+    Shared_secret string
+
+    Shared_secret_hash *string
+
+    Target_vpn_gateway string
+
+}
+
+// Google_compute_vpn_tunnelHandler ...
+type Google_compute_vpn_tunnelHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_compute_vpn_tunnelHandler) Create(desired *Google_compute_vpn_tunnel) (*Google_compute_vpn_tunnel, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_compute_vpn_tunnel", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_compute_vpn_tunnelHandler) Read(externalID string) (*Google_compute_vpn_tunnel, error) {
+	id, actual, err := bridge.Read(h.provider, "google_compute_vpn_tunnel", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_compute_vpn_tunnel{ Google_compute_vpn_tunnel_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_compute_vpn_tunnelHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_compute_vpn_tunnel", externalID)
+}
+
+type Google_container_analysis_note_attestation_authority_1633_hint_1634 struct {
+
+    Google_container_analysis_note_attestation_authority_1633_hint_1634_id *string `lyra:"ignore"`
+
+    Human_readable_name string
+
+}
+
+type Google_container_analysis_note_attestation_authority_1633 struct {
+
+    Google_container_analysis_note_attestation_authority_1633_id *string `lyra:"ignore"`
+
+    Hint Google_container_analysis_note_attestation_authority_1633_hint_1634
+
+}
+
+type Google_container_analysis_note struct {
+
+    Google_container_analysis_note_id *string `lyra:"ignore"`
+
+    Attestation_authority Google_container_analysis_note_attestation_authority_1633
+
+    Name string
+
+    Project *string
+
+}
+
+// Google_container_analysis_noteHandler ...
+type Google_container_analysis_noteHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_container_analysis_noteHandler) Create(desired *Google_container_analysis_note) (*Google_container_analysis_note, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_container_analysis_note", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_container_analysis_noteHandler) Read(externalID string) (*Google_container_analysis_note, error) {
+	id, actual, err := bridge.Read(h.provider, "google_container_analysis_note", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_container_analysis_note{ Google_container_analysis_note_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_container_analysis_noteHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_container_analysis_note", externalID)
+}
+
+type Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636 struct {
+
+    Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636_id *string `lyra:"ignore"`
+
+    Disabled *bool
+
+}
+
+type Google_container_cluster_addons_config_1635_http_load_balancing_1637 struct {
+
+    Google_container_cluster_addons_config_1635_http_load_balancing_1637_id *string `lyra:"ignore"`
+
+    Disabled *bool
+
+}
+
+type Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638 struct {
+
+    Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638_id *string `lyra:"ignore"`
+
+    Disabled *bool
+
+}
+
+type Google_container_cluster_addons_config_1635_network_policy_config_1639 struct {
+
+    Google_container_cluster_addons_config_1635_network_policy_config_1639_id *string `lyra:"ignore"`
+
+    Disabled *bool
+
+}
+
+type Google_container_cluster_addons_config_1635 struct {
+
+    Google_container_cluster_addons_config_1635_id *string `lyra:"ignore"`
+
+    Horizontal_pod_autoscaling *Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636
+
+    Http_load_balancing *Google_container_cluster_addons_config_1635_http_load_balancing_1637
+
+    Kubernetes_dashboard *Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638
+
+    Network_policy_config *Google_container_cluster_addons_config_1635_network_policy_config_1639
+
+}
+
+type Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641 struct {
+
+    Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641_id *string `lyra:"ignore"`
+
+    Maximum *int
+
+    Minimum *int
+
+    Resource_type string
+
+}
+
+type Google_container_cluster_cluster_autoscaling_1640 struct {
+
+    Google_container_cluster_cluster_autoscaling_1640_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+    Resource_limits *Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641
+
+}
+
+type Google_container_cluster_ip_allocation_policy_1642 struct {
+
+    Google_container_cluster_ip_allocation_policy_1642_id *string `lyra:"ignore"`
+
+    Cluster_ipv4_cidr_block *string
+
+    Cluster_secondary_range_name *string
+
+    Create_subnetwork *bool
+
+    Services_ipv4_cidr_block *string
+
+    Services_secondary_range_name *string
+
+    Subnetwork_name *string
+
+}
+
+type Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644 struct {
+
+    Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644_id *string `lyra:"ignore"`
+
+    Duration *string
+
+    Start_time string
+
+}
+
+type Google_container_cluster_maintenance_policy_1643 struct {
+
+    Google_container_cluster_maintenance_policy_1643_id *string `lyra:"ignore"`
+
+    Daily_maintenance_window Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644
+
+}
+
+type Google_container_cluster_master_auth_1645_client_certificate_config_1646 struct {
+
+    Google_container_cluster_master_auth_1645_client_certificate_config_1646_id *string `lyra:"ignore"`
+
+    Issue_client_certificate bool
+
+}
+
+type Google_container_cluster_master_auth_1645 struct {
+
+    Google_container_cluster_master_auth_1645_id *string `lyra:"ignore"`
+
+    Client_certificate *string
+
+    Client_certificate_config *Google_container_cluster_master_auth_1645_client_certificate_config_1646
+
+    Client_key *string
+
+    Cluster_ca_certificate *string
+
+    Password string
+
+    Username string
+
+}
+
+type Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648 struct {
+
+    Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648_id *string `lyra:"ignore"`
+
+    Cidr_block string
+
+    Display_name *string
+
+}
+
+type Google_container_cluster_master_authorized_networks_config_1647 struct {
+
+    Google_container_cluster_master_authorized_networks_config_1647_id *string `lyra:"ignore"`
+
+    Cidr_blocks *Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648
+
+}
+
+type Google_container_cluster_network_policy_1649 struct {
+
+    Google_container_cluster_network_policy_1649_id *string `lyra:"ignore"`
+
+    Enabled *bool
+
+    Provider *string
+
+}
+
+type Google_container_cluster_node_config_1650_guest_accelerator_1651 struct {
+
+    Google_container_cluster_node_config_1650_guest_accelerator_1651_id *string `lyra:"ignore"`
+
+    Count int
+
+    Type string
+
+}
+
+type Google_container_cluster_node_config_1650_taint_1652 struct {
+
+    Google_container_cluster_node_config_1650_taint_1652_id *string `lyra:"ignore"`
+
+    Effect string
+
+    Key string
+
+    Value string
+
+}
+
+type Google_container_cluster_node_config_1650_workload_metadata_config_1653 struct {
+
+    Google_container_cluster_node_config_1650_workload_metadata_config_1653_id *string `lyra:"ignore"`
+
+    Node_metadata string
+
+}
+
+type Google_container_cluster_node_config_1650 struct {
+
+    Google_container_cluster_node_config_1650_id *string `lyra:"ignore"`
+
+    Disk_size_gb *int
+
+    Disk_type *string
+
+    Guest_accelerator *Google_container_cluster_node_config_1650_guest_accelerator_1651
+
+    Image_type *string
+
+    Labels *map[string]string
+
+    Local_ssd_count *int
+
+    Machine_type *string
+
+    Metadata *map[string]string
+
+    Min_cpu_platform *string
+
+    Oauth_scopes *[]string
+
+    Preemptible *bool
+
+    Service_account *string
+
+    Tags *[]string
+
+    Taint *Google_container_cluster_node_config_1650_taint_1652
+
+    Workload_metadata_config *Google_container_cluster_node_config_1650_workload_metadata_config_1653
+
+}
+
+type Google_container_cluster_node_pool_1654_autoscaling_1655 struct {
+
+    Google_container_cluster_node_pool_1654_autoscaling_1655_id *string `lyra:"ignore"`
+
+    Max_node_count int
+
+    Min_node_count int
+
+}
+
+type Google_container_cluster_node_pool_1654_management_1656 struct {
+
+    Google_container_cluster_node_pool_1654_management_1656_id *string `lyra:"ignore"`
+
+    Auto_repair *bool
+
+    Auto_upgrade *bool
+
+}
+
+type Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658 struct {
+
+    Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658_id *string `lyra:"ignore"`
+
+    Count int
+
+    Type string
+
+}
+
+type Google_container_cluster_node_pool_1654_node_config_1657_taint_1659 struct {
+
+    Google_container_cluster_node_pool_1654_node_config_1657_taint_1659_id *string `lyra:"ignore"`
+
+    Effect string
+
+    Key string
+
+    Value string
+
+}
+
+type Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660 struct {
+
+    Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660_id *string `lyra:"ignore"`
+
+    Node_metadata string
+
+}
+
+type Google_container_cluster_node_pool_1654_node_config_1657 struct {
+
+    Google_container_cluster_node_pool_1654_node_config_1657_id *string `lyra:"ignore"`
+
+    Disk_size_gb *int
+
+    Disk_type *string
+
+    Guest_accelerator *Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658
+
+    Image_type *string
+
+    Labels *map[string]string
+
+    Local_ssd_count *int
+
+    Machine_type *string
+
+    Metadata *map[string]string
+
+    Min_cpu_platform *string
+
+    Oauth_scopes *[]string
+
+    Preemptible *bool
+
+    Service_account *string
+
+    Tags *[]string
+
+    Taint *Google_container_cluster_node_pool_1654_node_config_1657_taint_1659
+
+    Workload_metadata_config *Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660
+
+}
+
+type Google_container_cluster_node_pool_1654 struct {
+
+    Google_container_cluster_node_pool_1654_id *string `lyra:"ignore"`
+
+    Autoscaling *Google_container_cluster_node_pool_1654_autoscaling_1655
+
+    Initial_node_count *int
+
+    Instance_group_urls *[]string
+
+    Management *Google_container_cluster_node_pool_1654_management_1656
+
+    Max_pods_per_node *int
+
+    Name *string
+
+    Name_prefix *string
+
+    Node_config *Google_container_cluster_node_pool_1654_node_config_1657
+
+    Node_count *int
+
+    Version *string
+
+}
+
+type Google_container_cluster_pod_security_policy_config_1661 struct {
+
+    Google_container_cluster_pod_security_policy_config_1661_id *string `lyra:"ignore"`
+
+    Enabled bool
+
+}
+
+type Google_container_cluster_private_cluster_config_1662 struct {
+
+    Google_container_cluster_private_cluster_config_1662_id *string `lyra:"ignore"`
+
+    Enable_private_endpoint *bool
+
+    Enable_private_nodes *bool
+
+    Master_ipv4_cidr_block *string
+
+    Private_endpoint *string
+
+    Public_endpoint *string
+
+}
+
+type Google_container_cluster struct {
+
+    Google_container_cluster_id *string `lyra:"ignore"`
+
+    Additional_zones *[]string
+
+    Addons_config *Google_container_cluster_addons_config_1635
+
+    Cluster_autoscaling *Google_container_cluster_cluster_autoscaling_1640
+
+    Cluster_ipv4_cidr *string
+
+    Description *string
+
+    Enable_binary_authorization *bool
+
+    Enable_kubernetes_alpha *bool
+
+    Enable_legacy_abac *bool
+
+    Enable_tpu *bool
+
+    Endpoint *string
+
+    Initial_node_count *int
+
+    Instance_group_urls *[]string
+
+    Ip_allocation_policy *Google_container_cluster_ip_allocation_policy_1642
+
+    Logging_service *string
+
+    Maintenance_policy *Google_container_cluster_maintenance_policy_1643
+
+    Master_auth *Google_container_cluster_master_auth_1645
+
+    Master_authorized_networks_config *Google_container_cluster_master_authorized_networks_config_1647
+
+    Master_ipv4_cidr_block *string
+
+    Master_version *string
+
+    Min_master_version *string
+
+    Monitoring_service *string
+
+    Name string
+
+    Network *string
+
+    Network_policy *Google_container_cluster_network_policy_1649
+
+    Node_config *Google_container_cluster_node_config_1650
+
+    Node_pool *Google_container_cluster_node_pool_1654
+
+    Node_version *string
+
+    Pod_security_policy_config *Google_container_cluster_pod_security_policy_config_1661
+
+    Private_cluster *bool
+
+    Private_cluster_config *Google_container_cluster_private_cluster_config_1662
+
+    Project *string
+
+    Region *string
+
+    Remove_default_node_pool *bool
+
+    Resource_labels *map[string]string
+
+    Subnetwork *string
+
+    Zone *string
+
+}
+
+// Google_container_clusterHandler ...
+type Google_container_clusterHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_container_clusterHandler) Create(desired *Google_container_cluster) (*Google_container_cluster, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_container_cluster", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_container_clusterHandler) Read(externalID string) (*Google_container_cluster, error) {
+	id, actual, err := bridge.Read(h.provider, "google_container_cluster", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_container_cluster{ Google_container_cluster_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_container_clusterHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_container_cluster", externalID)
+}
+
+type Google_container_node_pool_autoscaling_1663 struct {
+
+    Google_container_node_pool_autoscaling_1663_id *string `lyra:"ignore"`
+
+    Max_node_count int
+
+    Min_node_count int
+
+}
+
+type Google_container_node_pool_management_1664 struct {
+
+    Google_container_node_pool_management_1664_id *string `lyra:"ignore"`
+
+    Auto_repair *bool
+
+    Auto_upgrade *bool
+
+}
+
+type Google_container_node_pool_node_config_1665_guest_accelerator_1666 struct {
+
+    Google_container_node_pool_node_config_1665_guest_accelerator_1666_id *string `lyra:"ignore"`
+
+    Count int
+
+    Type string
+
+}
+
+type Google_container_node_pool_node_config_1665_taint_1667 struct {
+
+    Google_container_node_pool_node_config_1665_taint_1667_id *string `lyra:"ignore"`
+
+    Effect string
+
+    Key string
+
+    Value string
+
+}
+
+type Google_container_node_pool_node_config_1665_workload_metadata_config_1668 struct {
+
+    Google_container_node_pool_node_config_1665_workload_metadata_config_1668_id *string `lyra:"ignore"`
+
+    Node_metadata string
+
+}
+
+type Google_container_node_pool_node_config_1665 struct {
+
+    Google_container_node_pool_node_config_1665_id *string `lyra:"ignore"`
+
+    Disk_size_gb *int
+
+    Disk_type *string
+
+    Guest_accelerator *Google_container_node_pool_node_config_1665_guest_accelerator_1666
+
+    Image_type *string
+
+    Labels *map[string]string
+
+    Local_ssd_count *int
+
+    Machine_type *string
+
+    Metadata *map[string]string
+
+    Min_cpu_platform *string
+
+    Oauth_scopes *[]string
+
+    Preemptible *bool
+
+    Service_account *string
+
+    Tags *[]string
+
+    Taint *Google_container_node_pool_node_config_1665_taint_1667
+
+    Workload_metadata_config *Google_container_node_pool_node_config_1665_workload_metadata_config_1668
+
+}
+
+type Google_container_node_pool struct {
+
+    Google_container_node_pool_id *string `lyra:"ignore"`
+
+    Autoscaling *Google_container_node_pool_autoscaling_1663
+
+    Cluster string
+
+    Initial_node_count *int
+
+    Instance_group_urls *[]string
+
+    Management *Google_container_node_pool_management_1664
+
+    Max_pods_per_node *int
+
+    Name *string
+
+    Name_prefix *string
+
+    Node_config *Google_container_node_pool_node_config_1665
+
+    Node_count *int
+
+    Project *string
+
+    Region *string
+
+    Version *string
+
+    Zone *string
+
+}
+
+// Google_container_node_poolHandler ...
+type Google_container_node_poolHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_container_node_poolHandler) Create(desired *Google_container_node_pool) (*Google_container_node_pool, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_container_node_pool", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_container_node_poolHandler) Read(externalID string) (*Google_container_node_pool, error) {
+	id, actual, err := bridge.Read(h.provider, "google_container_node_pool", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_container_node_pool{ Google_container_node_pool_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_container_node_poolHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_container_node_pool", externalID)
+}
+
+type Google_dataflow_job struct {
+
+    Google_dataflow_job_id *string `lyra:"ignore"`
+
+    Max_workers *int
+
+    Name string
+
+    On_delete *string
+
+    Parameters *map[string]string
+
+    Project *string
+
+    Region *string
+
+    State *string
+
+    Temp_gcs_location string
+
+    Template_gcs_path string
+
+    Zone *string
+
+}
+
+// Google_dataflow_jobHandler ...
+type Google_dataflow_jobHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_dataflow_jobHandler) Create(desired *Google_dataflow_job) (*Google_dataflow_job, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_dataflow_job", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_dataflow_jobHandler) Read(externalID string) (*Google_dataflow_job, error) {
+	id, actual, err := bridge.Read(h.provider, "google_dataflow_job", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_dataflow_job{ Google_dataflow_job_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_dataflow_jobHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_dataflow_job", externalID)
+}
+
+type Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670_id *string `lyra:"ignore"`
+
+    Internal_ip_only *bool
+
+    Metadata *map[string]string
+
+    Network *string
+
+    Service_account *string
+
+    Service_account_scopes *[]string
+
+    Subnetwork *string
+
+    Tags *[]string
+
+    Zone *string
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_initialization_action_1671 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_initialization_action_1671_id *string `lyra:"ignore"`
+
+    Script string
+
+    Timeout_sec *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673_id *string `lyra:"ignore"`
+
+    Boot_disk_size_gb *int
+
+    Boot_disk_type *string
+
+    Num_local_ssds *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_master_config_1672 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_master_config_1672_id *string `lyra:"ignore"`
+
+    Disk_config *Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673
+
+    Instance_names *[]string
+
+    Machine_type *string
+
+    Num_instances *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675_id *string `lyra:"ignore"`
+
+    Boot_disk_size_gb *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_id *string `lyra:"ignore"`
+
+    Disk_config *Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675
+
+    Instance_names *[]string
+
+    Num_instances *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_software_config_1676 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_software_config_1676_id *string `lyra:"ignore"`
+
+    Image_version *string
+
+    Override_properties *map[string]string
+
+    Properties *map[string]string
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678_id *string `lyra:"ignore"`
+
+    Boot_disk_size_gb *int
+
+    Boot_disk_type *string
+
+    Num_local_ssds *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669_worker_config_1677 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_worker_config_1677_id *string `lyra:"ignore"`
+
+    Disk_config *Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678
+
+    Instance_names *[]string
+
+    Machine_type *string
+
+    Num_instances *int
+
+}
+
+type Google_dataproc_cluster_cluster_config_1669 struct {
+
+    Google_dataproc_cluster_cluster_config_1669_id *string `lyra:"ignore"`
+
+    Bucket *string
+
+    Delete_autogen_bucket *bool
+
+    Gce_cluster_config *Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670
+
+    Initialization_action *Google_dataproc_cluster_cluster_config_1669_initialization_action_1671
+
+    Master_config *Google_dataproc_cluster_cluster_config_1669_master_config_1672
+
+    Preemptible_worker_config *Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674
+
+    Software_config *Google_dataproc_cluster_cluster_config_1669_software_config_1676
+
+    Staging_bucket *string
+
+    Worker_config *Google_dataproc_cluster_cluster_config_1669_worker_config_1677
+
+}
+
+type Google_dataproc_cluster struct {
+
+    Google_dataproc_cluster_id *string `lyra:"ignore"`
+
+    Cluster_config *Google_dataproc_cluster_cluster_config_1669
+
+    Labels *map[string]string
+
+    Name string
+
+    Project *string
+
+    Region *string
+
+}
+
+// Google_dataproc_clusterHandler ...
+type Google_dataproc_clusterHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_dataproc_clusterHandler) Create(desired *Google_dataproc_cluster) (*Google_dataproc_cluster, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_dataproc_cluster", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_dataproc_clusterHandler) Read(externalID string) (*Google_dataproc_cluster, error) {
+	id, actual, err := bridge.Read(h.provider, "google_dataproc_cluster", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_dataproc_cluster{ Google_dataproc_cluster_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_dataproc_clusterHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_dataproc_cluster", externalID)
+}
+
+type Google_dataproc_job_hadoop_config_1679_logging_config_1680 struct {
+
+    Google_dataproc_job_hadoop_config_1679_logging_config_1680_id *string `lyra:"ignore"`
+
+    Driver_log_levels *map[string]string
+
+}
+
+type Google_dataproc_job_hadoop_config_1679 struct {
+
+    Google_dataproc_job_hadoop_config_1679_id *string `lyra:"ignore"`
+
+    Archive_uris *[]string
+
+    Args *[]string
+
+    File_uris *[]string
+
+    Jar_file_uris *[]string
+
+    Logging_config *Google_dataproc_job_hadoop_config_1679_logging_config_1680
+
+    Main_class *string
+
+    Main_jar_file_uri *string
+
+    Properties *map[string]string
+
+}
+
+type Google_dataproc_job_hive_config_1681 struct {
+
+    Google_dataproc_job_hive_config_1681_id *string `lyra:"ignore"`
+
+    Continue_on_failure *bool
+
+    Jar_file_uris *[]string
+
+    Properties *map[string]string
+
+    Query_file_uri *string
+
+    Query_list *[]string
+
+    Script_variables *map[string]string
+
+}
+
+type Google_dataproc_job_pig_config_1682_logging_config_1683 struct {
+
+    Google_dataproc_job_pig_config_1682_logging_config_1683_id *string `lyra:"ignore"`
+
+    Driver_log_levels *map[string]string
+
+}
+
+type Google_dataproc_job_pig_config_1682 struct {
+
+    Google_dataproc_job_pig_config_1682_id *string `lyra:"ignore"`
+
+    Continue_on_failure *bool
+
+    Jar_file_uris *[]string
+
+    Logging_config *Google_dataproc_job_pig_config_1682_logging_config_1683
+
+    Properties *map[string]string
+
+    Query_file_uri *string
+
+    Query_list *[]string
+
+    Script_variables *map[string]string
+
+}
+
+type Google_dataproc_job_placement_1684 struct {
+
+    Google_dataproc_job_placement_1684_id *string `lyra:"ignore"`
+
+    Cluster_name string
+
+    Cluster_uuid *string
+
+}
+
+type Google_dataproc_job_pyspark_config_1685_logging_config_1686 struct {
+
+    Google_dataproc_job_pyspark_config_1685_logging_config_1686_id *string `lyra:"ignore"`
+
+    Driver_log_levels *map[string]string
+
+}
+
+type Google_dataproc_job_pyspark_config_1685 struct {
+
+    Google_dataproc_job_pyspark_config_1685_id *string `lyra:"ignore"`
+
+    Archive_uris *[]string
+
+    Args *[]string
+
+    File_uris *[]string
+
+    Jar_file_uris *[]string
+
+    Logging_config *Google_dataproc_job_pyspark_config_1685_logging_config_1686
+
+    Main_python_file_uri string
+
+    Properties *map[string]string
+
+    Python_file_uris *[]string
+
+}
+
+type Google_dataproc_job_reference_1687 struct {
+
+    Google_dataproc_job_reference_1687_id *string `lyra:"ignore"`
+
+    Job_id *string
+
+}
+
+type Google_dataproc_job_scheduling_1688 struct {
+
+    Google_dataproc_job_scheduling_1688_id *string `lyra:"ignore"`
+
+    Max_failures_per_hour *int
+
+}
+
+type Google_dataproc_job_spark_config_1689_logging_config_1690 struct {
+
+    Google_dataproc_job_spark_config_1689_logging_config_1690_id *string `lyra:"ignore"`
+
+    Driver_log_levels *map[string]string
+
+}
+
+type Google_dataproc_job_spark_config_1689 struct {
+
+    Google_dataproc_job_spark_config_1689_id *string `lyra:"ignore"`
+
+    Archive_uris *[]string
+
+    Args *[]string
+
+    File_uris *[]string
+
+    Jar_file_uris *[]string
+
+    Logging_config *Google_dataproc_job_spark_config_1689_logging_config_1690
+
+    Main_class *string
+
+    Main_jar_file_uri *string
+
+    Properties *map[string]string
+
+}
+
+type Google_dataproc_job_sparksql_config_1691_logging_config_1692 struct {
+
+    Google_dataproc_job_sparksql_config_1691_logging_config_1692_id *string `lyra:"ignore"`
+
+    Driver_log_levels *map[string]string
+
+}
+
+type Google_dataproc_job_sparksql_config_1691 struct {
+
+    Google_dataproc_job_sparksql_config_1691_id *string `lyra:"ignore"`
+
+    Jar_file_uris *[]string
+
+    Logging_config *Google_dataproc_job_sparksql_config_1691_logging_config_1692
+
+    Properties *map[string]string
+
+    Query_file_uri *string
+
+    Query_list *[]string
+
+    Script_variables *map[string]string
+
+}
+
+type Google_dataproc_job_status_1693 struct {
+
+    Google_dataproc_job_status_1693_id *string `lyra:"ignore"`
+
+    Details *string
+
+    State *string
+
+    State_start_time *string
+
+    Substate *string
+
+}
+
+type Google_dataproc_job struct {
+
+    Google_dataproc_job_id *string `lyra:"ignore"`
+
+    Driver_controls_files_uri *string
+
+    Driver_output_resource_uri *string
+
+    Force_delete *bool
+
+    Hadoop_config *Google_dataproc_job_hadoop_config_1679
+
+    Hive_config *Google_dataproc_job_hive_config_1681
+
+    Labels *map[string]string
+
+    Pig_config *Google_dataproc_job_pig_config_1682
+
+    Placement Google_dataproc_job_placement_1684
+
+    Project *string
+
+    Pyspark_config *Google_dataproc_job_pyspark_config_1685
+
+    Reference *Google_dataproc_job_reference_1687
+
+    Region *string
+
+    Scheduling *Google_dataproc_job_scheduling_1688
+
+    Spark_config *Google_dataproc_job_spark_config_1689
+
+    Sparksql_config *Google_dataproc_job_sparksql_config_1691
+
+    Status *Google_dataproc_job_status_1693
+
+}
+
+// Google_dataproc_jobHandler ...
+type Google_dataproc_jobHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_dataproc_jobHandler) Create(desired *Google_dataproc_job) (*Google_dataproc_job, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_dataproc_job", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_dataproc_jobHandler) Read(externalID string) (*Google_dataproc_job, error) {
+	id, actual, err := bridge.Read(h.provider, "google_dataproc_job", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_dataproc_job{ Google_dataproc_job_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_dataproc_jobHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_dataproc_job", externalID)
+}
+
+type Google_dns_managed_zone struct {
+
+    Google_dns_managed_zone_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Dns_name string
+
+    Labels *map[string]string
+
+    Name string
+
+    Name_servers *[]string
+
+    Project *string
+
+}
+
+// Google_dns_managed_zoneHandler ...
+type Google_dns_managed_zoneHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_dns_managed_zoneHandler) Create(desired *Google_dns_managed_zone) (*Google_dns_managed_zone, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_dns_managed_zone", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_dns_managed_zoneHandler) Read(externalID string) (*Google_dns_managed_zone, error) {
+	id, actual, err := bridge.Read(h.provider, "google_dns_managed_zone", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_dns_managed_zone{ Google_dns_managed_zone_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_dns_managed_zoneHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_dns_managed_zone", externalID)
+}
+
+type Google_dns_record_set struct {
+
+    Google_dns_record_set_id *string `lyra:"ignore"`
+
+    Managed_zone string
+
+    Name string
+
+    Project *string
+
+    Rrdatas []string
+
+    Ttl int
+
+    Type string
+
+}
+
+// Google_dns_record_setHandler ...
+type Google_dns_record_setHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_dns_record_setHandler) Create(desired *Google_dns_record_set) (*Google_dns_record_set, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_dns_record_set", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_dns_record_setHandler) Read(externalID string) (*Google_dns_record_set, error) {
+	id, actual, err := bridge.Read(h.provider, "google_dns_record_set", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_dns_record_set{ Google_dns_record_set_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_dns_record_setHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_dns_record_set", externalID)
+}
+
+type Google_endpoints_service_apis_1694_methods_1695 struct {
+
+    Google_endpoints_service_apis_1694_methods_1695_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Request_type *string
+
+    Response_type *string
+
+    Syntax *string
+
+}
+
+type Google_endpoints_service_apis_1694 struct {
+
+    Google_endpoints_service_apis_1694_id *string `lyra:"ignore"`
+
+    Methods *Google_endpoints_service_apis_1694_methods_1695
+
+    Name *string
+
+    Syntax *string
+
+    Version *string
+
+}
+
+type Google_endpoints_service_endpoints_1696 struct {
+
+    Google_endpoints_service_endpoints_1696_id *string `lyra:"ignore"`
+
+    Address *string
+
+    Name *string
+
+}
+
+type Google_endpoints_service struct {
+
+    Google_endpoints_service_id *string `lyra:"ignore"`
+
+    Apis *Google_endpoints_service_apis_1694
+
+    Config_id *string
+
+    Dns_address *string
+
+    Endpoints *Google_endpoints_service_endpoints_1696
+
+    Grpc_config *string
+
+    Openapi_config *string
+
+    Project *string
+
+    Protoc_output *string
+
+    Protoc_output_base64 *string
+
+    Service_name string
+
+}
+
+// Google_endpoints_serviceHandler ...
+type Google_endpoints_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_endpoints_serviceHandler) Create(desired *Google_endpoints_service) (*Google_endpoints_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_endpoints_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_endpoints_serviceHandler) Read(externalID string) (*Google_endpoints_service, error) {
+	id, actual, err := bridge.Read(h.provider, "google_endpoints_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_endpoints_service{ Google_endpoints_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_endpoints_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_endpoints_service", externalID)
+}
+
+type Google_filestore_instance_file_shares_1697 struct {
+
+    Google_filestore_instance_file_shares_1697_id *string `lyra:"ignore"`
+
+    Capacity_gb int
+
+    Name string
+
+}
+
+type Google_filestore_instance_networks_1698 struct {
+
+    Google_filestore_instance_networks_1698_id *string `lyra:"ignore"`
+
+    Ip_addresses *[]string
+
+    Modes []string
+
+    Network string
+
+    Reserved_ip_range *string
+
+}
+
+type Google_filestore_instance struct {
+
+    Google_filestore_instance_id *string `lyra:"ignore"`
+
+    Create_time *string
+
+    Description *string
+
+    Etag *string
+
+    File_shares Google_filestore_instance_file_shares_1697
+
+    Labels *map[string]string
+
+    Name string
+
+    Networks Google_filestore_instance_networks_1698
+
+    Project *string
+
+    Tier string
+
+    Zone string
+
+}
+
+// Google_filestore_instanceHandler ...
+type Google_filestore_instanceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_filestore_instanceHandler) Create(desired *Google_filestore_instance) (*Google_filestore_instance, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_filestore_instance", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_filestore_instanceHandler) Read(externalID string) (*Google_filestore_instance, error) {
+	id, actual, err := bridge.Read(h.provider, "google_filestore_instance", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_filestore_instance{ Google_filestore_instance_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_filestore_instanceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_filestore_instance", externalID)
+}
+
+type Google_folder struct {
+
+    Google_folder_id *string `lyra:"ignore"`
+
+    Create_time *string
+
+    Display_name string
+
+    Lifecycle_state *string
+
+    Name *string
+
+    Parent string
+
+}
+
+// Google_folderHandler ...
+type Google_folderHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_folderHandler) Create(desired *Google_folder) (*Google_folder, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_folder", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_folderHandler) Read(externalID string) (*Google_folder, error) {
+	id, actual, err := bridge.Read(h.provider, "google_folder", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_folder{ Google_folder_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_folderHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_folder", externalID)
+}
+
+type Google_folder_iam_binding struct {
+
+    Google_folder_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Folder string
+
+    Members []string
+
+    Role string
+
+}
+
+// Google_folder_iam_bindingHandler ...
+type Google_folder_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_folder_iam_bindingHandler) Create(desired *Google_folder_iam_binding) (*Google_folder_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_folder_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_folder_iam_bindingHandler) Read(externalID string) (*Google_folder_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_folder_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_folder_iam_binding{ Google_folder_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_folder_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_folder_iam_binding", externalID)
+}
+
+type Google_folder_iam_member struct {
+
+    Google_folder_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Folder string
+
+    Member string
+
+    Role string
+
+}
+
+// Google_folder_iam_memberHandler ...
+type Google_folder_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_folder_iam_memberHandler) Create(desired *Google_folder_iam_member) (*Google_folder_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_folder_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_folder_iam_memberHandler) Read(externalID string) (*Google_folder_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_folder_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_folder_iam_member{ Google_folder_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_folder_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_folder_iam_member", externalID)
+}
+
+type Google_folder_iam_policy struct {
+
+    Google_folder_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Folder string
+
+    Policy_data string
+
+}
+
+// Google_folder_iam_policyHandler ...
+type Google_folder_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_folder_iam_policyHandler) Create(desired *Google_folder_iam_policy) (*Google_folder_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_folder_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_folder_iam_policyHandler) Read(externalID string) (*Google_folder_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_folder_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_folder_iam_policy{ Google_folder_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_folder_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_folder_iam_policy", externalID)
+}
+
+type Google_folder_organization_policy_boolean_policy_1699 struct {
+
+    Google_folder_organization_policy_boolean_policy_1699_id *string `lyra:"ignore"`
+
+    Enforced bool
+
+}
+
+type Google_folder_organization_policy_list_policy_1700_allow_1701 struct {
+
+    Google_folder_organization_policy_list_policy_1700_allow_1701_id *string `lyra:"ignore"`
+
+    All *bool
+
+    Values *[]string
+
+}
+
+type Google_folder_organization_policy_list_policy_1700_deny_1702 struct {
+
+    Google_folder_organization_policy_list_policy_1700_deny_1702_id *string `lyra:"ignore"`
+
+    All *bool
+
+    Values *[]string
+
+}
+
+type Google_folder_organization_policy_list_policy_1700 struct {
+
+    Google_folder_organization_policy_list_policy_1700_id *string `lyra:"ignore"`
+
+    Allow *Google_folder_organization_policy_list_policy_1700_allow_1701
+
+    Deny *Google_folder_organization_policy_list_policy_1700_deny_1702
+
+    Suggested_value *string
+
+}
+
+type Google_folder_organization_policy_restore_policy_1703 struct {
+
+    Google_folder_organization_policy_restore_policy_1703_id *string `lyra:"ignore"`
+
+    Default bool
+
+}
+
+type Google_folder_organization_policy struct {
+
+    Google_folder_organization_policy_id *string `lyra:"ignore"`
+
+    Boolean_policy *Google_folder_organization_policy_boolean_policy_1699
+
+    Constraint string
+
+    Etag *string
+
+    Folder string
+
+    List_policy *Google_folder_organization_policy_list_policy_1700
+
+    Restore_policy *Google_folder_organization_policy_restore_policy_1703
+
+    Update_time *string
+
+    Version *int
+
+}
 
 // Google_folder_organization_policyHandler ...
 type Google_folder_organization_policyHandler struct {
@@ -16718,8 +7600,10 @@ type Google_folder_organization_policyHandler struct {
 
 // Create ...
 func (h *Google_folder_organization_policyHandler) Create(desired *Google_folder_organization_policy) (*Google_folder_organization_policy, string, error) {
-	rState := Google_folder_organization_policyMapper(desired)
-	id, err := bridge.Create(h.provider, "google_folder_organization_policy", rState)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_folder_organization_policy", rc)
 	if err != nil {
 		return nil, "", err
 	}
@@ -16732,11 +7616,13 @@ func (h *Google_folder_organization_policyHandler) Create(desired *Google_folder
 
 // Read ...
 func (h *Google_folder_organization_policyHandler) Read(externalID string) (*Google_folder_organization_policy, error) {
-	actual, err := bridge.Read(h.provider, "google_folder_organization_policy", externalID)
+	id, actual, err := bridge.Read(h.provider, "google_folder_organization_policy", externalID)
 	if err != nil {
 		return nil, err
 	}
-	return Google_folder_organization_policyUnmapper(actual), nil
+	x := &Google_folder_organization_policy{ Google_folder_organization_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
 }
 
 // Delete ...
@@ -16744,3 +7630,4680 @@ func (h *Google_folder_organization_policyHandler) Delete(externalID string) err
 	return bridge.Delete(h.provider, "google_folder_organization_policy", externalID)
 }
 
+type Google_kms_crypto_key struct {
+
+    Google_kms_crypto_key_id *string `lyra:"ignore"`
+
+    Key_ring string
+
+    Name string
+
+    Rotation_period *string
+
+    Self_link *string
+
+}
+
+// Google_kms_crypto_keyHandler ...
+type Google_kms_crypto_keyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_crypto_keyHandler) Create(desired *Google_kms_crypto_key) (*Google_kms_crypto_key, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_crypto_key", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_crypto_keyHandler) Read(externalID string) (*Google_kms_crypto_key, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_crypto_key", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_crypto_key{ Google_kms_crypto_key_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_crypto_keyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_crypto_key", externalID)
+}
+
+type Google_kms_crypto_key_iam_binding struct {
+
+    Google_kms_crypto_key_iam_binding_id *string `lyra:"ignore"`
+
+    Crypto_key_id string
+
+    Etag *string
+
+    Members []string
+
+    Role string
+
+}
+
+// Google_kms_crypto_key_iam_bindingHandler ...
+type Google_kms_crypto_key_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_crypto_key_iam_bindingHandler) Create(desired *Google_kms_crypto_key_iam_binding) (*Google_kms_crypto_key_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_crypto_key_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_crypto_key_iam_bindingHandler) Read(externalID string) (*Google_kms_crypto_key_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_crypto_key_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_crypto_key_iam_binding{ Google_kms_crypto_key_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_crypto_key_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_crypto_key_iam_binding", externalID)
+}
+
+type Google_kms_crypto_key_iam_member struct {
+
+    Google_kms_crypto_key_iam_member_id *string `lyra:"ignore"`
+
+    Crypto_key_id string
+
+    Etag *string
+
+    Member string
+
+    Role string
+
+}
+
+// Google_kms_crypto_key_iam_memberHandler ...
+type Google_kms_crypto_key_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_crypto_key_iam_memberHandler) Create(desired *Google_kms_crypto_key_iam_member) (*Google_kms_crypto_key_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_crypto_key_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_crypto_key_iam_memberHandler) Read(externalID string) (*Google_kms_crypto_key_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_crypto_key_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_crypto_key_iam_member{ Google_kms_crypto_key_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_crypto_key_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_crypto_key_iam_member", externalID)
+}
+
+type Google_kms_key_ring struct {
+
+    Google_kms_key_ring_id *string `lyra:"ignore"`
+
+    Location string
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+}
+
+// Google_kms_key_ringHandler ...
+type Google_kms_key_ringHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_key_ringHandler) Create(desired *Google_kms_key_ring) (*Google_kms_key_ring, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_key_ring", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_key_ringHandler) Read(externalID string) (*Google_kms_key_ring, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_key_ring{ Google_kms_key_ring_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_key_ringHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_key_ring", externalID)
+}
+
+type Google_kms_key_ring_iam_binding struct {
+
+    Google_kms_key_ring_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Key_ring_id string
+
+    Members []string
+
+    Role string
+
+}
+
+// Google_kms_key_ring_iam_bindingHandler ...
+type Google_kms_key_ring_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_key_ring_iam_bindingHandler) Create(desired *Google_kms_key_ring_iam_binding) (*Google_kms_key_ring_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_key_ring_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_key_ring_iam_bindingHandler) Read(externalID string) (*Google_kms_key_ring_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_key_ring_iam_binding{ Google_kms_key_ring_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_key_ring_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_key_ring_iam_binding", externalID)
+}
+
+type Google_kms_key_ring_iam_member struct {
+
+    Google_kms_key_ring_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Key_ring_id string
+
+    Member string
+
+    Role string
+
+}
+
+// Google_kms_key_ring_iam_memberHandler ...
+type Google_kms_key_ring_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_key_ring_iam_memberHandler) Create(desired *Google_kms_key_ring_iam_member) (*Google_kms_key_ring_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_key_ring_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_key_ring_iam_memberHandler) Read(externalID string) (*Google_kms_key_ring_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_key_ring_iam_member{ Google_kms_key_ring_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_key_ring_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_key_ring_iam_member", externalID)
+}
+
+type Google_kms_key_ring_iam_policy struct {
+
+    Google_kms_key_ring_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Key_ring_id string
+
+    Policy_data string
+
+}
+
+// Google_kms_key_ring_iam_policyHandler ...
+type Google_kms_key_ring_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_kms_key_ring_iam_policyHandler) Create(desired *Google_kms_key_ring_iam_policy) (*Google_kms_key_ring_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_kms_key_ring_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_kms_key_ring_iam_policyHandler) Read(externalID string) (*Google_kms_key_ring_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_kms_key_ring_iam_policy{ Google_kms_key_ring_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_kms_key_ring_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_kms_key_ring_iam_policy", externalID)
+}
+
+type Google_logging_billing_account_exclusion struct {
+
+    Google_logging_billing_account_exclusion_id *string `lyra:"ignore"`
+
+    Billing_account string
+
+    Description *string
+
+    Disabled *bool
+
+    Filter string
+
+    Name string
+
+}
+
+// Google_logging_billing_account_exclusionHandler ...
+type Google_logging_billing_account_exclusionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_billing_account_exclusionHandler) Create(desired *Google_logging_billing_account_exclusion) (*Google_logging_billing_account_exclusion, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_billing_account_exclusion", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_billing_account_exclusionHandler) Read(externalID string) (*Google_logging_billing_account_exclusion, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_billing_account_exclusion", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_billing_account_exclusion{ Google_logging_billing_account_exclusion_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_billing_account_exclusionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_billing_account_exclusion", externalID)
+}
+
+type Google_logging_billing_account_sink struct {
+
+    Google_logging_billing_account_sink_id *string `lyra:"ignore"`
+
+    Billing_account string
+
+    Destination string
+
+    Filter *string
+
+    Name string
+
+    Writer_identity *string
+
+}
+
+// Google_logging_billing_account_sinkHandler ...
+type Google_logging_billing_account_sinkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_billing_account_sinkHandler) Create(desired *Google_logging_billing_account_sink) (*Google_logging_billing_account_sink, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_billing_account_sink", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_billing_account_sinkHandler) Read(externalID string) (*Google_logging_billing_account_sink, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_billing_account_sink", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_billing_account_sink{ Google_logging_billing_account_sink_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_billing_account_sinkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_billing_account_sink", externalID)
+}
+
+type Google_logging_folder_exclusion struct {
+
+    Google_logging_folder_exclusion_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Disabled *bool
+
+    Filter string
+
+    Folder string
+
+    Name string
+
+}
+
+// Google_logging_folder_exclusionHandler ...
+type Google_logging_folder_exclusionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_folder_exclusionHandler) Create(desired *Google_logging_folder_exclusion) (*Google_logging_folder_exclusion, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_folder_exclusion", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_folder_exclusionHandler) Read(externalID string) (*Google_logging_folder_exclusion, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_folder_exclusion", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_folder_exclusion{ Google_logging_folder_exclusion_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_folder_exclusionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_folder_exclusion", externalID)
+}
+
+type Google_logging_folder_sink struct {
+
+    Google_logging_folder_sink_id *string `lyra:"ignore"`
+
+    Destination string
+
+    Filter *string
+
+    Folder string
+
+    Include_children *bool
+
+    Name string
+
+    Writer_identity *string
+
+}
+
+// Google_logging_folder_sinkHandler ...
+type Google_logging_folder_sinkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_folder_sinkHandler) Create(desired *Google_logging_folder_sink) (*Google_logging_folder_sink, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_folder_sink", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_folder_sinkHandler) Read(externalID string) (*Google_logging_folder_sink, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_folder_sink", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_folder_sink{ Google_logging_folder_sink_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_folder_sinkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_folder_sink", externalID)
+}
+
+type Google_logging_organization_exclusion struct {
+
+    Google_logging_organization_exclusion_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Disabled *bool
+
+    Filter string
+
+    Name string
+
+    Org_id string
+
+}
+
+// Google_logging_organization_exclusionHandler ...
+type Google_logging_organization_exclusionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_organization_exclusionHandler) Create(desired *Google_logging_organization_exclusion) (*Google_logging_organization_exclusion, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_organization_exclusion", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_organization_exclusionHandler) Read(externalID string) (*Google_logging_organization_exclusion, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_organization_exclusion", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_organization_exclusion{ Google_logging_organization_exclusion_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_organization_exclusionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_organization_exclusion", externalID)
+}
+
+type Google_logging_organization_sink struct {
+
+    Google_logging_organization_sink_id *string `lyra:"ignore"`
+
+    Destination string
+
+    Filter *string
+
+    Include_children *bool
+
+    Name string
+
+    Org_id string
+
+    Writer_identity *string
+
+}
+
+// Google_logging_organization_sinkHandler ...
+type Google_logging_organization_sinkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_organization_sinkHandler) Create(desired *Google_logging_organization_sink) (*Google_logging_organization_sink, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_organization_sink", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_organization_sinkHandler) Read(externalID string) (*Google_logging_organization_sink, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_organization_sink", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_organization_sink{ Google_logging_organization_sink_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_organization_sinkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_organization_sink", externalID)
+}
+
+type Google_logging_project_exclusion struct {
+
+    Google_logging_project_exclusion_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Disabled *bool
+
+    Filter string
+
+    Name string
+
+    Project *string
+
+}
+
+// Google_logging_project_exclusionHandler ...
+type Google_logging_project_exclusionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_project_exclusionHandler) Create(desired *Google_logging_project_exclusion) (*Google_logging_project_exclusion, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_project_exclusion", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_project_exclusionHandler) Read(externalID string) (*Google_logging_project_exclusion, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_project_exclusion", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_project_exclusion{ Google_logging_project_exclusion_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_project_exclusionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_project_exclusion", externalID)
+}
+
+type Google_logging_project_sink struct {
+
+    Google_logging_project_sink_id *string `lyra:"ignore"`
+
+    Destination string
+
+    Filter *string
+
+    Name string
+
+    Project *string
+
+    Unique_writer_identity *bool
+
+    Writer_identity *string
+
+}
+
+// Google_logging_project_sinkHandler ...
+type Google_logging_project_sinkHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_logging_project_sinkHandler) Create(desired *Google_logging_project_sink) (*Google_logging_project_sink, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_logging_project_sink", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_logging_project_sinkHandler) Read(externalID string) (*Google_logging_project_sink, error) {
+	id, actual, err := bridge.Read(h.provider, "google_logging_project_sink", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_logging_project_sink{ Google_logging_project_sink_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_logging_project_sinkHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_logging_project_sink", externalID)
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706_id *string `lyra:"ignore"`
+
+    Alignment_period *string
+
+    Cross_series_reducer *string
+
+    Group_by_fields *[]string
+
+    Per_series_aligner *string
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707_id *string `lyra:"ignore"`
+
+    Count *int
+
+    Percent *float64
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_id *string `lyra:"ignore"`
+
+    Aggregations *Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706
+
+    Duration string
+
+    Filter *string
+
+    Trigger *Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709_id *string `lyra:"ignore"`
+
+    Alignment_period *string
+
+    Cross_series_reducer *string
+
+    Group_by_fields *[]string
+
+    Per_series_aligner *string
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710_id *string `lyra:"ignore"`
+
+    Alignment_period *string
+
+    Cross_series_reducer *string
+
+    Group_by_fields *[]string
+
+    Per_series_aligner *string
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711_id *string `lyra:"ignore"`
+
+    Count *int
+
+    Percent *float64
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_id *string `lyra:"ignore"`
+
+    Aggregations *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709
+
+    Comparison string
+
+    Denominator_aggregations *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710
+
+    Denominator_filter *string
+
+    Duration string
+
+    Filter *string
+
+    Threshold_value *float64
+
+    Trigger *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711
+
+}
+
+type Google_monitoring_alert_policy_conditions_1704 struct {
+
+    Google_monitoring_alert_policy_conditions_1704_id *string `lyra:"ignore"`
+
+    Condition_absent *Google_monitoring_alert_policy_conditions_1704_condition_absent_1705
+
+    Condition_threshold *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708
+
+    Display_name string
+
+    Name *string
+
+}
+
+type Google_monitoring_alert_policy_creation_record_1712 struct {
+
+    Google_monitoring_alert_policy_creation_record_1712_id *string `lyra:"ignore"`
+
+    Mutate_time *string
+
+    Mutated_by *string
+
+}
+
+type Google_monitoring_alert_policy struct {
+
+    Google_monitoring_alert_policy_id *string `lyra:"ignore"`
+
+    Combiner string
+
+    Conditions Google_monitoring_alert_policy_conditions_1704
+
+    Creation_record *Google_monitoring_alert_policy_creation_record_1712
+
+    Display_name string
+
+    Enabled bool
+
+    Labels *[]string
+
+    Name *string
+
+    Notification_channels *[]string
+
+    Project *string
+
+}
+
+// Google_monitoring_alert_policyHandler ...
+type Google_monitoring_alert_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_monitoring_alert_policyHandler) Create(desired *Google_monitoring_alert_policy) (*Google_monitoring_alert_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_monitoring_alert_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_monitoring_alert_policyHandler) Read(externalID string) (*Google_monitoring_alert_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_monitoring_alert_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_monitoring_alert_policy{ Google_monitoring_alert_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_monitoring_alert_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_monitoring_alert_policy", externalID)
+}
+
+type Google_monitoring_group struct {
+
+    Google_monitoring_group_id *string `lyra:"ignore"`
+
+    Display_name string
+
+    Filter string
+
+    Is_cluster *bool
+
+    Name *string
+
+    Parent_name *string
+
+    Project *string
+
+}
+
+// Google_monitoring_groupHandler ...
+type Google_monitoring_groupHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_monitoring_groupHandler) Create(desired *Google_monitoring_group) (*Google_monitoring_group, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_monitoring_group", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_monitoring_groupHandler) Read(externalID string) (*Google_monitoring_group, error) {
+	id, actual, err := bridge.Read(h.provider, "google_monitoring_group", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_monitoring_group{ Google_monitoring_group_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_monitoring_groupHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_monitoring_group", externalID)
+}
+
+type Google_monitoring_notification_channel struct {
+
+    Google_monitoring_notification_channel_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Display_name string
+
+    Enabled *bool
+
+    Labels *map[string]string
+
+    Name *string
+
+    Project *string
+
+    Type string
+
+    User_labels *map[string]string
+
+    Verification_status *string
+
+}
+
+// Google_monitoring_notification_channelHandler ...
+type Google_monitoring_notification_channelHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_monitoring_notification_channelHandler) Create(desired *Google_monitoring_notification_channel) (*Google_monitoring_notification_channel, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_monitoring_notification_channel", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_monitoring_notification_channelHandler) Read(externalID string) (*Google_monitoring_notification_channel, error) {
+	id, actual, err := bridge.Read(h.provider, "google_monitoring_notification_channel", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_monitoring_notification_channel{ Google_monitoring_notification_channel_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_monitoring_notification_channelHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_monitoring_notification_channel", externalID)
+}
+
+type Google_monitoring_uptime_check_config_content_matchers_1713 struct {
+
+    Google_monitoring_uptime_check_config_content_matchers_1713_id *string `lyra:"ignore"`
+
+    Content *string
+
+}
+
+type Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715 struct {
+
+    Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715_id *string `lyra:"ignore"`
+
+    Password *string
+
+    Username *string
+
+}
+
+type Google_monitoring_uptime_check_config_http_check_1714 struct {
+
+    Google_monitoring_uptime_check_config_http_check_1714_id *string `lyra:"ignore"`
+
+    Auth_info *Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715
+
+    Headers *map[string]string
+
+    Mask_headers *bool
+
+    Path *string
+
+    Port *int
+
+    Use_ssl *bool
+
+}
+
+type Google_monitoring_uptime_check_config_internal_checkers_1716 struct {
+
+    Google_monitoring_uptime_check_config_internal_checkers_1716_id *string `lyra:"ignore"`
+
+    Display_name *string
+
+    Gcp_zone *string
+
+    Name *string
+
+    Network *string
+
+    Peer_project_id *string
+
+}
+
+type Google_monitoring_uptime_check_config_monitored_resource_1717 struct {
+
+    Google_monitoring_uptime_check_config_monitored_resource_1717_id *string `lyra:"ignore"`
+
+    Labels map[string]string
+
+    Type string
+
+}
+
+type Google_monitoring_uptime_check_config_resource_group_1718 struct {
+
+    Google_monitoring_uptime_check_config_resource_group_1718_id *string `lyra:"ignore"`
+
+    Group_id *string
+
+    Resource_type *string
+
+}
+
+type Google_monitoring_uptime_check_config_tcp_check_1719 struct {
+
+    Google_monitoring_uptime_check_config_tcp_check_1719_id *string `lyra:"ignore"`
+
+    Port int
+
+}
+
+type Google_monitoring_uptime_check_config struct {
+
+    Google_monitoring_uptime_check_config_id *string `lyra:"ignore"`
+
+    Content_matchers *Google_monitoring_uptime_check_config_content_matchers_1713
+
+    Display_name string
+
+    Http_check *Google_monitoring_uptime_check_config_http_check_1714
+
+    Internal_checkers *Google_monitoring_uptime_check_config_internal_checkers_1716
+
+    Is_internal *bool
+
+    Monitored_resource *Google_monitoring_uptime_check_config_monitored_resource_1717
+
+    Name *string
+
+    Period *string
+
+    Project *string
+
+    Resource_group *Google_monitoring_uptime_check_config_resource_group_1718
+
+    Selected_regions *[]string
+
+    Tcp_check *Google_monitoring_uptime_check_config_tcp_check_1719
+
+    Timeout string
+
+}
+
+// Google_monitoring_uptime_check_configHandler ...
+type Google_monitoring_uptime_check_configHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_monitoring_uptime_check_configHandler) Create(desired *Google_monitoring_uptime_check_config) (*Google_monitoring_uptime_check_config, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_monitoring_uptime_check_config", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_monitoring_uptime_check_configHandler) Read(externalID string) (*Google_monitoring_uptime_check_config, error) {
+	id, actual, err := bridge.Read(h.provider, "google_monitoring_uptime_check_config", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_monitoring_uptime_check_config{ Google_monitoring_uptime_check_config_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_monitoring_uptime_check_configHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_monitoring_uptime_check_config", externalID)
+}
+
+type Google_organization_iam_binding struct {
+
+    Google_organization_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Members []string
+
+    Org_id string
+
+    Role string
+
+}
+
+// Google_organization_iam_bindingHandler ...
+type Google_organization_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_organization_iam_bindingHandler) Create(desired *Google_organization_iam_binding) (*Google_organization_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_organization_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_organization_iam_bindingHandler) Read(externalID string) (*Google_organization_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_organization_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_organization_iam_binding{ Google_organization_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_organization_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_organization_iam_binding", externalID)
+}
+
+type Google_organization_iam_custom_role struct {
+
+    Google_organization_iam_custom_role_id *string `lyra:"ignore"`
+
+    Deleted *bool
+
+    Description *string
+
+    Org_id string
+
+    Permissions []string
+
+    Role_id string
+
+    Stage *string
+
+    Title string
+
+}
+
+// Google_organization_iam_custom_roleHandler ...
+type Google_organization_iam_custom_roleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_organization_iam_custom_roleHandler) Create(desired *Google_organization_iam_custom_role) (*Google_organization_iam_custom_role, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_organization_iam_custom_role", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_organization_iam_custom_roleHandler) Read(externalID string) (*Google_organization_iam_custom_role, error) {
+	id, actual, err := bridge.Read(h.provider, "google_organization_iam_custom_role", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_organization_iam_custom_role{ Google_organization_iam_custom_role_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_organization_iam_custom_roleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_organization_iam_custom_role", externalID)
+}
+
+type Google_organization_iam_member struct {
+
+    Google_organization_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Member string
+
+    Org_id string
+
+    Role string
+
+}
+
+// Google_organization_iam_memberHandler ...
+type Google_organization_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_organization_iam_memberHandler) Create(desired *Google_organization_iam_member) (*Google_organization_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_organization_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_organization_iam_memberHandler) Read(externalID string) (*Google_organization_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_organization_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_organization_iam_member{ Google_organization_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_organization_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_organization_iam_member", externalID)
+}
+
+type Google_organization_iam_policy struct {
+
+    Google_organization_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Org_id string
+
+    Policy_data string
+
+}
+
+// Google_organization_iam_policyHandler ...
+type Google_organization_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_organization_iam_policyHandler) Create(desired *Google_organization_iam_policy) (*Google_organization_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_organization_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_organization_iam_policyHandler) Read(externalID string) (*Google_organization_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_organization_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_organization_iam_policy{ Google_organization_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_organization_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_organization_iam_policy", externalID)
+}
+
+type Google_organization_policy_boolean_policy_1720 struct {
+
+    Google_organization_policy_boolean_policy_1720_id *string `lyra:"ignore"`
+
+    Enforced bool
+
+}
+
+type Google_organization_policy_list_policy_1721_allow_1722 struct {
+
+    Google_organization_policy_list_policy_1721_allow_1722_id *string `lyra:"ignore"`
+
+    All *bool
+
+    Values *[]string
+
+}
+
+type Google_organization_policy_list_policy_1721_deny_1723 struct {
+
+    Google_organization_policy_list_policy_1721_deny_1723_id *string `lyra:"ignore"`
+
+    All *bool
+
+    Values *[]string
+
+}
+
+type Google_organization_policy_list_policy_1721 struct {
+
+    Google_organization_policy_list_policy_1721_id *string `lyra:"ignore"`
+
+    Allow *Google_organization_policy_list_policy_1721_allow_1722
+
+    Deny *Google_organization_policy_list_policy_1721_deny_1723
+
+    Suggested_value *string
+
+}
+
+type Google_organization_policy_restore_policy_1724 struct {
+
+    Google_organization_policy_restore_policy_1724_id *string `lyra:"ignore"`
+
+    Default bool
+
+}
+
+type Google_organization_policy struct {
+
+    Google_organization_policy_id *string `lyra:"ignore"`
+
+    Boolean_policy *Google_organization_policy_boolean_policy_1720
+
+    Constraint string
+
+    Etag *string
+
+    List_policy *Google_organization_policy_list_policy_1721
+
+    Org_id string
+
+    Restore_policy *Google_organization_policy_restore_policy_1724
+
+    Update_time *string
+
+    Version *int
+
+}
+
+// Google_organization_policyHandler ...
+type Google_organization_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_organization_policyHandler) Create(desired *Google_organization_policy) (*Google_organization_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_organization_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_organization_policyHandler) Read(externalID string) (*Google_organization_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_organization_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_organization_policy{ Google_organization_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_organization_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_organization_policy", externalID)
+}
+
+type Google_project_app_engine_1725_feature_settings_1726 struct {
+
+    Google_project_app_engine_1725_feature_settings_1726_id *string `lyra:"ignore"`
+
+    Split_health_checks *bool
+
+}
+
+type Google_project_app_engine_1725_url_dispatch_rule_1727 struct {
+
+    Google_project_app_engine_1725_url_dispatch_rule_1727_id *string `lyra:"ignore"`
+
+    Domain *string
+
+    Path *string
+
+    Service *string
+
+}
+
+type Google_project_app_engine_1725 struct {
+
+    Google_project_app_engine_1725_id *string `lyra:"ignore"`
+
+    Auth_domain *string
+
+    Code_bucket *string
+
+    Default_bucket *string
+
+    Default_hostname *string
+
+    Feature_settings *Google_project_app_engine_1725_feature_settings_1726
+
+    Gcr_domain *string
+
+    Location_id *string
+
+    Name *string
+
+    Serving_status *string
+
+    Url_dispatch_rule *Google_project_app_engine_1725_url_dispatch_rule_1727
+
+}
+
+type Google_project struct {
+
+    Google_project_id *string `lyra:"ignore"`
+
+    App_engine *Google_project_app_engine_1725
+
+    Auto_create_network *bool
+
+    Billing_account *string
+
+    Folder_id *string
+
+    Labels *map[string]string
+
+    Name string
+
+    Number *string
+
+    Org_id *string
+
+    Policy_data *string
+
+    Policy_etag *string
+
+    Project_id string
+
+    Skip_delete *bool
+
+}
+
+// Google_projectHandler ...
+type Google_projectHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_projectHandler) Create(desired *Google_project) (*Google_project, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_projectHandler) Read(externalID string) (*Google_project, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project{ Google_project_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_projectHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project", externalID)
+}
+
+type Google_project_iam_binding struct {
+
+    Google_project_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Members []string
+
+    Project *string
+
+    Role string
+
+}
+
+// Google_project_iam_bindingHandler ...
+type Google_project_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_iam_bindingHandler) Create(desired *Google_project_iam_binding) (*Google_project_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_iam_bindingHandler) Read(externalID string) (*Google_project_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_iam_binding{ Google_project_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_iam_binding", externalID)
+}
+
+type Google_project_iam_custom_role struct {
+
+    Google_project_iam_custom_role_id *string `lyra:"ignore"`
+
+    Deleted *bool
+
+    Description *string
+
+    Permissions []string
+
+    Project *string
+
+    Role_id string
+
+    Stage *string
+
+    Title string
+
+}
+
+// Google_project_iam_custom_roleHandler ...
+type Google_project_iam_custom_roleHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_iam_custom_roleHandler) Create(desired *Google_project_iam_custom_role) (*Google_project_iam_custom_role, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_iam_custom_role", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_iam_custom_roleHandler) Read(externalID string) (*Google_project_iam_custom_role, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_iam_custom_role", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_iam_custom_role{ Google_project_iam_custom_role_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_iam_custom_roleHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_iam_custom_role", externalID)
+}
+
+type Google_project_iam_member struct {
+
+    Google_project_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Member string
+
+    Project *string
+
+    Role string
+
+}
+
+// Google_project_iam_memberHandler ...
+type Google_project_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_iam_memberHandler) Create(desired *Google_project_iam_member) (*Google_project_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_iam_memberHandler) Read(externalID string) (*Google_project_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_iam_member{ Google_project_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_iam_member", externalID)
+}
+
+type Google_project_iam_policy struct {
+
+    Google_project_iam_policy_id *string `lyra:"ignore"`
+
+    Authoritative *bool
+
+    Disable_project *bool
+
+    Etag *string
+
+    Policy_data string
+
+    Project *string
+
+    Restore_policy *string
+
+}
+
+// Google_project_iam_policyHandler ...
+type Google_project_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_iam_policyHandler) Create(desired *Google_project_iam_policy) (*Google_project_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_iam_policyHandler) Read(externalID string) (*Google_project_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_iam_policy{ Google_project_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_iam_policy", externalID)
+}
+
+type Google_project_organization_policy_boolean_policy_1728 struct {
+
+    Google_project_organization_policy_boolean_policy_1728_id *string `lyra:"ignore"`
+
+    Enforced bool
+
+}
+
+type Google_project_organization_policy_list_policy_1729_allow_1730 struct {
+
+    Google_project_organization_policy_list_policy_1729_allow_1730_id *string `lyra:"ignore"`
+
+    All *bool
+
+    Values *[]string
+
+}
+
+type Google_project_organization_policy_list_policy_1729_deny_1731 struct {
+
+    Google_project_organization_policy_list_policy_1729_deny_1731_id *string `lyra:"ignore"`
+
+    All *bool
+
+    Values *[]string
+
+}
+
+type Google_project_organization_policy_list_policy_1729 struct {
+
+    Google_project_organization_policy_list_policy_1729_id *string `lyra:"ignore"`
+
+    Allow *Google_project_organization_policy_list_policy_1729_allow_1730
+
+    Deny *Google_project_organization_policy_list_policy_1729_deny_1731
+
+    Suggested_value *string
+
+}
+
+type Google_project_organization_policy_restore_policy_1732 struct {
+
+    Google_project_organization_policy_restore_policy_1732_id *string `lyra:"ignore"`
+
+    Default bool
+
+}
+
+type Google_project_organization_policy struct {
+
+    Google_project_organization_policy_id *string `lyra:"ignore"`
+
+    Boolean_policy *Google_project_organization_policy_boolean_policy_1728
+
+    Constraint string
+
+    Etag *string
+
+    List_policy *Google_project_organization_policy_list_policy_1729
+
+    Project string
+
+    Restore_policy *Google_project_organization_policy_restore_policy_1732
+
+    Update_time *string
+
+    Version *int
+
+}
+
+// Google_project_organization_policyHandler ...
+type Google_project_organization_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_organization_policyHandler) Create(desired *Google_project_organization_policy) (*Google_project_organization_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_organization_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_organization_policyHandler) Read(externalID string) (*Google_project_organization_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_organization_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_organization_policy{ Google_project_organization_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_organization_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_organization_policy", externalID)
+}
+
+type Google_project_service struct {
+
+    Google_project_service_id *string `lyra:"ignore"`
+
+    Disable_on_destroy *bool
+
+    Project *string
+
+    Service string
+
+}
+
+// Google_project_serviceHandler ...
+type Google_project_serviceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_serviceHandler) Create(desired *Google_project_service) (*Google_project_service, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_service", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_serviceHandler) Read(externalID string) (*Google_project_service, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_service", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_service{ Google_project_service_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_serviceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_service", externalID)
+}
+
+type Google_project_services struct {
+
+    Google_project_services_id *string `lyra:"ignore"`
+
+    Disable_on_destroy *bool
+
+    Project *string
+
+    Services []string
+
+}
+
+// Google_project_servicesHandler ...
+type Google_project_servicesHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_servicesHandler) Create(desired *Google_project_services) (*Google_project_services, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_services", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_servicesHandler) Read(externalID string) (*Google_project_services, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_services", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_services{ Google_project_services_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_servicesHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_services", externalID)
+}
+
+type Google_project_usage_export_bucket struct {
+
+    Google_project_usage_export_bucket_id *string `lyra:"ignore"`
+
+    Bucket_name string
+
+    Prefix *string
+
+    Project *string
+
+}
+
+// Google_project_usage_export_bucketHandler ...
+type Google_project_usage_export_bucketHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_project_usage_export_bucketHandler) Create(desired *Google_project_usage_export_bucket) (*Google_project_usage_export_bucket, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_project_usage_export_bucket", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_project_usage_export_bucketHandler) Read(externalID string) (*Google_project_usage_export_bucket, error) {
+	id, actual, err := bridge.Read(h.provider, "google_project_usage_export_bucket", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_project_usage_export_bucket{ Google_project_usage_export_bucket_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_project_usage_export_bucketHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_project_usage_export_bucket", externalID)
+}
+
+type Google_pubsub_subscription_push_config_1733 struct {
+
+    Google_pubsub_subscription_push_config_1733_id *string `lyra:"ignore"`
+
+    Attributes *map[string]string
+
+    Push_endpoint string
+
+}
+
+type Google_pubsub_subscription struct {
+
+    Google_pubsub_subscription_id *string `lyra:"ignore"`
+
+    Ack_deadline_seconds *int
+
+    Name string
+
+    Path *string
+
+    Project *string
+
+    Push_config *Google_pubsub_subscription_push_config_1733
+
+    Topic string
+
+}
+
+// Google_pubsub_subscriptionHandler ...
+type Google_pubsub_subscriptionHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_subscriptionHandler) Create(desired *Google_pubsub_subscription) (*Google_pubsub_subscription, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_subscription", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_subscriptionHandler) Read(externalID string) (*Google_pubsub_subscription, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_subscription{ Google_pubsub_subscription_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_subscriptionHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_subscription", externalID)
+}
+
+type Google_pubsub_subscription_iam_binding struct {
+
+    Google_pubsub_subscription_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Members []string
+
+    Project *string
+
+    Role string
+
+    Subscription string
+
+}
+
+// Google_pubsub_subscription_iam_bindingHandler ...
+type Google_pubsub_subscription_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_subscription_iam_bindingHandler) Create(desired *Google_pubsub_subscription_iam_binding) (*Google_pubsub_subscription_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_subscription_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_subscription_iam_bindingHandler) Read(externalID string) (*Google_pubsub_subscription_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_subscription_iam_binding{ Google_pubsub_subscription_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_subscription_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_binding", externalID)
+}
+
+type Google_pubsub_subscription_iam_member struct {
+
+    Google_pubsub_subscription_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Member string
+
+    Project *string
+
+    Role string
+
+    Subscription string
+
+}
+
+// Google_pubsub_subscription_iam_memberHandler ...
+type Google_pubsub_subscription_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_subscription_iam_memberHandler) Create(desired *Google_pubsub_subscription_iam_member) (*Google_pubsub_subscription_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_subscription_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_subscription_iam_memberHandler) Read(externalID string) (*Google_pubsub_subscription_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_subscription_iam_member{ Google_pubsub_subscription_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_subscription_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_member", externalID)
+}
+
+type Google_pubsub_subscription_iam_policy struct {
+
+    Google_pubsub_subscription_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Policy_data string
+
+    Project *string
+
+    Subscription string
+
+}
+
+// Google_pubsub_subscription_iam_policyHandler ...
+type Google_pubsub_subscription_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_subscription_iam_policyHandler) Create(desired *Google_pubsub_subscription_iam_policy) (*Google_pubsub_subscription_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_subscription_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_subscription_iam_policyHandler) Read(externalID string) (*Google_pubsub_subscription_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_subscription_iam_policy{ Google_pubsub_subscription_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_subscription_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_policy", externalID)
+}
+
+type Google_pubsub_topic struct {
+
+    Google_pubsub_topic_id *string `lyra:"ignore"`
+
+    Name string
+
+    Project *string
+
+}
+
+// Google_pubsub_topicHandler ...
+type Google_pubsub_topicHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_topicHandler) Create(desired *Google_pubsub_topic) (*Google_pubsub_topic, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_topic", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_topicHandler) Read(externalID string) (*Google_pubsub_topic, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_topic{ Google_pubsub_topic_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_topicHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_topic", externalID)
+}
+
+type Google_pubsub_topic_iam_binding struct {
+
+    Google_pubsub_topic_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Members []string
+
+    Project *string
+
+    Role string
+
+    Topic string
+
+}
+
+// Google_pubsub_topic_iam_bindingHandler ...
+type Google_pubsub_topic_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_topic_iam_bindingHandler) Create(desired *Google_pubsub_topic_iam_binding) (*Google_pubsub_topic_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_topic_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_topic_iam_bindingHandler) Read(externalID string) (*Google_pubsub_topic_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_topic_iam_binding{ Google_pubsub_topic_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_topic_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_topic_iam_binding", externalID)
+}
+
+type Google_pubsub_topic_iam_member struct {
+
+    Google_pubsub_topic_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Member string
+
+    Project *string
+
+    Role string
+
+    Topic string
+
+}
+
+// Google_pubsub_topic_iam_memberHandler ...
+type Google_pubsub_topic_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_topic_iam_memberHandler) Create(desired *Google_pubsub_topic_iam_member) (*Google_pubsub_topic_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_topic_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_topic_iam_memberHandler) Read(externalID string) (*Google_pubsub_topic_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_topic_iam_member{ Google_pubsub_topic_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_topic_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_topic_iam_member", externalID)
+}
+
+type Google_pubsub_topic_iam_policy struct {
+
+    Google_pubsub_topic_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Policy_data string
+
+    Project *string
+
+    Topic string
+
+}
+
+// Google_pubsub_topic_iam_policyHandler ...
+type Google_pubsub_topic_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_pubsub_topic_iam_policyHandler) Create(desired *Google_pubsub_topic_iam_policy) (*Google_pubsub_topic_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_pubsub_topic_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_pubsub_topic_iam_policyHandler) Read(externalID string) (*Google_pubsub_topic_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_pubsub_topic_iam_policy{ Google_pubsub_topic_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_pubsub_topic_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_pubsub_topic_iam_policy", externalID)
+}
+
+type Google_redis_instance struct {
+
+    Google_redis_instance_id *string `lyra:"ignore"`
+
+    Alternative_location_id *string
+
+    Authorized_network *string
+
+    Create_time *string
+
+    Current_location_id *string
+
+    Display_name *string
+
+    Host *string
+
+    Labels *map[string]string
+
+    Location_id *string
+
+    Memory_size_gb int
+
+    Name string
+
+    Port *int
+
+    Project *string
+
+    Redis_configs *map[string]string
+
+    Redis_version *string
+
+    Region *string
+
+    Reserved_ip_range *string
+
+    Tier *string
+
+}
+
+// Google_redis_instanceHandler ...
+type Google_redis_instanceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_redis_instanceHandler) Create(desired *Google_redis_instance) (*Google_redis_instance, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_redis_instance", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_redis_instanceHandler) Read(externalID string) (*Google_redis_instance, error) {
+	id, actual, err := bridge.Read(h.provider, "google_redis_instance", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_redis_instance{ Google_redis_instance_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_redis_instanceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_redis_instance", externalID)
+}
+
+type Google_resource_manager_lien struct {
+
+    Google_resource_manager_lien_id *string `lyra:"ignore"`
+
+    Create_time *string
+
+    Name *string
+
+    Origin string
+
+    Parent string
+
+    Reason string
+
+    Restrictions []string
+
+}
+
+// Google_resource_manager_lienHandler ...
+type Google_resource_manager_lienHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_resource_manager_lienHandler) Create(desired *Google_resource_manager_lien) (*Google_resource_manager_lien, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_resource_manager_lien", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_resource_manager_lienHandler) Read(externalID string) (*Google_resource_manager_lien, error) {
+	id, actual, err := bridge.Read(h.provider, "google_resource_manager_lien", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_resource_manager_lien{ Google_resource_manager_lien_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_resource_manager_lienHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_resource_manager_lien", externalID)
+}
+
+type Google_runtimeconfig_config struct {
+
+    Google_runtimeconfig_config_id *string `lyra:"ignore"`
+
+    Description *string
+
+    Name string
+
+    Project *string
+
+}
+
+// Google_runtimeconfig_configHandler ...
+type Google_runtimeconfig_configHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_runtimeconfig_configHandler) Create(desired *Google_runtimeconfig_config) (*Google_runtimeconfig_config, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_runtimeconfig_config", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_runtimeconfig_configHandler) Read(externalID string) (*Google_runtimeconfig_config, error) {
+	id, actual, err := bridge.Read(h.provider, "google_runtimeconfig_config", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_runtimeconfig_config{ Google_runtimeconfig_config_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_runtimeconfig_configHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_runtimeconfig_config", externalID)
+}
+
+type Google_runtimeconfig_variable struct {
+
+    Google_runtimeconfig_variable_id *string `lyra:"ignore"`
+
+    Name string
+
+    Parent string
+
+    Project *string
+
+    Text *string
+
+    Update_time *string
+
+    Value *string
+
+}
+
+// Google_runtimeconfig_variableHandler ...
+type Google_runtimeconfig_variableHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_runtimeconfig_variableHandler) Create(desired *Google_runtimeconfig_variable) (*Google_runtimeconfig_variable, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_runtimeconfig_variable", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_runtimeconfig_variableHandler) Read(externalID string) (*Google_runtimeconfig_variable, error) {
+	id, actual, err := bridge.Read(h.provider, "google_runtimeconfig_variable", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_runtimeconfig_variable{ Google_runtimeconfig_variable_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_runtimeconfig_variableHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_runtimeconfig_variable", externalID)
+}
+
+type Google_service_account struct {
+
+    Google_service_account_id *string `lyra:"ignore"`
+
+    Account_id string
+
+    Display_name *string
+
+    Email *string
+
+    Name *string
+
+    Policy_data *string
+
+    Project *string
+
+    Unique_id *string
+
+}
+
+// Google_service_accountHandler ...
+type Google_service_accountHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_service_accountHandler) Create(desired *Google_service_account) (*Google_service_account, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_service_account", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_service_accountHandler) Read(externalID string) (*Google_service_account, error) {
+	id, actual, err := bridge.Read(h.provider, "google_service_account", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_service_account{ Google_service_account_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_service_accountHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_service_account", externalID)
+}
+
+type Google_service_account_iam_binding struct {
+
+    Google_service_account_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Members []string
+
+    Role string
+
+    Service_account_id string
+
+}
+
+// Google_service_account_iam_bindingHandler ...
+type Google_service_account_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_service_account_iam_bindingHandler) Create(desired *Google_service_account_iam_binding) (*Google_service_account_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_service_account_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_service_account_iam_bindingHandler) Read(externalID string) (*Google_service_account_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_service_account_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_service_account_iam_binding{ Google_service_account_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_service_account_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_service_account_iam_binding", externalID)
+}
+
+type Google_service_account_iam_member struct {
+
+    Google_service_account_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Member string
+
+    Role string
+
+    Service_account_id string
+
+}
+
+// Google_service_account_iam_memberHandler ...
+type Google_service_account_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_service_account_iam_memberHandler) Create(desired *Google_service_account_iam_member) (*Google_service_account_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_service_account_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_service_account_iam_memberHandler) Read(externalID string) (*Google_service_account_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_service_account_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_service_account_iam_member{ Google_service_account_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_service_account_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_service_account_iam_member", externalID)
+}
+
+type Google_service_account_iam_policy struct {
+
+    Google_service_account_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Policy_data string
+
+    Service_account_id string
+
+}
+
+// Google_service_account_iam_policyHandler ...
+type Google_service_account_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_service_account_iam_policyHandler) Create(desired *Google_service_account_iam_policy) (*Google_service_account_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_service_account_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_service_account_iam_policyHandler) Read(externalID string) (*Google_service_account_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_service_account_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_service_account_iam_policy{ Google_service_account_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_service_account_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_service_account_iam_policy", externalID)
+}
+
+type Google_service_account_key struct {
+
+    Google_service_account_key_id *string `lyra:"ignore"`
+
+    Key_algorithm *string
+
+    Name *string
+
+    Pgp_key *string
+
+    Private_key *string
+
+    Private_key_encrypted *string
+
+    Private_key_fingerprint *string
+
+    Private_key_type *string
+
+    Public_key *string
+
+    Public_key_type *string
+
+    Service_account_id string
+
+    Valid_after *string
+
+    Valid_before *string
+
+}
+
+// Google_service_account_keyHandler ...
+type Google_service_account_keyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_service_account_keyHandler) Create(desired *Google_service_account_key) (*Google_service_account_key, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_service_account_key", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_service_account_keyHandler) Read(externalID string) (*Google_service_account_key, error) {
+	id, actual, err := bridge.Read(h.provider, "google_service_account_key", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_service_account_key{ Google_service_account_key_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_service_account_keyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_service_account_key", externalID)
+}
+
+type Google_sourcerepo_repository struct {
+
+    Google_sourcerepo_repository_id *string `lyra:"ignore"`
+
+    Name string
+
+    Project *string
+
+    Size *int
+
+    Url *string
+
+}
+
+// Google_sourcerepo_repositoryHandler ...
+type Google_sourcerepo_repositoryHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_sourcerepo_repositoryHandler) Create(desired *Google_sourcerepo_repository) (*Google_sourcerepo_repository, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_sourcerepo_repository", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_sourcerepo_repositoryHandler) Read(externalID string) (*Google_sourcerepo_repository, error) {
+	id, actual, err := bridge.Read(h.provider, "google_sourcerepo_repository", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_sourcerepo_repository{ Google_sourcerepo_repository_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_sourcerepo_repositoryHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_sourcerepo_repository", externalID)
+}
+
+type Google_spanner_database struct {
+
+    Google_spanner_database_id *string `lyra:"ignore"`
+
+    Ddl *[]string
+
+    Instance string
+
+    Name string
+
+    Project *string
+
+    State *string
+
+}
+
+// Google_spanner_databaseHandler ...
+type Google_spanner_databaseHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_databaseHandler) Create(desired *Google_spanner_database) (*Google_spanner_database, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_database", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_databaseHandler) Read(externalID string) (*Google_spanner_database, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_database", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_database{ Google_spanner_database_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_databaseHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_database", externalID)
+}
+
+type Google_spanner_database_iam_binding struct {
+
+    Google_spanner_database_iam_binding_id *string `lyra:"ignore"`
+
+    Database string
+
+    Etag *string
+
+    Instance string
+
+    Members []string
+
+    Project *string
+
+    Role string
+
+}
+
+// Google_spanner_database_iam_bindingHandler ...
+type Google_spanner_database_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_database_iam_bindingHandler) Create(desired *Google_spanner_database_iam_binding) (*Google_spanner_database_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_database_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_database_iam_bindingHandler) Read(externalID string) (*Google_spanner_database_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_database_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_database_iam_binding{ Google_spanner_database_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_database_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_database_iam_binding", externalID)
+}
+
+type Google_spanner_database_iam_member struct {
+
+    Google_spanner_database_iam_member_id *string `lyra:"ignore"`
+
+    Database string
+
+    Etag *string
+
+    Instance string
+
+    Member string
+
+    Project *string
+
+    Role string
+
+}
+
+// Google_spanner_database_iam_memberHandler ...
+type Google_spanner_database_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_database_iam_memberHandler) Create(desired *Google_spanner_database_iam_member) (*Google_spanner_database_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_database_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_database_iam_memberHandler) Read(externalID string) (*Google_spanner_database_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_database_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_database_iam_member{ Google_spanner_database_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_database_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_database_iam_member", externalID)
+}
+
+type Google_spanner_database_iam_policy struct {
+
+    Google_spanner_database_iam_policy_id *string `lyra:"ignore"`
+
+    Database string
+
+    Etag *string
+
+    Instance string
+
+    Policy_data string
+
+    Project *string
+
+}
+
+// Google_spanner_database_iam_policyHandler ...
+type Google_spanner_database_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_database_iam_policyHandler) Create(desired *Google_spanner_database_iam_policy) (*Google_spanner_database_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_database_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_database_iam_policyHandler) Read(externalID string) (*Google_spanner_database_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_database_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_database_iam_policy{ Google_spanner_database_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_database_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_database_iam_policy", externalID)
+}
+
+type Google_spanner_instance struct {
+
+    Google_spanner_instance_id *string `lyra:"ignore"`
+
+    Config string
+
+    Display_name string
+
+    Labels *map[string]string
+
+    Name *string
+
+    Num_nodes *int
+
+    Project *string
+
+    State *string
+
+}
+
+// Google_spanner_instanceHandler ...
+type Google_spanner_instanceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_instanceHandler) Create(desired *Google_spanner_instance) (*Google_spanner_instance, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_instance", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_instanceHandler) Read(externalID string) (*Google_spanner_instance, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_instance", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_instance{ Google_spanner_instance_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_instanceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_instance", externalID)
+}
+
+type Google_spanner_instance_iam_binding struct {
+
+    Google_spanner_instance_iam_binding_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Instance string
+
+    Members []string
+
+    Project *string
+
+    Role string
+
+}
+
+// Google_spanner_instance_iam_bindingHandler ...
+type Google_spanner_instance_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_instance_iam_bindingHandler) Create(desired *Google_spanner_instance_iam_binding) (*Google_spanner_instance_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_instance_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_instance_iam_bindingHandler) Read(externalID string) (*Google_spanner_instance_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_instance_iam_binding{ Google_spanner_instance_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_instance_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_instance_iam_binding", externalID)
+}
+
+type Google_spanner_instance_iam_member struct {
+
+    Google_spanner_instance_iam_member_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Instance string
+
+    Member string
+
+    Project *string
+
+    Role string
+
+}
+
+// Google_spanner_instance_iam_memberHandler ...
+type Google_spanner_instance_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_instance_iam_memberHandler) Create(desired *Google_spanner_instance_iam_member) (*Google_spanner_instance_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_instance_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_instance_iam_memberHandler) Read(externalID string) (*Google_spanner_instance_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_instance_iam_member{ Google_spanner_instance_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_instance_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_instance_iam_member", externalID)
+}
+
+type Google_spanner_instance_iam_policy struct {
+
+    Google_spanner_instance_iam_policy_id *string `lyra:"ignore"`
+
+    Etag *string
+
+    Instance string
+
+    Policy_data string
+
+    Project *string
+
+}
+
+// Google_spanner_instance_iam_policyHandler ...
+type Google_spanner_instance_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_spanner_instance_iam_policyHandler) Create(desired *Google_spanner_instance_iam_policy) (*Google_spanner_instance_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_spanner_instance_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_spanner_instance_iam_policyHandler) Read(externalID string) (*Google_spanner_instance_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_spanner_instance_iam_policy{ Google_spanner_instance_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_spanner_instance_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_spanner_instance_iam_policy", externalID)
+}
+
+type Google_sql_database struct {
+
+    Google_sql_database_id *string `lyra:"ignore"`
+
+    Charset *string
+
+    Collation *string
+
+    Instance string
+
+    Name string
+
+    Project *string
+
+    Self_link *string
+
+}
+
+// Google_sql_databaseHandler ...
+type Google_sql_databaseHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_sql_databaseHandler) Create(desired *Google_sql_database) (*Google_sql_database, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_sql_database", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_sql_databaseHandler) Read(externalID string) (*Google_sql_database, error) {
+	id, actual, err := bridge.Read(h.provider, "google_sql_database", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_sql_database{ Google_sql_database_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_sql_databaseHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_sql_database", externalID)
+}
+
+type Google_sql_database_instance_ip_address_1734 struct {
+
+    Google_sql_database_instance_ip_address_1734_id *string `lyra:"ignore"`
+
+    Ip_address *string
+
+    Time_to_retire *string
+
+}
+
+type Google_sql_database_instance_replica_configuration_1735 struct {
+
+    Google_sql_database_instance_replica_configuration_1735_id *string `lyra:"ignore"`
+
+    Ca_certificate *string
+
+    Client_certificate *string
+
+    Client_key *string
+
+    Connect_retry_interval *int
+
+    Dump_file_path *string
+
+    Failover_target *bool
+
+    Master_heartbeat_period *int
+
+    Password *string
+
+    Ssl_cipher *string
+
+    Username *string
+
+    Verify_server_certificate *bool
+
+}
+
+type Google_sql_database_instance_server_ca_cert_1736 struct {
+
+    Google_sql_database_instance_server_ca_cert_1736_id *string `lyra:"ignore"`
+
+    Cert *string
+
+    Common_name *string
+
+    Create_time *string
+
+    Expiration_time *string
+
+    Sha1_fingerprint *string
+
+}
+
+type Google_sql_database_instance_settings_1737_backup_configuration_1738 struct {
+
+    Google_sql_database_instance_settings_1737_backup_configuration_1738_id *string `lyra:"ignore"`
+
+    Binary_log_enabled *bool
+
+    Enabled *bool
+
+    Start_time *string
+
+}
+
+type Google_sql_database_instance_settings_1737_database_flags_1739 struct {
+
+    Google_sql_database_instance_settings_1737_database_flags_1739_id *string `lyra:"ignore"`
+
+    Name *string
+
+    Value *string
+
+}
+
+type Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741 struct {
+
+    Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741_id *string `lyra:"ignore"`
+
+    Expiration_time *string
+
+    Name *string
+
+    Value *string
+
+}
+
+type Google_sql_database_instance_settings_1737_ip_configuration_1740 struct {
+
+    Google_sql_database_instance_settings_1737_ip_configuration_1740_id *string `lyra:"ignore"`
+
+    Authorized_networks *Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741
+
+    Ipv4_enabled *bool
+
+    Private_network *string
+
+    Require_ssl *bool
+
+}
+
+type Google_sql_database_instance_settings_1737_location_preference_1742 struct {
+
+    Google_sql_database_instance_settings_1737_location_preference_1742_id *string `lyra:"ignore"`
+
+    Follow_gae_application *string
+
+    Zone *string
+
+}
+
+type Google_sql_database_instance_settings_1737_maintenance_window_1743 struct {
+
+    Google_sql_database_instance_settings_1737_maintenance_window_1743_id *string `lyra:"ignore"`
+
+    Day *int
+
+    Hour *int
+
+    Update_track *string
+
+}
+
+type Google_sql_database_instance_settings_1737 struct {
+
+    Google_sql_database_instance_settings_1737_id *string `lyra:"ignore"`
+
+    Activation_policy *string
+
+    Authorized_gae_applications *[]string
+
+    Availability_type *string
+
+    Backup_configuration *Google_sql_database_instance_settings_1737_backup_configuration_1738
+
+    Crash_safe_replication *bool
+
+    Database_flags *Google_sql_database_instance_settings_1737_database_flags_1739
+
+    Disk_autoresize *bool
+
+    Disk_size *int
+
+    Disk_type *string
+
+    Ip_configuration *Google_sql_database_instance_settings_1737_ip_configuration_1740
+
+    Location_preference *Google_sql_database_instance_settings_1737_location_preference_1742
+
+    Maintenance_window *Google_sql_database_instance_settings_1737_maintenance_window_1743
+
+    Pricing_plan *string
+
+    Replication_type *string
+
+    Tier string
+
+    User_labels *map[string]string
+
+    Version *int
+
+}
+
+type Google_sql_database_instance struct {
+
+    Google_sql_database_instance_id *string `lyra:"ignore"`
+
+    Connection_name *string
+
+    Database_version *string
+
+    First_ip_address *string
+
+    Ip_address *Google_sql_database_instance_ip_address_1734
+
+    Master_instance_name *string
+
+    Name *string
+
+    Project *string
+
+    Region *string
+
+    Replica_configuration *Google_sql_database_instance_replica_configuration_1735
+
+    Self_link *string
+
+    Server_ca_cert *Google_sql_database_instance_server_ca_cert_1736
+
+    Service_account_email_address *string
+
+    Settings Google_sql_database_instance_settings_1737
+
+}
+
+// Google_sql_database_instanceHandler ...
+type Google_sql_database_instanceHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_sql_database_instanceHandler) Create(desired *Google_sql_database_instance) (*Google_sql_database_instance, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_sql_database_instance", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_sql_database_instanceHandler) Read(externalID string) (*Google_sql_database_instance, error) {
+	id, actual, err := bridge.Read(h.provider, "google_sql_database_instance", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_sql_database_instance{ Google_sql_database_instance_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_sql_database_instanceHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_sql_database_instance", externalID)
+}
+
+type Google_sql_ssl_cert struct {
+
+    Google_sql_ssl_cert_id *string `lyra:"ignore"`
+
+    Cert *string
+
+    Cert_serial_number *string
+
+    Common_name string
+
+    Create_time *string
+
+    Expiration_time *string
+
+    Instance string
+
+    Private_key *string
+
+    Server_ca_cert *string
+
+    Sha1_fingerprint *string
+
+}
+
+// Google_sql_ssl_certHandler ...
+type Google_sql_ssl_certHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_sql_ssl_certHandler) Create(desired *Google_sql_ssl_cert) (*Google_sql_ssl_cert, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_sql_ssl_cert", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_sql_ssl_certHandler) Read(externalID string) (*Google_sql_ssl_cert, error) {
+	id, actual, err := bridge.Read(h.provider, "google_sql_ssl_cert", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_sql_ssl_cert{ Google_sql_ssl_cert_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_sql_ssl_certHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_sql_ssl_cert", externalID)
+}
+
+type Google_sql_user struct {
+
+    Google_sql_user_id *string `lyra:"ignore"`
+
+    Host *string
+
+    Instance string
+
+    Name string
+
+    Password *string
+
+    Project *string
+
+}
+
+// Google_sql_userHandler ...
+type Google_sql_userHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_sql_userHandler) Create(desired *Google_sql_user) (*Google_sql_user, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_sql_user", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_sql_userHandler) Read(externalID string) (*Google_sql_user, error) {
+	id, actual, err := bridge.Read(h.provider, "google_sql_user", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_sql_user{ Google_sql_user_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_sql_userHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_sql_user", externalID)
+}
+
+type Google_storage_bucket_cors_1744 struct {
+
+    Google_storage_bucket_cors_1744_id *string `lyra:"ignore"`
+
+    Max_age_seconds *int
+
+    Method *[]string
+
+    Origin *[]string
+
+    Response_header *[]string
+
+}
+
+type Google_storage_bucket_encryption_1745 struct {
+
+    Google_storage_bucket_encryption_1745_id *string `lyra:"ignore"`
+
+    Default_kms_key_name string
+
+}
+
+type Google_storage_bucket_lifecycle_rule_1746_action_1747 struct {
+
+    Google_storage_bucket_lifecycle_rule_1746_action_1747_id *string `lyra:"ignore"`
+
+    Storage_class *string
+
+    Type string
+
+}
+
+type Google_storage_bucket_lifecycle_rule_1746_condition_1748 struct {
+
+    Google_storage_bucket_lifecycle_rule_1746_condition_1748_id *string `lyra:"ignore"`
+
+    Age *int
+
+    Created_before *string
+
+    Is_live *bool
+
+    Matches_storage_class *[]string
+
+    Num_newer_versions *int
+
+}
+
+type Google_storage_bucket_lifecycle_rule_1746 struct {
+
+    Google_storage_bucket_lifecycle_rule_1746_id *string `lyra:"ignore"`
+
+    Action Google_storage_bucket_lifecycle_rule_1746_action_1747
+
+    Condition Google_storage_bucket_lifecycle_rule_1746_condition_1748
+
+}
+
+type Google_storage_bucket_logging_1749 struct {
+
+    Google_storage_bucket_logging_1749_id *string `lyra:"ignore"`
+
+    Log_bucket string
+
+    Log_object_prefix *string
+
+}
+
+type Google_storage_bucket_versioning_1750 struct {
+
+    Google_storage_bucket_versioning_1750_id *string `lyra:"ignore"`
+
+    Enabled *bool
+
+}
+
+type Google_storage_bucket_website_1751 struct {
+
+    Google_storage_bucket_website_1751_id *string `lyra:"ignore"`
+
+    Main_page_suffix *string
+
+    Not_found_page *string
+
+}
+
+type Google_storage_bucket struct {
+
+    Google_storage_bucket_id *string `lyra:"ignore"`
+
+    Cors *Google_storage_bucket_cors_1744
+
+    Encryption *Google_storage_bucket_encryption_1745
+
+    Force_destroy *bool
+
+    Labels *map[string]string
+
+    Lifecycle_rule *Google_storage_bucket_lifecycle_rule_1746
+
+    Location *string
+
+    Logging *Google_storage_bucket_logging_1749
+
+    Name string
+
+    Predefined_acl *string
+
+    Project *string
+
+    Self_link *string
+
+    Storage_class *string
+
+    Url *string
+
+    Versioning *Google_storage_bucket_versioning_1750
+
+    Website *Google_storage_bucket_website_1751
+
+}
+
+// Google_storage_bucketHandler ...
+type Google_storage_bucketHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_bucketHandler) Create(desired *Google_storage_bucket) (*Google_storage_bucket, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_bucket", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_bucketHandler) Read(externalID string) (*Google_storage_bucket, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_bucket", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_bucket{ Google_storage_bucket_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_bucketHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_bucket", externalID)
+}
+
+type Google_storage_bucket_acl struct {
+
+    Google_storage_bucket_acl_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Default_acl *string
+
+    Predefined_acl *string
+
+    Role_entity *[]string
+
+}
+
+// Google_storage_bucket_aclHandler ...
+type Google_storage_bucket_aclHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_bucket_aclHandler) Create(desired *Google_storage_bucket_acl) (*Google_storage_bucket_acl, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_bucket_acl", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_bucket_aclHandler) Read(externalID string) (*Google_storage_bucket_acl, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_acl", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_bucket_acl{ Google_storage_bucket_acl_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_bucket_aclHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_bucket_acl", externalID)
+}
+
+type Google_storage_bucket_iam_binding struct {
+
+    Google_storage_bucket_iam_binding_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Etag *string
+
+    Members []string
+
+    Role string
+
+}
+
+// Google_storage_bucket_iam_bindingHandler ...
+type Google_storage_bucket_iam_bindingHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_bucket_iam_bindingHandler) Create(desired *Google_storage_bucket_iam_binding) (*Google_storage_bucket_iam_binding, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_bucket_iam_binding", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_bucket_iam_bindingHandler) Read(externalID string) (*Google_storage_bucket_iam_binding, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_binding", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_bucket_iam_binding{ Google_storage_bucket_iam_binding_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_bucket_iam_bindingHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_bucket_iam_binding", externalID)
+}
+
+type Google_storage_bucket_iam_member struct {
+
+    Google_storage_bucket_iam_member_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Etag *string
+
+    Member string
+
+    Role string
+
+}
+
+// Google_storage_bucket_iam_memberHandler ...
+type Google_storage_bucket_iam_memberHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_bucket_iam_memberHandler) Create(desired *Google_storage_bucket_iam_member) (*Google_storage_bucket_iam_member, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_bucket_iam_member", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_bucket_iam_memberHandler) Read(externalID string) (*Google_storage_bucket_iam_member, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_member", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_bucket_iam_member{ Google_storage_bucket_iam_member_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_bucket_iam_memberHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_bucket_iam_member", externalID)
+}
+
+type Google_storage_bucket_iam_policy struct {
+
+    Google_storage_bucket_iam_policy_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Etag *string
+
+    Policy_data string
+
+}
+
+// Google_storage_bucket_iam_policyHandler ...
+type Google_storage_bucket_iam_policyHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_bucket_iam_policyHandler) Create(desired *Google_storage_bucket_iam_policy) (*Google_storage_bucket_iam_policy, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_bucket_iam_policy", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_bucket_iam_policyHandler) Read(externalID string) (*Google_storage_bucket_iam_policy, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_policy", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_bucket_iam_policy{ Google_storage_bucket_iam_policy_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_bucket_iam_policyHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_bucket_iam_policy", externalID)
+}
+
+type Google_storage_bucket_object struct {
+
+    Google_storage_bucket_object_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Cache_control *string
+
+    Content *string
+
+    Content_disposition *string
+
+    Content_encoding *string
+
+    Content_language *string
+
+    Content_type *string
+
+    Crc32c *string
+
+    Detect_md5hash *string
+
+    Md5hash *string
+
+    Name string
+
+    Predefined_acl *string
+
+    Source *string
+
+    Storage_class *string
+
+}
+
+// Google_storage_bucket_objectHandler ...
+type Google_storage_bucket_objectHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_bucket_objectHandler) Create(desired *Google_storage_bucket_object) (*Google_storage_bucket_object, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_bucket_object", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_bucket_objectHandler) Read(externalID string) (*Google_storage_bucket_object, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_object", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_bucket_object{ Google_storage_bucket_object_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_bucket_objectHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_bucket_object", externalID)
+}
+
+type Google_storage_default_object_access_control_project_team_1752 struct {
+
+    Google_storage_default_object_access_control_project_team_1752_id *string `lyra:"ignore"`
+
+    Project_number *string
+
+    Team *string
+
+}
+
+type Google_storage_default_object_access_control struct {
+
+    Google_storage_default_object_access_control_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Domain *string
+
+    Email *string
+
+    Entity string
+
+    Entity_id *string
+
+    Generation *int
+
+    Object *string
+
+    Project_team *Google_storage_default_object_access_control_project_team_1752
+
+    Role string
+
+}
+
+// Google_storage_default_object_access_controlHandler ...
+type Google_storage_default_object_access_controlHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_default_object_access_controlHandler) Create(desired *Google_storage_default_object_access_control) (*Google_storage_default_object_access_control, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_default_object_access_control", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_default_object_access_controlHandler) Read(externalID string) (*Google_storage_default_object_access_control, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_default_object_access_control", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_default_object_access_control{ Google_storage_default_object_access_control_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_default_object_access_controlHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_default_object_access_control", externalID)
+}
+
+type Google_storage_default_object_acl struct {
+
+    Google_storage_default_object_acl_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Role_entity *[]string
+
+}
+
+// Google_storage_default_object_aclHandler ...
+type Google_storage_default_object_aclHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_default_object_aclHandler) Create(desired *Google_storage_default_object_acl) (*Google_storage_default_object_acl, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_default_object_acl", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_default_object_aclHandler) Read(externalID string) (*Google_storage_default_object_acl, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_default_object_acl", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_default_object_acl{ Google_storage_default_object_acl_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_default_object_aclHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_default_object_acl", externalID)
+}
+
+type Google_storage_notification struct {
+
+    Google_storage_notification_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Custom_attributes *map[string]string
+
+    Event_types *[]string
+
+    Object_name_prefix *string
+
+    Payload_format string
+
+    Self_link *string
+
+    Topic string
+
+}
+
+// Google_storage_notificationHandler ...
+type Google_storage_notificationHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_notificationHandler) Create(desired *Google_storage_notification) (*Google_storage_notification, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_notification", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_notificationHandler) Read(externalID string) (*Google_storage_notification, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_notification", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_notification{ Google_storage_notification_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_notificationHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_notification", externalID)
+}
+
+type Google_storage_object_access_control_project_team_1753 struct {
+
+    Google_storage_object_access_control_project_team_1753_id *string `lyra:"ignore"`
+
+    Project_number *string
+
+    Team *string
+
+}
+
+type Google_storage_object_access_control struct {
+
+    Google_storage_object_access_control_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Domain *string
+
+    Email *string
+
+    Entity string
+
+    Entity_id *string
+
+    Generation *int
+
+    Object string
+
+    Project_team *Google_storage_object_access_control_project_team_1753
+
+    Role string
+
+}
+
+// Google_storage_object_access_controlHandler ...
+type Google_storage_object_access_controlHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_object_access_controlHandler) Create(desired *Google_storage_object_access_control) (*Google_storage_object_access_control, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_object_access_control", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_object_access_controlHandler) Read(externalID string) (*Google_storage_object_access_control, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_object_access_control", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_object_access_control{ Google_storage_object_access_control_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_object_access_controlHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_object_access_control", externalID)
+}
+
+type Google_storage_object_acl struct {
+
+    Google_storage_object_acl_id *string `lyra:"ignore"`
+
+    Bucket string
+
+    Object string
+
+    Predefined_acl *string
+
+    Role_entity *[]string
+
+}
+
+// Google_storage_object_aclHandler ...
+type Google_storage_object_aclHandler struct {
+	provider *schema.Provider
+}
+
+// Create ...
+func (h *Google_storage_object_aclHandler) Create(desired *Google_storage_object_acl) (*Google_storage_object_acl, string, error) {
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	id, err := bridge.Create(h.provider, "google_storage_object_acl", rc)
+	if err != nil {
+		return nil, "", err
+	}
+	actual, err := h.Read(id)
+	if err != nil {
+		return nil, "", err
+	}
+	return actual, id, nil
+}
+
+// Read ...
+func (h *Google_storage_object_aclHandler) Read(externalID string) (*Google_storage_object_acl, error) {
+	id, actual, err := bridge.Read(h.provider, "google_storage_object_acl", externalID)
+	if err != nil {
+		return nil, err
+	}
+	x := &Google_storage_object_acl{ Google_storage_object_acl_id: &id }
+	bridge.TerraformUnmarshal(actual, x)
+	return x, nil
+}
+
+// Delete ...
+func (h *Google_storage_object_aclHandler) Delete(externalID string) error {
+	return bridge.Delete(h.provider, "google_storage_object_acl", externalID)
+}
