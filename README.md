@@ -32,10 +32,12 @@ The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [g
 
 > **!! WARNING: THIS WORKFLOW CREATES REAL RESOURCES ($$) !!**
 
-1. Run the binary with the [sample Workflow](https://github.com/lyraproj/lyra/blob/master/plugins/.yaml): ` $ ./build/lyra apply aws_vpc_yaml.yaml --debug`
+1. Run the binary with the [sample Workflow](plugins/aws_vpc_yaml.yaml): ` $ ./build/lyra apply aws_vpc_yaml --debug`
 2. Delete the Workflow (i.e. its resources), run ` $ ./build/lyra delete aws_vpc_yaml --debug`.  
 
-This workflow is an AWS Workflow called `aws_vpc_yaml` in `plugins\aws_vpc_yaml.yaml`. This will use the default AWS credentials configured in your `~/.aws/credentials`. Region is currently hard-coded to `eu-west-1`. 
+This workflow is an AWS Workflow called `aws_vpc_yaml` in `plugins\aws_vpc_yaml.yaml`. This will use the default AWS credentials configured in your `~/.aws/credentials`. 
+
+For the examples using Terraform providers (e.g. `typespace=>'TerraformAws'`), region is currently hard-coded to `eu-west-1`. For non-Terraform providers (e.g. `typespace=>'aws'`), Lyra will use the default region supplied in your `~/.aws/config`. 
 
 
 ### Deploying Workflows with Kubernetes
