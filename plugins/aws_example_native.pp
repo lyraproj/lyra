@@ -1,6 +1,6 @@
 # this attachnative workflow relies on types in aaws.pp (it is so-named because files are read in alphabetical order)
 # the contents of that file can be generated, refer to TestGeneratePuppetTypes in register_types_test.go
-workflow attachnative {
+workflow aws_example_native {
   typespace => 'aws::native',
   input => (
     Hash[String,String] $tags = lookup('aws.tags'),

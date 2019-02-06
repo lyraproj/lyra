@@ -1,4 +1,4 @@
-attachterraformyaml:
+aws_vpc_instance_tf_yaml:
   typespace: TerraformAws
   input:
     tags:

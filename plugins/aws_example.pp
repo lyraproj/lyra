@@ -5,7 +5,7 @@ $route = Aws::Route(
 )
 $routes = [$route]
 
-workflow attach {
+workflow aws_example {
   typespace => 'aws',
   input => (
     Hash[String,String] $tags = lookup('aws.tags'),
