@@ -43,11 +43,11 @@ func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData m
 }
 
 func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wfapi.Operation) {
+	m := convertToDeepMap(hieraData)
+	hclog.Default().Debug("converted map to hiera data", "m", m)
+	v := eval.Wrap(nil, m).(eval.OrderedMap)
 	tp := func(ic lookup.ProviderContext, key string, _ map[string]eval.Value) (eval.Value, bool) {
-		m := convertToDeepMap(hieraData)
-		hclog.Default().Debug("converted map to hiera data", "m", m)
-		v := eval.Wrap(nil, m).(eval.OrderedMap)
-		return v, true
+		return v.Get4(key)
 	}
 	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName, intent))
 }
