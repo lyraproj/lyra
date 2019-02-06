@@ -3,6 +3,7 @@ package apply
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 	"github.com/lyraproj/hiera/lookup"
 	"github.com/lyraproj/hiera/provider"
@@ -19,6 +20,7 @@ import (
 	"gopkg.in/src-d/enry.v1"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
@@ -42,10 +44,35 @@ func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData m
 
 func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wfapi.Operation) {
 	tp := func(ic lookup.ProviderContext, key string, _ map[string]eval.Value) (eval.Value, bool) {
-		v, ok := hieraData[key]
-		return types.WrapString(v), ok
+		m := convertToDeepMap(hieraData)
+		hclog.Default().Debug("converted map to hiera data", "m", m)
+		v := eval.Wrap(nil, m).(eval.OrderedMap)
+		return v, true
 	}
 	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName, intent))
+}
+
+//convertToDeepMap converts a map[string]string with entries like {k:"aws.tags.created_by", v:"user@company.com"}
+//to a recursive map[string]interface{} with a key created_by nested under a key tags nested under a key aws
+//e.g. output map[aws:map[tags:map[created_by:person@company.com lifetime:2hrs] hello:hi]]
+func convertToDeepMap(hieraData map[string]string) map[string]interface{} {
+	output := make(map[string]interface{})
+	for k, v := range hieraData {
+		current := output
+		tokens := strings.Split(k, ".")
+		len := len(tokens)
+		for index, token := range tokens {
+			if index == len-1 {
+				current[token] = v
+			} else {
+				if _, ok := current[token]; !ok {
+					current[token] = make(map[string]interface{})
+				}
+				current = current[token].(map[string]interface{})
+			}
+		}
+	}
+	return output
 }
 
 // DeleteWorkflowWithHieraData will delete the named workflow with the supplied hiera data
