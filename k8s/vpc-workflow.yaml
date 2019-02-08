@@ -4,4 +4,10 @@ metadata:
   name: vpc-workflow
 spec:
   workflowName: "aws_vpc_yaml"
+  data:
+     aws.tags.name: lyra-sample-k8s
+     aws.tags.created_by: lyra-k8s
+     aws.tags.department: engineering
+     aws.tags.project: incubator
+     aws.tags.lifetime: 1h
   refreshTime: 65

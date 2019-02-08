@@ -1,5 +1,9 @@
 aws_vpc_yaml:
   typespace: aws
+  input: 
+    tags:
+      type: Hash[String,String]
+      lookup: aws.tags
   output:
     vpc_id: String
     subnet_id: String
@@ -13,18 +17,14 @@ aws_vpc_yaml:
         enable_dns_support: false
         is_default: false
         state: available
-        tags:
-          name: lyra-sample-vpc
-          created_by: lyra
+        tags: $tags
     subnet:
       output: subnet_id
       state:
         vpc_id: $vpc_id
         cidr_block: 192.168.1.0/24
         ipv6_cidr_block: ''
-        tags: 
-          name: lyra-sample-vpc
-          created_by: lyra
+        tags: $tags
         assign_ipv6_address_on_creation: false
         map_public_ip_on_launch: false
         default_for_az: false
@@ -33,7 +33,5 @@ aws_vpc_yaml:
       output: route_table_id
       state:
         vpc_id: $vpc_id
-        tags:
-          name: lyra-sample-vpc
-          created_by: lyra
+        tags: $tags
     

@@ -39,6 +39,8 @@ This workflow is an AWS Workflow called `aws_vpc_yaml` in `plugins\aws_vpc_yaml.
 
 For the examples using Terraform providers (e.g. `typespace=>'TerraformAws'`), region is currently hard-coded to `eu-west-1`. For non-Terraform providers (e.g. `typespace=>'aws'`), Lyra will use the default region supplied in your `~/.aws/config`. 
 
+External data is supplied to the workflow through the `data.yaml` file. 
+
 
 ### Deploying Workflows with Kubernetes
 
@@ -49,6 +51,8 @@ For the examples using Terraform providers (e.g. `typespace=>'TerraformAws'`), r
 3. Create a Workflow resource: `$ kubectl apply -f k8s/aws_vpc.yaml`
 4. Inspect the resource: `$ kubectl get workflows` 
 5. Delete the Workflow (i.e. its resources): `$ kubectl delete workflow vpc-workflow`
+
+External data is supplied to the Kubernetes object with a `data:` parameter in the [spec](k8s/vpc-workflow.yaml). 
 
 ## Project Status
 Very much in early development. Lyra is just starting and things are a bit bumpy! Star this project above to stay tuned.
