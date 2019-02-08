@@ -15,7 +15,7 @@ require (
 	github.com/go-logfmt/logfmt v0.4.0 // indirect
 	github.com/go-logr/logr v0.1.0
 	github.com/golang/lint v0.0.0-20181217174547-8f45f776aaf1 // indirect
-	github.com/google/pprof v0.0.0-20190109223431-e84dfd68c163 // indirect
+	github.com/google/pprof v0.0.0-20190208070709-b421f19a5c07 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
 	github.com/gorilla/mux v1.7.0 // indirect
 	github.com/gregjones/httpcache v0.0.0-20190203031600-7a902570cb17 // indirect
@@ -31,7 +31,7 @@ require (
 	github.com/lyraproj/issue v0.0.0-20190122215520-5efbea1d1edb
 	github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190206101254-33da261b6686
-	github.com/lyraproj/puppet-workflow v0.0.0-20190124163310-8d895f8b4c17
+	github.com/lyraproj/puppet-workflow v0.0.0-20190208095415-2fbe9f27f389
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
 	github.com/lyraproj/servicesdk v0.0.0-20190207153004-4d428f989207
 	github.com/lyraproj/wfe v0.0.0-20190124141441-40f9efc1bf31
@@ -70,7 +70,7 @@ require (
 	github.com/toqueteos/trie v1.0.0 // indirect
 	go.opencensus.io v0.19.0 // indirect
 	go4.org v0.0.0-20181109185143-00e24f1b2599 // indirect
-	golang.org/x/build v0.0.0-20190206233927-d375ec2fb6da // indirect
+	golang.org/x/build v0.0.0-20190207163136-67eca6f0176f // indirect
 	golang.org/x/crypto v0.0.0-20190131182504-b8fe1690c613 // indirect
 	golang.org/x/exp v0.0.0-20190125153040-c74c464bbbf2 // indirect
 	golang.org/x/net v0.0.0-20190206173232-65e2d4e15006 // indirect
