@@ -28,4 +28,6 @@ notifications:
 branches:
   except:
   - /(ux.+|ux)/
-  
+cache:
+  directories:
+  - $GOPATH/pkg/mod/
