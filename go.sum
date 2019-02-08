@@ -139,6 +139,7 @@ github.com/google/gofuzz v0.0.0-20170612174753-24818f796faf/go.mod h1:HP5RmnzzSN
 github.com/google/martian v2.1.0+incompatible/go.mod h1:9I4somxYTbIHy5NJKHRl3wXiIaQGbYVAs8BPL6v8lEs=
 github.com/google/pprof v0.0.0-20181206194817-3ea8567a2e57/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
 github.com/google/pprof v0.0.0-20190109223431-e84dfd68c163/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
+github.com/google/pprof v0.0.0-20190208070709-b421f19a5c07/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
 github.com/google/uuid v1.1.0 h1:Jf4mxPC/ziBnoPIdpQdPJ9OeiomAUHLvxmPRSPH9m4s=
 github.com/google/uuid v1.1.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/googleapis/gax-go v2.0.0+incompatible/go.mod h1:SFVmujtThgffbyetf+mdk2eWhX2bMyUtNHzFKcPA9HY=
@@ -275,6 +276,8 @@ github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d h1:iDn6XlJA
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d/go.mod h1:8va5g/XEw+jP9jnwEXPmanUy/hD9+6iggnaioihPLP0=
 github.com/lyraproj/puppet-workflow v0.0.0-20190124163310-8d895f8b4c17 h1:henM9wBkb6qe2QgSd6BfN92Dm8Q8vCf4UoqECseKt40=
 github.com/lyraproj/puppet-workflow v0.0.0-20190124163310-8d895f8b4c17/go.mod h1:tKqqUnM46a/WdTOn0+4eW4MNswsDkMAfea6WiTIhLd0=
+github.com/lyraproj/puppet-workflow v0.0.0-20190208095415-2fbe9f27f389 h1:70eZEqUJcgrc5ZKC09VvBjuCO6FB+WKO6GpwPP0ijJY=
+github.com/lyraproj/puppet-workflow v0.0.0-20190208095415-2fbe9f27f389/go.mod h1:uGaVbwfKBZJXcbkPWsv48oyq9pu/zEyJIX+1qBsY09E=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190124140659-a7172b2817ef/go.mod h1:/epXb6q3tFs1TKI2n7w9ji3FCqHqvetUaHYHAbmA/Sg=
@@ -493,6 +496,7 @@ go4.org v0.0.0-20180809161055-417644f6feb5/go.mod h1:MkTOUMDaeVYJUOUsaDXIhWPZYa1
 go4.org v0.0.0-20181109185143-00e24f1b2599/go.mod h1:MkTOUMDaeVYJUOUsaDXIhWPZYa1yOyC1qaOBpL57BhE=
 golang.org/x/build v0.0.0-20190111050920-041ab4dc3f9d/go.mod h1:OWs+y06UdEOHN4y+MfF/py+xQ/tYqIWW03b70/CG9Rw=
 golang.org/x/build v0.0.0-20190206233927-d375ec2fb6da/go.mod h1:OWs+y06UdEOHN4y+MfF/py+xQ/tYqIWW03b70/CG9Rw=
+golang.org/x/build v0.0.0-20190207163136-67eca6f0176f/go.mod h1:OWs+y06UdEOHN4y+MfF/py+xQ/tYqIWW03b70/CG9Rw=
 golang.org/x/crypto v0.0.0-20180110145155-b3c9a1d25cfb/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 golang.org/x/crypto v0.0.0-20180816225734-aabede6cba87/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 golang.org/x/crypto v0.0.0-20180904163835-0709b304e793/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
