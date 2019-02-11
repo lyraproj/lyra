@@ -328,15 +328,11 @@ func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
 
 type Google_app_engine_application_feature_settings_1532 struct {
 
-    Google_app_engine_application_feature_settings_1532_id *string `lyra:"ignore"`
-
     Split_health_checks *bool
 
 }
 
 type Google_app_engine_application_url_dispatch_rule_1533 struct {
-
-    Google_app_engine_application_url_dispatch_rule_1533_id *string `lyra:"ignore"`
 
     Domain *string
 
@@ -358,7 +354,7 @@ type Google_app_engine_application struct {
 
     Default_hostname *string
 
-    Feature_settings *Google_app_engine_application_feature_settings_1532
+    Feature_settings *[]Google_app_engine_application_feature_settings_1532
 
     Gcr_domain *string
 
@@ -370,7 +366,7 @@ type Google_app_engine_application struct {
 
     Serving_status *string
 
-    Url_dispatch_rule *Google_app_engine_application_url_dispatch_rule_1533
+    Url_dispatch_rule *[]Google_app_engine_application_url_dispatch_rule_1533
 
 }
 
@@ -413,8 +409,6 @@ func (h *Google_app_engine_applicationHandler) Delete(externalID string) error {
 
 type Google_bigquery_dataset_access_1534_view_1535 struct {
 
-    Google_bigquery_dataset_access_1534_view_1535_id *string `lyra:"ignore"`
-
     Dataset_id string
 
     Project_id string
@@ -424,8 +418,6 @@ type Google_bigquery_dataset_access_1534_view_1535 struct {
 }
 
 type Google_bigquery_dataset_access_1534 struct {
-
-    Google_bigquery_dataset_access_1534_id *string `lyra:"ignore"`
 
     Domain *string
 
@@ -437,7 +429,7 @@ type Google_bigquery_dataset_access_1534 struct {
 
     User_by_email *string
 
-    View *Google_bigquery_dataset_access_1534_view_1535
+    View *[]Google_bigquery_dataset_access_1534_view_1535
 
 }
 
@@ -445,7 +437,7 @@ type Google_bigquery_dataset struct {
 
     Google_bigquery_dataset_id *string `lyra:"ignore"`
 
-    Access *Google_bigquery_dataset_access_1534
+    Access *[]Google_bigquery_dataset_access_1534
 
     Creation_time *int
 
@@ -510,8 +502,6 @@ func (h *Google_bigquery_datasetHandler) Delete(externalID string) error {
 
 type Google_bigquery_table_time_partitioning_1536 struct {
 
-    Google_bigquery_table_time_partitioning_1536_id *string `lyra:"ignore"`
-
     Expiration_ms *int
 
     Field *string
@@ -521,8 +511,6 @@ type Google_bigquery_table_time_partitioning_1536 struct {
 }
 
 type Google_bigquery_table_view_1537 struct {
-
-    Google_bigquery_table_view_1537_id *string `lyra:"ignore"`
 
     Query string
 
@@ -566,11 +554,11 @@ type Google_bigquery_table struct {
 
     Table_id string
 
-    Time_partitioning *Google_bigquery_table_time_partitioning_1536
+    Time_partitioning *[]Google_bigquery_table_time_partitioning_1536
 
     Type *string
 
-    View *Google_bigquery_table_view_1537
+    View *[]Google_bigquery_table_view_1537
 
 }
 
@@ -612,8 +600,6 @@ func (h *Google_bigquery_tableHandler) Delete(externalID string) error {
 }
 
 type Google_bigtable_instance_cluster_1538 struct {
-
-    Google_bigtable_instance_cluster_1538_id *string `lyra:"ignore"`
 
     Cluster_id *string
 
@@ -890,8 +876,6 @@ func (h *Google_billing_account_iam_policyHandler) Delete(externalID string) err
 
 type Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540 struct {
 
-    Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540_id *string `lyra:"ignore"`
-
     Ascii_armored_pgp_public_key string
 
     Comment *string
@@ -902,13 +886,11 @@ type Google_binary_authorization_attestor_attestation_authority_note_1539_public
 
 type Google_binary_authorization_attestor_attestation_authority_note_1539 struct {
 
-    Google_binary_authorization_attestor_attestation_authority_note_1539_id *string `lyra:"ignore"`
-
     Delegation_service_account_email *string
 
     Note_reference string
 
-    Public_keys *Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540
+    Public_keys *[]Google_binary_authorization_attestor_attestation_authority_note_1539_public_keys_1540
 
 }
 
@@ -916,7 +898,7 @@ type Google_binary_authorization_attestor struct {
 
     Google_binary_authorization_attestor_id *string `lyra:"ignore"`
 
-    Attestation_authority_note Google_binary_authorization_attestor_attestation_authority_note_1539
+    Attestation_authority_note []Google_binary_authorization_attestor_attestation_authority_note_1539
 
     Description *string
 
@@ -965,15 +947,11 @@ func (h *Google_binary_authorization_attestorHandler) Delete(externalID string) 
 
 type Google_binary_authorization_policy_admission_whitelist_patterns_1541 struct {
 
-    Google_binary_authorization_policy_admission_whitelist_patterns_1541_id *string `lyra:"ignore"`
-
     Name_pattern *string
 
 }
 
 type Google_binary_authorization_policy_cluster_admission_rules_1542 struct {
-
-    Google_binary_authorization_policy_cluster_admission_rules_1542_id *string `lyra:"ignore"`
 
     Cluster string
 
@@ -987,8 +965,6 @@ type Google_binary_authorization_policy_cluster_admission_rules_1542 struct {
 
 type Google_binary_authorization_policy_default_admission_rule_1543 struct {
 
-    Google_binary_authorization_policy_default_admission_rule_1543_id *string `lyra:"ignore"`
-
     Enforcement_mode string
 
     Evaluation_mode string
@@ -1001,11 +977,11 @@ type Google_binary_authorization_policy struct {
 
     Google_binary_authorization_policy_id *string `lyra:"ignore"`
 
-    Admission_whitelist_patterns *Google_binary_authorization_policy_admission_whitelist_patterns_1541
+    Admission_whitelist_patterns *[]Google_binary_authorization_policy_admission_whitelist_patterns_1541
 
     Cluster_admission_rules *Google_binary_authorization_policy_cluster_admission_rules_1542
 
-    Default_admission_rule Google_binary_authorization_policy_default_admission_rule_1543
+    Default_admission_rule []Google_binary_authorization_policy_default_admission_rule_1543
 
     Description *string
 
@@ -1052,8 +1028,6 @@ func (h *Google_binary_authorization_policyHandler) Delete(externalID string) er
 
 type Google_cloudbuild_trigger_build_1544_step_1545 struct {
 
-    Google_cloudbuild_trigger_build_1544_step_1545_id *string `lyra:"ignore"`
-
     Args *string
 
     Name *string
@@ -1062,19 +1036,15 @@ type Google_cloudbuild_trigger_build_1544_step_1545 struct {
 
 type Google_cloudbuild_trigger_build_1544 struct {
 
-    Google_cloudbuild_trigger_build_1544_id *string `lyra:"ignore"`
-
     Images *[]string
 
-    Step *Google_cloudbuild_trigger_build_1544_step_1545
+    Step *[]Google_cloudbuild_trigger_build_1544_step_1545
 
     Tags *[]string
 
 }
 
 type Google_cloudbuild_trigger_trigger_template_1546 struct {
-
-    Google_cloudbuild_trigger_trigger_template_1546_id *string `lyra:"ignore"`
 
     Branch_name *string
 
@@ -1094,7 +1064,7 @@ type Google_cloudbuild_trigger struct {
 
     Google_cloudbuild_trigger_id *string `lyra:"ignore"`
 
-    Build *Google_cloudbuild_trigger_build_1544
+    Build *[]Google_cloudbuild_trigger_build_1544
 
     Description *string
 
@@ -1104,7 +1074,7 @@ type Google_cloudbuild_trigger struct {
 
     Substitutions *map[string]string
 
-    Trigger_template *Google_cloudbuild_trigger_trigger_template_1546
+    Trigger_template *[]Google_cloudbuild_trigger_trigger_template_1546
 
 }
 
@@ -1147,19 +1117,15 @@ func (h *Google_cloudbuild_triggerHandler) Delete(externalID string) error {
 
 type Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548 struct {
 
-    Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548_id *string `lyra:"ignore"`
-
     Retry bool
 
 }
 
 type Google_cloudfunctions_function_event_trigger_1547 struct {
 
-    Google_cloudfunctions_function_event_trigger_1547_id *string `lyra:"ignore"`
-
     Event_type string
 
-    Failure_policy *Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548
+    Failure_policy *[]Google_cloudfunctions_function_event_trigger_1547_failure_policy_1548
 
     Resource string
 
@@ -1177,7 +1143,7 @@ type Google_cloudfunctions_function struct {
 
     Environment_variables *map[string]string
 
-    Event_trigger *Google_cloudfunctions_function_event_trigger_1547
+    Event_trigger *[]Google_cloudfunctions_function_event_trigger_1547
 
     Https_trigger_url *string
 
@@ -1246,8 +1212,6 @@ func (h *Google_cloudfunctions_functionHandler) Delete(externalID string) error 
 
 type Google_cloudiot_registry_credentials_1549 struct {
 
-    Google_cloudiot_registry_credentials_1549_id *string `lyra:"ignore"`
-
     Public_key_certificate *map[string]string
 
 }
@@ -1256,7 +1220,7 @@ type Google_cloudiot_registry struct {
 
     Google_cloudiot_registry_id *string `lyra:"ignore"`
 
-    Credentials *Google_cloudiot_registry_credentials_1549
+    Credentials *[]Google_cloudiot_registry_credentials_1549
 
     Event_notification_config *map[string]string
 
@@ -1313,8 +1277,6 @@ func (h *Google_cloudiot_registryHandler) Delete(externalID string) error {
 
 type Google_composer_environment_config_1550_node_config_1551 struct {
 
-    Google_composer_environment_config_1550_node_config_1551_id *string `lyra:"ignore"`
-
     Disk_size_gb *int
 
     Machine_type *string
@@ -1335,8 +1297,6 @@ type Google_composer_environment_config_1550_node_config_1551 struct {
 
 type Google_composer_environment_config_1550_software_config_1552 struct {
 
-    Google_composer_environment_config_1550_software_config_1552_id *string `lyra:"ignore"`
-
     Airflow_config_overrides *map[string]string
 
     Env_variables *map[string]string
@@ -1349,19 +1309,17 @@ type Google_composer_environment_config_1550_software_config_1552 struct {
 
 type Google_composer_environment_config_1550 struct {
 
-    Google_composer_environment_config_1550_id *string `lyra:"ignore"`
-
     Airflow_uri *string
 
     Dag_gcs_prefix *string
 
     Gke_cluster *string
 
-    Node_config *Google_composer_environment_config_1550_node_config_1551
+    Node_config *[]Google_composer_environment_config_1550_node_config_1551
 
     Node_count *int
 
-    Software_config *Google_composer_environment_config_1550_software_config_1552
+    Software_config *[]Google_composer_environment_config_1550_software_config_1552
 
 }
 
@@ -1369,7 +1327,7 @@ type Google_composer_environment struct {
 
     Google_composer_environment_id *string `lyra:"ignore"`
 
-    Config *Google_composer_environment_config_1550
+    Config *[]Google_composer_environment_config_1550
 
     Labels *map[string]string
 
@@ -1544,23 +1502,17 @@ func (h *Google_compute_attached_diskHandler) Delete(externalID string) error {
 
 type Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554 struct {
 
-    Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554_id *string `lyra:"ignore"`
-
     Target float64
 
 }
 
 type Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555 struct {
 
-    Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555_id *string `lyra:"ignore"`
-
     Target float64
 
 }
 
 type Google_compute_autoscaler_autoscaling_policy_1553_metric_1556 struct {
-
-    Google_compute_autoscaler_autoscaling_policy_1553_metric_1556_id *string `lyra:"ignore"`
 
     Name string
 
@@ -1572,17 +1524,15 @@ type Google_compute_autoscaler_autoscaling_policy_1553_metric_1556 struct {
 
 type Google_compute_autoscaler_autoscaling_policy_1553 struct {
 
-    Google_compute_autoscaler_autoscaling_policy_1553_id *string `lyra:"ignore"`
-
     Cooldown_period *int
 
-    Cpu_utilization *Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554
+    Cpu_utilization *[]Google_compute_autoscaler_autoscaling_policy_1553_cpu_utilization_1554
 
-    Load_balancing_utilization *Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555
+    Load_balancing_utilization *[]Google_compute_autoscaler_autoscaling_policy_1553_load_balancing_utilization_1555
 
     Max_replicas int
 
-    Metric *Google_compute_autoscaler_autoscaling_policy_1553_metric_1556
+    Metric *[]Google_compute_autoscaler_autoscaling_policy_1553_metric_1556
 
     Min_replicas int
 
@@ -1592,7 +1542,7 @@ type Google_compute_autoscaler struct {
 
     Google_compute_autoscaler_id *string `lyra:"ignore"`
 
-    Autoscaling_policy Google_compute_autoscaler_autoscaling_policy_1553
+    Autoscaling_policy []Google_compute_autoscaler_autoscaling_policy_1553
 
     Creation_timestamp *string
 
@@ -1706,8 +1656,6 @@ func (h *Google_compute_backend_bucketHandler) Delete(externalID string) error {
 
 type Google_compute_backend_service_backend_1557 struct {
 
-    Google_compute_backend_service_backend_1557_id *string `lyra:"ignore"`
-
     Balancing_mode *string
 
     Capacity_scaler *float64
@@ -1730,8 +1678,6 @@ type Google_compute_backend_service_backend_1557 struct {
 
 type Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559 struct {
 
-    Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559_id *string `lyra:"ignore"`
-
     Include_host *bool
 
     Include_protocol *bool
@@ -1746,15 +1692,11 @@ type Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559 struct
 
 type Google_compute_backend_service_cdn_policy_1558 struct {
 
-    Google_compute_backend_service_cdn_policy_1558_id *string `lyra:"ignore"`
-
-    Cache_key_policy *Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559
+    Cache_key_policy *[]Google_compute_backend_service_cdn_policy_1558_cache_key_policy_1559
 
 }
 
 type Google_compute_backend_service_iap_1560 struct {
-
-    Google_compute_backend_service_iap_1560_id *string `lyra:"ignore"`
 
     Oauth2_client_id string
 
@@ -1768,7 +1710,7 @@ type Google_compute_backend_service struct {
 
     Backend *Google_compute_backend_service_backend_1557
 
-    Cdn_policy *Google_compute_backend_service_cdn_policy_1558
+    Cdn_policy *[]Google_compute_backend_service_cdn_policy_1558
 
     Connection_draining_timeout_sec *int
 
@@ -1782,7 +1724,7 @@ type Google_compute_backend_service struct {
 
     Health_checks []string
 
-    Iap *Google_compute_backend_service_iap_1560
+    Iap *[]Google_compute_backend_service_iap_1560
 
     Name string
 
@@ -1843,8 +1785,6 @@ func (h *Google_compute_backend_serviceHandler) Delete(externalID string) error 
 
 type Google_compute_disk_disk_encryption_key_1561 struct {
 
-    Google_compute_disk_disk_encryption_key_1561_id *string `lyra:"ignore"`
-
     Raw_key *string
 
     Sha256 *string
@@ -1853,8 +1793,6 @@ type Google_compute_disk_disk_encryption_key_1561 struct {
 
 type Google_compute_disk_source_image_encryption_key_1562 struct {
 
-    Google_compute_disk_source_image_encryption_key_1562_id *string `lyra:"ignore"`
-
     Raw_key *string
 
     Sha256 *string
@@ -1862,8 +1800,6 @@ type Google_compute_disk_source_image_encryption_key_1562 struct {
 }
 
 type Google_compute_disk_source_snapshot_encryption_key_1563 struct {
-
-    Google_compute_disk_source_snapshot_encryption_key_1563_id *string `lyra:"ignore"`
 
     Raw_key *string
 
@@ -1879,7 +1815,7 @@ type Google_compute_disk struct {
 
     Description *string
 
-    Disk_encryption_key *Google_compute_disk_disk_encryption_key_1561
+    Disk_encryption_key *[]Google_compute_disk_disk_encryption_key_1561
 
     Disk_encryption_key_raw *string
 
@@ -1905,11 +1841,11 @@ type Google_compute_disk struct {
 
     Snapshot *string
 
-    Source_image_encryption_key *Google_compute_disk_source_image_encryption_key_1562
+    Source_image_encryption_key *[]Google_compute_disk_source_image_encryption_key_1562
 
     Source_image_id *string
 
-    Source_snapshot_encryption_key *Google_compute_disk_source_snapshot_encryption_key_1563
+    Source_snapshot_encryption_key *[]Google_compute_disk_source_snapshot_encryption_key_1563
 
     Source_snapshot_id *string
 
@@ -1960,8 +1896,6 @@ func (h *Google_compute_diskHandler) Delete(externalID string) error {
 
 type Google_compute_firewall_allow_1564 struct {
 
-    Google_compute_firewall_allow_1564_id *string `lyra:"ignore"`
-
     Ports *[]string
 
     Protocol string
@@ -1969,8 +1903,6 @@ type Google_compute_firewall_allow_1564 struct {
 }
 
 type Google_compute_firewall_deny_1565 struct {
-
-    Google_compute_firewall_deny_1565_id *string `lyra:"ignore"`
 
     Ports *[]string
 
@@ -2280,8 +2212,6 @@ func (h *Google_compute_global_forwarding_ruleHandler) Delete(externalID string)
 
 type Google_compute_health_check_http_health_check_1566 struct {
 
-    Google_compute_health_check_http_health_check_1566_id *string `lyra:"ignore"`
-
     Host *string
 
     Port *int
@@ -2295,8 +2225,6 @@ type Google_compute_health_check_http_health_check_1566 struct {
 }
 
 type Google_compute_health_check_https_health_check_1567 struct {
-
-    Google_compute_health_check_https_health_check_1567_id *string `lyra:"ignore"`
 
     Host *string
 
@@ -2312,8 +2240,6 @@ type Google_compute_health_check_https_health_check_1567 struct {
 
 type Google_compute_health_check_ssl_health_check_1568 struct {
 
-    Google_compute_health_check_ssl_health_check_1568_id *string `lyra:"ignore"`
-
     Port *int
 
     Proxy_header *string
@@ -2325,8 +2251,6 @@ type Google_compute_health_check_ssl_health_check_1568 struct {
 }
 
 type Google_compute_health_check_tcp_health_check_1569 struct {
-
-    Google_compute_health_check_tcp_health_check_1569_id *string `lyra:"ignore"`
 
     Port *int
 
@@ -2350,9 +2274,9 @@ type Google_compute_health_check struct {
 
     Healthy_threshold *int
 
-    Http_health_check *Google_compute_health_check_http_health_check_1566
+    Http_health_check *[]Google_compute_health_check_http_health_check_1566
 
-    Https_health_check *Google_compute_health_check_https_health_check_1567
+    Https_health_check *[]Google_compute_health_check_https_health_check_1567
 
     Name string
 
@@ -2360,9 +2284,9 @@ type Google_compute_health_check struct {
 
     Self_link *string
 
-    Ssl_health_check *Google_compute_health_check_ssl_health_check_1568
+    Ssl_health_check *[]Google_compute_health_check_ssl_health_check_1568
 
-    Tcp_health_check *Google_compute_health_check_tcp_health_check_1569
+    Tcp_health_check *[]Google_compute_health_check_tcp_health_check_1569
 
     Timeout_sec *int
 
@@ -2545,8 +2469,6 @@ func (h *Google_compute_https_health_checkHandler) Delete(externalID string) err
 
 type Google_compute_image_raw_disk_1570 struct {
 
-    Google_compute_image_raw_disk_1570_id *string `lyra:"ignore"`
-
     Container_type *string
 
     Sha1 *string
@@ -2575,7 +2497,7 @@ type Google_compute_image struct {
 
     Project *string
 
-    Raw_disk *Google_compute_image_raw_disk_1570
+    Raw_disk *[]Google_compute_image_raw_disk_1570
 
     Self_link *string
 
@@ -2622,8 +2544,6 @@ func (h *Google_compute_imageHandler) Delete(externalID string) error {
 
 type Google_compute_instance_attached_disk_1571 struct {
 
-    Google_compute_instance_attached_disk_1571_id *string `lyra:"ignore"`
-
     Device_name *string
 
     Disk_encryption_key_raw *string
@@ -2638,8 +2558,6 @@ type Google_compute_instance_attached_disk_1571 struct {
 
 type Google_compute_instance_boot_disk_1572_initialize_params_1573 struct {
 
-    Google_compute_instance_boot_disk_1572_initialize_params_1573_id *string `lyra:"ignore"`
-
     Image *string
 
     Size *int
@@ -2650,8 +2568,6 @@ type Google_compute_instance_boot_disk_1572_initialize_params_1573 struct {
 
 type Google_compute_instance_boot_disk_1572 struct {
 
-    Google_compute_instance_boot_disk_1572_id *string `lyra:"ignore"`
-
     Auto_delete *bool
 
     Device_name *string
@@ -2660,15 +2576,13 @@ type Google_compute_instance_boot_disk_1572 struct {
 
     Disk_encryption_key_sha256 *string
 
-    Initialize_params *Google_compute_instance_boot_disk_1572_initialize_params_1573
+    Initialize_params *[]Google_compute_instance_boot_disk_1572_initialize_params_1573
 
     Source *string
 
 }
 
 type Google_compute_instance_disk_1574 struct {
-
-    Google_compute_instance_disk_1574_id *string `lyra:"ignore"`
 
     Auto_delete *bool
 
@@ -2692,8 +2606,6 @@ type Google_compute_instance_disk_1574 struct {
 
 type Google_compute_instance_guest_accelerator_1575 struct {
 
-    Google_compute_instance_guest_accelerator_1575_id *string `lyra:"ignore"`
-
     Count int
 
     Type string
@@ -2701,8 +2613,6 @@ type Google_compute_instance_guest_accelerator_1575 struct {
 }
 
 type Google_compute_instance_network_1576 struct {
-
-    Google_compute_instance_network_1576_id *string `lyra:"ignore"`
 
     Address *string
 
@@ -2718,8 +2628,6 @@ type Google_compute_instance_network_1576 struct {
 
 type Google_compute_instance_network_interface_1577_access_config_1578 struct {
 
-    Google_compute_instance_network_interface_1577_access_config_1578_id *string `lyra:"ignore"`
-
     Assigned_nat_ip *string
 
     Nat_ip *string
@@ -2732,8 +2640,6 @@ type Google_compute_instance_network_interface_1577_access_config_1578 struct {
 
 type Google_compute_instance_network_interface_1577_alias_ip_range_1579 struct {
 
-    Google_compute_instance_network_interface_1577_alias_ip_range_1579_id *string `lyra:"ignore"`
-
     Ip_cidr_range string
 
     Subnetwork_range_name *string
@@ -2742,13 +2648,11 @@ type Google_compute_instance_network_interface_1577_alias_ip_range_1579 struct {
 
 type Google_compute_instance_network_interface_1577 struct {
 
-    Google_compute_instance_network_interface_1577_id *string `lyra:"ignore"`
-
-    Access_config *Google_compute_instance_network_interface_1577_access_config_1578
+    Access_config *[]Google_compute_instance_network_interface_1577_access_config_1578
 
     Address *string
 
-    Alias_ip_range *Google_compute_instance_network_interface_1577_alias_ip_range_1579
+    Alias_ip_range *[]Google_compute_instance_network_interface_1577_alias_ip_range_1579
 
     Name *string
 
@@ -2764,8 +2668,6 @@ type Google_compute_instance_network_interface_1577 struct {
 
 type Google_compute_instance_scheduling_1580 struct {
 
-    Google_compute_instance_scheduling_1580_id *string `lyra:"ignore"`
-
     Automatic_restart *bool
 
     On_host_maintenance *string
@@ -2776,15 +2678,11 @@ type Google_compute_instance_scheduling_1580 struct {
 
 type Google_compute_instance_scratch_disk_1581 struct {
 
-    Google_compute_instance_scratch_disk_1581_id *string `lyra:"ignore"`
-
     Interface *string
 
 }
 
 type Google_compute_instance_service_account_1582 struct {
-
-    Google_compute_instance_service_account_1582_id *string `lyra:"ignore"`
 
     Email *string
 
@@ -2798,9 +2696,9 @@ type Google_compute_instance struct {
 
     Allow_stopping_for_update *bool
 
-    Attached_disk *Google_compute_instance_attached_disk_1571
+    Attached_disk *[]Google_compute_instance_attached_disk_1571
 
-    Boot_disk Google_compute_instance_boot_disk_1572
+    Boot_disk []Google_compute_instance_boot_disk_1572
 
     Can_ip_forward *bool
 
@@ -2812,9 +2710,9 @@ type Google_compute_instance struct {
 
     Description *string
 
-    Disk *Google_compute_instance_disk_1574
+    Disk *[]Google_compute_instance_disk_1574
 
-    Guest_accelerator *Google_compute_instance_guest_accelerator_1575
+    Guest_accelerator *[]Google_compute_instance_guest_accelerator_1575
 
     Instance_id *string
 
@@ -2834,19 +2732,19 @@ type Google_compute_instance struct {
 
     Name string
 
-    Network *Google_compute_instance_network_1576
+    Network *[]Google_compute_instance_network_1576
 
-    Network_interface Google_compute_instance_network_interface_1577
+    Network_interface []Google_compute_instance_network_interface_1577
 
     Project *string
 
-    Scheduling *Google_compute_instance_scheduling_1580
+    Scheduling *[]Google_compute_instance_scheduling_1580
 
-    Scratch_disk *Google_compute_instance_scratch_disk_1581
+    Scratch_disk *[]Google_compute_instance_scratch_disk_1581
 
     Self_link *string
 
-    Service_account *Google_compute_instance_service_account_1582
+    Service_account *[]Google_compute_instance_service_account_1582
 
     Tags *[]string
 
@@ -2895,8 +2793,6 @@ func (h *Google_compute_instanceHandler) Delete(externalID string) error {
 
 type Google_compute_instance_from_template_attached_disk_1583 struct {
 
-    Google_compute_instance_from_template_attached_disk_1583_id *string `lyra:"ignore"`
-
     Device_name *string
 
     Disk_encryption_key_raw *string
@@ -2911,8 +2807,6 @@ type Google_compute_instance_from_template_attached_disk_1583 struct {
 
 type Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585 struct {
 
-    Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585_id *string `lyra:"ignore"`
-
     Image *string
 
     Size *int
@@ -2923,8 +2817,6 @@ type Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585
 
 type Google_compute_instance_from_template_boot_disk_1584 struct {
 
-    Google_compute_instance_from_template_boot_disk_1584_id *string `lyra:"ignore"`
-
     Auto_delete *bool
 
     Device_name *string
@@ -2933,15 +2825,13 @@ type Google_compute_instance_from_template_boot_disk_1584 struct {
 
     Disk_encryption_key_sha256 *string
 
-    Initialize_params *Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585
+    Initialize_params *[]Google_compute_instance_from_template_boot_disk_1584_initialize_params_1585
 
     Source *string
 
 }
 
 type Google_compute_instance_from_template_guest_accelerator_1586 struct {
-
-    Google_compute_instance_from_template_guest_accelerator_1586_id *string `lyra:"ignore"`
 
     Count int
 
@@ -2950,8 +2840,6 @@ type Google_compute_instance_from_template_guest_accelerator_1586 struct {
 }
 
 type Google_compute_instance_from_template_network_interface_1587_access_config_1588 struct {
-
-    Google_compute_instance_from_template_network_interface_1587_access_config_1588_id *string `lyra:"ignore"`
 
     Assigned_nat_ip *string
 
@@ -2965,8 +2853,6 @@ type Google_compute_instance_from_template_network_interface_1587_access_config_
 
 type Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589 struct {
 
-    Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589_id *string `lyra:"ignore"`
-
     Ip_cidr_range string
 
     Subnetwork_range_name *string
@@ -2975,13 +2861,11 @@ type Google_compute_instance_from_template_network_interface_1587_alias_ip_range
 
 type Google_compute_instance_from_template_network_interface_1587 struct {
 
-    Google_compute_instance_from_template_network_interface_1587_id *string `lyra:"ignore"`
-
-    Access_config *Google_compute_instance_from_template_network_interface_1587_access_config_1588
+    Access_config *[]Google_compute_instance_from_template_network_interface_1587_access_config_1588
 
     Address *string
 
-    Alias_ip_range *Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589
+    Alias_ip_range *[]Google_compute_instance_from_template_network_interface_1587_alias_ip_range_1589
 
     Name *string
 
@@ -2997,8 +2881,6 @@ type Google_compute_instance_from_template_network_interface_1587 struct {
 
 type Google_compute_instance_from_template_scheduling_1590 struct {
 
-    Google_compute_instance_from_template_scheduling_1590_id *string `lyra:"ignore"`
-
     Automatic_restart *bool
 
     On_host_maintenance *string
@@ -3009,15 +2891,11 @@ type Google_compute_instance_from_template_scheduling_1590 struct {
 
 type Google_compute_instance_from_template_scratch_disk_1591 struct {
 
-    Google_compute_instance_from_template_scratch_disk_1591_id *string `lyra:"ignore"`
-
     Interface *string
 
 }
 
 type Google_compute_instance_from_template_service_account_1592 struct {
-
-    Google_compute_instance_from_template_service_account_1592_id *string `lyra:"ignore"`
 
     Email *string
 
@@ -3031,9 +2909,9 @@ type Google_compute_instance_from_template struct {
 
     Allow_stopping_for_update *bool
 
-    Attached_disk *Google_compute_instance_from_template_attached_disk_1583
+    Attached_disk *[]Google_compute_instance_from_template_attached_disk_1583
 
-    Boot_disk *Google_compute_instance_from_template_boot_disk_1584
+    Boot_disk *[]Google_compute_instance_from_template_boot_disk_1584
 
     Can_ip_forward *bool
 
@@ -3043,7 +2921,7 @@ type Google_compute_instance_from_template struct {
 
     Description *string
 
-    Guest_accelerator *Google_compute_instance_from_template_guest_accelerator_1586
+    Guest_accelerator *[]Google_compute_instance_from_template_guest_accelerator_1586
 
     Instance_id *string
 
@@ -3063,17 +2941,17 @@ type Google_compute_instance_from_template struct {
 
     Name string
 
-    Network_interface *Google_compute_instance_from_template_network_interface_1587
+    Network_interface *[]Google_compute_instance_from_template_network_interface_1587
 
     Project *string
 
-    Scheduling *Google_compute_instance_from_template_scheduling_1590
+    Scheduling *[]Google_compute_instance_from_template_scheduling_1590
 
-    Scratch_disk *Google_compute_instance_from_template_scratch_disk_1591
+    Scratch_disk *[]Google_compute_instance_from_template_scratch_disk_1591
 
     Self_link *string
 
-    Service_account *Google_compute_instance_from_template_service_account_1592
+    Service_account *[]Google_compute_instance_from_template_service_account_1592
 
     Source_instance_template string
 
@@ -3124,8 +3002,6 @@ func (h *Google_compute_instance_from_templateHandler) Delete(externalID string)
 
 type Google_compute_instance_group_named_port_1593 struct {
 
-    Google_compute_instance_group_named_port_1593_id *string `lyra:"ignore"`
-
     Name string
 
     Port int
@@ -3142,7 +3018,7 @@ type Google_compute_instance_group struct {
 
     Name string
 
-    Named_port *Google_compute_instance_group_named_port_1593
+    Named_port *[]Google_compute_instance_group_named_port_1593
 
     Network *string
 
@@ -3195,8 +3071,6 @@ func (h *Google_compute_instance_groupHandler) Delete(externalID string) error {
 
 type Google_compute_instance_group_manager_auto_healing_policies_1594 struct {
 
-    Google_compute_instance_group_manager_auto_healing_policies_1594_id *string `lyra:"ignore"`
-
     Health_check string
 
     Initial_delay_sec int
@@ -3205,8 +3079,6 @@ type Google_compute_instance_group_manager_auto_healing_policies_1594 struct {
 
 type Google_compute_instance_group_manager_named_port_1595 struct {
 
-    Google_compute_instance_group_manager_named_port_1595_id *string `lyra:"ignore"`
-
     Name string
 
     Port int
@@ -3214,8 +3086,6 @@ type Google_compute_instance_group_manager_named_port_1595 struct {
 }
 
 type Google_compute_instance_group_manager_rolling_update_policy_1596 struct {
-
-    Google_compute_instance_group_manager_rolling_update_policy_1596_id *string `lyra:"ignore"`
 
     Max_surge_fixed *int
 
@@ -3235,8 +3105,6 @@ type Google_compute_instance_group_manager_rolling_update_policy_1596 struct {
 
 type Google_compute_instance_group_manager_version_1597_target_size_1598 struct {
 
-    Google_compute_instance_group_manager_version_1597_target_size_1598_id *string `lyra:"ignore"`
-
     Fixed *int
 
     Percent *int
@@ -3245,13 +3113,11 @@ type Google_compute_instance_group_manager_version_1597_target_size_1598 struct 
 
 type Google_compute_instance_group_manager_version_1597 struct {
 
-    Google_compute_instance_group_manager_version_1597_id *string `lyra:"ignore"`
-
     Instance_template string
 
     Name string
 
-    Target_size *Google_compute_instance_group_manager_version_1597_target_size_1598
+    Target_size *[]Google_compute_instance_group_manager_version_1597_target_size_1598
 
 }
 
@@ -3259,7 +3125,7 @@ type Google_compute_instance_group_manager struct {
 
     Google_compute_instance_group_manager_id *string `lyra:"ignore"`
 
-    Auto_healing_policies *Google_compute_instance_group_manager_auto_healing_policies_1594
+    Auto_healing_policies *[]Google_compute_instance_group_manager_auto_healing_policies_1594
 
     Base_instance_name string
 
@@ -3273,11 +3139,11 @@ type Google_compute_instance_group_manager struct {
 
     Name string
 
-    Named_port *Google_compute_instance_group_manager_named_port_1595
+    Named_port *[]Google_compute_instance_group_manager_named_port_1595
 
     Project *string
 
-    Rolling_update_policy *Google_compute_instance_group_manager_rolling_update_policy_1596
+    Rolling_update_policy *[]Google_compute_instance_group_manager_rolling_update_policy_1596
 
     Self_link *string
 
@@ -3287,7 +3153,7 @@ type Google_compute_instance_group_manager struct {
 
     Update_strategy *string
 
-    Version *Google_compute_instance_group_manager_version_1597
+    Version *[]Google_compute_instance_group_manager_version_1597
 
     Wait_for_instances *bool
 
@@ -3334,15 +3200,11 @@ func (h *Google_compute_instance_group_managerHandler) Delete(externalID string)
 
 type Google_compute_instance_template_disk_1599_disk_encryption_key_1600 struct {
 
-    Google_compute_instance_template_disk_1599_disk_encryption_key_1600_id *string `lyra:"ignore"`
-
     Kms_key_self_link *string
 
 }
 
 type Google_compute_instance_template_disk_1599 struct {
-
-    Google_compute_instance_template_disk_1599_id *string `lyra:"ignore"`
 
     Auto_delete *bool
 
@@ -3350,7 +3212,7 @@ type Google_compute_instance_template_disk_1599 struct {
 
     Device_name *string
 
-    Disk_encryption_key *Google_compute_instance_template_disk_1599_disk_encryption_key_1600
+    Disk_encryption_key *[]Google_compute_instance_template_disk_1599_disk_encryption_key_1600
 
     Disk_name *string
 
@@ -3372,8 +3234,6 @@ type Google_compute_instance_template_disk_1599 struct {
 
 type Google_compute_instance_template_guest_accelerator_1601 struct {
 
-    Google_compute_instance_template_guest_accelerator_1601_id *string `lyra:"ignore"`
-
     Count int
 
     Type string
@@ -3381,8 +3241,6 @@ type Google_compute_instance_template_guest_accelerator_1601 struct {
 }
 
 type Google_compute_instance_template_network_interface_1602_access_config_1603 struct {
-
-    Google_compute_instance_template_network_interface_1602_access_config_1603_id *string `lyra:"ignore"`
 
     Assigned_nat_ip *string
 
@@ -3394,8 +3252,6 @@ type Google_compute_instance_template_network_interface_1602_access_config_1603 
 
 type Google_compute_instance_template_network_interface_1602_alias_ip_range_1604 struct {
 
-    Google_compute_instance_template_network_interface_1602_alias_ip_range_1604_id *string `lyra:"ignore"`
-
     Ip_cidr_range string
 
     Subnetwork_range_name *string
@@ -3404,13 +3260,11 @@ type Google_compute_instance_template_network_interface_1602_alias_ip_range_1604
 
 type Google_compute_instance_template_network_interface_1602 struct {
 
-    Google_compute_instance_template_network_interface_1602_id *string `lyra:"ignore"`
-
-    Access_config *Google_compute_instance_template_network_interface_1602_access_config_1603
+    Access_config *[]Google_compute_instance_template_network_interface_1602_access_config_1603
 
     Address *string
 
-    Alias_ip_range *Google_compute_instance_template_network_interface_1602_alias_ip_range_1604
+    Alias_ip_range *[]Google_compute_instance_template_network_interface_1602_alias_ip_range_1604
 
     Network *string
 
@@ -3424,8 +3278,6 @@ type Google_compute_instance_template_network_interface_1602 struct {
 
 type Google_compute_instance_template_scheduling_1605 struct {
 
-    Google_compute_instance_template_scheduling_1605_id *string `lyra:"ignore"`
-
     Automatic_restart *bool
 
     On_host_maintenance *string
@@ -3435,8 +3287,6 @@ type Google_compute_instance_template_scheduling_1605 struct {
 }
 
 type Google_compute_instance_template_service_account_1606 struct {
-
-    Google_compute_instance_template_service_account_1606_id *string `lyra:"ignore"`
 
     Email *string
 
@@ -3454,9 +3304,9 @@ type Google_compute_instance_template struct {
 
     Description *string
 
-    Disk Google_compute_instance_template_disk_1599
+    Disk []Google_compute_instance_template_disk_1599
 
-    Guest_accelerator *Google_compute_instance_template_guest_accelerator_1601
+    Guest_accelerator *[]Google_compute_instance_template_guest_accelerator_1601
 
     Instance_description *string
 
@@ -3476,7 +3326,7 @@ type Google_compute_instance_template struct {
 
     Name_prefix *string
 
-    Network_interface *Google_compute_instance_template_network_interface_1602
+    Network_interface *[]Google_compute_instance_template_network_interface_1602
 
     On_host_maintenance *string
 
@@ -3484,11 +3334,11 @@ type Google_compute_instance_template struct {
 
     Region *string
 
-    Scheduling *Google_compute_instance_template_scheduling_1605
+    Scheduling *[]Google_compute_instance_template_scheduling_1605
 
     Self_link *string
 
-    Service_account *Google_compute_instance_template_service_account_1606
+    Service_account *[]Google_compute_instance_template_service_account_1606
 
     Tags *[]string
 
@@ -3535,8 +3385,6 @@ func (h *Google_compute_instance_templateHandler) Delete(externalID string) erro
 
 type Google_compute_interconnect_attachment_private_interconnect_info_1607 struct {
 
-    Google_compute_interconnect_attachment_private_interconnect_info_1607_id *string `lyra:"ignore"`
-
     Tag8021q *int
 
 }
@@ -3559,7 +3407,7 @@ type Google_compute_interconnect_attachment struct {
 
     Name string
 
-    Private_interconnect_info *Google_compute_interconnect_attachment_private_interconnect_info_1607
+    Private_interconnect_info *[]Google_compute_interconnect_attachment_private_interconnect_info_1607
 
     Project *string
 
@@ -3820,23 +3668,17 @@ func (h *Google_compute_project_metadata_itemHandler) Delete(externalID string) 
 
 type Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609 struct {
 
-    Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609_id *string `lyra:"ignore"`
-
     Target float64
 
 }
 
 type Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610 struct {
 
-    Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610_id *string `lyra:"ignore"`
-
     Target float64
 
 }
 
 type Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611 struct {
-
-    Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611_id *string `lyra:"ignore"`
 
     Name string
 
@@ -3848,17 +3690,15 @@ type Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611 struct
 
 type Google_compute_region_autoscaler_autoscaling_policy_1608 struct {
 
-    Google_compute_region_autoscaler_autoscaling_policy_1608_id *string `lyra:"ignore"`
-
     Cooldown_period *int
 
-    Cpu_utilization *Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609
+    Cpu_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_1608_cpu_utilization_1609
 
-    Load_balancing_utilization *Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610
+    Load_balancing_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_1608_load_balancing_utilization_1610
 
     Max_replicas int
 
-    Metric *Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611
+    Metric *[]Google_compute_region_autoscaler_autoscaling_policy_1608_metric_1611
 
     Min_replicas int
 
@@ -3868,7 +3708,7 @@ type Google_compute_region_autoscaler struct {
 
     Google_compute_region_autoscaler_id *string `lyra:"ignore"`
 
-    Autoscaling_policy Google_compute_region_autoscaler_autoscaling_policy_1608
+    Autoscaling_policy []Google_compute_region_autoscaler_autoscaling_policy_1608
 
     Creation_timestamp *string
 
@@ -3924,8 +3764,6 @@ func (h *Google_compute_region_autoscalerHandler) Delete(externalID string) erro
 }
 
 type Google_compute_region_backend_service_backend_1612 struct {
-
-    Google_compute_region_backend_service_backend_1612_id *string `lyra:"ignore"`
 
     Description *string
 
@@ -4002,8 +3840,6 @@ func (h *Google_compute_region_backend_serviceHandler) Delete(externalID string)
 
 type Google_compute_region_disk_disk_encryption_key_1613 struct {
 
-    Google_compute_region_disk_disk_encryption_key_1613_id *string `lyra:"ignore"`
-
     Raw_key *string
 
     Sha256 *string
@@ -4011,8 +3847,6 @@ type Google_compute_region_disk_disk_encryption_key_1613 struct {
 }
 
 type Google_compute_region_disk_source_snapshot_encryption_key_1614 struct {
-
-    Google_compute_region_disk_source_snapshot_encryption_key_1614_id *string `lyra:"ignore"`
 
     Raw_key *string
 
@@ -4028,7 +3862,7 @@ type Google_compute_region_disk struct {
 
     Description *string
 
-    Disk_encryption_key *Google_compute_region_disk_disk_encryption_key_1613
+    Disk_encryption_key *[]Google_compute_region_disk_disk_encryption_key_1613
 
     Label_fingerprint *string
 
@@ -4052,7 +3886,7 @@ type Google_compute_region_disk struct {
 
     Snapshot *string
 
-    Source_snapshot_encryption_key *Google_compute_region_disk_source_snapshot_encryption_key_1614
+    Source_snapshot_encryption_key *[]Google_compute_region_disk_source_snapshot_encryption_key_1614
 
     Source_snapshot_id *string
 
@@ -4101,8 +3935,6 @@ func (h *Google_compute_region_diskHandler) Delete(externalID string) error {
 
 type Google_compute_region_instance_group_manager_auto_healing_policies_1615 struct {
 
-    Google_compute_region_instance_group_manager_auto_healing_policies_1615_id *string `lyra:"ignore"`
-
     Health_check string
 
     Initial_delay_sec int
@@ -4111,8 +3943,6 @@ type Google_compute_region_instance_group_manager_auto_healing_policies_1615 str
 
 type Google_compute_region_instance_group_manager_named_port_1616 struct {
 
-    Google_compute_region_instance_group_manager_named_port_1616_id *string `lyra:"ignore"`
-
     Name string
 
     Port int
@@ -4120,8 +3950,6 @@ type Google_compute_region_instance_group_manager_named_port_1616 struct {
 }
 
 type Google_compute_region_instance_group_manager_rolling_update_policy_1617 struct {
-
-    Google_compute_region_instance_group_manager_rolling_update_policy_1617_id *string `lyra:"ignore"`
 
     Max_surge_fixed *int
 
@@ -4141,8 +3969,6 @@ type Google_compute_region_instance_group_manager_rolling_update_policy_1617 str
 
 type Google_compute_region_instance_group_manager_version_1618_target_size_1619 struct {
 
-    Google_compute_region_instance_group_manager_version_1618_target_size_1619_id *string `lyra:"ignore"`
-
     Fixed *int
 
     Percent *int
@@ -4151,13 +3977,11 @@ type Google_compute_region_instance_group_manager_version_1618_target_size_1619 
 
 type Google_compute_region_instance_group_manager_version_1618 struct {
 
-    Google_compute_region_instance_group_manager_version_1618_id *string `lyra:"ignore"`
-
     Instance_template string
 
     Name string
 
-    Target_size *Google_compute_region_instance_group_manager_version_1618_target_size_1619
+    Target_size *[]Google_compute_region_instance_group_manager_version_1618_target_size_1619
 
 }
 
@@ -4165,7 +3989,7 @@ type Google_compute_region_instance_group_manager struct {
 
     Google_compute_region_instance_group_manager_id *string `lyra:"ignore"`
 
-    Auto_healing_policies *Google_compute_region_instance_group_manager_auto_healing_policies_1615
+    Auto_healing_policies *[]Google_compute_region_instance_group_manager_auto_healing_policies_1615
 
     Base_instance_name string
 
@@ -4181,13 +4005,13 @@ type Google_compute_region_instance_group_manager struct {
 
     Name string
 
-    Named_port *Google_compute_region_instance_group_manager_named_port_1616
+    Named_port *[]Google_compute_region_instance_group_manager_named_port_1616
 
     Project *string
 
     Region string
 
-    Rolling_update_policy *Google_compute_region_instance_group_manager_rolling_update_policy_1617
+    Rolling_update_policy *[]Google_compute_region_instance_group_manager_rolling_update_policy_1617
 
     Self_link *string
 
@@ -4197,7 +4021,7 @@ type Google_compute_region_instance_group_manager struct {
 
     Update_strategy *string
 
-    Version *Google_compute_region_instance_group_manager_version_1618
+    Version *[]Google_compute_region_instance_group_manager_version_1618
 
     Wait_for_instances *bool
 
@@ -4313,8 +4137,6 @@ func (h *Google_compute_routeHandler) Delete(externalID string) error {
 
 type Google_compute_router_bgp_1620_advertised_ip_ranges_1621 struct {
 
-    Google_compute_router_bgp_1620_advertised_ip_ranges_1621_id *string `lyra:"ignore"`
-
     Description *string
 
     Range *string
@@ -4323,13 +4145,11 @@ type Google_compute_router_bgp_1620_advertised_ip_ranges_1621 struct {
 
 type Google_compute_router_bgp_1620 struct {
 
-    Google_compute_router_bgp_1620_id *string `lyra:"ignore"`
-
     Advertise_mode *string
 
     Advertised_groups *[]string
 
-    Advertised_ip_ranges *Google_compute_router_bgp_1620_advertised_ip_ranges_1621
+    Advertised_ip_ranges *[]Google_compute_router_bgp_1620_advertised_ip_ranges_1621
 
     Asn int
 
@@ -4339,7 +4159,7 @@ type Google_compute_router struct {
 
     Google_compute_router_id *string `lyra:"ignore"`
 
-    Bgp *Google_compute_router_bgp_1620
+    Bgp *[]Google_compute_router_bgp_1620
 
     Creation_timestamp *string
 
@@ -4450,8 +4270,6 @@ func (h *Google_compute_router_interfaceHandler) Delete(externalID string) error
 }
 
 type Google_compute_router_nat_subnetwork_1622 struct {
-
-    Google_compute_router_nat_subnetwork_1622_id *string `lyra:"ignore"`
 
     Name string
 
@@ -4593,17 +4411,13 @@ func (h *Google_compute_router_peerHandler) Delete(externalID string) error {
 
 type Google_compute_security_policy_rule_1623_match_1624_config_1625 struct {
 
-    Google_compute_security_policy_rule_1623_match_1624_config_1625_id *string `lyra:"ignore"`
-
     Src_ip_ranges []string
 
 }
 
 type Google_compute_security_policy_rule_1623_match_1624 struct {
 
-    Google_compute_security_policy_rule_1623_match_1624_id *string `lyra:"ignore"`
-
-    Config Google_compute_security_policy_rule_1623_match_1624_config_1625
+    Config []Google_compute_security_policy_rule_1623_match_1624_config_1625
 
     Versioned_expr string
 
@@ -4611,13 +4425,11 @@ type Google_compute_security_policy_rule_1623_match_1624 struct {
 
 type Google_compute_security_policy_rule_1623 struct {
 
-    Google_compute_security_policy_rule_1623_id *string `lyra:"ignore"`
-
     Action string
 
     Description *string
 
-    Match Google_compute_security_policy_rule_1623_match_1624
+    Match []Google_compute_security_policy_rule_1623_match_1624
 
     Preview *bool
 
@@ -4774,8 +4586,6 @@ func (h *Google_compute_shared_vpc_service_projectHandler) Delete(externalID str
 
 type Google_compute_snapshot_snapshot_encryption_key_1626 struct {
 
-    Google_compute_snapshot_snapshot_encryption_key_1626_id *string `lyra:"ignore"`
-
     Raw_key *string
 
     Sha256 *string
@@ -4783,8 +4593,6 @@ type Google_compute_snapshot_snapshot_encryption_key_1626 struct {
 }
 
 type Google_compute_snapshot_source_disk_encryption_key_1627 struct {
-
-    Google_compute_snapshot_source_disk_encryption_key_1627_id *string `lyra:"ignore"`
 
     Raw_key *string
 
@@ -4812,7 +4620,7 @@ type Google_compute_snapshot struct {
 
     Self_link *string
 
-    Snapshot_encryption_key *Google_compute_snapshot_snapshot_encryption_key_1626
+    Snapshot_encryption_key *[]Google_compute_snapshot_snapshot_encryption_key_1626
 
     Snapshot_encryption_key_raw *string
 
@@ -4822,7 +4630,7 @@ type Google_compute_snapshot struct {
 
     Source_disk string
 
-    Source_disk_encryption_key *Google_compute_snapshot_source_disk_encryption_key_1627
+    Source_disk_encryption_key *[]Google_compute_snapshot_source_disk_encryption_key_1627
 
     Source_disk_encryption_key_raw *string
 
@@ -4999,8 +4807,6 @@ func (h *Google_compute_ssl_policyHandler) Delete(externalID string) error {
 
 type Google_compute_subnetwork_secondary_ip_range_1628 struct {
 
-    Google_compute_subnetwork_secondary_ip_range_1628_id *string `lyra:"ignore"`
-
     Ip_cidr_range string
 
     Range_name string
@@ -5033,7 +4839,7 @@ type Google_compute_subnetwork struct {
 
     Region *string
 
-    Secondary_ip_range *Google_compute_subnetwork_secondary_ip_range_1628
+    Secondary_ip_range *[]Google_compute_subnetwork_secondary_ip_range_1628
 
     Self_link *string
 
@@ -5546,8 +5352,6 @@ func (h *Google_compute_target_tcp_proxyHandler) Delete(externalID string) error
 
 type Google_compute_url_map_host_rule_1629 struct {
 
-    Google_compute_url_map_host_rule_1629_id *string `lyra:"ignore"`
-
     Description *string
 
     Hosts []string
@@ -5558,8 +5362,6 @@ type Google_compute_url_map_host_rule_1629 struct {
 
 type Google_compute_url_map_path_matcher_1630_path_rule_1631 struct {
 
-    Google_compute_url_map_path_matcher_1630_path_rule_1631_id *string `lyra:"ignore"`
-
     Paths []string
 
     Service string
@@ -5568,21 +5370,17 @@ type Google_compute_url_map_path_matcher_1630_path_rule_1631 struct {
 
 type Google_compute_url_map_path_matcher_1630 struct {
 
-    Google_compute_url_map_path_matcher_1630_id *string `lyra:"ignore"`
-
     Default_service string
 
     Description *string
 
     Name string
 
-    Path_rule *Google_compute_url_map_path_matcher_1630_path_rule_1631
+    Path_rule *[]Google_compute_url_map_path_matcher_1630_path_rule_1631
 
 }
 
 type Google_compute_url_map_test_1632 struct {
-
-    Google_compute_url_map_test_1632_id *string `lyra:"ignore"`
 
     Description *string
 
@@ -5610,13 +5408,13 @@ type Google_compute_url_map struct {
 
     Name string
 
-    Path_matcher *Google_compute_url_map_path_matcher_1630
+    Path_matcher *[]Google_compute_url_map_path_matcher_1630
 
     Project *string
 
     Self_link *string
 
-    Test *Google_compute_url_map_test_1632
+    Test *[]Google_compute_url_map_test_1632
 
 }
 
@@ -5793,17 +5591,13 @@ func (h *Google_compute_vpn_tunnelHandler) Delete(externalID string) error {
 
 type Google_container_analysis_note_attestation_authority_1633_hint_1634 struct {
 
-    Google_container_analysis_note_attestation_authority_1633_hint_1634_id *string `lyra:"ignore"`
-
     Human_readable_name string
 
 }
 
 type Google_container_analysis_note_attestation_authority_1633 struct {
 
-    Google_container_analysis_note_attestation_authority_1633_id *string `lyra:"ignore"`
-
-    Hint Google_container_analysis_note_attestation_authority_1633_hint_1634
+    Hint []Google_container_analysis_note_attestation_authority_1633_hint_1634
 
 }
 
@@ -5811,7 +5605,7 @@ type Google_container_analysis_note struct {
 
     Google_container_analysis_note_id *string `lyra:"ignore"`
 
-    Attestation_authority Google_container_analysis_note_attestation_authority_1633
+    Attestation_authority []Google_container_analysis_note_attestation_authority_1633
 
     Name string
 
@@ -5858,15 +5652,11 @@ func (h *Google_container_analysis_noteHandler) Delete(externalID string) error 
 
 type Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636 struct {
 
-    Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636_id *string `lyra:"ignore"`
-
     Disabled *bool
 
 }
 
 type Google_container_cluster_addons_config_1635_http_load_balancing_1637 struct {
-
-    Google_container_cluster_addons_config_1635_http_load_balancing_1637_id *string `lyra:"ignore"`
 
     Disabled *bool
 
@@ -5874,15 +5664,11 @@ type Google_container_cluster_addons_config_1635_http_load_balancing_1637 struct
 
 type Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638 struct {
 
-    Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638_id *string `lyra:"ignore"`
-
     Disabled *bool
 
 }
 
 type Google_container_cluster_addons_config_1635_network_policy_config_1639 struct {
-
-    Google_container_cluster_addons_config_1635_network_policy_config_1639_id *string `lyra:"ignore"`
 
     Disabled *bool
 
@@ -5890,21 +5676,17 @@ type Google_container_cluster_addons_config_1635_network_policy_config_1639 stru
 
 type Google_container_cluster_addons_config_1635 struct {
 
-    Google_container_cluster_addons_config_1635_id *string `lyra:"ignore"`
+    Horizontal_pod_autoscaling *[]Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636
 
-    Horizontal_pod_autoscaling *Google_container_cluster_addons_config_1635_horizontal_pod_autoscaling_1636
+    Http_load_balancing *[]Google_container_cluster_addons_config_1635_http_load_balancing_1637
 
-    Http_load_balancing *Google_container_cluster_addons_config_1635_http_load_balancing_1637
+    Kubernetes_dashboard *[]Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638
 
-    Kubernetes_dashboard *Google_container_cluster_addons_config_1635_kubernetes_dashboard_1638
-
-    Network_policy_config *Google_container_cluster_addons_config_1635_network_policy_config_1639
+    Network_policy_config *[]Google_container_cluster_addons_config_1635_network_policy_config_1639
 
 }
 
 type Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641 struct {
-
-    Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641_id *string `lyra:"ignore"`
 
     Maximum *int
 
@@ -5916,17 +5698,13 @@ type Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641 stru
 
 type Google_container_cluster_cluster_autoscaling_1640 struct {
 
-    Google_container_cluster_cluster_autoscaling_1640_id *string `lyra:"ignore"`
-
     Enabled bool
 
-    Resource_limits *Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641
+    Resource_limits *[]Google_container_cluster_cluster_autoscaling_1640_resource_limits_1641
 
 }
 
 type Google_container_cluster_ip_allocation_policy_1642 struct {
-
-    Google_container_cluster_ip_allocation_policy_1642_id *string `lyra:"ignore"`
 
     Cluster_ipv4_cidr_block *string
 
@@ -5944,8 +5722,6 @@ type Google_container_cluster_ip_allocation_policy_1642 struct {
 
 type Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644 struct {
 
-    Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644_id *string `lyra:"ignore"`
-
     Duration *string
 
     Start_time string
@@ -5954,15 +5730,11 @@ type Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1
 
 type Google_container_cluster_maintenance_policy_1643 struct {
 
-    Google_container_cluster_maintenance_policy_1643_id *string `lyra:"ignore"`
-
-    Daily_maintenance_window Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644
+    Daily_maintenance_window []Google_container_cluster_maintenance_policy_1643_daily_maintenance_window_1644
 
 }
 
 type Google_container_cluster_master_auth_1645_client_certificate_config_1646 struct {
-
-    Google_container_cluster_master_auth_1645_client_certificate_config_1646_id *string `lyra:"ignore"`
 
     Issue_client_certificate bool
 
@@ -5970,11 +5742,9 @@ type Google_container_cluster_master_auth_1645_client_certificate_config_1646 st
 
 type Google_container_cluster_master_auth_1645 struct {
 
-    Google_container_cluster_master_auth_1645_id *string `lyra:"ignore"`
-
     Client_certificate *string
 
-    Client_certificate_config *Google_container_cluster_master_auth_1645_client_certificate_config_1646
+    Client_certificate_config *[]Google_container_cluster_master_auth_1645_client_certificate_config_1646
 
     Client_key *string
 
@@ -5988,8 +5758,6 @@ type Google_container_cluster_master_auth_1645 struct {
 
 type Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648 struct {
 
-    Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648_id *string `lyra:"ignore"`
-
     Cidr_block string
 
     Display_name *string
@@ -5998,15 +5766,11 @@ type Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks
 
 type Google_container_cluster_master_authorized_networks_config_1647 struct {
 
-    Google_container_cluster_master_authorized_networks_config_1647_id *string `lyra:"ignore"`
-
     Cidr_blocks *Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648
 
 }
 
 type Google_container_cluster_network_policy_1649 struct {
-
-    Google_container_cluster_network_policy_1649_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -6016,8 +5780,6 @@ type Google_container_cluster_network_policy_1649 struct {
 
 type Google_container_cluster_node_config_1650_guest_accelerator_1651 struct {
 
-    Google_container_cluster_node_config_1650_guest_accelerator_1651_id *string `lyra:"ignore"`
-
     Count int
 
     Type string
@@ -6025,8 +5787,6 @@ type Google_container_cluster_node_config_1650_guest_accelerator_1651 struct {
 }
 
 type Google_container_cluster_node_config_1650_taint_1652 struct {
-
-    Google_container_cluster_node_config_1650_taint_1652_id *string `lyra:"ignore"`
 
     Effect string
 
@@ -6038,21 +5798,17 @@ type Google_container_cluster_node_config_1650_taint_1652 struct {
 
 type Google_container_cluster_node_config_1650_workload_metadata_config_1653 struct {
 
-    Google_container_cluster_node_config_1650_workload_metadata_config_1653_id *string `lyra:"ignore"`
-
     Node_metadata string
 
 }
 
 type Google_container_cluster_node_config_1650 struct {
 
-    Google_container_cluster_node_config_1650_id *string `lyra:"ignore"`
-
     Disk_size_gb *int
 
     Disk_type *string
 
-    Guest_accelerator *Google_container_cluster_node_config_1650_guest_accelerator_1651
+    Guest_accelerator *[]Google_container_cluster_node_config_1650_guest_accelerator_1651
 
     Image_type *string
 
@@ -6074,15 +5830,13 @@ type Google_container_cluster_node_config_1650 struct {
 
     Tags *[]string
 
-    Taint *Google_container_cluster_node_config_1650_taint_1652
+    Taint *[]Google_container_cluster_node_config_1650_taint_1652
 
-    Workload_metadata_config *Google_container_cluster_node_config_1650_workload_metadata_config_1653
+    Workload_metadata_config *[]Google_container_cluster_node_config_1650_workload_metadata_config_1653
 
 }
 
 type Google_container_cluster_node_pool_1654_autoscaling_1655 struct {
-
-    Google_container_cluster_node_pool_1654_autoscaling_1655_id *string `lyra:"ignore"`
 
     Max_node_count int
 
@@ -6092,8 +5846,6 @@ type Google_container_cluster_node_pool_1654_autoscaling_1655 struct {
 
 type Google_container_cluster_node_pool_1654_management_1656 struct {
 
-    Google_container_cluster_node_pool_1654_management_1656_id *string `lyra:"ignore"`
-
     Auto_repair *bool
 
     Auto_upgrade *bool
@@ -6102,8 +5854,6 @@ type Google_container_cluster_node_pool_1654_management_1656 struct {
 
 type Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658 struct {
 
-    Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658_id *string `lyra:"ignore"`
-
     Count int
 
     Type string
@@ -6111,8 +5861,6 @@ type Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_
 }
 
 type Google_container_cluster_node_pool_1654_node_config_1657_taint_1659 struct {
-
-    Google_container_cluster_node_pool_1654_node_config_1657_taint_1659_id *string `lyra:"ignore"`
 
     Effect string
 
@@ -6124,21 +5872,17 @@ type Google_container_cluster_node_pool_1654_node_config_1657_taint_1659 struct 
 
 type Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660 struct {
 
-    Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660_id *string `lyra:"ignore"`
-
     Node_metadata string
 
 }
 
 type Google_container_cluster_node_pool_1654_node_config_1657 struct {
 
-    Google_container_cluster_node_pool_1654_node_config_1657_id *string `lyra:"ignore"`
-
     Disk_size_gb *int
 
     Disk_type *string
 
-    Guest_accelerator *Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658
+    Guest_accelerator *[]Google_container_cluster_node_pool_1654_node_config_1657_guest_accelerator_1658
 
     Image_type *string
 
@@ -6160,23 +5904,21 @@ type Google_container_cluster_node_pool_1654_node_config_1657 struct {
 
     Tags *[]string
 
-    Taint *Google_container_cluster_node_pool_1654_node_config_1657_taint_1659
+    Taint *[]Google_container_cluster_node_pool_1654_node_config_1657_taint_1659
 
-    Workload_metadata_config *Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660
+    Workload_metadata_config *[]Google_container_cluster_node_pool_1654_node_config_1657_workload_metadata_config_1660
 
 }
 
 type Google_container_cluster_node_pool_1654 struct {
 
-    Google_container_cluster_node_pool_1654_id *string `lyra:"ignore"`
-
-    Autoscaling *Google_container_cluster_node_pool_1654_autoscaling_1655
+    Autoscaling *[]Google_container_cluster_node_pool_1654_autoscaling_1655
 
     Initial_node_count *int
 
     Instance_group_urls *[]string
 
-    Management *Google_container_cluster_node_pool_1654_management_1656
+    Management *[]Google_container_cluster_node_pool_1654_management_1656
 
     Max_pods_per_node *int
 
@@ -6184,7 +5926,7 @@ type Google_container_cluster_node_pool_1654 struct {
 
     Name_prefix *string
 
-    Node_config *Google_container_cluster_node_pool_1654_node_config_1657
+    Node_config *[]Google_container_cluster_node_pool_1654_node_config_1657
 
     Node_count *int
 
@@ -6194,15 +5936,11 @@ type Google_container_cluster_node_pool_1654 struct {
 
 type Google_container_cluster_pod_security_policy_config_1661 struct {
 
-    Google_container_cluster_pod_security_policy_config_1661_id *string `lyra:"ignore"`
-
     Enabled bool
 
 }
 
 type Google_container_cluster_private_cluster_config_1662 struct {
-
-    Google_container_cluster_private_cluster_config_1662_id *string `lyra:"ignore"`
 
     Enable_private_endpoint *bool
 
@@ -6222,9 +5960,9 @@ type Google_container_cluster struct {
 
     Additional_zones *[]string
 
-    Addons_config *Google_container_cluster_addons_config_1635
+    Addons_config *[]Google_container_cluster_addons_config_1635
 
-    Cluster_autoscaling *Google_container_cluster_cluster_autoscaling_1640
+    Cluster_autoscaling *[]Google_container_cluster_cluster_autoscaling_1640
 
     Cluster_ipv4_cidr *string
 
@@ -6244,15 +5982,15 @@ type Google_container_cluster struct {
 
     Instance_group_urls *[]string
 
-    Ip_allocation_policy *Google_container_cluster_ip_allocation_policy_1642
+    Ip_allocation_policy *[]Google_container_cluster_ip_allocation_policy_1642
 
     Logging_service *string
 
-    Maintenance_policy *Google_container_cluster_maintenance_policy_1643
+    Maintenance_policy *[]Google_container_cluster_maintenance_policy_1643
 
-    Master_auth *Google_container_cluster_master_auth_1645
+    Master_auth *[]Google_container_cluster_master_auth_1645
 
-    Master_authorized_networks_config *Google_container_cluster_master_authorized_networks_config_1647
+    Master_authorized_networks_config *[]Google_container_cluster_master_authorized_networks_config_1647
 
     Master_ipv4_cidr_block *string
 
@@ -6266,19 +6004,19 @@ type Google_container_cluster struct {
 
     Network *string
 
-    Network_policy *Google_container_cluster_network_policy_1649
+    Network_policy *[]Google_container_cluster_network_policy_1649
 
-    Node_config *Google_container_cluster_node_config_1650
+    Node_config *[]Google_container_cluster_node_config_1650
 
-    Node_pool *Google_container_cluster_node_pool_1654
+    Node_pool *[]Google_container_cluster_node_pool_1654
 
     Node_version *string
 
-    Pod_security_policy_config *Google_container_cluster_pod_security_policy_config_1661
+    Pod_security_policy_config *[]Google_container_cluster_pod_security_policy_config_1661
 
     Private_cluster *bool
 
-    Private_cluster_config *Google_container_cluster_private_cluster_config_1662
+    Private_cluster_config *[]Google_container_cluster_private_cluster_config_1662
 
     Project *string
 
@@ -6333,8 +6071,6 @@ func (h *Google_container_clusterHandler) Delete(externalID string) error {
 
 type Google_container_node_pool_autoscaling_1663 struct {
 
-    Google_container_node_pool_autoscaling_1663_id *string `lyra:"ignore"`
-
     Max_node_count int
 
     Min_node_count int
@@ -6342,8 +6078,6 @@ type Google_container_node_pool_autoscaling_1663 struct {
 }
 
 type Google_container_node_pool_management_1664 struct {
-
-    Google_container_node_pool_management_1664_id *string `lyra:"ignore"`
 
     Auto_repair *bool
 
@@ -6353,8 +6087,6 @@ type Google_container_node_pool_management_1664 struct {
 
 type Google_container_node_pool_node_config_1665_guest_accelerator_1666 struct {
 
-    Google_container_node_pool_node_config_1665_guest_accelerator_1666_id *string `lyra:"ignore"`
-
     Count int
 
     Type string
@@ -6362,8 +6094,6 @@ type Google_container_node_pool_node_config_1665_guest_accelerator_1666 struct {
 }
 
 type Google_container_node_pool_node_config_1665_taint_1667 struct {
-
-    Google_container_node_pool_node_config_1665_taint_1667_id *string `lyra:"ignore"`
 
     Effect string
 
@@ -6375,21 +6105,17 @@ type Google_container_node_pool_node_config_1665_taint_1667 struct {
 
 type Google_container_node_pool_node_config_1665_workload_metadata_config_1668 struct {
 
-    Google_container_node_pool_node_config_1665_workload_metadata_config_1668_id *string `lyra:"ignore"`
-
     Node_metadata string
 
 }
 
 type Google_container_node_pool_node_config_1665 struct {
 
-    Google_container_node_pool_node_config_1665_id *string `lyra:"ignore"`
-
     Disk_size_gb *int
 
     Disk_type *string
 
-    Guest_accelerator *Google_container_node_pool_node_config_1665_guest_accelerator_1666
+    Guest_accelerator *[]Google_container_node_pool_node_config_1665_guest_accelerator_1666
 
     Image_type *string
 
@@ -6411,9 +6137,9 @@ type Google_container_node_pool_node_config_1665 struct {
 
     Tags *[]string
 
-    Taint *Google_container_node_pool_node_config_1665_taint_1667
+    Taint *[]Google_container_node_pool_node_config_1665_taint_1667
 
-    Workload_metadata_config *Google_container_node_pool_node_config_1665_workload_metadata_config_1668
+    Workload_metadata_config *[]Google_container_node_pool_node_config_1665_workload_metadata_config_1668
 
 }
 
@@ -6421,7 +6147,7 @@ type Google_container_node_pool struct {
 
     Google_container_node_pool_id *string `lyra:"ignore"`
 
-    Autoscaling *Google_container_node_pool_autoscaling_1663
+    Autoscaling *[]Google_container_node_pool_autoscaling_1663
 
     Cluster string
 
@@ -6429,7 +6155,7 @@ type Google_container_node_pool struct {
 
     Instance_group_urls *[]string
 
-    Management *Google_container_node_pool_management_1664
+    Management *[]Google_container_node_pool_management_1664
 
     Max_pods_per_node *int
 
@@ -6437,7 +6163,7 @@ type Google_container_node_pool struct {
 
     Name_prefix *string
 
-    Node_config *Google_container_node_pool_node_config_1665
+    Node_config *[]Google_container_node_pool_node_config_1665
 
     Node_count *int
 
@@ -6553,8 +6279,6 @@ func (h *Google_dataflow_jobHandler) Delete(externalID string) error {
 
 type Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670_id *string `lyra:"ignore"`
-
     Internal_ip_only *bool
 
     Metadata *map[string]string
@@ -6575,8 +6299,6 @@ type Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670 struct 
 
 type Google_dataproc_cluster_cluster_config_1669_initialization_action_1671 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_initialization_action_1671_id *string `lyra:"ignore"`
-
     Script string
 
     Timeout_sec *int
@@ -6584,8 +6306,6 @@ type Google_dataproc_cluster_cluster_config_1669_initialization_action_1671 stru
 }
 
 type Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673 struct {
-
-    Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673_id *string `lyra:"ignore"`
 
     Boot_disk_size_gb *int
 
@@ -6597,9 +6317,7 @@ type Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_
 
 type Google_dataproc_cluster_cluster_config_1669_master_config_1672 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_master_config_1672_id *string `lyra:"ignore"`
-
-    Disk_config *Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673
+    Disk_config *[]Google_dataproc_cluster_cluster_config_1669_master_config_1672_disk_config_1673
 
     Instance_names *[]string
 
@@ -6611,17 +6329,13 @@ type Google_dataproc_cluster_cluster_config_1669_master_config_1672 struct {
 
 type Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675_id *string `lyra:"ignore"`
-
     Boot_disk_size_gb *int
 
 }
 
 type Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_id *string `lyra:"ignore"`
-
-    Disk_config *Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675
+    Disk_config *[]Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674_disk_config_1675
 
     Instance_names *[]string
 
@@ -6630,8 +6344,6 @@ type Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674 
 }
 
 type Google_dataproc_cluster_cluster_config_1669_software_config_1676 struct {
-
-    Google_dataproc_cluster_cluster_config_1669_software_config_1676_id *string `lyra:"ignore"`
 
     Image_version *string
 
@@ -6643,8 +6355,6 @@ type Google_dataproc_cluster_cluster_config_1669_software_config_1676 struct {
 
 type Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678_id *string `lyra:"ignore"`
-
     Boot_disk_size_gb *int
 
     Boot_disk_type *string
@@ -6655,9 +6365,7 @@ type Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_
 
 type Google_dataproc_cluster_cluster_config_1669_worker_config_1677 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_worker_config_1677_id *string `lyra:"ignore"`
-
-    Disk_config *Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678
+    Disk_config *[]Google_dataproc_cluster_cluster_config_1669_worker_config_1677_disk_config_1678
 
     Instance_names *[]string
 
@@ -6669,25 +6377,23 @@ type Google_dataproc_cluster_cluster_config_1669_worker_config_1677 struct {
 
 type Google_dataproc_cluster_cluster_config_1669 struct {
 
-    Google_dataproc_cluster_cluster_config_1669_id *string `lyra:"ignore"`
-
     Bucket *string
 
     Delete_autogen_bucket *bool
 
-    Gce_cluster_config *Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670
+    Gce_cluster_config *[]Google_dataproc_cluster_cluster_config_1669_gce_cluster_config_1670
 
-    Initialization_action *Google_dataproc_cluster_cluster_config_1669_initialization_action_1671
+    Initialization_action *[]Google_dataproc_cluster_cluster_config_1669_initialization_action_1671
 
-    Master_config *Google_dataproc_cluster_cluster_config_1669_master_config_1672
+    Master_config *[]Google_dataproc_cluster_cluster_config_1669_master_config_1672
 
-    Preemptible_worker_config *Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674
+    Preemptible_worker_config *[]Google_dataproc_cluster_cluster_config_1669_preemptible_worker_config_1674
 
-    Software_config *Google_dataproc_cluster_cluster_config_1669_software_config_1676
+    Software_config *[]Google_dataproc_cluster_cluster_config_1669_software_config_1676
 
     Staging_bucket *string
 
-    Worker_config *Google_dataproc_cluster_cluster_config_1669_worker_config_1677
+    Worker_config *[]Google_dataproc_cluster_cluster_config_1669_worker_config_1677
 
 }
 
@@ -6695,7 +6401,7 @@ type Google_dataproc_cluster struct {
 
     Google_dataproc_cluster_id *string `lyra:"ignore"`
 
-    Cluster_config *Google_dataproc_cluster_cluster_config_1669
+    Cluster_config *[]Google_dataproc_cluster_cluster_config_1669
 
     Labels *map[string]string
 
@@ -6746,15 +6452,11 @@ func (h *Google_dataproc_clusterHandler) Delete(externalID string) error {
 
 type Google_dataproc_job_hadoop_config_1679_logging_config_1680 struct {
 
-    Google_dataproc_job_hadoop_config_1679_logging_config_1680_id *string `lyra:"ignore"`
-
     Driver_log_levels *map[string]string
 
 }
 
 type Google_dataproc_job_hadoop_config_1679 struct {
-
-    Google_dataproc_job_hadoop_config_1679_id *string `lyra:"ignore"`
 
     Archive_uris *[]string
 
@@ -6764,7 +6466,7 @@ type Google_dataproc_job_hadoop_config_1679 struct {
 
     Jar_file_uris *[]string
 
-    Logging_config *Google_dataproc_job_hadoop_config_1679_logging_config_1680
+    Logging_config *[]Google_dataproc_job_hadoop_config_1679_logging_config_1680
 
     Main_class *string
 
@@ -6775,8 +6477,6 @@ type Google_dataproc_job_hadoop_config_1679 struct {
 }
 
 type Google_dataproc_job_hive_config_1681 struct {
-
-    Google_dataproc_job_hive_config_1681_id *string `lyra:"ignore"`
 
     Continue_on_failure *bool
 
@@ -6794,21 +6494,17 @@ type Google_dataproc_job_hive_config_1681 struct {
 
 type Google_dataproc_job_pig_config_1682_logging_config_1683 struct {
 
-    Google_dataproc_job_pig_config_1682_logging_config_1683_id *string `lyra:"ignore"`
-
     Driver_log_levels *map[string]string
 
 }
 
 type Google_dataproc_job_pig_config_1682 struct {
 
-    Google_dataproc_job_pig_config_1682_id *string `lyra:"ignore"`
-
     Continue_on_failure *bool
 
     Jar_file_uris *[]string
 
-    Logging_config *Google_dataproc_job_pig_config_1682_logging_config_1683
+    Logging_config *[]Google_dataproc_job_pig_config_1682_logging_config_1683
 
     Properties *map[string]string
 
@@ -6822,8 +6518,6 @@ type Google_dataproc_job_pig_config_1682 struct {
 
 type Google_dataproc_job_placement_1684 struct {
 
-    Google_dataproc_job_placement_1684_id *string `lyra:"ignore"`
-
     Cluster_name string
 
     Cluster_uuid *string
@@ -6832,15 +6526,11 @@ type Google_dataproc_job_placement_1684 struct {
 
 type Google_dataproc_job_pyspark_config_1685_logging_config_1686 struct {
 
-    Google_dataproc_job_pyspark_config_1685_logging_config_1686_id *string `lyra:"ignore"`
-
     Driver_log_levels *map[string]string
 
 }
 
 type Google_dataproc_job_pyspark_config_1685 struct {
-
-    Google_dataproc_job_pyspark_config_1685_id *string `lyra:"ignore"`
 
     Archive_uris *[]string
 
@@ -6850,7 +6540,7 @@ type Google_dataproc_job_pyspark_config_1685 struct {
 
     Jar_file_uris *[]string
 
-    Logging_config *Google_dataproc_job_pyspark_config_1685_logging_config_1686
+    Logging_config *[]Google_dataproc_job_pyspark_config_1685_logging_config_1686
 
     Main_python_file_uri string
 
@@ -6862,15 +6552,11 @@ type Google_dataproc_job_pyspark_config_1685 struct {
 
 type Google_dataproc_job_reference_1687 struct {
 
-    Google_dataproc_job_reference_1687_id *string `lyra:"ignore"`
-
     Job_id *string
 
 }
 
 type Google_dataproc_job_scheduling_1688 struct {
-
-    Google_dataproc_job_scheduling_1688_id *string `lyra:"ignore"`
 
     Max_failures_per_hour *int
 
@@ -6878,15 +6564,11 @@ type Google_dataproc_job_scheduling_1688 struct {
 
 type Google_dataproc_job_spark_config_1689_logging_config_1690 struct {
 
-    Google_dataproc_job_spark_config_1689_logging_config_1690_id *string `lyra:"ignore"`
-
     Driver_log_levels *map[string]string
 
 }
 
 type Google_dataproc_job_spark_config_1689 struct {
-
-    Google_dataproc_job_spark_config_1689_id *string `lyra:"ignore"`
 
     Archive_uris *[]string
 
@@ -6896,7 +6578,7 @@ type Google_dataproc_job_spark_config_1689 struct {
 
     Jar_file_uris *[]string
 
-    Logging_config *Google_dataproc_job_spark_config_1689_logging_config_1690
+    Logging_config *[]Google_dataproc_job_spark_config_1689_logging_config_1690
 
     Main_class *string
 
@@ -6908,19 +6590,15 @@ type Google_dataproc_job_spark_config_1689 struct {
 
 type Google_dataproc_job_sparksql_config_1691_logging_config_1692 struct {
 
-    Google_dataproc_job_sparksql_config_1691_logging_config_1692_id *string `lyra:"ignore"`
-
     Driver_log_levels *map[string]string
 
 }
 
 type Google_dataproc_job_sparksql_config_1691 struct {
 
-    Google_dataproc_job_sparksql_config_1691_id *string `lyra:"ignore"`
-
     Jar_file_uris *[]string
 
-    Logging_config *Google_dataproc_job_sparksql_config_1691_logging_config_1692
+    Logging_config *[]Google_dataproc_job_sparksql_config_1691_logging_config_1692
 
     Properties *map[string]string
 
@@ -6933,8 +6611,6 @@ type Google_dataproc_job_sparksql_config_1691 struct {
 }
 
 type Google_dataproc_job_status_1693 struct {
-
-    Google_dataproc_job_status_1693_id *string `lyra:"ignore"`
 
     Details *string
 
@@ -6956,31 +6632,31 @@ type Google_dataproc_job struct {
 
     Force_delete *bool
 
-    Hadoop_config *Google_dataproc_job_hadoop_config_1679
+    Hadoop_config *[]Google_dataproc_job_hadoop_config_1679
 
-    Hive_config *Google_dataproc_job_hive_config_1681
+    Hive_config *[]Google_dataproc_job_hive_config_1681
 
     Labels *map[string]string
 
-    Pig_config *Google_dataproc_job_pig_config_1682
+    Pig_config *[]Google_dataproc_job_pig_config_1682
 
-    Placement Google_dataproc_job_placement_1684
+    Placement []Google_dataproc_job_placement_1684
 
     Project *string
 
-    Pyspark_config *Google_dataproc_job_pyspark_config_1685
+    Pyspark_config *[]Google_dataproc_job_pyspark_config_1685
 
-    Reference *Google_dataproc_job_reference_1687
+    Reference *[]Google_dataproc_job_reference_1687
 
     Region *string
 
-    Scheduling *Google_dataproc_job_scheduling_1688
+    Scheduling *[]Google_dataproc_job_scheduling_1688
 
-    Spark_config *Google_dataproc_job_spark_config_1689
+    Spark_config *[]Google_dataproc_job_spark_config_1689
 
-    Sparksql_config *Google_dataproc_job_sparksql_config_1691
+    Sparksql_config *[]Google_dataproc_job_sparksql_config_1691
 
-    Status *Google_dataproc_job_status_1693
+    Status *[]Google_dataproc_job_status_1693
 
 }
 
@@ -7133,8 +6809,6 @@ func (h *Google_dns_record_setHandler) Delete(externalID string) error {
 
 type Google_endpoints_service_apis_1694_methods_1695 struct {
 
-    Google_endpoints_service_apis_1694_methods_1695_id *string `lyra:"ignore"`
-
     Name *string
 
     Request_type *string
@@ -7147,9 +6821,7 @@ type Google_endpoints_service_apis_1694_methods_1695 struct {
 
 type Google_endpoints_service_apis_1694 struct {
 
-    Google_endpoints_service_apis_1694_id *string `lyra:"ignore"`
-
-    Methods *Google_endpoints_service_apis_1694_methods_1695
+    Methods *[]Google_endpoints_service_apis_1694_methods_1695
 
     Name *string
 
@@ -7161,8 +6833,6 @@ type Google_endpoints_service_apis_1694 struct {
 
 type Google_endpoints_service_endpoints_1696 struct {
 
-    Google_endpoints_service_endpoints_1696_id *string `lyra:"ignore"`
-
     Address *string
 
     Name *string
@@ -7173,13 +6843,13 @@ type Google_endpoints_service struct {
 
     Google_endpoints_service_id *string `lyra:"ignore"`
 
-    Apis *Google_endpoints_service_apis_1694
+    Apis *[]Google_endpoints_service_apis_1694
 
     Config_id *string
 
     Dns_address *string
 
-    Endpoints *Google_endpoints_service_endpoints_1696
+    Endpoints *[]Google_endpoints_service_endpoints_1696
 
     Grpc_config *string
 
@@ -7234,8 +6904,6 @@ func (h *Google_endpoints_serviceHandler) Delete(externalID string) error {
 
 type Google_filestore_instance_file_shares_1697 struct {
 
-    Google_filestore_instance_file_shares_1697_id *string `lyra:"ignore"`
-
     Capacity_gb int
 
     Name string
@@ -7243,8 +6911,6 @@ type Google_filestore_instance_file_shares_1697 struct {
 }
 
 type Google_filestore_instance_networks_1698 struct {
-
-    Google_filestore_instance_networks_1698_id *string `lyra:"ignore"`
 
     Ip_addresses *[]string
 
@@ -7266,13 +6932,13 @@ type Google_filestore_instance struct {
 
     Etag *string
 
-    File_shares Google_filestore_instance_file_shares_1697
+    File_shares []Google_filestore_instance_file_shares_1697
 
     Labels *map[string]string
 
     Name string
 
-    Networks Google_filestore_instance_networks_1698
+    Networks []Google_filestore_instance_networks_1698
 
     Project *string
 
@@ -7525,15 +7191,11 @@ func (h *Google_folder_iam_policyHandler) Delete(externalID string) error {
 
 type Google_folder_organization_policy_boolean_policy_1699 struct {
 
-    Google_folder_organization_policy_boolean_policy_1699_id *string `lyra:"ignore"`
-
     Enforced bool
 
 }
 
 type Google_folder_organization_policy_list_policy_1700_allow_1701 struct {
-
-    Google_folder_organization_policy_list_policy_1700_allow_1701_id *string `lyra:"ignore"`
 
     All *bool
 
@@ -7543,8 +7205,6 @@ type Google_folder_organization_policy_list_policy_1700_allow_1701 struct {
 
 type Google_folder_organization_policy_list_policy_1700_deny_1702 struct {
 
-    Google_folder_organization_policy_list_policy_1700_deny_1702_id *string `lyra:"ignore"`
-
     All *bool
 
     Values *[]string
@@ -7553,19 +7213,15 @@ type Google_folder_organization_policy_list_policy_1700_deny_1702 struct {
 
 type Google_folder_organization_policy_list_policy_1700 struct {
 
-    Google_folder_organization_policy_list_policy_1700_id *string `lyra:"ignore"`
+    Allow *[]Google_folder_organization_policy_list_policy_1700_allow_1701
 
-    Allow *Google_folder_organization_policy_list_policy_1700_allow_1701
-
-    Deny *Google_folder_organization_policy_list_policy_1700_deny_1702
+    Deny *[]Google_folder_organization_policy_list_policy_1700_deny_1702
 
     Suggested_value *string
 
 }
 
 type Google_folder_organization_policy_restore_policy_1703 struct {
-
-    Google_folder_organization_policy_restore_policy_1703_id *string `lyra:"ignore"`
 
     Default bool
 
@@ -7575,7 +7231,7 @@ type Google_folder_organization_policy struct {
 
     Google_folder_organization_policy_id *string `lyra:"ignore"`
 
-    Boolean_policy *Google_folder_organization_policy_boolean_policy_1699
+    Boolean_policy *[]Google_folder_organization_policy_boolean_policy_1699
 
     Constraint string
 
@@ -7583,9 +7239,9 @@ type Google_folder_organization_policy struct {
 
     Folder string
 
-    List_policy *Google_folder_organization_policy_list_policy_1700
+    List_policy *[]Google_folder_organization_policy_list_policy_1700
 
-    Restore_policy *Google_folder_organization_policy_restore_policy_1703
+    Restore_policy *[]Google_folder_organization_policy_restore_policy_1703
 
     Update_time *string
 
@@ -8417,8 +8073,6 @@ func (h *Google_logging_project_sinkHandler) Delete(externalID string) error {
 
 type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706_id *string `lyra:"ignore"`
-
     Alignment_period *string
 
     Cross_series_reducer *string
@@ -8431,8 +8085,6 @@ type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggreg
 
 type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707_id *string `lyra:"ignore"`
-
     Count *int
 
     Percent *float64
@@ -8441,21 +8093,17 @@ type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigge
 
 type Google_monitoring_alert_policy_conditions_1704_condition_absent_1705 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_id *string `lyra:"ignore"`
-
-    Aggregations *Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706
+    Aggregations *[]Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_aggregations_1706
 
     Duration string
 
     Filter *string
 
-    Trigger *Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707
+    Trigger *[]Google_monitoring_alert_policy_conditions_1704_condition_absent_1705_trigger_1707
 
 }
 
 type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709 struct {
-
-    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709_id *string `lyra:"ignore"`
 
     Alignment_period *string
 
@@ -8469,8 +8117,6 @@ type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_agg
 
 type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710_id *string `lyra:"ignore"`
-
     Alignment_period *string
 
     Cross_series_reducer *string
@@ -8483,8 +8129,6 @@ type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_den
 
 type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711_id *string `lyra:"ignore"`
-
     Count *int
 
     Percent *float64
@@ -8493,13 +8137,11 @@ type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_tri
 
 type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_id *string `lyra:"ignore"`
-
-    Aggregations *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709
+    Aggregations *[]Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_aggregations_1709
 
     Comparison string
 
-    Denominator_aggregations *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710
+    Denominator_aggregations *[]Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_denominator_aggregations_1710
 
     Denominator_filter *string
 
@@ -8509,17 +8151,15 @@ type Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708 str
 
     Threshold_value *float64
 
-    Trigger *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711
+    Trigger *[]Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708_trigger_1711
 
 }
 
 type Google_monitoring_alert_policy_conditions_1704 struct {
 
-    Google_monitoring_alert_policy_conditions_1704_id *string `lyra:"ignore"`
+    Condition_absent *[]Google_monitoring_alert_policy_conditions_1704_condition_absent_1705
 
-    Condition_absent *Google_monitoring_alert_policy_conditions_1704_condition_absent_1705
-
-    Condition_threshold *Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708
+    Condition_threshold *[]Google_monitoring_alert_policy_conditions_1704_condition_threshold_1708
 
     Display_name string
 
@@ -8528,8 +8168,6 @@ type Google_monitoring_alert_policy_conditions_1704 struct {
 }
 
 type Google_monitoring_alert_policy_creation_record_1712 struct {
-
-    Google_monitoring_alert_policy_creation_record_1712_id *string `lyra:"ignore"`
 
     Mutate_time *string
 
@@ -8543,9 +8181,9 @@ type Google_monitoring_alert_policy struct {
 
     Combiner string
 
-    Conditions Google_monitoring_alert_policy_conditions_1704
+    Conditions []Google_monitoring_alert_policy_conditions_1704
 
-    Creation_record *Google_monitoring_alert_policy_creation_record_1712
+    Creation_record *[]Google_monitoring_alert_policy_creation_record_1712
 
     Display_name string
 
@@ -8716,15 +8354,11 @@ func (h *Google_monitoring_notification_channelHandler) Delete(externalID string
 
 type Google_monitoring_uptime_check_config_content_matchers_1713 struct {
 
-    Google_monitoring_uptime_check_config_content_matchers_1713_id *string `lyra:"ignore"`
-
     Content *string
 
 }
 
 type Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715 struct {
-
-    Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715_id *string `lyra:"ignore"`
 
     Password *string
 
@@ -8734,9 +8368,7 @@ type Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715 struct
 
 type Google_monitoring_uptime_check_config_http_check_1714 struct {
 
-    Google_monitoring_uptime_check_config_http_check_1714_id *string `lyra:"ignore"`
-
-    Auth_info *Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715
+    Auth_info *[]Google_monitoring_uptime_check_config_http_check_1714_auth_info_1715
 
     Headers *map[string]string
 
@@ -8752,8 +8384,6 @@ type Google_monitoring_uptime_check_config_http_check_1714 struct {
 
 type Google_monitoring_uptime_check_config_internal_checkers_1716 struct {
 
-    Google_monitoring_uptime_check_config_internal_checkers_1716_id *string `lyra:"ignore"`
-
     Display_name *string
 
     Gcp_zone *string
@@ -8768,8 +8398,6 @@ type Google_monitoring_uptime_check_config_internal_checkers_1716 struct {
 
 type Google_monitoring_uptime_check_config_monitored_resource_1717 struct {
 
-    Google_monitoring_uptime_check_config_monitored_resource_1717_id *string `lyra:"ignore"`
-
     Labels map[string]string
 
     Type string
@@ -8777,8 +8405,6 @@ type Google_monitoring_uptime_check_config_monitored_resource_1717 struct {
 }
 
 type Google_monitoring_uptime_check_config_resource_group_1718 struct {
-
-    Google_monitoring_uptime_check_config_resource_group_1718_id *string `lyra:"ignore"`
 
     Group_id *string
 
@@ -8788,8 +8414,6 @@ type Google_monitoring_uptime_check_config_resource_group_1718 struct {
 
 type Google_monitoring_uptime_check_config_tcp_check_1719 struct {
 
-    Google_monitoring_uptime_check_config_tcp_check_1719_id *string `lyra:"ignore"`
-
     Port int
 
 }
@@ -8798,17 +8422,17 @@ type Google_monitoring_uptime_check_config struct {
 
     Google_monitoring_uptime_check_config_id *string `lyra:"ignore"`
 
-    Content_matchers *Google_monitoring_uptime_check_config_content_matchers_1713
+    Content_matchers *[]Google_monitoring_uptime_check_config_content_matchers_1713
 
     Display_name string
 
-    Http_check *Google_monitoring_uptime_check_config_http_check_1714
+    Http_check *[]Google_monitoring_uptime_check_config_http_check_1714
 
-    Internal_checkers *Google_monitoring_uptime_check_config_internal_checkers_1716
+    Internal_checkers *[]Google_monitoring_uptime_check_config_internal_checkers_1716
 
     Is_internal *bool
 
-    Monitored_resource *Google_monitoring_uptime_check_config_monitored_resource_1717
+    Monitored_resource *[]Google_monitoring_uptime_check_config_monitored_resource_1717
 
     Name *string
 
@@ -8816,11 +8440,11 @@ type Google_monitoring_uptime_check_config struct {
 
     Project *string
 
-    Resource_group *Google_monitoring_uptime_check_config_resource_group_1718
+    Resource_group *[]Google_monitoring_uptime_check_config_resource_group_1718
 
     Selected_regions *[]string
 
-    Tcp_check *Google_monitoring_uptime_check_config_tcp_check_1719
+    Tcp_check *[]Google_monitoring_uptime_check_config_tcp_check_1719
 
     Timeout string
 
@@ -9073,15 +8697,11 @@ func (h *Google_organization_iam_policyHandler) Delete(externalID string) error 
 
 type Google_organization_policy_boolean_policy_1720 struct {
 
-    Google_organization_policy_boolean_policy_1720_id *string `lyra:"ignore"`
-
     Enforced bool
 
 }
 
 type Google_organization_policy_list_policy_1721_allow_1722 struct {
-
-    Google_organization_policy_list_policy_1721_allow_1722_id *string `lyra:"ignore"`
 
     All *bool
 
@@ -9091,8 +8711,6 @@ type Google_organization_policy_list_policy_1721_allow_1722 struct {
 
 type Google_organization_policy_list_policy_1721_deny_1723 struct {
 
-    Google_organization_policy_list_policy_1721_deny_1723_id *string `lyra:"ignore"`
-
     All *bool
 
     Values *[]string
@@ -9101,19 +8719,15 @@ type Google_organization_policy_list_policy_1721_deny_1723 struct {
 
 type Google_organization_policy_list_policy_1721 struct {
 
-    Google_organization_policy_list_policy_1721_id *string `lyra:"ignore"`
+    Allow *[]Google_organization_policy_list_policy_1721_allow_1722
 
-    Allow *Google_organization_policy_list_policy_1721_allow_1722
-
-    Deny *Google_organization_policy_list_policy_1721_deny_1723
+    Deny *[]Google_organization_policy_list_policy_1721_deny_1723
 
     Suggested_value *string
 
 }
 
 type Google_organization_policy_restore_policy_1724 struct {
-
-    Google_organization_policy_restore_policy_1724_id *string `lyra:"ignore"`
 
     Default bool
 
@@ -9123,17 +8737,17 @@ type Google_organization_policy struct {
 
     Google_organization_policy_id *string `lyra:"ignore"`
 
-    Boolean_policy *Google_organization_policy_boolean_policy_1720
+    Boolean_policy *[]Google_organization_policy_boolean_policy_1720
 
     Constraint string
 
     Etag *string
 
-    List_policy *Google_organization_policy_list_policy_1721
+    List_policy *[]Google_organization_policy_list_policy_1721
 
     Org_id string
 
-    Restore_policy *Google_organization_policy_restore_policy_1724
+    Restore_policy *[]Google_organization_policy_restore_policy_1724
 
     Update_time *string
 
@@ -9180,15 +8794,11 @@ func (h *Google_organization_policyHandler) Delete(externalID string) error {
 
 type Google_project_app_engine_1725_feature_settings_1726 struct {
 
-    Google_project_app_engine_1725_feature_settings_1726_id *string `lyra:"ignore"`
-
     Split_health_checks *bool
 
 }
 
 type Google_project_app_engine_1725_url_dispatch_rule_1727 struct {
-
-    Google_project_app_engine_1725_url_dispatch_rule_1727_id *string `lyra:"ignore"`
 
     Domain *string
 
@@ -9200,8 +8810,6 @@ type Google_project_app_engine_1725_url_dispatch_rule_1727 struct {
 
 type Google_project_app_engine_1725 struct {
 
-    Google_project_app_engine_1725_id *string `lyra:"ignore"`
-
     Auth_domain *string
 
     Code_bucket *string
@@ -9210,7 +8818,7 @@ type Google_project_app_engine_1725 struct {
 
     Default_hostname *string
 
-    Feature_settings *Google_project_app_engine_1725_feature_settings_1726
+    Feature_settings *[]Google_project_app_engine_1725_feature_settings_1726
 
     Gcr_domain *string
 
@@ -9220,7 +8828,7 @@ type Google_project_app_engine_1725 struct {
 
     Serving_status *string
 
-    Url_dispatch_rule *Google_project_app_engine_1725_url_dispatch_rule_1727
+    Url_dispatch_rule *[]Google_project_app_engine_1725_url_dispatch_rule_1727
 
 }
 
@@ -9228,7 +8836,7 @@ type Google_project struct {
 
     Google_project_id *string `lyra:"ignore"`
 
-    App_engine *Google_project_app_engine_1725
+    App_engine *[]Google_project_app_engine_1725
 
     Auto_create_network *bool
 
@@ -9507,15 +9115,11 @@ func (h *Google_project_iam_policyHandler) Delete(externalID string) error {
 
 type Google_project_organization_policy_boolean_policy_1728 struct {
 
-    Google_project_organization_policy_boolean_policy_1728_id *string `lyra:"ignore"`
-
     Enforced bool
 
 }
 
 type Google_project_organization_policy_list_policy_1729_allow_1730 struct {
-
-    Google_project_organization_policy_list_policy_1729_allow_1730_id *string `lyra:"ignore"`
 
     All *bool
 
@@ -9525,8 +9129,6 @@ type Google_project_organization_policy_list_policy_1729_allow_1730 struct {
 
 type Google_project_organization_policy_list_policy_1729_deny_1731 struct {
 
-    Google_project_organization_policy_list_policy_1729_deny_1731_id *string `lyra:"ignore"`
-
     All *bool
 
     Values *[]string
@@ -9535,19 +9137,15 @@ type Google_project_organization_policy_list_policy_1729_deny_1731 struct {
 
 type Google_project_organization_policy_list_policy_1729 struct {
 
-    Google_project_organization_policy_list_policy_1729_id *string `lyra:"ignore"`
+    Allow *[]Google_project_organization_policy_list_policy_1729_allow_1730
 
-    Allow *Google_project_organization_policy_list_policy_1729_allow_1730
-
-    Deny *Google_project_organization_policy_list_policy_1729_deny_1731
+    Deny *[]Google_project_organization_policy_list_policy_1729_deny_1731
 
     Suggested_value *string
 
 }
 
 type Google_project_organization_policy_restore_policy_1732 struct {
-
-    Google_project_organization_policy_restore_policy_1732_id *string `lyra:"ignore"`
 
     Default bool
 
@@ -9557,17 +9155,17 @@ type Google_project_organization_policy struct {
 
     Google_project_organization_policy_id *string `lyra:"ignore"`
 
-    Boolean_policy *Google_project_organization_policy_boolean_policy_1728
+    Boolean_policy *[]Google_project_organization_policy_boolean_policy_1728
 
     Constraint string
 
     Etag *string
 
-    List_policy *Google_project_organization_policy_list_policy_1729
+    List_policy *[]Google_project_organization_policy_list_policy_1729
 
     Project string
 
-    Restore_policy *Google_project_organization_policy_restore_policy_1732
+    Restore_policy *[]Google_project_organization_policy_restore_policy_1732
 
     Update_time *string
 
@@ -9761,8 +9359,6 @@ func (h *Google_project_usage_export_bucketHandler) Delete(externalID string) er
 
 type Google_pubsub_subscription_push_config_1733 struct {
 
-    Google_pubsub_subscription_push_config_1733_id *string `lyra:"ignore"`
-
     Attributes *map[string]string
 
     Push_endpoint string
@@ -9781,7 +9377,7 @@ type Google_pubsub_subscription struct {
 
     Project *string
 
-    Push_config *Google_pubsub_subscription_push_config_1733
+    Push_config *[]Google_pubsub_subscription_push_config_1733
 
     Topic string
 
@@ -11234,8 +10830,6 @@ func (h *Google_sql_databaseHandler) Delete(externalID string) error {
 
 type Google_sql_database_instance_ip_address_1734 struct {
 
-    Google_sql_database_instance_ip_address_1734_id *string `lyra:"ignore"`
-
     Ip_address *string
 
     Time_to_retire *string
@@ -11243,8 +10837,6 @@ type Google_sql_database_instance_ip_address_1734 struct {
 }
 
 type Google_sql_database_instance_replica_configuration_1735 struct {
-
-    Google_sql_database_instance_replica_configuration_1735_id *string `lyra:"ignore"`
 
     Ca_certificate *string
 
@@ -11272,8 +10864,6 @@ type Google_sql_database_instance_replica_configuration_1735 struct {
 
 type Google_sql_database_instance_server_ca_cert_1736 struct {
 
-    Google_sql_database_instance_server_ca_cert_1736_id *string `lyra:"ignore"`
-
     Cert *string
 
     Common_name *string
@@ -11288,8 +10878,6 @@ type Google_sql_database_instance_server_ca_cert_1736 struct {
 
 type Google_sql_database_instance_settings_1737_backup_configuration_1738 struct {
 
-    Google_sql_database_instance_settings_1737_backup_configuration_1738_id *string `lyra:"ignore"`
-
     Binary_log_enabled *bool
 
     Enabled *bool
@@ -11300,8 +10888,6 @@ type Google_sql_database_instance_settings_1737_backup_configuration_1738 struct
 
 type Google_sql_database_instance_settings_1737_database_flags_1739 struct {
 
-    Google_sql_database_instance_settings_1737_database_flags_1739_id *string `lyra:"ignore"`
-
     Name *string
 
     Value *string
@@ -11309,8 +10895,6 @@ type Google_sql_database_instance_settings_1737_database_flags_1739 struct {
 }
 
 type Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741 struct {
-
-    Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741_id *string `lyra:"ignore"`
 
     Expiration_time *string
 
@@ -11321,8 +10905,6 @@ type Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized
 }
 
 type Google_sql_database_instance_settings_1737_ip_configuration_1740 struct {
-
-    Google_sql_database_instance_settings_1737_ip_configuration_1740_id *string `lyra:"ignore"`
 
     Authorized_networks *Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741
 
@@ -11336,8 +10918,6 @@ type Google_sql_database_instance_settings_1737_ip_configuration_1740 struct {
 
 type Google_sql_database_instance_settings_1737_location_preference_1742 struct {
 
-    Google_sql_database_instance_settings_1737_location_preference_1742_id *string `lyra:"ignore"`
-
     Follow_gae_application *string
 
     Zone *string
@@ -11345,8 +10925,6 @@ type Google_sql_database_instance_settings_1737_location_preference_1742 struct 
 }
 
 type Google_sql_database_instance_settings_1737_maintenance_window_1743 struct {
-
-    Google_sql_database_instance_settings_1737_maintenance_window_1743_id *string `lyra:"ignore"`
 
     Day *int
 
@@ -11358,19 +10936,17 @@ type Google_sql_database_instance_settings_1737_maintenance_window_1743 struct {
 
 type Google_sql_database_instance_settings_1737 struct {
 
-    Google_sql_database_instance_settings_1737_id *string `lyra:"ignore"`
-
     Activation_policy *string
 
     Authorized_gae_applications *[]string
 
     Availability_type *string
 
-    Backup_configuration *Google_sql_database_instance_settings_1737_backup_configuration_1738
+    Backup_configuration *[]Google_sql_database_instance_settings_1737_backup_configuration_1738
 
     Crash_safe_replication *bool
 
-    Database_flags *Google_sql_database_instance_settings_1737_database_flags_1739
+    Database_flags *[]Google_sql_database_instance_settings_1737_database_flags_1739
 
     Disk_autoresize *bool
 
@@ -11378,11 +10954,11 @@ type Google_sql_database_instance_settings_1737 struct {
 
     Disk_type *string
 
-    Ip_configuration *Google_sql_database_instance_settings_1737_ip_configuration_1740
+    Ip_configuration *[]Google_sql_database_instance_settings_1737_ip_configuration_1740
 
-    Location_preference *Google_sql_database_instance_settings_1737_location_preference_1742
+    Location_preference *[]Google_sql_database_instance_settings_1737_location_preference_1742
 
-    Maintenance_window *Google_sql_database_instance_settings_1737_maintenance_window_1743
+    Maintenance_window *[]Google_sql_database_instance_settings_1737_maintenance_window_1743
 
     Pricing_plan *string
 
@@ -11406,7 +10982,7 @@ type Google_sql_database_instance struct {
 
     First_ip_address *string
 
-    Ip_address *Google_sql_database_instance_ip_address_1734
+    Ip_address *[]Google_sql_database_instance_ip_address_1734
 
     Master_instance_name *string
 
@@ -11416,15 +10992,15 @@ type Google_sql_database_instance struct {
 
     Region *string
 
-    Replica_configuration *Google_sql_database_instance_replica_configuration_1735
+    Replica_configuration *[]Google_sql_database_instance_replica_configuration_1735
 
     Self_link *string
 
-    Server_ca_cert *Google_sql_database_instance_server_ca_cert_1736
+    Server_ca_cert *[]Google_sql_database_instance_server_ca_cert_1736
 
     Service_account_email_address *string
 
-    Settings Google_sql_database_instance_settings_1737
+    Settings []Google_sql_database_instance_settings_1737
 
 }
 
@@ -11581,8 +11157,6 @@ func (h *Google_sql_userHandler) Delete(externalID string) error {
 
 type Google_storage_bucket_cors_1744 struct {
 
-    Google_storage_bucket_cors_1744_id *string `lyra:"ignore"`
-
     Max_age_seconds *int
 
     Method *[]string
@@ -11595,15 +11169,11 @@ type Google_storage_bucket_cors_1744 struct {
 
 type Google_storage_bucket_encryption_1745 struct {
 
-    Google_storage_bucket_encryption_1745_id *string `lyra:"ignore"`
-
     Default_kms_key_name string
 
 }
 
 type Google_storage_bucket_lifecycle_rule_1746_action_1747 struct {
-
-    Google_storage_bucket_lifecycle_rule_1746_action_1747_id *string `lyra:"ignore"`
 
     Storage_class *string
 
@@ -11612,8 +11182,6 @@ type Google_storage_bucket_lifecycle_rule_1746_action_1747 struct {
 }
 
 type Google_storage_bucket_lifecycle_rule_1746_condition_1748 struct {
-
-    Google_storage_bucket_lifecycle_rule_1746_condition_1748_id *string `lyra:"ignore"`
 
     Age *int
 
@@ -11629,8 +11197,6 @@ type Google_storage_bucket_lifecycle_rule_1746_condition_1748 struct {
 
 type Google_storage_bucket_lifecycle_rule_1746 struct {
 
-    Google_storage_bucket_lifecycle_rule_1746_id *string `lyra:"ignore"`
-
     Action Google_storage_bucket_lifecycle_rule_1746_action_1747
 
     Condition Google_storage_bucket_lifecycle_rule_1746_condition_1748
@@ -11638,8 +11204,6 @@ type Google_storage_bucket_lifecycle_rule_1746 struct {
 }
 
 type Google_storage_bucket_logging_1749 struct {
-
-    Google_storage_bucket_logging_1749_id *string `lyra:"ignore"`
 
     Log_bucket string
 
@@ -11649,15 +11213,11 @@ type Google_storage_bucket_logging_1749 struct {
 
 type Google_storage_bucket_versioning_1750 struct {
 
-    Google_storage_bucket_versioning_1750_id *string `lyra:"ignore"`
-
     Enabled *bool
 
 }
 
 type Google_storage_bucket_website_1751 struct {
-
-    Google_storage_bucket_website_1751_id *string `lyra:"ignore"`
 
     Main_page_suffix *string
 
@@ -11669,19 +11229,19 @@ type Google_storage_bucket struct {
 
     Google_storage_bucket_id *string `lyra:"ignore"`
 
-    Cors *Google_storage_bucket_cors_1744
+    Cors *[]Google_storage_bucket_cors_1744
 
-    Encryption *Google_storage_bucket_encryption_1745
+    Encryption *[]Google_storage_bucket_encryption_1745
 
     Force_destroy *bool
 
     Labels *map[string]string
 
-    Lifecycle_rule *Google_storage_bucket_lifecycle_rule_1746
+    Lifecycle_rule *[]Google_storage_bucket_lifecycle_rule_1746
 
     Location *string
 
-    Logging *Google_storage_bucket_logging_1749
+    Logging *[]Google_storage_bucket_logging_1749
 
     Name string
 
@@ -11695,9 +11255,9 @@ type Google_storage_bucket struct {
 
     Url *string
 
-    Versioning *Google_storage_bucket_versioning_1750
+    Versioning *[]Google_storage_bucket_versioning_1750
 
-    Website *Google_storage_bucket_website_1751
+    Website *[]Google_storage_bucket_website_1751
 
 }
 
@@ -12013,8 +11573,6 @@ func (h *Google_storage_bucket_objectHandler) Delete(externalID string) error {
 
 type Google_storage_default_object_access_control_project_team_1752 struct {
 
-    Google_storage_default_object_access_control_project_team_1752_id *string `lyra:"ignore"`
-
     Project_number *string
 
     Team *string
@@ -12039,7 +11597,7 @@ type Google_storage_default_object_access_control struct {
 
     Object *string
 
-    Project_team *Google_storage_default_object_access_control_project_team_1752
+    Project_team *[]Google_storage_default_object_access_control_project_team_1752
 
     Role string
 
@@ -12188,8 +11746,6 @@ func (h *Google_storage_notificationHandler) Delete(externalID string) error {
 
 type Google_storage_object_access_control_project_team_1753 struct {
 
-    Google_storage_object_access_control_project_team_1753_id *string `lyra:"ignore"`
-
     Project_number *string
 
     Team *string
@@ -12214,7 +11770,7 @@ type Google_storage_object_access_control struct {
 
     Object string
 
-    Project_team *Google_storage_object_access_control_project_team_1753
+    Project_team *[]Google_storage_object_access_control_project_team_1753
 
     Role string
 

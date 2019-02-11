@@ -956,8 +956,6 @@ func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
 
 type Aws_acm_certificate_domain_validation_options_1 struct {
 
-    Aws_acm_certificate_domain_validation_options_1_id *string `lyra:"ignore"`
-
     Domain_name *string
 
     Resource_record_name *string
@@ -980,7 +978,7 @@ type Aws_acm_certificate struct {
 
     Domain_name *string
 
-    Domain_validation_options *Aws_acm_certificate_domain_validation_options_1
+    Domain_validation_options *[]Aws_acm_certificate_domain_validation_options_1
 
     Private_key *string
 
@@ -1080,8 +1078,6 @@ func (h *Aws_acm_certificate_validationHandler) Delete(externalID string) error 
 
 type Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subject_3 struct {
 
-    Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subject_3_id *string `lyra:"ignore"`
-
     Common_name *string
 
     Country *string
@@ -1112,19 +1108,15 @@ type Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subj
 
 type Aws_acmpca_certificate_authority_certificate_authority_configuration_2 struct {
 
-    Aws_acmpca_certificate_authority_certificate_authority_configuration_2_id *string `lyra:"ignore"`
-
     Key_algorithm string
 
     Signing_algorithm string
 
-    Subject Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subject_3
+    Subject []Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subject_3
 
 }
 
 type Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configuration_5 struct {
-
-    Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configuration_5_id *string `lyra:"ignore"`
 
     Custom_cname *string
 
@@ -1138,9 +1130,7 @@ type Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configurati
 
 type Aws_acmpca_certificate_authority_revocation_configuration_4 struct {
 
-    Aws_acmpca_certificate_authority_revocation_configuration_4_id *string `lyra:"ignore"`
-
-    Crl_configuration *Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configuration_5
+    Crl_configuration *[]Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configuration_5
 
 }
 
@@ -1152,7 +1142,7 @@ type Aws_acmpca_certificate_authority struct {
 
     Certificate *string
 
-    Certificate_authority_configuration Aws_acmpca_certificate_authority_certificate_authority_configuration_2
+    Certificate_authority_configuration []Aws_acmpca_certificate_authority_certificate_authority_configuration_2
 
     Certificate_chain *string
 
@@ -1164,7 +1154,7 @@ type Aws_acmpca_certificate_authority struct {
 
     Not_before *string
 
-    Revocation_configuration *Aws_acmpca_certificate_authority_revocation_configuration_4
+    Revocation_configuration *[]Aws_acmpca_certificate_authority_revocation_configuration_4
 
     Serial *string
 
@@ -1215,8 +1205,6 @@ func (h *Aws_acmpca_certificate_authorityHandler) Delete(externalID string) erro
 
 type Aws_alb_access_logs_6 struct {
 
-    Aws_alb_access_logs_6_id *string `lyra:"ignore"`
-
     Bucket string
 
     Enabled *bool
@@ -1226,8 +1214,6 @@ type Aws_alb_access_logs_6 struct {
 }
 
 type Aws_alb_subnet_mapping_7 struct {
-
-    Aws_alb_subnet_mapping_7_id *string `lyra:"ignore"`
 
     Allocation_id *string
 
@@ -1239,7 +1225,7 @@ type Aws_alb struct {
 
     Aws_alb_id *string `lyra:"ignore"`
 
-    Access_logs *Aws_alb_access_logs_6
+    Access_logs *[]Aws_alb_access_logs_6
 
     Arn *string
 
@@ -1318,8 +1304,6 @@ func (h *Aws_albHandler) Delete(externalID string) error {
 
 type Aws_alb_listener_default_action_8_authenticate_cognito_9 struct {
 
-    Aws_alb_listener_default_action_8_authenticate_cognito_9_id *string `lyra:"ignore"`
-
     Authentication_request_extra_params *map[string]string
 
     On_unauthenticated_request *string
@@ -1339,8 +1323,6 @@ type Aws_alb_listener_default_action_8_authenticate_cognito_9 struct {
 }
 
 type Aws_alb_listener_default_action_8_authenticate_oidc_10 struct {
-
-    Aws_alb_listener_default_action_8_authenticate_oidc_10_id *string `lyra:"ignore"`
 
     Authentication_request_extra_params *map[string]string
 
@@ -1368,8 +1350,6 @@ type Aws_alb_listener_default_action_8_authenticate_oidc_10 struct {
 
 type Aws_alb_listener_default_action_8_fixed_response_11 struct {
 
-    Aws_alb_listener_default_action_8_fixed_response_11_id *string `lyra:"ignore"`
-
     Content_type string
 
     Message_body *string
@@ -1379,8 +1359,6 @@ type Aws_alb_listener_default_action_8_fixed_response_11 struct {
 }
 
 type Aws_alb_listener_default_action_8_redirect_12 struct {
-
-    Aws_alb_listener_default_action_8_redirect_12_id *string `lyra:"ignore"`
 
     Host *string
 
@@ -1398,17 +1376,15 @@ type Aws_alb_listener_default_action_8_redirect_12 struct {
 
 type Aws_alb_listener_default_action_8 struct {
 
-    Aws_alb_listener_default_action_8_id *string `lyra:"ignore"`
+    Authenticate_cognito *[]Aws_alb_listener_default_action_8_authenticate_cognito_9
 
-    Authenticate_cognito *Aws_alb_listener_default_action_8_authenticate_cognito_9
+    Authenticate_oidc *[]Aws_alb_listener_default_action_8_authenticate_oidc_10
 
-    Authenticate_oidc *Aws_alb_listener_default_action_8_authenticate_oidc_10
-
-    Fixed_response *Aws_alb_listener_default_action_8_fixed_response_11
+    Fixed_response *[]Aws_alb_listener_default_action_8_fixed_response_11
 
     Order *int
 
-    Redirect *Aws_alb_listener_default_action_8_redirect_12
+    Redirect *[]Aws_alb_listener_default_action_8_redirect_12
 
     Target_group_arn *string
 
@@ -1424,7 +1400,7 @@ type Aws_alb_listener struct {
 
     Certificate_arn *string
 
-    Default_action Aws_alb_listener_default_action_8
+    Default_action []Aws_alb_listener_default_action_8
 
     Load_balancer_arn string
 
@@ -1522,8 +1498,6 @@ func (h *Aws_alb_listener_certificateHandler) Delete(externalID string) error {
 
 type Aws_alb_listener_rule_action_13_authenticate_cognito_14 struct {
 
-    Aws_alb_listener_rule_action_13_authenticate_cognito_14_id *string `lyra:"ignore"`
-
     Authentication_request_extra_params *map[string]string
 
     On_unauthenticated_request *string
@@ -1543,8 +1517,6 @@ type Aws_alb_listener_rule_action_13_authenticate_cognito_14 struct {
 }
 
 type Aws_alb_listener_rule_action_13_authenticate_oidc_15 struct {
-
-    Aws_alb_listener_rule_action_13_authenticate_oidc_15_id *string `lyra:"ignore"`
 
     Authentication_request_extra_params *map[string]string
 
@@ -1572,8 +1544,6 @@ type Aws_alb_listener_rule_action_13_authenticate_oidc_15 struct {
 
 type Aws_alb_listener_rule_action_13_fixed_response_16 struct {
 
-    Aws_alb_listener_rule_action_13_fixed_response_16_id *string `lyra:"ignore"`
-
     Content_type string
 
     Message_body *string
@@ -1583,8 +1553,6 @@ type Aws_alb_listener_rule_action_13_fixed_response_16 struct {
 }
 
 type Aws_alb_listener_rule_action_13_redirect_17 struct {
-
-    Aws_alb_listener_rule_action_13_redirect_17_id *string `lyra:"ignore"`
 
     Host *string
 
@@ -1602,17 +1570,15 @@ type Aws_alb_listener_rule_action_13_redirect_17 struct {
 
 type Aws_alb_listener_rule_action_13 struct {
 
-    Aws_alb_listener_rule_action_13_id *string `lyra:"ignore"`
+    Authenticate_cognito *[]Aws_alb_listener_rule_action_13_authenticate_cognito_14
 
-    Authenticate_cognito *Aws_alb_listener_rule_action_13_authenticate_cognito_14
+    Authenticate_oidc *[]Aws_alb_listener_rule_action_13_authenticate_oidc_15
 
-    Authenticate_oidc *Aws_alb_listener_rule_action_13_authenticate_oidc_15
-
-    Fixed_response *Aws_alb_listener_rule_action_13_fixed_response_16
+    Fixed_response *[]Aws_alb_listener_rule_action_13_fixed_response_16
 
     Order *int
 
-    Redirect *Aws_alb_listener_rule_action_13_redirect_17
+    Redirect *[]Aws_alb_listener_rule_action_13_redirect_17
 
     Target_group_arn *string
 
@@ -1621,8 +1587,6 @@ type Aws_alb_listener_rule_action_13 struct {
 }
 
 type Aws_alb_listener_rule_condition_18 struct {
-
-    Aws_alb_listener_rule_condition_18_id *string `lyra:"ignore"`
 
     Field *string
 
@@ -1634,7 +1598,7 @@ type Aws_alb_listener_rule struct {
 
     Aws_alb_listener_rule_id *string `lyra:"ignore"`
 
-    Action Aws_alb_listener_rule_action_13
+    Action []Aws_alb_listener_rule_action_13
 
     Arn *string
 
@@ -1685,8 +1649,6 @@ func (h *Aws_alb_listener_ruleHandler) Delete(externalID string) error {
 
 type Aws_alb_target_group_health_check_19 struct {
 
-    Aws_alb_target_group_health_check_19_id *string `lyra:"ignore"`
-
     Healthy_threshold *int
 
     Interval *int
@@ -1707,8 +1669,6 @@ type Aws_alb_target_group_health_check_19 struct {
 
 type Aws_alb_target_group_stickiness_20 struct {
 
-    Aws_alb_target_group_stickiness_20_id *string `lyra:"ignore"`
-
     Cookie_duration *int
 
     Enabled *bool
@@ -1727,7 +1687,7 @@ type Aws_alb_target_group struct {
 
     Deregistration_delay *int
 
-    Health_check *Aws_alb_target_group_health_check_19
+    Health_check *[]Aws_alb_target_group_health_check_19
 
     Name *string
 
@@ -1741,7 +1701,7 @@ type Aws_alb_target_group struct {
 
     Slow_start *int
 
-    Stickiness *Aws_alb_target_group_stickiness_20
+    Stickiness *[]Aws_alb_target_group_stickiness_20
 
     Tags *map[string]string
 
@@ -1841,8 +1801,6 @@ func (h *Aws_alb_target_group_attachmentHandler) Delete(externalID string) error
 
 type Aws_ami_ebs_block_device_21 struct {
 
-    Aws_ami_ebs_block_device_21_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_name string
@@ -1860,8 +1818,6 @@ type Aws_ami_ebs_block_device_21 struct {
 }
 
 type Aws_ami_ephemeral_block_device_22 struct {
-
-    Aws_ami_ephemeral_block_device_22_id *string `lyra:"ignore"`
 
     Device_name string
 
@@ -1944,8 +1900,6 @@ func (h *Aws_amiHandler) Delete(externalID string) error {
 
 type Aws_ami_copy_ebs_block_device_23 struct {
 
-    Aws_ami_copy_ebs_block_device_23_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_name *string
@@ -1963,8 +1917,6 @@ type Aws_ami_copy_ebs_block_device_23 struct {
 }
 
 type Aws_ami_copy_ephemeral_block_device_24 struct {
-
-    Aws_ami_copy_ephemeral_block_device_24_id *string `lyra:"ignore"`
 
     Device_name *string
 
@@ -2055,8 +2007,6 @@ func (h *Aws_ami_copyHandler) Delete(externalID string) error {
 
 type Aws_ami_from_instance_ebs_block_device_25 struct {
 
-    Aws_ami_from_instance_ebs_block_device_25_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_name *string
@@ -2074,8 +2024,6 @@ type Aws_ami_from_instance_ebs_block_device_25 struct {
 }
 
 type Aws_ami_from_instance_ephemeral_block_device_26 struct {
-
-    Aws_ami_from_instance_ephemeral_block_device_26_id *string `lyra:"ignore"`
 
     Device_name *string
 
@@ -2209,8 +2157,6 @@ func (h *Aws_ami_launch_permissionHandler) Delete(externalID string) error {
 
 type Aws_api_gateway_account_throttle_settings_27 struct {
 
-    Aws_api_gateway_account_throttle_settings_27_id *string `lyra:"ignore"`
-
     Burst_limit *int
 
     Rate_limit *float64
@@ -2223,7 +2169,7 @@ type Aws_api_gateway_account struct {
 
     Cloudwatch_role_arn *string
 
-    Throttle_settings *Aws_api_gateway_account_throttle_settings_27
+    Throttle_settings *[]Aws_api_gateway_account_throttle_settings_27
 
 }
 
@@ -2265,8 +2211,6 @@ func (h *Aws_api_gateway_accountHandler) Delete(externalID string) error {
 }
 
 type Aws_api_gateway_api_key_stage_key_28 struct {
-
-    Aws_api_gateway_api_key_stage_key_28_id *string `lyra:"ignore"`
 
     Rest_api_id string
 
@@ -2555,8 +2499,6 @@ func (h *Aws_api_gateway_deploymentHandler) Delete(externalID string) error {
 
 type Aws_api_gateway_documentation_part_location_29 struct {
 
-    Aws_api_gateway_documentation_part_location_29_id *string `lyra:"ignore"`
-
     Method *string
 
     Name *string
@@ -2573,7 +2515,7 @@ type Aws_api_gateway_documentation_part struct {
 
     Aws_api_gateway_documentation_part_id *string `lyra:"ignore"`
 
-    Location Aws_api_gateway_documentation_part_location_29
+    Location []Aws_api_gateway_documentation_part_location_29
 
     Properties string
 
@@ -2669,8 +2611,6 @@ func (h *Aws_api_gateway_documentation_versionHandler) Delete(externalID string)
 
 type Aws_api_gateway_domain_name_endpoint_configuration_30 struct {
 
-    Aws_api_gateway_domain_name_endpoint_configuration_30_id *string `lyra:"ignore"`
-
     Types []string
 
 }
@@ -2697,7 +2637,7 @@ type Aws_api_gateway_domain_name struct {
 
     Domain_name string
 
-    Endpoint_configuration *Aws_api_gateway_domain_name_endpoint_configuration_30
+    Endpoint_configuration *[]Aws_api_gateway_domain_name_endpoint_configuration_30
 
     Regional_certificate_arn *string
 
@@ -3061,8 +3001,6 @@ func (h *Aws_api_gateway_method_responseHandler) Delete(externalID string) error
 
 type Aws_api_gateway_method_settings_settings_31 struct {
 
-    Aws_api_gateway_method_settings_settings_31_id *string `lyra:"ignore"`
-
     Cache_data_encrypted *bool
 
     Cache_ttl_in_seconds *int
@@ -3093,7 +3031,7 @@ type Aws_api_gateway_method_settings struct {
 
     Rest_api_id string
 
-    Settings Aws_api_gateway_method_settings_settings_31
+    Settings []Aws_api_gateway_method_settings_settings_31
 
     Stage_name string
 
@@ -3293,8 +3231,6 @@ func (h *Aws_api_gateway_resourceHandler) Delete(externalID string) error {
 
 type Aws_api_gateway_rest_api_endpoint_configuration_32 struct {
 
-    Aws_api_gateway_rest_api_endpoint_configuration_32_id *string `lyra:"ignore"`
-
     Types []string
 
 }
@@ -3313,7 +3249,7 @@ type Aws_api_gateway_rest_api struct {
 
     Description *string
 
-    Endpoint_configuration *Aws_api_gateway_rest_api_endpoint_configuration_32
+    Endpoint_configuration *[]Aws_api_gateway_rest_api_endpoint_configuration_32
 
     Execution_arn *string
 
@@ -3366,8 +3302,6 @@ func (h *Aws_api_gateway_rest_apiHandler) Delete(externalID string) error {
 
 type Aws_api_gateway_stage_access_log_settings_33 struct {
 
-    Aws_api_gateway_stage_access_log_settings_33_id *string `lyra:"ignore"`
-
     Destination_arn string
 
     Format string
@@ -3378,7 +3312,7 @@ type Aws_api_gateway_stage struct {
 
     Aws_api_gateway_stage_id *string `lyra:"ignore"`
 
-    Access_log_settings *Aws_api_gateway_stage_access_log_settings_33
+    Access_log_settings *[]Aws_api_gateway_stage_access_log_settings_33
 
     Cache_cluster_enabled *bool
 
@@ -3447,8 +3381,6 @@ func (h *Aws_api_gateway_stageHandler) Delete(externalID string) error {
 
 type Aws_api_gateway_usage_plan_api_stages_34 struct {
 
-    Aws_api_gateway_usage_plan_api_stages_34_id *string `lyra:"ignore"`
-
     Api_id string
 
     Stage string
@@ -3456,8 +3388,6 @@ type Aws_api_gateway_usage_plan_api_stages_34 struct {
 }
 
 type Aws_api_gateway_usage_plan_quota_settings_35 struct {
-
-    Aws_api_gateway_usage_plan_quota_settings_35_id *string `lyra:"ignore"`
 
     Limit int
 
@@ -3469,8 +3399,6 @@ type Aws_api_gateway_usage_plan_quota_settings_35 struct {
 
 type Aws_api_gateway_usage_plan_throttle_settings_36 struct {
 
-    Aws_api_gateway_usage_plan_throttle_settings_36_id *string `lyra:"ignore"`
-
     Burst_limit *int
 
     Rate_limit *float64
@@ -3481,7 +3409,7 @@ type Aws_api_gateway_usage_plan struct {
 
     Aws_api_gateway_usage_plan_id *string `lyra:"ignore"`
 
-    Api_stages *Aws_api_gateway_usage_plan_api_stages_34
+    Api_stages *[]Aws_api_gateway_usage_plan_api_stages_34
 
     Description *string
 
@@ -3687,8 +3615,6 @@ func (h *Aws_app_cookie_stickiness_policyHandler) Delete(externalID string) erro
 
 type Aws_appautoscaling_policy_step_adjustment_37 struct {
 
-    Aws_appautoscaling_policy_step_adjustment_37_id *string `lyra:"ignore"`
-
     Metric_interval_lower_bound *string
 
     Metric_interval_upper_bound *string
@@ -3699,8 +3625,6 @@ type Aws_appautoscaling_policy_step_adjustment_37 struct {
 
 type Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39 struct {
 
-    Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39_id *string `lyra:"ignore"`
-
     Metric_interval_lower_bound *string
 
     Metric_interval_upper_bound *string
@@ -3710,8 +3634,6 @@ type Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustm
 }
 
 type Aws_appautoscaling_policy_step_scaling_policy_configuration_38 struct {
-
-    Aws_appautoscaling_policy_step_scaling_policy_configuration_38_id *string `lyra:"ignore"`
 
     Adjustment_type *string
 
@@ -3727,8 +3649,6 @@ type Aws_appautoscaling_policy_step_scaling_policy_configuration_38 struct {
 
 type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42 struct {
 
-    Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42_id *string `lyra:"ignore"`
-
     Name string
 
     Value string
@@ -3736,8 +3656,6 @@ type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_c
 }
 
 type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41 struct {
-
-    Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_id *string `lyra:"ignore"`
 
     Dimensions *Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42
 
@@ -3753,8 +3671,6 @@ type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_c
 
 type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_predefined_metric_specification_43 struct {
 
-    Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_predefined_metric_specification_43_id *string `lyra:"ignore"`
-
     Predefined_metric_type string
 
     Resource_label *string
@@ -3763,13 +3679,11 @@ type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_p
 
 type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40 struct {
 
-    Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_id *string `lyra:"ignore"`
-
-    Customized_metric_specification *Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41
+    Customized_metric_specification *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41
 
     Disable_scale_in *bool
 
-    Predefined_metric_specification *Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_predefined_metric_specification_43
+    Predefined_metric_specification *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_predefined_metric_specification_43
 
     Scale_in_cooldown *int
 
@@ -3807,9 +3721,9 @@ type Aws_appautoscaling_policy struct {
 
     Step_adjustment *Aws_appautoscaling_policy_step_adjustment_37
 
-    Step_scaling_policy_configuration *Aws_appautoscaling_policy_step_scaling_policy_configuration_38
+    Step_scaling_policy_configuration *[]Aws_appautoscaling_policy_step_scaling_policy_configuration_38
 
-    Target_tracking_scaling_policy_configuration *Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40
+    Target_tracking_scaling_policy_configuration *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40
 
 }
 
@@ -3852,8 +3766,6 @@ func (h *Aws_appautoscaling_policyHandler) Delete(externalID string) error {
 
 type Aws_appautoscaling_scheduled_action_scalable_target_action_44 struct {
 
-    Aws_appautoscaling_scheduled_action_scalable_target_action_44_id *string `lyra:"ignore"`
-
     Max_capacity *int
 
     Min_capacity *int
@@ -3874,7 +3786,7 @@ type Aws_appautoscaling_scheduled_action struct {
 
     Scalable_dimension *string
 
-    Scalable_target_action *Aws_appautoscaling_scheduled_action_scalable_target_action_44
+    Scalable_target_action *[]Aws_appautoscaling_scheduled_action_scalable_target_action_44
 
     Schedule *string
 
@@ -4029,8 +3941,6 @@ func (h *Aws_appmesh_meshHandler) Delete(externalID string) error {
 
 type Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48 struct {
 
-    Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48_id *string `lyra:"ignore"`
-
     Virtual_node string
 
     Weight int
@@ -4039,15 +3949,11 @@ type Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48 struct
 
 type Aws_appmesh_route_spec_45_http_route_46_action_47 struct {
 
-    Aws_appmesh_route_spec_45_http_route_46_action_47_id *string `lyra:"ignore"`
-
     Weighted_target Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48
 
 }
 
 type Aws_appmesh_route_spec_45_http_route_46_match_49 struct {
-
-    Aws_appmesh_route_spec_45_http_route_46_match_49_id *string `lyra:"ignore"`
 
     Prefix string
 
@@ -4055,19 +3961,15 @@ type Aws_appmesh_route_spec_45_http_route_46_match_49 struct {
 
 type Aws_appmesh_route_spec_45_http_route_46 struct {
 
-    Aws_appmesh_route_spec_45_http_route_46_id *string `lyra:"ignore"`
+    Action []Aws_appmesh_route_spec_45_http_route_46_action_47
 
-    Action Aws_appmesh_route_spec_45_http_route_46_action_47
-
-    Match Aws_appmesh_route_spec_45_http_route_46_match_49
+    Match []Aws_appmesh_route_spec_45_http_route_46_match_49
 
 }
 
 type Aws_appmesh_route_spec_45 struct {
 
-    Aws_appmesh_route_spec_45_id *string `lyra:"ignore"`
-
-    Http_route *Aws_appmesh_route_spec_45_http_route_46
+    Http_route *[]Aws_appmesh_route_spec_45_http_route_46
 
 }
 
@@ -4085,7 +3987,7 @@ type Aws_appmesh_route struct {
 
     Name string
 
-    Spec Aws_appmesh_route_spec_45
+    Spec []Aws_appmesh_route_spec_45
 
     Virtual_router_name string
 
@@ -4130,8 +4032,6 @@ func (h *Aws_appmesh_routeHandler) Delete(externalID string) error {
 
 type Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52 struct {
 
-    Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52_id *string `lyra:"ignore"`
-
     Port int
 
     Protocol string
@@ -4140,15 +4040,11 @@ type Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52 struct {
 
 type Aws_appmesh_virtual_node_spec_50_listener_51 struct {
 
-    Aws_appmesh_virtual_node_spec_50_listener_51_id *string `lyra:"ignore"`
-
-    Port_mapping Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52
+    Port_mapping []Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52
 
 }
 
 type Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54 struct {
-
-    Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54_id *string `lyra:"ignore"`
 
     Service_name string
 
@@ -4156,21 +4052,17 @@ type Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54 struct {
 
 type Aws_appmesh_virtual_node_spec_50_service_discovery_53 struct {
 
-    Aws_appmesh_virtual_node_spec_50_service_discovery_53_id *string `lyra:"ignore"`
-
-    Dns Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54
+    Dns []Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54
 
 }
 
 type Aws_appmesh_virtual_node_spec_50 struct {
 
-    Aws_appmesh_virtual_node_spec_50_id *string `lyra:"ignore"`
-
     Backends *[]string
 
     Listener *Aws_appmesh_virtual_node_spec_50_listener_51
 
-    Service_discovery *Aws_appmesh_virtual_node_spec_50_service_discovery_53
+    Service_discovery *[]Aws_appmesh_virtual_node_spec_50_service_discovery_53
 
 }
 
@@ -4188,7 +4080,7 @@ type Aws_appmesh_virtual_node struct {
 
     Name string
 
-    Spec Aws_appmesh_virtual_node_spec_50
+    Spec []Aws_appmesh_virtual_node_spec_50
 
 }
 
@@ -4231,8 +4123,6 @@ func (h *Aws_appmesh_virtual_nodeHandler) Delete(externalID string) error {
 
 type Aws_appmesh_virtual_router_spec_55 struct {
 
-    Aws_appmesh_virtual_router_spec_55_id *string `lyra:"ignore"`
-
     Service_names []string
 
 }
@@ -4251,7 +4141,7 @@ type Aws_appmesh_virtual_router struct {
 
     Name string
 
-    Spec Aws_appmesh_virtual_router_spec_55
+    Spec []Aws_appmesh_virtual_router_spec_55
 
 }
 
@@ -4345,8 +4235,6 @@ func (h *Aws_appsync_api_keyHandler) Delete(externalID string) error {
 
 type Aws_appsync_datasource_dynamodb_config_56 struct {
 
-    Aws_appsync_datasource_dynamodb_config_56_id *string `lyra:"ignore"`
-
     Region *string
 
     Table_name string
@@ -4357,8 +4245,6 @@ type Aws_appsync_datasource_dynamodb_config_56 struct {
 
 type Aws_appsync_datasource_elasticsearch_config_57 struct {
 
-    Aws_appsync_datasource_elasticsearch_config_57_id *string `lyra:"ignore"`
-
     Endpoint string
 
     Region *string
@@ -4367,15 +4253,11 @@ type Aws_appsync_datasource_elasticsearch_config_57 struct {
 
 type Aws_appsync_datasource_http_config_58 struct {
 
-    Aws_appsync_datasource_http_config_58_id *string `lyra:"ignore"`
-
     Endpoint string
 
 }
 
 type Aws_appsync_datasource_lambda_config_59 struct {
-
-    Aws_appsync_datasource_lambda_config_59_id *string `lyra:"ignore"`
 
     Function_arn string
 
@@ -4391,13 +4273,13 @@ type Aws_appsync_datasource struct {
 
     Description *string
 
-    Dynamodb_config *Aws_appsync_datasource_dynamodb_config_56
+    Dynamodb_config *[]Aws_appsync_datasource_dynamodb_config_56
 
-    Elasticsearch_config *Aws_appsync_datasource_elasticsearch_config_57
+    Elasticsearch_config *[]Aws_appsync_datasource_elasticsearch_config_57
 
-    Http_config *Aws_appsync_datasource_http_config_58
+    Http_config *[]Aws_appsync_datasource_http_config_58
 
-    Lambda_config *Aws_appsync_datasource_lambda_config_59
+    Lambda_config *[]Aws_appsync_datasource_lambda_config_59
 
     Name string
 
@@ -4446,8 +4328,6 @@ func (h *Aws_appsync_datasourceHandler) Delete(externalID string) error {
 
 type Aws_appsync_graphql_api_log_config_60 struct {
 
-    Aws_appsync_graphql_api_log_config_60_id *string `lyra:"ignore"`
-
     Cloudwatch_logs_role_arn string
 
     Field_log_level string
@@ -4455,8 +4335,6 @@ type Aws_appsync_graphql_api_log_config_60 struct {
 }
 
 type Aws_appsync_graphql_api_openid_connect_config_61 struct {
-
-    Aws_appsync_graphql_api_openid_connect_config_61_id *string `lyra:"ignore"`
 
     Auth_ttl *int
 
@@ -4469,8 +4347,6 @@ type Aws_appsync_graphql_api_openid_connect_config_61 struct {
 }
 
 type Aws_appsync_graphql_api_user_pool_config_62 struct {
-
-    Aws_appsync_graphql_api_user_pool_config_62_id *string `lyra:"ignore"`
 
     App_id_client_regex *string
 
@@ -4490,15 +4366,15 @@ type Aws_appsync_graphql_api struct {
 
     Authentication_type string
 
-    Log_config *Aws_appsync_graphql_api_log_config_60
+    Log_config *[]Aws_appsync_graphql_api_log_config_60
 
     Name string
 
-    Openid_connect_config *Aws_appsync_graphql_api_openid_connect_config_61
+    Openid_connect_config *[]Aws_appsync_graphql_api_openid_connect_config_61
 
     Uris *map[string]string
 
-    User_pool_config *Aws_appsync_graphql_api_user_pool_config_62
+    User_pool_config *[]Aws_appsync_graphql_api_user_pool_config_62
 
 }
 
@@ -4541,8 +4417,6 @@ func (h *Aws_appsync_graphql_apiHandler) Delete(externalID string) error {
 
 type Aws_athena_database_encryption_configuration_63 struct {
 
-    Aws_athena_database_encryption_configuration_63_id *string `lyra:"ignore"`
-
     Encryption_option string
 
     Kms_key *string
@@ -4555,7 +4429,7 @@ type Aws_athena_database struct {
 
     Bucket string
 
-    Encryption_configuration *Aws_athena_database_encryption_configuration_63
+    Encryption_configuration *[]Aws_athena_database_encryption_configuration_63
 
     Force_destroy *bool
 
@@ -4702,8 +4576,6 @@ func (h *Aws_autoscaling_attachmentHandler) Delete(externalID string) error {
 
 type Aws_autoscaling_group_initial_lifecycle_hook_64 struct {
 
-    Aws_autoscaling_group_initial_lifecycle_hook_64_id *string `lyra:"ignore"`
-
     Default_result *string
 
     Heartbeat_timeout *int
@@ -4722,8 +4594,6 @@ type Aws_autoscaling_group_initial_lifecycle_hook_64 struct {
 
 type Aws_autoscaling_group_launch_template_65 struct {
 
-    Aws_autoscaling_group_launch_template_65_id *string `lyra:"ignore"`
-
     Id *string
 
     Name *string
@@ -4733,8 +4603,6 @@ type Aws_autoscaling_group_launch_template_65 struct {
 }
 
 type Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67 struct {
-
-    Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67_id *string `lyra:"ignore"`
 
     On_demand_allocation_strategy *string
 
@@ -4752,8 +4620,6 @@ type Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67 s
 
 type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_template_specification_69 struct {
 
-    Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_template_specification_69_id *string `lyra:"ignore"`
-
     Launch_template_id *string
 
     Launch_template_name *string
@@ -4764,35 +4630,27 @@ type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_t
 
 type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_override_70 struct {
 
-    Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_override_70_id *string `lyra:"ignore"`
-
     Instance_type *string
 
 }
 
 type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68 struct {
 
-    Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_id *string `lyra:"ignore"`
+    Launch_template_specification []Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_template_specification_69
 
-    Launch_template_specification Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_template_specification_69
-
-    Override *Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_override_70
+    Override *[]Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_override_70
 
 }
 
 type Aws_autoscaling_group_mixed_instances_policy_66 struct {
 
-    Aws_autoscaling_group_mixed_instances_policy_66_id *string `lyra:"ignore"`
+    Instances_distribution *[]Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67
 
-    Instances_distribution *Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67
-
-    Launch_template Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68
+    Launch_template []Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68
 
 }
 
 type Aws_autoscaling_group_tag_71 struct {
-
-    Aws_autoscaling_group_tag_71_id *string `lyra:"ignore"`
 
     Key string
 
@@ -4826,7 +4684,7 @@ type Aws_autoscaling_group struct {
 
     Launch_configuration *string
 
-    Launch_template *Aws_autoscaling_group_launch_template_65
+    Launch_template *[]Aws_autoscaling_group_launch_template_65
 
     Load_balancers *[]string
 
@@ -4838,7 +4696,7 @@ type Aws_autoscaling_group struct {
 
     Min_size int
 
-    Mixed_instances_policy *Aws_autoscaling_group_mixed_instances_policy_66
+    Mixed_instances_policy *[]Aws_autoscaling_group_mixed_instances_policy_66
 
     Name *string
 
@@ -5015,8 +4873,6 @@ func (h *Aws_autoscaling_notificationHandler) Delete(externalID string) error {
 
 type Aws_autoscaling_policy_step_adjustment_72 struct {
 
-    Aws_autoscaling_policy_step_adjustment_72_id *string `lyra:"ignore"`
-
     Metric_interval_lower_bound *string
 
     Metric_interval_upper_bound *string
@@ -5027,8 +4883,6 @@ type Aws_autoscaling_policy_step_adjustment_72 struct {
 
 type Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_metric_dimension_75 struct {
 
-    Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_metric_dimension_75_id *string `lyra:"ignore"`
-
     Name string
 
     Value string
@@ -5037,9 +4891,7 @@ type Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_s
 
 type Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74 struct {
 
-    Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_id *string `lyra:"ignore"`
-
-    Metric_dimension *Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_metric_dimension_75
+    Metric_dimension *[]Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_metric_dimension_75
 
     Metric_name string
 
@@ -5053,8 +4905,6 @@ type Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_s
 
 type Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_specification_76 struct {
 
-    Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_specification_76_id *string `lyra:"ignore"`
-
     Predefined_metric_type string
 
     Resource_label *string
@@ -5063,13 +4913,11 @@ type Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_s
 
 type Aws_autoscaling_policy_target_tracking_configuration_73 struct {
 
-    Aws_autoscaling_policy_target_tracking_configuration_73_id *string `lyra:"ignore"`
-
-    Customized_metric_specification *Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74
+    Customized_metric_specification *[]Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74
 
     Disable_scale_in *bool
 
-    Predefined_metric_specification *Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_specification_76
+    Predefined_metric_specification *[]Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_specification_76
 
     Target_value float64
 
@@ -5103,7 +4951,7 @@ type Aws_autoscaling_policy struct {
 
     Step_adjustment *Aws_autoscaling_policy_step_adjustment_72
 
-    Target_tracking_configuration *Aws_autoscaling_policy_target_tracking_configuration_73
+    Target_tracking_configuration *[]Aws_autoscaling_policy_target_tracking_configuration_73
 
 }
 
@@ -5207,8 +5055,6 @@ func (h *Aws_autoscaling_scheduleHandler) Delete(externalID string) error {
 
 type Aws_batch_compute_environment_compute_resources_77 struct {
 
-    Aws_batch_compute_environment_compute_resources_77_id *string `lyra:"ignore"`
-
     Bid_percentage *int
 
     Desired_vcpus *int
@@ -5245,7 +5091,7 @@ type Aws_batch_compute_environment struct {
 
     Compute_environment_name string
 
-    Compute_resources *Aws_batch_compute_environment_compute_resources_77
+    Compute_resources *[]Aws_batch_compute_environment_compute_resources_77
 
     Ecc_cluster_arn *string
 
@@ -5302,15 +5148,11 @@ func (h *Aws_batch_compute_environmentHandler) Delete(externalID string) error {
 
 type Aws_batch_job_definition_retry_strategy_78 struct {
 
-    Aws_batch_job_definition_retry_strategy_78_id *string `lyra:"ignore"`
-
     Attempts *int
 
 }
 
 type Aws_batch_job_definition_timeout_79 struct {
-
-    Aws_batch_job_definition_timeout_79_id *string `lyra:"ignore"`
 
     Attempt_duration_seconds *int
 
@@ -5328,11 +5170,11 @@ type Aws_batch_job_definition struct {
 
     Parameters *map[string]string
 
-    Retry_strategy *Aws_batch_job_definition_retry_strategy_78
+    Retry_strategy *[]Aws_batch_job_definition_retry_strategy_78
 
     Revision *int
 
-    Timeout *Aws_batch_job_definition_timeout_79
+    Timeout *[]Aws_batch_job_definition_timeout_79
 
     Type string
 
@@ -5430,8 +5272,6 @@ func (h *Aws_batch_job_queueHandler) Delete(externalID string) error {
 
 type Aws_budgets_budget_cost_types_80 struct {
 
-    Aws_budgets_budget_cost_types_80_id *string `lyra:"ignore"`
-
     Include_credit *bool
 
     Include_discount *bool
@@ -5466,7 +5306,7 @@ type Aws_budgets_budget struct {
 
     Cost_filters *map[string]string
 
-    Cost_types *Aws_budgets_budget_cost_types_80
+    Cost_types *[]Aws_budgets_budget_cost_types_80
 
     Limit_amount string
 
@@ -5653,8 +5493,6 @@ func (h *Aws_cloudformation_stackHandler) Delete(externalID string) error {
 
 type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83 struct {
 
-    Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83_id *string `lyra:"ignore"`
-
     Forward string
 
     Whitelisted_names *[]string
@@ -5662,8 +5500,6 @@ type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_8
 }
 
 type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82 struct {
-
-    Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_id *string `lyra:"ignore"`
 
     Cookies Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83
 
@@ -5677,8 +5513,6 @@ type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82 struct {
 
 type Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84 struct {
 
-    Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84_id *string `lyra:"ignore"`
-
     Event_type string
 
     Include_body *bool
@@ -5688,8 +5522,6 @@ type Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_8
 }
 
 type Aws_cloudfront_distribution_cache_behavior_81 struct {
-
-    Aws_cloudfront_distribution_cache_behavior_81_id *string `lyra:"ignore"`
 
     Allowed_methods []string
 
@@ -5723,8 +5555,6 @@ type Aws_cloudfront_distribution_cache_behavior_81 struct {
 
 type Aws_cloudfront_distribution_custom_error_response_85 struct {
 
-    Aws_cloudfront_distribution_custom_error_response_85_id *string `lyra:"ignore"`
-
     Error_caching_min_ttl *int
 
     Error_code int
@@ -5737,8 +5567,6 @@ type Aws_cloudfront_distribution_custom_error_response_85 struct {
 
 type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88 struct {
 
-    Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88_id *string `lyra:"ignore"`
-
     Forward string
 
     Whitelisted_names *[]string
@@ -5746,8 +5574,6 @@ type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_c
 }
 
 type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87 struct {
-
-    Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_id *string `lyra:"ignore"`
 
     Cookies Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88
 
@@ -5761,8 +5587,6 @@ type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87 s
 
 type Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89 struct {
 
-    Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89_id *string `lyra:"ignore"`
-
     Event_type string
 
     Include_body *bool
@@ -5772,8 +5596,6 @@ type Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_assoc
 }
 
 type Aws_cloudfront_distribution_default_cache_behavior_86 struct {
-
-    Aws_cloudfront_distribution_default_cache_behavior_86_id *string `lyra:"ignore"`
 
     Allowed_methods []string
 
@@ -5805,8 +5627,6 @@ type Aws_cloudfront_distribution_default_cache_behavior_86 struct {
 
 type Aws_cloudfront_distribution_logging_config_90 struct {
 
-    Aws_cloudfront_distribution_logging_config_90_id *string `lyra:"ignore"`
-
     Bucket string
 
     Include_cookies *bool
@@ -5817,8 +5637,6 @@ type Aws_cloudfront_distribution_logging_config_90 struct {
 
 type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93 struct {
 
-    Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93_id *string `lyra:"ignore"`
-
     Forward string
 
     Whitelisted_names *[]string
@@ -5826,8 +5644,6 @@ type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_c
 }
 
 type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92 struct {
-
-    Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_id *string `lyra:"ignore"`
 
     Cookies Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93
 
@@ -5841,8 +5657,6 @@ type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92 s
 
 type Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94 struct {
 
-    Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94_id *string `lyra:"ignore"`
-
     Event_type string
 
     Include_body *bool
@@ -5852,8 +5666,6 @@ type Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_assoc
 }
 
 type Aws_cloudfront_distribution_ordered_cache_behavior_91 struct {
-
-    Aws_cloudfront_distribution_ordered_cache_behavior_91_id *string `lyra:"ignore"`
 
     Allowed_methods []string
 
@@ -5887,8 +5699,6 @@ type Aws_cloudfront_distribution_ordered_cache_behavior_91 struct {
 
 type Aws_cloudfront_distribution_origin_95_custom_header_96 struct {
 
-    Aws_cloudfront_distribution_origin_95_custom_header_96_id *string `lyra:"ignore"`
-
     Name string
 
     Value string
@@ -5896,8 +5706,6 @@ type Aws_cloudfront_distribution_origin_95_custom_header_96 struct {
 }
 
 type Aws_cloudfront_distribution_origin_95_custom_origin_config_97 struct {
-
-    Aws_cloudfront_distribution_origin_95_custom_origin_config_97_id *string `lyra:"ignore"`
 
     Http_port int
 
@@ -5915,15 +5723,11 @@ type Aws_cloudfront_distribution_origin_95_custom_origin_config_97 struct {
 
 type Aws_cloudfront_distribution_origin_95_s3_origin_config_98 struct {
 
-    Aws_cloudfront_distribution_origin_95_s3_origin_config_98_id *string `lyra:"ignore"`
-
     Origin_access_identity string
 
 }
 
 type Aws_cloudfront_distribution_origin_95 struct {
-
-    Aws_cloudfront_distribution_origin_95_id *string `lyra:"ignore"`
 
     Custom_header *Aws_cloudfront_distribution_origin_95_custom_header_96
 
@@ -5941,8 +5745,6 @@ type Aws_cloudfront_distribution_origin_95 struct {
 
 type Aws_cloudfront_distribution_restrictions_99_geo_restriction_100 struct {
 
-    Aws_cloudfront_distribution_restrictions_99_geo_restriction_100_id *string `lyra:"ignore"`
-
     Locations *[]string
 
     Restriction_type string
@@ -5951,15 +5753,11 @@ type Aws_cloudfront_distribution_restrictions_99_geo_restriction_100 struct {
 
 type Aws_cloudfront_distribution_restrictions_99 struct {
 
-    Aws_cloudfront_distribution_restrictions_99_id *string `lyra:"ignore"`
-
     Geo_restriction Aws_cloudfront_distribution_restrictions_99_geo_restriction_100
 
 }
 
 type Aws_cloudfront_distribution_viewer_certificate_101 struct {
-
-    Aws_cloudfront_distribution_viewer_certificate_101_id *string `lyra:"ignore"`
 
     Acm_certificate_arn *string
 
@@ -6013,7 +5811,7 @@ type Aws_cloudfront_distribution struct {
 
     Logging_config *Aws_cloudfront_distribution_logging_config_90
 
-    Ordered_cache_behavior *Aws_cloudfront_distribution_ordered_cache_behavior_91
+    Ordered_cache_behavior *[]Aws_cloudfront_distribution_ordered_cache_behavior_91
 
     Origin Aws_cloudfront_distribution_origin_95
 
@@ -6182,8 +5980,6 @@ func (h *Aws_cloudfront_public_keyHandler) Delete(externalID string) error {
 
 type Aws_cloudhsm_v2_cluster_cluster_certificates_102 struct {
 
-    Aws_cloudhsm_v2_cluster_cluster_certificates_102_id *string `lyra:"ignore"`
-
     Aws_hardware_certificate *string
 
     Cluster_certificate *string
@@ -6200,7 +5996,7 @@ type Aws_cloudhsm_v2_cluster struct {
 
     Aws_cloudhsm_v2_cluster_id *string `lyra:"ignore"`
 
-    Cluster_certificates *Aws_cloudhsm_v2_cluster_cluster_certificates_102
+    Cluster_certificates *[]Aws_cloudhsm_v2_cluster_cluster_certificates_102
 
     Cluster_id *string
 
@@ -6316,8 +6112,6 @@ func (h *Aws_cloudhsm_v2_hsmHandler) Delete(externalID string) error {
 
 type Aws_cloudtrail_event_selector_103_data_resource_104 struct {
 
-    Aws_cloudtrail_event_selector_103_data_resource_104_id *string `lyra:"ignore"`
-
     Type string
 
     Values []string
@@ -6326,9 +6120,7 @@ type Aws_cloudtrail_event_selector_103_data_resource_104 struct {
 
 type Aws_cloudtrail_event_selector_103 struct {
 
-    Aws_cloudtrail_event_selector_103_id *string `lyra:"ignore"`
-
-    Data_resource *Aws_cloudtrail_event_selector_103_data_resource_104
+    Data_resource *[]Aws_cloudtrail_event_selector_103_data_resource_104
 
     Include_management_events *bool
 
@@ -6350,7 +6142,7 @@ type Aws_cloudtrail struct {
 
     Enable_logging *bool
 
-    Event_selector *Aws_cloudtrail_event_selector_103
+    Event_selector *[]Aws_cloudtrail_event_selector_103
 
     Home_region *string
 
@@ -6462,8 +6254,6 @@ func (h *Aws_cloudwatch_dashboardHandler) Delete(externalID string) error {
 
 type Aws_cloudwatch_event_permission_condition_105 struct {
 
-    Aws_cloudwatch_event_permission_condition_105_id *string `lyra:"ignore"`
-
     Key string
 
     Type string
@@ -6478,7 +6268,7 @@ type Aws_cloudwatch_event_permission struct {
 
     Action *string
 
-    Condition *Aws_cloudwatch_event_permission_condition_105
+    Condition *[]Aws_cloudwatch_event_permission_condition_105
 
     Principal string
 
@@ -6584,8 +6374,6 @@ func (h *Aws_cloudwatch_event_ruleHandler) Delete(externalID string) error {
 
 type Aws_cloudwatch_event_target_batch_target_106 struct {
 
-    Aws_cloudwatch_event_target_batch_target_106_id *string `lyra:"ignore"`
-
     Array_size *int
 
     Job_attempts *int
@@ -6598,8 +6386,6 @@ type Aws_cloudwatch_event_target_batch_target_106 struct {
 
 type Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108 struct {
 
-    Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108_id *string `lyra:"ignore"`
-
     Assign_public_ip *bool
 
     Security_groups *[]string
@@ -6610,13 +6396,11 @@ type Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108 struct
 
 type Aws_cloudwatch_event_target_ecs_target_107 struct {
 
-    Aws_cloudwatch_event_target_ecs_target_107_id *string `lyra:"ignore"`
-
     Group *string
 
     Launch_type *string
 
-    Network_configuration *Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108
+    Network_configuration *[]Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108
 
     Platform_version *string
 
@@ -6628,8 +6412,6 @@ type Aws_cloudwatch_event_target_ecs_target_107 struct {
 
 type Aws_cloudwatch_event_target_input_transformer_109 struct {
 
-    Aws_cloudwatch_event_target_input_transformer_109_id *string `lyra:"ignore"`
-
     Input_paths *map[string]string
 
     Input_template string
@@ -6638,15 +6420,11 @@ type Aws_cloudwatch_event_target_input_transformer_109 struct {
 
 type Aws_cloudwatch_event_target_kinesis_target_110 struct {
 
-    Aws_cloudwatch_event_target_kinesis_target_110_id *string `lyra:"ignore"`
-
     Partition_key_path *string
 
 }
 
 type Aws_cloudwatch_event_target_run_command_targets_111 struct {
-
-    Aws_cloudwatch_event_target_run_command_targets_111_id *string `lyra:"ignore"`
 
     Key string
 
@@ -6655,8 +6433,6 @@ type Aws_cloudwatch_event_target_run_command_targets_111 struct {
 }
 
 type Aws_cloudwatch_event_target_sqs_target_112 struct {
-
-    Aws_cloudwatch_event_target_sqs_target_112_id *string `lyra:"ignore"`
 
     Message_group_id *string
 
@@ -6668,25 +6444,25 @@ type Aws_cloudwatch_event_target struct {
 
     Arn string
 
-    Batch_target *Aws_cloudwatch_event_target_batch_target_106
+    Batch_target *[]Aws_cloudwatch_event_target_batch_target_106
 
-    Ecs_target *Aws_cloudwatch_event_target_ecs_target_107
+    Ecs_target *[]Aws_cloudwatch_event_target_ecs_target_107
 
     Input *string
 
     Input_path *string
 
-    Input_transformer *Aws_cloudwatch_event_target_input_transformer_109
+    Input_transformer *[]Aws_cloudwatch_event_target_input_transformer_109
 
-    Kinesis_target *Aws_cloudwatch_event_target_kinesis_target_110
+    Kinesis_target *[]Aws_cloudwatch_event_target_kinesis_target_110
 
     Role_arn *string
 
     Rule string
 
-    Run_command_targets *Aws_cloudwatch_event_target_run_command_targets_111
+    Run_command_targets *[]Aws_cloudwatch_event_target_run_command_targets_111
 
-    Sqs_target *Aws_cloudwatch_event_target_sqs_target_112
+    Sqs_target *[]Aws_cloudwatch_event_target_sqs_target_112
 
     Target_id *string
 
@@ -6884,8 +6660,6 @@ func (h *Aws_cloudwatch_log_groupHandler) Delete(externalID string) error {
 
 type Aws_cloudwatch_log_metric_filter_metric_transformation_113 struct {
 
-    Aws_cloudwatch_log_metric_filter_metric_transformation_113_id *string `lyra:"ignore"`
-
     Default_value *string
 
     Name string
@@ -6902,7 +6676,7 @@ type Aws_cloudwatch_log_metric_filter struct {
 
     Log_group_name string
 
-    Metric_transformation Aws_cloudwatch_log_metric_filter_metric_transformation_113
+    Metric_transformation []Aws_cloudwatch_log_metric_filter_metric_transformation_113
 
     Name string
 
@@ -7183,8 +6957,6 @@ func (h *Aws_cloudwatch_metric_alarmHandler) Delete(externalID string) error {
 
 type Aws_codebuild_project_artifacts_114 struct {
 
-    Aws_codebuild_project_artifacts_114_id *string `lyra:"ignore"`
-
     Encryption_disabled *bool
 
     Location *string
@@ -7203,8 +6975,6 @@ type Aws_codebuild_project_artifacts_114 struct {
 
 type Aws_codebuild_project_cache_115 struct {
 
-    Aws_codebuild_project_cache_115_id *string `lyra:"ignore"`
-
     Location *string
 
     Type *string
@@ -7212,8 +6982,6 @@ type Aws_codebuild_project_cache_115 struct {
 }
 
 type Aws_codebuild_project_environment_116_environment_variable_117 struct {
-
-    Aws_codebuild_project_environment_116_environment_variable_117_id *string `lyra:"ignore"`
 
     Name string
 
@@ -7225,13 +6993,11 @@ type Aws_codebuild_project_environment_116_environment_variable_117 struct {
 
 type Aws_codebuild_project_environment_116 struct {
 
-    Aws_codebuild_project_environment_116_id *string `lyra:"ignore"`
-
     Certificate *string
 
     Compute_type string
 
-    Environment_variable *Aws_codebuild_project_environment_116_environment_variable_117
+    Environment_variable *[]Aws_codebuild_project_environment_116_environment_variable_117
 
     Image string
 
@@ -7242,8 +7008,6 @@ type Aws_codebuild_project_environment_116 struct {
 }
 
 type Aws_codebuild_project_secondary_artifacts_118 struct {
-
-    Aws_codebuild_project_secondary_artifacts_118_id *string `lyra:"ignore"`
 
     Artifact_identifier string
 
@@ -7265,8 +7029,6 @@ type Aws_codebuild_project_secondary_artifacts_118 struct {
 
 type Aws_codebuild_project_secondary_sources_119_auth_120 struct {
 
-    Aws_codebuild_project_secondary_sources_119_auth_120_id *string `lyra:"ignore"`
-
     Resource *string
 
     Type string
@@ -7274,8 +7036,6 @@ type Aws_codebuild_project_secondary_sources_119_auth_120 struct {
 }
 
 type Aws_codebuild_project_secondary_sources_119 struct {
-
-    Aws_codebuild_project_secondary_sources_119_id *string `lyra:"ignore"`
 
     Auth *Aws_codebuild_project_secondary_sources_119_auth_120
 
@@ -7297,8 +7057,6 @@ type Aws_codebuild_project_secondary_sources_119 struct {
 
 type Aws_codebuild_project_source_121_auth_122 struct {
 
-    Aws_codebuild_project_source_121_auth_122_id *string `lyra:"ignore"`
-
     Resource *string
 
     Type string
@@ -7306,8 +7064,6 @@ type Aws_codebuild_project_source_121_auth_122 struct {
 }
 
 type Aws_codebuild_project_source_121 struct {
-
-    Aws_codebuild_project_source_121_id *string `lyra:"ignore"`
 
     Auth *Aws_codebuild_project_source_121_auth_122
 
@@ -7326,8 +7082,6 @@ type Aws_codebuild_project_source_121 struct {
 }
 
 type Aws_codebuild_project_vpc_config_123 struct {
-
-    Aws_codebuild_project_vpc_config_123_id *string `lyra:"ignore"`
 
     Security_group_ids []string
 
@@ -7351,7 +7105,7 @@ type Aws_codebuild_project struct {
 
     Build_timeout *int
 
-    Cache *Aws_codebuild_project_cache_115
+    Cache *[]Aws_codebuild_project_cache_115
 
     Description *string
 
@@ -7373,7 +7127,7 @@ type Aws_codebuild_project struct {
 
     Timeout *int
 
-    Vpc_config *Aws_codebuild_project_vpc_config_123
+    Vpc_config *[]Aws_codebuild_project_vpc_config_123
 
 }
 
@@ -7526,8 +7280,6 @@ func (h *Aws_codecommit_repositoryHandler) Delete(externalID string) error {
 
 type Aws_codecommit_trigger_trigger_124 struct {
 
-    Aws_codecommit_trigger_trigger_124_id *string `lyra:"ignore"`
-
     Branches *[]string
 
     Custom_data *string
@@ -7640,8 +7392,6 @@ func (h *Aws_codedeploy_appHandler) Delete(externalID string) error {
 
 type Aws_codedeploy_deployment_config_minimum_healthy_hosts_125 struct {
 
-    Aws_codedeploy_deployment_config_minimum_healthy_hosts_125_id *string `lyra:"ignore"`
-
     Type *string
 
     Value *int
@@ -7649,8 +7399,6 @@ type Aws_codedeploy_deployment_config_minimum_healthy_hosts_125 struct {
 }
 
 type Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_canary_127 struct {
-
-    Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_canary_127_id *string `lyra:"ignore"`
 
     Interval *int
 
@@ -7660,8 +7408,6 @@ type Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_cana
 
 type Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_linear_128 struct {
 
-    Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_linear_128_id *string `lyra:"ignore"`
-
     Interval *int
 
     Percentage *int
@@ -7670,11 +7416,9 @@ type Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_line
 
 type Aws_codedeploy_deployment_config_traffic_routing_config_126 struct {
 
-    Aws_codedeploy_deployment_config_traffic_routing_config_126_id *string `lyra:"ignore"`
+    Time_based_canary *[]Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_canary_127
 
-    Time_based_canary *Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_canary_127
-
-    Time_based_linear *Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_linear_128
+    Time_based_linear *[]Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_linear_128
 
     Type *string
 
@@ -7690,9 +7434,9 @@ type Aws_codedeploy_deployment_config struct {
 
     Deployment_config_name string
 
-    Minimum_healthy_hosts *Aws_codedeploy_deployment_config_minimum_healthy_hosts_125
+    Minimum_healthy_hosts *[]Aws_codedeploy_deployment_config_minimum_healthy_hosts_125
 
-    Traffic_routing_config *Aws_codedeploy_deployment_config_traffic_routing_config_126
+    Traffic_routing_config *[]Aws_codedeploy_deployment_config_traffic_routing_config_126
 
 }
 
@@ -7735,8 +7479,6 @@ func (h *Aws_codedeploy_deployment_configHandler) Delete(externalID string) erro
 
 type Aws_codedeploy_deployment_group_alarm_configuration_129 struct {
 
-    Aws_codedeploy_deployment_group_alarm_configuration_129_id *string `lyra:"ignore"`
-
     Alarms *[]string
 
     Enabled *bool
@@ -7747,8 +7489,6 @@ type Aws_codedeploy_deployment_group_alarm_configuration_129 struct {
 
 type Aws_codedeploy_deployment_group_auto_rollback_configuration_130 struct {
 
-    Aws_codedeploy_deployment_group_auto_rollback_configuration_130_id *string `lyra:"ignore"`
-
     Enabled *bool
 
     Events *[]string
@@ -7756,8 +7496,6 @@ type Aws_codedeploy_deployment_group_auto_rollback_configuration_130 struct {
 }
 
 type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment_ready_option_132 struct {
-
-    Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment_ready_option_132_id *string `lyra:"ignore"`
 
     Action_on_timeout *string
 
@@ -7767,15 +7505,11 @@ type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment
 
 type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_green_fleet_provisioning_option_133 struct {
 
-    Aws_codedeploy_deployment_group_blue_green_deployment_config_131_green_fleet_provisioning_option_133_id *string `lyra:"ignore"`
-
     Action *string
 
 }
 
 type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_blue_instances_on_deployment_success_134 struct {
-
-    Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_blue_instances_on_deployment_success_134_id *string `lyra:"ignore"`
 
     Action *string
 
@@ -7785,19 +7519,15 @@ type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_
 
 type Aws_codedeploy_deployment_group_blue_green_deployment_config_131 struct {
 
-    Aws_codedeploy_deployment_group_blue_green_deployment_config_131_id *string `lyra:"ignore"`
+    Deployment_ready_option *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment_ready_option_132
 
-    Deployment_ready_option *Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment_ready_option_132
+    Green_fleet_provisioning_option *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131_green_fleet_provisioning_option_133
 
-    Green_fleet_provisioning_option *Aws_codedeploy_deployment_group_blue_green_deployment_config_131_green_fleet_provisioning_option_133
-
-    Terminate_blue_instances_on_deployment_success *Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_blue_instances_on_deployment_success_134
+    Terminate_blue_instances_on_deployment_success *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_blue_instances_on_deployment_success_134
 
 }
 
 type Aws_codedeploy_deployment_group_deployment_style_135 struct {
-
-    Aws_codedeploy_deployment_group_deployment_style_135_id *string `lyra:"ignore"`
 
     Deployment_option *string
 
@@ -7806,8 +7536,6 @@ type Aws_codedeploy_deployment_group_deployment_style_135 struct {
 }
 
 type Aws_codedeploy_deployment_group_ec2_tag_filter_136 struct {
-
-    Aws_codedeploy_deployment_group_ec2_tag_filter_136_id *string `lyra:"ignore"`
 
     Key *string
 
@@ -7819,8 +7547,6 @@ type Aws_codedeploy_deployment_group_ec2_tag_filter_136 struct {
 
 type Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138 struct {
 
-    Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138_id *string `lyra:"ignore"`
-
     Key *string
 
     Type *string
@@ -7831,15 +7557,11 @@ type Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138 struct {
 
 type Aws_codedeploy_deployment_group_ec2_tag_set_137 struct {
 
-    Aws_codedeploy_deployment_group_ec2_tag_set_137_id *string `lyra:"ignore"`
-
     Ec2_tag_filter *Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138
 
 }
 
 type Aws_codedeploy_deployment_group_ecs_service_139 struct {
-
-    Aws_codedeploy_deployment_group_ecs_service_139_id *string `lyra:"ignore"`
 
     Cluster_name string
 
@@ -7849,15 +7571,11 @@ type Aws_codedeploy_deployment_group_ecs_service_139 struct {
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141 struct {
 
-    Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141_id *string `lyra:"ignore"`
-
     Name *string
 
 }
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142 struct {
-
-    Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142_id *string `lyra:"ignore"`
 
     Name *string
 
@@ -7865,15 +7583,11 @@ type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_14
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_prod_traffic_route_144 struct {
 
-    Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_prod_traffic_route_144_id *string `lyra:"ignore"`
-
     Listener_arns []string
 
 }
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_target_group_145 struct {
-
-    Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_target_group_145_id *string `lyra:"ignore"`
 
     Name string
 
@@ -7881,39 +7595,31 @@ type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_in
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_test_traffic_route_146 struct {
 
-    Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_test_traffic_route_146_id *string `lyra:"ignore"`
-
     Listener_arns []string
 
 }
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143 struct {
 
-    Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_id *string `lyra:"ignore"`
+    Prod_traffic_route []Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_prod_traffic_route_144
 
-    Prod_traffic_route Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_prod_traffic_route_144
+    Target_group []Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_target_group_145
 
-    Target_group Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_target_group_145
-
-    Test_traffic_route *Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_test_traffic_route_146
+    Test_traffic_route *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_test_traffic_route_146
 
 }
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140 struct {
 
-    Aws_codedeploy_deployment_group_load_balancer_info_140_id *string `lyra:"ignore"`
-
     Elb_info *Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141
 
     Target_group_info *Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142
 
-    Target_group_pair_info *Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143
+    Target_group_pair_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143
 
 }
 
 type Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147 struct {
-
-    Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147_id *string `lyra:"ignore"`
 
     Key *string
 
@@ -7924,8 +7630,6 @@ type Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147 struct 
 }
 
 type Aws_codedeploy_deployment_group_trigger_configuration_148 struct {
-
-    Aws_codedeploy_deployment_group_trigger_configuration_148_id *string `lyra:"ignore"`
 
     Trigger_events []string
 
@@ -7939,29 +7643,29 @@ type Aws_codedeploy_deployment_group struct {
 
     Aws_codedeploy_deployment_group_id *string `lyra:"ignore"`
 
-    Alarm_configuration *Aws_codedeploy_deployment_group_alarm_configuration_129
+    Alarm_configuration *[]Aws_codedeploy_deployment_group_alarm_configuration_129
 
     App_name string
 
-    Auto_rollback_configuration *Aws_codedeploy_deployment_group_auto_rollback_configuration_130
+    Auto_rollback_configuration *[]Aws_codedeploy_deployment_group_auto_rollback_configuration_130
 
     Autoscaling_groups *[]string
 
-    Blue_green_deployment_config *Aws_codedeploy_deployment_group_blue_green_deployment_config_131
+    Blue_green_deployment_config *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131
 
     Deployment_config_name *string
 
     Deployment_group_name string
 
-    Deployment_style *Aws_codedeploy_deployment_group_deployment_style_135
+    Deployment_style *[]Aws_codedeploy_deployment_group_deployment_style_135
 
     Ec2_tag_filter *Aws_codedeploy_deployment_group_ec2_tag_filter_136
 
     Ec2_tag_set *Aws_codedeploy_deployment_group_ec2_tag_set_137
 
-    Ecs_service *Aws_codedeploy_deployment_group_ecs_service_139
+    Ecs_service *[]Aws_codedeploy_deployment_group_ecs_service_139
 
-    Load_balancer_info *Aws_codedeploy_deployment_group_load_balancer_info_140
+    Load_balancer_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140
 
     On_premises_instance_tag_filter *Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147
 
@@ -8010,8 +7714,6 @@ func (h *Aws_codedeploy_deployment_groupHandler) Delete(externalID string) error
 
 type Aws_codepipeline_artifact_store_149_encryption_key_150 struct {
 
-    Aws_codepipeline_artifact_store_149_encryption_key_150_id *string `lyra:"ignore"`
-
     Id string
 
     Type string
@@ -8020,9 +7722,7 @@ type Aws_codepipeline_artifact_store_149_encryption_key_150 struct {
 
 type Aws_codepipeline_artifact_store_149 struct {
 
-    Aws_codepipeline_artifact_store_149_id *string `lyra:"ignore"`
-
-    Encryption_key *Aws_codepipeline_artifact_store_149_encryption_key_150
+    Encryption_key *[]Aws_codepipeline_artifact_store_149_encryption_key_150
 
     Location string
 
@@ -8031,8 +7731,6 @@ type Aws_codepipeline_artifact_store_149 struct {
 }
 
 type Aws_codepipeline_stage_151_action_152 struct {
-
-    Aws_codepipeline_stage_151_action_152_id *string `lyra:"ignore"`
 
     Category string
 
@@ -8058,9 +7756,7 @@ type Aws_codepipeline_stage_151_action_152 struct {
 
 type Aws_codepipeline_stage_151 struct {
 
-    Aws_codepipeline_stage_151_id *string `lyra:"ignore"`
-
-    Action Aws_codepipeline_stage_151_action_152
+    Action []Aws_codepipeline_stage_151_action_152
 
     Name string
 
@@ -8072,13 +7768,13 @@ type Aws_codepipeline struct {
 
     Arn *string
 
-    Artifact_store Aws_codepipeline_artifact_store_149
+    Artifact_store []Aws_codepipeline_artifact_store_149
 
     Name string
 
     Role_arn string
 
-    Stage Aws_codepipeline_stage_151
+    Stage []Aws_codepipeline_stage_151
 
 }
 
@@ -8121,8 +7817,6 @@ func (h *Aws_codepipelineHandler) Delete(externalID string) error {
 
 type Aws_codepipeline_webhook_authentication_configuration_153 struct {
 
-    Aws_codepipeline_webhook_authentication_configuration_153_id *string `lyra:"ignore"`
-
     Allowed_ip_range *string
 
     Secret_token *string
@@ -8130,8 +7824,6 @@ type Aws_codepipeline_webhook_authentication_configuration_153 struct {
 }
 
 type Aws_codepipeline_webhook_filter_154 struct {
-
-    Aws_codepipeline_webhook_filter_154_id *string `lyra:"ignore"`
 
     Json_path string
 
@@ -8145,7 +7837,7 @@ type Aws_codepipeline_webhook struct {
 
     Authentication string
 
-    Authentication_configuration *Aws_codepipeline_webhook_authentication_configuration_153
+    Authentication_configuration *[]Aws_codepipeline_webhook_authentication_configuration_153
 
     Filter Aws_codepipeline_webhook_filter_154
 
@@ -8197,8 +7889,6 @@ func (h *Aws_codepipeline_webhookHandler) Delete(externalID string) error {
 }
 
 type Aws_cognito_identity_pool_cognito_identity_providers_155 struct {
-
-    Aws_cognito_identity_pool_cognito_identity_providers_155_id *string `lyra:"ignore"`
 
     Client_id *string
 
@@ -8269,8 +7959,6 @@ func (h *Aws_cognito_identity_poolHandler) Delete(externalID string) error {
 
 type Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_157 struct {
 
-    Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_157_id *string `lyra:"ignore"`
-
     Claim string
 
     Match_type string
@@ -8283,13 +7971,11 @@ type Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_15
 
 type Aws_cognito_identity_pool_roles_attachment_role_mapping_156 struct {
 
-    Aws_cognito_identity_pool_roles_attachment_role_mapping_156_id *string `lyra:"ignore"`
-
     Ambiguous_role_resolution *string
 
     Identity_provider string
 
-    Mapping_rule *Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_157
+    Mapping_rule *[]Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_157
 
     Type string
 
@@ -8400,8 +8086,6 @@ func (h *Aws_cognito_identity_providerHandler) Delete(externalID string) error {
 }
 
 type Aws_cognito_resource_server_scope_158 struct {
-
-    Aws_cognito_resource_server_scope_158_id *string `lyra:"ignore"`
 
     Scope_description string
 
@@ -8517,8 +8201,6 @@ func (h *Aws_cognito_user_groupHandler) Delete(externalID string) error {
 
 type Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_160 struct {
 
-    Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_160_id *string `lyra:"ignore"`
-
     Email_message *string
 
     Email_subject *string
@@ -8529,19 +8211,15 @@ type Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_
 
 type Aws_cognito_user_pool_admin_create_user_config_159 struct {
 
-    Aws_cognito_user_pool_admin_create_user_config_159_id *string `lyra:"ignore"`
-
     Allow_admin_create_user_only *bool
 
-    Invite_message_template *Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_160
+    Invite_message_template *[]Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_160
 
     Unused_account_validity_days *int
 
 }
 
 type Aws_cognito_user_pool_device_configuration_161 struct {
-
-    Aws_cognito_user_pool_device_configuration_161_id *string `lyra:"ignore"`
 
     Challenge_required_on_new_device *bool
 
@@ -8551,8 +8229,6 @@ type Aws_cognito_user_pool_device_configuration_161 struct {
 
 type Aws_cognito_user_pool_email_configuration_162 struct {
 
-    Aws_cognito_user_pool_email_configuration_162_id *string `lyra:"ignore"`
-
     Reply_to_email_address *string
 
     Source_arn *string
@@ -8560,8 +8236,6 @@ type Aws_cognito_user_pool_email_configuration_162 struct {
 }
 
 type Aws_cognito_user_pool_lambda_config_163 struct {
-
-    Aws_cognito_user_pool_lambda_config_163_id *string `lyra:"ignore"`
 
     Create_auth_challenge *string
 
@@ -8587,8 +8261,6 @@ type Aws_cognito_user_pool_lambda_config_163 struct {
 
 type Aws_cognito_user_pool_password_policy_164 struct {
 
-    Aws_cognito_user_pool_password_policy_164_id *string `lyra:"ignore"`
-
     Minimum_length *int
 
     Require_lowercase *bool
@@ -8603,8 +8275,6 @@ type Aws_cognito_user_pool_password_policy_164 struct {
 
 type Aws_cognito_user_pool_schema_165_number_attribute_constraints_166 struct {
 
-    Aws_cognito_user_pool_schema_165_number_attribute_constraints_166_id *string `lyra:"ignore"`
-
     Max_value *string
 
     Min_value *string
@@ -8612,8 +8282,6 @@ type Aws_cognito_user_pool_schema_165_number_attribute_constraints_166 struct {
 }
 
 type Aws_cognito_user_pool_schema_165_string_attribute_constraints_167 struct {
-
-    Aws_cognito_user_pool_schema_165_string_attribute_constraints_167_id *string `lyra:"ignore"`
 
     Max_length *string
 
@@ -8623,8 +8291,6 @@ type Aws_cognito_user_pool_schema_165_string_attribute_constraints_167 struct {
 
 type Aws_cognito_user_pool_schema_165 struct {
 
-    Aws_cognito_user_pool_schema_165_id *string `lyra:"ignore"`
-
     Attribute_data_type string
 
     Developer_only_attribute *bool
@@ -8633,17 +8299,15 @@ type Aws_cognito_user_pool_schema_165 struct {
 
     Name string
 
-    Number_attribute_constraints *Aws_cognito_user_pool_schema_165_number_attribute_constraints_166
+    Number_attribute_constraints *[]Aws_cognito_user_pool_schema_165_number_attribute_constraints_166
 
     Required *bool
 
-    String_attribute_constraints *Aws_cognito_user_pool_schema_165_string_attribute_constraints_167
+    String_attribute_constraints *[]Aws_cognito_user_pool_schema_165_string_attribute_constraints_167
 
 }
 
 type Aws_cognito_user_pool_sms_configuration_168 struct {
-
-    Aws_cognito_user_pool_sms_configuration_168_id *string `lyra:"ignore"`
 
     External_id string
 
@@ -8652,8 +8316,6 @@ type Aws_cognito_user_pool_sms_configuration_168 struct {
 }
 
 type Aws_cognito_user_pool_verification_message_template_169 struct {
-
-    Aws_cognito_user_pool_verification_message_template_169_id *string `lyra:"ignore"`
 
     Default_email_option *string
 
@@ -8673,7 +8335,7 @@ type Aws_cognito_user_pool struct {
 
     Aws_cognito_user_pool_id *string `lyra:"ignore"`
 
-    Admin_create_user_config *Aws_cognito_user_pool_admin_create_user_config_159
+    Admin_create_user_config *[]Aws_cognito_user_pool_admin_create_user_config_159
 
     Alias_attributes *[]string
 
@@ -8683,9 +8345,9 @@ type Aws_cognito_user_pool struct {
 
     Creation_date *string
 
-    Device_configuration *Aws_cognito_user_pool_device_configuration_161
+    Device_configuration *[]Aws_cognito_user_pool_device_configuration_161
 
-    Email_configuration *Aws_cognito_user_pool_email_configuration_162
+    Email_configuration *[]Aws_cognito_user_pool_email_configuration_162
 
     Email_verification_message *string
 
@@ -8693,7 +8355,7 @@ type Aws_cognito_user_pool struct {
 
     Endpoint *string
 
-    Lambda_config *Aws_cognito_user_pool_lambda_config_163
+    Lambda_config *[]Aws_cognito_user_pool_lambda_config_163
 
     Last_modified_date *string
 
@@ -8701,13 +8363,13 @@ type Aws_cognito_user_pool struct {
 
     Name string
 
-    Password_policy *Aws_cognito_user_pool_password_policy_164
+    Password_policy *[]Aws_cognito_user_pool_password_policy_164
 
     Schema *Aws_cognito_user_pool_schema_165
 
     Sms_authentication_message *string
 
-    Sms_configuration *Aws_cognito_user_pool_sms_configuration_168
+    Sms_configuration *[]Aws_cognito_user_pool_sms_configuration_168
 
     Sms_verification_message *string
 
@@ -8715,7 +8377,7 @@ type Aws_cognito_user_pool struct {
 
     Username_attributes *[]string
 
-    Verification_message_template *Aws_cognito_user_pool_verification_message_template_169
+    Verification_message_template *[]Aws_cognito_user_pool_verification_message_template_169
 
 }
 
@@ -8937,8 +8599,6 @@ func (h *Aws_config_aggregate_authorizationHandler) Delete(externalID string) er
 
 type Aws_config_config_rule_scope_170 struct {
 
-    Aws_config_config_rule_scope_170_id *string `lyra:"ignore"`
-
     Compliance_resource_id *string
 
     Compliance_resource_types *[]string
@@ -8951,8 +8611,6 @@ type Aws_config_config_rule_scope_170 struct {
 
 type Aws_config_config_rule_source_171_source_detail_172 struct {
 
-    Aws_config_config_rule_source_171_source_detail_172_id *string `lyra:"ignore"`
-
     Event_source *string
 
     Maximum_execution_frequency *string
@@ -8962,8 +8620,6 @@ type Aws_config_config_rule_source_171_source_detail_172 struct {
 }
 
 type Aws_config_config_rule_source_171 struct {
-
-    Aws_config_config_rule_source_171_id *string `lyra:"ignore"`
 
     Owner string
 
@@ -8989,9 +8645,9 @@ type Aws_config_config_rule struct {
 
     Rule_id *string
 
-    Scope *Aws_config_config_rule_scope_170
+    Scope *[]Aws_config_config_rule_scope_170
 
-    Source Aws_config_config_rule_source_171
+    Source []Aws_config_config_rule_source_171
 
 }
 
@@ -9034,8 +8690,6 @@ func (h *Aws_config_config_ruleHandler) Delete(externalID string) error {
 
 type Aws_config_configuration_aggregator_account_aggregation_source_173 struct {
 
-    Aws_config_configuration_aggregator_account_aggregation_source_173_id *string `lyra:"ignore"`
-
     Account_ids []string
 
     All_regions *bool
@@ -9045,8 +8699,6 @@ type Aws_config_configuration_aggregator_account_aggregation_source_173 struct {
 }
 
 type Aws_config_configuration_aggregator_organization_aggregation_source_174 struct {
-
-    Aws_config_configuration_aggregator_organization_aggregation_source_174_id *string `lyra:"ignore"`
 
     All_regions *bool
 
@@ -9060,13 +8712,13 @@ type Aws_config_configuration_aggregator struct {
 
     Aws_config_configuration_aggregator_id *string `lyra:"ignore"`
 
-    Account_aggregation_source *Aws_config_configuration_aggregator_account_aggregation_source_173
+    Account_aggregation_source *[]Aws_config_configuration_aggregator_account_aggregation_source_173
 
     Arn *string
 
     Name string
 
-    Organization_aggregation_source *Aws_config_configuration_aggregator_organization_aggregation_source_174
+    Organization_aggregation_source *[]Aws_config_configuration_aggregator_organization_aggregation_source_174
 
 }
 
@@ -9109,8 +8761,6 @@ func (h *Aws_config_configuration_aggregatorHandler) Delete(externalID string) e
 
 type Aws_config_configuration_recorder_recording_group_175 struct {
 
-    Aws_config_configuration_recorder_recording_group_175_id *string `lyra:"ignore"`
-
     All_supported *bool
 
     Include_global_resource_types *bool
@@ -9125,7 +8775,7 @@ type Aws_config_configuration_recorder struct {
 
     Name *string
 
-    Recording_group *Aws_config_configuration_recorder_recording_group_175
+    Recording_group *[]Aws_config_configuration_recorder_recording_group_175
 
     Role_arn string
 
@@ -9217,8 +8867,6 @@ func (h *Aws_config_configuration_recorder_statusHandler) Delete(externalID stri
 
 type Aws_config_delivery_channel_snapshot_delivery_properties_176 struct {
 
-    Aws_config_delivery_channel_snapshot_delivery_properties_176_id *string `lyra:"ignore"`
-
     Delivery_frequency *string
 
 }
@@ -9233,7 +8881,7 @@ type Aws_config_delivery_channel struct {
 
     S3_key_prefix *string
 
-    Snapshot_delivery_properties *Aws_config_delivery_channel_snapshot_delivery_properties_176
+    Snapshot_delivery_properties *[]Aws_config_delivery_channel_snapshot_delivery_properties_176
 
     Sns_topic_arn *string
 
@@ -9382,8 +9030,6 @@ func (h *Aws_datasync_agentHandler) Delete(externalID string) error {
 
 type Aws_datasync_location_efs_ec2_config_177 struct {
 
-    Aws_datasync_location_efs_ec2_config_177_id *string `lyra:"ignore"`
-
     Security_group_arns []string
 
     Subnet_arn string
@@ -9396,7 +9042,7 @@ type Aws_datasync_location_efs struct {
 
     Arn *string
 
-    Ec2_config Aws_datasync_location_efs_ec2_config_177
+    Ec2_config []Aws_datasync_location_efs_ec2_config_177
 
     Efs_file_system_arn string
 
@@ -9447,8 +9093,6 @@ func (h *Aws_datasync_location_efsHandler) Delete(externalID string) error {
 
 type Aws_datasync_location_nfs_on_prem_config_178 struct {
 
-    Aws_datasync_location_nfs_on_prem_config_178_id *string `lyra:"ignore"`
-
     Agent_arns []string
 
 }
@@ -9459,7 +9103,7 @@ type Aws_datasync_location_nfs struct {
 
     Arn *string
 
-    On_prem_config Aws_datasync_location_nfs_on_prem_config_178
+    On_prem_config []Aws_datasync_location_nfs_on_prem_config_178
 
     Server_hostname string
 
@@ -9510,8 +9154,6 @@ func (h *Aws_datasync_location_nfsHandler) Delete(externalID string) error {
 
 type Aws_datasync_location_s3_s3_config_179 struct {
 
-    Aws_datasync_location_s3_s3_config_179_id *string `lyra:"ignore"`
-
     Bucket_access_role_arn string
 
 }
@@ -9524,7 +9166,7 @@ type Aws_datasync_location_s3 struct {
 
     S3_bucket_arn string
 
-    S3_config Aws_datasync_location_s3_s3_config_179
+    S3_config []Aws_datasync_location_s3_s3_config_179
 
     Subdirectory string
 
@@ -9573,8 +9215,6 @@ func (h *Aws_datasync_location_s3Handler) Delete(externalID string) error {
 
 type Aws_datasync_task_options_180 struct {
 
-    Aws_datasync_task_options_180_id *string `lyra:"ignore"`
-
     Atime *string
 
     Bytes_per_second *int
@@ -9607,7 +9247,7 @@ type Aws_datasync_task struct {
 
     Name *string
 
-    Options *Aws_datasync_task_options_180
+    Options *[]Aws_datasync_task_options_180
 
     Source_location_arn string
 
@@ -9654,8 +9294,6 @@ func (h *Aws_datasync_taskHandler) Delete(externalID string) error {
 
 type Aws_dax_cluster_nodes_181 struct {
 
-    Aws_dax_cluster_nodes_181_id *string `lyra:"ignore"`
-
     Address *string
 
     Availability_zone *string
@@ -9667,8 +9305,6 @@ type Aws_dax_cluster_nodes_181 struct {
 }
 
 type Aws_dax_cluster_server_side_encryption_182 struct {
-
-    Aws_dax_cluster_server_side_encryption_182_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -9696,7 +9332,7 @@ type Aws_dax_cluster struct {
 
     Node_type string
 
-    Nodes *Aws_dax_cluster_nodes_181
+    Nodes *[]Aws_dax_cluster_nodes_181
 
     Notification_topic_arn *string
 
@@ -9708,7 +9344,7 @@ type Aws_dax_cluster struct {
 
     Security_group_ids *[]string
 
-    Server_side_encryption *Aws_dax_cluster_server_side_encryption_182
+    Server_side_encryption *[]Aws_dax_cluster_server_side_encryption_182
 
     Subnet_group_name *string
 
@@ -9754,8 +9390,6 @@ func (h *Aws_dax_clusterHandler) Delete(externalID string) error {
 }
 
 type Aws_dax_parameter_group_parameters_183 struct {
-
-    Aws_dax_parameter_group_parameters_183_id *string `lyra:"ignore"`
 
     Name string
 
@@ -10001,8 +9635,6 @@ func (h *Aws_db_event_subscriptionHandler) Delete(externalID string) error {
 
 type Aws_db_instance_s3_import_184 struct {
 
-    Aws_db_instance_s3_import_184_id *string `lyra:"ignore"`
-
     Bucket_name string
 
     Bucket_prefix *string
@@ -10103,7 +9735,7 @@ type Aws_db_instance struct {
 
     Resource_id *string
 
-    S3_import *Aws_db_instance_s3_import_184
+    S3_import *[]Aws_db_instance_s3_import_184
 
     Security_group_names *[]string
 
@@ -10166,8 +9798,6 @@ func (h *Aws_db_instanceHandler) Delete(externalID string) error {
 
 type Aws_db_option_group_option_185_option_settings_186 struct {
 
-    Aws_db_option_group_option_185_option_settings_186_id *string `lyra:"ignore"`
-
     Name string
 
     Value string
@@ -10175,8 +9805,6 @@ type Aws_db_option_group_option_185_option_settings_186 struct {
 }
 
 type Aws_db_option_group_option_185 struct {
-
-    Aws_db_option_group_option_185_id *string `lyra:"ignore"`
 
     Db_security_group_memberships *[]string
 
@@ -10253,8 +9881,6 @@ func (h *Aws_db_option_groupHandler) Delete(externalID string) error {
 
 type Aws_db_parameter_group_parameter_187 struct {
 
-    Aws_db_parameter_group_parameter_187_id *string `lyra:"ignore"`
-
     Apply_method *string
 
     Name string
@@ -10321,8 +9947,6 @@ func (h *Aws_db_parameter_groupHandler) Delete(externalID string) error {
 }
 
 type Aws_db_security_group_ingress_188 struct {
-
-    Aws_db_security_group_ingress_188_id *string `lyra:"ignore"`
 
     Cidr *string
 
@@ -10527,8 +10151,6 @@ func (h *Aws_db_subnet_groupHandler) Delete(externalID string) error {
 
 type Aws_default_network_acl_egress_189 struct {
 
-    Aws_default_network_acl_egress_189_id *string `lyra:"ignore"`
-
     Action string
 
     Cidr_block *string
@@ -10550,8 +10172,6 @@ type Aws_default_network_acl_egress_189 struct {
 }
 
 type Aws_default_network_acl_ingress_190 struct {
-
-    Aws_default_network_acl_ingress_190_id *string `lyra:"ignore"`
 
     Action string
 
@@ -10632,8 +10252,6 @@ func (h *Aws_default_network_aclHandler) Delete(externalID string) error {
 
 type Aws_default_route_table_route_191 struct {
 
-    Aws_default_route_table_route_191_id *string `lyra:"ignore"`
-
     Cidr_block *string
 
     Egress_only_gateway_id *string
@@ -10711,8 +10329,6 @@ func (h *Aws_default_route_tableHandler) Delete(externalID string) error {
 
 type Aws_default_security_group_egress_192 struct {
 
-    Aws_default_security_group_egress_192_id *string `lyra:"ignore"`
-
     Cidr_blocks *[]string
 
     Description *string
@@ -10734,8 +10350,6 @@ type Aws_default_security_group_egress_192 struct {
 }
 
 type Aws_default_security_group_ingress_193 struct {
-
-    Aws_default_security_group_ingress_193_id *string `lyra:"ignore"`
 
     Cidr_blocks *[]string
 
@@ -11113,8 +10727,6 @@ func (h *Aws_directory_service_conditional_forwarderHandler) Delete(externalID s
 
 type Aws_directory_service_directory_connect_settings_194 struct {
 
-    Aws_directory_service_directory_connect_settings_194_id *string `lyra:"ignore"`
-
     Customer_dns_ips []string
 
     Customer_username string
@@ -11126,8 +10738,6 @@ type Aws_directory_service_directory_connect_settings_194 struct {
 }
 
 type Aws_directory_service_directory_vpc_settings_195 struct {
-
-    Aws_directory_service_directory_vpc_settings_195_id *string `lyra:"ignore"`
 
     Subnet_ids []string
 
@@ -11143,7 +10753,7 @@ type Aws_directory_service_directory struct {
 
     Alias *string
 
-    Connect_settings *Aws_directory_service_directory_connect_settings_194
+    Connect_settings *[]Aws_directory_service_directory_connect_settings_194
 
     Description *string
 
@@ -11167,7 +10777,7 @@ type Aws_directory_service_directory struct {
 
     Type *string
 
-    Vpc_settings *Aws_directory_service_directory_vpc_settings_195
+    Vpc_settings *[]Aws_directory_service_directory_vpc_settings_195
 
 }
 
@@ -11210,8 +10820,6 @@ func (h *Aws_directory_service_directoryHandler) Delete(externalID string) error
 
 type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198 struct {
 
-    Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198_id *string `lyra:"ignore"`
-
     Interval int
 
     Interval_unit *string
@@ -11222,23 +10830,19 @@ type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198 st
 
 type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_retain_rule_199 struct {
 
-    Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_retain_rule_199_id *string `lyra:"ignore"`
-
     Count int
 
 }
 
 type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197 struct {
 
-    Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_id *string `lyra:"ignore"`
-
     Copy_tags *bool
 
-    Create_rule Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198
+    Create_rule []Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198
 
     Name string
 
-    Retain_rule Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_retain_rule_199
+    Retain_rule []Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_retain_rule_199
 
     Tags_to_add *map[string]string
 
@@ -11246,11 +10850,9 @@ type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197 struct {
 
 type Aws_dlm_lifecycle_policy_policy_details_196 struct {
 
-    Aws_dlm_lifecycle_policy_policy_details_196_id *string `lyra:"ignore"`
-
     Resource_types []string
 
-    Schedule Aws_dlm_lifecycle_policy_policy_details_196_schedule_197
+    Schedule []Aws_dlm_lifecycle_policy_policy_details_196_schedule_197
 
     Target_tags map[string]string
 
@@ -11264,7 +10866,7 @@ type Aws_dlm_lifecycle_policy struct {
 
     Execution_role_arn string
 
-    Policy_details Aws_dlm_lifecycle_policy_policy_details_196
+    Policy_details []Aws_dlm_lifecycle_policy_policy_details_196
 
     State *string
 
@@ -11360,8 +10962,6 @@ func (h *Aws_dms_certificateHandler) Delete(externalID string) error {
 
 type Aws_dms_endpoint_mongodb_settings_200 struct {
 
-    Aws_dms_endpoint_mongodb_settings_200_id *string `lyra:"ignore"`
-
     Auth_mechanism *string
 
     Auth_source *string
@@ -11377,8 +10977,6 @@ type Aws_dms_endpoint_mongodb_settings_200 struct {
 }
 
 type Aws_dms_endpoint_s3_settings_201 struct {
-
-    Aws_dms_endpoint_s3_settings_201_id *string `lyra:"ignore"`
 
     Bucket_folder *string
 
@@ -11416,13 +11014,13 @@ type Aws_dms_endpoint struct {
 
     Kms_key_arn *string
 
-    Mongodb_settings *Aws_dms_endpoint_mongodb_settings_200
+    Mongodb_settings *[]Aws_dms_endpoint_mongodb_settings_200
 
     Password *string
 
     Port *int
 
-    S3_settings *Aws_dms_endpoint_s3_settings_201
+    S3_settings *[]Aws_dms_endpoint_s3_settings_201
 
     Server_name *string
 
@@ -11669,8 +11267,6 @@ func (h *Aws_dms_replication_taskHandler) Delete(externalID string) error {
 }
 
 type Aws_docdb_cluster_parameter_group_parameter_202 struct {
-
-    Aws_docdb_cluster_parameter_group_parameter_202_id *string `lyra:"ignore"`
 
     Apply_method *string
 
@@ -12474,8 +12070,6 @@ func (h *Aws_dx_public_virtual_interfaceHandler) Delete(externalID string) error
 
 type Aws_dynamodb_global_table_replica_203 struct {
 
-    Aws_dynamodb_global_table_replica_203_id *string `lyra:"ignore"`
-
     Region_name string
 
 }
@@ -12531,8 +12125,6 @@ func (h *Aws_dynamodb_global_tableHandler) Delete(externalID string) error {
 
 type Aws_dynamodb_table_attribute_204 struct {
 
-    Aws_dynamodb_table_attribute_204_id *string `lyra:"ignore"`
-
     Name string
 
     Type string
@@ -12540,8 +12132,6 @@ type Aws_dynamodb_table_attribute_204 struct {
 }
 
 type Aws_dynamodb_table_global_secondary_index_205 struct {
-
-    Aws_dynamodb_table_global_secondary_index_205_id *string `lyra:"ignore"`
 
     Hash_key string
 
@@ -12561,8 +12151,6 @@ type Aws_dynamodb_table_global_secondary_index_205 struct {
 
 type Aws_dynamodb_table_local_secondary_index_206 struct {
 
-    Aws_dynamodb_table_local_secondary_index_206_id *string `lyra:"ignore"`
-
     Name string
 
     Non_key_attributes *[]string
@@ -12575,23 +12163,17 @@ type Aws_dynamodb_table_local_secondary_index_206 struct {
 
 type Aws_dynamodb_table_point_in_time_recovery_207 struct {
 
-    Aws_dynamodb_table_point_in_time_recovery_207_id *string `lyra:"ignore"`
-
     Enabled bool
 
 }
 
 type Aws_dynamodb_table_server_side_encryption_208 struct {
 
-    Aws_dynamodb_table_server_side_encryption_208_id *string `lyra:"ignore"`
-
     Enabled bool
 
 }
 
 type Aws_dynamodb_table_ttl_209 struct {
-
-    Aws_dynamodb_table_ttl_209_id *string `lyra:"ignore"`
 
     Attribute_name string
 
@@ -12617,13 +12199,13 @@ type Aws_dynamodb_table struct {
 
     Name string
 
-    Point_in_time_recovery *Aws_dynamodb_table_point_in_time_recovery_207
+    Point_in_time_recovery *[]Aws_dynamodb_table_point_in_time_recovery_207
 
     Range_key *string
 
     Read_capacity *int
 
-    Server_side_encryption *Aws_dynamodb_table_server_side_encryption_208
+    Server_side_encryption *[]Aws_dynamodb_table_server_side_encryption_208
 
     Stream_arn *string
 
@@ -12983,8 +12565,6 @@ func (h *Aws_ec2_capacity_reservationHandler) Delete(externalID string) error {
 
 type Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211 struct {
 
-    Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211_id *string `lyra:"ignore"`
-
     Launch_template_id *string
 
     Launch_template_name *string
@@ -12994,8 +12574,6 @@ type Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211 
 }
 
 type Aws_ec2_fleet_launch_template_config_210_override_212 struct {
-
-    Aws_ec2_fleet_launch_template_config_210_override_212_id *string `lyra:"ignore"`
 
     Availability_zone *string
 
@@ -13013,25 +12591,19 @@ type Aws_ec2_fleet_launch_template_config_210_override_212 struct {
 
 type Aws_ec2_fleet_launch_template_config_210 struct {
 
-    Aws_ec2_fleet_launch_template_config_210_id *string `lyra:"ignore"`
+    Launch_template_specification []Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211
 
-    Launch_template_specification Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211
-
-    Override *Aws_ec2_fleet_launch_template_config_210_override_212
+    Override *[]Aws_ec2_fleet_launch_template_config_210_override_212
 
 }
 
 type Aws_ec2_fleet_on_demand_options_213 struct {
-
-    Aws_ec2_fleet_on_demand_options_213_id *string `lyra:"ignore"`
 
     Allocation_strategy *string
 
 }
 
 type Aws_ec2_fleet_spot_options_214 struct {
-
-    Aws_ec2_fleet_spot_options_214_id *string `lyra:"ignore"`
 
     Allocation_strategy *string
 
@@ -13042,8 +12614,6 @@ type Aws_ec2_fleet_spot_options_214 struct {
 }
 
 type Aws_ec2_fleet_target_capacity_specification_215 struct {
-
-    Aws_ec2_fleet_target_capacity_specification_215_id *string `lyra:"ignore"`
 
     Default_target_capacity_type string
 
@@ -13061,17 +12631,17 @@ type Aws_ec2_fleet struct {
 
     Excess_capacity_termination_policy *string
 
-    Launch_template_config Aws_ec2_fleet_launch_template_config_210
+    Launch_template_config []Aws_ec2_fleet_launch_template_config_210
 
-    On_demand_options *Aws_ec2_fleet_on_demand_options_213
+    On_demand_options *[]Aws_ec2_fleet_on_demand_options_213
 
     Replace_unhealthy_instances *bool
 
-    Spot_options *Aws_ec2_fleet_spot_options_214
+    Spot_options *[]Aws_ec2_fleet_spot_options_214
 
     Tags *map[string]string
 
-    Target_capacity_specification Aws_ec2_fleet_target_capacity_specification_215
+    Target_capacity_specification []Aws_ec2_fleet_target_capacity_specification_215
 
     Terminate_instances *bool
 
@@ -13650,15 +13220,11 @@ func (h *Aws_ecs_clusterHandler) Delete(externalID string) error {
 
 type Aws_ecs_service_deployment_controller_216 struct {
 
-    Aws_ecs_service_deployment_controller_216_id *string `lyra:"ignore"`
-
     Type *string
 
 }
 
 type Aws_ecs_service_load_balancer_217 struct {
-
-    Aws_ecs_service_load_balancer_217_id *string `lyra:"ignore"`
 
     Container_name string
 
@@ -13672,8 +13238,6 @@ type Aws_ecs_service_load_balancer_217 struct {
 
 type Aws_ecs_service_network_configuration_218 struct {
 
-    Aws_ecs_service_network_configuration_218_id *string `lyra:"ignore"`
-
     Assign_public_ip *bool
 
     Security_groups *[]string
@@ -13684,8 +13248,6 @@ type Aws_ecs_service_network_configuration_218 struct {
 
 type Aws_ecs_service_ordered_placement_strategy_219 struct {
 
-    Aws_ecs_service_ordered_placement_strategy_219_id *string `lyra:"ignore"`
-
     Field *string
 
     Type string
@@ -13693,8 +13255,6 @@ type Aws_ecs_service_ordered_placement_strategy_219 struct {
 }
 
 type Aws_ecs_service_placement_constraints_220 struct {
-
-    Aws_ecs_service_placement_constraints_220_id *string `lyra:"ignore"`
 
     Expression *string
 
@@ -13704,8 +13264,6 @@ type Aws_ecs_service_placement_constraints_220 struct {
 
 type Aws_ecs_service_placement_strategy_221 struct {
 
-    Aws_ecs_service_placement_strategy_221_id *string `lyra:"ignore"`
-
     Field *string
 
     Type string
@@ -13713,8 +13271,6 @@ type Aws_ecs_service_placement_strategy_221 struct {
 }
 
 type Aws_ecs_service_service_registries_222 struct {
-
-    Aws_ecs_service_service_registries_222_id *string `lyra:"ignore"`
 
     Container_name *string
 
@@ -13732,7 +13288,7 @@ type Aws_ecs_service struct {
 
     Cluster *string
 
-    Deployment_controller *Aws_ecs_service_deployment_controller_216
+    Deployment_controller *[]Aws_ecs_service_deployment_controller_216
 
     Deployment_maximum_percent *int
 
@@ -13752,9 +13308,9 @@ type Aws_ecs_service struct {
 
     Name string
 
-    Network_configuration *Aws_ecs_service_network_configuration_218
+    Network_configuration *[]Aws_ecs_service_network_configuration_218
 
-    Ordered_placement_strategy *Aws_ecs_service_ordered_placement_strategy_219
+    Ordered_placement_strategy *[]Aws_ecs_service_ordered_placement_strategy_219
 
     Placement_constraints *Aws_ecs_service_placement_constraints_220
 
@@ -13813,8 +13369,6 @@ func (h *Aws_ecs_serviceHandler) Delete(externalID string) error {
 
 type Aws_ecs_task_definition_placement_constraints_223 struct {
 
-    Aws_ecs_task_definition_placement_constraints_223_id *string `lyra:"ignore"`
-
     Expression *string
 
     Type string
@@ -13822,8 +13376,6 @@ type Aws_ecs_task_definition_placement_constraints_223 struct {
 }
 
 type Aws_ecs_task_definition_volume_224_docker_volume_configuration_225 struct {
-
-    Aws_ecs_task_definition_volume_224_docker_volume_configuration_225_id *string `lyra:"ignore"`
 
     Autoprovision *bool
 
@@ -13839,9 +13391,7 @@ type Aws_ecs_task_definition_volume_224_docker_volume_configuration_225 struct {
 
 type Aws_ecs_task_definition_volume_224 struct {
 
-    Aws_ecs_task_definition_volume_224_id *string `lyra:"ignore"`
-
-    Docker_volume_configuration *Aws_ecs_task_definition_volume_224_docker_volume_configuration_225
+    Docker_volume_configuration *[]Aws_ecs_task_definition_volume_224_docker_volume_configuration_225
 
     Host_path *string
 
@@ -14209,15 +13759,11 @@ func (h *Aws_eip_associationHandler) Delete(externalID string) error {
 
 type Aws_eks_cluster_certificate_authority_226 struct {
 
-    Aws_eks_cluster_certificate_authority_226_id *string `lyra:"ignore"`
-
     Data *string
 
 }
 
 type Aws_eks_cluster_vpc_config_227 struct {
-
-    Aws_eks_cluster_vpc_config_227_id *string `lyra:"ignore"`
 
     Security_group_ids *[]string
 
@@ -14233,7 +13779,7 @@ type Aws_eks_cluster struct {
 
     Arn *string
 
-    Certificate_authority *Aws_eks_cluster_certificate_authority_226
+    Certificate_authority *[]Aws_eks_cluster_certificate_authority_226
 
     Created_at *string
 
@@ -14247,7 +13793,7 @@ type Aws_eks_cluster struct {
 
     Version *string
 
-    Vpc_config Aws_eks_cluster_vpc_config_227
+    Vpc_config []Aws_eks_cluster_vpc_config_227
 
 }
 
@@ -14290,8 +13836,6 @@ func (h *Aws_eks_clusterHandler) Delete(externalID string) error {
 
 type Aws_elastic_beanstalk_application_appversion_lifecycle_228 struct {
 
-    Aws_elastic_beanstalk_application_appversion_lifecycle_228_id *string `lyra:"ignore"`
-
     Delete_source_from_s3 *bool
 
     Max_age_in_days *int
@@ -14306,7 +13850,7 @@ type Aws_elastic_beanstalk_application struct {
 
     Aws_elastic_beanstalk_application_id *string `lyra:"ignore"`
 
-    Appversion_lifecycle *Aws_elastic_beanstalk_application_appversion_lifecycle_228
+    Appversion_lifecycle *[]Aws_elastic_beanstalk_application_appversion_lifecycle_228
 
     Description *string
 
@@ -14408,8 +13952,6 @@ func (h *Aws_elastic_beanstalk_application_versionHandler) Delete(externalID str
 
 type Aws_elastic_beanstalk_configuration_template_setting_229 struct {
 
-    Aws_elastic_beanstalk_configuration_template_setting_229_id *string `lyra:"ignore"`
-
     Name string
 
     Namespace string
@@ -14477,8 +14019,6 @@ func (h *Aws_elastic_beanstalk_configuration_templateHandler) Delete(externalID 
 
 type Aws_elastic_beanstalk_environment_all_settings_230 struct {
 
-    Aws_elastic_beanstalk_environment_all_settings_230_id *string `lyra:"ignore"`
-
     Name string
 
     Namespace string
@@ -14490,8 +14030,6 @@ type Aws_elastic_beanstalk_environment_all_settings_230 struct {
 }
 
 type Aws_elastic_beanstalk_environment_setting_231 struct {
-
-    Aws_elastic_beanstalk_environment_setting_231_id *string `lyra:"ignore"`
 
     Name string
 
@@ -14592,8 +14130,6 @@ func (h *Aws_elastic_beanstalk_environmentHandler) Delete(externalID string) err
 
 type Aws_elasticache_cluster_cache_nodes_232 struct {
 
-    Aws_elasticache_cluster_cache_nodes_232_id *string `lyra:"ignore"`
-
     Address *string
 
     Availability_zone *string
@@ -14616,7 +14152,7 @@ type Aws_elasticache_cluster struct {
 
     Az_mode *string
 
-    Cache_nodes *Aws_elasticache_cluster_cache_nodes_232
+    Cache_nodes *[]Aws_elasticache_cluster_cache_nodes_232
 
     Cluster_address *string
 
@@ -14701,8 +14237,6 @@ func (h *Aws_elasticache_clusterHandler) Delete(externalID string) error {
 
 type Aws_elasticache_parameter_group_parameter_233 struct {
 
-    Aws_elasticache_parameter_group_parameter_233_id *string `lyra:"ignore"`
-
     Name string
 
     Value string
@@ -14762,8 +14296,6 @@ func (h *Aws_elasticache_parameter_groupHandler) Delete(externalID string) error
 
 type Aws_elasticache_replication_group_cluster_mode_234 struct {
 
-    Aws_elasticache_replication_group_cluster_mode_234_id *string `lyra:"ignore"`
-
     Num_node_groups int
 
     Replicas_per_node_group int
@@ -14786,7 +14318,7 @@ type Aws_elasticache_replication_group struct {
 
     Availability_zones *[]string
 
-    Cluster_mode *Aws_elasticache_replication_group_cluster_mode_234
+    Cluster_mode *[]Aws_elasticache_replication_group_cluster_mode_234
 
     Configuration_endpoint_address *string
 
@@ -14971,8 +14503,6 @@ func (h *Aws_elasticache_subnet_groupHandler) Delete(externalID string) error {
 
 type Aws_elasticsearch_domain_cluster_config_235 struct {
 
-    Aws_elasticsearch_domain_cluster_config_235_id *string `lyra:"ignore"`
-
     Dedicated_master_count *int
 
     Dedicated_master_enabled *bool
@@ -14989,8 +14519,6 @@ type Aws_elasticsearch_domain_cluster_config_235 struct {
 
 type Aws_elasticsearch_domain_cognito_options_236 struct {
 
-    Aws_elasticsearch_domain_cognito_options_236_id *string `lyra:"ignore"`
-
     Enabled *bool
 
     Identity_pool_id string
@@ -15002,8 +14530,6 @@ type Aws_elasticsearch_domain_cognito_options_236 struct {
 }
 
 type Aws_elasticsearch_domain_ebs_options_237 struct {
-
-    Aws_elasticsearch_domain_ebs_options_237_id *string `lyra:"ignore"`
 
     Ebs_enabled bool
 
@@ -15017,8 +14543,6 @@ type Aws_elasticsearch_domain_ebs_options_237 struct {
 
 type Aws_elasticsearch_domain_encrypt_at_rest_238 struct {
 
-    Aws_elasticsearch_domain_encrypt_at_rest_238_id *string `lyra:"ignore"`
-
     Enabled bool
 
     Kms_key_id *string
@@ -15026,8 +14550,6 @@ type Aws_elasticsearch_domain_encrypt_at_rest_238 struct {
 }
 
 type Aws_elasticsearch_domain_log_publishing_options_239 struct {
-
-    Aws_elasticsearch_domain_log_publishing_options_239_id *string `lyra:"ignore"`
 
     Cloudwatch_log_group_arn string
 
@@ -15039,23 +14561,17 @@ type Aws_elasticsearch_domain_log_publishing_options_239 struct {
 
 type Aws_elasticsearch_domain_node_to_node_encryption_240 struct {
 
-    Aws_elasticsearch_domain_node_to_node_encryption_240_id *string `lyra:"ignore"`
-
     Enabled bool
 
 }
 
 type Aws_elasticsearch_domain_snapshot_options_241 struct {
 
-    Aws_elasticsearch_domain_snapshot_options_241_id *string `lyra:"ignore"`
-
     Automated_snapshot_start_hour int
 
 }
 
 type Aws_elasticsearch_domain_vpc_options_242 struct {
-
-    Aws_elasticsearch_domain_vpc_options_242_id *string `lyra:"ignore"`
 
     Availability_zones *[]string
 
@@ -15077,19 +14593,19 @@ type Aws_elasticsearch_domain struct {
 
     Arn *string
 
-    Cluster_config *Aws_elasticsearch_domain_cluster_config_235
+    Cluster_config *[]Aws_elasticsearch_domain_cluster_config_235
 
-    Cognito_options *Aws_elasticsearch_domain_cognito_options_236
+    Cognito_options *[]Aws_elasticsearch_domain_cognito_options_236
 
     Domain_id *string
 
     Domain_name string
 
-    Ebs_options *Aws_elasticsearch_domain_ebs_options_237
+    Ebs_options *[]Aws_elasticsearch_domain_ebs_options_237
 
     Elasticsearch_version *string
 
-    Encrypt_at_rest *Aws_elasticsearch_domain_encrypt_at_rest_238
+    Encrypt_at_rest *[]Aws_elasticsearch_domain_encrypt_at_rest_238
 
     Endpoint *string
 
@@ -15097,13 +14613,13 @@ type Aws_elasticsearch_domain struct {
 
     Log_publishing_options *Aws_elasticsearch_domain_log_publishing_options_239
 
-    Node_to_node_encryption *Aws_elasticsearch_domain_node_to_node_encryption_240
+    Node_to_node_encryption *[]Aws_elasticsearch_domain_node_to_node_encryption_240
 
-    Snapshot_options *Aws_elasticsearch_domain_snapshot_options_241
+    Snapshot_options *[]Aws_elasticsearch_domain_snapshot_options_241
 
     Tags *map[string]string
 
-    Vpc_options *Aws_elasticsearch_domain_vpc_options_242
+    Vpc_options *[]Aws_elasticsearch_domain_vpc_options_242
 
 }
 
@@ -15193,8 +14709,6 @@ func (h *Aws_elasticsearch_domain_policyHandler) Delete(externalID string) error
 
 type Aws_elastictranscoder_pipeline_content_config_243 struct {
 
-    Aws_elastictranscoder_pipeline_content_config_243_id *string `lyra:"ignore"`
-
     Bucket *string
 
     Storage_class *string
@@ -15202,8 +14716,6 @@ type Aws_elastictranscoder_pipeline_content_config_243 struct {
 }
 
 type Aws_elastictranscoder_pipeline_content_config_permissions_244 struct {
-
-    Aws_elastictranscoder_pipeline_content_config_permissions_244_id *string `lyra:"ignore"`
 
     Access *[]string
 
@@ -15214,8 +14726,6 @@ type Aws_elastictranscoder_pipeline_content_config_permissions_244 struct {
 }
 
 type Aws_elastictranscoder_pipeline_notifications_245 struct {
-
-    Aws_elastictranscoder_pipeline_notifications_245_id *string `lyra:"ignore"`
 
     Completed *string
 
@@ -15229,8 +14739,6 @@ type Aws_elastictranscoder_pipeline_notifications_245 struct {
 
 type Aws_elastictranscoder_pipeline_thumbnail_config_246 struct {
 
-    Aws_elastictranscoder_pipeline_thumbnail_config_246_id *string `lyra:"ignore"`
-
     Bucket *string
 
     Storage_class *string
@@ -15238,8 +14746,6 @@ type Aws_elastictranscoder_pipeline_thumbnail_config_246 struct {
 }
 
 type Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247 struct {
-
-    Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247_id *string `lyra:"ignore"`
 
     Access *[]string
 
@@ -15316,8 +14822,6 @@ func (h *Aws_elastictranscoder_pipelineHandler) Delete(externalID string) error 
 
 type Aws_elastictranscoder_preset_audio_248 struct {
 
-    Aws_elastictranscoder_preset_audio_248_id *string `lyra:"ignore"`
-
     Audio_packing_mode *string
 
     Bit_rate *string
@@ -15332,8 +14836,6 @@ type Aws_elastictranscoder_preset_audio_248 struct {
 
 type Aws_elastictranscoder_preset_audio_codec_options_249 struct {
 
-    Aws_elastictranscoder_preset_audio_codec_options_249_id *string `lyra:"ignore"`
-
     Bit_depth *string
 
     Bit_order *string
@@ -15345,8 +14847,6 @@ type Aws_elastictranscoder_preset_audio_codec_options_249 struct {
 }
 
 type Aws_elastictranscoder_preset_thumbnails_250 struct {
-
-    Aws_elastictranscoder_preset_thumbnails_250_id *string `lyra:"ignore"`
 
     Aspect_ratio *string
 
@@ -15367,8 +14867,6 @@ type Aws_elastictranscoder_preset_thumbnails_250 struct {
 }
 
 type Aws_elastictranscoder_preset_video_251 struct {
-
-    Aws_elastictranscoder_preset_video_251_id *string `lyra:"ignore"`
 
     Aspect_ratio *string
 
@@ -15399,8 +14897,6 @@ type Aws_elastictranscoder_preset_video_251 struct {
 }
 
 type Aws_elastictranscoder_preset_video_watermarks_252 struct {
-
-    Aws_elastictranscoder_preset_video_watermarks_252_id *string `lyra:"ignore"`
 
     Horizontal_align *string
 
@@ -15491,8 +14987,6 @@ func (h *Aws_elastictranscoder_presetHandler) Delete(externalID string) error {
 
 type Aws_elb_access_logs_253 struct {
 
-    Aws_elb_access_logs_253_id *string `lyra:"ignore"`
-
     Bucket string
 
     Bucket_prefix *string
@@ -15504,8 +14998,6 @@ type Aws_elb_access_logs_253 struct {
 }
 
 type Aws_elb_health_check_254 struct {
-
-    Aws_elb_health_check_254_id *string `lyra:"ignore"`
 
     Healthy_threshold int
 
@@ -15520,8 +15012,6 @@ type Aws_elb_health_check_254 struct {
 }
 
 type Aws_elb_listener_255 struct {
-
-    Aws_elb_listener_255_id *string `lyra:"ignore"`
 
     Instance_port int
 
@@ -15539,7 +15029,7 @@ type Aws_elb struct {
 
     Aws_elb_id *string `lyra:"ignore"`
 
-    Access_logs *Aws_elb_access_logs_253
+    Access_logs *[]Aws_elb_access_logs_253
 
     Arn *string
 
@@ -15553,7 +15043,7 @@ type Aws_elb struct {
 
     Dns_name *string
 
-    Health_check *Aws_elb_health_check_254
+    Health_check *[]Aws_elb_health_check_254
 
     Idle_timeout *int
 
@@ -15667,8 +15157,6 @@ func (h *Aws_elb_attachmentHandler) Delete(externalID string) error {
 
 type Aws_emr_cluster_bootstrap_action_256 struct {
 
-    Aws_emr_cluster_bootstrap_action_256_id *string `lyra:"ignore"`
-
     Args *[]string
 
     Name string
@@ -15678,8 +15166,6 @@ type Aws_emr_cluster_bootstrap_action_256 struct {
 }
 
 type Aws_emr_cluster_ec2_attributes_257 struct {
-
-    Aws_emr_cluster_ec2_attributes_257_id *string `lyra:"ignore"`
 
     Additional_master_security_groups *string
 
@@ -15701,8 +15187,6 @@ type Aws_emr_cluster_ec2_attributes_257 struct {
 
 type Aws_emr_cluster_instance_group_258_ebs_config_259 struct {
 
-    Aws_emr_cluster_instance_group_258_ebs_config_259_id *string `lyra:"ignore"`
-
     Iops *int
 
     Size int
@@ -15714,8 +15198,6 @@ type Aws_emr_cluster_instance_group_258_ebs_config_259 struct {
 }
 
 type Aws_emr_cluster_instance_group_258 struct {
-
-    Aws_emr_cluster_instance_group_258_id *string `lyra:"ignore"`
 
     Autoscaling_policy *string
 
@@ -15737,8 +15219,6 @@ type Aws_emr_cluster_instance_group_258 struct {
 
 type Aws_emr_cluster_kerberos_attributes_260 struct {
 
-    Aws_emr_cluster_kerberos_attributes_260_id *string `lyra:"ignore"`
-
     Ad_domain_join_password *string
 
     Ad_domain_join_user *string
@@ -15753,8 +15233,6 @@ type Aws_emr_cluster_kerberos_attributes_260 struct {
 
 type Aws_emr_cluster_step_261_hadoop_jar_step_262 struct {
 
-    Aws_emr_cluster_step_261_hadoop_jar_step_262_id *string `lyra:"ignore"`
-
     Args *[]string
 
     Jar string
@@ -15767,11 +15245,9 @@ type Aws_emr_cluster_step_261_hadoop_jar_step_262 struct {
 
 type Aws_emr_cluster_step_261 struct {
 
-    Aws_emr_cluster_step_261_id *string `lyra:"ignore"`
-
     Action_on_failure string
 
-    Hadoop_jar_step Aws_emr_cluster_step_261_hadoop_jar_step_262
+    Hadoop_jar_step []Aws_emr_cluster_step_261_hadoop_jar_step_262
 
     Name string
 
@@ -15803,13 +15279,13 @@ type Aws_emr_cluster struct {
 
     Ebs_root_volume_size *int
 
-    Ec2_attributes *Aws_emr_cluster_ec2_attributes_257
+    Ec2_attributes *[]Aws_emr_cluster_ec2_attributes_257
 
     Instance_group *Aws_emr_cluster_instance_group_258
 
     Keep_job_flow_alive_when_no_steps *bool
 
-    Kerberos_attributes *Aws_emr_cluster_kerberos_attributes_260
+    Kerberos_attributes *[]Aws_emr_cluster_kerberos_attributes_260
 
     Log_uri *string
 
@@ -15827,7 +15303,7 @@ type Aws_emr_cluster struct {
 
     Service_role string
 
-    Step *Aws_emr_cluster_step_261
+    Step *[]Aws_emr_cluster_step_261
 
     Tags *map[string]string
 
@@ -15875,8 +15351,6 @@ func (h *Aws_emr_clusterHandler) Delete(externalID string) error {
 }
 
 type Aws_emr_instance_group_ebs_config_263 struct {
-
-    Aws_emr_instance_group_ebs_config_263_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -16059,8 +15533,6 @@ func (h *Aws_flow_logHandler) Delete(externalID string) error {
 
 type Aws_gamelift_alias_routing_strategy_264 struct {
 
-    Aws_gamelift_alias_routing_strategy_264_id *string `lyra:"ignore"`
-
     Fleet_id *string
 
     Message *string
@@ -16079,7 +15551,7 @@ type Aws_gamelift_alias struct {
 
     Name string
 
-    Routing_strategy Aws_gamelift_alias_routing_strategy_264
+    Routing_strategy []Aws_gamelift_alias_routing_strategy_264
 
 }
 
@@ -16122,8 +15594,6 @@ func (h *Aws_gamelift_aliasHandler) Delete(externalID string) error {
 
 type Aws_gamelift_build_storage_location_265 struct {
 
-    Aws_gamelift_build_storage_location_265_id *string `lyra:"ignore"`
-
     Bucket string
 
     Key string
@@ -16140,7 +15610,7 @@ type Aws_gamelift_build struct {
 
     Operating_system string
 
-    Storage_location Aws_gamelift_build_storage_location_265
+    Storage_location []Aws_gamelift_build_storage_location_265
 
     Version *string
 
@@ -16185,8 +15655,6 @@ func (h *Aws_gamelift_buildHandler) Delete(externalID string) error {
 
 type Aws_gamelift_fleet_ec2_inbound_permission_266 struct {
 
-    Aws_gamelift_fleet_ec2_inbound_permission_266_id *string `lyra:"ignore"`
-
     From_port int
 
     Ip_range string
@@ -16199,8 +15667,6 @@ type Aws_gamelift_fleet_ec2_inbound_permission_266 struct {
 
 type Aws_gamelift_fleet_resource_creation_limit_policy_267 struct {
 
-    Aws_gamelift_fleet_resource_creation_limit_policy_267_id *string `lyra:"ignore"`
-
     New_game_sessions_per_creator *int
 
     Policy_period_in_minutes *int
@@ -16208,8 +15674,6 @@ type Aws_gamelift_fleet_resource_creation_limit_policy_267 struct {
 }
 
 type Aws_gamelift_fleet_runtime_configuration_268_server_process_269 struct {
-
-    Aws_gamelift_fleet_runtime_configuration_268_server_process_269_id *string `lyra:"ignore"`
 
     Concurrent_executions int
 
@@ -16221,13 +15685,11 @@ type Aws_gamelift_fleet_runtime_configuration_268_server_process_269 struct {
 
 type Aws_gamelift_fleet_runtime_configuration_268 struct {
 
-    Aws_gamelift_fleet_runtime_configuration_268_id *string `lyra:"ignore"`
-
     Game_session_activation_timeout_seconds *int
 
     Max_concurrent_game_session_activations *int
 
-    Server_process *Aws_gamelift_fleet_runtime_configuration_268_server_process_269
+    Server_process *[]Aws_gamelift_fleet_runtime_configuration_268_server_process_269
 
 }
 
@@ -16241,7 +15703,7 @@ type Aws_gamelift_fleet struct {
 
     Description *string
 
-    Ec2_inbound_permission *Aws_gamelift_fleet_ec2_inbound_permission_266
+    Ec2_inbound_permission *[]Aws_gamelift_fleet_ec2_inbound_permission_266
 
     Ec2_instance_type string
 
@@ -16255,9 +15717,9 @@ type Aws_gamelift_fleet struct {
 
     Operating_system *string
 
-    Resource_creation_limit_policy *Aws_gamelift_fleet_resource_creation_limit_policy_267
+    Resource_creation_limit_policy *[]Aws_gamelift_fleet_resource_creation_limit_policy_267
 
-    Runtime_configuration *Aws_gamelift_fleet_runtime_configuration_268
+    Runtime_configuration *[]Aws_gamelift_fleet_runtime_configuration_268
 
 }
 
@@ -16300,8 +15762,6 @@ func (h *Aws_gamelift_fleetHandler) Delete(externalID string) error {
 
 type Aws_gamelift_game_session_queue_player_latency_policy_270 struct {
 
-    Aws_gamelift_game_session_queue_player_latency_policy_270_id *string `lyra:"ignore"`
-
     Maximum_individual_player_latency_milliseconds int
 
     Policy_duration_seconds *int
@@ -16318,7 +15778,7 @@ type Aws_gamelift_game_session_queue struct {
 
     Name string
 
-    Player_latency_policy *Aws_gamelift_game_session_queue_player_latency_policy_270
+    Player_latency_policy *[]Aws_gamelift_game_session_queue_player_latency_policy_270
 
     Timeout_in_seconds *int
 
@@ -16363,8 +15823,6 @@ func (h *Aws_gamelift_game_session_queueHandler) Delete(externalID string) error
 
 type Aws_glacier_vault_notification_271 struct {
 
-    Aws_glacier_vault_notification_271_id *string `lyra:"ignore"`
-
     Events []string
 
     Sns_topic string
@@ -16383,7 +15841,7 @@ type Aws_glacier_vault struct {
 
     Name string
 
-    Notification *Aws_glacier_vault_notification_271
+    Notification *[]Aws_glacier_vault_notification_271
 
     Tags *map[string]string
 
@@ -16479,8 +15937,6 @@ func (h *Aws_glacier_vault_lockHandler) Delete(externalID string) error {
 
 type Aws_globalaccelerator_accelerator_attributes_272 struct {
 
-    Aws_globalaccelerator_accelerator_attributes_272_id *string `lyra:"ignore"`
-
     Flow_logs_enabled *bool
 
     Flow_logs_s3_bucket *string
@@ -16490,8 +15946,6 @@ type Aws_globalaccelerator_accelerator_attributes_272 struct {
 }
 
 type Aws_globalaccelerator_accelerator_ip_sets_273 struct {
-
-    Aws_globalaccelerator_accelerator_ip_sets_273_id *string `lyra:"ignore"`
 
     Ip_addresses *[]string
 
@@ -16503,13 +15957,13 @@ type Aws_globalaccelerator_accelerator struct {
 
     Aws_globalaccelerator_accelerator_id *string `lyra:"ignore"`
 
-    Attributes *Aws_globalaccelerator_accelerator_attributes_272
+    Attributes *[]Aws_globalaccelerator_accelerator_attributes_272
 
     Enabled *bool
 
     Ip_address_type *string
 
-    Ip_sets *Aws_globalaccelerator_accelerator_ip_sets_273
+    Ip_sets *[]Aws_globalaccelerator_accelerator_ip_sets_273
 
     Name string
 
@@ -16607,8 +16061,6 @@ func (h *Aws_glue_catalog_databaseHandler) Delete(externalID string) error {
 
 type Aws_glue_catalog_table_partition_keys_274 struct {
 
-    Aws_glue_catalog_table_partition_keys_274_id *string `lyra:"ignore"`
-
     Comment *string
 
     Name string
@@ -16618,8 +16070,6 @@ type Aws_glue_catalog_table_partition_keys_274 struct {
 }
 
 type Aws_glue_catalog_table_storage_descriptor_275_columns_276 struct {
-
-    Aws_glue_catalog_table_storage_descriptor_275_columns_276_id *string `lyra:"ignore"`
 
     Comment *string
 
@@ -16631,8 +16081,6 @@ type Aws_glue_catalog_table_storage_descriptor_275_columns_276 struct {
 
 type Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277 struct {
 
-    Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277_id *string `lyra:"ignore"`
-
     Name *string
 
     Parameters *map[string]string
@@ -16642,8 +16090,6 @@ type Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277 struct {
 }
 
 type Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278 struct {
-
-    Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278_id *string `lyra:"ignore"`
 
     Skewed_column_names *[]string
 
@@ -16655,8 +16101,6 @@ type Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278 struct {
 
 type Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279 struct {
 
-    Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279_id *string `lyra:"ignore"`
-
     Column string
 
     Sort_order int
@@ -16665,11 +16109,9 @@ type Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279 struct {
 
 type Aws_glue_catalog_table_storage_descriptor_275 struct {
 
-    Aws_glue_catalog_table_storage_descriptor_275_id *string `lyra:"ignore"`
-
     Bucket_columns *[]string
 
-    Columns *Aws_glue_catalog_table_storage_descriptor_275_columns_276
+    Columns *[]Aws_glue_catalog_table_storage_descriptor_275_columns_276
 
     Compressed *bool
 
@@ -16683,11 +16125,11 @@ type Aws_glue_catalog_table_storage_descriptor_275 struct {
 
     Parameters *map[string]string
 
-    Ser_de_info *Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277
+    Ser_de_info *[]Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277
 
-    Skewed_info *Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278
+    Skewed_info *[]Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278
 
-    Sort_columns *Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279
+    Sort_columns *[]Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279
 
     Stored_as_sub_directories *bool
 
@@ -16709,11 +16151,11 @@ type Aws_glue_catalog_table struct {
 
     Parameters *map[string]string
 
-    Partition_keys *Aws_glue_catalog_table_partition_keys_274
+    Partition_keys *[]Aws_glue_catalog_table_partition_keys_274
 
     Retention *int
 
-    Storage_descriptor *Aws_glue_catalog_table_storage_descriptor_275
+    Storage_descriptor *[]Aws_glue_catalog_table_storage_descriptor_275
 
     Table_type *string
 
@@ -16762,8 +16204,6 @@ func (h *Aws_glue_catalog_tableHandler) Delete(externalID string) error {
 
 type Aws_glue_classifier_grok_classifier_280 struct {
 
-    Aws_glue_classifier_grok_classifier_280_id *string `lyra:"ignore"`
-
     Classification string
 
     Custom_patterns *string
@@ -16774,15 +16214,11 @@ type Aws_glue_classifier_grok_classifier_280 struct {
 
 type Aws_glue_classifier_json_classifier_281 struct {
 
-    Aws_glue_classifier_json_classifier_281_id *string `lyra:"ignore"`
-
     Json_path string
 
 }
 
 type Aws_glue_classifier_xml_classifier_282 struct {
-
-    Aws_glue_classifier_xml_classifier_282_id *string `lyra:"ignore"`
 
     Classification string
 
@@ -16794,13 +16230,13 @@ type Aws_glue_classifier struct {
 
     Aws_glue_classifier_id *string `lyra:"ignore"`
 
-    Grok_classifier *Aws_glue_classifier_grok_classifier_280
+    Grok_classifier *[]Aws_glue_classifier_grok_classifier_280
 
-    Json_classifier *Aws_glue_classifier_json_classifier_281
+    Json_classifier *[]Aws_glue_classifier_json_classifier_281
 
     Name string
 
-    Xml_classifier *Aws_glue_classifier_xml_classifier_282
+    Xml_classifier *[]Aws_glue_classifier_xml_classifier_282
 
 }
 
@@ -16843,8 +16279,6 @@ func (h *Aws_glue_classifierHandler) Delete(externalID string) error {
 
 type Aws_glue_connection_physical_connection_requirements_283 struct {
 
-    Aws_glue_connection_physical_connection_requirements_283_id *string `lyra:"ignore"`
-
     Availability_zone *string
 
     Security_group_id_list *[]string
@@ -16869,7 +16303,7 @@ type Aws_glue_connection struct {
 
     Name string
 
-    Physical_connection_requirements *Aws_glue_connection_physical_connection_requirements_283
+    Physical_connection_requirements *[]Aws_glue_connection_physical_connection_requirements_283
 
 }
 
@@ -16912,15 +16346,11 @@ func (h *Aws_glue_connectionHandler) Delete(externalID string) error {
 
 type Aws_glue_crawler_dynamodb_target_284 struct {
 
-    Aws_glue_crawler_dynamodb_target_284_id *string `lyra:"ignore"`
-
     Path string
 
 }
 
 type Aws_glue_crawler_jdbc_target_285 struct {
-
-    Aws_glue_crawler_jdbc_target_285_id *string `lyra:"ignore"`
 
     Connection_name string
 
@@ -16932,8 +16362,6 @@ type Aws_glue_crawler_jdbc_target_285 struct {
 
 type Aws_glue_crawler_s3_target_286 struct {
 
-    Aws_glue_crawler_s3_target_286_id *string `lyra:"ignore"`
-
     Exclusions *[]string
 
     Path string
@@ -16941,8 +16369,6 @@ type Aws_glue_crawler_s3_target_286 struct {
 }
 
 type Aws_glue_crawler_schema_change_policy_287 struct {
-
-    Aws_glue_crawler_schema_change_policy_287_id *string `lyra:"ignore"`
 
     Delete_behavior *string
 
@@ -16962,19 +16388,19 @@ type Aws_glue_crawler struct {
 
     Description *string
 
-    Dynamodb_target *Aws_glue_crawler_dynamodb_target_284
+    Dynamodb_target *[]Aws_glue_crawler_dynamodb_target_284
 
-    Jdbc_target *Aws_glue_crawler_jdbc_target_285
+    Jdbc_target *[]Aws_glue_crawler_jdbc_target_285
 
     Name string
 
     Role string
 
-    S3_target *Aws_glue_crawler_s3_target_286
+    S3_target *[]Aws_glue_crawler_s3_target_286
 
     Schedule *string
 
-    Schema_change_policy *Aws_glue_crawler_schema_change_policy_287
+    Schema_change_policy *[]Aws_glue_crawler_schema_change_policy_287
 
     Security_configuration *string
 
@@ -17021,8 +16447,6 @@ func (h *Aws_glue_crawlerHandler) Delete(externalID string) error {
 
 type Aws_glue_job_command_288 struct {
 
-    Aws_glue_job_command_288_id *string `lyra:"ignore"`
-
     Name *string
 
     Script_location string
@@ -17030,8 +16454,6 @@ type Aws_glue_job_command_288 struct {
 }
 
 type Aws_glue_job_execution_property_289 struct {
-
-    Aws_glue_job_execution_property_289_id *string `lyra:"ignore"`
 
     Max_concurrent_runs *int
 
@@ -17043,7 +16465,7 @@ type Aws_glue_job struct {
 
     Allocated_capacity *int
 
-    Command Aws_glue_job_command_288
+    Command []Aws_glue_job_command_288
 
     Connections *[]string
 
@@ -17051,7 +16473,7 @@ type Aws_glue_job struct {
 
     Description *string
 
-    Execution_property *Aws_glue_job_execution_property_289
+    Execution_property *[]Aws_glue_job_execution_property_289
 
     Max_retries *int
 
@@ -17104,8 +16526,6 @@ func (h *Aws_glue_jobHandler) Delete(externalID string) error {
 
 type Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_encryption_291 struct {
 
-    Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_encryption_291_id *string `lyra:"ignore"`
-
     Cloudwatch_encryption_mode *string
 
     Kms_key_arn *string
@@ -17113,8 +16533,6 @@ type Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_enc
 }
 
 type Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_encryption_292 struct {
-
-    Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_encryption_292_id *string `lyra:"ignore"`
 
     Job_bookmarks_encryption_mode *string
 
@@ -17124,8 +16542,6 @@ type Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_
 
 type Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_293 struct {
 
-    Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_293_id *string `lyra:"ignore"`
-
     Kms_key_arn *string
 
     S3_encryption_mode *string
@@ -17134,13 +16550,11 @@ type Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_
 
 type Aws_glue_security_configuration_encryption_configuration_290 struct {
 
-    Aws_glue_security_configuration_encryption_configuration_290_id *string `lyra:"ignore"`
+    Cloudwatch_encryption []Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_encryption_291
 
-    Cloudwatch_encryption Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_encryption_291
+    Job_bookmarks_encryption []Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_encryption_292
 
-    Job_bookmarks_encryption Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_encryption_292
-
-    S3_encryption Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_293
+    S3_encryption []Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_293
 
 }
 
@@ -17148,7 +16562,7 @@ type Aws_glue_security_configuration struct {
 
     Aws_glue_security_configuration_id *string `lyra:"ignore"`
 
-    Encryption_configuration Aws_glue_security_configuration_encryption_configuration_290
+    Encryption_configuration []Aws_glue_security_configuration_encryption_configuration_290
 
     Name string
 
@@ -17193,8 +16607,6 @@ func (h *Aws_glue_security_configurationHandler) Delete(externalID string) error
 
 type Aws_glue_trigger_actions_294 struct {
 
-    Aws_glue_trigger_actions_294_id *string `lyra:"ignore"`
-
     Arguments *map[string]string
 
     Job_name string
@@ -17204,8 +16616,6 @@ type Aws_glue_trigger_actions_294 struct {
 }
 
 type Aws_glue_trigger_predicate_295_conditions_296 struct {
-
-    Aws_glue_trigger_predicate_295_conditions_296_id *string `lyra:"ignore"`
 
     Job_name string
 
@@ -17217,9 +16627,7 @@ type Aws_glue_trigger_predicate_295_conditions_296 struct {
 
 type Aws_glue_trigger_predicate_295 struct {
 
-    Aws_glue_trigger_predicate_295_id *string `lyra:"ignore"`
-
-    Conditions Aws_glue_trigger_predicate_295_conditions_296
+    Conditions []Aws_glue_trigger_predicate_295_conditions_296
 
     Logical *string
 
@@ -17229,7 +16637,7 @@ type Aws_glue_trigger struct {
 
     Aws_glue_trigger_id *string `lyra:"ignore"`
 
-    Actions Aws_glue_trigger_actions_294
+    Actions []Aws_glue_trigger_actions_294
 
     Description *string
 
@@ -17237,7 +16645,7 @@ type Aws_glue_trigger struct {
 
     Name string
 
-    Predicate *Aws_glue_trigger_predicate_295
+    Predicate *[]Aws_glue_trigger_predicate_295
 
     Schedule *string
 
@@ -18870,15 +18278,11 @@ func (h *Aws_inspector_resource_groupHandler) Delete(externalID string) error {
 
 type Aws_instance_credit_specification_297 struct {
 
-    Aws_instance_credit_specification_297_id *string `lyra:"ignore"`
-
     Cpu_credits *string
 
 }
 
 type Aws_instance_ebs_block_device_298 struct {
-
-    Aws_instance_ebs_block_device_298_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -18900,8 +18304,6 @@ type Aws_instance_ebs_block_device_298 struct {
 
 type Aws_instance_ephemeral_block_device_299 struct {
 
-    Aws_instance_ephemeral_block_device_299_id *string `lyra:"ignore"`
-
     Device_name string
 
     No_device *bool
@@ -18912,8 +18314,6 @@ type Aws_instance_ephemeral_block_device_299 struct {
 
 type Aws_instance_network_interface_300 struct {
 
-    Aws_instance_network_interface_300_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_index int
@@ -18923,8 +18323,6 @@ type Aws_instance_network_interface_300 struct {
 }
 
 type Aws_instance_root_block_device_301 struct {
-
-    Aws_instance_root_block_device_301_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -18956,7 +18354,7 @@ type Aws_instance struct {
 
     Cpu_threads_per_core *int
 
-    Credit_specification *Aws_instance_credit_specification_297
+    Credit_specification *[]Aws_instance_credit_specification_297
 
     Disable_api_termination *bool
 
@@ -19004,7 +18402,7 @@ type Aws_instance struct {
 
     Public_ip *string
 
-    Root_block_device *Aws_instance_root_block_device_301
+    Root_block_device *[]Aws_instance_root_block_device_301
 
     Security_groups *[]string
 
@@ -19363,8 +18761,6 @@ func (h *Aws_iot_thing_principal_attachmentHandler) Delete(externalID string) er
 
 type Aws_iot_thing_type_properties_302 struct {
 
-    Aws_iot_thing_type_properties_302_id *string `lyra:"ignore"`
-
     Description *string
 
     Searchable_attributes *[]string
@@ -19381,7 +18777,7 @@ type Aws_iot_thing_type struct {
 
     Name string
 
-    Properties *Aws_iot_thing_type_properties_302
+    Properties *[]Aws_iot_thing_type_properties_302
 
 }
 
@@ -19424,8 +18820,6 @@ func (h *Aws_iot_thing_typeHandler) Delete(externalID string) error {
 
 type Aws_iot_topic_rule_cloudwatch_alarm_303 struct {
 
-    Aws_iot_topic_rule_cloudwatch_alarm_303_id *string `lyra:"ignore"`
-
     Alarm_name string
 
     Role_arn string
@@ -19437,8 +18831,6 @@ type Aws_iot_topic_rule_cloudwatch_alarm_303 struct {
 }
 
 type Aws_iot_topic_rule_cloudwatch_metric_304 struct {
-
-    Aws_iot_topic_rule_cloudwatch_metric_304_id *string `lyra:"ignore"`
 
     Metric_name string
 
@@ -19455,8 +18847,6 @@ type Aws_iot_topic_rule_cloudwatch_metric_304 struct {
 }
 
 type Aws_iot_topic_rule_dynamodb_305 struct {
-
-    Aws_iot_topic_rule_dynamodb_305_id *string `lyra:"ignore"`
 
     Hash_key_field string
 
@@ -19480,8 +18870,6 @@ type Aws_iot_topic_rule_dynamodb_305 struct {
 
 type Aws_iot_topic_rule_elasticsearch_306 struct {
 
-    Aws_iot_topic_rule_elasticsearch_306_id *string `lyra:"ignore"`
-
     Endpoint string
 
     Id string
@@ -19496,8 +18884,6 @@ type Aws_iot_topic_rule_elasticsearch_306 struct {
 
 type Aws_iot_topic_rule_firehose_307 struct {
 
-    Aws_iot_topic_rule_firehose_307_id *string `lyra:"ignore"`
-
     Delivery_stream_name string
 
     Role_arn string
@@ -19507,8 +18893,6 @@ type Aws_iot_topic_rule_firehose_307 struct {
 }
 
 type Aws_iot_topic_rule_kinesis_308 struct {
-
-    Aws_iot_topic_rule_kinesis_308_id *string `lyra:"ignore"`
 
     Partition_key *string
 
@@ -19520,15 +18904,11 @@ type Aws_iot_topic_rule_kinesis_308 struct {
 
 type Aws_iot_topic_rule_lambda_309 struct {
 
-    Aws_iot_topic_rule_lambda_309_id *string `lyra:"ignore"`
-
     Function_arn string
 
 }
 
 type Aws_iot_topic_rule_republish_310 struct {
-
-    Aws_iot_topic_rule_republish_310_id *string `lyra:"ignore"`
 
     Role_arn string
 
@@ -19537,8 +18917,6 @@ type Aws_iot_topic_rule_republish_310 struct {
 }
 
 type Aws_iot_topic_rule_s3_311 struct {
-
-    Aws_iot_topic_rule_s3_311_id *string `lyra:"ignore"`
 
     Bucket_name string
 
@@ -19550,8 +18928,6 @@ type Aws_iot_topic_rule_s3_311 struct {
 
 type Aws_iot_topic_rule_sns_312 struct {
 
-    Aws_iot_topic_rule_sns_312_id *string `lyra:"ignore"`
-
     Message_format *string
 
     Role_arn string
@@ -19561,8 +18937,6 @@ type Aws_iot_topic_rule_sns_312 struct {
 }
 
 type Aws_iot_topic_rule_sqs_313 struct {
-
-    Aws_iot_topic_rule_sqs_313_id *string `lyra:"ignore"`
 
     Queue_url string
 
@@ -19702,8 +19076,6 @@ func (h *Aws_key_pairHandler) Delete(externalID string) error {
 
 type Aws_kinesis_analytics_application_cloudwatch_logging_options_314 struct {
 
-    Aws_kinesis_analytics_application_cloudwatch_logging_options_314_id *string `lyra:"ignore"`
-
     Id *string
 
     Log_stream_arn string
@@ -19714,8 +19086,6 @@ type Aws_kinesis_analytics_application_cloudwatch_logging_options_314 struct {
 
 type Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316_id *string `lyra:"ignore"`
-
     Resource_arn string
 
     Role_arn string
@@ -19723,8 +19093,6 @@ type Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316 struct {
 }
 
 type Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317 struct {
-
-    Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317_id *string `lyra:"ignore"`
 
     Resource_arn string
 
@@ -19734,15 +19102,11 @@ type Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317 struct {
 
 type Aws_kinesis_analytics_application_inputs_315_parallelism_318 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_parallelism_318_id *string `lyra:"ignore"`
-
     Count int
 
 }
 
 type Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_lambda_320 struct {
-
-    Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_lambda_320_id *string `lyra:"ignore"`
 
     Resource_arn string
 
@@ -19752,15 +19116,11 @@ type Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_l
 
 type Aws_kinesis_analytics_application_inputs_315_processing_configuration_319 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_id *string `lyra:"ignore"`
-
-    Lambda Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_lambda_320
+    Lambda []Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_lambda_320
 
 }
 
 type Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322 struct {
-
-    Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322_id *string `lyra:"ignore"`
 
     Mapping *string
 
@@ -19772,8 +19132,6 @@ type Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322 
 
 type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_csv_325 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_csv_325_id *string `lyra:"ignore"`
-
     Record_column_delimiter string
 
     Record_row_delimiter string
@@ -19782,27 +19140,21 @@ type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_m
 
 type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_json_326 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_json_326_id *string `lyra:"ignore"`
-
     Record_row_path string
 
 }
 
 type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_id *string `lyra:"ignore"`
+    Csv *[]Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_csv_325
 
-    Csv *Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_csv_325
-
-    Json *Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_json_326
+    Json *[]Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_json_326
 
 }
 
 type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_id *string `lyra:"ignore"`
-
-    Mapping_parameters *Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324
+    Mapping_parameters *[]Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324
 
     Record_format_type *string
 
@@ -19810,19 +19162,15 @@ type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323 s
 
 type Aws_kinesis_analytics_application_inputs_315_schema_321 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_schema_321_id *string `lyra:"ignore"`
-
-    Record_columns Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322
+    Record_columns []Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322
 
     Record_encoding *string
 
-    Record_format Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323
+    Record_format []Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323
 
 }
 
 type Aws_kinesis_analytics_application_inputs_315_starting_position_configuration_327 struct {
-
-    Aws_kinesis_analytics_application_inputs_315_starting_position_configuration_327_id *string `lyra:"ignore"`
 
     Starting_position *string
 
@@ -19830,31 +19178,27 @@ type Aws_kinesis_analytics_application_inputs_315_starting_position_configuratio
 
 type Aws_kinesis_analytics_application_inputs_315 struct {
 
-    Aws_kinesis_analytics_application_inputs_315_id *string `lyra:"ignore"`
-
     Id *string
 
-    Kinesis_firehose *Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316
+    Kinesis_firehose *[]Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316
 
-    Kinesis_stream *Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317
+    Kinesis_stream *[]Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317
 
     Name_prefix string
 
-    Parallelism *Aws_kinesis_analytics_application_inputs_315_parallelism_318
+    Parallelism *[]Aws_kinesis_analytics_application_inputs_315_parallelism_318
 
-    Processing_configuration *Aws_kinesis_analytics_application_inputs_315_processing_configuration_319
+    Processing_configuration *[]Aws_kinesis_analytics_application_inputs_315_processing_configuration_319
 
-    Schema Aws_kinesis_analytics_application_inputs_315_schema_321
+    Schema []Aws_kinesis_analytics_application_inputs_315_schema_321
 
-    Starting_position_configuration *Aws_kinesis_analytics_application_inputs_315_starting_position_configuration_327
+    Starting_position_configuration *[]Aws_kinesis_analytics_application_inputs_315_starting_position_configuration_327
 
     Stream_names *[]string
 
 }
 
 type Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329 struct {
-
-    Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329_id *string `lyra:"ignore"`
 
     Resource_arn string
 
@@ -19864,8 +19208,6 @@ type Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329 struct {
 
 type Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330 struct {
 
-    Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330_id *string `lyra:"ignore"`
-
     Resource_arn string
 
     Role_arn string
@@ -19873,8 +19215,6 @@ type Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330 struct {
 }
 
 type Aws_kinesis_analytics_application_outputs_328_lambda_331 struct {
-
-    Aws_kinesis_analytics_application_outputs_328_lambda_331_id *string `lyra:"ignore"`
 
     Resource_arn string
 
@@ -19884,33 +19224,27 @@ type Aws_kinesis_analytics_application_outputs_328_lambda_331 struct {
 
 type Aws_kinesis_analytics_application_outputs_328_schema_332 struct {
 
-    Aws_kinesis_analytics_application_outputs_328_schema_332_id *string `lyra:"ignore"`
-
     Record_format_type *string
 
 }
 
 type Aws_kinesis_analytics_application_outputs_328 struct {
 
-    Aws_kinesis_analytics_application_outputs_328_id *string `lyra:"ignore"`
-
     Id *string
 
-    Kinesis_firehose *Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329
+    Kinesis_firehose *[]Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329
 
-    Kinesis_stream *Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330
+    Kinesis_stream *[]Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330
 
-    Lambda *Aws_kinesis_analytics_application_outputs_328_lambda_331
+    Lambda *[]Aws_kinesis_analytics_application_outputs_328_lambda_331
 
     Name string
 
-    Schema Aws_kinesis_analytics_application_outputs_328_schema_332
+    Schema []Aws_kinesis_analytics_application_outputs_328_schema_332
 
 }
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_s3_334 struct {
-
-    Aws_kinesis_analytics_application_reference_data_sources_333_s3_334_id *string `lyra:"ignore"`
 
     Bucket_arn string
 
@@ -19922,8 +19256,6 @@ type Aws_kinesis_analytics_application_reference_data_sources_333_s3_334 struct 
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_columns_336 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_columns_336_id *string `lyra:"ignore"`
-
     Mapping *string
 
     Name string
@@ -19934,8 +19266,6 @@ type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_rec
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_csv_339 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_csv_339_id *string `lyra:"ignore"`
-
     Record_column_delimiter string
 
     Record_row_delimiter string
@@ -19944,27 +19274,21 @@ type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_rec
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_json_340 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_json_340_id *string `lyra:"ignore"`
-
     Record_row_path string
 
 }
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_id *string `lyra:"ignore"`
+    Csv *[]Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_csv_339
 
-    Csv *Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_csv_339
-
-    Json *Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_json_340
+    Json *[]Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_json_340
 
 }
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_id *string `lyra:"ignore"`
-
-    Mapping_parameters *Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338
+    Mapping_parameters *[]Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338
 
     Record_format_type *string
 
@@ -19972,25 +19296,21 @@ type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_rec
 
 type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_id *string `lyra:"ignore"`
-
-    Record_columns Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_columns_336
+    Record_columns []Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_columns_336
 
     Record_encoding *string
 
-    Record_format Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337
+    Record_format []Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337
 
 }
 
 type Aws_kinesis_analytics_application_reference_data_sources_333 struct {
 
-    Aws_kinesis_analytics_application_reference_data_sources_333_id *string `lyra:"ignore"`
-
     Id *string
 
-    S3 Aws_kinesis_analytics_application_reference_data_sources_333_s3_334
+    S3 []Aws_kinesis_analytics_application_reference_data_sources_333_s3_334
 
-    Schema Aws_kinesis_analytics_application_reference_data_sources_333_schema_335
+    Schema []Aws_kinesis_analytics_application_reference_data_sources_333_schema_335
 
     Table_name string
 
@@ -20002,7 +19322,7 @@ type Aws_kinesis_analytics_application struct {
 
     Arn *string
 
-    Cloudwatch_logging_options *Aws_kinesis_analytics_application_cloudwatch_logging_options_314
+    Cloudwatch_logging_options *[]Aws_kinesis_analytics_application_cloudwatch_logging_options_314
 
     Code *string
 
@@ -20010,15 +19330,15 @@ type Aws_kinesis_analytics_application struct {
 
     Description *string
 
-    Inputs *Aws_kinesis_analytics_application_inputs_315
+    Inputs *[]Aws_kinesis_analytics_application_inputs_315
 
     Last_update_timestamp *string
 
     Name string
 
-    Outputs *Aws_kinesis_analytics_application_outputs_328
+    Outputs *[]Aws_kinesis_analytics_application_outputs_328
 
-    Reference_data_sources *Aws_kinesis_analytics_application_reference_data_sources_333
+    Reference_data_sources *[]Aws_kinesis_analytics_application_reference_data_sources_333
 
     Status *string
 
@@ -20065,8 +19385,6 @@ func (h *Aws_kinesis_analytics_applicationHandler) Delete(externalID string) err
 
 type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342 struct {
 
-    Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342_id *string `lyra:"ignore"`
-
     Enabled *bool
 
     Log_group_name *string
@@ -20077,8 +19395,6 @@ type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudw
 
 type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_parameters_345 struct {
 
-    Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_parameters_345_id *string `lyra:"ignore"`
-
     Parameter_name string
 
     Parameter_value string
@@ -20087,9 +19403,7 @@ type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_proces
 
 type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344 struct {
 
-    Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_id *string `lyra:"ignore"`
-
-    Parameters *Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_parameters_345
+    Parameters *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_parameters_345
 
     Type string
 
@@ -20097,17 +19411,13 @@ type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_proces
 
 type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343 struct {
 
-    Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_id *string `lyra:"ignore"`
-
     Enabled *bool
 
-    Processors *Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344
+    Processors *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 struct {
-
-    Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_id *string `lyra:"ignore"`
 
     Buffering_interval *int
 
@@ -20121,7 +19431,7 @@ type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 struct
 
     Index_rotation_period *string
 
-    Processing_configuration *Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343
+    Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343
 
     Retry_duration *int
 
@@ -20135,8 +19445,6 @@ type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 struct
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347_id *string `lyra:"ignore"`
-
     Enabled *bool
 
     Log_group_name *string
@@ -20147,15 +19455,11 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwat
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_hive_json_ser_de_351 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_hive_json_ser_de_351_id *string `lyra:"ignore"`
-
     Timestamp_formats *[]string
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_open_x_json_ser_de_352 struct {
-
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_open_x_json_ser_de_352_id *string `lyra:"ignore"`
 
     Case_insensitive *bool
 
@@ -20167,25 +19471,19 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_for
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_id *string `lyra:"ignore"`
+    Hive_json_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_hive_json_ser_de_351
 
-    Hive_json_ser_de *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_hive_json_ser_de_351
-
-    Open_x_json_ser_de *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_open_x_json_ser_de_352
+    Open_x_json_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_open_x_json_ser_de_352
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_id *string `lyra:"ignore"`
-
-    Deserializer Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350
+    Deserializer []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_orc_ser_de_355 struct {
-
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_orc_ser_de_355_id *string `lyra:"ignore"`
 
     Block_size_bytes *int
 
@@ -20211,8 +19509,6 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_for
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_parquet_ser_de_356 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_parquet_ser_de_356_id *string `lyra:"ignore"`
-
     Block_size_bytes *int
 
     Compression *string
@@ -20229,25 +19525,19 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_for
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_id *string `lyra:"ignore"`
+    Orc_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_orc_ser_de_355
 
-    Orc_ser_de *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_orc_ser_de_355
-
-    Parquet_ser_de *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_parquet_ser_de_356
+    Parquet_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_parquet_ser_de_356
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_id *string `lyra:"ignore"`
-
-    Serializer Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354
+    Serializer []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_schema_configuration_357 struct {
-
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_schema_configuration_357_id *string `lyra:"ignore"`
 
     Catalog_id *string
 
@@ -20265,21 +19555,17 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_for
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_id *string `lyra:"ignore"`
-
     Enabled *bool
 
-    Input_format_configuration Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349
+    Input_format_configuration []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349
 
-    Output_format_configuration Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353
+    Output_format_configuration []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353
 
-    Schema_configuration Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_schema_configuration_357
+    Schema_configuration []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_schema_configuration_357
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_parameters_360 struct {
-
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_parameters_360_id *string `lyra:"ignore"`
 
     Parameter_name string
 
@@ -20289,9 +19575,7 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processi
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_id *string `lyra:"ignore"`
-
-    Parameters *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_parameters_360
+    Parameters *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_parameters_360
 
     Type string
 
@@ -20299,17 +19583,13 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processi
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_id *string `lyra:"ignore"`
-
     Enabled *bool
 
-    Processors *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359
+    Processors *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362 struct {
-
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -20320,8 +19600,6 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backu
 }
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361 struct {
-
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_id *string `lyra:"ignore"`
 
     Bucket_arn string
 
@@ -20343,8 +19621,6 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backu
 
 type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346 struct {
 
-    Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_id *string `lyra:"ignore"`
-
     Bucket_arn string
 
     Buffer_interval *int
@@ -20355,7 +19631,7 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346 struct {
 
     Compression_format *string
 
-    Data_format_conversion_configuration *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348
+    Data_format_conversion_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348
 
     Error_output_prefix *string
 
@@ -20363,19 +19639,17 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346 struct {
 
     Prefix *string
 
-    Processing_configuration *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358
+    Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358
 
     Role_arn string
 
-    S3_backup_configuration *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361
+    S3_backup_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361
 
     S3_backup_mode *string
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363 struct {
-
-    Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363_id *string `lyra:"ignore"`
 
     Kinesis_stream_arn string
 
@@ -20384,8 +19658,6 @@ type Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363 struc
 }
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365 struct {
-
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -20397,8 +19669,6 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_parameters_368 struct {
 
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_parameters_368_id *string `lyra:"ignore"`
-
     Parameter_name string
 
     Parameter_value string
@@ -20407,9 +19677,7 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367 struct {
 
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_id *string `lyra:"ignore"`
-
-    Parameters *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_parameters_368
+    Parameters *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_parameters_368
 
     Type string
 
@@ -20417,17 +19685,13 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366 struct {
 
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_id *string `lyra:"ignore"`
-
     Enabled *bool
 
-    Processors *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367
+    Processors *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370 struct {
-
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -20438,8 +19702,6 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_c
 }
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369 struct {
-
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_id *string `lyra:"ignore"`
 
     Bucket_arn string
 
@@ -20461,8 +19723,6 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_c
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364 struct {
 
-    Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_id *string `lyra:"ignore"`
-
     Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365
 
     Cluster_jdbcurl string
@@ -20475,13 +19735,13 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364 struct {
 
     Password string
 
-    Processing_configuration *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366
+    Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366
 
     Retry_duration *int
 
     Role_arn string
 
-    S3_backup_configuration *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369
+    S3_backup_configuration *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369
 
     S3_backup_mode *string
 
@@ -20490,8 +19750,6 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364 struct {
 }
 
 type Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372 struct {
-
-    Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -20502,8 +19760,6 @@ type Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_loggin
 }
 
 type Aws_kinesis_firehose_delivery_stream_s3_configuration_371 struct {
-
-    Aws_kinesis_firehose_delivery_stream_s3_configuration_371_id *string `lyra:"ignore"`
 
     Bucket_arn string
 
@@ -20525,8 +19781,6 @@ type Aws_kinesis_firehose_delivery_stream_s3_configuration_371 struct {
 
 type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374 struct {
 
-    Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374_id *string `lyra:"ignore"`
-
     Enabled *bool
 
     Log_group_name *string
@@ -20537,8 +19791,6 @@ type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_lo
 
 type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_parameters_377 struct {
 
-    Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_parameters_377_id *string `lyra:"ignore"`
-
     Parameter_name string
 
     Parameter_value string
@@ -20547,9 +19799,7 @@ type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_co
 
 type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376 struct {
 
-    Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_id *string `lyra:"ignore"`
-
-    Parameters *Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_parameters_377
+    Parameters *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_parameters_377
 
     Type string
 
@@ -20557,17 +19807,13 @@ type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_co
 
 type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375 struct {
 
-    Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_id *string `lyra:"ignore"`
-
     Enabled *bool
 
-    Processors *Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376
+    Processors *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376
 
 }
 
 type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373 struct {
-
-    Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_id *string `lyra:"ignore"`
 
     Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374
 
@@ -20579,7 +19825,7 @@ type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373 struct {
 
     Hec_token string
 
-    Processing_configuration *Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375
+    Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375
 
     Retry_duration *int
 
@@ -20597,19 +19843,19 @@ type Aws_kinesis_firehose_delivery_stream struct {
 
     Destination_id *string
 
-    Elasticsearch_configuration *Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341
+    Elasticsearch_configuration *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341
 
-    Extended_s3_configuration *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346
+    Extended_s3_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346
 
-    Kinesis_source_configuration *Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363
+    Kinesis_source_configuration *[]Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363
 
     Name string
 
-    Redshift_configuration *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364
+    Redshift_configuration *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364
 
-    S3_configuration *Aws_kinesis_firehose_delivery_stream_s3_configuration_371
+    S3_configuration *[]Aws_kinesis_firehose_delivery_stream_s3_configuration_371
 
-    Splunk_configuration *Aws_kinesis_firehose_delivery_stream_splunk_configuration_373
+    Splunk_configuration *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373
 
     Tags *map[string]string
 
@@ -20768,8 +20014,6 @@ func (h *Aws_kms_aliasHandler) Delete(externalID string) error {
 
 type Aws_kms_grant_constraints_378 struct {
 
-    Aws_kms_grant_constraints_378_id *string `lyra:"ignore"`
-
     Encryption_context_equals *map[string]string
 
     Encryption_context_subset *map[string]string
@@ -20902,8 +20146,6 @@ func (h *Aws_kms_keyHandler) Delete(externalID string) error {
 
 type Aws_lambda_alias_routing_config_379 struct {
 
-    Aws_lambda_alias_routing_config_379_id *string `lyra:"ignore"`
-
     Additional_version_weights *map[string]string
 
 }
@@ -20924,7 +20166,7 @@ type Aws_lambda_alias struct {
 
     Name string
 
-    Routing_config *Aws_lambda_alias_routing_config_379
+    Routing_config *[]Aws_lambda_alias_routing_config_379
 
 }
 
@@ -21034,15 +20276,11 @@ func (h *Aws_lambda_event_source_mappingHandler) Delete(externalID string) error
 
 type Aws_lambda_function_dead_letter_config_380 struct {
 
-    Aws_lambda_function_dead_letter_config_380_id *string `lyra:"ignore"`
-
     Target_arn string
 
 }
 
 type Aws_lambda_function_environment_381 struct {
-
-    Aws_lambda_function_environment_381_id *string `lyra:"ignore"`
 
     Variables *map[string]string
 
@@ -21050,15 +20288,11 @@ type Aws_lambda_function_environment_381 struct {
 
 type Aws_lambda_function_tracing_config_382 struct {
 
-    Aws_lambda_function_tracing_config_382_id *string `lyra:"ignore"`
-
     Mode string
 
 }
 
 type Aws_lambda_function_vpc_config_383 struct {
-
-    Aws_lambda_function_vpc_config_383_id *string `lyra:"ignore"`
 
     Security_group_ids []string
 
@@ -21074,11 +20308,11 @@ type Aws_lambda_function struct {
 
     Arn *string
 
-    Dead_letter_config *Aws_lambda_function_dead_letter_config_380
+    Dead_letter_config *[]Aws_lambda_function_dead_letter_config_380
 
     Description *string
 
-    Environment *Aws_lambda_function_environment_381
+    Environment *[]Aws_lambda_function_environment_381
 
     Filename *string
 
@@ -21120,11 +20354,11 @@ type Aws_lambda_function struct {
 
     Timeout *int
 
-    Tracing_config *Aws_lambda_function_tracing_config_382
+    Tracing_config *[]Aws_lambda_function_tracing_config_382
 
     Version *string
 
-    Vpc_config *Aws_lambda_function_vpc_config_383
+    Vpc_config *[]Aws_lambda_function_vpc_config_383
 
 }
 
@@ -21299,8 +20533,6 @@ func (h *Aws_lambda_permissionHandler) Delete(externalID string) error {
 
 type Aws_launch_configuration_ebs_block_device_384 struct {
 
-    Aws_launch_configuration_ebs_block_device_384_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_name string
@@ -21321,8 +20553,6 @@ type Aws_launch_configuration_ebs_block_device_384 struct {
 
 type Aws_launch_configuration_ephemeral_block_device_385 struct {
 
-    Aws_launch_configuration_ephemeral_block_device_385_id *string `lyra:"ignore"`
-
     Device_name string
 
     Virtual_name string
@@ -21330,8 +20560,6 @@ type Aws_launch_configuration_ephemeral_block_device_385 struct {
 }
 
 type Aws_launch_configuration_root_block_device_386 struct {
-
-    Aws_launch_configuration_root_block_device_386_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -21371,7 +20599,7 @@ type Aws_launch_configuration struct {
 
     Placement_tenancy *string
 
-    Root_block_device *Aws_launch_configuration_root_block_device_386
+    Root_block_device *[]Aws_launch_configuration_root_block_device_386
 
     Security_groups *[]string
 
@@ -21426,8 +20654,6 @@ func (h *Aws_launch_configurationHandler) Delete(externalID string) error {
 
 type Aws_launch_template_block_device_mappings_387_ebs_388 struct {
 
-    Aws_launch_template_block_device_mappings_387_ebs_388_id *string `lyra:"ignore"`
-
     Delete_on_termination *string
 
     Encrypted *string
@@ -21446,11 +20672,9 @@ type Aws_launch_template_block_device_mappings_387_ebs_388 struct {
 
 type Aws_launch_template_block_device_mappings_387 struct {
 
-    Aws_launch_template_block_device_mappings_387_id *string `lyra:"ignore"`
-
     Device_name *string
 
-    Ebs *Aws_launch_template_block_device_mappings_387_ebs_388
+    Ebs *[]Aws_launch_template_block_device_mappings_387_ebs_388
 
     No_device *string
 
@@ -21460,25 +20684,19 @@ type Aws_launch_template_block_device_mappings_387 struct {
 
 type Aws_launch_template_capacity_reservation_specification_389_capacity_reservation_target_390 struct {
 
-    Aws_launch_template_capacity_reservation_specification_389_capacity_reservation_target_390_id *string `lyra:"ignore"`
-
     Capacity_reservation_id *string
 
 }
 
 type Aws_launch_template_capacity_reservation_specification_389 struct {
 
-    Aws_launch_template_capacity_reservation_specification_389_id *string `lyra:"ignore"`
-
     Capacity_reservation_preference *string
 
-    Capacity_reservation_target *Aws_launch_template_capacity_reservation_specification_389_capacity_reservation_target_390
+    Capacity_reservation_target *[]Aws_launch_template_capacity_reservation_specification_389_capacity_reservation_target_390
 
 }
 
 type Aws_launch_template_credit_specification_391 struct {
-
-    Aws_launch_template_credit_specification_391_id *string `lyra:"ignore"`
 
     Cpu_credits *string
 
@@ -21486,15 +20704,11 @@ type Aws_launch_template_credit_specification_391 struct {
 
 type Aws_launch_template_elastic_gpu_specifications_392 struct {
 
-    Aws_launch_template_elastic_gpu_specifications_392_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_launch_template_iam_instance_profile_393 struct {
-
-    Aws_launch_template_iam_instance_profile_393_id *string `lyra:"ignore"`
 
     Arn *string
 
@@ -21503,8 +20717,6 @@ type Aws_launch_template_iam_instance_profile_393 struct {
 }
 
 type Aws_launch_template_instance_market_options_394_spot_options_395 struct {
-
-    Aws_launch_template_instance_market_options_394_spot_options_395_id *string `lyra:"ignore"`
 
     Block_duration_minutes *int
 
@@ -21520,17 +20732,13 @@ type Aws_launch_template_instance_market_options_394_spot_options_395 struct {
 
 type Aws_launch_template_instance_market_options_394 struct {
 
-    Aws_launch_template_instance_market_options_394_id *string `lyra:"ignore"`
-
     Market_type *string
 
-    Spot_options *Aws_launch_template_instance_market_options_394_spot_options_395
+    Spot_options *[]Aws_launch_template_instance_market_options_394_spot_options_395
 
 }
 
 type Aws_launch_template_license_specification_396 struct {
-
-    Aws_launch_template_license_specification_396_id *string `lyra:"ignore"`
 
     License_configuration_arn string
 
@@ -21538,15 +20746,11 @@ type Aws_launch_template_license_specification_396 struct {
 
 type Aws_launch_template_monitoring_397 struct {
 
-    Aws_launch_template_monitoring_397_id *string `lyra:"ignore"`
-
     Enabled *bool
 
 }
 
 type Aws_launch_template_network_interfaces_398 struct {
-
-    Aws_launch_template_network_interfaces_398_id *string `lyra:"ignore"`
 
     Associate_public_ip_address *bool
 
@@ -21576,8 +20780,6 @@ type Aws_launch_template_network_interfaces_398 struct {
 
 type Aws_launch_template_placement_399 struct {
 
-    Aws_launch_template_placement_399_id *string `lyra:"ignore"`
-
     Affinity *string
 
     Availability_zone *string
@@ -21594,8 +20796,6 @@ type Aws_launch_template_placement_399 struct {
 
 type Aws_launch_template_tag_specifications_400 struct {
 
-    Aws_launch_template_tag_specifications_400_id *string `lyra:"ignore"`
-
     Resource_type *string
 
     Tags *map[string]string
@@ -21608,11 +20808,11 @@ type Aws_launch_template struct {
 
     Arn *string
 
-    Block_device_mappings *Aws_launch_template_block_device_mappings_387
+    Block_device_mappings *[]Aws_launch_template_block_device_mappings_387
 
-    Capacity_reservation_specification *Aws_launch_template_capacity_reservation_specification_389
+    Capacity_reservation_specification *[]Aws_launch_template_capacity_reservation_specification_389
 
-    Credit_specification *Aws_launch_template_credit_specification_391
+    Credit_specification *[]Aws_launch_template_credit_specification_391
 
     Default_version *int
 
@@ -21622,15 +20822,15 @@ type Aws_launch_template struct {
 
     Ebs_optimized *string
 
-    Elastic_gpu_specifications *Aws_launch_template_elastic_gpu_specifications_392
+    Elastic_gpu_specifications *[]Aws_launch_template_elastic_gpu_specifications_392
 
-    Iam_instance_profile *Aws_launch_template_iam_instance_profile_393
+    Iam_instance_profile *[]Aws_launch_template_iam_instance_profile_393
 
     Image_id *string
 
     Instance_initiated_shutdown_behavior *string
 
-    Instance_market_options *Aws_launch_template_instance_market_options_394
+    Instance_market_options *[]Aws_launch_template_instance_market_options_394
 
     Instance_type *string
 
@@ -21642,21 +20842,21 @@ type Aws_launch_template struct {
 
     License_specification *Aws_launch_template_license_specification_396
 
-    Monitoring *Aws_launch_template_monitoring_397
+    Monitoring *[]Aws_launch_template_monitoring_397
 
     Name *string
 
     Name_prefix *string
 
-    Network_interfaces *Aws_launch_template_network_interfaces_398
+    Network_interfaces *[]Aws_launch_template_network_interfaces_398
 
-    Placement *Aws_launch_template_placement_399
+    Placement *[]Aws_launch_template_placement_399
 
     Ram_disk_id *string
 
     Security_group_names *[]string
 
-    Tag_specifications *Aws_launch_template_tag_specifications_400
+    Tag_specifications *[]Aws_launch_template_tag_specifications_400
 
     Tags *map[string]string
 
@@ -21705,8 +20905,6 @@ func (h *Aws_launch_templateHandler) Delete(externalID string) error {
 
 type Aws_lb_access_logs_401 struct {
 
-    Aws_lb_access_logs_401_id *string `lyra:"ignore"`
-
     Bucket string
 
     Enabled *bool
@@ -21716,8 +20914,6 @@ type Aws_lb_access_logs_401 struct {
 }
 
 type Aws_lb_subnet_mapping_402 struct {
-
-    Aws_lb_subnet_mapping_402_id *string `lyra:"ignore"`
 
     Allocation_id *string
 
@@ -21729,7 +20925,7 @@ type Aws_lb struct {
 
     Aws_lb_id *string `lyra:"ignore"`
 
-    Access_logs *Aws_lb_access_logs_401
+    Access_logs *[]Aws_lb_access_logs_401
 
     Arn *string
 
@@ -21859,8 +21055,6 @@ func (h *Aws_lb_cookie_stickiness_policyHandler) Delete(externalID string) error
 
 type Aws_lb_listener_default_action_403_authenticate_cognito_404 struct {
 
-    Aws_lb_listener_default_action_403_authenticate_cognito_404_id *string `lyra:"ignore"`
-
     Authentication_request_extra_params *map[string]string
 
     On_unauthenticated_request *string
@@ -21880,8 +21074,6 @@ type Aws_lb_listener_default_action_403_authenticate_cognito_404 struct {
 }
 
 type Aws_lb_listener_default_action_403_authenticate_oidc_405 struct {
-
-    Aws_lb_listener_default_action_403_authenticate_oidc_405_id *string `lyra:"ignore"`
 
     Authentication_request_extra_params *map[string]string
 
@@ -21909,8 +21101,6 @@ type Aws_lb_listener_default_action_403_authenticate_oidc_405 struct {
 
 type Aws_lb_listener_default_action_403_fixed_response_406 struct {
 
-    Aws_lb_listener_default_action_403_fixed_response_406_id *string `lyra:"ignore"`
-
     Content_type string
 
     Message_body *string
@@ -21920,8 +21110,6 @@ type Aws_lb_listener_default_action_403_fixed_response_406 struct {
 }
 
 type Aws_lb_listener_default_action_403_redirect_407 struct {
-
-    Aws_lb_listener_default_action_403_redirect_407_id *string `lyra:"ignore"`
 
     Host *string
 
@@ -21939,17 +21127,15 @@ type Aws_lb_listener_default_action_403_redirect_407 struct {
 
 type Aws_lb_listener_default_action_403 struct {
 
-    Aws_lb_listener_default_action_403_id *string `lyra:"ignore"`
+    Authenticate_cognito *[]Aws_lb_listener_default_action_403_authenticate_cognito_404
 
-    Authenticate_cognito *Aws_lb_listener_default_action_403_authenticate_cognito_404
+    Authenticate_oidc *[]Aws_lb_listener_default_action_403_authenticate_oidc_405
 
-    Authenticate_oidc *Aws_lb_listener_default_action_403_authenticate_oidc_405
-
-    Fixed_response *Aws_lb_listener_default_action_403_fixed_response_406
+    Fixed_response *[]Aws_lb_listener_default_action_403_fixed_response_406
 
     Order *int
 
-    Redirect *Aws_lb_listener_default_action_403_redirect_407
+    Redirect *[]Aws_lb_listener_default_action_403_redirect_407
 
     Target_group_arn *string
 
@@ -21965,7 +21151,7 @@ type Aws_lb_listener struct {
 
     Certificate_arn *string
 
-    Default_action Aws_lb_listener_default_action_403
+    Default_action []Aws_lb_listener_default_action_403
 
     Load_balancer_arn string
 
@@ -22063,8 +21249,6 @@ func (h *Aws_lb_listener_certificateHandler) Delete(externalID string) error {
 
 type Aws_lb_listener_rule_action_408_authenticate_cognito_409 struct {
 
-    Aws_lb_listener_rule_action_408_authenticate_cognito_409_id *string `lyra:"ignore"`
-
     Authentication_request_extra_params *map[string]string
 
     On_unauthenticated_request *string
@@ -22084,8 +21268,6 @@ type Aws_lb_listener_rule_action_408_authenticate_cognito_409 struct {
 }
 
 type Aws_lb_listener_rule_action_408_authenticate_oidc_410 struct {
-
-    Aws_lb_listener_rule_action_408_authenticate_oidc_410_id *string `lyra:"ignore"`
 
     Authentication_request_extra_params *map[string]string
 
@@ -22113,8 +21295,6 @@ type Aws_lb_listener_rule_action_408_authenticate_oidc_410 struct {
 
 type Aws_lb_listener_rule_action_408_fixed_response_411 struct {
 
-    Aws_lb_listener_rule_action_408_fixed_response_411_id *string `lyra:"ignore"`
-
     Content_type string
 
     Message_body *string
@@ -22124,8 +21304,6 @@ type Aws_lb_listener_rule_action_408_fixed_response_411 struct {
 }
 
 type Aws_lb_listener_rule_action_408_redirect_412 struct {
-
-    Aws_lb_listener_rule_action_408_redirect_412_id *string `lyra:"ignore"`
 
     Host *string
 
@@ -22143,17 +21321,15 @@ type Aws_lb_listener_rule_action_408_redirect_412 struct {
 
 type Aws_lb_listener_rule_action_408 struct {
 
-    Aws_lb_listener_rule_action_408_id *string `lyra:"ignore"`
+    Authenticate_cognito *[]Aws_lb_listener_rule_action_408_authenticate_cognito_409
 
-    Authenticate_cognito *Aws_lb_listener_rule_action_408_authenticate_cognito_409
+    Authenticate_oidc *[]Aws_lb_listener_rule_action_408_authenticate_oidc_410
 
-    Authenticate_oidc *Aws_lb_listener_rule_action_408_authenticate_oidc_410
-
-    Fixed_response *Aws_lb_listener_rule_action_408_fixed_response_411
+    Fixed_response *[]Aws_lb_listener_rule_action_408_fixed_response_411
 
     Order *int
 
-    Redirect *Aws_lb_listener_rule_action_408_redirect_412
+    Redirect *[]Aws_lb_listener_rule_action_408_redirect_412
 
     Target_group_arn *string
 
@@ -22162,8 +21338,6 @@ type Aws_lb_listener_rule_action_408 struct {
 }
 
 type Aws_lb_listener_rule_condition_413 struct {
-
-    Aws_lb_listener_rule_condition_413_id *string `lyra:"ignore"`
 
     Field *string
 
@@ -22175,7 +21349,7 @@ type Aws_lb_listener_rule struct {
 
     Aws_lb_listener_rule_id *string `lyra:"ignore"`
 
-    Action Aws_lb_listener_rule_action_408
+    Action []Aws_lb_listener_rule_action_408
 
     Arn *string
 
@@ -22225,8 +21399,6 @@ func (h *Aws_lb_listener_ruleHandler) Delete(externalID string) error {
 }
 
 type Aws_lb_ssl_negotiation_policy_attribute_414 struct {
-
-    Aws_lb_ssl_negotiation_policy_attribute_414_id *string `lyra:"ignore"`
 
     Name string
 
@@ -22287,8 +21459,6 @@ func (h *Aws_lb_ssl_negotiation_policyHandler) Delete(externalID string) error {
 
 type Aws_lb_target_group_health_check_415 struct {
 
-    Aws_lb_target_group_health_check_415_id *string `lyra:"ignore"`
-
     Healthy_threshold *int
 
     Interval *int
@@ -22309,8 +21479,6 @@ type Aws_lb_target_group_health_check_415 struct {
 
 type Aws_lb_target_group_stickiness_416 struct {
 
-    Aws_lb_target_group_stickiness_416_id *string `lyra:"ignore"`
-
     Cookie_duration *int
 
     Enabled *bool
@@ -22329,7 +21497,7 @@ type Aws_lb_target_group struct {
 
     Deregistration_delay *int
 
-    Health_check *Aws_lb_target_group_health_check_415
+    Health_check *[]Aws_lb_target_group_health_check_415
 
     Name *string
 
@@ -22343,7 +21511,7 @@ type Aws_lb_target_group struct {
 
     Slow_start *int
 
-    Stickiness *Aws_lb_target_group_stickiness_416
+    Stickiness *[]Aws_lb_target_group_stickiness_416
 
     Tags *map[string]string
 
@@ -22924,8 +22092,6 @@ func (h *Aws_load_balancer_listener_policyHandler) Delete(externalID string) err
 
 type Aws_load_balancer_policy_policy_attribute_417 struct {
 
-    Aws_load_balancer_policy_policy_attribute_417_id *string `lyra:"ignore"`
-
     Name *string
 
     Value *string
@@ -23030,8 +22196,6 @@ func (h *Aws_macie_member_account_associationHandler) Delete(externalID string) 
 
 type Aws_macie_s3_bucket_association_classification_type_418 struct {
 
-    Aws_macie_s3_bucket_association_classification_type_418_id *string `lyra:"ignore"`
-
     Continuous *string
 
     One_time *string
@@ -23044,7 +22208,7 @@ type Aws_macie_s3_bucket_association struct {
 
     Bucket_name string
 
-    Classification_type *Aws_macie_s3_bucket_association_classification_type_418
+    Classification_type *[]Aws_macie_s3_bucket_association_classification_type_418
 
     Member_account_id *string
 
@@ -23140,8 +22304,6 @@ func (h *Aws_main_route_table_associationHandler) Delete(externalID string) erro
 
 type Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420 struct {
 
-    Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420_id *string `lyra:"ignore"`
-
     Password *string
 
     Url *string
@@ -23152,9 +22314,7 @@ type Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420 struct {
 
 type Aws_media_package_channel_hls_ingest_419 struct {
 
-    Aws_media_package_channel_hls_ingest_419_id *string `lyra:"ignore"`
-
-    Ingest_endpoints *Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420
+    Ingest_endpoints *[]Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420
 
 }
 
@@ -23168,7 +22328,7 @@ type Aws_media_package_channel struct {
 
     Description *string
 
-    Hls_ingest *Aws_media_package_channel_hls_ingest_419
+    Hls_ingest *[]Aws_media_package_channel_hls_ingest_419
 
 }
 
@@ -23307,8 +22467,6 @@ func (h *Aws_media_store_container_policyHandler) Delete(externalID string) erro
 
 type Aws_mq_broker_configuration_421 struct {
 
-    Aws_mq_broker_configuration_421_id *string `lyra:"ignore"`
-
     Id *string
 
     Revision *int
@@ -23316,8 +22474,6 @@ type Aws_mq_broker_configuration_421 struct {
 }
 
 type Aws_mq_broker_instances_422 struct {
-
-    Aws_mq_broker_instances_422_id *string `lyra:"ignore"`
 
     Console_url *string
 
@@ -23329,8 +22485,6 @@ type Aws_mq_broker_instances_422 struct {
 
 type Aws_mq_broker_logs_423 struct {
 
-    Aws_mq_broker_logs_423_id *string `lyra:"ignore"`
-
     Audit *bool
 
     General *bool
@@ -23338,8 +22492,6 @@ type Aws_mq_broker_logs_423 struct {
 }
 
 type Aws_mq_broker_maintenance_window_start_time_424 struct {
-
-    Aws_mq_broker_maintenance_window_start_time_424_id *string `lyra:"ignore"`
 
     Day_of_week string
 
@@ -23350,8 +22502,6 @@ type Aws_mq_broker_maintenance_window_start_time_424 struct {
 }
 
 type Aws_mq_broker_user_425 struct {
-
-    Aws_mq_broker_user_425_id *string `lyra:"ignore"`
 
     Console_access *bool
 
@@ -23375,7 +22525,7 @@ type Aws_mq_broker struct {
 
     Broker_name string
 
-    Configuration *Aws_mq_broker_configuration_421
+    Configuration *[]Aws_mq_broker_configuration_421
 
     Deployment_mode *string
 
@@ -23385,11 +22535,11 @@ type Aws_mq_broker struct {
 
     Host_instance_type string
 
-    Instances *Aws_mq_broker_instances_422
+    Instances *[]Aws_mq_broker_instances_422
 
-    Logs *Aws_mq_broker_logs_423
+    Logs *[]Aws_mq_broker_logs_423
 
-    Maintenance_window_start_time *Aws_mq_broker_maintenance_window_start_time_424
+    Maintenance_window_start_time *[]Aws_mq_broker_maintenance_window_start_time_424
 
     Publicly_accessible *bool
 
@@ -23746,8 +22896,6 @@ func (h *Aws_neptune_cluster_instanceHandler) Delete(externalID string) error {
 
 type Aws_neptune_cluster_parameter_group_parameter_426 struct {
 
-    Aws_neptune_cluster_parameter_group_parameter_426_id *string `lyra:"ignore"`
-
     Apply_method *string
 
     Name string
@@ -23951,8 +23099,6 @@ func (h *Aws_neptune_event_subscriptionHandler) Delete(externalID string) error 
 
 type Aws_neptune_parameter_group_parameter_427 struct {
 
-    Aws_neptune_parameter_group_parameter_427_id *string `lyra:"ignore"`
-
     Apply_method *string
 
     Name string
@@ -24073,8 +23219,6 @@ func (h *Aws_neptune_subnet_groupHandler) Delete(externalID string) error {
 
 type Aws_network_acl_egress_428 struct {
 
-    Aws_network_acl_egress_428_id *string `lyra:"ignore"`
-
     Action string
 
     Cidr_block *string
@@ -24096,8 +23240,6 @@ type Aws_network_acl_egress_428 struct {
 }
 
 type Aws_network_acl_ingress_429 struct {
-
-    Aws_network_acl_ingress_429_id *string `lyra:"ignore"`
 
     Action string
 
@@ -24242,8 +23384,6 @@ func (h *Aws_network_acl_ruleHandler) Delete(externalID string) error {
 }
 
 type Aws_network_interface_attachment_430 struct {
-
-    Aws_network_interface_attachment_430_id *string `lyra:"ignore"`
 
     Attachment_id *string
 
@@ -24418,8 +23558,6 @@ func (h *Aws_network_interface_sg_attachmentHandler) Delete(externalID string) e
 
 type Aws_opsworks_application_app_source_431 struct {
 
-    Aws_opsworks_application_app_source_431_id *string `lyra:"ignore"`
-
     Password *string
 
     Revision *string
@@ -24436,8 +23574,6 @@ type Aws_opsworks_application_app_source_431 struct {
 
 type Aws_opsworks_application_environment_432 struct {
 
-    Aws_opsworks_application_environment_432_id *string `lyra:"ignore"`
-
     Key string
 
     Secure *bool
@@ -24447,8 +23583,6 @@ type Aws_opsworks_application_environment_432 struct {
 }
 
 type Aws_opsworks_application_ssl_configuration_433 struct {
-
-    Aws_opsworks_application_ssl_configuration_433_id *string `lyra:"ignore"`
 
     Certificate string
 
@@ -24462,7 +23596,7 @@ type Aws_opsworks_application struct {
 
     Aws_opsworks_application_id *string `lyra:"ignore"`
 
-    App_source *Aws_opsworks_application_app_source_431
+    App_source *[]Aws_opsworks_application_app_source_431
 
     Auto_bundle_on_deploy *string
 
@@ -24490,7 +23624,7 @@ type Aws_opsworks_application struct {
 
     Short_name *string
 
-    Ssl_configuration *Aws_opsworks_application_ssl_configuration_433
+    Ssl_configuration *[]Aws_opsworks_application_ssl_configuration_433
 
     Stack_id string
 
@@ -24536,8 +23670,6 @@ func (h *Aws_opsworks_applicationHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_custom_layer_ebs_volume_434 struct {
-
-    Aws_opsworks_custom_layer_ebs_volume_434_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -24639,8 +23771,6 @@ func (h *Aws_opsworks_custom_layerHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_ganglia_layer_ebs_volume_435 struct {
-
-    Aws_opsworks_ganglia_layer_ebs_volume_435_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -24746,8 +23876,6 @@ func (h *Aws_opsworks_ganglia_layerHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_haproxy_layer_ebs_volume_436 struct {
-
-    Aws_opsworks_haproxy_layer_ebs_volume_436_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -24860,8 +23988,6 @@ func (h *Aws_opsworks_haproxy_layerHandler) Delete(externalID string) error {
 
 type Aws_opsworks_instance_ebs_block_device_437 struct {
 
-    Aws_opsworks_instance_ebs_block_device_437_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_name string
@@ -24878,8 +24004,6 @@ type Aws_opsworks_instance_ebs_block_device_437 struct {
 
 type Aws_opsworks_instance_ephemeral_block_device_438 struct {
 
-    Aws_opsworks_instance_ephemeral_block_device_438_id *string `lyra:"ignore"`
-
     Device_name string
 
     Virtual_name string
@@ -24887,8 +24011,6 @@ type Aws_opsworks_instance_ephemeral_block_device_438 struct {
 }
 
 type Aws_opsworks_instance_root_block_device_439 struct {
-
-    Aws_opsworks_instance_root_block_device_439_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -25035,8 +24157,6 @@ func (h *Aws_opsworks_instanceHandler) Delete(externalID string) error {
 
 type Aws_opsworks_java_app_layer_ebs_volume_440 struct {
 
-    Aws_opsworks_java_app_layer_ebs_volume_440_id *string `lyra:"ignore"`
-
     Iops *int
 
     Mount_point string
@@ -25146,8 +24266,6 @@ func (h *Aws_opsworks_java_app_layerHandler) Delete(externalID string) error {
 
 type Aws_opsworks_memcached_layer_ebs_volume_441 struct {
 
-    Aws_opsworks_memcached_layer_ebs_volume_441_id *string `lyra:"ignore"`
-
     Iops *int
 
     Mount_point string
@@ -25248,8 +24366,6 @@ func (h *Aws_opsworks_memcached_layerHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_mysql_layer_ebs_volume_442 struct {
-
-    Aws_opsworks_mysql_layer_ebs_volume_442_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -25353,8 +24469,6 @@ func (h *Aws_opsworks_mysql_layerHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_nodejs_app_layer_ebs_volume_443 struct {
-
-    Aws_opsworks_nodejs_app_layer_ebs_volume_443_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -25510,8 +24624,6 @@ func (h *Aws_opsworks_permissionHandler) Delete(externalID string) error {
 
 type Aws_opsworks_php_app_layer_ebs_volume_444 struct {
 
-    Aws_opsworks_php_app_layer_ebs_volume_444_id *string `lyra:"ignore"`
-
     Iops *int
 
     Mount_point string
@@ -25610,8 +24722,6 @@ func (h *Aws_opsworks_php_app_layerHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_rails_app_layer_ebs_volume_445 struct {
-
-    Aws_opsworks_rails_app_layer_ebs_volume_445_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -25775,8 +24885,6 @@ func (h *Aws_opsworks_rds_db_instanceHandler) Delete(externalID string) error {
 
 type Aws_opsworks_stack_custom_cookbooks_source_446 struct {
 
-    Aws_opsworks_stack_custom_cookbooks_source_446_id *string `lyra:"ignore"`
-
     Password *string
 
     Revision *string
@@ -25807,7 +24915,7 @@ type Aws_opsworks_stack struct {
 
     Configuration_manager_version *string
 
-    Custom_cookbooks_source *Aws_opsworks_stack_custom_cookbooks_source_446
+    Custom_cookbooks_source *[]Aws_opsworks_stack_custom_cookbooks_source_446
 
     Custom_json *string
 
@@ -25883,8 +24991,6 @@ func (h *Aws_opsworks_stackHandler) Delete(externalID string) error {
 }
 
 type Aws_opsworks_static_web_layer_ebs_volume_447 struct {
-
-    Aws_opsworks_static_web_layer_ebs_volume_447_id *string `lyra:"ignore"`
 
     Iops *int
 
@@ -26545,8 +25651,6 @@ func (h *Aws_pinpoint_apns_voip_sandbox_channelHandler) Delete(externalID string
 
 type Aws_pinpoint_app_campaign_hook_448 struct {
 
-    Aws_pinpoint_app_campaign_hook_448_id *string `lyra:"ignore"`
-
     Lambda_function_name *string
 
     Mode *string
@@ -26556,8 +25660,6 @@ type Aws_pinpoint_app_campaign_hook_448 struct {
 }
 
 type Aws_pinpoint_app_limits_449 struct {
-
-    Aws_pinpoint_app_limits_449_id *string `lyra:"ignore"`
 
     Daily *int
 
@@ -26571,8 +25673,6 @@ type Aws_pinpoint_app_limits_449 struct {
 
 type Aws_pinpoint_app_quiet_time_450 struct {
 
-    Aws_pinpoint_app_quiet_time_450_id *string `lyra:"ignore"`
-
     End *string
 
     Start *string
@@ -26585,15 +25685,15 @@ type Aws_pinpoint_app struct {
 
     Application_id *string
 
-    Campaign_hook *Aws_pinpoint_app_campaign_hook_448
+    Campaign_hook *[]Aws_pinpoint_app_campaign_hook_448
 
-    Limits *Aws_pinpoint_app_limits_449
+    Limits *[]Aws_pinpoint_app_limits_449
 
     Name *string
 
     Name_prefix *string
 
-    Quiet_time *Aws_pinpoint_app_quiet_time_450
+    Quiet_time *[]Aws_pinpoint_app_quiet_time_450
 
 }
 
@@ -27038,8 +26138,6 @@ func (h *Aws_ram_resource_shareHandler) Delete(externalID string) error {
 
 type Aws_rds_cluster_s3_import_451 struct {
 
-    Aws_rds_cluster_s3_import_451_id *string `lyra:"ignore"`
-
     Bucket_name string
 
     Bucket_prefix *string
@@ -27053,8 +26151,6 @@ type Aws_rds_cluster_s3_import_451 struct {
 }
 
 type Aws_rds_cluster_scaling_configuration_452 struct {
-
-    Aws_rds_cluster_scaling_configuration_452_id *string `lyra:"ignore"`
 
     Auto_pause *bool
 
@@ -27132,9 +26228,9 @@ type Aws_rds_cluster struct {
 
     Replication_source_identifier *string
 
-    S3_import *Aws_rds_cluster_s3_import_451
+    S3_import *[]Aws_rds_cluster_s3_import_451
 
-    Scaling_configuration *Aws_rds_cluster_scaling_configuration_452
+    Scaling_configuration *[]Aws_rds_cluster_scaling_configuration_452
 
     Skip_final_snapshot *bool
 
@@ -27345,8 +26441,6 @@ func (h *Aws_rds_cluster_instanceHandler) Delete(externalID string) error {
 
 type Aws_rds_cluster_parameter_group_parameter_453 struct {
 
-    Aws_rds_cluster_parameter_group_parameter_453_id *string `lyra:"ignore"`
-
     Apply_method *string
 
     Name string
@@ -27473,8 +26567,6 @@ func (h *Aws_rds_global_clusterHandler) Delete(externalID string) error {
 
 type Aws_redshift_cluster_logging_454 struct {
 
-    Aws_redshift_cluster_logging_454_id *string `lyra:"ignore"`
-
     Bucket_name *string
 
     Enable bool
@@ -27484,8 +26576,6 @@ type Aws_redshift_cluster_logging_454 struct {
 }
 
 type Aws_redshift_cluster_snapshot_copy_455 struct {
-
-    Aws_redshift_cluster_snapshot_copy_455_id *string `lyra:"ignore"`
 
     Destination_region string
 
@@ -27543,7 +26633,7 @@ type Aws_redshift_cluster struct {
 
     Kms_key_id *string
 
-    Logging *Aws_redshift_cluster_logging_454
+    Logging *[]Aws_redshift_cluster_logging_454
 
     Master_password *string
 
@@ -27567,7 +26657,7 @@ type Aws_redshift_cluster struct {
 
     Snapshot_cluster_identifier *string
 
-    Snapshot_copy *Aws_redshift_cluster_snapshot_copy_455
+    Snapshot_copy *[]Aws_redshift_cluster_snapshot_copy_455
 
     Snapshot_identifier *string
 
@@ -27679,8 +26769,6 @@ func (h *Aws_redshift_event_subscriptionHandler) Delete(externalID string) error
 
 type Aws_redshift_parameter_group_parameter_456 struct {
 
-    Aws_redshift_parameter_group_parameter_456_id *string `lyra:"ignore"`
-
     Name string
 
     Value string
@@ -27739,8 +26827,6 @@ func (h *Aws_redshift_parameter_groupHandler) Delete(externalID string) error {
 }
 
 type Aws_redshift_security_group_ingress_457 struct {
-
-    Aws_redshift_security_group_ingress_457_id *string `lyra:"ignore"`
 
     Cidr *string
 
@@ -27901,8 +26987,6 @@ func (h *Aws_redshift_subnet_groupHandler) Delete(externalID string) error {
 
 type Aws_resourcegroups_group_resource_query_458 struct {
 
-    Aws_resourcegroups_group_resource_query_458_id *string `lyra:"ignore"`
-
     Query string
 
     Type *string
@@ -27919,7 +27003,7 @@ type Aws_resourcegroups_group struct {
 
     Name string
 
-    Resource_query Aws_resourcegroups_group_resource_query_458
+    Resource_query []Aws_resourcegroups_group_resource_query_458
 
 }
 
@@ -28208,8 +27292,6 @@ func (h *Aws_route53_query_logHandler) Delete(externalID string) error {
 
 type Aws_route53_record_alias_459 struct {
 
-    Aws_route53_record_alias_459_id *string `lyra:"ignore"`
-
     Evaluate_target_health bool
 
     Name string
@@ -28220,15 +27302,11 @@ type Aws_route53_record_alias_459 struct {
 
 type Aws_route53_record_failover_routing_policy_460 struct {
 
-    Aws_route53_record_failover_routing_policy_460_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_route53_record_geolocation_routing_policy_461 struct {
-
-    Aws_route53_record_geolocation_routing_policy_461_id *string `lyra:"ignore"`
 
     Continent *string
 
@@ -28240,15 +27318,11 @@ type Aws_route53_record_geolocation_routing_policy_461 struct {
 
 type Aws_route53_record_latency_routing_policy_462 struct {
 
-    Aws_route53_record_latency_routing_policy_462_id *string `lyra:"ignore"`
-
     Region string
 
 }
 
 type Aws_route53_record_weighted_routing_policy_463 struct {
-
-    Aws_route53_record_weighted_routing_policy_463_id *string `lyra:"ignore"`
 
     Weight int
 
@@ -28264,15 +27338,15 @@ type Aws_route53_record struct {
 
     Failover *string
 
-    Failover_routing_policy *Aws_route53_record_failover_routing_policy_460
+    Failover_routing_policy *[]Aws_route53_record_failover_routing_policy_460
 
     Fqdn *string
 
-    Geolocation_routing_policy *Aws_route53_record_geolocation_routing_policy_461
+    Geolocation_routing_policy *[]Aws_route53_record_geolocation_routing_policy_461
 
     Health_check_id *string
 
-    Latency_routing_policy *Aws_route53_record_latency_routing_policy_462
+    Latency_routing_policy *[]Aws_route53_record_latency_routing_policy_462
 
     Multivalue_answer_routing_policy *bool
 
@@ -28288,7 +27362,7 @@ type Aws_route53_record struct {
 
     Weight *int
 
-    Weighted_routing_policy *Aws_route53_record_weighted_routing_policy_463
+    Weighted_routing_policy *[]Aws_route53_record_weighted_routing_policy_463
 
     Zone_id string
 
@@ -28332,8 +27406,6 @@ func (h *Aws_route53_recordHandler) Delete(externalID string) error {
 }
 
 type Aws_route53_zone_vpc_464 struct {
-
-    Aws_route53_zone_vpc_464_id *string `lyra:"ignore"`
 
     Vpc_id string
 
@@ -28454,8 +27526,6 @@ func (h *Aws_route53_zone_associationHandler) Delete(externalID string) error {
 }
 
 type Aws_route_table_route_465 struct {
-
-    Aws_route_table_route_465_id *string `lyra:"ignore"`
 
     Cidr_block *string
 
@@ -28632,8 +27702,6 @@ func (h *Aws_s3_account_public_access_blockHandler) Delete(externalID string) er
 
 type Aws_s3_bucket_cors_rule_466 struct {
 
-    Aws_s3_bucket_cors_rule_466_id *string `lyra:"ignore"`
-
     Allowed_headers *[]string
 
     Allowed_methods []string
@@ -28648,8 +27716,6 @@ type Aws_s3_bucket_cors_rule_466 struct {
 
 type Aws_s3_bucket_lifecycle_rule_467_expiration_468 struct {
 
-    Aws_s3_bucket_lifecycle_rule_467_expiration_468_id *string `lyra:"ignore"`
-
     Date *string
 
     Days *int
@@ -28660,15 +27726,11 @@ type Aws_s3_bucket_lifecycle_rule_467_expiration_468 struct {
 
 type Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469 struct {
 
-    Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469_id *string `lyra:"ignore"`
-
     Days *int
 
 }
 
 type Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470 struct {
-
-    Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470_id *string `lyra:"ignore"`
 
     Days *int
 
@@ -28677,8 +27739,6 @@ type Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470 struct {
 }
 
 type Aws_s3_bucket_lifecycle_rule_467_transition_471 struct {
-
-    Aws_s3_bucket_lifecycle_rule_467_transition_471_id *string `lyra:"ignore"`
 
     Date *string
 
@@ -28689,8 +27749,6 @@ type Aws_s3_bucket_lifecycle_rule_467_transition_471 struct {
 }
 
 type Aws_s3_bucket_lifecycle_rule_467 struct {
-
-    Aws_s3_bucket_lifecycle_rule_467_id *string `lyra:"ignore"`
 
     Abort_incomplete_multipart_upload_days *int
 
@@ -28714,8 +27772,6 @@ type Aws_s3_bucket_lifecycle_rule_467 struct {
 
 type Aws_s3_bucket_logging_472 struct {
 
-    Aws_s3_bucket_logging_472_id *string `lyra:"ignore"`
-
     Target_bucket string
 
     Target_prefix *string
@@ -28723,8 +27779,6 @@ type Aws_s3_bucket_logging_472 struct {
 }
 
 type Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475 struct {
-
-    Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475_id *string `lyra:"ignore"`
 
     Days *int
 
@@ -28736,25 +27790,19 @@ type Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475 
 
 type Aws_s3_bucket_object_lock_configuration_473_rule_474 struct {
 
-    Aws_s3_bucket_object_lock_configuration_473_rule_474_id *string `lyra:"ignore"`
-
-    Default_retention Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475
+    Default_retention []Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475
 
 }
 
 type Aws_s3_bucket_object_lock_configuration_473 struct {
 
-    Aws_s3_bucket_object_lock_configuration_473_id *string `lyra:"ignore"`
-
     Object_lock_enabled string
 
-    Rule *Aws_s3_bucket_object_lock_configuration_473_rule_474
+    Rule *[]Aws_s3_bucket_object_lock_configuration_473_rule_474
 
 }
 
 type Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_access_control_translation_479 struct {
-
-    Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_access_control_translation_479_id *string `lyra:"ignore"`
 
     Owner string
 
@@ -28762,9 +27810,7 @@ type Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_acces
 
 type Aws_s3_bucket_replication_configuration_476_rules_477_destination_478 struct {
 
-    Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_id *string `lyra:"ignore"`
-
-    Access_control_translation *Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_access_control_translation_479
+    Access_control_translation *[]Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_access_control_translation_479
 
     Account_id *string
 
@@ -28778,8 +27824,6 @@ type Aws_s3_bucket_replication_configuration_476_rules_477_destination_478 struc
 
 type Aws_s3_bucket_replication_configuration_476_rules_477_filter_480 struct {
 
-    Aws_s3_bucket_replication_configuration_476_rules_477_filter_480_id *string `lyra:"ignore"`
-
     Prefix *string
 
     Tags *map[string]string
@@ -28788,15 +27832,11 @@ type Aws_s3_bucket_replication_configuration_476_rules_477_filter_480 struct {
 
 type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482 struct {
 
-    Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482_id *string `lyra:"ignore"`
-
     Enabled bool
 
 }
 
 type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481 struct {
-
-    Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_id *string `lyra:"ignore"`
 
     Sse_kms_encrypted_objects *Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482
 
@@ -28804,11 +27844,9 @@ type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_crit
 
 type Aws_s3_bucket_replication_configuration_476_rules_477 struct {
 
-    Aws_s3_bucket_replication_configuration_476_rules_477_id *string `lyra:"ignore"`
-
     Destination Aws_s3_bucket_replication_configuration_476_rules_477_destination_478
 
-    Filter *Aws_s3_bucket_replication_configuration_476_rules_477_filter_480
+    Filter *[]Aws_s3_bucket_replication_configuration_476_rules_477_filter_480
 
     Id *string
 
@@ -28824,8 +27862,6 @@ type Aws_s3_bucket_replication_configuration_476_rules_477 struct {
 
 type Aws_s3_bucket_replication_configuration_476 struct {
 
-    Aws_s3_bucket_replication_configuration_476_id *string `lyra:"ignore"`
-
     Role string
 
     Rules Aws_s3_bucket_replication_configuration_476_rules_477
@@ -28833,8 +27869,6 @@ type Aws_s3_bucket_replication_configuration_476 struct {
 }
 
 type Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_server_side_encryption_by_default_485 struct {
-
-    Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_server_side_encryption_by_default_485_id *string `lyra:"ignore"`
 
     Kms_master_key_id *string
 
@@ -28844,23 +27878,17 @@ type Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_serve
 
 type Aws_s3_bucket_server_side_encryption_configuration_483_rule_484 struct {
 
-    Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_id *string `lyra:"ignore"`
-
-    Apply_server_side_encryption_by_default Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_server_side_encryption_by_default_485
+    Apply_server_side_encryption_by_default []Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_server_side_encryption_by_default_485
 
 }
 
 type Aws_s3_bucket_server_side_encryption_configuration_483 struct {
 
-    Aws_s3_bucket_server_side_encryption_configuration_483_id *string `lyra:"ignore"`
-
-    Rule Aws_s3_bucket_server_side_encryption_configuration_483_rule_484
+    Rule []Aws_s3_bucket_server_side_encryption_configuration_483_rule_484
 
 }
 
 type Aws_s3_bucket_versioning_486 struct {
-
-    Aws_s3_bucket_versioning_486_id *string `lyra:"ignore"`
 
     Enabled *bool
 
@@ -28869,8 +27897,6 @@ type Aws_s3_bucket_versioning_486 struct {
 }
 
 type Aws_s3_bucket_website_487 struct {
-
-    Aws_s3_bucket_website_487_id *string `lyra:"ignore"`
 
     Error_document *string
 
@@ -28900,33 +27926,33 @@ type Aws_s3_bucket struct {
 
     Bucket_regional_domain_name *string
 
-    Cors_rule *Aws_s3_bucket_cors_rule_466
+    Cors_rule *[]Aws_s3_bucket_cors_rule_466
 
     Force_destroy *bool
 
     Hosted_zone_id *string
 
-    Lifecycle_rule *Aws_s3_bucket_lifecycle_rule_467
+    Lifecycle_rule *[]Aws_s3_bucket_lifecycle_rule_467
 
     Logging *Aws_s3_bucket_logging_472
 
-    Object_lock_configuration *Aws_s3_bucket_object_lock_configuration_473
+    Object_lock_configuration *[]Aws_s3_bucket_object_lock_configuration_473
 
     Policy *string
 
     Region *string
 
-    Replication_configuration *Aws_s3_bucket_replication_configuration_476
+    Replication_configuration *[]Aws_s3_bucket_replication_configuration_476
 
     Request_payer *string
 
-    Server_side_encryption_configuration *Aws_s3_bucket_server_side_encryption_configuration_483
+    Server_side_encryption_configuration *[]Aws_s3_bucket_server_side_encryption_configuration_483
 
     Tags *map[string]string
 
-    Versioning *Aws_s3_bucket_versioning_486
+    Versioning *[]Aws_s3_bucket_versioning_486
 
-    Website *Aws_s3_bucket_website_487
+    Website *[]Aws_s3_bucket_website_487
 
     Website_domain *string
 
@@ -28973,37 +27999,29 @@ func (h *Aws_s3_bucketHandler) Delete(externalID string) error {
 
 type Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_kms_491 struct {
 
-    Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_kms_491_id *string `lyra:"ignore"`
-
     Key_id string
 
 }
 
 type Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_s3_492 struct {
 
-    Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_s3_492_id *string `lyra:"ignore"`
-
 }
 
 type Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490 struct {
 
-    Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_id *string `lyra:"ignore"`
+    Sse_kms *[]Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_kms_491
 
-    Sse_kms *Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_kms_491
-
-    Sse_s3 *Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_s3_492
+    Sse_s3 *[]Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_s3_492
 
 }
 
 type Aws_s3_bucket_inventory_destination_488_bucket_489 struct {
 
-    Aws_s3_bucket_inventory_destination_488_bucket_489_id *string `lyra:"ignore"`
-
     Account_id *string
 
     Bucket_arn string
 
-    Encryption *Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490
+    Encryption *[]Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490
 
     Format string
 
@@ -29013,23 +28031,17 @@ type Aws_s3_bucket_inventory_destination_488_bucket_489 struct {
 
 type Aws_s3_bucket_inventory_destination_488 struct {
 
-    Aws_s3_bucket_inventory_destination_488_id *string `lyra:"ignore"`
-
-    Bucket Aws_s3_bucket_inventory_destination_488_bucket_489
+    Bucket []Aws_s3_bucket_inventory_destination_488_bucket_489
 
 }
 
 type Aws_s3_bucket_inventory_filter_493 struct {
-
-    Aws_s3_bucket_inventory_filter_493_id *string `lyra:"ignore"`
 
     Prefix *string
 
 }
 
 type Aws_s3_bucket_inventory_schedule_494 struct {
-
-    Aws_s3_bucket_inventory_schedule_494_id *string `lyra:"ignore"`
 
     Frequency string
 
@@ -29041,11 +28053,11 @@ type Aws_s3_bucket_inventory struct {
 
     Bucket string
 
-    Destination Aws_s3_bucket_inventory_destination_488
+    Destination []Aws_s3_bucket_inventory_destination_488
 
     Enabled *bool
 
-    Filter *Aws_s3_bucket_inventory_filter_493
+    Filter *[]Aws_s3_bucket_inventory_filter_493
 
     Included_object_versions string
 
@@ -29053,7 +28065,7 @@ type Aws_s3_bucket_inventory struct {
 
     Optional_fields *[]string
 
-    Schedule Aws_s3_bucket_inventory_schedule_494
+    Schedule []Aws_s3_bucket_inventory_schedule_494
 
 }
 
@@ -29096,8 +28108,6 @@ func (h *Aws_s3_bucket_inventoryHandler) Delete(externalID string) error {
 
 type Aws_s3_bucket_metric_filter_495 struct {
 
-    Aws_s3_bucket_metric_filter_495_id *string `lyra:"ignore"`
-
     Prefix *string
 
     Tags *map[string]string
@@ -29110,7 +28120,7 @@ type Aws_s3_bucket_metric struct {
 
     Bucket string
 
-    Filter *Aws_s3_bucket_metric_filter_495
+    Filter *[]Aws_s3_bucket_metric_filter_495
 
     Name string
 
@@ -29155,8 +28165,6 @@ func (h *Aws_s3_bucket_metricHandler) Delete(externalID string) error {
 
 type Aws_s3_bucket_notification_lambda_function_496 struct {
 
-    Aws_s3_bucket_notification_lambda_function_496_id *string `lyra:"ignore"`
-
     Events []string
 
     Filter_prefix *string
@@ -29171,8 +28179,6 @@ type Aws_s3_bucket_notification_lambda_function_496 struct {
 
 type Aws_s3_bucket_notification_queue_497 struct {
 
-    Aws_s3_bucket_notification_queue_497_id *string `lyra:"ignore"`
-
     Events []string
 
     Filter_prefix *string
@@ -29186,8 +28192,6 @@ type Aws_s3_bucket_notification_queue_497 struct {
 }
 
 type Aws_s3_bucket_notification_topic_498 struct {
-
-    Aws_s3_bucket_notification_topic_498_id *string `lyra:"ignore"`
 
     Events []string
 
@@ -29207,11 +28211,11 @@ type Aws_s3_bucket_notification struct {
 
     Bucket string
 
-    Lambda_function *Aws_s3_bucket_notification_lambda_function_496
+    Lambda_function *[]Aws_s3_bucket_notification_lambda_function_496
 
-    Queue *Aws_s3_bucket_notification_queue_497
+    Queue *[]Aws_s3_bucket_notification_queue_497
 
-    Topic *Aws_s3_bucket_notification_topic_498
+    Topic *[]Aws_s3_bucket_notification_topic_498
 
 }
 
@@ -29492,8 +28496,6 @@ func (h *Aws_sagemaker_notebook_instanceHandler) Delete(externalID string) error
 
 type Aws_secretsmanager_secret_rotation_rules_499 struct {
 
-    Aws_secretsmanager_secret_rotation_rules_499_id *string `lyra:"ignore"`
-
     Automatically_after_days int
 
 }
@@ -29520,7 +28522,7 @@ type Aws_secretsmanager_secret struct {
 
     Rotation_lambda_arn *string
 
-    Rotation_rules *Aws_secretsmanager_secret_rotation_rules_499
+    Rotation_rules *[]Aws_secretsmanager_secret_rotation_rules_499
 
     Tags *map[string]string
 
@@ -29620,8 +28622,6 @@ func (h *Aws_secretsmanager_secret_versionHandler) Delete(externalID string) err
 
 type Aws_security_group_egress_500 struct {
 
-    Aws_security_group_egress_500_id *string `lyra:"ignore"`
-
     Cidr_blocks *[]string
 
     Description *string
@@ -29643,8 +28643,6 @@ type Aws_security_group_egress_500 struct {
 }
 
 type Aws_security_group_ingress_501 struct {
-
-    Aws_security_group_ingress_501_id *string `lyra:"ignore"`
 
     Cidr_blocks *[]string
 
@@ -30084,8 +29082,6 @@ func (h *Aws_service_discovery_public_dns_namespaceHandler) Delete(externalID st
 
 type Aws_service_discovery_service_dns_config_502_dns_records_503 struct {
 
-    Aws_service_discovery_service_dns_config_502_dns_records_503_id *string `lyra:"ignore"`
-
     Ttl int
 
     Type string
@@ -30094,9 +29090,7 @@ type Aws_service_discovery_service_dns_config_502_dns_records_503 struct {
 
 type Aws_service_discovery_service_dns_config_502 struct {
 
-    Aws_service_discovery_service_dns_config_502_id *string `lyra:"ignore"`
-
-    Dns_records Aws_service_discovery_service_dns_config_502_dns_records_503
+    Dns_records []Aws_service_discovery_service_dns_config_502_dns_records_503
 
     Namespace_id string
 
@@ -30105,8 +29099,6 @@ type Aws_service_discovery_service_dns_config_502 struct {
 }
 
 type Aws_service_discovery_service_health_check_config_504 struct {
-
-    Aws_service_discovery_service_health_check_config_504_id *string `lyra:"ignore"`
 
     Failure_threshold *int
 
@@ -30117,8 +29109,6 @@ type Aws_service_discovery_service_health_check_config_504 struct {
 }
 
 type Aws_service_discovery_service_health_check_custom_config_505 struct {
-
-    Aws_service_discovery_service_health_check_custom_config_505_id *string `lyra:"ignore"`
 
     Failure_threshold *int
 
@@ -30132,11 +29122,11 @@ type Aws_service_discovery_service struct {
 
     Description *string
 
-    Dns_config Aws_service_discovery_service_dns_config_502
+    Dns_config []Aws_service_discovery_service_dns_config_502
 
-    Health_check_config *Aws_service_discovery_service_health_check_config_504
+    Health_check_config *[]Aws_service_discovery_service_health_check_config_504
 
-    Health_check_custom_config *Aws_service_discovery_service_health_check_custom_config_505
+    Health_check_custom_config *[]Aws_service_discovery_service_health_check_custom_config_505
 
     Name string
 
@@ -30518,8 +29508,6 @@ func (h *Aws_ses_domain_mail_fromHandler) Delete(externalID string) error {
 
 type Aws_ses_event_destination_cloudwatch_destination_506 struct {
 
-    Aws_ses_event_destination_cloudwatch_destination_506_id *string `lyra:"ignore"`
-
     Default_value string
 
     Dimension_name string
@@ -30530,8 +29518,6 @@ type Aws_ses_event_destination_cloudwatch_destination_506 struct {
 
 type Aws_ses_event_destination_kinesis_destination_507 struct {
 
-    Aws_ses_event_destination_kinesis_destination_507_id *string `lyra:"ignore"`
-
     Role_arn string
 
     Stream_arn string
@@ -30539,8 +29525,6 @@ type Aws_ses_event_destination_kinesis_destination_507 struct {
 }
 
 type Aws_ses_event_destination_sns_destination_508 struct {
-
-    Aws_ses_event_destination_sns_destination_508_id *string `lyra:"ignore"`
 
     Topic_arn string
 
@@ -30703,8 +29687,6 @@ func (h *Aws_ses_receipt_filterHandler) Delete(externalID string) error {
 
 type Aws_ses_receipt_rule_add_header_action_509 struct {
 
-    Aws_ses_receipt_rule_add_header_action_509_id *string `lyra:"ignore"`
-
     Header_name string
 
     Header_value string
@@ -30714,8 +29696,6 @@ type Aws_ses_receipt_rule_add_header_action_509 struct {
 }
 
 type Aws_ses_receipt_rule_bounce_action_510 struct {
-
-    Aws_ses_receipt_rule_bounce_action_510_id *string `lyra:"ignore"`
 
     Message string
 
@@ -30733,8 +29713,6 @@ type Aws_ses_receipt_rule_bounce_action_510 struct {
 
 type Aws_ses_receipt_rule_lambda_action_511 struct {
 
-    Aws_ses_receipt_rule_lambda_action_511_id *string `lyra:"ignore"`
-
     Function_arn string
 
     Invocation_type *string
@@ -30746,8 +29724,6 @@ type Aws_ses_receipt_rule_lambda_action_511 struct {
 }
 
 type Aws_ses_receipt_rule_s3_action_512 struct {
-
-    Aws_ses_receipt_rule_s3_action_512_id *string `lyra:"ignore"`
 
     Bucket_name string
 
@@ -30763,8 +29739,6 @@ type Aws_ses_receipt_rule_s3_action_512 struct {
 
 type Aws_ses_receipt_rule_sns_action_513 struct {
 
-    Aws_ses_receipt_rule_sns_action_513_id *string `lyra:"ignore"`
-
     Position int
 
     Topic_arn string
@@ -30772,8 +29746,6 @@ type Aws_ses_receipt_rule_sns_action_513 struct {
 }
 
 type Aws_ses_receipt_rule_stop_action_514 struct {
-
-    Aws_ses_receipt_rule_stop_action_514_id *string `lyra:"ignore"`
 
     Position int
 
@@ -30784,8 +29756,6 @@ type Aws_ses_receipt_rule_stop_action_514 struct {
 }
 
 type Aws_ses_receipt_rule_workmail_action_515 struct {
-
-    Aws_ses_receipt_rule_workmail_action_515_id *string `lyra:"ignore"`
 
     Organization_arn string
 
@@ -31518,8 +30488,6 @@ func (h *Aws_spot_datafeed_subscriptionHandler) Delete(externalID string) error 
 
 type Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517 struct {
 
-    Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_name string
@@ -31538,8 +30506,6 @@ type Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517 struct
 
 type Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518 struct {
 
-    Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518_id *string `lyra:"ignore"`
-
     Device_name string
 
     Virtual_name string
@@ -31547,8 +30513,6 @@ type Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518 
 }
 
 type Aws_spot_fleet_request_launch_specification_516_root_block_device_519 struct {
-
-    Aws_spot_fleet_request_launch_specification_516_root_block_device_519_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -31561,8 +30525,6 @@ type Aws_spot_fleet_request_launch_specification_516_root_block_device_519 struc
 }
 
 type Aws_spot_fleet_request_launch_specification_516 struct {
-
-    Aws_spot_fleet_request_launch_specification_516_id *string `lyra:"ignore"`
 
     Ami string
 
@@ -31687,15 +30649,11 @@ func (h *Aws_spot_fleet_requestHandler) Delete(externalID string) error {
 
 type Aws_spot_instance_request_credit_specification_520 struct {
 
-    Aws_spot_instance_request_credit_specification_520_id *string `lyra:"ignore"`
-
     Cpu_credits *string
 
 }
 
 type Aws_spot_instance_request_ebs_block_device_521 struct {
-
-    Aws_spot_instance_request_ebs_block_device_521_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -31717,8 +30675,6 @@ type Aws_spot_instance_request_ebs_block_device_521 struct {
 
 type Aws_spot_instance_request_ephemeral_block_device_522 struct {
 
-    Aws_spot_instance_request_ephemeral_block_device_522_id *string `lyra:"ignore"`
-
     Device_name string
 
     No_device *bool
@@ -31729,8 +30685,6 @@ type Aws_spot_instance_request_ephemeral_block_device_522 struct {
 
 type Aws_spot_instance_request_network_interface_523 struct {
 
-    Aws_spot_instance_request_network_interface_523_id *string `lyra:"ignore"`
-
     Delete_on_termination *bool
 
     Device_index int
@@ -31740,8 +30694,6 @@ type Aws_spot_instance_request_network_interface_523 struct {
 }
 
 type Aws_spot_instance_request_root_block_device_524 struct {
-
-    Aws_spot_instance_request_root_block_device_524_id *string `lyra:"ignore"`
 
     Delete_on_termination *bool
 
@@ -31775,7 +30727,7 @@ type Aws_spot_instance_request struct {
 
     Cpu_threads_per_core *int
 
-    Credit_specification *Aws_spot_instance_request_credit_specification_520
+    Credit_specification *[]Aws_spot_instance_request_credit_specification_520
 
     Disable_api_termination *bool
 
@@ -31827,7 +30779,7 @@ type Aws_spot_instance_request struct {
 
     Public_ip *string
 
-    Root_block_device *Aws_spot_instance_request_root_block_device_524
+    Root_block_device *[]Aws_spot_instance_request_root_block_device_524
 
     Security_groups *[]string
 
@@ -32083,8 +31035,6 @@ func (h *Aws_ssm_activationHandler) Delete(externalID string) error {
 
 type Aws_ssm_association_output_location_525 struct {
 
-    Aws_ssm_association_output_location_525_id *string `lyra:"ignore"`
-
     S3_bucket_name string
 
     S3_key_prefix *string
@@ -32092,8 +31042,6 @@ type Aws_ssm_association_output_location_525 struct {
 }
 
 type Aws_ssm_association_targets_526 struct {
-
-    Aws_ssm_association_targets_526_id *string `lyra:"ignore"`
 
     Key string
 
@@ -32115,13 +31063,13 @@ type Aws_ssm_association struct {
 
     Name string
 
-    Output_location *Aws_ssm_association_output_location_525
+    Output_location *[]Aws_ssm_association_output_location_525
 
     Parameters *map[string]string
 
     Schedule_expression *string
 
-    Targets *Aws_ssm_association_targets_526
+    Targets *[]Aws_ssm_association_targets_526
 
 }
 
@@ -32164,8 +31112,6 @@ func (h *Aws_ssm_associationHandler) Delete(externalID string) error {
 
 type Aws_ssm_document_parameter_527 struct {
 
-    Aws_ssm_document_parameter_527_id *string `lyra:"ignore"`
-
     Default_value *string
 
     Description *string
@@ -32204,7 +31150,7 @@ type Aws_ssm_document struct {
 
     Owner *string
 
-    Parameter *Aws_ssm_document_parameter_527
+    Parameter *[]Aws_ssm_document_parameter_527
 
     Permissions *map[string]string
 
@@ -32318,8 +31264,6 @@ func (h *Aws_ssm_maintenance_windowHandler) Delete(externalID string) error {
 
 type Aws_ssm_maintenance_window_target_targets_528 struct {
 
-    Aws_ssm_maintenance_window_target_targets_528_id *string `lyra:"ignore"`
-
     Key string
 
     Values []string
@@ -32334,7 +31278,7 @@ type Aws_ssm_maintenance_window_target struct {
 
     Resource_type string
 
-    Targets Aws_ssm_maintenance_window_target_targets_528
+    Targets []Aws_ssm_maintenance_window_target_targets_528
 
     Window_id string
 
@@ -32379,8 +31323,6 @@ func (h *Aws_ssm_maintenance_window_targetHandler) Delete(externalID string) err
 
 type Aws_ssm_maintenance_window_task_logging_info_529 struct {
 
-    Aws_ssm_maintenance_window_task_logging_info_529_id *string `lyra:"ignore"`
-
     S3_bucket_name string
 
     S3_bucket_prefix *string
@@ -32391,8 +31333,6 @@ type Aws_ssm_maintenance_window_task_logging_info_529 struct {
 
 type Aws_ssm_maintenance_window_task_targets_530 struct {
 
-    Aws_ssm_maintenance_window_task_targets_530_id *string `lyra:"ignore"`
-
     Key string
 
     Values []string
@@ -32400,8 +31340,6 @@ type Aws_ssm_maintenance_window_task_targets_530 struct {
 }
 
 type Aws_ssm_maintenance_window_task_task_parameters_531 struct {
-
-    Aws_ssm_maintenance_window_task_task_parameters_531_id *string `lyra:"ignore"`
 
     Name string
 
@@ -32415,7 +31353,7 @@ type Aws_ssm_maintenance_window_task struct {
 
     Description *string
 
-    Logging_info *Aws_ssm_maintenance_window_task_logging_info_529
+    Logging_info *[]Aws_ssm_maintenance_window_task_logging_info_529
 
     Max_concurrency string
 
@@ -32427,11 +31365,11 @@ type Aws_ssm_maintenance_window_task struct {
 
     Service_role_arn string
 
-    Targets Aws_ssm_maintenance_window_task_targets_530
+    Targets []Aws_ssm_maintenance_window_task_targets_530
 
     Task_arn string
 
-    Task_parameters *Aws_ssm_maintenance_window_task_task_parameters_531
+    Task_parameters *[]Aws_ssm_maintenance_window_task_task_parameters_531
 
     Task_type string
 
@@ -32539,8 +31477,6 @@ func (h *Aws_ssm_parameterHandler) Delete(externalID string) error {
 
 type Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533 struct {
 
-    Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533_id *string `lyra:"ignore"`
-
     Key string
 
     Values []string
@@ -32549,21 +31485,17 @@ type Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533 struct {
 
 type Aws_ssm_patch_baseline_approval_rule_532 struct {
 
-    Aws_ssm_patch_baseline_approval_rule_532_id *string `lyra:"ignore"`
-
     Approve_after_days int
 
     Compliance_level *string
 
     Enable_non_security *bool
 
-    Patch_filter Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533
+    Patch_filter []Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533
 
 }
 
 type Aws_ssm_patch_baseline_global_filter_534 struct {
-
-    Aws_ssm_patch_baseline_global_filter_534_id *string `lyra:"ignore"`
 
     Key string
 
@@ -32575,7 +31507,7 @@ type Aws_ssm_patch_baseline struct {
 
     Aws_ssm_patch_baseline_id *string `lyra:"ignore"`
 
-    Approval_rule *Aws_ssm_patch_baseline_approval_rule_532
+    Approval_rule *[]Aws_ssm_patch_baseline_approval_rule_532
 
     Approved_patches *[]string
 
@@ -32583,7 +31515,7 @@ type Aws_ssm_patch_baseline struct {
 
     Description *string
 
-    Global_filter *Aws_ssm_patch_baseline_global_filter_534
+    Global_filter *[]Aws_ssm_patch_baseline_global_filter_534
 
     Name string
 
@@ -32679,8 +31611,6 @@ func (h *Aws_ssm_patch_groupHandler) Delete(externalID string) error {
 
 type Aws_ssm_resource_data_sync_s3_destination_535 struct {
 
-    Aws_ssm_resource_data_sync_s3_destination_535_id *string `lyra:"ignore"`
-
     Bucket_name string
 
     Kms_key_arn *string
@@ -32699,7 +31629,7 @@ type Aws_ssm_resource_data_sync struct {
 
     Name string
 
-    S3_destination Aws_ssm_resource_data_sync_s3_destination_535
+    S3_destination []Aws_ssm_resource_data_sync_s3_destination_535
 
 }
 
@@ -32858,8 +31788,6 @@ func (h *Aws_storagegateway_cached_iscsi_volumeHandler) Delete(externalID string
 
 type Aws_storagegateway_gateway_smb_active_directory_settings_536 struct {
 
-    Aws_storagegateway_gateway_smb_active_directory_settings_536_id *string `lyra:"ignore"`
-
     Domain_name string
 
     Password string
@@ -32888,7 +31816,7 @@ type Aws_storagegateway_gateway struct {
 
     Medium_changer_type *string
 
-    Smb_active_directory_settings *Aws_storagegateway_gateway_smb_active_directory_settings_536
+    Smb_active_directory_settings *[]Aws_storagegateway_gateway_smb_active_directory_settings_536
 
     Smb_guest_password *string
 
@@ -32935,8 +31863,6 @@ func (h *Aws_storagegateway_gatewayHandler) Delete(externalID string) error {
 
 type Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537 struct {
 
-    Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537_id *string `lyra:"ignore"`
-
     Directory_mode *string
 
     File_mode *string
@@ -32969,7 +31895,7 @@ type Aws_storagegateway_nfs_file_share struct {
 
     Location_arn string
 
-    Nfs_file_share_defaults *Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537
+    Nfs_file_share_defaults *[]Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537
 
     Object_acl *string
 
@@ -33704,8 +32630,6 @@ func (h *Aws_vpc_dhcp_options_associationHandler) Delete(externalID string) erro
 
 type Aws_vpc_endpoint_dns_entry_538 struct {
 
-    Aws_vpc_endpoint_dns_entry_538_id *string `lyra:"ignore"`
-
     Dns_name *string
 
     Hosted_zone_id *string
@@ -33720,7 +32644,7 @@ type Aws_vpc_endpoint struct {
 
     Cidr_blocks *[]string
 
-    Dns_entry *Aws_vpc_endpoint_dns_entry_538
+    Dns_entry *[]Aws_vpc_endpoint_dns_entry_538
 
     Network_interface_ids *[]string
 
@@ -34089,8 +33013,6 @@ func (h *Aws_vpc_ipv4_cidr_block_associationHandler) Delete(externalID string) e
 
 type Aws_vpc_peering_connection_accepter_539 struct {
 
-    Aws_vpc_peering_connection_accepter_539_id *string `lyra:"ignore"`
-
     Allow_classic_link_to_remote_vpc *bool
 
     Allow_remote_vpc_dns_resolution *bool
@@ -34100,8 +33022,6 @@ type Aws_vpc_peering_connection_accepter_539 struct {
 }
 
 type Aws_vpc_peering_connection_requester_540 struct {
-
-    Aws_vpc_peering_connection_requester_540_id *string `lyra:"ignore"`
 
     Allow_classic_link_to_remote_vpc *bool
 
@@ -34174,8 +33094,6 @@ func (h *Aws_vpc_peering_connectionHandler) Delete(externalID string) error {
 
 type Aws_vpc_peering_connection_accepter_accepter_541 struct {
 
-    Aws_vpc_peering_connection_accepter_accepter_541_id *string `lyra:"ignore"`
-
     Allow_classic_link_to_remote_vpc *bool
 
     Allow_remote_vpc_dns_resolution *bool
@@ -34185,8 +33103,6 @@ type Aws_vpc_peering_connection_accepter_accepter_541 struct {
 }
 
 type Aws_vpc_peering_connection_accepter_requester_542 struct {
-
-    Aws_vpc_peering_connection_accepter_requester_542_id *string `lyra:"ignore"`
 
     Allow_classic_link_to_remote_vpc *bool
 
@@ -34261,8 +33177,6 @@ func (h *Aws_vpc_peering_connection_accepterHandler) Delete(externalID string) e
 
 type Aws_vpc_peering_connection_options_accepter_543 struct {
 
-    Aws_vpc_peering_connection_options_accepter_543_id *string `lyra:"ignore"`
-
     Allow_classic_link_to_remote_vpc *bool
 
     Allow_remote_vpc_dns_resolution *bool
@@ -34272,8 +33186,6 @@ type Aws_vpc_peering_connection_options_accepter_543 struct {
 }
 
 type Aws_vpc_peering_connection_options_requester_544 struct {
-
-    Aws_vpc_peering_connection_options_requester_544_id *string `lyra:"ignore"`
 
     Allow_classic_link_to_remote_vpc *bool
 
@@ -34334,8 +33246,6 @@ func (h *Aws_vpc_peering_connection_optionsHandler) Delete(externalID string) er
 
 type Aws_vpn_connection_routes_545 struct {
 
-    Aws_vpn_connection_routes_545_id *string `lyra:"ignore"`
-
     Destination_cidr_block *string
 
     Source *string
@@ -34345,8 +33255,6 @@ type Aws_vpn_connection_routes_545 struct {
 }
 
 type Aws_vpn_connection_vgw_telemetry_546 struct {
-
-    Aws_vpn_connection_vgw_telemetry_546_id *string `lyra:"ignore"`
 
     Accepted_route_count *int
 
@@ -34643,8 +33551,6 @@ func (h *Aws_vpn_gateway_route_propagationHandler) Delete(externalID string) err
 
 type Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548 struct {
 
-    Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -34652,8 +33558,6 @@ type Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548 struct {
 }
 
 type Aws_waf_byte_match_set_byte_match_tuples_547 struct {
-
-    Aws_waf_byte_match_set_byte_match_tuples_547_id *string `lyra:"ignore"`
 
     Field_to_match Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548
 
@@ -34714,8 +33618,6 @@ func (h *Aws_waf_byte_match_setHandler) Delete(externalID string) error {
 
 type Aws_waf_geo_match_set_geo_match_constraint_549 struct {
 
-    Aws_waf_geo_match_set_geo_match_constraint_549_id *string `lyra:"ignore"`
-
     Type string
 
     Value string
@@ -34770,8 +33672,6 @@ func (h *Aws_waf_geo_match_setHandler) Delete(externalID string) error {
 }
 
 type Aws_waf_ipset_ip_set_descriptors_550 struct {
-
-    Aws_waf_ipset_ip_set_descriptors_550_id *string `lyra:"ignore"`
 
     Type string
 
@@ -34829,8 +33729,6 @@ func (h *Aws_waf_ipsetHandler) Delete(externalID string) error {
 }
 
 type Aws_waf_rate_based_rule_predicates_551 struct {
-
-    Aws_waf_rate_based_rule_predicates_551_id *string `lyra:"ignore"`
 
     Data_id string
 
@@ -34895,8 +33793,6 @@ func (h *Aws_waf_rate_based_ruleHandler) Delete(externalID string) error {
 
 type Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553 struct {
 
-    Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -34905,9 +33801,7 @@ type Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553 struct {
 
 type Aws_waf_regex_match_set_regex_match_tuple_552 struct {
 
-    Aws_waf_regex_match_set_regex_match_tuple_552_id *string `lyra:"ignore"`
-
-    Field_to_match Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553
+    Field_to_match []Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553
 
     Regex_pattern_set_id string
 
@@ -35011,8 +33905,6 @@ func (h *Aws_waf_regex_pattern_setHandler) Delete(externalID string) error {
 
 type Aws_waf_rule_predicates_554 struct {
 
-    Aws_waf_rule_predicates_554_id *string `lyra:"ignore"`
-
     Data_id string
 
     Negated bool
@@ -35072,17 +33964,13 @@ func (h *Aws_waf_ruleHandler) Delete(externalID string) error {
 
 type Aws_waf_rule_group_activated_rule_555_action_556 struct {
 
-    Aws_waf_rule_group_activated_rule_555_action_556_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_waf_rule_group_activated_rule_555 struct {
 
-    Aws_waf_rule_group_activated_rule_555_id *string `lyra:"ignore"`
-
-    Action Aws_waf_rule_group_activated_rule_555_action_556
+    Action []Aws_waf_rule_group_activated_rule_555_action_556
 
     Priority int
 
@@ -35143,8 +34031,6 @@ func (h *Aws_waf_rule_groupHandler) Delete(externalID string) error {
 
 type Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558 struct {
 
-    Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35152,8 +34038,6 @@ type Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558 struct 
 }
 
 type Aws_waf_size_constraint_set_size_constraints_557 struct {
-
-    Aws_waf_size_constraint_set_size_constraints_557_id *string `lyra:"ignore"`
 
     Comparison_operator string
 
@@ -35214,8 +34098,6 @@ func (h *Aws_waf_size_constraint_setHandler) Delete(externalID string) error {
 
 type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560 struct {
 
-    Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35223,8 +34105,6 @@ type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_mat
 }
 
 type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559 struct {
-
-    Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_id *string `lyra:"ignore"`
 
     Field_to_match Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560
 
@@ -35281,15 +34161,11 @@ func (h *Aws_waf_sql_injection_match_setHandler) Delete(externalID string) error
 
 type Aws_waf_web_acl_default_action_561 struct {
 
-    Aws_waf_web_acl_default_action_561_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_waf_web_acl_rules_562_action_563 struct {
-
-    Aws_waf_web_acl_rules_562_action_563_id *string `lyra:"ignore"`
 
     Type string
 
@@ -35297,19 +34173,15 @@ type Aws_waf_web_acl_rules_562_action_563 struct {
 
 type Aws_waf_web_acl_rules_562_override_action_564 struct {
 
-    Aws_waf_web_acl_rules_562_override_action_564_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_waf_web_acl_rules_562 struct {
 
-    Aws_waf_web_acl_rules_562_id *string `lyra:"ignore"`
+    Action *[]Aws_waf_web_acl_rules_562_action_563
 
-    Action *Aws_waf_web_acl_rules_562_action_563
-
-    Override_action *Aws_waf_web_acl_rules_562_override_action_564
+    Override_action *[]Aws_waf_web_acl_rules_562_override_action_564
 
     Priority int
 
@@ -35372,8 +34244,6 @@ func (h *Aws_waf_web_aclHandler) Delete(externalID string) error {
 
 type Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566 struct {
 
-    Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35381,8 +34251,6 @@ type Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566 struct {
 }
 
 type Aws_waf_xss_match_set_xss_match_tuples_565 struct {
-
-    Aws_waf_xss_match_set_xss_match_tuples_565_id *string `lyra:"ignore"`
 
     Field_to_match Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566
 
@@ -35439,8 +34307,6 @@ func (h *Aws_waf_xss_match_setHandler) Delete(externalID string) error {
 
 type Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568 struct {
 
-    Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35449,9 +34315,7 @@ type Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568 stru
 
 type Aws_wafregional_byte_match_set_byte_match_tuple_567 struct {
 
-    Aws_wafregional_byte_match_set_byte_match_tuple_567_id *string `lyra:"ignore"`
-
-    Field_to_match Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568
+    Field_to_match []Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568
 
     Positional_constraint string
 
@@ -35463,8 +34327,6 @@ type Aws_wafregional_byte_match_set_byte_match_tuple_567 struct {
 
 type Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570 struct {
 
-    Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35473,9 +34335,7 @@ type Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570 str
 
 type Aws_wafregional_byte_match_set_byte_match_tuples_569 struct {
 
-    Aws_wafregional_byte_match_set_byte_match_tuples_569_id *string `lyra:"ignore"`
-
-    Field_to_match Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570
+    Field_to_match []Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570
 
     Positional_constraint string
 
@@ -35536,8 +34396,6 @@ func (h *Aws_wafregional_byte_match_setHandler) Delete(externalID string) error 
 
 type Aws_wafregional_geo_match_set_geo_match_constraint_571 struct {
 
-    Aws_wafregional_geo_match_set_geo_match_constraint_571_id *string `lyra:"ignore"`
-
     Type string
 
     Value string
@@ -35592,8 +34450,6 @@ func (h *Aws_wafregional_geo_match_setHandler) Delete(externalID string) error {
 }
 
 type Aws_wafregional_ipset_ip_set_descriptor_572 struct {
-
-    Aws_wafregional_ipset_ip_set_descriptor_572_id *string `lyra:"ignore"`
 
     Type string
 
@@ -35651,8 +34507,6 @@ func (h *Aws_wafregional_ipsetHandler) Delete(externalID string) error {
 }
 
 type Aws_wafregional_rate_based_rule_predicate_573 struct {
-
-    Aws_wafregional_rate_based_rule_predicate_573_id *string `lyra:"ignore"`
 
     Data_id string
 
@@ -35717,8 +34571,6 @@ func (h *Aws_wafregional_rate_based_ruleHandler) Delete(externalID string) error
 
 type Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575 struct {
 
-    Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35727,9 +34579,7 @@ type Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575 st
 
 type Aws_wafregional_regex_match_set_regex_match_tuple_574 struct {
 
-    Aws_wafregional_regex_match_set_regex_match_tuple_574_id *string `lyra:"ignore"`
-
-    Field_to_match Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575
+    Field_to_match []Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575
 
     Regex_pattern_set_id string
 
@@ -35833,8 +34683,6 @@ func (h *Aws_wafregional_regex_pattern_setHandler) Delete(externalID string) err
 
 type Aws_wafregional_rule_predicate_576 struct {
 
-    Aws_wafregional_rule_predicate_576_id *string `lyra:"ignore"`
-
     Data_id string
 
     Negated bool
@@ -35894,17 +34742,13 @@ func (h *Aws_wafregional_ruleHandler) Delete(externalID string) error {
 
 type Aws_wafregional_rule_group_activated_rule_577_action_578 struct {
 
-    Aws_wafregional_rule_group_activated_rule_577_action_578_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_wafregional_rule_group_activated_rule_577 struct {
 
-    Aws_wafregional_rule_group_activated_rule_577_id *string `lyra:"ignore"`
-
-    Action Aws_wafregional_rule_group_activated_rule_577_action_578
+    Action []Aws_wafregional_rule_group_activated_rule_577_action_578
 
     Priority int
 
@@ -35965,8 +34809,6 @@ func (h *Aws_wafregional_rule_groupHandler) Delete(externalID string) error {
 
 type Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580 struct {
 
-    Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -35974,8 +34816,6 @@ type Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580
 }
 
 type Aws_wafregional_size_constraint_set_size_constraints_579 struct {
-
-    Aws_wafregional_size_constraint_set_size_constraints_579_id *string `lyra:"ignore"`
 
     Comparison_operator string
 
@@ -36036,8 +34876,6 @@ func (h *Aws_wafregional_size_constraint_setHandler) Delete(externalID string) e
 
 type Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field_to_match_582 struct {
 
-    Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field_to_match_582_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -36046,9 +34884,7 @@ type Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field
 
 type Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581 struct {
 
-    Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_id *string `lyra:"ignore"`
-
-    Field_to_match Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field_to_match_582
+    Field_to_match []Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field_to_match_582
 
     Text_transformation string
 
@@ -36103,15 +34939,11 @@ func (h *Aws_wafregional_sql_injection_match_setHandler) Delete(externalID strin
 
 type Aws_wafregional_web_acl_default_action_583 struct {
 
-    Aws_wafregional_web_acl_default_action_583_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_wafregional_web_acl_rule_584_action_585 struct {
-
-    Aws_wafregional_web_acl_rule_584_action_585_id *string `lyra:"ignore"`
 
     Type string
 
@@ -36119,19 +34951,15 @@ type Aws_wafregional_web_acl_rule_584_action_585 struct {
 
 type Aws_wafregional_web_acl_rule_584_override_action_586 struct {
 
-    Aws_wafregional_web_acl_rule_584_override_action_586_id *string `lyra:"ignore"`
-
     Type string
 
 }
 
 type Aws_wafregional_web_acl_rule_584 struct {
 
-    Aws_wafregional_web_acl_rule_584_id *string `lyra:"ignore"`
+    Action *[]Aws_wafregional_web_acl_rule_584_action_585
 
-    Action *Aws_wafregional_web_acl_rule_584_action_585
-
-    Override_action *Aws_wafregional_web_acl_rule_584_override_action_586
+    Override_action *[]Aws_wafregional_web_acl_rule_584_override_action_586
 
     Priority int
 
@@ -36145,7 +34973,7 @@ type Aws_wafregional_web_acl struct {
 
     Aws_wafregional_web_acl_id *string `lyra:"ignore"`
 
-    Default_action Aws_wafregional_web_acl_default_action_583
+    Default_action []Aws_wafregional_web_acl_default_action_583
 
     Metric_name string
 
@@ -36241,8 +35069,6 @@ func (h *Aws_wafregional_web_acl_associationHandler) Delete(externalID string) e
 
 type Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588 struct {
 
-    Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588_id *string `lyra:"ignore"`
-
     Data *string
 
     Type string
@@ -36250,8 +35076,6 @@ type Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588 struct
 }
 
 type Aws_wafregional_xss_match_set_xss_match_tuple_587 struct {
-
-    Aws_wafregional_xss_match_set_xss_match_tuple_587_id *string `lyra:"ignore"`
 
     Field_to_match Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588
 
