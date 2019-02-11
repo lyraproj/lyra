@@ -392,8 +392,6 @@ func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
 
 type Azurerm_api_management_additional_location_1269 struct {
 
-    Azurerm_api_management_additional_location_1269_id *string `lyra:"ignore"`
-
     Gateway_regional_url *string
 
     Location string
@@ -404,8 +402,6 @@ type Azurerm_api_management_additional_location_1269 struct {
 
 type Azurerm_api_management_certificate_1270 struct {
 
-    Azurerm_api_management_certificate_1270_id *string `lyra:"ignore"`
-
     Certificate_password string
 
     Encoded_certificate string
@@ -415,8 +411,6 @@ type Azurerm_api_management_certificate_1270 struct {
 }
 
 type Azurerm_api_management_hostname_configuration_1271_management_1272 struct {
-
-    Azurerm_api_management_hostname_configuration_1271_management_1272_id *string `lyra:"ignore"`
 
     Certificate *string
 
@@ -432,8 +426,6 @@ type Azurerm_api_management_hostname_configuration_1271_management_1272 struct {
 
 type Azurerm_api_management_hostname_configuration_1271_portal_1273 struct {
 
-    Azurerm_api_management_hostname_configuration_1271_portal_1273_id *string `lyra:"ignore"`
-
     Certificate *string
 
     Certificate_password *string
@@ -447,8 +439,6 @@ type Azurerm_api_management_hostname_configuration_1271_portal_1273 struct {
 }
 
 type Azurerm_api_management_hostname_configuration_1271_proxy_1274 struct {
-
-    Azurerm_api_management_hostname_configuration_1271_proxy_1274_id *string `lyra:"ignore"`
 
     Certificate *string
 
@@ -466,8 +456,6 @@ type Azurerm_api_management_hostname_configuration_1271_proxy_1274 struct {
 
 type Azurerm_api_management_hostname_configuration_1271_scm_1275 struct {
 
-    Azurerm_api_management_hostname_configuration_1271_scm_1275_id *string `lyra:"ignore"`
-
     Certificate *string
 
     Certificate_password *string
@@ -482,21 +470,17 @@ type Azurerm_api_management_hostname_configuration_1271_scm_1275 struct {
 
 type Azurerm_api_management_hostname_configuration_1271 struct {
 
-    Azurerm_api_management_hostname_configuration_1271_id *string `lyra:"ignore"`
+    Management *[]Azurerm_api_management_hostname_configuration_1271_management_1272
 
-    Management *Azurerm_api_management_hostname_configuration_1271_management_1272
+    Portal *[]Azurerm_api_management_hostname_configuration_1271_portal_1273
 
-    Portal *Azurerm_api_management_hostname_configuration_1271_portal_1273
+    Proxy *[]Azurerm_api_management_hostname_configuration_1271_proxy_1274
 
-    Proxy *Azurerm_api_management_hostname_configuration_1271_proxy_1274
-
-    Scm *Azurerm_api_management_hostname_configuration_1271_scm_1275
+    Scm *[]Azurerm_api_management_hostname_configuration_1271_scm_1275
 
 }
 
 type Azurerm_api_management_identity_1276 struct {
-
-    Azurerm_api_management_identity_1276_id *string `lyra:"ignore"`
 
     Principal_id *string
 
@@ -507,8 +491,6 @@ type Azurerm_api_management_identity_1276 struct {
 }
 
 type Azurerm_api_management_security_1277 struct {
-
-    Azurerm_api_management_security_1277_id *string `lyra:"ignore"`
 
     Disable_backend_ssl30 *bool
 
@@ -528,8 +510,6 @@ type Azurerm_api_management_security_1277 struct {
 
 type Azurerm_api_management_sku_1278 struct {
 
-    Azurerm_api_management_sku_1278_id *string `lyra:"ignore"`
-
     Capacity int
 
     Name string
@@ -540,17 +520,17 @@ type Azurerm_api_management struct {
 
     Azurerm_api_management_id *string `lyra:"ignore"`
 
-    Additional_location *Azurerm_api_management_additional_location_1269
+    Additional_location *[]Azurerm_api_management_additional_location_1269
 
-    Certificate *Azurerm_api_management_certificate_1270
+    Certificate *[]Azurerm_api_management_certificate_1270
 
     Gateway_regional_url *string
 
     Gateway_url *string
 
-    Hostname_configuration *Azurerm_api_management_hostname_configuration_1271
+    Hostname_configuration *[]Azurerm_api_management_hostname_configuration_1271
 
-    Identity *Azurerm_api_management_identity_1276
+    Identity *[]Azurerm_api_management_identity_1276
 
     Location string
 
@@ -572,9 +552,9 @@ type Azurerm_api_management struct {
 
     Scm_url *string
 
-    Security *Azurerm_api_management_security_1277
+    Security *[]Azurerm_api_management_security_1277
 
-    Sku Azurerm_api_management_sku_1278
+    Sku []Azurerm_api_management_sku_1278
 
     Tags *map[string]string
 
@@ -619,8 +599,6 @@ func (h *Azurerm_api_managementHandler) Delete(externalID string) error {
 
 type Azurerm_app_service_connection_string_1279 struct {
 
-    Azurerm_app_service_connection_string_1279_id *string `lyra:"ignore"`
-
     Name string
 
     Type string
@@ -630,8 +608,6 @@ type Azurerm_app_service_connection_string_1279 struct {
 }
 
 type Azurerm_app_service_identity_1280 struct {
-
-    Azurerm_app_service_identity_1280_id *string `lyra:"ignore"`
 
     Principal_id *string
 
@@ -643,8 +619,6 @@ type Azurerm_app_service_identity_1280 struct {
 
 type Azurerm_app_service_site_config_1281_ip_restriction_1282 struct {
 
-    Azurerm_app_service_site_config_1281_ip_restriction_1282_id *string `lyra:"ignore"`
-
     Ip_address string
 
     Subnet_mask *string
@@ -652,8 +626,6 @@ type Azurerm_app_service_site_config_1281_ip_restriction_1282 struct {
 }
 
 type Azurerm_app_service_site_config_1281 struct {
-
-    Azurerm_app_service_site_config_1281_id *string `lyra:"ignore"`
 
     Always_on *bool
 
@@ -667,7 +639,7 @@ type Azurerm_app_service_site_config_1281 struct {
 
     Http2_enabled *bool
 
-    Ip_restriction *Azurerm_app_service_site_config_1281_ip_restriction_1282
+    Ip_restriction *[]Azurerm_app_service_site_config_1281_ip_restriction_1282
 
     Java_container *string
 
@@ -703,8 +675,6 @@ type Azurerm_app_service_site_config_1281 struct {
 
 type Azurerm_app_service_site_credential_1283 struct {
 
-    Azurerm_app_service_site_credential_1283_id *string `lyra:"ignore"`
-
     Password *string
 
     Username *string
@@ -712,8 +682,6 @@ type Azurerm_app_service_site_credential_1283 struct {
 }
 
 type Azurerm_app_service_source_control_1284 struct {
-
-    Azurerm_app_service_source_control_1284_id *string `lyra:"ignore"`
 
     Branch *string
 
@@ -739,7 +707,7 @@ type Azurerm_app_service struct {
 
     Https_only *bool
 
-    Identity *Azurerm_app_service_identity_1280
+    Identity *[]Azurerm_app_service_identity_1280
 
     Location string
 
@@ -751,11 +719,11 @@ type Azurerm_app_service struct {
 
     Resource_group_name string
 
-    Site_config *Azurerm_app_service_site_config_1281
+    Site_config *[]Azurerm_app_service_site_config_1281
 
-    Site_credential *Azurerm_app_service_site_credential_1283
+    Site_credential *[]Azurerm_app_service_site_credential_1283
 
-    Source_control *Azurerm_app_service_source_control_1284
+    Source_control *[]Azurerm_app_service_source_control_1284
 
     Tags *map[string]string
 
@@ -898,8 +866,6 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Delete(externalID s
 
 type Azurerm_app_service_plan_properties_1285 struct {
 
-    Azurerm_app_service_plan_properties_1285_id *string `lyra:"ignore"`
-
     App_service_environment_id *string
 
     Per_site_scaling *bool
@@ -909,8 +875,6 @@ type Azurerm_app_service_plan_properties_1285 struct {
 }
 
 type Azurerm_app_service_plan_sku_1286 struct {
-
-    Azurerm_app_service_plan_sku_1286_id *string `lyra:"ignore"`
 
     Capacity *int
 
@@ -936,13 +900,13 @@ type Azurerm_app_service_plan struct {
 
     Per_site_scaling *bool
 
-    Properties *Azurerm_app_service_plan_properties_1285
+    Properties *[]Azurerm_app_service_plan_properties_1285
 
     Reserved *bool
 
     Resource_group_name string
 
-    Sku Azurerm_app_service_plan_sku_1286
+    Sku []Azurerm_app_service_plan_sku_1286
 
     Tags *map[string]string
 
@@ -987,8 +951,6 @@ func (h *Azurerm_app_service_planHandler) Delete(externalID string) error {
 
 type Azurerm_app_service_slot_connection_string_1287 struct {
 
-    Azurerm_app_service_slot_connection_string_1287_id *string `lyra:"ignore"`
-
     Name string
 
     Type string
@@ -998,8 +960,6 @@ type Azurerm_app_service_slot_connection_string_1287 struct {
 }
 
 type Azurerm_app_service_slot_identity_1288 struct {
-
-    Azurerm_app_service_slot_identity_1288_id *string `lyra:"ignore"`
 
     Principal_id *string
 
@@ -1011,8 +971,6 @@ type Azurerm_app_service_slot_identity_1288 struct {
 
 type Azurerm_app_service_slot_site_config_1289_ip_restriction_1290 struct {
 
-    Azurerm_app_service_slot_site_config_1289_ip_restriction_1290_id *string `lyra:"ignore"`
-
     Ip_address string
 
     Subnet_mask *string
@@ -1020,8 +978,6 @@ type Azurerm_app_service_slot_site_config_1289_ip_restriction_1290 struct {
 }
 
 type Azurerm_app_service_slot_site_config_1289 struct {
-
-    Azurerm_app_service_slot_site_config_1289_id *string `lyra:"ignore"`
 
     Always_on *bool
 
@@ -1035,7 +991,7 @@ type Azurerm_app_service_slot_site_config_1289 struct {
 
     Http2_enabled *bool
 
-    Ip_restriction *Azurerm_app_service_slot_site_config_1289_ip_restriction_1290
+    Ip_restriction *[]Azurerm_app_service_slot_site_config_1289_ip_restriction_1290
 
     Java_container *string
 
@@ -1089,7 +1045,7 @@ type Azurerm_app_service_slot struct {
 
     Https_only *bool
 
-    Identity *Azurerm_app_service_slot_identity_1288
+    Identity *[]Azurerm_app_service_slot_identity_1288
 
     Location string
 
@@ -1097,7 +1053,7 @@ type Azurerm_app_service_slot struct {
 
     Resource_group_name string
 
-    Site_config *Azurerm_app_service_slot_site_config_1289
+    Site_config *[]Azurerm_app_service_slot_site_config_1289
 
     Tags *map[string]string
 
@@ -1142,8 +1098,6 @@ func (h *Azurerm_app_service_slotHandler) Delete(externalID string) error {
 
 type Azurerm_application_gateway_authentication_certificate_1291 struct {
 
-    Azurerm_application_gateway_authentication_certificate_1291_id *string `lyra:"ignore"`
-
     Data string
 
     Id *string
@@ -1153,8 +1107,6 @@ type Azurerm_application_gateway_authentication_certificate_1291 struct {
 }
 
 type Azurerm_application_gateway_backend_address_pool_1292 struct {
-
-    Azurerm_application_gateway_backend_address_pool_1292_id *string `lyra:"ignore"`
 
     Fqdn_list *[]string
 
@@ -1168,8 +1120,6 @@ type Azurerm_application_gateway_backend_address_pool_1292 struct {
 
 type Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294 struct {
 
-    Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294_id *string `lyra:"ignore"`
-
     Id *string
 
     Name string
@@ -1178,9 +1128,7 @@ type Azurerm_application_gateway_backend_http_settings_1293_authentication_certi
 
 type Azurerm_application_gateway_backend_http_settings_1293 struct {
 
-    Azurerm_application_gateway_backend_http_settings_1293_id *string `lyra:"ignore"`
-
-    Authentication_certificate *Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294
+    Authentication_certificate *[]Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294
 
     Cookie_based_affinity string
 
@@ -1202,8 +1150,6 @@ type Azurerm_application_gateway_backend_http_settings_1293 struct {
 
 type Azurerm_application_gateway_frontend_ip_configuration_1295 struct {
 
-    Azurerm_application_gateway_frontend_ip_configuration_1295_id *string `lyra:"ignore"`
-
     Id *string
 
     Name string
@@ -1220,8 +1166,6 @@ type Azurerm_application_gateway_frontend_ip_configuration_1295 struct {
 
 type Azurerm_application_gateway_frontend_port_1296 struct {
 
-    Azurerm_application_gateway_frontend_port_1296_id *string `lyra:"ignore"`
-
     Id *string
 
     Name string
@@ -1232,8 +1176,6 @@ type Azurerm_application_gateway_frontend_port_1296 struct {
 
 type Azurerm_application_gateway_gateway_ip_configuration_1297 struct {
 
-    Azurerm_application_gateway_gateway_ip_configuration_1297_id *string `lyra:"ignore"`
-
     Id *string
 
     Name string
@@ -1243,8 +1185,6 @@ type Azurerm_application_gateway_gateway_ip_configuration_1297 struct {
 }
 
 type Azurerm_application_gateway_http_listener_1298 struct {
-
-    Azurerm_application_gateway_http_listener_1298_id *string `lyra:"ignore"`
 
     Frontend_ip_configuration_id *string
 
@@ -1272,8 +1212,6 @@ type Azurerm_application_gateway_http_listener_1298 struct {
 
 type Azurerm_application_gateway_probe_1299_match_1300 struct {
 
-    Azurerm_application_gateway_probe_1299_match_1300_id *string `lyra:"ignore"`
-
     Body *string
 
     Status_code *[]string
@@ -1282,15 +1220,13 @@ type Azurerm_application_gateway_probe_1299_match_1300 struct {
 
 type Azurerm_application_gateway_probe_1299 struct {
 
-    Azurerm_application_gateway_probe_1299_id *string `lyra:"ignore"`
-
     Host string
 
     Id *string
 
     Interval int
 
-    Match *Azurerm_application_gateway_probe_1299_match_1300
+    Match *[]Azurerm_application_gateway_probe_1299_match_1300
 
     Minimum_servers *int
 
@@ -1307,8 +1243,6 @@ type Azurerm_application_gateway_probe_1299 struct {
 }
 
 type Azurerm_application_gateway_request_routing_rule_1301 struct {
-
-    Azurerm_application_gateway_request_routing_rule_1301_id *string `lyra:"ignore"`
 
     Backend_address_pool_id *string
 
@@ -1336,8 +1270,6 @@ type Azurerm_application_gateway_request_routing_rule_1301 struct {
 
 type Azurerm_application_gateway_sku_1302 struct {
 
-    Azurerm_application_gateway_sku_1302_id *string `lyra:"ignore"`
-
     Capacity int
 
     Name string
@@ -1347,8 +1279,6 @@ type Azurerm_application_gateway_sku_1302 struct {
 }
 
 type Azurerm_application_gateway_ssl_certificate_1303 struct {
-
-    Azurerm_application_gateway_ssl_certificate_1303_id *string `lyra:"ignore"`
 
     Data string
 
@@ -1363,8 +1293,6 @@ type Azurerm_application_gateway_ssl_certificate_1303 struct {
 }
 
 type Azurerm_application_gateway_url_path_map_1304_path_rule_1305 struct {
-
-    Azurerm_application_gateway_url_path_map_1304_path_rule_1305_id *string `lyra:"ignore"`
 
     Backend_address_pool_id *string
 
@@ -1384,8 +1312,6 @@ type Azurerm_application_gateway_url_path_map_1304_path_rule_1305 struct {
 
 type Azurerm_application_gateway_url_path_map_1304 struct {
 
-    Azurerm_application_gateway_url_path_map_1304_id *string `lyra:"ignore"`
-
     Default_backend_address_pool_id *string
 
     Default_backend_address_pool_name string
@@ -1398,13 +1324,11 @@ type Azurerm_application_gateway_url_path_map_1304 struct {
 
     Name string
 
-    Path_rule Azurerm_application_gateway_url_path_map_1304_path_rule_1305
+    Path_rule []Azurerm_application_gateway_url_path_map_1304_path_rule_1305
 
 }
 
 type Azurerm_application_gateway_waf_configuration_1306 struct {
-
-    Azurerm_application_gateway_waf_configuration_1306_id *string `lyra:"ignore"`
 
     Enabled bool
 
@@ -1420,41 +1344,41 @@ type Azurerm_application_gateway struct {
 
     Azurerm_application_gateway_id *string `lyra:"ignore"`
 
-    Authentication_certificate *Azurerm_application_gateway_authentication_certificate_1291
+    Authentication_certificate *[]Azurerm_application_gateway_authentication_certificate_1291
 
-    Backend_address_pool Azurerm_application_gateway_backend_address_pool_1292
+    Backend_address_pool []Azurerm_application_gateway_backend_address_pool_1292
 
-    Backend_http_settings Azurerm_application_gateway_backend_http_settings_1293
+    Backend_http_settings []Azurerm_application_gateway_backend_http_settings_1293
 
     Disabled_ssl_protocols *[]string
 
-    Frontend_ip_configuration Azurerm_application_gateway_frontend_ip_configuration_1295
+    Frontend_ip_configuration []Azurerm_application_gateway_frontend_ip_configuration_1295
 
-    Frontend_port Azurerm_application_gateway_frontend_port_1296
+    Frontend_port []Azurerm_application_gateway_frontend_port_1296
 
-    Gateway_ip_configuration Azurerm_application_gateway_gateway_ip_configuration_1297
+    Gateway_ip_configuration []Azurerm_application_gateway_gateway_ip_configuration_1297
 
-    Http_listener Azurerm_application_gateway_http_listener_1298
+    Http_listener []Azurerm_application_gateway_http_listener_1298
 
     Location string
 
     Name string
 
-    Probe *Azurerm_application_gateway_probe_1299
+    Probe *[]Azurerm_application_gateway_probe_1299
 
-    Request_routing_rule Azurerm_application_gateway_request_routing_rule_1301
+    Request_routing_rule []Azurerm_application_gateway_request_routing_rule_1301
 
     Resource_group_name string
 
-    Sku Azurerm_application_gateway_sku_1302
+    Sku []Azurerm_application_gateway_sku_1302
 
-    Ssl_certificate *Azurerm_application_gateway_ssl_certificate_1303
+    Ssl_certificate *[]Azurerm_application_gateway_ssl_certificate_1303
 
     Tags *map[string]string
 
-    Url_path_map *Azurerm_application_gateway_url_path_map_1304
+    Url_path_map *[]Azurerm_application_gateway_url_path_map_1304
 
-    Waf_configuration *Azurerm_application_gateway_waf_configuration_1306
+    Waf_configuration *[]Azurerm_application_gateway_waf_configuration_1306
 
 }
 
@@ -1658,8 +1582,6 @@ func (h *Azurerm_application_security_groupHandler) Delete(externalID string) er
 
 type Azurerm_automation_account_sku_1307 struct {
 
-    Azurerm_automation_account_sku_1307_id *string `lyra:"ignore"`
-
     Name *string
 
 }
@@ -1680,7 +1602,7 @@ type Azurerm_automation_account struct {
 
     Resource_group_name string
 
-    Sku Azurerm_automation_account_sku_1307
+    Sku []Azurerm_automation_account_sku_1307
 
     Tags *map[string]string
 
@@ -1892,8 +1814,6 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Delete(externalID stri
 
 type Azurerm_automation_module_module_link_1308_hash_1309 struct {
 
-    Azurerm_automation_module_module_link_1308_hash_1309_id *string `lyra:"ignore"`
-
     Algorithm string
 
     Value string
@@ -1902,9 +1822,7 @@ type Azurerm_automation_module_module_link_1308_hash_1309 struct {
 
 type Azurerm_automation_module_module_link_1308 struct {
 
-    Azurerm_automation_module_module_link_1308_id *string `lyra:"ignore"`
-
-    Hash *Azurerm_automation_module_module_link_1308_hash_1309
+    Hash *[]Azurerm_automation_module_module_link_1308_hash_1309
 
     Uri string
 
@@ -1916,7 +1834,7 @@ type Azurerm_automation_module struct {
 
     Automation_account_name string
 
-    Module_link Azurerm_automation_module_module_link_1308
+    Module_link []Azurerm_automation_module_module_link_1308
 
     Name string
 
@@ -1963,8 +1881,6 @@ func (h *Azurerm_automation_moduleHandler) Delete(externalID string) error {
 
 type Azurerm_automation_runbook_publish_content_link_1310_hash_1311 struct {
 
-    Azurerm_automation_runbook_publish_content_link_1310_hash_1311_id *string `lyra:"ignore"`
-
     Algorithm string
 
     Value string
@@ -1973,9 +1889,7 @@ type Azurerm_automation_runbook_publish_content_link_1310_hash_1311 struct {
 
 type Azurerm_automation_runbook_publish_content_link_1310 struct {
 
-    Azurerm_automation_runbook_publish_content_link_1310_id *string `lyra:"ignore"`
-
-    Hash *Azurerm_automation_runbook_publish_content_link_1310_hash_1311
+    Hash *[]Azurerm_automation_runbook_publish_content_link_1310_hash_1311
 
     Uri string
 
@@ -2001,7 +1915,7 @@ type Azurerm_automation_runbook struct {
 
     Name string
 
-    Publish_content_link Azurerm_automation_runbook_publish_content_link_1310
+    Publish_content_link []Azurerm_automation_runbook_publish_content_link_1310
 
     Resource_group_name string
 
@@ -2050,8 +1964,6 @@ func (h *Azurerm_automation_runbookHandler) Delete(externalID string) error {
 
 type Azurerm_automation_schedule_monthly_occurrence_1312 struct {
 
-    Azurerm_automation_schedule_monthly_occurrence_1312_id *string `lyra:"ignore"`
-
     Day string
 
     Occurrence int
@@ -2076,7 +1988,7 @@ type Azurerm_automation_schedule struct {
 
     Month_days *[]int
 
-    Monthly_occurrence *Azurerm_automation_schedule_monthly_occurrence_1312
+    Monthly_occurrence *[]Azurerm_automation_schedule_monthly_occurrence_1312
 
     Name string
 
@@ -2129,8 +2041,6 @@ func (h *Azurerm_automation_scheduleHandler) Delete(externalID string) error {
 
 type Azurerm_autoscale_setting_notification_1313_email_1314 struct {
 
-    Azurerm_autoscale_setting_notification_1313_email_1314_id *string `lyra:"ignore"`
-
     Custom_emails *[]string
 
     Send_to_subscription_administrator *bool
@@ -2141,8 +2051,6 @@ type Azurerm_autoscale_setting_notification_1313_email_1314 struct {
 
 type Azurerm_autoscale_setting_notification_1313_webhook_1315 struct {
 
-    Azurerm_autoscale_setting_notification_1313_webhook_1315_id *string `lyra:"ignore"`
-
     Properties *map[string]string
 
     Service_uri string
@@ -2151,17 +2059,13 @@ type Azurerm_autoscale_setting_notification_1313_webhook_1315 struct {
 
 type Azurerm_autoscale_setting_notification_1313 struct {
 
-    Azurerm_autoscale_setting_notification_1313_id *string `lyra:"ignore"`
+    Email *[]Azurerm_autoscale_setting_notification_1313_email_1314
 
-    Email *Azurerm_autoscale_setting_notification_1313_email_1314
-
-    Webhook *Azurerm_autoscale_setting_notification_1313_webhook_1315
+    Webhook *[]Azurerm_autoscale_setting_notification_1313_webhook_1315
 
 }
 
 type Azurerm_autoscale_setting_profile_1316_capacity_1317 struct {
-
-    Azurerm_autoscale_setting_profile_1316_capacity_1317_id *string `lyra:"ignore"`
 
     Default int
 
@@ -2173,8 +2077,6 @@ type Azurerm_autoscale_setting_profile_1316_capacity_1317 struct {
 
 type Azurerm_autoscale_setting_profile_1316_fixed_date_1318 struct {
 
-    Azurerm_autoscale_setting_profile_1316_fixed_date_1318_id *string `lyra:"ignore"`
-
     End string
 
     Start string
@@ -2184,8 +2086,6 @@ type Azurerm_autoscale_setting_profile_1316_fixed_date_1318 struct {
 }
 
 type Azurerm_autoscale_setting_profile_1316_recurrence_1319 struct {
-
-    Azurerm_autoscale_setting_profile_1316_recurrence_1319_id *string `lyra:"ignore"`
 
     Days []string
 
@@ -2198,8 +2098,6 @@ type Azurerm_autoscale_setting_profile_1316_recurrence_1319 struct {
 }
 
 type Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321 struct {
-
-    Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321_id *string `lyra:"ignore"`
 
     Metric_name string
 
@@ -2221,8 +2119,6 @@ type Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321 struct
 
 type Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322 struct {
 
-    Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322_id *string `lyra:"ignore"`
-
     Cooldown string
 
     Direction string
@@ -2235,27 +2131,23 @@ type Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322 struct {
 
 type Azurerm_autoscale_setting_profile_1316_rule_1320 struct {
 
-    Azurerm_autoscale_setting_profile_1316_rule_1320_id *string `lyra:"ignore"`
+    Metric_trigger []Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321
 
-    Metric_trigger Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321
-
-    Scale_action Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322
+    Scale_action []Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322
 
 }
 
 type Azurerm_autoscale_setting_profile_1316 struct {
 
-    Azurerm_autoscale_setting_profile_1316_id *string `lyra:"ignore"`
+    Capacity []Azurerm_autoscale_setting_profile_1316_capacity_1317
 
-    Capacity Azurerm_autoscale_setting_profile_1316_capacity_1317
-
-    Fixed_date *Azurerm_autoscale_setting_profile_1316_fixed_date_1318
+    Fixed_date *[]Azurerm_autoscale_setting_profile_1316_fixed_date_1318
 
     Name string
 
-    Recurrence *Azurerm_autoscale_setting_profile_1316_recurrence_1319
+    Recurrence *[]Azurerm_autoscale_setting_profile_1316_recurrence_1319
 
-    Rule *Azurerm_autoscale_setting_profile_1316_rule_1320
+    Rule *[]Azurerm_autoscale_setting_profile_1316_rule_1320
 
 }
 
@@ -2269,9 +2161,9 @@ type Azurerm_autoscale_setting struct {
 
     Name string
 
-    Notification *Azurerm_autoscale_setting_notification_1313
+    Notification *[]Azurerm_autoscale_setting_notification_1313
 
-    Profile Azurerm_autoscale_setting_profile_1316
+    Profile []Azurerm_autoscale_setting_profile_1316
 
     Resource_group_name string
 
@@ -2589,8 +2481,6 @@ func (h *Azurerm_batch_accountHandler) Delete(externalID string) error {
 
 type Azurerm_batch_pool_auto_scale_1323 struct {
 
-    Azurerm_batch_pool_auto_scale_1323_id *string `lyra:"ignore"`
-
     Evaluation_interval *string
 
     Formula string
@@ -2598,8 +2488,6 @@ type Azurerm_batch_pool_auto_scale_1323 struct {
 }
 
 type Azurerm_batch_pool_fixed_scale_1324 struct {
-
-    Azurerm_batch_pool_fixed_scale_1324_id *string `lyra:"ignore"`
 
     Resize_timeout *string
 
@@ -2611,8 +2499,6 @@ type Azurerm_batch_pool_fixed_scale_1324 struct {
 
 type Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327 struct {
 
-    Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327_id *string `lyra:"ignore"`
-
     Elevation_level *string
 
     Scope *string
@@ -2621,9 +2507,7 @@ type Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327 struct
 
 type Azurerm_batch_pool_start_task_1325_user_identity_1326 struct {
 
-    Azurerm_batch_pool_start_task_1325_user_identity_1326_id *string `lyra:"ignore"`
-
-    Auto_user *Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327
+    Auto_user *[]Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327
 
     User_name *string
 
@@ -2631,23 +2515,19 @@ type Azurerm_batch_pool_start_task_1325_user_identity_1326 struct {
 
 type Azurerm_batch_pool_start_task_1325 struct {
 
-    Azurerm_batch_pool_start_task_1325_id *string `lyra:"ignore"`
-
     Command_line string
 
     Environment *map[string]string
 
     Max_task_retry_count *int
 
-    User_identity Azurerm_batch_pool_start_task_1325_user_identity_1326
+    User_identity []Azurerm_batch_pool_start_task_1325_user_identity_1326
 
     Wait_for_success *bool
 
 }
 
 type Azurerm_batch_pool_storage_image_reference_1328 struct {
-
-    Azurerm_batch_pool_storage_image_reference_1328_id *string `lyra:"ignore"`
 
     Id *string
 
@@ -2667,11 +2547,11 @@ type Azurerm_batch_pool struct {
 
     Account_name string
 
-    Auto_scale *Azurerm_batch_pool_auto_scale_1323
+    Auto_scale *[]Azurerm_batch_pool_auto_scale_1323
 
     Display_name *string
 
-    Fixed_scale *Azurerm_batch_pool_fixed_scale_1324
+    Fixed_scale *[]Azurerm_batch_pool_fixed_scale_1324
 
     Name string
 
@@ -2679,11 +2559,11 @@ type Azurerm_batch_pool struct {
 
     Resource_group_name string
 
-    Start_task *Azurerm_batch_pool_start_task_1325
+    Start_task *[]Azurerm_batch_pool_start_task_1325
 
     Stop_pending_resize_operation *bool
 
-    Storage_image_reference Azurerm_batch_pool_storage_image_reference_1328
+    Storage_image_reference []Azurerm_batch_pool_storage_image_reference_1328
 
     Vm_size string
 
@@ -2728,8 +2608,6 @@ func (h *Azurerm_batch_poolHandler) Delete(externalID string) error {
 
 type Azurerm_cdn_endpoint_geo_filter_1329 struct {
 
-    Azurerm_cdn_endpoint_geo_filter_1329_id *string `lyra:"ignore"`
-
     Action string
 
     Country_codes []string
@@ -2739,8 +2617,6 @@ type Azurerm_cdn_endpoint_geo_filter_1329 struct {
 }
 
 type Azurerm_cdn_endpoint_origin_1330 struct {
-
-    Azurerm_cdn_endpoint_origin_1330_id *string `lyra:"ignore"`
 
     Host_name string
 
@@ -2758,7 +2634,7 @@ type Azurerm_cdn_endpoint struct {
 
     Content_types_to_compress *[]string
 
-    Geo_filter *Azurerm_cdn_endpoint_geo_filter_1329
+    Geo_filter *[]Azurerm_cdn_endpoint_geo_filter_1329
 
     Host_name *string
 
@@ -2884,8 +2760,6 @@ func (h *Azurerm_cdn_profileHandler) Delete(externalID string) error {
 
 type Azurerm_cognitive_account_sku_1331 struct {
 
-    Azurerm_cognitive_account_sku_1331_id *string `lyra:"ignore"`
-
     Name string
 
     Tier string
@@ -2906,7 +2780,7 @@ type Azurerm_cognitive_account struct {
 
     Resource_group_name string
 
-    Sku Azurerm_cognitive_account_sku_1331
+    Sku []Azurerm_cognitive_account_sku_1331
 
     Tags *map[string]string
 
@@ -2951,8 +2825,6 @@ func (h *Azurerm_cognitive_accountHandler) Delete(externalID string) error {
 
 type Azurerm_container_group_container_1332_ports_1333 struct {
 
-    Azurerm_container_group_container_1332_ports_1333_id *string `lyra:"ignore"`
-
     Port *int
 
     Protocol *string
@@ -2960,8 +2832,6 @@ type Azurerm_container_group_container_1332_ports_1333 struct {
 }
 
 type Azurerm_container_group_container_1332_volume_1334 struct {
-
-    Azurerm_container_group_container_1332_volume_1334_id *string `lyra:"ignore"`
 
     Mount_path string
 
@@ -2978,8 +2848,6 @@ type Azurerm_container_group_container_1332_volume_1334 struct {
 }
 
 type Azurerm_container_group_container_1332 struct {
-
-    Azurerm_container_group_container_1332_id *string `lyra:"ignore"`
 
     Command *string
 
@@ -3003,13 +2871,11 @@ type Azurerm_container_group_container_1332 struct {
 
     Secure_environment_variables *map[string]string
 
-    Volume *Azurerm_container_group_container_1332_volume_1334
+    Volume *[]Azurerm_container_group_container_1332_volume_1334
 
 }
 
 type Azurerm_container_group_image_registry_credential_1335 struct {
-
-    Azurerm_container_group_image_registry_credential_1335_id *string `lyra:"ignore"`
 
     Password string
 
@@ -3023,13 +2889,13 @@ type Azurerm_container_group struct {
 
     Azurerm_container_group_id *string `lyra:"ignore"`
 
-    Container Azurerm_container_group_container_1332
+    Container []Azurerm_container_group_container_1332
 
     Dns_name_label *string
 
     Fqdn *string
 
-    Image_registry_credential *Azurerm_container_group_image_registry_credential_1335
+    Image_registry_credential *[]Azurerm_container_group_image_registry_credential_1335
 
     Ip_address *string
 
@@ -3088,8 +2954,6 @@ func (h *Azurerm_container_groupHandler) Delete(externalID string) error {
 
 type Azurerm_container_registry_storage_account_1336 struct {
 
-    Azurerm_container_registry_storage_account_1336_id *string `lyra:"ignore"`
-
     Access_key string
 
     Name string
@@ -3118,7 +2982,7 @@ type Azurerm_container_registry struct {
 
     Sku *string
 
-    Storage_account *Azurerm_container_registry_storage_account_1336
+    Storage_account *[]Azurerm_container_registry_storage_account_1336
 
     Storage_account_id *string
 
@@ -3165,8 +3029,6 @@ func (h *Azurerm_container_registryHandler) Delete(externalID string) error {
 
 type Azurerm_container_service_agent_pool_profile_1337 struct {
 
-    Azurerm_container_service_agent_pool_profile_1337_id *string `lyra:"ignore"`
-
     Count *int
 
     Dns_prefix string
@@ -3181,8 +3043,6 @@ type Azurerm_container_service_agent_pool_profile_1337 struct {
 
 type Azurerm_container_service_diagnostics_profile_1338 struct {
 
-    Azurerm_container_service_diagnostics_profile_1338_id *string `lyra:"ignore"`
-
     Enabled bool
 
     Storage_uri *string
@@ -3191,15 +3051,11 @@ type Azurerm_container_service_diagnostics_profile_1338 struct {
 
 type Azurerm_container_service_linux_profile_1339_ssh_key_1340 struct {
 
-    Azurerm_container_service_linux_profile_1339_ssh_key_1340_id *string `lyra:"ignore"`
-
     Key_data string
 
 }
 
 type Azurerm_container_service_linux_profile_1339 struct {
-
-    Azurerm_container_service_linux_profile_1339_id *string `lyra:"ignore"`
 
     Admin_username string
 
@@ -3208,8 +3064,6 @@ type Azurerm_container_service_linux_profile_1339 struct {
 }
 
 type Azurerm_container_service_master_profile_1341 struct {
-
-    Azurerm_container_service_master_profile_1341_id *string `lyra:"ignore"`
 
     Count *int
 
@@ -3220,8 +3074,6 @@ type Azurerm_container_service_master_profile_1341 struct {
 }
 
 type Azurerm_container_service_service_principal_1342 struct {
-
-    Azurerm_container_service_service_principal_1342_id *string `lyra:"ignore"`
 
     Client_id string
 
@@ -3294,15 +3146,11 @@ func (h *Azurerm_container_serviceHandler) Delete(externalID string) error {
 
 type Azurerm_cosmosdb_account_capabilities_1343 struct {
 
-    Azurerm_cosmosdb_account_capabilities_1343_id *string `lyra:"ignore"`
-
     Name string
 
 }
 
 type Azurerm_cosmosdb_account_consistency_policy_1344 struct {
-
-    Azurerm_cosmosdb_account_consistency_policy_1344_id *string `lyra:"ignore"`
 
     Consistency_level string
 
@@ -3314,8 +3162,6 @@ type Azurerm_cosmosdb_account_consistency_policy_1344 struct {
 
 type Azurerm_cosmosdb_account_failover_policy_1345 struct {
 
-    Azurerm_cosmosdb_account_failover_policy_1345_id *string `lyra:"ignore"`
-
     Id *string
 
     Location string
@@ -3325,8 +3171,6 @@ type Azurerm_cosmosdb_account_failover_policy_1345 struct {
 }
 
 type Azurerm_cosmosdb_account_geo_location_1346 struct {
-
-    Azurerm_cosmosdb_account_geo_location_1346_id *string `lyra:"ignore"`
 
     Failover_priority int
 
@@ -3340,8 +3184,6 @@ type Azurerm_cosmosdb_account_geo_location_1346 struct {
 
 type Azurerm_cosmosdb_account_virtual_network_rule_1347 struct {
 
-    Azurerm_cosmosdb_account_virtual_network_rule_1347_id *string `lyra:"ignore"`
-
     Id string
 
 }
@@ -3354,7 +3196,7 @@ type Azurerm_cosmosdb_account struct {
 
     Connection_strings *[]string
 
-    Consistency_policy Azurerm_cosmosdb_account_consistency_policy_1344
+    Consistency_policy []Azurerm_cosmosdb_account_consistency_policy_1344
 
     Enable_automatic_failover *bool
 
@@ -3832,8 +3674,6 @@ func (h *Azurerm_dev_test_labHandler) Delete(externalID string) error {
 
 type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348 struct {
 
-    Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348_id *string `lyra:"ignore"`
-
     Offer string
 
     Publisher string
@@ -3845,8 +3685,6 @@ type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348 struct 
 }
 
 type Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349 struct {
-
-    Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349_id *string `lyra:"ignore"`
 
     Backend_port int
 
@@ -3866,7 +3704,7 @@ type Azurerm_dev_test_linux_virtual_machine struct {
 
     Fqdn *string
 
-    Gallery_image_reference Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348
+    Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348
 
     Inbound_nat_rule *Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349
 
@@ -4000,8 +3838,6 @@ func (h *Azurerm_dev_test_policyHandler) Delete(externalID string) error {
 
 type Azurerm_dev_test_virtual_network_subnet_1350 struct {
 
-    Azurerm_dev_test_virtual_network_subnet_1350_id *string `lyra:"ignore"`
-
     Name *string
 
     Use_in_virtual_machine_creation *string
@@ -4022,7 +3858,7 @@ type Azurerm_dev_test_virtual_network struct {
 
     Resource_group_name string
 
-    Subnet *Azurerm_dev_test_virtual_network_subnet_1350
+    Subnet *[]Azurerm_dev_test_virtual_network_subnet_1350
 
     Tags *map[string]string
 
@@ -4069,8 +3905,6 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Delete(externalID string) erro
 
 type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351 struct {
 
-    Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351_id *string `lyra:"ignore"`
-
     Offer string
 
     Publisher string
@@ -4082,8 +3916,6 @@ type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351 struc
 }
 
 type Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352 struct {
-
-    Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352_id *string `lyra:"ignore"`
 
     Backend_port int
 
@@ -4103,7 +3935,7 @@ type Azurerm_dev_test_windows_virtual_machine struct {
 
     Fqdn *string
 
-    Gallery_image_reference Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351
+    Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351
 
     Inbound_nat_rule *Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352
 
@@ -4174,8 +4006,6 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Delete(externalID stri
 
 type Azurerm_devspace_controller_sku_1353 struct {
 
-    Azurerm_devspace_controller_sku_1353_id *string `lyra:"ignore"`
-
     Name string
 
     Tier string
@@ -4196,7 +4026,7 @@ type Azurerm_devspace_controller struct {
 
     Resource_group_name string
 
-    Sku Azurerm_devspace_controller_sku_1353
+    Sku []Azurerm_devspace_controller_sku_1353
 
     Tags *map[string]string
 
@@ -4355,8 +4185,6 @@ func (h *Azurerm_dns_aaaa_recordHandler) Delete(externalID string) error {
 
 type Azurerm_dns_caa_record_record_1354 struct {
 
-    Azurerm_dns_caa_record_record_1354_id *string `lyra:"ignore"`
-
     Flags int
 
     Tag string
@@ -4479,8 +4307,6 @@ func (h *Azurerm_dns_cname_recordHandler) Delete(externalID string) error {
 
 type Azurerm_dns_mx_record_record_1355 struct {
 
-    Azurerm_dns_mx_record_record_1355_id *string `lyra:"ignore"`
-
     Exchange string
 
     Preference string
@@ -4543,8 +4369,6 @@ func (h *Azurerm_dns_mx_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_ns_record_record_1356 struct {
-
-    Azurerm_dns_ns_record_record_1356_id *string `lyra:"ignore"`
 
     Nsdname string
 
@@ -4664,8 +4488,6 @@ func (h *Azurerm_dns_ptr_recordHandler) Delete(externalID string) error {
 
 type Azurerm_dns_srv_record_record_1357 struct {
 
-    Azurerm_dns_srv_record_record_1357_id *string `lyra:"ignore"`
-
     Port int
 
     Priority int
@@ -4732,8 +4554,6 @@ func (h *Azurerm_dns_srv_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_txt_record_record_1358 struct {
-
-    Azurerm_dns_txt_record_record_1358_id *string `lyra:"ignore"`
 
     Value string
 
@@ -4914,8 +4734,6 @@ func (h *Azurerm_eventgrid_topicHandler) Delete(externalID string) error {
 
 type Azurerm_eventhub_capture_description_1359_destination_1360 struct {
 
-    Azurerm_eventhub_capture_description_1359_destination_1360_id *string `lyra:"ignore"`
-
     Archive_name_format string
 
     Blob_container_name string
@@ -4928,9 +4746,7 @@ type Azurerm_eventhub_capture_description_1359_destination_1360 struct {
 
 type Azurerm_eventhub_capture_description_1359 struct {
 
-    Azurerm_eventhub_capture_description_1359_id *string `lyra:"ignore"`
-
-    Destination Azurerm_eventhub_capture_description_1359_destination_1360
+    Destination []Azurerm_eventhub_capture_description_1359_destination_1360
 
     Enabled bool
 
@@ -4946,7 +4762,7 @@ type Azurerm_eventhub struct {
 
     Azurerm_eventhub_id *string `lyra:"ignore"`
 
-    Capture_description *Azurerm_eventhub_capture_description_1359
+    Capture_description *[]Azurerm_eventhub_capture_description_1359
 
     Location *string
 
@@ -5259,8 +5075,6 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Delete(externalID
 
 type Azurerm_express_route_circuit_sku_1361 struct {
 
-    Azurerm_express_route_circuit_sku_1361_id *string `lyra:"ignore"`
-
     Family string
 
     Tier string
@@ -5289,7 +5103,7 @@ type Azurerm_express_route_circuit struct {
 
     Service_provider_provisioning_state *string
 
-    Sku Azurerm_express_route_circuit_sku_1361
+    Sku []Azurerm_express_route_circuit_sku_1361
 
     Tags *map[string]string
 
@@ -5387,8 +5201,6 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Delete(externalID s
 
 type Azurerm_express_route_circuit_peering_microsoft_peering_config_1362 struct {
 
-    Azurerm_express_route_circuit_peering_microsoft_peering_config_1362_id *string `lyra:"ignore"`
-
     Advertised_public_prefixes []string
 
 }
@@ -5401,7 +5213,7 @@ type Azurerm_express_route_circuit_peering struct {
 
     Express_route_circuit_name string
 
-    Microsoft_peering_config *Azurerm_express_route_circuit_peering_microsoft_peering_config_1362
+    Microsoft_peering_config *[]Azurerm_express_route_circuit_peering_microsoft_peering_config_1362
 
     Peer_asn *int
 
@@ -5462,8 +5274,6 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Delete(externalID string)
 
 type Azurerm_firewall_ip_configuration_1363 struct {
 
-    Azurerm_firewall_ip_configuration_1363_id *string `lyra:"ignore"`
-
     Internal_public_ip_address_id *string
 
     Name string
@@ -5480,7 +5290,7 @@ type Azurerm_firewall struct {
 
     Azurerm_firewall_id *string `lyra:"ignore"`
 
-    Ip_configuration Azurerm_firewall_ip_configuration_1363
+    Ip_configuration []Azurerm_firewall_ip_configuration_1363
 
     Location string
 
@@ -5531,8 +5341,6 @@ func (h *Azurerm_firewallHandler) Delete(externalID string) error {
 
 type Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365 struct {
 
-    Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365_id *string `lyra:"ignore"`
-
     Port *int
 
     Type string
@@ -5541,15 +5349,13 @@ type Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365 struct
 
 type Azurerm_firewall_application_rule_collection_rule_1364 struct {
 
-    Azurerm_firewall_application_rule_collection_rule_1364_id *string `lyra:"ignore"`
-
     Description *string
 
     Fqdn_tags *[]string
 
     Name string
 
-    Protocol *Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365
+    Protocol *[]Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365
 
     Source_addresses []string
 
@@ -5571,7 +5377,7 @@ type Azurerm_firewall_application_rule_collection struct {
 
     Resource_group_name string
 
-    Rule Azurerm_firewall_application_rule_collection_rule_1364
+    Rule []Azurerm_firewall_application_rule_collection_rule_1364
 
 }
 
@@ -5613,8 +5419,6 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Delete(externalID 
 }
 
 type Azurerm_firewall_network_rule_collection_rule_1366 struct {
-
-    Azurerm_firewall_network_rule_collection_rule_1366_id *string `lyra:"ignore"`
 
     Description *string
 
@@ -5687,8 +5491,6 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Delete(externalID stri
 
 type Azurerm_function_app_connection_string_1367 struct {
 
-    Azurerm_function_app_connection_string_1367_id *string `lyra:"ignore"`
-
     Name string
 
     Type string
@@ -5698,8 +5500,6 @@ type Azurerm_function_app_connection_string_1367 struct {
 }
 
 type Azurerm_function_app_identity_1368 struct {
-
-    Azurerm_function_app_identity_1368_id *string `lyra:"ignore"`
 
     Principal_id *string
 
@@ -5711,8 +5511,6 @@ type Azurerm_function_app_identity_1368 struct {
 
 type Azurerm_function_app_site_config_1369 struct {
 
-    Azurerm_function_app_site_config_1369_id *string `lyra:"ignore"`
-
     Always_on *bool
 
     Use_32_bit_worker_process *bool
@@ -5722,8 +5520,6 @@ type Azurerm_function_app_site_config_1369 struct {
 }
 
 type Azurerm_function_app_site_credential_1370 struct {
-
-    Azurerm_function_app_site_credential_1370_id *string `lyra:"ignore"`
 
     Password *string
 
@@ -5741,7 +5537,7 @@ type Azurerm_function_app struct {
 
     Client_affinity_enabled *bool
 
-    Connection_string *Azurerm_function_app_connection_string_1367
+    Connection_string *[]Azurerm_function_app_connection_string_1367
 
     Default_hostname *string
 
@@ -5751,7 +5547,7 @@ type Azurerm_function_app struct {
 
     Https_only *bool
 
-    Identity *Azurerm_function_app_identity_1368
+    Identity *[]Azurerm_function_app_identity_1368
 
     Location string
 
@@ -5761,9 +5557,9 @@ type Azurerm_function_app struct {
 
     Resource_group_name string
 
-    Site_config *Azurerm_function_app_site_config_1369
+    Site_config *[]Azurerm_function_app_site_config_1369
 
-    Site_credential *Azurerm_function_app_site_credential_1370
+    Site_credential *[]Azurerm_function_app_site_credential_1370
 
     Storage_connection_string string
 
@@ -5812,8 +5608,6 @@ func (h *Azurerm_function_appHandler) Delete(externalID string) error {
 
 type Azurerm_image_data_disk_1371 struct {
 
-    Azurerm_image_data_disk_1371_id *string `lyra:"ignore"`
-
     Blob_uri *string
 
     Caching *string
@@ -5827,8 +5621,6 @@ type Azurerm_image_data_disk_1371 struct {
 }
 
 type Azurerm_image_os_disk_1372 struct {
-
-    Azurerm_image_os_disk_1372_id *string `lyra:"ignore"`
 
     Blob_uri *string
 
@@ -5848,13 +5640,13 @@ type Azurerm_image struct {
 
     Azurerm_image_id *string `lyra:"ignore"`
 
-    Data_disk *Azurerm_image_data_disk_1371
+    Data_disk *[]Azurerm_image_data_disk_1371
 
     Location string
 
     Name string
 
-    Os_disk *Azurerm_image_os_disk_1372
+    Os_disk *[]Azurerm_image_os_disk_1372
 
     Resource_group_name string
 
@@ -5903,8 +5695,6 @@ func (h *Azurerm_imageHandler) Delete(externalID string) error {
 
 type Azurerm_iothub_endpoint_1373 struct {
 
-    Azurerm_iothub_endpoint_1373_id *string `lyra:"ignore"`
-
     Batch_frequency_in_seconds *int
 
     Connection_string string
@@ -5925,8 +5715,6 @@ type Azurerm_iothub_endpoint_1373 struct {
 
 type Azurerm_iothub_route_1374 struct {
 
-    Azurerm_iothub_route_1374_id *string `lyra:"ignore"`
-
     Condition *string
 
     Enabled bool
@@ -5941,8 +5729,6 @@ type Azurerm_iothub_route_1374 struct {
 
 type Azurerm_iothub_shared_access_policy_1375 struct {
 
-    Azurerm_iothub_shared_access_policy_1375_id *string `lyra:"ignore"`
-
     Key_name *string
 
     Permissions *string
@@ -5954,8 +5740,6 @@ type Azurerm_iothub_shared_access_policy_1375 struct {
 }
 
 type Azurerm_iothub_sku_1376 struct {
-
-    Azurerm_iothub_sku_1376_id *string `lyra:"ignore"`
 
     Capacity int
 
@@ -5969,7 +5753,7 @@ type Azurerm_iothub struct {
 
     Azurerm_iothub_id *string `lyra:"ignore"`
 
-    Endpoint *Azurerm_iothub_endpoint_1373
+    Endpoint *[]Azurerm_iothub_endpoint_1373
 
     Event_hub_events_endpoint *string
 
@@ -5987,11 +5771,11 @@ type Azurerm_iothub struct {
 
     Resource_group_name string
 
-    Route *Azurerm_iothub_route_1374
+    Route *[]Azurerm_iothub_route_1374
 
-    Shared_access_policy *Azurerm_iothub_shared_access_policy_1375
+    Shared_access_policy *[]Azurerm_iothub_shared_access_policy_1375
 
-    Sku Azurerm_iothub_sku_1376
+    Sku []Azurerm_iothub_sku_1376
 
     Tags *map[string]string
 
@@ -6089,8 +5873,6 @@ func (h *Azurerm_iothub_consumer_groupHandler) Delete(externalID string) error {
 
 type Azurerm_key_vault_access_policy_1377 struct {
 
-    Azurerm_key_vault_access_policy_1377_id *string `lyra:"ignore"`
-
     Application_id *string
 
     Certificate_permissions *[]string
@@ -6107,8 +5889,6 @@ type Azurerm_key_vault_access_policy_1377 struct {
 
 type Azurerm_key_vault_network_acls_1378 struct {
 
-    Azurerm_key_vault_network_acls_1378_id *string `lyra:"ignore"`
-
     Bypass string
 
     Default_action string
@@ -6121,8 +5901,6 @@ type Azurerm_key_vault_network_acls_1378 struct {
 
 type Azurerm_key_vault_sku_1379 struct {
 
-    Azurerm_key_vault_sku_1379_id *string `lyra:"ignore"`
-
     Name string
 
 }
@@ -6131,7 +5909,7 @@ type Azurerm_key_vault struct {
 
     Azurerm_key_vault_id *string `lyra:"ignore"`
 
-    Access_policy *Azurerm_key_vault_access_policy_1377
+    Access_policy *[]Azurerm_key_vault_access_policy_1377
 
     Enabled_for_deployment *bool
 
@@ -6143,11 +5921,11 @@ type Azurerm_key_vault struct {
 
     Name string
 
-    Network_acls *Azurerm_key_vault_network_acls_1378
+    Network_acls *[]Azurerm_key_vault_network_acls_1378
 
     Resource_group_name string
 
-    Sku Azurerm_key_vault_sku_1379
+    Sku []Azurerm_key_vault_sku_1379
 
     Tags *map[string]string
 
@@ -6255,8 +6033,6 @@ func (h *Azurerm_key_vault_access_policyHandler) Delete(externalID string) error
 
 type Azurerm_key_vault_certificate_certificate_1380 struct {
 
-    Azurerm_key_vault_certificate_certificate_1380_id *string `lyra:"ignore"`
-
     Contents string
 
     Password *string
@@ -6265,15 +6041,11 @@ type Azurerm_key_vault_certificate_certificate_1380 struct {
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382 struct {
 
-    Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382_id *string `lyra:"ignore"`
-
     Name string
 
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383 struct {
-
-    Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383_id *string `lyra:"ignore"`
 
     Exportable bool
 
@@ -6287,15 +6059,11 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383 s
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385 struct {
 
-    Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385_id *string `lyra:"ignore"`
-
     Action_type string
 
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386 struct {
-
-    Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386_id *string `lyra:"ignore"`
 
     Days_before_expiry *int
 
@@ -6305,25 +6073,19 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384 struct {
 
-    Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_id *string `lyra:"ignore"`
+    Action []Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385
 
-    Action Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385
-
-    Trigger Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386
+    Trigger []Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386
 
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387 struct {
-
-    Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387_id *string `lyra:"ignore"`
 
     Content_type string
 
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389 struct {
-
-    Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389_id *string `lyra:"ignore"`
 
     Dns_names *[]string
 
@@ -6335,15 +6097,13 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_prop
 
 type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388 struct {
 
-    Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_id *string `lyra:"ignore"`
-
     Extended_key_usage *[]string
 
     Key_usage []string
 
     Subject string
 
-    Subject_alternative_names *Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389
+    Subject_alternative_names *[]Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389
 
     Validity_in_months int
 
@@ -6351,17 +6111,15 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_prop
 
 type Azurerm_key_vault_certificate_certificate_policy_1381 struct {
 
-    Azurerm_key_vault_certificate_certificate_policy_1381_id *string `lyra:"ignore"`
+    Issuer_parameters []Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382
 
-    Issuer_parameters Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382
+    Key_properties []Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383
 
-    Key_properties Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383
+    Lifetime_action *[]Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384
 
-    Lifetime_action *Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384
+    Secret_properties []Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387
 
-    Secret_properties Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387
-
-    X509_certificate_properties *Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388
+    X509_certificate_properties *[]Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388
 
 }
 
@@ -6369,11 +6127,11 @@ type Azurerm_key_vault_certificate struct {
 
     Azurerm_key_vault_certificate_id *string `lyra:"ignore"`
 
-    Certificate *Azurerm_key_vault_certificate_certificate_1380
+    Certificate *[]Azurerm_key_vault_certificate_certificate_1380
 
     Certificate_data *string
 
-    Certificate_policy Azurerm_key_vault_certificate_certificate_policy_1381
+    Certificate_policy []Azurerm_key_vault_certificate_certificate_policy_1381
 
     Name string
 
@@ -6544,8 +6302,6 @@ func (h *Azurerm_key_vault_secretHandler) Delete(externalID string) error {
 
 type Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391 struct {
 
-    Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391_id *string `lyra:"ignore"`
-
     Enabled bool
 
     Subnet_name string
@@ -6553,8 +6309,6 @@ type Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391 stru
 }
 
 type Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392 struct {
-
-    Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392_id *string `lyra:"ignore"`
 
     Enabled bool
 
@@ -6564,8 +6318,6 @@ type Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392
 
 type Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393 struct {
 
-    Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393_id *string `lyra:"ignore"`
-
     Enabled bool
 
     Log_analytics_workspace_id string
@@ -6574,19 +6326,15 @@ type Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393 struct {
 
 type Azurerm_kubernetes_cluster_addon_profile_1390 struct {
 
-    Azurerm_kubernetes_cluster_addon_profile_1390_id *string `lyra:"ignore"`
+    Aci_connector_linux *[]Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391
 
-    Aci_connector_linux *Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391
+    Http_application_routing *[]Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392
 
-    Http_application_routing *Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392
-
-    Oms_agent *Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393
+    Oms_agent *[]Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393
 
 }
 
 type Azurerm_kubernetes_cluster_agent_pool_profile_1394 struct {
-
-    Azurerm_kubernetes_cluster_agent_pool_profile_1394_id *string `lyra:"ignore"`
 
     Count *int
 
@@ -6610,8 +6358,6 @@ type Azurerm_kubernetes_cluster_agent_pool_profile_1394 struct {
 
 type Azurerm_kubernetes_cluster_kube_admin_config_1395 struct {
 
-    Azurerm_kubernetes_cluster_kube_admin_config_1395_id *string `lyra:"ignore"`
-
     Client_certificate *string
 
     Client_key *string
@@ -6627,8 +6373,6 @@ type Azurerm_kubernetes_cluster_kube_admin_config_1395 struct {
 }
 
 type Azurerm_kubernetes_cluster_kube_config_1396 struct {
-
-    Azurerm_kubernetes_cluster_kube_config_1396_id *string `lyra:"ignore"`
 
     Client_certificate *string
 
@@ -6646,25 +6390,19 @@ type Azurerm_kubernetes_cluster_kube_config_1396 struct {
 
 type Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398 struct {
 
-    Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398_id *string `lyra:"ignore"`
-
     Key_data string
 
 }
 
 type Azurerm_kubernetes_cluster_linux_profile_1397 struct {
 
-    Azurerm_kubernetes_cluster_linux_profile_1397_id *string `lyra:"ignore"`
-
     Admin_username string
 
-    Ssh_key Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398
+    Ssh_key []Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398
 
 }
 
 type Azurerm_kubernetes_cluster_network_profile_1399 struct {
-
-    Azurerm_kubernetes_cluster_network_profile_1399_id *string `lyra:"ignore"`
 
     Dns_service_ip *string
 
@@ -6680,8 +6418,6 @@ type Azurerm_kubernetes_cluster_network_profile_1399 struct {
 
 type Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401 struct {
 
-    Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401_id *string `lyra:"ignore"`
-
     Client_app_id string
 
     Server_app_id string
@@ -6694,17 +6430,13 @@ type Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_dire
 
 type Azurerm_kubernetes_cluster_role_based_access_control_1400 struct {
 
-    Azurerm_kubernetes_cluster_role_based_access_control_1400_id *string `lyra:"ignore"`
-
-    Azure_active_directory *Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401
+    Azure_active_directory *[]Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401
 
     Enabled bool
 
 }
 
 type Azurerm_kubernetes_cluster_service_principal_1402 struct {
-
-    Azurerm_kubernetes_cluster_service_principal_1402_id *string `lyra:"ignore"`
 
     Client_id string
 
@@ -6716,37 +6448,37 @@ type Azurerm_kubernetes_cluster struct {
 
     Azurerm_kubernetes_cluster_id *string `lyra:"ignore"`
 
-    Addon_profile *Azurerm_kubernetes_cluster_addon_profile_1390
+    Addon_profile *[]Azurerm_kubernetes_cluster_addon_profile_1390
 
-    Agent_pool_profile Azurerm_kubernetes_cluster_agent_pool_profile_1394
+    Agent_pool_profile []Azurerm_kubernetes_cluster_agent_pool_profile_1394
 
     Dns_prefix string
 
     Fqdn *string
 
-    Kube_admin_config *Azurerm_kubernetes_cluster_kube_admin_config_1395
+    Kube_admin_config *[]Azurerm_kubernetes_cluster_kube_admin_config_1395
 
     Kube_admin_config_raw *string
 
-    Kube_config *Azurerm_kubernetes_cluster_kube_config_1396
+    Kube_config *[]Azurerm_kubernetes_cluster_kube_config_1396
 
     Kube_config_raw *string
 
     Kubernetes_version *string
 
-    Linux_profile *Azurerm_kubernetes_cluster_linux_profile_1397
+    Linux_profile *[]Azurerm_kubernetes_cluster_linux_profile_1397
 
     Location string
 
     Name string
 
-    Network_profile *Azurerm_kubernetes_cluster_network_profile_1399
+    Network_profile *[]Azurerm_kubernetes_cluster_network_profile_1399
 
     Node_resource_group *string
 
     Resource_group_name string
 
-    Role_based_access_control *Azurerm_kubernetes_cluster_role_based_access_control_1400
+    Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_1400
 
     Service_principal Azurerm_kubernetes_cluster_service_principal_1402
 
@@ -6793,8 +6525,6 @@ func (h *Azurerm_kubernetes_clusterHandler) Delete(externalID string) error {
 
 type Azurerm_lb_frontend_ip_configuration_1403 struct {
 
-    Azurerm_lb_frontend_ip_configuration_1403_id *string `lyra:"ignore"`
-
     Inbound_nat_rules *[]string
 
     Load_balancer_rules *[]string
@@ -6817,7 +6547,7 @@ type Azurerm_lb struct {
 
     Azurerm_lb_id *string `lyra:"ignore"`
 
-    Frontend_ip_configuration *Azurerm_lb_frontend_ip_configuration_1403
+    Frontend_ip_configuration *[]Azurerm_lb_frontend_ip_configuration_1403
 
     Location string
 
@@ -7191,8 +6921,6 @@ func (h *Azurerm_lb_ruleHandler) Delete(externalID string) error {
 
 type Azurerm_local_network_gateway_bgp_settings_1404 struct {
 
-    Azurerm_local_network_gateway_bgp_settings_1404_id *string `lyra:"ignore"`
-
     Asn int
 
     Bgp_peering_address string
@@ -7207,7 +6935,7 @@ type Azurerm_local_network_gateway struct {
 
     Address_space []string
 
-    Bgp_settings *Azurerm_local_network_gateway_bgp_settings_1404
+    Bgp_settings *[]Azurerm_local_network_gateway_bgp_settings_1404
 
     Gateway_address string
 
@@ -7260,8 +6988,6 @@ func (h *Azurerm_local_network_gatewayHandler) Delete(externalID string) error {
 
 type Azurerm_log_analytics_solution_plan_1405 struct {
 
-    Azurerm_log_analytics_solution_plan_1405_id *string `lyra:"ignore"`
-
     Name *string
 
     Product string
@@ -7278,7 +7004,7 @@ type Azurerm_log_analytics_solution struct {
 
     Location string
 
-    Plan Azurerm_log_analytics_solution_plan_1405
+    Plan []Azurerm_log_analytics_solution_plan_1405
 
     Resource_group_name string
 
@@ -7763,8 +7489,6 @@ func (h *Azurerm_logic_app_workflowHandler) Delete(externalID string) error {
 
 type Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407 struct {
 
-    Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407_id *string `lyra:"ignore"`
-
     Secret_url string
 
     Source_vault_id string
@@ -7772,8 +7496,6 @@ type Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407 stru
 }
 
 type Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408 struct {
-
-    Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408_id *string `lyra:"ignore"`
 
     Key_url string
 
@@ -7783,13 +7505,11 @@ type Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408 struc
 
 type Azurerm_managed_disk_encryption_settings_1406 struct {
 
-    Azurerm_managed_disk_encryption_settings_1406_id *string `lyra:"ignore"`
-
-    Disk_encryption_key *Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407
+    Disk_encryption_key *[]Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407
 
     Enabled bool
 
-    Key_encryption_key *Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408
+    Key_encryption_key *[]Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408
 
 }
 
@@ -7801,7 +7521,7 @@ type Azurerm_managed_disk struct {
 
     Disk_size_gb *int
 
-    Encryption_settings *Azurerm_managed_disk_encryption_settings_1406
+    Encryption_settings *[]Azurerm_managed_disk_encryption_settings_1406
 
     Image_reference_id *string
 
@@ -8019,8 +7739,6 @@ func (h *Azurerm_mariadb_databaseHandler) Delete(externalID string) error {
 
 type Azurerm_mariadb_server_sku_1409 struct {
 
-    Azurerm_mariadb_server_sku_1409_id *string `lyra:"ignore"`
-
     Capacity int
 
     Family string
@@ -8032,8 +7750,6 @@ type Azurerm_mariadb_server_sku_1409 struct {
 }
 
 type Azurerm_mariadb_server_storage_profile_1410 struct {
-
-    Azurerm_mariadb_server_storage_profile_1410_id *string `lyra:"ignore"`
 
     Backup_retention_days *int
 
@@ -8059,11 +7775,11 @@ type Azurerm_mariadb_server struct {
 
     Resource_group_name string
 
-    Sku Azurerm_mariadb_server_sku_1409
+    Sku []Azurerm_mariadb_server_sku_1409
 
     Ssl_enforcement string
 
-    Storage_profile Azurerm_mariadb_server_storage_profile_1410
+    Storage_profile []Azurerm_mariadb_server_storage_profile_1410
 
     Tags *map[string]string
 
@@ -8110,8 +7826,6 @@ func (h *Azurerm_mariadb_serverHandler) Delete(externalID string) error {
 
 type Azurerm_metric_alertrule_email_action_1411 struct {
 
-    Azurerm_metric_alertrule_email_action_1411_id *string `lyra:"ignore"`
-
     Custom_emails *[]string
 
     Send_to_service_owners *bool
@@ -8119,8 +7833,6 @@ type Azurerm_metric_alertrule_email_action_1411 struct {
 }
 
 type Azurerm_metric_alertrule_webhook_action_1412 struct {
-
-    Azurerm_metric_alertrule_webhook_action_1412_id *string `lyra:"ignore"`
 
     Properties *map[string]string
 
@@ -8136,7 +7848,7 @@ type Azurerm_metric_alertrule struct {
 
     Description *string
 
-    Email_action *Azurerm_metric_alertrule_email_action_1411
+    Email_action *[]Azurerm_metric_alertrule_email_action_1411
 
     Enabled *bool
 
@@ -8158,7 +7870,7 @@ type Azurerm_metric_alertrule struct {
 
     Threshold float64
 
-    Webhook_action *Azurerm_metric_alertrule_webhook_action_1412
+    Webhook_action *[]Azurerm_metric_alertrule_webhook_action_1412
 
 }
 
@@ -8201,8 +7913,6 @@ func (h *Azurerm_metric_alertruleHandler) Delete(externalID string) error {
 
 type Azurerm_monitor_action_group_email_receiver_1413 struct {
 
-    Azurerm_monitor_action_group_email_receiver_1413_id *string `lyra:"ignore"`
-
     Email_address string
 
     Name string
@@ -8210,8 +7920,6 @@ type Azurerm_monitor_action_group_email_receiver_1413 struct {
 }
 
 type Azurerm_monitor_action_group_sms_receiver_1414 struct {
-
-    Azurerm_monitor_action_group_sms_receiver_1414_id *string `lyra:"ignore"`
 
     Country_code string
 
@@ -8223,8 +7931,6 @@ type Azurerm_monitor_action_group_sms_receiver_1414 struct {
 
 type Azurerm_monitor_action_group_webhook_receiver_1415 struct {
 
-    Azurerm_monitor_action_group_webhook_receiver_1415_id *string `lyra:"ignore"`
-
     Name string
 
     Service_uri string
@@ -8235,7 +7941,7 @@ type Azurerm_monitor_action_group struct {
 
     Azurerm_monitor_action_group_id *string `lyra:"ignore"`
 
-    Email_receiver *Azurerm_monitor_action_group_email_receiver_1413
+    Email_receiver *[]Azurerm_monitor_action_group_email_receiver_1413
 
     Enabled *bool
 
@@ -8245,11 +7951,11 @@ type Azurerm_monitor_action_group struct {
 
     Short_name string
 
-    Sms_receiver *Azurerm_monitor_action_group_sms_receiver_1414
+    Sms_receiver *[]Azurerm_monitor_action_group_sms_receiver_1414
 
     Tags *map[string]string
 
-    Webhook_receiver *Azurerm_monitor_action_group_webhook_receiver_1415
+    Webhook_receiver *[]Azurerm_monitor_action_group_webhook_receiver_1415
 
 }
 
@@ -8292,8 +7998,6 @@ func (h *Azurerm_monitor_action_groupHandler) Delete(externalID string) error {
 
 type Azurerm_monitor_activity_log_alert_action_1416 struct {
 
-    Azurerm_monitor_activity_log_alert_action_1416_id *string `lyra:"ignore"`
-
     Action_group_id string
 
     Webhook_properties *map[string]string
@@ -8301,8 +8005,6 @@ type Azurerm_monitor_activity_log_alert_action_1416 struct {
 }
 
 type Azurerm_monitor_activity_log_alert_criteria_1417 struct {
-
-    Azurerm_monitor_activity_log_alert_criteria_1417_id *string `lyra:"ignore"`
 
     Caller *string
 
@@ -8332,7 +8034,7 @@ type Azurerm_monitor_activity_log_alert struct {
 
     Action *Azurerm_monitor_activity_log_alert_action_1416
 
-    Criteria Azurerm_monitor_activity_log_alert_criteria_1417
+    Criteria []Azurerm_monitor_activity_log_alert_criteria_1417
 
     Description *string
 
@@ -8387,8 +8089,6 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Delete(externalID string) er
 
 type Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419 struct {
 
-    Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419_id *string `lyra:"ignore"`
-
     Days *int
 
     Enabled bool
@@ -8397,19 +8097,15 @@ type Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419 struct {
 
 type Azurerm_monitor_diagnostic_setting_log_1418 struct {
 
-    Azurerm_monitor_diagnostic_setting_log_1418_id *string `lyra:"ignore"`
-
     Category string
 
     Enabled *bool
 
-    Retention_policy Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419
+    Retention_policy []Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419
 
 }
 
 type Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421 struct {
-
-    Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421_id *string `lyra:"ignore"`
 
     Days *int
 
@@ -8419,13 +8115,11 @@ type Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421 struct
 
 type Azurerm_monitor_diagnostic_setting_metric_1420 struct {
 
-    Azurerm_monitor_diagnostic_setting_metric_1420_id *string `lyra:"ignore"`
-
     Category string
 
     Enabled *bool
 
-    Retention_policy Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421
+    Retention_policy []Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421
 
 }
 
@@ -8490,8 +8184,6 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Delete(externalID string) er
 
 type Azurerm_monitor_log_profile_retention_policy_1422 struct {
 
-    Azurerm_monitor_log_profile_retention_policy_1422_id *string `lyra:"ignore"`
-
     Days *int
 
     Enabled bool
@@ -8508,7 +8200,7 @@ type Azurerm_monitor_log_profile struct {
 
     Name string
 
-    Retention_policy Azurerm_monitor_log_profile_retention_policy_1422
+    Retention_policy []Azurerm_monitor_log_profile_retention_policy_1422
 
     Servicebus_rule_id *string
 
@@ -8555,8 +8247,6 @@ func (h *Azurerm_monitor_log_profileHandler) Delete(externalID string) error {
 
 type Azurerm_monitor_metric_alert_action_1423 struct {
 
-    Azurerm_monitor_metric_alert_action_1423_id *string `lyra:"ignore"`
-
     Action_group_id string
 
     Webhook_properties *map[string]string
@@ -8564,8 +8254,6 @@ type Azurerm_monitor_metric_alert_action_1423 struct {
 }
 
 type Azurerm_monitor_metric_alert_criteria_1424_dimension_1425 struct {
-
-    Azurerm_monitor_metric_alert_criteria_1424_dimension_1425_id *string `lyra:"ignore"`
 
     Name string
 
@@ -8577,11 +8265,9 @@ type Azurerm_monitor_metric_alert_criteria_1424_dimension_1425 struct {
 
 type Azurerm_monitor_metric_alert_criteria_1424 struct {
 
-    Azurerm_monitor_metric_alert_criteria_1424_id *string `lyra:"ignore"`
-
     Aggregation string
 
-    Dimension *Azurerm_monitor_metric_alert_criteria_1424_dimension_1425
+    Dimension *[]Azurerm_monitor_metric_alert_criteria_1424_dimension_1425
 
     Metric_name string
 
@@ -8601,7 +8287,7 @@ type Azurerm_monitor_metric_alert struct {
 
     Auto_mitigate *bool
 
-    Criteria Azurerm_monitor_metric_alert_criteria_1424
+    Criteria []Azurerm_monitor_metric_alert_criteria_1424
 
     Description *string
 
@@ -8662,8 +8348,6 @@ func (h *Azurerm_monitor_metric_alertHandler) Delete(externalID string) error {
 
 type Azurerm_mssql_elasticpool_elastic_pool_properties_1426 struct {
 
-    Azurerm_mssql_elasticpool_elastic_pool_properties_1426_id *string `lyra:"ignore"`
-
     Creation_date *string
 
     License_type *string
@@ -8678,8 +8362,6 @@ type Azurerm_mssql_elasticpool_elastic_pool_properties_1426 struct {
 
 type Azurerm_mssql_elasticpool_per_database_settings_1427 struct {
 
-    Azurerm_mssql_elasticpool_per_database_settings_1427_id *string `lyra:"ignore"`
-
     Max_capacity float64
 
     Min_capacity float64
@@ -8687,8 +8369,6 @@ type Azurerm_mssql_elasticpool_per_database_settings_1427 struct {
 }
 
 type Azurerm_mssql_elasticpool_sku_1428 struct {
-
-    Azurerm_mssql_elasticpool_sku_1428_id *string `lyra:"ignore"`
 
     Capacity int
 
@@ -8704,7 +8384,7 @@ type Azurerm_mssql_elasticpool struct {
 
     Azurerm_mssql_elasticpool_id *string `lyra:"ignore"`
 
-    Elastic_pool_properties *Azurerm_mssql_elasticpool_elastic_pool_properties_1426
+    Elastic_pool_properties *[]Azurerm_mssql_elasticpool_elastic_pool_properties_1426
 
     Location string
 
@@ -8712,13 +8392,13 @@ type Azurerm_mssql_elasticpool struct {
 
     Name string
 
-    Per_database_settings Azurerm_mssql_elasticpool_per_database_settings_1427
+    Per_database_settings []Azurerm_mssql_elasticpool_per_database_settings_1427
 
     Resource_group_name string
 
     Server_name string
 
-    Sku Azurerm_mssql_elasticpool_sku_1428
+    Sku []Azurerm_mssql_elasticpool_sku_1428
 
     Tags *map[string]string
 
@@ -8922,8 +8602,6 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Delete(externalID string) error {
 
 type Azurerm_mysql_server_sku_1429 struct {
 
-    Azurerm_mysql_server_sku_1429_id *string `lyra:"ignore"`
-
     Capacity int
 
     Family string
@@ -8935,8 +8613,6 @@ type Azurerm_mysql_server_sku_1429 struct {
 }
 
 type Azurerm_mysql_server_storage_profile_1430 struct {
-
-    Azurerm_mysql_server_storage_profile_1430_id *string `lyra:"ignore"`
 
     Backup_retention_days *int
 
@@ -8962,11 +8638,11 @@ type Azurerm_mysql_server struct {
 
     Resource_group_name string
 
-    Sku Azurerm_mysql_server_sku_1429
+    Sku []Azurerm_mysql_server_sku_1429
 
     Ssl_enforcement string
 
-    Storage_profile Azurerm_mysql_server_storage_profile_1430
+    Storage_profile []Azurerm_mysql_server_storage_profile_1430
 
     Tags *map[string]string
 
@@ -9064,8 +8740,6 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Delete(externalID string) er
 
 type Azurerm_network_interface_ip_configuration_1431 struct {
 
-    Azurerm_network_interface_ip_configuration_1431_id *string `lyra:"ignore"`
-
     Application_gateway_backend_address_pools_ids *[]string
 
     Application_security_group_ids *[]string
@@ -9106,7 +8780,7 @@ type Azurerm_network_interface struct {
 
     Internal_fqdn *string
 
-    Ip_configuration Azurerm_network_interface_ip_configuration_1431
+    Ip_configuration []Azurerm_network_interface_ip_configuration_1431
 
     Location string
 
@@ -9313,8 +8987,6 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Delete(externalI
 }
 
 type Azurerm_network_security_group_security_rule_1432 struct {
-
-    Azurerm_network_security_group_security_rule_1432_id *string `lyra:"ignore"`
 
     Access string
 
@@ -9535,8 +9207,6 @@ func (h *Azurerm_network_watcherHandler) Delete(externalID string) error {
 
 type Azurerm_notification_hub_apns_credential_1433 struct {
 
-    Azurerm_notification_hub_apns_credential_1433_id *string `lyra:"ignore"`
-
     Application_mode string
 
     Bundle_id string
@@ -9551,8 +9221,6 @@ type Azurerm_notification_hub_apns_credential_1433 struct {
 
 type Azurerm_notification_hub_gcm_credential_1434 struct {
 
-    Azurerm_notification_hub_gcm_credential_1434_id *string `lyra:"ignore"`
-
     Api_key string
 
 }
@@ -9561,9 +9229,9 @@ type Azurerm_notification_hub struct {
 
     Azurerm_notification_hub_id *string `lyra:"ignore"`
 
-    Apns_credential *Azurerm_notification_hub_apns_credential_1433
+    Apns_credential *[]Azurerm_notification_hub_apns_credential_1433
 
-    Gcm_credential *Azurerm_notification_hub_gcm_credential_1434
+    Gcm_credential *[]Azurerm_notification_hub_gcm_credential_1434
 
     Location string
 
@@ -9675,8 +9343,6 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Delete(externalID s
 
 type Azurerm_notification_hub_namespace_sku_1435 struct {
 
-    Azurerm_notification_hub_namespace_sku_1435_id *string `lyra:"ignore"`
-
     Name string
 
 }
@@ -9697,7 +9363,7 @@ type Azurerm_notification_hub_namespace struct {
 
     Servicebus_endpoint *string
 
-    Sku Azurerm_notification_hub_namespace_sku_1435
+    Sku []Azurerm_notification_hub_namespace_sku_1435
 
 }
 
@@ -9740,8 +9406,6 @@ func (h *Azurerm_notification_hub_namespaceHandler) Delete(externalID string) er
 
 type Azurerm_packet_capture_filter_1436 struct {
 
-    Azurerm_packet_capture_filter_1436_id *string `lyra:"ignore"`
-
     Local_ip_address *string
 
     Local_port *string
@@ -9756,8 +9420,6 @@ type Azurerm_packet_capture_filter_1436 struct {
 
 type Azurerm_packet_capture_storage_location_1437 struct {
 
-    Azurerm_packet_capture_storage_location_1437_id *string `lyra:"ignore"`
-
     File_path *string
 
     Storage_account_id *string
@@ -9770,7 +9432,7 @@ type Azurerm_packet_capture struct {
 
     Azurerm_packet_capture_id *string `lyra:"ignore"`
 
-    Filter *Azurerm_packet_capture_filter_1436
+    Filter *[]Azurerm_packet_capture_filter_1436
 
     Maximum_bytes_per_packet *int
 
@@ -9784,7 +9446,7 @@ type Azurerm_packet_capture struct {
 
     Resource_group_name string
 
-    Storage_location Azurerm_packet_capture_storage_location_1437
+    Storage_location []Azurerm_packet_capture_storage_location_1437
 
     Target_resource_id string
 
@@ -9829,8 +9491,6 @@ func (h *Azurerm_packet_captureHandler) Delete(externalID string) error {
 
 type Azurerm_policy_assignment_identity_1438 struct {
 
-    Azurerm_policy_assignment_identity_1438_id *string `lyra:"ignore"`
-
     Principal_id *string
 
     Tenant_id *string
@@ -9847,7 +9507,7 @@ type Azurerm_policy_assignment struct {
 
     Display_name *string
 
-    Identity *Azurerm_policy_assignment_identity_1438
+    Identity *[]Azurerm_policy_assignment_identity_1438
 
     Location *string
 
@@ -10179,8 +9839,6 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Delete(externalID string) erro
 
 type Azurerm_postgresql_server_sku_1439 struct {
 
-    Azurerm_postgresql_server_sku_1439_id *string `lyra:"ignore"`
-
     Capacity int
 
     Family string
@@ -10192,8 +9850,6 @@ type Azurerm_postgresql_server_sku_1439 struct {
 }
 
 type Azurerm_postgresql_server_storage_profile_1440 struct {
-
-    Azurerm_postgresql_server_storage_profile_1440_id *string `lyra:"ignore"`
 
     Backup_retention_days *int
 
@@ -10219,11 +9875,11 @@ type Azurerm_postgresql_server struct {
 
     Resource_group_name string
 
-    Sku Azurerm_postgresql_server_sku_1439
+    Sku []Azurerm_postgresql_server_sku_1439
 
     Ssl_enforcement string
 
-    Storage_profile Azurerm_postgresql_server_storage_profile_1440
+    Storage_profile []Azurerm_postgresql_server_storage_profile_1440
 
     Tags *map[string]string
 
@@ -10447,8 +10103,6 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Delete(externalID string
 
 type Azurerm_recovery_services_protection_policy_vm_backup_1441 struct {
 
-    Azurerm_recovery_services_protection_policy_vm_backup_1441_id *string `lyra:"ignore"`
-
     Frequency string
 
     Time string
@@ -10459,15 +10113,11 @@ type Azurerm_recovery_services_protection_policy_vm_backup_1441 struct {
 
 type Azurerm_recovery_services_protection_policy_vm_retention_daily_1442 struct {
 
-    Azurerm_recovery_services_protection_policy_vm_retention_daily_1442_id *string `lyra:"ignore"`
-
     Count int
 
 }
 
 type Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443 struct {
-
-    Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443_id *string `lyra:"ignore"`
 
     Count int
 
@@ -10479,8 +10129,6 @@ type Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443 struc
 
 type Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444 struct {
 
-    Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444_id *string `lyra:"ignore"`
-
     Count int
 
     Weekdays []string
@@ -10488,8 +10136,6 @@ type Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444 struct
 }
 
 type Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445 struct {
-
-    Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445_id *string `lyra:"ignore"`
 
     Count int
 
@@ -10505,7 +10151,7 @@ type Azurerm_recovery_services_protection_policy_vm struct {
 
     Azurerm_recovery_services_protection_policy_vm_id *string `lyra:"ignore"`
 
-    Backup Azurerm_recovery_services_protection_policy_vm_backup_1441
+    Backup []Azurerm_recovery_services_protection_policy_vm_backup_1441
 
     Name string
 
@@ -10513,13 +10159,13 @@ type Azurerm_recovery_services_protection_policy_vm struct {
 
     Resource_group_name string
 
-    Retention_daily *Azurerm_recovery_services_protection_policy_vm_retention_daily_1442
+    Retention_daily *[]Azurerm_recovery_services_protection_policy_vm_retention_daily_1442
 
-    Retention_monthly *Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443
+    Retention_monthly *[]Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443
 
-    Retention_weekly *Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444
+    Retention_weekly *[]Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444
 
-    Retention_yearly *Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445
+    Retention_yearly *[]Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445
 
     Tags *map[string]string
 
@@ -10619,8 +10265,6 @@ func (h *Azurerm_recovery_services_vaultHandler) Delete(externalID string) error
 
 type Azurerm_redis_cache_patch_schedule_1446 struct {
 
-    Azurerm_redis_cache_patch_schedule_1446_id *string `lyra:"ignore"`
-
     Day_of_week string
 
     Start_hour_utc *int
@@ -10628,8 +10272,6 @@ type Azurerm_redis_cache_patch_schedule_1446 struct {
 }
 
 type Azurerm_redis_cache_redis_configuration_1447 struct {
-
-    Azurerm_redis_cache_redis_configuration_1447_id *string `lyra:"ignore"`
 
     Maxclients *int
 
@@ -10667,7 +10309,7 @@ type Azurerm_redis_cache struct {
 
     Name string
 
-    Patch_schedule *Azurerm_redis_cache_patch_schedule_1446
+    Patch_schedule *[]Azurerm_redis_cache_patch_schedule_1446
 
     Port *int
 
@@ -10675,7 +10317,7 @@ type Azurerm_redis_cache struct {
 
     Private_static_ip_address *string
 
-    Redis_configuration Azurerm_redis_cache_redis_configuration_1447
+    Redis_configuration []Azurerm_redis_cache_redis_configuration_1447
 
     Resource_group_name string
 
@@ -10787,8 +10429,6 @@ func (h *Azurerm_redis_firewall_ruleHandler) Delete(externalID string) error {
 
 type Azurerm_relay_namespace_sku_1448 struct {
 
-    Azurerm_relay_namespace_sku_1448_id *string `lyra:"ignore"`
-
     Name string
 
 }
@@ -10813,7 +10453,7 @@ type Azurerm_relay_namespace struct {
 
     Secondary_key *string
 
-    Sku Azurerm_relay_namespace_sku_1448
+    Sku []Azurerm_relay_namespace_sku_1448
 
     Tags *map[string]string
 
@@ -10960,8 +10600,6 @@ func (h *Azurerm_role_assignmentHandler) Delete(externalID string) error {
 
 type Azurerm_role_definition_permissions_1449 struct {
 
-    Azurerm_role_definition_permissions_1449_id *string `lyra:"ignore"`
-
     Actions *[]string
 
     Data_actions *[]string
@@ -10982,7 +10620,7 @@ type Azurerm_role_definition struct {
 
     Name string
 
-    Permissions Azurerm_role_definition_permissions_1449
+    Permissions []Azurerm_role_definition_permissions_1449
 
     Role_definition_id *string
 
@@ -11084,8 +10722,6 @@ func (h *Azurerm_routeHandler) Delete(externalID string) error {
 
 type Azurerm_route_table_route_1450 struct {
 
-    Azurerm_route_table_route_1450_id *string `lyra:"ignore"`
-
     Address_prefix string
 
     Name string
@@ -11108,7 +10744,7 @@ type Azurerm_route_table struct {
 
     Resource_group_name string
 
-    Route *Azurerm_route_table_route_1450
+    Route *[]Azurerm_route_table_route_1450
 
     Subnets *[]string
 
@@ -11155,8 +10791,6 @@ func (h *Azurerm_route_tableHandler) Delete(externalID string) error {
 
 type Azurerm_scheduler_job_action_storage_queue_1451 struct {
 
-    Azurerm_scheduler_job_action_storage_queue_1451_id *string `lyra:"ignore"`
-
     Message string
 
     Sas_token string
@@ -11168,8 +10802,6 @@ type Azurerm_scheduler_job_action_storage_queue_1451 struct {
 }
 
 type Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453 struct {
-
-    Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453_id *string `lyra:"ignore"`
 
     Audience *string
 
@@ -11183,8 +10815,6 @@ type Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453 
 
 type Azurerm_scheduler_job_action_web_1452_authentication_basic_1454 struct {
 
-    Azurerm_scheduler_job_action_web_1452_authentication_basic_1454_id *string `lyra:"ignore"`
-
     Password string
 
     Username string
@@ -11192,8 +10822,6 @@ type Azurerm_scheduler_job_action_web_1452_authentication_basic_1454 struct {
 }
 
 type Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455 struct {
-
-    Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455_id *string `lyra:"ignore"`
 
     Expiration *string
 
@@ -11209,13 +10837,11 @@ type Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455 struc
 
 type Azurerm_scheduler_job_action_web_1452 struct {
 
-    Azurerm_scheduler_job_action_web_1452_id *string `lyra:"ignore"`
+    Authentication_active_directory *[]Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453
 
-    Authentication_active_directory *Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453
+    Authentication_basic *[]Azurerm_scheduler_job_action_web_1452_authentication_basic_1454
 
-    Authentication_basic *Azurerm_scheduler_job_action_web_1452_authentication_basic_1454
-
-    Authentication_certificate *Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455
+    Authentication_certificate *[]Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455
 
     Body *string
 
@@ -11229,8 +10855,6 @@ type Azurerm_scheduler_job_action_web_1452 struct {
 
 type Azurerm_scheduler_job_error_action_storage_queue_1456 struct {
 
-    Azurerm_scheduler_job_error_action_storage_queue_1456_id *string `lyra:"ignore"`
-
     Message string
 
     Sas_token string
@@ -11242,8 +10866,6 @@ type Azurerm_scheduler_job_error_action_storage_queue_1456 struct {
 }
 
 type Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458 struct {
-
-    Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458_id *string `lyra:"ignore"`
 
     Audience *string
 
@@ -11257,8 +10879,6 @@ type Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory
 
 type Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459 struct {
 
-    Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459_id *string `lyra:"ignore"`
-
     Password string
 
     Username string
@@ -11266,8 +10886,6 @@ type Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459 struc
 }
 
 type Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460 struct {
-
-    Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460_id *string `lyra:"ignore"`
 
     Expiration *string
 
@@ -11283,13 +10901,11 @@ type Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460
 
 type Azurerm_scheduler_job_error_action_web_1457 struct {
 
-    Azurerm_scheduler_job_error_action_web_1457_id *string `lyra:"ignore"`
+    Authentication_active_directory *[]Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458
 
-    Authentication_active_directory *Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458
+    Authentication_basic *[]Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459
 
-    Authentication_basic *Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459
-
-    Authentication_certificate *Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460
+    Authentication_certificate *[]Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460
 
     Body *string
 
@@ -11303,8 +10919,6 @@ type Azurerm_scheduler_job_error_action_web_1457 struct {
 
 type Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462 struct {
 
-    Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462_id *string `lyra:"ignore"`
-
     Day string
 
     Occurrence int
@@ -11312,8 +10926,6 @@ type Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462 struct {
 }
 
 type Azurerm_scheduler_job_recurrence_1461 struct {
-
-    Azurerm_scheduler_job_recurrence_1461_id *string `lyra:"ignore"`
 
     Count *int
 
@@ -11337,8 +10949,6 @@ type Azurerm_scheduler_job_recurrence_1461 struct {
 
 type Azurerm_scheduler_job_retry_1463 struct {
 
-    Azurerm_scheduler_job_retry_1463_id *string `lyra:"ignore"`
-
     Count *int
 
     Interval *string
@@ -11349,23 +10959,23 @@ type Azurerm_scheduler_job struct {
 
     Azurerm_scheduler_job_id *string `lyra:"ignore"`
 
-    Action_storage_queue *Azurerm_scheduler_job_action_storage_queue_1451
+    Action_storage_queue *[]Azurerm_scheduler_job_action_storage_queue_1451
 
-    Action_web *Azurerm_scheduler_job_action_web_1452
+    Action_web *[]Azurerm_scheduler_job_action_web_1452
 
-    Error_action_storage_queue *Azurerm_scheduler_job_error_action_storage_queue_1456
+    Error_action_storage_queue *[]Azurerm_scheduler_job_error_action_storage_queue_1456
 
-    Error_action_web *Azurerm_scheduler_job_error_action_web_1457
+    Error_action_web *[]Azurerm_scheduler_job_error_action_web_1457
 
     Job_collection_name string
 
     Name string
 
-    Recurrence *Azurerm_scheduler_job_recurrence_1461
+    Recurrence *[]Azurerm_scheduler_job_recurrence_1461
 
     Resource_group_name string
 
-    Retry *Azurerm_scheduler_job_retry_1463
+    Retry *[]Azurerm_scheduler_job_retry_1463
 
     Start_time *string
 
@@ -11412,8 +11022,6 @@ func (h *Azurerm_scheduler_jobHandler) Delete(externalID string) error {
 
 type Azurerm_scheduler_job_collection_quota_1464 struct {
 
-    Azurerm_scheduler_job_collection_quota_1464_id *string `lyra:"ignore"`
-
     Max_job_count *int
 
     Max_recurrence_frequency string
@@ -11432,7 +11040,7 @@ type Azurerm_scheduler_job_collection struct {
 
     Name string
 
-    Quota *Azurerm_scheduler_job_collection_quota_1464
+    Quota *[]Azurerm_scheduler_job_collection_quota_1464
 
     Resource_group_name string
 
@@ -11687,8 +11295,6 @@ func (h *Azurerm_security_center_workspaceHandler) Delete(externalID string) err
 
 type Azurerm_service_fabric_cluster_azure_active_directory_1465 struct {
 
-    Azurerm_service_fabric_cluster_azure_active_directory_1465_id *string `lyra:"ignore"`
-
     Client_application_id string
 
     Cluster_application_id string
@@ -11698,8 +11304,6 @@ type Azurerm_service_fabric_cluster_azure_active_directory_1465 struct {
 }
 
 type Azurerm_service_fabric_cluster_certificate_1466 struct {
-
-    Azurerm_service_fabric_cluster_certificate_1466_id *string `lyra:"ignore"`
 
     Thumbprint string
 
@@ -11711,8 +11315,6 @@ type Azurerm_service_fabric_cluster_certificate_1466 struct {
 
 type Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467 struct {
 
-    Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467_id *string `lyra:"ignore"`
-
     Is_admin bool
 
     Thumbprint string
@@ -11720,8 +11322,6 @@ type Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467 struct {
 }
 
 type Azurerm_service_fabric_cluster_diagnostics_config_1468 struct {
-
-    Azurerm_service_fabric_cluster_diagnostics_config_1468_id *string `lyra:"ignore"`
 
     Blob_endpoint string
 
@@ -11737,8 +11337,6 @@ type Azurerm_service_fabric_cluster_diagnostics_config_1468 struct {
 
 type Azurerm_service_fabric_cluster_fabric_settings_1469 struct {
 
-    Azurerm_service_fabric_cluster_fabric_settings_1469_id *string `lyra:"ignore"`
-
     Name string
 
     Parameters *map[string]string
@@ -11746,8 +11344,6 @@ type Azurerm_service_fabric_cluster_fabric_settings_1469 struct {
 }
 
 type Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471 struct {
-
-    Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471_id *string `lyra:"ignore"`
 
     End_port int
 
@@ -11757,8 +11353,6 @@ type Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471 struct
 
 type Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472 struct {
 
-    Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472_id *string `lyra:"ignore"`
-
     End_port int
 
     Start_port int
@@ -11767,15 +11361,13 @@ type Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472 struct {
 
 type Azurerm_service_fabric_cluster_node_type_1470 struct {
 
-    Azurerm_service_fabric_cluster_node_type_1470_id *string `lyra:"ignore"`
-
-    Application_ports *Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471
+    Application_ports *[]Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471
 
     Client_endpoint_port int
 
     Durability_level *string
 
-    Ephemeral_ports *Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472
+    Ephemeral_ports *[]Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472
 
     Http_endpoint_port int
 
@@ -11791,8 +11383,6 @@ type Azurerm_service_fabric_cluster_node_type_1470 struct {
 
 type Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473 struct {
 
-    Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473_id *string `lyra:"ignore"`
-
     Thumbprint string
 
     Thumbprint_secondary *string
@@ -11807,19 +11397,19 @@ type Azurerm_service_fabric_cluster struct {
 
     Add_on_features *[]string
 
-    Azure_active_directory *Azurerm_service_fabric_cluster_azure_active_directory_1465
+    Azure_active_directory *[]Azurerm_service_fabric_cluster_azure_active_directory_1465
 
-    Certificate *Azurerm_service_fabric_cluster_certificate_1466
+    Certificate *[]Azurerm_service_fabric_cluster_certificate_1466
 
-    Client_certificate_thumbprint *Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467
+    Client_certificate_thumbprint *[]Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467
 
     Cluster_code_version *string
 
     Cluster_endpoint *string
 
-    Diagnostics_config *Azurerm_service_fabric_cluster_diagnostics_config_1468
+    Diagnostics_config *[]Azurerm_service_fabric_cluster_diagnostics_config_1468
 
-    Fabric_settings *Azurerm_service_fabric_cluster_fabric_settings_1469
+    Fabric_settings *[]Azurerm_service_fabric_cluster_fabric_settings_1469
 
     Location string
 
@@ -11827,13 +11417,13 @@ type Azurerm_service_fabric_cluster struct {
 
     Name string
 
-    Node_type Azurerm_service_fabric_cluster_node_type_1470
+    Node_type []Azurerm_service_fabric_cluster_node_type_1470
 
     Reliability_level string
 
     Resource_group_name string
 
-    Reverse_proxy_certificate *Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473
+    Reverse_proxy_certificate *[]Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473
 
     Tags *map[string]string
 
@@ -12221,8 +11811,6 @@ func (h *Azurerm_servicebus_subscriptionHandler) Delete(externalID string) error
 
 type Azurerm_servicebus_subscription_rule_correlation_filter_1474 struct {
 
-    Azurerm_servicebus_subscription_rule_correlation_filter_1474_id *string `lyra:"ignore"`
-
     Content_type *string
 
     Correlation_id *string
@@ -12247,7 +11835,7 @@ type Azurerm_servicebus_subscription_rule struct {
 
     Action *string
 
-    Correlation_filter *Azurerm_servicebus_subscription_rule_correlation_filter_1474
+    Correlation_filter *[]Azurerm_servicebus_subscription_rule_correlation_filter_1474
 
     Filter_type string
 
@@ -12442,8 +12030,6 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Delete(externalID s
 
 type Azurerm_shared_image_identifier_1475 struct {
 
-    Azurerm_shared_image_identifier_1475_id *string `lyra:"ignore"`
-
     Offer string
 
     Publisher string
@@ -12462,7 +12048,7 @@ type Azurerm_shared_image struct {
 
     Gallery_name string
 
-    Identifier Azurerm_shared_image_identifier_1475
+    Identifier []Azurerm_shared_image_identifier_1475
 
     Location string
 
@@ -12574,8 +12160,6 @@ func (h *Azurerm_shared_image_galleryHandler) Delete(externalID string) error {
 
 type Azurerm_shared_image_version_target_region_1476 struct {
 
-    Azurerm_shared_image_version_target_region_1476_id *string `lyra:"ignore"`
-
     Name string
 
     Regional_replica_count int
@@ -12645,8 +12229,6 @@ func (h *Azurerm_shared_image_versionHandler) Delete(externalID string) error {
 
 type Azurerm_signalr_service_sku_1477 struct {
 
-    Azurerm_signalr_service_sku_1477_id *string `lyra:"ignore"`
-
     Capacity int
 
     Name string
@@ -12671,7 +12253,7 @@ type Azurerm_signalr_service struct {
 
     Server_port *int
 
-    Sku Azurerm_signalr_service_sku_1477
+    Sku []Azurerm_signalr_service_sku_1477
 
     Tags *map[string]string
 
@@ -12716,8 +12298,6 @@ func (h *Azurerm_signalr_serviceHandler) Delete(externalID string) error {
 
 type Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479 struct {
 
-    Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479_id *string `lyra:"ignore"`
-
     Secret_url string
 
     Source_vault_id string
@@ -12725,8 +12305,6 @@ type Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479 struct {
 }
 
 type Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480 struct {
-
-    Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480_id *string `lyra:"ignore"`
 
     Key_url string
 
@@ -12736,13 +12314,11 @@ type Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480 struct {
 
 type Azurerm_snapshot_encryption_settings_1478 struct {
 
-    Azurerm_snapshot_encryption_settings_1478_id *string `lyra:"ignore"`
-
-    Disk_encryption_key *Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479
+    Disk_encryption_key *[]Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479
 
     Enabled bool
 
-    Key_encryption_key *Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480
+    Key_encryption_key *[]Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480
 
 }
 
@@ -12754,7 +12330,7 @@ type Azurerm_snapshot struct {
 
     Disk_size_gb *int
 
-    Encryption_settings *Azurerm_snapshot_encryption_settings_1478
+    Encryption_settings *[]Azurerm_snapshot_encryption_settings_1478
 
     Location string
 
@@ -12864,8 +12440,6 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Delete(externalID st
 
 type Azurerm_sql_database_import_1481 struct {
 
-    Azurerm_sql_database_import_1481_id *string `lyra:"ignore"`
-
     Administrator_login string
 
     Administrator_login_password string
@@ -12883,8 +12457,6 @@ type Azurerm_sql_database_import_1481 struct {
 }
 
 type Azurerm_sql_database_threat_detection_policy_1482 struct {
-
-    Azurerm_sql_database_threat_detection_policy_1482_id *string `lyra:"ignore"`
 
     Disabled_alerts *[]string
 
@@ -12922,7 +12494,7 @@ type Azurerm_sql_database struct {
 
     Encryption *string
 
-    Import *Azurerm_sql_database_import_1481
+    Import *[]Azurerm_sql_database_import_1481
 
     Location string
 
@@ -12946,7 +12518,7 @@ type Azurerm_sql_database struct {
 
     Tags *map[string]string
 
-    Threat_detection_policy *Azurerm_sql_database_threat_detection_policy_1482
+    Threat_detection_policy *[]Azurerm_sql_database_threat_detection_policy_1482
 
 }
 
@@ -13219,8 +12791,6 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Delete(externalID string) erro
 
 type Azurerm_storage_account_custom_domain_1483 struct {
 
-    Azurerm_storage_account_custom_domain_1483_id *string `lyra:"ignore"`
-
     Name string
 
     Use_subdomain *bool
@@ -13228,8 +12798,6 @@ type Azurerm_storage_account_custom_domain_1483 struct {
 }
 
 type Azurerm_storage_account_identity_1484 struct {
-
-    Azurerm_storage_account_identity_1484_id *string `lyra:"ignore"`
 
     Principal_id *string
 
@@ -13240,8 +12808,6 @@ type Azurerm_storage_account_identity_1484 struct {
 }
 
 type Azurerm_storage_account_network_rules_1485 struct {
-
-    Azurerm_storage_account_network_rules_1485_id *string `lyra:"ignore"`
 
     Bypass *[]string
 
@@ -13267,7 +12833,7 @@ type Azurerm_storage_account struct {
 
     Account_type *string
 
-    Custom_domain *Azurerm_storage_account_custom_domain_1483
+    Custom_domain *[]Azurerm_storage_account_custom_domain_1483
 
     Enable_blob_encryption *bool
 
@@ -13275,13 +12841,13 @@ type Azurerm_storage_account struct {
 
     Enable_https_traffic_only *bool
 
-    Identity *Azurerm_storage_account_identity_1484
+    Identity *[]Azurerm_storage_account_identity_1484
 
     Location string
 
     Name string
 
-    Network_rules *Azurerm_storage_account_network_rules_1485
+    Network_rules *[]Azurerm_storage_account_network_rules_1485
 
     Primary_access_key *string
 
@@ -13629,8 +13195,6 @@ func (h *Azurerm_storage_tableHandler) Delete(externalID string) error {
 
 type Azurerm_subnet_delegation_1486_service_delegation_1487 struct {
 
-    Azurerm_subnet_delegation_1486_service_delegation_1487_id *string `lyra:"ignore"`
-
     Actions *[]string
 
     Name string
@@ -13639,11 +13203,9 @@ type Azurerm_subnet_delegation_1486_service_delegation_1487 struct {
 
 type Azurerm_subnet_delegation_1486 struct {
 
-    Azurerm_subnet_delegation_1486_id *string `lyra:"ignore"`
-
     Name string
 
-    Service_delegation Azurerm_subnet_delegation_1486_service_delegation_1487
+    Service_delegation []Azurerm_subnet_delegation_1486_service_delegation_1487
 
 }
 
@@ -13653,7 +13215,7 @@ type Azurerm_subnet struct {
 
     Address_prefix string
 
-    Delegation *Azurerm_subnet_delegation_1486
+    Delegation *[]Azurerm_subnet_delegation_1486
 
     Ip_configurations *[]string
 
@@ -13930,8 +13492,6 @@ func (h *Azurerm_traffic_manager_endpointHandler) Delete(externalID string) erro
 
 type Azurerm_traffic_manager_profile_dns_config_1488 struct {
 
-    Azurerm_traffic_manager_profile_dns_config_1488_id *string `lyra:"ignore"`
-
     Relative_name string
 
     Ttl int
@@ -13939,8 +13499,6 @@ type Azurerm_traffic_manager_profile_dns_config_1488 struct {
 }
 
 type Azurerm_traffic_manager_profile_monitor_config_1489 struct {
-
-    Azurerm_traffic_manager_profile_monitor_config_1489_id *string `lyra:"ignore"`
 
     Path *string
 
@@ -14066,8 +13624,6 @@ func (h *Azurerm_user_assigned_identityHandler) Delete(externalID string) error 
 
 type Azurerm_virtual_machine_boot_diagnostics_1490 struct {
 
-    Azurerm_virtual_machine_boot_diagnostics_1490_id *string `lyra:"ignore"`
-
     Enabled bool
 
     Storage_uri string
@@ -14075,8 +13631,6 @@ type Azurerm_virtual_machine_boot_diagnostics_1490 struct {
 }
 
 type Azurerm_virtual_machine_identity_1491 struct {
-
-    Azurerm_virtual_machine_identity_1491_id *string `lyra:"ignore"`
 
     Identity_ids *[]string
 
@@ -14087,8 +13641,6 @@ type Azurerm_virtual_machine_identity_1491 struct {
 }
 
 type Azurerm_virtual_machine_os_profile_1492 struct {
-
-    Azurerm_virtual_machine_os_profile_1492_id *string `lyra:"ignore"`
 
     Admin_password *string
 
@@ -14102,8 +13654,6 @@ type Azurerm_virtual_machine_os_profile_1492 struct {
 
 type Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494 struct {
 
-    Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494_id *string `lyra:"ignore"`
-
     Key_data string
 
     Path string
@@ -14112,17 +13662,13 @@ type Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494 struct {
 
 type Azurerm_virtual_machine_os_profile_linux_config_1493 struct {
 
-    Azurerm_virtual_machine_os_profile_linux_config_1493_id *string `lyra:"ignore"`
-
     Disable_password_authentication bool
 
-    Ssh_keys *Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494
+    Ssh_keys *[]Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494
 
 }
 
 type Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496 struct {
-
-    Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496_id *string `lyra:"ignore"`
 
     Certificate_store *string
 
@@ -14132,17 +13678,13 @@ type Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496 str
 
 type Azurerm_virtual_machine_os_profile_secrets_1495 struct {
 
-    Azurerm_virtual_machine_os_profile_secrets_1495_id *string `lyra:"ignore"`
-
     Source_vault_id string
 
-    Vault_certificates *Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496
+    Vault_certificates *[]Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496
 
 }
 
 type Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498 struct {
-
-    Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498_id *string `lyra:"ignore"`
 
     Component string
 
@@ -14156,8 +13698,6 @@ type Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_
 
 type Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499 struct {
 
-    Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499_id *string `lyra:"ignore"`
-
     Certificate_url *string
 
     Protocol string
@@ -14166,9 +13706,7 @@ type Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499 struct {
 
 type Azurerm_virtual_machine_os_profile_windows_config_1497 struct {
 
-    Azurerm_virtual_machine_os_profile_windows_config_1497_id *string `lyra:"ignore"`
-
-    Additional_unattend_config *Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498
+    Additional_unattend_config *[]Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498
 
     Enable_automatic_upgrades *bool
 
@@ -14176,13 +13714,11 @@ type Azurerm_virtual_machine_os_profile_windows_config_1497 struct {
 
     Timezone *string
 
-    Winrm *Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499
+    Winrm *[]Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499
 
 }
 
 type Azurerm_virtual_machine_plan_1500 struct {
-
-    Azurerm_virtual_machine_plan_1500_id *string `lyra:"ignore"`
 
     Name string
 
@@ -14193,8 +13729,6 @@ type Azurerm_virtual_machine_plan_1500 struct {
 }
 
 type Azurerm_virtual_machine_storage_data_disk_1501 struct {
-
-    Azurerm_virtual_machine_storage_data_disk_1501_id *string `lyra:"ignore"`
 
     Caching *string
 
@@ -14218,8 +13752,6 @@ type Azurerm_virtual_machine_storage_data_disk_1501 struct {
 
 type Azurerm_virtual_machine_storage_image_reference_1502 struct {
 
-    Azurerm_virtual_machine_storage_image_reference_1502_id *string `lyra:"ignore"`
-
     Id *string
 
     Offer *string
@@ -14233,8 +13765,6 @@ type Azurerm_virtual_machine_storage_image_reference_1502 struct {
 }
 
 type Azurerm_virtual_machine_storage_os_disk_1503 struct {
-
-    Azurerm_virtual_machine_storage_os_disk_1503_id *string `lyra:"ignore"`
 
     Caching *string
 
@@ -14264,13 +13794,13 @@ type Azurerm_virtual_machine struct {
 
     Availability_set_id *string
 
-    Boot_diagnostics *Azurerm_virtual_machine_boot_diagnostics_1490
+    Boot_diagnostics *[]Azurerm_virtual_machine_boot_diagnostics_1490
 
     Delete_data_disks_on_termination *bool
 
     Delete_os_disk_on_termination *bool
 
-    Identity *Azurerm_virtual_machine_identity_1491
+    Identity *[]Azurerm_virtual_machine_identity_1491
 
     License_type *string
 
@@ -14284,21 +13814,21 @@ type Azurerm_virtual_machine struct {
 
     Os_profile_linux_config *Azurerm_virtual_machine_os_profile_linux_config_1493
 
-    Os_profile_secrets *Azurerm_virtual_machine_os_profile_secrets_1495
+    Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_1495
 
     Os_profile_windows_config *Azurerm_virtual_machine_os_profile_windows_config_1497
 
-    Plan *Azurerm_virtual_machine_plan_1500
+    Plan *[]Azurerm_virtual_machine_plan_1500
 
     Primary_network_interface_id *string
 
     Resource_group_name string
 
-    Storage_data_disk *Azurerm_virtual_machine_storage_data_disk_1501
+    Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_1501
 
     Storage_image_reference *Azurerm_virtual_machine_storage_image_reference_1502
 
-    Storage_os_disk Azurerm_virtual_machine_storage_os_disk_1503
+    Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_1503
 
     Tags *map[string]string
 
@@ -14467,8 +13997,6 @@ func (h *Azurerm_virtual_machine_extensionHandler) Delete(externalID string) err
 
 type Azurerm_virtual_machine_scale_set_boot_diagnostics_1504 struct {
 
-    Azurerm_virtual_machine_scale_set_boot_diagnostics_1504_id *string `lyra:"ignore"`
-
     Enabled *bool
 
     Storage_uri string
@@ -14476,8 +14004,6 @@ type Azurerm_virtual_machine_scale_set_boot_diagnostics_1504 struct {
 }
 
 type Azurerm_virtual_machine_scale_set_extension_1505 struct {
-
-    Azurerm_virtual_machine_scale_set_extension_1505_id *string `lyra:"ignore"`
 
     Auto_upgrade_minor_version *bool
 
@@ -14497,8 +14023,6 @@ type Azurerm_virtual_machine_scale_set_extension_1505 struct {
 
 type Azurerm_virtual_machine_scale_set_identity_1506 struct {
 
-    Azurerm_virtual_machine_scale_set_identity_1506_id *string `lyra:"ignore"`
-
     Identity_ids *[]string
 
     Principal_id *string
@@ -14509,15 +14033,11 @@ type Azurerm_virtual_machine_scale_set_identity_1506 struct {
 
 type Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508 struct {
 
-    Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508_id *string `lyra:"ignore"`
-
     Dns_servers []string
 
 }
 
 type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510 struct {
-
-    Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510_id *string `lyra:"ignore"`
 
     Domain_name_label string
 
@@ -14528,8 +14048,6 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_150
 }
 
 type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509 struct {
-
-    Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_id *string `lyra:"ignore"`
 
     Application_gateway_backend_address_pool_ids *[]string
 
@@ -14543,7 +14061,7 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_150
 
     Primary bool
 
-    Public_ip_address_configuration *Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510
+    Public_ip_address_configuration *[]Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510
 
     Subnet_id string
 
@@ -14551,13 +14069,11 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_150
 
 type Azurerm_virtual_machine_scale_set_network_profile_1507 struct {
 
-    Azurerm_virtual_machine_scale_set_network_profile_1507_id *string `lyra:"ignore"`
-
     Accelerated_networking *bool
 
-    Dns_settings *Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508
+    Dns_settings *[]Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508
 
-    Ip_configuration Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509
+    Ip_configuration []Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509
 
     Ip_forwarding *bool
 
@@ -14571,8 +14087,6 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507 struct {
 
 type Azurerm_virtual_machine_scale_set_os_profile_1511 struct {
 
-    Azurerm_virtual_machine_scale_set_os_profile_1511_id *string `lyra:"ignore"`
-
     Admin_password *string
 
     Admin_username string
@@ -14585,8 +14099,6 @@ type Azurerm_virtual_machine_scale_set_os_profile_1511 struct {
 
 type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513 struct {
 
-    Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513_id *string `lyra:"ignore"`
-
     Key_data *string
 
     Path string
@@ -14595,17 +14107,13 @@ type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_151
 
 type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512 struct {
 
-    Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_id *string `lyra:"ignore"`
-
     Disable_password_authentication *bool
 
-    Ssh_keys *Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513
+    Ssh_keys *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513
 
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515 struct {
-
-    Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515_id *string `lyra:"ignore"`
 
     Certificate_store *string
 
@@ -14615,17 +14123,13 @@ type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificate
 
 type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514 struct {
 
-    Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_id *string `lyra:"ignore"`
-
     Source_vault_id string
 
-    Vault_certificates *Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515
+    Vault_certificates *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515
 
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517 struct {
-
-    Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517_id *string `lyra:"ignore"`
 
     Component string
 
@@ -14639,8 +14143,6 @@ type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional
 
 type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518 struct {
 
-    Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518_id *string `lyra:"ignore"`
-
     Certificate_url *string
 
     Protocol string
@@ -14649,21 +14151,17 @@ type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518
 
 type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516 struct {
 
-    Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_id *string `lyra:"ignore"`
-
-    Additional_unattend_config *Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517
+    Additional_unattend_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517
 
     Enable_automatic_upgrades *bool
 
     Provision_vm_agent *bool
 
-    Winrm *Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518
+    Winrm *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518
 
 }
 
 type Azurerm_virtual_machine_scale_set_plan_1519 struct {
-
-    Azurerm_virtual_machine_scale_set_plan_1519_id *string `lyra:"ignore"`
 
     Name string
 
@@ -14674,8 +14172,6 @@ type Azurerm_virtual_machine_scale_set_plan_1519 struct {
 }
 
 type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520 struct {
-
-    Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520_id *string `lyra:"ignore"`
 
     Max_batch_instance_percent *int
 
@@ -14689,8 +14185,6 @@ type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520 struct {
 
 type Azurerm_virtual_machine_scale_set_sku_1521 struct {
 
-    Azurerm_virtual_machine_scale_set_sku_1521_id *string `lyra:"ignore"`
-
     Capacity int
 
     Name string
@@ -14700,8 +14194,6 @@ type Azurerm_virtual_machine_scale_set_sku_1521 struct {
 }
 
 type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522 struct {
-
-    Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522_id *string `lyra:"ignore"`
 
     Caching *string
 
@@ -14717,8 +14209,6 @@ type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522 struct {
 
 type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523 struct {
 
-    Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523_id *string `lyra:"ignore"`
-
     Id *string
 
     Offer *string
@@ -14732,8 +14222,6 @@ type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523 stru
 }
 
 type Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524 struct {
-
-    Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524_id *string `lyra:"ignore"`
 
     Caching *string
 
@@ -14757,7 +14245,7 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Automatic_os_upgrade *bool
 
-    Boot_diagnostics *Azurerm_virtual_machine_scale_set_boot_diagnostics_1504
+    Boot_diagnostics *[]Azurerm_virtual_machine_scale_set_boot_diagnostics_1504
 
     Eviction_policy *string
 
@@ -14765,7 +14253,7 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Health_probe_id *string
 
-    Identity *Azurerm_virtual_machine_scale_set_identity_1506
+    Identity *[]Azurerm_virtual_machine_scale_set_identity_1506
 
     License_type *string
 
@@ -14775,7 +14263,7 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Network_profile Azurerm_virtual_machine_scale_set_network_profile_1507
 
-    Os_profile Azurerm_virtual_machine_scale_set_os_profile_1511
+    Os_profile []Azurerm_virtual_machine_scale_set_os_profile_1511
 
     Os_profile_linux_config *Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512
 
@@ -14791,13 +14279,13 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Resource_group_name string
 
-    Rolling_upgrade_policy *Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520
+    Rolling_upgrade_policy *[]Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520
 
     Single_placement_group *bool
 
-    Sku Azurerm_virtual_machine_scale_set_sku_1521
+    Sku []Azurerm_virtual_machine_scale_set_sku_1521
 
-    Storage_profile_data_disk *Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522
+    Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522
 
     Storage_profile_image_reference *Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523
 
@@ -14849,8 +14337,6 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Delete(externalID string) err
 }
 
 type Azurerm_virtual_network_subnet_1525 struct {
-
-    Azurerm_virtual_network_subnet_1525_id *string `lyra:"ignore"`
 
     Address_prefix string
 
@@ -14921,8 +14407,6 @@ func (h *Azurerm_virtual_networkHandler) Delete(externalID string) error {
 
 type Azurerm_virtual_network_gateway_bgp_settings_1526 struct {
 
-    Azurerm_virtual_network_gateway_bgp_settings_1526_id *string `lyra:"ignore"`
-
     Asn *int
 
     Peer_weight *int
@@ -14932,8 +14416,6 @@ type Azurerm_virtual_network_gateway_bgp_settings_1526 struct {
 }
 
 type Azurerm_virtual_network_gateway_ip_configuration_1527 struct {
-
-    Azurerm_virtual_network_gateway_ip_configuration_1527_id *string `lyra:"ignore"`
 
     Name *string
 
@@ -14947,8 +14429,6 @@ type Azurerm_virtual_network_gateway_ip_configuration_1527 struct {
 
 type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529 struct {
 
-    Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529_id *string `lyra:"ignore"`
-
     Name string
 
     Thumbprint string
@@ -14957,8 +14437,6 @@ type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certi
 
 type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530 struct {
 
-    Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530_id *string `lyra:"ignore"`
-
     Name string
 
     Public_cert_data string
@@ -14966,8 +14444,6 @@ type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certific
 }
 
 type Azurerm_virtual_network_gateway_vpn_client_configuration_1528 struct {
-
-    Azurerm_virtual_network_gateway_vpn_client_configuration_1528_id *string `lyra:"ignore"`
 
     Address_space []string
 
@@ -14989,13 +14465,13 @@ type Azurerm_virtual_network_gateway struct {
 
     Active_active *bool
 
-    Bgp_settings *Azurerm_virtual_network_gateway_bgp_settings_1526
+    Bgp_settings *[]Azurerm_virtual_network_gateway_bgp_settings_1526
 
     Default_local_network_gateway_id *string
 
     Enable_bgp *bool
 
-    Ip_configuration Azurerm_virtual_network_gateway_ip_configuration_1527
+    Ip_configuration []Azurerm_virtual_network_gateway_ip_configuration_1527
 
     Location string
 
@@ -15009,7 +14485,7 @@ type Azurerm_virtual_network_gateway struct {
 
     Type string
 
-    Vpn_client_configuration *Azurerm_virtual_network_gateway_vpn_client_configuration_1528
+    Vpn_client_configuration *[]Azurerm_virtual_network_gateway_vpn_client_configuration_1528
 
     Vpn_type *string
 
@@ -15054,8 +14530,6 @@ func (h *Azurerm_virtual_network_gatewayHandler) Delete(externalID string) error
 
 type Azurerm_virtual_network_gateway_connection_ipsec_policy_1531 struct {
 
-    Azurerm_virtual_network_gateway_connection_ipsec_policy_1531_id *string `lyra:"ignore"`
-
     Dh_group string
 
     Ike_encryption string
@@ -15084,7 +14558,7 @@ type Azurerm_virtual_network_gateway_connection struct {
 
     Express_route_circuit_id *string
 
-    Ipsec_policy *Azurerm_virtual_network_gateway_connection_ipsec_policy_1531
+    Ipsec_policy *[]Azurerm_virtual_network_gateway_connection_ipsec_policy_1531
 
     Local_network_gateway_id *string
 

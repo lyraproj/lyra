@@ -69,30 +69,31 @@ func TerraformMarshal(s interface{}) map[string]interface{} {
 		terrformName := strings.ToLower(sfld.Name)
 		vvalue := reflect.Indirect(vfld)
 		value := vvalue.Interface()
-		if vvalue.Kind() == reflect.Struct {
+		switch vvalue.Kind() {
+		case reflect.Struct:
 			m[terrformName] = TerraformMarshal(value)
-		} else if vvalue.Kind() == reflect.Map {
+		case reflect.Map:
 			nested := map[string]interface{}{}
 			for _, k := range vvalue.MapKeys() {
 				nested[k.Interface().(string)] = vvalue.MapIndex(k).Interface()
 			}
 			m[terrformName] = nested
-		} else {
-			switch value.(type) {
-			case string:
-				m[terrformName] = value
-			case int:
-				s = strconv.FormatInt(int64(value.(int)), 10)
-				m[terrformName] = s
-			case bool:
-				s = strconv.FormatBool(value.(bool))
-				m[terrformName] = s
-			case float64:
-				s = strconv.FormatFloat(float64(value.(float64)), 'G', -1, 64)
-				m[terrformName] = s
-			default:
-				panic(fmt.Sprintf("TerraformMarshal: Unsupported primitive type: %T\n", value))
+		case reflect.String:
+			m[terrformName] = value
+		case reflect.Int:
+			m[terrformName] = strconv.FormatInt(int64(value.(int)), 10)
+		case reflect.Bool:
+			m[terrformName] = strconv.FormatBool(value.(bool))
+		case reflect.Float64:
+			m[terrformName] = strconv.FormatFloat(float64(value.(float64)), 'G', -1, 64)
+		case reflect.Slice:
+			slice := []interface{}{}
+			for i := 0; i < vvalue.Len(); i++ {
+				slice = append(slice, reflect.Indirect(vvalue.Index(i)).Interface())
 			}
+			m[terrformName] = slice
+		default:
+			logger.Get().Error(fmt.Sprintf("TerraformMarshal: Skipping unsupported primitive type: %s", spew.Sdump(value)))
 		}
 	}
 	return m
@@ -161,13 +162,7 @@ func TerraformUnmarshal(m map[string]interface{}, s interface{}) {
 					logger.Get().Error(fmt.Sprintf("TerraformUnmarshal: Skipping unsupported struct value type for field '%s': %T %v", sfld.Name, value, spew.Sdump(value)))
 				}
 			} else {
-				if vfld.Kind() == reflect.Ptr {
-					ptr := reflect.New(tfld.Elem())
-					ptr.Elem().Set(unmarshalField(tfld.Elem(), value))
-					vfld.Set(ptr)
-				} else {
-					vfld.Set(unmarshalField(tfld, value))
-				}
+				vfld.Set(unmarshalField(tfld, value))
 			}
 		}
 	}
@@ -175,7 +170,9 @@ func TerraformUnmarshal(m map[string]interface{}, s interface{}) {
 
 func unmarshalField(want reflect.Type, value interface{}) reflect.Value {
 	if want.Kind() == reflect.Ptr {
-		panic("TerraformUnmarshal: unmarshalField does not accept pointers")
+		ptr := reflect.New(want.Elem())
+		ptr.Elem().Set(unmarshalField(want.Elem(), value))
+		return ptr
 	}
 	switch want.Kind() {
 	case reflect.String:
@@ -213,6 +210,13 @@ func unmarshalField(want reflect.Type, value interface{}) reflect.Value {
 			nested.SetMapIndex(reflect.ValueOf(k), reflect.ValueOf(v))
 		}
 		return nested
+	case reflect.Slice:
+		vvalue := reflect.ValueOf(value)
+		slice := reflect.MakeSlice(want, 0, 0)
+		for i := 0; i < vvalue.Len(); i++ {
+			slice = reflect.Append(slice, unmarshalField(want.Elem(), vvalue.Index(i).Interface()))
+		}
+		return slice
 	default:
 		logger.Get().Error(fmt.Sprintf("TerraformUnmarshal: Skipping unsupported unmarshalField type: %s %s", spew.Sdump(want), spew.Sdump(value)))
 		return reflect.Zero(want) // This is not the right behaviour, just a default value keep things working as well as possible

@@ -156,8 +156,9 @@ func getGoType(handler io.Writer, goType, name string, s *schema.Schema) string 
 	case schema.TypeList:
 		switch s.Elem.(type) {
 		case *schema.Resource:
-			t = deriveType(goType, name)
-			generateResourceType(handler, t, s.Elem.(*schema.Resource))
+			baseTyp := deriveType(goType, name)
+			generateResourceType(handler, baseTyp, s.Elem.(*schema.Resource), false)
+			t = "[]" + baseTyp
 		case *schema.Schema:
 			t = "[]" + getGoType(handler, goType, name, s.Elem.(*schema.Schema))
 		default:
@@ -169,7 +170,7 @@ func getGoType(handler io.Writer, goType, name string, s *schema.Schema) string 
 		switch s.Elem.(type) {
 		case *schema.Resource:
 			t = deriveType(goType, name)
-			generateResourceType(handler, t, s.Elem.(*schema.Resource))
+			generateResourceType(handler, t, s.Elem.(*schema.Resource), false)
 		case *schema.Schema:
 			t = "[]" + getGoType(handler, goType, name, s.Elem.(*schema.Schema))
 		default:
@@ -189,7 +190,7 @@ func getGoTypeWithPtr(handler io.Writer, goType, name string, s *schema.Schema) 
 	return t
 }
 
-func generateResourceType(handler io.Writer, goType string, r *schema.Resource) {
+func generateResourceType(handler io.Writer, goType string, r *schema.Resource, insertID bool) {
 	// Sort fields to give predictable code generation
 	names := make([]string, 0)
 	for name := range r.Schema {
@@ -197,10 +198,15 @@ func generateResourceType(handler io.Writer, goType string, r *schema.Resource) 
 	}
 	sort.Strings(names)
 	// Determine field names and types
-	fields := []map[string]string{map[string]string{
-		"name": goType + "_id",
-		"typ":  "*string `lyra:\"ignore\"`",
-	}}
+	var fields []map[string]string
+	if insertID {
+		fields = []map[string]string{map[string]string{
+			"name": goType + "_id",
+			"typ":  "*string `lyra:\"ignore\"`",
+		}}
+	} else {
+		fields = []map[string]string{}
+	}
 	for _, name := range names {
 		fields = append(fields, map[string]string{
 			"name": strings.Title(name),
@@ -269,7 +275,7 @@ func Generate(p *schema.Provider, ns, filename string) {
 
 	for _, rType := range rTypes {
 		r := p.ResourcesMap[rType]
-		generateResourceType(handler, strings.Title(rType), r)
+		generateResourceType(handler, strings.Title(rType), r, true)
 		generateProvider(handler, rType)
 	}
 
