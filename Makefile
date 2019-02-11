@@ -97,7 +97,7 @@ checklicences: $(GOPATH)/bin/licenses
 
 PHONY+= test
 test: vet lint
-	@echo "🔘 Running unit tests..."
+	@echo "🔘 Running unit tests... (`date '+%H:%M:%S'`)"
 	go test -race github.com/lyraproj/lyra/...
 
 PHONY+= clean
@@ -110,18 +110,18 @@ clean:
 	@rm -rf vendor
 
 $(GOPATH)/bin/golint:
-	@echo "🔘 Installing golint..."
+	@echo "🔘 Installing golint... (`date '+%H:%M:%S'`)"
 	GO111MODULE=off go get -u golang.org/x/lint/golint
 
 PHONY+= lint
 lint: $(GOPATH)/bin/golint
-	@echo "🔘 Linting... (ignoring style errors in AWS SDK/Provider)"
+	@echo "🔘 Linting... (ignoring style errors in AWS SDK/Provider) (`date '+%H:%M:%S'`)"
 	@lint=`golint ./... | grep -v ^vendor/ | grep -E -v -e ${LINTIGNOREINITIALISMS}`; \
 	if [ "$$lint" != "" ]; then echo "$$lint"; exit 1; fi
 
 PHONY+= vet
 vet:
-	@echo "🔘 Running go vet..."
+	@echo "🔘 Running go vet... (`date '+%H:%M:%S'`)"
 	@go vet ./...
 
 PHONY+= dist-release
@@ -142,21 +142,22 @@ dist-release:
 
 PHONY+= check-mods
 check-mods: 
-	@echo "🔘 Ensuring go version is 1.11.4 or later"
+	@echo "🔘 Ensuring go version is 1.11.4 or later (`date '+%H:%M:%S'`)"
 	@if [ "$(HAS_REQUIRED_GO)" == "" ]; \
 	then \
 		echo "🔴 must be running Go version 1.11.4 or later"; \
 		exit 1; \
 	fi	
-	@echo "✅ Go version is sufficient"
-	@echo "🔘 Ensuring go mod is available and turned on"
+	@echo "✅ Go version is sufficient  (`date '+%H:%M:%S'`)"
+	@echo "🔘 Ensuring go mod is available and turned on  (`date '+%H:%M:%S'`)"
 	@GO111MODULE=on go mod download || (echo "🔴 The command 'GO111MODULE=on go mod download' did not return zero exit code (exit code was $$?)"; exit 1)
-	@echo "✅ Go mod is available"
+	@echo "✅ Go mod is available  (`date '+%H:%M:%S'`)"
 
 define build
-	@echo "🔘  building - $(1)"
+	@echo "🔘 building - $(1) (`date '+%H:%M:%S'`)"
 	mkdir -p build/
 	GO111MODULE=on go build -a -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
+	@echo "✅ build complete - $(1) (`date '+%H:%M:%S'`)"
 endef
 
 define generate_3rdparty_licence_file
