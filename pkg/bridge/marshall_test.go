@@ -40,28 +40,36 @@ type Item struct {
 }
 
 type Person struct {
-	PersonID  string `lyra:"ignore"`
-	FirstName string
-	LastName  *string
-	Cool      bool
-	Cooler    bool
-	Uncool    *bool
-	Up        float64
-	Down      *float64
-	Age       int
-	PetDog    Dog
-	PetCat    *Cat
-	PetLlama  *Llama
-	Tags      map[string]string
-	PTags     *map[string]string
-	List      []string
-	PList     *[]string
-	PPList    *[]*string
+	PersonID   string `lyra:"ignore"`
+	FirstName  string
+	LastName   *string
+	Cool       bool
+	Cooler     bool
+	Uncool     *bool
+	Up         float64
+	Down       *float64
+	Age        int
+	PetDog     Dog
+	PetDoggy   *Dog
+	NoDog      *Dog
+	PetCats    []Cat
+	PetMoggies *[]Cat
+	PetFelines []*Cat
+	PetKitties *[]*Cat
+	PetLlama   *Llama
+	Tags       map[string]string
+	PTags      *map[string]string
+	List       []string
+	PList      *[]string
+	PPList     *[]*string
 	// ItemList  []Item
 	// PItemList *[]Item
 }
 
 func init() {
+	spew.Config.DisablePointerAddresses = true
+	spew.Config.DisableCapacities = true
+	spew.Config.SortKeys = true
 	spec := logger.Spec{
 		Name:   "marshal-test",
 		Level:  "debug",
@@ -71,7 +79,10 @@ func init() {
 	three := 3
 	four := 4
 	smith := "Smith"
-	brown := ""
+	nothing := ""
+	brownish := "brownish"
+	brown := "brown"
+	browny := "browny"
 	tru := true
 	fl := 5.678
 	original = &Person{
@@ -91,15 +102,59 @@ func init() {
 				Width:  &four,
 			},
 		},
-		PetCat: &Cat{
-			Tail:   15,
-			Colour: &brown,
+		PetDoggy: &Dog{
+			23,
+			"yellow",
+			Kennel{
+				Height: &four,
+				Width:  &three,
+			},
+		},
+		PetCats: []Cat{
+			Cat{
+				Tail:   15,
+				Colour: &brownish,
+			},
+			Cat{
+				Tail:   16,
+				Colour: &brown,
+			},
+		},
+		PetMoggies: &[]Cat{
+			Cat{
+				Tail:   17,
+				Colour: &browny,
+			},
+			Cat{
+				Tail:   18,
+				Colour: &brownish,
+			},
+		},
+		PetFelines: []*Cat{
+			&Cat{
+				Tail:   27,
+				Colour: &browny,
+			},
+			&Cat{
+				Tail:   28,
+				Colour: &brownish,
+			},
+		},
+		PetKitties: &[]*Cat{
+			&Cat{
+				Tail:   19,
+				Colour: &brown,
+			},
+			&Cat{
+				Tail:   20,
+				Colour: &browny,
+			},
 		},
 		Tags:   map[string]string{"foo": "bar", "moo": "baa"},
 		PTags:  &map[string]string{"foo2": "bar2", "moo2": "baa2"},
 		List:   []string{"aa", "bb", "cc"},
 		PList:  &[]string{"aa", "bb", "cc"},
-		PPList: &[]*string{&smith, &brown},
+		PPList: &[]*string{&smith, &nothing, &brownish},
 		// ItemList:  []Item{Item{"aa"}, Item{"bb"}, Item{"cc"}},
 		// PItemList: &[]Item{Item{"aa"}, Item{"bb"}, Item{"cc"}},
 	}
@@ -120,15 +175,59 @@ func init() {
 				"width":  "4",
 			},
 		},
-		"petcat": map[string]interface{}{
-			"tail":   "15",
-			"colour": "",
+		"petdoggy": map[string]interface{}{
+			"colour": "yellow",
+			"size":   "23",
+			"home": map[string]interface{}{
+				"height": "4",
+				"width":  "3",
+			},
+		},
+		"petcats": []interface{}{
+			map[string]interface{}{
+				"tail":   "15",
+				"colour": "brownish",
+			},
+			map[string]interface{}{
+				"tail":   "16",
+				"colour": "brown",
+			},
+		},
+		"petmoggies": []interface{}{
+			map[string]interface{}{
+				"tail":   "17",
+				"colour": "browny",
+			},
+			map[string]interface{}{
+				"tail":   "18",
+				"colour": "brownish",
+			},
+		},
+		"petfelines": []interface{}{
+			map[string]interface{}{
+				"tail":   "27",
+				"colour": "browny",
+			},
+			map[string]interface{}{
+				"tail":   "28",
+				"colour": "brownish",
+			},
+		},
+		"petkitties": []interface{}{
+			map[string]interface{}{
+				"tail":   "19",
+				"colour": "brown",
+			},
+			map[string]interface{}{
+				"tail":   "20",
+				"colour": "browny",
+			},
 		},
 		"tags":   map[string]interface{}{"foo": "bar", "moo": "baa"},
 		"ptags":  map[string]interface{}{"foo2": "bar2", "moo2": "baa2"},
 		"list":   []interface{}{"aa", "bb", "cc"},
 		"plist":  []interface{}{"aa", "bb", "cc"},
-		"pplist": []interface{}{"Smith", ""},
+		"pplist": []interface{}{"Smith", "", "brownish"},
 	}
 }
 
