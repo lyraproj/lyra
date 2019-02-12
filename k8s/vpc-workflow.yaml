@@ -3,5 +3,10 @@ kind: Workflow
 metadata:
   name: vpc-workflow
 spec:
-  workflowName: "aws_vpc_yaml"
+  workflowName: aws_vpc_yaml
   refreshTime: 65
+  data:
+    aws.tags.Name:       lyra-crd-sample
+    aws.tags.created_by: lyra-crd
+    aws.tags.project:    lyraproj
+    aws.tags.lifetime:   2h
