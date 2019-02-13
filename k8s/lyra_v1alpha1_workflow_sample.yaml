@@ -3,7 +3,7 @@ kind: Workflow
 metadata:
   name: sample2-workflow
 spec:
-  workflowName: "sample2"
+  workflowName: sample2
   data:
     foo: kubeFooooo
     bar: kubeBaaaar
