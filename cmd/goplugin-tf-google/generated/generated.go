@@ -615,7 +615,7 @@ type Google_bigtable_instance struct {
 
     Google_bigtable_instance_id *string `lyra:"ignore"`
 
-    Cluster *Google_bigtable_instance_cluster_1538
+    Cluster *[]Google_bigtable_instance_cluster_1538
 
     Cluster_id *string
 
@@ -979,7 +979,7 @@ type Google_binary_authorization_policy struct {
 
     Admission_whitelist_patterns *[]Google_binary_authorization_policy_admission_whitelist_patterns_1541
 
-    Cluster_admission_rules *Google_binary_authorization_policy_cluster_admission_rules_1542
+    Cluster_admission_rules *[]Google_binary_authorization_policy_cluster_admission_rules_1542
 
     Default_admission_rule []Google_binary_authorization_policy_default_admission_rule_1543
 
@@ -1708,7 +1708,7 @@ type Google_compute_backend_service struct {
 
     Google_compute_backend_service_id *string `lyra:"ignore"`
 
-    Backend *Google_compute_backend_service_backend_1557
+    Backend *[]Google_compute_backend_service_backend_1557
 
     Cdn_policy *[]Google_compute_backend_service_cdn_policy_1558
 
@@ -1914,11 +1914,11 @@ type Google_compute_firewall struct {
 
     Google_compute_firewall_id *string `lyra:"ignore"`
 
-    Allow *Google_compute_firewall_allow_1564
+    Allow *[]Google_compute_firewall_allow_1564
 
     Creation_timestamp *string
 
-    Deny *Google_compute_firewall_deny_1565
+    Deny *[]Google_compute_firewall_deny_1565
 
     Description *string
 
@@ -3775,7 +3775,7 @@ type Google_compute_region_backend_service struct {
 
     Google_compute_region_backend_service_id *string `lyra:"ignore"`
 
-    Backend *Google_compute_region_backend_service_backend_1612
+    Backend *[]Google_compute_region_backend_service_backend_1612
 
     Connection_draining_timeout_sec *int
 
@@ -4301,7 +4301,7 @@ type Google_compute_router_nat struct {
 
     Source_subnetwork_ip_ranges_to_nat *string
 
-    Subnetwork *Google_compute_router_nat_subnetwork_1622
+    Subnetwork *[]Google_compute_router_nat_subnetwork_1622
 
     Tcp_established_idle_timeout_sec *int
 
@@ -4449,7 +4449,7 @@ type Google_compute_security_policy struct {
 
     Project *string
 
-    Rule *Google_compute_security_policy_rule_1623
+    Rule *[]Google_compute_security_policy_rule_1623
 
     Self_link *string
 
@@ -5402,7 +5402,7 @@ type Google_compute_url_map struct {
 
     Fingerprint *string
 
-    Host_rule *Google_compute_url_map_host_rule_1629
+    Host_rule *[]Google_compute_url_map_host_rule_1629
 
     Map_id *string
 
@@ -5766,7 +5766,7 @@ type Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks
 
 type Google_container_cluster_master_authorized_networks_config_1647 struct {
 
-    Cidr_blocks *Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648
+    Cidr_blocks *[]Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648
 
 }
 
@@ -10906,7 +10906,7 @@ type Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized
 
 type Google_sql_database_instance_settings_1737_ip_configuration_1740 struct {
 
-    Authorized_networks *Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741
+    Authorized_networks *[]Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741
 
     Ipv4_enabled *bool
 
@@ -11197,9 +11197,9 @@ type Google_storage_bucket_lifecycle_rule_1746_condition_1748 struct {
 
 type Google_storage_bucket_lifecycle_rule_1746 struct {
 
-    Action Google_storage_bucket_lifecycle_rule_1746_action_1747
+    Action []Google_storage_bucket_lifecycle_rule_1746_action_1747
 
-    Condition Google_storage_bucket_lifecycle_rule_1746_condition_1748
+    Condition []Google_storage_bucket_lifecycle_rule_1746_condition_1748
 
 }
 

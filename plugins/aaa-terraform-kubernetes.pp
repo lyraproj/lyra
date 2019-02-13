@@ -9791,12 +9791,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'image_pull_secret' => {
-          'type' => Optional[Kubernetes_service_account_image_pull_secret_1136],
+          'type' => Optional[Array[Kubernetes_service_account_image_pull_secret_1136]],
           'value' => undef
         },
         'metadata' => Array[Kubernetes_service_account_metadata_1137],
         'secret' => {
-          'type' => Optional[Kubernetes_service_account_secret_1138],
+          'type' => Optional[Array[Kubernetes_service_account_secret_1138]],
           'value' => undef
         }
       }

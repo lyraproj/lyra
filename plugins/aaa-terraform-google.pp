@@ -309,7 +309,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'cluster' => {
-          'type' => Optional[Google_bigtable_instance_cluster_1538],
+          'type' => Optional[Array[Google_bigtable_instance_cluster_1538]],
           'value' => undef
         },
         'cluster_id' => {
@@ -546,7 +546,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'cluster_admission_rules' => {
-          'type' => Optional[Google_binary_authorization_policy_cluster_admission_rules_1542],
+          'type' => Optional[Array[Google_binary_authorization_policy_cluster_admission_rules_1542]],
           'value' => undef
         },
         'default_admission_rule' => Array[Google_binary_authorization_policy_default_admission_rule_1543],
@@ -1212,7 +1212,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'backend' => {
-          'type' => Optional[Google_compute_backend_service_backend_1557],
+          'type' => Optional[Array[Google_compute_backend_service_backend_1557]],
           'value' => undef
         },
         'cdn_policy' => {
@@ -1515,7 +1515,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'allow' => {
-          'type' => Optional[Google_compute_firewall_allow_1564],
+          'type' => Optional[Array[Google_compute_firewall_allow_1564]],
           'value' => undef
         },
         'creation_timestamp' => {
@@ -1523,7 +1523,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'deny' => {
-          'type' => Optional[Google_compute_firewall_deny_1565],
+          'type' => Optional[Array[Google_compute_firewall_deny_1565]],
           'value' => undef
         },
         'description' => {
@@ -3581,7 +3581,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'backend' => {
-          'type' => Optional[Google_compute_region_backend_service_backend_1612],
+          'type' => Optional[Array[Google_compute_region_backend_service_backend_1612]],
           'value' => undef
         },
         'connection_draining_timeout_sec' => {
@@ -4106,7 +4106,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'subnetwork' => {
-          'type' => Optional[Google_compute_router_nat_subnetwork_1622],
+          'type' => Optional[Array[Google_compute_router_nat_subnetwork_1622]],
           'value' => undef
         },
         'tcp_established_idle_timeout_sec' => {
@@ -4210,7 +4210,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'rule' => {
-          'type' => Optional[Google_compute_security_policy_rule_1623],
+          'type' => Optional[Array[Google_compute_security_policy_rule_1623]],
           'value' => undef
         },
         'self_link' => {
@@ -4942,7 +4942,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'host_rule' => {
-          'type' => Optional[Google_compute_url_map_host_rule_1629],
+          'type' => Optional[Array[Google_compute_url_map_host_rule_1629]],
           'value' => undef
         },
         'map_id' => {
@@ -5477,7 +5477,7 @@ type TerraformGoogle = TypeSet[{
     Google_container_cluster_master_authorized_networks_config_1647 => {
       attributes => {
         'cidr_blocks' => {
-          'type' => Optional[Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648],
+          'type' => Optional[Array[Google_container_cluster_master_authorized_networks_config_1647_cidr_blocks_1648]],
           'value' => undef
         }
       }
@@ -9744,7 +9744,7 @@ type TerraformGoogle = TypeSet[{
     Google_sql_database_instance_settings_1737_ip_configuration_1740 => {
       attributes => {
         'authorized_networks' => {
-          'type' => Optional[Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741],
+          'type' => Optional[Array[Google_sql_database_instance_settings_1737_ip_configuration_1740_authorized_networks_1741]],
           'value' => undef
         },
         'ipv4_enabled' => {
@@ -10099,8 +10099,8 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_lifecycle_rule_1746 => {
       attributes => {
-        'action' => Google_storage_bucket_lifecycle_rule_1746_action_1747,
-        'condition' => Google_storage_bucket_lifecycle_rule_1746_condition_1748
+        'action' => Array[Google_storage_bucket_lifecycle_rule_1746_action_1747],
+        'condition' => Array[Google_storage_bucket_lifecycle_rule_1746_condition_1748]
       }
     },
     Google_storage_bucket_lifecycle_rule_1746_action_1747 => {

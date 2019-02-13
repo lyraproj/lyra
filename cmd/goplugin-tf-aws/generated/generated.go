@@ -1253,7 +1253,7 @@ type Aws_alb struct {
 
     Security_groups *[]string
 
-    Subnet_mapping *Aws_alb_subnet_mapping_7
+    Subnet_mapping *[]Aws_alb_subnet_mapping_7
 
     Subnets *[]string
 
@@ -1602,7 +1602,7 @@ type Aws_alb_listener_rule struct {
 
     Arn *string
 
-    Condition Aws_alb_listener_rule_condition_18
+    Condition []Aws_alb_listener_rule_condition_18
 
     Listener_arn string
 
@@ -1833,11 +1833,11 @@ type Aws_ami struct {
 
     Description *string
 
-    Ebs_block_device *Aws_ami_ebs_block_device_21
+    Ebs_block_device *[]Aws_ami_ebs_block_device_21
 
     Ena_support *bool
 
-    Ephemeral_block_device *Aws_ami_ephemeral_block_device_22
+    Ephemeral_block_device *[]Aws_ami_ephemeral_block_device_22
 
     Image_location *string
 
@@ -1932,13 +1932,13 @@ type Aws_ami_copy struct {
 
     Description *string
 
-    Ebs_block_device *Aws_ami_copy_ebs_block_device_23
+    Ebs_block_device *[]Aws_ami_copy_ebs_block_device_23
 
     Ena_support *bool
 
     Encrypted *bool
 
-    Ephemeral_block_device *Aws_ami_copy_ephemeral_block_device_24
+    Ephemeral_block_device *[]Aws_ami_copy_ephemeral_block_device_24
 
     Image_location *string
 
@@ -2039,11 +2039,11 @@ type Aws_ami_from_instance struct {
 
     Description *string
 
-    Ebs_block_device *Aws_ami_from_instance_ebs_block_device_25
+    Ebs_block_device *[]Aws_ami_from_instance_ebs_block_device_25
 
     Ena_support *bool
 
-    Ephemeral_block_device *Aws_ami_from_instance_ephemeral_block_device_26
+    Ephemeral_block_device *[]Aws_ami_from_instance_ephemeral_block_device_26
 
     Image_location *string
 
@@ -2232,7 +2232,7 @@ type Aws_api_gateway_api_key struct {
 
     Name string
 
-    Stage_key *Aws_api_gateway_api_key_stage_key_28
+    Stage_key *[]Aws_api_gateway_api_key_stage_key_28
 
     Value *string
 
@@ -3417,9 +3417,9 @@ type Aws_api_gateway_usage_plan struct {
 
     Product_code *string
 
-    Quota_settings *Aws_api_gateway_usage_plan_quota_settings_35
+    Quota_settings *[]Aws_api_gateway_usage_plan_quota_settings_35
 
-    Throttle_settings *Aws_api_gateway_usage_plan_throttle_settings_36
+    Throttle_settings *[]Aws_api_gateway_usage_plan_throttle_settings_36
 
 }
 
@@ -3643,7 +3643,7 @@ type Aws_appautoscaling_policy_step_scaling_policy_configuration_38 struct {
 
     Min_adjustment_magnitude *int
 
-    Step_adjustment *Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39
+    Step_adjustment *[]Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39
 
 }
 
@@ -3657,7 +3657,7 @@ type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_c
 
 type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41 struct {
 
-    Dimensions *Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42
+    Dimensions *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42
 
     Metric_name string
 
@@ -3719,7 +3719,7 @@ type Aws_appautoscaling_policy struct {
 
     Service_namespace string
 
-    Step_adjustment *Aws_appautoscaling_policy_step_adjustment_37
+    Step_adjustment *[]Aws_appautoscaling_policy_step_adjustment_37
 
     Step_scaling_policy_configuration *[]Aws_appautoscaling_policy_step_scaling_policy_configuration_38
 
@@ -3949,7 +3949,7 @@ type Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48 struct
 
 type Aws_appmesh_route_spec_45_http_route_46_action_47 struct {
 
-    Weighted_target Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48
+    Weighted_target []Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48
 
 }
 
@@ -4060,7 +4060,7 @@ type Aws_appmesh_virtual_node_spec_50 struct {
 
     Backends *[]string
 
-    Listener *Aws_appmesh_virtual_node_spec_50_listener_51
+    Listener *[]Aws_appmesh_virtual_node_spec_50_listener_51
 
     Service_discovery *[]Aws_appmesh_virtual_node_spec_50_service_discovery_53
 
@@ -4680,7 +4680,7 @@ type Aws_autoscaling_group struct {
 
     Health_check_type *string
 
-    Initial_lifecycle_hook *Aws_autoscaling_group_initial_lifecycle_hook_64
+    Initial_lifecycle_hook *[]Aws_autoscaling_group_initial_lifecycle_hook_64
 
     Launch_configuration *string
 
@@ -4710,7 +4710,7 @@ type Aws_autoscaling_group struct {
 
     Suspended_processes *[]string
 
-    Tag *Aws_autoscaling_group_tag_71
+    Tag *[]Aws_autoscaling_group_tag_71
 
     Tags *[]map[string]string
 
@@ -4949,7 +4949,7 @@ type Aws_autoscaling_policy struct {
 
     Scaling_adjustment *int
 
-    Step_adjustment *Aws_autoscaling_policy_step_adjustment_72
+    Step_adjustment *[]Aws_autoscaling_policy_step_adjustment_72
 
     Target_tracking_configuration *[]Aws_autoscaling_policy_target_tracking_configuration_73
 
@@ -5501,7 +5501,7 @@ type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_8
 
 type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82 struct {
 
-    Cookies Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83
+    Cookies []Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83
 
     Headers *[]string
 
@@ -5533,9 +5533,9 @@ type Aws_cloudfront_distribution_cache_behavior_81 struct {
 
     Field_level_encryption_id *string
 
-    Forwarded_values Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82
+    Forwarded_values []Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82
 
-    Lambda_function_association *Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84
+    Lambda_function_association *[]Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84
 
     Max_ttl *int
 
@@ -5575,7 +5575,7 @@ type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_c
 
 type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87 struct {
 
-    Cookies Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88
+    Cookies []Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88
 
     Headers *[]string
 
@@ -5607,9 +5607,9 @@ type Aws_cloudfront_distribution_default_cache_behavior_86 struct {
 
     Field_level_encryption_id *string
 
-    Forwarded_values Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87
+    Forwarded_values []Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87
 
-    Lambda_function_association *Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89
+    Lambda_function_association *[]Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89
 
     Max_ttl *int
 
@@ -5645,7 +5645,7 @@ type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_c
 
 type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92 struct {
 
-    Cookies Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93
+    Cookies []Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93
 
     Headers *[]string
 
@@ -5677,9 +5677,9 @@ type Aws_cloudfront_distribution_ordered_cache_behavior_91 struct {
 
     Field_level_encryption_id *string
 
-    Forwarded_values Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92
+    Forwarded_values []Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92
 
-    Lambda_function_association *Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94
+    Lambda_function_association *[]Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94
 
     Max_ttl *int
 
@@ -5729,9 +5729,9 @@ type Aws_cloudfront_distribution_origin_95_s3_origin_config_98 struct {
 
 type Aws_cloudfront_distribution_origin_95 struct {
 
-    Custom_header *Aws_cloudfront_distribution_origin_95_custom_header_96
+    Custom_header *[]Aws_cloudfront_distribution_origin_95_custom_header_96
 
-    Custom_origin_config *Aws_cloudfront_distribution_origin_95_custom_origin_config_97
+    Custom_origin_config *[]Aws_cloudfront_distribution_origin_95_custom_origin_config_97
 
     Domain_name string
 
@@ -5739,7 +5739,7 @@ type Aws_cloudfront_distribution_origin_95 struct {
 
     Origin_path *string
 
-    S3_origin_config *Aws_cloudfront_distribution_origin_95_s3_origin_config_98
+    S3_origin_config *[]Aws_cloudfront_distribution_origin_95_s3_origin_config_98
 
 }
 
@@ -5753,7 +5753,7 @@ type Aws_cloudfront_distribution_restrictions_99_geo_restriction_100 struct {
 
 type Aws_cloudfront_distribution_restrictions_99 struct {
 
-    Geo_restriction Aws_cloudfront_distribution_restrictions_99_geo_restriction_100
+    Geo_restriction []Aws_cloudfront_distribution_restrictions_99_geo_restriction_100
 
 }
 
@@ -5781,15 +5781,15 @@ type Aws_cloudfront_distribution struct {
 
     Arn *string
 
-    Cache_behavior *Aws_cloudfront_distribution_cache_behavior_81
+    Cache_behavior *[]Aws_cloudfront_distribution_cache_behavior_81
 
     Caller_reference *string
 
     Comment *string
 
-    Custom_error_response *Aws_cloudfront_distribution_custom_error_response_85
+    Custom_error_response *[]Aws_cloudfront_distribution_custom_error_response_85
 
-    Default_cache_behavior Aws_cloudfront_distribution_default_cache_behavior_86
+    Default_cache_behavior []Aws_cloudfront_distribution_default_cache_behavior_86
 
     Default_root_object *string
 
@@ -5809,15 +5809,15 @@ type Aws_cloudfront_distribution struct {
 
     Last_modified_time *string
 
-    Logging_config *Aws_cloudfront_distribution_logging_config_90
+    Logging_config *[]Aws_cloudfront_distribution_logging_config_90
 
     Ordered_cache_behavior *[]Aws_cloudfront_distribution_ordered_cache_behavior_91
 
-    Origin Aws_cloudfront_distribution_origin_95
+    Origin []Aws_cloudfront_distribution_origin_95
 
     Price_class *string
 
-    Restrictions Aws_cloudfront_distribution_restrictions_99
+    Restrictions []Aws_cloudfront_distribution_restrictions_99
 
     Retain_on_delete *bool
 
@@ -5825,7 +5825,7 @@ type Aws_cloudfront_distribution struct {
 
     Tags *map[string]string
 
-    Viewer_certificate Aws_cloudfront_distribution_viewer_certificate_101
+    Viewer_certificate []Aws_cloudfront_distribution_viewer_certificate_101
 
     Web_acl_id *string
 
@@ -7037,7 +7037,7 @@ type Aws_codebuild_project_secondary_sources_119_auth_120 struct {
 
 type Aws_codebuild_project_secondary_sources_119 struct {
 
-    Auth *Aws_codebuild_project_secondary_sources_119_auth_120
+    Auth *[]Aws_codebuild_project_secondary_sources_119_auth_120
 
     Buildspec *string
 
@@ -7065,7 +7065,7 @@ type Aws_codebuild_project_source_121_auth_122 struct {
 
 type Aws_codebuild_project_source_121 struct {
 
-    Auth *Aws_codebuild_project_source_121_auth_122
+    Auth *[]Aws_codebuild_project_source_121_auth_122
 
     Buildspec *string
 
@@ -7097,7 +7097,7 @@ type Aws_codebuild_project struct {
 
     Arn *string
 
-    Artifacts Aws_codebuild_project_artifacts_114
+    Artifacts []Aws_codebuild_project_artifacts_114
 
     Badge_enabled *bool
 
@@ -7111,17 +7111,17 @@ type Aws_codebuild_project struct {
 
     Encryption_key *string
 
-    Environment Aws_codebuild_project_environment_116
+    Environment []Aws_codebuild_project_environment_116
 
     Name string
 
-    Secondary_artifacts *Aws_codebuild_project_secondary_artifacts_118
+    Secondary_artifacts *[]Aws_codebuild_project_secondary_artifacts_118
 
-    Secondary_sources *Aws_codebuild_project_secondary_sources_119
+    Secondary_sources *[]Aws_codebuild_project_secondary_sources_119
 
     Service_role string
 
-    Source Aws_codebuild_project_source_121
+    Source []Aws_codebuild_project_source_121
 
     Tags *map[string]string
 
@@ -7300,7 +7300,7 @@ type Aws_codecommit_trigger struct {
 
     Repository_name string
 
-    Trigger Aws_codecommit_trigger_trigger_124
+    Trigger []Aws_codecommit_trigger_trigger_124
 
 }
 
@@ -7557,7 +7557,7 @@ type Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138 struct {
 
 type Aws_codedeploy_deployment_group_ec2_tag_set_137 struct {
 
-    Ec2_tag_filter *Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138
+    Ec2_tag_filter *[]Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138
 
 }
 
@@ -7611,9 +7611,9 @@ type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_in
 
 type Aws_codedeploy_deployment_group_load_balancer_info_140 struct {
 
-    Elb_info *Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141
+    Elb_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141
 
-    Target_group_info *Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142
+    Target_group_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142
 
     Target_group_pair_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143
 
@@ -7659,19 +7659,19 @@ type Aws_codedeploy_deployment_group struct {
 
     Deployment_style *[]Aws_codedeploy_deployment_group_deployment_style_135
 
-    Ec2_tag_filter *Aws_codedeploy_deployment_group_ec2_tag_filter_136
+    Ec2_tag_filter *[]Aws_codedeploy_deployment_group_ec2_tag_filter_136
 
-    Ec2_tag_set *Aws_codedeploy_deployment_group_ec2_tag_set_137
+    Ec2_tag_set *[]Aws_codedeploy_deployment_group_ec2_tag_set_137
 
     Ecs_service *[]Aws_codedeploy_deployment_group_ecs_service_139
 
     Load_balancer_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140
 
-    On_premises_instance_tag_filter *Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147
+    On_premises_instance_tag_filter *[]Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147
 
     Service_role_arn string
 
-    Trigger_configuration *Aws_codedeploy_deployment_group_trigger_configuration_148
+    Trigger_configuration *[]Aws_codedeploy_deployment_group_trigger_configuration_148
 
 }
 
@@ -7839,7 +7839,7 @@ type Aws_codepipeline_webhook struct {
 
     Authentication_configuration *[]Aws_codepipeline_webhook_authentication_configuration_153
 
-    Filter Aws_codepipeline_webhook_filter_154
+    Filter []Aws_codepipeline_webhook_filter_154
 
     Name string
 
@@ -7906,7 +7906,7 @@ type Aws_cognito_identity_pool struct {
 
     Arn *string
 
-    Cognito_identity_providers *Aws_cognito_identity_pool_cognito_identity_providers_155
+    Cognito_identity_providers *[]Aws_cognito_identity_pool_cognito_identity_providers_155
 
     Developer_provider_name *string
 
@@ -7987,7 +7987,7 @@ type Aws_cognito_identity_pool_roles_attachment struct {
 
     Identity_pool_id string
 
-    Role_mapping *Aws_cognito_identity_pool_roles_attachment_role_mapping_156
+    Role_mapping *[]Aws_cognito_identity_pool_roles_attachment_role_mapping_156
 
     Roles map[string]string
 
@@ -8101,7 +8101,7 @@ type Aws_cognito_resource_server struct {
 
     Name string
 
-    Scope *Aws_cognito_resource_server_scope_158
+    Scope *[]Aws_cognito_resource_server_scope_158
 
     Scope_identifiers *[]string
 
@@ -8365,7 +8365,7 @@ type Aws_cognito_user_pool struct {
 
     Password_policy *[]Aws_cognito_user_pool_password_policy_164
 
-    Schema *Aws_cognito_user_pool_schema_165
+    Schema *[]Aws_cognito_user_pool_schema_165
 
     Sms_authentication_message *string
 
@@ -8623,7 +8623,7 @@ type Aws_config_config_rule_source_171 struct {
 
     Owner string
 
-    Source_detail *Aws_config_config_rule_source_171_source_detail_172
+    Source_detail *[]Aws_config_config_rule_source_171_source_detail_172
 
     Source_identifier string
 
@@ -9405,7 +9405,7 @@ type Aws_dax_parameter_group struct {
 
     Name string
 
-    Parameters *Aws_dax_parameter_group_parameters_183
+    Parameters *[]Aws_dax_parameter_group_parameters_183
 
 }
 
@@ -9810,7 +9810,7 @@ type Aws_db_option_group_option_185 struct {
 
     Option_name string
 
-    Option_settings *Aws_db_option_group_option_185_option_settings_186
+    Option_settings *[]Aws_db_option_group_option_185_option_settings_186
 
     Port *int
 
@@ -9834,7 +9834,7 @@ type Aws_db_option_group struct {
 
     Name_prefix *string
 
-    Option *Aws_db_option_group_option_185
+    Option *[]Aws_db_option_group_option_185
 
     Option_group_description *string
 
@@ -9903,7 +9903,7 @@ type Aws_db_parameter_group struct {
 
     Name_prefix *string
 
-    Parameter *Aws_db_parameter_group_parameter_187
+    Parameter *[]Aws_db_parameter_group_parameter_187
 
     Tags *map[string]string
 
@@ -9966,7 +9966,7 @@ type Aws_db_security_group struct {
 
     Description *string
 
-    Ingress Aws_db_security_group_ingress_188
+    Ingress []Aws_db_security_group_ingress_188
 
     Name string
 
@@ -10199,9 +10199,9 @@ type Aws_default_network_acl struct {
 
     Default_network_acl_id string
 
-    Egress *Aws_default_network_acl_egress_189
+    Egress *[]Aws_default_network_acl_egress_189
 
-    Ingress *Aws_default_network_acl_ingress_190
+    Ingress *[]Aws_default_network_acl_ingress_190
 
     Owner_id *string
 
@@ -10282,7 +10282,7 @@ type Aws_default_route_table struct {
 
     Propagating_vgws *[]string
 
-    Route *Aws_default_route_table_route_191
+    Route *[]Aws_default_route_table_route_191
 
     Tags *map[string]string
 
@@ -10377,9 +10377,9 @@ type Aws_default_security_group struct {
 
     Arn *string
 
-    Egress *Aws_default_security_group_egress_192
+    Egress *[]Aws_default_security_group_egress_192
 
-    Ingress *Aws_default_security_group_ingress_193
+    Ingress *[]Aws_default_security_group_ingress_193
 
     Name *string
 
@@ -11290,7 +11290,7 @@ type Aws_docdb_cluster_parameter_group struct {
 
     Name_prefix *string
 
-    Parameter *Aws_docdb_cluster_parameter_group_parameter_202
+    Parameter *[]Aws_docdb_cluster_parameter_group_parameter_202
 
     Tags *map[string]string
 
@@ -12082,7 +12082,7 @@ type Aws_dynamodb_global_table struct {
 
     Name string
 
-    Replica Aws_dynamodb_global_table_replica_203
+    Replica []Aws_dynamodb_global_table_replica_203
 
 }
 
@@ -12187,15 +12187,15 @@ type Aws_dynamodb_table struct {
 
     Arn *string
 
-    Attribute Aws_dynamodb_table_attribute_204
+    Attribute []Aws_dynamodb_table_attribute_204
 
     Billing_mode *string
 
-    Global_secondary_index *Aws_dynamodb_table_global_secondary_index_205
+    Global_secondary_index *[]Aws_dynamodb_table_global_secondary_index_205
 
     Hash_key string
 
-    Local_secondary_index *Aws_dynamodb_table_local_secondary_index_206
+    Local_secondary_index *[]Aws_dynamodb_table_local_secondary_index_206
 
     Name string
 
@@ -12217,7 +12217,7 @@ type Aws_dynamodb_table struct {
 
     Tags *map[string]string
 
-    Ttl *Aws_dynamodb_table_ttl_209
+    Ttl *[]Aws_dynamodb_table_ttl_209
 
     Write_capacity *int
 
@@ -13304,7 +13304,7 @@ type Aws_ecs_service struct {
 
     Launch_type *string
 
-    Load_balancer *Aws_ecs_service_load_balancer_217
+    Load_balancer *[]Aws_ecs_service_load_balancer_217
 
     Name string
 
@@ -13312,9 +13312,9 @@ type Aws_ecs_service struct {
 
     Ordered_placement_strategy *[]Aws_ecs_service_ordered_placement_strategy_219
 
-    Placement_constraints *Aws_ecs_service_placement_constraints_220
+    Placement_constraints *[]Aws_ecs_service_placement_constraints_220
 
-    Placement_strategy *Aws_ecs_service_placement_strategy_221
+    Placement_strategy *[]Aws_ecs_service_placement_strategy_221
 
     Platform_version *string
 
@@ -13322,7 +13322,7 @@ type Aws_ecs_service struct {
 
     Scheduling_strategy *string
 
-    Service_registries *Aws_ecs_service_service_registries_222
+    Service_registries *[]Aws_ecs_service_service_registries_222
 
     Tags *map[string]string
 
@@ -13421,7 +13421,7 @@ type Aws_ecs_task_definition struct {
 
     Pid_mode *string
 
-    Placement_constraints *Aws_ecs_task_definition_placement_constraints_223
+    Placement_constraints *[]Aws_ecs_task_definition_placement_constraints_223
 
     Requires_compatibilities *[]string
 
@@ -13431,7 +13431,7 @@ type Aws_ecs_task_definition struct {
 
     Task_role_arn *string
 
-    Volume *Aws_ecs_task_definition_volume_224
+    Volume *[]Aws_ecs_task_definition_volume_224
 
 }
 
@@ -13974,7 +13974,7 @@ type Aws_elastic_beanstalk_configuration_template struct {
 
     Name string
 
-    Setting *Aws_elastic_beanstalk_configuration_template_setting_229
+    Setting *[]Aws_elastic_beanstalk_configuration_template_setting_229
 
     Solution_stack_name *string
 
@@ -14045,7 +14045,7 @@ type Aws_elastic_beanstalk_environment struct {
 
     Aws_elastic_beanstalk_environment_id *string `lyra:"ignore"`
 
-    All_settings *Aws_elastic_beanstalk_environment_all_settings_230
+    All_settings *[]Aws_elastic_beanstalk_environment_all_settings_230
 
     Application string
 
@@ -14073,7 +14073,7 @@ type Aws_elastic_beanstalk_environment struct {
 
     Queues *[]string
 
-    Setting *Aws_elastic_beanstalk_environment_setting_231
+    Setting *[]Aws_elastic_beanstalk_environment_setting_231
 
     Solution_stack_name *string
 
@@ -14253,7 +14253,7 @@ type Aws_elasticache_parameter_group struct {
 
     Name string
 
-    Parameter *Aws_elasticache_parameter_group_parameter_233
+    Parameter *[]Aws_elasticache_parameter_group_parameter_233
 
 }
 
@@ -14611,7 +14611,7 @@ type Aws_elasticsearch_domain struct {
 
     Kibana_endpoint *string
 
-    Log_publishing_options *Aws_elasticsearch_domain_log_publishing_options_239
+    Log_publishing_options *[]Aws_elasticsearch_domain_log_publishing_options_239
 
     Node_to_node_encryption *[]Aws_elasticsearch_domain_node_to_node_encryption_240
 
@@ -14763,23 +14763,23 @@ type Aws_elastictranscoder_pipeline struct {
 
     Aws_kms_key_arn *string
 
-    Content_config *Aws_elastictranscoder_pipeline_content_config_243
+    Content_config *[]Aws_elastictranscoder_pipeline_content_config_243
 
-    Content_config_permissions *Aws_elastictranscoder_pipeline_content_config_permissions_244
+    Content_config_permissions *[]Aws_elastictranscoder_pipeline_content_config_permissions_244
 
     Input_bucket string
 
     Name *string
 
-    Notifications *Aws_elastictranscoder_pipeline_notifications_245
+    Notifications *[]Aws_elastictranscoder_pipeline_notifications_245
 
     Output_bucket *string
 
     Role string
 
-    Thumbnail_config *Aws_elastictranscoder_pipeline_thumbnail_config_246
+    Thumbnail_config *[]Aws_elastictranscoder_pipeline_thumbnail_config_246
 
-    Thumbnail_config_permissions *Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247
+    Thumbnail_config_permissions *[]Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247
 
 }
 
@@ -14926,9 +14926,9 @@ type Aws_elastictranscoder_preset struct {
 
     Arn *string
 
-    Audio *Aws_elastictranscoder_preset_audio_248
+    Audio *[]Aws_elastictranscoder_preset_audio_248
 
-    Audio_codec_options *Aws_elastictranscoder_preset_audio_codec_options_249
+    Audio_codec_options *[]Aws_elastictranscoder_preset_audio_codec_options_249
 
     Container string
 
@@ -14936,15 +14936,15 @@ type Aws_elastictranscoder_preset struct {
 
     Name *string
 
-    Thumbnails *Aws_elastictranscoder_preset_thumbnails_250
+    Thumbnails *[]Aws_elastictranscoder_preset_thumbnails_250
 
     Type *string
 
-    Video *Aws_elastictranscoder_preset_video_251
+    Video *[]Aws_elastictranscoder_preset_video_251
 
     Video_codec_options *map[string]string
 
-    Video_watermarks *Aws_elastictranscoder_preset_video_watermarks_252
+    Video_watermarks *[]Aws_elastictranscoder_preset_video_watermarks_252
 
 }
 
@@ -15051,7 +15051,7 @@ type Aws_elb struct {
 
     Internal *bool
 
-    Listener Aws_elb_listener_255
+    Listener []Aws_elb_listener_255
 
     Name *string
 
@@ -15203,7 +15203,7 @@ type Aws_emr_cluster_instance_group_258 struct {
 
     Bid_price *string
 
-    Ebs_config *Aws_emr_cluster_instance_group_258_ebs_config_259
+    Ebs_config *[]Aws_emr_cluster_instance_group_258_ebs_config_259
 
     Id *string
 
@@ -15263,7 +15263,7 @@ type Aws_emr_cluster struct {
 
     Autoscaling_role *string
 
-    Bootstrap_action *Aws_emr_cluster_bootstrap_action_256
+    Bootstrap_action *[]Aws_emr_cluster_bootstrap_action_256
 
     Cluster_state *string
 
@@ -15281,7 +15281,7 @@ type Aws_emr_cluster struct {
 
     Ec2_attributes *[]Aws_emr_cluster_ec2_attributes_257
 
-    Instance_group *Aws_emr_cluster_instance_group_258
+    Instance_group *[]Aws_emr_cluster_instance_group_258
 
     Keep_job_flow_alive_when_no_steps *bool
 
@@ -15368,7 +15368,7 @@ type Aws_emr_instance_group struct {
 
     Cluster_id string
 
-    Ebs_config *Aws_emr_instance_group_ebs_config_263
+    Ebs_config *[]Aws_emr_instance_group_ebs_config_263
 
     Ebs_optimized *bool
 
@@ -18358,11 +18358,11 @@ type Aws_instance struct {
 
     Disable_api_termination *bool
 
-    Ebs_block_device *Aws_instance_ebs_block_device_298
+    Ebs_block_device *[]Aws_instance_ebs_block_device_298
 
     Ebs_optimized *bool
 
-    Ephemeral_block_device *Aws_instance_ephemeral_block_device_299
+    Ephemeral_block_device *[]Aws_instance_ephemeral_block_device_299
 
     Get_password_data *bool
 
@@ -18384,7 +18384,7 @@ type Aws_instance struct {
 
     Monitoring *bool
 
-    Network_interface *Aws_instance_network_interface_300
+    Network_interface *[]Aws_instance_network_interface_300
 
     Network_interface_id *string
 
@@ -18952,37 +18952,37 @@ type Aws_iot_topic_rule struct {
 
     Arn *string
 
-    Cloudwatch_alarm *Aws_iot_topic_rule_cloudwatch_alarm_303
+    Cloudwatch_alarm *[]Aws_iot_topic_rule_cloudwatch_alarm_303
 
-    Cloudwatch_metric *Aws_iot_topic_rule_cloudwatch_metric_304
+    Cloudwatch_metric *[]Aws_iot_topic_rule_cloudwatch_metric_304
 
     Description *string
 
-    Dynamodb *Aws_iot_topic_rule_dynamodb_305
+    Dynamodb *[]Aws_iot_topic_rule_dynamodb_305
 
-    Elasticsearch *Aws_iot_topic_rule_elasticsearch_306
+    Elasticsearch *[]Aws_iot_topic_rule_elasticsearch_306
 
     Enabled bool
 
-    Firehose *Aws_iot_topic_rule_firehose_307
+    Firehose *[]Aws_iot_topic_rule_firehose_307
 
-    Kinesis *Aws_iot_topic_rule_kinesis_308
+    Kinesis *[]Aws_iot_topic_rule_kinesis_308
 
-    Lambda *Aws_iot_topic_rule_lambda_309
+    Lambda *[]Aws_iot_topic_rule_lambda_309
 
     Name string
 
-    Republish *Aws_iot_topic_rule_republish_310
+    Republish *[]Aws_iot_topic_rule_republish_310
 
-    S3 *Aws_iot_topic_rule_s3_311
+    S3 *[]Aws_iot_topic_rule_s3_311
 
-    Sns *Aws_iot_topic_rule_sns_312
+    Sns *[]Aws_iot_topic_rule_sns_312
 
     Sql string
 
     Sql_version string
 
-    Sqs *Aws_iot_topic_rule_sqs_313
+    Sqs *[]Aws_iot_topic_rule_sqs_313
 
 }
 
@@ -19423,7 +19423,7 @@ type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 struct
 
     Buffering_size *int
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342
 
     Domain_arn string
 
@@ -19607,7 +19607,7 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backu
 
     Buffer_size *int
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362
 
     Compression_format *string
 
@@ -19627,7 +19627,7 @@ type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346 struct {
 
     Buffer_size *int
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347
 
     Compression_format *string
 
@@ -19709,7 +19709,7 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_c
 
     Buffer_size *int
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370
 
     Compression_format *string
 
@@ -19723,7 +19723,7 @@ type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_c
 
 type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364 struct {
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365
 
     Cluster_jdbcurl string
 
@@ -19767,7 +19767,7 @@ type Aws_kinesis_firehose_delivery_stream_s3_configuration_371 struct {
 
     Buffer_size *int
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372
 
     Compression_format *string
 
@@ -19815,7 +19815,7 @@ type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_co
 
 type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373 struct {
 
-    Cloudwatch_logging_options *Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374
+    Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374
 
     Hec_acknowledgment_timeout *int
 
@@ -20024,7 +20024,7 @@ type Aws_kms_grant struct {
 
     Aws_kms_grant_id *string `lyra:"ignore"`
 
-    Constraints *Aws_kms_grant_constraints_378
+    Constraints *[]Aws_kms_grant_constraints_378
 
     Grant_creation_tokens *[]string
 
@@ -20577,13 +20577,13 @@ type Aws_launch_configuration struct {
 
     Associate_public_ip_address *bool
 
-    Ebs_block_device *Aws_launch_configuration_ebs_block_device_384
+    Ebs_block_device *[]Aws_launch_configuration_ebs_block_device_384
 
     Ebs_optimized *bool
 
     Enable_monitoring *bool
 
-    Ephemeral_block_device *Aws_launch_configuration_ephemeral_block_device_385
+    Ephemeral_block_device *[]Aws_launch_configuration_ephemeral_block_device_385
 
     Iam_instance_profile *string
 
@@ -20840,7 +20840,7 @@ type Aws_launch_template struct {
 
     Latest_version *int
 
-    License_specification *Aws_launch_template_license_specification_396
+    License_specification *[]Aws_launch_template_license_specification_396
 
     Monitoring *[]Aws_launch_template_monitoring_397
 
@@ -20953,7 +20953,7 @@ type Aws_lb struct {
 
     Security_groups *[]string
 
-    Subnet_mapping *Aws_lb_subnet_mapping_402
+    Subnet_mapping *[]Aws_lb_subnet_mapping_402
 
     Subnets *[]string
 
@@ -21353,7 +21353,7 @@ type Aws_lb_listener_rule struct {
 
     Arn *string
 
-    Condition Aws_lb_listener_rule_condition_413
+    Condition []Aws_lb_listener_rule_condition_413
 
     Listener_arn string
 
@@ -21410,7 +21410,7 @@ type Aws_lb_ssl_negotiation_policy struct {
 
     Aws_lb_ssl_negotiation_policy_id *string `lyra:"ignore"`
 
-    Attribute *Aws_lb_ssl_negotiation_policy_attribute_414
+    Attribute *[]Aws_lb_ssl_negotiation_policy_attribute_414
 
     Lb_port int
 
@@ -22104,7 +22104,7 @@ type Aws_load_balancer_policy struct {
 
     Load_balancer_name string
 
-    Policy_attribute *Aws_load_balancer_policy_policy_attribute_417
+    Policy_attribute *[]Aws_load_balancer_policy_policy_attribute_417
 
     Policy_name string
 
@@ -22549,7 +22549,7 @@ type Aws_mq_broker struct {
 
     Tags *map[string]string
 
-    User Aws_mq_broker_user_425
+    User []Aws_mq_broker_user_425
 
 }
 
@@ -22918,7 +22918,7 @@ type Aws_neptune_cluster_parameter_group struct {
 
     Name_prefix *string
 
-    Parameter *Aws_neptune_cluster_parameter_group_parameter_426
+    Parameter *[]Aws_neptune_cluster_parameter_group_parameter_426
 
     Tags *map[string]string
 
@@ -23119,7 +23119,7 @@ type Aws_neptune_parameter_group struct {
 
     Name string
 
-    Parameter *Aws_neptune_parameter_group_parameter_427
+    Parameter *[]Aws_neptune_parameter_group_parameter_427
 
     Tags *map[string]string
 
@@ -23265,9 +23265,9 @@ type Aws_network_acl struct {
 
     Aws_network_acl_id *string `lyra:"ignore"`
 
-    Egress *Aws_network_acl_egress_428
+    Egress *[]Aws_network_acl_egress_428
 
-    Ingress *Aws_network_acl_ingress_429
+    Ingress *[]Aws_network_acl_ingress_429
 
     Owner_id *string
 
@@ -23397,7 +23397,7 @@ type Aws_network_interface struct {
 
     Aws_network_interface_id *string `lyra:"ignore"`
 
-    Attachment *Aws_network_interface_attachment_430
+    Attachment *[]Aws_network_interface_attachment_430
 
     Description *string
 
@@ -23616,7 +23616,7 @@ type Aws_opsworks_application struct {
 
     Enable_ssl *bool
 
-    Environment *Aws_opsworks_application_environment_432
+    Environment *[]Aws_opsworks_application_environment_432
 
     Name string
 
@@ -23713,7 +23713,7 @@ type Aws_opsworks_custom_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_custom_layer_ebs_volume_434
+    Ebs_volume *[]Aws_opsworks_custom_layer_ebs_volume_434
 
     Elastic_load_balancer *string
 
@@ -23814,7 +23814,7 @@ type Aws_opsworks_ganglia_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_ganglia_layer_ebs_volume_435
+    Ebs_volume *[]Aws_opsworks_ganglia_layer_ebs_volume_435
 
     Elastic_load_balancer *string
 
@@ -23919,7 +23919,7 @@ type Aws_opsworks_haproxy_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_haproxy_layer_ebs_volume_436
+    Ebs_volume *[]Aws_opsworks_haproxy_layer_ebs_volume_436
 
     Elastic_load_balancer *string
 
@@ -24042,7 +24042,7 @@ type Aws_opsworks_instance struct {
 
     Delete_eip *bool
 
-    Ebs_block_device *Aws_opsworks_instance_ebs_block_device_437
+    Ebs_block_device *[]Aws_opsworks_instance_ebs_block_device_437
 
     Ebs_optimized *bool
 
@@ -24052,7 +24052,7 @@ type Aws_opsworks_instance struct {
 
     Elastic_ip *string
 
-    Ephemeral_block_device *Aws_opsworks_instance_ephemeral_block_device_438
+    Ephemeral_block_device *[]Aws_opsworks_instance_ephemeral_block_device_438
 
     Hostname *string
 
@@ -24090,7 +24090,7 @@ type Aws_opsworks_instance struct {
 
     Reported_os_version *string
 
-    Root_block_device *Aws_opsworks_instance_root_block_device_439
+    Root_block_device *[]Aws_opsworks_instance_root_block_device_439
 
     Root_device_type *string
 
@@ -24203,7 +24203,7 @@ type Aws_opsworks_java_app_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_java_app_layer_ebs_volume_440
+    Ebs_volume *[]Aws_opsworks_java_app_layer_ebs_volume_440
 
     Elastic_load_balancer *string
 
@@ -24310,7 +24310,7 @@ type Aws_opsworks_memcached_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_memcached_layer_ebs_volume_441
+    Ebs_volume *[]Aws_opsworks_memcached_layer_ebs_volume_441
 
     Elastic_load_balancer *string
 
@@ -24409,7 +24409,7 @@ type Aws_opsworks_mysql_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_mysql_layer_ebs_volume_442
+    Ebs_volume *[]Aws_opsworks_mysql_layer_ebs_volume_442
 
     Elastic_load_balancer *string
 
@@ -24512,7 +24512,7 @@ type Aws_opsworks_nodejs_app_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_nodejs_app_layer_ebs_volume_443
+    Ebs_volume *[]Aws_opsworks_nodejs_app_layer_ebs_volume_443
 
     Elastic_load_balancer *string
 
@@ -24666,7 +24666,7 @@ type Aws_opsworks_php_app_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_php_app_layer_ebs_volume_444
+    Ebs_volume *[]Aws_opsworks_php_app_layer_ebs_volume_444
 
     Elastic_load_balancer *string
 
@@ -24769,7 +24769,7 @@ type Aws_opsworks_rails_app_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_rails_app_layer_ebs_volume_445
+    Ebs_volume *[]Aws_opsworks_rails_app_layer_ebs_volume_445
 
     Elastic_load_balancer *string
 
@@ -25034,7 +25034,7 @@ type Aws_opsworks_static_web_layer struct {
 
     Drain_elb_on_shutdown *bool
 
-    Ebs_volume *Aws_opsworks_static_web_layer_ebs_volume_447
+    Ebs_volume *[]Aws_opsworks_static_web_layer_ebs_volume_447
 
     Elastic_load_balancer *string
 
@@ -26463,7 +26463,7 @@ type Aws_rds_cluster_parameter_group struct {
 
     Name_prefix *string
 
-    Parameter *Aws_rds_cluster_parameter_group_parameter_453
+    Parameter *[]Aws_rds_cluster_parameter_group_parameter_453
 
     Tags *map[string]string
 
@@ -26785,7 +26785,7 @@ type Aws_redshift_parameter_group struct {
 
     Name string
 
-    Parameter *Aws_redshift_parameter_group_parameter_456
+    Parameter *[]Aws_redshift_parameter_group_parameter_456
 
 }
 
@@ -26842,7 +26842,7 @@ type Aws_redshift_security_group struct {
 
     Description *string
 
-    Ingress Aws_redshift_security_group_ingress_457
+    Ingress []Aws_redshift_security_group_ingress_457
 
     Name string
 
@@ -27332,7 +27332,7 @@ type Aws_route53_record struct {
 
     Aws_route53_record_id *string `lyra:"ignore"`
 
-    Alias *Aws_route53_record_alias_459
+    Alias *[]Aws_route53_record_alias_459
 
     Allow_overwrite *bool
 
@@ -27429,7 +27429,7 @@ type Aws_route53_zone struct {
 
     Tags *map[string]string
 
-    Vpc *Aws_route53_zone_vpc_464
+    Vpc *[]Aws_route53_zone_vpc_464
 
     Vpc_id *string
 
@@ -27555,7 +27555,7 @@ type Aws_route_table struct {
 
     Propagating_vgws *[]string
 
-    Route *Aws_route_table_route_465
+    Route *[]Aws_route_table_route_465
 
     Tags *map[string]string
 
@@ -27754,19 +27754,19 @@ type Aws_s3_bucket_lifecycle_rule_467 struct {
 
     Enabled bool
 
-    Expiration *Aws_s3_bucket_lifecycle_rule_467_expiration_468
+    Expiration *[]Aws_s3_bucket_lifecycle_rule_467_expiration_468
 
     Id *string
 
-    Noncurrent_version_expiration *Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469
+    Noncurrent_version_expiration *[]Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469
 
-    Noncurrent_version_transition *Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470
+    Noncurrent_version_transition *[]Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470
 
     Prefix *string
 
     Tags *map[string]string
 
-    Transition *Aws_s3_bucket_lifecycle_rule_467_transition_471
+    Transition *[]Aws_s3_bucket_lifecycle_rule_467_transition_471
 
 }
 
@@ -27838,13 +27838,13 @@ type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_crit
 
 type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481 struct {
 
-    Sse_kms_encrypted_objects *Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482
+    Sse_kms_encrypted_objects *[]Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482
 
 }
 
 type Aws_s3_bucket_replication_configuration_476_rules_477 struct {
 
-    Destination Aws_s3_bucket_replication_configuration_476_rules_477_destination_478
+    Destination []Aws_s3_bucket_replication_configuration_476_rules_477_destination_478
 
     Filter *[]Aws_s3_bucket_replication_configuration_476_rules_477_filter_480
 
@@ -27854,7 +27854,7 @@ type Aws_s3_bucket_replication_configuration_476_rules_477 struct {
 
     Priority *int
 
-    Source_selection_criteria *Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481
+    Source_selection_criteria *[]Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481
 
     Status string
 
@@ -27864,7 +27864,7 @@ type Aws_s3_bucket_replication_configuration_476 struct {
 
     Role string
 
-    Rules Aws_s3_bucket_replication_configuration_476_rules_477
+    Rules []Aws_s3_bucket_replication_configuration_476_rules_477
 
 }
 
@@ -27934,7 +27934,7 @@ type Aws_s3_bucket struct {
 
     Lifecycle_rule *[]Aws_s3_bucket_lifecycle_rule_467
 
-    Logging *Aws_s3_bucket_logging_472
+    Logging *[]Aws_s3_bucket_logging_472
 
     Object_lock_configuration *[]Aws_s3_bucket_object_lock_configuration_473
 
@@ -28672,9 +28672,9 @@ type Aws_security_group struct {
 
     Description *string
 
-    Egress *Aws_security_group_egress_500
+    Egress *[]Aws_security_group_egress_500
 
-    Ingress *Aws_security_group_ingress_501
+    Ingress *[]Aws_security_group_ingress_501
 
     Name *string
 
@@ -29534,19 +29534,19 @@ type Aws_ses_event_destination struct {
 
     Aws_ses_event_destination_id *string `lyra:"ignore"`
 
-    Cloudwatch_destination *Aws_ses_event_destination_cloudwatch_destination_506
+    Cloudwatch_destination *[]Aws_ses_event_destination_cloudwatch_destination_506
 
     Configuration_set_name string
 
     Enabled *bool
 
-    Kinesis_destination *Aws_ses_event_destination_kinesis_destination_507
+    Kinesis_destination *[]Aws_ses_event_destination_kinesis_destination_507
 
     Matching_types []string
 
     Name string
 
-    Sns_destination *Aws_ses_event_destination_sns_destination_508
+    Sns_destination *[]Aws_ses_event_destination_sns_destination_508
 
 }
 
@@ -29769,15 +29769,15 @@ type Aws_ses_receipt_rule struct {
 
     Aws_ses_receipt_rule_id *string `lyra:"ignore"`
 
-    Add_header_action *Aws_ses_receipt_rule_add_header_action_509
+    Add_header_action *[]Aws_ses_receipt_rule_add_header_action_509
 
     After *string
 
-    Bounce_action *Aws_ses_receipt_rule_bounce_action_510
+    Bounce_action *[]Aws_ses_receipt_rule_bounce_action_510
 
     Enabled *bool
 
-    Lambda_action *Aws_ses_receipt_rule_lambda_action_511
+    Lambda_action *[]Aws_ses_receipt_rule_lambda_action_511
 
     Name string
 
@@ -29785,17 +29785,17 @@ type Aws_ses_receipt_rule struct {
 
     Rule_set_name string
 
-    S3_action *Aws_ses_receipt_rule_s3_action_512
+    S3_action *[]Aws_ses_receipt_rule_s3_action_512
 
     Scan_enabled *bool
 
-    Sns_action *Aws_ses_receipt_rule_sns_action_513
+    Sns_action *[]Aws_ses_receipt_rule_sns_action_513
 
-    Stop_action *Aws_ses_receipt_rule_stop_action_514
+    Stop_action *[]Aws_ses_receipt_rule_stop_action_514
 
     Tls_policy *string
 
-    Workmail_action *Aws_ses_receipt_rule_workmail_action_515
+    Workmail_action *[]Aws_ses_receipt_rule_workmail_action_515
 
 }
 
@@ -30532,11 +30532,11 @@ type Aws_spot_fleet_request_launch_specification_516 struct {
 
     Availability_zone *string
 
-    Ebs_block_device *Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517
+    Ebs_block_device *[]Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517
 
     Ebs_optimized *bool
 
-    Ephemeral_block_device *Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518
+    Ephemeral_block_device *[]Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518
 
     Iam_instance_profile *string
 
@@ -30552,7 +30552,7 @@ type Aws_spot_fleet_request_launch_specification_516 struct {
 
     Placement_tenancy *string
 
-    Root_block_device *Aws_spot_fleet_request_launch_specification_516_root_block_device_519
+    Root_block_device *[]Aws_spot_fleet_request_launch_specification_516_root_block_device_519
 
     Spot_price *string
 
@@ -30586,7 +30586,7 @@ type Aws_spot_fleet_request struct {
 
     Instance_pools_to_use_count *int
 
-    Launch_specification Aws_spot_fleet_request_launch_specification_516
+    Launch_specification []Aws_spot_fleet_request_launch_specification_516
 
     Load_balancers *[]string
 
@@ -30731,11 +30731,11 @@ type Aws_spot_instance_request struct {
 
     Disable_api_termination *bool
 
-    Ebs_block_device *Aws_spot_instance_request_ebs_block_device_521
+    Ebs_block_device *[]Aws_spot_instance_request_ebs_block_device_521
 
     Ebs_optimized *bool
 
-    Ephemeral_block_device *Aws_spot_instance_request_ephemeral_block_device_522
+    Ephemeral_block_device *[]Aws_spot_instance_request_ephemeral_block_device_522
 
     Get_password_data *bool
 
@@ -30761,7 +30761,7 @@ type Aws_spot_instance_request struct {
 
     Monitoring *bool
 
-    Network_interface *Aws_spot_instance_request_network_interface_523
+    Network_interface *[]Aws_spot_instance_request_network_interface_523
 
     Network_interface_id *string
 
@@ -33037,7 +33037,7 @@ type Aws_vpc_peering_connection struct {
 
     Accept_status *string
 
-    Accepter *Aws_vpc_peering_connection_accepter_539
+    Accepter *[]Aws_vpc_peering_connection_accepter_539
 
     Auto_accept *bool
 
@@ -33047,7 +33047,7 @@ type Aws_vpc_peering_connection struct {
 
     Peer_vpc_id string
 
-    Requester *Aws_vpc_peering_connection_requester_540
+    Requester *[]Aws_vpc_peering_connection_requester_540
 
     Tags *map[string]string
 
@@ -33118,7 +33118,7 @@ type Aws_vpc_peering_connection_accepter struct {
 
     Accept_status *string
 
-    Accepter *Aws_vpc_peering_connection_accepter_accepter_541
+    Accepter *[]Aws_vpc_peering_connection_accepter_accepter_541
 
     Auto_accept *bool
 
@@ -33128,7 +33128,7 @@ type Aws_vpc_peering_connection_accepter struct {
 
     Peer_vpc_id *string
 
-    Requester *Aws_vpc_peering_connection_accepter_requester_542
+    Requester *[]Aws_vpc_peering_connection_accepter_requester_542
 
     Tags *map[string]string
 
@@ -33199,9 +33199,9 @@ type Aws_vpc_peering_connection_options struct {
 
     Aws_vpc_peering_connection_options_id *string `lyra:"ignore"`
 
-    Accepter *Aws_vpc_peering_connection_options_accepter_543
+    Accepter *[]Aws_vpc_peering_connection_options_accepter_543
 
-    Requester *Aws_vpc_peering_connection_options_requester_544
+    Requester *[]Aws_vpc_peering_connection_options_requester_544
 
     Vpc_peering_connection_id string
 
@@ -33276,7 +33276,7 @@ type Aws_vpn_connection struct {
 
     Customer_gateway_id string
 
-    Routes *Aws_vpn_connection_routes_545
+    Routes *[]Aws_vpn_connection_routes_545
 
     Static_routes_only *bool
 
@@ -33314,7 +33314,7 @@ type Aws_vpn_connection struct {
 
     Type string
 
-    Vgw_telemetry *Aws_vpn_connection_vgw_telemetry_546
+    Vgw_telemetry *[]Aws_vpn_connection_vgw_telemetry_546
 
     Vpn_gateway_id *string
 
@@ -33559,7 +33559,7 @@ type Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548 struct {
 
 type Aws_waf_byte_match_set_byte_match_tuples_547 struct {
 
-    Field_to_match Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548
+    Field_to_match []Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548
 
     Positional_constraint string
 
@@ -33573,7 +33573,7 @@ type Aws_waf_byte_match_set struct {
 
     Aws_waf_byte_match_set_id *string `lyra:"ignore"`
 
-    Byte_match_tuples *Aws_waf_byte_match_set_byte_match_tuples_547
+    Byte_match_tuples *[]Aws_waf_byte_match_set_byte_match_tuples_547
 
     Name string
 
@@ -33628,7 +33628,7 @@ type Aws_waf_geo_match_set struct {
 
     Aws_waf_geo_match_set_id *string `lyra:"ignore"`
 
-    Geo_match_constraint *Aws_waf_geo_match_set_geo_match_constraint_549
+    Geo_match_constraint *[]Aws_waf_geo_match_set_geo_match_constraint_549
 
     Name string
 
@@ -33685,7 +33685,7 @@ type Aws_waf_ipset struct {
 
     Arn *string
 
-    Ip_set_descriptors *Aws_waf_ipset_ip_set_descriptors_550
+    Ip_set_descriptors *[]Aws_waf_ipset_ip_set_descriptors_550
 
     Name string
 
@@ -33746,7 +33746,7 @@ type Aws_waf_rate_based_rule struct {
 
     Name string
 
-    Predicates *Aws_waf_rate_based_rule_predicates_551
+    Predicates *[]Aws_waf_rate_based_rule_predicates_551
 
     Rate_key string
 
@@ -33815,7 +33815,7 @@ type Aws_waf_regex_match_set struct {
 
     Name string
 
-    Regex_match_tuple *Aws_waf_regex_match_set_regex_match_tuple_552
+    Regex_match_tuple *[]Aws_waf_regex_match_set_regex_match_tuple_552
 
 }
 
@@ -33921,7 +33921,7 @@ type Aws_waf_rule struct {
 
     Name string
 
-    Predicates *Aws_waf_rule_predicates_554
+    Predicates *[]Aws_waf_rule_predicates_554
 
 }
 
@@ -33984,7 +33984,7 @@ type Aws_waf_rule_group struct {
 
     Aws_waf_rule_group_id *string `lyra:"ignore"`
 
-    Activated_rule *Aws_waf_rule_group_activated_rule_555
+    Activated_rule *[]Aws_waf_rule_group_activated_rule_555
 
     Metric_name string
 
@@ -34041,7 +34041,7 @@ type Aws_waf_size_constraint_set_size_constraints_557 struct {
 
     Comparison_operator string
 
-    Field_to_match Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558
+    Field_to_match []Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558
 
     Size int
 
@@ -34055,7 +34055,7 @@ type Aws_waf_size_constraint_set struct {
 
     Name string
 
-    Size_constraints *Aws_waf_size_constraint_set_size_constraints_557
+    Size_constraints *[]Aws_waf_size_constraint_set_size_constraints_557
 
 }
 
@@ -34106,7 +34106,7 @@ type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_mat
 
 type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559 struct {
 
-    Field_to_match Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560
+    Field_to_match []Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560
 
     Text_transformation string
 
@@ -34118,7 +34118,7 @@ type Aws_waf_sql_injection_match_set struct {
 
     Name string
 
-    Sql_injection_match_tuples *Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559
+    Sql_injection_match_tuples *[]Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559
 
 }
 
@@ -34195,13 +34195,13 @@ type Aws_waf_web_acl struct {
 
     Aws_waf_web_acl_id *string `lyra:"ignore"`
 
-    Default_action Aws_waf_web_acl_default_action_561
+    Default_action []Aws_waf_web_acl_default_action_561
 
     Metric_name string
 
     Name string
 
-    Rules *Aws_waf_web_acl_rules_562
+    Rules *[]Aws_waf_web_acl_rules_562
 
 }
 
@@ -34252,7 +34252,7 @@ type Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566 struct {
 
 type Aws_waf_xss_match_set_xss_match_tuples_565 struct {
 
-    Field_to_match Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566
+    Field_to_match []Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566
 
     Text_transformation string
 
@@ -34264,7 +34264,7 @@ type Aws_waf_xss_match_set struct {
 
     Name string
 
-    Xss_match_tuples *Aws_waf_xss_match_set_xss_match_tuples_565
+    Xss_match_tuples *[]Aws_waf_xss_match_set_xss_match_tuples_565
 
 }
 
@@ -34349,9 +34349,9 @@ type Aws_wafregional_byte_match_set struct {
 
     Aws_wafregional_byte_match_set_id *string `lyra:"ignore"`
 
-    Byte_match_tuple *Aws_wafregional_byte_match_set_byte_match_tuple_567
+    Byte_match_tuple *[]Aws_wafregional_byte_match_set_byte_match_tuple_567
 
-    Byte_match_tuples *Aws_wafregional_byte_match_set_byte_match_tuples_569
+    Byte_match_tuples *[]Aws_wafregional_byte_match_set_byte_match_tuples_569
 
     Name string
 
@@ -34406,7 +34406,7 @@ type Aws_wafregional_geo_match_set struct {
 
     Aws_wafregional_geo_match_set_id *string `lyra:"ignore"`
 
-    Geo_match_constraint *Aws_wafregional_geo_match_set_geo_match_constraint_571
+    Geo_match_constraint *[]Aws_wafregional_geo_match_set_geo_match_constraint_571
 
     Name string
 
@@ -34463,7 +34463,7 @@ type Aws_wafregional_ipset struct {
 
     Arn *string
 
-    Ip_set_descriptor *Aws_wafregional_ipset_ip_set_descriptor_572
+    Ip_set_descriptor *[]Aws_wafregional_ipset_ip_set_descriptor_572
 
     Name string
 
@@ -34524,7 +34524,7 @@ type Aws_wafregional_rate_based_rule struct {
 
     Name string
 
-    Predicate *Aws_wafregional_rate_based_rule_predicate_573
+    Predicate *[]Aws_wafregional_rate_based_rule_predicate_573
 
     Rate_key string
 
@@ -34593,7 +34593,7 @@ type Aws_wafregional_regex_match_set struct {
 
     Name string
 
-    Regex_match_tuple *Aws_wafregional_regex_match_set_regex_match_tuple_574
+    Regex_match_tuple *[]Aws_wafregional_regex_match_set_regex_match_tuple_574
 
 }
 
@@ -34699,7 +34699,7 @@ type Aws_wafregional_rule struct {
 
     Name string
 
-    Predicate *Aws_wafregional_rule_predicate_576
+    Predicate *[]Aws_wafregional_rule_predicate_576
 
 }
 
@@ -34762,7 +34762,7 @@ type Aws_wafregional_rule_group struct {
 
     Aws_wafregional_rule_group_id *string `lyra:"ignore"`
 
-    Activated_rule *Aws_wafregional_rule_group_activated_rule_577
+    Activated_rule *[]Aws_wafregional_rule_group_activated_rule_577
 
     Metric_name string
 
@@ -34819,7 +34819,7 @@ type Aws_wafregional_size_constraint_set_size_constraints_579 struct {
 
     Comparison_operator string
 
-    Field_to_match Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580
+    Field_to_match []Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580
 
     Size int
 
@@ -34833,7 +34833,7 @@ type Aws_wafregional_size_constraint_set struct {
 
     Name string
 
-    Size_constraints *Aws_wafregional_size_constraint_set_size_constraints_579
+    Size_constraints *[]Aws_wafregional_size_constraint_set_size_constraints_579
 
 }
 
@@ -34896,7 +34896,7 @@ type Aws_wafregional_sql_injection_match_set struct {
 
     Name string
 
-    Sql_injection_match_tuple *Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581
+    Sql_injection_match_tuple *[]Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581
 
 }
 
@@ -34979,7 +34979,7 @@ type Aws_wafregional_web_acl struct {
 
     Name string
 
-    Rule *Aws_wafregional_web_acl_rule_584
+    Rule *[]Aws_wafregional_web_acl_rule_584
 
 }
 
@@ -35077,7 +35077,7 @@ type Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588 struct
 
 type Aws_wafregional_xss_match_set_xss_match_tuple_587 struct {
 
-    Field_to_match Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588
+    Field_to_match []Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588
 
     Text_transformation string
 
@@ -35089,7 +35089,7 @@ type Aws_wafregional_xss_match_set struct {
 
     Name string
 
-    Xss_match_tuple *Aws_wafregional_xss_match_set_xss_match_tuple_587
+    Xss_match_tuple *[]Aws_wafregional_xss_match_set_xss_match_tuple_587
 
 }
 
