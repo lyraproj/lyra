@@ -330,7 +330,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'subnet_mapping' => {
-          'type' => Optional[Aws_alb_subnet_mapping_7],
+          'type' => Optional[Array[Aws_alb_subnet_mapping_7]],
           'value' => undef
         },
         'subnets' => {
@@ -569,7 +569,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'condition' => Aws_alb_listener_rule_condition_18,
+        'condition' => Array[Aws_alb_listener_rule_condition_18],
         'listener_arn' => String,
         'priority' => {
           'type' => Optional[Integer],
@@ -901,7 +901,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_ami_ebs_block_device_21],
+          'type' => Optional[Array[Aws_ami_ebs_block_device_21]],
           'value' => undef
         },
         'ena_support' => {
@@ -909,7 +909,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_ami_ephemeral_block_device_22],
+          'type' => Optional[Array[Aws_ami_ephemeral_block_device_22]],
           'value' => undef
         },
         'image_location' => {
@@ -977,7 +977,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_ami_copy_ebs_block_device_23],
+          'type' => Optional[Array[Aws_ami_copy_ebs_block_device_23]],
           'value' => undef
         },
         'ena_support' => {
@@ -989,7 +989,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_ami_copy_ephemeral_block_device_24],
+          'type' => Optional[Array[Aws_ami_copy_ephemeral_block_device_24]],
           'value' => undef
         },
         'image_location' => {
@@ -1142,7 +1142,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_ami_from_instance_ebs_block_device_25],
+          'type' => Optional[Array[Aws_ami_from_instance_ebs_block_device_25]],
           'value' => undef
         },
         'ena_support' => {
@@ -1150,7 +1150,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_ami_from_instance_ephemeral_block_device_26],
+          'type' => Optional[Array[Aws_ami_from_instance_ephemeral_block_device_26]],
           'value' => undef
         },
         'image_location' => {
@@ -1336,7 +1336,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'stage_key' => {
-          'type' => Optional[Aws_api_gateway_api_key_stage_key_28],
+          'type' => Optional[Array[Aws_api_gateway_api_key_stage_key_28]],
           'value' => undef
         },
         'value' => {
@@ -2211,11 +2211,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'quota_settings' => {
-          'type' => Optional[Aws_api_gateway_usage_plan_quota_settings_35],
+          'type' => Optional[Array[Aws_api_gateway_usage_plan_quota_settings_35]],
           'value' => undef
         },
         'throttle_settings' => {
-          'type' => Optional[Aws_api_gateway_usage_plan_throttle_settings_36],
+          'type' => Optional[Array[Aws_api_gateway_usage_plan_throttle_settings_36]],
           'value' => undef
         }
       }
@@ -2376,7 +2376,7 @@ type TerraformAws = TypeSet[{
         'scalable_dimension' => String,
         'service_namespace' => String,
         'step_adjustment' => {
-          'type' => Optional[Aws_appautoscaling_policy_step_adjustment_37],
+          'type' => Optional[Array[Aws_appautoscaling_policy_step_adjustment_37]],
           'value' => undef
         },
         'step_scaling_policy_configuration' => {
@@ -2432,7 +2432,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'step_adjustment' => {
-          'type' => Optional[Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39],
+          'type' => Optional[Array[Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39]],
           'value' => undef
         }
       }
@@ -2478,7 +2478,7 @@ type TerraformAws = TypeSet[{
     Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41 => {
       attributes => {
         'dimensions' => {
-          'type' => Optional[Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42],
+          'type' => Optional[Array[Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42]],
           'value' => undef
         },
         'metric_name' => String,
@@ -2674,7 +2674,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_route_spec_45_http_route_46_action_47 => {
       attributes => {
-        'weighted_target' => Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48
+        'weighted_target' => Array[Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48]
       }
     },
     Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48 => {
@@ -2729,7 +2729,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'listener' => {
-          'type' => Optional[Aws_appmesh_virtual_node_spec_50_listener_51],
+          'type' => Optional[Array[Aws_appmesh_virtual_node_spec_50_listener_51]],
           'value' => undef
         },
         'service_discovery' => {
@@ -3121,7 +3121,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'initial_lifecycle_hook' => {
-          'type' => Optional[Aws_autoscaling_group_initial_lifecycle_hook_64],
+          'type' => Optional[Array[Aws_autoscaling_group_initial_lifecycle_hook_64]],
           'value' => undef
         },
         'launch_configuration' => {
@@ -3175,7 +3175,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'tag' => {
-          'type' => Optional[Aws_autoscaling_group_tag_71],
+          'type' => Optional[Array[Aws_autoscaling_group_tag_71]],
           'value' => undef
         },
         'tags' => {
@@ -3443,7 +3443,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'step_adjustment' => {
-          'type' => Optional[Aws_autoscaling_policy_step_adjustment_72],
+          'type' => Optional[Array[Aws_autoscaling_policy_step_adjustment_72]],
           'value' => undef
         },
         'target_tracking_configuration' => {
@@ -3977,7 +3977,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cache_behavior' => {
-          'type' => Optional[Aws_cloudfront_distribution_cache_behavior_81],
+          'type' => Optional[Array[Aws_cloudfront_distribution_cache_behavior_81]],
           'value' => undef
         },
         'caller_reference' => {
@@ -3989,10 +3989,10 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'custom_error_response' => {
-          'type' => Optional[Aws_cloudfront_distribution_custom_error_response_85],
+          'type' => Optional[Array[Aws_cloudfront_distribution_custom_error_response_85]],
           'value' => undef
         },
-        'default_cache_behavior' => Aws_cloudfront_distribution_default_cache_behavior_86,
+        'default_cache_behavior' => Array[Aws_cloudfront_distribution_default_cache_behavior_86],
         'default_root_object' => {
           'type' => Optional[String],
           'value' => undef
@@ -4027,19 +4027,19 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'logging_config' => {
-          'type' => Optional[Aws_cloudfront_distribution_logging_config_90],
+          'type' => Optional[Array[Aws_cloudfront_distribution_logging_config_90]],
           'value' => undef
         },
         'ordered_cache_behavior' => {
           'type' => Optional[Array[Aws_cloudfront_distribution_ordered_cache_behavior_91]],
           'value' => undef
         },
-        'origin' => Aws_cloudfront_distribution_origin_95,
+        'origin' => Array[Aws_cloudfront_distribution_origin_95],
         'price_class' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'restrictions' => Aws_cloudfront_distribution_restrictions_99,
+        'restrictions' => Array[Aws_cloudfront_distribution_restrictions_99],
         'retain_on_delete' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -4052,7 +4052,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'viewer_certificate' => Aws_cloudfront_distribution_viewer_certificate_101,
+        'viewer_certificate' => Array[Aws_cloudfront_distribution_viewer_certificate_101],
         'web_acl_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -4086,9 +4086,9 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'forwarded_values' => Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82,
+        'forwarded_values' => Array[Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82],
         'lambda_function_association' => {
-          'type' => Optional[Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84],
+          'type' => Optional[Array[Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84]],
           'value' => undef
         },
         'max_ttl' => {
@@ -4114,7 +4114,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82 => {
       attributes => {
-        'cookies' => Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83,
+        'cookies' => Array[Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83],
         'headers' => {
           'type' => Optional[Array[String]],
           'value' => undef
@@ -4178,9 +4178,9 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'forwarded_values' => Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87,
+        'forwarded_values' => Array[Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87],
         'lambda_function_association' => {
-          'type' => Optional[Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89],
+          'type' => Optional[Array[Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89]],
           'value' => undef
         },
         'max_ttl' => {
@@ -4205,7 +4205,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87 => {
       attributes => {
-        'cookies' => Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88,
+        'cookies' => Array[Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88],
         'headers' => {
           'type' => Optional[Array[String]],
           'value' => undef
@@ -4265,9 +4265,9 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'forwarded_values' => Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92,
+        'forwarded_values' => Array[Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92],
         'lambda_function_association' => {
-          'type' => Optional[Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94],
+          'type' => Optional[Array[Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94]],
           'value' => undef
         },
         'max_ttl' => {
@@ -4293,7 +4293,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92 => {
       attributes => {
-        'cookies' => Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93,
+        'cookies' => Array[Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93],
         'headers' => {
           'type' => Optional[Array[String]],
           'value' => undef
@@ -4327,11 +4327,11 @@ type TerraformAws = TypeSet[{
     Aws_cloudfront_distribution_origin_95 => {
       attributes => {
         'custom_header' => {
-          'type' => Optional[Aws_cloudfront_distribution_origin_95_custom_header_96],
+          'type' => Optional[Array[Aws_cloudfront_distribution_origin_95_custom_header_96]],
           'value' => undef
         },
         'custom_origin_config' => {
-          'type' => Optional[Aws_cloudfront_distribution_origin_95_custom_origin_config_97],
+          'type' => Optional[Array[Aws_cloudfront_distribution_origin_95_custom_origin_config_97]],
           'value' => undef
         },
         'domain_name' => String,
@@ -4341,7 +4341,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         's3_origin_config' => {
-          'type' => Optional[Aws_cloudfront_distribution_origin_95_s3_origin_config_98],
+          'type' => Optional[Array[Aws_cloudfront_distribution_origin_95_s3_origin_config_98]],
           'value' => undef
         }
       }
@@ -4375,7 +4375,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_distribution_restrictions_99 => {
       attributes => {
-        'geo_restriction' => Aws_cloudfront_distribution_restrictions_99_geo_restriction_100
+        'geo_restriction' => Array[Aws_cloudfront_distribution_restrictions_99_geo_restriction_100]
       }
     },
     Aws_cloudfront_distribution_restrictions_99_geo_restriction_100 => {
@@ -5255,7 +5255,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'artifacts' => Aws_codebuild_project_artifacts_114,
+        'artifacts' => Array[Aws_codebuild_project_artifacts_114],
         'badge_enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -5280,18 +5280,18 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'environment' => Aws_codebuild_project_environment_116,
+        'environment' => Array[Aws_codebuild_project_environment_116],
         'name' => String,
         'secondary_artifacts' => {
-          'type' => Optional[Aws_codebuild_project_secondary_artifacts_118],
+          'type' => Optional[Array[Aws_codebuild_project_secondary_artifacts_118]],
           'value' => undef
         },
         'secondary_sources' => {
-          'type' => Optional[Aws_codebuild_project_secondary_sources_119],
+          'type' => Optional[Array[Aws_codebuild_project_secondary_sources_119]],
           'value' => undef
         },
         'service_role' => String,
-        'source' => Aws_codebuild_project_source_121,
+        'source' => Array[Aws_codebuild_project_source_121],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -5420,7 +5420,7 @@ type TerraformAws = TypeSet[{
     Aws_codebuild_project_secondary_sources_119 => {
       attributes => {
         'auth' => {
-          'type' => Optional[Aws_codebuild_project_secondary_sources_119_auth_120],
+          'type' => Optional[Array[Aws_codebuild_project_secondary_sources_119_auth_120]],
           'value' => undef
         },
         'buildspec' => {
@@ -5459,7 +5459,7 @@ type TerraformAws = TypeSet[{
     Aws_codebuild_project_source_121 => {
       attributes => {
         'auth' => {
-          'type' => Optional[Aws_codebuild_project_source_121_auth_122],
+          'type' => Optional[Array[Aws_codebuild_project_source_121_auth_122]],
           'value' => undef
         },
         'buildspec' => {
@@ -5592,7 +5592,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'repository_name' => String,
-        'trigger' => Aws_codecommit_trigger_trigger_124
+        'trigger' => Array[Aws_codecommit_trigger_trigger_124]
       }
     },
     Aws_codecommit_triggerHandler => {
@@ -5770,11 +5770,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ec2_tag_filter' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_ec2_tag_filter_136],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_ec2_tag_filter_136]],
           'value' => undef
         },
         'ec2_tag_set' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_ec2_tag_set_137],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_ec2_tag_set_137]],
           'value' => undef
         },
         'ecs_service' => {
@@ -5786,12 +5786,12 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'on_premises_instance_tag_filter' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147]],
           'value' => undef
         },
         'service_role_arn' => String,
         'trigger_configuration' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_trigger_configuration_148],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_trigger_configuration_148]],
           'value' => undef
         }
       }
@@ -5914,7 +5914,7 @@ type TerraformAws = TypeSet[{
     Aws_codedeploy_deployment_group_ec2_tag_set_137 => {
       attributes => {
         'ec2_tag_filter' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138]],
           'value' => undef
         }
       }
@@ -5944,11 +5944,11 @@ type TerraformAws = TypeSet[{
     Aws_codedeploy_deployment_group_load_balancer_info_140 => {
       attributes => {
         'elb_info' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141]],
           'value' => undef
         },
         'target_group_info' => {
-          'type' => Optional[Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142],
+          'type' => Optional[Array[Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142]],
           'value' => undef
         },
         'target_group_pair_info' => {
@@ -6110,7 +6110,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[Array[Aws_codepipeline_webhook_authentication_configuration_153]],
           'value' => undef
         },
-        'filter' => Aws_codepipeline_webhook_filter_154,
+        'filter' => Array[Aws_codepipeline_webhook_filter_154],
         'name' => String,
         'target_action' => String,
         'target_pipeline' => String,
@@ -6164,7 +6164,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cognito_identity_providers' => {
-          'type' => Optional[Aws_cognito_identity_pool_cognito_identity_providers_155],
+          'type' => Optional[Array[Aws_cognito_identity_pool_cognito_identity_providers_155]],
           'value' => undef
         },
         'developer_provider_name' => {
@@ -6221,7 +6221,7 @@ type TerraformAws = TypeSet[{
         },
         'identity_pool_id' => String,
         'role_mapping' => {
-          'type' => Optional[Aws_cognito_identity_pool_roles_attachment_role_mapping_156],
+          'type' => Optional[Array[Aws_cognito_identity_pool_roles_attachment_role_mapping_156]],
           'value' => undef
         },
         'roles' => Hash[String, String]
@@ -6300,7 +6300,7 @@ type TerraformAws = TypeSet[{
         'identifier' => String,
         'name' => String,
         'scope' => {
-          'type' => Optional[Aws_cognito_resource_server_scope_158],
+          'type' => Optional[Array[Aws_cognito_resource_server_scope_158]],
           'value' => undef
         },
         'scope_identifiers' => {
@@ -6424,7 +6424,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'schema' => {
-          'type' => Optional[Aws_cognito_user_pool_schema_165],
+          'type' => Optional[Array[Aws_cognito_user_pool_schema_165]],
           'value' => undef
         },
         'sms_authentication_message' => {
@@ -6880,7 +6880,7 @@ type TerraformAws = TypeSet[{
       attributes => {
         'owner' => String,
         'source_detail' => {
-          'type' => Optional[Aws_config_config_rule_source_171_source_detail_172],
+          'type' => Optional[Array[Aws_config_config_rule_source_171_source_detail_172]],
           'value' => undef
         },
         'source_identifier' => String
@@ -7455,7 +7455,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'parameters' => {
-          'type' => Optional[Aws_dax_parameter_group_parameters_183],
+          'type' => Optional[Array[Aws_dax_parameter_group_parameters_183]],
           'value' => undef
         }
       }
@@ -7896,7 +7896,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'option' => {
-          'type' => Optional[Aws_db_option_group_option_185],
+          'type' => Optional[Array[Aws_db_option_group_option_185]],
           'value' => undef
         },
         'option_group_description' => {
@@ -7928,7 +7928,7 @@ type TerraformAws = TypeSet[{
         },
         'option_name' => String,
         'option_settings' => {
-          'type' => Optional[Aws_db_option_group_option_185_option_settings_186],
+          'type' => Optional[Array[Aws_db_option_group_option_185_option_settings_186]],
           'value' => undef
         },
         'port' => {
@@ -7975,7 +7975,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'parameter' => {
-          'type' => Optional[Aws_db_parameter_group_parameter_187],
+          'type' => Optional[Array[Aws_db_parameter_group_parameter_187]],
           'value' => undef
         },
         'tags' => {
@@ -8019,7 +8019,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ingress' => Aws_db_security_group_ingress_188,
+        'ingress' => Array[Aws_db_security_group_ingress_188],
         'name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -8199,11 +8199,11 @@ type TerraformAws = TypeSet[{
         },
         'default_network_acl_id' => String,
         'egress' => {
-          'type' => Optional[Aws_default_network_acl_egress_189],
+          'type' => Optional[Array[Aws_default_network_acl_egress_189]],
           'value' => undef
         },
         'ingress' => {
-          'type' => Optional[Aws_default_network_acl_ingress_190],
+          'type' => Optional[Array[Aws_default_network_acl_ingress_190]],
           'value' => undef
         },
         'owner_id' => {
@@ -8301,7 +8301,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'route' => {
-          'type' => Optional[Aws_default_route_table_route_191],
+          'type' => Optional[Array[Aws_default_route_table_route_191]],
           'value' => undef
         },
         'tags' => {
@@ -8376,11 +8376,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'egress' => {
-          'type' => Optional[Aws_default_security_group_egress_192],
+          'type' => Optional[Array[Aws_default_security_group_egress_192]],
           'value' => undef
         },
         'ingress' => {
-          'type' => Optional[Aws_default_security_group_ingress_193],
+          'type' => Optional[Array[Aws_default_security_group_ingress_193]],
           'value' => undef
         },
         'name' => {
@@ -9221,7 +9221,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'parameter' => {
-          'type' => Optional[Aws_docdb_cluster_parameter_group_parameter_202],
+          'type' => Optional[Array[Aws_docdb_cluster_parameter_group_parameter_202]],
           'value' => undef
         },
         'tags' => {
@@ -9735,7 +9735,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'replica' => Aws_dynamodb_global_table_replica_203
+        'replica' => Array[Aws_dynamodb_global_table_replica_203]
       }
     },
     Aws_dynamodb_global_tableHandler => {
@@ -9764,18 +9764,18 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'attribute' => Aws_dynamodb_table_attribute_204,
+        'attribute' => Array[Aws_dynamodb_table_attribute_204],
         'billing_mode' => {
           'type' => Optional[String],
           'value' => undef
         },
         'global_secondary_index' => {
-          'type' => Optional[Aws_dynamodb_table_global_secondary_index_205],
+          'type' => Optional[Array[Aws_dynamodb_table_global_secondary_index_205]],
           'value' => undef
         },
         'hash_key' => String,
         'local_secondary_index' => {
-          'type' => Optional[Aws_dynamodb_table_local_secondary_index_206],
+          'type' => Optional[Array[Aws_dynamodb_table_local_secondary_index_206]],
           'value' => undef
         },
         'name' => String,
@@ -9816,7 +9816,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ttl' => {
-          'type' => Optional[Aws_dynamodb_table_ttl_209],
+          'type' => Optional[Array[Aws_dynamodb_table_ttl_209]],
           'value' => undef
         },
         'write_capacity' => {
@@ -10653,7 +10653,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'load_balancer' => {
-          'type' => Optional[Aws_ecs_service_load_balancer_217],
+          'type' => Optional[Array[Aws_ecs_service_load_balancer_217]],
           'value' => undef
         },
         'name' => String,
@@ -10666,11 +10666,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'placement_constraints' => {
-          'type' => Optional[Aws_ecs_service_placement_constraints_220],
+          'type' => Optional[Array[Aws_ecs_service_placement_constraints_220]],
           'value' => undef
         },
         'placement_strategy' => {
-          'type' => Optional[Aws_ecs_service_placement_strategy_221],
+          'type' => Optional[Array[Aws_ecs_service_placement_strategy_221]],
           'value' => undef
         },
         'platform_version' => {
@@ -10686,7 +10686,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'service_registries' => {
-          'type' => Optional[Aws_ecs_service_service_registries_222],
+          'type' => Optional[Array[Aws_ecs_service_service_registries_222]],
           'value' => undef
         },
         'tags' => {
@@ -10823,7 +10823,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'placement_constraints' => {
-          'type' => Optional[Aws_ecs_task_definition_placement_constraints_223],
+          'type' => Optional[Array[Aws_ecs_task_definition_placement_constraints_223]],
           'value' => undef
         },
         'requires_compatibilities' => {
@@ -10843,7 +10843,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Aws_ecs_task_definition_volume_224],
+          'type' => Optional[Array[Aws_ecs_task_definition_volume_224]],
           'value' => undef
         }
       }
@@ -11291,7 +11291,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'setting' => {
-          'type' => Optional[Aws_elastic_beanstalk_configuration_template_setting_229],
+          'type' => Optional[Array[Aws_elastic_beanstalk_configuration_template_setting_229]],
           'value' => undef
         },
         'solution_stack_name' => {
@@ -11329,7 +11329,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'all_settings' => {
-          'type' => Optional[Aws_elastic_beanstalk_environment_all_settings_230],
+          'type' => Optional[Array[Aws_elastic_beanstalk_environment_all_settings_230]],
           'value' => undef
         },
         'application' => String,
@@ -11379,7 +11379,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'setting' => {
-          'type' => Optional[Aws_elastic_beanstalk_environment_setting_231],
+          'type' => Optional[Array[Aws_elastic_beanstalk_environment_setting_231]],
           'value' => undef
         },
         'solution_stack_name' => {
@@ -11598,7 +11598,7 @@ type TerraformAws = TypeSet[{
         'family' => String,
         'name' => String,
         'parameter' => {
-          'type' => Optional[Aws_elasticache_parameter_group_parameter_233],
+          'type' => Optional[Array[Aws_elasticache_parameter_group_parameter_233]],
           'value' => undef
         }
       }
@@ -11857,7 +11857,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'log_publishing_options' => {
-          'type' => Optional[Aws_elasticsearch_domain_log_publishing_options_239],
+          'type' => Optional[Array[Aws_elasticsearch_domain_log_publishing_options_239]],
           'value' => undef
         },
         'node_to_node_encryption' => {
@@ -12030,11 +12030,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'content_config' => {
-          'type' => Optional[Aws_elastictranscoder_pipeline_content_config_243],
+          'type' => Optional[Array[Aws_elastictranscoder_pipeline_content_config_243]],
           'value' => undef
         },
         'content_config_permissions' => {
-          'type' => Optional[Aws_elastictranscoder_pipeline_content_config_permissions_244],
+          'type' => Optional[Array[Aws_elastictranscoder_pipeline_content_config_permissions_244]],
           'value' => undef
         },
         'input_bucket' => String,
@@ -12043,7 +12043,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'notifications' => {
-          'type' => Optional[Aws_elastictranscoder_pipeline_notifications_245],
+          'type' => Optional[Array[Aws_elastictranscoder_pipeline_notifications_245]],
           'value' => undef
         },
         'output_bucket' => {
@@ -12052,11 +12052,11 @@ type TerraformAws = TypeSet[{
         },
         'role' => String,
         'thumbnail_config' => {
-          'type' => Optional[Aws_elastictranscoder_pipeline_thumbnail_config_246],
+          'type' => Optional[Array[Aws_elastictranscoder_pipeline_thumbnail_config_246]],
           'value' => undef
         },
         'thumbnail_config_permissions' => {
-          'type' => Optional[Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247],
+          'type' => Optional[Array[Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247]],
           'value' => undef
         }
       }
@@ -12159,11 +12159,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'audio' => {
-          'type' => Optional[Aws_elastictranscoder_preset_audio_248],
+          'type' => Optional[Array[Aws_elastictranscoder_preset_audio_248]],
           'value' => undef
         },
         'audio_codec_options' => {
-          'type' => Optional[Aws_elastictranscoder_preset_audio_codec_options_249],
+          'type' => Optional[Array[Aws_elastictranscoder_preset_audio_codec_options_249]],
           'value' => undef
         },
         'container' => String,
@@ -12176,7 +12176,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'thumbnails' => {
-          'type' => Optional[Aws_elastictranscoder_preset_thumbnails_250],
+          'type' => Optional[Array[Aws_elastictranscoder_preset_thumbnails_250]],
           'value' => undef
         },
         'type' => {
@@ -12184,7 +12184,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'video' => {
-          'type' => Optional[Aws_elastictranscoder_preset_video_251],
+          'type' => Optional[Array[Aws_elastictranscoder_preset_video_251]],
           'value' => undef
         },
         'video_codec_options' => {
@@ -12192,7 +12192,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'video_watermarks' => {
-          'type' => Optional[Aws_elastictranscoder_preset_video_watermarks_252],
+          'type' => Optional[Array[Aws_elastictranscoder_preset_video_watermarks_252]],
           'value' => undef
         }
       }
@@ -12438,7 +12438,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'listener' => Aws_elb_listener_255,
+        'listener' => Array[Aws_elb_listener_255],
         'name' => {
           'type' => Optional[String],
           'value' => undef
@@ -12562,7 +12562,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'bootstrap_action' => {
-          'type' => Optional[Aws_emr_cluster_bootstrap_action_256],
+          'type' => Optional[Array[Aws_emr_cluster_bootstrap_action_256]],
           'value' => undef
         },
         'cluster_state' => {
@@ -12598,7 +12598,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'instance_group' => {
-          'type' => Optional[Aws_emr_cluster_instance_group_258],
+          'type' => Optional[Array[Aws_emr_cluster_instance_group_258]],
           'value' => undef
         },
         'keep_job_flow_alive_when_no_steps' => {
@@ -12715,7 +12715,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_config' => {
-          'type' => Optional[Aws_emr_cluster_instance_group_258_ebs_config_259],
+          'type' => Optional[Array[Aws_emr_cluster_instance_group_258_ebs_config_259]],
           'value' => undef
         },
         'id' => {
@@ -12798,7 +12798,7 @@ type TerraformAws = TypeSet[{
         },
         'cluster_id' => String,
         'ebs_config' => {
-          'type' => Optional[Aws_emr_instance_group_ebs_config_263],
+          'type' => Optional[Array[Aws_emr_instance_group_ebs_config_263]],
           'value' => undef
         },
         'ebs_optimized' => {
@@ -14946,7 +14946,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_instance_ebs_block_device_298],
+          'type' => Optional[Array[Aws_instance_ebs_block_device_298]],
           'value' => undef
         },
         'ebs_optimized' => {
@@ -14954,7 +14954,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_instance_ephemeral_block_device_299],
+          'type' => Optional[Array[Aws_instance_ephemeral_block_device_299]],
           'value' => undef
         },
         'get_password_data' => {
@@ -14995,7 +14995,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'network_interface' => {
-          'type' => Optional[Aws_instance_network_interface_300],
+          'type' => Optional[Array[Aws_instance_network_interface_300]],
           'value' => undef
         },
         'network_interface_id' => {
@@ -15393,11 +15393,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_alarm' => {
-          'type' => Optional[Aws_iot_topic_rule_cloudwatch_alarm_303],
+          'type' => Optional[Array[Aws_iot_topic_rule_cloudwatch_alarm_303]],
           'value' => undef
         },
         'cloudwatch_metric' => {
-          'type' => Optional[Aws_iot_topic_rule_cloudwatch_metric_304],
+          'type' => Optional[Array[Aws_iot_topic_rule_cloudwatch_metric_304]],
           'value' => undef
         },
         'description' => {
@@ -15405,43 +15405,43 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'dynamodb' => {
-          'type' => Optional[Aws_iot_topic_rule_dynamodb_305],
+          'type' => Optional[Array[Aws_iot_topic_rule_dynamodb_305]],
           'value' => undef
         },
         'elasticsearch' => {
-          'type' => Optional[Aws_iot_topic_rule_elasticsearch_306],
+          'type' => Optional[Array[Aws_iot_topic_rule_elasticsearch_306]],
           'value' => undef
         },
         'enabled' => Boolean,
         'firehose' => {
-          'type' => Optional[Aws_iot_topic_rule_firehose_307],
+          'type' => Optional[Array[Aws_iot_topic_rule_firehose_307]],
           'value' => undef
         },
         'kinesis' => {
-          'type' => Optional[Aws_iot_topic_rule_kinesis_308],
+          'type' => Optional[Array[Aws_iot_topic_rule_kinesis_308]],
           'value' => undef
         },
         'lambda' => {
-          'type' => Optional[Aws_iot_topic_rule_lambda_309],
+          'type' => Optional[Array[Aws_iot_topic_rule_lambda_309]],
           'value' => undef
         },
         'name' => String,
         'republish' => {
-          'type' => Optional[Aws_iot_topic_rule_republish_310],
+          'type' => Optional[Array[Aws_iot_topic_rule_republish_310]],
           'value' => undef
         },
         's3' => {
-          'type' => Optional[Aws_iot_topic_rule_s3_311],
+          'type' => Optional[Array[Aws_iot_topic_rule_s3_311]],
           'value' => undef
         },
         'sns' => {
-          'type' => Optional[Aws_iot_topic_rule_sns_312],
+          'type' => Optional[Array[Aws_iot_topic_rule_sns_312]],
           'value' => undef
         },
         'sql' => String,
         'sql_version' => String,
         'sqs' => {
-          'type' => Optional[Aws_iot_topic_rule_sqs_313],
+          'type' => Optional[Array[Aws_iot_topic_rule_sqs_313]],
           'value' => undef
         }
       }
@@ -15988,7 +15988,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342]],
           'value' => undef
         },
         'domain_arn' => String,
@@ -16071,7 +16071,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347]],
           'value' => undef
         },
         'compression_format' => {
@@ -16324,7 +16324,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362]],
           'value' => undef
         },
         'compression_format' => {
@@ -16367,7 +16367,7 @@ type TerraformAws = TypeSet[{
     Aws_kinesis_firehose_delivery_stream_redshift_configuration_364 => {
       attributes => {
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365]],
           'value' => undef
         },
         'cluster_jdbcurl' => String,
@@ -16456,7 +16456,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370]],
           'value' => undef
         },
         'compression_format' => {
@@ -16502,7 +16502,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372]],
           'value' => undef
         },
         'compression_format' => {
@@ -16539,7 +16539,7 @@ type TerraformAws = TypeSet[{
     Aws_kinesis_firehose_delivery_stream_splunk_configuration_373 => {
       attributes => {
         'cloudwatch_logging_options' => {
-          'type' => Optional[Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374],
+          'type' => Optional[Array[Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374]],
           'value' => undef
         },
         'hec_acknowledgment_timeout' => {
@@ -16697,7 +16697,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'constraints' => {
-          'type' => Optional[Aws_kms_grant_constraints_378],
+          'type' => Optional[Array[Aws_kms_grant_constraints_378]],
           'value' => undef
         },
         'grant_creation_tokens' => {
@@ -17186,7 +17186,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_launch_configuration_ebs_block_device_384],
+          'type' => Optional[Array[Aws_launch_configuration_ebs_block_device_384]],
           'value' => undef
         },
         'ebs_optimized' => {
@@ -17198,7 +17198,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_launch_configuration_ephemeral_block_device_385],
+          'type' => Optional[Array[Aws_launch_configuration_ephemeral_block_device_385]],
           'value' => undef
         },
         'iam_instance_profile' => {
@@ -17398,7 +17398,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'license_specification' => {
-          'type' => Optional[Aws_launch_template_license_specification_396],
+          'type' => Optional[Array[Aws_launch_template_license_specification_396]],
           'value' => undef
         },
         'monitoring' => {
@@ -17759,7 +17759,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'subnet_mapping' => {
-          'type' => Optional[Aws_lb_subnet_mapping_402],
+          'type' => Optional[Array[Aws_lb_subnet_mapping_402]],
           'value' => undef
         },
         'subnets' => {
@@ -18024,7 +18024,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'condition' => Aws_lb_listener_rule_condition_413,
+        'condition' => Array[Aws_lb_listener_rule_condition_413],
         'listener_arn' => String,
         'priority' => {
           'type' => Optional[Integer],
@@ -18186,7 +18186,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'attribute' => {
-          'type' => Optional[Aws_lb_ssl_negotiation_policy_attribute_414],
+          'type' => Optional[Array[Aws_lb_ssl_negotiation_policy_attribute_414]],
           'value' => undef
         },
         'lb_port' => Integer,
@@ -18692,7 +18692,7 @@ type TerraformAws = TypeSet[{
         },
         'load_balancer_name' => String,
         'policy_attribute' => {
-          'type' => Optional[Aws_load_balancer_policy_policy_attribute_417],
+          'type' => Optional[Array[Aws_load_balancer_policy_policy_attribute_417]],
           'value' => undef
         },
         'policy_name' => String,
@@ -18971,7 +18971,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'user' => Aws_mq_broker_user_425
+        'user' => Array[Aws_mq_broker_user_425]
       }
     },
     Aws_mq_brokerHandler => {
@@ -19386,7 +19386,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'parameter' => {
-          'type' => Optional[Aws_neptune_cluster_parameter_group_parameter_426],
+          'type' => Optional[Array[Aws_neptune_cluster_parameter_group_parameter_426]],
           'value' => undef
         },
         'tags' => {
@@ -19562,7 +19562,7 @@ type TerraformAws = TypeSet[{
         'family' => String,
         'name' => String,
         'parameter' => {
-          'type' => Optional[Aws_neptune_parameter_group_parameter_427],
+          'type' => Optional[Array[Aws_neptune_parameter_group_parameter_427]],
           'value' => undef
         },
         'tags' => {
@@ -19639,11 +19639,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'egress' => {
-          'type' => Optional[Aws_network_acl_egress_428],
+          'type' => Optional[Array[Aws_network_acl_egress_428]],
           'value' => undef
         },
         'ingress' => {
-          'type' => Optional[Aws_network_acl_ingress_429],
+          'type' => Optional[Array[Aws_network_acl_ingress_429]],
           'value' => undef
         },
         'owner_id' => {
@@ -19784,7 +19784,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'attachment' => {
-          'type' => Optional[Aws_network_interface_attachment_430],
+          'type' => Optional[Array[Aws_network_interface_attachment_430]],
           'value' => undef
         },
         'description' => {
@@ -19941,7 +19941,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'environment' => {
-          'type' => Optional[Aws_opsworks_application_environment_432],
+          'type' => Optional[Array[Aws_opsworks_application_environment_432]],
           'value' => undef
         },
         'name' => String,
@@ -20072,7 +20072,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_custom_layer_ebs_volume_434],
+          'type' => Optional[Array[Aws_opsworks_custom_layer_ebs_volume_434]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -20185,7 +20185,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_ganglia_layer_ebs_volume_435],
+          'type' => Optional[Array[Aws_opsworks_ganglia_layer_ebs_volume_435]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -20309,7 +20309,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_haproxy_layer_ebs_volume_436],
+          'type' => Optional[Array[Aws_opsworks_haproxy_layer_ebs_volume_436]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -20429,7 +20429,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_opsworks_instance_ebs_block_device_437],
+          'type' => Optional[Array[Aws_opsworks_instance_ebs_block_device_437]],
           'value' => undef
         },
         'ebs_optimized' => {
@@ -20449,7 +20449,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_opsworks_instance_ephemeral_block_device_438],
+          'type' => Optional[Array[Aws_opsworks_instance_ephemeral_block_device_438]],
           'value' => undef
         },
         'hostname' => {
@@ -20522,7 +20522,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'root_block_device' => {
-          'type' => Optional[Aws_opsworks_instance_root_block_device_439],
+          'type' => Optional[Array[Aws_opsworks_instance_root_block_device_439]],
           'value' => undef
         },
         'root_device_type' => {
@@ -20697,7 +20697,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_java_app_layer_ebs_volume_440],
+          'type' => Optional[Array[Aws_opsworks_java_app_layer_ebs_volume_440]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -20828,7 +20828,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_memcached_layer_ebs_volume_441],
+          'type' => Optional[Array[Aws_opsworks_memcached_layer_ebs_volume_441]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -20943,7 +20943,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_mysql_layer_ebs_volume_442],
+          'type' => Optional[Array[Aws_opsworks_mysql_layer_ebs_volume_442]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -21066,7 +21066,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_nodejs_app_layer_ebs_volume_443],
+          'type' => Optional[Array[Aws_opsworks_nodejs_app_layer_ebs_volume_443]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -21221,7 +21221,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_php_app_layer_ebs_volume_444],
+          'type' => Optional[Array[Aws_opsworks_php_app_layer_ebs_volume_444]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -21344,7 +21344,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_rails_app_layer_ebs_volume_445],
+          'type' => Optional[Array[Aws_opsworks_rails_app_layer_ebs_volume_445]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -21623,7 +21623,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_volume' => {
-          'type' => Optional[Aws_opsworks_static_web_layer_ebs_volume_447],
+          'type' => Optional[Array[Aws_opsworks_static_web_layer_ebs_volume_447]],
           'value' => undef
         },
         'elastic_load_balancer' => {
@@ -22755,7 +22755,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'parameter' => {
-          'type' => Optional[Aws_rds_cluster_parameter_group_parameter_453],
+          'type' => Optional[Array[Aws_rds_cluster_parameter_group_parameter_453]],
           'value' => undef
         },
         'tags' => {
@@ -23122,7 +23122,7 @@ type TerraformAws = TypeSet[{
         'family' => String,
         'name' => String,
         'parameter' => {
-          'type' => Optional[Aws_redshift_parameter_group_parameter_456],
+          'type' => Optional[Array[Aws_redshift_parameter_group_parameter_456]],
           'value' => undef
         }
       }
@@ -23154,7 +23154,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ingress' => Aws_redshift_security_group_ingress_457,
+        'ingress' => Array[Aws_redshift_security_group_ingress_457],
         'name' => String
       }
     },
@@ -23488,7 +23488,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'alias' => {
-          'type' => Optional[Aws_route53_record_alias_459],
+          'type' => Optional[Array[Aws_route53_record_alias_459]],
           'value' => undef
         },
         'allow_overwrite' => {
@@ -23625,7 +23625,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'vpc' => {
-          'type' => Optional[Aws_route53_zone_vpc_464],
+          'type' => Optional[Array[Aws_route53_zone_vpc_464]],
           'value' => undef
         },
         'vpc_id' => {
@@ -23713,7 +23713,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'route' => {
-          'type' => Optional[Aws_route_table_route_465],
+          'type' => Optional[Array[Aws_route_table_route_465]],
           'value' => undef
         },
         'tags' => {
@@ -23885,7 +23885,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'logging' => {
-          'type' => Optional[Aws_s3_bucket_logging_472],
+          'type' => Optional[Array[Aws_s3_bucket_logging_472]],
           'value' => undef
         },
         'object_lock_configuration' => {
@@ -24062,7 +24062,7 @@ type TerraformAws = TypeSet[{
         },
         'enabled' => Boolean,
         'expiration' => {
-          'type' => Optional[Aws_s3_bucket_lifecycle_rule_467_expiration_468],
+          'type' => Optional[Array[Aws_s3_bucket_lifecycle_rule_467_expiration_468]],
           'value' => undef
         },
         'id' => {
@@ -24070,11 +24070,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'noncurrent_version_expiration' => {
-          'type' => Optional[Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469],
+          'type' => Optional[Array[Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469]],
           'value' => undef
         },
         'noncurrent_version_transition' => {
-          'type' => Optional[Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470],
+          'type' => Optional[Array[Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470]],
           'value' => undef
         },
         'prefix' => {
@@ -24086,7 +24086,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'transition' => {
-          'type' => Optional[Aws_s3_bucket_lifecycle_rule_467_transition_471],
+          'type' => Optional[Array[Aws_s3_bucket_lifecycle_rule_467_transition_471]],
           'value' => undef
         }
       }
@@ -24444,12 +24444,12 @@ type TerraformAws = TypeSet[{
     Aws_s3_bucket_replication_configuration_476 => {
       attributes => {
         'role' => String,
-        'rules' => Aws_s3_bucket_replication_configuration_476_rules_477
+        'rules' => Array[Aws_s3_bucket_replication_configuration_476_rules_477]
       }
     },
     Aws_s3_bucket_replication_configuration_476_rules_477 => {
       attributes => {
-        'destination' => Aws_s3_bucket_replication_configuration_476_rules_477_destination_478,
+        'destination' => Array[Aws_s3_bucket_replication_configuration_476_rules_477_destination_478],
         'filter' => {
           'type' => Optional[Array[Aws_s3_bucket_replication_configuration_476_rules_477_filter_480]],
           'value' => undef
@@ -24467,7 +24467,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'source_selection_criteria' => {
-          'type' => Optional[Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481],
+          'type' => Optional[Array[Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481]],
           'value' => undef
         },
         'status' => String
@@ -24514,7 +24514,7 @@ type TerraformAws = TypeSet[{
     Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481 => {
       attributes => {
         'sse_kms_encrypted_objects' => {
-          'type' => Optional[Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482],
+          'type' => Optional[Array[Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482]],
           'value' => undef
         }
       }
@@ -24740,11 +24740,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'egress' => {
-          'type' => Optional[Aws_security_group_egress_500],
+          'type' => Optional[Array[Aws_security_group_egress_500]],
           'value' => undef
         },
         'ingress' => {
-          'type' => Optional[Aws_security_group_ingress_501],
+          'type' => Optional[Array[Aws_security_group_ingress_501]],
           'value' => undef
         },
         'name' => {
@@ -25315,7 +25315,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'cloudwatch_destination' => {
-          'type' => Optional[Aws_ses_event_destination_cloudwatch_destination_506],
+          'type' => Optional[Array[Aws_ses_event_destination_cloudwatch_destination_506]],
           'value' => undef
         },
         'configuration_set_name' => String,
@@ -25324,13 +25324,13 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'kinesis_destination' => {
-          'type' => Optional[Aws_ses_event_destination_kinesis_destination_507],
+          'type' => Optional[Array[Aws_ses_event_destination_kinesis_destination_507]],
           'value' => undef
         },
         'matching_types' => Array[String],
         'name' => String,
         'sns_destination' => {
-          'type' => Optional[Aws_ses_event_destination_sns_destination_508],
+          'type' => Optional[Array[Aws_ses_event_destination_sns_destination_508]],
           'value' => undef
         }
       }
@@ -25418,7 +25418,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'add_header_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_add_header_action_509],
+          'type' => Optional[Array[Aws_ses_receipt_rule_add_header_action_509]],
           'value' => undef
         },
         'after' => {
@@ -25426,7 +25426,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'bounce_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_bounce_action_510],
+          'type' => Optional[Array[Aws_ses_receipt_rule_bounce_action_510]],
           'value' => undef
         },
         'enabled' => {
@@ -25434,7 +25434,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'lambda_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_lambda_action_511],
+          'type' => Optional[Array[Aws_ses_receipt_rule_lambda_action_511]],
           'value' => undef
         },
         'name' => String,
@@ -25444,7 +25444,7 @@ type TerraformAws = TypeSet[{
         },
         'rule_set_name' => String,
         's3_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_s3_action_512],
+          'type' => Optional[Array[Aws_ses_receipt_rule_s3_action_512]],
           'value' => undef
         },
         'scan_enabled' => {
@@ -25452,11 +25452,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'sns_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_sns_action_513],
+          'type' => Optional[Array[Aws_ses_receipt_rule_sns_action_513]],
           'value' => undef
         },
         'stop_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_stop_action_514],
+          'type' => Optional[Array[Aws_ses_receipt_rule_stop_action_514]],
           'value' => undef
         },
         'tls_policy' => {
@@ -25464,7 +25464,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'workmail_action' => {
-          'type' => Optional[Aws_ses_receipt_rule_workmail_action_515],
+          'type' => Optional[Array[Aws_ses_receipt_rule_workmail_action_515]],
           'value' => undef
         }
       }
@@ -26034,7 +26034,7 @@ type TerraformAws = TypeSet[{
           'type' => Optional[Integer],
           'value' => undef
         },
-        'launch_specification' => Aws_spot_fleet_request_launch_specification_516,
+        'launch_specification' => Array[Aws_spot_fleet_request_launch_specification_516],
         'load_balancers' => {
           'type' => Optional[Array[String]],
           'value' => undef
@@ -26097,7 +26097,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517],
+          'type' => Optional[Array[Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517]],
           'value' => undef
         },
         'ebs_optimized' => {
@@ -26105,7 +26105,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518],
+          'type' => Optional[Array[Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518]],
           'value' => undef
         },
         'iam_instance_profile' => {
@@ -26134,7 +26134,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'root_block_device' => {
-          'type' => Optional[Aws_spot_fleet_request_launch_specification_516_root_block_device_519],
+          'type' => Optional[Array[Aws_spot_fleet_request_launch_specification_516_root_block_device_519]],
           'value' => undef
         },
         'spot_price' => {
@@ -26262,7 +26262,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ebs_block_device' => {
-          'type' => Optional[Aws_spot_instance_request_ebs_block_device_521],
+          'type' => Optional[Array[Aws_spot_instance_request_ebs_block_device_521]],
           'value' => undef
         },
         'ebs_optimized' => {
@@ -26270,7 +26270,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ephemeral_block_device' => {
-          'type' => Optional[Aws_spot_instance_request_ephemeral_block_device_522],
+          'type' => Optional[Array[Aws_spot_instance_request_ephemeral_block_device_522]],
           'value' => undef
         },
         'get_password_data' => {
@@ -26319,7 +26319,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'network_interface' => {
-          'type' => Optional[Aws_spot_instance_request_network_interface_523],
+          'type' => Optional[Array[Aws_spot_instance_request_network_interface_523]],
           'value' => undef
         },
         'network_interface_id' => {
@@ -28154,7 +28154,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'accepter' => {
-          'type' => Optional[Aws_vpc_peering_connection_accepter_539],
+          'type' => Optional[Array[Aws_vpc_peering_connection_accepter_539]],
           'value' => undef
         },
         'auto_accept' => {
@@ -28171,7 +28171,7 @@ type TerraformAws = TypeSet[{
         },
         'peer_vpc_id' => String,
         'requester' => {
-          'type' => Optional[Aws_vpc_peering_connection_requester_540],
+          'type' => Optional[Array[Aws_vpc_peering_connection_requester_540]],
           'value' => undef
         },
         'tags' => {
@@ -28203,7 +28203,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'accepter' => {
-          'type' => Optional[Aws_vpc_peering_connection_accepter_accepter_541],
+          'type' => Optional[Array[Aws_vpc_peering_connection_accepter_accepter_541]],
           'value' => undef
         },
         'auto_accept' => {
@@ -28223,7 +28223,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'requester' => {
-          'type' => Optional[Aws_vpc_peering_connection_accepter_requester_542],
+          'type' => Optional[Array[Aws_vpc_peering_connection_accepter_requester_542]],
           'value' => undef
         },
         'tags' => {
@@ -28303,11 +28303,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'accepter' => {
-          'type' => Optional[Aws_vpc_peering_connection_options_accepter_543],
+          'type' => Optional[Array[Aws_vpc_peering_connection_options_accepter_543]],
           'value' => undef
         },
         'requester' => {
-          'type' => Optional[Aws_vpc_peering_connection_options_requester_544],
+          'type' => Optional[Array[Aws_vpc_peering_connection_options_requester_544]],
           'value' => undef
         },
         'vpc_peering_connection_id' => String
@@ -28384,7 +28384,7 @@ type TerraformAws = TypeSet[{
         },
         'customer_gateway_id' => String,
         'routes' => {
-          'type' => Optional[Aws_vpn_connection_routes_545],
+          'type' => Optional[Array[Aws_vpn_connection_routes_545]],
           'value' => undef
         },
         'static_routes_only' => {
@@ -28457,7 +28457,7 @@ type TerraformAws = TypeSet[{
         },
         'type' => String,
         'vgw_telemetry' => {
-          'type' => Optional[Aws_vpn_connection_vgw_telemetry_546],
+          'type' => Optional[Array[Aws_vpn_connection_vgw_telemetry_546]],
           'value' => undef
         },
         'vpn_gateway_id' => {
@@ -28622,7 +28622,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'byte_match_tuples' => {
-          'type' => Optional[Aws_waf_byte_match_set_byte_match_tuples_547],
+          'type' => Optional[Array[Aws_waf_byte_match_set_byte_match_tuples_547]],
           'value' => undef
         },
         'name' => String
@@ -28641,7 +28641,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_byte_match_set_byte_match_tuples_547 => {
       attributes => {
-        'field_to_match' => Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548,
+        'field_to_match' => Array[Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548],
         'positional_constraint' => String,
         'target_string' => {
           'type' => Optional[String],
@@ -28666,7 +28666,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'geo_match_constraint' => {
-          'type' => Optional[Aws_waf_geo_match_set_geo_match_constraint_549],
+          'type' => Optional[Array[Aws_waf_geo_match_set_geo_match_constraint_549]],
           'value' => undef
         },
         'name' => String
@@ -28700,7 +28700,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ip_set_descriptors' => {
-          'type' => Optional[Aws_waf_ipset_ip_set_descriptors_550],
+          'type' => Optional[Array[Aws_waf_ipset_ip_set_descriptors_550]],
           'value' => undef
         },
         'name' => String
@@ -28732,7 +28732,7 @@ type TerraformAws = TypeSet[{
         'metric_name' => String,
         'name' => String,
         'predicates' => {
-          'type' => Optional[Aws_waf_rate_based_rule_predicates_551],
+          'type' => Optional[Array[Aws_waf_rate_based_rule_predicates_551]],
           'value' => undef
         },
         'rate_key' => String,
@@ -28765,7 +28765,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'regex_match_tuple' => {
-          'type' => Optional[Aws_waf_regex_match_set_regex_match_tuple_552],
+          'type' => Optional[Array[Aws_waf_regex_match_set_regex_match_tuple_552]],
           'value' => undef
         }
       }
@@ -28830,7 +28830,7 @@ type TerraformAws = TypeSet[{
         'metric_name' => String,
         'name' => String,
         'predicates' => {
-          'type' => Optional[Aws_waf_rule_predicates_554],
+          'type' => Optional[Array[Aws_waf_rule_predicates_554]],
           'value' => undef
         }
       }
@@ -28853,7 +28853,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'activated_rule' => {
-          'type' => Optional[Aws_waf_rule_group_activated_rule_555],
+          'type' => Optional[Array[Aws_waf_rule_group_activated_rule_555]],
           'value' => undef
         },
         'metric_name' => String,
@@ -28902,7 +28902,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'size_constraints' => {
-          'type' => Optional[Aws_waf_size_constraint_set_size_constraints_557],
+          'type' => Optional[Array[Aws_waf_size_constraint_set_size_constraints_557]],
           'value' => undef
         }
       }
@@ -28921,7 +28921,7 @@ type TerraformAws = TypeSet[{
     Aws_waf_size_constraint_set_size_constraints_557 => {
       attributes => {
         'comparison_operator' => String,
-        'field_to_match' => Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558,
+        'field_to_match' => Array[Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558],
         'size' => Integer,
         'text_transformation' => String
       }
@@ -28943,7 +28943,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'sql_injection_match_tuples' => {
-          'type' => Optional[Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559],
+          'type' => Optional[Array[Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559]],
           'value' => undef
         }
       }
@@ -28961,7 +28961,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559 => {
       attributes => {
-        'field_to_match' => Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560,
+        'field_to_match' => Array[Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560],
         'text_transformation' => String
       }
     },
@@ -28980,11 +28980,11 @@ type TerraformAws = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'default_action' => Aws_waf_web_acl_default_action_561,
+        'default_action' => Array[Aws_waf_web_acl_default_action_561],
         'metric_name' => String,
         'name' => String,
         'rules' => {
-          'type' => Optional[Aws_waf_web_acl_rules_562],
+          'type' => Optional[Array[Aws_waf_web_acl_rules_562]],
           'value' => undef
         }
       }
@@ -29041,7 +29041,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'xss_match_tuples' => {
-          'type' => Optional[Aws_waf_xss_match_set_xss_match_tuples_565],
+          'type' => Optional[Array[Aws_waf_xss_match_set_xss_match_tuples_565]],
           'value' => undef
         }
       }
@@ -29059,7 +29059,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_xss_match_set_xss_match_tuples_565 => {
       attributes => {
-        'field_to_match' => Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566,
+        'field_to_match' => Array[Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566],
         'text_transformation' => String
       }
     },
@@ -29079,11 +29079,11 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'byte_match_tuple' => {
-          'type' => Optional[Aws_wafregional_byte_match_set_byte_match_tuple_567],
+          'type' => Optional[Array[Aws_wafregional_byte_match_set_byte_match_tuple_567]],
           'value' => undef
         },
         'byte_match_tuples' => {
-          'type' => Optional[Aws_wafregional_byte_match_set_byte_match_tuples_569],
+          'type' => Optional[Array[Aws_wafregional_byte_match_set_byte_match_tuples_569]],
           'value' => undef
         },
         'name' => String
@@ -29147,7 +29147,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'geo_match_constraint' => {
-          'type' => Optional[Aws_wafregional_geo_match_set_geo_match_constraint_571],
+          'type' => Optional[Array[Aws_wafregional_geo_match_set_geo_match_constraint_571]],
           'value' => undef
         },
         'name' => String
@@ -29181,7 +29181,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'ip_set_descriptor' => {
-          'type' => Optional[Aws_wafregional_ipset_ip_set_descriptor_572],
+          'type' => Optional[Array[Aws_wafregional_ipset_ip_set_descriptor_572]],
           'value' => undef
         },
         'name' => String
@@ -29213,7 +29213,7 @@ type TerraformAws = TypeSet[{
         'metric_name' => String,
         'name' => String,
         'predicate' => {
-          'type' => Optional[Aws_wafregional_rate_based_rule_predicate_573],
+          'type' => Optional[Array[Aws_wafregional_rate_based_rule_predicate_573]],
           'value' => undef
         },
         'rate_key' => String,
@@ -29246,7 +29246,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'regex_match_tuple' => {
-          'type' => Optional[Aws_wafregional_regex_match_set_regex_match_tuple_574],
+          'type' => Optional[Array[Aws_wafregional_regex_match_set_regex_match_tuple_574]],
           'value' => undef
         }
       }
@@ -29311,7 +29311,7 @@ type TerraformAws = TypeSet[{
         'metric_name' => String,
         'name' => String,
         'predicate' => {
-          'type' => Optional[Aws_wafregional_rule_predicate_576],
+          'type' => Optional[Array[Aws_wafregional_rule_predicate_576]],
           'value' => undef
         }
       }
@@ -29334,7 +29334,7 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'activated_rule' => {
-          'type' => Optional[Aws_wafregional_rule_group_activated_rule_577],
+          'type' => Optional[Array[Aws_wafregional_rule_group_activated_rule_577]],
           'value' => undef
         },
         'metric_name' => String,
@@ -29383,7 +29383,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'size_constraints' => {
-          'type' => Optional[Aws_wafregional_size_constraint_set_size_constraints_579],
+          'type' => Optional[Array[Aws_wafregional_size_constraint_set_size_constraints_579]],
           'value' => undef
         }
       }
@@ -29402,7 +29402,7 @@ type TerraformAws = TypeSet[{
     Aws_wafregional_size_constraint_set_size_constraints_579 => {
       attributes => {
         'comparison_operator' => String,
-        'field_to_match' => Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580,
+        'field_to_match' => Array[Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580],
         'size' => Integer,
         'text_transformation' => String
       }
@@ -29424,7 +29424,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'sql_injection_match_tuple' => {
-          'type' => Optional[Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581],
+          'type' => Optional[Array[Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581]],
           'value' => undef
         }
       }
@@ -29465,7 +29465,7 @@ type TerraformAws = TypeSet[{
         'metric_name' => String,
         'name' => String,
         'rule' => {
-          'type' => Optional[Aws_wafregional_web_acl_rule_584],
+          'type' => Optional[Array[Aws_wafregional_web_acl_rule_584]],
           'value' => undef
         }
       }
@@ -29543,7 +29543,7 @@ type TerraformAws = TypeSet[{
         },
         'name' => String,
         'xss_match_tuple' => {
-          'type' => Optional[Aws_wafregional_xss_match_set_xss_match_tuple_587],
+          'type' => Optional[Array[Aws_wafregional_xss_match_set_xss_match_tuple_587]],
           'value' => undef
         }
       }
@@ -29561,7 +29561,7 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_xss_match_set_xss_match_tuple_587 => {
       attributes => {
-        'field_to_match' => Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588,
+        'field_to_match' => Array[Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588],
         'text_transformation' => String
       }
     },

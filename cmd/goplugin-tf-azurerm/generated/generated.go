@@ -699,7 +699,7 @@ type Azurerm_app_service struct {
 
     Client_affinity_enabled *bool
 
-    Connection_string *Azurerm_app_service_connection_string_1279
+    Connection_string *[]Azurerm_app_service_connection_string_1279
 
     Default_site_hostname *string
 
@@ -1037,7 +1037,7 @@ type Azurerm_app_service_slot struct {
 
     Client_affinity_enabled *bool
 
-    Connection_string *Azurerm_app_service_slot_connection_string_1287
+    Connection_string *[]Azurerm_app_service_slot_connection_string_1287
 
     Default_site_hostname *string
 
@@ -2650,7 +2650,7 @@ type Azurerm_cdn_endpoint struct {
 
     Optimization_type *string
 
-    Origin Azurerm_cdn_endpoint_origin_1330
+    Origin []Azurerm_cdn_endpoint_origin_1330
 
     Origin_host_header *string
 
@@ -2865,7 +2865,7 @@ type Azurerm_container_group_container_1332 struct {
 
     Port *int
 
-    Ports *Azurerm_container_group_container_1332_ports_1333
+    Ports *[]Azurerm_container_group_container_1332_ports_1333
 
     Protocol *string
 
@@ -3059,7 +3059,7 @@ type Azurerm_container_service_linux_profile_1339 struct {
 
     Admin_username string
 
-    Ssh_key Azurerm_container_service_linux_profile_1339_ssh_key_1340
+    Ssh_key []Azurerm_container_service_linux_profile_1339_ssh_key_1340
 
 }
 
@@ -3085,15 +3085,15 @@ type Azurerm_container_service struct {
 
     Azurerm_container_service_id *string `lyra:"ignore"`
 
-    Agent_pool_profile Azurerm_container_service_agent_pool_profile_1337
+    Agent_pool_profile []Azurerm_container_service_agent_pool_profile_1337
 
-    Diagnostics_profile Azurerm_container_service_diagnostics_profile_1338
+    Diagnostics_profile []Azurerm_container_service_diagnostics_profile_1338
 
-    Linux_profile Azurerm_container_service_linux_profile_1339
+    Linux_profile []Azurerm_container_service_linux_profile_1339
 
     Location string
 
-    Master_profile Azurerm_container_service_master_profile_1341
+    Master_profile []Azurerm_container_service_master_profile_1341
 
     Name string
 
@@ -3101,7 +3101,7 @@ type Azurerm_container_service struct {
 
     Resource_group_name string
 
-    Service_principal *Azurerm_container_service_service_principal_1342
+    Service_principal *[]Azurerm_container_service_service_principal_1342
 
     Tags *map[string]string
 
@@ -3192,7 +3192,7 @@ type Azurerm_cosmosdb_account struct {
 
     Azurerm_cosmosdb_account_id *string `lyra:"ignore"`
 
-    Capabilities *Azurerm_cosmosdb_account_capabilities_1343
+    Capabilities *[]Azurerm_cosmosdb_account_capabilities_1343
 
     Connection_strings *[]string
 
@@ -3204,9 +3204,9 @@ type Azurerm_cosmosdb_account struct {
 
     Endpoint *string
 
-    Failover_policy *Azurerm_cosmosdb_account_failover_policy_1345
+    Failover_policy *[]Azurerm_cosmosdb_account_failover_policy_1345
 
-    Geo_location *Azurerm_cosmosdb_account_geo_location_1346
+    Geo_location *[]Azurerm_cosmosdb_account_geo_location_1346
 
     Ip_range_filter *string
 
@@ -3234,7 +3234,7 @@ type Azurerm_cosmosdb_account struct {
 
     Tags *map[string]string
 
-    Virtual_network_rule *Azurerm_cosmosdb_account_virtual_network_rule_1347
+    Virtual_network_rule *[]Azurerm_cosmosdb_account_virtual_network_rule_1347
 
     Write_endpoints *[]string
 
@@ -3706,7 +3706,7 @@ type Azurerm_dev_test_linux_virtual_machine struct {
 
     Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348
 
-    Inbound_nat_rule *Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349
+    Inbound_nat_rule *[]Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349
 
     Lab_name string
 
@@ -3937,7 +3937,7 @@ type Azurerm_dev_test_windows_virtual_machine struct {
 
     Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351
 
-    Inbound_nat_rule *Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352
+    Inbound_nat_rule *[]Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352
 
     Lab_name string
 
@@ -4199,7 +4199,7 @@ type Azurerm_dns_caa_record struct {
 
     Name string
 
-    Record Azurerm_dns_caa_record_record_1354
+    Record []Azurerm_dns_caa_record_record_1354
 
     Resource_group_name string
 
@@ -4319,7 +4319,7 @@ type Azurerm_dns_mx_record struct {
 
     Name string
 
-    Record Azurerm_dns_mx_record_record_1355
+    Record []Azurerm_dns_mx_record_record_1355
 
     Resource_group_name string
 
@@ -4380,7 +4380,7 @@ type Azurerm_dns_ns_record struct {
 
     Name string
 
-    Record *Azurerm_dns_ns_record_record_1356
+    Record *[]Azurerm_dns_ns_record_record_1356
 
     Records *[]string
 
@@ -4504,7 +4504,7 @@ type Azurerm_dns_srv_record struct {
 
     Name string
 
-    Record Azurerm_dns_srv_record_record_1357
+    Record []Azurerm_dns_srv_record_record_1357
 
     Resource_group_name string
 
@@ -4565,7 +4565,7 @@ type Azurerm_dns_txt_record struct {
 
     Name string
 
-    Record Azurerm_dns_txt_record_record_1358
+    Record []Azurerm_dns_txt_record_record_1358
 
     Resource_group_name string
 
@@ -5448,7 +5448,7 @@ type Azurerm_firewall_network_rule_collection struct {
 
     Resource_group_name string
 
-    Rule Azurerm_firewall_network_rule_collection_rule_1366
+    Rule []Azurerm_firewall_network_rule_collection_rule_1366
 
 }
 
@@ -6480,7 +6480,7 @@ type Azurerm_kubernetes_cluster struct {
 
     Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_1400
 
-    Service_principal Azurerm_kubernetes_cluster_service_principal_1402
+    Service_principal []Azurerm_kubernetes_cluster_service_principal_1402
 
     Tags *map[string]string
 
@@ -8032,7 +8032,7 @@ type Azurerm_monitor_activity_log_alert struct {
 
     Azurerm_monitor_activity_log_alert_id *string `lyra:"ignore"`
 
-    Action *Azurerm_monitor_activity_log_alert_action_1416
+    Action *[]Azurerm_monitor_activity_log_alert_action_1416
 
     Criteria []Azurerm_monitor_activity_log_alert_criteria_1417
 
@@ -8131,11 +8131,11 @@ type Azurerm_monitor_diagnostic_setting struct {
 
     Eventhub_name *string
 
-    Log *Azurerm_monitor_diagnostic_setting_log_1418
+    Log *[]Azurerm_monitor_diagnostic_setting_log_1418
 
     Log_analytics_workspace_id *string
 
-    Metric *Azurerm_monitor_diagnostic_setting_metric_1420
+    Metric *[]Azurerm_monitor_diagnostic_setting_metric_1420
 
     Name string
 
@@ -8283,7 +8283,7 @@ type Azurerm_monitor_metric_alert struct {
 
     Azurerm_monitor_metric_alert_id *string `lyra:"ignore"`
 
-    Action *Azurerm_monitor_metric_alert_action_1423
+    Action *[]Azurerm_monitor_metric_alert_action_1423
 
     Auto_mitigate *bool
 
@@ -9032,7 +9032,7 @@ type Azurerm_network_security_group struct {
 
     Resource_group_name string
 
-    Security_rule *Azurerm_network_security_group_security_rule_1432
+    Security_rule *[]Azurerm_network_security_group_security_rule_1432
 
     Tags *map[string]string
 
@@ -10941,7 +10941,7 @@ type Azurerm_scheduler_job_recurrence_1461 struct {
 
     Month_days *[]int
 
-    Monthly_occurrences *Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462
+    Monthly_occurrences *[]Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462
 
     Week_days *[]string
 
@@ -12186,7 +12186,7 @@ type Azurerm_shared_image_version struct {
 
     Tags *map[string]string
 
-    Target_region Azurerm_shared_image_version_target_region_1476
+    Target_region []Azurerm_shared_image_version_target_region_1476
 
 }
 
@@ -13512,11 +13512,11 @@ type Azurerm_traffic_manager_profile struct {
 
     Azurerm_traffic_manager_profile_id *string `lyra:"ignore"`
 
-    Dns_config Azurerm_traffic_manager_profile_dns_config_1488
+    Dns_config []Azurerm_traffic_manager_profile_dns_config_1488
 
     Fqdn *string
 
-    Monitor_config Azurerm_traffic_manager_profile_monitor_config_1489
+    Monitor_config []Azurerm_traffic_manager_profile_monitor_config_1489
 
     Name string
 
@@ -13810,13 +13810,13 @@ type Azurerm_virtual_machine struct {
 
     Network_interface_ids []string
 
-    Os_profile *Azurerm_virtual_machine_os_profile_1492
+    Os_profile *[]Azurerm_virtual_machine_os_profile_1492
 
-    Os_profile_linux_config *Azurerm_virtual_machine_os_profile_linux_config_1493
+    Os_profile_linux_config *[]Azurerm_virtual_machine_os_profile_linux_config_1493
 
     Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_1495
 
-    Os_profile_windows_config *Azurerm_virtual_machine_os_profile_windows_config_1497
+    Os_profile_windows_config *[]Azurerm_virtual_machine_os_profile_windows_config_1497
 
     Plan *[]Azurerm_virtual_machine_plan_1500
 
@@ -13826,7 +13826,7 @@ type Azurerm_virtual_machine struct {
 
     Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_1501
 
-    Storage_image_reference *Azurerm_virtual_machine_storage_image_reference_1502
+    Storage_image_reference *[]Azurerm_virtual_machine_storage_image_reference_1502
 
     Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_1503
 
@@ -14249,7 +14249,7 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Eviction_policy *string
 
-    Extension *Azurerm_virtual_machine_scale_set_extension_1505
+    Extension *[]Azurerm_virtual_machine_scale_set_extension_1505
 
     Health_probe_id *string
 
@@ -14261,19 +14261,19 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Name string
 
-    Network_profile Azurerm_virtual_machine_scale_set_network_profile_1507
+    Network_profile []Azurerm_virtual_machine_scale_set_network_profile_1507
 
     Os_profile []Azurerm_virtual_machine_scale_set_os_profile_1511
 
-    Os_profile_linux_config *Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512
+    Os_profile_linux_config *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512
 
-    Os_profile_secrets *Azurerm_virtual_machine_scale_set_os_profile_secrets_1514
+    Os_profile_secrets *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_1514
 
-    Os_profile_windows_config *Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516
+    Os_profile_windows_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516
 
     Overprovision *bool
 
-    Plan *Azurerm_virtual_machine_scale_set_plan_1519
+    Plan *[]Azurerm_virtual_machine_scale_set_plan_1519
 
     Priority *string
 
@@ -14287,9 +14287,9 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522
 
-    Storage_profile_image_reference *Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523
+    Storage_profile_image_reference *[]Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523
 
-    Storage_profile_os_disk Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524
+    Storage_profile_os_disk []Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524
 
     Tags *map[string]string
 
@@ -14362,7 +14362,7 @@ type Azurerm_virtual_network struct {
 
     Resource_group_name string
 
-    Subnet *Azurerm_virtual_network_subnet_1525
+    Subnet *[]Azurerm_virtual_network_subnet_1525
 
     Tags *map[string]string
 
@@ -14451,9 +14451,9 @@ type Azurerm_virtual_network_gateway_vpn_client_configuration_1528 struct {
 
     Radius_server_secret *string
 
-    Revoked_certificate *Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529
+    Revoked_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529
 
-    Root_certificate *Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530
+    Root_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530
 
     Vpn_client_protocols *[]string
 

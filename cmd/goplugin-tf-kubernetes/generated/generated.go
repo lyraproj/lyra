@@ -7102,11 +7102,11 @@ type Kubernetes_service_account struct {
 
     Default_secret_name *string
 
-    Image_pull_secret *Kubernetes_service_account_image_pull_secret_1136
+    Image_pull_secret *[]Kubernetes_service_account_image_pull_secret_1136
 
     Metadata []Kubernetes_service_account_metadata_1137
 
-    Secret *Kubernetes_service_account_secret_1138
+    Secret *[]Kubernetes_service_account_secret_1138
 
 }
 
