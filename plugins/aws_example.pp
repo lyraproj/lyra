@@ -1,7 +1,7 @@
 # this attach workflow relies on types in aaws.pp (it is so-named because files are read in alphabetical order)
 # the contents of that file can be generated, refer to TestGeneratePuppetTypes in register_types_test.go
 $route = Aws::Route(
-  destination_cidr_block => '0.0.0.0/0'
+  destination_ => '0.0.0.0/0'
 )
 $routes = [$route]
 
@@ -11,76 +11,76 @@ workflow aws_example {
     Hash[String,String] $tags = lookup('aws.tags'),
   ),
   output => (
-    String $vpc_id,
-    String $group_id,
-    String $subnet_id,
-    String $internet_gateway_id,
-    String $key_fingerprint,
-    String $route_table_id,
+    String $vpcId,
+    String $groupId,
+    String $subnetId,
+    String $internetGatewayId,
+    String $keyFingerprint,
+    String $routeTableId,
   )
 } {
   resource instance {
     input  => ($tags),
   }{
     tags => $tags,
-    max_count => 1,
-    min_count => 1,
-    instance_type => 't2.nano',
-    image_id => 'ami-f90a4880',
+    maxCount => 1,
+    minCount => 1,
+    instanceType => 't2.nano',
+    imageId => 'ami-f90a4880',
   }
   resource keypair {
     input  => ($tags),
-    output => ($key_fingerprint)
+    output => ($keyFingerprint)
   }{
-    public_key_material => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword",
-    key_name => 'lyra-test-kp'
+    publicKeyMaterial => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword",
+    keyName => 'lyra-test-kp'
   }
   resource internetgateway {
     input  => ($tags),
-    output => ($internet_gateway_id)
+    output => ($internetGatewayId)
   }{
     tags => $tags,
   }
   resource routetable {
-    input  => ($tags, $vpc_id),
-    output => ($route_table_id)
+    input  => ($tags, $vpcId),
+    output => ($routeTableId)
   }{
     tags => $tags,
-    vpc_id => $vpc_id,
+    vpcId => $vpcId,
     # routes => $routes,
   }
   resource vpc {
     input  => ($tags),
-    output => ($vpc_id)
+    output => ($vpcId)
   }{
-    amazon_provided_ipv6_cidr_block => false,
-    cidr_block => '192.168.0.0/16',
-    enable_dns_hostnames => false,
-    enable_dns_support => false,
-    is_default => false,
+    amazonProvidedIpv6CidrBlock => false,
+    cidrBlock => '192.168.0.0/16',
+    enableDnsHostnames => false,
+    enableDnsSupport => false,
+    isDefault => false,
     state => 'available',
     tags => $tags,
   }
   resource securitygroup {
-    input  => ($tags, $vpc_id),
-    output => ($group_id)
+    input  => ($tags, $vpcId),
+    output => ($groupId)
   }{
-    vpc_id => $vpc_id,
+    vpcId => $vpcId,
     description => 'lyra test group',
-    group_name => 'lyragroup',
+    groupName => 'lyragroup',
     tags => $tags,
   }
   resource subnet {
-    input  => ($tags, $vpc_id),
-    output => ($subnet_id)
+    input  => ($tags, $vpcId),
+    output => ($subnetId)
   }{
-    vpc_id => $vpc_id,
-    cidr_block => '192.168.1.0/24',
-    ipv6_cidr_block => '',
+    vpcId => $vpcId,
+    cidrBlock => '192.168.1.0/24',
+    ipv6CidrBlock => '',
     tags => $tags,
-    assign_ipv6_address_on_creation => false,
-    map_public_ip_on_launch => false,
-    default_for_az => false,
+    assignIpv6AddressOnCreation => false,
+    mapPublicIpOnLaunch => false,
+    defaultForAz => false,
     state => 'available',
   }
 }
