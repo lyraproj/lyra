@@ -1,7 +1,7 @@
 # this attach workflow relies on types in aaws.pp (it is so-named because files are read in alphabetical order)
 # the contents of that file can be generated, refer to TestGeneratePuppetTypes in register_types_test.go
 $route = Aws::Route(
-  destination_ => '0.0.0.0/0'
+  destinationCidrBlock => '0.0.0.0/0'
 )
 $routes = [$route]
 
