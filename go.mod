@@ -29,7 +29,7 @@ require (
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
-	github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa
+	github.com/lyraproj/lyra-operator v0.0.0-20190212172234-c863eb9b8bdb
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190213111014-f445b297391c
 	github.com/lyraproj/puppet-workflow v0.0.0-20190213111242-ab7da92b2b17
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
