@@ -223,7 +223,7 @@ func (l *Loader) loadPuppetDSL(c eval.Context, dir string) {
 	ppServer := x.(serviceapi.Service)
 	for _, f := range allFiles {
 		l.logger.Debug("loading manifest", "file", f)
-		def := ppServer.Invoke(c, puppet.ManifestLoaderID, `load_manifest`, types.WrapString(f)).(serviceapi.Definition)
+		def := ppServer.Invoke(c, puppet.ManifestLoaderID, `loadManifest`, types.WrapString(f)).(serviceapi.Definition)
 		sa := &subService{def}
 		l.SetEntry(sa.Identifier(c), eval.NewLoaderEntry(sa, nil))
 		l.loadMetadata(c, ``, nil, sa)
@@ -296,7 +296,7 @@ func (l *Loader) loadMetadata(c eval.Context, cmd string, cmdArgs []string, serv
 		l.SetEntry(def.Identifier(), eval.NewLoaderEntry(def, nil))
 		l.logger.Debug("registered definition", "definition", def.Identifier())
 
-		if handlerFor, ok := def.Properties().Get4(`handler_for`); ok {
+		if handlerFor, ok := def.Properties().Get4(`handlerFor`); ok {
 			hn := eval.NewTypedName(eval.NsHandler, handlerFor.(issue.Named).Name())
 			l.SetEntry(hn, eval.NewLoaderEntry(def, nil))
 			l.logger.Debug("registered handler", "definition", def.Identifier(), "handler for", hn)

@@ -107,7 +107,7 @@ func registerNonSDKTypes(sb *service.ServerBuilder) {
 	evs = sb.RegisterTypes("Aws", Vpc{})
 	sb.RegisterTypes("Aws",
 		sb.BuildResource(&Vpc{}, func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`vpc_id`, `dhcp_options_id`)
+			rtb.ProvidedAttributes(`vpcId`, `dhcpOptionsId`)
 			rtb.ImmutableAttributes(`tags`)
 		}),
 	)
@@ -115,7 +115,7 @@ func registerNonSDKTypes(sb *service.ServerBuilder) {
 	sb.RegisterHandler("Aws::VPCHandler", &VPCHandler{}, evs[0])
 	evs = sb.RegisterTypes("Aws",
 		sb.BuildResource(&Subnet{}, func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`subnet_id`, `availability_zone`, `available_ip_address_count`)
+			rtb.ProvidedAttributes(`subnetId`, `availabilityZone`, `availableIpAddressCount`)
 			rtb.ImmutableAttributes(`tags`)
 		}),
 	)
@@ -131,7 +131,7 @@ func registerNonSDKTypes(sb *service.ServerBuilder) {
 	sb.RegisterHandler("Aws::SecurityGroupHandler", &SecurityGroupHandler{}, evs[0])
 	evs = sb.RegisterTypes("Aws",
 		sb.BuildResource(&InternetGateway{}, func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`internet_gateway_id`)
+			rtb.ProvidedAttributes(`internetGatewayId`)
 			rtb.ImmutableAttributes(`tags`)
 		}),
 		InternetGatewayAttachment{},
@@ -141,12 +141,12 @@ func registerNonSDKTypes(sb *service.ServerBuilder) {
 	sb.RegisterHandler("Aws::KeyPairHandler", &KeyPairHandler{}, evs[0])
 	evs = sb.RegisterTypes("Aws",
 		sb.BuildResource(&RouteTable{}, func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`route_table_id`, `routes`)
+			rtb.ProvidedAttributes(`routeTableId`, `routes`)
 			rtb.ImmutableAttributes(`tags`)
 		}),
 		Route{},
 		sb.BuildResource(&RouteTableAssociation{}, func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`route_table_association_id`)
+			rtb.ProvidedAttributes(`routeTableAssociationId`)
 			rtb.ImmutableAttributes(`tags`)
 		}),
 		PropagatingVgw{})

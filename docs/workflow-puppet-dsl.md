@@ -120,13 +120,13 @@ Action that performs different actions on create, read, delete, and update.
 #### Simple resource
 
     resource vpc {
-      output => ($vpc_id)
+      output => ($vpcId)
     } {
       region               => $region,
       cidr_block           => '192.168.0.0/16',
       tags                 => $tags,
-      enable_dns_hostnames => true,
-      enable_dns_support   => true
+      enableDnsHostnames => true,
+      enableDnsSupport   => true
     }
 
 In this example, the inferred input will be `input => ($region, $tags)`
@@ -142,9 +142,9 @@ In this example, the inferred input will be `input => ($region, $tags)`
       output => ($key = instance_id, $value = [public_ip, private_ip])
     } times($ec2_cnt) |$n| {
       region => $region,
-      image_id => $img,
-      instance_type => 't2.nano',
-      key_name => $key_name,
+      imageId => $img,
+      instanceType => 't2.nano',
+      keyName => $keyName,
       tags => $tags
     }
 
@@ -152,10 +152,10 @@ This example will manage a number of ec2 instances. The actual count is fetched 
 The final computed output of this resource is a hash declared as:
 
     output => (Hash[
-      Like[Lyra::Aws::Instance, instance_id],
+      Like[Lyra::Aws::Instance, instanceId],
       Struct[
-        public_ip=>Like[Lyra::Aws::Instance, public_ip],
-        private_ip=>Like[Lyra::Aws::Instance, private_ip]
+        publicIp=>Like[Lyra::Aws::Instance, publicIp],
+        privateIp=>Like[Lyra::Aws::Instance, privateIp]
       ]] $nodes)
 
 ## Workflow
@@ -167,26 +167,26 @@ Workflow that leverages the `typespace` to infer the resource types i.e. 'lyra::
     workflow my_workflow {
       typespace => 'lyra::aws',
       input => (String $region = lookup('aws::region', Hash[String,String] $tags = lookup('aws::tags')),
-      output => ($vpc_id, $subnet_id)
+      output => ($vpcId, $subnetId)
     } {
       resource vpc {
-        output => ($vpc_id)
+        output => ($vpcId)
       } {
         region               => $region,
-        cidr_block           => '192.168.0.0/16',
+        cidrBlock            => '192.168.0.0/16',
         tags                 => $tags,
-        enable_dns_hostnames => true,
-        enable_dns_support   => true
+        enableDnsHostnames   => true,
+        enableDnsSupport     => true
       }
 
       resource subnet {
-        output => ($subnet_id)
+        output => ($subnetId)
       } {
         region               => $region,
-        vpc_id               => $vpc_id,
-        cidr_block           => '192.168.1.0/24',
+        vpcId                => $vpcId,
+        cidrBlock            => '192.168.1.0/24',
         tags                 => $tags,
-        map_public_ip_on_launch => true
+        mapPublicIpOnLaunch  => true
       }
     }
 

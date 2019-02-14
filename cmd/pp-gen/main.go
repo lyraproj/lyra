@@ -2,6 +2,8 @@ package main
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
+	awsnontf "github.com/lyraproj/lyra/cmd/goplugin-aws/resource"
+	"github.com/lyraproj/lyra/cmd/goplugin-example/example"
 	awshandler "github.com/lyraproj/lyra/cmd/goplugin-tf-aws/handler"
 	googlehandler "github.com/lyraproj/lyra/cmd/goplugin-tf-google/handler"
 	kuberneteshandler "github.com/lyraproj/lyra/cmd/goplugin-tf-kubernetes/handler"
@@ -27,5 +29,8 @@ func main() {
 		// // Azure - you will need login credentials available or this step will fail
 		// bridge.GeneratePP(c, azurermhandler.Server(c, azurerm.Provider().(*schema.Provider)), "TerraformAzureRM", "plugins/aaa-terraform-azurerm.pp")
 
+		bridge.GeneratePP(c, awsnontf.Server(c), "Aws", "plugins/aaa-aws.pp")
+
+		bridge.GeneratePP(c, example.Server(c), "Example", "plugins/aaa-example.pp")
 	})
 }

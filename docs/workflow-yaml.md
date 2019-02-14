@@ -120,13 +120,13 @@ Attribute values are the only elements subjected to the special $variable rule.
 #### Simple resource
 
     vpc:
-      output: vpc_id
+      output: vpcId
       state:
-        amazon_provided_ipv6_cidr_block: false
-        cidr_block: 192.168.0.0/16
-        enable_dns_hostnames: false
-        enable_dns_support: false
-        is_default: false
+        amazonProvidedIpv6CidrBlock: false
+        cidrBlock: 192.168.0.0/16
+        enableDnsHostnames: false
+        enableDnsSupport: false
+        isDefault: false
         state: available
         tags: $tags
 
@@ -136,8 +136,8 @@ In this example, the inferred input will be `input: [region, tags]`
 
      instance:
        output:
-         key: instance_id
-         value: [public_ip, private_ip]
+         key: instanceId
+         value: [publicIp, privateIp]
        iteration:
          name:     nodes
          function: times
@@ -146,20 +146,20 @@ In this example, the inferred input will be `input: [region, tags]`
        state:
          region       : $region
          ensure       : present
-         instance_id  : $ix
-         image_id     : ami-f90a4880
-         instance_type: t2.nano
-         key_name     : $key_name
+         instanceId  : $ix
+         imageId     : ami-f90a4880
+         instanceType: t2.nano
+         keyName     : $keyName
          tags         : $tags
 
 This example will manage a number of ec2 instances. The actual count is fetched using a lookup.
 The final computed output is a variable named `nodes` with the type:
 
     Hash[
-      Like[Lyra::Aws::Instance, instance_id],
+      Like[Lyra::Aws::Instance, instanceId],
       Struct[
-        public_ip=>Like[Lyra::Aws::Instance, public_ip],
-        private_ip=>Like[Lyra::Aws::Instance, private_ip]
+        publicIp=>Like[Lyra::Aws::Instance, publicIp],
+        privateIp=>Like[Lyra::Aws::Instance, privateIp]
       ]]
 
 ## Workflow
@@ -175,32 +175,32 @@ Workflow that leverages the `typespace` to infer the resource types i.e. 'aws::v
           type: Hash[String,String]
           lookup: aws.tags
       output:
-        vpc_id: String
-        subnet_id: String
+        vpcId: String
+        subnetId: String
       activities:
         routetable:
-          output: route_table_id
+          output: routeTableId
           state:
             tags: $tags
-            vpc_id: $vpc_id
+            vpcId: $vpcId
         vpc:
-          output: vpc_id
+          output: vpcId
           state:
-            amazon_provided_ipv6_cidr_block: false
-            cidr_block: 192.168.0.0/16
-            enable_dns_hostnames: false
-            enable_dns_support: false
-            is_default: false
+            amazonProvidedIpv6CidrBlock: false
+            cidrBlock: 192.168.0.0/16
+            enableDnsHostnames: false
+            enableDnsSupport: false
+            isDefault: false
             state: available
             tags: $tags
         subnet:
-          output: subnet_id
+          output: subnetId
           state:
-            vpc_id: $vpc_id
-            cidr_block: 192.168.1.0/24
-            ipv6_cidr_block: ''
+            vpcId: $vpcId
+            cidrBlock: 192.168.1.0/24
+            ipv6CidrBlock: ''
             tags: $tags
-            assign_ipv6_address_on_creation: false
-            map_public_ip_on_launch: false
-            default_for_az: false
+            assignIpv6AddressOnCreation: false
+            mapPublicIpOnLaunch: false
+            defaultForAz: false
             state: available
