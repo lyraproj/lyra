@@ -273,6 +273,8 @@ github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452 h1:SX2j4H7z
 github.com/lyraproj/lyra-operator v0.0.0-20190122104909-182988132452/go.mod h1:aaq4Bh6tQ/TKf7VM11exVlOsoGrbDlfo1iDa6u4t5Z8=
 github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa h1:lvxuFcOXmEJAqhy57+Y51LtpSZeuPE/n5oBvDoxbIG8=
 github.com/lyraproj/lyra-operator v0.0.0-20190131103232-5a1dd19cb7aa/go.mod h1:qdyl7pK0Fby7xOP71U7M4yM1WEy2nYvE+eJOccpruQk=
+github.com/lyraproj/lyra-operator v0.0.0-20190212172234-c863eb9b8bdb h1:S35utG60d4aKzfF8VqfnV97b/0h9rIVA65gL1dmh4M4=
+github.com/lyraproj/lyra-operator v0.0.0-20190212172234-c863eb9b8bdb/go.mod h1:qdyl7pK0Fby7xOP71U7M4yM1WEy2nYvE+eJOccpruQk=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190123101558-8fe6588e638e/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190124135843-af8c63460165/go.mod h1:Z0RDGXCJwnba8AZttdopo2/JzUiGsN7CECdUqZPR3wU=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190124220224-0b2cf0dd23a8 h1:Oo+0o/N6h29OvBrOZfnrQyVzw2CTNC/dAz3TVtA97kM=
