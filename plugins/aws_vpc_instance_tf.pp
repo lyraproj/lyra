@@ -37,4 +37,27 @@ workflow aws_vpc_instance_tf {
     tags => $tags,
   }
 
+  resource aws_security_group {
+    input  => ($aws_vpc_id),
+  }{
+    name => "lyra",
+    description => "lyra example",
+    vpc_id      => $aws_vpc_id,
+
+    ingress => [TerraformAws::Aws_security_group_ingress_501(
+      from_port   => 0,
+      to_port     => 0,
+      protocol    => "-1",
+      cidr_blocks => ["0.0.0.0/0"],
+    )],
+
+    egress => [TerraformAws::Aws_security_group_egress_500(
+      from_port       => 0,
+      to_port         => 0,
+      protocol        => "-1",
+      cidr_blocks     => ["0.0.0.0/0"],
+      prefix_list_ids => ["pl-12c4e678"],
+    )],
+  }
+
 }
