@@ -24,6 +24,7 @@ var embeddedPluginNames = []string{
 	"puppet",
 	"tfaws",
 	"tfazurerm",
+	"tfgithub",
 	"tfgoogle",
 	"tfkubernetes",
 }
