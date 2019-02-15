@@ -119,6 +119,7 @@ github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c h1:964Od4U6p2jUkFxvCy
 github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c/go.mod h1:lNA+9X1NB3Zf8V7Ke586lFgjr2dZNuvo3lPJSGZ5JPQ=
 github.com/google/go-cmp v0.2.0 h1:+dTQ8DZQJz0Mb/HjFlkptS1FeQ4cWSnN941F8aEG4SQ=
 github.com/google/go-cmp v0.2.0/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
+github.com/google/go-github v16.0.0+incompatible h1:omSHCJqM3CNG6RFFfGmIqGVbdQS2U3QVQSqACgwV1PY=
 github.com/google/go-github v16.0.0+incompatible/go.mod h1:zLgOLi98H3fifZn+44m+umXrS52loVEgC2AApnigrVQ=
 github.com/google/go-github v17.0.0+incompatible h1:N0LgJ1j65A7kfXrZnUDaYCs/Sf4rEjNlfyDHW9dolSY=
 github.com/google/go-github v17.0.0+incompatible/go.mod h1:zLgOLi98H3fifZn+44m+umXrS52loVEgC2AApnigrVQ=
@@ -163,6 +164,8 @@ github.com/hashicorp/go-hclog v0.0.0-20180709165350-ff2cf002a8dd/go.mod h1:9bjs9
 github.com/hashicorp/go-hclog v0.0.0-20181001195459-61d530d6c27f/go.mod h1:5CU+agLiy3J7N7QjHK5d05KxGsuXiQLrjA0H7acj2lQ=
 github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e h1:SS6R03q1M5bxjbOL2JziQUUu7opiRocL4R2H5Y2I6rY=
 github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e/go.mod h1:5CU+agLiy3J7N7QjHK5d05KxGsuXiQLrjA0H7acj2lQ=
+github.com/hashicorp/go-hclog v0.0.0-20190214225846-90f2fbc4844c h1:R2zfxK0MnLcVuS5rqLZ5EBj6gqkXVcJOh9CsILZC9mY=
+github.com/hashicorp/go-hclog v0.0.0-20190214225846-90f2fbc4844c/go.mod h1:5CU+agLiy3J7N7QjHK5d05KxGsuXiQLrjA0H7acj2lQ=
 github.com/hashicorp/go-multierror v0.0.0-20180717150148-3d5d8f294aa0/go.mod h1:JMRHfdO9jKNzS/+BTlxCjKNQHg/jZAft8U7LloJvN7I=
 github.com/hashicorp/go-multierror v1.0.0 h1:iVjPR7a6H0tWELX5NxNe7bYopibicUzc7uPribsnS6o=
 github.com/hashicorp/go-multierror v1.0.0/go.mod h1:dHtQlpGsu+cZNNAkkCN/P3hoUDHhCYQXV3UM06sGGrk=
@@ -258,10 +261,14 @@ github.com/lyraproj/puppet-parser v0.0.0-20190213110921-6d794c46c75a h1:XG/JMQTV
 github.com/lyraproj/puppet-parser v0.0.0-20190213110921-6d794c46c75a/go.mod h1:KYBqLHpK7D2FNFp47m9BZfr6Xvd6PnEYOpI31aEGAX0=
 github.com/lyraproj/puppet-workflow v0.0.0-20190213111242-ab7da92b2b17 h1:YNhfN87da/IJ5cK71KF2WIlqsc/hqPN8SMXbBDHjKY4=
 github.com/lyraproj/puppet-workflow v0.0.0-20190213111242-ab7da92b2b17/go.mod h1:TcNgAorwg3VmOOnSqhgqfDFSGhg2BMql97V2NmK7bm0=
+github.com/lyraproj/puppet-workflow v0.0.0-20190215162224-286a7c080f50 h1:aKZYZQ48gHh20f+cV/EyNU1Uir06PV9MjBA9+f4wfVg=
+github.com/lyraproj/puppet-workflow v0.0.0-20190215162224-286a7c080f50/go.mod h1:mUnQo+0r7NIx6l22ZAiclOcLcZF0JFt71abciJrH4+s=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190213111125-9b344bb575d1 h1:f5fbA3fPFgQQYhXnGd5Rx+jg2Px1GnxIqtpMHiDSu8E=
 github.com/lyraproj/servicesdk v0.0.0-20190213111125-9b344bb575d1/go.mod h1:TszLWROByVHvGy/7kMLJRCjXvDG0oCPu+2cjP6nF+YQ=
+github.com/lyraproj/servicesdk v0.0.0-20190215155324-03dc27163cc2 h1:Yb9hHXVPmUFDQU1cRSzarrw205SCYtEEtJBrCS7QytI=
+github.com/lyraproj/servicesdk v0.0.0-20190215155324-03dc27163cc2/go.mod h1:TszLWROByVHvGy/7kMLJRCjXvDG0oCPu+2cjP6nF+YQ=
 github.com/lyraproj/wfe v0.0.0-20190213141324-1ca88d9ec407 h1:fjJbMN7Ik10r2LcC/IEoMZboXttJLfEVDgKxkV3owok=
 github.com/lyraproj/wfe v0.0.0-20190213141324-1ca88d9ec407/go.mod h1:LdDYELaYRN0JFCboMQfIS+f6X8iWPPb65XsjaB7UuoE=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=

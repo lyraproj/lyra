@@ -10,7 +10,7 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc // indirect
 	github.com/hashicorp/go-azure-helpers v0.0.0-20190129193224-166dfd221bb2 // indirect
-	github.com/hashicorp/go-hclog v0.0.0-20190109152822-4783caec6f2e
+	github.com/hashicorp/go-hclog v0.0.0-20190214225846-90f2fbc4844c
 	github.com/hashicorp/go-plugin v0.0.0-20190212232519-b838ffee39ce
 	github.com/hashicorp/terraform v0.11.11
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
@@ -20,9 +20,9 @@ require (
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
 	github.com/lyraproj/lyra-operator v0.0.0-20190212172234-c863eb9b8bdb
 	github.com/lyraproj/puppet-evaluator v0.0.0-20190213111014-f445b297391c
-	github.com/lyraproj/puppet-workflow v0.0.0-20190213111242-ab7da92b2b17
+	github.com/lyraproj/puppet-workflow v0.0.0-20190215162224-286a7c080f50
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190213111125-9b344bb575d1
+	github.com/lyraproj/servicesdk v0.0.0-20190215155324-03dc27163cc2
 	github.com/lyraproj/wfe v0.0.0-20190213141324-1ca88d9ec407
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
