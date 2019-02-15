@@ -6,12 +6,31 @@
 package generated
 
 import (
+	"sync"
+
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/service"
 )
+
+var once sync.Once
+var Config *terraform.ResourceConfig
+
+func configureProvider(p *schema.Provider) {
+	once.Do(func() {
+		if Config == nil {
+			Config = &terraform.ResourceConfig{
+				Config: map[string]interface{}{},
+			}
+		}
+		err := p.Configure(Config)
+		if err != nil {
+			panic(err)
+		}
+	})
+}
 
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
@@ -56,7 +75,7 @@ func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
 }
 
 
-type Kubernetes_cluster_role_binding_metadata_589 struct {
+type Kubernetes_cluster_role_binding_metadata_1079 struct {
 
     Annotations *map[string]string
 
@@ -74,7 +93,7 @@ type Kubernetes_cluster_role_binding_metadata_589 struct {
 
 }
 
-type Kubernetes_cluster_role_binding_subject_590 struct {
+type Kubernetes_cluster_role_binding_subject_1080 struct {
 
     Api_group *string
 
@@ -90,11 +109,11 @@ type Kubernetes_cluster_role_binding struct {
 
     Kubernetes_cluster_role_binding_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_cluster_role_binding_metadata_589
+    Metadata []Kubernetes_cluster_role_binding_metadata_1079
 
     Role_ref map[string]string
 
-    Subject []Kubernetes_cluster_role_binding_subject_590
+    Subject []Kubernetes_cluster_role_binding_subject_1080
 
 }
 
@@ -105,6 +124,7 @@ type Kubernetes_cluster_role_bindingHandler struct {
 
 // Create ...
 func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_cluster_role_binding) (*Kubernetes_cluster_role_binding, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -121,6 +141,7 @@ func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_clus
 
 // Read ...
 func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kubernetes_cluster_role_binding, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_cluster_role_binding", externalID)
 	if err != nil {
 		return nil, err
@@ -132,10 +153,11 @@ func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kuber
 
 // Delete ...
 func (h *Kubernetes_cluster_role_bindingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_cluster_role_binding", externalID)
 }
 
-type Kubernetes_config_map_metadata_591 struct {
+type Kubernetes_config_map_metadata_1081 struct {
 
     Annotations *map[string]string
 
@@ -163,7 +185,7 @@ type Kubernetes_config_map struct {
 
     Data *map[string]string
 
-    Metadata []Kubernetes_config_map_metadata_591
+    Metadata []Kubernetes_config_map_metadata_1081
 
 }
 
@@ -174,6 +196,7 @@ type Kubernetes_config_mapHandler struct {
 
 // Create ...
 func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*Kubernetes_config_map, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -190,6 +213,7 @@ func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*
 
 // Read ...
 func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_config_map, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_config_map", externalID)
 	if err != nil {
 		return nil, err
@@ -201,10 +225,11 @@ func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_conf
 
 // Delete ...
 func (h *Kubernetes_config_mapHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_config_map", externalID)
 }
 
-type Kubernetes_deployment_metadata_592 struct {
+type Kubernetes_deployment_metadata_1082 struct {
 
     Annotations *map[string]string
 
@@ -226,7 +251,7 @@ type Kubernetes_deployment_metadata_592 struct {
 
 }
 
-type Kubernetes_deployment_spec_593_selector_594_match_expressions_595 struct {
+type Kubernetes_deployment_spec_1083_selector_1084_match_expressions_1085 struct {
 
     Key *string
 
@@ -236,15 +261,15 @@ type Kubernetes_deployment_spec_593_selector_594_match_expressions_595 struct {
 
 }
 
-type Kubernetes_deployment_spec_593_selector_594 struct {
+type Kubernetes_deployment_spec_1083_selector_1084 struct {
 
-    Match_expressions *[]Kubernetes_deployment_spec_593_selector_594_match_expressions_595
+    Match_expressions *[]Kubernetes_deployment_spec_1083_selector_1084_match_expressions_1085
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_deployment_spec_593_strategy_596_rolling_update_597 struct {
+type Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087 struct {
 
     Max_surge *string
 
@@ -252,15 +277,15 @@ type Kubernetes_deployment_spec_593_strategy_596_rolling_update_597 struct {
 
 }
 
-type Kubernetes_deployment_spec_593_strategy_596 struct {
+type Kubernetes_deployment_spec_1083_strategy_1086 struct {
 
-    Rolling_update *[]Kubernetes_deployment_spec_593_strategy_596_rolling_update_597
+    Rolling_update *[]Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087
 
     Type *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_metadata_599 struct {
+type Kubernetes_deployment_spec_1083_template_1088_metadata_1089 struct {
 
     Annotations *map[string]string
 
@@ -282,7 +307,7 @@ type Kubernetes_deployment_spec_593_template_598_metadata_599 struct {
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_config_map_key_ref_604 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_config_map_key_ref_1094 struct {
 
     Key *string
 
@@ -290,7 +315,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_field_ref_605 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_field_ref_1095 struct {
 
     Api_version *string
 
@@ -298,7 +323,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_resource_field_ref_606 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_resource_field_ref_1096 struct {
 
     Container_name *string
 
@@ -306,7 +331,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_secret_key_ref_607 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_secret_key_ref_1097 struct {
 
     Key *string
 
@@ -314,29 +339,29 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093 struct {
 
-    Config_map_key_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_config_map_key_ref_604
+    Config_map_key_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_config_map_key_ref_1094
 
-    Field_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_field_ref_605
+    Field_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_field_ref_1095
 
-    Resource_field_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_resource_field_ref_606
+    Resource_field_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_resource_field_ref_1096
 
-    Secret_key_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603_secret_key_ref_607
+    Secret_key_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_secret_key_ref_1097
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602_value_from_603
+    Value_from *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_config_map_ref_609 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_config_map_ref_1099 struct {
 
     Name string
 
@@ -344,7 +369,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_secret_ref_610 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_secret_ref_1100 struct {
 
     Name string
 
@@ -352,23 +377,23 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098 struct {
 
-    Config_map_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_config_map_ref_609
+    Config_map_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_config_map_ref_1099
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608_secret_ref_610
+    Secret_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_secret_ref_1100
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_exec_613 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_exec_1103 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614_http_header_615 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104_http_header_1105 struct {
 
     Name *string
 
@@ -376,11 +401,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycl
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614_http_header_615
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104_http_header_1105
 
     Path *string
 
@@ -390,29 +415,29 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycl
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_tcp_socket_616 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_tcp_socket_1106 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_exec_613
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_exec_1103
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_http_get_614
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612_tcp_socket_616
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_tcp_socket_1106
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_exec_618 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_exec_1108 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619_http_header_620 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109_http_header_1110 struct {
 
     Name *string
 
@@ -420,11 +445,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycl
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619_http_header_620
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109_http_header_1110
 
     Path *string
 
@@ -434,37 +459,37 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycl
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_tcp_socket_621 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_tcp_socket_1111 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_exec_618
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_exec_1108
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_http_get_619
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617_tcp_socket_621
-
-}
-
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611 struct {
-
-    Post_start *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_post_start_612
-
-    Pre_stop *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611_pre_stop_617
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_tcp_socket_1111
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_exec_623 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101 struct {
+
+    Post_start *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102
+
+    Pre_stop *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107
+
+}
+
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_exec_1113 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624_http_header_625 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114_http_header_1115 struct {
 
     Name *string
 
@@ -472,11 +497,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624_http_header_625
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114_http_header_1115
 
     Path *string
 
@@ -486,19 +511,19 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_tcp_socket_626 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_tcp_socket_1116 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_exec_623
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_exec_1113
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_http_get_624
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114
 
     Initial_delay_seconds *int
 
@@ -506,13 +531,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622_tcp_socket_626
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_tcp_socket_1116
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_port_627 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_port_1117 struct {
 
     Container_port int
 
@@ -526,13 +551,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_port_627
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_exec_629 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_exec_1119 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630_http_header_631 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120_http_header_1121 struct {
 
     Name *string
 
@@ -540,11 +565,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readines
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630_http_header_631
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120_http_header_1121
 
     Path *string
 
@@ -554,19 +579,19 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readines
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_tcp_socket_632 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_tcp_socket_1122 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_exec_629
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_exec_1119
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_http_get_630
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120
 
     Initial_delay_seconds *int
 
@@ -574,13 +599,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readines
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628_tcp_socket_632
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_tcp_socket_1122
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_limits_634 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_limits_1124 struct {
 
     Cpu *string
 
@@ -588,7 +613,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resource
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_requests_635 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_requests_1125 struct {
 
     Cpu *string
 
@@ -596,15 +621,15 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resource
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123 struct {
 
-    Limits *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_limits_634
+    Limits *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_limits_1124
 
-    Requests *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633_requests_635
+    Requests *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_requests_1125
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_capabilities_637 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_capabilities_1127 struct {
 
     Add *[]string
 
@@ -612,7 +637,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_se_linux_options_638 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_se_linux_options_1128 struct {
 
     Level *string
 
@@ -624,11 +649,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_capabilities_637
+    Capabilities *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_capabilities_1127
 
     Privileged *bool
 
@@ -638,11 +663,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636_se_linux_options_638
+    Se_linux_options *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_se_linux_options_1128
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_volume_mount_639 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_volume_mount_1129 struct {
 
     Mount_path string
 
@@ -654,33 +679,33 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601_volume_m
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_container_601 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_602
+    Env *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092
 
-    Env_from *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_env_from_608
+    Env_from *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_lifecycle_611
+    Lifecycle *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101
 
-    Liveness_probe *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_liveness_probe_622
+    Liveness_probe *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112
 
     Name string
 
-    Port *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_port_627
+    Port *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_port_1117
 
-    Readiness_probe *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_readiness_probe_628
+    Readiness_probe *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118
 
-    Resources *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_resources_633
+    Resources *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123
 
-    Security_context *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_security_context_636
+    Security_context *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126
 
     Stdin *bool
 
@@ -690,19 +715,19 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_container_601 struct {
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601_volume_mount_639
+    Volume_mount *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_volume_mount_1129
 
     Working_dir *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_image_pull_secrets_640 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_secrets_1130 struct {
 
     Name string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_config_map_key_ref_644 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_config_map_key_ref_1134 struct {
 
     Key *string
 
@@ -710,7 +735,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_field_ref_645 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_field_ref_1135 struct {
 
     Api_version *string
 
@@ -718,7 +743,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_resource_field_ref_646 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_resource_field_ref_1136 struct {
 
     Container_name *string
 
@@ -726,7 +751,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_secret_key_ref_647 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_secret_key_ref_1137 struct {
 
     Key *string
 
@@ -734,29 +759,29 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133 struct {
 
-    Config_map_key_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_config_map_key_ref_644
+    Config_map_key_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_config_map_key_ref_1134
 
-    Field_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_field_ref_645
+    Field_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_field_ref_1135
 
-    Resource_field_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_resource_field_ref_646
+    Resource_field_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_resource_field_ref_1136
 
-    Secret_key_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643_secret_key_ref_647
+    Secret_key_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_secret_key_ref_1137
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642_value_from_643
+    Value_from *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_config_map_ref_649 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_config_map_ref_1139 struct {
 
     Name string
 
@@ -764,7 +789,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_secret_ref_650 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_secret_ref_1140 struct {
 
     Name string
 
@@ -772,23 +797,23 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138 struct {
 
-    Config_map_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_config_map_ref_649
+    Config_map_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_config_map_ref_1139
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648_secret_ref_650
+    Secret_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_secret_ref_1140
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_exec_653 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_exec_1143 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654_http_header_655 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144_http_header_1145 struct {
 
     Name *string
 
@@ -796,11 +821,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lif
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654_http_header_655
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144_http_header_1145
 
     Path *string
 
@@ -810,29 +835,29 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lif
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_tcp_socket_656 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_tcp_socket_1146 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_exec_653
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_exec_1143
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_http_get_654
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652_tcp_socket_656
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_tcp_socket_1146
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_exec_658 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_exec_1148 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659_http_header_660 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149_http_header_1150 struct {
 
     Name *string
 
@@ -840,11 +865,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lif
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659_http_header_660
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149_http_header_1150
 
     Path *string
 
@@ -854,37 +879,37 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lif
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_tcp_socket_661 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_tcp_socket_1151 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_exec_658
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_exec_1148
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_http_get_659
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657_tcp_socket_661
-
-}
-
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651 struct {
-
-    Post_start *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_post_start_652
-
-    Pre_stop *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651_pre_stop_657
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_tcp_socket_1151
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_exec_663 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141 struct {
+
+    Post_start *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142
+
+    Pre_stop *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147
+
+}
+
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_exec_1153 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664_http_header_665 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154_http_header_1155 struct {
 
     Name *string
 
@@ -892,11 +917,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liv
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664_http_header_665
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154_http_header_1155
 
     Path *string
 
@@ -906,19 +931,19 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liv
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_tcp_socket_666 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_tcp_socket_1156 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_exec_663
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_exec_1153
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_http_get_664
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154
 
     Initial_delay_seconds *int
 
@@ -926,13 +951,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liv
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662_tcp_socket_666
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_tcp_socket_1156
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_port_667 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_port_1157 struct {
 
     Container_port int
 
@@ -946,13 +971,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_por
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_exec_669 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_exec_1159 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670_http_header_671 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160_http_header_1161 struct {
 
     Name *string
 
@@ -960,11 +985,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_rea
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670_http_header_671
+    Http_header *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160_http_header_1161
 
     Path *string
 
@@ -974,19 +999,19 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_rea
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_tcp_socket_672 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_tcp_socket_1162 struct {
 
     Port string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158 struct {
 
-    Exec *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_exec_669
+    Exec *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_exec_1159
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_http_get_670
+    Http_get *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160
 
     Initial_delay_seconds *int
 
@@ -994,13 +1019,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_rea
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668_tcp_socket_672
+    Tcp_socket *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_tcp_socket_1162
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_limits_674 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_limits_1164 struct {
 
     Cpu *string
 
@@ -1008,7 +1033,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_res
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_requests_675 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_requests_1165 struct {
 
     Cpu *string
 
@@ -1016,15 +1041,15 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_res
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163 struct {
 
-    Limits *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_limits_674
+    Limits *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_limits_1164
 
-    Requests *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673_requests_675
+    Requests *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_requests_1165
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_capabilities_677 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_capabilities_1167 struct {
 
     Add *[]string
 
@@ -1032,7 +1057,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_sec
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_se_linux_options_678 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_se_linux_options_1168 struct {
 
     Level *string
 
@@ -1044,11 +1069,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_sec
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_capabilities_677
+    Capabilities *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_capabilities_1167
 
     Privileged *bool
 
@@ -1058,11 +1083,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_sec
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676_se_linux_options_678
+    Se_linux_options *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_se_linux_options_1168
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_volume_mount_679 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_volume_mount_1169 struct {
 
     Mount_path string
 
@@ -1074,33 +1099,33 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_vol
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_642
+    Env *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132
 
-    Env_from *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_env_from_648
+    Env_from *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_lifecycle_651
+    Lifecycle *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141
 
-    Liveness_probe *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_liveness_probe_662
+    Liveness_probe *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152
 
     Name string
 
-    Port *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_port_667
+    Port *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_port_1157
 
-    Readiness_probe *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_readiness_probe_668
+    Readiness_probe *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158
 
-    Resources *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_resources_673
+    Resources *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163
 
-    Security_context *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_security_context_676
+    Security_context *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166
 
     Stdin *bool
 
@@ -1110,13 +1135,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641 str
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641_volume_mount_679
+    Volume_mount *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_volume_mount_1169
 
     Working_dir *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_se_linux_options_681 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170_se_linux_options_1171 struct {
 
     Level *string
 
@@ -1128,7 +1153,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_s
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170 struct {
 
     Fs_group *int
 
@@ -1136,13 +1161,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680 s
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680_se_linux_options_681
+    Se_linux_options *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170_se_linux_options_1171
 
     Supplemental_groups *[]int
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_aws_elastic_block_store_683 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_aws_elastic_block_store_1173 struct {
 
     Fs_type *string
 
@@ -1154,7 +1179,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_aws_elastic
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_disk_684 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_disk_1174 struct {
 
     Caching_mode string
 
@@ -1168,7 +1193,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_disk_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_file_685 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_file_1175 struct {
 
     Read_only *bool
 
@@ -1178,13 +1203,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_file_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686_secret_ref_687 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176_secret_ref_1177 struct {
 
     Name *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176 struct {
 
     Monitors []string
 
@@ -1194,13 +1219,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686
 
     Secret_file *string
 
-    Secret_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686_secret_ref_687
+    Secret_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176_secret_ref_1177
 
     User *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_cinder_688 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_cinder_1178 struct {
 
     Fs_type *string
 
@@ -1210,7 +1235,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_cinder_688 
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689_items_690 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179_items_1180 struct {
 
     Key *string
 
@@ -1220,17 +1245,17 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689_items_690
+    Items *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179_items_1180
 
     Name *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_field_ref_693 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_field_ref_1183 struct {
 
     Api_version *string
 
@@ -1238,7 +1263,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_ap
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_resource_field_ref_694 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_resource_field_ref_1184 struct {
 
     Container_name string
 
@@ -1248,33 +1273,33 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_ap
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182 struct {
 
-    Field_ref []Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_field_ref_693
+    Field_ref []Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_field_ref_1183
 
     Mode *int
 
     Path string
 
-    Resource_field_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692_resource_field_ref_694
+    Resource_field_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_resource_field_ref_1184
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691_items_692
+    Items *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_empty_dir_695 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_empty_dir_1185 struct {
 
     Medium *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_fc_696 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_fc_1186 struct {
 
     Fs_type *string
 
@@ -1286,13 +1311,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_fc_696 stru
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697_secret_ref_698 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187_secret_ref_1188 struct {
 
     Name *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187 struct {
 
     Driver string
 
@@ -1302,11 +1327,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697_secret_ref_698
+    Secret_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187_secret_ref_1188
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flocker_699 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flocker_1189 struct {
 
     Dataset_name *string
 
@@ -1314,7 +1339,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flocker_699
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_gce_persistent_disk_700 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_gce_persistent_disk_1190 struct {
 
     Fs_type *string
 
@@ -1326,7 +1351,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_gce_persist
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_git_repo_701 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_git_repo_1191 struct {
 
     Directory *string
 
@@ -1336,7 +1361,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_git_repo_70
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_glusterfs_702 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_glusterfs_1192 struct {
 
     Endpoints_name string
 
@@ -1346,13 +1371,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_glusterfs_7
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_host_path_703 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_host_path_1193 struct {
 
     Path *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_iscsi_704 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_iscsi_1194 struct {
 
     Fs_type *string
 
@@ -1368,13 +1393,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_iscsi_704 s
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_local_705 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_local_1195 struct {
 
     Path *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_nfs_706 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_nfs_1196 struct {
 
     Path string
 
@@ -1384,7 +1409,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_nfs_706 str
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_persistent_volume_claim_707 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_persistent_volume_claim_1197 struct {
 
     Claim_name *string
 
@@ -1392,7 +1417,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_persistent_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_photon_persistent_disk_708 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_photon_persistent_disk_1198 struct {
 
     Fs_type *string
 
@@ -1400,7 +1425,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_photon_pers
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_quobyte_709 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_quobyte_1199 struct {
 
     Group *string
 
@@ -1414,13 +1439,13 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_quobyte_709
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710_secret_ref_711 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200_secret_ref_1201 struct {
 
     Name *string
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200 struct {
 
     Ceph_monitors []string
 
@@ -1436,11 +1461,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710 str
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710_secret_ref_711
+    Secret_ref *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200_secret_ref_1201
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_items_713 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202_items_1203 struct {
 
     Key *string
 
@@ -1450,11 +1475,11 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712_items_713
+    Items *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202_items_1203
 
     Optional *bool
 
@@ -1462,7 +1487,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712 
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_vsphere_volume_714 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_vsphere_volume_1204 struct {
 
     Fs_type *string
 
@@ -1470,65 +1495,65 @@ type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_vsphere_vol
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600_volume_682 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172 struct {
 
-    Aws_elastic_block_store *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_aws_elastic_block_store_683
+    Aws_elastic_block_store *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_aws_elastic_block_store_1173
 
-    Azure_disk *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_disk_684
+    Azure_disk *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_disk_1174
 
-    Azure_file *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_azure_file_685
+    Azure_file *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_file_1175
 
-    Ceph_fs *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_ceph_fs_686
+    Ceph_fs *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176
 
-    Cinder *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_cinder_688
+    Cinder *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_cinder_1178
 
-    Config_map *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_config_map_689
+    Config_map *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179
 
-    Downward_api *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_downward_api_691
+    Downward_api *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181
 
-    Empty_dir *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_empty_dir_695
+    Empty_dir *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_empty_dir_1185
 
-    Fc *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_fc_696
+    Fc *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_fc_1186
 
-    Flex_volume *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flex_volume_697
+    Flex_volume *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187
 
-    Flocker *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_flocker_699
+    Flocker *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flocker_1189
 
-    Gce_persistent_disk *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_gce_persistent_disk_700
+    Gce_persistent_disk *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_gce_persistent_disk_1190
 
-    Git_repo *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_git_repo_701
+    Git_repo *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_git_repo_1191
 
-    Glusterfs *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_glusterfs_702
+    Glusterfs *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_glusterfs_1192
 
-    Host_path *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_host_path_703
+    Host_path *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_host_path_1193
 
-    Iscsi *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_iscsi_704
+    Iscsi *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_iscsi_1194
 
-    Local *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_local_705
+    Local *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_local_1195
 
     Name *string
 
-    Nfs *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_nfs_706
+    Nfs *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_nfs_1196
 
-    Persistent_volume_claim *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_persistent_volume_claim_707
+    Persistent_volume_claim *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_persistent_volume_claim_1197
 
-    Photon_persistent_disk *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_photon_persistent_disk_708
+    Photon_persistent_disk *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_photon_persistent_disk_1198
 
-    Quobyte *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_quobyte_709
+    Quobyte *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_quobyte_1199
 
-    Rbd *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_rbd_710
+    Rbd *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200
 
-    Secret *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_secret_712
+    Secret *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202
 
-    Vsphere_volume *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682_vsphere_volume_714
+    Vsphere_volume *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_vsphere_volume_1204
 
 }
 
-type Kubernetes_deployment_spec_593_template_598_spec_600 struct {
+type Kubernetes_deployment_spec_1083_template_1088_spec_1090 struct {
 
     Active_deadline_seconds *int
 
-    Container *[]Kubernetes_deployment_spec_593_template_598_spec_600_container_601
+    Container *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091
 
     Dns_policy *string
 
@@ -1540,9 +1565,9 @@ type Kubernetes_deployment_spec_593_template_598_spec_600 struct {
 
     Hostname *string
 
-    Image_pull_secrets *[]Kubernetes_deployment_spec_593_template_598_spec_600_image_pull_secrets_640
+    Image_pull_secrets *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_secrets_1130
 
-    Init_container *[]Kubernetes_deployment_spec_593_template_598_spec_600_init_container_641
+    Init_container *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131
 
     Node_name *string
 
@@ -1550,7 +1575,7 @@ type Kubernetes_deployment_spec_593_template_598_spec_600 struct {
 
     Restart_policy *string
 
-    Security_context *[]Kubernetes_deployment_spec_593_template_598_spec_600_security_context_680
+    Security_context *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170
 
     Service_account_name *string
 
@@ -1558,19 +1583,19 @@ type Kubernetes_deployment_spec_593_template_598_spec_600 struct {
 
     Termination_grace_period_seconds *int
 
-    Volume *[]Kubernetes_deployment_spec_593_template_598_spec_600_volume_682
+    Volume *[]Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
 
 }
 
-type Kubernetes_deployment_spec_593_template_598 struct {
+type Kubernetes_deployment_spec_1083_template_1088 struct {
 
-    Metadata []Kubernetes_deployment_spec_593_template_598_metadata_599
+    Metadata []Kubernetes_deployment_spec_1083_template_1088_metadata_1089
 
-    Spec []Kubernetes_deployment_spec_593_template_598_spec_600
+    Spec []Kubernetes_deployment_spec_1083_template_1088_spec_1090
 
 }
 
-type Kubernetes_deployment_spec_593 struct {
+type Kubernetes_deployment_spec_1083 struct {
 
     Min_ready_seconds *int
 
@@ -1582,11 +1607,11 @@ type Kubernetes_deployment_spec_593 struct {
 
     Revision_history_limit *int
 
-    Selector *[]Kubernetes_deployment_spec_593_selector_594
+    Selector *[]Kubernetes_deployment_spec_1083_selector_1084
 
-    Strategy *[]Kubernetes_deployment_spec_593_strategy_596
+    Strategy *[]Kubernetes_deployment_spec_1083_strategy_1086
 
-    Template []Kubernetes_deployment_spec_593_template_598
+    Template []Kubernetes_deployment_spec_1083_template_1088
 
 }
 
@@ -1594,9 +1619,9 @@ type Kubernetes_deployment struct {
 
     Kubernetes_deployment_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_deployment_metadata_592
+    Metadata []Kubernetes_deployment_metadata_1082
 
-    Spec []Kubernetes_deployment_spec_593
+    Spec []Kubernetes_deployment_spec_1083
 
 }
 
@@ -1607,6 +1632,7 @@ type Kubernetes_deploymentHandler struct {
 
 // Create ...
 func (h *Kubernetes_deploymentHandler) Create(desired *Kubernetes_deployment) (*Kubernetes_deployment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1623,6 +1649,7 @@ func (h *Kubernetes_deploymentHandler) Create(desired *Kubernetes_deployment) (*
 
 // Read ...
 func (h *Kubernetes_deploymentHandler) Read(externalID string) (*Kubernetes_deployment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_deployment", externalID)
 	if err != nil {
 		return nil, err
@@ -1634,10 +1661,11 @@ func (h *Kubernetes_deploymentHandler) Read(externalID string) (*Kubernetes_depl
 
 // Delete ...
 func (h *Kubernetes_deploymentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_deployment", externalID)
 }
 
-type Kubernetes_horizontal_pod_autoscaler_metadata_715 struct {
+type Kubernetes_horizontal_pod_autoscaler_metadata_1205 struct {
 
     Annotations *map[string]string
 
@@ -1659,7 +1687,7 @@ type Kubernetes_horizontal_pod_autoscaler_metadata_715 struct {
 
 }
 
-type Kubernetes_horizontal_pod_autoscaler_spec_716_scale_target_ref_717 struct {
+type Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_1207 struct {
 
     Api_version *string
 
@@ -1669,13 +1697,13 @@ type Kubernetes_horizontal_pod_autoscaler_spec_716_scale_target_ref_717 struct {
 
 }
 
-type Kubernetes_horizontal_pod_autoscaler_spec_716 struct {
+type Kubernetes_horizontal_pod_autoscaler_spec_1206 struct {
 
     Max_replicas int
 
     Min_replicas *int
 
-    Scale_target_ref []Kubernetes_horizontal_pod_autoscaler_spec_716_scale_target_ref_717
+    Scale_target_ref []Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_1207
 
     Target_cpu_utilization_percentage *int
 
@@ -1685,9 +1713,9 @@ type Kubernetes_horizontal_pod_autoscaler struct {
 
     Kubernetes_horizontal_pod_autoscaler_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_horizontal_pod_autoscaler_metadata_715
+    Metadata []Kubernetes_horizontal_pod_autoscaler_metadata_1205
 
-    Spec []Kubernetes_horizontal_pod_autoscaler_spec_716
+    Spec []Kubernetes_horizontal_pod_autoscaler_spec_1206
 
 }
 
@@ -1698,6 +1726,7 @@ type Kubernetes_horizontal_pod_autoscalerHandler struct {
 
 // Create ...
 func (h *Kubernetes_horizontal_pod_autoscalerHandler) Create(desired *Kubernetes_horizontal_pod_autoscaler) (*Kubernetes_horizontal_pod_autoscaler, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1714,6 +1743,7 @@ func (h *Kubernetes_horizontal_pod_autoscalerHandler) Create(desired *Kubernetes
 
 // Read ...
 func (h *Kubernetes_horizontal_pod_autoscalerHandler) Read(externalID string) (*Kubernetes_horizontal_pod_autoscaler, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
 	if err != nil {
 		return nil, err
@@ -1725,10 +1755,11 @@ func (h *Kubernetes_horizontal_pod_autoscalerHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Kubernetes_horizontal_pod_autoscalerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
 }
 
-type Kubernetes_limit_range_metadata_718 struct {
+type Kubernetes_limit_range_metadata_1208 struct {
 
     Annotations *map[string]string
 
@@ -1750,7 +1781,7 @@ type Kubernetes_limit_range_metadata_718 struct {
 
 }
 
-type Kubernetes_limit_range_spec_719_limit_720 struct {
+type Kubernetes_limit_range_spec_1209_limit_1210 struct {
 
     Default *map[string]string
 
@@ -1766,9 +1797,9 @@ type Kubernetes_limit_range_spec_719_limit_720 struct {
 
 }
 
-type Kubernetes_limit_range_spec_719 struct {
+type Kubernetes_limit_range_spec_1209 struct {
 
-    Limit *[]Kubernetes_limit_range_spec_719_limit_720
+    Limit *[]Kubernetes_limit_range_spec_1209_limit_1210
 
 }
 
@@ -1776,9 +1807,9 @@ type Kubernetes_limit_range struct {
 
     Kubernetes_limit_range_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_limit_range_metadata_718
+    Metadata []Kubernetes_limit_range_metadata_1208
 
-    Spec *[]Kubernetes_limit_range_spec_719
+    Spec *[]Kubernetes_limit_range_spec_1209
 
 }
 
@@ -1789,6 +1820,7 @@ type Kubernetes_limit_rangeHandler struct {
 
 // Create ...
 func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) (*Kubernetes_limit_range, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1805,6 +1837,7 @@ func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) 
 
 // Read ...
 func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_limit_range, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_limit_range", externalID)
 	if err != nil {
 		return nil, err
@@ -1816,10 +1849,11 @@ func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_lim
 
 // Delete ...
 func (h *Kubernetes_limit_rangeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_limit_range", externalID)
 }
 
-type Kubernetes_namespace_metadata_721 struct {
+type Kubernetes_namespace_metadata_1211 struct {
 
     Annotations *map[string]string
 
@@ -1843,7 +1877,7 @@ type Kubernetes_namespace struct {
 
     Kubernetes_namespace_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_namespace_metadata_721
+    Metadata []Kubernetes_namespace_metadata_1211
 
 }
 
@@ -1854,6 +1888,7 @@ type Kubernetes_namespaceHandler struct {
 
 // Create ...
 func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Kubernetes_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1870,6 +1905,7 @@ func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Ku
 
 // Read ...
 func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -1881,10 +1917,11 @@ func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_names
 
 // Delete ...
 func (h *Kubernetes_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_namespace", externalID)
 }
 
-type Kubernetes_network_policy_metadata_722 struct {
+type Kubernetes_network_policy_metadata_1212 struct {
 
     Annotations *map[string]string
 
@@ -1906,7 +1943,7 @@ type Kubernetes_network_policy_metadata_722 struct {
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_ports_725 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_ports_1215 struct {
 
     Port *string
 
@@ -1914,7 +1951,7 @@ type Kubernetes_network_policy_spec_723_egress_724_ports_725 struct {
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_to_726_ip_block_727 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_1217 struct {
 
     Cidr *string
 
@@ -1922,7 +1959,7 @@ type Kubernetes_network_policy_spec_723_egress_724_to_726_ip_block_727 struct {
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728_match_expressions_729 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218_match_expressions_1219 struct {
 
     Key *string
 
@@ -1932,15 +1969,15 @@ type Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218 struct {
 
-    Match_expressions *[]Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728_match_expressions_729
+    Match_expressions *[]Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218_match_expressions_1219
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_match_expressions_731 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220_match_expressions_1221 struct {
 
     Key *string
 
@@ -1950,33 +1987,33 @@ type Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_match
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220 struct {
 
-    Match_expressions *[]Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730_match_expressions_731
+    Match_expressions *[]Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220_match_expressions_1221
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_network_policy_spec_723_egress_724_to_726 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214_to_1216 struct {
 
-    Ip_block *[]Kubernetes_network_policy_spec_723_egress_724_to_726_ip_block_727
+    Ip_block *[]Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_1217
 
-    Namespace_selector *[]Kubernetes_network_policy_spec_723_egress_724_to_726_namespace_selector_728
+    Namespace_selector *[]Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218
 
-    Pod_selector *[]Kubernetes_network_policy_spec_723_egress_724_to_726_pod_selector_730
-
-}
-
-type Kubernetes_network_policy_spec_723_egress_724 struct {
-
-    Ports *[]Kubernetes_network_policy_spec_723_egress_724_ports_725
-
-    To *[]Kubernetes_network_policy_spec_723_egress_724_to_726
+    Pod_selector *[]Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_from_733_ip_block_734 struct {
+type Kubernetes_network_policy_spec_1213_egress_1214 struct {
+
+    Ports *[]Kubernetes_network_policy_spec_1213_egress_1214_ports_1215
+
+    To *[]Kubernetes_network_policy_spec_1213_egress_1214_to_1216
+
+}
+
+type Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block_1224 struct {
 
     Cidr *string
 
@@ -1984,7 +2021,7 @@ type Kubernetes_network_policy_spec_723_ingress_732_from_733_ip_block_734 struct
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735_match_expressions_736 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225_match_expressions_1226 struct {
 
     Key *string
 
@@ -1994,15 +2031,15 @@ type Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225 struct {
 
-    Match_expressions *[]Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735_match_expressions_736
+    Match_expressions *[]Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225_match_expressions_1226
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_match_expressions_738 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227_match_expressions_1228 struct {
 
     Key *string
 
@@ -2012,25 +2049,25 @@ type Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_ma
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227 struct {
 
-    Match_expressions *[]Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737_match_expressions_738
+    Match_expressions *[]Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227_match_expressions_1228
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_from_733 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222_from_1223 struct {
 
-    Ip_block *[]Kubernetes_network_policy_spec_723_ingress_732_from_733_ip_block_734
+    Ip_block *[]Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block_1224
 
-    Namespace_selector *[]Kubernetes_network_policy_spec_723_ingress_732_from_733_namespace_selector_735
+    Namespace_selector *[]Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225
 
-    Pod_selector *[]Kubernetes_network_policy_spec_723_ingress_732_from_733_pod_selector_737
+    Pod_selector *[]Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732_ports_739 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229 struct {
 
     Port *string
 
@@ -2038,15 +2075,15 @@ type Kubernetes_network_policy_spec_723_ingress_732_ports_739 struct {
 
 }
 
-type Kubernetes_network_policy_spec_723_ingress_732 struct {
+type Kubernetes_network_policy_spec_1213_ingress_1222 struct {
 
-    From *[]Kubernetes_network_policy_spec_723_ingress_732_from_733
+    From *[]Kubernetes_network_policy_spec_1213_ingress_1222_from_1223
 
-    Ports *[]Kubernetes_network_policy_spec_723_ingress_732_ports_739
+    Ports *[]Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229
 
 }
 
-type Kubernetes_network_policy_spec_723_pod_selector_740_match_expressions_741 struct {
+type Kubernetes_network_policy_spec_1213_pod_selector_1230_match_expressions_1231 struct {
 
     Key *string
 
@@ -2056,21 +2093,21 @@ type Kubernetes_network_policy_spec_723_pod_selector_740_match_expressions_741 s
 
 }
 
-type Kubernetes_network_policy_spec_723_pod_selector_740 struct {
+type Kubernetes_network_policy_spec_1213_pod_selector_1230 struct {
 
-    Match_expressions *[]Kubernetes_network_policy_spec_723_pod_selector_740_match_expressions_741
+    Match_expressions *[]Kubernetes_network_policy_spec_1213_pod_selector_1230_match_expressions_1231
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_network_policy_spec_723 struct {
+type Kubernetes_network_policy_spec_1213 struct {
 
-    Egress *[]Kubernetes_network_policy_spec_723_egress_724
+    Egress *[]Kubernetes_network_policy_spec_1213_egress_1214
 
-    Ingress *[]Kubernetes_network_policy_spec_723_ingress_732
+    Ingress *[]Kubernetes_network_policy_spec_1213_ingress_1222
 
-    Pod_selector []Kubernetes_network_policy_spec_723_pod_selector_740
+    Pod_selector []Kubernetes_network_policy_spec_1213_pod_selector_1230
 
     Policy_types []string
 
@@ -2080,9 +2117,9 @@ type Kubernetes_network_policy struct {
 
     Kubernetes_network_policy_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_network_policy_metadata_722
+    Metadata []Kubernetes_network_policy_metadata_1212
 
-    Spec []Kubernetes_network_policy_spec_723
+    Spec []Kubernetes_network_policy_spec_1213
 
 }
 
@@ -2093,6 +2130,7 @@ type Kubernetes_network_policyHandler struct {
 
 // Create ...
 func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_policy) (*Kubernetes_network_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2109,6 +2147,7 @@ func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_po
 
 // Read ...
 func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_network_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_network_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -2120,10 +2159,11 @@ func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_
 
 // Delete ...
 func (h *Kubernetes_network_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_network_policy", externalID)
 }
 
-type Kubernetes_persistent_volume_metadata_742 struct {
+type Kubernetes_persistent_volume_metadata_1232 struct {
 
     Annotations *map[string]string
 
@@ -2141,7 +2181,7 @@ type Kubernetes_persistent_volume_metadata_742 struct {
 
 }
 
-type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_expressions_747 struct {
+type Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_expressions_1237 struct {
 
     Key *string
 
@@ -2151,7 +2191,7 @@ type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_s
 
 }
 
-type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_fields_748 struct {
+type Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_fields_1238 struct {
 
     Key *string
 
@@ -2161,27 +2201,27 @@ type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_s
 
 }
 
-type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746 struct {
+type Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236 struct {
 
-    Match_expressions *[]Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_expressions_747
+    Match_expressions *[]Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_expressions_1237
 
-    Match_fields *[]Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746_match_fields_748
-
-}
-
-type Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745 struct {
-
-    Node_selector_term *[]Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745_node_selector_term_746
+    Match_fields *[]Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_fields_1238
 
 }
 
-type Kubernetes_persistent_volume_spec_743_node_affinity_744 struct {
+type Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235 struct {
 
-    Required *[]Kubernetes_persistent_volume_spec_743_node_affinity_744_required_745
+    Node_selector_term *[]Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_aws_elastic_block_store_750 struct {
+type Kubernetes_persistent_volume_spec_1233_node_affinity_1234 struct {
+
+    Required *[]Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235
+
+}
+
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_aws_elastic_block_store_1240 struct {
 
     Fs_type *string
 
@@ -2193,7 +2233,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_aws_elas
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_disk_751 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_disk_1241 struct {
 
     Caching_mode string
 
@@ -2207,7 +2247,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_di
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_file_752 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_file_1242 struct {
 
     Read_only *bool
 
@@ -2217,13 +2257,13 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_fi
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753_secret_ref_754 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243_secret_ref_1244 struct {
 
     Name *string
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243 struct {
 
     Monitors []string
 
@@ -2233,13 +2273,13 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_
 
     Secret_file *string
 
-    Secret_ref *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753_secret_ref_754
+    Secret_ref *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243_secret_ref_1244
 
     User *string
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_cinder_755 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_cinder_1245 struct {
 
     Fs_type *string
 
@@ -2249,7 +2289,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_cinder_7
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_fc_756 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_fc_1246 struct {
 
     Fs_type *string
 
@@ -2261,13 +2301,13 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_fc_756 s
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757_secret_ref_758 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247_secret_ref_1248 struct {
 
     Name *string
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247 struct {
 
     Driver string
 
@@ -2277,11 +2317,11 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_vol
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757_secret_ref_758
+    Secret_ref *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247_secret_ref_1248
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flocker_759 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flocker_1249 struct {
 
     Dataset_name *string
 
@@ -2289,7 +2329,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flocker_
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_gce_persistent_disk_760 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_gce_persistent_disk_1250 struct {
 
     Fs_type *string
 
@@ -2301,7 +2341,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_gce_pers
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_glusterfs_761 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_glusterfs_1251 struct {
 
     Endpoints_name string
 
@@ -2311,13 +2351,13 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_glusterf
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_host_path_762 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_host_path_1252 struct {
 
     Path *string
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_iscsi_763 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_iscsi_1253 struct {
 
     Fs_type *string
 
@@ -2333,13 +2373,13 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_iscsi_76
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_local_764 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_local_1254 struct {
 
     Path *string
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_nfs_765 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_nfs_1255 struct {
 
     Path string
 
@@ -2349,7 +2389,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_nfs_765 
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_photon_persistent_disk_766 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_photon_persistent_disk_1256 struct {
 
     Fs_type *string
 
@@ -2357,7 +2397,7 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_photon_p
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_quobyte_767 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_quobyte_1257 struct {
 
     Group *string
 
@@ -2371,13 +2411,13 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_quobyte_
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768_secret_ref_769 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258_secret_ref_1259 struct {
 
     Name *string
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258 struct {
 
     Ceph_monitors []string
 
@@ -2393,11 +2433,11 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768 
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768_secret_ref_769
+    Secret_ref *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258_secret_ref_1259
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_vsphere_volume_770 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_vsphere_volume_1260 struct {
 
     Fs_type *string
 
@@ -2405,57 +2445,57 @@ type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_vsphere_
 
 }
 
-type Kubernetes_persistent_volume_spec_743_persistent_volume_source_749 struct {
+type Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239 struct {
 
-    Aws_elastic_block_store *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_aws_elastic_block_store_750
+    Aws_elastic_block_store *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_aws_elastic_block_store_1240
 
-    Azure_disk *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_disk_751
+    Azure_disk *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_disk_1241
 
-    Azure_file *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_azure_file_752
+    Azure_file *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_file_1242
 
-    Ceph_fs *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_ceph_fs_753
+    Ceph_fs *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243
 
-    Cinder *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_cinder_755
+    Cinder *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_cinder_1245
 
-    Fc *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_fc_756
+    Fc *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_fc_1246
 
-    Flex_volume *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flex_volume_757
+    Flex_volume *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247
 
-    Flocker *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_flocker_759
+    Flocker *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flocker_1249
 
-    Gce_persistent_disk *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_gce_persistent_disk_760
+    Gce_persistent_disk *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_gce_persistent_disk_1250
 
-    Glusterfs *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_glusterfs_761
+    Glusterfs *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_glusterfs_1251
 
-    Host_path *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_host_path_762
+    Host_path *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_host_path_1252
 
-    Iscsi *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_iscsi_763
+    Iscsi *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_iscsi_1253
 
-    Local *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_local_764
+    Local *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_local_1254
 
-    Nfs *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_nfs_765
+    Nfs *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_nfs_1255
 
-    Photon_persistent_disk *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_photon_persistent_disk_766
+    Photon_persistent_disk *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_photon_persistent_disk_1256
 
-    Quobyte *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_quobyte_767
+    Quobyte *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_quobyte_1257
 
-    Rbd *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_rbd_768
+    Rbd *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258
 
-    Vsphere_volume *[]Kubernetes_persistent_volume_spec_743_persistent_volume_source_749_vsphere_volume_770
+    Vsphere_volume *[]Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_vsphere_volume_1260
 
 }
 
-type Kubernetes_persistent_volume_spec_743 struct {
+type Kubernetes_persistent_volume_spec_1233 struct {
 
     Access_modes []string
 
     Capacity map[string]string
 
-    Node_affinity *[]Kubernetes_persistent_volume_spec_743_node_affinity_744
+    Node_affinity *[]Kubernetes_persistent_volume_spec_1233_node_affinity_1234
 
     Persistent_volume_reclaim_policy *string
 
-    Persistent_volume_source []Kubernetes_persistent_volume_spec_743_persistent_volume_source_749
+    Persistent_volume_source []Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239
 
     Storage_class_name *string
 
@@ -2465,9 +2505,9 @@ type Kubernetes_persistent_volume struct {
 
     Kubernetes_persistent_volume_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_persistent_volume_metadata_742
+    Metadata []Kubernetes_persistent_volume_metadata_1232
 
-    Spec []Kubernetes_persistent_volume_spec_743
+    Spec []Kubernetes_persistent_volume_spec_1233
 
 }
 
@@ -2478,6 +2518,7 @@ type Kubernetes_persistent_volumeHandler struct {
 
 // Create ...
 func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persistent_volume) (*Kubernetes_persistent_volume, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2494,6 +2535,7 @@ func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persist
 
 // Read ...
 func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernetes_persistent_volume, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume", externalID)
 	if err != nil {
 		return nil, err
@@ -2505,10 +2547,11 @@ func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernet
 
 // Delete ...
 func (h *Kubernetes_persistent_volumeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_persistent_volume", externalID)
 }
 
-type Kubernetes_persistent_volume_claim_metadata_771 struct {
+type Kubernetes_persistent_volume_claim_metadata_1261 struct {
 
     Annotations *map[string]string
 
@@ -2530,7 +2573,7 @@ type Kubernetes_persistent_volume_claim_metadata_771 struct {
 
 }
 
-type Kubernetes_persistent_volume_claim_spec_772_resources_773 struct {
+type Kubernetes_persistent_volume_claim_spec_1262_resources_1263 struct {
 
     Limits *map[string]string
 
@@ -2538,7 +2581,7 @@ type Kubernetes_persistent_volume_claim_spec_772_resources_773 struct {
 
 }
 
-type Kubernetes_persistent_volume_claim_spec_772_selector_774_match_expressions_775 struct {
+type Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_expressions_1265 struct {
 
     Key *string
 
@@ -2548,21 +2591,21 @@ type Kubernetes_persistent_volume_claim_spec_772_selector_774_match_expressions_
 
 }
 
-type Kubernetes_persistent_volume_claim_spec_772_selector_774 struct {
+type Kubernetes_persistent_volume_claim_spec_1262_selector_1264 struct {
 
-    Match_expressions *[]Kubernetes_persistent_volume_claim_spec_772_selector_774_match_expressions_775
+    Match_expressions *[]Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_expressions_1265
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_persistent_volume_claim_spec_772 struct {
+type Kubernetes_persistent_volume_claim_spec_1262 struct {
 
     Access_modes []string
 
-    Resources []Kubernetes_persistent_volume_claim_spec_772_resources_773
+    Resources []Kubernetes_persistent_volume_claim_spec_1262_resources_1263
 
-    Selector *[]Kubernetes_persistent_volume_claim_spec_772_selector_774
+    Selector *[]Kubernetes_persistent_volume_claim_spec_1262_selector_1264
 
     Storage_class_name *string
 
@@ -2574,9 +2617,9 @@ type Kubernetes_persistent_volume_claim struct {
 
     Kubernetes_persistent_volume_claim_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_persistent_volume_claim_metadata_771
+    Metadata []Kubernetes_persistent_volume_claim_metadata_1261
 
-    Spec []Kubernetes_persistent_volume_claim_spec_772
+    Spec []Kubernetes_persistent_volume_claim_spec_1262
 
     Wait_until_bound *bool
 
@@ -2589,6 +2632,7 @@ type Kubernetes_persistent_volume_claimHandler struct {
 
 // Create ...
 func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_persistent_volume_claim) (*Kubernetes_persistent_volume_claim, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2605,6 +2649,7 @@ func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_p
 
 // Read ...
 func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Kubernetes_persistent_volume_claim, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume_claim", externalID)
 	if err != nil {
 		return nil, err
@@ -2616,10 +2661,11 @@ func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Ku
 
 // Delete ...
 func (h *Kubernetes_persistent_volume_claimHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_persistent_volume_claim", externalID)
 }
 
-type Kubernetes_pod_metadata_776 struct {
+type Kubernetes_pod_metadata_1266 struct {
 
     Annotations *map[string]string
 
@@ -2641,7 +2687,7 @@ type Kubernetes_pod_metadata_776 struct {
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_config_map_key_ref_781 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_config_map_key_ref_1271 struct {
 
     Key *string
 
@@ -2649,7 +2695,7 @@ type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_config_map_key
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_field_ref_782 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_field_ref_1272 struct {
 
     Api_version *string
 
@@ -2657,7 +2703,7 @@ type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_field_ref_782 
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_resource_field_ref_783 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_resource_field_ref_1273 struct {
 
     Container_name *string
 
@@ -2665,7 +2711,7 @@ type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_resource_field
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_secret_key_ref_784 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_secret_key_ref_1274 struct {
 
     Key *string
 
@@ -2673,29 +2719,29 @@ type Kubernetes_pod_spec_777_container_778_env_779_value_from_780_secret_key_ref
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_779_value_from_780 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270 struct {
 
-    Config_map_key_ref *[]Kubernetes_pod_spec_777_container_778_env_779_value_from_780_config_map_key_ref_781
+    Config_map_key_ref *[]Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_config_map_key_ref_1271
 
-    Field_ref *[]Kubernetes_pod_spec_777_container_778_env_779_value_from_780_field_ref_782
+    Field_ref *[]Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_field_ref_1272
 
-    Resource_field_ref *[]Kubernetes_pod_spec_777_container_778_env_779_value_from_780_resource_field_ref_783
+    Resource_field_ref *[]Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_resource_field_ref_1273
 
-    Secret_key_ref *[]Kubernetes_pod_spec_777_container_778_env_779_value_from_780_secret_key_ref_784
+    Secret_key_ref *[]Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_secret_key_ref_1274
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_779 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_1269 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_pod_spec_777_container_778_env_779_value_from_780
+    Value_from *[]Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_from_785_config_map_ref_786 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_ref_1276 struct {
 
     Name string
 
@@ -2703,7 +2749,7 @@ type Kubernetes_pod_spec_777_container_778_env_from_785_config_map_ref_786 struc
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_from_785_secret_ref_787 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_1277 struct {
 
     Name string
 
@@ -2711,23 +2757,23 @@ type Kubernetes_pod_spec_777_container_778_env_from_785_secret_ref_787 struct {
 
 }
 
-type Kubernetes_pod_spec_777_container_778_env_from_785 struct {
+type Kubernetes_pod_spec_1267_container_1268_env_from_1275 struct {
 
-    Config_map_ref *[]Kubernetes_pod_spec_777_container_778_env_from_785_config_map_ref_786
+    Config_map_ref *[]Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_ref_1276
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_pod_spec_777_container_778_env_from_785_secret_ref_787
+    Secret_ref *[]Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_1277
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_exec_790 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_exec_1280 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791_http_header_792 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281_http_header_1282 struct {
 
     Name *string
 
@@ -2735,11 +2781,11 @@ type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791_http_header_792
+    Http_header *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281_http_header_1282
 
     Path *string
 
@@ -2749,29 +2795,29 @@ type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_tcp_socket_793 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_tcp_socket_1283 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_exec_790
+    Exec *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_exec_1280
 
-    Http_get *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_http_get_791
+    Http_get *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789_tcp_socket_793
+    Tcp_socket *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_tcp_socket_1283
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_exec_795 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_exec_1285 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796_http_header_797 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286_http_header_1287 struct {
 
     Name *string
 
@@ -2779,11 +2825,11 @@ type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_7
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796_http_header_797
+    Http_header *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286_http_header_1287
 
     Path *string
 
@@ -2793,37 +2839,37 @@ type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_7
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_tcp_socket_798 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_tcp_socket_1288 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_exec_795
+    Exec *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_exec_1285
 
-    Http_get *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_http_get_796
+    Http_get *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794_tcp_socket_798
-
-}
-
-type Kubernetes_pod_spec_777_container_778_lifecycle_788 struct {
-
-    Post_start *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_post_start_789
-
-    Pre_stop *[]Kubernetes_pod_spec_777_container_778_lifecycle_788_pre_stop_794
+    Tcp_socket *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_tcp_socket_1288
 
 }
 
-type Kubernetes_pod_spec_777_container_778_liveness_probe_799_exec_800 struct {
+type Kubernetes_pod_spec_1267_container_1268_lifecycle_1278 struct {
+
+    Post_start *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279
+
+    Pre_stop *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284
+
+}
+
+type Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_1290 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_http_header_802 struct {
+type Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291_http_header_1292 struct {
 
     Name *string
 
@@ -2831,11 +2877,11 @@ type Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_http_
 
 }
 
-type Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801 struct {
+type Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801_http_header_802
+    Http_header *[]Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291_http_header_1292
 
     Path *string
 
@@ -2845,19 +2891,19 @@ type Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801 struc
 
 }
 
-type Kubernetes_pod_spec_777_container_778_liveness_probe_799_tcp_socket_803 struct {
+type Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_socket_1293 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_liveness_probe_799 struct {
+type Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_container_778_liveness_probe_799_exec_800
+    Exec *[]Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_1290
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_pod_spec_777_container_778_liveness_probe_799_http_get_801
+    Http_get *[]Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291
 
     Initial_delay_seconds *int
 
@@ -2865,13 +2911,13 @@ type Kubernetes_pod_spec_777_container_778_liveness_probe_799 struct {
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_container_778_liveness_probe_799_tcp_socket_803
+    Tcp_socket *[]Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_socket_1293
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_pod_spec_777_container_778_port_804 struct {
+type Kubernetes_pod_spec_1267_container_1268_port_1294 struct {
 
     Container_port int
 
@@ -2885,13 +2931,13 @@ type Kubernetes_pod_spec_777_container_778_port_804 struct {
 
 }
 
-type Kubernetes_pod_spec_777_container_778_readiness_probe_805_exec_806 struct {
+type Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1296 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_http_header_808 struct {
+type Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297_http_header_1298 struct {
 
     Name *string
 
@@ -2899,11 +2945,11 @@ type Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_http
 
 }
 
-type Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807 struct {
+type Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807_http_header_808
+    Http_header *[]Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297_http_header_1298
 
     Path *string
 
@@ -2913,19 +2959,19 @@ type Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807 stru
 
 }
 
-type Kubernetes_pod_spec_777_container_778_readiness_probe_805_tcp_socket_809 struct {
+type Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_socket_1299 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_container_778_readiness_probe_805 struct {
+type Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_container_778_readiness_probe_805_exec_806
+    Exec *[]Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1296
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_pod_spec_777_container_778_readiness_probe_805_http_get_807
+    Http_get *[]Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297
 
     Initial_delay_seconds *int
 
@@ -2933,13 +2979,13 @@ type Kubernetes_pod_spec_777_container_778_readiness_probe_805 struct {
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_container_778_readiness_probe_805_tcp_socket_809
+    Tcp_socket *[]Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_socket_1299
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_pod_spec_777_container_778_resources_810_limits_811 struct {
+type Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301 struct {
 
     Cpu *string
 
@@ -2947,7 +2993,7 @@ type Kubernetes_pod_spec_777_container_778_resources_810_limits_811 struct {
 
 }
 
-type Kubernetes_pod_spec_777_container_778_resources_810_requests_812 struct {
+type Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_1302 struct {
 
     Cpu *string
 
@@ -2955,15 +3001,15 @@ type Kubernetes_pod_spec_777_container_778_resources_810_requests_812 struct {
 
 }
 
-type Kubernetes_pod_spec_777_container_778_resources_810 struct {
+type Kubernetes_pod_spec_1267_container_1268_resources_1300 struct {
 
-    Limits *[]Kubernetes_pod_spec_777_container_778_resources_810_limits_811
+    Limits *[]Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301
 
-    Requests *[]Kubernetes_pod_spec_777_container_778_resources_810_requests_812
+    Requests *[]Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_1302
 
 }
 
-type Kubernetes_pod_spec_777_container_778_security_context_813_capabilities_814 struct {
+type Kubernetes_pod_spec_1267_container_1268_security_context_1303_capabilities_1304 struct {
 
     Add *[]string
 
@@ -2971,7 +3017,7 @@ type Kubernetes_pod_spec_777_container_778_security_context_813_capabilities_814
 
 }
 
-type Kubernetes_pod_spec_777_container_778_security_context_813_se_linux_options_815 struct {
+type Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_linux_options_1305 struct {
 
     Level *string
 
@@ -2983,11 +3029,11 @@ type Kubernetes_pod_spec_777_container_778_security_context_813_se_linux_options
 
 }
 
-type Kubernetes_pod_spec_777_container_778_security_context_813 struct {
+type Kubernetes_pod_spec_1267_container_1268_security_context_1303 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_pod_spec_777_container_778_security_context_813_capabilities_814
+    Capabilities *[]Kubernetes_pod_spec_1267_container_1268_security_context_1303_capabilities_1304
 
     Privileged *bool
 
@@ -2997,11 +3043,11 @@ type Kubernetes_pod_spec_777_container_778_security_context_813 struct {
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_pod_spec_777_container_778_security_context_813_se_linux_options_815
+    Se_linux_options *[]Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_linux_options_1305
 
 }
 
-type Kubernetes_pod_spec_777_container_778_volume_mount_816 struct {
+type Kubernetes_pod_spec_1267_container_1268_volume_mount_1306 struct {
 
     Mount_path string
 
@@ -3013,33 +3059,33 @@ type Kubernetes_pod_spec_777_container_778_volume_mount_816 struct {
 
 }
 
-type Kubernetes_pod_spec_777_container_778 struct {
+type Kubernetes_pod_spec_1267_container_1268 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_pod_spec_777_container_778_env_779
+    Env *[]Kubernetes_pod_spec_1267_container_1268_env_1269
 
-    Env_from *[]Kubernetes_pod_spec_777_container_778_env_from_785
+    Env_from *[]Kubernetes_pod_spec_1267_container_1268_env_from_1275
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_pod_spec_777_container_778_lifecycle_788
+    Lifecycle *[]Kubernetes_pod_spec_1267_container_1268_lifecycle_1278
 
-    Liveness_probe *[]Kubernetes_pod_spec_777_container_778_liveness_probe_799
+    Liveness_probe *[]Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289
 
     Name string
 
-    Port *[]Kubernetes_pod_spec_777_container_778_port_804
+    Port *[]Kubernetes_pod_spec_1267_container_1268_port_1294
 
-    Readiness_probe *[]Kubernetes_pod_spec_777_container_778_readiness_probe_805
+    Readiness_probe *[]Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295
 
-    Resources *[]Kubernetes_pod_spec_777_container_778_resources_810
+    Resources *[]Kubernetes_pod_spec_1267_container_1268_resources_1300
 
-    Security_context *[]Kubernetes_pod_spec_777_container_778_security_context_813
+    Security_context *[]Kubernetes_pod_spec_1267_container_1268_security_context_1303
 
     Stdin *bool
 
@@ -3049,19 +3095,19 @@ type Kubernetes_pod_spec_777_container_778 struct {
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_pod_spec_777_container_778_volume_mount_816
+    Volume_mount *[]Kubernetes_pod_spec_1267_container_1268_volume_mount_1306
 
     Working_dir *string
 
 }
 
-type Kubernetes_pod_spec_777_image_pull_secrets_817 struct {
+type Kubernetes_pod_spec_1267_image_pull_secrets_1307 struct {
 
     Name string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_config_map_key_ref_821 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_config_map_key_ref_1311 struct {
 
     Key *string
 
@@ -3069,7 +3115,7 @@ type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_config_ma
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_field_ref_822 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_field_ref_1312 struct {
 
     Api_version *string
 
@@ -3077,7 +3123,7 @@ type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_field_ref
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_resource_field_ref_823 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_resource_field_ref_1313 struct {
 
     Container_name *string
 
@@ -3085,7 +3131,7 @@ type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_resource_
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_secret_key_ref_824 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_secret_key_ref_1314 struct {
 
     Key *string
 
@@ -3093,29 +3139,29 @@ type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_secret_ke
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310 struct {
 
-    Config_map_key_ref *[]Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_config_map_key_ref_821
+    Config_map_key_ref *[]Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_config_map_key_ref_1311
 
-    Field_ref *[]Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_field_ref_822
+    Field_ref *[]Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_field_ref_1312
 
-    Resource_field_ref *[]Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_resource_field_ref_823
+    Resource_field_ref *[]Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_resource_field_ref_1313
 
-    Secret_key_ref *[]Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820_secret_key_ref_824
+    Secret_key_ref *[]Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_secret_key_ref_1314
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_819 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_1309 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_pod_spec_777_init_container_818_env_819_value_from_820
+    Value_from *[]Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_from_825_config_map_ref_826 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_map_ref_1316 struct {
 
     Name string
 
@@ -3123,7 +3169,7 @@ type Kubernetes_pod_spec_777_init_container_818_env_from_825_config_map_ref_826 
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_from_825_secret_ref_827 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_ref_1317 struct {
 
     Name string
 
@@ -3131,23 +3177,23 @@ type Kubernetes_pod_spec_777_init_container_818_env_from_825_secret_ref_827 stru
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_env_from_825 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_env_from_1315 struct {
 
-    Config_map_ref *[]Kubernetes_pod_spec_777_init_container_818_env_from_825_config_map_ref_826
+    Config_map_ref *[]Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_map_ref_1316
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_pod_spec_777_init_container_818_env_from_825_secret_ref_827
+    Secret_ref *[]Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_ref_1317
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_exec_830 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_exec_1320 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831_http_header_832 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321_http_header_1322 struct {
 
     Name *string
 
@@ -3155,11 +3201,11 @@ type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_htt
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831_http_header_832
+    Http_header *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321_http_header_1322
 
     Path *string
 
@@ -3169,29 +3215,29 @@ type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_htt
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_tcp_socket_833 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_tcp_socket_1323 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_exec_830
+    Exec *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_exec_1320
 
-    Http_get *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_http_get_831
+    Http_get *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829_tcp_socket_833
+    Tcp_socket *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_tcp_socket_1323
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_exec_835 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_exec_1325 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836_http_header_837 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326_http_header_1327 struct {
 
     Name *string
 
@@ -3199,11 +3245,11 @@ type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836_http_header_837
+    Http_header *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326_http_header_1327
 
     Path *string
 
@@ -3213,37 +3259,37 @@ type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_tcp_socket_838 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_tcp_socket_1328 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_exec_835
+    Exec *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_exec_1325
 
-    Http_get *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_http_get_836
+    Http_get *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834_tcp_socket_838
-
-}
-
-type Kubernetes_pod_spec_777_init_container_818_lifecycle_828 struct {
-
-    Post_start *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_post_start_829
-
-    Pre_stop *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828_pre_stop_834
+    Tcp_socket *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_tcp_socket_1328
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_exec_840 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318 struct {
+
+    Post_start *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319
+
+    Pre_stop *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324
+
+}
+
+type Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_exec_1330 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_http_header_842 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331_http_header_1332 struct {
 
     Name *string
 
@@ -3251,11 +3297,11 @@ type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841_http_header_842
+    Http_header *[]Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331_http_header_1332
 
     Path *string
 
@@ -3265,19 +3311,19 @@ type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841 
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_tcp_socket_843 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tcp_socket_1333 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_exec_840
+    Exec *[]Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_exec_1330
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_http_get_841
+    Http_get *[]Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331
 
     Initial_delay_seconds *int
 
@@ -3285,13 +3331,13 @@ type Kubernetes_pod_spec_777_init_container_818_liveness_probe_839 struct {
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_init_container_818_liveness_probe_839_tcp_socket_843
+    Tcp_socket *[]Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tcp_socket_1333
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_port_844 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_port_1334 struct {
 
     Container_port int
 
@@ -3305,13 +3351,13 @@ type Kubernetes_pod_spec_777_init_container_818_port_844 struct {
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_exec_846 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_exec_1336 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847_http_header_848 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337_http_header_1338 struct {
 
     Name *string
 
@@ -3319,11 +3365,11 @@ type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847_http_header_848
+    Http_header *[]Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337_http_header_1338
 
     Path *string
 
@@ -3333,19 +3379,19 @@ type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_tcp_socket_849 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_tcp_socket_1339 struct {
 
     Port string
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335 struct {
 
-    Exec *[]Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_exec_846
+    Exec *[]Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_exec_1336
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_http_get_847
+    Http_get *[]Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337
 
     Initial_delay_seconds *int
 
@@ -3353,13 +3399,13 @@ type Kubernetes_pod_spec_777_init_container_818_readiness_probe_845 struct {
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_pod_spec_777_init_container_818_readiness_probe_845_tcp_socket_849
+    Tcp_socket *[]Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_tcp_socket_1339
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_resources_850_limits_851 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_1341 struct {
 
     Cpu *string
 
@@ -3367,7 +3413,7 @@ type Kubernetes_pod_spec_777_init_container_818_resources_850_limits_851 struct 
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_resources_850_requests_852 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_resources_1340_requests_1342 struct {
 
     Cpu *string
 
@@ -3375,15 +3421,15 @@ type Kubernetes_pod_spec_777_init_container_818_resources_850_requests_852 struc
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_resources_850 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_resources_1340 struct {
 
-    Limits *[]Kubernetes_pod_spec_777_init_container_818_resources_850_limits_851
+    Limits *[]Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_1341
 
-    Requests *[]Kubernetes_pod_spec_777_init_container_818_resources_850_requests_852
+    Requests *[]Kubernetes_pod_spec_1267_init_container_1308_resources_1340_requests_1342
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_security_context_853_capabilities_854 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_capabilities_1344 struct {
 
     Add *[]string
 
@@ -3391,7 +3437,7 @@ type Kubernetes_pod_spec_777_init_container_818_security_context_853_capabilitie
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_security_context_853_se_linux_options_855 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_se_linux_options_1345 struct {
 
     Level *string
 
@@ -3403,11 +3449,11 @@ type Kubernetes_pod_spec_777_init_container_818_security_context_853_se_linux_op
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_security_context_853 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_security_context_1343 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_pod_spec_777_init_container_818_security_context_853_capabilities_854
+    Capabilities *[]Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_capabilities_1344
 
     Privileged *bool
 
@@ -3417,11 +3463,11 @@ type Kubernetes_pod_spec_777_init_container_818_security_context_853 struct {
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_pod_spec_777_init_container_818_security_context_853_se_linux_options_855
+    Se_linux_options *[]Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_se_linux_options_1345
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818_volume_mount_856 struct {
+type Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346 struct {
 
     Mount_path string
 
@@ -3433,33 +3479,33 @@ type Kubernetes_pod_spec_777_init_container_818_volume_mount_856 struct {
 
 }
 
-type Kubernetes_pod_spec_777_init_container_818 struct {
+type Kubernetes_pod_spec_1267_init_container_1308 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_pod_spec_777_init_container_818_env_819
+    Env *[]Kubernetes_pod_spec_1267_init_container_1308_env_1309
 
-    Env_from *[]Kubernetes_pod_spec_777_init_container_818_env_from_825
+    Env_from *[]Kubernetes_pod_spec_1267_init_container_1308_env_from_1315
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_pod_spec_777_init_container_818_lifecycle_828
+    Lifecycle *[]Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318
 
-    Liveness_probe *[]Kubernetes_pod_spec_777_init_container_818_liveness_probe_839
+    Liveness_probe *[]Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329
 
     Name string
 
-    Port *[]Kubernetes_pod_spec_777_init_container_818_port_844
+    Port *[]Kubernetes_pod_spec_1267_init_container_1308_port_1334
 
-    Readiness_probe *[]Kubernetes_pod_spec_777_init_container_818_readiness_probe_845
+    Readiness_probe *[]Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335
 
-    Resources *[]Kubernetes_pod_spec_777_init_container_818_resources_850
+    Resources *[]Kubernetes_pod_spec_1267_init_container_1308_resources_1340
 
-    Security_context *[]Kubernetes_pod_spec_777_init_container_818_security_context_853
+    Security_context *[]Kubernetes_pod_spec_1267_init_container_1308_security_context_1343
 
     Stdin *bool
 
@@ -3469,13 +3515,13 @@ type Kubernetes_pod_spec_777_init_container_818 struct {
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_pod_spec_777_init_container_818_volume_mount_856
+    Volume_mount *[]Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346
 
     Working_dir *string
 
 }
 
-type Kubernetes_pod_spec_777_security_context_857_se_linux_options_858 struct {
+type Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_1348 struct {
 
     Level *string
 
@@ -3487,7 +3533,7 @@ type Kubernetes_pod_spec_777_security_context_857_se_linux_options_858 struct {
 
 }
 
-type Kubernetes_pod_spec_777_security_context_857 struct {
+type Kubernetes_pod_spec_1267_security_context_1347 struct {
 
     Fs_group *int
 
@@ -3495,13 +3541,13 @@ type Kubernetes_pod_spec_777_security_context_857 struct {
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_pod_spec_777_security_context_857_se_linux_options_858
+    Se_linux_options *[]Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_1348
 
     Supplemental_groups *[]int
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_aws_elastic_block_store_860 struct {
+type Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350 struct {
 
     Fs_type *string
 
@@ -3513,7 +3559,7 @@ type Kubernetes_pod_spec_777_volume_859_aws_elastic_block_store_860 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_azure_disk_861 struct {
+type Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351 struct {
 
     Caching_mode string
 
@@ -3527,7 +3573,7 @@ type Kubernetes_pod_spec_777_volume_859_azure_disk_861 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_azure_file_862 struct {
+type Kubernetes_pod_spec_1267_volume_1349_azure_file_1352 struct {
 
     Read_only *bool
 
@@ -3537,13 +3583,13 @@ type Kubernetes_pod_spec_777_volume_859_azure_file_862 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_ceph_fs_863_secret_ref_864 struct {
+type Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354 struct {
 
     Name *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_ceph_fs_863 struct {
+type Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353 struct {
 
     Monitors []string
 
@@ -3553,13 +3599,13 @@ type Kubernetes_pod_spec_777_volume_859_ceph_fs_863 struct {
 
     Secret_file *string
 
-    Secret_ref *[]Kubernetes_pod_spec_777_volume_859_ceph_fs_863_secret_ref_864
+    Secret_ref *[]Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354
 
     User *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_cinder_865 struct {
+type Kubernetes_pod_spec_1267_volume_1349_cinder_1355 struct {
 
     Fs_type *string
 
@@ -3569,7 +3615,7 @@ type Kubernetes_pod_spec_777_volume_859_cinder_865 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_config_map_866_items_867 struct {
+type Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357 struct {
 
     Key *string
 
@@ -3579,17 +3625,17 @@ type Kubernetes_pod_spec_777_volume_859_config_map_866_items_867 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_config_map_866 struct {
+type Kubernetes_pod_spec_1267_volume_1349_config_map_1356 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_pod_spec_777_volume_859_config_map_866_items_867
+    Items *[]Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357
 
     Name *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_field_ref_870 struct {
+type Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_field_ref_1360 struct {
 
     Api_version *string
 
@@ -3597,7 +3643,7 @@ type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_field_ref_870
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_resource_field_ref_871 struct {
+type Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_resource_field_ref_1361 struct {
 
     Container_name string
 
@@ -3607,33 +3653,33 @@ type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_resource_fiel
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869 struct {
+type Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359 struct {
 
-    Field_ref []Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_field_ref_870
+    Field_ref []Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_field_ref_1360
 
     Mode *int
 
     Path string
 
-    Resource_field_ref *[]Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869_resource_field_ref_871
+    Resource_field_ref *[]Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_resource_field_ref_1361
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_downward_api_868 struct {
+type Kubernetes_pod_spec_1267_volume_1349_downward_api_1358 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_pod_spec_777_volume_859_downward_api_868_items_869
+    Items *[]Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_empty_dir_872 struct {
+type Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362 struct {
 
     Medium *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_fc_873 struct {
+type Kubernetes_pod_spec_1267_volume_1349_fc_1363 struct {
 
     Fs_type *string
 
@@ -3645,13 +3691,13 @@ type Kubernetes_pod_spec_777_volume_859_fc_873 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_flex_volume_874_secret_ref_875 struct {
+type Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_1365 struct {
 
     Name *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_flex_volume_874 struct {
+type Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364 struct {
 
     Driver string
 
@@ -3661,11 +3707,11 @@ type Kubernetes_pod_spec_777_volume_859_flex_volume_874 struct {
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_pod_spec_777_volume_859_flex_volume_874_secret_ref_875
+    Secret_ref *[]Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_1365
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_flocker_876 struct {
+type Kubernetes_pod_spec_1267_volume_1349_flocker_1366 struct {
 
     Dataset_name *string
 
@@ -3673,7 +3719,7 @@ type Kubernetes_pod_spec_777_volume_859_flocker_876 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_gce_persistent_disk_877 struct {
+type Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367 struct {
 
     Fs_type *string
 
@@ -3685,7 +3731,7 @@ type Kubernetes_pod_spec_777_volume_859_gce_persistent_disk_877 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_git_repo_878 struct {
+type Kubernetes_pod_spec_1267_volume_1349_git_repo_1368 struct {
 
     Directory *string
 
@@ -3695,7 +3741,7 @@ type Kubernetes_pod_spec_777_volume_859_git_repo_878 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_glusterfs_879 struct {
+type Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369 struct {
 
     Endpoints_name string
 
@@ -3705,13 +3751,13 @@ type Kubernetes_pod_spec_777_volume_859_glusterfs_879 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_host_path_880 struct {
+type Kubernetes_pod_spec_1267_volume_1349_host_path_1370 struct {
 
     Path *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_iscsi_881 struct {
+type Kubernetes_pod_spec_1267_volume_1349_iscsi_1371 struct {
 
     Fs_type *string
 
@@ -3727,13 +3773,13 @@ type Kubernetes_pod_spec_777_volume_859_iscsi_881 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_local_882 struct {
+type Kubernetes_pod_spec_1267_volume_1349_local_1372 struct {
 
     Path *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_nfs_883 struct {
+type Kubernetes_pod_spec_1267_volume_1349_nfs_1373 struct {
 
     Path string
 
@@ -3743,7 +3789,7 @@ type Kubernetes_pod_spec_777_volume_859_nfs_883 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_persistent_volume_claim_884 struct {
+type Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374 struct {
 
     Claim_name *string
 
@@ -3751,7 +3797,7 @@ type Kubernetes_pod_spec_777_volume_859_persistent_volume_claim_884 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_photon_persistent_disk_885 struct {
+type Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375 struct {
 
     Fs_type *string
 
@@ -3759,7 +3805,7 @@ type Kubernetes_pod_spec_777_volume_859_photon_persistent_disk_885 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_quobyte_886 struct {
+type Kubernetes_pod_spec_1267_volume_1349_quobyte_1376 struct {
 
     Group *string
 
@@ -3773,13 +3819,13 @@ type Kubernetes_pod_spec_777_volume_859_quobyte_886 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_rbd_887_secret_ref_888 struct {
+type Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378 struct {
 
     Name *string
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_rbd_887 struct {
+type Kubernetes_pod_spec_1267_volume_1349_rbd_1377 struct {
 
     Ceph_monitors []string
 
@@ -3795,11 +3841,11 @@ type Kubernetes_pod_spec_777_volume_859_rbd_887 struct {
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_pod_spec_777_volume_859_rbd_887_secret_ref_888
+    Secret_ref *[]Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_secret_889_items_890 struct {
+type Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380 struct {
 
     Key *string
 
@@ -3809,11 +3855,11 @@ type Kubernetes_pod_spec_777_volume_859_secret_889_items_890 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_secret_889 struct {
+type Kubernetes_pod_spec_1267_volume_1349_secret_1379 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_pod_spec_777_volume_859_secret_889_items_890
+    Items *[]Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380
 
     Optional *bool
 
@@ -3821,7 +3867,7 @@ type Kubernetes_pod_spec_777_volume_859_secret_889 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859_vsphere_volume_891 struct {
+type Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381 struct {
 
     Fs_type *string
 
@@ -3829,65 +3875,65 @@ type Kubernetes_pod_spec_777_volume_859_vsphere_volume_891 struct {
 
 }
 
-type Kubernetes_pod_spec_777_volume_859 struct {
+type Kubernetes_pod_spec_1267_volume_1349 struct {
 
-    Aws_elastic_block_store *[]Kubernetes_pod_spec_777_volume_859_aws_elastic_block_store_860
+    Aws_elastic_block_store *[]Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350
 
-    Azure_disk *[]Kubernetes_pod_spec_777_volume_859_azure_disk_861
+    Azure_disk *[]Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351
 
-    Azure_file *[]Kubernetes_pod_spec_777_volume_859_azure_file_862
+    Azure_file *[]Kubernetes_pod_spec_1267_volume_1349_azure_file_1352
 
-    Ceph_fs *[]Kubernetes_pod_spec_777_volume_859_ceph_fs_863
+    Ceph_fs *[]Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353
 
-    Cinder *[]Kubernetes_pod_spec_777_volume_859_cinder_865
+    Cinder *[]Kubernetes_pod_spec_1267_volume_1349_cinder_1355
 
-    Config_map *[]Kubernetes_pod_spec_777_volume_859_config_map_866
+    Config_map *[]Kubernetes_pod_spec_1267_volume_1349_config_map_1356
 
-    Downward_api *[]Kubernetes_pod_spec_777_volume_859_downward_api_868
+    Downward_api *[]Kubernetes_pod_spec_1267_volume_1349_downward_api_1358
 
-    Empty_dir *[]Kubernetes_pod_spec_777_volume_859_empty_dir_872
+    Empty_dir *[]Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362
 
-    Fc *[]Kubernetes_pod_spec_777_volume_859_fc_873
+    Fc *[]Kubernetes_pod_spec_1267_volume_1349_fc_1363
 
-    Flex_volume *[]Kubernetes_pod_spec_777_volume_859_flex_volume_874
+    Flex_volume *[]Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364
 
-    Flocker *[]Kubernetes_pod_spec_777_volume_859_flocker_876
+    Flocker *[]Kubernetes_pod_spec_1267_volume_1349_flocker_1366
 
-    Gce_persistent_disk *[]Kubernetes_pod_spec_777_volume_859_gce_persistent_disk_877
+    Gce_persistent_disk *[]Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367
 
-    Git_repo *[]Kubernetes_pod_spec_777_volume_859_git_repo_878
+    Git_repo *[]Kubernetes_pod_spec_1267_volume_1349_git_repo_1368
 
-    Glusterfs *[]Kubernetes_pod_spec_777_volume_859_glusterfs_879
+    Glusterfs *[]Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369
 
-    Host_path *[]Kubernetes_pod_spec_777_volume_859_host_path_880
+    Host_path *[]Kubernetes_pod_spec_1267_volume_1349_host_path_1370
 
-    Iscsi *[]Kubernetes_pod_spec_777_volume_859_iscsi_881
+    Iscsi *[]Kubernetes_pod_spec_1267_volume_1349_iscsi_1371
 
-    Local *[]Kubernetes_pod_spec_777_volume_859_local_882
+    Local *[]Kubernetes_pod_spec_1267_volume_1349_local_1372
 
     Name *string
 
-    Nfs *[]Kubernetes_pod_spec_777_volume_859_nfs_883
+    Nfs *[]Kubernetes_pod_spec_1267_volume_1349_nfs_1373
 
-    Persistent_volume_claim *[]Kubernetes_pod_spec_777_volume_859_persistent_volume_claim_884
+    Persistent_volume_claim *[]Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374
 
-    Photon_persistent_disk *[]Kubernetes_pod_spec_777_volume_859_photon_persistent_disk_885
+    Photon_persistent_disk *[]Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375
 
-    Quobyte *[]Kubernetes_pod_spec_777_volume_859_quobyte_886
+    Quobyte *[]Kubernetes_pod_spec_1267_volume_1349_quobyte_1376
 
-    Rbd *[]Kubernetes_pod_spec_777_volume_859_rbd_887
+    Rbd *[]Kubernetes_pod_spec_1267_volume_1349_rbd_1377
 
-    Secret *[]Kubernetes_pod_spec_777_volume_859_secret_889
+    Secret *[]Kubernetes_pod_spec_1267_volume_1349_secret_1379
 
-    Vsphere_volume *[]Kubernetes_pod_spec_777_volume_859_vsphere_volume_891
+    Vsphere_volume *[]Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381
 
 }
 
-type Kubernetes_pod_spec_777 struct {
+type Kubernetes_pod_spec_1267 struct {
 
     Active_deadline_seconds *int
 
-    Container *[]Kubernetes_pod_spec_777_container_778
+    Container *[]Kubernetes_pod_spec_1267_container_1268
 
     Dns_policy *string
 
@@ -3899,9 +3945,9 @@ type Kubernetes_pod_spec_777 struct {
 
     Hostname *string
 
-    Image_pull_secrets *[]Kubernetes_pod_spec_777_image_pull_secrets_817
+    Image_pull_secrets *[]Kubernetes_pod_spec_1267_image_pull_secrets_1307
 
-    Init_container *[]Kubernetes_pod_spec_777_init_container_818
+    Init_container *[]Kubernetes_pod_spec_1267_init_container_1308
 
     Node_name *string
 
@@ -3909,7 +3955,7 @@ type Kubernetes_pod_spec_777 struct {
 
     Restart_policy *string
 
-    Security_context *[]Kubernetes_pod_spec_777_security_context_857
+    Security_context *[]Kubernetes_pod_spec_1267_security_context_1347
 
     Service_account_name *string
 
@@ -3917,7 +3963,7 @@ type Kubernetes_pod_spec_777 struct {
 
     Termination_grace_period_seconds *int
 
-    Volume *[]Kubernetes_pod_spec_777_volume_859
+    Volume *[]Kubernetes_pod_spec_1267_volume_1349
 
 }
 
@@ -3925,9 +3971,9 @@ type Kubernetes_pod struct {
 
     Kubernetes_pod_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_pod_metadata_776
+    Metadata []Kubernetes_pod_metadata_1266
 
-    Spec []Kubernetes_pod_spec_777
+    Spec []Kubernetes_pod_spec_1267
 
 }
 
@@ -3938,6 +3984,7 @@ type Kubernetes_podHandler struct {
 
 // Create ...
 func (h *Kubernetes_podHandler) Create(desired *Kubernetes_pod) (*Kubernetes_pod, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3954,6 +4001,7 @@ func (h *Kubernetes_podHandler) Create(desired *Kubernetes_pod) (*Kubernetes_pod
 
 // Read ...
 func (h *Kubernetes_podHandler) Read(externalID string) (*Kubernetes_pod, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_pod", externalID)
 	if err != nil {
 		return nil, err
@@ -3965,10 +4013,11 @@ func (h *Kubernetes_podHandler) Read(externalID string) (*Kubernetes_pod, error)
 
 // Delete ...
 func (h *Kubernetes_podHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_pod", externalID)
 }
 
-type Kubernetes_replication_controller_metadata_892 struct {
+type Kubernetes_replication_controller_metadata_1382 struct {
 
     Annotations *map[string]string
 
@@ -3990,7 +4039,7 @@ type Kubernetes_replication_controller_metadata_892 struct {
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_config_map_key_ref_898 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_config_map_key_ref_1388 struct {
 
     Key *string
 
@@ -3998,7 +4047,7 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_env_8
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_field_ref_899 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_field_ref_1389 struct {
 
     Api_version *string
 
@@ -4006,7 +4055,7 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_env_8
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_resource_field_ref_900 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_resource_field_ref_1390 struct {
 
     Container_name *string
 
@@ -4014,7 +4063,7 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_env_8
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_secret_key_ref_901 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_secret_key_ref_1391 struct {
 
     Key *string
 
@@ -4022,29 +4071,29 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_env_8
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387 struct {
 
-    Config_map_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_config_map_key_ref_898
+    Config_map_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_config_map_key_ref_1388
 
-    Field_ref *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_field_ref_899
+    Field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_field_ref_1389
 
-    Resource_field_ref *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_resource_field_ref_900
+    Resource_field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_resource_field_ref_1390
 
-    Secret_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897_secret_key_ref_901
+    Secret_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_secret_key_ref_1391
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_896 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_896_value_from_897
+    Value_from *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_config_map_ref_903 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_config_map_ref_1393 struct {
 
     Name string
 
@@ -4052,7 +4101,7 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_env_f
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_secret_ref_904 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_secret_ref_1394 struct {
 
     Name string
 
@@ -4060,23 +4109,23 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_env_f
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392 struct {
 
-    Config_map_ref *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_config_map_ref_903
+    Config_map_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_config_map_ref_1393
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902_secret_ref_904
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_secret_ref_1394
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_exec_907 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_exec_1397 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908_http_header_909 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398_http_header_1399 struct {
 
     Name *string
 
@@ -4084,11 +4133,11 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_lifec
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908_http_header_909
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398_http_header_1399
 
     Path *string
 
@@ -4098,29 +4147,29 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_lifec
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_tcp_socket_910 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_tcp_socket_1400 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_exec_907
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_exec_1397
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_http_get_908
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906_tcp_socket_910
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_tcp_socket_1400
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_exec_912 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_exec_1402 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913_http_header_914 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403_http_header_1404 struct {
 
     Name *string
 
@@ -4128,11 +4177,11 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_lifec
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913_http_header_914
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403_http_header_1404
 
     Path *string
 
@@ -4142,37 +4191,37 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_lifec
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_tcp_socket_915 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_tcp_socket_1405 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_exec_912
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_exec_1402
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_http_get_913
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911_tcp_socket_915
-
-}
-
-type Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905 struct {
-
-    Post_start *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_post_start_906
-
-    Pre_stop *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905_pre_stop_911
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_tcp_socket_1405
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_exec_917 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395 struct {
+
+    Post_start *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396
+
+    Pre_stop *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401
+
+}
+
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_exec_1407 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918_http_header_919 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408_http_header_1409 struct {
 
     Name *string
 
@@ -4180,11 +4229,11 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_liven
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918_http_header_919
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408_http_header_1409
 
     Path *string
 
@@ -4194,19 +4243,19 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_liven
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_tcp_socket_920 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_tcp_socket_1410 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_exec_917
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_exec_1407
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_http_get_918
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408
 
     Initial_delay_seconds *int
 
@@ -4214,13 +4263,13 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_liven
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916_tcp_socket_920
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_tcp_socket_1410
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_port_921 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_port_1411 struct {
 
     Container_port int
 
@@ -4234,13 +4283,13 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_port_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_exec_923 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_exec_1413 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924_http_header_925 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414_http_header_1415 struct {
 
     Name *string
 
@@ -4248,11 +4297,11 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_readi
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924_http_header_925
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414_http_header_1415
 
     Path *string
 
@@ -4262,19 +4311,19 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_readi
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_tcp_socket_926 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_tcp_socket_1416 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_exec_923
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_exec_1413
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_http_get_924
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414
 
     Initial_delay_seconds *int
 
@@ -4282,13 +4331,13 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_readi
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922_tcp_socket_926
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_tcp_socket_1416
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_limits_928 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_limits_1418 struct {
 
     Cpu *string
 
@@ -4296,7 +4345,7 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_resou
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_requests_929 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_requests_1419 struct {
 
     Cpu *string
 
@@ -4304,15 +4353,15 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_resou
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417 struct {
 
-    Limits *[]Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_limits_928
+    Limits *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_limits_1418
 
-    Requests *[]Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927_requests_929
+    Requests *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_requests_1419
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_capabilities_931 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_capabilities_1421 struct {
 
     Add *[]string
 
@@ -4320,7 +4369,7 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_secur
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_se_linux_options_932 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_se_linux_options_1422 struct {
 
     Level *string
 
@@ -4332,11 +4381,11 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_secur
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_capabilities_931
+    Capabilities *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_capabilities_1421
 
     Privileged *bool
 
@@ -4346,11 +4395,11 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_secur
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930_se_linux_options_932
+    Se_linux_options *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_se_linux_options_1422
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895_volume_mount_933 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385_volume_mount_1423 struct {
 
     Mount_path string
 
@@ -4362,33 +4411,33 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895_volum
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_container_895 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_container_1385 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_896
+    Env *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386
 
-    Env_from *[]Kubernetes_replication_controller_spec_893_template_894_container_895_env_from_902
+    Env_from *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_replication_controller_spec_893_template_894_container_895_lifecycle_905
+    Lifecycle *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395
 
-    Liveness_probe *[]Kubernetes_replication_controller_spec_893_template_894_container_895_liveness_probe_916
+    Liveness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406
 
     Name string
 
-    Port *[]Kubernetes_replication_controller_spec_893_template_894_container_895_port_921
+    Port *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_port_1411
 
-    Readiness_probe *[]Kubernetes_replication_controller_spec_893_template_894_container_895_readiness_probe_922
+    Readiness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412
 
-    Resources *[]Kubernetes_replication_controller_spec_893_template_894_container_895_resources_927
+    Resources *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417
 
-    Security_context *[]Kubernetes_replication_controller_spec_893_template_894_container_895_security_context_930
+    Security_context *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420
 
     Stdin *bool
 
@@ -4398,19 +4447,19 @@ type Kubernetes_replication_controller_spec_893_template_894_container_895 struc
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_replication_controller_spec_893_template_894_container_895_volume_mount_933
+    Volume_mount *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385_volume_mount_1423
 
     Working_dir *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_image_pull_secrets_934 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_image_pull_secrets_1424 struct {
 
     Name string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_config_map_key_ref_938 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_config_map_key_ref_1428 struct {
 
     Key *string
 
@@ -4418,7 +4467,7 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_field_ref_939 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_field_ref_1429 struct {
 
     Api_version *string
 
@@ -4426,7 +4475,7 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_resource_field_ref_940 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_resource_field_ref_1430 struct {
 
     Container_name *string
 
@@ -4434,7 +4483,7 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_secret_key_ref_941 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_secret_key_ref_1431 struct {
 
     Key *string
 
@@ -4442,29 +4491,29 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427 struct {
 
-    Config_map_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_config_map_key_ref_938
+    Config_map_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_config_map_key_ref_1428
 
-    Field_ref *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_field_ref_939
+    Field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_field_ref_1429
 
-    Resource_field_ref *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_resource_field_ref_940
+    Resource_field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_resource_field_ref_1430
 
-    Secret_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937_secret_key_ref_941
+    Secret_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_secret_key_ref_1431
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936_value_from_937
+    Value_from *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_config_map_ref_943 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_config_map_ref_1433 struct {
 
     Name string
 
@@ -4472,7 +4521,7 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_secret_ref_944 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_secret_ref_1434 struct {
 
     Name string
 
@@ -4480,23 +4529,23 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432 struct {
 
-    Config_map_ref *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_config_map_ref_943
+    Config_map_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_config_map_ref_1433
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942_secret_ref_944
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_secret_ref_1434
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_exec_947 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_exec_1437 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948_http_header_949 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438_http_header_1439 struct {
 
     Name *string
 
@@ -4504,11 +4553,11 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948_http_header_949
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438_http_header_1439
 
     Path *string
 
@@ -4518,29 +4567,29 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_tcp_socket_950 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_tcp_socket_1440 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_exec_947
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_exec_1437
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_http_get_948
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946_tcp_socket_950
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_tcp_socket_1440
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_exec_952 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_exec_1442 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953_http_header_954 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443_http_header_1444 struct {
 
     Name *string
 
@@ -4548,11 +4597,11 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953_http_header_954
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443_http_header_1444
 
     Path *string
 
@@ -4562,37 +4611,37 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_tcp_socket_955 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_tcp_socket_1445 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_exec_952
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_exec_1442
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_http_get_953
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951_tcp_socket_955
-
-}
-
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945 struct {
-
-    Post_start *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_post_start_946
-
-    Pre_stop *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945_pre_stop_951
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_tcp_socket_1445
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_exec_957 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435 struct {
+
+    Post_start *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436
+
+    Pre_stop *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441
+
+}
+
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_exec_1447 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958_http_header_959 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448_http_header_1449 struct {
 
     Name *string
 
@@ -4600,11 +4649,11 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958_http_header_959
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448_http_header_1449
 
     Path *string
 
@@ -4614,19 +4663,19 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_tcp_socket_960 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_tcp_socket_1450 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_exec_957
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_exec_1447
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_http_get_958
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448
 
     Initial_delay_seconds *int
 
@@ -4634,13 +4683,13 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956_tcp_socket_960
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_tcp_socket_1450
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_port_961 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_port_1451 struct {
 
     Container_port int
 
@@ -4654,13 +4703,13 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_exec_963 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_exec_1453 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964_http_header_965 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454_http_header_1455 struct {
 
     Name *string
 
@@ -4668,11 +4717,11 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964_http_header_965
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454_http_header_1455
 
     Path *string
 
@@ -4682,19 +4731,19 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_tcp_socket_966 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_tcp_socket_1456 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_exec_963
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_exec_1453
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_http_get_964
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454
 
     Initial_delay_seconds *int
 
@@ -4702,13 +4751,13 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962_tcp_socket_966
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_tcp_socket_1456
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_limits_968 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_limits_1458 struct {
 
     Cpu *string
 
@@ -4716,7 +4765,7 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_requests_969 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_requests_1459 struct {
 
     Cpu *string
 
@@ -4724,15 +4773,15 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457 struct {
 
-    Limits *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_limits_968
+    Limits *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_limits_1458
 
-    Requests *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967_requests_969
+    Requests *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_requests_1459
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_capabilities_971 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_capabilities_1461 struct {
 
     Add *[]string
 
@@ -4740,7 +4789,7 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_se_linux_options_972 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_se_linux_options_1462 struct {
 
     Level *string
 
@@ -4752,11 +4801,11 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_capabilities_971
+    Capabilities *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_capabilities_1461
 
     Privileged *bool
 
@@ -4766,11 +4815,11 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970_se_linux_options_972
+    Se_linux_options *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_se_linux_options_1462
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935_volume_mount_973 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_volume_mount_1463 struct {
 
     Mount_path string
 
@@ -4782,33 +4831,33 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_init_container_935 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_936
+    Env *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426
 
-    Env_from *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_env_from_942
+    Env_from *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_lifecycle_945
+    Lifecycle *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435
 
-    Liveness_probe *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_liveness_probe_956
+    Liveness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446
 
     Name string
 
-    Port *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_port_961
+    Port *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_port_1451
 
-    Readiness_probe *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_readiness_probe_962
+    Readiness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452
 
-    Resources *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_resources_967
+    Resources *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457
 
-    Security_context *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_security_context_970
+    Security_context *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460
 
     Stdin *bool
 
@@ -4818,13 +4867,13 @@ type Kubernetes_replication_controller_spec_893_template_894_init_container_935 
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935_volume_mount_973
+    Volume_mount *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_volume_mount_1463
 
     Working_dir *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_metadata_974 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_metadata_1464 struct {
 
     Annotations *map[string]string
 
@@ -4846,7 +4895,7 @@ type Kubernetes_replication_controller_spec_893_template_894_metadata_974 struct
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_security_context_975_se_linux_options_976 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465_se_linux_options_1466 struct {
 
     Level *string
 
@@ -4858,7 +4907,7 @@ type Kubernetes_replication_controller_spec_893_template_894_security_context_97
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_security_context_975 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465 struct {
 
     Fs_group *int
 
@@ -4866,13 +4915,13 @@ type Kubernetes_replication_controller_spec_893_template_894_security_context_97
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_replication_controller_spec_893_template_894_security_context_975_se_linux_options_976
+    Se_linux_options *[]Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465_se_linux_options_1466
 
     Supplemental_groups *[]int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_config_map_key_ref_981 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_config_map_key_ref_1471 struct {
 
     Key *string
 
@@ -4880,7 +4929,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_field_ref_982 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_field_ref_1472 struct {
 
     Api_version *string
 
@@ -4888,7 +4937,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_resource_field_ref_983 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_resource_field_ref_1473 struct {
 
     Container_name *string
 
@@ -4896,7 +4945,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_secret_key_ref_984 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_secret_key_ref_1474 struct {
 
     Key *string
 
@@ -4904,29 +4953,29 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470 struct {
 
-    Config_map_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_config_map_key_ref_981
+    Config_map_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_config_map_key_ref_1471
 
-    Field_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_field_ref_982
+    Field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_field_ref_1472
 
-    Resource_field_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_resource_field_ref_983
+    Resource_field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_resource_field_ref_1473
 
-    Secret_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980_secret_key_ref_984
+    Secret_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_secret_key_ref_1474
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979_value_from_980
+    Value_from *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_config_map_ref_986 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_config_map_ref_1476 struct {
 
     Name string
 
@@ -4934,7 +4983,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_secret_ref_987 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_secret_ref_1477 struct {
 
     Name string
 
@@ -4942,23 +4991,23 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475 struct {
 
-    Config_map_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_config_map_ref_986
+    Config_map_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_config_map_ref_1476
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985_secret_ref_987
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_secret_ref_1477
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_exec_990 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_exec_1480 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991_http_header_992 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481_http_header_1482 struct {
 
     Name *string
 
@@ -4966,11 +5015,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991_http_header_992
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481_http_header_1482
 
     Path *string
 
@@ -4980,29 +5029,29 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_tcp_socket_993 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_tcp_socket_1483 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_exec_990
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_exec_1480
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_http_get_991
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989_tcp_socket_993
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_tcp_socket_1483
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_exec_995 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_exec_1485 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996_http_header_997 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486_http_header_1487 struct {
 
     Name *string
 
@@ -5010,11 +5059,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996_http_header_997
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486_http_header_1487
 
     Path *string
 
@@ -5024,37 +5073,37 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_tcp_socket_998 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_tcp_socket_1488 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_exec_995
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_exec_1485
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_http_get_996
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994_tcp_socket_998
-
-}
-
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988 struct {
-
-    Post_start *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_post_start_989
-
-    Pre_stop *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988_pre_stop_994
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_tcp_socket_1488
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_exec_1000 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478 struct {
+
+    Post_start *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479
+
+    Pre_stop *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484
+
+}
+
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_exec_1490 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001_http_header_1002 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491_http_header_1492 struct {
 
     Name *string
 
@@ -5062,11 +5111,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001_http_header_1002
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491_http_header_1492
 
     Path *string
 
@@ -5076,19 +5125,19 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_tcp_socket_1003 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_tcp_socket_1493 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_exec_1000
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_exec_1490
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_http_get_1001
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491
 
     Initial_delay_seconds *int
 
@@ -5096,13 +5145,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999_tcp_socket_1003
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_tcp_socket_1493
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_port_1004 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_port_1494 struct {
 
     Container_port int
 
@@ -5116,13 +5165,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_exec_1006 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_exec_1496 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007_http_header_1008 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497_http_header_1498 struct {
 
     Name *string
 
@@ -5130,11 +5179,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007_http_header_1008
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497_http_header_1498
 
     Path *string
 
@@ -5144,19 +5193,19 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_tcp_socket_1009 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_tcp_socket_1499 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_exec_1006
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_exec_1496
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_http_get_1007
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497
 
     Initial_delay_seconds *int
 
@@ -5164,13 +5213,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005_tcp_socket_1009
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_tcp_socket_1499
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_limits_1011 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_limits_1501 struct {
 
     Cpu *string
 
@@ -5178,7 +5227,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_requests_1012 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_requests_1502 struct {
 
     Cpu *string
 
@@ -5186,15 +5235,15 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500 struct {
 
-    Limits *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_limits_1011
+    Limits *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_limits_1501
 
-    Requests *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010_requests_1012
+    Requests *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_requests_1502
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_capabilities_1014 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_capabilities_1504 struct {
 
     Add *[]string
 
@@ -5202,7 +5251,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_se_linux_options_1015 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_se_linux_options_1505 struct {
 
     Level *string
 
@@ -5214,11 +5263,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_capabilities_1014
+    Capabilities *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_capabilities_1504
 
     Privileged *bool
 
@@ -5228,11 +5277,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013_se_linux_options_1015
+    Se_linux_options *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_se_linux_options_1505
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_volume_mount_1016 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_volume_mount_1506 struct {
 
     Mount_path string
 
@@ -5244,33 +5293,33 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_979
+    Env *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469
 
-    Env_from *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_env_from_985
+    Env_from *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_lifecycle_988
+    Lifecycle *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478
 
-    Liveness_probe *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_liveness_probe_999
+    Liveness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489
 
     Name string
 
-    Port *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_port_1004
+    Port *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_port_1494
 
-    Readiness_probe *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_readiness_probe_1005
+    Readiness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495
 
-    Resources *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_resources_1010
+    Resources *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500
 
-    Security_context *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_security_context_1013
+    Security_context *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503
 
     Stdin *bool
 
@@ -5280,19 +5329,19 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_container_
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978_volume_mount_1016
+    Volume_mount *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_volume_mount_1506
 
     Working_dir *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_image_pull_secrets_1017 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_image_pull_secrets_1507 struct {
 
     Name string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_config_map_key_ref_1021 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_config_map_key_ref_1511 struct {
 
     Key *string
 
@@ -5300,7 +5349,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_field_ref_1022 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_field_ref_1512 struct {
 
     Api_version *string
 
@@ -5308,7 +5357,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_resource_field_ref_1023 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_resource_field_ref_1513 struct {
 
     Container_name *string
 
@@ -5316,7 +5365,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_secret_key_ref_1024 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_secret_key_ref_1514 struct {
 
     Key *string
 
@@ -5324,29 +5373,29 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510 struct {
 
-    Config_map_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_config_map_key_ref_1021
+    Config_map_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_config_map_key_ref_1511
 
-    Field_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_field_ref_1022
+    Field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_field_ref_1512
 
-    Resource_field_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_resource_field_ref_1023
+    Resource_field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_resource_field_ref_1513
 
-    Secret_key_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020_secret_key_ref_1024
+    Secret_key_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_secret_key_ref_1514
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019_value_from_1020
+    Value_from *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_config_map_ref_1026 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_config_map_ref_1516 struct {
 
     Name string
 
@@ -5354,7 +5403,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_secret_ref_1027 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_secret_ref_1517 struct {
 
     Name string
 
@@ -5362,23 +5411,23 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515 struct {
 
-    Config_map_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_config_map_ref_1026
+    Config_map_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_config_map_ref_1516
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025_secret_ref_1027
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_secret_ref_1517
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_exec_1030 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_exec_1520 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031_http_header_1032 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521_http_header_1522 struct {
 
     Name *string
 
@@ -5386,11 +5435,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031_http_header_1032
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521_http_header_1522
 
     Path *string
 
@@ -5400,29 +5449,29 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_tcp_socket_1033 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_tcp_socket_1523 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_exec_1030
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_exec_1520
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_http_get_1031
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029_tcp_socket_1033
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_tcp_socket_1523
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_exec_1035 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_exec_1525 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036_http_header_1037 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526_http_header_1527 struct {
 
     Name *string
 
@@ -5430,11 +5479,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036_http_header_1037
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526_http_header_1527
 
     Path *string
 
@@ -5444,37 +5493,37 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_tcp_socket_1038 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_tcp_socket_1528 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_exec_1035
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_exec_1525
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_http_get_1036
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034_tcp_socket_1038
-
-}
-
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028 struct {
-
-    Post_start *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_post_start_1029
-
-    Pre_stop *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028_pre_stop_1034
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_tcp_socket_1528
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_exec_1040 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518 struct {
+
+    Post_start *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519
+
+    Pre_stop *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524
+
+}
+
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_exec_1530 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041_http_header_1042 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531_http_header_1532 struct {
 
     Name *string
 
@@ -5482,11 +5531,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041_http_header_1042
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531_http_header_1532
 
     Path *string
 
@@ -5496,19 +5545,19 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_tcp_socket_1043 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_tcp_socket_1533 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_exec_1040
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_exec_1530
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_http_get_1041
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531
 
     Initial_delay_seconds *int
 
@@ -5516,13 +5565,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039_tcp_socket_1043
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_tcp_socket_1533
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_port_1044 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_port_1534 struct {
 
     Container_port int
 
@@ -5536,13 +5585,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_exec_1046 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_exec_1536 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047_http_header_1048 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537_http_header_1538 struct {
 
     Name *string
 
@@ -5550,11 +5599,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047_http_header_1048
+    Http_header *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537_http_header_1538
 
     Path *string
 
@@ -5564,19 +5613,19 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_tcp_socket_1049 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_tcp_socket_1539 struct {
 
     Port string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535 struct {
 
-    Exec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_exec_1046
+    Exec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_exec_1536
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_http_get_1047
+    Http_get *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537
 
     Initial_delay_seconds *int
 
@@ -5584,13 +5633,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045_tcp_socket_1049
+    Tcp_socket *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_tcp_socket_1539
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_limits_1051 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_limits_1541 struct {
 
     Cpu *string
 
@@ -5598,7 +5647,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_requests_1052 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_requests_1542 struct {
 
     Cpu *string
 
@@ -5606,15 +5655,15 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540 struct {
 
-    Limits *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_limits_1051
+    Limits *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_limits_1541
 
-    Requests *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050_requests_1052
+    Requests *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_requests_1542
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_capabilities_1054 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_capabilities_1544 struct {
 
     Add *[]string
 
@@ -5622,7 +5671,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_se_linux_options_1055 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_se_linux_options_1545 struct {
 
     Level *string
 
@@ -5634,11 +5683,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_capabilities_1054
+    Capabilities *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_capabilities_1544
 
     Privileged *bool
 
@@ -5648,11 +5697,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053_se_linux_options_1055
+    Se_linux_options *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_se_linux_options_1545
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_volume_mount_1056 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_volume_mount_1546 struct {
 
     Mount_path string
 
@@ -5664,33 +5713,33 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_1019
+    Env *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509
 
-    Env_from *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_env_from_1025
+    Env_from *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_lifecycle_1028
+    Lifecycle *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518
 
-    Liveness_probe *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_liveness_probe_1039
+    Liveness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529
 
     Name string
 
-    Port *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_port_1044
+    Port *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_port_1534
 
-    Readiness_probe *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_readiness_probe_1045
+    Readiness_probe *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535
 
-    Resources *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_resources_1050
+    Resources *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540
 
-    Security_context *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_security_context_1053
+    Security_context *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543
 
     Stdin *bool
 
@@ -5700,13 +5749,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_init_conta
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018_volume_mount_1056
+    Volume_mount *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_volume_mount_1546
 
     Working_dir *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057_se_linux_options_1058 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547_se_linux_options_1548 struct {
 
     Level *string
 
@@ -5718,7 +5767,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_security_c
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547 struct {
 
     Fs_group *int
 
@@ -5726,13 +5775,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_security_c
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057_se_linux_options_1058
+    Se_linux_options *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547_se_linux_options_1548
 
     Supplemental_groups *[]int
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_aws_elastic_block_store_1060 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_aws_elastic_block_store_1550 struct {
 
     Fs_type *string
 
@@ -5744,7 +5793,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_disk_1061 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_disk_1551 struct {
 
     Caching_mode string
 
@@ -5758,7 +5807,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_file_1062 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_file_1552 struct {
 
     Read_only *bool
 
@@ -5768,13 +5817,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063_secret_ref_1064 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553_secret_ref_1554 struct {
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553 struct {
 
     Monitors []string
 
@@ -5784,13 +5833,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
     Secret_file *string
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063_secret_ref_1064
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553_secret_ref_1554
 
     User *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_cinder_1065 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_cinder_1555 struct {
 
     Fs_type *string
 
@@ -5800,7 +5849,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066_items_1067 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556_items_1557 struct {
 
     Key *string
 
@@ -5810,17 +5859,17 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066_items_1067
+    Items *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556_items_1557
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_field_ref_1070 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_field_ref_1560 struct {
 
     Api_version *string
 
@@ -5828,7 +5877,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_resource_field_ref_1071 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_resource_field_ref_1561 struct {
 
     Container_name string
 
@@ -5838,33 +5887,33 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559 struct {
 
-    Field_ref []Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_field_ref_1070
+    Field_ref []Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_field_ref_1560
 
     Mode *int
 
     Path string
 
-    Resource_field_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069_resource_field_ref_1071
+    Resource_field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_resource_field_ref_1561
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068_items_1069
+    Items *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_empty_dir_1072 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_empty_dir_1562 struct {
 
     Medium *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_fc_1073 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_fc_1563 struct {
 
     Fs_type *string
 
@@ -5876,13 +5925,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074_secret_ref_1075 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564_secret_ref_1565 struct {
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564 struct {
 
     Driver string
 
@@ -5892,11 +5941,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074_secret_ref_1075
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564_secret_ref_1565
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flocker_1076 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flocker_1566 struct {
 
     Dataset_name *string
 
@@ -5904,7 +5953,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_gce_persistent_disk_1077 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_gce_persistent_disk_1567 struct {
 
     Fs_type *string
 
@@ -5916,7 +5965,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_git_repo_1078 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_git_repo_1568 struct {
 
     Directory *string
 
@@ -5926,7 +5975,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_glusterfs_1079 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_glusterfs_1569 struct {
 
     Endpoints_name string
 
@@ -5936,13 +5985,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_host_path_1080 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_host_path_1570 struct {
 
     Path *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_iscsi_1081 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_iscsi_1571 struct {
 
     Fs_type *string
 
@@ -5958,13 +6007,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_local_1082 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_local_1572 struct {
 
     Path *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_nfs_1083 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_nfs_1573 struct {
 
     Path string
 
@@ -5974,7 +6023,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_persistent_volume_claim_1084 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_persistent_volume_claim_1574 struct {
 
     Claim_name *string
 
@@ -5982,7 +6031,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_photon_persistent_disk_1085 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_photon_persistent_disk_1575 struct {
 
     Fs_type *string
 
@@ -5990,7 +6039,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_quobyte_1086 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_quobyte_1576 struct {
 
     Group *string
 
@@ -6004,13 +6053,13 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087_secret_ref_1088 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577_secret_ref_1578 struct {
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577 struct {
 
     Ceph_monitors []string
 
@@ -6026,11 +6075,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087_secret_ref_1088
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577_secret_ref_1578
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089_items_1090 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579_items_1580 struct {
 
     Key *string
 
@@ -6040,11 +6089,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089_items_1090
+    Items *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579_items_1580
 
     Optional *bool
 
@@ -6052,7 +6101,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_vsphere_volume_1091 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_vsphere_volume_1581 struct {
 
     Fs_type *string
 
@@ -6060,65 +6109,65 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_105
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549 struct {
 
-    Aws_elastic_block_store *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_aws_elastic_block_store_1060
+    Aws_elastic_block_store *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_aws_elastic_block_store_1550
 
-    Azure_disk *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_disk_1061
+    Azure_disk *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_disk_1551
 
-    Azure_file *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_azure_file_1062
+    Azure_file *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_file_1552
 
-    Ceph_fs *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_ceph_fs_1063
+    Ceph_fs *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553
 
-    Cinder *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_cinder_1065
+    Cinder *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_cinder_1555
 
-    Config_map *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_config_map_1066
+    Config_map *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556
 
-    Downward_api *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_downward_api_1068
+    Downward_api *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558
 
-    Empty_dir *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_empty_dir_1072
+    Empty_dir *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_empty_dir_1562
 
-    Fc *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_fc_1073
+    Fc *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_fc_1563
 
-    Flex_volume *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flex_volume_1074
+    Flex_volume *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564
 
-    Flocker *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_flocker_1076
+    Flocker *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flocker_1566
 
-    Gce_persistent_disk *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_gce_persistent_disk_1077
+    Gce_persistent_disk *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_gce_persistent_disk_1567
 
-    Git_repo *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_git_repo_1078
+    Git_repo *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_git_repo_1568
 
-    Glusterfs *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_glusterfs_1079
+    Glusterfs *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_glusterfs_1569
 
-    Host_path *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_host_path_1080
+    Host_path *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_host_path_1570
 
-    Iscsi *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_iscsi_1081
+    Iscsi *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_iscsi_1571
 
-    Local *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_local_1082
+    Local *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_local_1572
 
     Name *string
 
-    Nfs *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_nfs_1083
+    Nfs *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_nfs_1573
 
-    Persistent_volume_claim *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_persistent_volume_claim_1084
+    Persistent_volume_claim *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_persistent_volume_claim_1574
 
-    Photon_persistent_disk *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_photon_persistent_disk_1085
+    Photon_persistent_disk *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_photon_persistent_disk_1575
 
-    Quobyte *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_quobyte_1086
+    Quobyte *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_quobyte_1576
 
-    Rbd *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_rbd_1087
+    Rbd *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577
 
-    Secret *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_secret_1089
+    Secret *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579
 
-    Vsphere_volume *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059_vsphere_volume_1091
+    Vsphere_volume *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_vsphere_volume_1581
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_spec_977 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_spec_1467 struct {
 
     Active_deadline_seconds *int
 
-    Container *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_container_978
+    Container *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468
 
     Dns_policy *string
 
@@ -6130,9 +6179,9 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977 struct {
 
     Hostname *string
 
-    Image_pull_secrets *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_image_pull_secrets_1017
+    Image_pull_secrets *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_image_pull_secrets_1507
 
-    Init_container *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_init_container_1018
+    Init_container *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508
 
     Node_name *string
 
@@ -6140,7 +6189,7 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977 struct {
 
     Restart_policy *string
 
-    Security_context *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_security_context_1057
+    Security_context *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547
 
     Service_account_name *string
 
@@ -6148,11 +6197,11 @@ type Kubernetes_replication_controller_spec_893_template_894_spec_977 struct {
 
     Termination_grace_period_seconds *int
 
-    Volume *[]Kubernetes_replication_controller_spec_893_template_894_spec_977_volume_1059
+    Volume *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_aws_elastic_block_store_1093 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_aws_elastic_block_store_1583 struct {
 
     Fs_type *string
 
@@ -6164,7 +6213,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_aws_ela
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_disk_1094 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_disk_1584 struct {
 
     Caching_mode string
 
@@ -6178,7 +6227,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_d
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_file_1095 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_file_1585 struct {
 
     Read_only *bool
 
@@ -6188,13 +6237,13 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_f
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096_secret_ref_1097 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586_secret_ref_1587 struct {
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586 struct {
 
     Monitors []string
 
@@ -6204,13 +6253,13 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs
 
     Secret_file *string
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096_secret_ref_1097
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586_secret_ref_1587
 
     User *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_cinder_1098 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_cinder_1588 struct {
 
     Fs_type *string
 
@@ -6220,7 +6269,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_cinder_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099_items_1100 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589_items_1590 struct {
 
     Key *string
 
@@ -6230,17 +6279,17 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099_items_1100
+    Items *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589_items_1590
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_field_ref_1103 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_field_ref_1593 struct {
 
     Api_version *string
 
@@ -6248,7 +6297,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downwar
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_resource_field_ref_1104 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_resource_field_ref_1594 struct {
 
     Container_name string
 
@@ -6258,33 +6307,33 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downwar
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592 struct {
 
-    Field_ref []Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_field_ref_1103
+    Field_ref []Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_field_ref_1593
 
     Mode *int
 
     Path string
 
-    Resource_field_ref *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102_resource_field_ref_1104
+    Resource_field_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_resource_field_ref_1594
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101_items_1102
+    Items *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_empty_dir_1105 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_empty_dir_1595 struct {
 
     Medium *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_fc_1106 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_fc_1596 struct {
 
     Fs_type *string
 
@@ -6296,13 +6345,13 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_fc_1106
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107_secret_ref_1108 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597_secret_ref_1598 struct {
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597 struct {
 
     Driver string
 
@@ -6312,11 +6361,11 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_vo
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107_secret_ref_1108
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597_secret_ref_1598
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flocker_1109 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flocker_1599 struct {
 
     Dataset_name *string
 
@@ -6324,7 +6373,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_flocker
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_gce_persistent_disk_1110 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_gce_persistent_disk_1600 struct {
 
     Fs_type *string
 
@@ -6336,7 +6385,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_gce_per
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_git_repo_1111 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_git_repo_1601 struct {
 
     Directory *string
 
@@ -6346,7 +6395,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_git_rep
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_glusterfs_1112 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_glusterfs_1602 struct {
 
     Endpoints_name string
 
@@ -6356,13 +6405,13 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_gluster
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_host_path_1113 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_host_path_1603 struct {
 
     Path *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_iscsi_1114 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_iscsi_1604 struct {
 
     Fs_type *string
 
@@ -6378,13 +6427,13 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_iscsi_1
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_local_1115 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_local_1605 struct {
 
     Path *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_nfs_1116 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_nfs_1606 struct {
 
     Path string
 
@@ -6394,7 +6443,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_nfs_111
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_persistent_volume_claim_1117 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_persistent_volume_claim_1607 struct {
 
     Claim_name *string
 
@@ -6402,7 +6451,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_persist
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_photon_persistent_disk_1118 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_photon_persistent_disk_1608 struct {
 
     Fs_type *string
 
@@ -6410,7 +6459,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_photon_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_quobyte_1119 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_quobyte_1609 struct {
 
     Group *string
 
@@ -6424,13 +6473,13 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_quobyte
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120_secret_ref_1121 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610_secret_ref_1611 struct {
 
     Name *string
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610 struct {
 
     Ceph_monitors []string
 
@@ -6446,11 +6495,11 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_112
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120_secret_ref_1121
+    Secret_ref *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610_secret_ref_1611
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122_items_1123 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612_items_1613 struct {
 
     Key *string
 
@@ -6460,11 +6509,11 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122_items_1123
+    Items *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612_items_1613
 
     Optional *bool
 
@@ -6472,7 +6521,7 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092_vsphere_volume_1124 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_vsphere_volume_1614 struct {
 
     Fs_type *string
 
@@ -6480,65 +6529,65 @@ type Kubernetes_replication_controller_spec_893_template_894_volume_1092_vsphere
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894_volume_1092 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384_volume_1582 struct {
 
-    Aws_elastic_block_store *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_aws_elastic_block_store_1093
+    Aws_elastic_block_store *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_aws_elastic_block_store_1583
 
-    Azure_disk *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_disk_1094
+    Azure_disk *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_disk_1584
 
-    Azure_file *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_azure_file_1095
+    Azure_file *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_file_1585
 
-    Ceph_fs *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_ceph_fs_1096
+    Ceph_fs *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586
 
-    Cinder *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_cinder_1098
+    Cinder *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_cinder_1588
 
-    Config_map *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_config_map_1099
+    Config_map *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589
 
-    Downward_api *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_downward_api_1101
+    Downward_api *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591
 
-    Empty_dir *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_empty_dir_1105
+    Empty_dir *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_empty_dir_1595
 
-    Fc *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_fc_1106
+    Fc *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_fc_1596
 
-    Flex_volume *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_flex_volume_1107
+    Flex_volume *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597
 
-    Flocker *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_flocker_1109
+    Flocker *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flocker_1599
 
-    Gce_persistent_disk *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_gce_persistent_disk_1110
+    Gce_persistent_disk *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_gce_persistent_disk_1600
 
-    Git_repo *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_git_repo_1111
+    Git_repo *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_git_repo_1601
 
-    Glusterfs *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_glusterfs_1112
+    Glusterfs *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_glusterfs_1602
 
-    Host_path *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_host_path_1113
+    Host_path *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_host_path_1603
 
-    Iscsi *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_iscsi_1114
+    Iscsi *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_iscsi_1604
 
-    Local *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_local_1115
+    Local *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_local_1605
 
     Name *string
 
-    Nfs *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_nfs_1116
+    Nfs *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_nfs_1606
 
-    Persistent_volume_claim *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_persistent_volume_claim_1117
+    Persistent_volume_claim *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_persistent_volume_claim_1607
 
-    Photon_persistent_disk *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_photon_persistent_disk_1118
+    Photon_persistent_disk *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_photon_persistent_disk_1608
 
-    Quobyte *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_quobyte_1119
+    Quobyte *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_quobyte_1609
 
-    Rbd *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_rbd_1120
+    Rbd *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610
 
-    Secret *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_secret_1122
+    Secret *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612
 
-    Vsphere_volume *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092_vsphere_volume_1124
+    Vsphere_volume *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_vsphere_volume_1614
 
 }
 
-type Kubernetes_replication_controller_spec_893_template_894 struct {
+type Kubernetes_replication_controller_spec_1383_template_1384 struct {
 
     Active_deadline_seconds *int
 
-    Container *[]Kubernetes_replication_controller_spec_893_template_894_container_895
+    Container *[]Kubernetes_replication_controller_spec_1383_template_1384_container_1385
 
     Dns_policy *string
 
@@ -6550,11 +6599,11 @@ type Kubernetes_replication_controller_spec_893_template_894 struct {
 
     Hostname *string
 
-    Image_pull_secrets *[]Kubernetes_replication_controller_spec_893_template_894_image_pull_secrets_934
+    Image_pull_secrets *[]Kubernetes_replication_controller_spec_1383_template_1384_image_pull_secrets_1424
 
-    Init_container *[]Kubernetes_replication_controller_spec_893_template_894_init_container_935
+    Init_container *[]Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425
 
-    Metadata *[]Kubernetes_replication_controller_spec_893_template_894_metadata_974
+    Metadata *[]Kubernetes_replication_controller_spec_1383_template_1384_metadata_1464
 
     Node_name *string
 
@@ -6562,21 +6611,21 @@ type Kubernetes_replication_controller_spec_893_template_894 struct {
 
     Restart_policy *string
 
-    Security_context *[]Kubernetes_replication_controller_spec_893_template_894_security_context_975
+    Security_context *[]Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465
 
     Service_account_name *string
 
-    Spec *[]Kubernetes_replication_controller_spec_893_template_894_spec_977
+    Spec *[]Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
 
     Subdomain *string
 
     Termination_grace_period_seconds *int
 
-    Volume *[]Kubernetes_replication_controller_spec_893_template_894_volume_1092
+    Volume *[]Kubernetes_replication_controller_spec_1383_template_1384_volume_1582
 
 }
 
-type Kubernetes_replication_controller_spec_893 struct {
+type Kubernetes_replication_controller_spec_1383 struct {
 
     Min_ready_seconds *int
 
@@ -6584,7 +6633,7 @@ type Kubernetes_replication_controller_spec_893 struct {
 
     Selector map[string]string
 
-    Template []Kubernetes_replication_controller_spec_893_template_894
+    Template []Kubernetes_replication_controller_spec_1383_template_1384
 
 }
 
@@ -6592,9 +6641,9 @@ type Kubernetes_replication_controller struct {
 
     Kubernetes_replication_controller_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_replication_controller_metadata_892
+    Metadata []Kubernetes_replication_controller_metadata_1382
 
-    Spec []Kubernetes_replication_controller_spec_893
+    Spec []Kubernetes_replication_controller_spec_1383
 
 }
 
@@ -6605,6 +6654,7 @@ type Kubernetes_replication_controllerHandler struct {
 
 // Create ...
 func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_replication_controller) (*Kubernetes_replication_controller, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6621,6 +6671,7 @@ func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_re
 
 // Read ...
 func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kubernetes_replication_controller, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_replication_controller", externalID)
 	if err != nil {
 		return nil, err
@@ -6632,10 +6683,11 @@ func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kub
 
 // Delete ...
 func (h *Kubernetes_replication_controllerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_replication_controller", externalID)
 }
 
-type Kubernetes_resource_quota_metadata_1125 struct {
+type Kubernetes_resource_quota_metadata_1615 struct {
 
     Annotations *map[string]string
 
@@ -6657,7 +6709,7 @@ type Kubernetes_resource_quota_metadata_1125 struct {
 
 }
 
-type Kubernetes_resource_quota_spec_1126 struct {
+type Kubernetes_resource_quota_spec_1616 struct {
 
     Hard *map[string]string
 
@@ -6669,9 +6721,9 @@ type Kubernetes_resource_quota struct {
 
     Kubernetes_resource_quota_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_resource_quota_metadata_1125
+    Metadata []Kubernetes_resource_quota_metadata_1615
 
-    Spec *[]Kubernetes_resource_quota_spec_1126
+    Spec *[]Kubernetes_resource_quota_spec_1616
 
 }
 
@@ -6682,6 +6734,7 @@ type Kubernetes_resource_quotaHandler struct {
 
 // Create ...
 func (h *Kubernetes_resource_quotaHandler) Create(desired *Kubernetes_resource_quota) (*Kubernetes_resource_quota, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6698,6 +6751,7 @@ func (h *Kubernetes_resource_quotaHandler) Create(desired *Kubernetes_resource_q
 
 // Read ...
 func (h *Kubernetes_resource_quotaHandler) Read(externalID string) (*Kubernetes_resource_quota, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_resource_quota", externalID)
 	if err != nil {
 		return nil, err
@@ -6709,10 +6763,11 @@ func (h *Kubernetes_resource_quotaHandler) Read(externalID string) (*Kubernetes_
 
 // Delete ...
 func (h *Kubernetes_resource_quotaHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_resource_quota", externalID)
 }
 
-type Kubernetes_role_metadata_1127 struct {
+type Kubernetes_role_metadata_1617 struct {
 
     Annotations *map[string]string
 
@@ -6734,7 +6789,7 @@ type Kubernetes_role_metadata_1127 struct {
 
 }
 
-type Kubernetes_role_rule_1128 struct {
+type Kubernetes_role_rule_1618 struct {
 
     Api_groups []string
 
@@ -6750,9 +6805,9 @@ type Kubernetes_role struct {
 
     Kubernetes_role_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_role_metadata_1127
+    Metadata []Kubernetes_role_metadata_1617
 
-    Rule []Kubernetes_role_rule_1128
+    Rule []Kubernetes_role_rule_1618
 
 }
 
@@ -6763,6 +6818,7 @@ type Kubernetes_roleHandler struct {
 
 // Create ...
 func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_role, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6779,6 +6835,7 @@ func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_r
 
 // Read ...
 func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_role", externalID)
 	if err != nil {
 		return nil, err
@@ -6790,10 +6847,11 @@ func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, erro
 
 // Delete ...
 func (h *Kubernetes_roleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_role", externalID)
 }
 
-type Kubernetes_role_binding_metadata_1129 struct {
+type Kubernetes_role_binding_metadata_1619 struct {
 
     Annotations *map[string]string
 
@@ -6813,7 +6871,7 @@ type Kubernetes_role_binding_metadata_1129 struct {
 
 }
 
-type Kubernetes_role_binding_subject_1130 struct {
+type Kubernetes_role_binding_subject_1620 struct {
 
     Api_group *string
 
@@ -6829,11 +6887,11 @@ type Kubernetes_role_binding struct {
 
     Kubernetes_role_binding_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_role_binding_metadata_1129
+    Metadata []Kubernetes_role_binding_metadata_1619
 
     Role_ref map[string]string
 
-    Subject []Kubernetes_role_binding_subject_1130
+    Subject []Kubernetes_role_binding_subject_1620
 
 }
 
@@ -6844,6 +6902,7 @@ type Kubernetes_role_bindingHandler struct {
 
 // Create ...
 func (h *Kubernetes_role_bindingHandler) Create(desired *Kubernetes_role_binding) (*Kubernetes_role_binding, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6860,6 +6919,7 @@ func (h *Kubernetes_role_bindingHandler) Create(desired *Kubernetes_role_binding
 
 // Read ...
 func (h *Kubernetes_role_bindingHandler) Read(externalID string) (*Kubernetes_role_binding, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_role_binding", externalID)
 	if err != nil {
 		return nil, err
@@ -6871,10 +6931,11 @@ func (h *Kubernetes_role_bindingHandler) Read(externalID string) (*Kubernetes_ro
 
 // Delete ...
 func (h *Kubernetes_role_bindingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_role_binding", externalID)
 }
 
-type Kubernetes_secret_metadata_1131 struct {
+type Kubernetes_secret_metadata_1621 struct {
 
     Annotations *map[string]string
 
@@ -6902,7 +6963,7 @@ type Kubernetes_secret struct {
 
     Data *map[string]string
 
-    Metadata []Kubernetes_secret_metadata_1131
+    Metadata []Kubernetes_secret_metadata_1621
 
     Type *string
 
@@ -6915,6 +6976,7 @@ type Kubernetes_secretHandler struct {
 
 // Create ...
 func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernetes_secret, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6931,6 +6993,7 @@ func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernet
 
 // Read ...
 func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_secret", externalID)
 	if err != nil {
 		return nil, err
@@ -6942,10 +7005,11 @@ func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, 
 
 // Delete ...
 func (h *Kubernetes_secretHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_secret", externalID)
 }
 
-type Kubernetes_service_load_balancer_ingress_1132 struct {
+type Kubernetes_service_load_balancer_ingress_1622 struct {
 
     Hostname *string
 
@@ -6953,7 +7017,7 @@ type Kubernetes_service_load_balancer_ingress_1132 struct {
 
 }
 
-type Kubernetes_service_metadata_1133 struct {
+type Kubernetes_service_metadata_1623 struct {
 
     Annotations *map[string]string
 
@@ -6975,7 +7039,7 @@ type Kubernetes_service_metadata_1133 struct {
 
 }
 
-type Kubernetes_service_spec_1134_port_1135 struct {
+type Kubernetes_service_spec_1624_port_1625 struct {
 
     Name *string
 
@@ -6989,7 +7053,7 @@ type Kubernetes_service_spec_1134_port_1135 struct {
 
 }
 
-type Kubernetes_service_spec_1134 struct {
+type Kubernetes_service_spec_1624 struct {
 
     Cluster_ip *string
 
@@ -7001,7 +7065,7 @@ type Kubernetes_service_spec_1134 struct {
 
     Load_balancer_source_ranges *[]string
 
-    Port *[]Kubernetes_service_spec_1134_port_1135
+    Port *[]Kubernetes_service_spec_1624_port_1625
 
     Selector *map[string]string
 
@@ -7015,11 +7079,11 @@ type Kubernetes_service struct {
 
     Kubernetes_service_id *string `lyra:"ignore"`
 
-    Load_balancer_ingress *[]Kubernetes_service_load_balancer_ingress_1132
+    Load_balancer_ingress *[]Kubernetes_service_load_balancer_ingress_1622
 
-    Metadata []Kubernetes_service_metadata_1133
+    Metadata []Kubernetes_service_metadata_1623
 
-    Spec []Kubernetes_service_spec_1134
+    Spec []Kubernetes_service_spec_1624
 
 }
 
@@ -7030,6 +7094,7 @@ type Kubernetes_serviceHandler struct {
 
 // Create ...
 func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubernetes_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7046,6 +7111,7 @@ func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubern
 
 // Read ...
 func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_service", externalID)
 	if err != nil {
 		return nil, err
@@ -7057,16 +7123,17 @@ func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service
 
 // Delete ...
 func (h *Kubernetes_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_service", externalID)
 }
 
-type Kubernetes_service_account_image_pull_secret_1136 struct {
+type Kubernetes_service_account_image_pull_secret_1626 struct {
 
     Name *string
 
 }
 
-type Kubernetes_service_account_metadata_1137 struct {
+type Kubernetes_service_account_metadata_1627 struct {
 
     Annotations *map[string]string
 
@@ -7088,7 +7155,7 @@ type Kubernetes_service_account_metadata_1137 struct {
 
 }
 
-type Kubernetes_service_account_secret_1138 struct {
+type Kubernetes_service_account_secret_1628 struct {
 
     Name *string
 
@@ -7102,11 +7169,11 @@ type Kubernetes_service_account struct {
 
     Default_secret_name *string
 
-    Image_pull_secret *[]Kubernetes_service_account_image_pull_secret_1136
+    Image_pull_secret *[]Kubernetes_service_account_image_pull_secret_1626
 
-    Metadata []Kubernetes_service_account_metadata_1137
+    Metadata []Kubernetes_service_account_metadata_1627
 
-    Secret *[]Kubernetes_service_account_secret_1138
+    Secret *[]Kubernetes_service_account_secret_1628
 
 }
 
@@ -7117,6 +7184,7 @@ type Kubernetes_service_accountHandler struct {
 
 // Create ...
 func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_account) (*Kubernetes_service_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7133,6 +7201,7 @@ func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_a
 
 // Read ...
 func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes_service_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_service_account", externalID)
 	if err != nil {
 		return nil, err
@@ -7144,10 +7213,11 @@ func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes
 
 // Delete ...
 func (h *Kubernetes_service_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_service_account", externalID)
 }
 
-type Kubernetes_stateful_set_metadata_1139 struct {
+type Kubernetes_stateful_set_metadata_1629 struct {
 
     Annotations *map[string]string
 
@@ -7169,7 +7239,7 @@ type Kubernetes_stateful_set_metadata_1139 struct {
 
 }
 
-type Kubernetes_stateful_set_spec_1140_selector_1141_match_expressions_1142 struct {
+type Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1632 struct {
 
     Key *string
 
@@ -7179,15 +7249,15 @@ type Kubernetes_stateful_set_spec_1140_selector_1141_match_expressions_1142 stru
 
 }
 
-type Kubernetes_stateful_set_spec_1140_selector_1141 struct {
+type Kubernetes_stateful_set_spec_1630_selector_1631 struct {
 
-    Match_expressions *[]Kubernetes_stateful_set_spec_1140_selector_1141_match_expressions_1142
+    Match_expressions *[]Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1632
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_metadata_1144 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634 struct {
 
     Annotations *map[string]string
 
@@ -7207,7 +7277,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_metadata_1144 struct {
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_config_map_key_ref_1149 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_config_map_key_ref_1639 struct {
 
     Key *string
 
@@ -7215,7 +7285,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_en
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_field_ref_1150 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_field_ref_1640 struct {
 
     Api_version *string
 
@@ -7223,7 +7293,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_en
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_resource_field_ref_1151 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_resource_field_ref_1641 struct {
 
     Container_name *string
 
@@ -7231,7 +7301,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_en
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_secret_key_ref_1152 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_secret_key_ref_1642 struct {
 
     Key *string
 
@@ -7239,29 +7309,29 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_en
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638 struct {
 
-    Config_map_key_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_config_map_key_ref_1149
+    Config_map_key_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_config_map_key_ref_1639
 
-    Field_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_field_ref_1150
+    Field_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_field_ref_1640
 
-    Resource_field_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_resource_field_ref_1151
+    Resource_field_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_resource_field_ref_1641
 
-    Secret_key_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148_secret_key_ref_1152
+    Secret_key_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_secret_key_ref_1642
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147_value_from_1148
+    Value_from *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_config_map_ref_1154 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_config_map_ref_1644 struct {
 
     Name string
 
@@ -7269,7 +7339,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_en
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_secret_ref_1155 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_secret_ref_1645 struct {
 
     Name string
 
@@ -7277,23 +7347,23 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_en
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643 struct {
 
-    Config_map_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_config_map_ref_1154
+    Config_map_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_config_map_ref_1644
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153_secret_ref_1155
+    Secret_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_secret_ref_1645
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_exec_1158 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_exec_1648 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159_http_header_1160 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649_http_header_1650 struct {
 
     Name *string
 
@@ -7301,11 +7371,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159_http_header_1160
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649_http_header_1650
 
     Path *string
 
@@ -7315,29 +7385,29 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_tcp_socket_1161 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_tcp_socket_1651 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_exec_1158
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_exec_1648
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_http_get_1159
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157_tcp_socket_1161
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_tcp_socket_1651
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_exec_1163 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_exec_1653 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164_http_header_1165 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654_http_header_1655 struct {
 
     Name *string
 
@@ -7345,11 +7415,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164_http_header_1165
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654_http_header_1655
 
     Path *string
 
@@ -7359,37 +7429,37 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_tcp_socket_1166 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_tcp_socket_1656 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_exec_1163
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_exec_1653
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_http_get_1164
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162_tcp_socket_1166
-
-}
-
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156 struct {
-
-    Post_start *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_post_start_1157
-
-    Pre_stop *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156_pre_stop_1162
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_tcp_socket_1656
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_exec_1168 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646 struct {
+
+    Post_start *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647
+
+    Pre_stop *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652
+
+}
+
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_exec_1658 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169_http_header_1170 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659_http_header_1660 struct {
 
     Name *string
 
@@ -7397,11 +7467,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169_http_header_1170
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659_http_header_1660
 
     Path *string
 
@@ -7411,19 +7481,19 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_tcp_socket_1171 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_tcp_socket_1661 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_exec_1168
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_exec_1658
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_http_get_1169
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659
 
     Initial_delay_seconds *int
 
@@ -7431,13 +7501,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_li
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167_tcp_socket_1171
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_tcp_socket_1661
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_port_1172 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_port_1662 struct {
 
     Container_port int
 
@@ -7451,13 +7521,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_po
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_exec_1174 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_exec_1664 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175_http_header_1176 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665_http_header_1666 struct {
 
     Name *string
 
@@ -7465,11 +7535,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_re
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175_http_header_1176
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665_http_header_1666
 
     Path *string
 
@@ -7479,19 +7549,19 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_re
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_tcp_socket_1177 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_tcp_socket_1667 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_exec_1174
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_exec_1664
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_http_get_1175
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665
 
     Initial_delay_seconds *int
 
@@ -7499,13 +7569,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_re
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173_tcp_socket_1177
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_tcp_socket_1667
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_limits_1179 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_limits_1669 struct {
 
     Cpu *string
 
@@ -7513,7 +7583,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_re
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_requests_1180 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_requests_1670 struct {
 
     Cpu *string
 
@@ -7521,15 +7591,15 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_re
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668 struct {
 
-    Limits *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_limits_1179
+    Limits *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_limits_1669
 
-    Requests *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178_requests_1180
+    Requests *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_requests_1670
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_capabilities_1182 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_capabilities_1672 struct {
 
     Add *[]string
 
@@ -7537,7 +7607,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_se
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_se_linux_options_1183 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_se_linux_options_1673 struct {
 
     Level *string
 
@@ -7549,11 +7619,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_se
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_capabilities_1182
+    Capabilities *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_capabilities_1672
 
     Privileged *bool
 
@@ -7563,11 +7633,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_se
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181_se_linux_options_1183
+    Se_linux_options *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_se_linux_options_1673
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_volume_mount_1184 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_volume_mount_1674 struct {
 
     Mount_path string
 
@@ -7579,33 +7649,33 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_vo
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_1147
+    Env *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637
 
-    Env_from *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_env_from_1153
+    Env_from *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_lifecycle_1156
+    Lifecycle *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646
 
-    Liveness_probe *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_liveness_probe_1167
+    Liveness_probe *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657
 
     Name string
 
-    Port *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_port_1172
+    Port *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_port_1662
 
-    Readiness_probe *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_readiness_probe_1173
+    Readiness_probe *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663
 
-    Resources *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_resources_1178
+    Resources *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668
 
-    Security_context *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_security_context_1181
+    Security_context *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671
 
     Stdin *bool
 
@@ -7615,19 +7685,19 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146 st
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146_volume_mount_1184
+    Volume_mount *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_volume_mount_1674
 
     Working_dir *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_image_pull_secrets_1185 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pull_secrets_1675 struct {
 
     Name string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_config_map_key_ref_1189 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_config_map_key_ref_1679 struct {
 
     Key *string
 
@@ -7635,7 +7705,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_field_ref_1190 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_field_ref_1680 struct {
 
     Api_version *string
 
@@ -7643,7 +7713,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_resource_field_ref_1191 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_resource_field_ref_1681 struct {
 
     Container_name *string
 
@@ -7651,7 +7721,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_secret_key_ref_1192 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_secret_key_ref_1682 struct {
 
     Key *string
 
@@ -7659,29 +7729,29 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678 struct {
 
-    Config_map_key_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_config_map_key_ref_1189
+    Config_map_key_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_config_map_key_ref_1679
 
-    Field_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_field_ref_1190
+    Field_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_field_ref_1680
 
-    Resource_field_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_resource_field_ref_1191
+    Resource_field_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_resource_field_ref_1681
 
-    Secret_key_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188_secret_key_ref_1192
+    Secret_key_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_secret_key_ref_1682
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677 struct {
 
     Name string
 
     Value *string
 
-    Value_from *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187_value_from_1188
+    Value_from *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_config_map_ref_1194 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_config_map_ref_1684 struct {
 
     Name string
 
@@ -7689,7 +7759,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_secret_ref_1195 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_secret_ref_1685 struct {
 
     Name string
 
@@ -7697,23 +7767,23 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683 struct {
 
-    Config_map_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_config_map_ref_1194
+    Config_map_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_config_map_ref_1684
 
     Prefix *string
 
-    Secret_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193_secret_ref_1195
+    Secret_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_secret_ref_1685
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_exec_1198 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_exec_1688 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199_http_header_1200 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689_http_header_1690 struct {
 
     Name *string
 
@@ -7721,11 +7791,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199_http_header_1200
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689_http_header_1690
 
     Path *string
 
@@ -7735,29 +7805,29 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_tcp_socket_1201 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_tcp_socket_1691 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_exec_1198
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_exec_1688
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_http_get_1199
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197_tcp_socket_1201
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_tcp_socket_1691
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_exec_1203 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_exec_1693 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204_http_header_1205 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694_http_header_1695 struct {
 
     Name *string
 
@@ -7765,11 +7835,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204_http_header_1205
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694_http_header_1695
 
     Path *string
 
@@ -7779,37 +7849,37 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_tcp_socket_1206 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_tcp_socket_1696 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_exec_1203
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_exec_1693
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_http_get_1204
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202_tcp_socket_1206
-
-}
-
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196 struct {
-
-    Post_start *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_post_start_1197
-
-    Pre_stop *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196_pre_stop_1202
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_tcp_socket_1696
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_exec_1208 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686 struct {
+
+    Post_start *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687
+
+    Pre_stop *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692
+
+}
+
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_exec_1698 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209_http_header_1210 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699_http_header_1700 struct {
 
     Name *string
 
@@ -7817,11 +7887,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209_http_header_1210
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699_http_header_1700
 
     Path *string
 
@@ -7831,19 +7901,19 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_tcp_socket_1211 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_tcp_socket_1701 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_exec_1208
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_exec_1698
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_http_get_1209
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699
 
     Initial_delay_seconds *int
 
@@ -7851,13 +7921,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207_tcp_socket_1211
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_tcp_socket_1701
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_port_1212 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_port_1702 struct {
 
     Container_port int
 
@@ -7871,13 +7941,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_exec_1214 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_exec_1704 struct {
 
     Command *[]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215_http_header_1216 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705_http_header_1706 struct {
 
     Name *string
 
@@ -7885,11 +7955,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705 struct {
 
     Host *string
 
-    Http_header *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215_http_header_1216
+    Http_header *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705_http_header_1706
 
     Path *string
 
@@ -7899,19 +7969,19 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_tcp_socket_1217 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_tcp_socket_1707 struct {
 
     Port string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703 struct {
 
-    Exec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_exec_1214
+    Exec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_exec_1704
 
     Failure_threshold *int
 
-    Http_get *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_http_get_1215
+    Http_get *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705
 
     Initial_delay_seconds *int
 
@@ -7919,13 +7989,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
     Success_threshold *int
 
-    Tcp_socket *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213_tcp_socket_1217
+    Tcp_socket *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_tcp_socket_1707
 
     Timeout_seconds *int
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_limits_1219 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_limits_1709 struct {
 
     Cpu *string
 
@@ -7933,7 +8003,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_requests_1220 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_requests_1710 struct {
 
     Cpu *string
 
@@ -7941,15 +8011,15 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708 struct {
 
-    Limits *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_limits_1219
+    Limits *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_limits_1709
 
-    Requests *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218_requests_1220
+    Requests *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_requests_1710
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_capabilities_1222 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_capabilities_1712 struct {
 
     Add *[]string
 
@@ -7957,7 +8027,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_se_linux_options_1223 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_se_linux_options_1713 struct {
 
     Level *string
 
@@ -7969,11 +8039,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711 struct {
 
     Allow_privilege_escalation *bool
 
-    Capabilities *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_capabilities_1222
+    Capabilities *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_capabilities_1712
 
     Privileged *bool
 
@@ -7983,11 +8053,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221_se_linux_options_1223
+    Se_linux_options *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_se_linux_options_1713
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_volume_mount_1224 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_volume_mount_1714 struct {
 
     Mount_path string
 
@@ -7999,33 +8069,33 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676 struct {
 
     Args *[]string
 
     Command *[]string
 
-    Env *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_1187
+    Env *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677
 
-    Env_from *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_env_from_1193
+    Env_from *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683
 
     Image *string
 
     Image_pull_policy *string
 
-    Lifecycle *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_lifecycle_1196
+    Lifecycle *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686
 
-    Liveness_probe *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_liveness_probe_1207
+    Liveness_probe *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697
 
     Name string
 
-    Port *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_port_1212
+    Port *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_port_1702
 
-    Readiness_probe *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_readiness_probe_1213
+    Readiness_probe *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703
 
-    Resources *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_resources_1218
+    Resources *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708
 
-    Security_context *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_security_context_1221
+    Security_context *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711
 
     Stdin *bool
 
@@ -8035,13 +8105,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_11
 
     Tty *bool
 
-    Volume_mount *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186_volume_mount_1224
+    Volume_mount *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_volume_mount_1714
 
     Working_dir *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225_se_linux_options_1226 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715_se_linux_options_1716 struct {
 
     Level *string
 
@@ -8053,7 +8123,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715 struct {
 
     Fs_group *int
 
@@ -8061,13 +8131,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_
 
     Run_as_user *int
 
-    Se_linux_options *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225_se_linux_options_1226
+    Se_linux_options *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715_se_linux_options_1716
 
     Supplemental_groups *[]int
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_aws_elastic_block_store_1228 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_aws_elastic_block_store_1718 struct {
 
     Fs_type *string
 
@@ -8079,7 +8149,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_aws_e
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_disk_1229 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_disk_1719 struct {
 
     Caching_mode string
 
@@ -8093,7 +8163,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_file_1230 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_file_1720 struct {
 
     Read_only *bool
 
@@ -8103,13 +8173,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231_secret_ref_1232 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721_secret_ref_1722 struct {
 
     Name *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721 struct {
 
     Monitors []string
 
@@ -8119,13 +8189,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_
 
     Secret_file *string
 
-    Secret_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231_secret_ref_1232
+    Secret_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721_secret_ref_1722
 
     User *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_cinder_1233 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_cinder_1723 struct {
 
     Fs_type *string
 
@@ -8135,7 +8205,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_cinde
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234_items_1235 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724_items_1725 struct {
 
     Key *string
 
@@ -8145,17 +8215,17 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_confi
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234_items_1235
+    Items *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724_items_1725
 
     Name *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_field_ref_1238 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_field_ref_1728 struct {
 
     Api_version *string
 
@@ -8163,7 +8233,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downw
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_resource_field_ref_1239 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_resource_field_ref_1729 struct {
 
     Container_name string
 
@@ -8173,33 +8243,33 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downw
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727 struct {
 
-    Field_ref []Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_field_ref_1238
+    Field_ref []Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_field_ref_1728
 
     Mode *int
 
     Path string
 
-    Resource_field_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237_resource_field_ref_1239
+    Resource_field_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_resource_field_ref_1729
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236_items_1237
+    Items *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_empty_dir_1240 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_empty_dir_1730 struct {
 
     Medium *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_fc_1241 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_fc_1731 struct {
 
     Fs_type *string
 
@@ -8211,13 +8281,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_fc_12
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242_secret_ref_1243 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732_secret_ref_1733 struct {
 
     Name *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732 struct {
 
     Driver string
 
@@ -8227,11 +8297,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242_secret_ref_1243
+    Secret_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732_secret_ref_1733
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flocker_1244 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flocker_1734 struct {
 
     Dataset_name *string
 
@@ -8239,7 +8309,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flock
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_gce_persistent_disk_1245 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_gce_persistent_disk_1735 struct {
 
     Fs_type *string
 
@@ -8251,7 +8321,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_gce_p
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_git_repo_1246 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_git_repo_1736 struct {
 
     Directory *string
 
@@ -8261,7 +8331,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_git_r
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_glusterfs_1247 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_glusterfs_1737 struct {
 
     Endpoints_name string
 
@@ -8271,13 +8341,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_glust
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_host_path_1248 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_host_path_1738 struct {
 
     Path *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_iscsi_1249 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_iscsi_1739 struct {
 
     Fs_type *string
 
@@ -8293,13 +8363,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_iscsi
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_local_1250 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_local_1740 struct {
 
     Path *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_nfs_1251 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_nfs_1741 struct {
 
     Path string
 
@@ -8309,7 +8379,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_nfs_1
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_persistent_volume_claim_1252 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_persistent_volume_claim_1742 struct {
 
     Claim_name *string
 
@@ -8317,7 +8387,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_persi
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_photon_persistent_disk_1253 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_photon_persistent_disk_1743 struct {
 
     Fs_type *string
 
@@ -8325,7 +8395,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_photo
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_quobyte_1254 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_quobyte_1744 struct {
 
     Group *string
 
@@ -8339,13 +8409,13 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_quoby
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255_secret_ref_1256 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745_secret_ref_1746 struct {
 
     Name *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745 struct {
 
     Ceph_monitors []string
 
@@ -8361,11 +8431,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1
 
     Read_only *bool
 
-    Secret_ref *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255_secret_ref_1256
+    Secret_ref *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745_secret_ref_1746
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257_items_1258 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747_items_1748 struct {
 
     Key *string
 
@@ -8375,11 +8445,11 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secre
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747 struct {
 
     Default_mode *int
 
-    Items *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257_items_1258
+    Items *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747_items_1748
 
     Optional *bool
 
@@ -8387,7 +8457,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secre
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_vsphere_volume_1259 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_vsphere_volume_1749 struct {
 
     Fs_type *string
 
@@ -8395,65 +8465,65 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_vsphe
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717 struct {
 
-    Aws_elastic_block_store *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_aws_elastic_block_store_1228
+    Aws_elastic_block_store *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_aws_elastic_block_store_1718
 
-    Azure_disk *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_disk_1229
+    Azure_disk *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_disk_1719
 
-    Azure_file *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_azure_file_1230
+    Azure_file *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_file_1720
 
-    Ceph_fs *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_ceph_fs_1231
+    Ceph_fs *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721
 
-    Cinder *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_cinder_1233
+    Cinder *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_cinder_1723
 
-    Config_map *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_config_map_1234
+    Config_map *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724
 
-    Downward_api *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_downward_api_1236
+    Downward_api *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726
 
-    Empty_dir *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_empty_dir_1240
+    Empty_dir *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_empty_dir_1730
 
-    Fc *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_fc_1241
+    Fc *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_fc_1731
 
-    Flex_volume *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flex_volume_1242
+    Flex_volume *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732
 
-    Flocker *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_flocker_1244
+    Flocker *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flocker_1734
 
-    Gce_persistent_disk *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_gce_persistent_disk_1245
+    Gce_persistent_disk *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_gce_persistent_disk_1735
 
-    Git_repo *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_git_repo_1246
+    Git_repo *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_git_repo_1736
 
-    Glusterfs *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_glusterfs_1247
+    Glusterfs *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_glusterfs_1737
 
-    Host_path *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_host_path_1248
+    Host_path *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_host_path_1738
 
-    Iscsi *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_iscsi_1249
+    Iscsi *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_iscsi_1739
 
-    Local *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_local_1250
+    Local *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_local_1740
 
     Name *string
 
-    Nfs *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_nfs_1251
+    Nfs *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_nfs_1741
 
-    Persistent_volume_claim *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_persistent_volume_claim_1252
+    Persistent_volume_claim *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_persistent_volume_claim_1742
 
-    Photon_persistent_disk *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_photon_persistent_disk_1253
+    Photon_persistent_disk *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_photon_persistent_disk_1743
 
-    Quobyte *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_quobyte_1254
+    Quobyte *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_quobyte_1744
 
-    Rbd *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_rbd_1255
+    Rbd *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745
 
-    Secret *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_secret_1257
+    Secret *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747
 
-    Vsphere_volume *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227_vsphere_volume_1259
+    Vsphere_volume *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_vsphere_volume_1749
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633_spec_1635 struct {
 
     Active_deadline_seconds *int
 
-    Container *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_container_1146
+    Container *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636
 
     Dns_policy *string
 
@@ -8465,9 +8535,9 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145 struct {
 
     Hostname *string
 
-    Image_pull_secrets *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_image_pull_secrets_1185
+    Image_pull_secrets *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pull_secrets_1675
 
-    Init_container *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_init_container_1186
+    Init_container *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676
 
     Node_name *string
 
@@ -8475,7 +8545,7 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145 struct {
 
     Restart_policy *string
 
-    Security_context *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_security_context_1225
+    Security_context *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715
 
     Service_account_name *string
 
@@ -8483,33 +8553,33 @@ type Kubernetes_stateful_set_spec_1140_template_1143_spec_1145 struct {
 
     Termination_grace_period_seconds *int
 
-    Volume *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145_volume_1227
+    Volume *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717
 
 }
 
-type Kubernetes_stateful_set_spec_1140_template_1143 struct {
+type Kubernetes_stateful_set_spec_1630_template_1633 struct {
 
-    Metadata []Kubernetes_stateful_set_spec_1140_template_1143_metadata_1144
+    Metadata []Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634
 
-    Spec *[]Kubernetes_stateful_set_spec_1140_template_1143_spec_1145
+    Spec *[]Kubernetes_stateful_set_spec_1630_template_1633_spec_1635
 
 }
 
-type Kubernetes_stateful_set_spec_1140_update_strategy_1260_rolling_update_1261 struct {
+type Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_update_1751 struct {
 
     Partition *int
 
 }
 
-type Kubernetes_stateful_set_spec_1140_update_strategy_1260 struct {
+type Kubernetes_stateful_set_spec_1630_update_strategy_1750 struct {
 
-    Rolling_update *[]Kubernetes_stateful_set_spec_1140_update_strategy_1260_rolling_update_1261
+    Rolling_update *[]Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_update_1751
 
     Type *string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_metadata_1263 struct {
+type Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metadata_1753 struct {
 
     Annotations *map[string]string
 
@@ -8531,7 +8601,7 @@ type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_metadata_1263 
 
 }
 
-type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_resources_1265 struct {
+type Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_resources_1755 struct {
 
     Limits *map[string]string
 
@@ -8539,7 +8609,7 @@ type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_reso
 
 }
 
-type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266_match_expressions_1267 struct {
+type Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756_match_expressions_1757 struct {
 
     Key *string
 
@@ -8549,21 +8619,21 @@ type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_sele
 
 }
 
-type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266 struct {
+type Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756 struct {
 
-    Match_expressions *[]Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266_match_expressions_1267
+    Match_expressions *[]Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756_match_expressions_1757
 
     Match_labels *map[string]string
 
 }
 
-type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264 struct {
+type Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754 struct {
 
     Access_modes []string
 
-    Resources []Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_resources_1265
+    Resources []Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_resources_1755
 
-    Selector *[]Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264_selector_1266
+    Selector *[]Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756
 
     Storage_class_name *string
 
@@ -8571,15 +8641,15 @@ type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264 stru
 
 }
 
-type Kubernetes_stateful_set_spec_1140_volume_claim_template_1262 struct {
+type Kubernetes_stateful_set_spec_1630_volume_claim_template_1752 struct {
 
-    Metadata []Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_metadata_1263
+    Metadata []Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metadata_1753
 
-    Spec []Kubernetes_stateful_set_spec_1140_volume_claim_template_1262_spec_1264
+    Spec []Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754
 
 }
 
-type Kubernetes_stateful_set_spec_1140 struct {
+type Kubernetes_stateful_set_spec_1630 struct {
 
     Pod_management_policy *string
 
@@ -8587,15 +8657,15 @@ type Kubernetes_stateful_set_spec_1140 struct {
 
     Revision_history_limit *int
 
-    Selector []Kubernetes_stateful_set_spec_1140_selector_1141
+    Selector []Kubernetes_stateful_set_spec_1630_selector_1631
 
     Service_name string
 
-    Template []Kubernetes_stateful_set_spec_1140_template_1143
+    Template []Kubernetes_stateful_set_spec_1630_template_1633
 
-    Update_strategy *[]Kubernetes_stateful_set_spec_1140_update_strategy_1260
+    Update_strategy *[]Kubernetes_stateful_set_spec_1630_update_strategy_1750
 
-    Volume_claim_template *[]Kubernetes_stateful_set_spec_1140_volume_claim_template_1262
+    Volume_claim_template *[]Kubernetes_stateful_set_spec_1630_volume_claim_template_1752
 
 }
 
@@ -8603,9 +8673,9 @@ type Kubernetes_stateful_set struct {
 
     Kubernetes_stateful_set_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_stateful_set_metadata_1139
+    Metadata []Kubernetes_stateful_set_metadata_1629
 
-    Spec []Kubernetes_stateful_set_spec_1140
+    Spec []Kubernetes_stateful_set_spec_1630
 
 }
 
@@ -8616,6 +8686,7 @@ type Kubernetes_stateful_setHandler struct {
 
 // Create ...
 func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set) (*Kubernetes_stateful_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8632,6 +8703,7 @@ func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set
 
 // Read ...
 func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_stateful_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_stateful_set", externalID)
 	if err != nil {
 		return nil, err
@@ -8643,10 +8715,11 @@ func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_st
 
 // Delete ...
 func (h *Kubernetes_stateful_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_stateful_set", externalID)
 }
 
-type Kubernetes_storage_class_metadata_1268 struct {
+type Kubernetes_storage_class_metadata_1758 struct {
 
     Annotations *map[string]string
 
@@ -8670,7 +8743,7 @@ type Kubernetes_storage_class struct {
 
     Kubernetes_storage_class_id *string `lyra:"ignore"`
 
-    Metadata []Kubernetes_storage_class_metadata_1268
+    Metadata []Kubernetes_storage_class_metadata_1758
 
     Parameters *map[string]string
 
@@ -8689,6 +8762,7 @@ type Kubernetes_storage_classHandler struct {
 
 // Create ...
 func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_class) (*Kubernetes_storage_class, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8705,6 +8779,7 @@ func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_cla
 
 // Read ...
 func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_storage_class, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_storage_class", externalID)
 	if err != nil {
 		return nil, err
@@ -8716,5 +8791,6 @@ func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_s
 
 // Delete ...
 func (h *Kubernetes_storage_classHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_storage_class", externalID)
 }

@@ -6,12 +6,31 @@
 package generated
 
 import (
+	"sync"
+
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/service"
 )
+
+var once sync.Once
+var Config *terraform.ResourceConfig
+
+func configureProvider(p *schema.Provider) {
+	once.Do(func() {
+		if Config == nil {
+			Config = &terraform.ResourceConfig{
+				Config: map[string]interface{}{},
+			}
+		}
+		err := p.Configure(Config)
+		if err != nil {
+			panic(err)
+		}
+	})
+}
 
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
@@ -390,7 +409,7 @@ func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
 }
 
 
-type Azurerm_api_management_additional_location_1269 struct {
+type Azurerm_api_management_additional_location_589 struct {
 
     Gateway_regional_url *string
 
@@ -400,7 +419,7 @@ type Azurerm_api_management_additional_location_1269 struct {
 
 }
 
-type Azurerm_api_management_certificate_1270 struct {
+type Azurerm_api_management_certificate_590 struct {
 
     Certificate_password string
 
@@ -410,7 +429,7 @@ type Azurerm_api_management_certificate_1270 struct {
 
 }
 
-type Azurerm_api_management_hostname_configuration_1271_management_1272 struct {
+type Azurerm_api_management_hostname_configuration_591_management_592 struct {
 
     Certificate *string
 
@@ -424,7 +443,7 @@ type Azurerm_api_management_hostname_configuration_1271_management_1272 struct {
 
 }
 
-type Azurerm_api_management_hostname_configuration_1271_portal_1273 struct {
+type Azurerm_api_management_hostname_configuration_591_portal_593 struct {
 
     Certificate *string
 
@@ -438,7 +457,7 @@ type Azurerm_api_management_hostname_configuration_1271_portal_1273 struct {
 
 }
 
-type Azurerm_api_management_hostname_configuration_1271_proxy_1274 struct {
+type Azurerm_api_management_hostname_configuration_591_proxy_594 struct {
 
     Certificate *string
 
@@ -454,7 +473,7 @@ type Azurerm_api_management_hostname_configuration_1271_proxy_1274 struct {
 
 }
 
-type Azurerm_api_management_hostname_configuration_1271_scm_1275 struct {
+type Azurerm_api_management_hostname_configuration_591_scm_595 struct {
 
     Certificate *string
 
@@ -468,19 +487,19 @@ type Azurerm_api_management_hostname_configuration_1271_scm_1275 struct {
 
 }
 
-type Azurerm_api_management_hostname_configuration_1271 struct {
+type Azurerm_api_management_hostname_configuration_591 struct {
 
-    Management *[]Azurerm_api_management_hostname_configuration_1271_management_1272
+    Management *[]Azurerm_api_management_hostname_configuration_591_management_592
 
-    Portal *[]Azurerm_api_management_hostname_configuration_1271_portal_1273
+    Portal *[]Azurerm_api_management_hostname_configuration_591_portal_593
 
-    Proxy *[]Azurerm_api_management_hostname_configuration_1271_proxy_1274
+    Proxy *[]Azurerm_api_management_hostname_configuration_591_proxy_594
 
-    Scm *[]Azurerm_api_management_hostname_configuration_1271_scm_1275
+    Scm *[]Azurerm_api_management_hostname_configuration_591_scm_595
 
 }
 
-type Azurerm_api_management_identity_1276 struct {
+type Azurerm_api_management_identity_596 struct {
 
     Principal_id *string
 
@@ -490,7 +509,7 @@ type Azurerm_api_management_identity_1276 struct {
 
 }
 
-type Azurerm_api_management_security_1277 struct {
+type Azurerm_api_management_security_597 struct {
 
     Disable_backend_ssl30 *bool
 
@@ -508,7 +527,7 @@ type Azurerm_api_management_security_1277 struct {
 
 }
 
-type Azurerm_api_management_sku_1278 struct {
+type Azurerm_api_management_sku_598 struct {
 
     Capacity int
 
@@ -520,17 +539,17 @@ type Azurerm_api_management struct {
 
     Azurerm_api_management_id *string `lyra:"ignore"`
 
-    Additional_location *[]Azurerm_api_management_additional_location_1269
+    Additional_location *[]Azurerm_api_management_additional_location_589
 
-    Certificate *[]Azurerm_api_management_certificate_1270
+    Certificate *[]Azurerm_api_management_certificate_590
 
     Gateway_regional_url *string
 
     Gateway_url *string
 
-    Hostname_configuration *[]Azurerm_api_management_hostname_configuration_1271
+    Hostname_configuration *[]Azurerm_api_management_hostname_configuration_591
 
-    Identity *[]Azurerm_api_management_identity_1276
+    Identity *[]Azurerm_api_management_identity_596
 
     Location string
 
@@ -552,9 +571,9 @@ type Azurerm_api_management struct {
 
     Scm_url *string
 
-    Security *[]Azurerm_api_management_security_1277
+    Security *[]Azurerm_api_management_security_597
 
-    Sku []Azurerm_api_management_sku_1278
+    Sku []Azurerm_api_management_sku_598
 
     Tags *map[string]string
 
@@ -567,6 +586,7 @@ type Azurerm_api_managementHandler struct {
 
 // Create ...
 func (h *Azurerm_api_managementHandler) Create(desired *Azurerm_api_management) (*Azurerm_api_management, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -583,6 +603,7 @@ func (h *Azurerm_api_managementHandler) Create(desired *Azurerm_api_management) 
 
 // Read ...
 func (h *Azurerm_api_managementHandler) Read(externalID string) (*Azurerm_api_management, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_api_management", externalID)
 	if err != nil {
 		return nil, err
@@ -594,10 +615,11 @@ func (h *Azurerm_api_managementHandler) Read(externalID string) (*Azurerm_api_ma
 
 // Delete ...
 func (h *Azurerm_api_managementHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_api_management", externalID)
 }
 
-type Azurerm_app_service_connection_string_1279 struct {
+type Azurerm_app_service_connection_string_599 struct {
 
     Name string
 
@@ -607,7 +629,7 @@ type Azurerm_app_service_connection_string_1279 struct {
 
 }
 
-type Azurerm_app_service_identity_1280 struct {
+type Azurerm_app_service_identity_600 struct {
 
     Principal_id *string
 
@@ -617,7 +639,7 @@ type Azurerm_app_service_identity_1280 struct {
 
 }
 
-type Azurerm_app_service_site_config_1281_ip_restriction_1282 struct {
+type Azurerm_app_service_site_config_601_ip_restriction_602 struct {
 
     Ip_address string
 
@@ -625,7 +647,7 @@ type Azurerm_app_service_site_config_1281_ip_restriction_1282 struct {
 
 }
 
-type Azurerm_app_service_site_config_1281 struct {
+type Azurerm_app_service_site_config_601 struct {
 
     Always_on *bool
 
@@ -639,7 +661,7 @@ type Azurerm_app_service_site_config_1281 struct {
 
     Http2_enabled *bool
 
-    Ip_restriction *[]Azurerm_app_service_site_config_1281_ip_restriction_1282
+    Ip_restriction *[]Azurerm_app_service_site_config_601_ip_restriction_602
 
     Java_container *string
 
@@ -673,7 +695,7 @@ type Azurerm_app_service_site_config_1281 struct {
 
 }
 
-type Azurerm_app_service_site_credential_1283 struct {
+type Azurerm_app_service_site_credential_603 struct {
 
     Password *string
 
@@ -681,7 +703,7 @@ type Azurerm_app_service_site_credential_1283 struct {
 
 }
 
-type Azurerm_app_service_source_control_1284 struct {
+type Azurerm_app_service_source_control_604 struct {
 
     Branch *string
 
@@ -699,7 +721,7 @@ type Azurerm_app_service struct {
 
     Client_affinity_enabled *bool
 
-    Connection_string *[]Azurerm_app_service_connection_string_1279
+    Connection_string *[]Azurerm_app_service_connection_string_599
 
     Default_site_hostname *string
 
@@ -707,7 +729,7 @@ type Azurerm_app_service struct {
 
     Https_only *bool
 
-    Identity *[]Azurerm_app_service_identity_1280
+    Identity *[]Azurerm_app_service_identity_600
 
     Location string
 
@@ -719,11 +741,11 @@ type Azurerm_app_service struct {
 
     Resource_group_name string
 
-    Site_config *[]Azurerm_app_service_site_config_1281
+    Site_config *[]Azurerm_app_service_site_config_601
 
-    Site_credential *[]Azurerm_app_service_site_credential_1283
+    Site_credential *[]Azurerm_app_service_site_credential_603
 
-    Source_control *[]Azurerm_app_service_source_control_1284
+    Source_control *[]Azurerm_app_service_source_control_604
 
     Tags *map[string]string
 
@@ -736,6 +758,7 @@ type Azurerm_app_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_app_serviceHandler) Create(desired *Azurerm_app_service) (*Azurerm_app_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -752,6 +775,7 @@ func (h *Azurerm_app_serviceHandler) Create(desired *Azurerm_app_service) (*Azur
 
 // Read ...
 func (h *Azurerm_app_serviceHandler) Read(externalID string) (*Azurerm_app_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service", externalID)
 	if err != nil {
 		return nil, err
@@ -763,6 +787,7 @@ func (h *Azurerm_app_serviceHandler) Read(externalID string) (*Azurerm_app_servi
 
 // Delete ...
 func (h *Azurerm_app_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service", externalID)
 }
 
@@ -785,6 +810,7 @@ type Azurerm_app_service_active_slotHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_active_slotHandler) Create(desired *Azurerm_app_service_active_slot) (*Azurerm_app_service_active_slot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -801,6 +827,7 @@ func (h *Azurerm_app_service_active_slotHandler) Create(desired *Azurerm_app_ser
 
 // Read ...
 func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azurerm_app_service_active_slot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_active_slot", externalID)
 	if err != nil {
 		return nil, err
@@ -812,6 +839,7 @@ func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_app_service_active_slotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_active_slot", externalID)
 }
 
@@ -834,6 +862,7 @@ type Azurerm_app_service_custom_hostname_bindingHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_custom_hostname_bindingHandler) Create(desired *Azurerm_app_service_custom_hostname_binding) (*Azurerm_app_service_custom_hostname_binding, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -850,6 +879,7 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID string) (*Azurerm_app_service_custom_hostname_binding, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
 	if err != nil {
 		return nil, err
@@ -861,10 +891,11 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID str
 
 // Delete ...
 func (h *Azurerm_app_service_custom_hostname_bindingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
 }
 
-type Azurerm_app_service_plan_properties_1285 struct {
+type Azurerm_app_service_plan_properties_605 struct {
 
     App_service_environment_id *string
 
@@ -874,7 +905,7 @@ type Azurerm_app_service_plan_properties_1285 struct {
 
 }
 
-type Azurerm_app_service_plan_sku_1286 struct {
+type Azurerm_app_service_plan_sku_606 struct {
 
     Capacity *int
 
@@ -900,13 +931,13 @@ type Azurerm_app_service_plan struct {
 
     Per_site_scaling *bool
 
-    Properties *[]Azurerm_app_service_plan_properties_1285
+    Properties *[]Azurerm_app_service_plan_properties_605
 
     Reserved *bool
 
     Resource_group_name string
 
-    Sku []Azurerm_app_service_plan_sku_1286
+    Sku []Azurerm_app_service_plan_sku_606
 
     Tags *map[string]string
 
@@ -919,6 +950,7 @@ type Azurerm_app_service_planHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_planHandler) Create(desired *Azurerm_app_service_plan) (*Azurerm_app_service_plan, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -935,6 +967,7 @@ func (h *Azurerm_app_service_planHandler) Create(desired *Azurerm_app_service_pl
 
 // Read ...
 func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_service_plan, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_plan", externalID)
 	if err != nil {
 		return nil, err
@@ -946,10 +979,11 @@ func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_
 
 // Delete ...
 func (h *Azurerm_app_service_planHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_plan", externalID)
 }
 
-type Azurerm_app_service_slot_connection_string_1287 struct {
+type Azurerm_app_service_slot_connection_string_607 struct {
 
     Name string
 
@@ -959,7 +993,7 @@ type Azurerm_app_service_slot_connection_string_1287 struct {
 
 }
 
-type Azurerm_app_service_slot_identity_1288 struct {
+type Azurerm_app_service_slot_identity_608 struct {
 
     Principal_id *string
 
@@ -969,7 +1003,7 @@ type Azurerm_app_service_slot_identity_1288 struct {
 
 }
 
-type Azurerm_app_service_slot_site_config_1289_ip_restriction_1290 struct {
+type Azurerm_app_service_slot_site_config_609_ip_restriction_610 struct {
 
     Ip_address string
 
@@ -977,7 +1011,7 @@ type Azurerm_app_service_slot_site_config_1289_ip_restriction_1290 struct {
 
 }
 
-type Azurerm_app_service_slot_site_config_1289 struct {
+type Azurerm_app_service_slot_site_config_609 struct {
 
     Always_on *bool
 
@@ -991,7 +1025,7 @@ type Azurerm_app_service_slot_site_config_1289 struct {
 
     Http2_enabled *bool
 
-    Ip_restriction *[]Azurerm_app_service_slot_site_config_1289_ip_restriction_1290
+    Ip_restriction *[]Azurerm_app_service_slot_site_config_609_ip_restriction_610
 
     Java_container *string
 
@@ -1037,7 +1071,7 @@ type Azurerm_app_service_slot struct {
 
     Client_affinity_enabled *bool
 
-    Connection_string *[]Azurerm_app_service_slot_connection_string_1287
+    Connection_string *[]Azurerm_app_service_slot_connection_string_607
 
     Default_site_hostname *string
 
@@ -1045,7 +1079,7 @@ type Azurerm_app_service_slot struct {
 
     Https_only *bool
 
-    Identity *[]Azurerm_app_service_slot_identity_1288
+    Identity *[]Azurerm_app_service_slot_identity_608
 
     Location string
 
@@ -1053,7 +1087,7 @@ type Azurerm_app_service_slot struct {
 
     Resource_group_name string
 
-    Site_config *[]Azurerm_app_service_slot_site_config_1289
+    Site_config *[]Azurerm_app_service_slot_site_config_609
 
     Tags *map[string]string
 
@@ -1066,6 +1100,7 @@ type Azurerm_app_service_slotHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_slotHandler) Create(desired *Azurerm_app_service_slot) (*Azurerm_app_service_slot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1082,6 +1117,7 @@ func (h *Azurerm_app_service_slotHandler) Create(desired *Azurerm_app_service_sl
 
 // Read ...
 func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_service_slot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_slot", externalID)
 	if err != nil {
 		return nil, err
@@ -1093,10 +1129,11 @@ func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_
 
 // Delete ...
 func (h *Azurerm_app_service_slotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_slot", externalID)
 }
 
-type Azurerm_application_gateway_authentication_certificate_1291 struct {
+type Azurerm_application_gateway_authentication_certificate_611 struct {
 
     Data string
 
@@ -1106,7 +1143,7 @@ type Azurerm_application_gateway_authentication_certificate_1291 struct {
 
 }
 
-type Azurerm_application_gateway_backend_address_pool_1292 struct {
+type Azurerm_application_gateway_backend_address_pool_612 struct {
 
     Fqdn_list *[]string
 
@@ -1118,7 +1155,7 @@ type Azurerm_application_gateway_backend_address_pool_1292 struct {
 
 }
 
-type Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294 struct {
+type Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614 struct {
 
     Id *string
 
@@ -1126,9 +1163,9 @@ type Azurerm_application_gateway_backend_http_settings_1293_authentication_certi
 
 }
 
-type Azurerm_application_gateway_backend_http_settings_1293 struct {
+type Azurerm_application_gateway_backend_http_settings_613 struct {
 
-    Authentication_certificate *[]Azurerm_application_gateway_backend_http_settings_1293_authentication_certificate_1294
+    Authentication_certificate *[]Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614
 
     Cookie_based_affinity string
 
@@ -1148,7 +1185,7 @@ type Azurerm_application_gateway_backend_http_settings_1293 struct {
 
 }
 
-type Azurerm_application_gateway_frontend_ip_configuration_1295 struct {
+type Azurerm_application_gateway_frontend_ip_configuration_615 struct {
 
     Id *string
 
@@ -1164,7 +1201,7 @@ type Azurerm_application_gateway_frontend_ip_configuration_1295 struct {
 
 }
 
-type Azurerm_application_gateway_frontend_port_1296 struct {
+type Azurerm_application_gateway_frontend_port_616 struct {
 
     Id *string
 
@@ -1174,7 +1211,7 @@ type Azurerm_application_gateway_frontend_port_1296 struct {
 
 }
 
-type Azurerm_application_gateway_gateway_ip_configuration_1297 struct {
+type Azurerm_application_gateway_gateway_ip_configuration_617 struct {
 
     Id *string
 
@@ -1184,7 +1221,7 @@ type Azurerm_application_gateway_gateway_ip_configuration_1297 struct {
 
 }
 
-type Azurerm_application_gateway_http_listener_1298 struct {
+type Azurerm_application_gateway_http_listener_618 struct {
 
     Frontend_ip_configuration_id *string
 
@@ -1210,7 +1247,7 @@ type Azurerm_application_gateway_http_listener_1298 struct {
 
 }
 
-type Azurerm_application_gateway_probe_1299_match_1300 struct {
+type Azurerm_application_gateway_probe_619_match_620 struct {
 
     Body *string
 
@@ -1218,7 +1255,7 @@ type Azurerm_application_gateway_probe_1299_match_1300 struct {
 
 }
 
-type Azurerm_application_gateway_probe_1299 struct {
+type Azurerm_application_gateway_probe_619 struct {
 
     Host string
 
@@ -1226,7 +1263,7 @@ type Azurerm_application_gateway_probe_1299 struct {
 
     Interval int
 
-    Match *[]Azurerm_application_gateway_probe_1299_match_1300
+    Match *[]Azurerm_application_gateway_probe_619_match_620
 
     Minimum_servers *int
 
@@ -1242,7 +1279,7 @@ type Azurerm_application_gateway_probe_1299 struct {
 
 }
 
-type Azurerm_application_gateway_request_routing_rule_1301 struct {
+type Azurerm_application_gateway_request_routing_rule_621 struct {
 
     Backend_address_pool_id *string
 
@@ -1268,7 +1305,7 @@ type Azurerm_application_gateway_request_routing_rule_1301 struct {
 
 }
 
-type Azurerm_application_gateway_sku_1302 struct {
+type Azurerm_application_gateway_sku_622 struct {
 
     Capacity int
 
@@ -1278,7 +1315,7 @@ type Azurerm_application_gateway_sku_1302 struct {
 
 }
 
-type Azurerm_application_gateway_ssl_certificate_1303 struct {
+type Azurerm_application_gateway_ssl_certificate_623 struct {
 
     Data string
 
@@ -1292,7 +1329,7 @@ type Azurerm_application_gateway_ssl_certificate_1303 struct {
 
 }
 
-type Azurerm_application_gateway_url_path_map_1304_path_rule_1305 struct {
+type Azurerm_application_gateway_url_path_map_624_path_rule_625 struct {
 
     Backend_address_pool_id *string
 
@@ -1310,7 +1347,7 @@ type Azurerm_application_gateway_url_path_map_1304_path_rule_1305 struct {
 
 }
 
-type Azurerm_application_gateway_url_path_map_1304 struct {
+type Azurerm_application_gateway_url_path_map_624 struct {
 
     Default_backend_address_pool_id *string
 
@@ -1324,11 +1361,11 @@ type Azurerm_application_gateway_url_path_map_1304 struct {
 
     Name string
 
-    Path_rule []Azurerm_application_gateway_url_path_map_1304_path_rule_1305
+    Path_rule []Azurerm_application_gateway_url_path_map_624_path_rule_625
 
 }
 
-type Azurerm_application_gateway_waf_configuration_1306 struct {
+type Azurerm_application_gateway_waf_configuration_626 struct {
 
     Enabled bool
 
@@ -1344,41 +1381,41 @@ type Azurerm_application_gateway struct {
 
     Azurerm_application_gateway_id *string `lyra:"ignore"`
 
-    Authentication_certificate *[]Azurerm_application_gateway_authentication_certificate_1291
+    Authentication_certificate *[]Azurerm_application_gateway_authentication_certificate_611
 
-    Backend_address_pool []Azurerm_application_gateway_backend_address_pool_1292
+    Backend_address_pool []Azurerm_application_gateway_backend_address_pool_612
 
-    Backend_http_settings []Azurerm_application_gateway_backend_http_settings_1293
+    Backend_http_settings []Azurerm_application_gateway_backend_http_settings_613
 
     Disabled_ssl_protocols *[]string
 
-    Frontend_ip_configuration []Azurerm_application_gateway_frontend_ip_configuration_1295
+    Frontend_ip_configuration []Azurerm_application_gateway_frontend_ip_configuration_615
 
-    Frontend_port []Azurerm_application_gateway_frontend_port_1296
+    Frontend_port []Azurerm_application_gateway_frontend_port_616
 
-    Gateway_ip_configuration []Azurerm_application_gateway_gateway_ip_configuration_1297
+    Gateway_ip_configuration []Azurerm_application_gateway_gateway_ip_configuration_617
 
-    Http_listener []Azurerm_application_gateway_http_listener_1298
+    Http_listener []Azurerm_application_gateway_http_listener_618
 
     Location string
 
     Name string
 
-    Probe *[]Azurerm_application_gateway_probe_1299
+    Probe *[]Azurerm_application_gateway_probe_619
 
-    Request_routing_rule []Azurerm_application_gateway_request_routing_rule_1301
+    Request_routing_rule []Azurerm_application_gateway_request_routing_rule_621
 
     Resource_group_name string
 
-    Sku []Azurerm_application_gateway_sku_1302
+    Sku []Azurerm_application_gateway_sku_622
 
-    Ssl_certificate *[]Azurerm_application_gateway_ssl_certificate_1303
+    Ssl_certificate *[]Azurerm_application_gateway_ssl_certificate_623
 
     Tags *map[string]string
 
-    Url_path_map *[]Azurerm_application_gateway_url_path_map_1304
+    Url_path_map *[]Azurerm_application_gateway_url_path_map_624
 
-    Waf_configuration *[]Azurerm_application_gateway_waf_configuration_1306
+    Waf_configuration *[]Azurerm_application_gateway_waf_configuration_626
 
 }
 
@@ -1389,6 +1426,7 @@ type Azurerm_application_gatewayHandler struct {
 
 // Create ...
 func (h *Azurerm_application_gatewayHandler) Create(desired *Azurerm_application_gateway) (*Azurerm_application_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1405,6 +1443,7 @@ func (h *Azurerm_application_gatewayHandler) Create(desired *Azurerm_application
 
 // Read ...
 func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_application_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -1416,6 +1455,7 @@ func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_a
 
 // Delete ...
 func (h *Azurerm_application_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_gateway", externalID)
 }
 
@@ -1446,6 +1486,7 @@ type Azurerm_application_insightsHandler struct {
 
 // Create ...
 func (h *Azurerm_application_insightsHandler) Create(desired *Azurerm_application_insights) (*Azurerm_application_insights, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1462,6 +1503,7 @@ func (h *Azurerm_application_insightsHandler) Create(desired *Azurerm_applicatio
 
 // Read ...
 func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_application_insights, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_insights", externalID)
 	if err != nil {
 		return nil, err
@@ -1473,6 +1515,7 @@ func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_application_insightsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_insights", externalID)
 }
 
@@ -1499,6 +1542,7 @@ type Azurerm_application_insights_api_keyHandler struct {
 
 // Create ...
 func (h *Azurerm_application_insights_api_keyHandler) Create(desired *Azurerm_application_insights_api_key) (*Azurerm_application_insights_api_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1515,6 +1559,7 @@ func (h *Azurerm_application_insights_api_keyHandler) Create(desired *Azurerm_ap
 
 // Read ...
 func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*Azurerm_application_insights_api_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_insights_api_key", externalID)
 	if err != nil {
 		return nil, err
@@ -1526,6 +1571,7 @@ func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Azurerm_application_insights_api_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_insights_api_key", externalID)
 }
 
@@ -1550,6 +1596,7 @@ type Azurerm_application_security_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_application_security_groupHandler) Create(desired *Azurerm_application_security_group) (*Azurerm_application_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1566,6 +1613,7 @@ func (h *Azurerm_application_security_groupHandler) Create(desired *Azurerm_appl
 
 // Read ...
 func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Azurerm_application_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -1577,10 +1625,11 @@ func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Az
 
 // Delete ...
 func (h *Azurerm_application_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_security_group", externalID)
 }
 
-type Azurerm_automation_account_sku_1307 struct {
+type Azurerm_automation_account_sku_627 struct {
 
     Name *string
 
@@ -1602,7 +1651,7 @@ type Azurerm_automation_account struct {
 
     Resource_group_name string
 
-    Sku []Azurerm_automation_account_sku_1307
+    Sku []Azurerm_automation_account_sku_627
 
     Tags *map[string]string
 
@@ -1615,6 +1664,7 @@ type Azurerm_automation_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_accountHandler) Create(desired *Azurerm_automation_account) (*Azurerm_automation_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1631,6 +1681,7 @@ func (h *Azurerm_automation_accountHandler) Create(desired *Azurerm_automation_a
 
 // Read ...
 func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_automation_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_account", externalID)
 	if err != nil {
 		return nil, err
@@ -1642,6 +1693,7 @@ func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_au
 
 // Delete ...
 func (h *Azurerm_automation_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_account", externalID)
 }
 
@@ -1670,6 +1722,7 @@ type Azurerm_automation_credentialHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_credentialHandler) Create(desired *Azurerm_automation_credential) (*Azurerm_automation_credential, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1686,6 +1739,7 @@ func (h *Azurerm_automation_credentialHandler) Create(desired *Azurerm_automatio
 
 // Read ...
 func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm_automation_credential, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_credential", externalID)
 	if err != nil {
 		return nil, err
@@ -1697,6 +1751,7 @@ func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_automation_credentialHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_credential", externalID)
 }
 
@@ -1729,6 +1784,7 @@ type Azurerm_automation_dsc_configurationHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_dsc_configurationHandler) Create(desired *Azurerm_automation_dsc_configuration) (*Azurerm_automation_dsc_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1745,6 +1801,7 @@ func (h *Azurerm_automation_dsc_configurationHandler) Create(desired *Azurerm_au
 
 // Read ...
 func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*Azurerm_automation_dsc_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -1756,6 +1813,7 @@ func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Azurerm_automation_dsc_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_dsc_configuration", externalID)
 }
 
@@ -1782,6 +1840,7 @@ type Azurerm_automation_dsc_nodeconfigurationHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Create(desired *Azurerm_automation_dsc_nodeconfiguration) (*Azurerm_automation_dsc_nodeconfiguration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1798,6 +1857,7 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Create(desired *Azurer
 
 // Read ...
 func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string) (*Azurerm_automation_dsc_nodeconfiguration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
 	if err != nil {
 		return nil, err
@@ -1809,10 +1869,11 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string
 
 // Delete ...
 func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
 }
 
-type Azurerm_automation_module_module_link_1308_hash_1309 struct {
+type Azurerm_automation_module_module_link_628_hash_629 struct {
 
     Algorithm string
 
@@ -1820,9 +1881,9 @@ type Azurerm_automation_module_module_link_1308_hash_1309 struct {
 
 }
 
-type Azurerm_automation_module_module_link_1308 struct {
+type Azurerm_automation_module_module_link_628 struct {
 
-    Hash *[]Azurerm_automation_module_module_link_1308_hash_1309
+    Hash *[]Azurerm_automation_module_module_link_628_hash_629
 
     Uri string
 
@@ -1834,7 +1895,7 @@ type Azurerm_automation_module struct {
 
     Automation_account_name string
 
-    Module_link []Azurerm_automation_module_module_link_1308
+    Module_link []Azurerm_automation_module_module_link_628
 
     Name string
 
@@ -1849,6 +1910,7 @@ type Azurerm_automation_moduleHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_moduleHandler) Create(desired *Azurerm_automation_module) (*Azurerm_automation_module, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1865,6 +1927,7 @@ func (h *Azurerm_automation_moduleHandler) Create(desired *Azurerm_automation_mo
 
 // Read ...
 func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_automation_module, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_module", externalID)
 	if err != nil {
 		return nil, err
@@ -1876,10 +1939,11 @@ func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_aut
 
 // Delete ...
 func (h *Azurerm_automation_moduleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_module", externalID)
 }
 
-type Azurerm_automation_runbook_publish_content_link_1310_hash_1311 struct {
+type Azurerm_automation_runbook_publish_content_link_630_hash_631 struct {
 
     Algorithm string
 
@@ -1887,9 +1951,9 @@ type Azurerm_automation_runbook_publish_content_link_1310_hash_1311 struct {
 
 }
 
-type Azurerm_automation_runbook_publish_content_link_1310 struct {
+type Azurerm_automation_runbook_publish_content_link_630 struct {
 
-    Hash *[]Azurerm_automation_runbook_publish_content_link_1310_hash_1311
+    Hash *[]Azurerm_automation_runbook_publish_content_link_630_hash_631
 
     Uri string
 
@@ -1915,7 +1979,7 @@ type Azurerm_automation_runbook struct {
 
     Name string
 
-    Publish_content_link []Azurerm_automation_runbook_publish_content_link_1310
+    Publish_content_link []Azurerm_automation_runbook_publish_content_link_630
 
     Resource_group_name string
 
@@ -1932,6 +1996,7 @@ type Azurerm_automation_runbookHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_runbookHandler) Create(desired *Azurerm_automation_runbook) (*Azurerm_automation_runbook, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1948,6 +2013,7 @@ func (h *Azurerm_automation_runbookHandler) Create(desired *Azurerm_automation_r
 
 // Read ...
 func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_automation_runbook, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_runbook", externalID)
 	if err != nil {
 		return nil, err
@@ -1959,10 +2025,11 @@ func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_au
 
 // Delete ...
 func (h *Azurerm_automation_runbookHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_runbook", externalID)
 }
 
-type Azurerm_automation_schedule_monthly_occurrence_1312 struct {
+type Azurerm_automation_schedule_monthly_occurrence_632 struct {
 
     Day string
 
@@ -1988,7 +2055,7 @@ type Azurerm_automation_schedule struct {
 
     Month_days *[]int
 
-    Monthly_occurrence *[]Azurerm_automation_schedule_monthly_occurrence_1312
+    Monthly_occurrence *[]Azurerm_automation_schedule_monthly_occurrence_632
 
     Name string
 
@@ -2009,6 +2076,7 @@ type Azurerm_automation_scheduleHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_scheduleHandler) Create(desired *Azurerm_automation_schedule) (*Azurerm_automation_schedule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2025,6 +2093,7 @@ func (h *Azurerm_automation_scheduleHandler) Create(desired *Azurerm_automation_
 
 // Read ...
 func (h *Azurerm_automation_scheduleHandler) Read(externalID string) (*Azurerm_automation_schedule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_schedule", externalID)
 	if err != nil {
 		return nil, err
@@ -2036,10 +2105,11 @@ func (h *Azurerm_automation_scheduleHandler) Read(externalID string) (*Azurerm_a
 
 // Delete ...
 func (h *Azurerm_automation_scheduleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_schedule", externalID)
 }
 
-type Azurerm_autoscale_setting_notification_1313_email_1314 struct {
+type Azurerm_autoscale_setting_notification_633_email_634 struct {
 
     Custom_emails *[]string
 
@@ -2049,7 +2119,7 @@ type Azurerm_autoscale_setting_notification_1313_email_1314 struct {
 
 }
 
-type Azurerm_autoscale_setting_notification_1313_webhook_1315 struct {
+type Azurerm_autoscale_setting_notification_633_webhook_635 struct {
 
     Properties *map[string]string
 
@@ -2057,15 +2127,15 @@ type Azurerm_autoscale_setting_notification_1313_webhook_1315 struct {
 
 }
 
-type Azurerm_autoscale_setting_notification_1313 struct {
+type Azurerm_autoscale_setting_notification_633 struct {
 
-    Email *[]Azurerm_autoscale_setting_notification_1313_email_1314
+    Email *[]Azurerm_autoscale_setting_notification_633_email_634
 
-    Webhook *[]Azurerm_autoscale_setting_notification_1313_webhook_1315
+    Webhook *[]Azurerm_autoscale_setting_notification_633_webhook_635
 
 }
 
-type Azurerm_autoscale_setting_profile_1316_capacity_1317 struct {
+type Azurerm_autoscale_setting_profile_636_capacity_637 struct {
 
     Default int
 
@@ -2075,7 +2145,7 @@ type Azurerm_autoscale_setting_profile_1316_capacity_1317 struct {
 
 }
 
-type Azurerm_autoscale_setting_profile_1316_fixed_date_1318 struct {
+type Azurerm_autoscale_setting_profile_636_fixed_date_638 struct {
 
     End string
 
@@ -2085,7 +2155,7 @@ type Azurerm_autoscale_setting_profile_1316_fixed_date_1318 struct {
 
 }
 
-type Azurerm_autoscale_setting_profile_1316_recurrence_1319 struct {
+type Azurerm_autoscale_setting_profile_636_recurrence_639 struct {
 
     Days []string
 
@@ -2097,7 +2167,7 @@ type Azurerm_autoscale_setting_profile_1316_recurrence_1319 struct {
 
 }
 
-type Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321 struct {
+type Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641 struct {
 
     Metric_name string
 
@@ -2117,7 +2187,7 @@ type Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321 struct
 
 }
 
-type Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322 struct {
+type Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642 struct {
 
     Cooldown string
 
@@ -2129,25 +2199,25 @@ type Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322 struct {
 
 }
 
-type Azurerm_autoscale_setting_profile_1316_rule_1320 struct {
+type Azurerm_autoscale_setting_profile_636_rule_640 struct {
 
-    Metric_trigger []Azurerm_autoscale_setting_profile_1316_rule_1320_metric_trigger_1321
+    Metric_trigger []Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641
 
-    Scale_action []Azurerm_autoscale_setting_profile_1316_rule_1320_scale_action_1322
+    Scale_action []Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642
 
 }
 
-type Azurerm_autoscale_setting_profile_1316 struct {
+type Azurerm_autoscale_setting_profile_636 struct {
 
-    Capacity []Azurerm_autoscale_setting_profile_1316_capacity_1317
+    Capacity []Azurerm_autoscale_setting_profile_636_capacity_637
 
-    Fixed_date *[]Azurerm_autoscale_setting_profile_1316_fixed_date_1318
+    Fixed_date *[]Azurerm_autoscale_setting_profile_636_fixed_date_638
 
     Name string
 
-    Recurrence *[]Azurerm_autoscale_setting_profile_1316_recurrence_1319
+    Recurrence *[]Azurerm_autoscale_setting_profile_636_recurrence_639
 
-    Rule *[]Azurerm_autoscale_setting_profile_1316_rule_1320
+    Rule *[]Azurerm_autoscale_setting_profile_636_rule_640
 
 }
 
@@ -2161,9 +2231,9 @@ type Azurerm_autoscale_setting struct {
 
     Name string
 
-    Notification *[]Azurerm_autoscale_setting_notification_1313
+    Notification *[]Azurerm_autoscale_setting_notification_633
 
-    Profile []Azurerm_autoscale_setting_profile_1316
+    Profile []Azurerm_autoscale_setting_profile_636
 
     Resource_group_name string
 
@@ -2180,6 +2250,7 @@ type Azurerm_autoscale_settingHandler struct {
 
 // Create ...
 func (h *Azurerm_autoscale_settingHandler) Create(desired *Azurerm_autoscale_setting) (*Azurerm_autoscale_setting, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2196,6 +2267,7 @@ func (h *Azurerm_autoscale_settingHandler) Create(desired *Azurerm_autoscale_set
 
 // Read ...
 func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_autoscale_setting, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_autoscale_setting", externalID)
 	if err != nil {
 		return nil, err
@@ -2207,6 +2279,7 @@ func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_aut
 
 // Delete ...
 func (h *Azurerm_autoscale_settingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_autoscale_setting", externalID)
 }
 
@@ -2237,6 +2310,7 @@ type Azurerm_availability_setHandler struct {
 
 // Create ...
 func (h *Azurerm_availability_setHandler) Create(desired *Azurerm_availability_set) (*Azurerm_availability_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2253,6 +2327,7 @@ func (h *Azurerm_availability_setHandler) Create(desired *Azurerm_availability_s
 
 // Read ...
 func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_availability_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_availability_set", externalID)
 	if err != nil {
 		return nil, err
@@ -2264,6 +2339,7 @@ func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_avai
 
 // Delete ...
 func (h *Azurerm_availability_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_availability_set", externalID)
 }
 
@@ -2294,6 +2370,7 @@ type Azurerm_azuread_applicationHandler struct {
 
 // Create ...
 func (h *Azurerm_azuread_applicationHandler) Create(desired *Azurerm_azuread_application) (*Azurerm_azuread_application, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2310,6 +2387,7 @@ func (h *Azurerm_azuread_applicationHandler) Create(desired *Azurerm_azuread_app
 
 // Read ...
 func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_azuread_application, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_application", externalID)
 	if err != nil {
 		return nil, err
@@ -2321,6 +2399,7 @@ func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_a
 
 // Delete ...
 func (h *Azurerm_azuread_applicationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_azuread_application", externalID)
 }
 
@@ -2341,6 +2420,7 @@ type Azurerm_azuread_service_principalHandler struct {
 
 // Create ...
 func (h *Azurerm_azuread_service_principalHandler) Create(desired *Azurerm_azuread_service_principal) (*Azurerm_azuread_service_principal, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2357,6 +2437,7 @@ func (h *Azurerm_azuread_service_principalHandler) Create(desired *Azurerm_azure
 
 // Read ...
 func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azurerm_azuread_service_principal, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal", externalID)
 	if err != nil {
 		return nil, err
@@ -2368,6 +2449,7 @@ func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azu
 
 // Delete ...
 func (h *Azurerm_azuread_service_principalHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_azuread_service_principal", externalID)
 }
 
@@ -2394,6 +2476,7 @@ type Azurerm_azuread_service_principal_passwordHandler struct {
 
 // Create ...
 func (h *Azurerm_azuread_service_principal_passwordHandler) Create(desired *Azurerm_azuread_service_principal_password) (*Azurerm_azuread_service_principal_password, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2410,6 +2493,7 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Create(desired *Azur
 
 // Read ...
 func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID string) (*Azurerm_azuread_service_principal_password, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal_password", externalID)
 	if err != nil {
 		return nil, err
@@ -2421,6 +2505,7 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID stri
 
 // Delete ...
 func (h *Azurerm_azuread_service_principal_passwordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_azuread_service_principal_password", externalID)
 }
 
@@ -2449,6 +2534,7 @@ type Azurerm_batch_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_batch_accountHandler) Create(desired *Azurerm_batch_account) (*Azurerm_batch_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2465,6 +2551,7 @@ func (h *Azurerm_batch_accountHandler) Create(desired *Azurerm_batch_account) (*
 
 // Read ...
 func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_batch_account", externalID)
 	if err != nil {
 		return nil, err
@@ -2476,10 +2563,11 @@ func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_a
 
 // Delete ...
 func (h *Azurerm_batch_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_batch_account", externalID)
 }
 
-type Azurerm_batch_pool_auto_scale_1323 struct {
+type Azurerm_batch_pool_auto_scale_643 struct {
 
     Evaluation_interval *string
 
@@ -2487,7 +2575,7 @@ type Azurerm_batch_pool_auto_scale_1323 struct {
 
 }
 
-type Azurerm_batch_pool_fixed_scale_1324 struct {
+type Azurerm_batch_pool_fixed_scale_644 struct {
 
     Resize_timeout *string
 
@@ -2497,7 +2585,7 @@ type Azurerm_batch_pool_fixed_scale_1324 struct {
 
 }
 
-type Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327 struct {
+type Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647 struct {
 
     Elevation_level *string
 
@@ -2505,15 +2593,15 @@ type Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327 struct
 
 }
 
-type Azurerm_batch_pool_start_task_1325_user_identity_1326 struct {
+type Azurerm_batch_pool_start_task_645_user_identity_646 struct {
 
-    Auto_user *[]Azurerm_batch_pool_start_task_1325_user_identity_1326_auto_user_1327
+    Auto_user *[]Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647
 
     User_name *string
 
 }
 
-type Azurerm_batch_pool_start_task_1325 struct {
+type Azurerm_batch_pool_start_task_645 struct {
 
     Command_line string
 
@@ -2521,13 +2609,13 @@ type Azurerm_batch_pool_start_task_1325 struct {
 
     Max_task_retry_count *int
 
-    User_identity []Azurerm_batch_pool_start_task_1325_user_identity_1326
+    User_identity []Azurerm_batch_pool_start_task_645_user_identity_646
 
     Wait_for_success *bool
 
 }
 
-type Azurerm_batch_pool_storage_image_reference_1328 struct {
+type Azurerm_batch_pool_storage_image_reference_648 struct {
 
     Id *string
 
@@ -2547,11 +2635,11 @@ type Azurerm_batch_pool struct {
 
     Account_name string
 
-    Auto_scale *[]Azurerm_batch_pool_auto_scale_1323
+    Auto_scale *[]Azurerm_batch_pool_auto_scale_643
 
     Display_name *string
 
-    Fixed_scale *[]Azurerm_batch_pool_fixed_scale_1324
+    Fixed_scale *[]Azurerm_batch_pool_fixed_scale_644
 
     Name string
 
@@ -2559,11 +2647,11 @@ type Azurerm_batch_pool struct {
 
     Resource_group_name string
 
-    Start_task *[]Azurerm_batch_pool_start_task_1325
+    Start_task *[]Azurerm_batch_pool_start_task_645
 
     Stop_pending_resize_operation *bool
 
-    Storage_image_reference []Azurerm_batch_pool_storage_image_reference_1328
+    Storage_image_reference []Azurerm_batch_pool_storage_image_reference_648
 
     Vm_size string
 
@@ -2576,6 +2664,7 @@ type Azurerm_batch_poolHandler struct {
 
 // Create ...
 func (h *Azurerm_batch_poolHandler) Create(desired *Azurerm_batch_pool) (*Azurerm_batch_pool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2592,6 +2681,7 @@ func (h *Azurerm_batch_poolHandler) Create(desired *Azurerm_batch_pool) (*Azurer
 
 // Read ...
 func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_batch_pool", externalID)
 	if err != nil {
 		return nil, err
@@ -2603,10 +2693,11 @@ func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool
 
 // Delete ...
 func (h *Azurerm_batch_poolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_batch_pool", externalID)
 }
 
-type Azurerm_cdn_endpoint_geo_filter_1329 struct {
+type Azurerm_cdn_endpoint_geo_filter_649 struct {
 
     Action string
 
@@ -2616,7 +2707,7 @@ type Azurerm_cdn_endpoint_geo_filter_1329 struct {
 
 }
 
-type Azurerm_cdn_endpoint_origin_1330 struct {
+type Azurerm_cdn_endpoint_origin_650 struct {
 
     Host_name string
 
@@ -2634,7 +2725,7 @@ type Azurerm_cdn_endpoint struct {
 
     Content_types_to_compress *[]string
 
-    Geo_filter *[]Azurerm_cdn_endpoint_geo_filter_1329
+    Geo_filter *[]Azurerm_cdn_endpoint_geo_filter_649
 
     Host_name *string
 
@@ -2650,7 +2741,7 @@ type Azurerm_cdn_endpoint struct {
 
     Optimization_type *string
 
-    Origin []Azurerm_cdn_endpoint_origin_1330
+    Origin []Azurerm_cdn_endpoint_origin_650
 
     Origin_host_header *string
 
@@ -2675,6 +2766,7 @@ type Azurerm_cdn_endpointHandler struct {
 
 // Create ...
 func (h *Azurerm_cdn_endpointHandler) Create(desired *Azurerm_cdn_endpoint) (*Azurerm_cdn_endpoint, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2691,6 +2783,7 @@ func (h *Azurerm_cdn_endpointHandler) Create(desired *Azurerm_cdn_endpoint) (*Az
 
 // Read ...
 func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endpoint, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cdn_endpoint", externalID)
 	if err != nil {
 		return nil, err
@@ -2702,6 +2795,7 @@ func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endp
 
 // Delete ...
 func (h *Azurerm_cdn_endpointHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cdn_endpoint", externalID)
 }
 
@@ -2728,6 +2822,7 @@ type Azurerm_cdn_profileHandler struct {
 
 // Create ...
 func (h *Azurerm_cdn_profileHandler) Create(desired *Azurerm_cdn_profile) (*Azurerm_cdn_profile, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2744,6 +2839,7 @@ func (h *Azurerm_cdn_profileHandler) Create(desired *Azurerm_cdn_profile) (*Azur
 
 // Read ...
 func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profile, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cdn_profile", externalID)
 	if err != nil {
 		return nil, err
@@ -2755,10 +2851,11 @@ func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profi
 
 // Delete ...
 func (h *Azurerm_cdn_profileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cdn_profile", externalID)
 }
 
-type Azurerm_cognitive_account_sku_1331 struct {
+type Azurerm_cognitive_account_sku_651 struct {
 
     Name string
 
@@ -2780,7 +2877,7 @@ type Azurerm_cognitive_account struct {
 
     Resource_group_name string
 
-    Sku []Azurerm_cognitive_account_sku_1331
+    Sku []Azurerm_cognitive_account_sku_651
 
     Tags *map[string]string
 
@@ -2793,6 +2890,7 @@ type Azurerm_cognitive_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_cognitive_accountHandler) Create(desired *Azurerm_cognitive_account) (*Azurerm_cognitive_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2809,6 +2907,7 @@ func (h *Azurerm_cognitive_accountHandler) Create(desired *Azurerm_cognitive_acc
 
 // Read ...
 func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cognitive_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cognitive_account", externalID)
 	if err != nil {
 		return nil, err
@@ -2820,10 +2919,11 @@ func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cog
 
 // Delete ...
 func (h *Azurerm_cognitive_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cognitive_account", externalID)
 }
 
-type Azurerm_container_group_container_1332_ports_1333 struct {
+type Azurerm_container_group_container_652_ports_653 struct {
 
     Port *int
 
@@ -2831,7 +2931,7 @@ type Azurerm_container_group_container_1332_ports_1333 struct {
 
 }
 
-type Azurerm_container_group_container_1332_volume_1334 struct {
+type Azurerm_container_group_container_652_volume_654 struct {
 
     Mount_path string
 
@@ -2847,7 +2947,7 @@ type Azurerm_container_group_container_1332_volume_1334 struct {
 
 }
 
-type Azurerm_container_group_container_1332 struct {
+type Azurerm_container_group_container_652 struct {
 
     Command *string
 
@@ -2865,17 +2965,17 @@ type Azurerm_container_group_container_1332 struct {
 
     Port *int
 
-    Ports *[]Azurerm_container_group_container_1332_ports_1333
+    Ports *[]Azurerm_container_group_container_652_ports_653
 
     Protocol *string
 
     Secure_environment_variables *map[string]string
 
-    Volume *[]Azurerm_container_group_container_1332_volume_1334
+    Volume *[]Azurerm_container_group_container_652_volume_654
 
 }
 
-type Azurerm_container_group_image_registry_credential_1335 struct {
+type Azurerm_container_group_image_registry_credential_655 struct {
 
     Password string
 
@@ -2889,13 +2989,13 @@ type Azurerm_container_group struct {
 
     Azurerm_container_group_id *string `lyra:"ignore"`
 
-    Container []Azurerm_container_group_container_1332
+    Container []Azurerm_container_group_container_652
 
     Dns_name_label *string
 
     Fqdn *string
 
-    Image_registry_credential *[]Azurerm_container_group_image_registry_credential_1335
+    Image_registry_credential *[]Azurerm_container_group_image_registry_credential_655
 
     Ip_address *string
 
@@ -2922,6 +3022,7 @@ type Azurerm_container_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_container_groupHandler) Create(desired *Azurerm_container_group) (*Azurerm_container_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2938,6 +3039,7 @@ func (h *Azurerm_container_groupHandler) Create(desired *Azurerm_container_group
 
 // Read ...
 func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_container_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_container_group", externalID)
 	if err != nil {
 		return nil, err
@@ -2949,10 +3051,11 @@ func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_conta
 
 // Delete ...
 func (h *Azurerm_container_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_container_group", externalID)
 }
 
-type Azurerm_container_registry_storage_account_1336 struct {
+type Azurerm_container_registry_storage_account_656 struct {
 
     Access_key string
 
@@ -2982,7 +3085,7 @@ type Azurerm_container_registry struct {
 
     Sku *string
 
-    Storage_account *[]Azurerm_container_registry_storage_account_1336
+    Storage_account *[]Azurerm_container_registry_storage_account_656
 
     Storage_account_id *string
 
@@ -2997,6 +3100,7 @@ type Azurerm_container_registryHandler struct {
 
 // Create ...
 func (h *Azurerm_container_registryHandler) Create(desired *Azurerm_container_registry) (*Azurerm_container_registry, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3013,6 +3117,7 @@ func (h *Azurerm_container_registryHandler) Create(desired *Azurerm_container_re
 
 // Read ...
 func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_container_registry, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_container_registry", externalID)
 	if err != nil {
 		return nil, err
@@ -3024,10 +3129,11 @@ func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_co
 
 // Delete ...
 func (h *Azurerm_container_registryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_container_registry", externalID)
 }
 
-type Azurerm_container_service_agent_pool_profile_1337 struct {
+type Azurerm_container_service_agent_pool_profile_657 struct {
 
     Count *int
 
@@ -3041,7 +3147,7 @@ type Azurerm_container_service_agent_pool_profile_1337 struct {
 
 }
 
-type Azurerm_container_service_diagnostics_profile_1338 struct {
+type Azurerm_container_service_diagnostics_profile_658 struct {
 
     Enabled bool
 
@@ -3049,21 +3155,21 @@ type Azurerm_container_service_diagnostics_profile_1338 struct {
 
 }
 
-type Azurerm_container_service_linux_profile_1339_ssh_key_1340 struct {
+type Azurerm_container_service_linux_profile_659_ssh_key_660 struct {
 
     Key_data string
 
 }
 
-type Azurerm_container_service_linux_profile_1339 struct {
+type Azurerm_container_service_linux_profile_659 struct {
 
     Admin_username string
 
-    Ssh_key []Azurerm_container_service_linux_profile_1339_ssh_key_1340
+    Ssh_key []Azurerm_container_service_linux_profile_659_ssh_key_660
 
 }
 
-type Azurerm_container_service_master_profile_1341 struct {
+type Azurerm_container_service_master_profile_661 struct {
 
     Count *int
 
@@ -3073,7 +3179,7 @@ type Azurerm_container_service_master_profile_1341 struct {
 
 }
 
-type Azurerm_container_service_service_principal_1342 struct {
+type Azurerm_container_service_service_principal_662 struct {
 
     Client_id string
 
@@ -3085,15 +3191,15 @@ type Azurerm_container_service struct {
 
     Azurerm_container_service_id *string `lyra:"ignore"`
 
-    Agent_pool_profile []Azurerm_container_service_agent_pool_profile_1337
+    Agent_pool_profile []Azurerm_container_service_agent_pool_profile_657
 
-    Diagnostics_profile []Azurerm_container_service_diagnostics_profile_1338
+    Diagnostics_profile []Azurerm_container_service_diagnostics_profile_658
 
-    Linux_profile []Azurerm_container_service_linux_profile_1339
+    Linux_profile []Azurerm_container_service_linux_profile_659
 
     Location string
 
-    Master_profile []Azurerm_container_service_master_profile_1341
+    Master_profile []Azurerm_container_service_master_profile_661
 
     Name string
 
@@ -3101,7 +3207,7 @@ type Azurerm_container_service struct {
 
     Resource_group_name string
 
-    Service_principal *[]Azurerm_container_service_service_principal_1342
+    Service_principal *[]Azurerm_container_service_service_principal_662
 
     Tags *map[string]string
 
@@ -3114,6 +3220,7 @@ type Azurerm_container_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_container_serviceHandler) Create(desired *Azurerm_container_service) (*Azurerm_container_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3130,6 +3237,7 @@ func (h *Azurerm_container_serviceHandler) Create(desired *Azurerm_container_ser
 
 // Read ...
 func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_container_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_container_service", externalID)
 	if err != nil {
 		return nil, err
@@ -3141,16 +3249,17 @@ func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_con
 
 // Delete ...
 func (h *Azurerm_container_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_container_service", externalID)
 }
 
-type Azurerm_cosmosdb_account_capabilities_1343 struct {
+type Azurerm_cosmosdb_account_capabilities_663 struct {
 
     Name string
 
 }
 
-type Azurerm_cosmosdb_account_consistency_policy_1344 struct {
+type Azurerm_cosmosdb_account_consistency_policy_664 struct {
 
     Consistency_level string
 
@@ -3160,7 +3269,7 @@ type Azurerm_cosmosdb_account_consistency_policy_1344 struct {
 
 }
 
-type Azurerm_cosmosdb_account_failover_policy_1345 struct {
+type Azurerm_cosmosdb_account_failover_policy_665 struct {
 
     Id *string
 
@@ -3170,7 +3279,7 @@ type Azurerm_cosmosdb_account_failover_policy_1345 struct {
 
 }
 
-type Azurerm_cosmosdb_account_geo_location_1346 struct {
+type Azurerm_cosmosdb_account_geo_location_666 struct {
 
     Failover_priority int
 
@@ -3182,7 +3291,7 @@ type Azurerm_cosmosdb_account_geo_location_1346 struct {
 
 }
 
-type Azurerm_cosmosdb_account_virtual_network_rule_1347 struct {
+type Azurerm_cosmosdb_account_virtual_network_rule_667 struct {
 
     Id string
 
@@ -3192,11 +3301,11 @@ type Azurerm_cosmosdb_account struct {
 
     Azurerm_cosmosdb_account_id *string `lyra:"ignore"`
 
-    Capabilities *[]Azurerm_cosmosdb_account_capabilities_1343
+    Capabilities *[]Azurerm_cosmosdb_account_capabilities_663
 
     Connection_strings *[]string
 
-    Consistency_policy []Azurerm_cosmosdb_account_consistency_policy_1344
+    Consistency_policy []Azurerm_cosmosdb_account_consistency_policy_664
 
     Enable_automatic_failover *bool
 
@@ -3204,9 +3313,9 @@ type Azurerm_cosmosdb_account struct {
 
     Endpoint *string
 
-    Failover_policy *[]Azurerm_cosmosdb_account_failover_policy_1345
+    Failover_policy *[]Azurerm_cosmosdb_account_failover_policy_665
 
-    Geo_location *[]Azurerm_cosmosdb_account_geo_location_1346
+    Geo_location *[]Azurerm_cosmosdb_account_geo_location_666
 
     Ip_range_filter *string
 
@@ -3234,7 +3343,7 @@ type Azurerm_cosmosdb_account struct {
 
     Tags *map[string]string
 
-    Virtual_network_rule *[]Azurerm_cosmosdb_account_virtual_network_rule_1347
+    Virtual_network_rule *[]Azurerm_cosmosdb_account_virtual_network_rule_667
 
     Write_endpoints *[]string
 
@@ -3247,6 +3356,7 @@ type Azurerm_cosmosdb_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_cosmosdb_accountHandler) Create(desired *Azurerm_cosmosdb_account) (*Azurerm_cosmosdb_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3263,6 +3373,7 @@ func (h *Azurerm_cosmosdb_accountHandler) Create(desired *Azurerm_cosmosdb_accou
 
 // Read ...
 func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosmosdb_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cosmosdb_account", externalID)
 	if err != nil {
 		return nil, err
@@ -3274,6 +3385,7 @@ func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosm
 
 // Delete ...
 func (h *Azurerm_cosmosdb_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cosmosdb_account", externalID)
 }
 
@@ -3302,6 +3414,7 @@ type Azurerm_data_lake_analytics_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_analytics_accountHandler) Create(desired *Azurerm_data_lake_analytics_account) (*Azurerm_data_lake_analytics_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3318,6 +3431,7 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Create(desired *Azurerm_dat
 
 // Read ...
 func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*Azurerm_data_lake_analytics_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_account", externalID)
 	if err != nil {
 		return nil, err
@@ -3329,6 +3443,7 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Azurerm_data_lake_analytics_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_account", externalID)
 }
 
@@ -3355,6 +3470,7 @@ type Azurerm_data_lake_analytics_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Create(desired *Azurerm_data_lake_analytics_firewall_rule) (*Azurerm_data_lake_analytics_firewall_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3371,6 +3487,7 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Create(desired *Azure
 
 // Read ...
 func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_analytics_firewall_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -3382,6 +3499,7 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID strin
 
 // Delete ...
 func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
 }
 
@@ -3418,6 +3536,7 @@ type Azurerm_data_lake_storeHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_storeHandler) Create(desired *Azurerm_data_lake_store) (*Azurerm_data_lake_store, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3434,6 +3553,7 @@ func (h *Azurerm_data_lake_storeHandler) Create(desired *Azurerm_data_lake_store
 
 // Read ...
 func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_lake_store, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store", externalID)
 	if err != nil {
 		return nil, err
@@ -3445,6 +3565,7 @@ func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_
 
 // Delete ...
 func (h *Azurerm_data_lake_storeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_store", externalID)
 }
 
@@ -3467,6 +3588,7 @@ type Azurerm_data_lake_store_fileHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_store_fileHandler) Create(desired *Azurerm_data_lake_store_file) (*Azurerm_data_lake_store_file, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3483,6 +3605,7 @@ func (h *Azurerm_data_lake_store_fileHandler) Create(desired *Azurerm_data_lake_
 
 // Read ...
 func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_data_lake_store_file, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_file", externalID)
 	if err != nil {
 		return nil, err
@@ -3494,6 +3617,7 @@ func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_data_lake_store_fileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_store_file", externalID)
 }
 
@@ -3520,6 +3644,7 @@ type Azurerm_data_lake_store_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_store_firewall_ruleHandler) Create(desired *Azurerm_data_lake_store_firewall_rule) (*Azurerm_data_lake_store_firewall_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3536,6 +3661,7 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Create(desired *Azurerm_d
 
 // Read ...
 func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_store_firewall_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -3547,6 +3673,7 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (
 
 // Delete ...
 func (h *Azurerm_data_lake_store_firewall_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
 }
 
@@ -3577,6 +3704,7 @@ type Azurerm_databricks_workspaceHandler struct {
 
 // Create ...
 func (h *Azurerm_databricks_workspaceHandler) Create(desired *Azurerm_databricks_workspace) (*Azurerm_databricks_workspace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3593,6 +3721,7 @@ func (h *Azurerm_databricks_workspaceHandler) Create(desired *Azurerm_databricks
 
 // Read ...
 func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_databricks_workspace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_databricks_workspace", externalID)
 	if err != nil {
 		return nil, err
@@ -3604,6 +3733,7 @@ func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_databricks_workspaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_databricks_workspace", externalID)
 }
 
@@ -3642,6 +3772,7 @@ type Azurerm_dev_test_labHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_labHandler) Create(desired *Azurerm_dev_test_lab) (*Azurerm_dev_test_lab, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3658,6 +3789,7 @@ func (h *Azurerm_dev_test_labHandler) Create(desired *Azurerm_dev_test_lab) (*Az
 
 // Read ...
 func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test_lab, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_lab", externalID)
 	if err != nil {
 		return nil, err
@@ -3669,10 +3801,11 @@ func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test
 
 // Delete ...
 func (h *Azurerm_dev_test_labHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_lab", externalID)
 }
 
-type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348 struct {
+type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668 struct {
 
     Offer string
 
@@ -3684,7 +3817,7 @@ type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348 struct 
 
 }
 
-type Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349 struct {
+type Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669 struct {
 
     Backend_port int
 
@@ -3704,9 +3837,9 @@ type Azurerm_dev_test_linux_virtual_machine struct {
 
     Fqdn *string
 
-    Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_1348
+    Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668
 
-    Inbound_nat_rule *[]Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_1349
+    Inbound_nat_rule *[]Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669
 
     Lab_name string
 
@@ -3745,6 +3878,7 @@ type Azurerm_dev_test_linux_virtual_machineHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_linux_virtual_machineHandler) Create(desired *Azurerm_dev_test_linux_virtual_machine) (*Azurerm_dev_test_linux_virtual_machine, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3761,6 +3895,7 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_linux_virtual_machine, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
 	if err != nil {
 		return nil, err
@@ -3772,6 +3907,7 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Azurerm_dev_test_linux_virtual_machineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
 }
 
@@ -3806,6 +3942,7 @@ type Azurerm_dev_test_policyHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_policyHandler) Create(desired *Azurerm_dev_test_policy) (*Azurerm_dev_test_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3822,6 +3959,7 @@ func (h *Azurerm_dev_test_policyHandler) Create(desired *Azurerm_dev_test_policy
 
 // Read ...
 func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_test_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -3833,10 +3971,11 @@ func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_t
 
 // Delete ...
 func (h *Azurerm_dev_test_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_policy", externalID)
 }
 
-type Azurerm_dev_test_virtual_network_subnet_1350 struct {
+type Azurerm_dev_test_virtual_network_subnet_670 struct {
 
     Name *string
 
@@ -3858,7 +3997,7 @@ type Azurerm_dev_test_virtual_network struct {
 
     Resource_group_name string
 
-    Subnet *[]Azurerm_dev_test_virtual_network_subnet_1350
+    Subnet *[]Azurerm_dev_test_virtual_network_subnet_670
 
     Tags *map[string]string
 
@@ -3873,6 +4012,7 @@ type Azurerm_dev_test_virtual_networkHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_virtual_networkHandler) Create(desired *Azurerm_dev_test_virtual_network) (*Azurerm_dev_test_virtual_network, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3889,6 +4029,7 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Create(desired *Azurerm_dev_te
 
 // Read ...
 func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azurerm_dev_test_virtual_network, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_virtual_network", externalID)
 	if err != nil {
 		return nil, err
@@ -3900,10 +4041,11 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_dev_test_virtual_networkHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_virtual_network", externalID)
 }
 
-type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351 struct {
+type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671 struct {
 
     Offer string
 
@@ -3915,7 +4057,7 @@ type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351 struc
 
 }
 
-type Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352 struct {
+type Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672 struct {
 
     Backend_port int
 
@@ -3935,9 +4077,9 @@ type Azurerm_dev_test_windows_virtual_machine struct {
 
     Fqdn *string
 
-    Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_1351
+    Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671
 
-    Inbound_nat_rule *[]Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_1352
+    Inbound_nat_rule *[]Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672
 
     Lab_name string
 
@@ -3974,6 +4116,7 @@ type Azurerm_dev_test_windows_virtual_machineHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_windows_virtual_machineHandler) Create(desired *Azurerm_dev_test_windows_virtual_machine) (*Azurerm_dev_test_windows_virtual_machine, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3990,6 +4133,7 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Create(desired *Azurer
 
 // Read ...
 func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_windows_virtual_machine, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
 	if err != nil {
 		return nil, err
@@ -4001,10 +4145,11 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string
 
 // Delete ...
 func (h *Azurerm_dev_test_windows_virtual_machineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
 }
 
-type Azurerm_devspace_controller_sku_1353 struct {
+type Azurerm_devspace_controller_sku_673 struct {
 
     Name string
 
@@ -4026,7 +4171,7 @@ type Azurerm_devspace_controller struct {
 
     Resource_group_name string
 
-    Sku []Azurerm_devspace_controller_sku_1353
+    Sku []Azurerm_devspace_controller_sku_673
 
     Tags *map[string]string
 
@@ -4043,6 +4188,7 @@ type Azurerm_devspace_controllerHandler struct {
 
 // Create ...
 func (h *Azurerm_devspace_controllerHandler) Create(desired *Azurerm_devspace_controller) (*Azurerm_devspace_controller, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4059,6 +4205,7 @@ func (h *Azurerm_devspace_controllerHandler) Create(desired *Azurerm_devspace_co
 
 // Read ...
 func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_devspace_controller, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_devspace_controller", externalID)
 	if err != nil {
 		return nil, err
@@ -4070,6 +4217,7 @@ func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_d
 
 // Delete ...
 func (h *Azurerm_devspace_controllerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_devspace_controller", externalID)
 }
 
@@ -4098,6 +4246,7 @@ type Azurerm_dns_a_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_a_recordHandler) Create(desired *Azurerm_dns_a_record) (*Azurerm_dns_a_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4114,6 +4263,7 @@ func (h *Azurerm_dns_a_recordHandler) Create(desired *Azurerm_dns_a_record) (*Az
 
 // Read ...
 func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_a_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4125,6 +4275,7 @@ func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_re
 
 // Delete ...
 func (h *Azurerm_dns_a_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_a_record", externalID)
 }
 
@@ -4153,6 +4304,7 @@ type Azurerm_dns_aaaa_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_aaaa_recordHandler) Create(desired *Azurerm_dns_aaaa_record) (*Azurerm_dns_aaaa_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4169,6 +4321,7 @@ func (h *Azurerm_dns_aaaa_recordHandler) Create(desired *Azurerm_dns_aaaa_record
 
 // Read ...
 func (h *Azurerm_dns_aaaa_recordHandler) Read(externalID string) (*Azurerm_dns_aaaa_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_aaaa_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4180,10 +4333,11 @@ func (h *Azurerm_dns_aaaa_recordHandler) Read(externalID string) (*Azurerm_dns_a
 
 // Delete ...
 func (h *Azurerm_dns_aaaa_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_aaaa_record", externalID)
 }
 
-type Azurerm_dns_caa_record_record_1354 struct {
+type Azurerm_dns_caa_record_record_674 struct {
 
     Flags int
 
@@ -4199,7 +4353,7 @@ type Azurerm_dns_caa_record struct {
 
     Name string
 
-    Record []Azurerm_dns_caa_record_record_1354
+    Record []Azurerm_dns_caa_record_record_674
 
     Resource_group_name string
 
@@ -4218,6 +4372,7 @@ type Azurerm_dns_caa_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_caa_recordHandler) Create(desired *Azurerm_dns_caa_record) (*Azurerm_dns_caa_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4234,6 +4389,7 @@ func (h *Azurerm_dns_caa_recordHandler) Create(desired *Azurerm_dns_caa_record) 
 
 // Read ...
 func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_caa_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_caa_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4245,6 +4401,7 @@ func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_ca
 
 // Delete ...
 func (h *Azurerm_dns_caa_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_caa_record", externalID)
 }
 
@@ -4275,6 +4432,7 @@ type Azurerm_dns_cname_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_cname_recordHandler) Create(desired *Azurerm_dns_cname_record) (*Azurerm_dns_cname_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4291,6 +4449,7 @@ func (h *Azurerm_dns_cname_recordHandler) Create(desired *Azurerm_dns_cname_reco
 
 // Read ...
 func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_cname_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_cname_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4302,10 +4461,11 @@ func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_
 
 // Delete ...
 func (h *Azurerm_dns_cname_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_cname_record", externalID)
 }
 
-type Azurerm_dns_mx_record_record_1355 struct {
+type Azurerm_dns_mx_record_record_675 struct {
 
     Exchange string
 
@@ -4319,7 +4479,7 @@ type Azurerm_dns_mx_record struct {
 
     Name string
 
-    Record []Azurerm_dns_mx_record_record_1355
+    Record []Azurerm_dns_mx_record_record_675
 
     Resource_group_name string
 
@@ -4338,6 +4498,7 @@ type Azurerm_dns_mx_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_mx_recordHandler) Create(desired *Azurerm_dns_mx_record) (*Azurerm_dns_mx_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4354,6 +4515,7 @@ func (h *Azurerm_dns_mx_recordHandler) Create(desired *Azurerm_dns_mx_record) (*
 
 // Read ...
 func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_mx_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4365,10 +4527,11 @@ func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_
 
 // Delete ...
 func (h *Azurerm_dns_mx_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_mx_record", externalID)
 }
 
-type Azurerm_dns_ns_record_record_1356 struct {
+type Azurerm_dns_ns_record_record_676 struct {
 
     Nsdname string
 
@@ -4380,7 +4543,7 @@ type Azurerm_dns_ns_record struct {
 
     Name string
 
-    Record *[]Azurerm_dns_ns_record_record_1356
+    Record *[]Azurerm_dns_ns_record_record_676
 
     Records *[]string
 
@@ -4401,6 +4564,7 @@ type Azurerm_dns_ns_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_ns_recordHandler) Create(desired *Azurerm_dns_ns_record) (*Azurerm_dns_ns_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4417,6 +4581,7 @@ func (h *Azurerm_dns_ns_recordHandler) Create(desired *Azurerm_dns_ns_record) (*
 
 // Read ...
 func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_ns_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4428,6 +4593,7 @@ func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_
 
 // Delete ...
 func (h *Azurerm_dns_ns_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_ns_record", externalID)
 }
 
@@ -4456,6 +4622,7 @@ type Azurerm_dns_ptr_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_ptr_recordHandler) Create(desired *Azurerm_dns_ptr_record) (*Azurerm_dns_ptr_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4472,6 +4639,7 @@ func (h *Azurerm_dns_ptr_recordHandler) Create(desired *Azurerm_dns_ptr_record) 
 
 // Read ...
 func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_ptr_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_ptr_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4483,10 +4651,11 @@ func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_pt
 
 // Delete ...
 func (h *Azurerm_dns_ptr_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_ptr_record", externalID)
 }
 
-type Azurerm_dns_srv_record_record_1357 struct {
+type Azurerm_dns_srv_record_record_677 struct {
 
     Port int
 
@@ -4504,7 +4673,7 @@ type Azurerm_dns_srv_record struct {
 
     Name string
 
-    Record []Azurerm_dns_srv_record_record_1357
+    Record []Azurerm_dns_srv_record_record_677
 
     Resource_group_name string
 
@@ -4523,6 +4692,7 @@ type Azurerm_dns_srv_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_srv_recordHandler) Create(desired *Azurerm_dns_srv_record) (*Azurerm_dns_srv_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4539,6 +4709,7 @@ func (h *Azurerm_dns_srv_recordHandler) Create(desired *Azurerm_dns_srv_record) 
 
 // Read ...
 func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_srv_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_srv_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4550,10 +4721,11 @@ func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_sr
 
 // Delete ...
 func (h *Azurerm_dns_srv_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_srv_record", externalID)
 }
 
-type Azurerm_dns_txt_record_record_1358 struct {
+type Azurerm_dns_txt_record_record_678 struct {
 
     Value string
 
@@ -4565,7 +4737,7 @@ type Azurerm_dns_txt_record struct {
 
     Name string
 
-    Record []Azurerm_dns_txt_record_record_1358
+    Record []Azurerm_dns_txt_record_record_678
 
     Resource_group_name string
 
@@ -4584,6 +4756,7 @@ type Azurerm_dns_txt_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_txt_recordHandler) Create(desired *Azurerm_dns_txt_record) (*Azurerm_dns_txt_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4600,6 +4773,7 @@ func (h *Azurerm_dns_txt_recordHandler) Create(desired *Azurerm_dns_txt_record) 
 
 // Read ...
 func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_txt_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_txt_record", externalID)
 	if err != nil {
 		return nil, err
@@ -4611,6 +4785,7 @@ func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_tx
 
 // Delete ...
 func (h *Azurerm_dns_txt_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_txt_record", externalID)
 }
 
@@ -4645,6 +4820,7 @@ type Azurerm_dns_zoneHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_zoneHandler) Create(desired *Azurerm_dns_zone) (*Azurerm_dns_zone, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4661,6 +4837,7 @@ func (h *Azurerm_dns_zoneHandler) Create(desired *Azurerm_dns_zone) (*Azurerm_dn
 
 // Read ...
 func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_zone", externalID)
 	if err != nil {
 		return nil, err
@@ -4672,6 +4849,7 @@ func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, er
 
 // Delete ...
 func (h *Azurerm_dns_zoneHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_zone", externalID)
 }
 
@@ -4702,6 +4880,7 @@ type Azurerm_eventgrid_topicHandler struct {
 
 // Create ...
 func (h *Azurerm_eventgrid_topicHandler) Create(desired *Azurerm_eventgrid_topic) (*Azurerm_eventgrid_topic, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4718,6 +4897,7 @@ func (h *Azurerm_eventgrid_topicHandler) Create(desired *Azurerm_eventgrid_topic
 
 // Read ...
 func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_eventgrid_topic, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventgrid_topic", externalID)
 	if err != nil {
 		return nil, err
@@ -4729,10 +4909,11 @@ func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_event
 
 // Delete ...
 func (h *Azurerm_eventgrid_topicHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventgrid_topic", externalID)
 }
 
-type Azurerm_eventhub_capture_description_1359_destination_1360 struct {
+type Azurerm_eventhub_capture_description_679_destination_680 struct {
 
     Archive_name_format string
 
@@ -4744,9 +4925,9 @@ type Azurerm_eventhub_capture_description_1359_destination_1360 struct {
 
 }
 
-type Azurerm_eventhub_capture_description_1359 struct {
+type Azurerm_eventhub_capture_description_679 struct {
 
-    Destination []Azurerm_eventhub_capture_description_1359_destination_1360
+    Destination []Azurerm_eventhub_capture_description_679_destination_680
 
     Enabled bool
 
@@ -4762,7 +4943,7 @@ type Azurerm_eventhub struct {
 
     Azurerm_eventhub_id *string `lyra:"ignore"`
 
-    Capture_description *[]Azurerm_eventhub_capture_description_1359
+    Capture_description *[]Azurerm_eventhub_capture_description_679
 
     Location *string
 
@@ -4787,6 +4968,7 @@ type Azurerm_eventhubHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhubHandler) Create(desired *Azurerm_eventhub) (*Azurerm_eventhub, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4803,6 +4985,7 @@ func (h *Azurerm_eventhubHandler) Create(desired *Azurerm_eventhub) (*Azurerm_ev
 
 // Read ...
 func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub", externalID)
 	if err != nil {
 		return nil, err
@@ -4814,6 +4997,7 @@ func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, er
 
 // Delete ...
 func (h *Azurerm_eventhubHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub", externalID)
 }
 
@@ -4854,6 +5038,7 @@ type Azurerm_eventhub_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_authorization_ruleHandler) Create(desired *Azurerm_eventhub_authorization_rule) (*Azurerm_eventhub_authorization_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4870,6 +5055,7 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Create(desired *Azurerm_eve
 
 // Read ...
 func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_authorization_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_authorization_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -4881,6 +5067,7 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Azurerm_eventhub_authorization_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_authorization_rule", externalID)
 }
 
@@ -4909,6 +5096,7 @@ type Azurerm_eventhub_consumer_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_consumer_groupHandler) Create(desired *Azurerm_eventhub_consumer_group) (*Azurerm_eventhub_consumer_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4925,6 +5113,7 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Create(desired *Azurerm_eventhu
 
 // Read ...
 func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azurerm_eventhub_consumer_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_consumer_group", externalID)
 	if err != nil {
 		return nil, err
@@ -4936,6 +5125,7 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_eventhub_consumer_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_consumer_group", externalID)
 }
 
@@ -4978,6 +5168,7 @@ type Azurerm_eventhub_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_namespaceHandler) Create(desired *Azurerm_eventhub_namespace) (*Azurerm_eventhub_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4994,6 +5185,7 @@ func (h *Azurerm_eventhub_namespaceHandler) Create(desired *Azurerm_eventhub_nam
 
 // Read ...
 func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_eventhub_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -5005,6 +5197,7 @@ func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_ev
 
 // Delete ...
 func (h *Azurerm_eventhub_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_namespace", externalID)
 }
 
@@ -5043,6 +5236,7 @@ type Azurerm_eventhub_namespace_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Create(desired *Azurerm_eventhub_namespace_authorization_rule) (*Azurerm_eventhub_namespace_authorization_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5059,6 +5253,7 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Create(desired *A
 
 // Read ...
 func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_namespace_authorization_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -5070,10 +5265,11 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID s
 
 // Delete ...
 func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
 }
 
-type Azurerm_express_route_circuit_sku_1361 struct {
+type Azurerm_express_route_circuit_sku_681 struct {
 
     Family string
 
@@ -5103,7 +5299,7 @@ type Azurerm_express_route_circuit struct {
 
     Service_provider_provisioning_state *string
 
-    Sku []Azurerm_express_route_circuit_sku_1361
+    Sku []Azurerm_express_route_circuit_sku_681
 
     Tags *map[string]string
 
@@ -5116,6 +5312,7 @@ type Azurerm_express_route_circuitHandler struct {
 
 // Create ...
 func (h *Azurerm_express_route_circuitHandler) Create(desired *Azurerm_express_route_circuit) (*Azurerm_express_route_circuit, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5132,6 +5329,7 @@ func (h *Azurerm_express_route_circuitHandler) Create(desired *Azurerm_express_r
 
 // Read ...
 func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm_express_route_circuit, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit", externalID)
 	if err != nil {
 		return nil, err
@@ -5143,6 +5341,7 @@ func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_express_route_circuitHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_express_route_circuit", externalID)
 }
 
@@ -5169,6 +5368,7 @@ type Azurerm_express_route_circuit_authorizationHandler struct {
 
 // Create ...
 func (h *Azurerm_express_route_circuit_authorizationHandler) Create(desired *Azurerm_express_route_circuit_authorization) (*Azurerm_express_route_circuit_authorization, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5185,6 +5385,7 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID string) (*Azurerm_express_route_circuit_authorization, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_authorization", externalID)
 	if err != nil {
 		return nil, err
@@ -5196,10 +5397,11 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID str
 
 // Delete ...
 func (h *Azurerm_express_route_circuit_authorizationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_express_route_circuit_authorization", externalID)
 }
 
-type Azurerm_express_route_circuit_peering_microsoft_peering_config_1362 struct {
+type Azurerm_express_route_circuit_peering_microsoft_peering_config_682 struct {
 
     Advertised_public_prefixes []string
 
@@ -5213,7 +5415,7 @@ type Azurerm_express_route_circuit_peering struct {
 
     Express_route_circuit_name string
 
-    Microsoft_peering_config *[]Azurerm_express_route_circuit_peering_microsoft_peering_config_1362
+    Microsoft_peering_config *[]Azurerm_express_route_circuit_peering_microsoft_peering_config_682
 
     Peer_asn *int
 
@@ -5242,6 +5444,7 @@ type Azurerm_express_route_circuit_peeringHandler struct {
 
 // Create ...
 func (h *Azurerm_express_route_circuit_peeringHandler) Create(desired *Azurerm_express_route_circuit_peering) (*Azurerm_express_route_circuit_peering, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5258,6 +5461,7 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Create(desired *Azurerm_e
 
 // Read ...
 func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (*Azurerm_express_route_circuit_peering, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_peering", externalID)
 	if err != nil {
 		return nil, err
@@ -5269,10 +5473,11 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (
 
 // Delete ...
 func (h *Azurerm_express_route_circuit_peeringHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_express_route_circuit_peering", externalID)
 }
 
-type Azurerm_firewall_ip_configuration_1363 struct {
+type Azurerm_firewall_ip_configuration_683 struct {
 
     Internal_public_ip_address_id *string
 
@@ -5290,7 +5495,7 @@ type Azurerm_firewall struct {
 
     Azurerm_firewall_id *string `lyra:"ignore"`
 
-    Ip_configuration []Azurerm_firewall_ip_configuration_1363
+    Ip_configuration []Azurerm_firewall_ip_configuration_683
 
     Location string
 
@@ -5309,6 +5514,7 @@ type Azurerm_firewallHandler struct {
 
 // Create ...
 func (h *Azurerm_firewallHandler) Create(desired *Azurerm_firewall) (*Azurerm_firewall, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5325,6 +5531,7 @@ func (h *Azurerm_firewallHandler) Create(desired *Azurerm_firewall) (*Azurerm_fi
 
 // Read ...
 func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_firewall", externalID)
 	if err != nil {
 		return nil, err
@@ -5336,10 +5543,11 @@ func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, er
 
 // Delete ...
 func (h *Azurerm_firewallHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_firewall", externalID)
 }
 
-type Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365 struct {
+type Azurerm_firewall_application_rule_collection_rule_684_protocol_685 struct {
 
     Port *int
 
@@ -5347,7 +5555,7 @@ type Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365 struct
 
 }
 
-type Azurerm_firewall_application_rule_collection_rule_1364 struct {
+type Azurerm_firewall_application_rule_collection_rule_684 struct {
 
     Description *string
 
@@ -5355,7 +5563,7 @@ type Azurerm_firewall_application_rule_collection_rule_1364 struct {
 
     Name string
 
-    Protocol *[]Azurerm_firewall_application_rule_collection_rule_1364_protocol_1365
+    Protocol *[]Azurerm_firewall_application_rule_collection_rule_684_protocol_685
 
     Source_addresses []string
 
@@ -5377,7 +5585,7 @@ type Azurerm_firewall_application_rule_collection struct {
 
     Resource_group_name string
 
-    Rule []Azurerm_firewall_application_rule_collection_rule_1364
+    Rule []Azurerm_firewall_application_rule_collection_rule_684
 
 }
 
@@ -5388,6 +5596,7 @@ type Azurerm_firewall_application_rule_collectionHandler struct {
 
 // Create ...
 func (h *Azurerm_firewall_application_rule_collectionHandler) Create(desired *Azurerm_firewall_application_rule_collection) (*Azurerm_firewall_application_rule_collection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5404,6 +5613,7 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_application_rule_collection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_firewall_application_rule_collection", externalID)
 	if err != nil {
 		return nil, err
@@ -5415,10 +5625,11 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID st
 
 // Delete ...
 func (h *Azurerm_firewall_application_rule_collectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_firewall_application_rule_collection", externalID)
 }
 
-type Azurerm_firewall_network_rule_collection_rule_1366 struct {
+type Azurerm_firewall_network_rule_collection_rule_686 struct {
 
     Description *string
 
@@ -5448,7 +5659,7 @@ type Azurerm_firewall_network_rule_collection struct {
 
     Resource_group_name string
 
-    Rule []Azurerm_firewall_network_rule_collection_rule_1366
+    Rule []Azurerm_firewall_network_rule_collection_rule_686
 
 }
 
@@ -5459,6 +5670,7 @@ type Azurerm_firewall_network_rule_collectionHandler struct {
 
 // Create ...
 func (h *Azurerm_firewall_network_rule_collectionHandler) Create(desired *Azurerm_firewall_network_rule_collection) (*Azurerm_firewall_network_rule_collection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5475,6 +5687,7 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Create(desired *Azurer
 
 // Read ...
 func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_network_rule_collection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_firewall_network_rule_collection", externalID)
 	if err != nil {
 		return nil, err
@@ -5486,10 +5699,11 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string
 
 // Delete ...
 func (h *Azurerm_firewall_network_rule_collectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_firewall_network_rule_collection", externalID)
 }
 
-type Azurerm_function_app_connection_string_1367 struct {
+type Azurerm_function_app_connection_string_687 struct {
 
     Name string
 
@@ -5499,7 +5713,7 @@ type Azurerm_function_app_connection_string_1367 struct {
 
 }
 
-type Azurerm_function_app_identity_1368 struct {
+type Azurerm_function_app_identity_688 struct {
 
     Principal_id *string
 
@@ -5509,7 +5723,7 @@ type Azurerm_function_app_identity_1368 struct {
 
 }
 
-type Azurerm_function_app_site_config_1369 struct {
+type Azurerm_function_app_site_config_689 struct {
 
     Always_on *bool
 
@@ -5519,7 +5733,7 @@ type Azurerm_function_app_site_config_1369 struct {
 
 }
 
-type Azurerm_function_app_site_credential_1370 struct {
+type Azurerm_function_app_site_credential_690 struct {
 
     Password *string
 
@@ -5537,7 +5751,7 @@ type Azurerm_function_app struct {
 
     Client_affinity_enabled *bool
 
-    Connection_string *[]Azurerm_function_app_connection_string_1367
+    Connection_string *[]Azurerm_function_app_connection_string_687
 
     Default_hostname *string
 
@@ -5547,7 +5761,7 @@ type Azurerm_function_app struct {
 
     Https_only *bool
 
-    Identity *[]Azurerm_function_app_identity_1368
+    Identity *[]Azurerm_function_app_identity_688
 
     Location string
 
@@ -5557,9 +5771,9 @@ type Azurerm_function_app struct {
 
     Resource_group_name string
 
-    Site_config *[]Azurerm_function_app_site_config_1369
+    Site_config *[]Azurerm_function_app_site_config_689
 
-    Site_credential *[]Azurerm_function_app_site_credential_1370
+    Site_credential *[]Azurerm_function_app_site_credential_690
 
     Storage_connection_string string
 
@@ -5576,6 +5790,7 @@ type Azurerm_function_appHandler struct {
 
 // Create ...
 func (h *Azurerm_function_appHandler) Create(desired *Azurerm_function_app) (*Azurerm_function_app, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5592,6 +5807,7 @@ func (h *Azurerm_function_appHandler) Create(desired *Azurerm_function_app) (*Az
 
 // Read ...
 func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function_app, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_function_app", externalID)
 	if err != nil {
 		return nil, err
@@ -5603,10 +5819,11 @@ func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function
 
 // Delete ...
 func (h *Azurerm_function_appHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_function_app", externalID)
 }
 
-type Azurerm_image_data_disk_1371 struct {
+type Azurerm_image_data_disk_691 struct {
 
     Blob_uri *string
 
@@ -5620,7 +5837,7 @@ type Azurerm_image_data_disk_1371 struct {
 
 }
 
-type Azurerm_image_os_disk_1372 struct {
+type Azurerm_image_os_disk_692 struct {
 
     Blob_uri *string
 
@@ -5640,13 +5857,13 @@ type Azurerm_image struct {
 
     Azurerm_image_id *string `lyra:"ignore"`
 
-    Data_disk *[]Azurerm_image_data_disk_1371
+    Data_disk *[]Azurerm_image_data_disk_691
 
     Location string
 
     Name string
 
-    Os_disk *[]Azurerm_image_os_disk_1372
+    Os_disk *[]Azurerm_image_os_disk_692
 
     Resource_group_name string
 
@@ -5663,6 +5880,7 @@ type Azurerm_imageHandler struct {
 
 // Create ...
 func (h *Azurerm_imageHandler) Create(desired *Azurerm_image) (*Azurerm_image, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5679,6 +5897,7 @@ func (h *Azurerm_imageHandler) Create(desired *Azurerm_image) (*Azurerm_image, s
 
 // Read ...
 func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_image", externalID)
 	if err != nil {
 		return nil, err
@@ -5690,10 +5909,11 @@ func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
 
 // Delete ...
 func (h *Azurerm_imageHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_image", externalID)
 }
 
-type Azurerm_iothub_endpoint_1373 struct {
+type Azurerm_iothub_endpoint_693 struct {
 
     Batch_frequency_in_seconds *int
 
@@ -5713,7 +5933,7 @@ type Azurerm_iothub_endpoint_1373 struct {
 
 }
 
-type Azurerm_iothub_route_1374 struct {
+type Azurerm_iothub_route_694 struct {
 
     Condition *string
 
@@ -5727,7 +5947,7 @@ type Azurerm_iothub_route_1374 struct {
 
 }
 
-type Azurerm_iothub_shared_access_policy_1375 struct {
+type Azurerm_iothub_shared_access_policy_695 struct {
 
     Key_name *string
 
@@ -5739,7 +5959,7 @@ type Azurerm_iothub_shared_access_policy_1375 struct {
 
 }
 
-type Azurerm_iothub_sku_1376 struct {
+type Azurerm_iothub_sku_696 struct {
 
     Capacity int
 
@@ -5753,7 +5973,7 @@ type Azurerm_iothub struct {
 
     Azurerm_iothub_id *string `lyra:"ignore"`
 
-    Endpoint *[]Azurerm_iothub_endpoint_1373
+    Endpoint *[]Azurerm_iothub_endpoint_693
 
     Event_hub_events_endpoint *string
 
@@ -5771,11 +5991,11 @@ type Azurerm_iothub struct {
 
     Resource_group_name string
 
-    Route *[]Azurerm_iothub_route_1374
+    Route *[]Azurerm_iothub_route_694
 
-    Shared_access_policy *[]Azurerm_iothub_shared_access_policy_1375
+    Shared_access_policy *[]Azurerm_iothub_shared_access_policy_695
 
-    Sku []Azurerm_iothub_sku_1376
+    Sku []Azurerm_iothub_sku_696
 
     Tags *map[string]string
 
@@ -5790,6 +6010,7 @@ type Azurerm_iothubHandler struct {
 
 // Create ...
 func (h *Azurerm_iothubHandler) Create(desired *Azurerm_iothub) (*Azurerm_iothub, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5806,6 +6027,7 @@ func (h *Azurerm_iothubHandler) Create(desired *Azurerm_iothub) (*Azurerm_iothub
 
 // Read ...
 func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_iothub", externalID)
 	if err != nil {
 		return nil, err
@@ -5817,6 +6039,7 @@ func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error)
 
 // Delete ...
 func (h *Azurerm_iothubHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_iothub", externalID)
 }
 
@@ -5841,6 +6064,7 @@ type Azurerm_iothub_consumer_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_iothub_consumer_groupHandler) Create(desired *Azurerm_iothub_consumer_group) (*Azurerm_iothub_consumer_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5857,6 +6081,7 @@ func (h *Azurerm_iothub_consumer_groupHandler) Create(desired *Azurerm_iothub_co
 
 // Read ...
 func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm_iothub_consumer_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_iothub_consumer_group", externalID)
 	if err != nil {
 		return nil, err
@@ -5868,10 +6093,11 @@ func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_iothub_consumer_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_iothub_consumer_group", externalID)
 }
 
-type Azurerm_key_vault_access_policy_1377 struct {
+type Azurerm_key_vault_access_policy_697 struct {
 
     Application_id *string
 
@@ -5887,7 +6113,7 @@ type Azurerm_key_vault_access_policy_1377 struct {
 
 }
 
-type Azurerm_key_vault_network_acls_1378 struct {
+type Azurerm_key_vault_network_acls_698 struct {
 
     Bypass string
 
@@ -5899,7 +6125,7 @@ type Azurerm_key_vault_network_acls_1378 struct {
 
 }
 
-type Azurerm_key_vault_sku_1379 struct {
+type Azurerm_key_vault_sku_699 struct {
 
     Name string
 
@@ -5909,7 +6135,7 @@ type Azurerm_key_vault struct {
 
     Azurerm_key_vault_id *string `lyra:"ignore"`
 
-    Access_policy *[]Azurerm_key_vault_access_policy_1377
+    Access_policy *[]Azurerm_key_vault_access_policy_697
 
     Enabled_for_deployment *bool
 
@@ -5921,11 +6147,11 @@ type Azurerm_key_vault struct {
 
     Name string
 
-    Network_acls *[]Azurerm_key_vault_network_acls_1378
+    Network_acls *[]Azurerm_key_vault_network_acls_698
 
     Resource_group_name string
 
-    Sku []Azurerm_key_vault_sku_1379
+    Sku []Azurerm_key_vault_sku_699
 
     Tags *map[string]string
 
@@ -5942,6 +6168,7 @@ type Azurerm_key_vaultHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vaultHandler) Create(desired *Azurerm_key_vault) (*Azurerm_key_vault, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5958,6 +6185,7 @@ func (h *Azurerm_key_vaultHandler) Create(desired *Azurerm_key_vault) (*Azurerm_
 
 // Read ...
 func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault", externalID)
 	if err != nil {
 		return nil, err
@@ -5969,6 +6197,7 @@ func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, 
 
 // Delete ...
 func (h *Azurerm_key_vaultHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault", externalID)
 }
 
@@ -6001,6 +6230,7 @@ type Azurerm_key_vault_access_policyHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_access_policyHandler) Create(desired *Azurerm_key_vault_access_policy) (*Azurerm_key_vault_access_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6017,6 +6247,7 @@ func (h *Azurerm_key_vault_access_policyHandler) Create(desired *Azurerm_key_vau
 
 // Read ...
 func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azurerm_key_vault_access_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_access_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -6028,10 +6259,11 @@ func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_key_vault_access_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_access_policy", externalID)
 }
 
-type Azurerm_key_vault_certificate_certificate_1380 struct {
+type Azurerm_key_vault_certificate_certificate_700 struct {
 
     Contents string
 
@@ -6039,13 +6271,13 @@ type Azurerm_key_vault_certificate_certificate_1380 struct {
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702 struct {
 
     Name string
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703 struct {
 
     Exportable bool
 
@@ -6057,13 +6289,13 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383 s
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705 struct {
 
     Action_type string
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706 struct {
 
     Days_before_expiry *int
 
@@ -6071,21 +6303,21 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704 struct {
 
-    Action []Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_action_1385
+    Action []Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705
 
-    Trigger []Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384_trigger_1386
+    Trigger []Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707 struct {
 
     Content_type string
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709 struct {
 
     Dns_names *[]string
 
@@ -6095,7 +6327,7 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_prop
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708 struct {
 
     Extended_key_usage *[]string
 
@@ -6103,23 +6335,23 @@ type Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_prop
 
     Subject string
 
-    Subject_alternative_names *[]Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388_subject_alternative_names_1389
+    Subject_alternative_names *[]Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709
 
     Validity_in_months int
 
 }
 
-type Azurerm_key_vault_certificate_certificate_policy_1381 struct {
+type Azurerm_key_vault_certificate_certificate_policy_701 struct {
 
-    Issuer_parameters []Azurerm_key_vault_certificate_certificate_policy_1381_issuer_parameters_1382
+    Issuer_parameters []Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702
 
-    Key_properties []Azurerm_key_vault_certificate_certificate_policy_1381_key_properties_1383
+    Key_properties []Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703
 
-    Lifetime_action *[]Azurerm_key_vault_certificate_certificate_policy_1381_lifetime_action_1384
+    Lifetime_action *[]Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704
 
-    Secret_properties []Azurerm_key_vault_certificate_certificate_policy_1381_secret_properties_1387
+    Secret_properties []Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707
 
-    X509_certificate_properties *[]Azurerm_key_vault_certificate_certificate_policy_1381_x509_certificate_properties_1388
+    X509_certificate_properties *[]Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708
 
 }
 
@@ -6127,11 +6359,11 @@ type Azurerm_key_vault_certificate struct {
 
     Azurerm_key_vault_certificate_id *string `lyra:"ignore"`
 
-    Certificate *[]Azurerm_key_vault_certificate_certificate_1380
+    Certificate *[]Azurerm_key_vault_certificate_certificate_700
 
     Certificate_data *string
 
-    Certificate_policy []Azurerm_key_vault_certificate_certificate_policy_1381
+    Certificate_policy []Azurerm_key_vault_certificate_certificate_policy_701
 
     Name string
 
@@ -6154,6 +6386,7 @@ type Azurerm_key_vault_certificateHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_certificateHandler) Create(desired *Azurerm_key_vault_certificate) (*Azurerm_key_vault_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6170,6 +6403,7 @@ func (h *Azurerm_key_vault_certificateHandler) Create(desired *Azurerm_key_vault
 
 // Read ...
 func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm_key_vault_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -6181,6 +6415,7 @@ func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_key_vault_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_certificate", externalID)
 }
 
@@ -6215,6 +6450,7 @@ type Azurerm_key_vault_keyHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_keyHandler) Create(desired *Azurerm_key_vault_key) (*Azurerm_key_vault_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6231,6 +6467,7 @@ func (h *Azurerm_key_vault_keyHandler) Create(desired *Azurerm_key_vault_key) (*
 
 // Read ...
 func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vault_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_key", externalID)
 	if err != nil {
 		return nil, err
@@ -6242,6 +6479,7 @@ func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vau
 
 // Delete ...
 func (h *Azurerm_key_vault_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_key", externalID)
 }
 
@@ -6270,6 +6508,7 @@ type Azurerm_key_vault_secretHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_secretHandler) Create(desired *Azurerm_key_vault_secret) (*Azurerm_key_vault_secret, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6286,6 +6525,7 @@ func (h *Azurerm_key_vault_secretHandler) Create(desired *Azurerm_key_vault_secr
 
 // Read ...
 func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_vault_secret, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_secret", externalID)
 	if err != nil {
 		return nil, err
@@ -6297,10 +6537,11 @@ func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_
 
 // Delete ...
 func (h *Azurerm_key_vault_secretHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_secret", externalID)
 }
 
-type Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391 struct {
+type Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711 struct {
 
     Enabled bool
 
@@ -6308,7 +6549,7 @@ type Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391 stru
 
 }
 
-type Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392 struct {
+type Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712 struct {
 
     Enabled bool
 
@@ -6316,7 +6557,7 @@ type Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392
 
 }
 
-type Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393 struct {
+type Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713 struct {
 
     Enabled bool
 
@@ -6324,17 +6565,17 @@ type Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393 struct {
 
 }
 
-type Azurerm_kubernetes_cluster_addon_profile_1390 struct {
+type Azurerm_kubernetes_cluster_addon_profile_710 struct {
 
-    Aci_connector_linux *[]Azurerm_kubernetes_cluster_addon_profile_1390_aci_connector_linux_1391
+    Aci_connector_linux *[]Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711
 
-    Http_application_routing *[]Azurerm_kubernetes_cluster_addon_profile_1390_http_application_routing_1392
+    Http_application_routing *[]Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712
 
-    Oms_agent *[]Azurerm_kubernetes_cluster_addon_profile_1390_oms_agent_1393
+    Oms_agent *[]Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713
 
 }
 
-type Azurerm_kubernetes_cluster_agent_pool_profile_1394 struct {
+type Azurerm_kubernetes_cluster_agent_pool_profile_714 struct {
 
     Count *int
 
@@ -6356,7 +6597,7 @@ type Azurerm_kubernetes_cluster_agent_pool_profile_1394 struct {
 
 }
 
-type Azurerm_kubernetes_cluster_kube_admin_config_1395 struct {
+type Azurerm_kubernetes_cluster_kube_admin_config_715 struct {
 
     Client_certificate *string
 
@@ -6372,7 +6613,7 @@ type Azurerm_kubernetes_cluster_kube_admin_config_1395 struct {
 
 }
 
-type Azurerm_kubernetes_cluster_kube_config_1396 struct {
+type Azurerm_kubernetes_cluster_kube_config_716 struct {
 
     Client_certificate *string
 
@@ -6388,21 +6629,21 @@ type Azurerm_kubernetes_cluster_kube_config_1396 struct {
 
 }
 
-type Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398 struct {
+type Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718 struct {
 
     Key_data string
 
 }
 
-type Azurerm_kubernetes_cluster_linux_profile_1397 struct {
+type Azurerm_kubernetes_cluster_linux_profile_717 struct {
 
     Admin_username string
 
-    Ssh_key []Azurerm_kubernetes_cluster_linux_profile_1397_ssh_key_1398
+    Ssh_key []Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718
 
 }
 
-type Azurerm_kubernetes_cluster_network_profile_1399 struct {
+type Azurerm_kubernetes_cluster_network_profile_719 struct {
 
     Dns_service_ip *string
 
@@ -6416,7 +6657,7 @@ type Azurerm_kubernetes_cluster_network_profile_1399 struct {
 
 }
 
-type Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401 struct {
+type Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721 struct {
 
     Client_app_id string
 
@@ -6428,15 +6669,15 @@ type Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_dire
 
 }
 
-type Azurerm_kubernetes_cluster_role_based_access_control_1400 struct {
+type Azurerm_kubernetes_cluster_role_based_access_control_720 struct {
 
-    Azure_active_directory *[]Azurerm_kubernetes_cluster_role_based_access_control_1400_azure_active_directory_1401
+    Azure_active_directory *[]Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721
 
     Enabled bool
 
 }
 
-type Azurerm_kubernetes_cluster_service_principal_1402 struct {
+type Azurerm_kubernetes_cluster_service_principal_722 struct {
 
     Client_id string
 
@@ -6448,39 +6689,39 @@ type Azurerm_kubernetes_cluster struct {
 
     Azurerm_kubernetes_cluster_id *string `lyra:"ignore"`
 
-    Addon_profile *[]Azurerm_kubernetes_cluster_addon_profile_1390
+    Addon_profile *[]Azurerm_kubernetes_cluster_addon_profile_710
 
-    Agent_pool_profile []Azurerm_kubernetes_cluster_agent_pool_profile_1394
+    Agent_pool_profile []Azurerm_kubernetes_cluster_agent_pool_profile_714
 
     Dns_prefix string
 
     Fqdn *string
 
-    Kube_admin_config *[]Azurerm_kubernetes_cluster_kube_admin_config_1395
+    Kube_admin_config *[]Azurerm_kubernetes_cluster_kube_admin_config_715
 
     Kube_admin_config_raw *string
 
-    Kube_config *[]Azurerm_kubernetes_cluster_kube_config_1396
+    Kube_config *[]Azurerm_kubernetes_cluster_kube_config_716
 
     Kube_config_raw *string
 
     Kubernetes_version *string
 
-    Linux_profile *[]Azurerm_kubernetes_cluster_linux_profile_1397
+    Linux_profile *[]Azurerm_kubernetes_cluster_linux_profile_717
 
     Location string
 
     Name string
 
-    Network_profile *[]Azurerm_kubernetes_cluster_network_profile_1399
+    Network_profile *[]Azurerm_kubernetes_cluster_network_profile_719
 
     Node_resource_group *string
 
     Resource_group_name string
 
-    Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_1400
+    Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_720
 
-    Service_principal []Azurerm_kubernetes_cluster_service_principal_1402
+    Service_principal []Azurerm_kubernetes_cluster_service_principal_722
 
     Tags *map[string]string
 
@@ -6493,6 +6734,7 @@ type Azurerm_kubernetes_clusterHandler struct {
 
 // Create ...
 func (h *Azurerm_kubernetes_clusterHandler) Create(desired *Azurerm_kubernetes_cluster) (*Azurerm_kubernetes_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6509,6 +6751,7 @@ func (h *Azurerm_kubernetes_clusterHandler) Create(desired *Azurerm_kubernetes_c
 
 // Read ...
 func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_kubernetes_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_kubernetes_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -6520,10 +6763,11 @@ func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_ku
 
 // Delete ...
 func (h *Azurerm_kubernetes_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_kubernetes_cluster", externalID)
 }
 
-type Azurerm_lb_frontend_ip_configuration_1403 struct {
+type Azurerm_lb_frontend_ip_configuration_723 struct {
 
     Inbound_nat_rules *[]string
 
@@ -6547,7 +6791,7 @@ type Azurerm_lb struct {
 
     Azurerm_lb_id *string `lyra:"ignore"`
 
-    Frontend_ip_configuration *[]Azurerm_lb_frontend_ip_configuration_1403
+    Frontend_ip_configuration *[]Azurerm_lb_frontend_ip_configuration_723
 
     Location string
 
@@ -6572,6 +6816,7 @@ type Azurerm_lbHandler struct {
 
 // Create ...
 func (h *Azurerm_lbHandler) Create(desired *Azurerm_lb) (*Azurerm_lb, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6588,6 +6833,7 @@ func (h *Azurerm_lbHandler) Create(desired *Azurerm_lb) (*Azurerm_lb, string, er
 
 // Read ...
 func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb", externalID)
 	if err != nil {
 		return nil, err
@@ -6599,6 +6845,7 @@ func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
 
 // Delete ...
 func (h *Azurerm_lbHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb", externalID)
 }
 
@@ -6627,6 +6874,7 @@ type Azurerm_lb_backend_address_poolHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_backend_address_poolHandler) Create(desired *Azurerm_lb_backend_address_pool) (*Azurerm_lb_backend_address_pool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6643,6 +6891,7 @@ func (h *Azurerm_lb_backend_address_poolHandler) Create(desired *Azurerm_lb_back
 
 // Read ...
 func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azurerm_lb_backend_address_pool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_backend_address_pool", externalID)
 	if err != nil {
 		return nil, err
@@ -6654,6 +6903,7 @@ func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_lb_backend_address_poolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_backend_address_pool", externalID)
 }
 
@@ -6690,6 +6940,7 @@ type Azurerm_lb_nat_poolHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_nat_poolHandler) Create(desired *Azurerm_lb_nat_pool) (*Azurerm_lb_nat_pool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6706,6 +6957,7 @@ func (h *Azurerm_lb_nat_poolHandler) Create(desired *Azurerm_lb_nat_pool) (*Azur
 
 // Read ...
 func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_pool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_nat_pool", externalID)
 	if err != nil {
 		return nil, err
@@ -6717,6 +6969,7 @@ func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_po
 
 // Delete ...
 func (h *Azurerm_lb_nat_poolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_nat_pool", externalID)
 }
 
@@ -6755,6 +7008,7 @@ type Azurerm_lb_nat_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_nat_ruleHandler) Create(desired *Azurerm_lb_nat_rule) (*Azurerm_lb_nat_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6771,6 +7025,7 @@ func (h *Azurerm_lb_nat_ruleHandler) Create(desired *Azurerm_lb_nat_rule) (*Azur
 
 // Read ...
 func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_nat_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -6782,6 +7037,7 @@ func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_ru
 
 // Delete ...
 func (h *Azurerm_lb_nat_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_nat_rule", externalID)
 }
 
@@ -6818,6 +7074,7 @@ type Azurerm_lb_probeHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_probeHandler) Create(desired *Azurerm_lb_probe) (*Azurerm_lb_probe, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6834,6 +7091,7 @@ func (h *Azurerm_lb_probeHandler) Create(desired *Azurerm_lb_probe) (*Azurerm_lb
 
 // Read ...
 func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_probe", externalID)
 	if err != nil {
 		return nil, err
@@ -6845,6 +7103,7 @@ func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, er
 
 // Delete ...
 func (h *Azurerm_lb_probeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_probe", externalID)
 }
 
@@ -6889,6 +7148,7 @@ type Azurerm_lb_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_ruleHandler) Create(desired *Azurerm_lb_rule) (*Azurerm_lb_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6905,6 +7165,7 @@ func (h *Azurerm_lb_ruleHandler) Create(desired *Azurerm_lb_rule) (*Azurerm_lb_r
 
 // Read ...
 func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -6916,10 +7177,11 @@ func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, erro
 
 // Delete ...
 func (h *Azurerm_lb_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_rule", externalID)
 }
 
-type Azurerm_local_network_gateway_bgp_settings_1404 struct {
+type Azurerm_local_network_gateway_bgp_settings_724 struct {
 
     Asn int
 
@@ -6935,7 +7197,7 @@ type Azurerm_local_network_gateway struct {
 
     Address_space []string
 
-    Bgp_settings *[]Azurerm_local_network_gateway_bgp_settings_1404
+    Bgp_settings *[]Azurerm_local_network_gateway_bgp_settings_724
 
     Gateway_address string
 
@@ -6956,6 +7218,7 @@ type Azurerm_local_network_gatewayHandler struct {
 
 // Create ...
 func (h *Azurerm_local_network_gatewayHandler) Create(desired *Azurerm_local_network_gateway) (*Azurerm_local_network_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6972,6 +7235,7 @@ func (h *Azurerm_local_network_gatewayHandler) Create(desired *Azurerm_local_net
 
 // Read ...
 func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm_local_network_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_local_network_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -6983,10 +7247,11 @@ func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_local_network_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_local_network_gateway", externalID)
 }
 
-type Azurerm_log_analytics_solution_plan_1405 struct {
+type Azurerm_log_analytics_solution_plan_725 struct {
 
     Name *string
 
@@ -7004,7 +7269,7 @@ type Azurerm_log_analytics_solution struct {
 
     Location string
 
-    Plan []Azurerm_log_analytics_solution_plan_1405
+    Plan []Azurerm_log_analytics_solution_plan_725
 
     Resource_group_name string
 
@@ -7023,6 +7288,7 @@ type Azurerm_log_analytics_solutionHandler struct {
 
 // Create ...
 func (h *Azurerm_log_analytics_solutionHandler) Create(desired *Azurerm_log_analytics_solution) (*Azurerm_log_analytics_solution, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7039,6 +7305,7 @@ func (h *Azurerm_log_analytics_solutionHandler) Create(desired *Azurerm_log_anal
 
 // Read ...
 func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurerm_log_analytics_solution, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_solution", externalID)
 	if err != nil {
 		return nil, err
@@ -7050,6 +7317,7 @@ func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurer
 
 // Delete ...
 func (h *Azurerm_log_analytics_solutionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_log_analytics_solution", externalID)
 }
 
@@ -7086,6 +7354,7 @@ type Azurerm_log_analytics_workspaceHandler struct {
 
 // Create ...
 func (h *Azurerm_log_analytics_workspaceHandler) Create(desired *Azurerm_log_analytics_workspace) (*Azurerm_log_analytics_workspace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7102,6 +7371,7 @@ func (h *Azurerm_log_analytics_workspaceHandler) Create(desired *Azurerm_log_ana
 
 // Read ...
 func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace", externalID)
 	if err != nil {
 		return nil, err
@@ -7113,6 +7383,7 @@ func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_log_analytics_workspaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace", externalID)
 }
 
@@ -7141,6 +7412,7 @@ type Azurerm_log_analytics_workspace_linked_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Create(desired *Azurerm_log_analytics_workspace_linked_service) (*Azurerm_log_analytics_workspace_linked_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7157,6 +7429,7 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Create(desired *
 
 // Read ...
 func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace_linked_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
 	if err != nil {
 		return nil, err
@@ -7168,6 +7441,7 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID 
 
 // Delete ...
 func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
 }
 
@@ -7190,6 +7464,7 @@ type Azurerm_logic_app_action_customHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_action_customHandler) Create(desired *Azurerm_logic_app_action_custom) (*Azurerm_logic_app_action_custom, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7206,6 +7481,7 @@ func (h *Azurerm_logic_app_action_customHandler) Create(desired *Azurerm_logic_a
 
 // Read ...
 func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azurerm_logic_app_action_custom, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_custom", externalID)
 	if err != nil {
 		return nil, err
@@ -7217,6 +7493,7 @@ func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_logic_app_action_customHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_action_custom", externalID)
 }
 
@@ -7245,6 +7522,7 @@ type Azurerm_logic_app_action_httpHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_action_httpHandler) Create(desired *Azurerm_logic_app_action_http) (*Azurerm_logic_app_action_http, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7261,6 +7539,7 @@ func (h *Azurerm_logic_app_action_httpHandler) Create(desired *Azurerm_logic_app
 
 // Read ...
 func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm_logic_app_action_http, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_http", externalID)
 	if err != nil {
 		return nil, err
@@ -7272,6 +7551,7 @@ func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_logic_app_action_httpHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_action_http", externalID)
 }
 
@@ -7294,6 +7574,7 @@ type Azurerm_logic_app_trigger_customHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_trigger_customHandler) Create(desired *Azurerm_logic_app_trigger_custom) (*Azurerm_logic_app_trigger_custom, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7310,6 +7591,7 @@ func (h *Azurerm_logic_app_trigger_customHandler) Create(desired *Azurerm_logic_
 
 // Read ...
 func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azurerm_logic_app_trigger_custom, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_custom", externalID)
 	if err != nil {
 		return nil, err
@@ -7321,6 +7603,7 @@ func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_logic_app_trigger_customHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_custom", externalID)
 }
 
@@ -7347,6 +7630,7 @@ type Azurerm_logic_app_trigger_http_requestHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_trigger_http_requestHandler) Create(desired *Azurerm_logic_app_trigger_http_request) (*Azurerm_logic_app_trigger_http_request, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7363,6 +7647,7 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) (*Azurerm_logic_app_trigger_http_request, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
 	if err != nil {
 		return nil, err
@@ -7374,6 +7659,7 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Azurerm_logic_app_trigger_http_requestHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
 }
 
@@ -7398,6 +7684,7 @@ type Azurerm_logic_app_trigger_recurrenceHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_trigger_recurrenceHandler) Create(desired *Azurerm_logic_app_trigger_recurrence) (*Azurerm_logic_app_trigger_recurrence, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7414,6 +7701,7 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Create(desired *Azurerm_lo
 
 // Read ...
 func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*Azurerm_logic_app_trigger_recurrence, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
 	if err != nil {
 		return nil, err
@@ -7425,6 +7713,7 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Azurerm_logic_app_trigger_recurrenceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
 }
 
@@ -7457,6 +7746,7 @@ type Azurerm_logic_app_workflowHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_workflowHandler) Create(desired *Azurerm_logic_app_workflow) (*Azurerm_logic_app_workflow, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7473,6 +7763,7 @@ func (h *Azurerm_logic_app_workflowHandler) Create(desired *Azurerm_logic_app_wo
 
 // Read ...
 func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_logic_app_workflow, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_workflow", externalID)
 	if err != nil {
 		return nil, err
@@ -7484,10 +7775,11 @@ func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_lo
 
 // Delete ...
 func (h *Azurerm_logic_app_workflowHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_workflow", externalID)
 }
 
-type Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407 struct {
+type Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727 struct {
 
     Secret_url string
 
@@ -7495,7 +7787,7 @@ type Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407 stru
 
 }
 
-type Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408 struct {
+type Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728 struct {
 
     Key_url string
 
@@ -7503,13 +7795,13 @@ type Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408 struc
 
 }
 
-type Azurerm_managed_disk_encryption_settings_1406 struct {
+type Azurerm_managed_disk_encryption_settings_726 struct {
 
-    Disk_encryption_key *[]Azurerm_managed_disk_encryption_settings_1406_disk_encryption_key_1407
+    Disk_encryption_key *[]Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727
 
     Enabled bool
 
-    Key_encryption_key *[]Azurerm_managed_disk_encryption_settings_1406_key_encryption_key_1408
+    Key_encryption_key *[]Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728
 
 }
 
@@ -7521,7 +7813,7 @@ type Azurerm_managed_disk struct {
 
     Disk_size_gb *int
 
-    Encryption_settings *[]Azurerm_managed_disk_encryption_settings_1406
+    Encryption_settings *[]Azurerm_managed_disk_encryption_settings_726
 
     Image_reference_id *string
 
@@ -7552,6 +7844,7 @@ type Azurerm_managed_diskHandler struct {
 
 // Create ...
 func (h *Azurerm_managed_diskHandler) Create(desired *Azurerm_managed_disk) (*Azurerm_managed_disk, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7568,6 +7861,7 @@ func (h *Azurerm_managed_diskHandler) Create(desired *Azurerm_managed_disk) (*Az
 
 // Read ...
 func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_disk, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_managed_disk", externalID)
 	if err != nil {
 		return nil, err
@@ -7579,6 +7873,7 @@ func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_
 
 // Delete ...
 func (h *Azurerm_managed_diskHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_managed_disk", externalID)
 }
 
@@ -7603,6 +7898,7 @@ type Azurerm_management_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_management_groupHandler) Create(desired *Azurerm_management_group) (*Azurerm_management_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7619,6 +7915,7 @@ func (h *Azurerm_management_groupHandler) Create(desired *Azurerm_management_gro
 
 // Read ...
 func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_management_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_management_group", externalID)
 	if err != nil {
 		return nil, err
@@ -7630,6 +7927,7 @@ func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_mana
 
 // Delete ...
 func (h *Azurerm_management_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_management_group", externalID)
 }
 
@@ -7654,6 +7952,7 @@ type Azurerm_management_lockHandler struct {
 
 // Create ...
 func (h *Azurerm_management_lockHandler) Create(desired *Azurerm_management_lock) (*Azurerm_management_lock, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7670,6 +7969,7 @@ func (h *Azurerm_management_lockHandler) Create(desired *Azurerm_management_lock
 
 // Read ...
 func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_management_lock, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_management_lock", externalID)
 	if err != nil {
 		return nil, err
@@ -7681,6 +7981,7 @@ func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_manag
 
 // Delete ...
 func (h *Azurerm_management_lockHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_management_lock", externalID)
 }
 
@@ -7707,6 +8008,7 @@ type Azurerm_mariadb_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_mariadb_databaseHandler) Create(desired *Azurerm_mariadb_database) (*Azurerm_mariadb_database, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7723,6 +8025,7 @@ func (h *Azurerm_mariadb_databaseHandler) Create(desired *Azurerm_mariadb_databa
 
 // Read ...
 func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mariadb_database, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mariadb_database", externalID)
 	if err != nil {
 		return nil, err
@@ -7734,10 +8037,11 @@ func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mari
 
 // Delete ...
 func (h *Azurerm_mariadb_databaseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mariadb_database", externalID)
 }
 
-type Azurerm_mariadb_server_sku_1409 struct {
+type Azurerm_mariadb_server_sku_729 struct {
 
     Capacity int
 
@@ -7749,7 +8053,7 @@ type Azurerm_mariadb_server_sku_1409 struct {
 
 }
 
-type Azurerm_mariadb_server_storage_profile_1410 struct {
+type Azurerm_mariadb_server_storage_profile_730 struct {
 
     Backup_retention_days *int
 
@@ -7775,11 +8079,11 @@ type Azurerm_mariadb_server struct {
 
     Resource_group_name string
 
-    Sku []Azurerm_mariadb_server_sku_1409
+    Sku []Azurerm_mariadb_server_sku_729
 
     Ssl_enforcement string
 
-    Storage_profile []Azurerm_mariadb_server_storage_profile_1410
+    Storage_profile []Azurerm_mariadb_server_storage_profile_730
 
     Tags *map[string]string
 
@@ -7794,6 +8098,7 @@ type Azurerm_mariadb_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_mariadb_serverHandler) Create(desired *Azurerm_mariadb_server) (*Azurerm_mariadb_server, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7810,6 +8115,7 @@ func (h *Azurerm_mariadb_serverHandler) Create(desired *Azurerm_mariadb_server) 
 
 // Read ...
 func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariadb_server, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mariadb_server", externalID)
 	if err != nil {
 		return nil, err
@@ -7821,10 +8127,11 @@ func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariad
 
 // Delete ...
 func (h *Azurerm_mariadb_serverHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mariadb_server", externalID)
 }
 
-type Azurerm_metric_alertrule_email_action_1411 struct {
+type Azurerm_metric_alertrule_email_action_731 struct {
 
     Custom_emails *[]string
 
@@ -7832,7 +8139,7 @@ type Azurerm_metric_alertrule_email_action_1411 struct {
 
 }
 
-type Azurerm_metric_alertrule_webhook_action_1412 struct {
+type Azurerm_metric_alertrule_webhook_action_732 struct {
 
     Properties *map[string]string
 
@@ -7848,7 +8155,7 @@ type Azurerm_metric_alertrule struct {
 
     Description *string
 
-    Email_action *[]Azurerm_metric_alertrule_email_action_1411
+    Email_action *[]Azurerm_metric_alertrule_email_action_731
 
     Enabled *bool
 
@@ -7870,7 +8177,7 @@ type Azurerm_metric_alertrule struct {
 
     Threshold float64
 
-    Webhook_action *[]Azurerm_metric_alertrule_webhook_action_1412
+    Webhook_action *[]Azurerm_metric_alertrule_webhook_action_732
 
 }
 
@@ -7881,6 +8188,7 @@ type Azurerm_metric_alertruleHandler struct {
 
 // Create ...
 func (h *Azurerm_metric_alertruleHandler) Create(desired *Azurerm_metric_alertrule) (*Azurerm_metric_alertrule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7897,6 +8205,7 @@ func (h *Azurerm_metric_alertruleHandler) Create(desired *Azurerm_metric_alertru
 
 // Read ...
 func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metric_alertrule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_metric_alertrule", externalID)
 	if err != nil {
 		return nil, err
@@ -7908,10 +8217,11 @@ func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metr
 
 // Delete ...
 func (h *Azurerm_metric_alertruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_metric_alertrule", externalID)
 }
 
-type Azurerm_monitor_action_group_email_receiver_1413 struct {
+type Azurerm_monitor_action_group_email_receiver_733 struct {
 
     Email_address string
 
@@ -7919,7 +8229,7 @@ type Azurerm_monitor_action_group_email_receiver_1413 struct {
 
 }
 
-type Azurerm_monitor_action_group_sms_receiver_1414 struct {
+type Azurerm_monitor_action_group_sms_receiver_734 struct {
 
     Country_code string
 
@@ -7929,7 +8239,7 @@ type Azurerm_monitor_action_group_sms_receiver_1414 struct {
 
 }
 
-type Azurerm_monitor_action_group_webhook_receiver_1415 struct {
+type Azurerm_monitor_action_group_webhook_receiver_735 struct {
 
     Name string
 
@@ -7941,7 +8251,7 @@ type Azurerm_monitor_action_group struct {
 
     Azurerm_monitor_action_group_id *string `lyra:"ignore"`
 
-    Email_receiver *[]Azurerm_monitor_action_group_email_receiver_1413
+    Email_receiver *[]Azurerm_monitor_action_group_email_receiver_733
 
     Enabled *bool
 
@@ -7951,11 +8261,11 @@ type Azurerm_monitor_action_group struct {
 
     Short_name string
 
-    Sms_receiver *[]Azurerm_monitor_action_group_sms_receiver_1414
+    Sms_receiver *[]Azurerm_monitor_action_group_sms_receiver_734
 
     Tags *map[string]string
 
-    Webhook_receiver *[]Azurerm_monitor_action_group_webhook_receiver_1415
+    Webhook_receiver *[]Azurerm_monitor_action_group_webhook_receiver_735
 
 }
 
@@ -7966,6 +8276,7 @@ type Azurerm_monitor_action_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_action_groupHandler) Create(desired *Azurerm_monitor_action_group) (*Azurerm_monitor_action_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7982,6 +8293,7 @@ func (h *Azurerm_monitor_action_groupHandler) Create(desired *Azurerm_monitor_ac
 
 // Read ...
 func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_monitor_action_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_action_group", externalID)
 	if err != nil {
 		return nil, err
@@ -7993,10 +8305,11 @@ func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_monitor_action_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_action_group", externalID)
 }
 
-type Azurerm_monitor_activity_log_alert_action_1416 struct {
+type Azurerm_monitor_activity_log_alert_action_736 struct {
 
     Action_group_id string
 
@@ -8004,7 +8317,7 @@ type Azurerm_monitor_activity_log_alert_action_1416 struct {
 
 }
 
-type Azurerm_monitor_activity_log_alert_criteria_1417 struct {
+type Azurerm_monitor_activity_log_alert_criteria_737 struct {
 
     Caller *string
 
@@ -8032,9 +8345,9 @@ type Azurerm_monitor_activity_log_alert struct {
 
     Azurerm_monitor_activity_log_alert_id *string `lyra:"ignore"`
 
-    Action *[]Azurerm_monitor_activity_log_alert_action_1416
+    Action *[]Azurerm_monitor_activity_log_alert_action_736
 
-    Criteria []Azurerm_monitor_activity_log_alert_criteria_1417
+    Criteria []Azurerm_monitor_activity_log_alert_criteria_737
 
     Description *string
 
@@ -8057,6 +8370,7 @@ type Azurerm_monitor_activity_log_alertHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_activity_log_alertHandler) Create(desired *Azurerm_monitor_activity_log_alert) (*Azurerm_monitor_activity_log_alert, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8073,6 +8387,7 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Create(desired *Azurerm_moni
 
 // Read ...
 func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Azurerm_monitor_activity_log_alert, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_activity_log_alert", externalID)
 	if err != nil {
 		return nil, err
@@ -8084,10 +8399,11 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Az
 
 // Delete ...
 func (h *Azurerm_monitor_activity_log_alertHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_activity_log_alert", externalID)
 }
 
-type Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419 struct {
+type Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739 struct {
 
     Days *int
 
@@ -8095,17 +8411,17 @@ type Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419 struct {
 
 }
 
-type Azurerm_monitor_diagnostic_setting_log_1418 struct {
+type Azurerm_monitor_diagnostic_setting_log_738 struct {
 
     Category string
 
     Enabled *bool
 
-    Retention_policy []Azurerm_monitor_diagnostic_setting_log_1418_retention_policy_1419
+    Retention_policy []Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739
 
 }
 
-type Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421 struct {
+type Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741 struct {
 
     Days *int
 
@@ -8113,13 +8429,13 @@ type Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421 struct
 
 }
 
-type Azurerm_monitor_diagnostic_setting_metric_1420 struct {
+type Azurerm_monitor_diagnostic_setting_metric_740 struct {
 
     Category string
 
     Enabled *bool
 
-    Retention_policy []Azurerm_monitor_diagnostic_setting_metric_1420_retention_policy_1421
+    Retention_policy []Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741
 
 }
 
@@ -8131,11 +8447,11 @@ type Azurerm_monitor_diagnostic_setting struct {
 
     Eventhub_name *string
 
-    Log *[]Azurerm_monitor_diagnostic_setting_log_1418
+    Log *[]Azurerm_monitor_diagnostic_setting_log_738
 
     Log_analytics_workspace_id *string
 
-    Metric *[]Azurerm_monitor_diagnostic_setting_metric_1420
+    Metric *[]Azurerm_monitor_diagnostic_setting_metric_740
 
     Name string
 
@@ -8152,6 +8468,7 @@ type Azurerm_monitor_diagnostic_settingHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_diagnostic_settingHandler) Create(desired *Azurerm_monitor_diagnostic_setting) (*Azurerm_monitor_diagnostic_setting, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8168,6 +8485,7 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Create(desired *Azurerm_moni
 
 // Read ...
 func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Azurerm_monitor_diagnostic_setting, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
 	if err != nil {
 		return nil, err
@@ -8179,10 +8497,11 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Az
 
 // Delete ...
 func (h *Azurerm_monitor_diagnostic_settingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
 }
 
-type Azurerm_monitor_log_profile_retention_policy_1422 struct {
+type Azurerm_monitor_log_profile_retention_policy_742 struct {
 
     Days *int
 
@@ -8200,7 +8519,7 @@ type Azurerm_monitor_log_profile struct {
 
     Name string
 
-    Retention_policy []Azurerm_monitor_log_profile_retention_policy_1422
+    Retention_policy []Azurerm_monitor_log_profile_retention_policy_742
 
     Servicebus_rule_id *string
 
@@ -8215,6 +8534,7 @@ type Azurerm_monitor_log_profileHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_log_profileHandler) Create(desired *Azurerm_monitor_log_profile) (*Azurerm_monitor_log_profile, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8231,6 +8551,7 @@ func (h *Azurerm_monitor_log_profileHandler) Create(desired *Azurerm_monitor_log
 
 // Read ...
 func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_monitor_log_profile, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_log_profile", externalID)
 	if err != nil {
 		return nil, err
@@ -8242,10 +8563,11 @@ func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_m
 
 // Delete ...
 func (h *Azurerm_monitor_log_profileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_log_profile", externalID)
 }
 
-type Azurerm_monitor_metric_alert_action_1423 struct {
+type Azurerm_monitor_metric_alert_action_743 struct {
 
     Action_group_id string
 
@@ -8253,7 +8575,7 @@ type Azurerm_monitor_metric_alert_action_1423 struct {
 
 }
 
-type Azurerm_monitor_metric_alert_criteria_1424_dimension_1425 struct {
+type Azurerm_monitor_metric_alert_criteria_744_dimension_745 struct {
 
     Name string
 
@@ -8263,11 +8585,11 @@ type Azurerm_monitor_metric_alert_criteria_1424_dimension_1425 struct {
 
 }
 
-type Azurerm_monitor_metric_alert_criteria_1424 struct {
+type Azurerm_monitor_metric_alert_criteria_744 struct {
 
     Aggregation string
 
-    Dimension *[]Azurerm_monitor_metric_alert_criteria_1424_dimension_1425
+    Dimension *[]Azurerm_monitor_metric_alert_criteria_744_dimension_745
 
     Metric_name string
 
@@ -8283,11 +8605,11 @@ type Azurerm_monitor_metric_alert struct {
 
     Azurerm_monitor_metric_alert_id *string `lyra:"ignore"`
 
-    Action *[]Azurerm_monitor_metric_alert_action_1423
+    Action *[]Azurerm_monitor_metric_alert_action_743
 
     Auto_mitigate *bool
 
-    Criteria []Azurerm_monitor_metric_alert_criteria_1424
+    Criteria []Azurerm_monitor_metric_alert_criteria_744
 
     Description *string
 
@@ -8316,6 +8638,7 @@ type Azurerm_monitor_metric_alertHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_metric_alertHandler) Create(desired *Azurerm_monitor_metric_alert) (*Azurerm_monitor_metric_alert, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8332,6 +8655,7 @@ func (h *Azurerm_monitor_metric_alertHandler) Create(desired *Azurerm_monitor_me
 
 // Read ...
 func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_monitor_metric_alert, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_metric_alert", externalID)
 	if err != nil {
 		return nil, err
@@ -8343,10 +8667,11 @@ func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_monitor_metric_alertHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_metric_alert", externalID)
 }
 
-type Azurerm_mssql_elasticpool_elastic_pool_properties_1426 struct {
+type Azurerm_mssql_elasticpool_elastic_pool_properties_746 struct {
 
     Creation_date *string
 
@@ -8360,7 +8685,7 @@ type Azurerm_mssql_elasticpool_elastic_pool_properties_1426 struct {
 
 }
 
-type Azurerm_mssql_elasticpool_per_database_settings_1427 struct {
+type Azurerm_mssql_elasticpool_per_database_settings_747 struct {
 
     Max_capacity float64
 
@@ -8368,7 +8693,7 @@ type Azurerm_mssql_elasticpool_per_database_settings_1427 struct {
 
 }
 
-type Azurerm_mssql_elasticpool_sku_1428 struct {
+type Azurerm_mssql_elasticpool_sku_748 struct {
 
     Capacity int
 
@@ -8384,7 +8709,7 @@ type Azurerm_mssql_elasticpool struct {
 
     Azurerm_mssql_elasticpool_id *string `lyra:"ignore"`
 
-    Elastic_pool_properties *[]Azurerm_mssql_elasticpool_elastic_pool_properties_1426
+    Elastic_pool_properties *[]Azurerm_mssql_elasticpool_elastic_pool_properties_746
 
     Location string
 
@@ -8392,13 +8717,13 @@ type Azurerm_mssql_elasticpool struct {
 
     Name string
 
-    Per_database_settings []Azurerm_mssql_elasticpool_per_database_settings_1427
+    Per_database_settings []Azurerm_mssql_elasticpool_per_database_settings_747
 
     Resource_group_name string
 
     Server_name string
 
-    Sku []Azurerm_mssql_elasticpool_sku_1428
+    Sku []Azurerm_mssql_elasticpool_sku_748
 
     Tags *map[string]string
 
@@ -8413,6 +8738,7 @@ type Azurerm_mssql_elasticpoolHandler struct {
 
 // Create ...
 func (h *Azurerm_mssql_elasticpoolHandler) Create(desired *Azurerm_mssql_elasticpool) (*Azurerm_mssql_elasticpool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8429,6 +8755,7 @@ func (h *Azurerm_mssql_elasticpoolHandler) Create(desired *Azurerm_mssql_elastic
 
 // Read ...
 func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mssql_elasticpool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mssql_elasticpool", externalID)
 	if err != nil {
 		return nil, err
@@ -8440,6 +8767,7 @@ func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mss
 
 // Delete ...
 func (h *Azurerm_mssql_elasticpoolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mssql_elasticpool", externalID)
 }
 
@@ -8464,6 +8792,7 @@ type Azurerm_mysql_configurationHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_configurationHandler) Create(desired *Azurerm_mysql_configuration) (*Azurerm_mysql_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8480,6 +8809,7 @@ func (h *Azurerm_mysql_configurationHandler) Create(desired *Azurerm_mysql_confi
 
 // Read ...
 func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_mysql_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -8491,6 +8821,7 @@ func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_m
 
 // Delete ...
 func (h *Azurerm_mysql_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_configuration", externalID)
 }
 
@@ -8517,6 +8848,7 @@ type Azurerm_mysql_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_databaseHandler) Create(desired *Azurerm_mysql_database) (*Azurerm_mysql_database, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8533,6 +8865,7 @@ func (h *Azurerm_mysql_databaseHandler) Create(desired *Azurerm_mysql_database) 
 
 // Read ...
 func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_database, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_database", externalID)
 	if err != nil {
 		return nil, err
@@ -8544,6 +8877,7 @@ func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_
 
 // Delete ...
 func (h *Azurerm_mysql_databaseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_database", externalID)
 }
 
@@ -8570,6 +8904,7 @@ type Azurerm_mysql_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_firewall_ruleHandler) Create(desired *Azurerm_mysql_firewall_rule) (*Azurerm_mysql_firewall_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8586,6 +8921,7 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Create(desired *Azurerm_mysql_firew
 
 // Read ...
 func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_mysql_firewall_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_firewall_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -8597,10 +8933,11 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_m
 
 // Delete ...
 func (h *Azurerm_mysql_firewall_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_firewall_rule", externalID)
 }
 
-type Azurerm_mysql_server_sku_1429 struct {
+type Azurerm_mysql_server_sku_749 struct {
 
     Capacity int
 
@@ -8612,7 +8949,7 @@ type Azurerm_mysql_server_sku_1429 struct {
 
 }
 
-type Azurerm_mysql_server_storage_profile_1430 struct {
+type Azurerm_mysql_server_storage_profile_750 struct {
 
     Backup_retention_days *int
 
@@ -8638,11 +8975,11 @@ type Azurerm_mysql_server struct {
 
     Resource_group_name string
 
-    Sku []Azurerm_mysql_server_sku_1429
+    Sku []Azurerm_mysql_server_sku_749
 
     Ssl_enforcement string
 
-    Storage_profile []Azurerm_mysql_server_storage_profile_1430
+    Storage_profile []Azurerm_mysql_server_storage_profile_750
 
     Tags *map[string]string
 
@@ -8657,6 +8994,7 @@ type Azurerm_mysql_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_serverHandler) Create(desired *Azurerm_mysql_server) (*Azurerm_mysql_server, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8673,6 +9011,7 @@ func (h *Azurerm_mysql_serverHandler) Create(desired *Azurerm_mysql_server) (*Az
 
 // Read ...
 func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_server, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_server", externalID)
 	if err != nil {
 		return nil, err
@@ -8684,6 +9023,7 @@ func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_se
 
 // Delete ...
 func (h *Azurerm_mysql_serverHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_server", externalID)
 }
 
@@ -8708,6 +9048,7 @@ type Azurerm_mysql_virtual_network_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_virtual_network_ruleHandler) Create(desired *Azurerm_mysql_virtual_network_rule) (*Azurerm_mysql_virtual_network_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8724,6 +9065,7 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Create(desired *Azurerm_mysq
 
 // Read ...
 func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_mysql_virtual_network_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -8735,10 +9077,11 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Az
 
 // Delete ...
 func (h *Azurerm_mysql_virtual_network_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
 }
 
-type Azurerm_network_interface_ip_configuration_1431 struct {
+type Azurerm_network_interface_ip_configuration_751 struct {
 
     Application_gateway_backend_address_pools_ids *[]string
 
@@ -8780,7 +9123,7 @@ type Azurerm_network_interface struct {
 
     Internal_fqdn *string
 
-    Ip_configuration []Azurerm_network_interface_ip_configuration_1431
+    Ip_configuration []Azurerm_network_interface_ip_configuration_751
 
     Location string
 
@@ -8809,6 +9152,7 @@ type Azurerm_network_interfaceHandler struct {
 
 // Create ...
 func (h *Azurerm_network_interfaceHandler) Create(desired *Azurerm_network_interface) (*Azurerm_network_interface, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8825,6 +9169,7 @@ func (h *Azurerm_network_interfaceHandler) Create(desired *Azurerm_network_inter
 
 // Read ...
 func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_network_interface, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface", externalID)
 	if err != nil {
 		return nil, err
@@ -8836,6 +9181,7 @@ func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_net
 
 // Delete ...
 func (h *Azurerm_network_interfaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface", externalID)
 }
 
@@ -8858,6 +9204,7 @@ type Azurerm_network_interface_application_gateway_backend_address_pool_associat
 
 // Create ...
 func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_application_gateway_backend_address_pool_association) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8874,6 +9221,7 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 
 // Read ...
 func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
 	if err != nil {
 		return nil, err
@@ -8885,6 +9233,7 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 
 // Delete ...
 func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
 }
 
@@ -8907,6 +9256,7 @@ type Azurerm_network_interface_backend_address_pool_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_backend_address_pool_association) (*Azurerm_network_interface_backend_address_pool_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8923,6 +9273,7 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Crea
 
 // Read ...
 func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_backend_address_pool_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
 	if err != nil {
 		return nil, err
@@ -8934,6 +9285,7 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read
 
 // Delete ...
 func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
 }
 
@@ -8956,6 +9308,7 @@ type Azurerm_network_interface_nat_rule_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_network_interface_nat_rule_associationHandler) Create(desired *Azurerm_network_interface_nat_rule_association) (*Azurerm_network_interface_nat_rule_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8972,6 +9325,7 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Create(desired *
 
 // Read ...
 func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID string) (*Azurerm_network_interface_nat_rule_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
 	if err != nil {
 		return nil, err
@@ -8983,10 +9337,11 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID 
 
 // Delete ...
 func (h *Azurerm_network_interface_nat_rule_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
 }
 
-type Azurerm_network_security_group_security_rule_1432 struct {
+type Azurerm_network_security_group_security_rule_752 struct {
 
     Access string
 
@@ -9032,7 +9387,7 @@ type Azurerm_network_security_group struct {
 
     Resource_group_name string
 
-    Security_rule *[]Azurerm_network_security_group_security_rule_1432
+    Security_rule *[]Azurerm_network_security_group_security_rule_752
 
     Tags *map[string]string
 
@@ -9045,6 +9400,7 @@ type Azurerm_network_security_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_network_security_groupHandler) Create(desired *Azurerm_network_security_group) (*Azurerm_network_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9061,6 +9417,7 @@ func (h *Azurerm_network_security_groupHandler) Create(desired *Azurerm_network_
 
 // Read ...
 func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurerm_network_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -9072,6 +9429,7 @@ func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurer
 
 // Delete ...
 func (h *Azurerm_network_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_security_group", externalID)
 }
 
@@ -9124,6 +9482,7 @@ type Azurerm_network_security_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_network_security_ruleHandler) Create(desired *Azurerm_network_security_rule) (*Azurerm_network_security_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9140,6 +9499,7 @@ func (h *Azurerm_network_security_ruleHandler) Create(desired *Azurerm_network_s
 
 // Read ...
 func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm_network_security_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_security_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -9151,6 +9511,7 @@ func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_network_security_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_security_rule", externalID)
 }
 
@@ -9175,6 +9536,7 @@ type Azurerm_network_watcherHandler struct {
 
 // Create ...
 func (h *Azurerm_network_watcherHandler) Create(desired *Azurerm_network_watcher) (*Azurerm_network_watcher, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9191,6 +9553,7 @@ func (h *Azurerm_network_watcherHandler) Create(desired *Azurerm_network_watcher
 
 // Read ...
 func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_network_watcher, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_watcher", externalID)
 	if err != nil {
 		return nil, err
@@ -9202,10 +9565,11 @@ func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_netwo
 
 // Delete ...
 func (h *Azurerm_network_watcherHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_watcher", externalID)
 }
 
-type Azurerm_notification_hub_apns_credential_1433 struct {
+type Azurerm_notification_hub_apns_credential_753 struct {
 
     Application_mode string
 
@@ -9219,7 +9583,7 @@ type Azurerm_notification_hub_apns_credential_1433 struct {
 
 }
 
-type Azurerm_notification_hub_gcm_credential_1434 struct {
+type Azurerm_notification_hub_gcm_credential_754 struct {
 
     Api_key string
 
@@ -9229,9 +9593,9 @@ type Azurerm_notification_hub struct {
 
     Azurerm_notification_hub_id *string `lyra:"ignore"`
 
-    Apns_credential *[]Azurerm_notification_hub_apns_credential_1433
+    Apns_credential *[]Azurerm_notification_hub_apns_credential_753
 
-    Gcm_credential *[]Azurerm_notification_hub_gcm_credential_1434
+    Gcm_credential *[]Azurerm_notification_hub_gcm_credential_754
 
     Location string
 
@@ -9250,6 +9614,7 @@ type Azurerm_notification_hubHandler struct {
 
 // Create ...
 func (h *Azurerm_notification_hubHandler) Create(desired *Azurerm_notification_hub) (*Azurerm_notification_hub, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9266,6 +9631,7 @@ func (h *Azurerm_notification_hubHandler) Create(desired *Azurerm_notification_h
 
 // Read ...
 func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_notification_hub, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub", externalID)
 	if err != nil {
 		return nil, err
@@ -9277,6 +9643,7 @@ func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_noti
 
 // Delete ...
 func (h *Azurerm_notification_hubHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_notification_hub", externalID)
 }
 
@@ -9311,6 +9678,7 @@ type Azurerm_notification_hub_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_notification_hub_authorization_ruleHandler) Create(desired *Azurerm_notification_hub_authorization_rule) (*Azurerm_notification_hub_authorization_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9327,6 +9695,7 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID string) (*Azurerm_notification_hub_authorization_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -9338,10 +9707,11 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID str
 
 // Delete ...
 func (h *Azurerm_notification_hub_authorization_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
 }
 
-type Azurerm_notification_hub_namespace_sku_1435 struct {
+type Azurerm_notification_hub_namespace_sku_755 struct {
 
     Name string
 
@@ -9363,7 +9733,7 @@ type Azurerm_notification_hub_namespace struct {
 
     Servicebus_endpoint *string
 
-    Sku []Azurerm_notification_hub_namespace_sku_1435
+    Sku []Azurerm_notification_hub_namespace_sku_755
 
 }
 
@@ -9374,6 +9744,7 @@ type Azurerm_notification_hub_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_notification_hub_namespaceHandler) Create(desired *Azurerm_notification_hub_namespace) (*Azurerm_notification_hub_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9390,6 +9761,7 @@ func (h *Azurerm_notification_hub_namespaceHandler) Create(desired *Azurerm_noti
 
 // Read ...
 func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Azurerm_notification_hub_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -9401,10 +9773,11 @@ func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Az
 
 // Delete ...
 func (h *Azurerm_notification_hub_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_notification_hub_namespace", externalID)
 }
 
-type Azurerm_packet_capture_filter_1436 struct {
+type Azurerm_packet_capture_filter_756 struct {
 
     Local_ip_address *string
 
@@ -9418,7 +9791,7 @@ type Azurerm_packet_capture_filter_1436 struct {
 
 }
 
-type Azurerm_packet_capture_storage_location_1437 struct {
+type Azurerm_packet_capture_storage_location_757 struct {
 
     File_path *string
 
@@ -9432,7 +9805,7 @@ type Azurerm_packet_capture struct {
 
     Azurerm_packet_capture_id *string `lyra:"ignore"`
 
-    Filter *[]Azurerm_packet_capture_filter_1436
+    Filter *[]Azurerm_packet_capture_filter_756
 
     Maximum_bytes_per_packet *int
 
@@ -9446,7 +9819,7 @@ type Azurerm_packet_capture struct {
 
     Resource_group_name string
 
-    Storage_location []Azurerm_packet_capture_storage_location_1437
+    Storage_location []Azurerm_packet_capture_storage_location_757
 
     Target_resource_id string
 
@@ -9459,6 +9832,7 @@ type Azurerm_packet_captureHandler struct {
 
 // Create ...
 func (h *Azurerm_packet_captureHandler) Create(desired *Azurerm_packet_capture) (*Azurerm_packet_capture, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9475,6 +9849,7 @@ func (h *Azurerm_packet_captureHandler) Create(desired *Azurerm_packet_capture) 
 
 // Read ...
 func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet_capture, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_packet_capture", externalID)
 	if err != nil {
 		return nil, err
@@ -9486,10 +9861,11 @@ func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet
 
 // Delete ...
 func (h *Azurerm_packet_captureHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_packet_capture", externalID)
 }
 
-type Azurerm_policy_assignment_identity_1438 struct {
+type Azurerm_policy_assignment_identity_758 struct {
 
     Principal_id *string
 
@@ -9507,7 +9883,7 @@ type Azurerm_policy_assignment struct {
 
     Display_name *string
 
-    Identity *[]Azurerm_policy_assignment_identity_1438
+    Identity *[]Azurerm_policy_assignment_identity_758
 
     Location *string
 
@@ -9530,6 +9906,7 @@ type Azurerm_policy_assignmentHandler struct {
 
 // Create ...
 func (h *Azurerm_policy_assignmentHandler) Create(desired *Azurerm_policy_assignment) (*Azurerm_policy_assignment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9546,6 +9923,7 @@ func (h *Azurerm_policy_assignmentHandler) Create(desired *Azurerm_policy_assign
 
 // Read ...
 func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_policy_assignment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_policy_assignment", externalID)
 	if err != nil {
 		return nil, err
@@ -9557,6 +9935,7 @@ func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_pol
 
 // Delete ...
 func (h *Azurerm_policy_assignmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_policy_assignment", externalID)
 }
 
@@ -9591,6 +9970,7 @@ type Azurerm_policy_definitionHandler struct {
 
 // Create ...
 func (h *Azurerm_policy_definitionHandler) Create(desired *Azurerm_policy_definition) (*Azurerm_policy_definition, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9607,6 +9987,7 @@ func (h *Azurerm_policy_definitionHandler) Create(desired *Azurerm_policy_defini
 
 // Read ...
 func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_policy_definition, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_policy_definition", externalID)
 	if err != nil {
 		return nil, err
@@ -9618,6 +9999,7 @@ func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_pol
 
 // Delete ...
 func (h *Azurerm_policy_definitionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_policy_definition", externalID)
 }
 
@@ -9650,6 +10032,7 @@ type Azurerm_policy_set_definitionHandler struct {
 
 // Create ...
 func (h *Azurerm_policy_set_definitionHandler) Create(desired *Azurerm_policy_set_definition) (*Azurerm_policy_set_definition, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9666,6 +10049,7 @@ func (h *Azurerm_policy_set_definitionHandler) Create(desired *Azurerm_policy_se
 
 // Read ...
 func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm_policy_set_definition, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_policy_set_definition", externalID)
 	if err != nil {
 		return nil, err
@@ -9677,6 +10061,7 @@ func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm
 
 // Delete ...
 func (h *Azurerm_policy_set_definitionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_policy_set_definition", externalID)
 }
 
@@ -9701,6 +10086,7 @@ type Azurerm_postgresql_configurationHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_configurationHandler) Create(desired *Azurerm_postgresql_configuration) (*Azurerm_postgresql_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9717,6 +10103,7 @@ func (h *Azurerm_postgresql_configurationHandler) Create(desired *Azurerm_postgr
 
 // Read ...
 func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azurerm_postgresql_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -9728,6 +10115,7 @@ func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_postgresql_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_configuration", externalID)
 }
 
@@ -9754,6 +10142,7 @@ type Azurerm_postgresql_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_databaseHandler) Create(desired *Azurerm_postgresql_database) (*Azurerm_postgresql_database, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9770,6 +10159,7 @@ func (h *Azurerm_postgresql_databaseHandler) Create(desired *Azurerm_postgresql_
 
 // Read ...
 func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_postgresql_database, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_database", externalID)
 	if err != nil {
 		return nil, err
@@ -9781,6 +10171,7 @@ func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_p
 
 // Delete ...
 func (h *Azurerm_postgresql_databaseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_database", externalID)
 }
 
@@ -9807,6 +10198,7 @@ type Azurerm_postgresql_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_firewall_ruleHandler) Create(desired *Azurerm_postgresql_firewall_rule) (*Azurerm_postgresql_firewall_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9823,6 +10215,7 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Create(desired *Azurerm_postgr
 
 // Read ...
 func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azurerm_postgresql_firewall_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_firewall_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -9834,10 +10227,11 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_postgresql_firewall_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_firewall_rule", externalID)
 }
 
-type Azurerm_postgresql_server_sku_1439 struct {
+type Azurerm_postgresql_server_sku_759 struct {
 
     Capacity int
 
@@ -9849,7 +10243,7 @@ type Azurerm_postgresql_server_sku_1439 struct {
 
 }
 
-type Azurerm_postgresql_server_storage_profile_1440 struct {
+type Azurerm_postgresql_server_storage_profile_760 struct {
 
     Backup_retention_days *int
 
@@ -9875,11 +10269,11 @@ type Azurerm_postgresql_server struct {
 
     Resource_group_name string
 
-    Sku []Azurerm_postgresql_server_sku_1439
+    Sku []Azurerm_postgresql_server_sku_759
 
     Ssl_enforcement string
 
-    Storage_profile []Azurerm_postgresql_server_storage_profile_1440
+    Storage_profile []Azurerm_postgresql_server_storage_profile_760
 
     Tags *map[string]string
 
@@ -9894,6 +10288,7 @@ type Azurerm_postgresql_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_serverHandler) Create(desired *Azurerm_postgresql_server) (*Azurerm_postgresql_server, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9910,6 +10305,7 @@ func (h *Azurerm_postgresql_serverHandler) Create(desired *Azurerm_postgresql_se
 
 // Read ...
 func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_postgresql_server, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_server", externalID)
 	if err != nil {
 		return nil, err
@@ -9921,6 +10317,7 @@ func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_pos
 
 // Delete ...
 func (h *Azurerm_postgresql_serverHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_server", externalID)
 }
 
@@ -9947,6 +10344,7 @@ type Azurerm_postgresql_virtual_network_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_virtual_network_ruleHandler) Create(desired *Azurerm_postgresql_virtual_network_rule) (*Azurerm_postgresql_virtual_network_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9963,6 +10361,7 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Create(desired *Azurerm
 
 // Read ...
 func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_postgresql_virtual_network_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -9974,6 +10373,7 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string)
 
 // Delete ...
 func (h *Azurerm_postgresql_virtual_network_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
 }
 
@@ -10018,6 +10418,7 @@ type Azurerm_public_ipHandler struct {
 
 // Create ...
 func (h *Azurerm_public_ipHandler) Create(desired *Azurerm_public_ip) (*Azurerm_public_ip, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10034,6 +10435,7 @@ func (h *Azurerm_public_ipHandler) Create(desired *Azurerm_public_ip) (*Azurerm_
 
 // Read ...
 func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_public_ip", externalID)
 	if err != nil {
 		return nil, err
@@ -10045,6 +10447,7 @@ func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, 
 
 // Delete ...
 func (h *Azurerm_public_ipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_public_ip", externalID)
 }
 
@@ -10071,6 +10474,7 @@ type Azurerm_recovery_services_protected_vmHandler struct {
 
 // Create ...
 func (h *Azurerm_recovery_services_protected_vmHandler) Create(desired *Azurerm_recovery_services_protected_vm) (*Azurerm_recovery_services_protected_vm, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10087,6 +10491,7 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protected_vm, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protected_vm", externalID)
 	if err != nil {
 		return nil, err
@@ -10098,10 +10503,11 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Azurerm_recovery_services_protected_vmHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_recovery_services_protected_vm", externalID)
 }
 
-type Azurerm_recovery_services_protection_policy_vm_backup_1441 struct {
+type Azurerm_recovery_services_protection_policy_vm_backup_761 struct {
 
     Frequency string
 
@@ -10111,13 +10517,13 @@ type Azurerm_recovery_services_protection_policy_vm_backup_1441 struct {
 
 }
 
-type Azurerm_recovery_services_protection_policy_vm_retention_daily_1442 struct {
+type Azurerm_recovery_services_protection_policy_vm_retention_daily_762 struct {
 
     Count int
 
 }
 
-type Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443 struct {
+type Azurerm_recovery_services_protection_policy_vm_retention_monthly_763 struct {
 
     Count int
 
@@ -10127,7 +10533,7 @@ type Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443 struc
 
 }
 
-type Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444 struct {
+type Azurerm_recovery_services_protection_policy_vm_retention_weekly_764 struct {
 
     Count int
 
@@ -10135,7 +10541,7 @@ type Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444 struct
 
 }
 
-type Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445 struct {
+type Azurerm_recovery_services_protection_policy_vm_retention_yearly_765 struct {
 
     Count int
 
@@ -10151,7 +10557,7 @@ type Azurerm_recovery_services_protection_policy_vm struct {
 
     Azurerm_recovery_services_protection_policy_vm_id *string `lyra:"ignore"`
 
-    Backup []Azurerm_recovery_services_protection_policy_vm_backup_1441
+    Backup []Azurerm_recovery_services_protection_policy_vm_backup_761
 
     Name string
 
@@ -10159,13 +10565,13 @@ type Azurerm_recovery_services_protection_policy_vm struct {
 
     Resource_group_name string
 
-    Retention_daily *[]Azurerm_recovery_services_protection_policy_vm_retention_daily_1442
+    Retention_daily *[]Azurerm_recovery_services_protection_policy_vm_retention_daily_762
 
-    Retention_monthly *[]Azurerm_recovery_services_protection_policy_vm_retention_monthly_1443
+    Retention_monthly *[]Azurerm_recovery_services_protection_policy_vm_retention_monthly_763
 
-    Retention_weekly *[]Azurerm_recovery_services_protection_policy_vm_retention_weekly_1444
+    Retention_weekly *[]Azurerm_recovery_services_protection_policy_vm_retention_weekly_764
 
-    Retention_yearly *[]Azurerm_recovery_services_protection_policy_vm_retention_yearly_1445
+    Retention_yearly *[]Azurerm_recovery_services_protection_policy_vm_retention_yearly_765
 
     Tags *map[string]string
 
@@ -10180,6 +10586,7 @@ type Azurerm_recovery_services_protection_policy_vmHandler struct {
 
 // Create ...
 func (h *Azurerm_recovery_services_protection_policy_vmHandler) Create(desired *Azurerm_recovery_services_protection_policy_vm) (*Azurerm_recovery_services_protection_policy_vm, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10196,6 +10603,7 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Create(desired *
 
 // Read ...
 func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protection_policy_vm, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
 	if err != nil {
 		return nil, err
@@ -10207,6 +10615,7 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID 
 
 // Delete ...
 func (h *Azurerm_recovery_services_protection_policy_vmHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
 }
 
@@ -10233,6 +10642,7 @@ type Azurerm_recovery_services_vaultHandler struct {
 
 // Create ...
 func (h *Azurerm_recovery_services_vaultHandler) Create(desired *Azurerm_recovery_services_vault) (*Azurerm_recovery_services_vault, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10249,6 +10659,7 @@ func (h *Azurerm_recovery_services_vaultHandler) Create(desired *Azurerm_recover
 
 // Read ...
 func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azurerm_recovery_services_vault, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_vault", externalID)
 	if err != nil {
 		return nil, err
@@ -10260,10 +10671,11 @@ func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_recovery_services_vaultHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_recovery_services_vault", externalID)
 }
 
-type Azurerm_redis_cache_patch_schedule_1446 struct {
+type Azurerm_redis_cache_patch_schedule_766 struct {
 
     Day_of_week string
 
@@ -10271,7 +10683,7 @@ type Azurerm_redis_cache_patch_schedule_1446 struct {
 
 }
 
-type Azurerm_redis_cache_redis_configuration_1447 struct {
+type Azurerm_redis_cache_redis_configuration_767 struct {
 
     Maxclients *int
 
@@ -10309,7 +10721,7 @@ type Azurerm_redis_cache struct {
 
     Name string
 
-    Patch_schedule *[]Azurerm_redis_cache_patch_schedule_1446
+    Patch_schedule *[]Azurerm_redis_cache_patch_schedule_766
 
     Port *int
 
@@ -10317,7 +10729,7 @@ type Azurerm_redis_cache struct {
 
     Private_static_ip_address *string
 
-    Redis_configuration []Azurerm_redis_cache_redis_configuration_1447
+    Redis_configuration []Azurerm_redis_cache_redis_configuration_767
 
     Resource_group_name string
 
@@ -10344,6 +10756,7 @@ type Azurerm_redis_cacheHandler struct {
 
 // Create ...
 func (h *Azurerm_redis_cacheHandler) Create(desired *Azurerm_redis_cache) (*Azurerm_redis_cache, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10360,6 +10773,7 @@ func (h *Azurerm_redis_cacheHandler) Create(desired *Azurerm_redis_cache) (*Azur
 
 // Read ...
 func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cache, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_redis_cache", externalID)
 	if err != nil {
 		return nil, err
@@ -10371,6 +10785,7 @@ func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cac
 
 // Delete ...
 func (h *Azurerm_redis_cacheHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_redis_cache", externalID)
 }
 
@@ -10397,6 +10812,7 @@ type Azurerm_redis_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_redis_firewall_ruleHandler) Create(desired *Azurerm_redis_firewall_rule) (*Azurerm_redis_firewall_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10413,6 +10829,7 @@ func (h *Azurerm_redis_firewall_ruleHandler) Create(desired *Azurerm_redis_firew
 
 // Read ...
 func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_redis_firewall_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_redis_firewall_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -10424,10 +10841,11 @@ func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_r
 
 // Delete ...
 func (h *Azurerm_redis_firewall_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_redis_firewall_rule", externalID)
 }
 
-type Azurerm_relay_namespace_sku_1448 struct {
+type Azurerm_relay_namespace_sku_768 struct {
 
     Name string
 
@@ -10453,7 +10871,7 @@ type Azurerm_relay_namespace struct {
 
     Secondary_key *string
 
-    Sku []Azurerm_relay_namespace_sku_1448
+    Sku []Azurerm_relay_namespace_sku_768
 
     Tags *map[string]string
 
@@ -10466,6 +10884,7 @@ type Azurerm_relay_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_relay_namespaceHandler) Create(desired *Azurerm_relay_namespace) (*Azurerm_relay_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10482,6 +10901,7 @@ func (h *Azurerm_relay_namespaceHandler) Create(desired *Azurerm_relay_namespace
 
 // Read ...
 func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_relay_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -10493,6 +10913,7 @@ func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay
 
 // Delete ...
 func (h *Azurerm_relay_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_relay_namespace", externalID)
 }
 
@@ -10515,6 +10936,7 @@ type Azurerm_resource_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_resource_groupHandler) Create(desired *Azurerm_resource_group) (*Azurerm_resource_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10531,6 +10953,7 @@ func (h *Azurerm_resource_groupHandler) Create(desired *Azurerm_resource_group) 
 
 // Read ...
 func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resource_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_resource_group", externalID)
 	if err != nil {
 		return nil, err
@@ -10542,6 +10965,7 @@ func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resour
 
 // Delete ...
 func (h *Azurerm_resource_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_resource_group", externalID)
 }
 
@@ -10568,6 +10992,7 @@ type Azurerm_role_assignmentHandler struct {
 
 // Create ...
 func (h *Azurerm_role_assignmentHandler) Create(desired *Azurerm_role_assignment) (*Azurerm_role_assignment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10584,6 +11009,7 @@ func (h *Azurerm_role_assignmentHandler) Create(desired *Azurerm_role_assignment
 
 // Read ...
 func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_assignment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_role_assignment", externalID)
 	if err != nil {
 		return nil, err
@@ -10595,10 +11021,11 @@ func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_
 
 // Delete ...
 func (h *Azurerm_role_assignmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_role_assignment", externalID)
 }
 
-type Azurerm_role_definition_permissions_1449 struct {
+type Azurerm_role_definition_permissions_769 struct {
 
     Actions *[]string
 
@@ -10620,7 +11047,7 @@ type Azurerm_role_definition struct {
 
     Name string
 
-    Permissions []Azurerm_role_definition_permissions_1449
+    Permissions []Azurerm_role_definition_permissions_769
 
     Role_definition_id *string
 
@@ -10635,6 +11062,7 @@ type Azurerm_role_definitionHandler struct {
 
 // Create ...
 func (h *Azurerm_role_definitionHandler) Create(desired *Azurerm_role_definition) (*Azurerm_role_definition, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10651,6 +11079,7 @@ func (h *Azurerm_role_definitionHandler) Create(desired *Azurerm_role_definition
 
 // Read ...
 func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_definition, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_role_definition", externalID)
 	if err != nil {
 		return nil, err
@@ -10662,6 +11091,7 @@ func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_
 
 // Delete ...
 func (h *Azurerm_role_definitionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_role_definition", externalID)
 }
 
@@ -10690,6 +11120,7 @@ type Azurerm_routeHandler struct {
 
 // Create ...
 func (h *Azurerm_routeHandler) Create(desired *Azurerm_route) (*Azurerm_route, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10706,6 +11137,7 @@ func (h *Azurerm_routeHandler) Create(desired *Azurerm_route) (*Azurerm_route, s
 
 // Read ...
 func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_route", externalID)
 	if err != nil {
 		return nil, err
@@ -10717,10 +11149,11 @@ func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
 
 // Delete ...
 func (h *Azurerm_routeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_route", externalID)
 }
 
-type Azurerm_route_table_route_1450 struct {
+type Azurerm_route_table_route_770 struct {
 
     Address_prefix string
 
@@ -10744,7 +11177,7 @@ type Azurerm_route_table struct {
 
     Resource_group_name string
 
-    Route *[]Azurerm_route_table_route_1450
+    Route *[]Azurerm_route_table_route_770
 
     Subnets *[]string
 
@@ -10759,6 +11192,7 @@ type Azurerm_route_tableHandler struct {
 
 // Create ...
 func (h *Azurerm_route_tableHandler) Create(desired *Azurerm_route_table) (*Azurerm_route_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10775,6 +11209,7 @@ func (h *Azurerm_route_tableHandler) Create(desired *Azurerm_route_table) (*Azur
 
 // Read ...
 func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_route_table", externalID)
 	if err != nil {
 		return nil, err
@@ -10786,10 +11221,11 @@ func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_tab
 
 // Delete ...
 func (h *Azurerm_route_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_route_table", externalID)
 }
 
-type Azurerm_scheduler_job_action_storage_queue_1451 struct {
+type Azurerm_scheduler_job_action_storage_queue_771 struct {
 
     Message string
 
@@ -10801,7 +11237,7 @@ type Azurerm_scheduler_job_action_storage_queue_1451 struct {
 
 }
 
-type Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453 struct {
+type Azurerm_scheduler_job_action_web_772_authentication_active_directory_773 struct {
 
     Audience *string
 
@@ -10813,7 +11249,7 @@ type Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453 
 
 }
 
-type Azurerm_scheduler_job_action_web_1452_authentication_basic_1454 struct {
+type Azurerm_scheduler_job_action_web_772_authentication_basic_774 struct {
 
     Password string
 
@@ -10821,7 +11257,7 @@ type Azurerm_scheduler_job_action_web_1452_authentication_basic_1454 struct {
 
 }
 
-type Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455 struct {
+type Azurerm_scheduler_job_action_web_772_authentication_certificate_775 struct {
 
     Expiration *string
 
@@ -10835,13 +11271,13 @@ type Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455 struc
 
 }
 
-type Azurerm_scheduler_job_action_web_1452 struct {
+type Azurerm_scheduler_job_action_web_772 struct {
 
-    Authentication_active_directory *[]Azurerm_scheduler_job_action_web_1452_authentication_active_directory_1453
+    Authentication_active_directory *[]Azurerm_scheduler_job_action_web_772_authentication_active_directory_773
 
-    Authentication_basic *[]Azurerm_scheduler_job_action_web_1452_authentication_basic_1454
+    Authentication_basic *[]Azurerm_scheduler_job_action_web_772_authentication_basic_774
 
-    Authentication_certificate *[]Azurerm_scheduler_job_action_web_1452_authentication_certificate_1455
+    Authentication_certificate *[]Azurerm_scheduler_job_action_web_772_authentication_certificate_775
 
     Body *string
 
@@ -10853,7 +11289,7 @@ type Azurerm_scheduler_job_action_web_1452 struct {
 
 }
 
-type Azurerm_scheduler_job_error_action_storage_queue_1456 struct {
+type Azurerm_scheduler_job_error_action_storage_queue_776 struct {
 
     Message string
 
@@ -10865,7 +11301,7 @@ type Azurerm_scheduler_job_error_action_storage_queue_1456 struct {
 
 }
 
-type Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458 struct {
+type Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778 struct {
 
     Audience *string
 
@@ -10877,7 +11313,7 @@ type Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory
 
 }
 
-type Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459 struct {
+type Azurerm_scheduler_job_error_action_web_777_authentication_basic_779 struct {
 
     Password string
 
@@ -10885,7 +11321,7 @@ type Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459 struc
 
 }
 
-type Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460 struct {
+type Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780 struct {
 
     Expiration *string
 
@@ -10899,13 +11335,13 @@ type Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460
 
 }
 
-type Azurerm_scheduler_job_error_action_web_1457 struct {
+type Azurerm_scheduler_job_error_action_web_777 struct {
 
-    Authentication_active_directory *[]Azurerm_scheduler_job_error_action_web_1457_authentication_active_directory_1458
+    Authentication_active_directory *[]Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778
 
-    Authentication_basic *[]Azurerm_scheduler_job_error_action_web_1457_authentication_basic_1459
+    Authentication_basic *[]Azurerm_scheduler_job_error_action_web_777_authentication_basic_779
 
-    Authentication_certificate *[]Azurerm_scheduler_job_error_action_web_1457_authentication_certificate_1460
+    Authentication_certificate *[]Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780
 
     Body *string
 
@@ -10917,7 +11353,7 @@ type Azurerm_scheduler_job_error_action_web_1457 struct {
 
 }
 
-type Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462 struct {
+type Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782 struct {
 
     Day string
 
@@ -10925,7 +11361,7 @@ type Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462 struct {
 
 }
 
-type Azurerm_scheduler_job_recurrence_1461 struct {
+type Azurerm_scheduler_job_recurrence_781 struct {
 
     Count *int
 
@@ -10941,13 +11377,13 @@ type Azurerm_scheduler_job_recurrence_1461 struct {
 
     Month_days *[]int
 
-    Monthly_occurrences *[]Azurerm_scheduler_job_recurrence_1461_monthly_occurrences_1462
+    Monthly_occurrences *[]Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782
 
     Week_days *[]string
 
 }
 
-type Azurerm_scheduler_job_retry_1463 struct {
+type Azurerm_scheduler_job_retry_783 struct {
 
     Count *int
 
@@ -10959,23 +11395,23 @@ type Azurerm_scheduler_job struct {
 
     Azurerm_scheduler_job_id *string `lyra:"ignore"`
 
-    Action_storage_queue *[]Azurerm_scheduler_job_action_storage_queue_1451
+    Action_storage_queue *[]Azurerm_scheduler_job_action_storage_queue_771
 
-    Action_web *[]Azurerm_scheduler_job_action_web_1452
+    Action_web *[]Azurerm_scheduler_job_action_web_772
 
-    Error_action_storage_queue *[]Azurerm_scheduler_job_error_action_storage_queue_1456
+    Error_action_storage_queue *[]Azurerm_scheduler_job_error_action_storage_queue_776
 
-    Error_action_web *[]Azurerm_scheduler_job_error_action_web_1457
+    Error_action_web *[]Azurerm_scheduler_job_error_action_web_777
 
     Job_collection_name string
 
     Name string
 
-    Recurrence *[]Azurerm_scheduler_job_recurrence_1461
+    Recurrence *[]Azurerm_scheduler_job_recurrence_781
 
     Resource_group_name string
 
-    Retry *[]Azurerm_scheduler_job_retry_1463
+    Retry *[]Azurerm_scheduler_job_retry_783
 
     Start_time *string
 
@@ -10990,6 +11426,7 @@ type Azurerm_scheduler_jobHandler struct {
 
 // Create ...
 func (h *Azurerm_scheduler_jobHandler) Create(desired *Azurerm_scheduler_job) (*Azurerm_scheduler_job, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11006,6 +11443,7 @@ func (h *Azurerm_scheduler_jobHandler) Create(desired *Azurerm_scheduler_job) (*
 
 // Read ...
 func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_scheduler_job, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_scheduler_job", externalID)
 	if err != nil {
 		return nil, err
@@ -11017,10 +11455,11 @@ func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_schedul
 
 // Delete ...
 func (h *Azurerm_scheduler_jobHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_scheduler_job", externalID)
 }
 
-type Azurerm_scheduler_job_collection_quota_1464 struct {
+type Azurerm_scheduler_job_collection_quota_784 struct {
 
     Max_job_count *int
 
@@ -11040,7 +11479,7 @@ type Azurerm_scheduler_job_collection struct {
 
     Name string
 
-    Quota *[]Azurerm_scheduler_job_collection_quota_1464
+    Quota *[]Azurerm_scheduler_job_collection_quota_784
 
     Resource_group_name string
 
@@ -11059,6 +11498,7 @@ type Azurerm_scheduler_job_collectionHandler struct {
 
 // Create ...
 func (h *Azurerm_scheduler_job_collectionHandler) Create(desired *Azurerm_scheduler_job_collection) (*Azurerm_scheduler_job_collection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11075,6 +11515,7 @@ func (h *Azurerm_scheduler_job_collectionHandler) Create(desired *Azurerm_schedu
 
 // Read ...
 func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azurerm_scheduler_job_collection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_scheduler_job_collection", externalID)
 	if err != nil {
 		return nil, err
@@ -11086,6 +11527,7 @@ func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_scheduler_job_collectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_scheduler_job_collection", externalID)
 }
 
@@ -11120,6 +11562,7 @@ type Azurerm_search_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_search_serviceHandler) Create(desired *Azurerm_search_service) (*Azurerm_search_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11136,6 +11579,7 @@ func (h *Azurerm_search_serviceHandler) Create(desired *Azurerm_search_service) 
 
 // Read ...
 func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_search_service", externalID)
 	if err != nil {
 		return nil, err
@@ -11147,6 +11591,7 @@ func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search
 
 // Delete ...
 func (h *Azurerm_search_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_search_service", externalID)
 }
 
@@ -11171,6 +11616,7 @@ type Azurerm_security_center_contactHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_contactHandler) Create(desired *Azurerm_security_center_contact) (*Azurerm_security_center_contact, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11187,6 +11633,7 @@ func (h *Azurerm_security_center_contactHandler) Create(desired *Azurerm_securit
 
 // Read ...
 func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azurerm_security_center_contact, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_contact", externalID)
 	if err != nil {
 		return nil, err
@@ -11198,6 +11645,7 @@ func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_security_center_contactHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_security_center_contact", externalID)
 }
 
@@ -11216,6 +11664,7 @@ type Azurerm_security_center_subscription_pricingHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Create(desired *Azurerm_security_center_subscription_pricing) (*Azurerm_security_center_subscription_pricing, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11232,6 +11681,7 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Read(externalID string) (*Azurerm_security_center_subscription_pricing, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_subscription_pricing", externalID)
 	if err != nil {
 		return nil, err
@@ -11243,6 +11693,7 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Read(externalID st
 
 // Delete ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_security_center_subscription_pricing", externalID)
 }
 
@@ -11263,6 +11714,7 @@ type Azurerm_security_center_workspaceHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_workspaceHandler) Create(desired *Azurerm_security_center_workspace) (*Azurerm_security_center_workspace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11279,6 +11731,7 @@ func (h *Azurerm_security_center_workspaceHandler) Create(desired *Azurerm_secur
 
 // Read ...
 func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azurerm_security_center_workspace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_workspace", externalID)
 	if err != nil {
 		return nil, err
@@ -11290,10 +11743,11 @@ func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azu
 
 // Delete ...
 func (h *Azurerm_security_center_workspaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_security_center_workspace", externalID)
 }
 
-type Azurerm_service_fabric_cluster_azure_active_directory_1465 struct {
+type Azurerm_service_fabric_cluster_azure_active_directory_785 struct {
 
     Client_application_id string
 
@@ -11303,7 +11757,7 @@ type Azurerm_service_fabric_cluster_azure_active_directory_1465 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_certificate_1466 struct {
+type Azurerm_service_fabric_cluster_certificate_786 struct {
 
     Thumbprint string
 
@@ -11313,7 +11767,7 @@ type Azurerm_service_fabric_cluster_certificate_1466 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467 struct {
+type Azurerm_service_fabric_cluster_client_certificate_thumbprint_787 struct {
 
     Is_admin bool
 
@@ -11321,7 +11775,7 @@ type Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_diagnostics_config_1468 struct {
+type Azurerm_service_fabric_cluster_diagnostics_config_788 struct {
 
     Blob_endpoint string
 
@@ -11335,7 +11789,7 @@ type Azurerm_service_fabric_cluster_diagnostics_config_1468 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_fabric_settings_1469 struct {
+type Azurerm_service_fabric_cluster_fabric_settings_789 struct {
 
     Name string
 
@@ -11343,7 +11797,7 @@ type Azurerm_service_fabric_cluster_fabric_settings_1469 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471 struct {
+type Azurerm_service_fabric_cluster_node_type_790_application_ports_791 struct {
 
     End_port int
 
@@ -11351,7 +11805,7 @@ type Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471 struct
 
 }
 
-type Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472 struct {
+type Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792 struct {
 
     End_port int
 
@@ -11359,15 +11813,15 @@ type Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_node_type_1470 struct {
+type Azurerm_service_fabric_cluster_node_type_790 struct {
 
-    Application_ports *[]Azurerm_service_fabric_cluster_node_type_1470_application_ports_1471
+    Application_ports *[]Azurerm_service_fabric_cluster_node_type_790_application_ports_791
 
     Client_endpoint_port int
 
     Durability_level *string
 
-    Ephemeral_ports *[]Azurerm_service_fabric_cluster_node_type_1470_ephemeral_ports_1472
+    Ephemeral_ports *[]Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792
 
     Http_endpoint_port int
 
@@ -11381,7 +11835,7 @@ type Azurerm_service_fabric_cluster_node_type_1470 struct {
 
 }
 
-type Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473 struct {
+type Azurerm_service_fabric_cluster_reverse_proxy_certificate_793 struct {
 
     Thumbprint string
 
@@ -11397,19 +11851,19 @@ type Azurerm_service_fabric_cluster struct {
 
     Add_on_features *[]string
 
-    Azure_active_directory *[]Azurerm_service_fabric_cluster_azure_active_directory_1465
+    Azure_active_directory *[]Azurerm_service_fabric_cluster_azure_active_directory_785
 
-    Certificate *[]Azurerm_service_fabric_cluster_certificate_1466
+    Certificate *[]Azurerm_service_fabric_cluster_certificate_786
 
-    Client_certificate_thumbprint *[]Azurerm_service_fabric_cluster_client_certificate_thumbprint_1467
+    Client_certificate_thumbprint *[]Azurerm_service_fabric_cluster_client_certificate_thumbprint_787
 
     Cluster_code_version *string
 
     Cluster_endpoint *string
 
-    Diagnostics_config *[]Azurerm_service_fabric_cluster_diagnostics_config_1468
+    Diagnostics_config *[]Azurerm_service_fabric_cluster_diagnostics_config_788
 
-    Fabric_settings *[]Azurerm_service_fabric_cluster_fabric_settings_1469
+    Fabric_settings *[]Azurerm_service_fabric_cluster_fabric_settings_789
 
     Location string
 
@@ -11417,13 +11871,13 @@ type Azurerm_service_fabric_cluster struct {
 
     Name string
 
-    Node_type []Azurerm_service_fabric_cluster_node_type_1470
+    Node_type []Azurerm_service_fabric_cluster_node_type_790
 
     Reliability_level string
 
     Resource_group_name string
 
-    Reverse_proxy_certificate *[]Azurerm_service_fabric_cluster_reverse_proxy_certificate_1473
+    Reverse_proxy_certificate *[]Azurerm_service_fabric_cluster_reverse_proxy_certificate_793
 
     Tags *map[string]string
 
@@ -11440,6 +11894,7 @@ type Azurerm_service_fabric_clusterHandler struct {
 
 // Create ...
 func (h *Azurerm_service_fabric_clusterHandler) Create(desired *Azurerm_service_fabric_cluster) (*Azurerm_service_fabric_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11456,6 +11911,7 @@ func (h *Azurerm_service_fabric_clusterHandler) Create(desired *Azurerm_service_
 
 // Read ...
 func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurerm_service_fabric_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_service_fabric_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -11467,6 +11923,7 @@ func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurer
 
 // Delete ...
 func (h *Azurerm_service_fabric_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_service_fabric_cluster", externalID)
 }
 
@@ -11503,6 +11960,7 @@ type Azurerm_servicebus_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_namespaceHandler) Create(desired *Azurerm_servicebus_namespace) (*Azurerm_servicebus_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11519,6 +11977,7 @@ func (h *Azurerm_servicebus_namespaceHandler) Create(desired *Azurerm_servicebus
 
 // Read ...
 func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_servicebus_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -11530,6 +11989,7 @@ func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_servicebus_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_namespace", externalID)
 }
 
@@ -11566,6 +12026,7 @@ type Azurerm_servicebus_namespace_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Create(desired *Azurerm_servicebus_namespace_authorization_rule) (*Azurerm_servicebus_namespace_authorization_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11582,6 +12043,7 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Create(desired 
 
 // Read ...
 func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_namespace_authorization_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -11593,6 +12055,7 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID
 
 // Delete ...
 func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
 }
 
@@ -11643,6 +12106,7 @@ type Azurerm_servicebus_queueHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_queueHandler) Create(desired *Azurerm_servicebus_queue) (*Azurerm_servicebus_queue, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11659,6 +12123,7 @@ func (h *Azurerm_servicebus_queueHandler) Create(desired *Azurerm_servicebus_que
 
 // Read ...
 func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_servicebus_queue, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue", externalID)
 	if err != nil {
 		return nil, err
@@ -11670,6 +12135,7 @@ func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_serv
 
 // Delete ...
 func (h *Azurerm_servicebus_queueHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_queue", externalID)
 }
 
@@ -11708,6 +12174,7 @@ type Azurerm_servicebus_queue_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Create(desired *Azurerm_servicebus_queue_authorization_rule) (*Azurerm_servicebus_queue_authorization_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11724,6 +12191,7 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_queue_authorization_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -11735,6 +12203,7 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID str
 
 // Delete ...
 func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
 }
 
@@ -11779,6 +12248,7 @@ type Azurerm_servicebus_subscriptionHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_subscriptionHandler) Create(desired *Azurerm_servicebus_subscription) (*Azurerm_servicebus_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11795,6 +12265,7 @@ func (h *Azurerm_servicebus_subscriptionHandler) Create(desired *Azurerm_service
 
 // Read ...
 func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azurerm_servicebus_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -11806,10 +12277,11 @@ func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_servicebus_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_subscription", externalID)
 }
 
-type Azurerm_servicebus_subscription_rule_correlation_filter_1474 struct {
+type Azurerm_servicebus_subscription_rule_correlation_filter_794 struct {
 
     Content_type *string
 
@@ -11835,7 +12307,7 @@ type Azurerm_servicebus_subscription_rule struct {
 
     Action *string
 
-    Correlation_filter *[]Azurerm_servicebus_subscription_rule_correlation_filter_1474
+    Correlation_filter *[]Azurerm_servicebus_subscription_rule_correlation_filter_794
 
     Filter_type string
 
@@ -11860,6 +12332,7 @@ type Azurerm_servicebus_subscription_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_subscription_ruleHandler) Create(desired *Azurerm_servicebus_subscription_rule) (*Azurerm_servicebus_subscription_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11876,6 +12349,7 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Create(desired *Azurerm_se
 
 // Read ...
 func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*Azurerm_servicebus_subscription_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -11887,6 +12361,7 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Azurerm_servicebus_subscription_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_subscription_rule", externalID)
 }
 
@@ -11933,6 +12408,7 @@ type Azurerm_servicebus_topicHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_topicHandler) Create(desired *Azurerm_servicebus_topic) (*Azurerm_servicebus_topic, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11949,6 +12425,7 @@ func (h *Azurerm_servicebus_topicHandler) Create(desired *Azurerm_servicebus_top
 
 // Read ...
 func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_servicebus_topic, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic", externalID)
 	if err != nil {
 		return nil, err
@@ -11960,6 +12437,7 @@ func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_serv
 
 // Delete ...
 func (h *Azurerm_servicebus_topicHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_topic", externalID)
 }
 
@@ -11998,6 +12476,7 @@ type Azurerm_servicebus_topic_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Create(desired *Azurerm_servicebus_topic_authorization_rule) (*Azurerm_servicebus_topic_authorization_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12014,6 +12493,7 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_topic_authorization_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -12025,10 +12505,11 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID str
 
 // Delete ...
 func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
 }
 
-type Azurerm_shared_image_identifier_1475 struct {
+type Azurerm_shared_image_identifier_795 struct {
 
     Offer string
 
@@ -12048,7 +12529,7 @@ type Azurerm_shared_image struct {
 
     Gallery_name string
 
-    Identifier []Azurerm_shared_image_identifier_1475
+    Identifier []Azurerm_shared_image_identifier_795
 
     Location string
 
@@ -12073,6 +12554,7 @@ type Azurerm_shared_imageHandler struct {
 
 // Create ...
 func (h *Azurerm_shared_imageHandler) Create(desired *Azurerm_shared_image) (*Azurerm_shared_image, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12089,6 +12571,7 @@ func (h *Azurerm_shared_imageHandler) Create(desired *Azurerm_shared_image) (*Az
 
 // Read ...
 func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_image, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image", externalID)
 	if err != nil {
 		return nil, err
@@ -12100,6 +12583,7 @@ func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_i
 
 // Delete ...
 func (h *Azurerm_shared_imageHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_shared_image", externalID)
 }
 
@@ -12128,6 +12612,7 @@ type Azurerm_shared_image_galleryHandler struct {
 
 // Create ...
 func (h *Azurerm_shared_image_galleryHandler) Create(desired *Azurerm_shared_image_gallery) (*Azurerm_shared_image_gallery, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12144,6 +12629,7 @@ func (h *Azurerm_shared_image_galleryHandler) Create(desired *Azurerm_shared_ima
 
 // Read ...
 func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_shared_image_gallery, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image_gallery", externalID)
 	if err != nil {
 		return nil, err
@@ -12155,10 +12641,11 @@ func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_shared_image_galleryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_shared_image_gallery", externalID)
 }
 
-type Azurerm_shared_image_version_target_region_1476 struct {
+type Azurerm_shared_image_version_target_region_796 struct {
 
     Name string
 
@@ -12186,7 +12673,7 @@ type Azurerm_shared_image_version struct {
 
     Tags *map[string]string
 
-    Target_region []Azurerm_shared_image_version_target_region_1476
+    Target_region []Azurerm_shared_image_version_target_region_796
 
 }
 
@@ -12197,6 +12684,7 @@ type Azurerm_shared_image_versionHandler struct {
 
 // Create ...
 func (h *Azurerm_shared_image_versionHandler) Create(desired *Azurerm_shared_image_version) (*Azurerm_shared_image_version, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12213,6 +12701,7 @@ func (h *Azurerm_shared_image_versionHandler) Create(desired *Azurerm_shared_ima
 
 // Read ...
 func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_shared_image_version, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image_version", externalID)
 	if err != nil {
 		return nil, err
@@ -12224,10 +12713,11 @@ func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_
 
 // Delete ...
 func (h *Azurerm_shared_image_versionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_shared_image_version", externalID)
 }
 
-type Azurerm_signalr_service_sku_1477 struct {
+type Azurerm_signalr_service_sku_797 struct {
 
     Capacity int
 
@@ -12253,7 +12743,7 @@ type Azurerm_signalr_service struct {
 
     Server_port *int
 
-    Sku []Azurerm_signalr_service_sku_1477
+    Sku []Azurerm_signalr_service_sku_797
 
     Tags *map[string]string
 
@@ -12266,6 +12756,7 @@ type Azurerm_signalr_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_signalr_serviceHandler) Create(desired *Azurerm_signalr_service) (*Azurerm_signalr_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12282,6 +12773,7 @@ func (h *Azurerm_signalr_serviceHandler) Create(desired *Azurerm_signalr_service
 
 // Read ...
 func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signalr_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_signalr_service", externalID)
 	if err != nil {
 		return nil, err
@@ -12293,10 +12785,11 @@ func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signa
 
 // Delete ...
 func (h *Azurerm_signalr_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_signalr_service", externalID)
 }
 
-type Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479 struct {
+type Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799 struct {
 
     Secret_url string
 
@@ -12304,7 +12797,7 @@ type Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479 struct {
 
 }
 
-type Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480 struct {
+type Azurerm_snapshot_encryption_settings_798_key_encryption_key_800 struct {
 
     Key_url string
 
@@ -12312,13 +12805,13 @@ type Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480 struct {
 
 }
 
-type Azurerm_snapshot_encryption_settings_1478 struct {
+type Azurerm_snapshot_encryption_settings_798 struct {
 
-    Disk_encryption_key *[]Azurerm_snapshot_encryption_settings_1478_disk_encryption_key_1479
+    Disk_encryption_key *[]Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799
 
     Enabled bool
 
-    Key_encryption_key *[]Azurerm_snapshot_encryption_settings_1478_key_encryption_key_1480
+    Key_encryption_key *[]Azurerm_snapshot_encryption_settings_798_key_encryption_key_800
 
 }
 
@@ -12330,7 +12823,7 @@ type Azurerm_snapshot struct {
 
     Disk_size_gb *int
 
-    Encryption_settings *[]Azurerm_snapshot_encryption_settings_1478
+    Encryption_settings *[]Azurerm_snapshot_encryption_settings_798
 
     Location string
 
@@ -12355,6 +12848,7 @@ type Azurerm_snapshotHandler struct {
 
 // Create ...
 func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_snapshot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12371,6 +12865,7 @@ func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_sn
 
 // Read ...
 func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_snapshot", externalID)
 	if err != nil {
 		return nil, err
@@ -12382,6 +12877,7 @@ func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, er
 
 // Delete ...
 func (h *Azurerm_snapshotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_snapshot", externalID)
 }
 
@@ -12408,6 +12904,7 @@ type Azurerm_sql_active_directory_administratorHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_active_directory_administratorHandler) Create(desired *Azurerm_sql_active_directory_administrator) (*Azurerm_sql_active_directory_administrator, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12424,6 +12921,7 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Create(desired *Azur
 
 // Read ...
 func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID string) (*Azurerm_sql_active_directory_administrator, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_active_directory_administrator", externalID)
 	if err != nil {
 		return nil, err
@@ -12435,10 +12933,11 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID stri
 
 // Delete ...
 func (h *Azurerm_sql_active_directory_administratorHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_active_directory_administrator", externalID)
 }
 
-type Azurerm_sql_database_import_1481 struct {
+type Azurerm_sql_database_import_801 struct {
 
     Administrator_login string
 
@@ -12456,7 +12955,7 @@ type Azurerm_sql_database_import_1481 struct {
 
 }
 
-type Azurerm_sql_database_threat_detection_policy_1482 struct {
+type Azurerm_sql_database_threat_detection_policy_802 struct {
 
     Disabled_alerts *[]string
 
@@ -12494,7 +12993,7 @@ type Azurerm_sql_database struct {
 
     Encryption *string
 
-    Import *[]Azurerm_sql_database_import_1481
+    Import *[]Azurerm_sql_database_import_801
 
     Location string
 
@@ -12518,7 +13017,7 @@ type Azurerm_sql_database struct {
 
     Tags *map[string]string
 
-    Threat_detection_policy *[]Azurerm_sql_database_threat_detection_policy_1482
+    Threat_detection_policy *[]Azurerm_sql_database_threat_detection_policy_802
 
 }
 
@@ -12529,6 +13028,7 @@ type Azurerm_sql_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_databaseHandler) Create(desired *Azurerm_sql_database) (*Azurerm_sql_database, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12545,6 +13045,7 @@ func (h *Azurerm_sql_databaseHandler) Create(desired *Azurerm_sql_database) (*Az
 
 // Read ...
 func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_database, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_database", externalID)
 	if err != nil {
 		return nil, err
@@ -12556,6 +13057,7 @@ func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_data
 
 // Delete ...
 func (h *Azurerm_sql_databaseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_database", externalID)
 }
 
@@ -12594,6 +13096,7 @@ type Azurerm_sql_elasticpoolHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_elasticpoolHandler) Create(desired *Azurerm_sql_elasticpool) (*Azurerm_sql_elasticpool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12610,6 +13113,7 @@ func (h *Azurerm_sql_elasticpoolHandler) Create(desired *Azurerm_sql_elasticpool
 
 // Read ...
 func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_elasticpool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_elasticpool", externalID)
 	if err != nil {
 		return nil, err
@@ -12621,6 +13125,7 @@ func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_e
 
 // Delete ...
 func (h *Azurerm_sql_elasticpoolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_elasticpool", externalID)
 }
 
@@ -12647,6 +13152,7 @@ type Azurerm_sql_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_firewall_ruleHandler) Create(desired *Azurerm_sql_firewall_rule) (*Azurerm_sql_firewall_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12663,6 +13169,7 @@ func (h *Azurerm_sql_firewall_ruleHandler) Create(desired *Azurerm_sql_firewall_
 
 // Read ...
 func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql_firewall_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_firewall_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -12674,6 +13181,7 @@ func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql
 
 // Delete ...
 func (h *Azurerm_sql_firewall_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_firewall_rule", externalID)
 }
 
@@ -12706,6 +13214,7 @@ type Azurerm_sql_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_serverHandler) Create(desired *Azurerm_sql_server) (*Azurerm_sql_server, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12722,6 +13231,7 @@ func (h *Azurerm_sql_serverHandler) Create(desired *Azurerm_sql_server) (*Azurer
 
 // Read ...
 func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_server", externalID)
 	if err != nil {
 		return nil, err
@@ -12733,6 +13243,7 @@ func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server
 
 // Delete ...
 func (h *Azurerm_sql_serverHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_server", externalID)
 }
 
@@ -12759,6 +13270,7 @@ type Azurerm_sql_virtual_network_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_virtual_network_ruleHandler) Create(desired *Azurerm_sql_virtual_network_rule) (*Azurerm_sql_virtual_network_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12775,6 +13287,7 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Create(desired *Azurerm_sql_vi
 
 // Read ...
 func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_sql_virtual_network_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_virtual_network_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -12786,10 +13299,11 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_sql_virtual_network_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_virtual_network_rule", externalID)
 }
 
-type Azurerm_storage_account_custom_domain_1483 struct {
+type Azurerm_storage_account_custom_domain_803 struct {
 
     Name string
 
@@ -12797,7 +13311,7 @@ type Azurerm_storage_account_custom_domain_1483 struct {
 
 }
 
-type Azurerm_storage_account_identity_1484 struct {
+type Azurerm_storage_account_identity_804 struct {
 
     Principal_id *string
 
@@ -12807,7 +13321,7 @@ type Azurerm_storage_account_identity_1484 struct {
 
 }
 
-type Azurerm_storage_account_network_rules_1485 struct {
+type Azurerm_storage_account_network_rules_805 struct {
 
     Bypass *[]string
 
@@ -12833,7 +13347,7 @@ type Azurerm_storage_account struct {
 
     Account_type *string
 
-    Custom_domain *[]Azurerm_storage_account_custom_domain_1483
+    Custom_domain *[]Azurerm_storage_account_custom_domain_803
 
     Enable_blob_encryption *bool
 
@@ -12841,13 +13355,13 @@ type Azurerm_storage_account struct {
 
     Enable_https_traffic_only *bool
 
-    Identity *[]Azurerm_storage_account_identity_1484
+    Identity *[]Azurerm_storage_account_identity_804
 
     Location string
 
     Name string
 
-    Network_rules *[]Azurerm_storage_account_network_rules_1485
+    Network_rules *[]Azurerm_storage_account_network_rules_805
 
     Primary_access_key *string
 
@@ -12892,6 +13406,7 @@ type Azurerm_storage_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_accountHandler) Create(desired *Azurerm_storage_account) (*Azurerm_storage_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12908,6 +13423,7 @@ func (h *Azurerm_storage_accountHandler) Create(desired *Azurerm_storage_account
 
 // Read ...
 func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_storage_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_account", externalID)
 	if err != nil {
 		return nil, err
@@ -12919,6 +13435,7 @@ func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_stora
 
 // Delete ...
 func (h *Azurerm_storage_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_account", externalID)
 }
 
@@ -12959,6 +13476,7 @@ type Azurerm_storage_blobHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_blobHandler) Create(desired *Azurerm_storage_blob) (*Azurerm_storage_blob, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12975,6 +13493,7 @@ func (h *Azurerm_storage_blobHandler) Create(desired *Azurerm_storage_blob) (*Az
 
 // Read ...
 func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_blob, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_blob", externalID)
 	if err != nil {
 		return nil, err
@@ -12986,6 +13505,7 @@ func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_
 
 // Delete ...
 func (h *Azurerm_storage_blobHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_blob", externalID)
 }
 
@@ -13012,6 +13532,7 @@ type Azurerm_storage_containerHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_containerHandler) Create(desired *Azurerm_storage_container) (*Azurerm_storage_container, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13028,6 +13549,7 @@ func (h *Azurerm_storage_containerHandler) Create(desired *Azurerm_storage_conta
 
 // Read ...
 func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_storage_container, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_container", externalID)
 	if err != nil {
 		return nil, err
@@ -13039,6 +13561,7 @@ func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_sto
 
 // Delete ...
 func (h *Azurerm_storage_containerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_container", externalID)
 }
 
@@ -13061,6 +13584,7 @@ type Azurerm_storage_queueHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_queueHandler) Create(desired *Azurerm_storage_queue) (*Azurerm_storage_queue, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13077,6 +13601,7 @@ func (h *Azurerm_storage_queueHandler) Create(desired *Azurerm_storage_queue) (*
 
 // Read ...
 func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage_queue, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_queue", externalID)
 	if err != nil {
 		return nil, err
@@ -13088,6 +13613,7 @@ func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage
 
 // Delete ...
 func (h *Azurerm_storage_queueHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_queue", externalID)
 }
 
@@ -13114,6 +13640,7 @@ type Azurerm_storage_shareHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_shareHandler) Create(desired *Azurerm_storage_share) (*Azurerm_storage_share, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13130,6 +13657,7 @@ func (h *Azurerm_storage_shareHandler) Create(desired *Azurerm_storage_share) (*
 
 // Read ...
 func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage_share, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_share", externalID)
 	if err != nil {
 		return nil, err
@@ -13141,6 +13669,7 @@ func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage
 
 // Delete ...
 func (h *Azurerm_storage_shareHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_share", externalID)
 }
 
@@ -13163,6 +13692,7 @@ type Azurerm_storage_tableHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*Azurerm_storage_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13179,6 +13709,7 @@ func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*
 
 // Read ...
 func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_table", externalID)
 	if err != nil {
 		return nil, err
@@ -13190,10 +13721,11 @@ func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage
 
 // Delete ...
 func (h *Azurerm_storage_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_table", externalID)
 }
 
-type Azurerm_subnet_delegation_1486_service_delegation_1487 struct {
+type Azurerm_subnet_delegation_806_service_delegation_807 struct {
 
     Actions *[]string
 
@@ -13201,11 +13733,11 @@ type Azurerm_subnet_delegation_1486_service_delegation_1487 struct {
 
 }
 
-type Azurerm_subnet_delegation_1486 struct {
+type Azurerm_subnet_delegation_806 struct {
 
     Name string
 
-    Service_delegation []Azurerm_subnet_delegation_1486_service_delegation_1487
+    Service_delegation []Azurerm_subnet_delegation_806_service_delegation_807
 
 }
 
@@ -13215,7 +13747,7 @@ type Azurerm_subnet struct {
 
     Address_prefix string
 
-    Delegation *[]Azurerm_subnet_delegation_1486
+    Delegation *[]Azurerm_subnet_delegation_806
 
     Ip_configurations *[]string
 
@@ -13240,6 +13772,7 @@ type Azurerm_subnetHandler struct {
 
 // Create ...
 func (h *Azurerm_subnetHandler) Create(desired *Azurerm_subnet) (*Azurerm_subnet, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13256,6 +13789,7 @@ func (h *Azurerm_subnetHandler) Create(desired *Azurerm_subnet) (*Azurerm_subnet
 
 // Read ...
 func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_subnet", externalID)
 	if err != nil {
 		return nil, err
@@ -13267,6 +13801,7 @@ func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error)
 
 // Delete ...
 func (h *Azurerm_subnetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_subnet", externalID)
 }
 
@@ -13287,6 +13822,7 @@ type Azurerm_subnet_network_security_group_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_subnet_network_security_group_associationHandler) Create(desired *Azurerm_subnet_network_security_group_association) (*Azurerm_subnet_network_security_group_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13303,6 +13839,7 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Create(desire
 
 // Read ...
 func (h *Azurerm_subnet_network_security_group_associationHandler) Read(externalID string) (*Azurerm_subnet_network_security_group_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_subnet_network_security_group_association", externalID)
 	if err != nil {
 		return nil, err
@@ -13314,6 +13851,7 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Read(external
 
 // Delete ...
 func (h *Azurerm_subnet_network_security_group_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_subnet_network_security_group_association", externalID)
 }
 
@@ -13334,6 +13872,7 @@ type Azurerm_subnet_route_table_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_subnet_route_table_associationHandler) Create(desired *Azurerm_subnet_route_table_association) (*Azurerm_subnet_route_table_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13350,6 +13889,7 @@ func (h *Azurerm_subnet_route_table_associationHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) (*Azurerm_subnet_route_table_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_subnet_route_table_association", externalID)
 	if err != nil {
 		return nil, err
@@ -13361,6 +13901,7 @@ func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Azurerm_subnet_route_table_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_subnet_route_table_association", externalID)
 }
 
@@ -13391,6 +13932,7 @@ type Azurerm_template_deploymentHandler struct {
 
 // Create ...
 func (h *Azurerm_template_deploymentHandler) Create(desired *Azurerm_template_deployment) (*Azurerm_template_deployment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13407,6 +13949,7 @@ func (h *Azurerm_template_deploymentHandler) Create(desired *Azurerm_template_de
 
 // Read ...
 func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_template_deployment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_template_deployment", externalID)
 	if err != nil {
 		return nil, err
@@ -13418,6 +13961,7 @@ func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_t
 
 // Delete ...
 func (h *Azurerm_template_deploymentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_template_deployment", externalID)
 }
 
@@ -13460,6 +14004,7 @@ type Azurerm_traffic_manager_endpointHandler struct {
 
 // Create ...
 func (h *Azurerm_traffic_manager_endpointHandler) Create(desired *Azurerm_traffic_manager_endpoint) (*Azurerm_traffic_manager_endpoint, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13476,6 +14021,7 @@ func (h *Azurerm_traffic_manager_endpointHandler) Create(desired *Azurerm_traffi
 
 // Read ...
 func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azurerm_traffic_manager_endpoint, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_endpoint", externalID)
 	if err != nil {
 		return nil, err
@@ -13487,10 +14033,11 @@ func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azur
 
 // Delete ...
 func (h *Azurerm_traffic_manager_endpointHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_traffic_manager_endpoint", externalID)
 }
 
-type Azurerm_traffic_manager_profile_dns_config_1488 struct {
+type Azurerm_traffic_manager_profile_dns_config_808 struct {
 
     Relative_name string
 
@@ -13498,7 +14045,7 @@ type Azurerm_traffic_manager_profile_dns_config_1488 struct {
 
 }
 
-type Azurerm_traffic_manager_profile_monitor_config_1489 struct {
+type Azurerm_traffic_manager_profile_monitor_config_809 struct {
 
     Path *string
 
@@ -13512,11 +14059,11 @@ type Azurerm_traffic_manager_profile struct {
 
     Azurerm_traffic_manager_profile_id *string `lyra:"ignore"`
 
-    Dns_config []Azurerm_traffic_manager_profile_dns_config_1488
+    Dns_config []Azurerm_traffic_manager_profile_dns_config_808
 
     Fqdn *string
 
-    Monitor_config []Azurerm_traffic_manager_profile_monitor_config_1489
+    Monitor_config []Azurerm_traffic_manager_profile_monitor_config_809
 
     Name string
 
@@ -13537,6 +14084,7 @@ type Azurerm_traffic_manager_profileHandler struct {
 
 // Create ...
 func (h *Azurerm_traffic_manager_profileHandler) Create(desired *Azurerm_traffic_manager_profile) (*Azurerm_traffic_manager_profile, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13553,6 +14101,7 @@ func (h *Azurerm_traffic_manager_profileHandler) Create(desired *Azurerm_traffic
 
 // Read ...
 func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azurerm_traffic_manager_profile, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_profile", externalID)
 	if err != nil {
 		return nil, err
@@ -13564,6 +14113,7 @@ func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_traffic_manager_profileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_traffic_manager_profile", externalID)
 }
 
@@ -13592,6 +14142,7 @@ type Azurerm_user_assigned_identityHandler struct {
 
 // Create ...
 func (h *Azurerm_user_assigned_identityHandler) Create(desired *Azurerm_user_assigned_identity) (*Azurerm_user_assigned_identity, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13608,6 +14159,7 @@ func (h *Azurerm_user_assigned_identityHandler) Create(desired *Azurerm_user_ass
 
 // Read ...
 func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurerm_user_assigned_identity, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_user_assigned_identity", externalID)
 	if err != nil {
 		return nil, err
@@ -13619,10 +14171,11 @@ func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurer
 
 // Delete ...
 func (h *Azurerm_user_assigned_identityHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_user_assigned_identity", externalID)
 }
 
-type Azurerm_virtual_machine_boot_diagnostics_1490 struct {
+type Azurerm_virtual_machine_boot_diagnostics_810 struct {
 
     Enabled bool
 
@@ -13630,7 +14183,7 @@ type Azurerm_virtual_machine_boot_diagnostics_1490 struct {
 
 }
 
-type Azurerm_virtual_machine_identity_1491 struct {
+type Azurerm_virtual_machine_identity_811 struct {
 
     Identity_ids *[]string
 
@@ -13640,7 +14193,7 @@ type Azurerm_virtual_machine_identity_1491 struct {
 
 }
 
-type Azurerm_virtual_machine_os_profile_1492 struct {
+type Azurerm_virtual_machine_os_profile_812 struct {
 
     Admin_password *string
 
@@ -13652,7 +14205,7 @@ type Azurerm_virtual_machine_os_profile_1492 struct {
 
 }
 
-type Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494 struct {
+type Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814 struct {
 
     Key_data string
 
@@ -13660,15 +14213,15 @@ type Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494 struct {
 
 }
 
-type Azurerm_virtual_machine_os_profile_linux_config_1493 struct {
+type Azurerm_virtual_machine_os_profile_linux_config_813 struct {
 
     Disable_password_authentication bool
 
-    Ssh_keys *[]Azurerm_virtual_machine_os_profile_linux_config_1493_ssh_keys_1494
+    Ssh_keys *[]Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814
 
 }
 
-type Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496 struct {
+type Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816 struct {
 
     Certificate_store *string
 
@@ -13676,15 +14229,15 @@ type Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496 str
 
 }
 
-type Azurerm_virtual_machine_os_profile_secrets_1495 struct {
+type Azurerm_virtual_machine_os_profile_secrets_815 struct {
 
     Source_vault_id string
 
-    Vault_certificates *[]Azurerm_virtual_machine_os_profile_secrets_1495_vault_certificates_1496
+    Vault_certificates *[]Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816
 
 }
 
-type Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498 struct {
+type Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818 struct {
 
     Component string
 
@@ -13696,7 +14249,7 @@ type Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_
 
 }
 
-type Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499 struct {
+type Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819 struct {
 
     Certificate_url *string
 
@@ -13704,9 +14257,9 @@ type Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499 struct {
 
 }
 
-type Azurerm_virtual_machine_os_profile_windows_config_1497 struct {
+type Azurerm_virtual_machine_os_profile_windows_config_817 struct {
 
-    Additional_unattend_config *[]Azurerm_virtual_machine_os_profile_windows_config_1497_additional_unattend_config_1498
+    Additional_unattend_config *[]Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818
 
     Enable_automatic_upgrades *bool
 
@@ -13714,11 +14267,11 @@ type Azurerm_virtual_machine_os_profile_windows_config_1497 struct {
 
     Timezone *string
 
-    Winrm *[]Azurerm_virtual_machine_os_profile_windows_config_1497_winrm_1499
+    Winrm *[]Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819
 
 }
 
-type Azurerm_virtual_machine_plan_1500 struct {
+type Azurerm_virtual_machine_plan_820 struct {
 
     Name string
 
@@ -13728,7 +14281,7 @@ type Azurerm_virtual_machine_plan_1500 struct {
 
 }
 
-type Azurerm_virtual_machine_storage_data_disk_1501 struct {
+type Azurerm_virtual_machine_storage_data_disk_821 struct {
 
     Caching *string
 
@@ -13750,7 +14303,7 @@ type Azurerm_virtual_machine_storage_data_disk_1501 struct {
 
 }
 
-type Azurerm_virtual_machine_storage_image_reference_1502 struct {
+type Azurerm_virtual_machine_storage_image_reference_822 struct {
 
     Id *string
 
@@ -13764,7 +14317,7 @@ type Azurerm_virtual_machine_storage_image_reference_1502 struct {
 
 }
 
-type Azurerm_virtual_machine_storage_os_disk_1503 struct {
+type Azurerm_virtual_machine_storage_os_disk_823 struct {
 
     Caching *string
 
@@ -13794,13 +14347,13 @@ type Azurerm_virtual_machine struct {
 
     Availability_set_id *string
 
-    Boot_diagnostics *[]Azurerm_virtual_machine_boot_diagnostics_1490
+    Boot_diagnostics *[]Azurerm_virtual_machine_boot_diagnostics_810
 
     Delete_data_disks_on_termination *bool
 
     Delete_os_disk_on_termination *bool
 
-    Identity *[]Azurerm_virtual_machine_identity_1491
+    Identity *[]Azurerm_virtual_machine_identity_811
 
     License_type *string
 
@@ -13810,25 +14363,25 @@ type Azurerm_virtual_machine struct {
 
     Network_interface_ids []string
 
-    Os_profile *[]Azurerm_virtual_machine_os_profile_1492
+    Os_profile *[]Azurerm_virtual_machine_os_profile_812
 
-    Os_profile_linux_config *[]Azurerm_virtual_machine_os_profile_linux_config_1493
+    Os_profile_linux_config *[]Azurerm_virtual_machine_os_profile_linux_config_813
 
-    Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_1495
+    Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_815
 
-    Os_profile_windows_config *[]Azurerm_virtual_machine_os_profile_windows_config_1497
+    Os_profile_windows_config *[]Azurerm_virtual_machine_os_profile_windows_config_817
 
-    Plan *[]Azurerm_virtual_machine_plan_1500
+    Plan *[]Azurerm_virtual_machine_plan_820
 
     Primary_network_interface_id *string
 
     Resource_group_name string
 
-    Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_1501
+    Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_821
 
-    Storage_image_reference *[]Azurerm_virtual_machine_storage_image_reference_1502
+    Storage_image_reference *[]Azurerm_virtual_machine_storage_image_reference_822
 
-    Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_1503
+    Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_823
 
     Tags *map[string]string
 
@@ -13845,6 +14398,7 @@ type Azurerm_virtual_machineHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machineHandler) Create(desired *Azurerm_virtual_machine) (*Azurerm_virtual_machine, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13861,6 +14415,7 @@ func (h *Azurerm_virtual_machineHandler) Create(desired *Azurerm_virtual_machine
 
 // Read ...
 func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtual_machine, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine", externalID)
 	if err != nil {
 		return nil, err
@@ -13872,6 +14427,7 @@ func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtu
 
 // Delete ...
 func (h *Azurerm_virtual_machineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine", externalID)
 }
 
@@ -13900,6 +14456,7 @@ type Azurerm_virtual_machine_data_disk_attachmentHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Create(desired *Azurerm_virtual_machine_data_disk_attachment) (*Azurerm_virtual_machine_data_disk_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13916,6 +14473,7 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID string) (*Azurerm_virtual_machine_data_disk_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -13927,6 +14485,7 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID st
 
 // Delete ...
 func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
 }
 
@@ -13965,6 +14524,7 @@ type Azurerm_virtual_machine_extensionHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machine_extensionHandler) Create(desired *Azurerm_virtual_machine_extension) (*Azurerm_virtual_machine_extension, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13981,6 +14541,7 @@ func (h *Azurerm_virtual_machine_extensionHandler) Create(desired *Azurerm_virtu
 
 // Read ...
 func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azurerm_virtual_machine_extension, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_extension", externalID)
 	if err != nil {
 		return nil, err
@@ -13992,10 +14553,11 @@ func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azu
 
 // Delete ...
 func (h *Azurerm_virtual_machine_extensionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine_extension", externalID)
 }
 
-type Azurerm_virtual_machine_scale_set_boot_diagnostics_1504 struct {
+type Azurerm_virtual_machine_scale_set_boot_diagnostics_824 struct {
 
     Enabled *bool
 
@@ -14003,7 +14565,7 @@ type Azurerm_virtual_machine_scale_set_boot_diagnostics_1504 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_extension_1505 struct {
+type Azurerm_virtual_machine_scale_set_extension_825 struct {
 
     Auto_upgrade_minor_version *bool
 
@@ -14021,7 +14583,7 @@ type Azurerm_virtual_machine_scale_set_extension_1505 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_identity_1506 struct {
+type Azurerm_virtual_machine_scale_set_identity_826 struct {
 
     Identity_ids *[]string
 
@@ -14031,13 +14593,13 @@ type Azurerm_virtual_machine_scale_set_identity_1506 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508 struct {
+type Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828 struct {
 
     Dns_servers []string
 
 }
 
-type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510 struct {
+type Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830 struct {
 
     Domain_name_label string
 
@@ -14047,7 +14609,7 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_150
 
 }
 
-type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509 struct {
+type Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829 struct {
 
     Application_gateway_backend_address_pool_ids *[]string
 
@@ -14061,19 +14623,19 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_150
 
     Primary bool
 
-    Public_ip_address_configuration *[]Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509_public_ip_address_configuration_1510
+    Public_ip_address_configuration *[]Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830
 
     Subnet_id string
 
 }
 
-type Azurerm_virtual_machine_scale_set_network_profile_1507 struct {
+type Azurerm_virtual_machine_scale_set_network_profile_827 struct {
 
     Accelerated_networking *bool
 
-    Dns_settings *[]Azurerm_virtual_machine_scale_set_network_profile_1507_dns_settings_1508
+    Dns_settings *[]Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828
 
-    Ip_configuration []Azurerm_virtual_machine_scale_set_network_profile_1507_ip_configuration_1509
+    Ip_configuration []Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829
 
     Ip_forwarding *bool
 
@@ -14085,7 +14647,7 @@ type Azurerm_virtual_machine_scale_set_network_profile_1507 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_1511 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_831 struct {
 
     Admin_password *string
 
@@ -14097,7 +14659,7 @@ type Azurerm_virtual_machine_scale_set_os_profile_1511 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833 struct {
 
     Key_data *string
 
@@ -14105,15 +14667,15 @@ type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_151
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_linux_config_832 struct {
 
     Disable_password_authentication *bool
 
-    Ssh_keys *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512_ssh_keys_1513
+    Ssh_keys *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835 struct {
 
     Certificate_store *string
 
@@ -14121,15 +14683,15 @@ type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificate
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_secrets_1514 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_secrets_834 struct {
 
     Source_vault_id string
 
-    Vault_certificates *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_1514_vault_certificates_1515
+    Vault_certificates *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837 struct {
 
     Component string
 
@@ -14141,7 +14703,7 @@ type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838 struct {
 
     Certificate_url *string
 
@@ -14149,19 +14711,19 @@ type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518
 
 }
 
-type Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516 struct {
+type Azurerm_virtual_machine_scale_set_os_profile_windows_config_836 struct {
 
-    Additional_unattend_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_additional_unattend_config_1517
+    Additional_unattend_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837
 
     Enable_automatic_upgrades *bool
 
     Provision_vm_agent *bool
 
-    Winrm *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516_winrm_1518
+    Winrm *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838
 
 }
 
-type Azurerm_virtual_machine_scale_set_plan_1519 struct {
+type Azurerm_virtual_machine_scale_set_plan_839 struct {
 
     Name string
 
@@ -14171,7 +14733,7 @@ type Azurerm_virtual_machine_scale_set_plan_1519 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520 struct {
+type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840 struct {
 
     Max_batch_instance_percent *int
 
@@ -14183,7 +14745,7 @@ type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_sku_1521 struct {
+type Azurerm_virtual_machine_scale_set_sku_841 struct {
 
     Capacity int
 
@@ -14193,7 +14755,7 @@ type Azurerm_virtual_machine_scale_set_sku_1521 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522 struct {
+type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842 struct {
 
     Caching *string
 
@@ -14207,7 +14769,7 @@ type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522 struct {
 
 }
 
-type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523 struct {
+type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843 struct {
 
     Id *string
 
@@ -14221,7 +14783,7 @@ type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523 stru
 
 }
 
-type Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524 struct {
+type Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844 struct {
 
     Caching *string
 
@@ -14245,15 +14807,15 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Automatic_os_upgrade *bool
 
-    Boot_diagnostics *[]Azurerm_virtual_machine_scale_set_boot_diagnostics_1504
+    Boot_diagnostics *[]Azurerm_virtual_machine_scale_set_boot_diagnostics_824
 
     Eviction_policy *string
 
-    Extension *[]Azurerm_virtual_machine_scale_set_extension_1505
+    Extension *[]Azurerm_virtual_machine_scale_set_extension_825
 
     Health_probe_id *string
 
-    Identity *[]Azurerm_virtual_machine_scale_set_identity_1506
+    Identity *[]Azurerm_virtual_machine_scale_set_identity_826
 
     License_type *string
 
@@ -14261,35 +14823,35 @@ type Azurerm_virtual_machine_scale_set struct {
 
     Name string
 
-    Network_profile []Azurerm_virtual_machine_scale_set_network_profile_1507
+    Network_profile []Azurerm_virtual_machine_scale_set_network_profile_827
 
-    Os_profile []Azurerm_virtual_machine_scale_set_os_profile_1511
+    Os_profile []Azurerm_virtual_machine_scale_set_os_profile_831
 
-    Os_profile_linux_config *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_1512
+    Os_profile_linux_config *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_832
 
-    Os_profile_secrets *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_1514
+    Os_profile_secrets *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_834
 
-    Os_profile_windows_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_1516
+    Os_profile_windows_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_836
 
     Overprovision *bool
 
-    Plan *[]Azurerm_virtual_machine_scale_set_plan_1519
+    Plan *[]Azurerm_virtual_machine_scale_set_plan_839
 
     Priority *string
 
     Resource_group_name string
 
-    Rolling_upgrade_policy *[]Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_1520
+    Rolling_upgrade_policy *[]Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840
 
     Single_placement_group *bool
 
-    Sku []Azurerm_virtual_machine_scale_set_sku_1521
+    Sku []Azurerm_virtual_machine_scale_set_sku_841
 
-    Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_1522
+    Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842
 
-    Storage_profile_image_reference *[]Azurerm_virtual_machine_scale_set_storage_profile_image_reference_1523
+    Storage_profile_image_reference *[]Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843
 
-    Storage_profile_os_disk []Azurerm_virtual_machine_scale_set_storage_profile_os_disk_1524
+    Storage_profile_os_disk []Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844
 
     Tags *map[string]string
 
@@ -14306,6 +14868,7 @@ type Azurerm_virtual_machine_scale_setHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machine_scale_setHandler) Create(desired *Azurerm_virtual_machine_scale_set) (*Azurerm_virtual_machine_scale_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14322,6 +14885,7 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Create(desired *Azurerm_virtu
 
 // Read ...
 func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azurerm_virtual_machine_scale_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_scale_set", externalID)
 	if err != nil {
 		return nil, err
@@ -14333,10 +14897,11 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azu
 
 // Delete ...
 func (h *Azurerm_virtual_machine_scale_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine_scale_set", externalID)
 }
 
-type Azurerm_virtual_network_subnet_1525 struct {
+type Azurerm_virtual_network_subnet_845 struct {
 
     Address_prefix string
 
@@ -14362,7 +14927,7 @@ type Azurerm_virtual_network struct {
 
     Resource_group_name string
 
-    Subnet *[]Azurerm_virtual_network_subnet_1525
+    Subnet *[]Azurerm_virtual_network_subnet_845
 
     Tags *map[string]string
 
@@ -14375,6 +14940,7 @@ type Azurerm_virtual_networkHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_networkHandler) Create(desired *Azurerm_virtual_network) (*Azurerm_virtual_network, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14391,6 +14957,7 @@ func (h *Azurerm_virtual_networkHandler) Create(desired *Azurerm_virtual_network
 
 // Read ...
 func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtual_network, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network", externalID)
 	if err != nil {
 		return nil, err
@@ -14402,10 +14969,11 @@ func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtu
 
 // Delete ...
 func (h *Azurerm_virtual_networkHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network", externalID)
 }
 
-type Azurerm_virtual_network_gateway_bgp_settings_1526 struct {
+type Azurerm_virtual_network_gateway_bgp_settings_846 struct {
 
     Asn *int
 
@@ -14415,7 +14983,7 @@ type Azurerm_virtual_network_gateway_bgp_settings_1526 struct {
 
 }
 
-type Azurerm_virtual_network_gateway_ip_configuration_1527 struct {
+type Azurerm_virtual_network_gateway_ip_configuration_847 struct {
 
     Name *string
 
@@ -14427,7 +14995,7 @@ type Azurerm_virtual_network_gateway_ip_configuration_1527 struct {
 
 }
 
-type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529 struct {
+type Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849 struct {
 
     Name string
 
@@ -14435,7 +15003,7 @@ type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certi
 
 }
 
-type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530 struct {
+type Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850 struct {
 
     Name string
 
@@ -14443,7 +15011,7 @@ type Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certific
 
 }
 
-type Azurerm_virtual_network_gateway_vpn_client_configuration_1528 struct {
+type Azurerm_virtual_network_gateway_vpn_client_configuration_848 struct {
 
     Address_space []string
 
@@ -14451,9 +15019,9 @@ type Azurerm_virtual_network_gateway_vpn_client_configuration_1528 struct {
 
     Radius_server_secret *string
 
-    Revoked_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_1528_revoked_certificate_1529
+    Revoked_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849
 
-    Root_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_1528_root_certificate_1530
+    Root_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850
 
     Vpn_client_protocols *[]string
 
@@ -14465,13 +15033,13 @@ type Azurerm_virtual_network_gateway struct {
 
     Active_active *bool
 
-    Bgp_settings *[]Azurerm_virtual_network_gateway_bgp_settings_1526
+    Bgp_settings *[]Azurerm_virtual_network_gateway_bgp_settings_846
 
     Default_local_network_gateway_id *string
 
     Enable_bgp *bool
 
-    Ip_configuration []Azurerm_virtual_network_gateway_ip_configuration_1527
+    Ip_configuration []Azurerm_virtual_network_gateway_ip_configuration_847
 
     Location string
 
@@ -14485,7 +15053,7 @@ type Azurerm_virtual_network_gateway struct {
 
     Type string
 
-    Vpn_client_configuration *[]Azurerm_virtual_network_gateway_vpn_client_configuration_1528
+    Vpn_client_configuration *[]Azurerm_virtual_network_gateway_vpn_client_configuration_848
 
     Vpn_type *string
 
@@ -14498,6 +15066,7 @@ type Azurerm_virtual_network_gatewayHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_network_gatewayHandler) Create(desired *Azurerm_virtual_network_gateway) (*Azurerm_virtual_network_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14514,6 +15083,7 @@ func (h *Azurerm_virtual_network_gatewayHandler) Create(desired *Azurerm_virtual
 
 // Read ...
 func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azurerm_virtual_network_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -14525,10 +15095,11 @@ func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_virtual_network_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway", externalID)
 }
 
-type Azurerm_virtual_network_gateway_connection_ipsec_policy_1531 struct {
+type Azurerm_virtual_network_gateway_connection_ipsec_policy_851 struct {
 
     Dh_group string
 
@@ -14558,7 +15129,7 @@ type Azurerm_virtual_network_gateway_connection struct {
 
     Express_route_circuit_id *string
 
-    Ipsec_policy *[]Azurerm_virtual_network_gateway_connection_ipsec_policy_1531
+    Ipsec_policy *[]Azurerm_virtual_network_gateway_connection_ipsec_policy_851
 
     Local_network_gateway_id *string
 
@@ -14591,6 +15162,7 @@ type Azurerm_virtual_network_gateway_connectionHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_network_gateway_connectionHandler) Create(desired *Azurerm_virtual_network_gateway_connection) (*Azurerm_virtual_network_gateway_connection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14607,6 +15179,7 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Create(desired *Azur
 
 // Read ...
 func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID string) (*Azurerm_virtual_network_gateway_connection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
 	if err != nil {
 		return nil, err
@@ -14618,6 +15191,7 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID stri
 
 // Delete ...
 func (h *Azurerm_virtual_network_gateway_connectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
 }
 
@@ -14650,6 +15224,7 @@ type Azurerm_virtual_network_peeringHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_network_peeringHandler) Create(desired *Azurerm_virtual_network_peering) (*Azurerm_virtual_network_peering, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14666,6 +15241,7 @@ func (h *Azurerm_virtual_network_peeringHandler) Create(desired *Azurerm_virtual
 
 // Read ...
 func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azurerm_virtual_network_peering, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_peering", externalID)
 	if err != nil {
 		return nil, err
@@ -14677,5 +15253,6 @@ func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azure
 
 // Delete ...
 func (h *Azurerm_virtual_network_peeringHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network_peering", externalID)
 }

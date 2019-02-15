@@ -6,12 +6,31 @@
 package generated
 
 import (
+	"sync"
+
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/service"
 )
+
+var once sync.Once
+var Config *terraform.ResourceConfig
+
+func configureProvider(p *schema.Provider) {
+	once.Do(func() {
+		if Config == nil {
+			Config = &terraform.ResourceConfig{
+				Config: map[string]interface{}{},
+			}
+		}
+		err := p.Configure(Config)
+		if err != nil {
+			panic(err)
+		}
+	})
+}
 
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
@@ -999,6 +1018,7 @@ type Aws_acm_certificateHandler struct {
 
 // Create ...
 func (h *Aws_acm_certificateHandler) Create(desired *Aws_acm_certificate) (*Aws_acm_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1015,6 +1035,7 @@ func (h *Aws_acm_certificateHandler) Create(desired *Aws_acm_certificate) (*Aws_
 
 // Read ...
 func (h *Aws_acm_certificateHandler) Read(externalID string) (*Aws_acm_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_acm_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -1026,6 +1047,7 @@ func (h *Aws_acm_certificateHandler) Read(externalID string) (*Aws_acm_certifica
 
 // Delete ...
 func (h *Aws_acm_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_acm_certificate", externalID)
 }
 
@@ -1046,6 +1068,7 @@ type Aws_acm_certificate_validationHandler struct {
 
 // Create ...
 func (h *Aws_acm_certificate_validationHandler) Create(desired *Aws_acm_certificate_validation) (*Aws_acm_certificate_validation, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1062,6 +1085,7 @@ func (h *Aws_acm_certificate_validationHandler) Create(desired *Aws_acm_certific
 
 // Read ...
 func (h *Aws_acm_certificate_validationHandler) Read(externalID string) (*Aws_acm_certificate_validation, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_acm_certificate_validation", externalID)
 	if err != nil {
 		return nil, err
@@ -1073,6 +1097,7 @@ func (h *Aws_acm_certificate_validationHandler) Read(externalID string) (*Aws_ac
 
 // Delete ...
 func (h *Aws_acm_certificate_validationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_acm_certificate_validation", externalID)
 }
 
@@ -1173,6 +1198,7 @@ type Aws_acmpca_certificate_authorityHandler struct {
 
 // Create ...
 func (h *Aws_acmpca_certificate_authorityHandler) Create(desired *Aws_acmpca_certificate_authority) (*Aws_acmpca_certificate_authority, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1189,6 +1215,7 @@ func (h *Aws_acmpca_certificate_authorityHandler) Create(desired *Aws_acmpca_cer
 
 // Read ...
 func (h *Aws_acmpca_certificate_authorityHandler) Read(externalID string) (*Aws_acmpca_certificate_authority, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_acmpca_certificate_authority", externalID)
 	if err != nil {
 		return nil, err
@@ -1200,6 +1227,7 @@ func (h *Aws_acmpca_certificate_authorityHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_acmpca_certificate_authorityHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_acmpca_certificate_authority", externalID)
 }
 
@@ -1272,6 +1300,7 @@ type Aws_albHandler struct {
 
 // Create ...
 func (h *Aws_albHandler) Create(desired *Aws_alb) (*Aws_alb, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1288,6 +1317,7 @@ func (h *Aws_albHandler) Create(desired *Aws_alb) (*Aws_alb, string, error) {
 
 // Read ...
 func (h *Aws_albHandler) Read(externalID string) (*Aws_alb, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_alb", externalID)
 	if err != nil {
 		return nil, err
@@ -1299,6 +1329,7 @@ func (h *Aws_albHandler) Read(externalID string) (*Aws_alb, error) {
 
 // Delete ...
 func (h *Aws_albHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_alb", externalID)
 }
 
@@ -1419,6 +1450,7 @@ type Aws_alb_listenerHandler struct {
 
 // Create ...
 func (h *Aws_alb_listenerHandler) Create(desired *Aws_alb_listener) (*Aws_alb_listener, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1435,6 +1467,7 @@ func (h *Aws_alb_listenerHandler) Create(desired *Aws_alb_listener) (*Aws_alb_li
 
 // Read ...
 func (h *Aws_alb_listenerHandler) Read(externalID string) (*Aws_alb_listener, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_alb_listener", externalID)
 	if err != nil {
 		return nil, err
@@ -1446,6 +1479,7 @@ func (h *Aws_alb_listenerHandler) Read(externalID string) (*Aws_alb_listener, er
 
 // Delete ...
 func (h *Aws_alb_listenerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_alb_listener", externalID)
 }
 
@@ -1466,6 +1500,7 @@ type Aws_alb_listener_certificateHandler struct {
 
 // Create ...
 func (h *Aws_alb_listener_certificateHandler) Create(desired *Aws_alb_listener_certificate) (*Aws_alb_listener_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1482,6 +1517,7 @@ func (h *Aws_alb_listener_certificateHandler) Create(desired *Aws_alb_listener_c
 
 // Read ...
 func (h *Aws_alb_listener_certificateHandler) Read(externalID string) (*Aws_alb_listener_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_alb_listener_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -1493,6 +1529,7 @@ func (h *Aws_alb_listener_certificateHandler) Read(externalID string) (*Aws_alb_
 
 // Delete ...
 func (h *Aws_alb_listener_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_alb_listener_certificate", externalID)
 }
 
@@ -1617,6 +1654,7 @@ type Aws_alb_listener_ruleHandler struct {
 
 // Create ...
 func (h *Aws_alb_listener_ruleHandler) Create(desired *Aws_alb_listener_rule) (*Aws_alb_listener_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1633,6 +1671,7 @@ func (h *Aws_alb_listener_ruleHandler) Create(desired *Aws_alb_listener_rule) (*
 
 // Read ...
 func (h *Aws_alb_listener_ruleHandler) Read(externalID string) (*Aws_alb_listener_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_alb_listener_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -1644,6 +1683,7 @@ func (h *Aws_alb_listener_ruleHandler) Read(externalID string) (*Aws_alb_listene
 
 // Delete ...
 func (h *Aws_alb_listener_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_alb_listener_rule", externalID)
 }
 
@@ -1718,6 +1758,7 @@ type Aws_alb_target_groupHandler struct {
 
 // Create ...
 func (h *Aws_alb_target_groupHandler) Create(desired *Aws_alb_target_group) (*Aws_alb_target_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1734,6 +1775,7 @@ func (h *Aws_alb_target_groupHandler) Create(desired *Aws_alb_target_group) (*Aw
 
 // Read ...
 func (h *Aws_alb_target_groupHandler) Read(externalID string) (*Aws_alb_target_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_alb_target_group", externalID)
 	if err != nil {
 		return nil, err
@@ -1745,6 +1787,7 @@ func (h *Aws_alb_target_groupHandler) Read(externalID string) (*Aws_alb_target_g
 
 // Delete ...
 func (h *Aws_alb_target_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_alb_target_group", externalID)
 }
 
@@ -1769,6 +1812,7 @@ type Aws_alb_target_group_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_alb_target_group_attachmentHandler) Create(desired *Aws_alb_target_group_attachment) (*Aws_alb_target_group_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1785,6 +1829,7 @@ func (h *Aws_alb_target_group_attachmentHandler) Create(desired *Aws_alb_target_
 
 // Read ...
 func (h *Aws_alb_target_group_attachmentHandler) Read(externalID string) (*Aws_alb_target_group_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_alb_target_group_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -1796,6 +1841,7 @@ func (h *Aws_alb_target_group_attachmentHandler) Read(externalID string) (*Aws_a
 
 // Delete ...
 func (h *Aws_alb_target_group_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_alb_target_group_attachment", externalID)
 }
 
@@ -1868,6 +1914,7 @@ type Aws_amiHandler struct {
 
 // Create ...
 func (h *Aws_amiHandler) Create(desired *Aws_ami) (*Aws_ami, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1884,6 +1931,7 @@ func (h *Aws_amiHandler) Create(desired *Aws_ami) (*Aws_ami, string, error) {
 
 // Read ...
 func (h *Aws_amiHandler) Read(externalID string) (*Aws_ami, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ami", externalID)
 	if err != nil {
 		return nil, err
@@ -1895,6 +1943,7 @@ func (h *Aws_amiHandler) Read(externalID string) (*Aws_ami, error) {
 
 // Delete ...
 func (h *Aws_amiHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ami", externalID)
 }
 
@@ -1975,6 +2024,7 @@ type Aws_ami_copyHandler struct {
 
 // Create ...
 func (h *Aws_ami_copyHandler) Create(desired *Aws_ami_copy) (*Aws_ami_copy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -1991,6 +2041,7 @@ func (h *Aws_ami_copyHandler) Create(desired *Aws_ami_copy) (*Aws_ami_copy, stri
 
 // Read ...
 func (h *Aws_ami_copyHandler) Read(externalID string) (*Aws_ami_copy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ami_copy", externalID)
 	if err != nil {
 		return nil, err
@@ -2002,6 +2053,7 @@ func (h *Aws_ami_copyHandler) Read(externalID string) (*Aws_ami_copy, error) {
 
 // Delete ...
 func (h *Aws_ami_copyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ami_copy", externalID)
 }
 
@@ -2078,6 +2130,7 @@ type Aws_ami_from_instanceHandler struct {
 
 // Create ...
 func (h *Aws_ami_from_instanceHandler) Create(desired *Aws_ami_from_instance) (*Aws_ami_from_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2094,6 +2147,7 @@ func (h *Aws_ami_from_instanceHandler) Create(desired *Aws_ami_from_instance) (*
 
 // Read ...
 func (h *Aws_ami_from_instanceHandler) Read(externalID string) (*Aws_ami_from_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ami_from_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -2105,6 +2159,7 @@ func (h *Aws_ami_from_instanceHandler) Read(externalID string) (*Aws_ami_from_in
 
 // Delete ...
 func (h *Aws_ami_from_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ami_from_instance", externalID)
 }
 
@@ -2125,6 +2180,7 @@ type Aws_ami_launch_permissionHandler struct {
 
 // Create ...
 func (h *Aws_ami_launch_permissionHandler) Create(desired *Aws_ami_launch_permission) (*Aws_ami_launch_permission, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2141,6 +2197,7 @@ func (h *Aws_ami_launch_permissionHandler) Create(desired *Aws_ami_launch_permis
 
 // Read ...
 func (h *Aws_ami_launch_permissionHandler) Read(externalID string) (*Aws_ami_launch_permission, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ami_launch_permission", externalID)
 	if err != nil {
 		return nil, err
@@ -2152,6 +2209,7 @@ func (h *Aws_ami_launch_permissionHandler) Read(externalID string) (*Aws_ami_lau
 
 // Delete ...
 func (h *Aws_ami_launch_permissionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ami_launch_permission", externalID)
 }
 
@@ -2180,6 +2238,7 @@ type Aws_api_gateway_accountHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_accountHandler) Create(desired *Aws_api_gateway_account) (*Aws_api_gateway_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2196,6 +2255,7 @@ func (h *Aws_api_gateway_accountHandler) Create(desired *Aws_api_gateway_account
 
 // Read ...
 func (h *Aws_api_gateway_accountHandler) Read(externalID string) (*Aws_api_gateway_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_account", externalID)
 	if err != nil {
 		return nil, err
@@ -2207,6 +2267,7 @@ func (h *Aws_api_gateway_accountHandler) Read(externalID string) (*Aws_api_gatew
 
 // Delete ...
 func (h *Aws_api_gateway_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_account", externalID)
 }
 
@@ -2245,6 +2306,7 @@ type Aws_api_gateway_api_keyHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_api_keyHandler) Create(desired *Aws_api_gateway_api_key) (*Aws_api_gateway_api_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2261,6 +2323,7 @@ func (h *Aws_api_gateway_api_keyHandler) Create(desired *Aws_api_gateway_api_key
 
 // Read ...
 func (h *Aws_api_gateway_api_keyHandler) Read(externalID string) (*Aws_api_gateway_api_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_api_key", externalID)
 	if err != nil {
 		return nil, err
@@ -2272,6 +2335,7 @@ func (h *Aws_api_gateway_api_keyHandler) Read(externalID string) (*Aws_api_gatew
 
 // Delete ...
 func (h *Aws_api_gateway_api_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_api_key", externalID)
 }
 
@@ -2306,6 +2370,7 @@ type Aws_api_gateway_authorizerHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_authorizerHandler) Create(desired *Aws_api_gateway_authorizer) (*Aws_api_gateway_authorizer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2322,6 +2387,7 @@ func (h *Aws_api_gateway_authorizerHandler) Create(desired *Aws_api_gateway_auth
 
 // Read ...
 func (h *Aws_api_gateway_authorizerHandler) Read(externalID string) (*Aws_api_gateway_authorizer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_authorizer", externalID)
 	if err != nil {
 		return nil, err
@@ -2333,6 +2399,7 @@ func (h *Aws_api_gateway_authorizerHandler) Read(externalID string) (*Aws_api_ga
 
 // Delete ...
 func (h *Aws_api_gateway_authorizerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_authorizer", externalID)
 }
 
@@ -2357,6 +2424,7 @@ type Aws_api_gateway_base_path_mappingHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_base_path_mappingHandler) Create(desired *Aws_api_gateway_base_path_mapping) (*Aws_api_gateway_base_path_mapping, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2373,6 +2441,7 @@ func (h *Aws_api_gateway_base_path_mappingHandler) Create(desired *Aws_api_gatew
 
 // Read ...
 func (h *Aws_api_gateway_base_path_mappingHandler) Read(externalID string) (*Aws_api_gateway_base_path_mapping, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_base_path_mapping", externalID)
 	if err != nil {
 		return nil, err
@@ -2384,6 +2453,7 @@ func (h *Aws_api_gateway_base_path_mappingHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_api_gateway_base_path_mappingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_base_path_mapping", externalID)
 }
 
@@ -2408,6 +2478,7 @@ type Aws_api_gateway_client_certificateHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_client_certificateHandler) Create(desired *Aws_api_gateway_client_certificate) (*Aws_api_gateway_client_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2424,6 +2495,7 @@ func (h *Aws_api_gateway_client_certificateHandler) Create(desired *Aws_api_gate
 
 // Read ...
 func (h *Aws_api_gateway_client_certificateHandler) Read(externalID string) (*Aws_api_gateway_client_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_client_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -2435,6 +2507,7 @@ func (h *Aws_api_gateway_client_certificateHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_api_gateway_client_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_client_certificate", externalID)
 }
 
@@ -2467,6 +2540,7 @@ type Aws_api_gateway_deploymentHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_deploymentHandler) Create(desired *Aws_api_gateway_deployment) (*Aws_api_gateway_deployment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2483,6 +2557,7 @@ func (h *Aws_api_gateway_deploymentHandler) Create(desired *Aws_api_gateway_depl
 
 // Read ...
 func (h *Aws_api_gateway_deploymentHandler) Read(externalID string) (*Aws_api_gateway_deployment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_deployment", externalID)
 	if err != nil {
 		return nil, err
@@ -2494,6 +2569,7 @@ func (h *Aws_api_gateway_deploymentHandler) Read(externalID string) (*Aws_api_ga
 
 // Delete ...
 func (h *Aws_api_gateway_deploymentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_deployment", externalID)
 }
 
@@ -2530,6 +2606,7 @@ type Aws_api_gateway_documentation_partHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_documentation_partHandler) Create(desired *Aws_api_gateway_documentation_part) (*Aws_api_gateway_documentation_part, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2546,6 +2623,7 @@ func (h *Aws_api_gateway_documentation_partHandler) Create(desired *Aws_api_gate
 
 // Read ...
 func (h *Aws_api_gateway_documentation_partHandler) Read(externalID string) (*Aws_api_gateway_documentation_part, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_documentation_part", externalID)
 	if err != nil {
 		return nil, err
@@ -2557,6 +2635,7 @@ func (h *Aws_api_gateway_documentation_partHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_api_gateway_documentation_partHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_documentation_part", externalID)
 }
 
@@ -2579,6 +2658,7 @@ type Aws_api_gateway_documentation_versionHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_documentation_versionHandler) Create(desired *Aws_api_gateway_documentation_version) (*Aws_api_gateway_documentation_version, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2595,6 +2675,7 @@ func (h *Aws_api_gateway_documentation_versionHandler) Create(desired *Aws_api_g
 
 // Read ...
 func (h *Aws_api_gateway_documentation_versionHandler) Read(externalID string) (*Aws_api_gateway_documentation_version, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_documentation_version", externalID)
 	if err != nil {
 		return nil, err
@@ -2606,6 +2687,7 @@ func (h *Aws_api_gateway_documentation_versionHandler) Read(externalID string) (
 
 // Delete ...
 func (h *Aws_api_gateway_documentation_versionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_documentation_version", externalID)
 }
 
@@ -2656,6 +2738,7 @@ type Aws_api_gateway_domain_nameHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_domain_nameHandler) Create(desired *Aws_api_gateway_domain_name) (*Aws_api_gateway_domain_name, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2672,6 +2755,7 @@ func (h *Aws_api_gateway_domain_nameHandler) Create(desired *Aws_api_gateway_dom
 
 // Read ...
 func (h *Aws_api_gateway_domain_nameHandler) Read(externalID string) (*Aws_api_gateway_domain_name, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_domain_name", externalID)
 	if err != nil {
 		return nil, err
@@ -2683,6 +2767,7 @@ func (h *Aws_api_gateway_domain_nameHandler) Read(externalID string) (*Aws_api_g
 
 // Delete ...
 func (h *Aws_api_gateway_domain_nameHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_domain_name", externalID)
 }
 
@@ -2709,6 +2794,7 @@ type Aws_api_gateway_gateway_responseHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_gateway_responseHandler) Create(desired *Aws_api_gateway_gateway_response) (*Aws_api_gateway_gateway_response, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2725,6 +2811,7 @@ func (h *Aws_api_gateway_gateway_responseHandler) Create(desired *Aws_api_gatewa
 
 // Read ...
 func (h *Aws_api_gateway_gateway_responseHandler) Read(externalID string) (*Aws_api_gateway_gateway_response, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_gateway_response", externalID)
 	if err != nil {
 		return nil, err
@@ -2736,6 +2823,7 @@ func (h *Aws_api_gateway_gateway_responseHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_api_gateway_gateway_responseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_gateway_response", externalID)
 }
 
@@ -2786,6 +2874,7 @@ type Aws_api_gateway_integrationHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_integrationHandler) Create(desired *Aws_api_gateway_integration) (*Aws_api_gateway_integration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2802,6 +2891,7 @@ func (h *Aws_api_gateway_integrationHandler) Create(desired *Aws_api_gateway_int
 
 // Read ...
 func (h *Aws_api_gateway_integrationHandler) Read(externalID string) (*Aws_api_gateway_integration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_integration", externalID)
 	if err != nil {
 		return nil, err
@@ -2813,6 +2903,7 @@ func (h *Aws_api_gateway_integrationHandler) Read(externalID string) (*Aws_api_g
 
 // Delete ...
 func (h *Aws_api_gateway_integrationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_integration", externalID)
 }
 
@@ -2847,6 +2938,7 @@ type Aws_api_gateway_integration_responseHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_integration_responseHandler) Create(desired *Aws_api_gateway_integration_response) (*Aws_api_gateway_integration_response, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2863,6 +2955,7 @@ func (h *Aws_api_gateway_integration_responseHandler) Create(desired *Aws_api_ga
 
 // Read ...
 func (h *Aws_api_gateway_integration_responseHandler) Read(externalID string) (*Aws_api_gateway_integration_response, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_integration_response", externalID)
 	if err != nil {
 		return nil, err
@@ -2874,6 +2967,7 @@ func (h *Aws_api_gateway_integration_responseHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Aws_api_gateway_integration_responseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_integration_response", externalID)
 }
 
@@ -2912,6 +3006,7 @@ type Aws_api_gateway_methodHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_methodHandler) Create(desired *Aws_api_gateway_method) (*Aws_api_gateway_method, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2928,6 +3023,7 @@ func (h *Aws_api_gateway_methodHandler) Create(desired *Aws_api_gateway_method) 
 
 // Read ...
 func (h *Aws_api_gateway_methodHandler) Read(externalID string) (*Aws_api_gateway_method, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_method", externalID)
 	if err != nil {
 		return nil, err
@@ -2939,6 +3035,7 @@ func (h *Aws_api_gateway_methodHandler) Read(externalID string) (*Aws_api_gatewa
 
 // Delete ...
 func (h *Aws_api_gateway_methodHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_method", externalID)
 }
 
@@ -2969,6 +3066,7 @@ type Aws_api_gateway_method_responseHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_method_responseHandler) Create(desired *Aws_api_gateway_method_response) (*Aws_api_gateway_method_response, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -2985,6 +3083,7 @@ func (h *Aws_api_gateway_method_responseHandler) Create(desired *Aws_api_gateway
 
 // Read ...
 func (h *Aws_api_gateway_method_responseHandler) Read(externalID string) (*Aws_api_gateway_method_response, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_method_response", externalID)
 	if err != nil {
 		return nil, err
@@ -2996,6 +3095,7 @@ func (h *Aws_api_gateway_method_responseHandler) Read(externalID string) (*Aws_a
 
 // Delete ...
 func (h *Aws_api_gateway_method_responseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_method_response", externalID)
 }
 
@@ -3044,6 +3144,7 @@ type Aws_api_gateway_method_settingsHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_method_settingsHandler) Create(desired *Aws_api_gateway_method_settings) (*Aws_api_gateway_method_settings, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3060,6 +3161,7 @@ func (h *Aws_api_gateway_method_settingsHandler) Create(desired *Aws_api_gateway
 
 // Read ...
 func (h *Aws_api_gateway_method_settingsHandler) Read(externalID string) (*Aws_api_gateway_method_settings, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_method_settings", externalID)
 	if err != nil {
 		return nil, err
@@ -3071,6 +3173,7 @@ func (h *Aws_api_gateway_method_settingsHandler) Read(externalID string) (*Aws_a
 
 // Delete ...
 func (h *Aws_api_gateway_method_settingsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_method_settings", externalID)
 }
 
@@ -3097,6 +3200,7 @@ type Aws_api_gateway_modelHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_modelHandler) Create(desired *Aws_api_gateway_model) (*Aws_api_gateway_model, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3113,6 +3217,7 @@ func (h *Aws_api_gateway_modelHandler) Create(desired *Aws_api_gateway_model) (*
 
 // Read ...
 func (h *Aws_api_gateway_modelHandler) Read(externalID string) (*Aws_api_gateway_model, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_model", externalID)
 	if err != nil {
 		return nil, err
@@ -3124,6 +3229,7 @@ func (h *Aws_api_gateway_modelHandler) Read(externalID string) (*Aws_api_gateway
 
 // Delete ...
 func (h *Aws_api_gateway_modelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_model", externalID)
 }
 
@@ -3148,6 +3254,7 @@ type Aws_api_gateway_request_validatorHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_request_validatorHandler) Create(desired *Aws_api_gateway_request_validator) (*Aws_api_gateway_request_validator, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3164,6 +3271,7 @@ func (h *Aws_api_gateway_request_validatorHandler) Create(desired *Aws_api_gatew
 
 // Read ...
 func (h *Aws_api_gateway_request_validatorHandler) Read(externalID string) (*Aws_api_gateway_request_validator, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_request_validator", externalID)
 	if err != nil {
 		return nil, err
@@ -3175,6 +3283,7 @@ func (h *Aws_api_gateway_request_validatorHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_api_gateway_request_validatorHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_request_validator", externalID)
 }
 
@@ -3199,6 +3308,7 @@ type Aws_api_gateway_resourceHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_resourceHandler) Create(desired *Aws_api_gateway_resource) (*Aws_api_gateway_resource, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3215,6 +3325,7 @@ func (h *Aws_api_gateway_resourceHandler) Create(desired *Aws_api_gateway_resour
 
 // Read ...
 func (h *Aws_api_gateway_resourceHandler) Read(externalID string) (*Aws_api_gateway_resource, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_resource", externalID)
 	if err != nil {
 		return nil, err
@@ -3226,6 +3337,7 @@ func (h *Aws_api_gateway_resourceHandler) Read(externalID string) (*Aws_api_gate
 
 // Delete ...
 func (h *Aws_api_gateway_resourceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_resource", externalID)
 }
 
@@ -3270,6 +3382,7 @@ type Aws_api_gateway_rest_apiHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_rest_apiHandler) Create(desired *Aws_api_gateway_rest_api) (*Aws_api_gateway_rest_api, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3286,6 +3399,7 @@ func (h *Aws_api_gateway_rest_apiHandler) Create(desired *Aws_api_gateway_rest_a
 
 // Read ...
 func (h *Aws_api_gateway_rest_apiHandler) Read(externalID string) (*Aws_api_gateway_rest_api, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_rest_api", externalID)
 	if err != nil {
 		return nil, err
@@ -3297,6 +3411,7 @@ func (h *Aws_api_gateway_rest_apiHandler) Read(externalID string) (*Aws_api_gate
 
 // Delete ...
 func (h *Aws_api_gateway_rest_apiHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_rest_api", externalID)
 }
 
@@ -3349,6 +3464,7 @@ type Aws_api_gateway_stageHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_stageHandler) Create(desired *Aws_api_gateway_stage) (*Aws_api_gateway_stage, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3365,6 +3481,7 @@ func (h *Aws_api_gateway_stageHandler) Create(desired *Aws_api_gateway_stage) (*
 
 // Read ...
 func (h *Aws_api_gateway_stageHandler) Read(externalID string) (*Aws_api_gateway_stage, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_stage", externalID)
 	if err != nil {
 		return nil, err
@@ -3376,6 +3493,7 @@ func (h *Aws_api_gateway_stageHandler) Read(externalID string) (*Aws_api_gateway
 
 // Delete ...
 func (h *Aws_api_gateway_stageHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_stage", externalID)
 }
 
@@ -3430,6 +3548,7 @@ type Aws_api_gateway_usage_planHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_usage_planHandler) Create(desired *Aws_api_gateway_usage_plan) (*Aws_api_gateway_usage_plan, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3446,6 +3565,7 @@ func (h *Aws_api_gateway_usage_planHandler) Create(desired *Aws_api_gateway_usag
 
 // Read ...
 func (h *Aws_api_gateway_usage_planHandler) Read(externalID string) (*Aws_api_gateway_usage_plan, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_usage_plan", externalID)
 	if err != nil {
 		return nil, err
@@ -3457,6 +3577,7 @@ func (h *Aws_api_gateway_usage_planHandler) Read(externalID string) (*Aws_api_ga
 
 // Delete ...
 func (h *Aws_api_gateway_usage_planHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_usage_plan", externalID)
 }
 
@@ -3483,6 +3604,7 @@ type Aws_api_gateway_usage_plan_keyHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_usage_plan_keyHandler) Create(desired *Aws_api_gateway_usage_plan_key) (*Aws_api_gateway_usage_plan_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3499,6 +3621,7 @@ func (h *Aws_api_gateway_usage_plan_keyHandler) Create(desired *Aws_api_gateway_
 
 // Read ...
 func (h *Aws_api_gateway_usage_plan_keyHandler) Read(externalID string) (*Aws_api_gateway_usage_plan_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_usage_plan_key", externalID)
 	if err != nil {
 		return nil, err
@@ -3510,6 +3633,7 @@ func (h *Aws_api_gateway_usage_plan_keyHandler) Read(externalID string) (*Aws_ap
 
 // Delete ...
 func (h *Aws_api_gateway_usage_plan_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_usage_plan_key", externalID)
 }
 
@@ -3532,6 +3656,7 @@ type Aws_api_gateway_vpc_linkHandler struct {
 
 // Create ...
 func (h *Aws_api_gateway_vpc_linkHandler) Create(desired *Aws_api_gateway_vpc_link) (*Aws_api_gateway_vpc_link, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3548,6 +3673,7 @@ func (h *Aws_api_gateway_vpc_linkHandler) Create(desired *Aws_api_gateway_vpc_li
 
 // Read ...
 func (h *Aws_api_gateway_vpc_linkHandler) Read(externalID string) (*Aws_api_gateway_vpc_link, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_api_gateway_vpc_link", externalID)
 	if err != nil {
 		return nil, err
@@ -3559,6 +3685,7 @@ func (h *Aws_api_gateway_vpc_linkHandler) Read(externalID string) (*Aws_api_gate
 
 // Delete ...
 func (h *Aws_api_gateway_vpc_linkHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_api_gateway_vpc_link", externalID)
 }
 
@@ -3583,6 +3710,7 @@ type Aws_app_cookie_stickiness_policyHandler struct {
 
 // Create ...
 func (h *Aws_app_cookie_stickiness_policyHandler) Create(desired *Aws_app_cookie_stickiness_policy) (*Aws_app_cookie_stickiness_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3599,6 +3727,7 @@ func (h *Aws_app_cookie_stickiness_policyHandler) Create(desired *Aws_app_cookie
 
 // Read ...
 func (h *Aws_app_cookie_stickiness_policyHandler) Read(externalID string) (*Aws_app_cookie_stickiness_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_app_cookie_stickiness_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -3610,6 +3739,7 @@ func (h *Aws_app_cookie_stickiness_policyHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_app_cookie_stickiness_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_app_cookie_stickiness_policy", externalID)
 }
 
@@ -3734,6 +3864,7 @@ type Aws_appautoscaling_policyHandler struct {
 
 // Create ...
 func (h *Aws_appautoscaling_policyHandler) Create(desired *Aws_appautoscaling_policy) (*Aws_appautoscaling_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3750,6 +3881,7 @@ func (h *Aws_appautoscaling_policyHandler) Create(desired *Aws_appautoscaling_po
 
 // Read ...
 func (h *Aws_appautoscaling_policyHandler) Read(externalID string) (*Aws_appautoscaling_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appautoscaling_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -3761,6 +3893,7 @@ func (h *Aws_appautoscaling_policyHandler) Read(externalID string) (*Aws_appauto
 
 // Delete ...
 func (h *Aws_appautoscaling_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appautoscaling_policy", externalID)
 }
 
@@ -3803,6 +3936,7 @@ type Aws_appautoscaling_scheduled_actionHandler struct {
 
 // Create ...
 func (h *Aws_appautoscaling_scheduled_actionHandler) Create(desired *Aws_appautoscaling_scheduled_action) (*Aws_appautoscaling_scheduled_action, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3819,6 +3953,7 @@ func (h *Aws_appautoscaling_scheduled_actionHandler) Create(desired *Aws_appauto
 
 // Read ...
 func (h *Aws_appautoscaling_scheduled_actionHandler) Read(externalID string) (*Aws_appautoscaling_scheduled_action, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appautoscaling_scheduled_action", externalID)
 	if err != nil {
 		return nil, err
@@ -3830,6 +3965,7 @@ func (h *Aws_appautoscaling_scheduled_actionHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_appautoscaling_scheduled_actionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appautoscaling_scheduled_action", externalID)
 }
 
@@ -3858,6 +3994,7 @@ type Aws_appautoscaling_targetHandler struct {
 
 // Create ...
 func (h *Aws_appautoscaling_targetHandler) Create(desired *Aws_appautoscaling_target) (*Aws_appautoscaling_target, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3874,6 +4011,7 @@ func (h *Aws_appautoscaling_targetHandler) Create(desired *Aws_appautoscaling_ta
 
 // Read ...
 func (h *Aws_appautoscaling_targetHandler) Read(externalID string) (*Aws_appautoscaling_target, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appautoscaling_target", externalID)
 	if err != nil {
 		return nil, err
@@ -3885,6 +4023,7 @@ func (h *Aws_appautoscaling_targetHandler) Read(externalID string) (*Aws_appauto
 
 // Delete ...
 func (h *Aws_appautoscaling_targetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appautoscaling_target", externalID)
 }
 
@@ -3909,6 +4048,7 @@ type Aws_appmesh_meshHandler struct {
 
 // Create ...
 func (h *Aws_appmesh_meshHandler) Create(desired *Aws_appmesh_mesh) (*Aws_appmesh_mesh, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -3925,6 +4065,7 @@ func (h *Aws_appmesh_meshHandler) Create(desired *Aws_appmesh_mesh) (*Aws_appmes
 
 // Read ...
 func (h *Aws_appmesh_meshHandler) Read(externalID string) (*Aws_appmesh_mesh, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appmesh_mesh", externalID)
 	if err != nil {
 		return nil, err
@@ -3936,6 +4077,7 @@ func (h *Aws_appmesh_meshHandler) Read(externalID string) (*Aws_appmesh_mesh, er
 
 // Delete ...
 func (h *Aws_appmesh_meshHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appmesh_mesh", externalID)
 }
 
@@ -4000,6 +4142,7 @@ type Aws_appmesh_routeHandler struct {
 
 // Create ...
 func (h *Aws_appmesh_routeHandler) Create(desired *Aws_appmesh_route) (*Aws_appmesh_route, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4016,6 +4159,7 @@ func (h *Aws_appmesh_routeHandler) Create(desired *Aws_appmesh_route) (*Aws_appm
 
 // Read ...
 func (h *Aws_appmesh_routeHandler) Read(externalID string) (*Aws_appmesh_route, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appmesh_route", externalID)
 	if err != nil {
 		return nil, err
@@ -4027,6 +4171,7 @@ func (h *Aws_appmesh_routeHandler) Read(externalID string) (*Aws_appmesh_route, 
 
 // Delete ...
 func (h *Aws_appmesh_routeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appmesh_route", externalID)
 }
 
@@ -4091,6 +4236,7 @@ type Aws_appmesh_virtual_nodeHandler struct {
 
 // Create ...
 func (h *Aws_appmesh_virtual_nodeHandler) Create(desired *Aws_appmesh_virtual_node) (*Aws_appmesh_virtual_node, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4107,6 +4253,7 @@ func (h *Aws_appmesh_virtual_nodeHandler) Create(desired *Aws_appmesh_virtual_no
 
 // Read ...
 func (h *Aws_appmesh_virtual_nodeHandler) Read(externalID string) (*Aws_appmesh_virtual_node, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appmesh_virtual_node", externalID)
 	if err != nil {
 		return nil, err
@@ -4118,6 +4265,7 @@ func (h *Aws_appmesh_virtual_nodeHandler) Read(externalID string) (*Aws_appmesh_
 
 // Delete ...
 func (h *Aws_appmesh_virtual_nodeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appmesh_virtual_node", externalID)
 }
 
@@ -4152,6 +4300,7 @@ type Aws_appmesh_virtual_routerHandler struct {
 
 // Create ...
 func (h *Aws_appmesh_virtual_routerHandler) Create(desired *Aws_appmesh_virtual_router) (*Aws_appmesh_virtual_router, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4168,6 +4317,7 @@ func (h *Aws_appmesh_virtual_routerHandler) Create(desired *Aws_appmesh_virtual_
 
 // Read ...
 func (h *Aws_appmesh_virtual_routerHandler) Read(externalID string) (*Aws_appmesh_virtual_router, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appmesh_virtual_router", externalID)
 	if err != nil {
 		return nil, err
@@ -4179,6 +4329,7 @@ func (h *Aws_appmesh_virtual_routerHandler) Read(externalID string) (*Aws_appmes
 
 // Delete ...
 func (h *Aws_appmesh_virtual_routerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appmesh_virtual_router", externalID)
 }
 
@@ -4203,6 +4354,7 @@ type Aws_appsync_api_keyHandler struct {
 
 // Create ...
 func (h *Aws_appsync_api_keyHandler) Create(desired *Aws_appsync_api_key) (*Aws_appsync_api_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4219,6 +4371,7 @@ func (h *Aws_appsync_api_keyHandler) Create(desired *Aws_appsync_api_key) (*Aws_
 
 // Read ...
 func (h *Aws_appsync_api_keyHandler) Read(externalID string) (*Aws_appsync_api_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appsync_api_key", externalID)
 	if err != nil {
 		return nil, err
@@ -4230,6 +4383,7 @@ func (h *Aws_appsync_api_keyHandler) Read(externalID string) (*Aws_appsync_api_k
 
 // Delete ...
 func (h *Aws_appsync_api_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appsync_api_key", externalID)
 }
 
@@ -4296,6 +4450,7 @@ type Aws_appsync_datasourceHandler struct {
 
 // Create ...
 func (h *Aws_appsync_datasourceHandler) Create(desired *Aws_appsync_datasource) (*Aws_appsync_datasource, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4312,6 +4467,7 @@ func (h *Aws_appsync_datasourceHandler) Create(desired *Aws_appsync_datasource) 
 
 // Read ...
 func (h *Aws_appsync_datasourceHandler) Read(externalID string) (*Aws_appsync_datasource, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appsync_datasource", externalID)
 	if err != nil {
 		return nil, err
@@ -4323,6 +4479,7 @@ func (h *Aws_appsync_datasourceHandler) Read(externalID string) (*Aws_appsync_da
 
 // Delete ...
 func (h *Aws_appsync_datasourceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appsync_datasource", externalID)
 }
 
@@ -4385,6 +4542,7 @@ type Aws_appsync_graphql_apiHandler struct {
 
 // Create ...
 func (h *Aws_appsync_graphql_apiHandler) Create(desired *Aws_appsync_graphql_api) (*Aws_appsync_graphql_api, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4401,6 +4559,7 @@ func (h *Aws_appsync_graphql_apiHandler) Create(desired *Aws_appsync_graphql_api
 
 // Read ...
 func (h *Aws_appsync_graphql_apiHandler) Read(externalID string) (*Aws_appsync_graphql_api, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_appsync_graphql_api", externalID)
 	if err != nil {
 		return nil, err
@@ -4412,6 +4571,7 @@ func (h *Aws_appsync_graphql_apiHandler) Read(externalID string) (*Aws_appsync_g
 
 // Delete ...
 func (h *Aws_appsync_graphql_apiHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_appsync_graphql_api", externalID)
 }
 
@@ -4444,6 +4604,7 @@ type Aws_athena_databaseHandler struct {
 
 // Create ...
 func (h *Aws_athena_databaseHandler) Create(desired *Aws_athena_database) (*Aws_athena_database, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4460,6 +4621,7 @@ func (h *Aws_athena_databaseHandler) Create(desired *Aws_athena_database) (*Aws_
 
 // Read ...
 func (h *Aws_athena_databaseHandler) Read(externalID string) (*Aws_athena_database, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_athena_database", externalID)
 	if err != nil {
 		return nil, err
@@ -4471,6 +4633,7 @@ func (h *Aws_athena_databaseHandler) Read(externalID string) (*Aws_athena_databa
 
 // Delete ...
 func (h *Aws_athena_databaseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_athena_database", externalID)
 }
 
@@ -4495,6 +4658,7 @@ type Aws_athena_named_queryHandler struct {
 
 // Create ...
 func (h *Aws_athena_named_queryHandler) Create(desired *Aws_athena_named_query) (*Aws_athena_named_query, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4511,6 +4675,7 @@ func (h *Aws_athena_named_queryHandler) Create(desired *Aws_athena_named_query) 
 
 // Read ...
 func (h *Aws_athena_named_queryHandler) Read(externalID string) (*Aws_athena_named_query, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_athena_named_query", externalID)
 	if err != nil {
 		return nil, err
@@ -4522,6 +4687,7 @@ func (h *Aws_athena_named_queryHandler) Read(externalID string) (*Aws_athena_nam
 
 // Delete ...
 func (h *Aws_athena_named_queryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_athena_named_query", externalID)
 }
 
@@ -4544,6 +4710,7 @@ type Aws_autoscaling_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_autoscaling_attachmentHandler) Create(desired *Aws_autoscaling_attachment) (*Aws_autoscaling_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4560,6 +4727,7 @@ func (h *Aws_autoscaling_attachmentHandler) Create(desired *Aws_autoscaling_atta
 
 // Read ...
 func (h *Aws_autoscaling_attachmentHandler) Read(externalID string) (*Aws_autoscaling_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_autoscaling_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -4571,6 +4739,7 @@ func (h *Aws_autoscaling_attachmentHandler) Read(externalID string) (*Aws_autosc
 
 // Delete ...
 func (h *Aws_autoscaling_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_autoscaling_attachment", externalID)
 }
 
@@ -4733,6 +4902,7 @@ type Aws_autoscaling_groupHandler struct {
 
 // Create ...
 func (h *Aws_autoscaling_groupHandler) Create(desired *Aws_autoscaling_group) (*Aws_autoscaling_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4749,6 +4919,7 @@ func (h *Aws_autoscaling_groupHandler) Create(desired *Aws_autoscaling_group) (*
 
 // Read ...
 func (h *Aws_autoscaling_groupHandler) Read(externalID string) (*Aws_autoscaling_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_autoscaling_group", externalID)
 	if err != nil {
 		return nil, err
@@ -4760,6 +4931,7 @@ func (h *Aws_autoscaling_groupHandler) Read(externalID string) (*Aws_autoscaling
 
 // Delete ...
 func (h *Aws_autoscaling_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_autoscaling_group", externalID)
 }
 
@@ -4792,6 +4964,7 @@ type Aws_autoscaling_lifecycle_hookHandler struct {
 
 // Create ...
 func (h *Aws_autoscaling_lifecycle_hookHandler) Create(desired *Aws_autoscaling_lifecycle_hook) (*Aws_autoscaling_lifecycle_hook, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4808,6 +4981,7 @@ func (h *Aws_autoscaling_lifecycle_hookHandler) Create(desired *Aws_autoscaling_
 
 // Read ...
 func (h *Aws_autoscaling_lifecycle_hookHandler) Read(externalID string) (*Aws_autoscaling_lifecycle_hook, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_autoscaling_lifecycle_hook", externalID)
 	if err != nil {
 		return nil, err
@@ -4819,6 +4993,7 @@ func (h *Aws_autoscaling_lifecycle_hookHandler) Read(externalID string) (*Aws_au
 
 // Delete ...
 func (h *Aws_autoscaling_lifecycle_hookHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_autoscaling_lifecycle_hook", externalID)
 }
 
@@ -4841,6 +5016,7 @@ type Aws_autoscaling_notificationHandler struct {
 
 // Create ...
 func (h *Aws_autoscaling_notificationHandler) Create(desired *Aws_autoscaling_notification) (*Aws_autoscaling_notification, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4857,6 +5033,7 @@ func (h *Aws_autoscaling_notificationHandler) Create(desired *Aws_autoscaling_no
 
 // Read ...
 func (h *Aws_autoscaling_notificationHandler) Read(externalID string) (*Aws_autoscaling_notification, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_autoscaling_notification", externalID)
 	if err != nil {
 		return nil, err
@@ -4868,6 +5045,7 @@ func (h *Aws_autoscaling_notificationHandler) Read(externalID string) (*Aws_auto
 
 // Delete ...
 func (h *Aws_autoscaling_notificationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_autoscaling_notification", externalID)
 }
 
@@ -4962,6 +5140,7 @@ type Aws_autoscaling_policyHandler struct {
 
 // Create ...
 func (h *Aws_autoscaling_policyHandler) Create(desired *Aws_autoscaling_policy) (*Aws_autoscaling_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -4978,6 +5157,7 @@ func (h *Aws_autoscaling_policyHandler) Create(desired *Aws_autoscaling_policy) 
 
 // Read ...
 func (h *Aws_autoscaling_policyHandler) Read(externalID string) (*Aws_autoscaling_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_autoscaling_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -4989,6 +5169,7 @@ func (h *Aws_autoscaling_policyHandler) Read(externalID string) (*Aws_autoscalin
 
 // Delete ...
 func (h *Aws_autoscaling_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_autoscaling_policy", externalID)
 }
 
@@ -5023,6 +5204,7 @@ type Aws_autoscaling_scheduleHandler struct {
 
 // Create ...
 func (h *Aws_autoscaling_scheduleHandler) Create(desired *Aws_autoscaling_schedule) (*Aws_autoscaling_schedule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5039,6 +5221,7 @@ func (h *Aws_autoscaling_scheduleHandler) Create(desired *Aws_autoscaling_schedu
 
 // Read ...
 func (h *Aws_autoscaling_scheduleHandler) Read(externalID string) (*Aws_autoscaling_schedule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_autoscaling_schedule", externalID)
 	if err != nil {
 		return nil, err
@@ -5050,6 +5233,7 @@ func (h *Aws_autoscaling_scheduleHandler) Read(externalID string) (*Aws_autoscal
 
 // Delete ...
 func (h *Aws_autoscaling_scheduleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_autoscaling_schedule", externalID)
 }
 
@@ -5116,6 +5300,7 @@ type Aws_batch_compute_environmentHandler struct {
 
 // Create ...
 func (h *Aws_batch_compute_environmentHandler) Create(desired *Aws_batch_compute_environment) (*Aws_batch_compute_environment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5132,6 +5317,7 @@ func (h *Aws_batch_compute_environmentHandler) Create(desired *Aws_batch_compute
 
 // Read ...
 func (h *Aws_batch_compute_environmentHandler) Read(externalID string) (*Aws_batch_compute_environment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_batch_compute_environment", externalID)
 	if err != nil {
 		return nil, err
@@ -5143,6 +5329,7 @@ func (h *Aws_batch_compute_environmentHandler) Read(externalID string) (*Aws_bat
 
 // Delete ...
 func (h *Aws_batch_compute_environmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_batch_compute_environment", externalID)
 }
 
@@ -5187,6 +5374,7 @@ type Aws_batch_job_definitionHandler struct {
 
 // Create ...
 func (h *Aws_batch_job_definitionHandler) Create(desired *Aws_batch_job_definition) (*Aws_batch_job_definition, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5203,6 +5391,7 @@ func (h *Aws_batch_job_definitionHandler) Create(desired *Aws_batch_job_definiti
 
 // Read ...
 func (h *Aws_batch_job_definitionHandler) Read(externalID string) (*Aws_batch_job_definition, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_batch_job_definition", externalID)
 	if err != nil {
 		return nil, err
@@ -5214,6 +5403,7 @@ func (h *Aws_batch_job_definitionHandler) Read(externalID string) (*Aws_batch_jo
 
 // Delete ...
 func (h *Aws_batch_job_definitionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_batch_job_definition", externalID)
 }
 
@@ -5240,6 +5430,7 @@ type Aws_batch_job_queueHandler struct {
 
 // Create ...
 func (h *Aws_batch_job_queueHandler) Create(desired *Aws_batch_job_queue) (*Aws_batch_job_queue, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5256,6 +5447,7 @@ func (h *Aws_batch_job_queueHandler) Create(desired *Aws_batch_job_queue) (*Aws_
 
 // Read ...
 func (h *Aws_batch_job_queueHandler) Read(externalID string) (*Aws_batch_job_queue, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_batch_job_queue", externalID)
 	if err != nil {
 		return nil, err
@@ -5267,6 +5459,7 @@ func (h *Aws_batch_job_queueHandler) Read(externalID string) (*Aws_batch_job_que
 
 // Delete ...
 func (h *Aws_batch_job_queueHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_batch_job_queue", externalID)
 }
 
@@ -5331,6 +5524,7 @@ type Aws_budgets_budgetHandler struct {
 
 // Create ...
 func (h *Aws_budgets_budgetHandler) Create(desired *Aws_budgets_budget) (*Aws_budgets_budget, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5347,6 +5541,7 @@ func (h *Aws_budgets_budgetHandler) Create(desired *Aws_budgets_budget) (*Aws_bu
 
 // Read ...
 func (h *Aws_budgets_budgetHandler) Read(externalID string) (*Aws_budgets_budget, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_budgets_budget", externalID)
 	if err != nil {
 		return nil, err
@@ -5358,6 +5553,7 @@ func (h *Aws_budgets_budgetHandler) Read(externalID string) (*Aws_budgets_budget
 
 // Delete ...
 func (h *Aws_budgets_budgetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_budgets_budget", externalID)
 }
 
@@ -5390,6 +5586,7 @@ type Aws_cloud9_environment_ec2Handler struct {
 
 // Create ...
 func (h *Aws_cloud9_environment_ec2Handler) Create(desired *Aws_cloud9_environment_ec2) (*Aws_cloud9_environment_ec2, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5406,6 +5603,7 @@ func (h *Aws_cloud9_environment_ec2Handler) Create(desired *Aws_cloud9_environme
 
 // Read ...
 func (h *Aws_cloud9_environment_ec2Handler) Read(externalID string) (*Aws_cloud9_environment_ec2, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloud9_environment_ec2", externalID)
 	if err != nil {
 		return nil, err
@@ -5417,6 +5615,7 @@ func (h *Aws_cloud9_environment_ec2Handler) Read(externalID string) (*Aws_cloud9
 
 // Delete ...
 func (h *Aws_cloud9_environment_ec2Handler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloud9_environment_ec2", externalID)
 }
 
@@ -5461,6 +5660,7 @@ type Aws_cloudformation_stackHandler struct {
 
 // Create ...
 func (h *Aws_cloudformation_stackHandler) Create(desired *Aws_cloudformation_stack) (*Aws_cloudformation_stack, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5477,6 +5677,7 @@ func (h *Aws_cloudformation_stackHandler) Create(desired *Aws_cloudformation_sta
 
 // Read ...
 func (h *Aws_cloudformation_stackHandler) Read(externalID string) (*Aws_cloudformation_stack, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudformation_stack", externalID)
 	if err != nil {
 		return nil, err
@@ -5488,6 +5689,7 @@ func (h *Aws_cloudformation_stackHandler) Read(externalID string) (*Aws_cloudfor
 
 // Delete ...
 func (h *Aws_cloudformation_stackHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudformation_stack", externalID)
 }
 
@@ -5838,6 +6040,7 @@ type Aws_cloudfront_distributionHandler struct {
 
 // Create ...
 func (h *Aws_cloudfront_distributionHandler) Create(desired *Aws_cloudfront_distribution) (*Aws_cloudfront_distribution, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5854,6 +6057,7 @@ func (h *Aws_cloudfront_distributionHandler) Create(desired *Aws_cloudfront_dist
 
 // Read ...
 func (h *Aws_cloudfront_distributionHandler) Read(externalID string) (*Aws_cloudfront_distribution, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudfront_distribution", externalID)
 	if err != nil {
 		return nil, err
@@ -5865,6 +6069,7 @@ func (h *Aws_cloudfront_distributionHandler) Read(externalID string) (*Aws_cloud
 
 // Delete ...
 func (h *Aws_cloudfront_distributionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudfront_distribution", externalID)
 }
 
@@ -5893,6 +6098,7 @@ type Aws_cloudfront_origin_access_identityHandler struct {
 
 // Create ...
 func (h *Aws_cloudfront_origin_access_identityHandler) Create(desired *Aws_cloudfront_origin_access_identity) (*Aws_cloudfront_origin_access_identity, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5909,6 +6115,7 @@ func (h *Aws_cloudfront_origin_access_identityHandler) Create(desired *Aws_cloud
 
 // Read ...
 func (h *Aws_cloudfront_origin_access_identityHandler) Read(externalID string) (*Aws_cloudfront_origin_access_identity, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudfront_origin_access_identity", externalID)
 	if err != nil {
 		return nil, err
@@ -5920,6 +6127,7 @@ func (h *Aws_cloudfront_origin_access_identityHandler) Read(externalID string) (
 
 // Delete ...
 func (h *Aws_cloudfront_origin_access_identityHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudfront_origin_access_identity", externalID)
 }
 
@@ -5948,6 +6156,7 @@ type Aws_cloudfront_public_keyHandler struct {
 
 // Create ...
 func (h *Aws_cloudfront_public_keyHandler) Create(desired *Aws_cloudfront_public_key) (*Aws_cloudfront_public_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -5964,6 +6173,7 @@ func (h *Aws_cloudfront_public_keyHandler) Create(desired *Aws_cloudfront_public
 
 // Read ...
 func (h *Aws_cloudfront_public_keyHandler) Read(externalID string) (*Aws_cloudfront_public_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudfront_public_key", externalID)
 	if err != nil {
 		return nil, err
@@ -5975,6 +6185,7 @@ func (h *Aws_cloudfront_public_keyHandler) Read(externalID string) (*Aws_cloudfr
 
 // Delete ...
 func (h *Aws_cloudfront_public_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudfront_public_key", externalID)
 }
 
@@ -6023,6 +6234,7 @@ type Aws_cloudhsm_v2_clusterHandler struct {
 
 // Create ...
 func (h *Aws_cloudhsm_v2_clusterHandler) Create(desired *Aws_cloudhsm_v2_cluster) (*Aws_cloudhsm_v2_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6039,6 +6251,7 @@ func (h *Aws_cloudhsm_v2_clusterHandler) Create(desired *Aws_cloudhsm_v2_cluster
 
 // Read ...
 func (h *Aws_cloudhsm_v2_clusterHandler) Read(externalID string) (*Aws_cloudhsm_v2_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudhsm_v2_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -6050,6 +6263,7 @@ func (h *Aws_cloudhsm_v2_clusterHandler) Read(externalID string) (*Aws_cloudhsm_
 
 // Delete ...
 func (h *Aws_cloudhsm_v2_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudhsm_v2_cluster", externalID)
 }
 
@@ -6080,6 +6294,7 @@ type Aws_cloudhsm_v2_hsmHandler struct {
 
 // Create ...
 func (h *Aws_cloudhsm_v2_hsmHandler) Create(desired *Aws_cloudhsm_v2_hsm) (*Aws_cloudhsm_v2_hsm, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6096,6 +6311,7 @@ func (h *Aws_cloudhsm_v2_hsmHandler) Create(desired *Aws_cloudhsm_v2_hsm) (*Aws_
 
 // Read ...
 func (h *Aws_cloudhsm_v2_hsmHandler) Read(externalID string) (*Aws_cloudhsm_v2_hsm, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudhsm_v2_hsm", externalID)
 	if err != nil {
 		return nil, err
@@ -6107,6 +6323,7 @@ func (h *Aws_cloudhsm_v2_hsmHandler) Read(externalID string) (*Aws_cloudhsm_v2_h
 
 // Delete ...
 func (h *Aws_cloudhsm_v2_hsmHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudhsm_v2_hsm", externalID)
 }
 
@@ -6173,6 +6390,7 @@ type Aws_cloudtrailHandler struct {
 
 // Create ...
 func (h *Aws_cloudtrailHandler) Create(desired *Aws_cloudtrail) (*Aws_cloudtrail, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6189,6 +6407,7 @@ func (h *Aws_cloudtrailHandler) Create(desired *Aws_cloudtrail) (*Aws_cloudtrail
 
 // Read ...
 func (h *Aws_cloudtrailHandler) Read(externalID string) (*Aws_cloudtrail, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudtrail", externalID)
 	if err != nil {
 		return nil, err
@@ -6200,6 +6419,7 @@ func (h *Aws_cloudtrailHandler) Read(externalID string) (*Aws_cloudtrail, error)
 
 // Delete ...
 func (h *Aws_cloudtrailHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudtrail", externalID)
 }
 
@@ -6222,6 +6442,7 @@ type Aws_cloudwatch_dashboardHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_dashboardHandler) Create(desired *Aws_cloudwatch_dashboard) (*Aws_cloudwatch_dashboard, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6238,6 +6459,7 @@ func (h *Aws_cloudwatch_dashboardHandler) Create(desired *Aws_cloudwatch_dashboa
 
 // Read ...
 func (h *Aws_cloudwatch_dashboardHandler) Read(externalID string) (*Aws_cloudwatch_dashboard, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_dashboard", externalID)
 	if err != nil {
 		return nil, err
@@ -6249,6 +6471,7 @@ func (h *Aws_cloudwatch_dashboardHandler) Read(externalID string) (*Aws_cloudwat
 
 // Delete ...
 func (h *Aws_cloudwatch_dashboardHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_dashboard", externalID)
 }
 
@@ -6283,6 +6506,7 @@ type Aws_cloudwatch_event_permissionHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_event_permissionHandler) Create(desired *Aws_cloudwatch_event_permission) (*Aws_cloudwatch_event_permission, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6299,6 +6523,7 @@ func (h *Aws_cloudwatch_event_permissionHandler) Create(desired *Aws_cloudwatch_
 
 // Read ...
 func (h *Aws_cloudwatch_event_permissionHandler) Read(externalID string) (*Aws_cloudwatch_event_permission, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_event_permission", externalID)
 	if err != nil {
 		return nil, err
@@ -6310,6 +6535,7 @@ func (h *Aws_cloudwatch_event_permissionHandler) Read(externalID string) (*Aws_c
 
 // Delete ...
 func (h *Aws_cloudwatch_event_permissionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_event_permission", externalID)
 }
 
@@ -6342,6 +6568,7 @@ type Aws_cloudwatch_event_ruleHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_event_ruleHandler) Create(desired *Aws_cloudwatch_event_rule) (*Aws_cloudwatch_event_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6358,6 +6585,7 @@ func (h *Aws_cloudwatch_event_ruleHandler) Create(desired *Aws_cloudwatch_event_
 
 // Read ...
 func (h *Aws_cloudwatch_event_ruleHandler) Read(externalID string) (*Aws_cloudwatch_event_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_event_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -6369,6 +6597,7 @@ func (h *Aws_cloudwatch_event_ruleHandler) Read(externalID string) (*Aws_cloudwa
 
 // Delete ...
 func (h *Aws_cloudwatch_event_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_event_rule", externalID)
 }
 
@@ -6475,6 +6704,7 @@ type Aws_cloudwatch_event_targetHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_event_targetHandler) Create(desired *Aws_cloudwatch_event_target) (*Aws_cloudwatch_event_target, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6491,6 +6721,7 @@ func (h *Aws_cloudwatch_event_targetHandler) Create(desired *Aws_cloudwatch_even
 
 // Read ...
 func (h *Aws_cloudwatch_event_targetHandler) Read(externalID string) (*Aws_cloudwatch_event_target, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_event_target", externalID)
 	if err != nil {
 		return nil, err
@@ -6502,6 +6733,7 @@ func (h *Aws_cloudwatch_event_targetHandler) Read(externalID string) (*Aws_cloud
 
 // Delete ...
 func (h *Aws_cloudwatch_event_targetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_event_target", externalID)
 }
 
@@ -6526,6 +6758,7 @@ type Aws_cloudwatch_log_destinationHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_destinationHandler) Create(desired *Aws_cloudwatch_log_destination) (*Aws_cloudwatch_log_destination, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6542,6 +6775,7 @@ func (h *Aws_cloudwatch_log_destinationHandler) Create(desired *Aws_cloudwatch_l
 
 // Read ...
 func (h *Aws_cloudwatch_log_destinationHandler) Read(externalID string) (*Aws_cloudwatch_log_destination, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_destination", externalID)
 	if err != nil {
 		return nil, err
@@ -6553,6 +6787,7 @@ func (h *Aws_cloudwatch_log_destinationHandler) Read(externalID string) (*Aws_cl
 
 // Delete ...
 func (h *Aws_cloudwatch_log_destinationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_destination", externalID)
 }
 
@@ -6573,6 +6808,7 @@ type Aws_cloudwatch_log_destination_policyHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_destination_policyHandler) Create(desired *Aws_cloudwatch_log_destination_policy) (*Aws_cloudwatch_log_destination_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6589,6 +6825,7 @@ func (h *Aws_cloudwatch_log_destination_policyHandler) Create(desired *Aws_cloud
 
 // Read ...
 func (h *Aws_cloudwatch_log_destination_policyHandler) Read(externalID string) (*Aws_cloudwatch_log_destination_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_destination_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -6600,6 +6837,7 @@ func (h *Aws_cloudwatch_log_destination_policyHandler) Read(externalID string) (
 
 // Delete ...
 func (h *Aws_cloudwatch_log_destination_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_destination_policy", externalID)
 }
 
@@ -6628,6 +6866,7 @@ type Aws_cloudwatch_log_groupHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_groupHandler) Create(desired *Aws_cloudwatch_log_group) (*Aws_cloudwatch_log_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6644,6 +6883,7 @@ func (h *Aws_cloudwatch_log_groupHandler) Create(desired *Aws_cloudwatch_log_gro
 
 // Read ...
 func (h *Aws_cloudwatch_log_groupHandler) Read(externalID string) (*Aws_cloudwatch_log_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_group", externalID)
 	if err != nil {
 		return nil, err
@@ -6655,6 +6895,7 @@ func (h *Aws_cloudwatch_log_groupHandler) Read(externalID string) (*Aws_cloudwat
 
 // Delete ...
 func (h *Aws_cloudwatch_log_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_group", externalID)
 }
 
@@ -6691,6 +6932,7 @@ type Aws_cloudwatch_log_metric_filterHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_metric_filterHandler) Create(desired *Aws_cloudwatch_log_metric_filter) (*Aws_cloudwatch_log_metric_filter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6707,6 +6949,7 @@ func (h *Aws_cloudwatch_log_metric_filterHandler) Create(desired *Aws_cloudwatch
 
 // Read ...
 func (h *Aws_cloudwatch_log_metric_filterHandler) Read(externalID string) (*Aws_cloudwatch_log_metric_filter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_metric_filter", externalID)
 	if err != nil {
 		return nil, err
@@ -6718,6 +6961,7 @@ func (h *Aws_cloudwatch_log_metric_filterHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_cloudwatch_log_metric_filterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_metric_filter", externalID)
 }
 
@@ -6738,6 +6982,7 @@ type Aws_cloudwatch_log_resource_policyHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_resource_policyHandler) Create(desired *Aws_cloudwatch_log_resource_policy) (*Aws_cloudwatch_log_resource_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6754,6 +6999,7 @@ func (h *Aws_cloudwatch_log_resource_policyHandler) Create(desired *Aws_cloudwat
 
 // Read ...
 func (h *Aws_cloudwatch_log_resource_policyHandler) Read(externalID string) (*Aws_cloudwatch_log_resource_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_resource_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -6765,6 +7011,7 @@ func (h *Aws_cloudwatch_log_resource_policyHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_cloudwatch_log_resource_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_resource_policy", externalID)
 }
 
@@ -6787,6 +7034,7 @@ type Aws_cloudwatch_log_streamHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_streamHandler) Create(desired *Aws_cloudwatch_log_stream) (*Aws_cloudwatch_log_stream, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6803,6 +7051,7 @@ func (h *Aws_cloudwatch_log_streamHandler) Create(desired *Aws_cloudwatch_log_st
 
 // Read ...
 func (h *Aws_cloudwatch_log_streamHandler) Read(externalID string) (*Aws_cloudwatch_log_stream, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_stream", externalID)
 	if err != nil {
 		return nil, err
@@ -6814,6 +7063,7 @@ func (h *Aws_cloudwatch_log_streamHandler) Read(externalID string) (*Aws_cloudwa
 
 // Delete ...
 func (h *Aws_cloudwatch_log_streamHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_stream", externalID)
 }
 
@@ -6842,6 +7092,7 @@ type Aws_cloudwatch_log_subscription_filterHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_log_subscription_filterHandler) Create(desired *Aws_cloudwatch_log_subscription_filter) (*Aws_cloudwatch_log_subscription_filter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6858,6 +7109,7 @@ func (h *Aws_cloudwatch_log_subscription_filterHandler) Create(desired *Aws_clou
 
 // Read ...
 func (h *Aws_cloudwatch_log_subscription_filterHandler) Read(externalID string) (*Aws_cloudwatch_log_subscription_filter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_log_subscription_filter", externalID)
 	if err != nil {
 		return nil, err
@@ -6869,6 +7121,7 @@ func (h *Aws_cloudwatch_log_subscription_filterHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Aws_cloudwatch_log_subscription_filterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_log_subscription_filter", externalID)
 }
 
@@ -6925,6 +7178,7 @@ type Aws_cloudwatch_metric_alarmHandler struct {
 
 // Create ...
 func (h *Aws_cloudwatch_metric_alarmHandler) Create(desired *Aws_cloudwatch_metric_alarm) (*Aws_cloudwatch_metric_alarm, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -6941,6 +7195,7 @@ func (h *Aws_cloudwatch_metric_alarmHandler) Create(desired *Aws_cloudwatch_metr
 
 // Read ...
 func (h *Aws_cloudwatch_metric_alarmHandler) Read(externalID string) (*Aws_cloudwatch_metric_alarm, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cloudwatch_metric_alarm", externalID)
 	if err != nil {
 		return nil, err
@@ -6952,6 +7207,7 @@ func (h *Aws_cloudwatch_metric_alarmHandler) Read(externalID string) (*Aws_cloud
 
 // Delete ...
 func (h *Aws_cloudwatch_metric_alarmHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cloudwatch_metric_alarm", externalID)
 }
 
@@ -7138,6 +7394,7 @@ type Aws_codebuild_projectHandler struct {
 
 // Create ...
 func (h *Aws_codebuild_projectHandler) Create(desired *Aws_codebuild_project) (*Aws_codebuild_project, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7154,6 +7411,7 @@ func (h *Aws_codebuild_projectHandler) Create(desired *Aws_codebuild_project) (*
 
 // Read ...
 func (h *Aws_codebuild_projectHandler) Read(externalID string) (*Aws_codebuild_project, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codebuild_project", externalID)
 	if err != nil {
 		return nil, err
@@ -7165,6 +7423,7 @@ func (h *Aws_codebuild_projectHandler) Read(externalID string) (*Aws_codebuild_p
 
 // Delete ...
 func (h *Aws_codebuild_projectHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codebuild_project", externalID)
 }
 
@@ -7191,6 +7450,7 @@ type Aws_codebuild_webhookHandler struct {
 
 // Create ...
 func (h *Aws_codebuild_webhookHandler) Create(desired *Aws_codebuild_webhook) (*Aws_codebuild_webhook, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7207,6 +7467,7 @@ func (h *Aws_codebuild_webhookHandler) Create(desired *Aws_codebuild_webhook) (*
 
 // Read ...
 func (h *Aws_codebuild_webhookHandler) Read(externalID string) (*Aws_codebuild_webhook, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codebuild_webhook", externalID)
 	if err != nil {
 		return nil, err
@@ -7218,6 +7479,7 @@ func (h *Aws_codebuild_webhookHandler) Read(externalID string) (*Aws_codebuild_w
 
 // Delete ...
 func (h *Aws_codebuild_webhookHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codebuild_webhook", externalID)
 }
 
@@ -7248,6 +7510,7 @@ type Aws_codecommit_repositoryHandler struct {
 
 // Create ...
 func (h *Aws_codecommit_repositoryHandler) Create(desired *Aws_codecommit_repository) (*Aws_codecommit_repository, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7264,6 +7527,7 @@ func (h *Aws_codecommit_repositoryHandler) Create(desired *Aws_codecommit_reposi
 
 // Read ...
 func (h *Aws_codecommit_repositoryHandler) Read(externalID string) (*Aws_codecommit_repository, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codecommit_repository", externalID)
 	if err != nil {
 		return nil, err
@@ -7275,6 +7539,7 @@ func (h *Aws_codecommit_repositoryHandler) Read(externalID string) (*Aws_codecom
 
 // Delete ...
 func (h *Aws_codecommit_repositoryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codecommit_repository", externalID)
 }
 
@@ -7311,6 +7576,7 @@ type Aws_codecommit_triggerHandler struct {
 
 // Create ...
 func (h *Aws_codecommit_triggerHandler) Create(desired *Aws_codecommit_trigger) (*Aws_codecommit_trigger, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7327,6 +7593,7 @@ func (h *Aws_codecommit_triggerHandler) Create(desired *Aws_codecommit_trigger) 
 
 // Read ...
 func (h *Aws_codecommit_triggerHandler) Read(externalID string) (*Aws_codecommit_trigger, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codecommit_trigger", externalID)
 	if err != nil {
 		return nil, err
@@ -7338,6 +7605,7 @@ func (h *Aws_codecommit_triggerHandler) Read(externalID string) (*Aws_codecommit
 
 // Delete ...
 func (h *Aws_codecommit_triggerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codecommit_trigger", externalID)
 }
 
@@ -7360,6 +7628,7 @@ type Aws_codedeploy_appHandler struct {
 
 // Create ...
 func (h *Aws_codedeploy_appHandler) Create(desired *Aws_codedeploy_app) (*Aws_codedeploy_app, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7376,6 +7645,7 @@ func (h *Aws_codedeploy_appHandler) Create(desired *Aws_codedeploy_app) (*Aws_co
 
 // Read ...
 func (h *Aws_codedeploy_appHandler) Read(externalID string) (*Aws_codedeploy_app, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codedeploy_app", externalID)
 	if err != nil {
 		return nil, err
@@ -7387,6 +7657,7 @@ func (h *Aws_codedeploy_appHandler) Read(externalID string) (*Aws_codedeploy_app
 
 // Delete ...
 func (h *Aws_codedeploy_appHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codedeploy_app", externalID)
 }
 
@@ -7447,6 +7718,7 @@ type Aws_codedeploy_deployment_configHandler struct {
 
 // Create ...
 func (h *Aws_codedeploy_deployment_configHandler) Create(desired *Aws_codedeploy_deployment_config) (*Aws_codedeploy_deployment_config, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7463,6 +7735,7 @@ func (h *Aws_codedeploy_deployment_configHandler) Create(desired *Aws_codedeploy
 
 // Read ...
 func (h *Aws_codedeploy_deployment_configHandler) Read(externalID string) (*Aws_codedeploy_deployment_config, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codedeploy_deployment_config", externalID)
 	if err != nil {
 		return nil, err
@@ -7474,6 +7747,7 @@ func (h *Aws_codedeploy_deployment_configHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_codedeploy_deployment_configHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codedeploy_deployment_config", externalID)
 }
 
@@ -7682,6 +7956,7 @@ type Aws_codedeploy_deployment_groupHandler struct {
 
 // Create ...
 func (h *Aws_codedeploy_deployment_groupHandler) Create(desired *Aws_codedeploy_deployment_group) (*Aws_codedeploy_deployment_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7698,6 +7973,7 @@ func (h *Aws_codedeploy_deployment_groupHandler) Create(desired *Aws_codedeploy_
 
 // Read ...
 func (h *Aws_codedeploy_deployment_groupHandler) Read(externalID string) (*Aws_codedeploy_deployment_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codedeploy_deployment_group", externalID)
 	if err != nil {
 		return nil, err
@@ -7709,6 +7985,7 @@ func (h *Aws_codedeploy_deployment_groupHandler) Read(externalID string) (*Aws_c
 
 // Delete ...
 func (h *Aws_codedeploy_deployment_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codedeploy_deployment_group", externalID)
 }
 
@@ -7785,6 +8062,7 @@ type Aws_codepipelineHandler struct {
 
 // Create ...
 func (h *Aws_codepipelineHandler) Create(desired *Aws_codepipeline) (*Aws_codepipeline, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7801,6 +8079,7 @@ func (h *Aws_codepipelineHandler) Create(desired *Aws_codepipeline) (*Aws_codepi
 
 // Read ...
 func (h *Aws_codepipelineHandler) Read(externalID string) (*Aws_codepipeline, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codepipeline", externalID)
 	if err != nil {
 		return nil, err
@@ -7812,6 +8091,7 @@ func (h *Aws_codepipelineHandler) Read(externalID string) (*Aws_codepipeline, er
 
 // Delete ...
 func (h *Aws_codepipelineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codepipeline", externalID)
 }
 
@@ -7858,6 +8138,7 @@ type Aws_codepipeline_webhookHandler struct {
 
 // Create ...
 func (h *Aws_codepipeline_webhookHandler) Create(desired *Aws_codepipeline_webhook) (*Aws_codepipeline_webhook, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7874,6 +8155,7 @@ func (h *Aws_codepipeline_webhookHandler) Create(desired *Aws_codepipeline_webho
 
 // Read ...
 func (h *Aws_codepipeline_webhookHandler) Read(externalID string) (*Aws_codepipeline_webhook, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_codepipeline_webhook", externalID)
 	if err != nil {
 		return nil, err
@@ -7885,6 +8167,7 @@ func (h *Aws_codepipeline_webhookHandler) Read(externalID string) (*Aws_codepipe
 
 // Delete ...
 func (h *Aws_codepipeline_webhookHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_codepipeline_webhook", externalID)
 }
 
@@ -7927,6 +8210,7 @@ type Aws_cognito_identity_poolHandler struct {
 
 // Create ...
 func (h *Aws_cognito_identity_poolHandler) Create(desired *Aws_cognito_identity_pool) (*Aws_cognito_identity_pool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -7943,6 +8227,7 @@ func (h *Aws_cognito_identity_poolHandler) Create(desired *Aws_cognito_identity_
 
 // Read ...
 func (h *Aws_cognito_identity_poolHandler) Read(externalID string) (*Aws_cognito_identity_pool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_identity_pool", externalID)
 	if err != nil {
 		return nil, err
@@ -7954,6 +8239,7 @@ func (h *Aws_cognito_identity_poolHandler) Read(externalID string) (*Aws_cognito
 
 // Delete ...
 func (h *Aws_cognito_identity_poolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_identity_pool", externalID)
 }
 
@@ -8000,6 +8286,7 @@ type Aws_cognito_identity_pool_roles_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_cognito_identity_pool_roles_attachmentHandler) Create(desired *Aws_cognito_identity_pool_roles_attachment) (*Aws_cognito_identity_pool_roles_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8016,6 +8303,7 @@ func (h *Aws_cognito_identity_pool_roles_attachmentHandler) Create(desired *Aws_
 
 // Read ...
 func (h *Aws_cognito_identity_pool_roles_attachmentHandler) Read(externalID string) (*Aws_cognito_identity_pool_roles_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_identity_pool_roles_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -8027,6 +8315,7 @@ func (h *Aws_cognito_identity_pool_roles_attachmentHandler) Read(externalID stri
 
 // Delete ...
 func (h *Aws_cognito_identity_pool_roles_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_identity_pool_roles_attachment", externalID)
 }
 
@@ -8055,6 +8344,7 @@ type Aws_cognito_identity_providerHandler struct {
 
 // Create ...
 func (h *Aws_cognito_identity_providerHandler) Create(desired *Aws_cognito_identity_provider) (*Aws_cognito_identity_provider, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8071,6 +8361,7 @@ func (h *Aws_cognito_identity_providerHandler) Create(desired *Aws_cognito_ident
 
 // Read ...
 func (h *Aws_cognito_identity_providerHandler) Read(externalID string) (*Aws_cognito_identity_provider, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_identity_provider", externalID)
 	if err != nil {
 		return nil, err
@@ -8082,6 +8373,7 @@ func (h *Aws_cognito_identity_providerHandler) Read(externalID string) (*Aws_cog
 
 // Delete ...
 func (h *Aws_cognito_identity_providerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_identity_provider", externalID)
 }
 
@@ -8116,6 +8408,7 @@ type Aws_cognito_resource_serverHandler struct {
 
 // Create ...
 func (h *Aws_cognito_resource_serverHandler) Create(desired *Aws_cognito_resource_server) (*Aws_cognito_resource_server, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8132,6 +8425,7 @@ func (h *Aws_cognito_resource_serverHandler) Create(desired *Aws_cognito_resourc
 
 // Read ...
 func (h *Aws_cognito_resource_serverHandler) Read(externalID string) (*Aws_cognito_resource_server, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_resource_server", externalID)
 	if err != nil {
 		return nil, err
@@ -8143,6 +8437,7 @@ func (h *Aws_cognito_resource_serverHandler) Read(externalID string) (*Aws_cogni
 
 // Delete ...
 func (h *Aws_cognito_resource_serverHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_resource_server", externalID)
 }
 
@@ -8169,6 +8464,7 @@ type Aws_cognito_user_groupHandler struct {
 
 // Create ...
 func (h *Aws_cognito_user_groupHandler) Create(desired *Aws_cognito_user_group) (*Aws_cognito_user_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8185,6 +8481,7 @@ func (h *Aws_cognito_user_groupHandler) Create(desired *Aws_cognito_user_group) 
 
 // Read ...
 func (h *Aws_cognito_user_groupHandler) Read(externalID string) (*Aws_cognito_user_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_user_group", externalID)
 	if err != nil {
 		return nil, err
@@ -8196,6 +8493,7 @@ func (h *Aws_cognito_user_groupHandler) Read(externalID string) (*Aws_cognito_us
 
 // Delete ...
 func (h *Aws_cognito_user_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_user_group", externalID)
 }
 
@@ -8388,6 +8686,7 @@ type Aws_cognito_user_poolHandler struct {
 
 // Create ...
 func (h *Aws_cognito_user_poolHandler) Create(desired *Aws_cognito_user_pool) (*Aws_cognito_user_pool, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8404,6 +8703,7 @@ func (h *Aws_cognito_user_poolHandler) Create(desired *Aws_cognito_user_pool) (*
 
 // Read ...
 func (h *Aws_cognito_user_poolHandler) Read(externalID string) (*Aws_cognito_user_pool, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_user_pool", externalID)
 	if err != nil {
 		return nil, err
@@ -8415,6 +8715,7 @@ func (h *Aws_cognito_user_poolHandler) Read(externalID string) (*Aws_cognito_use
 
 // Delete ...
 func (h *Aws_cognito_user_poolHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_user_pool", externalID)
 }
 
@@ -8461,6 +8762,7 @@ type Aws_cognito_user_pool_clientHandler struct {
 
 // Create ...
 func (h *Aws_cognito_user_pool_clientHandler) Create(desired *Aws_cognito_user_pool_client) (*Aws_cognito_user_pool_client, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8477,6 +8779,7 @@ func (h *Aws_cognito_user_pool_clientHandler) Create(desired *Aws_cognito_user_p
 
 // Read ...
 func (h *Aws_cognito_user_pool_clientHandler) Read(externalID string) (*Aws_cognito_user_pool_client, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_user_pool_client", externalID)
 	if err != nil {
 		return nil, err
@@ -8488,6 +8791,7 @@ func (h *Aws_cognito_user_pool_clientHandler) Read(externalID string) (*Aws_cogn
 
 // Delete ...
 func (h *Aws_cognito_user_pool_clientHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_user_pool_client", externalID)
 }
 
@@ -8518,6 +8822,7 @@ type Aws_cognito_user_pool_domainHandler struct {
 
 // Create ...
 func (h *Aws_cognito_user_pool_domainHandler) Create(desired *Aws_cognito_user_pool_domain) (*Aws_cognito_user_pool_domain, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8534,6 +8839,7 @@ func (h *Aws_cognito_user_pool_domainHandler) Create(desired *Aws_cognito_user_p
 
 // Read ...
 func (h *Aws_cognito_user_pool_domainHandler) Read(externalID string) (*Aws_cognito_user_pool_domain, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_cognito_user_pool_domain", externalID)
 	if err != nil {
 		return nil, err
@@ -8545,6 +8851,7 @@ func (h *Aws_cognito_user_pool_domainHandler) Read(externalID string) (*Aws_cogn
 
 // Delete ...
 func (h *Aws_cognito_user_pool_domainHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_cognito_user_pool_domain", externalID)
 }
 
@@ -8567,6 +8874,7 @@ type Aws_config_aggregate_authorizationHandler struct {
 
 // Create ...
 func (h *Aws_config_aggregate_authorizationHandler) Create(desired *Aws_config_aggregate_authorization) (*Aws_config_aggregate_authorization, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8583,6 +8891,7 @@ func (h *Aws_config_aggregate_authorizationHandler) Create(desired *Aws_config_a
 
 // Read ...
 func (h *Aws_config_aggregate_authorizationHandler) Read(externalID string) (*Aws_config_aggregate_authorization, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_config_aggregate_authorization", externalID)
 	if err != nil {
 		return nil, err
@@ -8594,6 +8903,7 @@ func (h *Aws_config_aggregate_authorizationHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_config_aggregate_authorizationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_config_aggregate_authorization", externalID)
 }
 
@@ -8658,6 +8968,7 @@ type Aws_config_config_ruleHandler struct {
 
 // Create ...
 func (h *Aws_config_config_ruleHandler) Create(desired *Aws_config_config_rule) (*Aws_config_config_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8674,6 +8985,7 @@ func (h *Aws_config_config_ruleHandler) Create(desired *Aws_config_config_rule) 
 
 // Read ...
 func (h *Aws_config_config_ruleHandler) Read(externalID string) (*Aws_config_config_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_config_config_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -8685,6 +8997,7 @@ func (h *Aws_config_config_ruleHandler) Read(externalID string) (*Aws_config_con
 
 // Delete ...
 func (h *Aws_config_config_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_config_config_rule", externalID)
 }
 
@@ -8729,6 +9042,7 @@ type Aws_config_configuration_aggregatorHandler struct {
 
 // Create ...
 func (h *Aws_config_configuration_aggregatorHandler) Create(desired *Aws_config_configuration_aggregator) (*Aws_config_configuration_aggregator, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8745,6 +9059,7 @@ func (h *Aws_config_configuration_aggregatorHandler) Create(desired *Aws_config_
 
 // Read ...
 func (h *Aws_config_configuration_aggregatorHandler) Read(externalID string) (*Aws_config_configuration_aggregator, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_config_configuration_aggregator", externalID)
 	if err != nil {
 		return nil, err
@@ -8756,6 +9071,7 @@ func (h *Aws_config_configuration_aggregatorHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_config_configuration_aggregatorHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_config_configuration_aggregator", externalID)
 }
 
@@ -8788,6 +9104,7 @@ type Aws_config_configuration_recorderHandler struct {
 
 // Create ...
 func (h *Aws_config_configuration_recorderHandler) Create(desired *Aws_config_configuration_recorder) (*Aws_config_configuration_recorder, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8804,6 +9121,7 @@ func (h *Aws_config_configuration_recorderHandler) Create(desired *Aws_config_co
 
 // Read ...
 func (h *Aws_config_configuration_recorderHandler) Read(externalID string) (*Aws_config_configuration_recorder, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_config_configuration_recorder", externalID)
 	if err != nil {
 		return nil, err
@@ -8815,6 +9133,7 @@ func (h *Aws_config_configuration_recorderHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_config_configuration_recorderHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_config_configuration_recorder", externalID)
 }
 
@@ -8835,6 +9154,7 @@ type Aws_config_configuration_recorder_statusHandler struct {
 
 // Create ...
 func (h *Aws_config_configuration_recorder_statusHandler) Create(desired *Aws_config_configuration_recorder_status) (*Aws_config_configuration_recorder_status, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8851,6 +9171,7 @@ func (h *Aws_config_configuration_recorder_statusHandler) Create(desired *Aws_co
 
 // Read ...
 func (h *Aws_config_configuration_recorder_statusHandler) Read(externalID string) (*Aws_config_configuration_recorder_status, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_config_configuration_recorder_status", externalID)
 	if err != nil {
 		return nil, err
@@ -8862,6 +9183,7 @@ func (h *Aws_config_configuration_recorder_statusHandler) Read(externalID string
 
 // Delete ...
 func (h *Aws_config_configuration_recorder_statusHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_config_configuration_recorder_status", externalID)
 }
 
@@ -8894,6 +9216,7 @@ type Aws_config_delivery_channelHandler struct {
 
 // Create ...
 func (h *Aws_config_delivery_channelHandler) Create(desired *Aws_config_delivery_channel) (*Aws_config_delivery_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8910,6 +9233,7 @@ func (h *Aws_config_delivery_channelHandler) Create(desired *Aws_config_delivery
 
 // Read ...
 func (h *Aws_config_delivery_channelHandler) Read(externalID string) (*Aws_config_delivery_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_config_delivery_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -8921,6 +9245,7 @@ func (h *Aws_config_delivery_channelHandler) Read(externalID string) (*Aws_confi
 
 // Delete ...
 func (h *Aws_config_delivery_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_config_delivery_channel", externalID)
 }
 
@@ -8945,6 +9270,7 @@ type Aws_customer_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_customer_gatewayHandler) Create(desired *Aws_customer_gateway) (*Aws_customer_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -8961,6 +9287,7 @@ func (h *Aws_customer_gatewayHandler) Create(desired *Aws_customer_gateway) (*Aw
 
 // Read ...
 func (h *Aws_customer_gatewayHandler) Read(externalID string) (*Aws_customer_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_customer_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -8972,6 +9299,7 @@ func (h *Aws_customer_gatewayHandler) Read(externalID string) (*Aws_customer_gat
 
 // Delete ...
 func (h *Aws_customer_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_customer_gateway", externalID)
 }
 
@@ -8998,6 +9326,7 @@ type Aws_datasync_agentHandler struct {
 
 // Create ...
 func (h *Aws_datasync_agentHandler) Create(desired *Aws_datasync_agent) (*Aws_datasync_agent, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9014,6 +9343,7 @@ func (h *Aws_datasync_agentHandler) Create(desired *Aws_datasync_agent) (*Aws_da
 
 // Read ...
 func (h *Aws_datasync_agentHandler) Read(externalID string) (*Aws_datasync_agent, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_datasync_agent", externalID)
 	if err != nil {
 		return nil, err
@@ -9025,6 +9355,7 @@ func (h *Aws_datasync_agentHandler) Read(externalID string) (*Aws_datasync_agent
 
 // Delete ...
 func (h *Aws_datasync_agentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_datasync_agent", externalID)
 }
 
@@ -9061,6 +9392,7 @@ type Aws_datasync_location_efsHandler struct {
 
 // Create ...
 func (h *Aws_datasync_location_efsHandler) Create(desired *Aws_datasync_location_efs) (*Aws_datasync_location_efs, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9077,6 +9409,7 @@ func (h *Aws_datasync_location_efsHandler) Create(desired *Aws_datasync_location
 
 // Read ...
 func (h *Aws_datasync_location_efsHandler) Read(externalID string) (*Aws_datasync_location_efs, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_datasync_location_efs", externalID)
 	if err != nil {
 		return nil, err
@@ -9088,6 +9421,7 @@ func (h *Aws_datasync_location_efsHandler) Read(externalID string) (*Aws_datasyn
 
 // Delete ...
 func (h *Aws_datasync_location_efsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_datasync_location_efs", externalID)
 }
 
@@ -9122,6 +9456,7 @@ type Aws_datasync_location_nfsHandler struct {
 
 // Create ...
 func (h *Aws_datasync_location_nfsHandler) Create(desired *Aws_datasync_location_nfs) (*Aws_datasync_location_nfs, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9138,6 +9473,7 @@ func (h *Aws_datasync_location_nfsHandler) Create(desired *Aws_datasync_location
 
 // Read ...
 func (h *Aws_datasync_location_nfsHandler) Read(externalID string) (*Aws_datasync_location_nfs, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_datasync_location_nfs", externalID)
 	if err != nil {
 		return nil, err
@@ -9149,6 +9485,7 @@ func (h *Aws_datasync_location_nfsHandler) Read(externalID string) (*Aws_datasyn
 
 // Delete ...
 func (h *Aws_datasync_location_nfsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_datasync_location_nfs", externalID)
 }
 
@@ -9183,6 +9520,7 @@ type Aws_datasync_location_s3Handler struct {
 
 // Create ...
 func (h *Aws_datasync_location_s3Handler) Create(desired *Aws_datasync_location_s3) (*Aws_datasync_location_s3, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9199,6 +9537,7 @@ func (h *Aws_datasync_location_s3Handler) Create(desired *Aws_datasync_location_
 
 // Read ...
 func (h *Aws_datasync_location_s3Handler) Read(externalID string) (*Aws_datasync_location_s3, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_datasync_location_s3", externalID)
 	if err != nil {
 		return nil, err
@@ -9210,6 +9549,7 @@ func (h *Aws_datasync_location_s3Handler) Read(externalID string) (*Aws_datasync
 
 // Delete ...
 func (h *Aws_datasync_location_s3Handler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_datasync_location_s3", externalID)
 }
 
@@ -9262,6 +9602,7 @@ type Aws_datasync_taskHandler struct {
 
 // Create ...
 func (h *Aws_datasync_taskHandler) Create(desired *Aws_datasync_task) (*Aws_datasync_task, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9278,6 +9619,7 @@ func (h *Aws_datasync_taskHandler) Create(desired *Aws_datasync_task) (*Aws_data
 
 // Read ...
 func (h *Aws_datasync_taskHandler) Read(externalID string) (*Aws_datasync_task, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_datasync_task", externalID)
 	if err != nil {
 		return nil, err
@@ -9289,6 +9631,7 @@ func (h *Aws_datasync_taskHandler) Read(externalID string) (*Aws_datasync_task, 
 
 // Delete ...
 func (h *Aws_datasync_taskHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_datasync_task", externalID)
 }
 
@@ -9359,6 +9702,7 @@ type Aws_dax_clusterHandler struct {
 
 // Create ...
 func (h *Aws_dax_clusterHandler) Create(desired *Aws_dax_cluster) (*Aws_dax_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9375,6 +9719,7 @@ func (h *Aws_dax_clusterHandler) Create(desired *Aws_dax_cluster) (*Aws_dax_clus
 
 // Read ...
 func (h *Aws_dax_clusterHandler) Read(externalID string) (*Aws_dax_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dax_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -9386,6 +9731,7 @@ func (h *Aws_dax_clusterHandler) Read(externalID string) (*Aws_dax_cluster, erro
 
 // Delete ...
 func (h *Aws_dax_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dax_cluster", externalID)
 }
 
@@ -9416,6 +9762,7 @@ type Aws_dax_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_dax_parameter_groupHandler) Create(desired *Aws_dax_parameter_group) (*Aws_dax_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9432,6 +9779,7 @@ func (h *Aws_dax_parameter_groupHandler) Create(desired *Aws_dax_parameter_group
 
 // Read ...
 func (h *Aws_dax_parameter_groupHandler) Read(externalID string) (*Aws_dax_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dax_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -9443,6 +9791,7 @@ func (h *Aws_dax_parameter_groupHandler) Read(externalID string) (*Aws_dax_param
 
 // Delete ...
 func (h *Aws_dax_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dax_parameter_group", externalID)
 }
 
@@ -9467,6 +9816,7 @@ type Aws_dax_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_dax_subnet_groupHandler) Create(desired *Aws_dax_subnet_group) (*Aws_dax_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9483,6 +9833,7 @@ func (h *Aws_dax_subnet_groupHandler) Create(desired *Aws_dax_subnet_group) (*Aw
 
 // Read ...
 func (h *Aws_dax_subnet_groupHandler) Read(externalID string) (*Aws_dax_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dax_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -9494,6 +9845,7 @@ func (h *Aws_dax_subnet_groupHandler) Read(externalID string) (*Aws_dax_subnet_g
 
 // Delete ...
 func (h *Aws_dax_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dax_subnet_group", externalID)
 }
 
@@ -9540,6 +9892,7 @@ type Aws_db_cluster_snapshotHandler struct {
 
 // Create ...
 func (h *Aws_db_cluster_snapshotHandler) Create(desired *Aws_db_cluster_snapshot) (*Aws_db_cluster_snapshot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9556,6 +9909,7 @@ func (h *Aws_db_cluster_snapshotHandler) Create(desired *Aws_db_cluster_snapshot
 
 // Read ...
 func (h *Aws_db_cluster_snapshotHandler) Read(externalID string) (*Aws_db_cluster_snapshot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_cluster_snapshot", externalID)
 	if err != nil {
 		return nil, err
@@ -9567,6 +9921,7 @@ func (h *Aws_db_cluster_snapshotHandler) Read(externalID string) (*Aws_db_cluste
 
 // Delete ...
 func (h *Aws_db_cluster_snapshotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_cluster_snapshot", externalID)
 }
 
@@ -9603,6 +9958,7 @@ type Aws_db_event_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_db_event_subscriptionHandler) Create(desired *Aws_db_event_subscription) (*Aws_db_event_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9619,6 +9975,7 @@ func (h *Aws_db_event_subscriptionHandler) Create(desired *Aws_db_event_subscrip
 
 // Read ...
 func (h *Aws_db_event_subscriptionHandler) Read(externalID string) (*Aws_db_event_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_event_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -9630,6 +9987,7 @@ func (h *Aws_db_event_subscriptionHandler) Read(externalID string) (*Aws_db_even
 
 // Delete ...
 func (h *Aws_db_event_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_event_subscription", externalID)
 }
 
@@ -9766,6 +10124,7 @@ type Aws_db_instanceHandler struct {
 
 // Create ...
 func (h *Aws_db_instanceHandler) Create(desired *Aws_db_instance) (*Aws_db_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9782,6 +10141,7 @@ func (h *Aws_db_instanceHandler) Create(desired *Aws_db_instance) (*Aws_db_insta
 
 // Read ...
 func (h *Aws_db_instanceHandler) Read(externalID string) (*Aws_db_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -9793,6 +10153,7 @@ func (h *Aws_db_instanceHandler) Read(externalID string) (*Aws_db_instance, erro
 
 // Delete ...
 func (h *Aws_db_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_instance", externalID)
 }
 
@@ -9849,6 +10210,7 @@ type Aws_db_option_groupHandler struct {
 
 // Create ...
 func (h *Aws_db_option_groupHandler) Create(desired *Aws_db_option_group) (*Aws_db_option_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9865,6 +10227,7 @@ func (h *Aws_db_option_groupHandler) Create(desired *Aws_db_option_group) (*Aws_
 
 // Read ...
 func (h *Aws_db_option_groupHandler) Read(externalID string) (*Aws_db_option_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_option_group", externalID)
 	if err != nil {
 		return nil, err
@@ -9876,6 +10239,7 @@ func (h *Aws_db_option_groupHandler) Read(externalID string) (*Aws_db_option_gro
 
 // Delete ...
 func (h *Aws_db_option_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_option_group", externalID)
 }
 
@@ -9916,6 +10280,7 @@ type Aws_db_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_db_parameter_groupHandler) Create(desired *Aws_db_parameter_group) (*Aws_db_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9932,6 +10297,7 @@ func (h *Aws_db_parameter_groupHandler) Create(desired *Aws_db_parameter_group) 
 
 // Read ...
 func (h *Aws_db_parameter_groupHandler) Read(externalID string) (*Aws_db_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -9943,6 +10309,7 @@ func (h *Aws_db_parameter_groupHandler) Read(externalID string) (*Aws_db_paramet
 
 // Delete ...
 func (h *Aws_db_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_parameter_group", externalID)
 }
 
@@ -9981,6 +10348,7 @@ type Aws_db_security_groupHandler struct {
 
 // Create ...
 func (h *Aws_db_security_groupHandler) Create(desired *Aws_db_security_group) (*Aws_db_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -9997,6 +10365,7 @@ func (h *Aws_db_security_groupHandler) Create(desired *Aws_db_security_group) (*
 
 // Read ...
 func (h *Aws_db_security_groupHandler) Read(externalID string) (*Aws_db_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -10008,6 +10377,7 @@ func (h *Aws_db_security_groupHandler) Read(externalID string) (*Aws_db_security
 
 // Delete ...
 func (h *Aws_db_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_security_group", externalID)
 }
 
@@ -10064,6 +10434,7 @@ type Aws_db_snapshotHandler struct {
 
 // Create ...
 func (h *Aws_db_snapshotHandler) Create(desired *Aws_db_snapshot) (*Aws_db_snapshot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10080,6 +10451,7 @@ func (h *Aws_db_snapshotHandler) Create(desired *Aws_db_snapshot) (*Aws_db_snaps
 
 // Read ...
 func (h *Aws_db_snapshotHandler) Read(externalID string) (*Aws_db_snapshot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_snapshot", externalID)
 	if err != nil {
 		return nil, err
@@ -10091,6 +10463,7 @@ func (h *Aws_db_snapshotHandler) Read(externalID string) (*Aws_db_snapshot, erro
 
 // Delete ...
 func (h *Aws_db_snapshotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_snapshot", externalID)
 }
 
@@ -10119,6 +10492,7 @@ type Aws_db_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_db_subnet_groupHandler) Create(desired *Aws_db_subnet_group) (*Aws_db_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10135,6 +10509,7 @@ func (h *Aws_db_subnet_groupHandler) Create(desired *Aws_db_subnet_group) (*Aws_
 
 // Read ...
 func (h *Aws_db_subnet_groupHandler) Read(externalID string) (*Aws_db_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_db_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -10146,6 +10521,7 @@ func (h *Aws_db_subnet_groupHandler) Read(externalID string) (*Aws_db_subnet_gro
 
 // Delete ...
 func (h *Aws_db_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_db_subnet_group", externalID)
 }
 
@@ -10220,6 +10596,7 @@ type Aws_default_network_aclHandler struct {
 
 // Create ...
 func (h *Aws_default_network_aclHandler) Create(desired *Aws_default_network_acl) (*Aws_default_network_acl, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10236,6 +10613,7 @@ func (h *Aws_default_network_aclHandler) Create(desired *Aws_default_network_acl
 
 // Read ...
 func (h *Aws_default_network_aclHandler) Read(externalID string) (*Aws_default_network_acl, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_default_network_acl", externalID)
 	if err != nil {
 		return nil, err
@@ -10247,6 +10625,7 @@ func (h *Aws_default_network_aclHandler) Read(externalID string) (*Aws_default_n
 
 // Delete ...
 func (h *Aws_default_network_aclHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_default_network_acl", externalID)
 }
 
@@ -10297,6 +10676,7 @@ type Aws_default_route_tableHandler struct {
 
 // Create ...
 func (h *Aws_default_route_tableHandler) Create(desired *Aws_default_route_table) (*Aws_default_route_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10313,6 +10693,7 @@ func (h *Aws_default_route_tableHandler) Create(desired *Aws_default_route_table
 
 // Read ...
 func (h *Aws_default_route_tableHandler) Read(externalID string) (*Aws_default_route_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_default_route_table", externalID)
 	if err != nil {
 		return nil, err
@@ -10324,6 +10705,7 @@ func (h *Aws_default_route_tableHandler) Read(externalID string) (*Aws_default_r
 
 // Delete ...
 func (h *Aws_default_route_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_default_route_table", externalID)
 }
 
@@ -10400,6 +10782,7 @@ type Aws_default_security_groupHandler struct {
 
 // Create ...
 func (h *Aws_default_security_groupHandler) Create(desired *Aws_default_security_group) (*Aws_default_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10416,6 +10799,7 @@ func (h *Aws_default_security_groupHandler) Create(desired *Aws_default_security
 
 // Read ...
 func (h *Aws_default_security_groupHandler) Read(externalID string) (*Aws_default_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_default_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -10427,6 +10811,7 @@ func (h *Aws_default_security_groupHandler) Read(externalID string) (*Aws_defaul
 
 // Delete ...
 func (h *Aws_default_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_default_security_group", externalID)
 }
 
@@ -10465,6 +10850,7 @@ type Aws_default_subnetHandler struct {
 
 // Create ...
 func (h *Aws_default_subnetHandler) Create(desired *Aws_default_subnet) (*Aws_default_subnet, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10481,6 +10867,7 @@ func (h *Aws_default_subnetHandler) Create(desired *Aws_default_subnet) (*Aws_de
 
 // Read ...
 func (h *Aws_default_subnetHandler) Read(externalID string) (*Aws_default_subnet, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_default_subnet", externalID)
 	if err != nil {
 		return nil, err
@@ -10492,6 +10879,7 @@ func (h *Aws_default_subnetHandler) Read(externalID string) (*Aws_default_subnet
 
 // Delete ...
 func (h *Aws_default_subnetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_default_subnet", externalID)
 }
 
@@ -10542,6 +10930,7 @@ type Aws_default_vpcHandler struct {
 
 // Create ...
 func (h *Aws_default_vpcHandler) Create(desired *Aws_default_vpc) (*Aws_default_vpc, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10558,6 +10947,7 @@ func (h *Aws_default_vpcHandler) Create(desired *Aws_default_vpc) (*Aws_default_
 
 // Read ...
 func (h *Aws_default_vpcHandler) Read(externalID string) (*Aws_default_vpc, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_default_vpc", externalID)
 	if err != nil {
 		return nil, err
@@ -10569,6 +10959,7 @@ func (h *Aws_default_vpcHandler) Read(externalID string) (*Aws_default_vpc, erro
 
 // Delete ...
 func (h *Aws_default_vpcHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_default_vpc", externalID)
 }
 
@@ -10599,6 +10990,7 @@ type Aws_default_vpc_dhcp_optionsHandler struct {
 
 // Create ...
 func (h *Aws_default_vpc_dhcp_optionsHandler) Create(desired *Aws_default_vpc_dhcp_options) (*Aws_default_vpc_dhcp_options, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10615,6 +11007,7 @@ func (h *Aws_default_vpc_dhcp_optionsHandler) Create(desired *Aws_default_vpc_dh
 
 // Read ...
 func (h *Aws_default_vpc_dhcp_optionsHandler) Read(externalID string) (*Aws_default_vpc_dhcp_options, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_default_vpc_dhcp_options", externalID)
 	if err != nil {
 		return nil, err
@@ -10626,6 +11019,7 @@ func (h *Aws_default_vpc_dhcp_optionsHandler) Read(externalID string) (*Aws_defa
 
 // Delete ...
 func (h *Aws_default_vpc_dhcp_optionsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_default_vpc_dhcp_options", externalID)
 }
 
@@ -10646,6 +11040,7 @@ type Aws_devicefarm_projectHandler struct {
 
 // Create ...
 func (h *Aws_devicefarm_projectHandler) Create(desired *Aws_devicefarm_project) (*Aws_devicefarm_project, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10662,6 +11057,7 @@ func (h *Aws_devicefarm_projectHandler) Create(desired *Aws_devicefarm_project) 
 
 // Read ...
 func (h *Aws_devicefarm_projectHandler) Read(externalID string) (*Aws_devicefarm_project, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_devicefarm_project", externalID)
 	if err != nil {
 		return nil, err
@@ -10673,6 +11069,7 @@ func (h *Aws_devicefarm_projectHandler) Read(externalID string) (*Aws_devicefarm
 
 // Delete ...
 func (h *Aws_devicefarm_projectHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_devicefarm_project", externalID)
 }
 
@@ -10695,6 +11092,7 @@ type Aws_directory_service_conditional_forwarderHandler struct {
 
 // Create ...
 func (h *Aws_directory_service_conditional_forwarderHandler) Create(desired *Aws_directory_service_conditional_forwarder) (*Aws_directory_service_conditional_forwarder, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10711,6 +11109,7 @@ func (h *Aws_directory_service_conditional_forwarderHandler) Create(desired *Aws
 
 // Read ...
 func (h *Aws_directory_service_conditional_forwarderHandler) Read(externalID string) (*Aws_directory_service_conditional_forwarder, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_directory_service_conditional_forwarder", externalID)
 	if err != nil {
 		return nil, err
@@ -10722,6 +11121,7 @@ func (h *Aws_directory_service_conditional_forwarderHandler) Read(externalID str
 
 // Delete ...
 func (h *Aws_directory_service_conditional_forwarderHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_directory_service_conditional_forwarder", externalID)
 }
 
@@ -10788,6 +11188,7 @@ type Aws_directory_service_directoryHandler struct {
 
 // Create ...
 func (h *Aws_directory_service_directoryHandler) Create(desired *Aws_directory_service_directory) (*Aws_directory_service_directory, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10804,6 +11205,7 @@ func (h *Aws_directory_service_directoryHandler) Create(desired *Aws_directory_s
 
 // Read ...
 func (h *Aws_directory_service_directoryHandler) Read(externalID string) (*Aws_directory_service_directory, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_directory_service_directory", externalID)
 	if err != nil {
 		return nil, err
@@ -10815,6 +11217,7 @@ func (h *Aws_directory_service_directoryHandler) Read(externalID string) (*Aws_d
 
 // Delete ...
 func (h *Aws_directory_service_directoryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_directory_service_directory", externalID)
 }
 
@@ -10879,6 +11282,7 @@ type Aws_dlm_lifecycle_policyHandler struct {
 
 // Create ...
 func (h *Aws_dlm_lifecycle_policyHandler) Create(desired *Aws_dlm_lifecycle_policy) (*Aws_dlm_lifecycle_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10895,6 +11299,7 @@ func (h *Aws_dlm_lifecycle_policyHandler) Create(desired *Aws_dlm_lifecycle_poli
 
 // Read ...
 func (h *Aws_dlm_lifecycle_policyHandler) Read(externalID string) (*Aws_dlm_lifecycle_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dlm_lifecycle_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -10906,6 +11311,7 @@ func (h *Aws_dlm_lifecycle_policyHandler) Read(externalID string) (*Aws_dlm_life
 
 // Delete ...
 func (h *Aws_dlm_lifecycle_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dlm_lifecycle_policy", externalID)
 }
 
@@ -10930,6 +11336,7 @@ type Aws_dms_certificateHandler struct {
 
 // Create ...
 func (h *Aws_dms_certificateHandler) Create(desired *Aws_dms_certificate) (*Aws_dms_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -10946,6 +11353,7 @@ func (h *Aws_dms_certificateHandler) Create(desired *Aws_dms_certificate) (*Aws_
 
 // Read ...
 func (h *Aws_dms_certificateHandler) Read(externalID string) (*Aws_dms_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dms_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -10957,6 +11365,7 @@ func (h *Aws_dms_certificateHandler) Read(externalID string) (*Aws_dms_certifica
 
 // Delete ...
 func (h *Aws_dms_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dms_certificate", externalID)
 }
 
@@ -11041,6 +11450,7 @@ type Aws_dms_endpointHandler struct {
 
 // Create ...
 func (h *Aws_dms_endpointHandler) Create(desired *Aws_dms_endpoint) (*Aws_dms_endpoint, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11057,6 +11467,7 @@ func (h *Aws_dms_endpointHandler) Create(desired *Aws_dms_endpoint) (*Aws_dms_en
 
 // Read ...
 func (h *Aws_dms_endpointHandler) Read(externalID string) (*Aws_dms_endpoint, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dms_endpoint", externalID)
 	if err != nil {
 		return nil, err
@@ -11068,6 +11479,7 @@ func (h *Aws_dms_endpointHandler) Read(externalID string) (*Aws_dms_endpoint, er
 
 // Delete ...
 func (h *Aws_dms_endpointHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dms_endpoint", externalID)
 }
 
@@ -11118,6 +11530,7 @@ type Aws_dms_replication_instanceHandler struct {
 
 // Create ...
 func (h *Aws_dms_replication_instanceHandler) Create(desired *Aws_dms_replication_instance) (*Aws_dms_replication_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11134,6 +11547,7 @@ func (h *Aws_dms_replication_instanceHandler) Create(desired *Aws_dms_replicatio
 
 // Read ...
 func (h *Aws_dms_replication_instanceHandler) Read(externalID string) (*Aws_dms_replication_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dms_replication_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -11145,6 +11559,7 @@ func (h *Aws_dms_replication_instanceHandler) Read(externalID string) (*Aws_dms_
 
 // Delete ...
 func (h *Aws_dms_replication_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dms_replication_instance", externalID)
 }
 
@@ -11173,6 +11588,7 @@ type Aws_dms_replication_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_dms_replication_subnet_groupHandler) Create(desired *Aws_dms_replication_subnet_group) (*Aws_dms_replication_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11189,6 +11605,7 @@ func (h *Aws_dms_replication_subnet_groupHandler) Create(desired *Aws_dms_replic
 
 // Read ...
 func (h *Aws_dms_replication_subnet_groupHandler) Read(externalID string) (*Aws_dms_replication_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dms_replication_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -11200,6 +11617,7 @@ func (h *Aws_dms_replication_subnet_groupHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_dms_replication_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dms_replication_subnet_group", externalID)
 }
 
@@ -11236,6 +11654,7 @@ type Aws_dms_replication_taskHandler struct {
 
 // Create ...
 func (h *Aws_dms_replication_taskHandler) Create(desired *Aws_dms_replication_task) (*Aws_dms_replication_task, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11252,6 +11671,7 @@ func (h *Aws_dms_replication_taskHandler) Create(desired *Aws_dms_replication_ta
 
 // Read ...
 func (h *Aws_dms_replication_taskHandler) Read(externalID string) (*Aws_dms_replication_task, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dms_replication_task", externalID)
 	if err != nil {
 		return nil, err
@@ -11263,6 +11683,7 @@ func (h *Aws_dms_replication_taskHandler) Read(externalID string) (*Aws_dms_repl
 
 // Delete ...
 func (h *Aws_dms_replication_taskHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dms_replication_task", externalID)
 }
 
@@ -11303,6 +11724,7 @@ type Aws_docdb_cluster_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_docdb_cluster_parameter_groupHandler) Create(desired *Aws_docdb_cluster_parameter_group) (*Aws_docdb_cluster_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11319,6 +11741,7 @@ func (h *Aws_docdb_cluster_parameter_groupHandler) Create(desired *Aws_docdb_clu
 
 // Read ...
 func (h *Aws_docdb_cluster_parameter_groupHandler) Read(externalID string) (*Aws_docdb_cluster_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_docdb_cluster_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -11330,6 +11753,7 @@ func (h *Aws_docdb_cluster_parameter_groupHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_docdb_cluster_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_docdb_cluster_parameter_group", externalID)
 }
 
@@ -11358,6 +11782,7 @@ type Aws_docdb_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_docdb_subnet_groupHandler) Create(desired *Aws_docdb_subnet_group) (*Aws_docdb_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11374,6 +11799,7 @@ func (h *Aws_docdb_subnet_groupHandler) Create(desired *Aws_docdb_subnet_group) 
 
 // Read ...
 func (h *Aws_docdb_subnet_groupHandler) Read(externalID string) (*Aws_docdb_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_docdb_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -11385,6 +11811,7 @@ func (h *Aws_docdb_subnet_groupHandler) Read(externalID string) (*Aws_docdb_subn
 
 // Delete ...
 func (h *Aws_docdb_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_docdb_subnet_group", externalID)
 }
 
@@ -11415,6 +11842,7 @@ type Aws_dx_bgp_peerHandler struct {
 
 // Create ...
 func (h *Aws_dx_bgp_peerHandler) Create(desired *Aws_dx_bgp_peer) (*Aws_dx_bgp_peer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11431,6 +11859,7 @@ func (h *Aws_dx_bgp_peerHandler) Create(desired *Aws_dx_bgp_peer) (*Aws_dx_bgp_p
 
 // Read ...
 func (h *Aws_dx_bgp_peerHandler) Read(externalID string) (*Aws_dx_bgp_peer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_bgp_peer", externalID)
 	if err != nil {
 		return nil, err
@@ -11442,6 +11871,7 @@ func (h *Aws_dx_bgp_peerHandler) Read(externalID string) (*Aws_dx_bgp_peer, erro
 
 // Delete ...
 func (h *Aws_dx_bgp_peerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_bgp_peer", externalID)
 }
 
@@ -11470,6 +11900,7 @@ type Aws_dx_connectionHandler struct {
 
 // Create ...
 func (h *Aws_dx_connectionHandler) Create(desired *Aws_dx_connection) (*Aws_dx_connection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11486,6 +11917,7 @@ func (h *Aws_dx_connectionHandler) Create(desired *Aws_dx_connection) (*Aws_dx_c
 
 // Read ...
 func (h *Aws_dx_connectionHandler) Read(externalID string) (*Aws_dx_connection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_connection", externalID)
 	if err != nil {
 		return nil, err
@@ -11497,6 +11929,7 @@ func (h *Aws_dx_connectionHandler) Read(externalID string) (*Aws_dx_connection, 
 
 // Delete ...
 func (h *Aws_dx_connectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_connection", externalID)
 }
 
@@ -11517,6 +11950,7 @@ type Aws_dx_connection_associationHandler struct {
 
 // Create ...
 func (h *Aws_dx_connection_associationHandler) Create(desired *Aws_dx_connection_association) (*Aws_dx_connection_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11533,6 +11967,7 @@ func (h *Aws_dx_connection_associationHandler) Create(desired *Aws_dx_connection
 
 // Read ...
 func (h *Aws_dx_connection_associationHandler) Read(externalID string) (*Aws_dx_connection_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_connection_association", externalID)
 	if err != nil {
 		return nil, err
@@ -11544,6 +11979,7 @@ func (h *Aws_dx_connection_associationHandler) Read(externalID string) (*Aws_dx_
 
 // Delete ...
 func (h *Aws_dx_connection_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_connection_association", externalID)
 }
 
@@ -11564,6 +12000,7 @@ type Aws_dx_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_dx_gatewayHandler) Create(desired *Aws_dx_gateway) (*Aws_dx_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11580,6 +12017,7 @@ func (h *Aws_dx_gatewayHandler) Create(desired *Aws_dx_gateway) (*Aws_dx_gateway
 
 // Read ...
 func (h *Aws_dx_gatewayHandler) Read(externalID string) (*Aws_dx_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -11591,6 +12029,7 @@ func (h *Aws_dx_gatewayHandler) Read(externalID string) (*Aws_dx_gateway, error)
 
 // Delete ...
 func (h *Aws_dx_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_gateway", externalID)
 }
 
@@ -11611,6 +12050,7 @@ type Aws_dx_gateway_associationHandler struct {
 
 // Create ...
 func (h *Aws_dx_gateway_associationHandler) Create(desired *Aws_dx_gateway_association) (*Aws_dx_gateway_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11627,6 +12067,7 @@ func (h *Aws_dx_gateway_associationHandler) Create(desired *Aws_dx_gateway_assoc
 
 // Read ...
 func (h *Aws_dx_gateway_associationHandler) Read(externalID string) (*Aws_dx_gateway_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_gateway_association", externalID)
 	if err != nil {
 		return nil, err
@@ -11638,6 +12079,7 @@ func (h *Aws_dx_gateway_associationHandler) Read(externalID string) (*Aws_dx_gat
 
 // Delete ...
 func (h *Aws_dx_gateway_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_gateway_association", externalID)
 }
 
@@ -11678,6 +12120,7 @@ type Aws_dx_hosted_private_virtual_interfaceHandler struct {
 
 // Create ...
 func (h *Aws_dx_hosted_private_virtual_interfaceHandler) Create(desired *Aws_dx_hosted_private_virtual_interface) (*Aws_dx_hosted_private_virtual_interface, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11694,6 +12137,7 @@ func (h *Aws_dx_hosted_private_virtual_interfaceHandler) Create(desired *Aws_dx_
 
 // Read ...
 func (h *Aws_dx_hosted_private_virtual_interfaceHandler) Read(externalID string) (*Aws_dx_hosted_private_virtual_interface, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_hosted_private_virtual_interface", externalID)
 	if err != nil {
 		return nil, err
@@ -11705,6 +12149,7 @@ func (h *Aws_dx_hosted_private_virtual_interfaceHandler) Read(externalID string)
 
 // Delete ...
 func (h *Aws_dx_hosted_private_virtual_interfaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_hosted_private_virtual_interface", externalID)
 }
 
@@ -11731,6 +12176,7 @@ type Aws_dx_hosted_private_virtual_interface_accepterHandler struct {
 
 // Create ...
 func (h *Aws_dx_hosted_private_virtual_interface_accepterHandler) Create(desired *Aws_dx_hosted_private_virtual_interface_accepter) (*Aws_dx_hosted_private_virtual_interface_accepter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11747,6 +12193,7 @@ func (h *Aws_dx_hosted_private_virtual_interface_accepterHandler) Create(desired
 
 // Read ...
 func (h *Aws_dx_hosted_private_virtual_interface_accepterHandler) Read(externalID string) (*Aws_dx_hosted_private_virtual_interface_accepter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_hosted_private_virtual_interface_accepter", externalID)
 	if err != nil {
 		return nil, err
@@ -11758,6 +12205,7 @@ func (h *Aws_dx_hosted_private_virtual_interface_accepterHandler) Read(externalI
 
 // Delete ...
 func (h *Aws_dx_hosted_private_virtual_interface_accepterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_hosted_private_virtual_interface_accepter", externalID)
 }
 
@@ -11796,6 +12244,7 @@ type Aws_dx_hosted_public_virtual_interfaceHandler struct {
 
 // Create ...
 func (h *Aws_dx_hosted_public_virtual_interfaceHandler) Create(desired *Aws_dx_hosted_public_virtual_interface) (*Aws_dx_hosted_public_virtual_interface, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11812,6 +12261,7 @@ func (h *Aws_dx_hosted_public_virtual_interfaceHandler) Create(desired *Aws_dx_h
 
 // Read ...
 func (h *Aws_dx_hosted_public_virtual_interfaceHandler) Read(externalID string) (*Aws_dx_hosted_public_virtual_interface, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_hosted_public_virtual_interface", externalID)
 	if err != nil {
 		return nil, err
@@ -11823,6 +12273,7 @@ func (h *Aws_dx_hosted_public_virtual_interfaceHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Aws_dx_hosted_public_virtual_interfaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_hosted_public_virtual_interface", externalID)
 }
 
@@ -11845,6 +12296,7 @@ type Aws_dx_hosted_public_virtual_interface_accepterHandler struct {
 
 // Create ...
 func (h *Aws_dx_hosted_public_virtual_interface_accepterHandler) Create(desired *Aws_dx_hosted_public_virtual_interface_accepter) (*Aws_dx_hosted_public_virtual_interface_accepter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11861,6 +12313,7 @@ func (h *Aws_dx_hosted_public_virtual_interface_accepterHandler) Create(desired 
 
 // Read ...
 func (h *Aws_dx_hosted_public_virtual_interface_accepterHandler) Read(externalID string) (*Aws_dx_hosted_public_virtual_interface_accepter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_hosted_public_virtual_interface_accepter", externalID)
 	if err != nil {
 		return nil, err
@@ -11872,6 +12325,7 @@ func (h *Aws_dx_hosted_public_virtual_interface_accepterHandler) Read(externalID
 
 // Delete ...
 func (h *Aws_dx_hosted_public_virtual_interface_accepterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_hosted_public_virtual_interface_accepter", externalID)
 }
 
@@ -11902,6 +12356,7 @@ type Aws_dx_lagHandler struct {
 
 // Create ...
 func (h *Aws_dx_lagHandler) Create(desired *Aws_dx_lag) (*Aws_dx_lag, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11918,6 +12373,7 @@ func (h *Aws_dx_lagHandler) Create(desired *Aws_dx_lag) (*Aws_dx_lag, string, er
 
 // Read ...
 func (h *Aws_dx_lagHandler) Read(externalID string) (*Aws_dx_lag, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_lag", externalID)
 	if err != nil {
 		return nil, err
@@ -11929,6 +12385,7 @@ func (h *Aws_dx_lagHandler) Read(externalID string) (*Aws_dx_lag, error) {
 
 // Delete ...
 func (h *Aws_dx_lagHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_lag", externalID)
 }
 
@@ -11973,6 +12430,7 @@ type Aws_dx_private_virtual_interfaceHandler struct {
 
 // Create ...
 func (h *Aws_dx_private_virtual_interfaceHandler) Create(desired *Aws_dx_private_virtual_interface) (*Aws_dx_private_virtual_interface, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -11989,6 +12447,7 @@ func (h *Aws_dx_private_virtual_interfaceHandler) Create(desired *Aws_dx_private
 
 // Read ...
 func (h *Aws_dx_private_virtual_interfaceHandler) Read(externalID string) (*Aws_dx_private_virtual_interface, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_private_virtual_interface", externalID)
 	if err != nil {
 		return nil, err
@@ -12000,6 +12459,7 @@ func (h *Aws_dx_private_virtual_interfaceHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_dx_private_virtual_interfaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_private_virtual_interface", externalID)
 }
 
@@ -12038,6 +12498,7 @@ type Aws_dx_public_virtual_interfaceHandler struct {
 
 // Create ...
 func (h *Aws_dx_public_virtual_interfaceHandler) Create(desired *Aws_dx_public_virtual_interface) (*Aws_dx_public_virtual_interface, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12054,6 +12515,7 @@ func (h *Aws_dx_public_virtual_interfaceHandler) Create(desired *Aws_dx_public_v
 
 // Read ...
 func (h *Aws_dx_public_virtual_interfaceHandler) Read(externalID string) (*Aws_dx_public_virtual_interface, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dx_public_virtual_interface", externalID)
 	if err != nil {
 		return nil, err
@@ -12065,6 +12527,7 @@ func (h *Aws_dx_public_virtual_interfaceHandler) Read(externalID string) (*Aws_d
 
 // Delete ...
 func (h *Aws_dx_public_virtual_interfaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dx_public_virtual_interface", externalID)
 }
 
@@ -12093,6 +12556,7 @@ type Aws_dynamodb_global_tableHandler struct {
 
 // Create ...
 func (h *Aws_dynamodb_global_tableHandler) Create(desired *Aws_dynamodb_global_table) (*Aws_dynamodb_global_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12109,6 +12573,7 @@ func (h *Aws_dynamodb_global_tableHandler) Create(desired *Aws_dynamodb_global_t
 
 // Read ...
 func (h *Aws_dynamodb_global_tableHandler) Read(externalID string) (*Aws_dynamodb_global_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dynamodb_global_table", externalID)
 	if err != nil {
 		return nil, err
@@ -12120,6 +12585,7 @@ func (h *Aws_dynamodb_global_tableHandler) Read(externalID string) (*Aws_dynamod
 
 // Delete ...
 func (h *Aws_dynamodb_global_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dynamodb_global_table", externalID)
 }
 
@@ -12230,6 +12696,7 @@ type Aws_dynamodb_tableHandler struct {
 
 // Create ...
 func (h *Aws_dynamodb_tableHandler) Create(desired *Aws_dynamodb_table) (*Aws_dynamodb_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12246,6 +12713,7 @@ func (h *Aws_dynamodb_tableHandler) Create(desired *Aws_dynamodb_table) (*Aws_dy
 
 // Read ...
 func (h *Aws_dynamodb_tableHandler) Read(externalID string) (*Aws_dynamodb_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dynamodb_table", externalID)
 	if err != nil {
 		return nil, err
@@ -12257,6 +12725,7 @@ func (h *Aws_dynamodb_tableHandler) Read(externalID string) (*Aws_dynamodb_table
 
 // Delete ...
 func (h *Aws_dynamodb_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dynamodb_table", externalID)
 }
 
@@ -12281,6 +12750,7 @@ type Aws_dynamodb_table_itemHandler struct {
 
 // Create ...
 func (h *Aws_dynamodb_table_itemHandler) Create(desired *Aws_dynamodb_table_item) (*Aws_dynamodb_table_item, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12297,6 +12767,7 @@ func (h *Aws_dynamodb_table_itemHandler) Create(desired *Aws_dynamodb_table_item
 
 // Read ...
 func (h *Aws_dynamodb_table_itemHandler) Read(externalID string) (*Aws_dynamodb_table_item, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_dynamodb_table_item", externalID)
 	if err != nil {
 		return nil, err
@@ -12308,6 +12779,7 @@ func (h *Aws_dynamodb_table_itemHandler) Read(externalID string) (*Aws_dynamodb_
 
 // Delete ...
 func (h *Aws_dynamodb_table_itemHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_dynamodb_table_item", externalID)
 }
 
@@ -12342,6 +12814,7 @@ type Aws_ebs_snapshotHandler struct {
 
 // Create ...
 func (h *Aws_ebs_snapshotHandler) Create(desired *Aws_ebs_snapshot) (*Aws_ebs_snapshot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12358,6 +12831,7 @@ func (h *Aws_ebs_snapshotHandler) Create(desired *Aws_ebs_snapshot) (*Aws_ebs_sn
 
 // Read ...
 func (h *Aws_ebs_snapshotHandler) Read(externalID string) (*Aws_ebs_snapshot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ebs_snapshot", externalID)
 	if err != nil {
 		return nil, err
@@ -12369,6 +12843,7 @@ func (h *Aws_ebs_snapshotHandler) Read(externalID string) (*Aws_ebs_snapshot, er
 
 // Delete ...
 func (h *Aws_ebs_snapshotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ebs_snapshot", externalID)
 }
 
@@ -12407,6 +12882,7 @@ type Aws_ebs_snapshot_copyHandler struct {
 
 // Create ...
 func (h *Aws_ebs_snapshot_copyHandler) Create(desired *Aws_ebs_snapshot_copy) (*Aws_ebs_snapshot_copy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12423,6 +12899,7 @@ func (h *Aws_ebs_snapshot_copyHandler) Create(desired *Aws_ebs_snapshot_copy) (*
 
 // Read ...
 func (h *Aws_ebs_snapshot_copyHandler) Read(externalID string) (*Aws_ebs_snapshot_copy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ebs_snapshot_copy", externalID)
 	if err != nil {
 		return nil, err
@@ -12434,6 +12911,7 @@ func (h *Aws_ebs_snapshot_copyHandler) Read(externalID string) (*Aws_ebs_snapsho
 
 // Delete ...
 func (h *Aws_ebs_snapshot_copyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ebs_snapshot_copy", externalID)
 }
 
@@ -12468,6 +12946,7 @@ type Aws_ebs_volumeHandler struct {
 
 // Create ...
 func (h *Aws_ebs_volumeHandler) Create(desired *Aws_ebs_volume) (*Aws_ebs_volume, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12484,6 +12963,7 @@ func (h *Aws_ebs_volumeHandler) Create(desired *Aws_ebs_volume) (*Aws_ebs_volume
 
 // Read ...
 func (h *Aws_ebs_volumeHandler) Read(externalID string) (*Aws_ebs_volume, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ebs_volume", externalID)
 	if err != nil {
 		return nil, err
@@ -12495,6 +12975,7 @@ func (h *Aws_ebs_volumeHandler) Read(externalID string) (*Aws_ebs_volume, error)
 
 // Delete ...
 func (h *Aws_ebs_volumeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ebs_volume", externalID)
 }
 
@@ -12533,6 +13014,7 @@ type Aws_ec2_capacity_reservationHandler struct {
 
 // Create ...
 func (h *Aws_ec2_capacity_reservationHandler) Create(desired *Aws_ec2_capacity_reservation) (*Aws_ec2_capacity_reservation, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12549,6 +13031,7 @@ func (h *Aws_ec2_capacity_reservationHandler) Create(desired *Aws_ec2_capacity_r
 
 // Read ...
 func (h *Aws_ec2_capacity_reservationHandler) Read(externalID string) (*Aws_ec2_capacity_reservation, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_capacity_reservation", externalID)
 	if err != nil {
 		return nil, err
@@ -12560,6 +13043,7 @@ func (h *Aws_ec2_capacity_reservationHandler) Read(externalID string) (*Aws_ec2_
 
 // Delete ...
 func (h *Aws_ec2_capacity_reservationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_capacity_reservation", externalID)
 }
 
@@ -12658,6 +13142,7 @@ type Aws_ec2_fleetHandler struct {
 
 // Create ...
 func (h *Aws_ec2_fleetHandler) Create(desired *Aws_ec2_fleet) (*Aws_ec2_fleet, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12674,6 +13159,7 @@ func (h *Aws_ec2_fleetHandler) Create(desired *Aws_ec2_fleet) (*Aws_ec2_fleet, s
 
 // Read ...
 func (h *Aws_ec2_fleetHandler) Read(externalID string) (*Aws_ec2_fleet, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_fleet", externalID)
 	if err != nil {
 		return nil, err
@@ -12685,6 +13171,7 @@ func (h *Aws_ec2_fleetHandler) Read(externalID string) (*Aws_ec2_fleet, error) {
 
 // Delete ...
 func (h *Aws_ec2_fleetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_fleet", externalID)
 }
 
@@ -12725,6 +13212,7 @@ type Aws_ec2_transit_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_ec2_transit_gatewayHandler) Create(desired *Aws_ec2_transit_gateway) (*Aws_ec2_transit_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12741,6 +13229,7 @@ func (h *Aws_ec2_transit_gatewayHandler) Create(desired *Aws_ec2_transit_gateway
 
 // Read ...
 func (h *Aws_ec2_transit_gatewayHandler) Read(externalID string) (*Aws_ec2_transit_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_transit_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -12752,6 +13241,7 @@ func (h *Aws_ec2_transit_gatewayHandler) Read(externalID string) (*Aws_ec2_trans
 
 // Delete ...
 func (h *Aws_ec2_transit_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_transit_gateway", externalID)
 }
 
@@ -12774,6 +13264,7 @@ type Aws_ec2_transit_gateway_routeHandler struct {
 
 // Create ...
 func (h *Aws_ec2_transit_gateway_routeHandler) Create(desired *Aws_ec2_transit_gateway_route) (*Aws_ec2_transit_gateway_route, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12790,6 +13281,7 @@ func (h *Aws_ec2_transit_gateway_routeHandler) Create(desired *Aws_ec2_transit_g
 
 // Read ...
 func (h *Aws_ec2_transit_gateway_routeHandler) Read(externalID string) (*Aws_ec2_transit_gateway_route, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_transit_gateway_route", externalID)
 	if err != nil {
 		return nil, err
@@ -12801,6 +13293,7 @@ func (h *Aws_ec2_transit_gateway_routeHandler) Read(externalID string) (*Aws_ec2
 
 // Delete ...
 func (h *Aws_ec2_transit_gateway_routeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_transit_gateway_route", externalID)
 }
 
@@ -12825,6 +13318,7 @@ type Aws_ec2_transit_gateway_route_tableHandler struct {
 
 // Create ...
 func (h *Aws_ec2_transit_gateway_route_tableHandler) Create(desired *Aws_ec2_transit_gateway_route_table) (*Aws_ec2_transit_gateway_route_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12841,6 +13335,7 @@ func (h *Aws_ec2_transit_gateway_route_tableHandler) Create(desired *Aws_ec2_tra
 
 // Read ...
 func (h *Aws_ec2_transit_gateway_route_tableHandler) Read(externalID string) (*Aws_ec2_transit_gateway_route_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_transit_gateway_route_table", externalID)
 	if err != nil {
 		return nil, err
@@ -12852,6 +13347,7 @@ func (h *Aws_ec2_transit_gateway_route_tableHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_ec2_transit_gateway_route_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_transit_gateway_route_table", externalID)
 }
 
@@ -12876,6 +13372,7 @@ type Aws_ec2_transit_gateway_route_table_associationHandler struct {
 
 // Create ...
 func (h *Aws_ec2_transit_gateway_route_table_associationHandler) Create(desired *Aws_ec2_transit_gateway_route_table_association) (*Aws_ec2_transit_gateway_route_table_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12892,6 +13389,7 @@ func (h *Aws_ec2_transit_gateway_route_table_associationHandler) Create(desired 
 
 // Read ...
 func (h *Aws_ec2_transit_gateway_route_table_associationHandler) Read(externalID string) (*Aws_ec2_transit_gateway_route_table_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_transit_gateway_route_table_association", externalID)
 	if err != nil {
 		return nil, err
@@ -12903,6 +13401,7 @@ func (h *Aws_ec2_transit_gateway_route_table_associationHandler) Read(externalID
 
 // Delete ...
 func (h *Aws_ec2_transit_gateway_route_table_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_transit_gateway_route_table_association", externalID)
 }
 
@@ -12927,6 +13426,7 @@ type Aws_ec2_transit_gateway_route_table_propagationHandler struct {
 
 // Create ...
 func (h *Aws_ec2_transit_gateway_route_table_propagationHandler) Create(desired *Aws_ec2_transit_gateway_route_table_propagation) (*Aws_ec2_transit_gateway_route_table_propagation, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -12943,6 +13443,7 @@ func (h *Aws_ec2_transit_gateway_route_table_propagationHandler) Create(desired 
 
 // Read ...
 func (h *Aws_ec2_transit_gateway_route_table_propagationHandler) Read(externalID string) (*Aws_ec2_transit_gateway_route_table_propagation, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_transit_gateway_route_table_propagation", externalID)
 	if err != nil {
 		return nil, err
@@ -12954,6 +13455,7 @@ func (h *Aws_ec2_transit_gateway_route_table_propagationHandler) Read(externalID
 
 // Delete ...
 func (h *Aws_ec2_transit_gateway_route_table_propagationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_transit_gateway_route_table_propagation", externalID)
 }
 
@@ -12988,6 +13490,7 @@ type Aws_ec2_transit_gateway_vpc_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_ec2_transit_gateway_vpc_attachmentHandler) Create(desired *Aws_ec2_transit_gateway_vpc_attachment) (*Aws_ec2_transit_gateway_vpc_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13004,6 +13507,7 @@ func (h *Aws_ec2_transit_gateway_vpc_attachmentHandler) Create(desired *Aws_ec2_
 
 // Read ...
 func (h *Aws_ec2_transit_gateway_vpc_attachmentHandler) Read(externalID string) (*Aws_ec2_transit_gateway_vpc_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ec2_transit_gateway_vpc_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -13015,6 +13519,7 @@ func (h *Aws_ec2_transit_gateway_vpc_attachmentHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Aws_ec2_transit_gateway_vpc_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ec2_transit_gateway_vpc_attachment", externalID)
 }
 
@@ -13037,6 +13542,7 @@ type Aws_ecr_lifecycle_policyHandler struct {
 
 // Create ...
 func (h *Aws_ecr_lifecycle_policyHandler) Create(desired *Aws_ecr_lifecycle_policy) (*Aws_ecr_lifecycle_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13053,6 +13559,7 @@ func (h *Aws_ecr_lifecycle_policyHandler) Create(desired *Aws_ecr_lifecycle_poli
 
 // Read ...
 func (h *Aws_ecr_lifecycle_policyHandler) Read(externalID string) (*Aws_ecr_lifecycle_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ecr_lifecycle_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -13064,6 +13571,7 @@ func (h *Aws_ecr_lifecycle_policyHandler) Read(externalID string) (*Aws_ecr_life
 
 // Delete ...
 func (h *Aws_ecr_lifecycle_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ecr_lifecycle_policy", externalID)
 }
 
@@ -13090,6 +13598,7 @@ type Aws_ecr_repositoryHandler struct {
 
 // Create ...
 func (h *Aws_ecr_repositoryHandler) Create(desired *Aws_ecr_repository) (*Aws_ecr_repository, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13106,6 +13615,7 @@ func (h *Aws_ecr_repositoryHandler) Create(desired *Aws_ecr_repository) (*Aws_ec
 
 // Read ...
 func (h *Aws_ecr_repositoryHandler) Read(externalID string) (*Aws_ecr_repository, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ecr_repository", externalID)
 	if err != nil {
 		return nil, err
@@ -13117,6 +13627,7 @@ func (h *Aws_ecr_repositoryHandler) Read(externalID string) (*Aws_ecr_repository
 
 // Delete ...
 func (h *Aws_ecr_repositoryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ecr_repository", externalID)
 }
 
@@ -13139,6 +13650,7 @@ type Aws_ecr_repository_policyHandler struct {
 
 // Create ...
 func (h *Aws_ecr_repository_policyHandler) Create(desired *Aws_ecr_repository_policy) (*Aws_ecr_repository_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13155,6 +13667,7 @@ func (h *Aws_ecr_repository_policyHandler) Create(desired *Aws_ecr_repository_po
 
 // Read ...
 func (h *Aws_ecr_repository_policyHandler) Read(externalID string) (*Aws_ecr_repository_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ecr_repository_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -13166,6 +13679,7 @@ func (h *Aws_ecr_repository_policyHandler) Read(externalID string) (*Aws_ecr_rep
 
 // Delete ...
 func (h *Aws_ecr_repository_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ecr_repository_policy", externalID)
 }
 
@@ -13188,6 +13702,7 @@ type Aws_ecs_clusterHandler struct {
 
 // Create ...
 func (h *Aws_ecs_clusterHandler) Create(desired *Aws_ecs_cluster) (*Aws_ecs_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13204,6 +13719,7 @@ func (h *Aws_ecs_clusterHandler) Create(desired *Aws_ecs_cluster) (*Aws_ecs_clus
 
 // Read ...
 func (h *Aws_ecs_clusterHandler) Read(externalID string) (*Aws_ecs_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ecs_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -13215,6 +13731,7 @@ func (h *Aws_ecs_clusterHandler) Read(externalID string) (*Aws_ecs_cluster, erro
 
 // Delete ...
 func (h *Aws_ecs_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ecs_cluster", externalID)
 }
 
@@ -13337,6 +13854,7 @@ type Aws_ecs_serviceHandler struct {
 
 // Create ...
 func (h *Aws_ecs_serviceHandler) Create(desired *Aws_ecs_service) (*Aws_ecs_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13353,6 +13871,7 @@ func (h *Aws_ecs_serviceHandler) Create(desired *Aws_ecs_service) (*Aws_ecs_serv
 
 // Read ...
 func (h *Aws_ecs_serviceHandler) Read(externalID string) (*Aws_ecs_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ecs_service", externalID)
 	if err != nil {
 		return nil, err
@@ -13364,6 +13883,7 @@ func (h *Aws_ecs_serviceHandler) Read(externalID string) (*Aws_ecs_service, erro
 
 // Delete ...
 func (h *Aws_ecs_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ecs_service", externalID)
 }
 
@@ -13442,6 +13962,7 @@ type Aws_ecs_task_definitionHandler struct {
 
 // Create ...
 func (h *Aws_ecs_task_definitionHandler) Create(desired *Aws_ecs_task_definition) (*Aws_ecs_task_definition, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13458,6 +13979,7 @@ func (h *Aws_ecs_task_definitionHandler) Create(desired *Aws_ecs_task_definition
 
 // Read ...
 func (h *Aws_ecs_task_definitionHandler) Read(externalID string) (*Aws_ecs_task_definition, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ecs_task_definition", externalID)
 	if err != nil {
 		return nil, err
@@ -13469,6 +13991,7 @@ func (h *Aws_ecs_task_definitionHandler) Read(externalID string) (*Aws_ecs_task_
 
 // Delete ...
 func (h *Aws_ecs_task_definitionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ecs_task_definition", externalID)
 }
 
@@ -13505,6 +14028,7 @@ type Aws_efs_file_systemHandler struct {
 
 // Create ...
 func (h *Aws_efs_file_systemHandler) Create(desired *Aws_efs_file_system) (*Aws_efs_file_system, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13521,6 +14045,7 @@ func (h *Aws_efs_file_systemHandler) Create(desired *Aws_efs_file_system) (*Aws_
 
 // Read ...
 func (h *Aws_efs_file_systemHandler) Read(externalID string) (*Aws_efs_file_system, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_efs_file_system", externalID)
 	if err != nil {
 		return nil, err
@@ -13532,6 +14057,7 @@ func (h *Aws_efs_file_systemHandler) Read(externalID string) (*Aws_efs_file_syst
 
 // Delete ...
 func (h *Aws_efs_file_systemHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_efs_file_system", externalID)
 }
 
@@ -13562,6 +14088,7 @@ type Aws_efs_mount_targetHandler struct {
 
 // Create ...
 func (h *Aws_efs_mount_targetHandler) Create(desired *Aws_efs_mount_target) (*Aws_efs_mount_target, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13578,6 +14105,7 @@ func (h *Aws_efs_mount_targetHandler) Create(desired *Aws_efs_mount_target) (*Aw
 
 // Read ...
 func (h *Aws_efs_mount_targetHandler) Read(externalID string) (*Aws_efs_mount_target, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_efs_mount_target", externalID)
 	if err != nil {
 		return nil, err
@@ -13589,6 +14117,7 @@ func (h *Aws_efs_mount_targetHandler) Read(externalID string) (*Aws_efs_mount_ta
 
 // Delete ...
 func (h *Aws_efs_mount_targetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_efs_mount_target", externalID)
 }
 
@@ -13607,6 +14136,7 @@ type Aws_egress_only_internet_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_egress_only_internet_gatewayHandler) Create(desired *Aws_egress_only_internet_gateway) (*Aws_egress_only_internet_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13623,6 +14153,7 @@ func (h *Aws_egress_only_internet_gatewayHandler) Create(desired *Aws_egress_onl
 
 // Read ...
 func (h *Aws_egress_only_internet_gatewayHandler) Read(externalID string) (*Aws_egress_only_internet_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_egress_only_internet_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -13634,6 +14165,7 @@ func (h *Aws_egress_only_internet_gatewayHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_egress_only_internet_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_egress_only_internet_gateway", externalID)
 }
 
@@ -13672,6 +14204,7 @@ type Aws_eipHandler struct {
 
 // Create ...
 func (h *Aws_eipHandler) Create(desired *Aws_eip) (*Aws_eip, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13688,6 +14221,7 @@ func (h *Aws_eipHandler) Create(desired *Aws_eip) (*Aws_eip, string, error) {
 
 // Read ...
 func (h *Aws_eipHandler) Read(externalID string) (*Aws_eip, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_eip", externalID)
 	if err != nil {
 		return nil, err
@@ -13699,6 +14233,7 @@ func (h *Aws_eipHandler) Read(externalID string) (*Aws_eip, error) {
 
 // Delete ...
 func (h *Aws_eipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_eip", externalID)
 }
 
@@ -13727,6 +14262,7 @@ type Aws_eip_associationHandler struct {
 
 // Create ...
 func (h *Aws_eip_associationHandler) Create(desired *Aws_eip_association) (*Aws_eip_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13743,6 +14279,7 @@ func (h *Aws_eip_associationHandler) Create(desired *Aws_eip_association) (*Aws_
 
 // Read ...
 func (h *Aws_eip_associationHandler) Read(externalID string) (*Aws_eip_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_eip_association", externalID)
 	if err != nil {
 		return nil, err
@@ -13754,6 +14291,7 @@ func (h *Aws_eip_associationHandler) Read(externalID string) (*Aws_eip_associati
 
 // Delete ...
 func (h *Aws_eip_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_eip_association", externalID)
 }
 
@@ -13804,6 +14342,7 @@ type Aws_eks_clusterHandler struct {
 
 // Create ...
 func (h *Aws_eks_clusterHandler) Create(desired *Aws_eks_cluster) (*Aws_eks_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13820,6 +14359,7 @@ func (h *Aws_eks_clusterHandler) Create(desired *Aws_eks_cluster) (*Aws_eks_clus
 
 // Read ...
 func (h *Aws_eks_clusterHandler) Read(externalID string) (*Aws_eks_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_eks_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -13831,6 +14371,7 @@ func (h *Aws_eks_clusterHandler) Read(externalID string) (*Aws_eks_cluster, erro
 
 // Delete ...
 func (h *Aws_eks_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_eks_cluster", externalID)
 }
 
@@ -13865,6 +14406,7 @@ type Aws_elastic_beanstalk_applicationHandler struct {
 
 // Create ...
 func (h *Aws_elastic_beanstalk_applicationHandler) Create(desired *Aws_elastic_beanstalk_application) (*Aws_elastic_beanstalk_application, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13881,6 +14423,7 @@ func (h *Aws_elastic_beanstalk_applicationHandler) Create(desired *Aws_elastic_b
 
 // Read ...
 func (h *Aws_elastic_beanstalk_applicationHandler) Read(externalID string) (*Aws_elastic_beanstalk_application, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elastic_beanstalk_application", externalID)
 	if err != nil {
 		return nil, err
@@ -13892,6 +14435,7 @@ func (h *Aws_elastic_beanstalk_applicationHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_elastic_beanstalk_applicationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elastic_beanstalk_application", externalID)
 }
 
@@ -13920,6 +14464,7 @@ type Aws_elastic_beanstalk_application_versionHandler struct {
 
 // Create ...
 func (h *Aws_elastic_beanstalk_application_versionHandler) Create(desired *Aws_elastic_beanstalk_application_version) (*Aws_elastic_beanstalk_application_version, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -13936,6 +14481,7 @@ func (h *Aws_elastic_beanstalk_application_versionHandler) Create(desired *Aws_e
 
 // Read ...
 func (h *Aws_elastic_beanstalk_application_versionHandler) Read(externalID string) (*Aws_elastic_beanstalk_application_version, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elastic_beanstalk_application_version", externalID)
 	if err != nil {
 		return nil, err
@@ -13947,6 +14493,7 @@ func (h *Aws_elastic_beanstalk_application_versionHandler) Read(externalID strin
 
 // Delete ...
 func (h *Aws_elastic_beanstalk_application_versionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elastic_beanstalk_application_version", externalID)
 }
 
@@ -13987,6 +14534,7 @@ type Aws_elastic_beanstalk_configuration_templateHandler struct {
 
 // Create ...
 func (h *Aws_elastic_beanstalk_configuration_templateHandler) Create(desired *Aws_elastic_beanstalk_configuration_template) (*Aws_elastic_beanstalk_configuration_template, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14003,6 +14551,7 @@ func (h *Aws_elastic_beanstalk_configuration_templateHandler) Create(desired *Aw
 
 // Read ...
 func (h *Aws_elastic_beanstalk_configuration_templateHandler) Read(externalID string) (*Aws_elastic_beanstalk_configuration_template, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elastic_beanstalk_configuration_template", externalID)
 	if err != nil {
 		return nil, err
@@ -14014,6 +14563,7 @@ func (h *Aws_elastic_beanstalk_configuration_templateHandler) Read(externalID st
 
 // Delete ...
 func (h *Aws_elastic_beanstalk_configuration_templateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elastic_beanstalk_configuration_template", externalID)
 }
 
@@ -14098,6 +14648,7 @@ type Aws_elastic_beanstalk_environmentHandler struct {
 
 // Create ...
 func (h *Aws_elastic_beanstalk_environmentHandler) Create(desired *Aws_elastic_beanstalk_environment) (*Aws_elastic_beanstalk_environment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14114,6 +14665,7 @@ func (h *Aws_elastic_beanstalk_environmentHandler) Create(desired *Aws_elastic_b
 
 // Read ...
 func (h *Aws_elastic_beanstalk_environmentHandler) Read(externalID string) (*Aws_elastic_beanstalk_environment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elastic_beanstalk_environment", externalID)
 	if err != nil {
 		return nil, err
@@ -14125,6 +14677,7 @@ func (h *Aws_elastic_beanstalk_environmentHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_elastic_beanstalk_environmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elastic_beanstalk_environment", externalID)
 }
 
@@ -14205,6 +14758,7 @@ type Aws_elasticache_clusterHandler struct {
 
 // Create ...
 func (h *Aws_elasticache_clusterHandler) Create(desired *Aws_elasticache_cluster) (*Aws_elasticache_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14221,6 +14775,7 @@ func (h *Aws_elasticache_clusterHandler) Create(desired *Aws_elasticache_cluster
 
 // Read ...
 func (h *Aws_elasticache_clusterHandler) Read(externalID string) (*Aws_elasticache_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticache_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -14232,6 +14787,7 @@ func (h *Aws_elasticache_clusterHandler) Read(externalID string) (*Aws_elasticac
 
 // Delete ...
 func (h *Aws_elasticache_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticache_cluster", externalID)
 }
 
@@ -14264,6 +14820,7 @@ type Aws_elasticache_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_elasticache_parameter_groupHandler) Create(desired *Aws_elasticache_parameter_group) (*Aws_elasticache_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14280,6 +14837,7 @@ func (h *Aws_elasticache_parameter_groupHandler) Create(desired *Aws_elasticache
 
 // Read ...
 func (h *Aws_elasticache_parameter_groupHandler) Read(externalID string) (*Aws_elasticache_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticache_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -14291,6 +14849,7 @@ func (h *Aws_elasticache_parameter_groupHandler) Read(externalID string) (*Aws_e
 
 // Delete ...
 func (h *Aws_elasticache_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticache_parameter_group", externalID)
 }
 
@@ -14373,6 +14932,7 @@ type Aws_elasticache_replication_groupHandler struct {
 
 // Create ...
 func (h *Aws_elasticache_replication_groupHandler) Create(desired *Aws_elasticache_replication_group) (*Aws_elasticache_replication_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14389,6 +14949,7 @@ func (h *Aws_elasticache_replication_groupHandler) Create(desired *Aws_elasticac
 
 // Read ...
 func (h *Aws_elasticache_replication_groupHandler) Read(externalID string) (*Aws_elasticache_replication_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticache_replication_group", externalID)
 	if err != nil {
 		return nil, err
@@ -14400,6 +14961,7 @@ func (h *Aws_elasticache_replication_groupHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_elasticache_replication_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticache_replication_group", externalID)
 }
 
@@ -14422,6 +14984,7 @@ type Aws_elasticache_security_groupHandler struct {
 
 // Create ...
 func (h *Aws_elasticache_security_groupHandler) Create(desired *Aws_elasticache_security_group) (*Aws_elasticache_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14438,6 +15001,7 @@ func (h *Aws_elasticache_security_groupHandler) Create(desired *Aws_elasticache_
 
 // Read ...
 func (h *Aws_elasticache_security_groupHandler) Read(externalID string) (*Aws_elasticache_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticache_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -14449,6 +15013,7 @@ func (h *Aws_elasticache_security_groupHandler) Read(externalID string) (*Aws_el
 
 // Delete ...
 func (h *Aws_elasticache_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticache_security_group", externalID)
 }
 
@@ -14471,6 +15036,7 @@ type Aws_elasticache_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_elasticache_subnet_groupHandler) Create(desired *Aws_elasticache_subnet_group) (*Aws_elasticache_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14487,6 +15053,7 @@ func (h *Aws_elasticache_subnet_groupHandler) Create(desired *Aws_elasticache_su
 
 // Read ...
 func (h *Aws_elasticache_subnet_groupHandler) Read(externalID string) (*Aws_elasticache_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticache_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -14498,6 +15065,7 @@ func (h *Aws_elasticache_subnet_groupHandler) Read(externalID string) (*Aws_elas
 
 // Delete ...
 func (h *Aws_elasticache_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticache_subnet_group", externalID)
 }
 
@@ -14630,6 +15198,7 @@ type Aws_elasticsearch_domainHandler struct {
 
 // Create ...
 func (h *Aws_elasticsearch_domainHandler) Create(desired *Aws_elasticsearch_domain) (*Aws_elasticsearch_domain, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14646,6 +15215,7 @@ func (h *Aws_elasticsearch_domainHandler) Create(desired *Aws_elasticsearch_doma
 
 // Read ...
 func (h *Aws_elasticsearch_domainHandler) Read(externalID string) (*Aws_elasticsearch_domain, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticsearch_domain", externalID)
 	if err != nil {
 		return nil, err
@@ -14657,6 +15227,7 @@ func (h *Aws_elasticsearch_domainHandler) Read(externalID string) (*Aws_elastics
 
 // Delete ...
 func (h *Aws_elasticsearch_domainHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticsearch_domain", externalID)
 }
 
@@ -14677,6 +15248,7 @@ type Aws_elasticsearch_domain_policyHandler struct {
 
 // Create ...
 func (h *Aws_elasticsearch_domain_policyHandler) Create(desired *Aws_elasticsearch_domain_policy) (*Aws_elasticsearch_domain_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14693,6 +15265,7 @@ func (h *Aws_elasticsearch_domain_policyHandler) Create(desired *Aws_elasticsear
 
 // Read ...
 func (h *Aws_elasticsearch_domain_policyHandler) Read(externalID string) (*Aws_elasticsearch_domain_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elasticsearch_domain_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -14704,6 +15277,7 @@ func (h *Aws_elasticsearch_domain_policyHandler) Read(externalID string) (*Aws_e
 
 // Delete ...
 func (h *Aws_elasticsearch_domain_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elasticsearch_domain_policy", externalID)
 }
 
@@ -14790,6 +15364,7 @@ type Aws_elastictranscoder_pipelineHandler struct {
 
 // Create ...
 func (h *Aws_elastictranscoder_pipelineHandler) Create(desired *Aws_elastictranscoder_pipeline) (*Aws_elastictranscoder_pipeline, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14806,6 +15381,7 @@ func (h *Aws_elastictranscoder_pipelineHandler) Create(desired *Aws_elastictrans
 
 // Read ...
 func (h *Aws_elastictranscoder_pipelineHandler) Read(externalID string) (*Aws_elastictranscoder_pipeline, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elastictranscoder_pipeline", externalID)
 	if err != nil {
 		return nil, err
@@ -14817,6 +15393,7 @@ func (h *Aws_elastictranscoder_pipelineHandler) Read(externalID string) (*Aws_el
 
 // Delete ...
 func (h *Aws_elastictranscoder_pipelineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elastictranscoder_pipeline", externalID)
 }
 
@@ -14955,6 +15532,7 @@ type Aws_elastictranscoder_presetHandler struct {
 
 // Create ...
 func (h *Aws_elastictranscoder_presetHandler) Create(desired *Aws_elastictranscoder_preset) (*Aws_elastictranscoder_preset, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -14971,6 +15549,7 @@ func (h *Aws_elastictranscoder_presetHandler) Create(desired *Aws_elastictransco
 
 // Read ...
 func (h *Aws_elastictranscoder_presetHandler) Read(externalID string) (*Aws_elastictranscoder_preset, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elastictranscoder_preset", externalID)
 	if err != nil {
 		return nil, err
@@ -14982,6 +15561,7 @@ func (h *Aws_elastictranscoder_presetHandler) Read(externalID string) (*Aws_elas
 
 // Delete ...
 func (h *Aws_elastictranscoder_presetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elastictranscoder_preset", externalID)
 }
 
@@ -15078,6 +15658,7 @@ type Aws_elbHandler struct {
 
 // Create ...
 func (h *Aws_elbHandler) Create(desired *Aws_elb) (*Aws_elb, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15094,6 +15675,7 @@ func (h *Aws_elbHandler) Create(desired *Aws_elb) (*Aws_elb, string, error) {
 
 // Read ...
 func (h *Aws_elbHandler) Read(externalID string) (*Aws_elb, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elb", externalID)
 	if err != nil {
 		return nil, err
@@ -15105,6 +15687,7 @@ func (h *Aws_elbHandler) Read(externalID string) (*Aws_elb, error) {
 
 // Delete ...
 func (h *Aws_elbHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elb", externalID)
 }
 
@@ -15125,6 +15708,7 @@ type Aws_elb_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_elb_attachmentHandler) Create(desired *Aws_elb_attachment) (*Aws_elb_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15141,6 +15725,7 @@ func (h *Aws_elb_attachmentHandler) Create(desired *Aws_elb_attachment) (*Aws_el
 
 // Read ...
 func (h *Aws_elb_attachmentHandler) Read(externalID string) (*Aws_elb_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_elb_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -15152,6 +15737,7 @@ func (h *Aws_elb_attachmentHandler) Read(externalID string) (*Aws_elb_attachment
 
 // Delete ...
 func (h *Aws_elb_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_elb_attachment", externalID)
 }
 
@@ -15320,6 +15906,7 @@ type Aws_emr_clusterHandler struct {
 
 // Create ...
 func (h *Aws_emr_clusterHandler) Create(desired *Aws_emr_cluster) (*Aws_emr_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15336,6 +15923,7 @@ func (h *Aws_emr_clusterHandler) Create(desired *Aws_emr_cluster) (*Aws_emr_clus
 
 // Read ...
 func (h *Aws_emr_clusterHandler) Read(externalID string) (*Aws_emr_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_emr_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -15347,6 +15935,7 @@ func (h *Aws_emr_clusterHandler) Read(externalID string) (*Aws_emr_cluster, erro
 
 // Delete ...
 func (h *Aws_emr_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_emr_cluster", externalID)
 }
 
@@ -15391,6 +15980,7 @@ type Aws_emr_instance_groupHandler struct {
 
 // Create ...
 func (h *Aws_emr_instance_groupHandler) Create(desired *Aws_emr_instance_group) (*Aws_emr_instance_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15407,6 +15997,7 @@ func (h *Aws_emr_instance_groupHandler) Create(desired *Aws_emr_instance_group) 
 
 // Read ...
 func (h *Aws_emr_instance_groupHandler) Read(externalID string) (*Aws_emr_instance_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_emr_instance_group", externalID)
 	if err != nil {
 		return nil, err
@@ -15418,6 +16009,7 @@ func (h *Aws_emr_instance_groupHandler) Read(externalID string) (*Aws_emr_instan
 
 // Delete ...
 func (h *Aws_emr_instance_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_emr_instance_group", externalID)
 }
 
@@ -15442,6 +16034,7 @@ type Aws_emr_security_configurationHandler struct {
 
 // Create ...
 func (h *Aws_emr_security_configurationHandler) Create(desired *Aws_emr_security_configuration) (*Aws_emr_security_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15458,6 +16051,7 @@ func (h *Aws_emr_security_configurationHandler) Create(desired *Aws_emr_security
 
 // Read ...
 func (h *Aws_emr_security_configurationHandler) Read(externalID string) (*Aws_emr_security_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_emr_security_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -15469,6 +16063,7 @@ func (h *Aws_emr_security_configurationHandler) Read(externalID string) (*Aws_em
 
 // Delete ...
 func (h *Aws_emr_security_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_emr_security_configuration", externalID)
 }
 
@@ -15501,6 +16096,7 @@ type Aws_flow_logHandler struct {
 
 // Create ...
 func (h *Aws_flow_logHandler) Create(desired *Aws_flow_log) (*Aws_flow_log, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15517,6 +16113,7 @@ func (h *Aws_flow_logHandler) Create(desired *Aws_flow_log) (*Aws_flow_log, stri
 
 // Read ...
 func (h *Aws_flow_logHandler) Read(externalID string) (*Aws_flow_log, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_flow_log", externalID)
 	if err != nil {
 		return nil, err
@@ -15528,6 +16125,7 @@ func (h *Aws_flow_logHandler) Read(externalID string) (*Aws_flow_log, error) {
 
 // Delete ...
 func (h *Aws_flow_logHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_flow_log", externalID)
 }
 
@@ -15562,6 +16160,7 @@ type Aws_gamelift_aliasHandler struct {
 
 // Create ...
 func (h *Aws_gamelift_aliasHandler) Create(desired *Aws_gamelift_alias) (*Aws_gamelift_alias, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15578,6 +16177,7 @@ func (h *Aws_gamelift_aliasHandler) Create(desired *Aws_gamelift_alias) (*Aws_ga
 
 // Read ...
 func (h *Aws_gamelift_aliasHandler) Read(externalID string) (*Aws_gamelift_alias, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_gamelift_alias", externalID)
 	if err != nil {
 		return nil, err
@@ -15589,6 +16189,7 @@ func (h *Aws_gamelift_aliasHandler) Read(externalID string) (*Aws_gamelift_alias
 
 // Delete ...
 func (h *Aws_gamelift_aliasHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_gamelift_alias", externalID)
 }
 
@@ -15623,6 +16224,7 @@ type Aws_gamelift_buildHandler struct {
 
 // Create ...
 func (h *Aws_gamelift_buildHandler) Create(desired *Aws_gamelift_build) (*Aws_gamelift_build, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15639,6 +16241,7 @@ func (h *Aws_gamelift_buildHandler) Create(desired *Aws_gamelift_build) (*Aws_ga
 
 // Read ...
 func (h *Aws_gamelift_buildHandler) Read(externalID string) (*Aws_gamelift_build, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_gamelift_build", externalID)
 	if err != nil {
 		return nil, err
@@ -15650,6 +16253,7 @@ func (h *Aws_gamelift_buildHandler) Read(externalID string) (*Aws_gamelift_build
 
 // Delete ...
 func (h *Aws_gamelift_buildHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_gamelift_build", externalID)
 }
 
@@ -15730,6 +16334,7 @@ type Aws_gamelift_fleetHandler struct {
 
 // Create ...
 func (h *Aws_gamelift_fleetHandler) Create(desired *Aws_gamelift_fleet) (*Aws_gamelift_fleet, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15746,6 +16351,7 @@ func (h *Aws_gamelift_fleetHandler) Create(desired *Aws_gamelift_fleet) (*Aws_ga
 
 // Read ...
 func (h *Aws_gamelift_fleetHandler) Read(externalID string) (*Aws_gamelift_fleet, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_gamelift_fleet", externalID)
 	if err != nil {
 		return nil, err
@@ -15757,6 +16363,7 @@ func (h *Aws_gamelift_fleetHandler) Read(externalID string) (*Aws_gamelift_fleet
 
 // Delete ...
 func (h *Aws_gamelift_fleetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_gamelift_fleet", externalID)
 }
 
@@ -15791,6 +16398,7 @@ type Aws_gamelift_game_session_queueHandler struct {
 
 // Create ...
 func (h *Aws_gamelift_game_session_queueHandler) Create(desired *Aws_gamelift_game_session_queue) (*Aws_gamelift_game_session_queue, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15807,6 +16415,7 @@ func (h *Aws_gamelift_game_session_queueHandler) Create(desired *Aws_gamelift_ga
 
 // Read ...
 func (h *Aws_gamelift_game_session_queueHandler) Read(externalID string) (*Aws_gamelift_game_session_queue, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_gamelift_game_session_queue", externalID)
 	if err != nil {
 		return nil, err
@@ -15818,6 +16427,7 @@ func (h *Aws_gamelift_game_session_queueHandler) Read(externalID string) (*Aws_g
 
 // Delete ...
 func (h *Aws_gamelift_game_session_queueHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_gamelift_game_session_queue", externalID)
 }
 
@@ -15854,6 +16464,7 @@ type Aws_glacier_vaultHandler struct {
 
 // Create ...
 func (h *Aws_glacier_vaultHandler) Create(desired *Aws_glacier_vault) (*Aws_glacier_vault, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15870,6 +16481,7 @@ func (h *Aws_glacier_vaultHandler) Create(desired *Aws_glacier_vault) (*Aws_glac
 
 // Read ...
 func (h *Aws_glacier_vaultHandler) Read(externalID string) (*Aws_glacier_vault, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glacier_vault", externalID)
 	if err != nil {
 		return nil, err
@@ -15881,6 +16493,7 @@ func (h *Aws_glacier_vaultHandler) Read(externalID string) (*Aws_glacier_vault, 
 
 // Delete ...
 func (h *Aws_glacier_vaultHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glacier_vault", externalID)
 }
 
@@ -15905,6 +16518,7 @@ type Aws_glacier_vault_lockHandler struct {
 
 // Create ...
 func (h *Aws_glacier_vault_lockHandler) Create(desired *Aws_glacier_vault_lock) (*Aws_glacier_vault_lock, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15921,6 +16535,7 @@ func (h *Aws_glacier_vault_lockHandler) Create(desired *Aws_glacier_vault_lock) 
 
 // Read ...
 func (h *Aws_glacier_vault_lockHandler) Read(externalID string) (*Aws_glacier_vault_lock, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glacier_vault_lock", externalID)
 	if err != nil {
 		return nil, err
@@ -15932,6 +16547,7 @@ func (h *Aws_glacier_vault_lockHandler) Read(externalID string) (*Aws_glacier_va
 
 // Delete ...
 func (h *Aws_glacier_vault_lockHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glacier_vault_lock", externalID)
 }
 
@@ -15976,6 +16592,7 @@ type Aws_globalaccelerator_acceleratorHandler struct {
 
 // Create ...
 func (h *Aws_globalaccelerator_acceleratorHandler) Create(desired *Aws_globalaccelerator_accelerator) (*Aws_globalaccelerator_accelerator, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -15992,6 +16609,7 @@ func (h *Aws_globalaccelerator_acceleratorHandler) Create(desired *Aws_globalacc
 
 // Read ...
 func (h *Aws_globalaccelerator_acceleratorHandler) Read(externalID string) (*Aws_globalaccelerator_accelerator, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_globalaccelerator_accelerator", externalID)
 	if err != nil {
 		return nil, err
@@ -16003,6 +16621,7 @@ func (h *Aws_globalaccelerator_acceleratorHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_globalaccelerator_acceleratorHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_globalaccelerator_accelerator", externalID)
 }
 
@@ -16029,6 +16648,7 @@ type Aws_glue_catalog_databaseHandler struct {
 
 // Create ...
 func (h *Aws_glue_catalog_databaseHandler) Create(desired *Aws_glue_catalog_database) (*Aws_glue_catalog_database, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16045,6 +16665,7 @@ func (h *Aws_glue_catalog_databaseHandler) Create(desired *Aws_glue_catalog_data
 
 // Read ...
 func (h *Aws_glue_catalog_databaseHandler) Read(externalID string) (*Aws_glue_catalog_database, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_catalog_database", externalID)
 	if err != nil {
 		return nil, err
@@ -16056,6 +16677,7 @@ func (h *Aws_glue_catalog_databaseHandler) Read(externalID string) (*Aws_glue_ca
 
 // Delete ...
 func (h *Aws_glue_catalog_databaseHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_catalog_database", externalID)
 }
 
@@ -16172,6 +16794,7 @@ type Aws_glue_catalog_tableHandler struct {
 
 // Create ...
 func (h *Aws_glue_catalog_tableHandler) Create(desired *Aws_glue_catalog_table) (*Aws_glue_catalog_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16188,6 +16811,7 @@ func (h *Aws_glue_catalog_tableHandler) Create(desired *Aws_glue_catalog_table) 
 
 // Read ...
 func (h *Aws_glue_catalog_tableHandler) Read(externalID string) (*Aws_glue_catalog_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_catalog_table", externalID)
 	if err != nil {
 		return nil, err
@@ -16199,6 +16823,7 @@ func (h *Aws_glue_catalog_tableHandler) Read(externalID string) (*Aws_glue_catal
 
 // Delete ...
 func (h *Aws_glue_catalog_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_catalog_table", externalID)
 }
 
@@ -16247,6 +16872,7 @@ type Aws_glue_classifierHandler struct {
 
 // Create ...
 func (h *Aws_glue_classifierHandler) Create(desired *Aws_glue_classifier) (*Aws_glue_classifier, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16263,6 +16889,7 @@ func (h *Aws_glue_classifierHandler) Create(desired *Aws_glue_classifier) (*Aws_
 
 // Read ...
 func (h *Aws_glue_classifierHandler) Read(externalID string) (*Aws_glue_classifier, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_classifier", externalID)
 	if err != nil {
 		return nil, err
@@ -16274,6 +16901,7 @@ func (h *Aws_glue_classifierHandler) Read(externalID string) (*Aws_glue_classifi
 
 // Delete ...
 func (h *Aws_glue_classifierHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_classifier", externalID)
 }
 
@@ -16314,6 +16942,7 @@ type Aws_glue_connectionHandler struct {
 
 // Create ...
 func (h *Aws_glue_connectionHandler) Create(desired *Aws_glue_connection) (*Aws_glue_connection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16330,6 +16959,7 @@ func (h *Aws_glue_connectionHandler) Create(desired *Aws_glue_connection) (*Aws_
 
 // Read ...
 func (h *Aws_glue_connectionHandler) Read(externalID string) (*Aws_glue_connection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_connection", externalID)
 	if err != nil {
 		return nil, err
@@ -16341,6 +16971,7 @@ func (h *Aws_glue_connectionHandler) Read(externalID string) (*Aws_glue_connecti
 
 // Delete ...
 func (h *Aws_glue_connectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_connection", externalID)
 }
 
@@ -16415,6 +17046,7 @@ type Aws_glue_crawlerHandler struct {
 
 // Create ...
 func (h *Aws_glue_crawlerHandler) Create(desired *Aws_glue_crawler) (*Aws_glue_crawler, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16431,6 +17063,7 @@ func (h *Aws_glue_crawlerHandler) Create(desired *Aws_glue_crawler) (*Aws_glue_c
 
 // Read ...
 func (h *Aws_glue_crawlerHandler) Read(externalID string) (*Aws_glue_crawler, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_crawler", externalID)
 	if err != nil {
 		return nil, err
@@ -16442,6 +17075,7 @@ func (h *Aws_glue_crawlerHandler) Read(externalID string) (*Aws_glue_crawler, er
 
 // Delete ...
 func (h *Aws_glue_crawlerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_crawler", externalID)
 }
 
@@ -16494,6 +17128,7 @@ type Aws_glue_jobHandler struct {
 
 // Create ...
 func (h *Aws_glue_jobHandler) Create(desired *Aws_glue_job) (*Aws_glue_job, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16510,6 +17145,7 @@ func (h *Aws_glue_jobHandler) Create(desired *Aws_glue_job) (*Aws_glue_job, stri
 
 // Read ...
 func (h *Aws_glue_jobHandler) Read(externalID string) (*Aws_glue_job, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_job", externalID)
 	if err != nil {
 		return nil, err
@@ -16521,6 +17157,7 @@ func (h *Aws_glue_jobHandler) Read(externalID string) (*Aws_glue_job, error) {
 
 // Delete ...
 func (h *Aws_glue_jobHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_job", externalID)
 }
 
@@ -16575,6 +17212,7 @@ type Aws_glue_security_configurationHandler struct {
 
 // Create ...
 func (h *Aws_glue_security_configurationHandler) Create(desired *Aws_glue_security_configuration) (*Aws_glue_security_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16591,6 +17229,7 @@ func (h *Aws_glue_security_configurationHandler) Create(desired *Aws_glue_securi
 
 // Read ...
 func (h *Aws_glue_security_configurationHandler) Read(externalID string) (*Aws_glue_security_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_security_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -16602,6 +17241,7 @@ func (h *Aws_glue_security_configurationHandler) Read(externalID string) (*Aws_g
 
 // Delete ...
 func (h *Aws_glue_security_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_security_configuration", externalID)
 }
 
@@ -16660,6 +17300,7 @@ type Aws_glue_triggerHandler struct {
 
 // Create ...
 func (h *Aws_glue_triggerHandler) Create(desired *Aws_glue_trigger) (*Aws_glue_trigger, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16676,6 +17317,7 @@ func (h *Aws_glue_triggerHandler) Create(desired *Aws_glue_trigger) (*Aws_glue_t
 
 // Read ...
 func (h *Aws_glue_triggerHandler) Read(externalID string) (*Aws_glue_trigger, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_glue_trigger", externalID)
 	if err != nil {
 		return nil, err
@@ -16687,6 +17329,7 @@ func (h *Aws_glue_triggerHandler) Read(externalID string) (*Aws_glue_trigger, er
 
 // Delete ...
 func (h *Aws_glue_triggerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_glue_trigger", externalID)
 }
 
@@ -16709,6 +17352,7 @@ type Aws_guardduty_detectorHandler struct {
 
 // Create ...
 func (h *Aws_guardduty_detectorHandler) Create(desired *Aws_guardduty_detector) (*Aws_guardduty_detector, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16725,6 +17369,7 @@ func (h *Aws_guardduty_detectorHandler) Create(desired *Aws_guardduty_detector) 
 
 // Read ...
 func (h *Aws_guardduty_detectorHandler) Read(externalID string) (*Aws_guardduty_detector, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_guardduty_detector", externalID)
 	if err != nil {
 		return nil, err
@@ -16736,6 +17381,7 @@ func (h *Aws_guardduty_detectorHandler) Read(externalID string) (*Aws_guardduty_
 
 // Delete ...
 func (h *Aws_guardduty_detectorHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_guardduty_detector", externalID)
 }
 
@@ -16762,6 +17408,7 @@ type Aws_guardduty_ipsetHandler struct {
 
 // Create ...
 func (h *Aws_guardduty_ipsetHandler) Create(desired *Aws_guardduty_ipset) (*Aws_guardduty_ipset, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16778,6 +17425,7 @@ func (h *Aws_guardduty_ipsetHandler) Create(desired *Aws_guardduty_ipset) (*Aws_
 
 // Read ...
 func (h *Aws_guardduty_ipsetHandler) Read(externalID string) (*Aws_guardduty_ipset, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_guardduty_ipset", externalID)
 	if err != nil {
 		return nil, err
@@ -16789,6 +17437,7 @@ func (h *Aws_guardduty_ipsetHandler) Read(externalID string) (*Aws_guardduty_ips
 
 // Delete ...
 func (h *Aws_guardduty_ipsetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_guardduty_ipset", externalID)
 }
 
@@ -16819,6 +17468,7 @@ type Aws_guardduty_memberHandler struct {
 
 // Create ...
 func (h *Aws_guardduty_memberHandler) Create(desired *Aws_guardduty_member) (*Aws_guardduty_member, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16835,6 +17485,7 @@ func (h *Aws_guardduty_memberHandler) Create(desired *Aws_guardduty_member) (*Aw
 
 // Read ...
 func (h *Aws_guardduty_memberHandler) Read(externalID string) (*Aws_guardduty_member, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_guardduty_member", externalID)
 	if err != nil {
 		return nil, err
@@ -16846,6 +17497,7 @@ func (h *Aws_guardduty_memberHandler) Read(externalID string) (*Aws_guardduty_me
 
 // Delete ...
 func (h *Aws_guardduty_memberHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_guardduty_member", externalID)
 }
 
@@ -16872,6 +17524,7 @@ type Aws_guardduty_threatintelsetHandler struct {
 
 // Create ...
 func (h *Aws_guardduty_threatintelsetHandler) Create(desired *Aws_guardduty_threatintelset) (*Aws_guardduty_threatintelset, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16888,6 +17541,7 @@ func (h *Aws_guardduty_threatintelsetHandler) Create(desired *Aws_guardduty_thre
 
 // Read ...
 func (h *Aws_guardduty_threatintelsetHandler) Read(externalID string) (*Aws_guardduty_threatintelset, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_guardduty_threatintelset", externalID)
 	if err != nil {
 		return nil, err
@@ -16899,6 +17553,7 @@ func (h *Aws_guardduty_threatintelsetHandler) Read(externalID string) (*Aws_guar
 
 // Delete ...
 func (h *Aws_guardduty_threatintelsetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_guardduty_threatintelset", externalID)
 }
 
@@ -16929,6 +17584,7 @@ type Aws_iam_access_keyHandler struct {
 
 // Create ...
 func (h *Aws_iam_access_keyHandler) Create(desired *Aws_iam_access_key) (*Aws_iam_access_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16945,6 +17601,7 @@ func (h *Aws_iam_access_keyHandler) Create(desired *Aws_iam_access_key) (*Aws_ia
 
 // Read ...
 func (h *Aws_iam_access_keyHandler) Read(externalID string) (*Aws_iam_access_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_access_key", externalID)
 	if err != nil {
 		return nil, err
@@ -16956,6 +17613,7 @@ func (h *Aws_iam_access_keyHandler) Read(externalID string) (*Aws_iam_access_key
 
 // Delete ...
 func (h *Aws_iam_access_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_access_key", externalID)
 }
 
@@ -16974,6 +17632,7 @@ type Aws_iam_account_aliasHandler struct {
 
 // Create ...
 func (h *Aws_iam_account_aliasHandler) Create(desired *Aws_iam_account_alias) (*Aws_iam_account_alias, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -16990,6 +17649,7 @@ func (h *Aws_iam_account_aliasHandler) Create(desired *Aws_iam_account_alias) (*
 
 // Read ...
 func (h *Aws_iam_account_aliasHandler) Read(externalID string) (*Aws_iam_account_alias, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_account_alias", externalID)
 	if err != nil {
 		return nil, err
@@ -17001,6 +17661,7 @@ func (h *Aws_iam_account_aliasHandler) Read(externalID string) (*Aws_iam_account
 
 // Delete ...
 func (h *Aws_iam_account_aliasHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_account_alias", externalID)
 }
 
@@ -17037,6 +17698,7 @@ type Aws_iam_account_password_policyHandler struct {
 
 // Create ...
 func (h *Aws_iam_account_password_policyHandler) Create(desired *Aws_iam_account_password_policy) (*Aws_iam_account_password_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17053,6 +17715,7 @@ func (h *Aws_iam_account_password_policyHandler) Create(desired *Aws_iam_account
 
 // Read ...
 func (h *Aws_iam_account_password_policyHandler) Read(externalID string) (*Aws_iam_account_password_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_account_password_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -17064,6 +17727,7 @@ func (h *Aws_iam_account_password_policyHandler) Read(externalID string) (*Aws_i
 
 // Delete ...
 func (h *Aws_iam_account_password_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_account_password_policy", externalID)
 }
 
@@ -17088,6 +17752,7 @@ type Aws_iam_groupHandler struct {
 
 // Create ...
 func (h *Aws_iam_groupHandler) Create(desired *Aws_iam_group) (*Aws_iam_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17104,6 +17769,7 @@ func (h *Aws_iam_groupHandler) Create(desired *Aws_iam_group) (*Aws_iam_group, s
 
 // Read ...
 func (h *Aws_iam_groupHandler) Read(externalID string) (*Aws_iam_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_group", externalID)
 	if err != nil {
 		return nil, err
@@ -17115,6 +17781,7 @@ func (h *Aws_iam_groupHandler) Read(externalID string) (*Aws_iam_group, error) {
 
 // Delete ...
 func (h *Aws_iam_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_group", externalID)
 }
 
@@ -17137,6 +17804,7 @@ type Aws_iam_group_membershipHandler struct {
 
 // Create ...
 func (h *Aws_iam_group_membershipHandler) Create(desired *Aws_iam_group_membership) (*Aws_iam_group_membership, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17153,6 +17821,7 @@ func (h *Aws_iam_group_membershipHandler) Create(desired *Aws_iam_group_membersh
 
 // Read ...
 func (h *Aws_iam_group_membershipHandler) Read(externalID string) (*Aws_iam_group_membership, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_group_membership", externalID)
 	if err != nil {
 		return nil, err
@@ -17164,6 +17833,7 @@ func (h *Aws_iam_group_membershipHandler) Read(externalID string) (*Aws_iam_grou
 
 // Delete ...
 func (h *Aws_iam_group_membershipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_group_membership", externalID)
 }
 
@@ -17188,6 +17858,7 @@ type Aws_iam_group_policyHandler struct {
 
 // Create ...
 func (h *Aws_iam_group_policyHandler) Create(desired *Aws_iam_group_policy) (*Aws_iam_group_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17204,6 +17875,7 @@ func (h *Aws_iam_group_policyHandler) Create(desired *Aws_iam_group_policy) (*Aw
 
 // Read ...
 func (h *Aws_iam_group_policyHandler) Read(externalID string) (*Aws_iam_group_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_group_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -17215,6 +17887,7 @@ func (h *Aws_iam_group_policyHandler) Read(externalID string) (*Aws_iam_group_po
 
 // Delete ...
 func (h *Aws_iam_group_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_group_policy", externalID)
 }
 
@@ -17235,6 +17908,7 @@ type Aws_iam_group_policy_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_iam_group_policy_attachmentHandler) Create(desired *Aws_iam_group_policy_attachment) (*Aws_iam_group_policy_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17251,6 +17925,7 @@ func (h *Aws_iam_group_policy_attachmentHandler) Create(desired *Aws_iam_group_p
 
 // Read ...
 func (h *Aws_iam_group_policy_attachmentHandler) Read(externalID string) (*Aws_iam_group_policy_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_group_policy_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -17262,6 +17937,7 @@ func (h *Aws_iam_group_policy_attachmentHandler) Read(externalID string) (*Aws_i
 
 // Delete ...
 func (h *Aws_iam_group_policy_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_group_policy_attachment", externalID)
 }
 
@@ -17294,6 +17970,7 @@ type Aws_iam_instance_profileHandler struct {
 
 // Create ...
 func (h *Aws_iam_instance_profileHandler) Create(desired *Aws_iam_instance_profile) (*Aws_iam_instance_profile, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17310,6 +17987,7 @@ func (h *Aws_iam_instance_profileHandler) Create(desired *Aws_iam_instance_profi
 
 // Read ...
 func (h *Aws_iam_instance_profileHandler) Read(externalID string) (*Aws_iam_instance_profile, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_instance_profile", externalID)
 	if err != nil {
 		return nil, err
@@ -17321,6 +17999,7 @@ func (h *Aws_iam_instance_profileHandler) Read(externalID string) (*Aws_iam_inst
 
 // Delete ...
 func (h *Aws_iam_instance_profileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_instance_profile", externalID)
 }
 
@@ -17345,6 +18024,7 @@ type Aws_iam_openid_connect_providerHandler struct {
 
 // Create ...
 func (h *Aws_iam_openid_connect_providerHandler) Create(desired *Aws_iam_openid_connect_provider) (*Aws_iam_openid_connect_provider, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17361,6 +18041,7 @@ func (h *Aws_iam_openid_connect_providerHandler) Create(desired *Aws_iam_openid_
 
 // Read ...
 func (h *Aws_iam_openid_connect_providerHandler) Read(externalID string) (*Aws_iam_openid_connect_provider, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_openid_connect_provider", externalID)
 	if err != nil {
 		return nil, err
@@ -17372,6 +18053,7 @@ func (h *Aws_iam_openid_connect_providerHandler) Read(externalID string) (*Aws_i
 
 // Delete ...
 func (h *Aws_iam_openid_connect_providerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_openid_connect_provider", externalID)
 }
 
@@ -17400,6 +18082,7 @@ type Aws_iam_policyHandler struct {
 
 // Create ...
 func (h *Aws_iam_policyHandler) Create(desired *Aws_iam_policy) (*Aws_iam_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17416,6 +18099,7 @@ func (h *Aws_iam_policyHandler) Create(desired *Aws_iam_policy) (*Aws_iam_policy
 
 // Read ...
 func (h *Aws_iam_policyHandler) Read(externalID string) (*Aws_iam_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -17427,6 +18111,7 @@ func (h *Aws_iam_policyHandler) Read(externalID string) (*Aws_iam_policy, error)
 
 // Delete ...
 func (h *Aws_iam_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_policy", externalID)
 }
 
@@ -17453,6 +18138,7 @@ type Aws_iam_policy_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_iam_policy_attachmentHandler) Create(desired *Aws_iam_policy_attachment) (*Aws_iam_policy_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17469,6 +18155,7 @@ func (h *Aws_iam_policy_attachmentHandler) Create(desired *Aws_iam_policy_attach
 
 // Read ...
 func (h *Aws_iam_policy_attachmentHandler) Read(externalID string) (*Aws_iam_policy_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_policy_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -17480,6 +18167,7 @@ func (h *Aws_iam_policy_attachmentHandler) Read(externalID string) (*Aws_iam_pol
 
 // Delete ...
 func (h *Aws_iam_policy_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_policy_attachment", externalID)
 }
 
@@ -17520,6 +18208,7 @@ type Aws_iam_roleHandler struct {
 
 // Create ...
 func (h *Aws_iam_roleHandler) Create(desired *Aws_iam_role) (*Aws_iam_role, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17536,6 +18225,7 @@ func (h *Aws_iam_roleHandler) Create(desired *Aws_iam_role) (*Aws_iam_role, stri
 
 // Read ...
 func (h *Aws_iam_roleHandler) Read(externalID string) (*Aws_iam_role, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_role", externalID)
 	if err != nil {
 		return nil, err
@@ -17547,6 +18237,7 @@ func (h *Aws_iam_roleHandler) Read(externalID string) (*Aws_iam_role, error) {
 
 // Delete ...
 func (h *Aws_iam_roleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_role", externalID)
 }
 
@@ -17571,6 +18262,7 @@ type Aws_iam_role_policyHandler struct {
 
 // Create ...
 func (h *Aws_iam_role_policyHandler) Create(desired *Aws_iam_role_policy) (*Aws_iam_role_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17587,6 +18279,7 @@ func (h *Aws_iam_role_policyHandler) Create(desired *Aws_iam_role_policy) (*Aws_
 
 // Read ...
 func (h *Aws_iam_role_policyHandler) Read(externalID string) (*Aws_iam_role_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_role_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -17598,6 +18291,7 @@ func (h *Aws_iam_role_policyHandler) Read(externalID string) (*Aws_iam_role_poli
 
 // Delete ...
 func (h *Aws_iam_role_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_role_policy", externalID)
 }
 
@@ -17618,6 +18312,7 @@ type Aws_iam_role_policy_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_iam_role_policy_attachmentHandler) Create(desired *Aws_iam_role_policy_attachment) (*Aws_iam_role_policy_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17634,6 +18329,7 @@ func (h *Aws_iam_role_policy_attachmentHandler) Create(desired *Aws_iam_role_pol
 
 // Read ...
 func (h *Aws_iam_role_policy_attachmentHandler) Read(externalID string) (*Aws_iam_role_policy_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_role_policy_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -17645,6 +18341,7 @@ func (h *Aws_iam_role_policy_attachmentHandler) Read(externalID string) (*Aws_ia
 
 // Delete ...
 func (h *Aws_iam_role_policy_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_role_policy_attachment", externalID)
 }
 
@@ -17669,6 +18366,7 @@ type Aws_iam_saml_providerHandler struct {
 
 // Create ...
 func (h *Aws_iam_saml_providerHandler) Create(desired *Aws_iam_saml_provider) (*Aws_iam_saml_provider, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17685,6 +18383,7 @@ func (h *Aws_iam_saml_providerHandler) Create(desired *Aws_iam_saml_provider) (*
 
 // Read ...
 func (h *Aws_iam_saml_providerHandler) Read(externalID string) (*Aws_iam_saml_provider, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_saml_provider", externalID)
 	if err != nil {
 		return nil, err
@@ -17696,6 +18395,7 @@ func (h *Aws_iam_saml_providerHandler) Read(externalID string) (*Aws_iam_saml_pr
 
 // Delete ...
 func (h *Aws_iam_saml_providerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_saml_provider", externalID)
 }
 
@@ -17726,6 +18426,7 @@ type Aws_iam_server_certificateHandler struct {
 
 // Create ...
 func (h *Aws_iam_server_certificateHandler) Create(desired *Aws_iam_server_certificate) (*Aws_iam_server_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17742,6 +18443,7 @@ func (h *Aws_iam_server_certificateHandler) Create(desired *Aws_iam_server_certi
 
 // Read ...
 func (h *Aws_iam_server_certificateHandler) Read(externalID string) (*Aws_iam_server_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_server_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -17753,6 +18455,7 @@ func (h *Aws_iam_server_certificateHandler) Read(externalID string) (*Aws_iam_se
 
 // Delete ...
 func (h *Aws_iam_server_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_server_certificate", externalID)
 }
 
@@ -17785,6 +18488,7 @@ type Aws_iam_service_linked_roleHandler struct {
 
 // Create ...
 func (h *Aws_iam_service_linked_roleHandler) Create(desired *Aws_iam_service_linked_role) (*Aws_iam_service_linked_role, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17801,6 +18505,7 @@ func (h *Aws_iam_service_linked_roleHandler) Create(desired *Aws_iam_service_lin
 
 // Read ...
 func (h *Aws_iam_service_linked_roleHandler) Read(externalID string) (*Aws_iam_service_linked_role, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_service_linked_role", externalID)
 	if err != nil {
 		return nil, err
@@ -17812,6 +18517,7 @@ func (h *Aws_iam_service_linked_roleHandler) Read(externalID string) (*Aws_iam_s
 
 // Delete ...
 func (h *Aws_iam_service_linked_roleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_service_linked_role", externalID)
 }
 
@@ -17842,6 +18548,7 @@ type Aws_iam_userHandler struct {
 
 // Create ...
 func (h *Aws_iam_userHandler) Create(desired *Aws_iam_user) (*Aws_iam_user, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17858,6 +18565,7 @@ func (h *Aws_iam_userHandler) Create(desired *Aws_iam_user) (*Aws_iam_user, stri
 
 // Read ...
 func (h *Aws_iam_userHandler) Read(externalID string) (*Aws_iam_user, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_user", externalID)
 	if err != nil {
 		return nil, err
@@ -17869,6 +18577,7 @@ func (h *Aws_iam_userHandler) Read(externalID string) (*Aws_iam_user, error) {
 
 // Delete ...
 func (h *Aws_iam_userHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_user", externalID)
 }
 
@@ -17889,6 +18598,7 @@ type Aws_iam_user_group_membershipHandler struct {
 
 // Create ...
 func (h *Aws_iam_user_group_membershipHandler) Create(desired *Aws_iam_user_group_membership) (*Aws_iam_user_group_membership, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17905,6 +18615,7 @@ func (h *Aws_iam_user_group_membershipHandler) Create(desired *Aws_iam_user_grou
 
 // Read ...
 func (h *Aws_iam_user_group_membershipHandler) Read(externalID string) (*Aws_iam_user_group_membership, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_user_group_membership", externalID)
 	if err != nil {
 		return nil, err
@@ -17916,6 +18627,7 @@ func (h *Aws_iam_user_group_membershipHandler) Read(externalID string) (*Aws_iam
 
 // Delete ...
 func (h *Aws_iam_user_group_membershipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_user_group_membership", externalID)
 }
 
@@ -17944,6 +18656,7 @@ type Aws_iam_user_login_profileHandler struct {
 
 // Create ...
 func (h *Aws_iam_user_login_profileHandler) Create(desired *Aws_iam_user_login_profile) (*Aws_iam_user_login_profile, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -17960,6 +18673,7 @@ func (h *Aws_iam_user_login_profileHandler) Create(desired *Aws_iam_user_login_p
 
 // Read ...
 func (h *Aws_iam_user_login_profileHandler) Read(externalID string) (*Aws_iam_user_login_profile, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_user_login_profile", externalID)
 	if err != nil {
 		return nil, err
@@ -17971,6 +18685,7 @@ func (h *Aws_iam_user_login_profileHandler) Read(externalID string) (*Aws_iam_us
 
 // Delete ...
 func (h *Aws_iam_user_login_profileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_user_login_profile", externalID)
 }
 
@@ -17995,6 +18710,7 @@ type Aws_iam_user_policyHandler struct {
 
 // Create ...
 func (h *Aws_iam_user_policyHandler) Create(desired *Aws_iam_user_policy) (*Aws_iam_user_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18011,6 +18727,7 @@ func (h *Aws_iam_user_policyHandler) Create(desired *Aws_iam_user_policy) (*Aws_
 
 // Read ...
 func (h *Aws_iam_user_policyHandler) Read(externalID string) (*Aws_iam_user_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_user_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -18022,6 +18739,7 @@ func (h *Aws_iam_user_policyHandler) Read(externalID string) (*Aws_iam_user_poli
 
 // Delete ...
 func (h *Aws_iam_user_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_user_policy", externalID)
 }
 
@@ -18042,6 +18760,7 @@ type Aws_iam_user_policy_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_iam_user_policy_attachmentHandler) Create(desired *Aws_iam_user_policy_attachment) (*Aws_iam_user_policy_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18058,6 +18777,7 @@ func (h *Aws_iam_user_policy_attachmentHandler) Create(desired *Aws_iam_user_pol
 
 // Read ...
 func (h *Aws_iam_user_policy_attachmentHandler) Read(externalID string) (*Aws_iam_user_policy_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_user_policy_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -18069,6 +18789,7 @@ func (h *Aws_iam_user_policy_attachmentHandler) Read(externalID string) (*Aws_ia
 
 // Delete ...
 func (h *Aws_iam_user_policy_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_user_policy_attachment", externalID)
 }
 
@@ -18097,6 +18818,7 @@ type Aws_iam_user_ssh_keyHandler struct {
 
 // Create ...
 func (h *Aws_iam_user_ssh_keyHandler) Create(desired *Aws_iam_user_ssh_key) (*Aws_iam_user_ssh_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18113,6 +18835,7 @@ func (h *Aws_iam_user_ssh_keyHandler) Create(desired *Aws_iam_user_ssh_key) (*Aw
 
 // Read ...
 func (h *Aws_iam_user_ssh_keyHandler) Read(externalID string) (*Aws_iam_user_ssh_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iam_user_ssh_key", externalID)
 	if err != nil {
 		return nil, err
@@ -18124,6 +18847,7 @@ func (h *Aws_iam_user_ssh_keyHandler) Read(externalID string) (*Aws_iam_user_ssh
 
 // Delete ...
 func (h *Aws_iam_user_ssh_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iam_user_ssh_key", externalID)
 }
 
@@ -18146,6 +18870,7 @@ type Aws_inspector_assessment_targetHandler struct {
 
 // Create ...
 func (h *Aws_inspector_assessment_targetHandler) Create(desired *Aws_inspector_assessment_target) (*Aws_inspector_assessment_target, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18162,6 +18887,7 @@ func (h *Aws_inspector_assessment_targetHandler) Create(desired *Aws_inspector_a
 
 // Read ...
 func (h *Aws_inspector_assessment_targetHandler) Read(externalID string) (*Aws_inspector_assessment_target, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_inspector_assessment_target", externalID)
 	if err != nil {
 		return nil, err
@@ -18173,6 +18899,7 @@ func (h *Aws_inspector_assessment_targetHandler) Read(externalID string) (*Aws_i
 
 // Delete ...
 func (h *Aws_inspector_assessment_targetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_inspector_assessment_target", externalID)
 }
 
@@ -18199,6 +18926,7 @@ type Aws_inspector_assessment_templateHandler struct {
 
 // Create ...
 func (h *Aws_inspector_assessment_templateHandler) Create(desired *Aws_inspector_assessment_template) (*Aws_inspector_assessment_template, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18215,6 +18943,7 @@ func (h *Aws_inspector_assessment_templateHandler) Create(desired *Aws_inspector
 
 // Read ...
 func (h *Aws_inspector_assessment_templateHandler) Read(externalID string) (*Aws_inspector_assessment_template, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_inspector_assessment_template", externalID)
 	if err != nil {
 		return nil, err
@@ -18226,6 +18955,7 @@ func (h *Aws_inspector_assessment_templateHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_inspector_assessment_templateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_inspector_assessment_template", externalID)
 }
 
@@ -18246,6 +18976,7 @@ type Aws_inspector_resource_groupHandler struct {
 
 // Create ...
 func (h *Aws_inspector_resource_groupHandler) Create(desired *Aws_inspector_resource_group) (*Aws_inspector_resource_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18262,6 +18993,7 @@ func (h *Aws_inspector_resource_groupHandler) Create(desired *Aws_inspector_reso
 
 // Read ...
 func (h *Aws_inspector_resource_groupHandler) Read(externalID string) (*Aws_inspector_resource_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_inspector_resource_group", externalID)
 	if err != nil {
 		return nil, err
@@ -18273,6 +19005,7 @@ func (h *Aws_inspector_resource_groupHandler) Read(externalID string) (*Aws_insp
 
 // Delete ...
 func (h *Aws_inspector_resource_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_inspector_resource_group", externalID)
 }
 
@@ -18431,6 +19164,7 @@ type Aws_instanceHandler struct {
 
 // Create ...
 func (h *Aws_instanceHandler) Create(desired *Aws_instance) (*Aws_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18447,6 +19181,7 @@ func (h *Aws_instanceHandler) Create(desired *Aws_instance) (*Aws_instance, stri
 
 // Read ...
 func (h *Aws_instanceHandler) Read(externalID string) (*Aws_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -18458,6 +19193,7 @@ func (h *Aws_instanceHandler) Read(externalID string) (*Aws_instance, error) {
 
 // Delete ...
 func (h *Aws_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_instance", externalID)
 }
 
@@ -18480,6 +19216,7 @@ type Aws_internet_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_internet_gatewayHandler) Create(desired *Aws_internet_gateway) (*Aws_internet_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18496,6 +19233,7 @@ func (h *Aws_internet_gatewayHandler) Create(desired *Aws_internet_gateway) (*Aw
 
 // Read ...
 func (h *Aws_internet_gatewayHandler) Read(externalID string) (*Aws_internet_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_internet_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -18507,6 +19245,7 @@ func (h *Aws_internet_gatewayHandler) Read(externalID string) (*Aws_internet_gat
 
 // Delete ...
 func (h *Aws_internet_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_internet_gateway", externalID)
 }
 
@@ -18529,6 +19268,7 @@ type Aws_iot_certificateHandler struct {
 
 // Create ...
 func (h *Aws_iot_certificateHandler) Create(desired *Aws_iot_certificate) (*Aws_iot_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18545,6 +19285,7 @@ func (h *Aws_iot_certificateHandler) Create(desired *Aws_iot_certificate) (*Aws_
 
 // Read ...
 func (h *Aws_iot_certificateHandler) Read(externalID string) (*Aws_iot_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -18556,6 +19297,7 @@ func (h *Aws_iot_certificateHandler) Read(externalID string) (*Aws_iot_certifica
 
 // Delete ...
 func (h *Aws_iot_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_certificate", externalID)
 }
 
@@ -18580,6 +19322,7 @@ type Aws_iot_policyHandler struct {
 
 // Create ...
 func (h *Aws_iot_policyHandler) Create(desired *Aws_iot_policy) (*Aws_iot_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18596,6 +19339,7 @@ func (h *Aws_iot_policyHandler) Create(desired *Aws_iot_policy) (*Aws_iot_policy
 
 // Read ...
 func (h *Aws_iot_policyHandler) Read(externalID string) (*Aws_iot_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -18607,6 +19351,7 @@ func (h *Aws_iot_policyHandler) Read(externalID string) (*Aws_iot_policy, error)
 
 // Delete ...
 func (h *Aws_iot_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_policy", externalID)
 }
 
@@ -18627,6 +19372,7 @@ type Aws_iot_policy_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_iot_policy_attachmentHandler) Create(desired *Aws_iot_policy_attachment) (*Aws_iot_policy_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18643,6 +19389,7 @@ func (h *Aws_iot_policy_attachmentHandler) Create(desired *Aws_iot_policy_attach
 
 // Read ...
 func (h *Aws_iot_policy_attachmentHandler) Read(externalID string) (*Aws_iot_policy_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_policy_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -18654,6 +19401,7 @@ func (h *Aws_iot_policy_attachmentHandler) Read(externalID string) (*Aws_iot_pol
 
 // Delete ...
 func (h *Aws_iot_policy_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_policy_attachment", externalID)
 }
 
@@ -18682,6 +19430,7 @@ type Aws_iot_thingHandler struct {
 
 // Create ...
 func (h *Aws_iot_thingHandler) Create(desired *Aws_iot_thing) (*Aws_iot_thing, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18698,6 +19447,7 @@ func (h *Aws_iot_thingHandler) Create(desired *Aws_iot_thing) (*Aws_iot_thing, s
 
 // Read ...
 func (h *Aws_iot_thingHandler) Read(externalID string) (*Aws_iot_thing, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_thing", externalID)
 	if err != nil {
 		return nil, err
@@ -18709,6 +19459,7 @@ func (h *Aws_iot_thingHandler) Read(externalID string) (*Aws_iot_thing, error) {
 
 // Delete ...
 func (h *Aws_iot_thingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_thing", externalID)
 }
 
@@ -18729,6 +19480,7 @@ type Aws_iot_thing_principal_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_iot_thing_principal_attachmentHandler) Create(desired *Aws_iot_thing_principal_attachment) (*Aws_iot_thing_principal_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18745,6 +19497,7 @@ func (h *Aws_iot_thing_principal_attachmentHandler) Create(desired *Aws_iot_thin
 
 // Read ...
 func (h *Aws_iot_thing_principal_attachmentHandler) Read(externalID string) (*Aws_iot_thing_principal_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_thing_principal_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -18756,6 +19509,7 @@ func (h *Aws_iot_thing_principal_attachmentHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_iot_thing_principal_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_thing_principal_attachment", externalID)
 }
 
@@ -18788,6 +19542,7 @@ type Aws_iot_thing_typeHandler struct {
 
 // Create ...
 func (h *Aws_iot_thing_typeHandler) Create(desired *Aws_iot_thing_type) (*Aws_iot_thing_type, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -18804,6 +19559,7 @@ func (h *Aws_iot_thing_typeHandler) Create(desired *Aws_iot_thing_type) (*Aws_io
 
 // Read ...
 func (h *Aws_iot_thing_typeHandler) Read(externalID string) (*Aws_iot_thing_type, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_thing_type", externalID)
 	if err != nil {
 		return nil, err
@@ -18815,6 +19571,7 @@ func (h *Aws_iot_thing_typeHandler) Read(externalID string) (*Aws_iot_thing_type
 
 // Delete ...
 func (h *Aws_iot_thing_typeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_thing_type", externalID)
 }
 
@@ -18993,6 +19750,7 @@ type Aws_iot_topic_ruleHandler struct {
 
 // Create ...
 func (h *Aws_iot_topic_ruleHandler) Create(desired *Aws_iot_topic_rule) (*Aws_iot_topic_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -19009,6 +19767,7 @@ func (h *Aws_iot_topic_ruleHandler) Create(desired *Aws_iot_topic_rule) (*Aws_io
 
 // Read ...
 func (h *Aws_iot_topic_ruleHandler) Read(externalID string) (*Aws_iot_topic_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_iot_topic_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -19020,6 +19779,7 @@ func (h *Aws_iot_topic_ruleHandler) Read(externalID string) (*Aws_iot_topic_rule
 
 // Delete ...
 func (h *Aws_iot_topic_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_iot_topic_rule", externalID)
 }
 
@@ -19044,6 +19804,7 @@ type Aws_key_pairHandler struct {
 
 // Create ...
 func (h *Aws_key_pairHandler) Create(desired *Aws_key_pair) (*Aws_key_pair, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -19060,6 +19821,7 @@ func (h *Aws_key_pairHandler) Create(desired *Aws_key_pair) (*Aws_key_pair, stri
 
 // Read ...
 func (h *Aws_key_pairHandler) Read(externalID string) (*Aws_key_pair, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_key_pair", externalID)
 	if err != nil {
 		return nil, err
@@ -19071,6 +19833,7 @@ func (h *Aws_key_pairHandler) Read(externalID string) (*Aws_key_pair, error) {
 
 // Delete ...
 func (h *Aws_key_pairHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_key_pair", externalID)
 }
 
@@ -19353,6 +20116,7 @@ type Aws_kinesis_analytics_applicationHandler struct {
 
 // Create ...
 func (h *Aws_kinesis_analytics_applicationHandler) Create(desired *Aws_kinesis_analytics_application) (*Aws_kinesis_analytics_application, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -19369,6 +20133,7 @@ func (h *Aws_kinesis_analytics_applicationHandler) Create(desired *Aws_kinesis_a
 
 // Read ...
 func (h *Aws_kinesis_analytics_applicationHandler) Read(externalID string) (*Aws_kinesis_analytics_application, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_kinesis_analytics_application", externalID)
 	if err != nil {
 		return nil, err
@@ -19380,6 +20145,7 @@ func (h *Aws_kinesis_analytics_applicationHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_kinesis_analytics_applicationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_kinesis_analytics_application", externalID)
 }
 
@@ -19870,6 +20636,7 @@ type Aws_kinesis_firehose_delivery_streamHandler struct {
 
 // Create ...
 func (h *Aws_kinesis_firehose_delivery_streamHandler) Create(desired *Aws_kinesis_firehose_delivery_stream) (*Aws_kinesis_firehose_delivery_stream, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -19886,6 +20653,7 @@ func (h *Aws_kinesis_firehose_delivery_streamHandler) Create(desired *Aws_kinesi
 
 // Read ...
 func (h *Aws_kinesis_firehose_delivery_streamHandler) Read(externalID string) (*Aws_kinesis_firehose_delivery_stream, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_kinesis_firehose_delivery_stream", externalID)
 	if err != nil {
 		return nil, err
@@ -19897,6 +20665,7 @@ func (h *Aws_kinesis_firehose_delivery_streamHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Aws_kinesis_firehose_delivery_streamHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_kinesis_firehose_delivery_stream", externalID)
 }
 
@@ -19929,6 +20698,7 @@ type Aws_kinesis_streamHandler struct {
 
 // Create ...
 func (h *Aws_kinesis_streamHandler) Create(desired *Aws_kinesis_stream) (*Aws_kinesis_stream, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -19945,6 +20715,7 @@ func (h *Aws_kinesis_streamHandler) Create(desired *Aws_kinesis_stream) (*Aws_ki
 
 // Read ...
 func (h *Aws_kinesis_streamHandler) Read(externalID string) (*Aws_kinesis_stream, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_kinesis_stream", externalID)
 	if err != nil {
 		return nil, err
@@ -19956,6 +20727,7 @@ func (h *Aws_kinesis_streamHandler) Read(externalID string) (*Aws_kinesis_stream
 
 // Delete ...
 func (h *Aws_kinesis_streamHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_kinesis_stream", externalID)
 }
 
@@ -19982,6 +20754,7 @@ type Aws_kms_aliasHandler struct {
 
 // Create ...
 func (h *Aws_kms_aliasHandler) Create(desired *Aws_kms_alias) (*Aws_kms_alias, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -19998,6 +20771,7 @@ func (h *Aws_kms_aliasHandler) Create(desired *Aws_kms_alias) (*Aws_kms_alias, s
 
 // Read ...
 func (h *Aws_kms_aliasHandler) Read(externalID string) (*Aws_kms_alias, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_kms_alias", externalID)
 	if err != nil {
 		return nil, err
@@ -20009,6 +20783,7 @@ func (h *Aws_kms_aliasHandler) Read(externalID string) (*Aws_kms_alias, error) {
 
 // Delete ...
 func (h *Aws_kms_aliasHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_kms_alias", externalID)
 }
 
@@ -20053,6 +20828,7 @@ type Aws_kms_grantHandler struct {
 
 // Create ...
 func (h *Aws_kms_grantHandler) Create(desired *Aws_kms_grant) (*Aws_kms_grant, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20069,6 +20845,7 @@ func (h *Aws_kms_grantHandler) Create(desired *Aws_kms_grant) (*Aws_kms_grant, s
 
 // Read ...
 func (h *Aws_kms_grantHandler) Read(externalID string) (*Aws_kms_grant, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_kms_grant", externalID)
 	if err != nil {
 		return nil, err
@@ -20080,6 +20857,7 @@ func (h *Aws_kms_grantHandler) Read(externalID string) (*Aws_kms_grant, error) {
 
 // Delete ...
 func (h *Aws_kms_grantHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_kms_grant", externalID)
 }
 
@@ -20114,6 +20892,7 @@ type Aws_kms_keyHandler struct {
 
 // Create ...
 func (h *Aws_kms_keyHandler) Create(desired *Aws_kms_key) (*Aws_kms_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20130,6 +20909,7 @@ func (h *Aws_kms_keyHandler) Create(desired *Aws_kms_key) (*Aws_kms_key, string,
 
 // Read ...
 func (h *Aws_kms_keyHandler) Read(externalID string) (*Aws_kms_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_kms_key", externalID)
 	if err != nil {
 		return nil, err
@@ -20141,6 +20921,7 @@ func (h *Aws_kms_keyHandler) Read(externalID string) (*Aws_kms_key, error) {
 
 // Delete ...
 func (h *Aws_kms_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_kms_key", externalID)
 }
 
@@ -20177,6 +20958,7 @@ type Aws_lambda_aliasHandler struct {
 
 // Create ...
 func (h *Aws_lambda_aliasHandler) Create(desired *Aws_lambda_alias) (*Aws_lambda_alias, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20193,6 +20975,7 @@ func (h *Aws_lambda_aliasHandler) Create(desired *Aws_lambda_alias) (*Aws_lambda
 
 // Read ...
 func (h *Aws_lambda_aliasHandler) Read(externalID string) (*Aws_lambda_alias, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lambda_alias", externalID)
 	if err != nil {
 		return nil, err
@@ -20204,6 +20987,7 @@ func (h *Aws_lambda_aliasHandler) Read(externalID string) (*Aws_lambda_alias, er
 
 // Delete ...
 func (h *Aws_lambda_aliasHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lambda_alias", externalID)
 }
 
@@ -20244,6 +21028,7 @@ type Aws_lambda_event_source_mappingHandler struct {
 
 // Create ...
 func (h *Aws_lambda_event_source_mappingHandler) Create(desired *Aws_lambda_event_source_mapping) (*Aws_lambda_event_source_mapping, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20260,6 +21045,7 @@ func (h *Aws_lambda_event_source_mappingHandler) Create(desired *Aws_lambda_even
 
 // Read ...
 func (h *Aws_lambda_event_source_mappingHandler) Read(externalID string) (*Aws_lambda_event_source_mapping, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lambda_event_source_mapping", externalID)
 	if err != nil {
 		return nil, err
@@ -20271,6 +21057,7 @@ func (h *Aws_lambda_event_source_mappingHandler) Read(externalID string) (*Aws_l
 
 // Delete ...
 func (h *Aws_lambda_event_source_mappingHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lambda_event_source_mapping", externalID)
 }
 
@@ -20369,6 +21156,7 @@ type Aws_lambda_functionHandler struct {
 
 // Create ...
 func (h *Aws_lambda_functionHandler) Create(desired *Aws_lambda_function) (*Aws_lambda_function, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20385,6 +21173,7 @@ func (h *Aws_lambda_functionHandler) Create(desired *Aws_lambda_function) (*Aws_
 
 // Read ...
 func (h *Aws_lambda_functionHandler) Read(externalID string) (*Aws_lambda_function, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lambda_function", externalID)
 	if err != nil {
 		return nil, err
@@ -20396,6 +21185,7 @@ func (h *Aws_lambda_functionHandler) Read(externalID string) (*Aws_lambda_functi
 
 // Delete ...
 func (h *Aws_lambda_functionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lambda_function", externalID)
 }
 
@@ -20440,6 +21230,7 @@ type Aws_lambda_layer_versionHandler struct {
 
 // Create ...
 func (h *Aws_lambda_layer_versionHandler) Create(desired *Aws_lambda_layer_version) (*Aws_lambda_layer_version, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20456,6 +21247,7 @@ func (h *Aws_lambda_layer_versionHandler) Create(desired *Aws_lambda_layer_versi
 
 // Read ...
 func (h *Aws_lambda_layer_versionHandler) Read(externalID string) (*Aws_lambda_layer_version, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lambda_layer_version", externalID)
 	if err != nil {
 		return nil, err
@@ -20467,6 +21259,7 @@ func (h *Aws_lambda_layer_versionHandler) Read(externalID string) (*Aws_lambda_l
 
 // Delete ...
 func (h *Aws_lambda_layer_versionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lambda_layer_version", externalID)
 }
 
@@ -20501,6 +21294,7 @@ type Aws_lambda_permissionHandler struct {
 
 // Create ...
 func (h *Aws_lambda_permissionHandler) Create(desired *Aws_lambda_permission) (*Aws_lambda_permission, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20517,6 +21311,7 @@ func (h *Aws_lambda_permissionHandler) Create(desired *Aws_lambda_permission) (*
 
 // Read ...
 func (h *Aws_lambda_permissionHandler) Read(externalID string) (*Aws_lambda_permission, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lambda_permission", externalID)
 	if err != nil {
 		return nil, err
@@ -20528,6 +21323,7 @@ func (h *Aws_lambda_permissionHandler) Read(externalID string) (*Aws_lambda_perm
 
 // Delete ...
 func (h *Aws_lambda_permissionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lambda_permission", externalID)
 }
 
@@ -20622,6 +21418,7 @@ type Aws_launch_configurationHandler struct {
 
 // Create ...
 func (h *Aws_launch_configurationHandler) Create(desired *Aws_launch_configuration) (*Aws_launch_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20638,6 +21435,7 @@ func (h *Aws_launch_configurationHandler) Create(desired *Aws_launch_configurati
 
 // Read ...
 func (h *Aws_launch_configurationHandler) Read(externalID string) (*Aws_launch_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_launch_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -20649,6 +21447,7 @@ func (h *Aws_launch_configurationHandler) Read(externalID string) (*Aws_launch_c
 
 // Delete ...
 func (h *Aws_launch_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_launch_configuration", externalID)
 }
 
@@ -20873,6 +21672,7 @@ type Aws_launch_templateHandler struct {
 
 // Create ...
 func (h *Aws_launch_templateHandler) Create(desired *Aws_launch_template) (*Aws_launch_template, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20889,6 +21689,7 @@ func (h *Aws_launch_templateHandler) Create(desired *Aws_launch_template) (*Aws_
 
 // Read ...
 func (h *Aws_launch_templateHandler) Read(externalID string) (*Aws_launch_template, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_launch_template", externalID)
 	if err != nil {
 		return nil, err
@@ -20900,6 +21701,7 @@ func (h *Aws_launch_templateHandler) Read(externalID string) (*Aws_launch_templa
 
 // Delete ...
 func (h *Aws_launch_templateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_launch_template", externalID)
 }
 
@@ -20972,6 +21774,7 @@ type Aws_lbHandler struct {
 
 // Create ...
 func (h *Aws_lbHandler) Create(desired *Aws_lb) (*Aws_lb, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -20988,6 +21791,7 @@ func (h *Aws_lbHandler) Create(desired *Aws_lb) (*Aws_lb, string, error) {
 
 // Read ...
 func (h *Aws_lbHandler) Read(externalID string) (*Aws_lb, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb", externalID)
 	if err != nil {
 		return nil, err
@@ -20999,6 +21803,7 @@ func (h *Aws_lbHandler) Read(externalID string) (*Aws_lb, error) {
 
 // Delete ...
 func (h *Aws_lbHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb", externalID)
 }
 
@@ -21023,6 +21828,7 @@ type Aws_lb_cookie_stickiness_policyHandler struct {
 
 // Create ...
 func (h *Aws_lb_cookie_stickiness_policyHandler) Create(desired *Aws_lb_cookie_stickiness_policy) (*Aws_lb_cookie_stickiness_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21039,6 +21845,7 @@ func (h *Aws_lb_cookie_stickiness_policyHandler) Create(desired *Aws_lb_cookie_s
 
 // Read ...
 func (h *Aws_lb_cookie_stickiness_policyHandler) Read(externalID string) (*Aws_lb_cookie_stickiness_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_cookie_stickiness_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -21050,6 +21857,7 @@ func (h *Aws_lb_cookie_stickiness_policyHandler) Read(externalID string) (*Aws_l
 
 // Delete ...
 func (h *Aws_lb_cookie_stickiness_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_cookie_stickiness_policy", externalID)
 }
 
@@ -21170,6 +21978,7 @@ type Aws_lb_listenerHandler struct {
 
 // Create ...
 func (h *Aws_lb_listenerHandler) Create(desired *Aws_lb_listener) (*Aws_lb_listener, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21186,6 +21995,7 @@ func (h *Aws_lb_listenerHandler) Create(desired *Aws_lb_listener) (*Aws_lb_liste
 
 // Read ...
 func (h *Aws_lb_listenerHandler) Read(externalID string) (*Aws_lb_listener, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_listener", externalID)
 	if err != nil {
 		return nil, err
@@ -21197,6 +22007,7 @@ func (h *Aws_lb_listenerHandler) Read(externalID string) (*Aws_lb_listener, erro
 
 // Delete ...
 func (h *Aws_lb_listenerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_listener", externalID)
 }
 
@@ -21217,6 +22028,7 @@ type Aws_lb_listener_certificateHandler struct {
 
 // Create ...
 func (h *Aws_lb_listener_certificateHandler) Create(desired *Aws_lb_listener_certificate) (*Aws_lb_listener_certificate, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21233,6 +22045,7 @@ func (h *Aws_lb_listener_certificateHandler) Create(desired *Aws_lb_listener_cer
 
 // Read ...
 func (h *Aws_lb_listener_certificateHandler) Read(externalID string) (*Aws_lb_listener_certificate, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_listener_certificate", externalID)
 	if err != nil {
 		return nil, err
@@ -21244,6 +22057,7 @@ func (h *Aws_lb_listener_certificateHandler) Read(externalID string) (*Aws_lb_li
 
 // Delete ...
 func (h *Aws_lb_listener_certificateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_listener_certificate", externalID)
 }
 
@@ -21368,6 +22182,7 @@ type Aws_lb_listener_ruleHandler struct {
 
 // Create ...
 func (h *Aws_lb_listener_ruleHandler) Create(desired *Aws_lb_listener_rule) (*Aws_lb_listener_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21384,6 +22199,7 @@ func (h *Aws_lb_listener_ruleHandler) Create(desired *Aws_lb_listener_rule) (*Aw
 
 // Read ...
 func (h *Aws_lb_listener_ruleHandler) Read(externalID string) (*Aws_lb_listener_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_listener_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -21395,6 +22211,7 @@ func (h *Aws_lb_listener_ruleHandler) Read(externalID string) (*Aws_lb_listener_
 
 // Delete ...
 func (h *Aws_lb_listener_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_listener_rule", externalID)
 }
 
@@ -21427,6 +22244,7 @@ type Aws_lb_ssl_negotiation_policyHandler struct {
 
 // Create ...
 func (h *Aws_lb_ssl_negotiation_policyHandler) Create(desired *Aws_lb_ssl_negotiation_policy) (*Aws_lb_ssl_negotiation_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21443,6 +22261,7 @@ func (h *Aws_lb_ssl_negotiation_policyHandler) Create(desired *Aws_lb_ssl_negoti
 
 // Read ...
 func (h *Aws_lb_ssl_negotiation_policyHandler) Read(externalID string) (*Aws_lb_ssl_negotiation_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_ssl_negotiation_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -21454,6 +22273,7 @@ func (h *Aws_lb_ssl_negotiation_policyHandler) Read(externalID string) (*Aws_lb_
 
 // Delete ...
 func (h *Aws_lb_ssl_negotiation_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_ssl_negotiation_policy", externalID)
 }
 
@@ -21528,6 +22348,7 @@ type Aws_lb_target_groupHandler struct {
 
 // Create ...
 func (h *Aws_lb_target_groupHandler) Create(desired *Aws_lb_target_group) (*Aws_lb_target_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21544,6 +22365,7 @@ func (h *Aws_lb_target_groupHandler) Create(desired *Aws_lb_target_group) (*Aws_
 
 // Read ...
 func (h *Aws_lb_target_groupHandler) Read(externalID string) (*Aws_lb_target_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_target_group", externalID)
 	if err != nil {
 		return nil, err
@@ -21555,6 +22377,7 @@ func (h *Aws_lb_target_groupHandler) Read(externalID string) (*Aws_lb_target_gro
 
 // Delete ...
 func (h *Aws_lb_target_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_target_group", externalID)
 }
 
@@ -21579,6 +22402,7 @@ type Aws_lb_target_group_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_lb_target_group_attachmentHandler) Create(desired *Aws_lb_target_group_attachment) (*Aws_lb_target_group_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21595,6 +22419,7 @@ func (h *Aws_lb_target_group_attachmentHandler) Create(desired *Aws_lb_target_gr
 
 // Read ...
 func (h *Aws_lb_target_group_attachmentHandler) Read(externalID string) (*Aws_lb_target_group_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lb_target_group_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -21606,6 +22431,7 @@ func (h *Aws_lb_target_group_attachmentHandler) Read(externalID string) (*Aws_lb
 
 // Delete ...
 func (h *Aws_lb_target_group_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lb_target_group_attachment", externalID)
 }
 
@@ -21626,6 +22452,7 @@ type Aws_licensemanager_associationHandler struct {
 
 // Create ...
 func (h *Aws_licensemanager_associationHandler) Create(desired *Aws_licensemanager_association) (*Aws_licensemanager_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21642,6 +22469,7 @@ func (h *Aws_licensemanager_associationHandler) Create(desired *Aws_licensemanag
 
 // Read ...
 func (h *Aws_licensemanager_associationHandler) Read(externalID string) (*Aws_licensemanager_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_licensemanager_association", externalID)
 	if err != nil {
 		return nil, err
@@ -21653,6 +22481,7 @@ func (h *Aws_licensemanager_associationHandler) Read(externalID string) (*Aws_li
 
 // Delete ...
 func (h *Aws_licensemanager_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_licensemanager_association", externalID)
 }
 
@@ -21683,6 +22512,7 @@ type Aws_licensemanager_license_configurationHandler struct {
 
 // Create ...
 func (h *Aws_licensemanager_license_configurationHandler) Create(desired *Aws_licensemanager_license_configuration) (*Aws_licensemanager_license_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21699,6 +22529,7 @@ func (h *Aws_licensemanager_license_configurationHandler) Create(desired *Aws_li
 
 // Read ...
 func (h *Aws_licensemanager_license_configurationHandler) Read(externalID string) (*Aws_licensemanager_license_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_licensemanager_license_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -21710,6 +22541,7 @@ func (h *Aws_licensemanager_license_configurationHandler) Read(externalID string
 
 // Delete ...
 func (h *Aws_licensemanager_license_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_licensemanager_license_configuration", externalID)
 }
 
@@ -21730,6 +22562,7 @@ type Aws_lightsail_domainHandler struct {
 
 // Create ...
 func (h *Aws_lightsail_domainHandler) Create(desired *Aws_lightsail_domain) (*Aws_lightsail_domain, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21746,6 +22579,7 @@ func (h *Aws_lightsail_domainHandler) Create(desired *Aws_lightsail_domain) (*Aw
 
 // Read ...
 func (h *Aws_lightsail_domainHandler) Read(externalID string) (*Aws_lightsail_domain, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lightsail_domain", externalID)
 	if err != nil {
 		return nil, err
@@ -21757,6 +22591,7 @@ func (h *Aws_lightsail_domainHandler) Read(externalID string) (*Aws_lightsail_do
 
 // Delete ...
 func (h *Aws_lightsail_domainHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lightsail_domain", externalID)
 }
 
@@ -21803,6 +22638,7 @@ type Aws_lightsail_instanceHandler struct {
 
 // Create ...
 func (h *Aws_lightsail_instanceHandler) Create(desired *Aws_lightsail_instance) (*Aws_lightsail_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21819,6 +22655,7 @@ func (h *Aws_lightsail_instanceHandler) Create(desired *Aws_lightsail_instance) 
 
 // Read ...
 func (h *Aws_lightsail_instanceHandler) Read(externalID string) (*Aws_lightsail_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lightsail_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -21830,6 +22667,7 @@ func (h *Aws_lightsail_instanceHandler) Read(externalID string) (*Aws_lightsail_
 
 // Delete ...
 func (h *Aws_lightsail_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lightsail_instance", externalID)
 }
 
@@ -21864,6 +22702,7 @@ type Aws_lightsail_key_pairHandler struct {
 
 // Create ...
 func (h *Aws_lightsail_key_pairHandler) Create(desired *Aws_lightsail_key_pair) (*Aws_lightsail_key_pair, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21880,6 +22719,7 @@ func (h *Aws_lightsail_key_pairHandler) Create(desired *Aws_lightsail_key_pair) 
 
 // Read ...
 func (h *Aws_lightsail_key_pairHandler) Read(externalID string) (*Aws_lightsail_key_pair, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lightsail_key_pair", externalID)
 	if err != nil {
 		return nil, err
@@ -21891,6 +22731,7 @@ func (h *Aws_lightsail_key_pairHandler) Read(externalID string) (*Aws_lightsail_
 
 // Delete ...
 func (h *Aws_lightsail_key_pairHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lightsail_key_pair", externalID)
 }
 
@@ -21915,6 +22756,7 @@ type Aws_lightsail_static_ipHandler struct {
 
 // Create ...
 func (h *Aws_lightsail_static_ipHandler) Create(desired *Aws_lightsail_static_ip) (*Aws_lightsail_static_ip, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21931,6 +22773,7 @@ func (h *Aws_lightsail_static_ipHandler) Create(desired *Aws_lightsail_static_ip
 
 // Read ...
 func (h *Aws_lightsail_static_ipHandler) Read(externalID string) (*Aws_lightsail_static_ip, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lightsail_static_ip", externalID)
 	if err != nil {
 		return nil, err
@@ -21942,6 +22785,7 @@ func (h *Aws_lightsail_static_ipHandler) Read(externalID string) (*Aws_lightsail
 
 // Delete ...
 func (h *Aws_lightsail_static_ipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lightsail_static_ip", externalID)
 }
 
@@ -21962,6 +22806,7 @@ type Aws_lightsail_static_ip_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_lightsail_static_ip_attachmentHandler) Create(desired *Aws_lightsail_static_ip_attachment) (*Aws_lightsail_static_ip_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -21978,6 +22823,7 @@ func (h *Aws_lightsail_static_ip_attachmentHandler) Create(desired *Aws_lightsai
 
 // Read ...
 func (h *Aws_lightsail_static_ip_attachmentHandler) Read(externalID string) (*Aws_lightsail_static_ip_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_lightsail_static_ip_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -21989,6 +22835,7 @@ func (h *Aws_lightsail_static_ip_attachmentHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_lightsail_static_ip_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_lightsail_static_ip_attachment", externalID)
 }
 
@@ -22011,6 +22858,7 @@ type Aws_load_balancer_backend_server_policyHandler struct {
 
 // Create ...
 func (h *Aws_load_balancer_backend_server_policyHandler) Create(desired *Aws_load_balancer_backend_server_policy) (*Aws_load_balancer_backend_server_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22027,6 +22875,7 @@ func (h *Aws_load_balancer_backend_server_policyHandler) Create(desired *Aws_loa
 
 // Read ...
 func (h *Aws_load_balancer_backend_server_policyHandler) Read(externalID string) (*Aws_load_balancer_backend_server_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_load_balancer_backend_server_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -22038,6 +22887,7 @@ func (h *Aws_load_balancer_backend_server_policyHandler) Read(externalID string)
 
 // Delete ...
 func (h *Aws_load_balancer_backend_server_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_load_balancer_backend_server_policy", externalID)
 }
 
@@ -22060,6 +22910,7 @@ type Aws_load_balancer_listener_policyHandler struct {
 
 // Create ...
 func (h *Aws_load_balancer_listener_policyHandler) Create(desired *Aws_load_balancer_listener_policy) (*Aws_load_balancer_listener_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22076,6 +22927,7 @@ func (h *Aws_load_balancer_listener_policyHandler) Create(desired *Aws_load_bala
 
 // Read ...
 func (h *Aws_load_balancer_listener_policyHandler) Read(externalID string) (*Aws_load_balancer_listener_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_load_balancer_listener_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -22087,6 +22939,7 @@ func (h *Aws_load_balancer_listener_policyHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_load_balancer_listener_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_load_balancer_listener_policy", externalID)
 }
 
@@ -22119,6 +22972,7 @@ type Aws_load_balancer_policyHandler struct {
 
 // Create ...
 func (h *Aws_load_balancer_policyHandler) Create(desired *Aws_load_balancer_policy) (*Aws_load_balancer_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22135,6 +22989,7 @@ func (h *Aws_load_balancer_policyHandler) Create(desired *Aws_load_balancer_poli
 
 // Read ...
 func (h *Aws_load_balancer_policyHandler) Read(externalID string) (*Aws_load_balancer_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_load_balancer_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -22146,6 +23001,7 @@ func (h *Aws_load_balancer_policyHandler) Read(externalID string) (*Aws_load_bal
 
 // Delete ...
 func (h *Aws_load_balancer_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_load_balancer_policy", externalID)
 }
 
@@ -22164,6 +23020,7 @@ type Aws_macie_member_account_associationHandler struct {
 
 // Create ...
 func (h *Aws_macie_member_account_associationHandler) Create(desired *Aws_macie_member_account_association) (*Aws_macie_member_account_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22180,6 +23037,7 @@ func (h *Aws_macie_member_account_associationHandler) Create(desired *Aws_macie_
 
 // Read ...
 func (h *Aws_macie_member_account_associationHandler) Read(externalID string) (*Aws_macie_member_account_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_macie_member_account_association", externalID)
 	if err != nil {
 		return nil, err
@@ -22191,6 +23049,7 @@ func (h *Aws_macie_member_account_associationHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Aws_macie_member_account_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_macie_member_account_association", externalID)
 }
 
@@ -22223,6 +23082,7 @@ type Aws_macie_s3_bucket_associationHandler struct {
 
 // Create ...
 func (h *Aws_macie_s3_bucket_associationHandler) Create(desired *Aws_macie_s3_bucket_association) (*Aws_macie_s3_bucket_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22239,6 +23099,7 @@ func (h *Aws_macie_s3_bucket_associationHandler) Create(desired *Aws_macie_s3_bu
 
 // Read ...
 func (h *Aws_macie_s3_bucket_associationHandler) Read(externalID string) (*Aws_macie_s3_bucket_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_macie_s3_bucket_association", externalID)
 	if err != nil {
 		return nil, err
@@ -22250,6 +23111,7 @@ func (h *Aws_macie_s3_bucket_associationHandler) Read(externalID string) (*Aws_m
 
 // Delete ...
 func (h *Aws_macie_s3_bucket_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_macie_s3_bucket_association", externalID)
 }
 
@@ -22272,6 +23134,7 @@ type Aws_main_route_table_associationHandler struct {
 
 // Create ...
 func (h *Aws_main_route_table_associationHandler) Create(desired *Aws_main_route_table_association) (*Aws_main_route_table_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22288,6 +23151,7 @@ func (h *Aws_main_route_table_associationHandler) Create(desired *Aws_main_route
 
 // Read ...
 func (h *Aws_main_route_table_associationHandler) Read(externalID string) (*Aws_main_route_table_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_main_route_table_association", externalID)
 	if err != nil {
 		return nil, err
@@ -22299,6 +23163,7 @@ func (h *Aws_main_route_table_associationHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_main_route_table_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_main_route_table_association", externalID)
 }
 
@@ -22339,6 +23204,7 @@ type Aws_media_package_channelHandler struct {
 
 // Create ...
 func (h *Aws_media_package_channelHandler) Create(desired *Aws_media_package_channel) (*Aws_media_package_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22355,6 +23221,7 @@ func (h *Aws_media_package_channelHandler) Create(desired *Aws_media_package_cha
 
 // Read ...
 func (h *Aws_media_package_channelHandler) Read(externalID string) (*Aws_media_package_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_media_package_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -22366,6 +23233,7 @@ func (h *Aws_media_package_channelHandler) Read(externalID string) (*Aws_media_p
 
 // Delete ...
 func (h *Aws_media_package_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_media_package_channel", externalID)
 }
 
@@ -22388,6 +23256,7 @@ type Aws_media_store_containerHandler struct {
 
 // Create ...
 func (h *Aws_media_store_containerHandler) Create(desired *Aws_media_store_container) (*Aws_media_store_container, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22404,6 +23273,7 @@ func (h *Aws_media_store_containerHandler) Create(desired *Aws_media_store_conta
 
 // Read ...
 func (h *Aws_media_store_containerHandler) Read(externalID string) (*Aws_media_store_container, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_media_store_container", externalID)
 	if err != nil {
 		return nil, err
@@ -22415,6 +23285,7 @@ func (h *Aws_media_store_containerHandler) Read(externalID string) (*Aws_media_s
 
 // Delete ...
 func (h *Aws_media_store_containerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_media_store_container", externalID)
 }
 
@@ -22435,6 +23306,7 @@ type Aws_media_store_container_policyHandler struct {
 
 // Create ...
 func (h *Aws_media_store_container_policyHandler) Create(desired *Aws_media_store_container_policy) (*Aws_media_store_container_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22451,6 +23323,7 @@ func (h *Aws_media_store_container_policyHandler) Create(desired *Aws_media_stor
 
 // Read ...
 func (h *Aws_media_store_container_policyHandler) Read(externalID string) (*Aws_media_store_container_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_media_store_container_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -22462,6 +23335,7 @@ func (h *Aws_media_store_container_policyHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_media_store_container_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_media_store_container_policy", externalID)
 }
 
@@ -22560,6 +23434,7 @@ type Aws_mq_brokerHandler struct {
 
 // Create ...
 func (h *Aws_mq_brokerHandler) Create(desired *Aws_mq_broker) (*Aws_mq_broker, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22576,6 +23451,7 @@ func (h *Aws_mq_brokerHandler) Create(desired *Aws_mq_broker) (*Aws_mq_broker, s
 
 // Read ...
 func (h *Aws_mq_brokerHandler) Read(externalID string) (*Aws_mq_broker, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_mq_broker", externalID)
 	if err != nil {
 		return nil, err
@@ -22587,6 +23463,7 @@ func (h *Aws_mq_brokerHandler) Read(externalID string) (*Aws_mq_broker, error) {
 
 // Delete ...
 func (h *Aws_mq_brokerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_mq_broker", externalID)
 }
 
@@ -22619,6 +23496,7 @@ type Aws_mq_configurationHandler struct {
 
 // Create ...
 func (h *Aws_mq_configurationHandler) Create(desired *Aws_mq_configuration) (*Aws_mq_configuration, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22635,6 +23513,7 @@ func (h *Aws_mq_configurationHandler) Create(desired *Aws_mq_configuration) (*Aw
 
 // Read ...
 func (h *Aws_mq_configurationHandler) Read(externalID string) (*Aws_mq_configuration, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_mq_configuration", externalID)
 	if err != nil {
 		return nil, err
@@ -22646,6 +23525,7 @@ func (h *Aws_mq_configurationHandler) Read(externalID string) (*Aws_mq_configura
 
 // Delete ...
 func (h *Aws_mq_configurationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_mq_configuration", externalID)
 }
 
@@ -22674,6 +23554,7 @@ type Aws_nat_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_nat_gatewayHandler) Create(desired *Aws_nat_gateway) (*Aws_nat_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22690,6 +23571,7 @@ func (h *Aws_nat_gatewayHandler) Create(desired *Aws_nat_gateway) (*Aws_nat_gate
 
 // Read ...
 func (h *Aws_nat_gatewayHandler) Read(externalID string) (*Aws_nat_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_nat_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -22701,6 +23583,7 @@ func (h *Aws_nat_gatewayHandler) Read(externalID string) (*Aws_nat_gateway, erro
 
 // Delete ...
 func (h *Aws_nat_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_nat_gateway", externalID)
 }
 
@@ -22773,6 +23656,7 @@ type Aws_neptune_clusterHandler struct {
 
 // Create ...
 func (h *Aws_neptune_clusterHandler) Create(desired *Aws_neptune_cluster) (*Aws_neptune_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22789,6 +23673,7 @@ func (h *Aws_neptune_clusterHandler) Create(desired *Aws_neptune_cluster) (*Aws_
 
 // Read ...
 func (h *Aws_neptune_clusterHandler) Read(externalID string) (*Aws_neptune_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -22800,6 +23685,7 @@ func (h *Aws_neptune_clusterHandler) Read(externalID string) (*Aws_neptune_clust
 
 // Delete ...
 func (h *Aws_neptune_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_cluster", externalID)
 }
 
@@ -22864,6 +23750,7 @@ type Aws_neptune_cluster_instanceHandler struct {
 
 // Create ...
 func (h *Aws_neptune_cluster_instanceHandler) Create(desired *Aws_neptune_cluster_instance) (*Aws_neptune_cluster_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22880,6 +23767,7 @@ func (h *Aws_neptune_cluster_instanceHandler) Create(desired *Aws_neptune_cluste
 
 // Read ...
 func (h *Aws_neptune_cluster_instanceHandler) Read(externalID string) (*Aws_neptune_cluster_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_cluster_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -22891,6 +23779,7 @@ func (h *Aws_neptune_cluster_instanceHandler) Read(externalID string) (*Aws_nept
 
 // Delete ...
 func (h *Aws_neptune_cluster_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_cluster_instance", externalID)
 }
 
@@ -22931,6 +23820,7 @@ type Aws_neptune_cluster_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_neptune_cluster_parameter_groupHandler) Create(desired *Aws_neptune_cluster_parameter_group) (*Aws_neptune_cluster_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -22947,6 +23837,7 @@ func (h *Aws_neptune_cluster_parameter_groupHandler) Create(desired *Aws_neptune
 
 // Read ...
 func (h *Aws_neptune_cluster_parameter_groupHandler) Read(externalID string) (*Aws_neptune_cluster_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_cluster_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -22958,6 +23849,7 @@ func (h *Aws_neptune_cluster_parameter_groupHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_neptune_cluster_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_cluster_parameter_group", externalID)
 }
 
@@ -23004,6 +23896,7 @@ type Aws_neptune_cluster_snapshotHandler struct {
 
 // Create ...
 func (h *Aws_neptune_cluster_snapshotHandler) Create(desired *Aws_neptune_cluster_snapshot) (*Aws_neptune_cluster_snapshot, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23020,6 +23913,7 @@ func (h *Aws_neptune_cluster_snapshotHandler) Create(desired *Aws_neptune_cluste
 
 // Read ...
 func (h *Aws_neptune_cluster_snapshotHandler) Read(externalID string) (*Aws_neptune_cluster_snapshot, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_cluster_snapshot", externalID)
 	if err != nil {
 		return nil, err
@@ -23031,6 +23925,7 @@ func (h *Aws_neptune_cluster_snapshotHandler) Read(externalID string) (*Aws_nept
 
 // Delete ...
 func (h *Aws_neptune_cluster_snapshotHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_cluster_snapshot", externalID)
 }
 
@@ -23067,6 +23962,7 @@ type Aws_neptune_event_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_neptune_event_subscriptionHandler) Create(desired *Aws_neptune_event_subscription) (*Aws_neptune_event_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23083,6 +23979,7 @@ func (h *Aws_neptune_event_subscriptionHandler) Create(desired *Aws_neptune_even
 
 // Read ...
 func (h *Aws_neptune_event_subscriptionHandler) Read(externalID string) (*Aws_neptune_event_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_event_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -23094,6 +23991,7 @@ func (h *Aws_neptune_event_subscriptionHandler) Read(externalID string) (*Aws_ne
 
 // Delete ...
 func (h *Aws_neptune_event_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_event_subscription", externalID)
 }
 
@@ -23132,6 +24030,7 @@ type Aws_neptune_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_neptune_parameter_groupHandler) Create(desired *Aws_neptune_parameter_group) (*Aws_neptune_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23148,6 +24047,7 @@ func (h *Aws_neptune_parameter_groupHandler) Create(desired *Aws_neptune_paramet
 
 // Read ...
 func (h *Aws_neptune_parameter_groupHandler) Read(externalID string) (*Aws_neptune_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -23159,6 +24059,7 @@ func (h *Aws_neptune_parameter_groupHandler) Read(externalID string) (*Aws_neptu
 
 // Delete ...
 func (h *Aws_neptune_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_parameter_group", externalID)
 }
 
@@ -23187,6 +24088,7 @@ type Aws_neptune_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_neptune_subnet_groupHandler) Create(desired *Aws_neptune_subnet_group) (*Aws_neptune_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23203,6 +24105,7 @@ func (h *Aws_neptune_subnet_groupHandler) Create(desired *Aws_neptune_subnet_gro
 
 // Read ...
 func (h *Aws_neptune_subnet_groupHandler) Read(externalID string) (*Aws_neptune_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_neptune_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -23214,6 +24117,7 @@ func (h *Aws_neptune_subnet_groupHandler) Read(externalID string) (*Aws_neptune_
 
 // Delete ...
 func (h *Aws_neptune_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_neptune_subnet_group", externalID)
 }
 
@@ -23288,6 +24192,7 @@ type Aws_network_aclHandler struct {
 
 // Create ...
 func (h *Aws_network_aclHandler) Create(desired *Aws_network_acl) (*Aws_network_acl, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23304,6 +24209,7 @@ func (h *Aws_network_aclHandler) Create(desired *Aws_network_acl) (*Aws_network_
 
 // Read ...
 func (h *Aws_network_aclHandler) Read(externalID string) (*Aws_network_acl, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_network_acl", externalID)
 	if err != nil {
 		return nil, err
@@ -23315,6 +24221,7 @@ func (h *Aws_network_aclHandler) Read(externalID string) (*Aws_network_acl, erro
 
 // Delete ...
 func (h *Aws_network_aclHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_network_acl", externalID)
 }
 
@@ -23353,6 +24260,7 @@ type Aws_network_acl_ruleHandler struct {
 
 // Create ...
 func (h *Aws_network_acl_ruleHandler) Create(desired *Aws_network_acl_rule) (*Aws_network_acl_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23369,6 +24277,7 @@ func (h *Aws_network_acl_ruleHandler) Create(desired *Aws_network_acl_rule) (*Aw
 
 // Read ...
 func (h *Aws_network_acl_ruleHandler) Read(externalID string) (*Aws_network_acl_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_network_acl_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -23380,6 +24289,7 @@ func (h *Aws_network_acl_ruleHandler) Read(externalID string) (*Aws_network_acl_
 
 // Delete ...
 func (h *Aws_network_acl_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_network_acl_rule", externalID)
 }
 
@@ -23426,6 +24336,7 @@ type Aws_network_interfaceHandler struct {
 
 // Create ...
 func (h *Aws_network_interfaceHandler) Create(desired *Aws_network_interface) (*Aws_network_interface, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23442,6 +24353,7 @@ func (h *Aws_network_interfaceHandler) Create(desired *Aws_network_interface) (*
 
 // Read ...
 func (h *Aws_network_interfaceHandler) Read(externalID string) (*Aws_network_interface, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_network_interface", externalID)
 	if err != nil {
 		return nil, err
@@ -23453,6 +24365,7 @@ func (h *Aws_network_interfaceHandler) Read(externalID string) (*Aws_network_int
 
 // Delete ...
 func (h *Aws_network_interfaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_network_interface", externalID)
 }
 
@@ -23479,6 +24392,7 @@ type Aws_network_interface_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_network_interface_attachmentHandler) Create(desired *Aws_network_interface_attachment) (*Aws_network_interface_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23495,6 +24409,7 @@ func (h *Aws_network_interface_attachmentHandler) Create(desired *Aws_network_in
 
 // Read ...
 func (h *Aws_network_interface_attachmentHandler) Read(externalID string) (*Aws_network_interface_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_network_interface_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -23506,6 +24421,7 @@ func (h *Aws_network_interface_attachmentHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_network_interface_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_network_interface_attachment", externalID)
 }
 
@@ -23526,6 +24442,7 @@ type Aws_network_interface_sg_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_network_interface_sg_attachmentHandler) Create(desired *Aws_network_interface_sg_attachment) (*Aws_network_interface_sg_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23542,6 +24459,7 @@ func (h *Aws_network_interface_sg_attachmentHandler) Create(desired *Aws_network
 
 // Read ...
 func (h *Aws_network_interface_sg_attachmentHandler) Read(externalID string) (*Aws_network_interface_sg_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_network_interface_sg_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -23553,6 +24471,7 @@ func (h *Aws_network_interface_sg_attachmentHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_network_interface_sg_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_network_interface_sg_attachment", externalID)
 }
 
@@ -23639,6 +24558,7 @@ type Aws_opsworks_applicationHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_applicationHandler) Create(desired *Aws_opsworks_application) (*Aws_opsworks_application, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23655,6 +24575,7 @@ func (h *Aws_opsworks_applicationHandler) Create(desired *Aws_opsworks_applicati
 
 // Read ...
 func (h *Aws_opsworks_applicationHandler) Read(externalID string) (*Aws_opsworks_application, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_application", externalID)
 	if err != nil {
 		return nil, err
@@ -23666,6 +24587,7 @@ func (h *Aws_opsworks_applicationHandler) Read(externalID string) (*Aws_opsworks
 
 // Delete ...
 func (h *Aws_opsworks_applicationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_application", externalID)
 }
 
@@ -23740,6 +24662,7 @@ type Aws_opsworks_custom_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_custom_layerHandler) Create(desired *Aws_opsworks_custom_layer) (*Aws_opsworks_custom_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23756,6 +24679,7 @@ func (h *Aws_opsworks_custom_layerHandler) Create(desired *Aws_opsworks_custom_l
 
 // Read ...
 func (h *Aws_opsworks_custom_layerHandler) Read(externalID string) (*Aws_opsworks_custom_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_custom_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -23767,6 +24691,7 @@ func (h *Aws_opsworks_custom_layerHandler) Read(externalID string) (*Aws_opswork
 
 // Delete ...
 func (h *Aws_opsworks_custom_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_custom_layer", externalID)
 }
 
@@ -23845,6 +24770,7 @@ type Aws_opsworks_ganglia_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_ganglia_layerHandler) Create(desired *Aws_opsworks_ganglia_layer) (*Aws_opsworks_ganglia_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23861,6 +24787,7 @@ func (h *Aws_opsworks_ganglia_layerHandler) Create(desired *Aws_opsworks_ganglia
 
 // Read ...
 func (h *Aws_opsworks_ganglia_layerHandler) Read(externalID string) (*Aws_opsworks_ganglia_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_ganglia_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -23872,6 +24799,7 @@ func (h *Aws_opsworks_ganglia_layerHandler) Read(externalID string) (*Aws_opswor
 
 // Delete ...
 func (h *Aws_opsworks_ganglia_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_ganglia_layer", externalID)
 }
 
@@ -23956,6 +24884,7 @@ type Aws_opsworks_haproxy_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_haproxy_layerHandler) Create(desired *Aws_opsworks_haproxy_layer) (*Aws_opsworks_haproxy_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -23972,6 +24901,7 @@ func (h *Aws_opsworks_haproxy_layerHandler) Create(desired *Aws_opsworks_haproxy
 
 // Read ...
 func (h *Aws_opsworks_haproxy_layerHandler) Read(externalID string) (*Aws_opsworks_haproxy_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_haproxy_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -23983,6 +24913,7 @@ func (h *Aws_opsworks_haproxy_layerHandler) Read(externalID string) (*Aws_opswor
 
 // Delete ...
 func (h *Aws_opsworks_haproxy_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_haproxy_layer", externalID)
 }
 
@@ -24125,6 +25056,7 @@ type Aws_opsworks_instanceHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_instanceHandler) Create(desired *Aws_opsworks_instance) (*Aws_opsworks_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24141,6 +25073,7 @@ func (h *Aws_opsworks_instanceHandler) Create(desired *Aws_opsworks_instance) (*
 
 // Read ...
 func (h *Aws_opsworks_instanceHandler) Read(externalID string) (*Aws_opsworks_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -24152,6 +25085,7 @@ func (h *Aws_opsworks_instanceHandler) Read(externalID string) (*Aws_opsworks_in
 
 // Delete ...
 func (h *Aws_opsworks_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_instance", externalID)
 }
 
@@ -24234,6 +25168,7 @@ type Aws_opsworks_java_app_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_java_app_layerHandler) Create(desired *Aws_opsworks_java_app_layer) (*Aws_opsworks_java_app_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24250,6 +25185,7 @@ func (h *Aws_opsworks_java_app_layerHandler) Create(desired *Aws_opsworks_java_a
 
 // Read ...
 func (h *Aws_opsworks_java_app_layerHandler) Read(externalID string) (*Aws_opsworks_java_app_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_java_app_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -24261,6 +25197,7 @@ func (h *Aws_opsworks_java_app_layerHandler) Read(externalID string) (*Aws_opswo
 
 // Delete ...
 func (h *Aws_opsworks_java_app_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_java_app_layer", externalID)
 }
 
@@ -24335,6 +25272,7 @@ type Aws_opsworks_memcached_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_memcached_layerHandler) Create(desired *Aws_opsworks_memcached_layer) (*Aws_opsworks_memcached_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24351,6 +25289,7 @@ func (h *Aws_opsworks_memcached_layerHandler) Create(desired *Aws_opsworks_memca
 
 // Read ...
 func (h *Aws_opsworks_memcached_layerHandler) Read(externalID string) (*Aws_opsworks_memcached_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_memcached_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -24362,6 +25301,7 @@ func (h *Aws_opsworks_memcached_layerHandler) Read(externalID string) (*Aws_opsw
 
 // Delete ...
 func (h *Aws_opsworks_memcached_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_memcached_layer", externalID)
 }
 
@@ -24438,6 +25378,7 @@ type Aws_opsworks_mysql_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_mysql_layerHandler) Create(desired *Aws_opsworks_mysql_layer) (*Aws_opsworks_mysql_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24454,6 +25395,7 @@ func (h *Aws_opsworks_mysql_layerHandler) Create(desired *Aws_opsworks_mysql_lay
 
 // Read ...
 func (h *Aws_opsworks_mysql_layerHandler) Read(externalID string) (*Aws_opsworks_mysql_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_mysql_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -24465,6 +25407,7 @@ func (h *Aws_opsworks_mysql_layerHandler) Read(externalID string) (*Aws_opsworks
 
 // Delete ...
 func (h *Aws_opsworks_mysql_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_mysql_layer", externalID)
 }
 
@@ -24539,6 +25482,7 @@ type Aws_opsworks_nodejs_app_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_nodejs_app_layerHandler) Create(desired *Aws_opsworks_nodejs_app_layer) (*Aws_opsworks_nodejs_app_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24555,6 +25499,7 @@ func (h *Aws_opsworks_nodejs_app_layerHandler) Create(desired *Aws_opsworks_node
 
 // Read ...
 func (h *Aws_opsworks_nodejs_app_layerHandler) Read(externalID string) (*Aws_opsworks_nodejs_app_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_nodejs_app_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -24566,6 +25511,7 @@ func (h *Aws_opsworks_nodejs_app_layerHandler) Read(externalID string) (*Aws_ops
 
 // Delete ...
 func (h *Aws_opsworks_nodejs_app_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_nodejs_app_layer", externalID)
 }
 
@@ -24592,6 +25538,7 @@ type Aws_opsworks_permissionHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_permissionHandler) Create(desired *Aws_opsworks_permission) (*Aws_opsworks_permission, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24608,6 +25555,7 @@ func (h *Aws_opsworks_permissionHandler) Create(desired *Aws_opsworks_permission
 
 // Read ...
 func (h *Aws_opsworks_permissionHandler) Read(externalID string) (*Aws_opsworks_permission, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_permission", externalID)
 	if err != nil {
 		return nil, err
@@ -24619,6 +25567,7 @@ func (h *Aws_opsworks_permissionHandler) Read(externalID string) (*Aws_opsworks_
 
 // Delete ...
 func (h *Aws_opsworks_permissionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_permission", externalID)
 }
 
@@ -24691,6 +25640,7 @@ type Aws_opsworks_php_app_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_php_app_layerHandler) Create(desired *Aws_opsworks_php_app_layer) (*Aws_opsworks_php_app_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24707,6 +25657,7 @@ func (h *Aws_opsworks_php_app_layerHandler) Create(desired *Aws_opsworks_php_app
 
 // Read ...
 func (h *Aws_opsworks_php_app_layerHandler) Read(externalID string) (*Aws_opsworks_php_app_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_php_app_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -24718,6 +25669,7 @@ func (h *Aws_opsworks_php_app_layerHandler) Read(externalID string) (*Aws_opswor
 
 // Delete ...
 func (h *Aws_opsworks_php_app_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_php_app_layer", externalID)
 }
 
@@ -24802,6 +25754,7 @@ type Aws_opsworks_rails_app_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_rails_app_layerHandler) Create(desired *Aws_opsworks_rails_app_layer) (*Aws_opsworks_rails_app_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24818,6 +25771,7 @@ func (h *Aws_opsworks_rails_app_layerHandler) Create(desired *Aws_opsworks_rails
 
 // Read ...
 func (h *Aws_opsworks_rails_app_layerHandler) Read(externalID string) (*Aws_opsworks_rails_app_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_rails_app_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -24829,6 +25783,7 @@ func (h *Aws_opsworks_rails_app_layerHandler) Read(externalID string) (*Aws_opsw
 
 // Delete ...
 func (h *Aws_opsworks_rails_app_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_rails_app_layer", externalID)
 }
 
@@ -24853,6 +25808,7 @@ type Aws_opsworks_rds_db_instanceHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_rds_db_instanceHandler) Create(desired *Aws_opsworks_rds_db_instance) (*Aws_opsworks_rds_db_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24869,6 +25825,7 @@ func (h *Aws_opsworks_rds_db_instanceHandler) Create(desired *Aws_opsworks_rds_d
 
 // Read ...
 func (h *Aws_opsworks_rds_db_instanceHandler) Read(externalID string) (*Aws_opsworks_rds_db_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_rds_db_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -24880,6 +25837,7 @@ func (h *Aws_opsworks_rds_db_instanceHandler) Read(externalID string) (*Aws_opsw
 
 // Delete ...
 func (h *Aws_opsworks_rds_db_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_rds_db_instance", externalID)
 }
 
@@ -24960,6 +25918,7 @@ type Aws_opsworks_stackHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_stackHandler) Create(desired *Aws_opsworks_stack) (*Aws_opsworks_stack, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -24976,6 +25935,7 @@ func (h *Aws_opsworks_stackHandler) Create(desired *Aws_opsworks_stack) (*Aws_op
 
 // Read ...
 func (h *Aws_opsworks_stackHandler) Read(externalID string) (*Aws_opsworks_stack, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_stack", externalID)
 	if err != nil {
 		return nil, err
@@ -24987,6 +25947,7 @@ func (h *Aws_opsworks_stackHandler) Read(externalID string) (*Aws_opsworks_stack
 
 // Delete ...
 func (h *Aws_opsworks_stackHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_stack", externalID)
 }
 
@@ -25059,6 +26020,7 @@ type Aws_opsworks_static_web_layerHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_static_web_layerHandler) Create(desired *Aws_opsworks_static_web_layer) (*Aws_opsworks_static_web_layer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25075,6 +26037,7 @@ func (h *Aws_opsworks_static_web_layerHandler) Create(desired *Aws_opsworks_stat
 
 // Read ...
 func (h *Aws_opsworks_static_web_layerHandler) Read(externalID string) (*Aws_opsworks_static_web_layer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_static_web_layer", externalID)
 	if err != nil {
 		return nil, err
@@ -25086,6 +26049,7 @@ func (h *Aws_opsworks_static_web_layerHandler) Read(externalID string) (*Aws_ops
 
 // Delete ...
 func (h *Aws_opsworks_static_web_layerHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_static_web_layer", externalID)
 }
 
@@ -25110,6 +26074,7 @@ type Aws_opsworks_user_profileHandler struct {
 
 // Create ...
 func (h *Aws_opsworks_user_profileHandler) Create(desired *Aws_opsworks_user_profile) (*Aws_opsworks_user_profile, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25126,6 +26091,7 @@ func (h *Aws_opsworks_user_profileHandler) Create(desired *Aws_opsworks_user_pro
 
 // Read ...
 func (h *Aws_opsworks_user_profileHandler) Read(externalID string) (*Aws_opsworks_user_profile, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_opsworks_user_profile", externalID)
 	if err != nil {
 		return nil, err
@@ -25137,6 +26103,7 @@ func (h *Aws_opsworks_user_profileHandler) Read(externalID string) (*Aws_opswork
 
 // Delete ...
 func (h *Aws_opsworks_user_profileHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_opsworks_user_profile", externalID)
 }
 
@@ -25169,6 +26136,7 @@ type Aws_organizations_accountHandler struct {
 
 // Create ...
 func (h *Aws_organizations_accountHandler) Create(desired *Aws_organizations_account) (*Aws_organizations_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25185,6 +26153,7 @@ func (h *Aws_organizations_accountHandler) Create(desired *Aws_organizations_acc
 
 // Read ...
 func (h *Aws_organizations_accountHandler) Read(externalID string) (*Aws_organizations_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_organizations_account", externalID)
 	if err != nil {
 		return nil, err
@@ -25196,6 +26165,7 @@ func (h *Aws_organizations_accountHandler) Read(externalID string) (*Aws_organiz
 
 // Delete ...
 func (h *Aws_organizations_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_organizations_account", externalID)
 }
 
@@ -25224,6 +26194,7 @@ type Aws_organizations_organizationHandler struct {
 
 // Create ...
 func (h *Aws_organizations_organizationHandler) Create(desired *Aws_organizations_organization) (*Aws_organizations_organization, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25240,6 +26211,7 @@ func (h *Aws_organizations_organizationHandler) Create(desired *Aws_organization
 
 // Read ...
 func (h *Aws_organizations_organizationHandler) Read(externalID string) (*Aws_organizations_organization, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_organizations_organization", externalID)
 	if err != nil {
 		return nil, err
@@ -25251,6 +26223,7 @@ func (h *Aws_organizations_organizationHandler) Read(externalID string) (*Aws_or
 
 // Delete ...
 func (h *Aws_organizations_organizationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_organizations_organization", externalID)
 }
 
@@ -25277,6 +26250,7 @@ type Aws_organizations_policyHandler struct {
 
 // Create ...
 func (h *Aws_organizations_policyHandler) Create(desired *Aws_organizations_policy) (*Aws_organizations_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25293,6 +26267,7 @@ func (h *Aws_organizations_policyHandler) Create(desired *Aws_organizations_poli
 
 // Read ...
 func (h *Aws_organizations_policyHandler) Read(externalID string) (*Aws_organizations_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_organizations_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -25304,6 +26279,7 @@ func (h *Aws_organizations_policyHandler) Read(externalID string) (*Aws_organiza
 
 // Delete ...
 func (h *Aws_organizations_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_organizations_policy", externalID)
 }
 
@@ -25324,6 +26300,7 @@ type Aws_organizations_policy_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_organizations_policy_attachmentHandler) Create(desired *Aws_organizations_policy_attachment) (*Aws_organizations_policy_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25340,6 +26317,7 @@ func (h *Aws_organizations_policy_attachmentHandler) Create(desired *Aws_organiz
 
 // Read ...
 func (h *Aws_organizations_policy_attachmentHandler) Read(externalID string) (*Aws_organizations_policy_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_organizations_policy_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -25351,6 +26329,7 @@ func (h *Aws_organizations_policy_attachmentHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_organizations_policy_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_organizations_policy_attachment", externalID)
 }
 
@@ -25375,6 +26354,7 @@ type Aws_pinpoint_adm_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_adm_channelHandler) Create(desired *Aws_pinpoint_adm_channel) (*Aws_pinpoint_adm_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25391,6 +26371,7 @@ func (h *Aws_pinpoint_adm_channelHandler) Create(desired *Aws_pinpoint_adm_chann
 
 // Read ...
 func (h *Aws_pinpoint_adm_channelHandler) Read(externalID string) (*Aws_pinpoint_adm_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_adm_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25402,6 +26383,7 @@ func (h *Aws_pinpoint_adm_channelHandler) Read(externalID string) (*Aws_pinpoint
 
 // Delete ...
 func (h *Aws_pinpoint_adm_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_adm_channel", externalID)
 }
 
@@ -25436,6 +26418,7 @@ type Aws_pinpoint_apns_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_apns_channelHandler) Create(desired *Aws_pinpoint_apns_channel) (*Aws_pinpoint_apns_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25452,6 +26435,7 @@ func (h *Aws_pinpoint_apns_channelHandler) Create(desired *Aws_pinpoint_apns_cha
 
 // Read ...
 func (h *Aws_pinpoint_apns_channelHandler) Read(externalID string) (*Aws_pinpoint_apns_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_apns_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25463,6 +26447,7 @@ func (h *Aws_pinpoint_apns_channelHandler) Read(externalID string) (*Aws_pinpoin
 
 // Delete ...
 func (h *Aws_pinpoint_apns_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_apns_channel", externalID)
 }
 
@@ -25497,6 +26482,7 @@ type Aws_pinpoint_apns_sandbox_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_apns_sandbox_channelHandler) Create(desired *Aws_pinpoint_apns_sandbox_channel) (*Aws_pinpoint_apns_sandbox_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25513,6 +26499,7 @@ func (h *Aws_pinpoint_apns_sandbox_channelHandler) Create(desired *Aws_pinpoint_
 
 // Read ...
 func (h *Aws_pinpoint_apns_sandbox_channelHandler) Read(externalID string) (*Aws_pinpoint_apns_sandbox_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_apns_sandbox_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25524,6 +26511,7 @@ func (h *Aws_pinpoint_apns_sandbox_channelHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_pinpoint_apns_sandbox_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_apns_sandbox_channel", externalID)
 }
 
@@ -25558,6 +26546,7 @@ type Aws_pinpoint_apns_voip_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_apns_voip_channelHandler) Create(desired *Aws_pinpoint_apns_voip_channel) (*Aws_pinpoint_apns_voip_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25574,6 +26563,7 @@ func (h *Aws_pinpoint_apns_voip_channelHandler) Create(desired *Aws_pinpoint_apn
 
 // Read ...
 func (h *Aws_pinpoint_apns_voip_channelHandler) Read(externalID string) (*Aws_pinpoint_apns_voip_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_apns_voip_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25585,6 +26575,7 @@ func (h *Aws_pinpoint_apns_voip_channelHandler) Read(externalID string) (*Aws_pi
 
 // Delete ...
 func (h *Aws_pinpoint_apns_voip_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_apns_voip_channel", externalID)
 }
 
@@ -25619,6 +26610,7 @@ type Aws_pinpoint_apns_voip_sandbox_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_apns_voip_sandbox_channelHandler) Create(desired *Aws_pinpoint_apns_voip_sandbox_channel) (*Aws_pinpoint_apns_voip_sandbox_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25635,6 +26627,7 @@ func (h *Aws_pinpoint_apns_voip_sandbox_channelHandler) Create(desired *Aws_pinp
 
 // Read ...
 func (h *Aws_pinpoint_apns_voip_sandbox_channelHandler) Read(externalID string) (*Aws_pinpoint_apns_voip_sandbox_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_apns_voip_sandbox_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25646,6 +26639,7 @@ func (h *Aws_pinpoint_apns_voip_sandbox_channelHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Aws_pinpoint_apns_voip_sandbox_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_apns_voip_sandbox_channel", externalID)
 }
 
@@ -25704,6 +26698,7 @@ type Aws_pinpoint_appHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_appHandler) Create(desired *Aws_pinpoint_app) (*Aws_pinpoint_app, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25720,6 +26715,7 @@ func (h *Aws_pinpoint_appHandler) Create(desired *Aws_pinpoint_app) (*Aws_pinpoi
 
 // Read ...
 func (h *Aws_pinpoint_appHandler) Read(externalID string) (*Aws_pinpoint_app, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_app", externalID)
 	if err != nil {
 		return nil, err
@@ -25731,6 +26727,7 @@ func (h *Aws_pinpoint_appHandler) Read(externalID string) (*Aws_pinpoint_app, er
 
 // Delete ...
 func (h *Aws_pinpoint_appHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_app", externalID)
 }
 
@@ -25755,6 +26752,7 @@ type Aws_pinpoint_baidu_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_baidu_channelHandler) Create(desired *Aws_pinpoint_baidu_channel) (*Aws_pinpoint_baidu_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25771,6 +26769,7 @@ func (h *Aws_pinpoint_baidu_channelHandler) Create(desired *Aws_pinpoint_baidu_c
 
 // Read ...
 func (h *Aws_pinpoint_baidu_channelHandler) Read(externalID string) (*Aws_pinpoint_baidu_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_baidu_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25782,6 +26781,7 @@ func (h *Aws_pinpoint_baidu_channelHandler) Read(externalID string) (*Aws_pinpoi
 
 // Delete ...
 func (h *Aws_pinpoint_baidu_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_baidu_channel", externalID)
 }
 
@@ -25810,6 +26810,7 @@ type Aws_pinpoint_email_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_email_channelHandler) Create(desired *Aws_pinpoint_email_channel) (*Aws_pinpoint_email_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25826,6 +26827,7 @@ func (h *Aws_pinpoint_email_channelHandler) Create(desired *Aws_pinpoint_email_c
 
 // Read ...
 func (h *Aws_pinpoint_email_channelHandler) Read(externalID string) (*Aws_pinpoint_email_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_email_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25837,6 +26839,7 @@ func (h *Aws_pinpoint_email_channelHandler) Read(externalID string) (*Aws_pinpoi
 
 // Delete ...
 func (h *Aws_pinpoint_email_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_email_channel", externalID)
 }
 
@@ -25859,6 +26862,7 @@ type Aws_pinpoint_event_streamHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_event_streamHandler) Create(desired *Aws_pinpoint_event_stream) (*Aws_pinpoint_event_stream, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25875,6 +26879,7 @@ func (h *Aws_pinpoint_event_streamHandler) Create(desired *Aws_pinpoint_event_st
 
 // Read ...
 func (h *Aws_pinpoint_event_streamHandler) Read(externalID string) (*Aws_pinpoint_event_stream, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_event_stream", externalID)
 	if err != nil {
 		return nil, err
@@ -25886,6 +26891,7 @@ func (h *Aws_pinpoint_event_streamHandler) Read(externalID string) (*Aws_pinpoin
 
 // Delete ...
 func (h *Aws_pinpoint_event_streamHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_event_stream", externalID)
 }
 
@@ -25908,6 +26914,7 @@ type Aws_pinpoint_gcm_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_gcm_channelHandler) Create(desired *Aws_pinpoint_gcm_channel) (*Aws_pinpoint_gcm_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25924,6 +26931,7 @@ func (h *Aws_pinpoint_gcm_channelHandler) Create(desired *Aws_pinpoint_gcm_chann
 
 // Read ...
 func (h *Aws_pinpoint_gcm_channelHandler) Read(externalID string) (*Aws_pinpoint_gcm_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_gcm_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25935,6 +26943,7 @@ func (h *Aws_pinpoint_gcm_channelHandler) Read(externalID string) (*Aws_pinpoint
 
 // Delete ...
 func (h *Aws_pinpoint_gcm_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_gcm_channel", externalID)
 }
 
@@ -25963,6 +26972,7 @@ type Aws_pinpoint_sms_channelHandler struct {
 
 // Create ...
 func (h *Aws_pinpoint_sms_channelHandler) Create(desired *Aws_pinpoint_sms_channel) (*Aws_pinpoint_sms_channel, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -25979,6 +26989,7 @@ func (h *Aws_pinpoint_sms_channelHandler) Create(desired *Aws_pinpoint_sms_chann
 
 // Read ...
 func (h *Aws_pinpoint_sms_channelHandler) Read(externalID string) (*Aws_pinpoint_sms_channel, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_pinpoint_sms_channel", externalID)
 	if err != nil {
 		return nil, err
@@ -25990,6 +27001,7 @@ func (h *Aws_pinpoint_sms_channelHandler) Read(externalID string) (*Aws_pinpoint
 
 // Delete ...
 func (h *Aws_pinpoint_sms_channelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_pinpoint_sms_channel", externalID)
 }
 
@@ -26010,6 +27022,7 @@ type Aws_placement_groupHandler struct {
 
 // Create ...
 func (h *Aws_placement_groupHandler) Create(desired *Aws_placement_group) (*Aws_placement_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26026,6 +27039,7 @@ func (h *Aws_placement_groupHandler) Create(desired *Aws_placement_group) (*Aws_
 
 // Read ...
 func (h *Aws_placement_groupHandler) Read(externalID string) (*Aws_placement_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_placement_group", externalID)
 	if err != nil {
 		return nil, err
@@ -26037,6 +27051,7 @@ func (h *Aws_placement_groupHandler) Read(externalID string) (*Aws_placement_gro
 
 // Delete ...
 func (h *Aws_placement_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_placement_group", externalID)
 }
 
@@ -26057,6 +27072,7 @@ type Aws_proxy_protocol_policyHandler struct {
 
 // Create ...
 func (h *Aws_proxy_protocol_policyHandler) Create(desired *Aws_proxy_protocol_policy) (*Aws_proxy_protocol_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26073,6 +27089,7 @@ func (h *Aws_proxy_protocol_policyHandler) Create(desired *Aws_proxy_protocol_po
 
 // Read ...
 func (h *Aws_proxy_protocol_policyHandler) Read(externalID string) (*Aws_proxy_protocol_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_proxy_protocol_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -26084,6 +27101,7 @@ func (h *Aws_proxy_protocol_policyHandler) Read(externalID string) (*Aws_proxy_p
 
 // Delete ...
 func (h *Aws_proxy_protocol_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_proxy_protocol_policy", externalID)
 }
 
@@ -26106,6 +27124,7 @@ type Aws_ram_resource_shareHandler struct {
 
 // Create ...
 func (h *Aws_ram_resource_shareHandler) Create(desired *Aws_ram_resource_share) (*Aws_ram_resource_share, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26122,6 +27141,7 @@ func (h *Aws_ram_resource_shareHandler) Create(desired *Aws_ram_resource_share) 
 
 // Read ...
 func (h *Aws_ram_resource_shareHandler) Read(externalID string) (*Aws_ram_resource_share, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ram_resource_share", externalID)
 	if err != nil {
 		return nil, err
@@ -26133,6 +27153,7 @@ func (h *Aws_ram_resource_shareHandler) Read(externalID string) (*Aws_ram_resour
 
 // Delete ...
 func (h *Aws_ram_resource_shareHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ram_resource_share", externalID)
 }
 
@@ -26253,6 +27274,7 @@ type Aws_rds_clusterHandler struct {
 
 // Create ...
 func (h *Aws_rds_clusterHandler) Create(desired *Aws_rds_cluster) (*Aws_rds_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26269,6 +27291,7 @@ func (h *Aws_rds_clusterHandler) Create(desired *Aws_rds_cluster) (*Aws_rds_clus
 
 // Read ...
 func (h *Aws_rds_clusterHandler) Read(externalID string) (*Aws_rds_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_rds_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -26280,6 +27303,7 @@ func (h *Aws_rds_clusterHandler) Read(externalID string) (*Aws_rds_cluster, erro
 
 // Delete ...
 func (h *Aws_rds_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_rds_cluster", externalID)
 }
 
@@ -26310,6 +27334,7 @@ type Aws_rds_cluster_endpointHandler struct {
 
 // Create ...
 func (h *Aws_rds_cluster_endpointHandler) Create(desired *Aws_rds_cluster_endpoint) (*Aws_rds_cluster_endpoint, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26326,6 +27351,7 @@ func (h *Aws_rds_cluster_endpointHandler) Create(desired *Aws_rds_cluster_endpoi
 
 // Read ...
 func (h *Aws_rds_cluster_endpointHandler) Read(externalID string) (*Aws_rds_cluster_endpoint, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_rds_cluster_endpoint", externalID)
 	if err != nil {
 		return nil, err
@@ -26337,6 +27363,7 @@ func (h *Aws_rds_cluster_endpointHandler) Read(externalID string) (*Aws_rds_clus
 
 // Delete ...
 func (h *Aws_rds_cluster_endpointHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_rds_cluster_endpoint", externalID)
 }
 
@@ -26409,6 +27436,7 @@ type Aws_rds_cluster_instanceHandler struct {
 
 // Create ...
 func (h *Aws_rds_cluster_instanceHandler) Create(desired *Aws_rds_cluster_instance) (*Aws_rds_cluster_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26425,6 +27453,7 @@ func (h *Aws_rds_cluster_instanceHandler) Create(desired *Aws_rds_cluster_instan
 
 // Read ...
 func (h *Aws_rds_cluster_instanceHandler) Read(externalID string) (*Aws_rds_cluster_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_rds_cluster_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -26436,6 +27465,7 @@ func (h *Aws_rds_cluster_instanceHandler) Read(externalID string) (*Aws_rds_clus
 
 // Delete ...
 func (h *Aws_rds_cluster_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_rds_cluster_instance", externalID)
 }
 
@@ -26476,6 +27506,7 @@ type Aws_rds_cluster_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_rds_cluster_parameter_groupHandler) Create(desired *Aws_rds_cluster_parameter_group) (*Aws_rds_cluster_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26492,6 +27523,7 @@ func (h *Aws_rds_cluster_parameter_groupHandler) Create(desired *Aws_rds_cluster
 
 // Read ...
 func (h *Aws_rds_cluster_parameter_groupHandler) Read(externalID string) (*Aws_rds_cluster_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_rds_cluster_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -26503,6 +27535,7 @@ func (h *Aws_rds_cluster_parameter_groupHandler) Read(externalID string) (*Aws_r
 
 // Delete ...
 func (h *Aws_rds_cluster_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_rds_cluster_parameter_group", externalID)
 }
 
@@ -26535,6 +27568,7 @@ type Aws_rds_global_clusterHandler struct {
 
 // Create ...
 func (h *Aws_rds_global_clusterHandler) Create(desired *Aws_rds_global_cluster) (*Aws_rds_global_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26551,6 +27585,7 @@ func (h *Aws_rds_global_clusterHandler) Create(desired *Aws_rds_global_cluster) 
 
 // Read ...
 func (h *Aws_rds_global_clusterHandler) Read(externalID string) (*Aws_rds_global_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_rds_global_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -26562,6 +27597,7 @@ func (h *Aws_rds_global_clusterHandler) Read(externalID string) (*Aws_rds_global
 
 // Delete ...
 func (h *Aws_rds_global_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_rds_global_cluster", externalID)
 }
 
@@ -26674,6 +27710,7 @@ type Aws_redshift_clusterHandler struct {
 
 // Create ...
 func (h *Aws_redshift_clusterHandler) Create(desired *Aws_redshift_cluster) (*Aws_redshift_cluster, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26690,6 +27727,7 @@ func (h *Aws_redshift_clusterHandler) Create(desired *Aws_redshift_cluster) (*Aw
 
 // Read ...
 func (h *Aws_redshift_clusterHandler) Read(externalID string) (*Aws_redshift_cluster, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_redshift_cluster", externalID)
 	if err != nil {
 		return nil, err
@@ -26701,6 +27739,7 @@ func (h *Aws_redshift_clusterHandler) Read(externalID string) (*Aws_redshift_clu
 
 // Delete ...
 func (h *Aws_redshift_clusterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_redshift_cluster", externalID)
 }
 
@@ -26737,6 +27776,7 @@ type Aws_redshift_event_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_redshift_event_subscriptionHandler) Create(desired *Aws_redshift_event_subscription) (*Aws_redshift_event_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26753,6 +27793,7 @@ func (h *Aws_redshift_event_subscriptionHandler) Create(desired *Aws_redshift_ev
 
 // Read ...
 func (h *Aws_redshift_event_subscriptionHandler) Read(externalID string) (*Aws_redshift_event_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_redshift_event_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -26764,6 +27805,7 @@ func (h *Aws_redshift_event_subscriptionHandler) Read(externalID string) (*Aws_r
 
 // Delete ...
 func (h *Aws_redshift_event_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_redshift_event_subscription", externalID)
 }
 
@@ -26796,6 +27838,7 @@ type Aws_redshift_parameter_groupHandler struct {
 
 // Create ...
 func (h *Aws_redshift_parameter_groupHandler) Create(desired *Aws_redshift_parameter_group) (*Aws_redshift_parameter_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26812,6 +27855,7 @@ func (h *Aws_redshift_parameter_groupHandler) Create(desired *Aws_redshift_param
 
 // Read ...
 func (h *Aws_redshift_parameter_groupHandler) Read(externalID string) (*Aws_redshift_parameter_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_redshift_parameter_group", externalID)
 	if err != nil {
 		return nil, err
@@ -26823,6 +27867,7 @@ func (h *Aws_redshift_parameter_groupHandler) Read(externalID string) (*Aws_reds
 
 // Delete ...
 func (h *Aws_redshift_parameter_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_redshift_parameter_group", externalID)
 }
 
@@ -26855,6 +27900,7 @@ type Aws_redshift_security_groupHandler struct {
 
 // Create ...
 func (h *Aws_redshift_security_groupHandler) Create(desired *Aws_redshift_security_group) (*Aws_redshift_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26871,6 +27917,7 @@ func (h *Aws_redshift_security_groupHandler) Create(desired *Aws_redshift_securi
 
 // Read ...
 func (h *Aws_redshift_security_groupHandler) Read(externalID string) (*Aws_redshift_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_redshift_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -26882,6 +27929,7 @@ func (h *Aws_redshift_security_groupHandler) Read(externalID string) (*Aws_redsh
 
 // Delete ...
 func (h *Aws_redshift_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_redshift_security_group", externalID)
 }
 
@@ -26904,6 +27952,7 @@ type Aws_redshift_snapshot_copy_grantHandler struct {
 
 // Create ...
 func (h *Aws_redshift_snapshot_copy_grantHandler) Create(desired *Aws_redshift_snapshot_copy_grant) (*Aws_redshift_snapshot_copy_grant, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26920,6 +27969,7 @@ func (h *Aws_redshift_snapshot_copy_grantHandler) Create(desired *Aws_redshift_s
 
 // Read ...
 func (h *Aws_redshift_snapshot_copy_grantHandler) Read(externalID string) (*Aws_redshift_snapshot_copy_grant, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_redshift_snapshot_copy_grant", externalID)
 	if err != nil {
 		return nil, err
@@ -26931,6 +27981,7 @@ func (h *Aws_redshift_snapshot_copy_grantHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_redshift_snapshot_copy_grantHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_redshift_snapshot_copy_grant", externalID)
 }
 
@@ -26955,6 +28006,7 @@ type Aws_redshift_subnet_groupHandler struct {
 
 // Create ...
 func (h *Aws_redshift_subnet_groupHandler) Create(desired *Aws_redshift_subnet_group) (*Aws_redshift_subnet_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -26971,6 +28023,7 @@ func (h *Aws_redshift_subnet_groupHandler) Create(desired *Aws_redshift_subnet_g
 
 // Read ...
 func (h *Aws_redshift_subnet_groupHandler) Read(externalID string) (*Aws_redshift_subnet_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_redshift_subnet_group", externalID)
 	if err != nil {
 		return nil, err
@@ -26982,6 +28035,7 @@ func (h *Aws_redshift_subnet_groupHandler) Read(externalID string) (*Aws_redshif
 
 // Delete ...
 func (h *Aws_redshift_subnet_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_redshift_subnet_group", externalID)
 }
 
@@ -27014,6 +28068,7 @@ type Aws_resourcegroups_groupHandler struct {
 
 // Create ...
 func (h *Aws_resourcegroups_groupHandler) Create(desired *Aws_resourcegroups_group) (*Aws_resourcegroups_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27030,6 +28085,7 @@ func (h *Aws_resourcegroups_groupHandler) Create(desired *Aws_resourcegroups_gro
 
 // Read ...
 func (h *Aws_resourcegroups_groupHandler) Read(externalID string) (*Aws_resourcegroups_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_resourcegroups_group", externalID)
 	if err != nil {
 		return nil, err
@@ -27041,6 +28097,7 @@ func (h *Aws_resourcegroups_groupHandler) Read(externalID string) (*Aws_resource
 
 // Delete ...
 func (h *Aws_resourcegroups_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_resourcegroups_group", externalID)
 }
 
@@ -27085,6 +28142,7 @@ type Aws_routeHandler struct {
 
 // Create ...
 func (h *Aws_routeHandler) Create(desired *Aws_route) (*Aws_route, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27101,6 +28159,7 @@ func (h *Aws_routeHandler) Create(desired *Aws_route) (*Aws_route, string, error
 
 // Read ...
 func (h *Aws_routeHandler) Read(externalID string) (*Aws_route, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route", externalID)
 	if err != nil {
 		return nil, err
@@ -27112,6 +28171,7 @@ func (h *Aws_routeHandler) Read(externalID string) (*Aws_route, error) {
 
 // Delete ...
 func (h *Aws_routeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route", externalID)
 }
 
@@ -27132,6 +28192,7 @@ type Aws_route53_delegation_setHandler struct {
 
 // Create ...
 func (h *Aws_route53_delegation_setHandler) Create(desired *Aws_route53_delegation_set) (*Aws_route53_delegation_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27148,6 +28209,7 @@ func (h *Aws_route53_delegation_setHandler) Create(desired *Aws_route53_delegati
 
 // Read ...
 func (h *Aws_route53_delegation_setHandler) Read(externalID string) (*Aws_route53_delegation_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route53_delegation_set", externalID)
 	if err != nil {
 		return nil, err
@@ -27159,6 +28221,7 @@ func (h *Aws_route53_delegation_setHandler) Read(externalID string) (*Aws_route5
 
 // Delete ...
 func (h *Aws_route53_delegation_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route53_delegation_set", externalID)
 }
 
@@ -27213,6 +28276,7 @@ type Aws_route53_health_checkHandler struct {
 
 // Create ...
 func (h *Aws_route53_health_checkHandler) Create(desired *Aws_route53_health_check) (*Aws_route53_health_check, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27229,6 +28293,7 @@ func (h *Aws_route53_health_checkHandler) Create(desired *Aws_route53_health_che
 
 // Read ...
 func (h *Aws_route53_health_checkHandler) Read(externalID string) (*Aws_route53_health_check, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route53_health_check", externalID)
 	if err != nil {
 		return nil, err
@@ -27240,6 +28305,7 @@ func (h *Aws_route53_health_checkHandler) Read(externalID string) (*Aws_route53_
 
 // Delete ...
 func (h *Aws_route53_health_checkHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route53_health_check", externalID)
 }
 
@@ -27260,6 +28326,7 @@ type Aws_route53_query_logHandler struct {
 
 // Create ...
 func (h *Aws_route53_query_logHandler) Create(desired *Aws_route53_query_log) (*Aws_route53_query_log, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27276,6 +28343,7 @@ func (h *Aws_route53_query_logHandler) Create(desired *Aws_route53_query_log) (*
 
 // Read ...
 func (h *Aws_route53_query_logHandler) Read(externalID string) (*Aws_route53_query_log, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route53_query_log", externalID)
 	if err != nil {
 		return nil, err
@@ -27287,6 +28355,7 @@ func (h *Aws_route53_query_logHandler) Read(externalID string) (*Aws_route53_que
 
 // Delete ...
 func (h *Aws_route53_query_logHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route53_query_log", externalID)
 }
 
@@ -27375,6 +28444,7 @@ type Aws_route53_recordHandler struct {
 
 // Create ...
 func (h *Aws_route53_recordHandler) Create(desired *Aws_route53_record) (*Aws_route53_record, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27391,6 +28461,7 @@ func (h *Aws_route53_recordHandler) Create(desired *Aws_route53_record) (*Aws_ro
 
 // Read ...
 func (h *Aws_route53_recordHandler) Read(externalID string) (*Aws_route53_record, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route53_record", externalID)
 	if err != nil {
 		return nil, err
@@ -27402,6 +28473,7 @@ func (h *Aws_route53_recordHandler) Read(externalID string) (*Aws_route53_record
 
 // Delete ...
 func (h *Aws_route53_recordHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route53_record", externalID)
 }
 
@@ -27446,6 +28518,7 @@ type Aws_route53_zoneHandler struct {
 
 // Create ...
 func (h *Aws_route53_zoneHandler) Create(desired *Aws_route53_zone) (*Aws_route53_zone, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27462,6 +28535,7 @@ func (h *Aws_route53_zoneHandler) Create(desired *Aws_route53_zone) (*Aws_route5
 
 // Read ...
 func (h *Aws_route53_zoneHandler) Read(externalID string) (*Aws_route53_zone, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route53_zone", externalID)
 	if err != nil {
 		return nil, err
@@ -27473,6 +28547,7 @@ func (h *Aws_route53_zoneHandler) Read(externalID string) (*Aws_route53_zone, er
 
 // Delete ...
 func (h *Aws_route53_zoneHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route53_zone", externalID)
 }
 
@@ -27495,6 +28570,7 @@ type Aws_route53_zone_associationHandler struct {
 
 // Create ...
 func (h *Aws_route53_zone_associationHandler) Create(desired *Aws_route53_zone_association) (*Aws_route53_zone_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27511,6 +28587,7 @@ func (h *Aws_route53_zone_associationHandler) Create(desired *Aws_route53_zone_a
 
 // Read ...
 func (h *Aws_route53_zone_associationHandler) Read(externalID string) (*Aws_route53_zone_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route53_zone_association", externalID)
 	if err != nil {
 		return nil, err
@@ -27522,6 +28599,7 @@ func (h *Aws_route53_zone_associationHandler) Read(externalID string) (*Aws_rout
 
 // Delete ...
 func (h *Aws_route53_zone_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route53_zone_association", externalID)
 }
 
@@ -27570,6 +28648,7 @@ type Aws_route_tableHandler struct {
 
 // Create ...
 func (h *Aws_route_tableHandler) Create(desired *Aws_route_table) (*Aws_route_table, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27586,6 +28665,7 @@ func (h *Aws_route_tableHandler) Create(desired *Aws_route_table) (*Aws_route_ta
 
 // Read ...
 func (h *Aws_route_tableHandler) Read(externalID string) (*Aws_route_table, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route_table", externalID)
 	if err != nil {
 		return nil, err
@@ -27597,6 +28677,7 @@ func (h *Aws_route_tableHandler) Read(externalID string) (*Aws_route_table, erro
 
 // Delete ...
 func (h *Aws_route_tableHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route_table", externalID)
 }
 
@@ -27617,6 +28698,7 @@ type Aws_route_table_associationHandler struct {
 
 // Create ...
 func (h *Aws_route_table_associationHandler) Create(desired *Aws_route_table_association) (*Aws_route_table_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27633,6 +28715,7 @@ func (h *Aws_route_table_associationHandler) Create(desired *Aws_route_table_ass
 
 // Read ...
 func (h *Aws_route_table_associationHandler) Read(externalID string) (*Aws_route_table_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_route_table_association", externalID)
 	if err != nil {
 		return nil, err
@@ -27644,6 +28727,7 @@ func (h *Aws_route_table_associationHandler) Read(externalID string) (*Aws_route
 
 // Delete ...
 func (h *Aws_route_table_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_route_table_association", externalID)
 }
 
@@ -27670,6 +28754,7 @@ type Aws_s3_account_public_access_blockHandler struct {
 
 // Create ...
 func (h *Aws_s3_account_public_access_blockHandler) Create(desired *Aws_s3_account_public_access_block) (*Aws_s3_account_public_access_block, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27686,6 +28771,7 @@ func (h *Aws_s3_account_public_access_blockHandler) Create(desired *Aws_s3_accou
 
 // Read ...
 func (h *Aws_s3_account_public_access_blockHandler) Read(externalID string) (*Aws_s3_account_public_access_block, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_account_public_access_block", externalID)
 	if err != nil {
 		return nil, err
@@ -27697,6 +28783,7 @@ func (h *Aws_s3_account_public_access_blockHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_s3_account_public_access_blockHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_account_public_access_block", externalID)
 }
 
@@ -27967,6 +29054,7 @@ type Aws_s3_bucketHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucketHandler) Create(desired *Aws_s3_bucket) (*Aws_s3_bucket, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -27983,6 +29071,7 @@ func (h *Aws_s3_bucketHandler) Create(desired *Aws_s3_bucket) (*Aws_s3_bucket, s
 
 // Read ...
 func (h *Aws_s3_bucketHandler) Read(externalID string) (*Aws_s3_bucket, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket", externalID)
 	if err != nil {
 		return nil, err
@@ -27994,6 +29083,7 @@ func (h *Aws_s3_bucketHandler) Read(externalID string) (*Aws_s3_bucket, error) {
 
 // Delete ...
 func (h *Aws_s3_bucketHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket", externalID)
 }
 
@@ -28076,6 +29166,7 @@ type Aws_s3_bucket_inventoryHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucket_inventoryHandler) Create(desired *Aws_s3_bucket_inventory) (*Aws_s3_bucket_inventory, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28092,6 +29183,7 @@ func (h *Aws_s3_bucket_inventoryHandler) Create(desired *Aws_s3_bucket_inventory
 
 // Read ...
 func (h *Aws_s3_bucket_inventoryHandler) Read(externalID string) (*Aws_s3_bucket_inventory, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket_inventory", externalID)
 	if err != nil {
 		return nil, err
@@ -28103,6 +29195,7 @@ func (h *Aws_s3_bucket_inventoryHandler) Read(externalID string) (*Aws_s3_bucket
 
 // Delete ...
 func (h *Aws_s3_bucket_inventoryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket_inventory", externalID)
 }
 
@@ -28133,6 +29226,7 @@ type Aws_s3_bucket_metricHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucket_metricHandler) Create(desired *Aws_s3_bucket_metric) (*Aws_s3_bucket_metric, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28149,6 +29243,7 @@ func (h *Aws_s3_bucket_metricHandler) Create(desired *Aws_s3_bucket_metric) (*Aw
 
 // Read ...
 func (h *Aws_s3_bucket_metricHandler) Read(externalID string) (*Aws_s3_bucket_metric, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket_metric", externalID)
 	if err != nil {
 		return nil, err
@@ -28160,6 +29255,7 @@ func (h *Aws_s3_bucket_metricHandler) Read(externalID string) (*Aws_s3_bucket_me
 
 // Delete ...
 func (h *Aws_s3_bucket_metricHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket_metric", externalID)
 }
 
@@ -28226,6 +29322,7 @@ type Aws_s3_bucket_notificationHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucket_notificationHandler) Create(desired *Aws_s3_bucket_notification) (*Aws_s3_bucket_notification, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28242,6 +29339,7 @@ func (h *Aws_s3_bucket_notificationHandler) Create(desired *Aws_s3_bucket_notifi
 
 // Read ...
 func (h *Aws_s3_bucket_notificationHandler) Read(externalID string) (*Aws_s3_bucket_notification, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket_notification", externalID)
 	if err != nil {
 		return nil, err
@@ -28253,6 +29351,7 @@ func (h *Aws_s3_bucket_notificationHandler) Read(externalID string) (*Aws_s3_buc
 
 // Delete ...
 func (h *Aws_s3_bucket_notificationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket_notification", externalID)
 }
 
@@ -28305,6 +29404,7 @@ type Aws_s3_bucket_objectHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucket_objectHandler) Create(desired *Aws_s3_bucket_object) (*Aws_s3_bucket_object, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28321,6 +29421,7 @@ func (h *Aws_s3_bucket_objectHandler) Create(desired *Aws_s3_bucket_object) (*Aw
 
 // Read ...
 func (h *Aws_s3_bucket_objectHandler) Read(externalID string) (*Aws_s3_bucket_object, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket_object", externalID)
 	if err != nil {
 		return nil, err
@@ -28332,6 +29433,7 @@ func (h *Aws_s3_bucket_objectHandler) Read(externalID string) (*Aws_s3_bucket_ob
 
 // Delete ...
 func (h *Aws_s3_bucket_objectHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket_object", externalID)
 }
 
@@ -28352,6 +29454,7 @@ type Aws_s3_bucket_policyHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucket_policyHandler) Create(desired *Aws_s3_bucket_policy) (*Aws_s3_bucket_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28368,6 +29471,7 @@ func (h *Aws_s3_bucket_policyHandler) Create(desired *Aws_s3_bucket_policy) (*Aw
 
 // Read ...
 func (h *Aws_s3_bucket_policyHandler) Read(externalID string) (*Aws_s3_bucket_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -28379,6 +29483,7 @@ func (h *Aws_s3_bucket_policyHandler) Read(externalID string) (*Aws_s3_bucket_po
 
 // Delete ...
 func (h *Aws_s3_bucket_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket_policy", externalID)
 }
 
@@ -28405,6 +29510,7 @@ type Aws_s3_bucket_public_access_blockHandler struct {
 
 // Create ...
 func (h *Aws_s3_bucket_public_access_blockHandler) Create(desired *Aws_s3_bucket_public_access_block) (*Aws_s3_bucket_public_access_block, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28421,6 +29527,7 @@ func (h *Aws_s3_bucket_public_access_blockHandler) Create(desired *Aws_s3_bucket
 
 // Read ...
 func (h *Aws_s3_bucket_public_access_blockHandler) Read(externalID string) (*Aws_s3_bucket_public_access_block, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_s3_bucket_public_access_block", externalID)
 	if err != nil {
 		return nil, err
@@ -28432,6 +29539,7 @@ func (h *Aws_s3_bucket_public_access_blockHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_s3_bucket_public_access_blockHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_s3_bucket_public_access_block", externalID)
 }
 
@@ -28464,6 +29572,7 @@ type Aws_sagemaker_notebook_instanceHandler struct {
 
 // Create ...
 func (h *Aws_sagemaker_notebook_instanceHandler) Create(desired *Aws_sagemaker_notebook_instance) (*Aws_sagemaker_notebook_instance, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28480,6 +29589,7 @@ func (h *Aws_sagemaker_notebook_instanceHandler) Create(desired *Aws_sagemaker_n
 
 // Read ...
 func (h *Aws_sagemaker_notebook_instanceHandler) Read(externalID string) (*Aws_sagemaker_notebook_instance, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sagemaker_notebook_instance", externalID)
 	if err != nil {
 		return nil, err
@@ -28491,6 +29601,7 @@ func (h *Aws_sagemaker_notebook_instanceHandler) Read(externalID string) (*Aws_s
 
 // Delete ...
 func (h *Aws_sagemaker_notebook_instanceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sagemaker_notebook_instance", externalID)
 }
 
@@ -28535,6 +29646,7 @@ type Aws_secretsmanager_secretHandler struct {
 
 // Create ...
 func (h *Aws_secretsmanager_secretHandler) Create(desired *Aws_secretsmanager_secret) (*Aws_secretsmanager_secret, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28551,6 +29663,7 @@ func (h *Aws_secretsmanager_secretHandler) Create(desired *Aws_secretsmanager_se
 
 // Read ...
 func (h *Aws_secretsmanager_secretHandler) Read(externalID string) (*Aws_secretsmanager_secret, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_secretsmanager_secret", externalID)
 	if err != nil {
 		return nil, err
@@ -28562,6 +29675,7 @@ func (h *Aws_secretsmanager_secretHandler) Read(externalID string) (*Aws_secrets
 
 // Delete ...
 func (h *Aws_secretsmanager_secretHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_secretsmanager_secret", externalID)
 }
 
@@ -28590,6 +29704,7 @@ type Aws_secretsmanager_secret_versionHandler struct {
 
 // Create ...
 func (h *Aws_secretsmanager_secret_versionHandler) Create(desired *Aws_secretsmanager_secret_version) (*Aws_secretsmanager_secret_version, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28606,6 +29721,7 @@ func (h *Aws_secretsmanager_secret_versionHandler) Create(desired *Aws_secretsma
 
 // Read ...
 func (h *Aws_secretsmanager_secret_versionHandler) Read(externalID string) (*Aws_secretsmanager_secret_version, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_secretsmanager_secret_version", externalID)
 	if err != nil {
 		return nil, err
@@ -28617,6 +29733,7 @@ func (h *Aws_secretsmanager_secret_versionHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_secretsmanager_secret_versionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_secretsmanager_secret_version", externalID)
 }
 
@@ -28697,6 +29814,7 @@ type Aws_security_groupHandler struct {
 
 // Create ...
 func (h *Aws_security_groupHandler) Create(desired *Aws_security_group) (*Aws_security_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28713,6 +29831,7 @@ func (h *Aws_security_groupHandler) Create(desired *Aws_security_group) (*Aws_se
 
 // Read ...
 func (h *Aws_security_groupHandler) Read(externalID string) (*Aws_security_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_security_group", externalID)
 	if err != nil {
 		return nil, err
@@ -28724,6 +29843,7 @@ func (h *Aws_security_groupHandler) Read(externalID string) (*Aws_security_group
 
 // Delete ...
 func (h *Aws_security_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_security_group", externalID)
 }
 
@@ -28762,6 +29882,7 @@ type Aws_security_group_ruleHandler struct {
 
 // Create ...
 func (h *Aws_security_group_ruleHandler) Create(desired *Aws_security_group_rule) (*Aws_security_group_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28778,6 +29899,7 @@ func (h *Aws_security_group_ruleHandler) Create(desired *Aws_security_group_rule
 
 // Read ...
 func (h *Aws_security_group_ruleHandler) Read(externalID string) (*Aws_security_group_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_security_group_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -28789,6 +29911,7 @@ func (h *Aws_security_group_ruleHandler) Read(externalID string) (*Aws_security_
 
 // Delete ...
 func (h *Aws_security_group_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_security_group_rule", externalID)
 }
 
@@ -28805,6 +29928,7 @@ type Aws_securityhub_accountHandler struct {
 
 // Create ...
 func (h *Aws_securityhub_accountHandler) Create(desired *Aws_securityhub_account) (*Aws_securityhub_account, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28821,6 +29945,7 @@ func (h *Aws_securityhub_accountHandler) Create(desired *Aws_securityhub_account
 
 // Read ...
 func (h *Aws_securityhub_accountHandler) Read(externalID string) (*Aws_securityhub_account, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_securityhub_account", externalID)
 	if err != nil {
 		return nil, err
@@ -28832,6 +29957,7 @@ func (h *Aws_securityhub_accountHandler) Read(externalID string) (*Aws_securityh
 
 // Delete ...
 func (h *Aws_securityhub_accountHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_securityhub_account", externalID)
 }
 
@@ -28852,6 +29978,7 @@ type Aws_securityhub_product_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_securityhub_product_subscriptionHandler) Create(desired *Aws_securityhub_product_subscription) (*Aws_securityhub_product_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28868,6 +29995,7 @@ func (h *Aws_securityhub_product_subscriptionHandler) Create(desired *Aws_securi
 
 // Read ...
 func (h *Aws_securityhub_product_subscriptionHandler) Read(externalID string) (*Aws_securityhub_product_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_securityhub_product_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -28879,6 +30007,7 @@ func (h *Aws_securityhub_product_subscriptionHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Aws_securityhub_product_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_securityhub_product_subscription", externalID)
 }
 
@@ -28897,6 +30026,7 @@ type Aws_securityhub_standards_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_securityhub_standards_subscriptionHandler) Create(desired *Aws_securityhub_standards_subscription) (*Aws_securityhub_standards_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28913,6 +30043,7 @@ func (h *Aws_securityhub_standards_subscriptionHandler) Create(desired *Aws_secu
 
 // Read ...
 func (h *Aws_securityhub_standards_subscriptionHandler) Read(externalID string) (*Aws_securityhub_standards_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_securityhub_standards_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -28924,6 +30055,7 @@ func (h *Aws_securityhub_standards_subscriptionHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Aws_securityhub_standards_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_securityhub_standards_subscription", externalID)
 }
 
@@ -28946,6 +30078,7 @@ type Aws_service_discovery_http_namespaceHandler struct {
 
 // Create ...
 func (h *Aws_service_discovery_http_namespaceHandler) Create(desired *Aws_service_discovery_http_namespace) (*Aws_service_discovery_http_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -28962,6 +30095,7 @@ func (h *Aws_service_discovery_http_namespaceHandler) Create(desired *Aws_servic
 
 // Read ...
 func (h *Aws_service_discovery_http_namespaceHandler) Read(externalID string) (*Aws_service_discovery_http_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_service_discovery_http_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -28973,6 +30107,7 @@ func (h *Aws_service_discovery_http_namespaceHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Aws_service_discovery_http_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_service_discovery_http_namespace", externalID)
 }
 
@@ -28999,6 +30134,7 @@ type Aws_service_discovery_private_dns_namespaceHandler struct {
 
 // Create ...
 func (h *Aws_service_discovery_private_dns_namespaceHandler) Create(desired *Aws_service_discovery_private_dns_namespace) (*Aws_service_discovery_private_dns_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29015,6 +30151,7 @@ func (h *Aws_service_discovery_private_dns_namespaceHandler) Create(desired *Aws
 
 // Read ...
 func (h *Aws_service_discovery_private_dns_namespaceHandler) Read(externalID string) (*Aws_service_discovery_private_dns_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_service_discovery_private_dns_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -29026,6 +30163,7 @@ func (h *Aws_service_discovery_private_dns_namespaceHandler) Read(externalID str
 
 // Delete ...
 func (h *Aws_service_discovery_private_dns_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_service_discovery_private_dns_namespace", externalID)
 }
 
@@ -29050,6 +30188,7 @@ type Aws_service_discovery_public_dns_namespaceHandler struct {
 
 // Create ...
 func (h *Aws_service_discovery_public_dns_namespaceHandler) Create(desired *Aws_service_discovery_public_dns_namespace) (*Aws_service_discovery_public_dns_namespace, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29066,6 +30205,7 @@ func (h *Aws_service_discovery_public_dns_namespaceHandler) Create(desired *Aws_
 
 // Read ...
 func (h *Aws_service_discovery_public_dns_namespaceHandler) Read(externalID string) (*Aws_service_discovery_public_dns_namespace, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_service_discovery_public_dns_namespace", externalID)
 	if err != nil {
 		return nil, err
@@ -29077,6 +30217,7 @@ func (h *Aws_service_discovery_public_dns_namespaceHandler) Read(externalID stri
 
 // Delete ...
 func (h *Aws_service_discovery_public_dns_namespaceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_service_discovery_public_dns_namespace", externalID)
 }
 
@@ -29139,6 +30280,7 @@ type Aws_service_discovery_serviceHandler struct {
 
 // Create ...
 func (h *Aws_service_discovery_serviceHandler) Create(desired *Aws_service_discovery_service) (*Aws_service_discovery_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29155,6 +30297,7 @@ func (h *Aws_service_discovery_serviceHandler) Create(desired *Aws_service_disco
 
 // Read ...
 func (h *Aws_service_discovery_serviceHandler) Read(externalID string) (*Aws_service_discovery_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_service_discovery_service", externalID)
 	if err != nil {
 		return nil, err
@@ -29166,6 +30309,7 @@ func (h *Aws_service_discovery_serviceHandler) Read(externalID string) (*Aws_ser
 
 // Delete ...
 func (h *Aws_service_discovery_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_service_discovery_service", externalID)
 }
 
@@ -29194,6 +30338,7 @@ type Aws_servicecatalog_portfolioHandler struct {
 
 // Create ...
 func (h *Aws_servicecatalog_portfolioHandler) Create(desired *Aws_servicecatalog_portfolio) (*Aws_servicecatalog_portfolio, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29210,6 +30355,7 @@ func (h *Aws_servicecatalog_portfolioHandler) Create(desired *Aws_servicecatalog
 
 // Read ...
 func (h *Aws_servicecatalog_portfolioHandler) Read(externalID string) (*Aws_servicecatalog_portfolio, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_servicecatalog_portfolio", externalID)
 	if err != nil {
 		return nil, err
@@ -29221,6 +30367,7 @@ func (h *Aws_servicecatalog_portfolioHandler) Read(externalID string) (*Aws_serv
 
 // Delete ...
 func (h *Aws_servicecatalog_portfolioHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_servicecatalog_portfolio", externalID)
 }
 
@@ -29239,6 +30386,7 @@ type Aws_ses_active_receipt_rule_setHandler struct {
 
 // Create ...
 func (h *Aws_ses_active_receipt_rule_setHandler) Create(desired *Aws_ses_active_receipt_rule_set) (*Aws_ses_active_receipt_rule_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29255,6 +30403,7 @@ func (h *Aws_ses_active_receipt_rule_setHandler) Create(desired *Aws_ses_active_
 
 // Read ...
 func (h *Aws_ses_active_receipt_rule_setHandler) Read(externalID string) (*Aws_ses_active_receipt_rule_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_active_receipt_rule_set", externalID)
 	if err != nil {
 		return nil, err
@@ -29266,6 +30415,7 @@ func (h *Aws_ses_active_receipt_rule_setHandler) Read(externalID string) (*Aws_s
 
 // Delete ...
 func (h *Aws_ses_active_receipt_rule_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_active_receipt_rule_set", externalID)
 }
 
@@ -29284,6 +30434,7 @@ type Aws_ses_configuration_setHandler struct {
 
 // Create ...
 func (h *Aws_ses_configuration_setHandler) Create(desired *Aws_ses_configuration_set) (*Aws_ses_configuration_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29300,6 +30451,7 @@ func (h *Aws_ses_configuration_setHandler) Create(desired *Aws_ses_configuration
 
 // Read ...
 func (h *Aws_ses_configuration_setHandler) Read(externalID string) (*Aws_ses_configuration_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_configuration_set", externalID)
 	if err != nil {
 		return nil, err
@@ -29311,6 +30463,7 @@ func (h *Aws_ses_configuration_setHandler) Read(externalID string) (*Aws_ses_con
 
 // Delete ...
 func (h *Aws_ses_configuration_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_configuration_set", externalID)
 }
 
@@ -29331,6 +30484,7 @@ type Aws_ses_domain_dkimHandler struct {
 
 // Create ...
 func (h *Aws_ses_domain_dkimHandler) Create(desired *Aws_ses_domain_dkim) (*Aws_ses_domain_dkim, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29347,6 +30501,7 @@ func (h *Aws_ses_domain_dkimHandler) Create(desired *Aws_ses_domain_dkim) (*Aws_
 
 // Read ...
 func (h *Aws_ses_domain_dkimHandler) Read(externalID string) (*Aws_ses_domain_dkim, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_domain_dkim", externalID)
 	if err != nil {
 		return nil, err
@@ -29358,6 +30513,7 @@ func (h *Aws_ses_domain_dkimHandler) Read(externalID string) (*Aws_ses_domain_dk
 
 // Delete ...
 func (h *Aws_ses_domain_dkimHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_domain_dkim", externalID)
 }
 
@@ -29380,6 +30536,7 @@ type Aws_ses_domain_identityHandler struct {
 
 // Create ...
 func (h *Aws_ses_domain_identityHandler) Create(desired *Aws_ses_domain_identity) (*Aws_ses_domain_identity, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29396,6 +30553,7 @@ func (h *Aws_ses_domain_identityHandler) Create(desired *Aws_ses_domain_identity
 
 // Read ...
 func (h *Aws_ses_domain_identityHandler) Read(externalID string) (*Aws_ses_domain_identity, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_domain_identity", externalID)
 	if err != nil {
 		return nil, err
@@ -29407,6 +30565,7 @@ func (h *Aws_ses_domain_identityHandler) Read(externalID string) (*Aws_ses_domai
 
 // Delete ...
 func (h *Aws_ses_domain_identityHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_domain_identity", externalID)
 }
 
@@ -29427,6 +30586,7 @@ type Aws_ses_domain_identity_verificationHandler struct {
 
 // Create ...
 func (h *Aws_ses_domain_identity_verificationHandler) Create(desired *Aws_ses_domain_identity_verification) (*Aws_ses_domain_identity_verification, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29443,6 +30603,7 @@ func (h *Aws_ses_domain_identity_verificationHandler) Create(desired *Aws_ses_do
 
 // Read ...
 func (h *Aws_ses_domain_identity_verificationHandler) Read(externalID string) (*Aws_ses_domain_identity_verification, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_domain_identity_verification", externalID)
 	if err != nil {
 		return nil, err
@@ -29454,6 +30615,7 @@ func (h *Aws_ses_domain_identity_verificationHandler) Read(externalID string) (*
 
 // Delete ...
 func (h *Aws_ses_domain_identity_verificationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_domain_identity_verification", externalID)
 }
 
@@ -29476,6 +30638,7 @@ type Aws_ses_domain_mail_fromHandler struct {
 
 // Create ...
 func (h *Aws_ses_domain_mail_fromHandler) Create(desired *Aws_ses_domain_mail_from) (*Aws_ses_domain_mail_from, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29492,6 +30655,7 @@ func (h *Aws_ses_domain_mail_fromHandler) Create(desired *Aws_ses_domain_mail_fr
 
 // Read ...
 func (h *Aws_ses_domain_mail_fromHandler) Read(externalID string) (*Aws_ses_domain_mail_from, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_domain_mail_from", externalID)
 	if err != nil {
 		return nil, err
@@ -29503,6 +30667,7 @@ func (h *Aws_ses_domain_mail_fromHandler) Read(externalID string) (*Aws_ses_doma
 
 // Delete ...
 func (h *Aws_ses_domain_mail_fromHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_domain_mail_from", externalID)
 }
 
@@ -29557,6 +30722,7 @@ type Aws_ses_event_destinationHandler struct {
 
 // Create ...
 func (h *Aws_ses_event_destinationHandler) Create(desired *Aws_ses_event_destination) (*Aws_ses_event_destination, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29573,6 +30739,7 @@ func (h *Aws_ses_event_destinationHandler) Create(desired *Aws_ses_event_destina
 
 // Read ...
 func (h *Aws_ses_event_destinationHandler) Read(externalID string) (*Aws_ses_event_destination, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_event_destination", externalID)
 	if err != nil {
 		return nil, err
@@ -29584,6 +30751,7 @@ func (h *Aws_ses_event_destinationHandler) Read(externalID string) (*Aws_ses_eve
 
 // Delete ...
 func (h *Aws_ses_event_destinationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_event_destination", externalID)
 }
 
@@ -29606,6 +30774,7 @@ type Aws_ses_identity_notification_topicHandler struct {
 
 // Create ...
 func (h *Aws_ses_identity_notification_topicHandler) Create(desired *Aws_ses_identity_notification_topic) (*Aws_ses_identity_notification_topic, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29622,6 +30791,7 @@ func (h *Aws_ses_identity_notification_topicHandler) Create(desired *Aws_ses_ide
 
 // Read ...
 func (h *Aws_ses_identity_notification_topicHandler) Read(externalID string) (*Aws_ses_identity_notification_topic, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_identity_notification_topic", externalID)
 	if err != nil {
 		return nil, err
@@ -29633,6 +30803,7 @@ func (h *Aws_ses_identity_notification_topicHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_ses_identity_notification_topicHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_identity_notification_topic", externalID)
 }
 
@@ -29655,6 +30826,7 @@ type Aws_ses_receipt_filterHandler struct {
 
 // Create ...
 func (h *Aws_ses_receipt_filterHandler) Create(desired *Aws_ses_receipt_filter) (*Aws_ses_receipt_filter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29671,6 +30843,7 @@ func (h *Aws_ses_receipt_filterHandler) Create(desired *Aws_ses_receipt_filter) 
 
 // Read ...
 func (h *Aws_ses_receipt_filterHandler) Read(externalID string) (*Aws_ses_receipt_filter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_receipt_filter", externalID)
 	if err != nil {
 		return nil, err
@@ -29682,6 +30855,7 @@ func (h *Aws_ses_receipt_filterHandler) Read(externalID string) (*Aws_ses_receip
 
 // Delete ...
 func (h *Aws_ses_receipt_filterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_receipt_filter", externalID)
 }
 
@@ -29806,6 +30980,7 @@ type Aws_ses_receipt_ruleHandler struct {
 
 // Create ...
 func (h *Aws_ses_receipt_ruleHandler) Create(desired *Aws_ses_receipt_rule) (*Aws_ses_receipt_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29822,6 +30997,7 @@ func (h *Aws_ses_receipt_ruleHandler) Create(desired *Aws_ses_receipt_rule) (*Aw
 
 // Read ...
 func (h *Aws_ses_receipt_ruleHandler) Read(externalID string) (*Aws_ses_receipt_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_receipt_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -29833,6 +31009,7 @@ func (h *Aws_ses_receipt_ruleHandler) Read(externalID string) (*Aws_ses_receipt_
 
 // Delete ...
 func (h *Aws_ses_receipt_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_receipt_rule", externalID)
 }
 
@@ -29851,6 +31028,7 @@ type Aws_ses_receipt_rule_setHandler struct {
 
 // Create ...
 func (h *Aws_ses_receipt_rule_setHandler) Create(desired *Aws_ses_receipt_rule_set) (*Aws_ses_receipt_rule_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29867,6 +31045,7 @@ func (h *Aws_ses_receipt_rule_setHandler) Create(desired *Aws_ses_receipt_rule_s
 
 // Read ...
 func (h *Aws_ses_receipt_rule_setHandler) Read(externalID string) (*Aws_ses_receipt_rule_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_receipt_rule_set", externalID)
 	if err != nil {
 		return nil, err
@@ -29878,6 +31057,7 @@ func (h *Aws_ses_receipt_rule_setHandler) Read(externalID string) (*Aws_ses_rece
 
 // Delete ...
 func (h *Aws_ses_receipt_rule_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_receipt_rule_set", externalID)
 }
 
@@ -29902,6 +31082,7 @@ type Aws_ses_templateHandler struct {
 
 // Create ...
 func (h *Aws_ses_templateHandler) Create(desired *Aws_ses_template) (*Aws_ses_template, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29918,6 +31099,7 @@ func (h *Aws_ses_templateHandler) Create(desired *Aws_ses_template) (*Aws_ses_te
 
 // Read ...
 func (h *Aws_ses_templateHandler) Read(externalID string) (*Aws_ses_template, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ses_template", externalID)
 	if err != nil {
 		return nil, err
@@ -29929,6 +31111,7 @@ func (h *Aws_ses_templateHandler) Read(externalID string) (*Aws_ses_template, er
 
 // Delete ...
 func (h *Aws_ses_templateHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ses_template", externalID)
 }
 
@@ -29951,6 +31134,7 @@ type Aws_sfn_activityHandler struct {
 
 // Create ...
 func (h *Aws_sfn_activityHandler) Create(desired *Aws_sfn_activity) (*Aws_sfn_activity, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -29967,6 +31151,7 @@ func (h *Aws_sfn_activityHandler) Create(desired *Aws_sfn_activity) (*Aws_sfn_ac
 
 // Read ...
 func (h *Aws_sfn_activityHandler) Read(externalID string) (*Aws_sfn_activity, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sfn_activity", externalID)
 	if err != nil {
 		return nil, err
@@ -29978,6 +31163,7 @@ func (h *Aws_sfn_activityHandler) Read(externalID string) (*Aws_sfn_activity, er
 
 // Delete ...
 func (h *Aws_sfn_activityHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sfn_activity", externalID)
 }
 
@@ -30006,6 +31192,7 @@ type Aws_sfn_state_machineHandler struct {
 
 // Create ...
 func (h *Aws_sfn_state_machineHandler) Create(desired *Aws_sfn_state_machine) (*Aws_sfn_state_machine, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30022,6 +31209,7 @@ func (h *Aws_sfn_state_machineHandler) Create(desired *Aws_sfn_state_machine) (*
 
 // Read ...
 func (h *Aws_sfn_state_machineHandler) Read(externalID string) (*Aws_sfn_state_machine, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sfn_state_machine", externalID)
 	if err != nil {
 		return nil, err
@@ -30033,6 +31221,7 @@ func (h *Aws_sfn_state_machineHandler) Read(externalID string) (*Aws_sfn_state_m
 
 // Delete ...
 func (h *Aws_sfn_state_machineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sfn_state_machine", externalID)
 }
 
@@ -30051,6 +31240,7 @@ type Aws_simpledb_domainHandler struct {
 
 // Create ...
 func (h *Aws_simpledb_domainHandler) Create(desired *Aws_simpledb_domain) (*Aws_simpledb_domain, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30067,6 +31257,7 @@ func (h *Aws_simpledb_domainHandler) Create(desired *Aws_simpledb_domain) (*Aws_
 
 // Read ...
 func (h *Aws_simpledb_domainHandler) Read(externalID string) (*Aws_simpledb_domain, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_simpledb_domain", externalID)
 	if err != nil {
 		return nil, err
@@ -30078,6 +31269,7 @@ func (h *Aws_simpledb_domainHandler) Read(externalID string) (*Aws_simpledb_doma
 
 // Delete ...
 func (h *Aws_simpledb_domainHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_simpledb_domain", externalID)
 }
 
@@ -30098,6 +31290,7 @@ type Aws_snapshot_create_volume_permissionHandler struct {
 
 // Create ...
 func (h *Aws_snapshot_create_volume_permissionHandler) Create(desired *Aws_snapshot_create_volume_permission) (*Aws_snapshot_create_volume_permission, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30114,6 +31307,7 @@ func (h *Aws_snapshot_create_volume_permissionHandler) Create(desired *Aws_snaps
 
 // Read ...
 func (h *Aws_snapshot_create_volume_permissionHandler) Read(externalID string) (*Aws_snapshot_create_volume_permission, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_snapshot_create_volume_permission", externalID)
 	if err != nil {
 		return nil, err
@@ -30125,6 +31319,7 @@ func (h *Aws_snapshot_create_volume_permissionHandler) Read(externalID string) (
 
 // Delete ...
 func (h *Aws_snapshot_create_volume_permissionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_snapshot_create_volume_permission", externalID)
 }
 
@@ -30165,6 +31360,7 @@ type Aws_sns_platform_applicationHandler struct {
 
 // Create ...
 func (h *Aws_sns_platform_applicationHandler) Create(desired *Aws_sns_platform_application) (*Aws_sns_platform_application, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30181,6 +31377,7 @@ func (h *Aws_sns_platform_applicationHandler) Create(desired *Aws_sns_platform_a
 
 // Read ...
 func (h *Aws_sns_platform_applicationHandler) Read(externalID string) (*Aws_sns_platform_application, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sns_platform_application", externalID)
 	if err != nil {
 		return nil, err
@@ -30192,6 +31389,7 @@ func (h *Aws_sns_platform_applicationHandler) Read(externalID string) (*Aws_sns_
 
 // Delete ...
 func (h *Aws_sns_platform_applicationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sns_platform_application", externalID)
 }
 
@@ -30220,6 +31418,7 @@ type Aws_sns_sms_preferencesHandler struct {
 
 // Create ...
 func (h *Aws_sns_sms_preferencesHandler) Create(desired *Aws_sns_sms_preferences) (*Aws_sns_sms_preferences, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30236,6 +31435,7 @@ func (h *Aws_sns_sms_preferencesHandler) Create(desired *Aws_sns_sms_preferences
 
 // Read ...
 func (h *Aws_sns_sms_preferencesHandler) Read(externalID string) (*Aws_sns_sms_preferences, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sns_sms_preferences", externalID)
 	if err != nil {
 		return nil, err
@@ -30247,6 +31447,7 @@ func (h *Aws_sns_sms_preferencesHandler) Read(externalID string) (*Aws_sns_sms_p
 
 // Delete ...
 func (h *Aws_sns_sms_preferencesHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sns_sms_preferences", externalID)
 }
 
@@ -30301,6 +31502,7 @@ type Aws_sns_topicHandler struct {
 
 // Create ...
 func (h *Aws_sns_topicHandler) Create(desired *Aws_sns_topic) (*Aws_sns_topic, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30317,6 +31519,7 @@ func (h *Aws_sns_topicHandler) Create(desired *Aws_sns_topic) (*Aws_sns_topic, s
 
 // Read ...
 func (h *Aws_sns_topicHandler) Read(externalID string) (*Aws_sns_topic, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sns_topic", externalID)
 	if err != nil {
 		return nil, err
@@ -30328,6 +31531,7 @@ func (h *Aws_sns_topicHandler) Read(externalID string) (*Aws_sns_topic, error) {
 
 // Delete ...
 func (h *Aws_sns_topicHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sns_topic", externalID)
 }
 
@@ -30348,6 +31552,7 @@ type Aws_sns_topic_policyHandler struct {
 
 // Create ...
 func (h *Aws_sns_topic_policyHandler) Create(desired *Aws_sns_topic_policy) (*Aws_sns_topic_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30364,6 +31569,7 @@ func (h *Aws_sns_topic_policyHandler) Create(desired *Aws_sns_topic_policy) (*Aw
 
 // Read ...
 func (h *Aws_sns_topic_policyHandler) Read(externalID string) (*Aws_sns_topic_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sns_topic_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -30375,6 +31581,7 @@ func (h *Aws_sns_topic_policyHandler) Read(externalID string) (*Aws_sns_topic_po
 
 // Delete ...
 func (h *Aws_sns_topic_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sns_topic_policy", externalID)
 }
 
@@ -30409,6 +31616,7 @@ type Aws_sns_topic_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_sns_topic_subscriptionHandler) Create(desired *Aws_sns_topic_subscription) (*Aws_sns_topic_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30425,6 +31633,7 @@ func (h *Aws_sns_topic_subscriptionHandler) Create(desired *Aws_sns_topic_subscr
 
 // Read ...
 func (h *Aws_sns_topic_subscriptionHandler) Read(externalID string) (*Aws_sns_topic_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sns_topic_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -30436,6 +31645,7 @@ func (h *Aws_sns_topic_subscriptionHandler) Read(externalID string) (*Aws_sns_to
 
 // Delete ...
 func (h *Aws_sns_topic_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sns_topic_subscription", externalID)
 }
 
@@ -30456,6 +31666,7 @@ type Aws_spot_datafeed_subscriptionHandler struct {
 
 // Create ...
 func (h *Aws_spot_datafeed_subscriptionHandler) Create(desired *Aws_spot_datafeed_subscription) (*Aws_spot_datafeed_subscription, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30472,6 +31683,7 @@ func (h *Aws_spot_datafeed_subscriptionHandler) Create(desired *Aws_spot_datafee
 
 // Read ...
 func (h *Aws_spot_datafeed_subscriptionHandler) Read(externalID string) (*Aws_spot_datafeed_subscription, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_spot_datafeed_subscription", externalID)
 	if err != nil {
 		return nil, err
@@ -30483,6 +31695,7 @@ func (h *Aws_spot_datafeed_subscriptionHandler) Read(externalID string) (*Aws_sp
 
 // Delete ...
 func (h *Aws_spot_datafeed_subscriptionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_spot_datafeed_subscription", externalID)
 }
 
@@ -30617,6 +31830,7 @@ type Aws_spot_fleet_requestHandler struct {
 
 // Create ...
 func (h *Aws_spot_fleet_requestHandler) Create(desired *Aws_spot_fleet_request) (*Aws_spot_fleet_request, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30633,6 +31847,7 @@ func (h *Aws_spot_fleet_requestHandler) Create(desired *Aws_spot_fleet_request) 
 
 // Read ...
 func (h *Aws_spot_fleet_requestHandler) Read(externalID string) (*Aws_spot_fleet_request, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_spot_fleet_request", externalID)
 	if err != nil {
 		return nil, err
@@ -30644,6 +31859,7 @@ func (h *Aws_spot_fleet_requestHandler) Read(externalID string) (*Aws_spot_fleet
 
 // Delete ...
 func (h *Aws_spot_fleet_requestHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_spot_fleet_request", externalID)
 }
 
@@ -30824,6 +32040,7 @@ type Aws_spot_instance_requestHandler struct {
 
 // Create ...
 func (h *Aws_spot_instance_requestHandler) Create(desired *Aws_spot_instance_request) (*Aws_spot_instance_request, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30840,6 +32057,7 @@ func (h *Aws_spot_instance_requestHandler) Create(desired *Aws_spot_instance_req
 
 // Read ...
 func (h *Aws_spot_instance_requestHandler) Read(externalID string) (*Aws_spot_instance_request, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_spot_instance_request", externalID)
 	if err != nil {
 		return nil, err
@@ -30851,6 +32069,7 @@ func (h *Aws_spot_instance_requestHandler) Read(externalID string) (*Aws_spot_in
 
 // Delete ...
 func (h *Aws_spot_instance_requestHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_spot_instance_request", externalID)
 }
 
@@ -30897,6 +32116,7 @@ type Aws_sqs_queueHandler struct {
 
 // Create ...
 func (h *Aws_sqs_queueHandler) Create(desired *Aws_sqs_queue) (*Aws_sqs_queue, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30913,6 +32133,7 @@ func (h *Aws_sqs_queueHandler) Create(desired *Aws_sqs_queue) (*Aws_sqs_queue, s
 
 // Read ...
 func (h *Aws_sqs_queueHandler) Read(externalID string) (*Aws_sqs_queue, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sqs_queue", externalID)
 	if err != nil {
 		return nil, err
@@ -30924,6 +32145,7 @@ func (h *Aws_sqs_queueHandler) Read(externalID string) (*Aws_sqs_queue, error) {
 
 // Delete ...
 func (h *Aws_sqs_queueHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sqs_queue", externalID)
 }
 
@@ -30944,6 +32166,7 @@ type Aws_sqs_queue_policyHandler struct {
 
 // Create ...
 func (h *Aws_sqs_queue_policyHandler) Create(desired *Aws_sqs_queue_policy) (*Aws_sqs_queue_policy, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -30960,6 +32183,7 @@ func (h *Aws_sqs_queue_policyHandler) Create(desired *Aws_sqs_queue_policy) (*Aw
 
 // Read ...
 func (h *Aws_sqs_queue_policyHandler) Read(externalID string) (*Aws_sqs_queue_policy, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_sqs_queue_policy", externalID)
 	if err != nil {
 		return nil, err
@@ -30971,6 +32195,7 @@ func (h *Aws_sqs_queue_policyHandler) Read(externalID string) (*Aws_sqs_queue_po
 
 // Delete ...
 func (h *Aws_sqs_queue_policyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_sqs_queue_policy", externalID)
 }
 
@@ -31003,6 +32228,7 @@ type Aws_ssm_activationHandler struct {
 
 // Create ...
 func (h *Aws_ssm_activationHandler) Create(desired *Aws_ssm_activation) (*Aws_ssm_activation, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31019,6 +32245,7 @@ func (h *Aws_ssm_activationHandler) Create(desired *Aws_ssm_activation) (*Aws_ss
 
 // Read ...
 func (h *Aws_ssm_activationHandler) Read(externalID string) (*Aws_ssm_activation, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_activation", externalID)
 	if err != nil {
 		return nil, err
@@ -31030,6 +32257,7 @@ func (h *Aws_ssm_activationHandler) Read(externalID string) (*Aws_ssm_activation
 
 // Delete ...
 func (h *Aws_ssm_activationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_activation", externalID)
 }
 
@@ -31080,6 +32308,7 @@ type Aws_ssm_associationHandler struct {
 
 // Create ...
 func (h *Aws_ssm_associationHandler) Create(desired *Aws_ssm_association) (*Aws_ssm_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31096,6 +32325,7 @@ func (h *Aws_ssm_associationHandler) Create(desired *Aws_ssm_association) (*Aws_
 
 // Read ...
 func (h *Aws_ssm_associationHandler) Read(externalID string) (*Aws_ssm_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_association", externalID)
 	if err != nil {
 		return nil, err
@@ -31107,6 +32337,7 @@ func (h *Aws_ssm_associationHandler) Read(externalID string) (*Aws_ssm_associati
 
 // Delete ...
 func (h *Aws_ssm_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_association", externalID)
 }
 
@@ -31171,6 +32402,7 @@ type Aws_ssm_documentHandler struct {
 
 // Create ...
 func (h *Aws_ssm_documentHandler) Create(desired *Aws_ssm_document) (*Aws_ssm_document, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31187,6 +32419,7 @@ func (h *Aws_ssm_documentHandler) Create(desired *Aws_ssm_document) (*Aws_ssm_do
 
 // Read ...
 func (h *Aws_ssm_documentHandler) Read(externalID string) (*Aws_ssm_document, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_document", externalID)
 	if err != nil {
 		return nil, err
@@ -31198,6 +32431,7 @@ func (h *Aws_ssm_documentHandler) Read(externalID string) (*Aws_ssm_document, er
 
 // Delete ...
 func (h *Aws_ssm_documentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_document", externalID)
 }
 
@@ -31232,6 +32466,7 @@ type Aws_ssm_maintenance_windowHandler struct {
 
 // Create ...
 func (h *Aws_ssm_maintenance_windowHandler) Create(desired *Aws_ssm_maintenance_window) (*Aws_ssm_maintenance_window, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31248,6 +32483,7 @@ func (h *Aws_ssm_maintenance_windowHandler) Create(desired *Aws_ssm_maintenance_
 
 // Read ...
 func (h *Aws_ssm_maintenance_windowHandler) Read(externalID string) (*Aws_ssm_maintenance_window, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_maintenance_window", externalID)
 	if err != nil {
 		return nil, err
@@ -31259,6 +32495,7 @@ func (h *Aws_ssm_maintenance_windowHandler) Read(externalID string) (*Aws_ssm_ma
 
 // Delete ...
 func (h *Aws_ssm_maintenance_windowHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_maintenance_window", externalID)
 }
 
@@ -31291,6 +32528,7 @@ type Aws_ssm_maintenance_window_targetHandler struct {
 
 // Create ...
 func (h *Aws_ssm_maintenance_window_targetHandler) Create(desired *Aws_ssm_maintenance_window_target) (*Aws_ssm_maintenance_window_target, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31307,6 +32545,7 @@ func (h *Aws_ssm_maintenance_window_targetHandler) Create(desired *Aws_ssm_maint
 
 // Read ...
 func (h *Aws_ssm_maintenance_window_targetHandler) Read(externalID string) (*Aws_ssm_maintenance_window_target, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_maintenance_window_target", externalID)
 	if err != nil {
 		return nil, err
@@ -31318,6 +32557,7 @@ func (h *Aws_ssm_maintenance_window_targetHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_ssm_maintenance_window_targetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_maintenance_window_target", externalID)
 }
 
@@ -31384,6 +32624,7 @@ type Aws_ssm_maintenance_window_taskHandler struct {
 
 // Create ...
 func (h *Aws_ssm_maintenance_window_taskHandler) Create(desired *Aws_ssm_maintenance_window_task) (*Aws_ssm_maintenance_window_task, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31400,6 +32641,7 @@ func (h *Aws_ssm_maintenance_window_taskHandler) Create(desired *Aws_ssm_mainten
 
 // Read ...
 func (h *Aws_ssm_maintenance_window_taskHandler) Read(externalID string) (*Aws_ssm_maintenance_window_task, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_maintenance_window_task", externalID)
 	if err != nil {
 		return nil, err
@@ -31411,6 +32653,7 @@ func (h *Aws_ssm_maintenance_window_taskHandler) Read(externalID string) (*Aws_s
 
 // Delete ...
 func (h *Aws_ssm_maintenance_window_taskHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_maintenance_window_task", externalID)
 }
 
@@ -31445,6 +32688,7 @@ type Aws_ssm_parameterHandler struct {
 
 // Create ...
 func (h *Aws_ssm_parameterHandler) Create(desired *Aws_ssm_parameter) (*Aws_ssm_parameter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31461,6 +32705,7 @@ func (h *Aws_ssm_parameterHandler) Create(desired *Aws_ssm_parameter) (*Aws_ssm_
 
 // Read ...
 func (h *Aws_ssm_parameterHandler) Read(externalID string) (*Aws_ssm_parameter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_parameter", externalID)
 	if err != nil {
 		return nil, err
@@ -31472,6 +32717,7 @@ func (h *Aws_ssm_parameterHandler) Read(externalID string) (*Aws_ssm_parameter, 
 
 // Delete ...
 func (h *Aws_ssm_parameterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_parameter", externalID)
 }
 
@@ -31532,6 +32778,7 @@ type Aws_ssm_patch_baselineHandler struct {
 
 // Create ...
 func (h *Aws_ssm_patch_baselineHandler) Create(desired *Aws_ssm_patch_baseline) (*Aws_ssm_patch_baseline, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31548,6 +32795,7 @@ func (h *Aws_ssm_patch_baselineHandler) Create(desired *Aws_ssm_patch_baseline) 
 
 // Read ...
 func (h *Aws_ssm_patch_baselineHandler) Read(externalID string) (*Aws_ssm_patch_baseline, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_patch_baseline", externalID)
 	if err != nil {
 		return nil, err
@@ -31559,6 +32807,7 @@ func (h *Aws_ssm_patch_baselineHandler) Read(externalID string) (*Aws_ssm_patch_
 
 // Delete ...
 func (h *Aws_ssm_patch_baselineHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_patch_baseline", externalID)
 }
 
@@ -31579,6 +32828,7 @@ type Aws_ssm_patch_groupHandler struct {
 
 // Create ...
 func (h *Aws_ssm_patch_groupHandler) Create(desired *Aws_ssm_patch_group) (*Aws_ssm_patch_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31595,6 +32845,7 @@ func (h *Aws_ssm_patch_groupHandler) Create(desired *Aws_ssm_patch_group) (*Aws_
 
 // Read ...
 func (h *Aws_ssm_patch_groupHandler) Read(externalID string) (*Aws_ssm_patch_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_patch_group", externalID)
 	if err != nil {
 		return nil, err
@@ -31606,6 +32857,7 @@ func (h *Aws_ssm_patch_groupHandler) Read(externalID string) (*Aws_ssm_patch_gro
 
 // Delete ...
 func (h *Aws_ssm_patch_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_patch_group", externalID)
 }
 
@@ -31640,6 +32892,7 @@ type Aws_ssm_resource_data_syncHandler struct {
 
 // Create ...
 func (h *Aws_ssm_resource_data_syncHandler) Create(desired *Aws_ssm_resource_data_sync) (*Aws_ssm_resource_data_sync, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31656,6 +32909,7 @@ func (h *Aws_ssm_resource_data_syncHandler) Create(desired *Aws_ssm_resource_dat
 
 // Read ...
 func (h *Aws_ssm_resource_data_syncHandler) Read(externalID string) (*Aws_ssm_resource_data_sync, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_ssm_resource_data_sync", externalID)
 	if err != nil {
 		return nil, err
@@ -31667,6 +32921,7 @@ func (h *Aws_ssm_resource_data_syncHandler) Read(externalID string) (*Aws_ssm_re
 
 // Delete ...
 func (h *Aws_ssm_resource_data_syncHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_ssm_resource_data_sync", externalID)
 }
 
@@ -31687,6 +32942,7 @@ type Aws_storagegateway_cacheHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_cacheHandler) Create(desired *Aws_storagegateway_cache) (*Aws_storagegateway_cache, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31703,6 +32959,7 @@ func (h *Aws_storagegateway_cacheHandler) Create(desired *Aws_storagegateway_cac
 
 // Read ...
 func (h *Aws_storagegateway_cacheHandler) Read(externalID string) (*Aws_storagegateway_cache, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_cache", externalID)
 	if err != nil {
 		return nil, err
@@ -31714,6 +32971,7 @@ func (h *Aws_storagegateway_cacheHandler) Read(externalID string) (*Aws_storageg
 
 // Delete ...
 func (h *Aws_storagegateway_cacheHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_cache", externalID)
 }
 
@@ -31756,6 +33014,7 @@ type Aws_storagegateway_cached_iscsi_volumeHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_cached_iscsi_volumeHandler) Create(desired *Aws_storagegateway_cached_iscsi_volume) (*Aws_storagegateway_cached_iscsi_volume, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31772,6 +33031,7 @@ func (h *Aws_storagegateway_cached_iscsi_volumeHandler) Create(desired *Aws_stor
 
 // Read ...
 func (h *Aws_storagegateway_cached_iscsi_volumeHandler) Read(externalID string) (*Aws_storagegateway_cached_iscsi_volume, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_cached_iscsi_volume", externalID)
 	if err != nil {
 		return nil, err
@@ -31783,6 +33043,7 @@ func (h *Aws_storagegateway_cached_iscsi_volumeHandler) Read(externalID string) 
 
 // Delete ...
 func (h *Aws_storagegateway_cached_iscsi_volumeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_cached_iscsi_volume", externalID)
 }
 
@@ -31831,6 +33092,7 @@ type Aws_storagegateway_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_gatewayHandler) Create(desired *Aws_storagegateway_gateway) (*Aws_storagegateway_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31847,6 +33109,7 @@ func (h *Aws_storagegateway_gatewayHandler) Create(desired *Aws_storagegateway_g
 
 // Read ...
 func (h *Aws_storagegateway_gatewayHandler) Read(externalID string) (*Aws_storagegateway_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -31858,6 +33121,7 @@ func (h *Aws_storagegateway_gatewayHandler) Read(externalID string) (*Aws_storag
 
 // Delete ...
 func (h *Aws_storagegateway_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_gateway", externalID)
 }
 
@@ -31916,6 +33180,7 @@ type Aws_storagegateway_nfs_file_shareHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_nfs_file_shareHandler) Create(desired *Aws_storagegateway_nfs_file_share) (*Aws_storagegateway_nfs_file_share, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -31932,6 +33197,7 @@ func (h *Aws_storagegateway_nfs_file_shareHandler) Create(desired *Aws_storagega
 
 // Read ...
 func (h *Aws_storagegateway_nfs_file_shareHandler) Read(externalID string) (*Aws_storagegateway_nfs_file_share, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_nfs_file_share", externalID)
 	if err != nil {
 		return nil, err
@@ -31943,6 +33209,7 @@ func (h *Aws_storagegateway_nfs_file_shareHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_storagegateway_nfs_file_shareHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_nfs_file_share", externalID)
 }
 
@@ -31989,6 +33256,7 @@ type Aws_storagegateway_smb_file_shareHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_smb_file_shareHandler) Create(desired *Aws_storagegateway_smb_file_share) (*Aws_storagegateway_smb_file_share, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32005,6 +33273,7 @@ func (h *Aws_storagegateway_smb_file_shareHandler) Create(desired *Aws_storagega
 
 // Read ...
 func (h *Aws_storagegateway_smb_file_shareHandler) Read(externalID string) (*Aws_storagegateway_smb_file_share, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_smb_file_share", externalID)
 	if err != nil {
 		return nil, err
@@ -32016,6 +33285,7 @@ func (h *Aws_storagegateway_smb_file_shareHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_storagegateway_smb_file_shareHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_smb_file_share", externalID)
 }
 
@@ -32036,6 +33306,7 @@ type Aws_storagegateway_upload_bufferHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_upload_bufferHandler) Create(desired *Aws_storagegateway_upload_buffer) (*Aws_storagegateway_upload_buffer, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32052,6 +33323,7 @@ func (h *Aws_storagegateway_upload_bufferHandler) Create(desired *Aws_storagegat
 
 // Read ...
 func (h *Aws_storagegateway_upload_bufferHandler) Read(externalID string) (*Aws_storagegateway_upload_buffer, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_upload_buffer", externalID)
 	if err != nil {
 		return nil, err
@@ -32063,6 +33335,7 @@ func (h *Aws_storagegateway_upload_bufferHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_storagegateway_upload_bufferHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_upload_buffer", externalID)
 }
 
@@ -32083,6 +33356,7 @@ type Aws_storagegateway_working_storageHandler struct {
 
 // Create ...
 func (h *Aws_storagegateway_working_storageHandler) Create(desired *Aws_storagegateway_working_storage) (*Aws_storagegateway_working_storage, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32099,6 +33373,7 @@ func (h *Aws_storagegateway_working_storageHandler) Create(desired *Aws_storageg
 
 // Read ...
 func (h *Aws_storagegateway_working_storageHandler) Read(externalID string) (*Aws_storagegateway_working_storage, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_storagegateway_working_storage", externalID)
 	if err != nil {
 		return nil, err
@@ -32110,6 +33385,7 @@ func (h *Aws_storagegateway_working_storageHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_storagegateway_working_storageHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_storagegateway_working_storage", externalID)
 }
 
@@ -32148,6 +33424,7 @@ type Aws_subnetHandler struct {
 
 // Create ...
 func (h *Aws_subnetHandler) Create(desired *Aws_subnet) (*Aws_subnet, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32164,6 +33441,7 @@ func (h *Aws_subnetHandler) Create(desired *Aws_subnet) (*Aws_subnet, string, er
 
 // Read ...
 func (h *Aws_subnetHandler) Read(externalID string) (*Aws_subnet, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_subnet", externalID)
 	if err != nil {
 		return nil, err
@@ -32175,6 +33453,7 @@ func (h *Aws_subnetHandler) Read(externalID string) (*Aws_subnet, error) {
 
 // Delete ...
 func (h *Aws_subnetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_subnet", externalID)
 }
 
@@ -32199,6 +33478,7 @@ type Aws_swf_domainHandler struct {
 
 // Create ...
 func (h *Aws_swf_domainHandler) Create(desired *Aws_swf_domain) (*Aws_swf_domain, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32215,6 +33495,7 @@ func (h *Aws_swf_domainHandler) Create(desired *Aws_swf_domain) (*Aws_swf_domain
 
 // Read ...
 func (h *Aws_swf_domainHandler) Read(externalID string) (*Aws_swf_domain, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_swf_domain", externalID)
 	if err != nil {
 		return nil, err
@@ -32226,6 +33507,7 @@ func (h *Aws_swf_domainHandler) Read(externalID string) (*Aws_swf_domain, error)
 
 // Delete ...
 func (h *Aws_swf_domainHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_swf_domain", externalID)
 }
 
@@ -32258,6 +33540,7 @@ type Aws_transfer_serverHandler struct {
 
 // Create ...
 func (h *Aws_transfer_serverHandler) Create(desired *Aws_transfer_server) (*Aws_transfer_server, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32274,6 +33557,7 @@ func (h *Aws_transfer_serverHandler) Create(desired *Aws_transfer_server) (*Aws_
 
 // Read ...
 func (h *Aws_transfer_serverHandler) Read(externalID string) (*Aws_transfer_server, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_transfer_server", externalID)
 	if err != nil {
 		return nil, err
@@ -32285,6 +33569,7 @@ func (h *Aws_transfer_serverHandler) Read(externalID string) (*Aws_transfer_serv
 
 // Delete ...
 func (h *Aws_transfer_serverHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_transfer_server", externalID)
 }
 
@@ -32307,6 +33592,7 @@ type Aws_transfer_ssh_keyHandler struct {
 
 // Create ...
 func (h *Aws_transfer_ssh_keyHandler) Create(desired *Aws_transfer_ssh_key) (*Aws_transfer_ssh_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32323,6 +33609,7 @@ func (h *Aws_transfer_ssh_keyHandler) Create(desired *Aws_transfer_ssh_key) (*Aw
 
 // Read ...
 func (h *Aws_transfer_ssh_keyHandler) Read(externalID string) (*Aws_transfer_ssh_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_transfer_ssh_key", externalID)
 	if err != nil {
 		return nil, err
@@ -32334,6 +33621,7 @@ func (h *Aws_transfer_ssh_keyHandler) Read(externalID string) (*Aws_transfer_ssh
 
 // Delete ...
 func (h *Aws_transfer_ssh_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_transfer_ssh_key", externalID)
 }
 
@@ -32364,6 +33652,7 @@ type Aws_transfer_userHandler struct {
 
 // Create ...
 func (h *Aws_transfer_userHandler) Create(desired *Aws_transfer_user) (*Aws_transfer_user, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32380,6 +33669,7 @@ func (h *Aws_transfer_userHandler) Create(desired *Aws_transfer_user) (*Aws_tran
 
 // Read ...
 func (h *Aws_transfer_userHandler) Read(externalID string) (*Aws_transfer_user, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_transfer_user", externalID)
 	if err != nil {
 		return nil, err
@@ -32391,6 +33681,7 @@ func (h *Aws_transfer_userHandler) Read(externalID string) (*Aws_transfer_user, 
 
 // Delete ...
 func (h *Aws_transfer_userHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_transfer_user", externalID)
 }
 
@@ -32417,6 +33708,7 @@ type Aws_volume_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_volume_attachmentHandler) Create(desired *Aws_volume_attachment) (*Aws_volume_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32433,6 +33725,7 @@ func (h *Aws_volume_attachmentHandler) Create(desired *Aws_volume_attachment) (*
 
 // Read ...
 func (h *Aws_volume_attachmentHandler) Read(externalID string) (*Aws_volume_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_volume_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -32444,6 +33737,7 @@ func (h *Aws_volume_attachmentHandler) Read(externalID string) (*Aws_volume_atta
 
 // Delete ...
 func (h *Aws_volume_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_volume_attachment", externalID)
 }
 
@@ -32494,6 +33788,7 @@ type Aws_vpcHandler struct {
 
 // Create ...
 func (h *Aws_vpcHandler) Create(desired *Aws_vpc) (*Aws_vpc, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32510,6 +33805,7 @@ func (h *Aws_vpcHandler) Create(desired *Aws_vpc) (*Aws_vpc, string, error) {
 
 // Read ...
 func (h *Aws_vpcHandler) Read(externalID string) (*Aws_vpc, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc", externalID)
 	if err != nil {
 		return nil, err
@@ -32521,6 +33817,7 @@ func (h *Aws_vpcHandler) Read(externalID string) (*Aws_vpc, error) {
 
 // Delete ...
 func (h *Aws_vpcHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc", externalID)
 }
 
@@ -32551,6 +33848,7 @@ type Aws_vpc_dhcp_optionsHandler struct {
 
 // Create ...
 func (h *Aws_vpc_dhcp_optionsHandler) Create(desired *Aws_vpc_dhcp_options) (*Aws_vpc_dhcp_options, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32567,6 +33865,7 @@ func (h *Aws_vpc_dhcp_optionsHandler) Create(desired *Aws_vpc_dhcp_options) (*Aw
 
 // Read ...
 func (h *Aws_vpc_dhcp_optionsHandler) Read(externalID string) (*Aws_vpc_dhcp_options, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_dhcp_options", externalID)
 	if err != nil {
 		return nil, err
@@ -32578,6 +33877,7 @@ func (h *Aws_vpc_dhcp_optionsHandler) Read(externalID string) (*Aws_vpc_dhcp_opt
 
 // Delete ...
 func (h *Aws_vpc_dhcp_optionsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_dhcp_options", externalID)
 }
 
@@ -32598,6 +33898,7 @@ type Aws_vpc_dhcp_options_associationHandler struct {
 
 // Create ...
 func (h *Aws_vpc_dhcp_options_associationHandler) Create(desired *Aws_vpc_dhcp_options_association) (*Aws_vpc_dhcp_options_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32614,6 +33915,7 @@ func (h *Aws_vpc_dhcp_options_associationHandler) Create(desired *Aws_vpc_dhcp_o
 
 // Read ...
 func (h *Aws_vpc_dhcp_options_associationHandler) Read(externalID string) (*Aws_vpc_dhcp_options_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_dhcp_options_association", externalID)
 	if err != nil {
 		return nil, err
@@ -32625,6 +33927,7 @@ func (h *Aws_vpc_dhcp_options_associationHandler) Read(externalID string) (*Aws_
 
 // Delete ...
 func (h *Aws_vpc_dhcp_options_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_dhcp_options_association", externalID)
 }
 
@@ -32677,6 +33980,7 @@ type Aws_vpc_endpointHandler struct {
 
 // Create ...
 func (h *Aws_vpc_endpointHandler) Create(desired *Aws_vpc_endpoint) (*Aws_vpc_endpoint, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32693,6 +33997,7 @@ func (h *Aws_vpc_endpointHandler) Create(desired *Aws_vpc_endpoint) (*Aws_vpc_en
 
 // Read ...
 func (h *Aws_vpc_endpointHandler) Read(externalID string) (*Aws_vpc_endpoint, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_endpoint", externalID)
 	if err != nil {
 		return nil, err
@@ -32704,6 +34009,7 @@ func (h *Aws_vpc_endpointHandler) Read(externalID string) (*Aws_vpc_endpoint, er
 
 // Delete ...
 func (h *Aws_vpc_endpointHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_endpoint", externalID)
 }
 
@@ -32732,6 +34038,7 @@ type Aws_vpc_endpoint_connection_notificationHandler struct {
 
 // Create ...
 func (h *Aws_vpc_endpoint_connection_notificationHandler) Create(desired *Aws_vpc_endpoint_connection_notification) (*Aws_vpc_endpoint_connection_notification, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32748,6 +34055,7 @@ func (h *Aws_vpc_endpoint_connection_notificationHandler) Create(desired *Aws_vp
 
 // Read ...
 func (h *Aws_vpc_endpoint_connection_notificationHandler) Read(externalID string) (*Aws_vpc_endpoint_connection_notification, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_endpoint_connection_notification", externalID)
 	if err != nil {
 		return nil, err
@@ -32759,6 +34067,7 @@ func (h *Aws_vpc_endpoint_connection_notificationHandler) Read(externalID string
 
 // Delete ...
 func (h *Aws_vpc_endpoint_connection_notificationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_endpoint_connection_notification", externalID)
 }
 
@@ -32779,6 +34088,7 @@ type Aws_vpc_endpoint_route_table_associationHandler struct {
 
 // Create ...
 func (h *Aws_vpc_endpoint_route_table_associationHandler) Create(desired *Aws_vpc_endpoint_route_table_association) (*Aws_vpc_endpoint_route_table_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32795,6 +34105,7 @@ func (h *Aws_vpc_endpoint_route_table_associationHandler) Create(desired *Aws_vp
 
 // Read ...
 func (h *Aws_vpc_endpoint_route_table_associationHandler) Read(externalID string) (*Aws_vpc_endpoint_route_table_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_endpoint_route_table_association", externalID)
 	if err != nil {
 		return nil, err
@@ -32806,6 +34117,7 @@ func (h *Aws_vpc_endpoint_route_table_associationHandler) Read(externalID string
 
 // Delete ...
 func (h *Aws_vpc_endpoint_route_table_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_endpoint_route_table_association", externalID)
 }
 
@@ -32840,6 +34152,7 @@ type Aws_vpc_endpoint_serviceHandler struct {
 
 // Create ...
 func (h *Aws_vpc_endpoint_serviceHandler) Create(desired *Aws_vpc_endpoint_service) (*Aws_vpc_endpoint_service, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32856,6 +34169,7 @@ func (h *Aws_vpc_endpoint_serviceHandler) Create(desired *Aws_vpc_endpoint_servi
 
 // Read ...
 func (h *Aws_vpc_endpoint_serviceHandler) Read(externalID string) (*Aws_vpc_endpoint_service, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_endpoint_service", externalID)
 	if err != nil {
 		return nil, err
@@ -32867,6 +34181,7 @@ func (h *Aws_vpc_endpoint_serviceHandler) Read(externalID string) (*Aws_vpc_endp
 
 // Delete ...
 func (h *Aws_vpc_endpoint_serviceHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_endpoint_service", externalID)
 }
 
@@ -32887,6 +34202,7 @@ type Aws_vpc_endpoint_service_allowed_principalHandler struct {
 
 // Create ...
 func (h *Aws_vpc_endpoint_service_allowed_principalHandler) Create(desired *Aws_vpc_endpoint_service_allowed_principal) (*Aws_vpc_endpoint_service_allowed_principal, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32903,6 +34219,7 @@ func (h *Aws_vpc_endpoint_service_allowed_principalHandler) Create(desired *Aws_
 
 // Read ...
 func (h *Aws_vpc_endpoint_service_allowed_principalHandler) Read(externalID string) (*Aws_vpc_endpoint_service_allowed_principal, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_endpoint_service_allowed_principal", externalID)
 	if err != nil {
 		return nil, err
@@ -32914,6 +34231,7 @@ func (h *Aws_vpc_endpoint_service_allowed_principalHandler) Read(externalID stri
 
 // Delete ...
 func (h *Aws_vpc_endpoint_service_allowed_principalHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_endpoint_service_allowed_principal", externalID)
 }
 
@@ -32934,6 +34252,7 @@ type Aws_vpc_endpoint_subnet_associationHandler struct {
 
 // Create ...
 func (h *Aws_vpc_endpoint_subnet_associationHandler) Create(desired *Aws_vpc_endpoint_subnet_association) (*Aws_vpc_endpoint_subnet_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32950,6 +34269,7 @@ func (h *Aws_vpc_endpoint_subnet_associationHandler) Create(desired *Aws_vpc_end
 
 // Read ...
 func (h *Aws_vpc_endpoint_subnet_associationHandler) Read(externalID string) (*Aws_vpc_endpoint_subnet_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_endpoint_subnet_association", externalID)
 	if err != nil {
 		return nil, err
@@ -32961,6 +34281,7 @@ func (h *Aws_vpc_endpoint_subnet_associationHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_vpc_endpoint_subnet_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_endpoint_subnet_association", externalID)
 }
 
@@ -32981,6 +34302,7 @@ type Aws_vpc_ipv4_cidr_block_associationHandler struct {
 
 // Create ...
 func (h *Aws_vpc_ipv4_cidr_block_associationHandler) Create(desired *Aws_vpc_ipv4_cidr_block_association) (*Aws_vpc_ipv4_cidr_block_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -32997,6 +34319,7 @@ func (h *Aws_vpc_ipv4_cidr_block_associationHandler) Create(desired *Aws_vpc_ipv
 
 // Read ...
 func (h *Aws_vpc_ipv4_cidr_block_associationHandler) Read(externalID string) (*Aws_vpc_ipv4_cidr_block_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_ipv4_cidr_block_association", externalID)
 	if err != nil {
 		return nil, err
@@ -33008,6 +34331,7 @@ func (h *Aws_vpc_ipv4_cidr_block_associationHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_vpc_ipv4_cidr_block_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_ipv4_cidr_block_association", externalID)
 }
 
@@ -33062,6 +34386,7 @@ type Aws_vpc_peering_connectionHandler struct {
 
 // Create ...
 func (h *Aws_vpc_peering_connectionHandler) Create(desired *Aws_vpc_peering_connection) (*Aws_vpc_peering_connection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33078,6 +34403,7 @@ func (h *Aws_vpc_peering_connectionHandler) Create(desired *Aws_vpc_peering_conn
 
 // Read ...
 func (h *Aws_vpc_peering_connectionHandler) Read(externalID string) (*Aws_vpc_peering_connection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_peering_connection", externalID)
 	if err != nil {
 		return nil, err
@@ -33089,6 +34415,7 @@ func (h *Aws_vpc_peering_connectionHandler) Read(externalID string) (*Aws_vpc_pe
 
 // Delete ...
 func (h *Aws_vpc_peering_connectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_peering_connection", externalID)
 }
 
@@ -33145,6 +34472,7 @@ type Aws_vpc_peering_connection_accepterHandler struct {
 
 // Create ...
 func (h *Aws_vpc_peering_connection_accepterHandler) Create(desired *Aws_vpc_peering_connection_accepter) (*Aws_vpc_peering_connection_accepter, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33161,6 +34489,7 @@ func (h *Aws_vpc_peering_connection_accepterHandler) Create(desired *Aws_vpc_pee
 
 // Read ...
 func (h *Aws_vpc_peering_connection_accepterHandler) Read(externalID string) (*Aws_vpc_peering_connection_accepter, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_peering_connection_accepter", externalID)
 	if err != nil {
 		return nil, err
@@ -33172,6 +34501,7 @@ func (h *Aws_vpc_peering_connection_accepterHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_vpc_peering_connection_accepterHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_peering_connection_accepter", externalID)
 }
 
@@ -33214,6 +34544,7 @@ type Aws_vpc_peering_connection_optionsHandler struct {
 
 // Create ...
 func (h *Aws_vpc_peering_connection_optionsHandler) Create(desired *Aws_vpc_peering_connection_options) (*Aws_vpc_peering_connection_options, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33230,6 +34561,7 @@ func (h *Aws_vpc_peering_connection_optionsHandler) Create(desired *Aws_vpc_peer
 
 // Read ...
 func (h *Aws_vpc_peering_connection_optionsHandler) Read(externalID string) (*Aws_vpc_peering_connection_options, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpc_peering_connection_options", externalID)
 	if err != nil {
 		return nil, err
@@ -33241,6 +34573,7 @@ func (h *Aws_vpc_peering_connection_optionsHandler) Read(externalID string) (*Aw
 
 // Delete ...
 func (h *Aws_vpc_peering_connection_optionsHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpc_peering_connection_options", externalID)
 }
 
@@ -33327,6 +34660,7 @@ type Aws_vpn_connectionHandler struct {
 
 // Create ...
 func (h *Aws_vpn_connectionHandler) Create(desired *Aws_vpn_connection) (*Aws_vpn_connection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33343,6 +34677,7 @@ func (h *Aws_vpn_connectionHandler) Create(desired *Aws_vpn_connection) (*Aws_vp
 
 // Read ...
 func (h *Aws_vpn_connectionHandler) Read(externalID string) (*Aws_vpn_connection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpn_connection", externalID)
 	if err != nil {
 		return nil, err
@@ -33354,6 +34689,7 @@ func (h *Aws_vpn_connectionHandler) Read(externalID string) (*Aws_vpn_connection
 
 // Delete ...
 func (h *Aws_vpn_connectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpn_connection", externalID)
 }
 
@@ -33374,6 +34710,7 @@ type Aws_vpn_connection_routeHandler struct {
 
 // Create ...
 func (h *Aws_vpn_connection_routeHandler) Create(desired *Aws_vpn_connection_route) (*Aws_vpn_connection_route, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33390,6 +34727,7 @@ func (h *Aws_vpn_connection_routeHandler) Create(desired *Aws_vpn_connection_rou
 
 // Read ...
 func (h *Aws_vpn_connection_routeHandler) Read(externalID string) (*Aws_vpn_connection_route, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpn_connection_route", externalID)
 	if err != nil {
 		return nil, err
@@ -33401,6 +34739,7 @@ func (h *Aws_vpn_connection_routeHandler) Read(externalID string) (*Aws_vpn_conn
 
 // Delete ...
 func (h *Aws_vpn_connection_routeHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpn_connection_route", externalID)
 }
 
@@ -33425,6 +34764,7 @@ type Aws_vpn_gatewayHandler struct {
 
 // Create ...
 func (h *Aws_vpn_gatewayHandler) Create(desired *Aws_vpn_gateway) (*Aws_vpn_gateway, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33441,6 +34781,7 @@ func (h *Aws_vpn_gatewayHandler) Create(desired *Aws_vpn_gateway) (*Aws_vpn_gate
 
 // Read ...
 func (h *Aws_vpn_gatewayHandler) Read(externalID string) (*Aws_vpn_gateway, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpn_gateway", externalID)
 	if err != nil {
 		return nil, err
@@ -33452,6 +34793,7 @@ func (h *Aws_vpn_gatewayHandler) Read(externalID string) (*Aws_vpn_gateway, erro
 
 // Delete ...
 func (h *Aws_vpn_gatewayHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpn_gateway", externalID)
 }
 
@@ -33472,6 +34814,7 @@ type Aws_vpn_gateway_attachmentHandler struct {
 
 // Create ...
 func (h *Aws_vpn_gateway_attachmentHandler) Create(desired *Aws_vpn_gateway_attachment) (*Aws_vpn_gateway_attachment, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33488,6 +34831,7 @@ func (h *Aws_vpn_gateway_attachmentHandler) Create(desired *Aws_vpn_gateway_atta
 
 // Read ...
 func (h *Aws_vpn_gateway_attachmentHandler) Read(externalID string) (*Aws_vpn_gateway_attachment, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpn_gateway_attachment", externalID)
 	if err != nil {
 		return nil, err
@@ -33499,6 +34843,7 @@ func (h *Aws_vpn_gateway_attachmentHandler) Read(externalID string) (*Aws_vpn_ga
 
 // Delete ...
 func (h *Aws_vpn_gateway_attachmentHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpn_gateway_attachment", externalID)
 }
 
@@ -33519,6 +34864,7 @@ type Aws_vpn_gateway_route_propagationHandler struct {
 
 // Create ...
 func (h *Aws_vpn_gateway_route_propagationHandler) Create(desired *Aws_vpn_gateway_route_propagation) (*Aws_vpn_gateway_route_propagation, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33535,6 +34881,7 @@ func (h *Aws_vpn_gateway_route_propagationHandler) Create(desired *Aws_vpn_gatew
 
 // Read ...
 func (h *Aws_vpn_gateway_route_propagationHandler) Read(externalID string) (*Aws_vpn_gateway_route_propagation, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_vpn_gateway_route_propagation", externalID)
 	if err != nil {
 		return nil, err
@@ -33546,6 +34893,7 @@ func (h *Aws_vpn_gateway_route_propagationHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_vpn_gateway_route_propagationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_vpn_gateway_route_propagation", externalID)
 }
 
@@ -33586,6 +34934,7 @@ type Aws_waf_byte_match_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_byte_match_setHandler) Create(desired *Aws_waf_byte_match_set) (*Aws_waf_byte_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33602,6 +34951,7 @@ func (h *Aws_waf_byte_match_setHandler) Create(desired *Aws_waf_byte_match_set) 
 
 // Read ...
 func (h *Aws_waf_byte_match_setHandler) Read(externalID string) (*Aws_waf_byte_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_byte_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -33613,6 +34963,7 @@ func (h *Aws_waf_byte_match_setHandler) Read(externalID string) (*Aws_waf_byte_m
 
 // Delete ...
 func (h *Aws_waf_byte_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_byte_match_set", externalID)
 }
 
@@ -33641,6 +34992,7 @@ type Aws_waf_geo_match_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_geo_match_setHandler) Create(desired *Aws_waf_geo_match_set) (*Aws_waf_geo_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33657,6 +35009,7 @@ func (h *Aws_waf_geo_match_setHandler) Create(desired *Aws_waf_geo_match_set) (*
 
 // Read ...
 func (h *Aws_waf_geo_match_setHandler) Read(externalID string) (*Aws_waf_geo_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_geo_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -33668,6 +35021,7 @@ func (h *Aws_waf_geo_match_setHandler) Read(externalID string) (*Aws_waf_geo_mat
 
 // Delete ...
 func (h *Aws_waf_geo_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_geo_match_set", externalID)
 }
 
@@ -33698,6 +35052,7 @@ type Aws_waf_ipsetHandler struct {
 
 // Create ...
 func (h *Aws_waf_ipsetHandler) Create(desired *Aws_waf_ipset) (*Aws_waf_ipset, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33714,6 +35069,7 @@ func (h *Aws_waf_ipsetHandler) Create(desired *Aws_waf_ipset) (*Aws_waf_ipset, s
 
 // Read ...
 func (h *Aws_waf_ipsetHandler) Read(externalID string) (*Aws_waf_ipset, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_ipset", externalID)
 	if err != nil {
 		return nil, err
@@ -33725,6 +35081,7 @@ func (h *Aws_waf_ipsetHandler) Read(externalID string) (*Aws_waf_ipset, error) {
 
 // Delete ...
 func (h *Aws_waf_ipsetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_ipset", externalID)
 }
 
@@ -33761,6 +35118,7 @@ type Aws_waf_rate_based_ruleHandler struct {
 
 // Create ...
 func (h *Aws_waf_rate_based_ruleHandler) Create(desired *Aws_waf_rate_based_rule) (*Aws_waf_rate_based_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33777,6 +35135,7 @@ func (h *Aws_waf_rate_based_ruleHandler) Create(desired *Aws_waf_rate_based_rule
 
 // Read ...
 func (h *Aws_waf_rate_based_ruleHandler) Read(externalID string) (*Aws_waf_rate_based_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_rate_based_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -33788,6 +35147,7 @@ func (h *Aws_waf_rate_based_ruleHandler) Read(externalID string) (*Aws_waf_rate_
 
 // Delete ...
 func (h *Aws_waf_rate_based_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_rate_based_rule", externalID)
 }
 
@@ -33826,6 +35186,7 @@ type Aws_waf_regex_match_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_regex_match_setHandler) Create(desired *Aws_waf_regex_match_set) (*Aws_waf_regex_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33842,6 +35203,7 @@ func (h *Aws_waf_regex_match_setHandler) Create(desired *Aws_waf_regex_match_set
 
 // Read ...
 func (h *Aws_waf_regex_match_setHandler) Read(externalID string) (*Aws_waf_regex_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_regex_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -33853,6 +35215,7 @@ func (h *Aws_waf_regex_match_setHandler) Read(externalID string) (*Aws_waf_regex
 
 // Delete ...
 func (h *Aws_waf_regex_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_regex_match_set", externalID)
 }
 
@@ -33873,6 +35236,7 @@ type Aws_waf_regex_pattern_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_regex_pattern_setHandler) Create(desired *Aws_waf_regex_pattern_set) (*Aws_waf_regex_pattern_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33889,6 +35253,7 @@ func (h *Aws_waf_regex_pattern_setHandler) Create(desired *Aws_waf_regex_pattern
 
 // Read ...
 func (h *Aws_waf_regex_pattern_setHandler) Read(externalID string) (*Aws_waf_regex_pattern_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_regex_pattern_set", externalID)
 	if err != nil {
 		return nil, err
@@ -33900,6 +35265,7 @@ func (h *Aws_waf_regex_pattern_setHandler) Read(externalID string) (*Aws_waf_reg
 
 // Delete ...
 func (h *Aws_waf_regex_pattern_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_regex_pattern_set", externalID)
 }
 
@@ -33932,6 +35298,7 @@ type Aws_waf_ruleHandler struct {
 
 // Create ...
 func (h *Aws_waf_ruleHandler) Create(desired *Aws_waf_rule) (*Aws_waf_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -33948,6 +35315,7 @@ func (h *Aws_waf_ruleHandler) Create(desired *Aws_waf_rule) (*Aws_waf_rule, stri
 
 // Read ...
 func (h *Aws_waf_ruleHandler) Read(externalID string) (*Aws_waf_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -33959,6 +35327,7 @@ func (h *Aws_waf_ruleHandler) Read(externalID string) (*Aws_waf_rule, error) {
 
 // Delete ...
 func (h *Aws_waf_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_rule", externalID)
 }
 
@@ -33999,6 +35368,7 @@ type Aws_waf_rule_groupHandler struct {
 
 // Create ...
 func (h *Aws_waf_rule_groupHandler) Create(desired *Aws_waf_rule_group) (*Aws_waf_rule_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34015,6 +35385,7 @@ func (h *Aws_waf_rule_groupHandler) Create(desired *Aws_waf_rule_group) (*Aws_wa
 
 // Read ...
 func (h *Aws_waf_rule_groupHandler) Read(externalID string) (*Aws_waf_rule_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_rule_group", externalID)
 	if err != nil {
 		return nil, err
@@ -34026,6 +35397,7 @@ func (h *Aws_waf_rule_groupHandler) Read(externalID string) (*Aws_waf_rule_group
 
 // Delete ...
 func (h *Aws_waf_rule_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_rule_group", externalID)
 }
 
@@ -34066,6 +35438,7 @@ type Aws_waf_size_constraint_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_size_constraint_setHandler) Create(desired *Aws_waf_size_constraint_set) (*Aws_waf_size_constraint_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34082,6 +35455,7 @@ func (h *Aws_waf_size_constraint_setHandler) Create(desired *Aws_waf_size_constr
 
 // Read ...
 func (h *Aws_waf_size_constraint_setHandler) Read(externalID string) (*Aws_waf_size_constraint_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_size_constraint_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34093,6 +35467,7 @@ func (h *Aws_waf_size_constraint_setHandler) Read(externalID string) (*Aws_waf_s
 
 // Delete ...
 func (h *Aws_waf_size_constraint_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_size_constraint_set", externalID)
 }
 
@@ -34129,6 +35504,7 @@ type Aws_waf_sql_injection_match_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_sql_injection_match_setHandler) Create(desired *Aws_waf_sql_injection_match_set) (*Aws_waf_sql_injection_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34145,6 +35521,7 @@ func (h *Aws_waf_sql_injection_match_setHandler) Create(desired *Aws_waf_sql_inj
 
 // Read ...
 func (h *Aws_waf_sql_injection_match_setHandler) Read(externalID string) (*Aws_waf_sql_injection_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_sql_injection_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34156,6 +35533,7 @@ func (h *Aws_waf_sql_injection_match_setHandler) Read(externalID string) (*Aws_w
 
 // Delete ...
 func (h *Aws_waf_sql_injection_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_sql_injection_match_set", externalID)
 }
 
@@ -34212,6 +35590,7 @@ type Aws_waf_web_aclHandler struct {
 
 // Create ...
 func (h *Aws_waf_web_aclHandler) Create(desired *Aws_waf_web_acl) (*Aws_waf_web_acl, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34228,6 +35607,7 @@ func (h *Aws_waf_web_aclHandler) Create(desired *Aws_waf_web_acl) (*Aws_waf_web_
 
 // Read ...
 func (h *Aws_waf_web_aclHandler) Read(externalID string) (*Aws_waf_web_acl, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_web_acl", externalID)
 	if err != nil {
 		return nil, err
@@ -34239,6 +35619,7 @@ func (h *Aws_waf_web_aclHandler) Read(externalID string) (*Aws_waf_web_acl, erro
 
 // Delete ...
 func (h *Aws_waf_web_aclHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_web_acl", externalID)
 }
 
@@ -34275,6 +35656,7 @@ type Aws_waf_xss_match_setHandler struct {
 
 // Create ...
 func (h *Aws_waf_xss_match_setHandler) Create(desired *Aws_waf_xss_match_set) (*Aws_waf_xss_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34291,6 +35673,7 @@ func (h *Aws_waf_xss_match_setHandler) Create(desired *Aws_waf_xss_match_set) (*
 
 // Read ...
 func (h *Aws_waf_xss_match_setHandler) Read(externalID string) (*Aws_waf_xss_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_waf_xss_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34302,6 +35685,7 @@ func (h *Aws_waf_xss_match_setHandler) Read(externalID string) (*Aws_waf_xss_mat
 
 // Delete ...
 func (h *Aws_waf_xss_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_waf_xss_match_set", externalID)
 }
 
@@ -34364,6 +35748,7 @@ type Aws_wafregional_byte_match_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_byte_match_setHandler) Create(desired *Aws_wafregional_byte_match_set) (*Aws_wafregional_byte_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34380,6 +35765,7 @@ func (h *Aws_wafregional_byte_match_setHandler) Create(desired *Aws_wafregional_
 
 // Read ...
 func (h *Aws_wafregional_byte_match_setHandler) Read(externalID string) (*Aws_wafregional_byte_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_byte_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34391,6 +35777,7 @@ func (h *Aws_wafregional_byte_match_setHandler) Read(externalID string) (*Aws_wa
 
 // Delete ...
 func (h *Aws_wafregional_byte_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_byte_match_set", externalID)
 }
 
@@ -34419,6 +35806,7 @@ type Aws_wafregional_geo_match_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_geo_match_setHandler) Create(desired *Aws_wafregional_geo_match_set) (*Aws_wafregional_geo_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34435,6 +35823,7 @@ func (h *Aws_wafregional_geo_match_setHandler) Create(desired *Aws_wafregional_g
 
 // Read ...
 func (h *Aws_wafregional_geo_match_setHandler) Read(externalID string) (*Aws_wafregional_geo_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_geo_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34446,6 +35835,7 @@ func (h *Aws_wafregional_geo_match_setHandler) Read(externalID string) (*Aws_waf
 
 // Delete ...
 func (h *Aws_wafregional_geo_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_geo_match_set", externalID)
 }
 
@@ -34476,6 +35866,7 @@ type Aws_wafregional_ipsetHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_ipsetHandler) Create(desired *Aws_wafregional_ipset) (*Aws_wafregional_ipset, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34492,6 +35883,7 @@ func (h *Aws_wafregional_ipsetHandler) Create(desired *Aws_wafregional_ipset) (*
 
 // Read ...
 func (h *Aws_wafregional_ipsetHandler) Read(externalID string) (*Aws_wafregional_ipset, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_ipset", externalID)
 	if err != nil {
 		return nil, err
@@ -34503,6 +35895,7 @@ func (h *Aws_wafregional_ipsetHandler) Read(externalID string) (*Aws_wafregional
 
 // Delete ...
 func (h *Aws_wafregional_ipsetHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_ipset", externalID)
 }
 
@@ -34539,6 +35932,7 @@ type Aws_wafregional_rate_based_ruleHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_rate_based_ruleHandler) Create(desired *Aws_wafregional_rate_based_rule) (*Aws_wafregional_rate_based_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34555,6 +35949,7 @@ func (h *Aws_wafregional_rate_based_ruleHandler) Create(desired *Aws_wafregional
 
 // Read ...
 func (h *Aws_wafregional_rate_based_ruleHandler) Read(externalID string) (*Aws_wafregional_rate_based_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_rate_based_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -34566,6 +35961,7 @@ func (h *Aws_wafregional_rate_based_ruleHandler) Read(externalID string) (*Aws_w
 
 // Delete ...
 func (h *Aws_wafregional_rate_based_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_rate_based_rule", externalID)
 }
 
@@ -34604,6 +36000,7 @@ type Aws_wafregional_regex_match_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_regex_match_setHandler) Create(desired *Aws_wafregional_regex_match_set) (*Aws_wafregional_regex_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34620,6 +36017,7 @@ func (h *Aws_wafregional_regex_match_setHandler) Create(desired *Aws_wafregional
 
 // Read ...
 func (h *Aws_wafregional_regex_match_setHandler) Read(externalID string) (*Aws_wafregional_regex_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_regex_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34631,6 +36029,7 @@ func (h *Aws_wafregional_regex_match_setHandler) Read(externalID string) (*Aws_w
 
 // Delete ...
 func (h *Aws_wafregional_regex_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_regex_match_set", externalID)
 }
 
@@ -34651,6 +36050,7 @@ type Aws_wafregional_regex_pattern_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_regex_pattern_setHandler) Create(desired *Aws_wafregional_regex_pattern_set) (*Aws_wafregional_regex_pattern_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34667,6 +36067,7 @@ func (h *Aws_wafregional_regex_pattern_setHandler) Create(desired *Aws_wafregion
 
 // Read ...
 func (h *Aws_wafregional_regex_pattern_setHandler) Read(externalID string) (*Aws_wafregional_regex_pattern_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_regex_pattern_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34678,6 +36079,7 @@ func (h *Aws_wafregional_regex_pattern_setHandler) Read(externalID string) (*Aws
 
 // Delete ...
 func (h *Aws_wafregional_regex_pattern_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_regex_pattern_set", externalID)
 }
 
@@ -34710,6 +36112,7 @@ type Aws_wafregional_ruleHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_ruleHandler) Create(desired *Aws_wafregional_rule) (*Aws_wafregional_rule, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34726,6 +36129,7 @@ func (h *Aws_wafregional_ruleHandler) Create(desired *Aws_wafregional_rule) (*Aw
 
 // Read ...
 func (h *Aws_wafregional_ruleHandler) Read(externalID string) (*Aws_wafregional_rule, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_rule", externalID)
 	if err != nil {
 		return nil, err
@@ -34737,6 +36141,7 @@ func (h *Aws_wafregional_ruleHandler) Read(externalID string) (*Aws_wafregional_
 
 // Delete ...
 func (h *Aws_wafregional_ruleHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_rule", externalID)
 }
 
@@ -34777,6 +36182,7 @@ type Aws_wafregional_rule_groupHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_rule_groupHandler) Create(desired *Aws_wafregional_rule_group) (*Aws_wafregional_rule_group, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34793,6 +36199,7 @@ func (h *Aws_wafregional_rule_groupHandler) Create(desired *Aws_wafregional_rule
 
 // Read ...
 func (h *Aws_wafregional_rule_groupHandler) Read(externalID string) (*Aws_wafregional_rule_group, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_rule_group", externalID)
 	if err != nil {
 		return nil, err
@@ -34804,6 +36211,7 @@ func (h *Aws_wafregional_rule_groupHandler) Read(externalID string) (*Aws_wafreg
 
 // Delete ...
 func (h *Aws_wafregional_rule_groupHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_rule_group", externalID)
 }
 
@@ -34844,6 +36252,7 @@ type Aws_wafregional_size_constraint_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_size_constraint_setHandler) Create(desired *Aws_wafregional_size_constraint_set) (*Aws_wafregional_size_constraint_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34860,6 +36269,7 @@ func (h *Aws_wafregional_size_constraint_setHandler) Create(desired *Aws_wafregi
 
 // Read ...
 func (h *Aws_wafregional_size_constraint_setHandler) Read(externalID string) (*Aws_wafregional_size_constraint_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_size_constraint_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34871,6 +36281,7 @@ func (h *Aws_wafregional_size_constraint_setHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_wafregional_size_constraint_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_size_constraint_set", externalID)
 }
 
@@ -34907,6 +36318,7 @@ type Aws_wafregional_sql_injection_match_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_sql_injection_match_setHandler) Create(desired *Aws_wafregional_sql_injection_match_set) (*Aws_wafregional_sql_injection_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -34923,6 +36335,7 @@ func (h *Aws_wafregional_sql_injection_match_setHandler) Create(desired *Aws_waf
 
 // Read ...
 func (h *Aws_wafregional_sql_injection_match_setHandler) Read(externalID string) (*Aws_wafregional_sql_injection_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_sql_injection_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -34934,6 +36347,7 @@ func (h *Aws_wafregional_sql_injection_match_setHandler) Read(externalID string)
 
 // Delete ...
 func (h *Aws_wafregional_sql_injection_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_sql_injection_match_set", externalID)
 }
 
@@ -34990,6 +36404,7 @@ type Aws_wafregional_web_aclHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_web_aclHandler) Create(desired *Aws_wafregional_web_acl) (*Aws_wafregional_web_acl, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -35006,6 +36421,7 @@ func (h *Aws_wafregional_web_aclHandler) Create(desired *Aws_wafregional_web_acl
 
 // Read ...
 func (h *Aws_wafregional_web_aclHandler) Read(externalID string) (*Aws_wafregional_web_acl, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_web_acl", externalID)
 	if err != nil {
 		return nil, err
@@ -35017,6 +36433,7 @@ func (h *Aws_wafregional_web_aclHandler) Read(externalID string) (*Aws_wafregion
 
 // Delete ...
 func (h *Aws_wafregional_web_aclHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_web_acl", externalID)
 }
 
@@ -35037,6 +36454,7 @@ type Aws_wafregional_web_acl_associationHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_web_acl_associationHandler) Create(desired *Aws_wafregional_web_acl_association) (*Aws_wafregional_web_acl_association, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -35053,6 +36471,7 @@ func (h *Aws_wafregional_web_acl_associationHandler) Create(desired *Aws_wafregi
 
 // Read ...
 func (h *Aws_wafregional_web_acl_associationHandler) Read(externalID string) (*Aws_wafregional_web_acl_association, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_web_acl_association", externalID)
 	if err != nil {
 		return nil, err
@@ -35064,6 +36483,7 @@ func (h *Aws_wafregional_web_acl_associationHandler) Read(externalID string) (*A
 
 // Delete ...
 func (h *Aws_wafregional_web_acl_associationHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_web_acl_association", externalID)
 }
 
@@ -35100,6 +36520,7 @@ type Aws_wafregional_xss_match_setHandler struct {
 
 // Create ...
 func (h *Aws_wafregional_xss_match_setHandler) Create(desired *Aws_wafregional_xss_match_set) (*Aws_wafregional_xss_match_set, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -35116,6 +36537,7 @@ func (h *Aws_wafregional_xss_match_setHandler) Create(desired *Aws_wafregional_x
 
 // Read ...
 func (h *Aws_wafregional_xss_match_setHandler) Read(externalID string) (*Aws_wafregional_xss_match_set, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "aws_wafregional_xss_match_set", externalID)
 	if err != nil {
 		return nil, err
@@ -35127,5 +36549,6 @@ func (h *Aws_wafregional_xss_match_setHandler) Read(externalID string) (*Aws_waf
 
 // Delete ...
 func (h *Aws_wafregional_xss_match_setHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "aws_wafregional_xss_match_set", externalID)
 }
