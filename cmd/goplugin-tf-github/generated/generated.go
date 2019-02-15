@@ -6,12 +6,31 @@
 package generated
 
 import (
+	"sync"
+
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/puppet-evaluator/eval"
 	"github.com/lyraproj/servicesdk/service"
 )
+
+var once sync.Once
+var Config *terraform.ResourceConfig
+
+func configureProvider(p *schema.Provider) {
+	once.Do(func() {
+		if Config == nil {
+			Config = &terraform.ResourceConfig{
+				Config: map[string]interface{}{},
+			}
+		}
+		err := p.Configure(Config)
+		if err != nil {
+			panic(err)
+		}
+	})
+}
 
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
     var evs []eval.Type
@@ -50,7 +69,7 @@ func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
 }
 
 
-type Github_branch_protection_required_pull_request_reviews_1754 struct {
+type Github_branch_protection_required_pull_request_reviews_852 struct {
 
     Dismiss_stale_reviews *bool
 
@@ -64,7 +83,7 @@ type Github_branch_protection_required_pull_request_reviews_1754 struct {
 
 }
 
-type Github_branch_protection_required_status_checks_1755 struct {
+type Github_branch_protection_required_status_checks_853 struct {
 
     Contexts *[]string
 
@@ -74,7 +93,7 @@ type Github_branch_protection_required_status_checks_1755 struct {
 
 }
 
-type Github_branch_protection_restrictions_1756 struct {
+type Github_branch_protection_restrictions_854 struct {
 
     Teams *[]string
 
@@ -94,11 +113,11 @@ type Github_branch_protection struct {
 
     Repository string
 
-    Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_1754
+    Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_852
 
-    Required_status_checks *[]Github_branch_protection_required_status_checks_1755
+    Required_status_checks *[]Github_branch_protection_required_status_checks_853
 
-    Restrictions *[]Github_branch_protection_restrictions_1756
+    Restrictions *[]Github_branch_protection_restrictions_854
 
 }
 
@@ -109,6 +128,7 @@ type Github_branch_protectionHandler struct {
 
 // Create ...
 func (h *Github_branch_protectionHandler) Create(desired *Github_branch_protection) (*Github_branch_protection, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -125,6 +145,7 @@ func (h *Github_branch_protectionHandler) Create(desired *Github_branch_protecti
 
 // Read ...
 func (h *Github_branch_protectionHandler) Read(externalID string) (*Github_branch_protection, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_branch_protection", externalID)
 	if err != nil {
 		return nil, err
@@ -136,6 +157,7 @@ func (h *Github_branch_protectionHandler) Read(externalID string) (*Github_branc
 
 // Delete ...
 func (h *Github_branch_protectionHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_branch_protection", externalID)
 }
 
@@ -164,6 +186,7 @@ type Github_issue_labelHandler struct {
 
 // Create ...
 func (h *Github_issue_labelHandler) Create(desired *Github_issue_label) (*Github_issue_label, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -180,6 +203,7 @@ func (h *Github_issue_labelHandler) Create(desired *Github_issue_label) (*Github
 
 // Read ...
 func (h *Github_issue_labelHandler) Read(externalID string) (*Github_issue_label, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_issue_label", externalID)
 	if err != nil {
 		return nil, err
@@ -191,6 +215,7 @@ func (h *Github_issue_labelHandler) Read(externalID string) (*Github_issue_label
 
 // Delete ...
 func (h *Github_issue_labelHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_issue_label", externalID)
 }
 
@@ -213,6 +238,7 @@ type Github_membershipHandler struct {
 
 // Create ...
 func (h *Github_membershipHandler) Create(desired *Github_membership) (*Github_membership, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -229,6 +255,7 @@ func (h *Github_membershipHandler) Create(desired *Github_membership) (*Github_m
 
 // Read ...
 func (h *Github_membershipHandler) Read(externalID string) (*Github_membership, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_membership", externalID)
 	if err != nil {
 		return nil, err
@@ -240,6 +267,7 @@ func (h *Github_membershipHandler) Read(externalID string) (*Github_membership, 
 
 // Delete ...
 func (h *Github_membershipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_membership", externalID)
 }
 
@@ -264,6 +292,7 @@ type Github_organization_projectHandler struct {
 
 // Create ...
 func (h *Github_organization_projectHandler) Create(desired *Github_organization_project) (*Github_organization_project, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -280,6 +309,7 @@ func (h *Github_organization_projectHandler) Create(desired *Github_organization
 
 // Read ...
 func (h *Github_organization_projectHandler) Read(externalID string) (*Github_organization_project, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_organization_project", externalID)
 	if err != nil {
 		return nil, err
@@ -291,10 +321,11 @@ func (h *Github_organization_projectHandler) Read(externalID string) (*Github_or
 
 // Delete ...
 func (h *Github_organization_projectHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_organization_project", externalID)
 }
 
-type Github_organization_webhook_configuration_1757 struct {
+type Github_organization_webhook_configuration_855 struct {
 
     Content_type *string
 
@@ -312,7 +343,7 @@ type Github_organization_webhook struct {
 
     Active *bool
 
-    Configuration *[]Github_organization_webhook_configuration_1757
+    Configuration *[]Github_organization_webhook_configuration_855
 
     Etag *string
 
@@ -331,6 +362,7 @@ type Github_organization_webhookHandler struct {
 
 // Create ...
 func (h *Github_organization_webhookHandler) Create(desired *Github_organization_webhook) (*Github_organization_webhook, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -347,6 +379,7 @@ func (h *Github_organization_webhookHandler) Create(desired *Github_organization
 
 // Read ...
 func (h *Github_organization_webhookHandler) Read(externalID string) (*Github_organization_webhook, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_organization_webhook", externalID)
 	if err != nil {
 		return nil, err
@@ -358,6 +391,7 @@ func (h *Github_organization_webhookHandler) Read(externalID string) (*Github_or
 
 // Delete ...
 func (h *Github_organization_webhookHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_organization_webhook", externalID)
 }
 
@@ -380,6 +414,7 @@ type Github_project_columnHandler struct {
 
 // Create ...
 func (h *Github_project_columnHandler) Create(desired *Github_project_column) (*Github_project_column, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -396,6 +431,7 @@ func (h *Github_project_columnHandler) Create(desired *Github_project_column) (*
 
 // Read ...
 func (h *Github_project_columnHandler) Read(externalID string) (*Github_project_column, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_project_column", externalID)
 	if err != nil {
 		return nil, err
@@ -407,6 +443,7 @@ func (h *Github_project_columnHandler) Read(externalID string) (*Github_project_
 
 // Delete ...
 func (h *Github_project_columnHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_project_column", externalID)
 }
 
@@ -471,6 +508,7 @@ type Github_repositoryHandler struct {
 
 // Create ...
 func (h *Github_repositoryHandler) Create(desired *Github_repository) (*Github_repository, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -487,6 +525,7 @@ func (h *Github_repositoryHandler) Create(desired *Github_repository) (*Github_r
 
 // Read ...
 func (h *Github_repositoryHandler) Read(externalID string) (*Github_repository, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository", externalID)
 	if err != nil {
 		return nil, err
@@ -498,6 +537,7 @@ func (h *Github_repositoryHandler) Read(externalID string) (*Github_repository, 
 
 // Delete ...
 func (h *Github_repositoryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository", externalID)
 }
 
@@ -520,6 +560,7 @@ type Github_repository_collaboratorHandler struct {
 
 // Create ...
 func (h *Github_repository_collaboratorHandler) Create(desired *Github_repository_collaborator) (*Github_repository_collaborator, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -536,6 +577,7 @@ func (h *Github_repository_collaboratorHandler) Create(desired *Github_repositor
 
 // Read ...
 func (h *Github_repository_collaboratorHandler) Read(externalID string) (*Github_repository_collaborator, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_collaborator", externalID)
 	if err != nil {
 		return nil, err
@@ -547,6 +589,7 @@ func (h *Github_repository_collaboratorHandler) Read(externalID string) (*Github
 
 // Delete ...
 func (h *Github_repository_collaboratorHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_collaborator", externalID)
 }
 
@@ -573,6 +616,7 @@ type Github_repository_deploy_keyHandler struct {
 
 // Create ...
 func (h *Github_repository_deploy_keyHandler) Create(desired *Github_repository_deploy_key) (*Github_repository_deploy_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -589,6 +633,7 @@ func (h *Github_repository_deploy_keyHandler) Create(desired *Github_repository_
 
 // Read ...
 func (h *Github_repository_deploy_keyHandler) Read(externalID string) (*Github_repository_deploy_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_deploy_key", externalID)
 	if err != nil {
 		return nil, err
@@ -600,6 +645,7 @@ func (h *Github_repository_deploy_keyHandler) Read(externalID string) (*Github_r
 
 // Delete ...
 func (h *Github_repository_deploy_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_deploy_key", externalID)
 }
 
@@ -626,6 +672,7 @@ type Github_repository_projectHandler struct {
 
 // Create ...
 func (h *Github_repository_projectHandler) Create(desired *Github_repository_project) (*Github_repository_project, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -642,6 +689,7 @@ func (h *Github_repository_projectHandler) Create(desired *Github_repository_pro
 
 // Read ...
 func (h *Github_repository_projectHandler) Read(externalID string) (*Github_repository_project, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_project", externalID)
 	if err != nil {
 		return nil, err
@@ -653,10 +701,11 @@ func (h *Github_repository_projectHandler) Read(externalID string) (*Github_repo
 
 // Delete ...
 func (h *Github_repository_projectHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_project", externalID)
 }
 
-type Github_repository_webhook_configuration_1758 struct {
+type Github_repository_webhook_configuration_856 struct {
 
     Content_type *string
 
@@ -674,7 +723,7 @@ type Github_repository_webhook struct {
 
     Active *bool
 
-    Configuration *[]Github_repository_webhook_configuration_1758
+    Configuration *[]Github_repository_webhook_configuration_856
 
     Etag *string
 
@@ -695,6 +744,7 @@ type Github_repository_webhookHandler struct {
 
 // Create ...
 func (h *Github_repository_webhookHandler) Create(desired *Github_repository_webhook) (*Github_repository_webhook, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -711,6 +761,7 @@ func (h *Github_repository_webhookHandler) Create(desired *Github_repository_web
 
 // Read ...
 func (h *Github_repository_webhookHandler) Read(externalID string) (*Github_repository_webhook, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_webhook", externalID)
 	if err != nil {
 		return nil, err
@@ -722,6 +773,7 @@ func (h *Github_repository_webhookHandler) Read(externalID string) (*Github_repo
 
 // Delete ...
 func (h *Github_repository_webhookHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_webhook", externalID)
 }
 
@@ -752,6 +804,7 @@ type Github_teamHandler struct {
 
 // Create ...
 func (h *Github_teamHandler) Create(desired *Github_team) (*Github_team, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -768,6 +821,7 @@ func (h *Github_teamHandler) Create(desired *Github_team) (*Github_team, string,
 
 // Read ...
 func (h *Github_teamHandler) Read(externalID string) (*Github_team, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_team", externalID)
 	if err != nil {
 		return nil, err
@@ -779,6 +833,7 @@ func (h *Github_teamHandler) Read(externalID string) (*Github_team, error) {
 
 // Delete ...
 func (h *Github_teamHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_team", externalID)
 }
 
@@ -803,6 +858,7 @@ type Github_team_membershipHandler struct {
 
 // Create ...
 func (h *Github_team_membershipHandler) Create(desired *Github_team_membership) (*Github_team_membership, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -819,6 +875,7 @@ func (h *Github_team_membershipHandler) Create(desired *Github_team_membership) 
 
 // Read ...
 func (h *Github_team_membershipHandler) Read(externalID string) (*Github_team_membership, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_team_membership", externalID)
 	if err != nil {
 		return nil, err
@@ -830,6 +887,7 @@ func (h *Github_team_membershipHandler) Read(externalID string) (*Github_team_me
 
 // Delete ...
 func (h *Github_team_membershipHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_team_membership", externalID)
 }
 
@@ -854,6 +912,7 @@ type Github_team_repositoryHandler struct {
 
 // Create ...
 func (h *Github_team_repositoryHandler) Create(desired *Github_team_repository) (*Github_team_repository, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -870,6 +929,7 @@ func (h *Github_team_repositoryHandler) Create(desired *Github_team_repository) 
 
 // Read ...
 func (h *Github_team_repositoryHandler) Read(externalID string) (*Github_team_repository, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_team_repository", externalID)
 	if err != nil {
 		return nil, err
@@ -881,6 +941,7 @@ func (h *Github_team_repositoryHandler) Read(externalID string) (*Github_team_re
 
 // Delete ...
 func (h *Github_team_repositoryHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_team_repository", externalID)
 }
 
@@ -903,6 +964,7 @@ type Github_user_gpg_keyHandler struct {
 
 // Create ...
 func (h *Github_user_gpg_keyHandler) Create(desired *Github_user_gpg_key) (*Github_user_gpg_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -919,6 +981,7 @@ func (h *Github_user_gpg_keyHandler) Create(desired *Github_user_gpg_key) (*Gith
 
 // Read ...
 func (h *Github_user_gpg_keyHandler) Read(externalID string) (*Github_user_gpg_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_user_gpg_key", externalID)
 	if err != nil {
 		return nil, err
@@ -930,6 +993,7 @@ func (h *Github_user_gpg_keyHandler) Read(externalID string) (*Github_user_gpg_k
 
 // Delete ...
 func (h *Github_user_gpg_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_user_gpg_key", externalID)
 }
 
@@ -954,6 +1018,7 @@ type Github_user_ssh_keyHandler struct {
 
 // Create ...
 func (h *Github_user_ssh_keyHandler) Create(desired *Github_user_ssh_key) (*Github_user_ssh_key, string, error) {
+	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
@@ -970,6 +1035,7 @@ func (h *Github_user_ssh_keyHandler) Create(desired *Github_user_ssh_key) (*Gith
 
 // Read ...
 func (h *Github_user_ssh_keyHandler) Read(externalID string) (*Github_user_ssh_key, error) {
+	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_user_ssh_key", externalID)
 	if err != nil {
 		return nil, err
@@ -981,5 +1047,6 @@ func (h *Github_user_ssh_keyHandler) Read(externalID string) (*Github_user_ssh_k
 
 // Delete ...
 func (h *Github_user_ssh_keyHandler) Delete(externalID string) error {
+	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_user_ssh_key", externalID)
 }

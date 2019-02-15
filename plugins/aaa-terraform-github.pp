@@ -25,15 +25,15 @@ type TerraformGitHub = TypeSet[{
         },
         'repository' => String,
         'required_pull_request_reviews' => {
-          'type' => Optional[Array[Github_branch_protection_required_pull_request_reviews_1754]],
+          'type' => Optional[Array[Github_branch_protection_required_pull_request_reviews_852]],
           'value' => undef
         },
         'required_status_checks' => {
-          'type' => Optional[Array[Github_branch_protection_required_status_checks_1755]],
+          'type' => Optional[Array[Github_branch_protection_required_status_checks_853]],
           'value' => undef
         },
         'restrictions' => {
-          'type' => Optional[Array[Github_branch_protection_restrictions_1756]],
+          'type' => Optional[Array[Github_branch_protection_restrictions_854]],
           'value' => undef
         }
       }
@@ -49,7 +49,7 @@ type TerraformGitHub = TypeSet[{
           Optional[Github_branch_protection]]
       }
     },
-    Github_branch_protection_required_pull_request_reviews_1754 => {
+    Github_branch_protection_required_pull_request_reviews_852 => {
       attributes => {
         'dismiss_stale_reviews' => {
           'type' => Optional[Boolean],
@@ -73,7 +73,7 @@ type TerraformGitHub = TypeSet[{
         }
       }
     },
-    Github_branch_protection_required_status_checks_1755 => {
+    Github_branch_protection_required_status_checks_853 => {
       attributes => {
         'contexts' => {
           'type' => Optional[Array[String]],
@@ -89,7 +89,7 @@ type TerraformGitHub = TypeSet[{
         }
       }
     },
-    Github_branch_protection_restrictions_1756 => {
+    Github_branch_protection_restrictions_854 => {
       attributes => {
         'teams' => {
           'type' => Optional[Array[String]],
@@ -206,7 +206,7 @@ type TerraformGitHub = TypeSet[{
           'value' => undef
         },
         'configuration' => {
-          'type' => Optional[Array[Github_organization_webhook_configuration_1757]],
+          'type' => Optional[Array[Github_organization_webhook_configuration_855]],
           'value' => undef
         },
         'etag' => {
@@ -232,7 +232,7 @@ type TerraformGitHub = TypeSet[{
           Optional[Github_organization_webhook]]
       }
     },
-    Github_organization_webhook_configuration_1757 => {
+    Github_organization_webhook_configuration_855 => {
       attributes => {
         'content_type' => {
           'type' => Optional[String],
@@ -485,7 +485,7 @@ type TerraformGitHub = TypeSet[{
           'value' => undef
         },
         'configuration' => {
-          'type' => Optional[Array[Github_repository_webhook_configuration_1758]],
+          'type' => Optional[Array[Github_repository_webhook_configuration_856]],
           'value' => undef
         },
         'etag' => {
@@ -512,7 +512,7 @@ type TerraformGitHub = TypeSet[{
           Optional[Github_repository_webhook]]
       }
     },
-    Github_repository_webhook_configuration_1758 => {
+    Github_repository_webhook_configuration_856 => {
       attributes => {
         'content_type' => {
           'type' => Optional[String],
