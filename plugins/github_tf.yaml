@@ -1,0 +1,11 @@
+# You will need to set the following environment variables to authenticate with GitHub
+# export GITHUB_ORGANIZATION=lyraproj
+# export GITHUB_TOKEN=<token>
+
+github_tf:
+  typespace: TerraformGitHub
+  activities:
+    github_repository:
+      state:
+        name: "lyra-provider-test"
+        description: "Created using Lyra"

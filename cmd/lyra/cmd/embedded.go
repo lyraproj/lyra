@@ -8,6 +8,7 @@ import (
 	"github.com/lyraproj/lyra/cmd/goplugin-identity/identity"
 	tfaws "github.com/lyraproj/lyra/cmd/goplugin-tf-aws/handler"
 	tfazurerm "github.com/lyraproj/lyra/cmd/goplugin-tf-azurerm/handler"
+	tfgithub "github.com/lyraproj/lyra/cmd/goplugin-tf-github/handler"
 	tfgoogle "github.com/lyraproj/lyra/cmd/goplugin-tf-google/handler"
 	tfkubernetes "github.com/lyraproj/lyra/cmd/goplugin-tf-kubernetes/handler"
 	"github.com/lyraproj/lyra/pkg/logger"
@@ -42,6 +43,8 @@ func startPlugin(cmd *cobra.Command, args []string) {
 		tfaws.Start()
 	case "tfazurerm":
 		tfazurerm.Start()
+	case "tfgithub":
+		tfgithub.Start()
 	case "tfgoogle":
 		tfgoogle.Start()
 	case "tfkubernetes":
