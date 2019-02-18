@@ -96,6 +96,25 @@ msgstr
 "\n"
 "  lyra validate plugins/manifest.pp"
 
+#: cmd/lyra/cmd/generate.go:20
+msgid "generateCmdUse"
+msgstr "generate <language>"
+
+#: cmd/lyra/cmd/generate.go:21
+msgid "generateCmdShort"
+msgstr "Generate all typesets in the target language"
+
+#: cmd/lyra/cmd/generate.go:23
+msgid "generateCmdLong"
+msgstr "Generate all typesets in the target language"
+
+#: cmd/lyra/cmd/generate.go:24
+msgid "generateCmdExample" 
+msgstr 
+"\n"
+"  # Generate all typesets in yaml\n"
+"  lyra generate yaml\n"
+
 #: cmd/lyra/cmd/version.go:16
 msgid "versionCmdUse"
 msgstr "version"
