@@ -1,0 +1,18 @@
+# You will need to set the following environment variables to authenticate with GCP
+# export GOOGLE_PROJECT=<some-project>
+# export GOOGLE_APPLICATION_CREDENTIALS=<credentials-file.json>
+
+google_compute_instance:
+  typespace: TerraformGoogle
+  activities:
+    google_compute_instance:
+      state:
+        name: "lyra-test"
+        zone: "us-central1-a"
+        machine_type: "f1-micro"
+        boot_disk:
+          initialize_params:
+            image: "debian-cloud/debian-9"
+        network_interface:
+          network: "default"
+          access_config:

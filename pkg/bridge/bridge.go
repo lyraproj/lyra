@@ -47,7 +47,11 @@ func Create(p *schema.Provider, resourceType string, resourceConfig *terraform.R
 // Read a resource using the Terrform provider
 func Read(p *schema.Provider, resourceType string, id string) (string, map[string]interface{}, error) {
 	info := &terraform.InstanceInfo{Type: resourceType}
-	state := &terraform.InstanceState{ID: id}
+	state := &terraform.InstanceState{
+		ID:         id,
+		Attributes: map[string]string{},
+		Meta:       map[string]interface{}{},
+	}
 	newstate, err := p.Refresh(info, state)
 	if err != nil {
 		return "", nil, err
