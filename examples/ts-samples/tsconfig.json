@@ -1,0 +1,18 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "noImplicitAny": true,
+     "experimentalDecorators": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src"
+  ]
+}
