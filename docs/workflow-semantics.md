@@ -2,7 +2,7 @@ Workflow
 ===
 This document describes the generic semantics of a workflow in a language neutral way. See [Puppet Workflow DSL](workflow-puppet-dsl.md) and [YAML Workflow](workflow-yaml.md) for language specific declarations.
 
-A Workflow consists of a set of activities that are either declarative or imperative in nature. A `resource` of a certain type, that maps a desired state to to a handler for that state, is an example of a declarative activity, whereas a `stateless` activity with a code block, is an example of an imperative activity.
+A Workflow consists of a set of activities that are either declarative or imperative in nature. A `resource` of a certain type, that maps a desired state to to a handler for that state, is an example of a declarative activity, whereas an `action` activity with a code block, is an example of an imperative activity.
 
 A workflow, being an activity in its own right, may be used as an activity in another workflow.
 
@@ -12,7 +12,7 @@ All activities consist of the following elements:
 
 Element|Description|Mandatory
 -------|-----------|------
-style|one of `action`, `resource`, `stateless`, or `workflow`|yes
+style|one of `action`, `resource`, `state_handler`, or `workflow`|yes
 properties|literal hash declaring `input`, `output`, and other properties|yes
 iteration|enables multiple invocations of data or code|no
 data or code|interpreted differently depending on style|no
@@ -60,18 +60,18 @@ each|iterates over all elements of a hash or an array|`collection` - a hash or a
 
 An activity with an iteration must be declared to produce an `output` consisting of a `key` and a `value`. This is the product of each iteration. The final output from the activity is one variable named after the activity containing a Hash consisting of the key/value pair of each iteration.
 
-### Action
-An action implements a predefined set of functions (an interface) that performs tasks related to a subject. Lyra currently only defines one such interface, the CRUD, which is implemented by resource handlers and the only reason to write an action, is when there's a desire to implement a handler for a resource state.
+### StateHandler
+A stateHandler implements a predefined set of functions (an interface) that performs tasks related to a subject. Lyra currently only defines one such interface, the CRUD, which is implemented by resource handlers and the only reason to write an action, is when there's a desire to implement a handler for a resource state.
 
 It is expected that Lyra will add additional interfaces in the future.
 
-### Stateless
-Stateless defines an imperative function that performs some task based on its input and provides some output.
+### Action
+An action defines an imperative function that performs some task based on its input and provides some output.
 
 ### Resource
-A resource is a declaration of a desired state of some entity external to the workflow. The `<data or code>` block is a hash that defines this state. The block is described by an `Type` which is defined by a `handler`, an action that can perform `create`, `read`, `update`, and `delete` operations on the state.
+A resource is a declaration of a desired state of some entity external to the workflow. The `<data or code>` block is a hash that defines this state. The block is described by an `Type` which is defined by a `stateHandler`, an activity that can perform `create`, `read`, `update`, and `delete` operations on the state.
 
-When the workflow interacts with Resource activities, it delegates the apply of the activity to the CRUD layer which in turn consults the `handler` registered for the state's `Type`. The CRUD layer will determine the action to take depending on how the workflow engine was invoked.
+When the workflow interacts with Resource activities, it delegates the apply of the activity to the CRUD layer which in turn consults the `stateHandler` registered for the state's `Type`. The CRUD layer will determine how to use the `stateHandler` depending on how the workflow engine was invoked.
 
 #### Resource Attributes
 ##### type
