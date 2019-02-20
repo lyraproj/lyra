@@ -12,7 +12,7 @@ All activities are declared using the following syntax:
 ##### input
 The input declaration is similar to a function parameter list. The following:
 
-    input => (String $i1, String $i2 = lookup('do_something::i1'))
+    input => (String $i1, String $i2 = lookup('doSomething::i1'))
 
 declares the named parameters _i1_ and _i2_. The parameter _i2_ will get its value from a lookup.
 
@@ -42,7 +42,7 @@ A special construct can be used when it is desirable to group attributes into a 
 
 this example will result in
 
-    output => (Struct[x1 => Like[<resource_type>, x1], x1 => Like[<resource_type>, x2]] $o)
+    output => (Struct[x1 => Like[<resourceType>, x1], x1 => Like[<resourceType>, x2]] $o)
 
 this special construct also allows aliases, thus:
 
@@ -50,7 +50,7 @@ this special construct also allows aliases, thus:
 
 yields:
 
-    output => (Struct[a=>Like[<resource_type>,x1],b=>Like[<resource_type>,x2]] $o)
+    output => (Struct[a=>Like[<resourceType>,x1],b=>Like[<resourceType>,x2]] $o)
 
 #### when
 an activity is considered to have a guard when it declares:
@@ -76,37 +76,37 @@ Iteration is defined by adding one of the following constructs between the `<pro
 
       each(<hash>) |$key, $value|
 
-## Action
+## State handler
 
 ### Example
 
-Action that performs different actions on create, read, delete, and update.
+Activity that performs different actions on create, read, delete, and update.
 
-    action do_something {
-      handler_for => Some::Resource
-      input => (String i1, String i2 = lookup('do_something::i1')),
+    stateHandler doSomething {
+      handlerFor => Some::Resource
+      input => (String i1, String i2 = lookup('doSomething::i1')),
       output => (String x, Integer y)
     } {
       create($state) {
         // Code to create the subject
       }
-      read($external_id) {
+      read($externalId) {
         // Code to read the subject
       }
-      update($external_id, $state) {
+      update($externalId, $state) {
         // Code to update the subject
       }
-      delete($external_id)  {
+      delete($externalId)  {
         // Code to delete the subject
       }
     }
 
-## Stateless
+## Action
 
 ### Example
 
-    stateless do_something {
-      input => (String i1, String i2 = lookup('do_something::i1')),
+    action doSomething {
+      input => (String i1, String i2 = lookup('doSomething::i1')),
       output => (String x, Integer y)
     } {
       // Code to do something based in input and produce output
@@ -122,9 +122,9 @@ Action that performs different actions on create, read, delete, and update.
     resource vpc {
       output => ($vpcId)
     } {
-      region               => $region,
-      cidr_block           => '192.168.0.0/16',
-      tags                 => $tags,
+      region             => $region,
+      cidrBlock          => '192.168.0.0/16',
+      tags               => $tags,
       enableDnsHostnames => true,
       enableDnsSupport   => true
     }
@@ -136,11 +136,11 @@ In this example, the inferred input will be `input => ($region, $tags)`
     resource nodes {
       type => Lyra::Aws::Instance,
       input => (
-        Integer $ec2_cnt = lookup('aws.instance.count'),
+        Integer $ec2Cnt = lookup('aws.instance.count'),
         String $img = lookup('aws.instance.image'),
         $region, $tags)
-      output => ($key = instance_id, $value = [public_ip, private_ip])
-    } times($ec2_cnt) |$n| {
+      output => ($key = instanceId, $value = [publicIp, privateIp])
+    } times($ec2Cnt) |$n| {
       region => $region,
       imageId => $img,
       instanceType => 't2.nano',
@@ -164,7 +164,7 @@ The final computed output of this resource is a hash declared as:
 
 Workflow that leverages the `typespace` to infer the resource types i.e. 'lyra::aws::vpc'
 
-    workflow my_workflow {
+    workflow myWorkflow {
       typespace => 'lyra::aws',
       input => (String $region = lookup('aws::region', Hash[String,String] $tags = lookup('aws::tags')),
       output => ($vpcId, $subnetId)
@@ -172,35 +172,35 @@ Workflow that leverages the `typespace` to infer the resource types i.e. 'lyra::
       resource vpc {
         output => ($vpcId)
       } {
-        region               => $region,
-        cidrBlock            => '192.168.0.0/16',
-        tags                 => $tags,
-        enableDnsHostnames   => true,
-        enableDnsSupport     => true
+        region              => $region,
+        cidrBlock           => '192.168.0.0/16',
+        tags                => $tags,
+        enableDnsHostnames  => true,
+        enableDnsSupport    => true
       }
 
       resource subnet {
         output => ($subnetId)
       } {
-        region               => $region,
-        vpcId                => $vpcId,
-        cidrBlock            => '192.168.1.0/24',
-        tags                 => $tags,
-        mapPublicIpOnLaunch  => true
+        region              => $region,
+        vpcId               => $vpcId,
+        cidrBlock           => '192.168.1.0/24',
+        tags                => $tags,
+        mapPublicIpOnLaunch => true
       }
     }
 
 
-Workflow containing a guard in the form of a stateless activity
+Workflow containing a guard in the form of an action
 
-    workflow hello_wf {
-      input => (String $hello_url = lookup('hello_url') String $cert = lookup('cert')),
+    workflow helloWf {
+      input => (String $helloUrl = lookup('helloUrl') String $cert = lookup('cert')),
     } {
-      stateless ping_hello {
-        output => ($need_hello)
+      action pingHello {
+        output => ($needHello)
       } {
         $response = curl(
-          url => $hello_url,
+          url => $helloUrl,
           query => { x => 10 },
           headers => { 'Accept' => 'application/json' },
           cert => $cert)
@@ -209,14 +209,14 @@ Workflow containing a guard in the form of a stateless activity
         $hash['hello'] < 10
       }
 
-      resource when_hello {
-        when => need_hello
+      resource whenHello {
+        when => needHello
       } {
         ...
       }
 
-      resource when_not_hello {
-        when => !need_hello
+      resource whenNotHello {
+        when => !needHello
       } {
         ...
       }
@@ -224,23 +224,23 @@ Workflow containing a guard in the form of a stateless activity
 
 Workflow containing a guard in the form of a read-only resource
 
-    workflow hello_wf {
+    workflow helloWf {
       ...
     } {
-      resource need_hello {
-        external_id => '<some external identifier>',
+      resource needHello {
+        externalId => '<some external identifier>',
         type => My::Hello::Resource,       # A resource with a boolean attribute "enabled"
-        output => ($need_hello = enabled)
+        output => ($needHello = enabled)
       }  # No "state" block needed here. The resource is read-only.
 
-      resource when_hello {
-        when => need_hello
+      resource whenHello {
+        when => needHello
       } {
         ...
       }
 
-      resource when_not_hello {
-        when => !need_hello
+      resource whenNotHello {
+        when => !needHello
       } {
         ...
       }
