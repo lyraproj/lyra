@@ -10,20 +10,20 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc // indirect
 	github.com/hashicorp/go-azure-helpers v0.0.0-20190129193224-166dfd221bb2 // indirect
-	github.com/hashicorp/go-hclog v0.0.0-20190214225846-90f2fbc4844c
-	github.com/hashicorp/go-plugin v0.0.0-20190212232519-b838ffee39ce
+	github.com/hashicorp/go-hclog v0.7.0
+	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.11
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
-	github.com/lyraproj/lyra-operator v0.0.0-20190212172234-c863eb9b8bdb
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190213111014-f445b297391c
-	github.com/lyraproj/puppet-workflow v0.0.0-20190215162224-286a7c080f50
+	github.com/lyraproj/lyra-operator v0.0.0-20190214121239-e1b92c0c0601
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190220162250-4332f4100731
+	github.com/lyraproj/puppet-workflow v0.0.0-20190220162536-b0ce7c68c3c9
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190220105000-da78ac393e34
-	github.com/lyraproj/wfe v0.0.0-20190213141324-1ca88d9ec407
+	github.com/lyraproj/servicesdk v0.0.0-20190220162341-69a3573dc4f8
+	github.com/lyraproj/wfe v0.0.0-20190220162440-1888b39c9eca
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -45,7 +45,6 @@ require (
 	golang.org/x/exp v0.0.0-20190212162250-21964bba6549 // indirect
 	golang.org/x/oauth2 v0.0.0-20190212230446-3e8b2be13635 // indirect
 	golang.org/x/sys v0.0.0-20190213121743-983097b1a8a3 // indirect
-	gonum.org/v1/gonum v0.0.0-20190213111814-9b2c80004825 // indirect
 	gonum.org/v1/netlib v0.0.0-20190119082159-9be13e02fd56 // indirect
 	gopkg.in/src-d/enry.v1 v1.6.7
 	gopkg.in/toqueteos/substring.v1 v1.0.2 // indirect
