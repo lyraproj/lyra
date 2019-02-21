@@ -30,7 +30,7 @@ const wf = {
 
     vpcDone: action({
       do: (vpcId: string): {vpcOk: boolean} => {
-        console.log(`created vpc with id ${vpcId}`);
+        logger.info('created vpc', 'vpcId', vpcId);
         return {vpcOk: true};
       }
     }),
