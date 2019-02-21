@@ -64,7 +64,7 @@ goplugin-example:
 	$(call build,goplugin-example,cmd/goplugin-example/main.go)
 
 PHONY+= lyra
-lyra:
+lyra: check-mods
 	$(call build,lyra,cmd/lyra/main.go)
 
 $(GOPATH)/bin/licenses:
@@ -145,7 +145,7 @@ check-mods:
 	@echo "🔘 Ensuring go version is 1.11.4 or later (`date '+%H:%M:%S'`)"
 	@if [ "$(HAS_REQUIRED_GO)" == "" ]; \
 	then \
-		echo "🔴 must be running Go version 1.11.4 or later"; \
+		echo "🔴 must be running Go version 1.11.4 or later.  Please upgrade and run go clean -modcache"; \
 		exit 1; \
 	fi	
 	@echo "✅ Go version is sufficient  (`date '+%H:%M:%S'`)"
