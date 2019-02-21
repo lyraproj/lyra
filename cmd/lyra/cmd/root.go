@@ -47,6 +47,7 @@ func NewRootCmd() *cobra.Command {
 	cmd.AddCommand(NewDeleteCmd())
 	cmd.AddCommand(NewControllerCmd())
 	cmd.AddCommand(NewValidateCmd())
+	cmd.AddCommand(NewGenerateCmd())
 	cmd.AddCommand(EmbeddedPluginCmd())
 
 	return cmd
