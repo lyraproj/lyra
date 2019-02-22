@@ -1,5 +1,3 @@
-
-# this file is prefixed "aaa" so that it is processed first as it contains types that are needed by other workflows
 # this file is generated
 type TerraformAws = TypeSet[{
   pcore_uri => 'http://puppet.com/2016.1/pcore',
@@ -58,13 +56,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_acm_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_acm_certificate]],
-          Tuple[Optional[Aws_acm_certificate], String]],
+        'create' => Callable[Optional[Aws_acm_certificate], Tuple[Optional[Aws_acm_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_acm_certificate]]
+        'read' => Callable[String, Optional[Aws_acm_certificate]]
       }
     },
     Aws_acm_certificate_domain_validation_options_1 => {
@@ -102,13 +96,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_acm_certificate_validationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_acm_certificate_validation]],
-          Tuple[Optional[Aws_acm_certificate_validation], String]],
+        'create' => Callable[Optional[Aws_acm_certificate_validation], Tuple[Optional[Aws_acm_certificate_validation], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_acm_certificate_validation]]
+        'read' => Callable[String, Optional[Aws_acm_certificate_validation]]
       }
     },
     Aws_acmpca_certificate_authority => {
@@ -170,13 +160,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_acmpca_certificate_authorityHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_acmpca_certificate_authority]],
-          Tuple[Optional[Aws_acmpca_certificate_authority], String]],
+        'create' => Callable[Optional[Aws_acmpca_certificate_authority], Tuple[Optional[Aws_acmpca_certificate_authority], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_acmpca_certificate_authority]]
+        'read' => Callable[String, Optional[Aws_acmpca_certificate_authority]]
       }
     },
     Aws_acmpca_certificate_authority_certificate_authority_configuration_2 => {
@@ -353,13 +339,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_albHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_alb]],
-          Tuple[Optional[Aws_alb], String]],
+        'create' => Callable[Optional[Aws_alb], Tuple[Optional[Aws_alb], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_alb]]
+        'read' => Callable[String, Optional[Aws_alb]]
       }
     },
     Aws_alb_access_logs_6 => {
@@ -404,13 +386,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_listenerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_alb_listener]],
-          Tuple[Optional[Aws_alb_listener], String]],
+        'create' => Callable[Optional[Aws_alb_listener], Tuple[Optional[Aws_alb_listener], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_alb_listener]]
+        'read' => Callable[String, Optional[Aws_alb_listener]]
       }
     },
     Aws_alb_listener_certificate => {
@@ -425,13 +403,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_listener_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_alb_listener_certificate]],
-          Tuple[Optional[Aws_alb_listener_certificate], String]],
+        'create' => Callable[Optional[Aws_alb_listener_certificate], Tuple[Optional[Aws_alb_listener_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_alb_listener_certificate]]
+        'read' => Callable[String, Optional[Aws_alb_listener_certificate]]
       }
     },
     Aws_alb_listener_default_action_8 => {
@@ -579,13 +553,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_listener_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_alb_listener_rule]],
-          Tuple[Optional[Aws_alb_listener_rule], String]],
+        'create' => Callable[Optional[Aws_alb_listener_rule], Tuple[Optional[Aws_alb_listener_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_alb_listener_rule]]
+        'read' => Callable[String, Optional[Aws_alb_listener_rule]]
       }
     },
     Aws_alb_listener_rule_action_13 => {
@@ -799,13 +769,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_target_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_alb_target_group]],
-          Tuple[Optional[Aws_alb_target_group], String]],
+        'create' => Callable[Optional[Aws_alb_target_group], Tuple[Optional[Aws_alb_target_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_alb_target_group]]
+        'read' => Callable[String, Optional[Aws_alb_target_group]]
       }
     },
     Aws_alb_target_group_attachment => {
@@ -828,13 +794,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_target_group_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_alb_target_group_attachment]],
-          Tuple[Optional[Aws_alb_target_group_attachment], String]],
+        'create' => Callable[Optional[Aws_alb_target_group_attachment], Tuple[Optional[Aws_alb_target_group_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_alb_target_group_attachment]]
+        'read' => Callable[String, Optional[Aws_alb_target_group_attachment]]
       }
     },
     Aws_alb_target_group_health_check_19 => {
@@ -953,13 +915,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_amiHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ami]],
-          Tuple[Optional[Aws_ami], String]],
+        'create' => Callable[Optional[Aws_ami], Tuple[Optional[Aws_ami], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ami]]
+        'read' => Callable[String, Optional[Aws_ami]]
       }
     },
     Aws_ami_copy => {
@@ -1039,13 +997,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ami_copyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ami_copy]],
-          Tuple[Optional[Aws_ami_copy], String]],
+        'create' => Callable[Optional[Aws_ami_copy], Tuple[Optional[Aws_ami_copy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ami_copy]]
+        'read' => Callable[String, Optional[Aws_ami_copy]]
       }
     },
     Aws_ami_copy_ebs_block_device_23 => {
@@ -1199,13 +1153,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ami_from_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ami_from_instance]],
-          Tuple[Optional[Aws_ami_from_instance], String]],
+        'create' => Callable[Optional[Aws_ami_from_instance], Tuple[Optional[Aws_ami_from_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ami_from_instance]]
+        'read' => Callable[String, Optional[Aws_ami_from_instance]]
       }
     },
     Aws_ami_from_instance_ebs_block_device_25 => {
@@ -1264,13 +1214,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ami_launch_permissionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ami_launch_permission]],
-          Tuple[Optional[Aws_ami_launch_permission], String]],
+        'create' => Callable[Optional[Aws_ami_launch_permission], Tuple[Optional[Aws_ami_launch_permission], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ami_launch_permission]]
+        'read' => Callable[String, Optional[Aws_ami_launch_permission]]
       }
     },
     Aws_api_gateway_account => {
@@ -1291,13 +1237,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_accountHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_account]],
-          Tuple[Optional[Aws_api_gateway_account], String]],
+        'create' => Callable[Optional[Aws_api_gateway_account], Tuple[Optional[Aws_api_gateway_account], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_account]]
+        'read' => Callable[String, Optional[Aws_api_gateway_account]]
       }
     },
     Aws_api_gateway_account_throttle_settings_27 => {
@@ -1347,13 +1289,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_api_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_api_key]],
-          Tuple[Optional[Aws_api_gateway_api_key], String]],
+        'create' => Callable[Optional[Aws_api_gateway_api_key], Tuple[Optional[Aws_api_gateway_api_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_api_key]]
+        'read' => Callable[String, Optional[Aws_api_gateway_api_key]]
       }
     },
     Aws_api_gateway_api_key_stage_key_28 => {
@@ -1402,13 +1340,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_authorizerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_authorizer]],
-          Tuple[Optional[Aws_api_gateway_authorizer], String]],
+        'create' => Callable[Optional[Aws_api_gateway_authorizer], Tuple[Optional[Aws_api_gateway_authorizer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_authorizer]]
+        'read' => Callable[String, Optional[Aws_api_gateway_authorizer]]
       }
     },
     Aws_api_gateway_base_path_mapping => {
@@ -1431,13 +1365,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_base_path_mappingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_base_path_mapping]],
-          Tuple[Optional[Aws_api_gateway_base_path_mapping], String]],
+        'create' => Callable[Optional[Aws_api_gateway_base_path_mapping], Tuple[Optional[Aws_api_gateway_base_path_mapping], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_base_path_mapping]]
+        'read' => Callable[String, Optional[Aws_api_gateway_base_path_mapping]]
       }
     },
     Aws_api_gateway_client_certificate => {
@@ -1466,13 +1396,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_client_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_client_certificate]],
-          Tuple[Optional[Aws_api_gateway_client_certificate], String]],
+        'create' => Callable[Optional[Aws_api_gateway_client_certificate], Tuple[Optional[Aws_api_gateway_client_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_client_certificate]]
+        'read' => Callable[String, Optional[Aws_api_gateway_client_certificate]]
       }
     },
     Aws_api_gateway_deployment => {
@@ -1511,13 +1437,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_deploymentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_deployment]],
-          Tuple[Optional[Aws_api_gateway_deployment], String]],
+        'create' => Callable[Optional[Aws_api_gateway_deployment], Tuple[Optional[Aws_api_gateway_deployment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_deployment]]
+        'read' => Callable[String, Optional[Aws_api_gateway_deployment]]
       }
     },
     Aws_api_gateway_documentation_part => {
@@ -1533,13 +1455,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_documentation_partHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_documentation_part]],
-          Tuple[Optional[Aws_api_gateway_documentation_part], String]],
+        'create' => Callable[Optional[Aws_api_gateway_documentation_part], Tuple[Optional[Aws_api_gateway_documentation_part], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_documentation_part]]
+        'read' => Callable[String, Optional[Aws_api_gateway_documentation_part]]
       }
     },
     Aws_api_gateway_documentation_part_location_29 => {
@@ -1579,13 +1497,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_documentation_versionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_documentation_version]],
-          Tuple[Optional[Aws_api_gateway_documentation_version], String]],
+        'create' => Callable[Optional[Aws_api_gateway_documentation_version], Tuple[Optional[Aws_api_gateway_documentation_version], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_documentation_version]]
+        'read' => Callable[String, Optional[Aws_api_gateway_documentation_version]]
       }
     },
     Aws_api_gateway_domain_name => {
@@ -1651,13 +1565,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_domain_nameHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_domain_name]],
-          Tuple[Optional[Aws_api_gateway_domain_name], String]],
+        'create' => Callable[Optional[Aws_api_gateway_domain_name], Tuple[Optional[Aws_api_gateway_domain_name], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_domain_name]]
+        'read' => Callable[String, Optional[Aws_api_gateway_domain_name]]
       }
     },
     Aws_api_gateway_domain_name_endpoint_configuration_30 => {
@@ -1689,13 +1599,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_gateway_responseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_gateway_response]],
-          Tuple[Optional[Aws_api_gateway_gateway_response], String]],
+        'create' => Callable[Optional[Aws_api_gateway_gateway_response], Tuple[Optional[Aws_api_gateway_gateway_response], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_gateway_response]]
+        'read' => Callable[String, Optional[Aws_api_gateway_gateway_response]]
       }
     },
     Aws_api_gateway_integration => {
@@ -1764,13 +1670,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_integrationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_integration]],
-          Tuple[Optional[Aws_api_gateway_integration], String]],
+        'create' => Callable[Optional[Aws_api_gateway_integration], Tuple[Optional[Aws_api_gateway_integration], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_integration]]
+        'read' => Callable[String, Optional[Aws_api_gateway_integration]]
       }
     },
     Aws_api_gateway_integration_response => {
@@ -1807,13 +1709,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_integration_responseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_integration_response]],
-          Tuple[Optional[Aws_api_gateway_integration_response], String]],
+        'create' => Callable[Optional[Aws_api_gateway_integration_response], Tuple[Optional[Aws_api_gateway_integration_response], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_integration_response]]
+        'read' => Callable[String, Optional[Aws_api_gateway_integration_response]]
       }
     },
     Aws_api_gateway_method => {
@@ -1858,13 +1756,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_methodHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_method]],
-          Tuple[Optional[Aws_api_gateway_method], String]],
+        'create' => Callable[Optional[Aws_api_gateway_method], Tuple[Optional[Aws_api_gateway_method], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_method]]
+        'read' => Callable[String, Optional[Aws_api_gateway_method]]
       }
     },
     Aws_api_gateway_method_response => {
@@ -1893,13 +1787,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_method_responseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_method_response]],
-          Tuple[Optional[Aws_api_gateway_method_response], String]],
+        'create' => Callable[Optional[Aws_api_gateway_method_response], Tuple[Optional[Aws_api_gateway_method_response], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_method_response]]
+        'read' => Callable[String, Optional[Aws_api_gateway_method_response]]
       }
     },
     Aws_api_gateway_method_settings => {
@@ -1916,13 +1806,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_method_settingsHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_method_settings]],
-          Tuple[Optional[Aws_api_gateway_method_settings], String]],
+        'create' => Callable[Optional[Aws_api_gateway_method_settings], Tuple[Optional[Aws_api_gateway_method_settings], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_method_settings]]
+        'read' => Callable[String, Optional[Aws_api_gateway_method_settings]]
       }
     },
     Aws_api_gateway_method_settings_settings_31 => {
@@ -1990,13 +1876,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_modelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_model]],
-          Tuple[Optional[Aws_api_gateway_model], String]],
+        'create' => Callable[Optional[Aws_api_gateway_model], Tuple[Optional[Aws_api_gateway_model], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_model]]
+        'read' => Callable[String, Optional[Aws_api_gateway_model]]
       }
     },
     Aws_api_gateway_request_validator => {
@@ -2019,13 +1901,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_request_validatorHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_request_validator]],
-          Tuple[Optional[Aws_api_gateway_request_validator], String]],
+        'create' => Callable[Optional[Aws_api_gateway_request_validator], Tuple[Optional[Aws_api_gateway_request_validator], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_request_validator]]
+        'read' => Callable[String, Optional[Aws_api_gateway_request_validator]]
       }
     },
     Aws_api_gateway_resource => {
@@ -2045,13 +1923,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_resourceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_resource]],
-          Tuple[Optional[Aws_api_gateway_resource], String]],
+        'create' => Callable[Optional[Aws_api_gateway_resource], Tuple[Optional[Aws_api_gateway_resource], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_resource]]
+        'read' => Callable[String, Optional[Aws_api_gateway_resource]]
       }
     },
     Aws_api_gateway_rest_api => {
@@ -2105,13 +1979,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_rest_apiHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_rest_api]],
-          Tuple[Optional[Aws_api_gateway_rest_api], String]],
+        'create' => Callable[Optional[Aws_api_gateway_rest_api], Tuple[Optional[Aws_api_gateway_rest_api], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_rest_api]]
+        'read' => Callable[String, Optional[Aws_api_gateway_rest_api]]
       }
     },
     Aws_api_gateway_rest_api_endpoint_configuration_32 => {
@@ -2176,13 +2046,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_stageHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_stage]],
-          Tuple[Optional[Aws_api_gateway_stage], String]],
+        'create' => Callable[Optional[Aws_api_gateway_stage], Tuple[Optional[Aws_api_gateway_stage], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_stage]]
+        'read' => Callable[String, Optional[Aws_api_gateway_stage]]
       }
     },
     Aws_api_gateway_stage_access_log_settings_33 => {
@@ -2222,13 +2088,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_usage_planHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_usage_plan]],
-          Tuple[Optional[Aws_api_gateway_usage_plan], String]],
+        'create' => Callable[Optional[Aws_api_gateway_usage_plan], Tuple[Optional[Aws_api_gateway_usage_plan], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_usage_plan]]
+        'read' => Callable[String, Optional[Aws_api_gateway_usage_plan]]
       }
     },
     Aws_api_gateway_usage_plan_api_stages_34 => {
@@ -2258,13 +2120,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_usage_plan_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_usage_plan_key]],
-          Tuple[Optional[Aws_api_gateway_usage_plan_key], String]],
+        'create' => Callable[Optional[Aws_api_gateway_usage_plan_key], Tuple[Optional[Aws_api_gateway_usage_plan_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_usage_plan_key]]
+        'read' => Callable[String, Optional[Aws_api_gateway_usage_plan_key]]
       }
     },
     Aws_api_gateway_usage_plan_quota_settings_35 => {
@@ -2305,13 +2163,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_vpc_linkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_api_gateway_vpc_link]],
-          Tuple[Optional[Aws_api_gateway_vpc_link], String]],
+        'create' => Callable[Optional[Aws_api_gateway_vpc_link], Tuple[Optional[Aws_api_gateway_vpc_link], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_api_gateway_vpc_link]]
+        'read' => Callable[String, Optional[Aws_api_gateway_vpc_link]]
       }
     },
     Aws_app_cookie_stickiness_policy => {
@@ -2328,13 +2182,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_app_cookie_stickiness_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_app_cookie_stickiness_policy]],
-          Tuple[Optional[Aws_app_cookie_stickiness_policy], String]],
+        'create' => Callable[Optional[Aws_app_cookie_stickiness_policy], Tuple[Optional[Aws_app_cookie_stickiness_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_app_cookie_stickiness_policy]]
+        'read' => Callable[String, Optional[Aws_app_cookie_stickiness_policy]]
       }
     },
     Aws_appautoscaling_policy => {
@@ -2391,13 +2241,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appautoscaling_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appautoscaling_policy]],
-          Tuple[Optional[Aws_appautoscaling_policy], String]],
+        'create' => Callable[Optional[Aws_appautoscaling_policy], Tuple[Optional[Aws_appautoscaling_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appautoscaling_policy]]
+        'read' => Callable[String, Optional[Aws_appautoscaling_policy]]
       }
     },
     Aws_appautoscaling_policy_step_adjustment_37 => {
@@ -2542,13 +2388,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appautoscaling_scheduled_actionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appautoscaling_scheduled_action]],
-          Tuple[Optional[Aws_appautoscaling_scheduled_action], String]],
+        'create' => Callable[Optional[Aws_appautoscaling_scheduled_action], Tuple[Optional[Aws_appautoscaling_scheduled_action], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appautoscaling_scheduled_action]]
+        'read' => Callable[String, Optional[Aws_appautoscaling_scheduled_action]]
       }
     },
     Aws_appautoscaling_scheduled_action_scalable_target_action_44 => {
@@ -2582,13 +2424,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appautoscaling_targetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appautoscaling_target]],
-          Tuple[Optional[Aws_appautoscaling_target], String]],
+        'create' => Callable[Optional[Aws_appautoscaling_target], Tuple[Optional[Aws_appautoscaling_target], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appautoscaling_target]]
+        'read' => Callable[String, Optional[Aws_appautoscaling_target]]
       }
     },
     Aws_appmesh_mesh => {
@@ -2614,13 +2452,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_meshHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appmesh_mesh]],
-          Tuple[Optional[Aws_appmesh_mesh], String]],
+        'create' => Callable[Optional[Aws_appmesh_mesh], Tuple[Optional[Aws_appmesh_mesh], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appmesh_mesh]]
+        'read' => Callable[String, Optional[Aws_appmesh_mesh]]
       }
     },
     Aws_appmesh_route => {
@@ -2649,13 +2483,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_routeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appmesh_route]],
-          Tuple[Optional[Aws_appmesh_route], String]],
+        'create' => Callable[Optional[Aws_appmesh_route], Tuple[Optional[Aws_appmesh_route], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appmesh_route]]
+        'read' => Callable[String, Optional[Aws_appmesh_route]]
       }
     },
     Aws_appmesh_route_spec_45 => {
@@ -2713,13 +2543,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_virtual_nodeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appmesh_virtual_node]],
-          Tuple[Optional[Aws_appmesh_virtual_node], String]],
+        'create' => Callable[Optional[Aws_appmesh_virtual_node], Tuple[Optional[Aws_appmesh_virtual_node], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appmesh_virtual_node]]
+        'read' => Callable[String, Optional[Aws_appmesh_virtual_node]]
       }
     },
     Aws_appmesh_virtual_node_spec_50 => {
@@ -2784,13 +2610,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_virtual_routerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appmesh_virtual_router]],
-          Tuple[Optional[Aws_appmesh_virtual_router], String]],
+        'create' => Callable[Optional[Aws_appmesh_virtual_router], Tuple[Optional[Aws_appmesh_virtual_router], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appmesh_virtual_router]]
+        'read' => Callable[String, Optional[Aws_appmesh_virtual_router]]
       }
     },
     Aws_appmesh_virtual_router_spec_55 => {
@@ -2821,13 +2643,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appsync_api_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appsync_api_key]],
-          Tuple[Optional[Aws_appsync_api_key], String]],
+        'create' => Callable[Optional[Aws_appsync_api_key], Tuple[Optional[Aws_appsync_api_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appsync_api_key]]
+        'read' => Callable[String, Optional[Aws_appsync_api_key]]
       }
     },
     Aws_appsync_datasource => {
@@ -2871,13 +2689,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appsync_datasourceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appsync_datasource]],
-          Tuple[Optional[Aws_appsync_datasource], String]],
+        'create' => Callable[Optional[Aws_appsync_datasource], Tuple[Optional[Aws_appsync_datasource], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appsync_datasource]]
+        'read' => Callable[String, Optional[Aws_appsync_datasource]]
       }
     },
     Aws_appsync_datasource_dynamodb_config_56 => {
@@ -2944,13 +2758,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_appsync_graphql_apiHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_appsync_graphql_api]],
-          Tuple[Optional[Aws_appsync_graphql_api], String]],
+        'create' => Callable[Optional[Aws_appsync_graphql_api], Tuple[Optional[Aws_appsync_graphql_api], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_appsync_graphql_api]]
+        'read' => Callable[String, Optional[Aws_appsync_graphql_api]]
       }
     },
     Aws_appsync_graphql_api_log_config_60 => {
@@ -3010,13 +2820,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_athena_databaseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_athena_database]],
-          Tuple[Optional[Aws_athena_database], String]],
+        'create' => Callable[Optional[Aws_athena_database], Tuple[Optional[Aws_athena_database], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_athena_database]]
+        'read' => Callable[String, Optional[Aws_athena_database]]
       }
     },
     Aws_athena_database_encryption_configuration_63 => {
@@ -3045,13 +2851,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_athena_named_queryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_athena_named_query]],
-          Tuple[Optional[Aws_athena_named_query], String]],
+        'create' => Callable[Optional[Aws_athena_named_query], Tuple[Optional[Aws_athena_named_query], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_athena_named_query]]
+        'read' => Callable[String, Optional[Aws_athena_named_query]]
       }
     },
     Aws_autoscaling_attachment => {
@@ -3073,13 +2875,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_autoscaling_attachment]],
-          Tuple[Optional[Aws_autoscaling_attachment], String]],
+        'create' => Callable[Optional[Aws_autoscaling_attachment], Tuple[Optional[Aws_autoscaling_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_autoscaling_attachment]]
+        'read' => Callable[String, Optional[Aws_autoscaling_attachment]]
       }
     },
     Aws_autoscaling_group => {
@@ -3206,13 +3004,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_autoscaling_group]],
-          Tuple[Optional[Aws_autoscaling_group], String]],
+        'create' => Callable[Optional[Aws_autoscaling_group], Tuple[Optional[Aws_autoscaling_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_autoscaling_group]]
+        'read' => Callable[String, Optional[Aws_autoscaling_group]]
       }
     },
     Aws_autoscaling_group_initial_lifecycle_hook_64 => {
@@ -3367,13 +3161,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_lifecycle_hookHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_autoscaling_lifecycle_hook]],
-          Tuple[Optional[Aws_autoscaling_lifecycle_hook], String]],
+        'create' => Callable[Optional[Aws_autoscaling_lifecycle_hook], Tuple[Optional[Aws_autoscaling_lifecycle_hook], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_autoscaling_lifecycle_hook]]
+        'read' => Callable[String, Optional[Aws_autoscaling_lifecycle_hook]]
       }
     },
     Aws_autoscaling_notification => {
@@ -3389,13 +3179,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_notificationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_autoscaling_notification]],
-          Tuple[Optional[Aws_autoscaling_notification], String]],
+        'create' => Callable[Optional[Aws_autoscaling_notification], Tuple[Optional[Aws_autoscaling_notification], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_autoscaling_notification]]
+        'read' => Callable[String, Optional[Aws_autoscaling_notification]]
       }
     },
     Aws_autoscaling_policy => {
@@ -3454,13 +3240,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_autoscaling_policy]],
-          Tuple[Optional[Aws_autoscaling_policy], String]],
+        'create' => Callable[Optional[Aws_autoscaling_policy], Tuple[Optional[Aws_autoscaling_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_autoscaling_policy]]
+        'read' => Callable[String, Optional[Aws_autoscaling_policy]]
       }
     },
     Aws_autoscaling_policy_step_adjustment_72 => {
@@ -3563,13 +3345,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_scheduleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_autoscaling_schedule]],
-          Tuple[Optional[Aws_autoscaling_schedule], String]],
+        'create' => Callable[Optional[Aws_autoscaling_schedule], Tuple[Optional[Aws_autoscaling_schedule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_autoscaling_schedule]]
+        'read' => Callable[String, Optional[Aws_autoscaling_schedule]]
       }
     },
     Aws_batch_compute_environment => {
@@ -3613,13 +3391,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_batch_compute_environmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_batch_compute_environment]],
-          Tuple[Optional[Aws_batch_compute_environment], String]],
+        'create' => Callable[Optional[Aws_batch_compute_environment], Tuple[Optional[Aws_batch_compute_environment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_batch_compute_environment]]
+        'read' => Callable[String, Optional[Aws_batch_compute_environment]]
       }
     },
     Aws_batch_compute_environment_compute_resources_77 => {
@@ -3693,13 +3467,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_batch_job_definitionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_batch_job_definition]],
-          Tuple[Optional[Aws_batch_job_definition], String]],
+        'create' => Callable[Optional[Aws_batch_job_definition], Tuple[Optional[Aws_batch_job_definition], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_batch_job_definition]]
+        'read' => Callable[String, Optional[Aws_batch_job_definition]]
       }
     },
     Aws_batch_job_definition_retry_strategy_78 => {
@@ -3736,13 +3506,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_batch_job_queueHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_batch_job_queue]],
-          Tuple[Optional[Aws_batch_job_queue], String]],
+        'create' => Callable[Optional[Aws_batch_job_queue], Tuple[Optional[Aws_batch_job_queue], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_batch_job_queue]]
+        'read' => Callable[String, Optional[Aws_batch_job_queue]]
       }
     },
     Aws_budgets_budget => {
@@ -3784,13 +3550,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_budgets_budgetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_budgets_budget]],
-          Tuple[Optional[Aws_budgets_budget], String]],
+        'create' => Callable[Optional[Aws_budgets_budget], Tuple[Optional[Aws_budgets_budget], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_budgets_budget]]
+        'read' => Callable[String, Optional[Aws_budgets_budget]]
       }
     },
     Aws_budgets_budget_cost_types_80 => {
@@ -3877,13 +3639,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloud9_environment_ec2Handler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloud9_environment_ec2]],
-          Tuple[Optional[Aws_cloud9_environment_ec2], String]],
+        'create' => Callable[Optional[Aws_cloud9_environment_ec2], Tuple[Optional[Aws_cloud9_environment_ec2], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloud9_environment_ec2]]
+        'read' => Callable[String, Optional[Aws_cloud9_environment_ec2]]
       }
     },
     Aws_cloudformation_stack => {
@@ -3949,13 +3707,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudformation_stackHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudformation_stack]],
-          Tuple[Optional[Aws_cloudformation_stack], String]],
+        'create' => Callable[Optional[Aws_cloudformation_stack], Tuple[Optional[Aws_cloudformation_stack], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudformation_stack]]
+        'read' => Callable[String, Optional[Aws_cloudformation_stack]]
       }
     },
     Aws_cloudfront_distribution => {
@@ -4061,13 +3815,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_distributionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudfront_distribution]],
-          Tuple[Optional[Aws_cloudfront_distribution], String]],
+        'create' => Callable[Optional[Aws_cloudfront_distribution], Tuple[Optional[Aws_cloudfront_distribution], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudfront_distribution]]
+        'read' => Callable[String, Optional[Aws_cloudfront_distribution]]
       }
     },
     Aws_cloudfront_distribution_cache_behavior_81 => {
@@ -4445,13 +4195,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_origin_access_identityHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudfront_origin_access_identity]],
-          Tuple[Optional[Aws_cloudfront_origin_access_identity], String]],
+        'create' => Callable[Optional[Aws_cloudfront_origin_access_identity], Tuple[Optional[Aws_cloudfront_origin_access_identity], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudfront_origin_access_identity]]
+        'read' => Callable[String, Optional[Aws_cloudfront_origin_access_identity]]
       }
     },
     Aws_cloudfront_public_key => {
@@ -4485,13 +4231,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_public_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudfront_public_key]],
-          Tuple[Optional[Aws_cloudfront_public_key], String]],
+        'create' => Callable[Optional[Aws_cloudfront_public_key], Tuple[Optional[Aws_cloudfront_public_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudfront_public_key]]
+        'read' => Callable[String, Optional[Aws_cloudfront_public_key]]
       }
     },
     Aws_cloudhsm_v2_cluster => {
@@ -4534,13 +4276,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudhsm_v2_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudhsm_v2_cluster]],
-          Tuple[Optional[Aws_cloudhsm_v2_cluster], String]],
+        'create' => Callable[Optional[Aws_cloudhsm_v2_cluster], Tuple[Optional[Aws_cloudhsm_v2_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudhsm_v2_cluster]]
+        'read' => Callable[String, Optional[Aws_cloudhsm_v2_cluster]]
       }
     },
     Aws_cloudhsm_v2_cluster_cluster_certificates_102 => {
@@ -4602,13 +4340,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudhsm_v2_hsmHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudhsm_v2_hsm]],
-          Tuple[Optional[Aws_cloudhsm_v2_hsm], String]],
+        'create' => Callable[Optional[Aws_cloudhsm_v2_hsm], Tuple[Optional[Aws_cloudhsm_v2_hsm], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudhsm_v2_hsm]]
+        'read' => Callable[String, Optional[Aws_cloudhsm_v2_hsm]]
       }
     },
     Aws_cloudtrail => {
@@ -4679,13 +4413,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudtrailHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudtrail]],
-          Tuple[Optional[Aws_cloudtrail], String]],
+        'create' => Callable[Optional[Aws_cloudtrail], Tuple[Optional[Aws_cloudtrail], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudtrail]]
+        'read' => Callable[String, Optional[Aws_cloudtrail]]
       }
     },
     Aws_cloudtrail_event_selector_103 => {
@@ -4726,13 +4456,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_dashboardHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_dashboard]],
-          Tuple[Optional[Aws_cloudwatch_dashboard], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_dashboard], Tuple[Optional[Aws_cloudwatch_dashboard], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_dashboard]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_dashboard]]
       }
     },
     Aws_cloudwatch_event_permission => {
@@ -4755,13 +4481,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_event_permissionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_event_permission]],
-          Tuple[Optional[Aws_cloudwatch_event_permission], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_event_permission], Tuple[Optional[Aws_cloudwatch_event_permission], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_event_permission]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_event_permission]]
       }
     },
     Aws_cloudwatch_event_permission_condition_105 => {
@@ -4813,13 +4535,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_event_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_event_rule]],
-          Tuple[Optional[Aws_cloudwatch_event_rule], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_event_rule], Tuple[Optional[Aws_cloudwatch_event_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_event_rule]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_event_rule]]
       }
     },
     Aws_cloudwatch_event_target => {
@@ -4874,13 +4592,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_event_targetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_event_target]],
-          Tuple[Optional[Aws_cloudwatch_event_target], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_event_target], Tuple[Optional[Aws_cloudwatch_event_target], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_event_target]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_event_target]]
       }
     },
     Aws_cloudwatch_event_target_batch_target_106 => {
@@ -4983,13 +4697,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_destinationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_destination]],
-          Tuple[Optional[Aws_cloudwatch_log_destination], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_destination], Tuple[Optional[Aws_cloudwatch_log_destination], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_destination]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_destination]]
       }
     },
     Aws_cloudwatch_log_destination_policy => {
@@ -5004,13 +4714,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_destination_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_destination_policy]],
-          Tuple[Optional[Aws_cloudwatch_log_destination_policy], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_destination_policy], Tuple[Optional[Aws_cloudwatch_log_destination_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_destination_policy]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_destination_policy]]
       }
     },
     Aws_cloudwatch_log_group => {
@@ -5047,13 +4753,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_group]],
-          Tuple[Optional[Aws_cloudwatch_log_group], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_group], Tuple[Optional[Aws_cloudwatch_log_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_group]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_group]]
       }
     },
     Aws_cloudwatch_log_metric_filter => {
@@ -5070,13 +4772,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_metric_filterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_metric_filter]],
-          Tuple[Optional[Aws_cloudwatch_log_metric_filter], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_metric_filter], Tuple[Optional[Aws_cloudwatch_log_metric_filter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_metric_filter]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_metric_filter]]
       }
     },
     Aws_cloudwatch_log_metric_filter_metric_transformation_113 => {
@@ -5102,13 +4800,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_resource_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_resource_policy]],
-          Tuple[Optional[Aws_cloudwatch_log_resource_policy], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_resource_policy], Tuple[Optional[Aws_cloudwatch_log_resource_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_resource_policy]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_resource_policy]]
       }
     },
     Aws_cloudwatch_log_stream => {
@@ -5127,13 +4821,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_streamHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_stream]],
-          Tuple[Optional[Aws_cloudwatch_log_stream], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_stream], Tuple[Optional[Aws_cloudwatch_log_stream], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_stream]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_stream]]
       }
     },
     Aws_cloudwatch_log_subscription_filter => {
@@ -5158,13 +4848,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_subscription_filterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_log_subscription_filter]],
-          Tuple[Optional[Aws_cloudwatch_log_subscription_filter], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_log_subscription_filter], Tuple[Optional[Aws_cloudwatch_log_subscription_filter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_log_subscription_filter]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_log_subscription_filter]]
       }
     },
     Aws_cloudwatch_metric_alarm => {
@@ -5236,13 +4922,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_metric_alarmHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cloudwatch_metric_alarm]],
-          Tuple[Optional[Aws_cloudwatch_metric_alarm], String]],
+        'create' => Callable[Optional[Aws_cloudwatch_metric_alarm], Tuple[Optional[Aws_cloudwatch_metric_alarm], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cloudwatch_metric_alarm]]
+        'read' => Callable[String, Optional[Aws_cloudwatch_metric_alarm]]
       }
     },
     Aws_codebuild_project => {
@@ -5308,13 +4990,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codebuild_projectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codebuild_project]],
-          Tuple[Optional[Aws_codebuild_project], String]],
+        'create' => Callable[Optional[Aws_codebuild_project], Tuple[Optional[Aws_codebuild_project], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codebuild_project]]
+        'read' => Callable[String, Optional[Aws_codebuild_project]]
       }
     },
     Aws_codebuild_project_artifacts_114 => {
@@ -5528,13 +5206,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codebuild_webhookHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codebuild_webhook]],
-          Tuple[Optional[Aws_codebuild_webhook], String]],
+        'create' => Callable[Optional[Aws_codebuild_webhook], Tuple[Optional[Aws_codebuild_webhook], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codebuild_webhook]]
+        'read' => Callable[String, Optional[Aws_codebuild_webhook]]
       }
     },
     Aws_codecommit_repository => {
@@ -5572,13 +5246,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codecommit_repositoryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codecommit_repository]],
-          Tuple[Optional[Aws_codecommit_repository], String]],
+        'create' => Callable[Optional[Aws_codecommit_repository], Tuple[Optional[Aws_codecommit_repository], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codecommit_repository]]
+        'read' => Callable[String, Optional[Aws_codecommit_repository]]
       }
     },
     Aws_codecommit_trigger => {
@@ -5597,13 +5267,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codecommit_triggerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codecommit_trigger]],
-          Tuple[Optional[Aws_codecommit_trigger], String]],
+        'create' => Callable[Optional[Aws_codecommit_trigger], Tuple[Optional[Aws_codecommit_trigger], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codecommit_trigger]]
+        'read' => Callable[String, Optional[Aws_codecommit_trigger]]
       }
     },
     Aws_codecommit_trigger_trigger_124 => {
@@ -5640,13 +5306,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codedeploy_appHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codedeploy_app]],
-          Tuple[Optional[Aws_codedeploy_app], String]],
+        'create' => Callable[Optional[Aws_codedeploy_app], Tuple[Optional[Aws_codedeploy_app], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codedeploy_app]]
+        'read' => Callable[String, Optional[Aws_codedeploy_app]]
       }
     },
     Aws_codedeploy_deployment_config => {
@@ -5676,13 +5338,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codedeploy_deployment_configHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codedeploy_deployment_config]],
-          Tuple[Optional[Aws_codedeploy_deployment_config], String]],
+        'create' => Callable[Optional[Aws_codedeploy_deployment_config], Tuple[Optional[Aws_codedeploy_deployment_config], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codedeploy_deployment_config]]
+        'read' => Callable[String, Optional[Aws_codedeploy_deployment_config]]
       }
     },
     Aws_codedeploy_deployment_config_minimum_healthy_hosts_125 => {
@@ -5798,13 +5456,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codedeploy_deployment_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codedeploy_deployment_group]],
-          Tuple[Optional[Aws_codedeploy_deployment_group], String]],
+        'create' => Callable[Optional[Aws_codedeploy_deployment_group], Tuple[Optional[Aws_codedeploy_deployment_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codedeploy_deployment_group]]
+        'read' => Callable[String, Optional[Aws_codedeploy_deployment_group]]
       }
     },
     Aws_codedeploy_deployment_group_alarm_configuration_129 => {
@@ -6039,13 +5693,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codepipelineHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codepipeline]],
-          Tuple[Optional[Aws_codepipeline], String]],
+        'create' => Callable[Optional[Aws_codepipeline], Tuple[Optional[Aws_codepipeline], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codepipeline]]
+        'read' => Callable[String, Optional[Aws_codepipeline]]
       }
     },
     Aws_codepipeline_artifact_store_149 => {
@@ -6122,13 +5772,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_codepipeline_webhookHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_codepipeline_webhook]],
-          Tuple[Optional[Aws_codepipeline_webhook], String]],
+        'create' => Callable[Optional[Aws_codepipeline_webhook], Tuple[Optional[Aws_codepipeline_webhook], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_codepipeline_webhook]]
+        'read' => Callable[String, Optional[Aws_codepipeline_webhook]]
       }
     },
     Aws_codepipeline_webhook_authentication_configuration_153 => {
@@ -6188,13 +5834,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_identity_poolHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_identity_pool]],
-          Tuple[Optional[Aws_cognito_identity_pool], String]],
+        'create' => Callable[Optional[Aws_cognito_identity_pool], Tuple[Optional[Aws_cognito_identity_pool], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_identity_pool]]
+        'read' => Callable[String, Optional[Aws_cognito_identity_pool]]
       }
     },
     Aws_cognito_identity_pool_cognito_identity_providers_155 => {
@@ -6229,13 +5871,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_identity_pool_roles_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_identity_pool_roles_attachment]],
-          Tuple[Optional[Aws_cognito_identity_pool_roles_attachment], String]],
+        'create' => Callable[Optional[Aws_cognito_identity_pool_roles_attachment], Tuple[Optional[Aws_cognito_identity_pool_roles_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_identity_pool_roles_attachment]]
+        'read' => Callable[String, Optional[Aws_cognito_identity_pool_roles_attachment]]
       }
     },
     Aws_cognito_identity_pool_roles_attachment_role_mapping_156 => {
@@ -6282,13 +5920,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_identity_providerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_identity_provider]],
-          Tuple[Optional[Aws_cognito_identity_provider], String]],
+        'create' => Callable[Optional[Aws_cognito_identity_provider], Tuple[Optional[Aws_cognito_identity_provider], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_identity_provider]]
+        'read' => Callable[String, Optional[Aws_cognito_identity_provider]]
       }
     },
     Aws_cognito_resource_server => {
@@ -6312,13 +5946,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_resource_serverHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_resource_server]],
-          Tuple[Optional[Aws_cognito_resource_server], String]],
+        'create' => Callable[Optional[Aws_cognito_resource_server], Tuple[Optional[Aws_cognito_resource_server], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_resource_server]]
+        'read' => Callable[String, Optional[Aws_cognito_resource_server]]
       }
     },
     Aws_cognito_resource_server_scope_158 => {
@@ -6351,13 +5981,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_user_group]],
-          Tuple[Optional[Aws_cognito_user_group], String]],
+        'create' => Callable[Optional[Aws_cognito_user_group], Tuple[Optional[Aws_cognito_user_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_user_group]]
+        'read' => Callable[String, Optional[Aws_cognito_user_group]]
       }
     },
     Aws_cognito_user_pool => {
@@ -6455,13 +6081,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_poolHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_user_pool]],
-          Tuple[Optional[Aws_cognito_user_pool], String]],
+        'create' => Callable[Optional[Aws_cognito_user_pool], Tuple[Optional[Aws_cognito_user_pool], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_user_pool]]
+        'read' => Callable[String, Optional[Aws_cognito_user_pool]]
       }
     },
     Aws_cognito_user_pool_admin_create_user_config_159 => {
@@ -6560,13 +6182,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_pool_clientHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_user_pool_client]],
-          Tuple[Optional[Aws_cognito_user_pool_client], String]],
+        'create' => Callable[Optional[Aws_cognito_user_pool_client], Tuple[Optional[Aws_cognito_user_pool_client], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_user_pool_client]]
+        'read' => Callable[String, Optional[Aws_cognito_user_pool_client]]
       }
     },
     Aws_cognito_user_pool_device_configuration_161 => {
@@ -6613,13 +6231,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_pool_domainHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_cognito_user_pool_domain]],
-          Tuple[Optional[Aws_cognito_user_pool_domain], String]],
+        'create' => Callable[Optional[Aws_cognito_user_pool_domain], Tuple[Optional[Aws_cognito_user_pool_domain], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_cognito_user_pool_domain]]
+        'read' => Callable[String, Optional[Aws_cognito_user_pool_domain]]
       }
     },
     Aws_cognito_user_pool_email_configuration_162 => {
@@ -6802,13 +6416,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_aggregate_authorizationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_config_aggregate_authorization]],
-          Tuple[Optional[Aws_config_aggregate_authorization], String]],
+        'create' => Callable[Optional[Aws_config_aggregate_authorization], Tuple[Optional[Aws_config_aggregate_authorization], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_config_aggregate_authorization]]
+        'read' => Callable[String, Optional[Aws_config_aggregate_authorization]]
       }
     },
     Aws_config_config_rule => {
@@ -6847,13 +6457,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_config_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_config_config_rule]],
-          Tuple[Optional[Aws_config_config_rule], String]],
+        'create' => Callable[Optional[Aws_config_config_rule], Tuple[Optional[Aws_config_config_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_config_config_rule]]
+        'read' => Callable[String, Optional[Aws_config_config_rule]]
       }
     },
     Aws_config_config_rule_scope_170 => {
@@ -6925,13 +6531,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_configuration_aggregatorHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_config_configuration_aggregator]],
-          Tuple[Optional[Aws_config_configuration_aggregator], String]],
+        'create' => Callable[Optional[Aws_config_configuration_aggregator], Tuple[Optional[Aws_config_configuration_aggregator], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_config_configuration_aggregator]]
+        'read' => Callable[String, Optional[Aws_config_configuration_aggregator]]
       }
     },
     Aws_config_configuration_aggregator_account_aggregation_source_173 => {
@@ -6979,13 +6581,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_configuration_recorderHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_config_configuration_recorder]],
-          Tuple[Optional[Aws_config_configuration_recorder], String]],
+        'create' => Callable[Optional[Aws_config_configuration_recorder], Tuple[Optional[Aws_config_configuration_recorder], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_config_configuration_recorder]]
+        'read' => Callable[String, Optional[Aws_config_configuration_recorder]]
       }
     },
     Aws_config_configuration_recorder_recording_group_175 => {
@@ -7016,13 +6614,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_configuration_recorder_statusHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_config_configuration_recorder_status]],
-          Tuple[Optional[Aws_config_configuration_recorder_status], String]],
+        'create' => Callable[Optional[Aws_config_configuration_recorder_status], Tuple[Optional[Aws_config_configuration_recorder_status], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_config_configuration_recorder_status]]
+        'read' => Callable[String, Optional[Aws_config_configuration_recorder_status]]
       }
     },
     Aws_config_delivery_channel => {
@@ -7052,13 +6646,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_delivery_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_config_delivery_channel]],
-          Tuple[Optional[Aws_config_delivery_channel], String]],
+        'create' => Callable[Optional[Aws_config_delivery_channel], Tuple[Optional[Aws_config_delivery_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_config_delivery_channel]]
+        'read' => Callable[String, Optional[Aws_config_delivery_channel]]
       }
     },
     Aws_config_delivery_channel_snapshot_delivery_properties_176 => {
@@ -7086,13 +6676,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_customer_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_customer_gateway]],
-          Tuple[Optional[Aws_customer_gateway], String]],
+        'create' => Callable[Optional[Aws_customer_gateway], Tuple[Optional[Aws_customer_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_customer_gateway]]
+        'read' => Callable[String, Optional[Aws_customer_gateway]]
       }
     },
     Aws_datasync_agent => {
@@ -7125,13 +6711,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_agentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_datasync_agent]],
-          Tuple[Optional[Aws_datasync_agent], String]],
+        'create' => Callable[Optional[Aws_datasync_agent], Tuple[Optional[Aws_datasync_agent], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_datasync_agent]]
+        'read' => Callable[String, Optional[Aws_datasync_agent]]
       }
     },
     Aws_datasync_location_efs => {
@@ -7162,13 +6744,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_location_efsHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_datasync_location_efs]],
-          Tuple[Optional[Aws_datasync_location_efs], String]],
+        'create' => Callable[Optional[Aws_datasync_location_efs], Tuple[Optional[Aws_datasync_location_efs], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_datasync_location_efs]]
+        'read' => Callable[String, Optional[Aws_datasync_location_efs]]
       }
     },
     Aws_datasync_location_efs_ec2_config_177 => {
@@ -7202,13 +6780,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_location_nfsHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_datasync_location_nfs]],
-          Tuple[Optional[Aws_datasync_location_nfs], String]],
+        'create' => Callable[Optional[Aws_datasync_location_nfs], Tuple[Optional[Aws_datasync_location_nfs], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_datasync_location_nfs]]
+        'read' => Callable[String, Optional[Aws_datasync_location_nfs]]
       }
     },
     Aws_datasync_location_nfs_on_prem_config_178 => {
@@ -7241,13 +6815,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_location_s3Handler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_datasync_location_s3]],
-          Tuple[Optional[Aws_datasync_location_s3], String]],
+        'create' => Callable[Optional[Aws_datasync_location_s3], Tuple[Optional[Aws_datasync_location_s3], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_datasync_location_s3]]
+        'read' => Callable[String, Optional[Aws_datasync_location_s3]]
       }
     },
     Aws_datasync_location_s3_s3_config_179 => {
@@ -7287,13 +6857,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_taskHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_datasync_task]],
-          Tuple[Optional[Aws_datasync_task], String]],
+        'create' => Callable[Optional[Aws_datasync_task], Tuple[Optional[Aws_datasync_task], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_datasync_task]]
+        'read' => Callable[String, Optional[Aws_datasync_task]]
       }
     },
     Aws_datasync_task_options_180 => {
@@ -7406,13 +6972,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dax_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dax_cluster]],
-          Tuple[Optional[Aws_dax_cluster], String]],
+        'create' => Callable[Optional[Aws_dax_cluster], Tuple[Optional[Aws_dax_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dax_cluster]]
+        'read' => Callable[String, Optional[Aws_dax_cluster]]
       }
     },
     Aws_dax_cluster_nodes_181 => {
@@ -7462,13 +7024,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dax_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dax_parameter_group]],
-          Tuple[Optional[Aws_dax_parameter_group], String]],
+        'create' => Callable[Optional[Aws_dax_parameter_group], Tuple[Optional[Aws_dax_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dax_parameter_group]]
+        'read' => Callable[String, Optional[Aws_dax_parameter_group]]
       }
     },
     Aws_dax_parameter_group_parameters_183 => {
@@ -7497,13 +7055,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dax_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dax_subnet_group]],
-          Tuple[Optional[Aws_dax_subnet_group], String]],
+        'create' => Callable[Optional[Aws_dax_subnet_group], Tuple[Optional[Aws_dax_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dax_subnet_group]]
+        'read' => Callable[String, Optional[Aws_dax_subnet_group]]
       }
     },
     Aws_db_cluster_snapshot => {
@@ -7570,13 +7124,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_cluster_snapshotHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_cluster_snapshot]],
-          Tuple[Optional[Aws_db_cluster_snapshot], String]],
+        'create' => Callable[Optional[Aws_db_cluster_snapshot], Tuple[Optional[Aws_db_cluster_snapshot], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_cluster_snapshot]]
+        'read' => Callable[String, Optional[Aws_db_cluster_snapshot]]
       }
     },
     Aws_db_event_subscription => {
@@ -7626,13 +7176,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_event_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_event_subscription]],
-          Tuple[Optional[Aws_db_event_subscription], String]],
+        'create' => Callable[Optional[Aws_db_event_subscription], Tuple[Optional[Aws_db_event_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_event_subscription]]
+        'read' => Callable[String, Optional[Aws_db_event_subscription]]
       }
     },
     Aws_db_instance => {
@@ -7854,13 +7400,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_instance]],
-          Tuple[Optional[Aws_db_instance], String]],
+        'create' => Callable[Optional[Aws_db_instance], Tuple[Optional[Aws_db_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_instance]]
+        'read' => Callable[String, Optional[Aws_db_instance]]
       }
     },
     Aws_db_instance_s3_import_184 => {
@@ -7911,13 +7453,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_option_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_option_group]],
-          Tuple[Optional[Aws_db_option_group], String]],
+        'create' => Callable[Optional[Aws_db_option_group], Tuple[Optional[Aws_db_option_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_option_group]]
+        'read' => Callable[String, Optional[Aws_db_option_group]]
       }
     },
     Aws_db_option_group_option_185 => {
@@ -7986,13 +7524,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_parameter_group]],
-          Tuple[Optional[Aws_db_parameter_group], String]],
+        'create' => Callable[Optional[Aws_db_parameter_group], Tuple[Optional[Aws_db_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_parameter_group]]
+        'read' => Callable[String, Optional[Aws_db_parameter_group]]
       }
     },
     Aws_db_parameter_group_parameter_187 => {
@@ -8029,13 +7563,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_security_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_security_group]],
-          Tuple[Optional[Aws_db_security_group], String]],
+        'create' => Callable[Optional[Aws_db_security_group], Tuple[Optional[Aws_db_security_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_security_group]]
+        'read' => Callable[String, Optional[Aws_db_security_group]]
       }
     },
     Aws_db_security_group_ingress_188 => {
@@ -8142,13 +7672,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_snapshotHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_snapshot]],
-          Tuple[Optional[Aws_db_snapshot], String]],
+        'create' => Callable[Optional[Aws_db_snapshot], Tuple[Optional[Aws_db_snapshot], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_snapshot]]
+        'read' => Callable[String, Optional[Aws_db_snapshot]]
       }
     },
     Aws_db_subnet_group => {
@@ -8182,13 +7708,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_db_subnet_group]],
-          Tuple[Optional[Aws_db_subnet_group], String]],
+        'create' => Callable[Optional[Aws_db_subnet_group], Tuple[Optional[Aws_db_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_db_subnet_group]]
+        'read' => Callable[String, Optional[Aws_db_subnet_group]]
       }
     },
     Aws_default_network_acl => {
@@ -8226,13 +7748,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_network_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_default_network_acl]],
-          Tuple[Optional[Aws_default_network_acl], String]],
+        'create' => Callable[Optional[Aws_default_network_acl], Tuple[Optional[Aws_default_network_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_default_network_acl]]
+        'read' => Callable[String, Optional[Aws_default_network_acl]]
       }
     },
     Aws_default_network_acl_egress_189 => {
@@ -8316,13 +7834,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_route_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_default_route_table]],
-          Tuple[Optional[Aws_default_route_table], String]],
+        'create' => Callable[Optional[Aws_default_route_table], Tuple[Optional[Aws_default_route_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_default_route_table]]
+        'read' => Callable[String, Optional[Aws_default_route_table]]
       }
     },
     Aws_default_route_table_route_191 => {
@@ -8407,13 +7921,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_security_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_default_security_group]],
-          Tuple[Optional[Aws_default_security_group], String]],
+        'create' => Callable[Optional[Aws_default_security_group], Tuple[Optional[Aws_default_security_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_default_security_group]]
+        'read' => Callable[String, Optional[Aws_default_security_group]]
       }
     },
     Aws_default_security_group_egress_192 => {
@@ -8529,13 +8039,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_subnetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_default_subnet]],
-          Tuple[Optional[Aws_default_subnet], String]],
+        'create' => Callable[Optional[Aws_default_subnet], Tuple[Optional[Aws_default_subnet], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_default_subnet]]
+        'read' => Callable[String, Optional[Aws_default_subnet]]
       }
     },
     Aws_default_vpc => {
@@ -8616,13 +8122,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_vpcHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_default_vpc]],
-          Tuple[Optional[Aws_default_vpc], String]],
+        'create' => Callable[Optional[Aws_default_vpc], Tuple[Optional[Aws_default_vpc], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_default_vpc]]
+        'read' => Callable[String, Optional[Aws_default_vpc]]
       }
     },
     Aws_default_vpc_dhcp_options => {
@@ -8663,13 +8165,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_vpc_dhcp_optionsHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_default_vpc_dhcp_options]],
-          Tuple[Optional[Aws_default_vpc_dhcp_options], String]],
+        'create' => Callable[Optional[Aws_default_vpc_dhcp_options], Tuple[Optional[Aws_default_vpc_dhcp_options], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_default_vpc_dhcp_options]]
+        'read' => Callable[String, Optional[Aws_default_vpc_dhcp_options]]
       }
     },
     Aws_devicefarm_project => {
@@ -8687,13 +8185,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_devicefarm_projectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_devicefarm_project]],
-          Tuple[Optional[Aws_devicefarm_project], String]],
+        'create' => Callable[Optional[Aws_devicefarm_project], Tuple[Optional[Aws_devicefarm_project], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_devicefarm_project]]
+        'read' => Callable[String, Optional[Aws_devicefarm_project]]
       }
     },
     Aws_directory_service_conditional_forwarder => {
@@ -8709,13 +8203,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_directory_service_conditional_forwarderHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_directory_service_conditional_forwarder]],
-          Tuple[Optional[Aws_directory_service_conditional_forwarder], String]],
+        'create' => Callable[Optional[Aws_directory_service_conditional_forwarder], Tuple[Optional[Aws_directory_service_conditional_forwarder], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_directory_service_conditional_forwarder]]
+        'read' => Callable[String, Optional[Aws_directory_service_conditional_forwarder]]
       }
     },
     Aws_directory_service_directory => {
@@ -8782,13 +8272,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_directory_service_directoryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_directory_service_directory]],
-          Tuple[Optional[Aws_directory_service_directory], String]],
+        'create' => Callable[Optional[Aws_directory_service_directory], Tuple[Optional[Aws_directory_service_directory], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_directory_service_directory]]
+        'read' => Callable[String, Optional[Aws_directory_service_directory]]
       }
     },
     Aws_directory_service_directory_connect_settings_194 => {
@@ -8822,13 +8308,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dlm_lifecycle_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dlm_lifecycle_policy]],
-          Tuple[Optional[Aws_dlm_lifecycle_policy], String]],
+        'create' => Callable[Optional[Aws_dlm_lifecycle_policy], Tuple[Optional[Aws_dlm_lifecycle_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dlm_lifecycle_policy]]
+        'read' => Callable[String, Optional[Aws_dlm_lifecycle_policy]]
       }
     },
     Aws_dlm_lifecycle_policy_policy_details_196 => {
@@ -8894,13 +8376,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dms_certificate]],
-          Tuple[Optional[Aws_dms_certificate], String]],
+        'create' => Callable[Optional[Aws_dms_certificate], Tuple[Optional[Aws_dms_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dms_certificate]]
+        'read' => Callable[String, Optional[Aws_dms_certificate]]
       }
     },
     Aws_dms_endpoint => {
@@ -8972,13 +8450,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_endpointHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dms_endpoint]],
-          Tuple[Optional[Aws_dms_endpoint], String]],
+        'create' => Callable[Optional[Aws_dms_endpoint], Tuple[Optional[Aws_dms_endpoint], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dms_endpoint]]
+        'read' => Callable[String, Optional[Aws_dms_endpoint]]
       }
     },
     Aws_dms_endpoint_mongodb_settings_200 => {
@@ -9113,13 +8587,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_replication_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dms_replication_instance]],
-          Tuple[Optional[Aws_dms_replication_instance], String]],
+        'create' => Callable[Optional[Aws_dms_replication_instance], Tuple[Optional[Aws_dms_replication_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dms_replication_instance]]
+        'read' => Callable[String, Optional[Aws_dms_replication_instance]]
       }
     },
     Aws_dms_replication_subnet_group => {
@@ -9147,13 +8617,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_replication_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dms_replication_subnet_group]],
-          Tuple[Optional[Aws_dms_replication_subnet_group], String]],
+        'create' => Callable[Optional[Aws_dms_replication_subnet_group], Tuple[Optional[Aws_dms_replication_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dms_replication_subnet_group]]
+        'read' => Callable[String, Optional[Aws_dms_replication_subnet_group]]
       }
     },
     Aws_dms_replication_task => {
@@ -9188,13 +8654,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_replication_taskHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dms_replication_task]],
-          Tuple[Optional[Aws_dms_replication_task], String]],
+        'create' => Callable[Optional[Aws_dms_replication_task], Tuple[Optional[Aws_dms_replication_task], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dms_replication_task]]
+        'read' => Callable[String, Optional[Aws_dms_replication_task]]
       }
     },
     Aws_docdb_cluster_parameter_group => {
@@ -9232,13 +8694,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_docdb_cluster_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_docdb_cluster_parameter_group]],
-          Tuple[Optional[Aws_docdb_cluster_parameter_group], String]],
+        'create' => Callable[Optional[Aws_docdb_cluster_parameter_group], Tuple[Optional[Aws_docdb_cluster_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_docdb_cluster_parameter_group]]
+        'read' => Callable[String, Optional[Aws_docdb_cluster_parameter_group]]
       }
     },
     Aws_docdb_cluster_parameter_group_parameter_202 => {
@@ -9282,13 +8740,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_docdb_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_docdb_subnet_group]],
-          Tuple[Optional[Aws_docdb_subnet_group], String]],
+        'create' => Callable[Optional[Aws_docdb_subnet_group], Tuple[Optional[Aws_docdb_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_docdb_subnet_group]]
+        'read' => Callable[String, Optional[Aws_docdb_subnet_group]]
       }
     },
     Aws_dx_bgp_peer => {
@@ -9320,13 +8774,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_bgp_peerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_bgp_peer]],
-          Tuple[Optional[Aws_dx_bgp_peer], String]],
+        'create' => Callable[Optional[Aws_dx_bgp_peer], Tuple[Optional[Aws_dx_bgp_peer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_bgp_peer]]
+        'read' => Callable[String, Optional[Aws_dx_bgp_peer]]
       }
     },
     Aws_dx_connection => {
@@ -9354,13 +8804,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_connectionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_connection]],
-          Tuple[Optional[Aws_dx_connection], String]],
+        'create' => Callable[Optional[Aws_dx_connection], Tuple[Optional[Aws_dx_connection], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_connection]]
+        'read' => Callable[String, Optional[Aws_dx_connection]]
       }
     },
     Aws_dx_connection_association => {
@@ -9375,13 +8821,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_connection_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_connection_association]],
-          Tuple[Optional[Aws_dx_connection_association], String]],
+        'create' => Callable[Optional[Aws_dx_connection_association], Tuple[Optional[Aws_dx_connection_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_connection_association]]
+        'read' => Callable[String, Optional[Aws_dx_connection_association]]
       }
     },
     Aws_dx_gateway => {
@@ -9396,13 +8838,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_gateway]],
-          Tuple[Optional[Aws_dx_gateway], String]],
+        'create' => Callable[Optional[Aws_dx_gateway], Tuple[Optional[Aws_dx_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_gateway]]
+        'read' => Callable[String, Optional[Aws_dx_gateway]]
       }
     },
     Aws_dx_gateway_association => {
@@ -9417,13 +8855,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_gateway_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_gateway_association]],
-          Tuple[Optional[Aws_dx_gateway_association], String]],
+        'create' => Callable[Optional[Aws_dx_gateway_association], Tuple[Optional[Aws_dx_gateway_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_gateway_association]]
+        'read' => Callable[String, Optional[Aws_dx_gateway_association]]
       }
     },
     Aws_dx_hosted_private_virtual_interface => {
@@ -9466,13 +8900,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_private_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_hosted_private_virtual_interface]],
-          Tuple[Optional[Aws_dx_hosted_private_virtual_interface], String]],
+        'create' => Callable[Optional[Aws_dx_hosted_private_virtual_interface], Tuple[Optional[Aws_dx_hosted_private_virtual_interface], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_hosted_private_virtual_interface]]
+        'read' => Callable[String, Optional[Aws_dx_hosted_private_virtual_interface]]
       }
     },
     Aws_dx_hosted_private_virtual_interface_accepter => {
@@ -9502,13 +8932,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_private_virtual_interface_accepterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_hosted_private_virtual_interface_accepter]],
-          Tuple[Optional[Aws_dx_hosted_private_virtual_interface_accepter], String]],
+        'create' => Callable[Optional[Aws_dx_hosted_private_virtual_interface_accepter], Tuple[Optional[Aws_dx_hosted_private_virtual_interface_accepter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_hosted_private_virtual_interface_accepter]]
+        'read' => Callable[String, Optional[Aws_dx_hosted_private_virtual_interface_accepter]]
       }
     },
     Aws_dx_hosted_public_virtual_interface => {
@@ -9544,13 +8970,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_public_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_hosted_public_virtual_interface]],
-          Tuple[Optional[Aws_dx_hosted_public_virtual_interface], String]],
+        'create' => Callable[Optional[Aws_dx_hosted_public_virtual_interface], Tuple[Optional[Aws_dx_hosted_public_virtual_interface], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_hosted_public_virtual_interface]]
+        'read' => Callable[String, Optional[Aws_dx_hosted_public_virtual_interface]]
       }
     },
     Aws_dx_hosted_public_virtual_interface_accepter => {
@@ -9572,13 +8994,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_public_virtual_interface_accepterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_hosted_public_virtual_interface_accepter]],
-          Tuple[Optional[Aws_dx_hosted_public_virtual_interface_accepter], String]],
+        'create' => Callable[Optional[Aws_dx_hosted_public_virtual_interface_accepter], Tuple[Optional[Aws_dx_hosted_public_virtual_interface_accepter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_hosted_public_virtual_interface_accepter]]
+        'read' => Callable[String, Optional[Aws_dx_hosted_public_virtual_interface_accepter]]
       }
     },
     Aws_dx_lag => {
@@ -9610,13 +9028,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_lagHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_lag]],
-          Tuple[Optional[Aws_dx_lag], String]],
+        'create' => Callable[Optional[Aws_dx_lag], Tuple[Optional[Aws_dx_lag], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_lag]]
+        'read' => Callable[String, Optional[Aws_dx_lag]]
       }
     },
     Aws_dx_private_virtual_interface => {
@@ -9670,13 +9084,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_private_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_private_virtual_interface]],
-          Tuple[Optional[Aws_dx_private_virtual_interface], String]],
+        'create' => Callable[Optional[Aws_dx_private_virtual_interface], Tuple[Optional[Aws_dx_private_virtual_interface], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_private_virtual_interface]]
+        'read' => Callable[String, Optional[Aws_dx_private_virtual_interface]]
       }
     },
     Aws_dx_public_virtual_interface => {
@@ -9715,13 +9125,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_public_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dx_public_virtual_interface]],
-          Tuple[Optional[Aws_dx_public_virtual_interface], String]],
+        'create' => Callable[Optional[Aws_dx_public_virtual_interface], Tuple[Optional[Aws_dx_public_virtual_interface], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dx_public_virtual_interface]]
+        'read' => Callable[String, Optional[Aws_dx_public_virtual_interface]]
       }
     },
     Aws_dynamodb_global_table => {
@@ -9740,13 +9146,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dynamodb_global_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dynamodb_global_table]],
-          Tuple[Optional[Aws_dynamodb_global_table], String]],
+        'create' => Callable[Optional[Aws_dynamodb_global_table], Tuple[Optional[Aws_dynamodb_global_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dynamodb_global_table]]
+        'read' => Callable[String, Optional[Aws_dynamodb_global_table]]
       }
     },
     Aws_dynamodb_global_table_replica_203 => {
@@ -9827,13 +9229,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dynamodb_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dynamodb_table]],
-          Tuple[Optional[Aws_dynamodb_table], String]],
+        'create' => Callable[Optional[Aws_dynamodb_table], Tuple[Optional[Aws_dynamodb_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dynamodb_table]]
+        'read' => Callable[String, Optional[Aws_dynamodb_table]]
       }
     },
     Aws_dynamodb_table_attribute_204 => {
@@ -9882,13 +9280,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_dynamodb_table_itemHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_dynamodb_table_item]],
-          Tuple[Optional[Aws_dynamodb_table_item], String]],
+        'create' => Callable[Optional[Aws_dynamodb_table_item], Tuple[Optional[Aws_dynamodb_table_item], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_dynamodb_table_item]]
+        'read' => Callable[String, Optional[Aws_dynamodb_table_item]]
       }
     },
     Aws_dynamodb_table_local_secondary_index_206 => {
@@ -9961,13 +9355,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ebs_snapshotHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ebs_snapshot]],
-          Tuple[Optional[Aws_ebs_snapshot], String]],
+        'create' => Callable[Optional[Aws_ebs_snapshot], Tuple[Optional[Aws_ebs_snapshot], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ebs_snapshot]]
+        'read' => Callable[String, Optional[Aws_ebs_snapshot]]
       }
     },
     Aws_ebs_snapshot_copy => {
@@ -10018,13 +9408,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ebs_snapshot_copyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ebs_snapshot_copy]],
-          Tuple[Optional[Aws_ebs_snapshot_copy], String]],
+        'create' => Callable[Optional[Aws_ebs_snapshot_copy], Tuple[Optional[Aws_ebs_snapshot_copy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ebs_snapshot_copy]]
+        'read' => Callable[String, Optional[Aws_ebs_snapshot_copy]]
       }
     },
     Aws_ebs_volume => {
@@ -10070,13 +9456,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ebs_volumeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ebs_volume]],
-          Tuple[Optional[Aws_ebs_volume], String]],
+        'create' => Callable[Optional[Aws_ebs_volume], Tuple[Optional[Aws_ebs_volume], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ebs_volume]]
+        'read' => Callable[String, Optional[Aws_ebs_volume]]
       }
     },
     Aws_ec2_capacity_reservation => {
@@ -10121,13 +9503,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_capacity_reservationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_capacity_reservation]],
-          Tuple[Optional[Aws_ec2_capacity_reservation], String]],
+        'create' => Callable[Optional[Aws_ec2_capacity_reservation], Tuple[Optional[Aws_ec2_capacity_reservation], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_capacity_reservation]]
+        'read' => Callable[String, Optional[Aws_ec2_capacity_reservation]]
       }
     },
     Aws_ec2_fleet => {
@@ -10174,13 +9552,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_fleetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_fleet]],
-          Tuple[Optional[Aws_ec2_fleet], String]],
+        'create' => Callable[Optional[Aws_ec2_fleet], Tuple[Optional[Aws_ec2_fleet], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_fleet]]
+        'read' => Callable[String, Optional[Aws_ec2_fleet]]
       }
     },
     Aws_ec2_fleet_launch_template_config_210 => {
@@ -10329,13 +9703,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_transit_gateway]],
-          Tuple[Optional[Aws_ec2_transit_gateway], String]],
+        'create' => Callable[Optional[Aws_ec2_transit_gateway], Tuple[Optional[Aws_ec2_transit_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_transit_gateway]]
+        'read' => Callable[String, Optional[Aws_ec2_transit_gateway]]
       }
     },
     Aws_ec2_transit_gateway_route => {
@@ -10351,13 +9721,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_routeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_transit_gateway_route]],
-          Tuple[Optional[Aws_ec2_transit_gateway_route], String]],
+        'create' => Callable[Optional[Aws_ec2_transit_gateway_route], Tuple[Optional[Aws_ec2_transit_gateway_route], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_transit_gateway_route]]
+        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route]]
       }
     },
     Aws_ec2_transit_gateway_route_table => {
@@ -10383,13 +9749,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_route_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_transit_gateway_route_table]],
-          Tuple[Optional[Aws_ec2_transit_gateway_route_table], String]],
+        'create' => Callable[Optional[Aws_ec2_transit_gateway_route_table], Tuple[Optional[Aws_ec2_transit_gateway_route_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_transit_gateway_route_table]]
+        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table]]
       }
     },
     Aws_ec2_transit_gateway_route_table_association => {
@@ -10412,13 +9774,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_route_table_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_transit_gateway_route_table_association]],
-          Tuple[Optional[Aws_ec2_transit_gateway_route_table_association], String]],
+        'create' => Callable[Optional[Aws_ec2_transit_gateway_route_table_association], Tuple[Optional[Aws_ec2_transit_gateway_route_table_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_transit_gateway_route_table_association]]
+        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table_association]]
       }
     },
     Aws_ec2_transit_gateway_route_table_propagation => {
@@ -10441,13 +9799,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_route_table_propagationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_transit_gateway_route_table_propagation]],
-          Tuple[Optional[Aws_ec2_transit_gateway_route_table_propagation], String]],
+        'create' => Callable[Optional[Aws_ec2_transit_gateway_route_table_propagation], Tuple[Optional[Aws_ec2_transit_gateway_route_table_propagation], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_transit_gateway_route_table_propagation]]
+        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table_propagation]]
       }
     },
     Aws_ec2_transit_gateway_vpc_attachment => {
@@ -10487,13 +9841,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_vpc_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ec2_transit_gateway_vpc_attachment]],
-          Tuple[Optional[Aws_ec2_transit_gateway_vpc_attachment], String]],
+        'create' => Callable[Optional[Aws_ec2_transit_gateway_vpc_attachment], Tuple[Optional[Aws_ec2_transit_gateway_vpc_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ec2_transit_gateway_vpc_attachment]]
+        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_vpc_attachment]]
       }
     },
     Aws_ecr_lifecycle_policy => {
@@ -10512,13 +9862,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecr_lifecycle_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ecr_lifecycle_policy]],
-          Tuple[Optional[Aws_ecr_lifecycle_policy], String]],
+        'create' => Callable[Optional[Aws_ecr_lifecycle_policy], Tuple[Optional[Aws_ecr_lifecycle_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ecr_lifecycle_policy]]
+        'read' => Callable[String, Optional[Aws_ecr_lifecycle_policy]]
       }
     },
     Aws_ecr_repository => {
@@ -10548,13 +9894,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecr_repositoryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ecr_repository]],
-          Tuple[Optional[Aws_ecr_repository], String]],
+        'create' => Callable[Optional[Aws_ecr_repository], Tuple[Optional[Aws_ecr_repository], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ecr_repository]]
+        'read' => Callable[String, Optional[Aws_ecr_repository]]
       }
     },
     Aws_ecr_repository_policy => {
@@ -10573,13 +9915,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecr_repository_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ecr_repository_policy]],
-          Tuple[Optional[Aws_ecr_repository_policy], String]],
+        'create' => Callable[Optional[Aws_ecr_repository_policy], Tuple[Optional[Aws_ecr_repository_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ecr_repository_policy]]
+        'read' => Callable[String, Optional[Aws_ecr_repository_policy]]
       }
     },
     Aws_ecs_cluster => {
@@ -10601,13 +9939,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecs_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ecs_cluster]],
-          Tuple[Optional[Aws_ecs_cluster], String]],
+        'create' => Callable[Optional[Aws_ecs_cluster], Tuple[Optional[Aws_ecs_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ecs_cluster]]
+        'read' => Callable[String, Optional[Aws_ecs_cluster]]
       }
     },
     Aws_ecs_service => {
@@ -10698,13 +10032,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecs_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ecs_service]],
-          Tuple[Optional[Aws_ecs_service], String]],
+        'create' => Callable[Optional[Aws_ecs_service], Tuple[Optional[Aws_ecs_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ecs_service]]
+        'read' => Callable[String, Optional[Aws_ecs_service]]
       }
     },
     Aws_ecs_service_deployment_controller_216 => {
@@ -10850,13 +10180,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecs_task_definitionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ecs_task_definition]],
-          Tuple[Optional[Aws_ecs_task_definition], String]],
+        'create' => Callable[Optional[Aws_ecs_task_definition], Tuple[Optional[Aws_ecs_task_definition], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ecs_task_definition]]
+        'read' => Callable[String, Optional[Aws_ecs_task_definition]]
       }
     },
     Aws_ecs_task_definition_placement_constraints_223 => {
@@ -10955,13 +10281,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_efs_file_systemHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_efs_file_system]],
-          Tuple[Optional[Aws_efs_file_system], String]],
+        'create' => Callable[Optional[Aws_efs_file_system], Tuple[Optional[Aws_efs_file_system], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_efs_file_system]]
+        'read' => Callable[String, Optional[Aws_efs_file_system]]
       }
     },
     Aws_efs_mount_target => {
@@ -10996,13 +10318,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_efs_mount_targetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_efs_mount_target]],
-          Tuple[Optional[Aws_efs_mount_target], String]],
+        'create' => Callable[Optional[Aws_efs_mount_target], Tuple[Optional[Aws_efs_mount_target], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_efs_mount_target]]
+        'read' => Callable[String, Optional[Aws_efs_mount_target]]
       }
     },
     Aws_egress_only_internet_gateway => {
@@ -11016,13 +10334,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_egress_only_internet_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_egress_only_internet_gateway]],
-          Tuple[Optional[Aws_egress_only_internet_gateway], String]],
+        'create' => Callable[Optional[Aws_egress_only_internet_gateway], Tuple[Optional[Aws_egress_only_internet_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_egress_only_internet_gateway]]
+        'read' => Callable[String, Optional[Aws_egress_only_internet_gateway]]
       }
     },
     Aws_eip => {
@@ -11079,13 +10393,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_eipHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_eip]],
-          Tuple[Optional[Aws_eip], String]],
+        'create' => Callable[Optional[Aws_eip], Tuple[Optional[Aws_eip], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_eip]]
+        'read' => Callable[String, Optional[Aws_eip]]
       }
     },
     Aws_eip_association => {
@@ -11122,13 +10432,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_eip_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_eip_association]],
-          Tuple[Optional[Aws_eip_association], String]],
+        'create' => Callable[Optional[Aws_eip_association], Tuple[Optional[Aws_eip_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_eip_association]]
+        'read' => Callable[String, Optional[Aws_eip_association]]
       }
     },
     Aws_eks_cluster => {
@@ -11168,13 +10474,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_eks_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_eks_cluster]],
-          Tuple[Optional[Aws_eks_cluster], String]],
+        'create' => Callable[Optional[Aws_eks_cluster], Tuple[Optional[Aws_eks_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_eks_cluster]]
+        'read' => Callable[String, Optional[Aws_eks_cluster]]
       }
     },
     Aws_eks_cluster_certificate_authority_226 => {
@@ -11217,13 +10519,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_applicationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elastic_beanstalk_application]],
-          Tuple[Optional[Aws_elastic_beanstalk_application], String]],
+        'create' => Callable[Optional[Aws_elastic_beanstalk_application], Tuple[Optional[Aws_elastic_beanstalk_application], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elastic_beanstalk_application]]
+        'read' => Callable[String, Optional[Aws_elastic_beanstalk_application]]
       }
     },
     Aws_elastic_beanstalk_application_appversion_lifecycle_228 => {
@@ -11265,13 +10563,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_application_versionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elastic_beanstalk_application_version]],
-          Tuple[Optional[Aws_elastic_beanstalk_application_version], String]],
+        'create' => Callable[Optional[Aws_elastic_beanstalk_application_version], Tuple[Optional[Aws_elastic_beanstalk_application_version], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elastic_beanstalk_application_version]]
+        'read' => Callable[String, Optional[Aws_elastic_beanstalk_application_version]]
       }
     },
     Aws_elastic_beanstalk_configuration_template => {
@@ -11302,13 +10596,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_configuration_templateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elastic_beanstalk_configuration_template]],
-          Tuple[Optional[Aws_elastic_beanstalk_configuration_template], String]],
+        'create' => Callable[Optional[Aws_elastic_beanstalk_configuration_template], Tuple[Optional[Aws_elastic_beanstalk_configuration_template], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elastic_beanstalk_configuration_template]]
+        'read' => Callable[String, Optional[Aws_elastic_beanstalk_configuration_template]]
       }
     },
     Aws_elastic_beanstalk_configuration_template_setting_229 => {
@@ -11414,13 +10704,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_environmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elastic_beanstalk_environment]],
-          Tuple[Optional[Aws_elastic_beanstalk_environment], String]],
+        'create' => Callable[Optional[Aws_elastic_beanstalk_environment], Tuple[Optional[Aws_elastic_beanstalk_environment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elastic_beanstalk_environment]]
+        'read' => Callable[String, Optional[Aws_elastic_beanstalk_environment]]
       }
     },
     Aws_elastic_beanstalk_environment_all_settings_230 => {
@@ -11556,13 +10842,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticache_cluster]],
-          Tuple[Optional[Aws_elasticache_cluster], String]],
+        'create' => Callable[Optional[Aws_elasticache_cluster], Tuple[Optional[Aws_elasticache_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticache_cluster]]
+        'read' => Callable[String, Optional[Aws_elasticache_cluster]]
       }
     },
     Aws_elasticache_cluster_cache_nodes_232 => {
@@ -11605,13 +10887,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticache_parameter_group]],
-          Tuple[Optional[Aws_elasticache_parameter_group], String]],
+        'create' => Callable[Optional[Aws_elasticache_parameter_group], Tuple[Optional[Aws_elasticache_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticache_parameter_group]]
+        'read' => Callable[String, Optional[Aws_elasticache_parameter_group]]
       }
     },
     Aws_elasticache_parameter_group_parameter_233 => {
@@ -11740,13 +11018,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_replication_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticache_replication_group]],
-          Tuple[Optional[Aws_elasticache_replication_group], String]],
+        'create' => Callable[Optional[Aws_elasticache_replication_group], Tuple[Optional[Aws_elasticache_replication_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticache_replication_group]]
+        'read' => Callable[String, Optional[Aws_elasticache_replication_group]]
       }
     },
     Aws_elasticache_replication_group_cluster_mode_234 => {
@@ -11771,13 +11045,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_security_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticache_security_group]],
-          Tuple[Optional[Aws_elasticache_security_group], String]],
+        'create' => Callable[Optional[Aws_elasticache_security_group], Tuple[Optional[Aws_elasticache_security_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticache_security_group]]
+        'read' => Callable[String, Optional[Aws_elasticache_security_group]]
       }
     },
     Aws_elasticache_subnet_group => {
@@ -11796,13 +11066,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticache_subnet_group]],
-          Tuple[Optional[Aws_elasticache_subnet_group], String]],
+        'create' => Callable[Optional[Aws_elasticache_subnet_group], Tuple[Optional[Aws_elasticache_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticache_subnet_group]]
+        'read' => Callable[String, Optional[Aws_elasticache_subnet_group]]
       }
     },
     Aws_elasticsearch_domain => {
@@ -11880,13 +11146,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticsearch_domainHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticsearch_domain]],
-          Tuple[Optional[Aws_elasticsearch_domain], String]],
+        'create' => Callable[Optional[Aws_elasticsearch_domain], Tuple[Optional[Aws_elasticsearch_domain], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticsearch_domain]]
+        'read' => Callable[String, Optional[Aws_elasticsearch_domain]]
       }
     },
     Aws_elasticsearch_domain_cluster_config_235 => {
@@ -11981,13 +11243,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticsearch_domain_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elasticsearch_domain_policy]],
-          Tuple[Optional[Aws_elasticsearch_domain_policy], String]],
+        'create' => Callable[Optional[Aws_elasticsearch_domain_policy], Tuple[Optional[Aws_elasticsearch_domain_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elasticsearch_domain_policy]]
+        'read' => Callable[String, Optional[Aws_elasticsearch_domain_policy]]
       }
     },
     Aws_elasticsearch_domain_snapshot_options_241 => {
@@ -12063,13 +11321,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastictranscoder_pipelineHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elastictranscoder_pipeline]],
-          Tuple[Optional[Aws_elastictranscoder_pipeline], String]],
+        'create' => Callable[Optional[Aws_elastictranscoder_pipeline], Tuple[Optional[Aws_elastictranscoder_pipeline], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elastictranscoder_pipeline]]
+        'read' => Callable[String, Optional[Aws_elastictranscoder_pipeline]]
       }
     },
     Aws_elastictranscoder_pipeline_content_config_243 => {
@@ -12199,13 +11453,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastictranscoder_presetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elastictranscoder_preset]],
-          Tuple[Optional[Aws_elastictranscoder_preset], String]],
+        'create' => Callable[Optional[Aws_elastictranscoder_preset], Tuple[Optional[Aws_elastictranscoder_preset], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elastictranscoder_preset]]
+        'read' => Callable[String, Optional[Aws_elastictranscoder_preset]]
       }
     },
     Aws_elastictranscoder_preset_audio_248 => {
@@ -12475,13 +11725,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elbHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elb]],
-          Tuple[Optional[Aws_elb], String]],
+        'create' => Callable[Optional[Aws_elb], Tuple[Optional[Aws_elb], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elb]]
+        'read' => Callable[String, Optional[Aws_elb]]
       }
     },
     Aws_elb_access_logs_253 => {
@@ -12513,13 +11759,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_elb_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_elb_attachment]],
-          Tuple[Optional[Aws_elb_attachment], String]],
+        'create' => Callable[Optional[Aws_elb_attachment], Tuple[Optional[Aws_elb_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_elb_attachment]]
+        'read' => Callable[String, Optional[Aws_elb_attachment]]
       }
     },
     Aws_elb_health_check_254 => {
@@ -12652,13 +11894,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_emr_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_emr_cluster]],
-          Tuple[Optional[Aws_emr_cluster], String]],
+        'create' => Callable[Optional[Aws_emr_cluster], Tuple[Optional[Aws_emr_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_emr_cluster]]
+        'read' => Callable[String, Optional[Aws_emr_cluster]]
       }
     },
     Aws_emr_cluster_bootstrap_action_256 => {
@@ -12826,13 +12064,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_emr_instance_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_emr_instance_group]],
-          Tuple[Optional[Aws_emr_instance_group], String]],
+        'create' => Callable[Optional[Aws_emr_instance_group], Tuple[Optional[Aws_emr_instance_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_emr_instance_group]]
+        'read' => Callable[String, Optional[Aws_emr_instance_group]]
       }
     },
     Aws_emr_instance_group_ebs_config_263 => {
@@ -12872,13 +12106,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_emr_security_configurationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_emr_security_configuration]],
-          Tuple[Optional[Aws_emr_security_configuration], String]],
+        'create' => Callable[Optional[Aws_emr_security_configuration], Tuple[Optional[Aws_emr_security_configuration], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_emr_security_configuration]]
+        'read' => Callable[String, Optional[Aws_emr_security_configuration]]
       }
     },
     Aws_flow_log => {
@@ -12920,13 +12150,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_flow_logHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_flow_log]],
-          Tuple[Optional[Aws_flow_log], String]],
+        'create' => Callable[Optional[Aws_flow_log], Tuple[Optional[Aws_flow_log], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_flow_log]]
+        'read' => Callable[String, Optional[Aws_flow_log]]
       }
     },
     Aws_gamelift_alias => {
@@ -12949,13 +12175,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_aliasHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_gamelift_alias]],
-          Tuple[Optional[Aws_gamelift_alias], String]],
+        'create' => Callable[Optional[Aws_gamelift_alias], Tuple[Optional[Aws_gamelift_alias], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_gamelift_alias]]
+        'read' => Callable[String, Optional[Aws_gamelift_alias]]
       }
     },
     Aws_gamelift_alias_routing_strategy_264 => {
@@ -12988,13 +12210,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_buildHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_gamelift_build]],
-          Tuple[Optional[Aws_gamelift_build], String]],
+        'create' => Callable[Optional[Aws_gamelift_build], Tuple[Optional[Aws_gamelift_build], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_gamelift_build]]
+        'read' => Callable[String, Optional[Aws_gamelift_build]]
       }
     },
     Aws_gamelift_build_storage_location_265 => {
@@ -13053,13 +12271,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_fleetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_gamelift_fleet]],
-          Tuple[Optional[Aws_gamelift_fleet], String]],
+        'create' => Callable[Optional[Aws_gamelift_fleet], Tuple[Optional[Aws_gamelift_fleet], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_gamelift_fleet]]
+        'read' => Callable[String, Optional[Aws_gamelift_fleet]]
       }
     },
     Aws_gamelift_fleet_ec2_inbound_permission_266 => {
@@ -13135,13 +12349,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_game_session_queueHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_gamelift_game_session_queue]],
-          Tuple[Optional[Aws_gamelift_game_session_queue], String]],
+        'create' => Callable[Optional[Aws_gamelift_game_session_queue], Tuple[Optional[Aws_gamelift_game_session_queue], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_gamelift_game_session_queue]]
+        'read' => Callable[String, Optional[Aws_gamelift_game_session_queue]]
       }
     },
     Aws_gamelift_game_session_queue_player_latency_policy_270 => {
@@ -13184,13 +12394,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glacier_vaultHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glacier_vault]],
-          Tuple[Optional[Aws_glacier_vault], String]],
+        'create' => Callable[Optional[Aws_glacier_vault], Tuple[Optional[Aws_glacier_vault], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glacier_vault]]
+        'read' => Callable[String, Optional[Aws_glacier_vault]]
       }
     },
     Aws_glacier_vault_lock => {
@@ -13210,13 +12416,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glacier_vault_lockHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glacier_vault_lock]],
-          Tuple[Optional[Aws_glacier_vault_lock], String]],
+        'create' => Callable[Optional[Aws_glacier_vault_lock], Tuple[Optional[Aws_glacier_vault_lock], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glacier_vault_lock]]
+        'read' => Callable[String, Optional[Aws_glacier_vault_lock]]
       }
     },
     Aws_glacier_vault_notification_271 => {
@@ -13252,13 +12454,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_globalaccelerator_acceleratorHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_globalaccelerator_accelerator]],
-          Tuple[Optional[Aws_globalaccelerator_accelerator], String]],
+        'create' => Callable[Optional[Aws_globalaccelerator_accelerator], Tuple[Optional[Aws_globalaccelerator_accelerator], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_globalaccelerator_accelerator]]
+        'read' => Callable[String, Optional[Aws_globalaccelerator_accelerator]]
       }
     },
     Aws_globalaccelerator_accelerator_attributes_272 => {
@@ -13316,13 +12514,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_catalog_databaseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_catalog_database]],
-          Tuple[Optional[Aws_glue_catalog_database], String]],
+        'create' => Callable[Optional[Aws_glue_catalog_database], Tuple[Optional[Aws_glue_catalog_database], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_catalog_database]]
+        'read' => Callable[String, Optional[Aws_glue_catalog_database]]
       }
     },
     Aws_glue_catalog_table => {
@@ -13377,13 +12571,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_catalog_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_catalog_table]],
-          Tuple[Optional[Aws_glue_catalog_table], String]],
+        'create' => Callable[Optional[Aws_glue_catalog_table], Tuple[Optional[Aws_glue_catalog_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_catalog_table]]
+        'read' => Callable[String, Optional[Aws_glue_catalog_table]]
       }
     },
     Aws_glue_catalog_table_partition_keys_274 => {
@@ -13525,13 +12715,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_classifierHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_classifier]],
-          Tuple[Optional[Aws_glue_classifier], String]],
+        'create' => Callable[Optional[Aws_glue_classifier], Tuple[Optional[Aws_glue_classifier], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_classifier]]
+        'read' => Callable[String, Optional[Aws_glue_classifier]]
       }
     },
     Aws_glue_classifier_grok_classifier_280 => {
@@ -13587,13 +12773,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_connectionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_connection]],
-          Tuple[Optional[Aws_glue_connection], String]],
+        'create' => Callable[Optional[Aws_glue_connection], Tuple[Optional[Aws_glue_connection], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_connection]]
+        'read' => Callable[String, Optional[Aws_glue_connection]]
       }
     },
     Aws_glue_connection_physical_connection_requirements_283 => {
@@ -13665,13 +12847,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_crawlerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_crawler]],
-          Tuple[Optional[Aws_glue_crawler], String]],
+        'create' => Callable[Optional[Aws_glue_crawler], Tuple[Optional[Aws_glue_crawler], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_crawler]]
+        'read' => Callable[String, Optional[Aws_glue_crawler]]
       }
     },
     Aws_glue_crawler_dynamodb_target_284 => {
@@ -13755,13 +12933,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_jobHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_job]],
-          Tuple[Optional[Aws_glue_job], String]],
+        'create' => Callable[Optional[Aws_glue_job], Tuple[Optional[Aws_glue_job], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_job]]
+        'read' => Callable[String, Optional[Aws_glue_job]]
       }
     },
     Aws_glue_job_command_288 => {
@@ -13793,13 +12967,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_security_configurationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_security_configuration]],
-          Tuple[Optional[Aws_glue_security_configuration], String]],
+        'create' => Callable[Optional[Aws_glue_security_configuration], Tuple[Optional[Aws_glue_security_configuration], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_security_configuration]]
+        'read' => Callable[String, Optional[Aws_glue_security_configuration]]
       }
     },
     Aws_glue_security_configuration_encryption_configuration_290 => {
@@ -13874,13 +13044,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_triggerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_glue_trigger]],
-          Tuple[Optional[Aws_glue_trigger], String]],
+        'create' => Callable[Optional[Aws_glue_trigger], Tuple[Optional[Aws_glue_trigger], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_glue_trigger]]
+        'read' => Callable[String, Optional[Aws_glue_trigger]]
       }
     },
     Aws_glue_trigger_actions_294 => {
@@ -13937,13 +13103,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_detectorHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_guardduty_detector]],
-          Tuple[Optional[Aws_guardduty_detector], String]],
+        'create' => Callable[Optional[Aws_guardduty_detector], Tuple[Optional[Aws_guardduty_detector], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_guardduty_detector]]
+        'read' => Callable[String, Optional[Aws_guardduty_detector]]
       }
     },
     Aws_guardduty_ipset => {
@@ -13961,13 +13123,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_ipsetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_guardduty_ipset]],
-          Tuple[Optional[Aws_guardduty_ipset], String]],
+        'create' => Callable[Optional[Aws_guardduty_ipset], Tuple[Optional[Aws_guardduty_ipset], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_guardduty_ipset]]
+        'read' => Callable[String, Optional[Aws_guardduty_ipset]]
       }
     },
     Aws_guardduty_member => {
@@ -13999,13 +13157,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_guardduty_member]],
-          Tuple[Optional[Aws_guardduty_member], String]],
+        'create' => Callable[Optional[Aws_guardduty_member], Tuple[Optional[Aws_guardduty_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_guardduty_member]]
+        'read' => Callable[String, Optional[Aws_guardduty_member]]
       }
     },
     Aws_guardduty_threatintelset => {
@@ -14023,13 +13177,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_threatintelsetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_guardduty_threatintelset]],
-          Tuple[Optional[Aws_guardduty_threatintelset], String]],
+        'create' => Callable[Optional[Aws_guardduty_threatintelset], Tuple[Optional[Aws_guardduty_threatintelset], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_guardduty_threatintelset]]
+        'read' => Callable[String, Optional[Aws_guardduty_threatintelset]]
       }
     },
     Aws_iam_access_key => {
@@ -14067,13 +13217,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_access_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_access_key]],
-          Tuple[Optional[Aws_iam_access_key], String]],
+        'create' => Callable[Optional[Aws_iam_access_key], Tuple[Optional[Aws_iam_access_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_access_key]]
+        'read' => Callable[String, Optional[Aws_iam_access_key]]
       }
     },
     Aws_iam_account_alias => {
@@ -14087,13 +13233,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_account_aliasHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_account_alias]],
-          Tuple[Optional[Aws_iam_account_alias], String]],
+        'create' => Callable[Optional[Aws_iam_account_alias], Tuple[Optional[Aws_iam_account_alias], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_account_alias]]
+        'read' => Callable[String, Optional[Aws_iam_account_alias]]
       }
     },
     Aws_iam_account_password_policy => {
@@ -14146,13 +13288,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_account_password_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_account_password_policy]],
-          Tuple[Optional[Aws_iam_account_password_policy], String]],
+        'create' => Callable[Optional[Aws_iam_account_password_policy], Tuple[Optional[Aws_iam_account_password_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_account_password_policy]]
+        'read' => Callable[String, Optional[Aws_iam_account_password_policy]]
       }
     },
     Aws_iam_group => {
@@ -14178,13 +13316,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_group]],
-          Tuple[Optional[Aws_iam_group], String]],
+        'create' => Callable[Optional[Aws_iam_group], Tuple[Optional[Aws_iam_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_group]]
+        'read' => Callable[String, Optional[Aws_iam_group]]
       }
     },
     Aws_iam_group_membership => {
@@ -14200,13 +13334,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_group_membershipHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_group_membership]],
-          Tuple[Optional[Aws_iam_group_membership], String]],
+        'create' => Callable[Optional[Aws_iam_group_membership], Tuple[Optional[Aws_iam_group_membership], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_group_membership]]
+        'read' => Callable[String, Optional[Aws_iam_group_membership]]
       }
     },
     Aws_iam_group_policy => {
@@ -14229,13 +13359,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_group_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_group_policy]],
-          Tuple[Optional[Aws_iam_group_policy], String]],
+        'create' => Callable[Optional[Aws_iam_group_policy], Tuple[Optional[Aws_iam_group_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_group_policy]]
+        'read' => Callable[String, Optional[Aws_iam_group_policy]]
       }
     },
     Aws_iam_group_policy_attachment => {
@@ -14250,13 +13376,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_group_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_group_policy_attachment]],
-          Tuple[Optional[Aws_iam_group_policy_attachment], String]],
+        'create' => Callable[Optional[Aws_iam_group_policy_attachment], Tuple[Optional[Aws_iam_group_policy_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_group_policy_attachment]]
+        'read' => Callable[String, Optional[Aws_iam_group_policy_attachment]]
       }
     },
     Aws_iam_instance_profile => {
@@ -14301,13 +13423,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_instance_profileHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_instance_profile]],
-          Tuple[Optional[Aws_iam_instance_profile], String]],
+        'create' => Callable[Optional[Aws_iam_instance_profile], Tuple[Optional[Aws_iam_instance_profile], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_instance_profile]]
+        'read' => Callable[String, Optional[Aws_iam_instance_profile]]
       }
     },
     Aws_iam_openid_connect_provider => {
@@ -14327,13 +13445,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_openid_connect_providerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_openid_connect_provider]],
-          Tuple[Optional[Aws_iam_openid_connect_provider], String]],
+        'create' => Callable[Optional[Aws_iam_openid_connect_provider], Tuple[Optional[Aws_iam_openid_connect_provider], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_openid_connect_provider]]
+        'read' => Callable[String, Optional[Aws_iam_openid_connect_provider]]
       }
     },
     Aws_iam_policy => {
@@ -14367,13 +13481,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_policy]],
-          Tuple[Optional[Aws_iam_policy], String]],
+        'create' => Callable[Optional[Aws_iam_policy], Tuple[Optional[Aws_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_policy]]
+        'read' => Callable[String, Optional[Aws_iam_policy]]
       }
     },
     Aws_iam_policy_attachment => {
@@ -14400,13 +13510,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_policy_attachment]],
-          Tuple[Optional[Aws_iam_policy_attachment], String]],
+        'create' => Callable[Optional[Aws_iam_policy_attachment], Tuple[Optional[Aws_iam_policy_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_policy_attachment]]
+        'read' => Callable[String, Optional[Aws_iam_policy_attachment]]
       }
     },
     Aws_iam_role => {
@@ -14464,13 +13570,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_roleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_role]],
-          Tuple[Optional[Aws_iam_role], String]],
+        'create' => Callable[Optional[Aws_iam_role], Tuple[Optional[Aws_iam_role], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_role]]
+        'read' => Callable[String, Optional[Aws_iam_role]]
       }
     },
     Aws_iam_role_policy => {
@@ -14493,13 +13595,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_role_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_role_policy]],
-          Tuple[Optional[Aws_iam_role_policy], String]],
+        'create' => Callable[Optional[Aws_iam_role_policy], Tuple[Optional[Aws_iam_role_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_role_policy]]
+        'read' => Callable[String, Optional[Aws_iam_role_policy]]
       }
     },
     Aws_iam_role_policy_attachment => {
@@ -14514,13 +13612,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_role_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_role_policy_attachment]],
-          Tuple[Optional[Aws_iam_role_policy_attachment], String]],
+        'create' => Callable[Optional[Aws_iam_role_policy_attachment], Tuple[Optional[Aws_iam_role_policy_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_role_policy_attachment]]
+        'read' => Callable[String, Optional[Aws_iam_role_policy_attachment]]
       }
     },
     Aws_iam_saml_provider => {
@@ -14543,13 +13637,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_saml_providerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_saml_provider]],
-          Tuple[Optional[Aws_iam_saml_provider], String]],
+        'create' => Callable[Optional[Aws_iam_saml_provider], Tuple[Optional[Aws_iam_saml_provider], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_saml_provider]]
+        'read' => Callable[String, Optional[Aws_iam_saml_provider]]
       }
     },
     Aws_iam_server_certificate => {
@@ -14584,13 +13674,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_server_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_server_certificate]],
-          Tuple[Optional[Aws_iam_server_certificate], String]],
+        'create' => Callable[Optional[Aws_iam_server_certificate], Tuple[Optional[Aws_iam_server_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_server_certificate]]
+        'read' => Callable[String, Optional[Aws_iam_server_certificate]]
       }
     },
     Aws_iam_service_linked_role => {
@@ -14632,13 +13718,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_service_linked_roleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_service_linked_role]],
-          Tuple[Optional[Aws_iam_service_linked_role], String]],
+        'create' => Callable[Optional[Aws_iam_service_linked_role], Tuple[Optional[Aws_iam_service_linked_role], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_service_linked_role]]
+        'read' => Callable[String, Optional[Aws_iam_service_linked_role]]
       }
     },
     Aws_iam_user => {
@@ -14676,13 +13758,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_userHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_user]],
-          Tuple[Optional[Aws_iam_user], String]],
+        'create' => Callable[Optional[Aws_iam_user], Tuple[Optional[Aws_iam_user], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_user]]
+        'read' => Callable[String, Optional[Aws_iam_user]]
       }
     },
     Aws_iam_user_group_membership => {
@@ -14697,13 +13775,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_group_membershipHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_user_group_membership]],
-          Tuple[Optional[Aws_iam_user_group_membership], String]],
+        'create' => Callable[Optional[Aws_iam_user_group_membership], Tuple[Optional[Aws_iam_user_group_membership], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_user_group_membership]]
+        'read' => Callable[String, Optional[Aws_iam_user_group_membership]]
       }
     },
     Aws_iam_user_login_profile => {
@@ -14734,13 +13808,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_login_profileHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_user_login_profile]],
-          Tuple[Optional[Aws_iam_user_login_profile], String]],
+        'create' => Callable[Optional[Aws_iam_user_login_profile], Tuple[Optional[Aws_iam_user_login_profile], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_user_login_profile]]
+        'read' => Callable[String, Optional[Aws_iam_user_login_profile]]
       }
     },
     Aws_iam_user_policy => {
@@ -14763,13 +13833,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_user_policy]],
-          Tuple[Optional[Aws_iam_user_policy], String]],
+        'create' => Callable[Optional[Aws_iam_user_policy], Tuple[Optional[Aws_iam_user_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_user_policy]]
+        'read' => Callable[String, Optional[Aws_iam_user_policy]]
       }
     },
     Aws_iam_user_policy_attachment => {
@@ -14784,13 +13850,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_user_policy_attachment]],
-          Tuple[Optional[Aws_iam_user_policy_attachment], String]],
+        'create' => Callable[Optional[Aws_iam_user_policy_attachment], Tuple[Optional[Aws_iam_user_policy_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_user_policy_attachment]]
+        'read' => Callable[String, Optional[Aws_iam_user_policy_attachment]]
       }
     },
     Aws_iam_user_ssh_key => {
@@ -14818,13 +13880,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_ssh_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iam_user_ssh_key]],
-          Tuple[Optional[Aws_iam_user_ssh_key], String]],
+        'create' => Callable[Optional[Aws_iam_user_ssh_key], Tuple[Optional[Aws_iam_user_ssh_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iam_user_ssh_key]]
+        'read' => Callable[String, Optional[Aws_iam_user_ssh_key]]
       }
     },
     Aws_inspector_assessment_target => {
@@ -14846,13 +13904,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_inspector_assessment_targetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_inspector_assessment_target]],
-          Tuple[Optional[Aws_inspector_assessment_target], String]],
+        'create' => Callable[Optional[Aws_inspector_assessment_target], Tuple[Optional[Aws_inspector_assessment_target], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_inspector_assessment_target]]
+        'read' => Callable[String, Optional[Aws_inspector_assessment_target]]
       }
     },
     Aws_inspector_assessment_template => {
@@ -14873,13 +13927,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_inspector_assessment_templateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_inspector_assessment_template]],
-          Tuple[Optional[Aws_inspector_assessment_template], String]],
+        'create' => Callable[Optional[Aws_inspector_assessment_template], Tuple[Optional[Aws_inspector_assessment_template], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_inspector_assessment_template]]
+        'read' => Callable[String, Optional[Aws_inspector_assessment_template]]
       }
     },
     Aws_inspector_resource_group => {
@@ -14897,13 +13947,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_inspector_resource_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_inspector_resource_group]],
-          Tuple[Optional[Aws_inspector_resource_group], String]],
+        'create' => Callable[Optional[Aws_inspector_resource_group], Tuple[Optional[Aws_inspector_resource_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_inspector_resource_group]]
+        'read' => Callable[String, Optional[Aws_inspector_resource_group]]
       }
     },
     Aws_instance => {
@@ -15074,13 +14120,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_instance]],
-          Tuple[Optional[Aws_instance], String]],
+        'create' => Callable[Optional[Aws_instance], Tuple[Optional[Aws_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_instance]]
+        'read' => Callable[String, Optional[Aws_instance]]
       }
     },
     Aws_instance_credit_specification_297 => {
@@ -15193,13 +14235,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_internet_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_internet_gateway]],
-          Tuple[Optional[Aws_internet_gateway], String]],
+        'create' => Callable[Optional[Aws_internet_gateway], Tuple[Optional[Aws_internet_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_internet_gateway]]
+        'read' => Callable[String, Optional[Aws_internet_gateway]]
       }
     },
     Aws_iot_certificate => {
@@ -15218,13 +14256,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_certificate]],
-          Tuple[Optional[Aws_iot_certificate], String]],
+        'create' => Callable[Optional[Aws_iot_certificate], Tuple[Optional[Aws_iot_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_certificate]]
+        'read' => Callable[String, Optional[Aws_iot_certificate]]
       }
     },
     Aws_iot_policy => {
@@ -15247,13 +14281,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_policy]],
-          Tuple[Optional[Aws_iot_policy], String]],
+        'create' => Callable[Optional[Aws_iot_policy], Tuple[Optional[Aws_iot_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_policy]]
+        'read' => Callable[String, Optional[Aws_iot_policy]]
       }
     },
     Aws_iot_policy_attachment => {
@@ -15268,13 +14298,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_policy_attachment]],
-          Tuple[Optional[Aws_iot_policy_attachment], String]],
+        'create' => Callable[Optional[Aws_iot_policy_attachment], Tuple[Optional[Aws_iot_policy_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_policy_attachment]]
+        'read' => Callable[String, Optional[Aws_iot_policy_attachment]]
       }
     },
     Aws_iot_thing => {
@@ -15308,13 +14334,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_thingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_thing]],
-          Tuple[Optional[Aws_iot_thing], String]],
+        'create' => Callable[Optional[Aws_iot_thing], Tuple[Optional[Aws_iot_thing], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_thing]]
+        'read' => Callable[String, Optional[Aws_iot_thing]]
       }
     },
     Aws_iot_thing_principal_attachment => {
@@ -15329,13 +14351,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_thing_principal_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_thing_principal_attachment]],
-          Tuple[Optional[Aws_iot_thing_principal_attachment], String]],
+        'create' => Callable[Optional[Aws_iot_thing_principal_attachment], Tuple[Optional[Aws_iot_thing_principal_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_thing_principal_attachment]]
+        'read' => Callable[String, Optional[Aws_iot_thing_principal_attachment]]
       }
     },
     Aws_iot_thing_type => {
@@ -15361,13 +14379,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_thing_typeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_thing_type]],
-          Tuple[Optional[Aws_iot_thing_type], String]],
+        'create' => Callable[Optional[Aws_iot_thing_type], Tuple[Optional[Aws_iot_thing_type], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_thing_type]]
+        'read' => Callable[String, Optional[Aws_iot_thing_type]]
       }
     },
     Aws_iot_thing_type_properties_302 => {
@@ -15448,13 +14462,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_topic_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_iot_topic_rule]],
-          Tuple[Optional[Aws_iot_topic_rule], String]],
+        'create' => Callable[Optional[Aws_iot_topic_rule], Tuple[Optional[Aws_iot_topic_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_iot_topic_rule]]
+        'read' => Callable[String, Optional[Aws_iot_topic_rule]]
       }
     },
     Aws_iot_topic_rule_cloudwatch_alarm_303 => {
@@ -15587,13 +14597,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_key_pairHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_key_pair]],
-          Tuple[Optional[Aws_key_pair], String]],
+        'create' => Callable[Optional[Aws_key_pair], Tuple[Optional[Aws_key_pair], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_key_pair]]
+        'read' => Callable[String, Optional[Aws_key_pair]]
       }
     },
     Aws_kinesis_analytics_application => {
@@ -15651,13 +14657,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_kinesis_analytics_applicationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_kinesis_analytics_application]],
-          Tuple[Optional[Aws_kinesis_analytics_application], String]],
+        'create' => Callable[Optional[Aws_kinesis_analytics_application], Tuple[Optional[Aws_kinesis_analytics_application], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_kinesis_analytics_application]]
+        'read' => Callable[String, Optional[Aws_kinesis_analytics_application]]
       }
     },
     Aws_kinesis_analytics_application_cloudwatch_logging_options_314 => {
@@ -15968,13 +14970,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_kinesis_firehose_delivery_streamHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_kinesis_firehose_delivery_stream]],
-          Tuple[Optional[Aws_kinesis_firehose_delivery_stream], String]],
+        'create' => Callable[Optional[Aws_kinesis_firehose_delivery_stream], Tuple[Optional[Aws_kinesis_firehose_delivery_stream], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_kinesis_firehose_delivery_stream]]
+        'read' => Callable[String, Optional[Aws_kinesis_firehose_delivery_stream]]
       }
     },
     Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 => {
@@ -16645,13 +15643,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_kinesis_streamHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_kinesis_stream]],
-          Tuple[Optional[Aws_kinesis_stream], String]],
+        'create' => Callable[Optional[Aws_kinesis_stream], Tuple[Optional[Aws_kinesis_stream], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_kinesis_stream]]
+        'read' => Callable[String, Optional[Aws_kinesis_stream]]
       }
     },
     Aws_kms_alias => {
@@ -16681,13 +15675,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_kms_aliasHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_kms_alias]],
-          Tuple[Optional[Aws_kms_alias], String]],
+        'create' => Callable[Optional[Aws_kms_alias], Tuple[Optional[Aws_kms_alias], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_kms_alias]]
+        'read' => Callable[String, Optional[Aws_kms_alias]]
       }
     },
     Aws_kms_grant => {
@@ -16731,13 +15721,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_kms_grantHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_kms_grant]],
-          Tuple[Optional[Aws_kms_grant], String]],
+        'create' => Callable[Optional[Aws_kms_grant], Tuple[Optional[Aws_kms_grant], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_kms_grant]]
+        'read' => Callable[String, Optional[Aws_kms_grant]]
       }
     },
     Aws_kms_grant_constraints_378 => {
@@ -16798,13 +15784,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_kms_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_kms_key]],
-          Tuple[Optional[Aws_kms_key], String]],
+        'create' => Callable[Optional[Aws_kms_key], Tuple[Optional[Aws_kms_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_kms_key]]
+        'read' => Callable[String, Optional[Aws_kms_key]]
       }
     },
     Aws_lambda_alias => {
@@ -16836,13 +15818,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_aliasHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lambda_alias]],
-          Tuple[Optional[Aws_lambda_alias], String]],
+        'create' => Callable[Optional[Aws_lambda_alias], Tuple[Optional[Aws_lambda_alias], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lambda_alias]]
+        'read' => Callable[String, Optional[Aws_lambda_alias]]
       }
     },
     Aws_lambda_alias_routing_config_379 => {
@@ -16905,13 +15883,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_event_source_mappingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lambda_event_source_mapping]],
-          Tuple[Optional[Aws_lambda_event_source_mapping], String]],
+        'create' => Callable[Optional[Aws_lambda_event_source_mapping], Tuple[Optional[Aws_lambda_event_source_mapping], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lambda_event_source_mapping]]
+        'read' => Callable[String, Optional[Aws_lambda_event_source_mapping]]
       }
     },
     Aws_lambda_function => {
@@ -17020,13 +15994,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_functionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lambda_function]],
-          Tuple[Optional[Aws_lambda_function], String]],
+        'create' => Callable[Optional[Aws_lambda_function], Tuple[Optional[Aws_lambda_function], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lambda_function]]
+        'read' => Callable[String, Optional[Aws_lambda_function]]
       }
     },
     Aws_lambda_function_dead_letter_config_380 => {
@@ -17120,13 +16090,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_layer_versionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lambda_layer_version]],
-          Tuple[Optional[Aws_lambda_layer_version], String]],
+        'create' => Callable[Optional[Aws_lambda_layer_version], Tuple[Optional[Aws_lambda_layer_version], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lambda_layer_version]]
+        'read' => Callable[String, Optional[Aws_lambda_layer_version]]
       }
     },
     Aws_lambda_permission => {
@@ -17166,13 +16132,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_permissionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lambda_permission]],
-          Tuple[Optional[Aws_lambda_permission], String]],
+        'create' => Callable[Optional[Aws_lambda_permission], Tuple[Optional[Aws_lambda_permission], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lambda_permission]]
+        'read' => Callable[String, Optional[Aws_lambda_permission]]
       }
     },
     Aws_launch_configuration => {
@@ -17255,13 +16217,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_launch_configurationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_launch_configuration]],
-          Tuple[Optional[Aws_launch_configuration], String]],
+        'create' => Callable[Optional[Aws_launch_configuration], Tuple[Optional[Aws_launch_configuration], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_launch_configuration]]
+        'read' => Callable[String, Optional[Aws_launch_configuration]]
       }
     },
     Aws_launch_configuration_ebs_block_device_384 => {
@@ -17449,13 +16407,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_launch_templateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_launch_template]],
-          Tuple[Optional[Aws_launch_template], String]],
+        'create' => Callable[Optional[Aws_launch_template], Tuple[Optional[Aws_launch_template], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_launch_template]]
+        'read' => Callable[String, Optional[Aws_launch_template]]
       }
     },
     Aws_launch_template_block_device_mappings_387 => {
@@ -17782,13 +16736,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lbHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb]],
-          Tuple[Optional[Aws_lb], String]],
+        'create' => Callable[Optional[Aws_lb], Tuple[Optional[Aws_lb], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb]]
+        'read' => Callable[String, Optional[Aws_lb]]
       }
     },
     Aws_lb_access_logs_401 => {
@@ -17821,13 +16771,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_cookie_stickiness_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_cookie_stickiness_policy]],
-          Tuple[Optional[Aws_lb_cookie_stickiness_policy], String]],
+        'create' => Callable[Optional[Aws_lb_cookie_stickiness_policy], Tuple[Optional[Aws_lb_cookie_stickiness_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_cookie_stickiness_policy]]
+        'read' => Callable[String, Optional[Aws_lb_cookie_stickiness_policy]]
       }
     },
     Aws_lb_listener => {
@@ -17859,13 +16805,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_listenerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_listener]],
-          Tuple[Optional[Aws_lb_listener], String]],
+        'create' => Callable[Optional[Aws_lb_listener], Tuple[Optional[Aws_lb_listener], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_listener]]
+        'read' => Callable[String, Optional[Aws_lb_listener]]
       }
     },
     Aws_lb_listener_certificate => {
@@ -17880,13 +16822,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_listener_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_listener_certificate]],
-          Tuple[Optional[Aws_lb_listener_certificate], String]],
+        'create' => Callable[Optional[Aws_lb_listener_certificate], Tuple[Optional[Aws_lb_listener_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_listener_certificate]]
+        'read' => Callable[String, Optional[Aws_lb_listener_certificate]]
       }
     },
     Aws_lb_listener_default_action_403 => {
@@ -18034,13 +16972,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_listener_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_listener_rule]],
-          Tuple[Optional[Aws_lb_listener_rule], String]],
+        'create' => Callable[Optional[Aws_lb_listener_rule], Tuple[Optional[Aws_lb_listener_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_listener_rule]]
+        'read' => Callable[String, Optional[Aws_lb_listener_rule]]
       }
     },
     Aws_lb_listener_rule_action_408 => {
@@ -18196,13 +17130,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_ssl_negotiation_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_ssl_negotiation_policy]],
-          Tuple[Optional[Aws_lb_ssl_negotiation_policy], String]],
+        'create' => Callable[Optional[Aws_lb_ssl_negotiation_policy], Tuple[Optional[Aws_lb_ssl_negotiation_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_ssl_negotiation_policy]]
+        'read' => Callable[String, Optional[Aws_lb_ssl_negotiation_policy]]
       }
     },
     Aws_lb_ssl_negotiation_policy_attribute_414 => {
@@ -18286,13 +17216,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_target_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_target_group]],
-          Tuple[Optional[Aws_lb_target_group], String]],
+        'create' => Callable[Optional[Aws_lb_target_group], Tuple[Optional[Aws_lb_target_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_target_group]]
+        'read' => Callable[String, Optional[Aws_lb_target_group]]
       }
     },
     Aws_lb_target_group_attachment => {
@@ -18315,13 +17241,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_target_group_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lb_target_group_attachment]],
-          Tuple[Optional[Aws_lb_target_group_attachment], String]],
+        'create' => Callable[Optional[Aws_lb_target_group_attachment], Tuple[Optional[Aws_lb_target_group_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lb_target_group_attachment]]
+        'read' => Callable[String, Optional[Aws_lb_target_group_attachment]]
       }
     },
     Aws_lb_target_group_health_check_415 => {
@@ -18385,13 +17307,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_licensemanager_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_licensemanager_association]],
-          Tuple[Optional[Aws_licensemanager_association], String]],
+        'create' => Callable[Optional[Aws_licensemanager_association], Tuple[Optional[Aws_licensemanager_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_licensemanager_association]]
+        'read' => Callable[String, Optional[Aws_licensemanager_association]]
       }
     },
     Aws_licensemanager_license_configuration => {
@@ -18426,13 +17344,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_licensemanager_license_configurationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_licensemanager_license_configuration]],
-          Tuple[Optional[Aws_licensemanager_license_configuration], String]],
+        'create' => Callable[Optional[Aws_licensemanager_license_configuration], Tuple[Optional[Aws_licensemanager_license_configuration], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_licensemanager_license_configuration]]
+        'read' => Callable[String, Optional[Aws_licensemanager_license_configuration]]
       }
     },
     Aws_lightsail_domain => {
@@ -18450,13 +17364,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_domainHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lightsail_domain]],
-          Tuple[Optional[Aws_lightsail_domain], String]],
+        'create' => Callable[Optional[Aws_lightsail_domain], Tuple[Optional[Aws_lightsail_domain], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lightsail_domain]]
+        'read' => Callable[String, Optional[Aws_lightsail_domain]]
       }
     },
     Aws_lightsail_instance => {
@@ -18517,13 +17427,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lightsail_instance]],
-          Tuple[Optional[Aws_lightsail_instance], String]],
+        'create' => Callable[Optional[Aws_lightsail_instance], Tuple[Optional[Aws_lightsail_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lightsail_instance]]
+        'read' => Callable[String, Optional[Aws_lightsail_instance]]
       }
     },
     Aws_lightsail_key_pair => {
@@ -18572,13 +17478,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_key_pairHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lightsail_key_pair]],
-          Tuple[Optional[Aws_lightsail_key_pair], String]],
+        'create' => Callable[Optional[Aws_lightsail_key_pair], Tuple[Optional[Aws_lightsail_key_pair], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lightsail_key_pair]]
+        'read' => Callable[String, Optional[Aws_lightsail_key_pair]]
       }
     },
     Aws_lightsail_static_ip => {
@@ -18604,13 +17506,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_static_ipHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lightsail_static_ip]],
-          Tuple[Optional[Aws_lightsail_static_ip], String]],
+        'create' => Callable[Optional[Aws_lightsail_static_ip], Tuple[Optional[Aws_lightsail_static_ip], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lightsail_static_ip]]
+        'read' => Callable[String, Optional[Aws_lightsail_static_ip]]
       }
     },
     Aws_lightsail_static_ip_attachment => {
@@ -18625,13 +17523,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_static_ip_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_lightsail_static_ip_attachment]],
-          Tuple[Optional[Aws_lightsail_static_ip_attachment], String]],
+        'create' => Callable[Optional[Aws_lightsail_static_ip_attachment], Tuple[Optional[Aws_lightsail_static_ip_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_lightsail_static_ip_attachment]]
+        'read' => Callable[String, Optional[Aws_lightsail_static_ip_attachment]]
       }
     },
     Aws_load_balancer_backend_server_policy => {
@@ -18650,13 +17544,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_load_balancer_backend_server_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_load_balancer_backend_server_policy]],
-          Tuple[Optional[Aws_load_balancer_backend_server_policy], String]],
+        'create' => Callable[Optional[Aws_load_balancer_backend_server_policy], Tuple[Optional[Aws_load_balancer_backend_server_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_load_balancer_backend_server_policy]]
+        'read' => Callable[String, Optional[Aws_load_balancer_backend_server_policy]]
       }
     },
     Aws_load_balancer_listener_policy => {
@@ -18675,13 +17565,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_load_balancer_listener_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_load_balancer_listener_policy]],
-          Tuple[Optional[Aws_load_balancer_listener_policy], String]],
+        'create' => Callable[Optional[Aws_load_balancer_listener_policy], Tuple[Optional[Aws_load_balancer_listener_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_load_balancer_listener_policy]]
+        'read' => Callable[String, Optional[Aws_load_balancer_listener_policy]]
       }
     },
     Aws_load_balancer_policy => {
@@ -18701,13 +17587,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_load_balancer_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_load_balancer_policy]],
-          Tuple[Optional[Aws_load_balancer_policy], String]],
+        'create' => Callable[Optional[Aws_load_balancer_policy], Tuple[Optional[Aws_load_balancer_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_load_balancer_policy]]
+        'read' => Callable[String, Optional[Aws_load_balancer_policy]]
       }
     },
     Aws_load_balancer_policy_policy_attribute_417 => {
@@ -18733,13 +17615,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_macie_member_account_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_macie_member_account_association]],
-          Tuple[Optional[Aws_macie_member_account_association], String]],
+        'create' => Callable[Optional[Aws_macie_member_account_association], Tuple[Optional[Aws_macie_member_account_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_macie_member_account_association]]
+        'read' => Callable[String, Optional[Aws_macie_member_account_association]]
       }
     },
     Aws_macie_s3_bucket_association => {
@@ -18765,13 +17643,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_macie_s3_bucket_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_macie_s3_bucket_association]],
-          Tuple[Optional[Aws_macie_s3_bucket_association], String]],
+        'create' => Callable[Optional[Aws_macie_s3_bucket_association], Tuple[Optional[Aws_macie_s3_bucket_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_macie_s3_bucket_association]]
+        'read' => Callable[String, Optional[Aws_macie_s3_bucket_association]]
       }
     },
     Aws_macie_s3_bucket_association_classification_type_418 => {
@@ -18802,13 +17676,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_main_route_table_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_main_route_table_association]],
-          Tuple[Optional[Aws_main_route_table_association], String]],
+        'create' => Callable[Optional[Aws_main_route_table_association], Tuple[Optional[Aws_main_route_table_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_main_route_table_association]]
+        'read' => Callable[String, Optional[Aws_main_route_table_association]]
       }
     },
     Aws_media_package_channel => {
@@ -18834,13 +17704,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_media_package_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_media_package_channel]],
-          Tuple[Optional[Aws_media_package_channel], String]],
+        'create' => Callable[Optional[Aws_media_package_channel], Tuple[Optional[Aws_media_package_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_media_package_channel]]
+        'read' => Callable[String, Optional[Aws_media_package_channel]]
       }
     },
     Aws_media_package_channel_hls_ingest_419 => {
@@ -18886,13 +17752,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_media_store_containerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_media_store_container]],
-          Tuple[Optional[Aws_media_store_container], String]],
+        'create' => Callable[Optional[Aws_media_store_container], Tuple[Optional[Aws_media_store_container], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_media_store_container]]
+        'read' => Callable[String, Optional[Aws_media_store_container]]
       }
     },
     Aws_media_store_container_policy => {
@@ -18907,13 +17769,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_media_store_container_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_media_store_container_policy]],
-          Tuple[Optional[Aws_media_store_container_policy], String]],
+        'create' => Callable[Optional[Aws_media_store_container_policy], Tuple[Optional[Aws_media_store_container_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_media_store_container_policy]]
+        'read' => Callable[String, Optional[Aws_media_store_container_policy]]
       }
     },
     Aws_mq_broker => {
@@ -18976,13 +17834,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_mq_brokerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_mq_broker]],
-          Tuple[Optional[Aws_mq_broker], String]],
+        'create' => Callable[Optional[Aws_mq_broker], Tuple[Optional[Aws_mq_broker], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_mq_broker]]
+        'read' => Callable[String, Optional[Aws_mq_broker]]
       }
     },
     Aws_mq_broker_configuration_421 => {
@@ -19076,13 +17930,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_mq_configurationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_mq_configuration]],
-          Tuple[Optional[Aws_mq_configuration], String]],
+        'create' => Callable[Optional[Aws_mq_configuration], Tuple[Optional[Aws_mq_configuration], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_mq_configuration]]
+        'read' => Callable[String, Optional[Aws_mq_configuration]]
       }
     },
     Aws_nat_gateway => {
@@ -19113,13 +17963,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_nat_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_nat_gateway]],
-          Tuple[Optional[Aws_nat_gateway], String]],
+        'create' => Callable[Optional[Aws_nat_gateway], Tuple[Optional[Aws_nat_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_nat_gateway]]
+        'read' => Callable[String, Optional[Aws_nat_gateway]]
       }
     },
     Aws_neptune_cluster => {
@@ -19244,13 +18090,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_cluster]],
-          Tuple[Optional[Aws_neptune_cluster], String]],
+        'create' => Callable[Optional[Aws_neptune_cluster], Tuple[Optional[Aws_neptune_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_cluster]]
+        'read' => Callable[String, Optional[Aws_neptune_cluster]]
       }
     },
     Aws_neptune_cluster_instance => {
@@ -19353,13 +18195,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_cluster_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_cluster_instance]],
-          Tuple[Optional[Aws_neptune_cluster_instance], String]],
+        'create' => Callable[Optional[Aws_neptune_cluster_instance], Tuple[Optional[Aws_neptune_cluster_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_cluster_instance]]
+        'read' => Callable[String, Optional[Aws_neptune_cluster_instance]]
       }
     },
     Aws_neptune_cluster_parameter_group => {
@@ -19397,13 +18235,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_cluster_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_cluster_parameter_group]],
-          Tuple[Optional[Aws_neptune_cluster_parameter_group], String]],
+        'create' => Callable[Optional[Aws_neptune_cluster_parameter_group], Tuple[Optional[Aws_neptune_cluster_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_cluster_parameter_group]]
+        'read' => Callable[String, Optional[Aws_neptune_cluster_parameter_group]]
       }
     },
     Aws_neptune_cluster_parameter_group_parameter_426 => {
@@ -19480,13 +18314,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_cluster_snapshotHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_cluster_snapshot]],
-          Tuple[Optional[Aws_neptune_cluster_snapshot], String]],
+        'create' => Callable[Optional[Aws_neptune_cluster_snapshot], Tuple[Optional[Aws_neptune_cluster_snapshot], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_cluster_snapshot]]
+        'read' => Callable[String, Optional[Aws_neptune_cluster_snapshot]]
       }
     },
     Aws_neptune_event_subscription => {
@@ -19536,13 +18366,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_event_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_event_subscription]],
-          Tuple[Optional[Aws_neptune_event_subscription], String]],
+        'create' => Callable[Optional[Aws_neptune_event_subscription], Tuple[Optional[Aws_neptune_event_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_event_subscription]]
+        'read' => Callable[String, Optional[Aws_neptune_event_subscription]]
       }
     },
     Aws_neptune_parameter_group => {
@@ -19573,13 +18399,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_parameter_group]],
-          Tuple[Optional[Aws_neptune_parameter_group], String]],
+        'create' => Callable[Optional[Aws_neptune_parameter_group], Tuple[Optional[Aws_neptune_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_parameter_group]]
+        'read' => Callable[String, Optional[Aws_neptune_parameter_group]]
       }
     },
     Aws_neptune_parameter_group_parameter_427 => {
@@ -19623,13 +18445,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_neptune_subnet_group]],
-          Tuple[Optional[Aws_neptune_subnet_group], String]],
+        'create' => Callable[Optional[Aws_neptune_subnet_group], Tuple[Optional[Aws_neptune_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_neptune_subnet_group]]
+        'read' => Callable[String, Optional[Aws_neptune_subnet_group]]
       }
     },
     Aws_network_acl => {
@@ -19667,13 +18485,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_network_acl]],
-          Tuple[Optional[Aws_network_acl], String]],
+        'create' => Callable[Optional[Aws_network_acl], Tuple[Optional[Aws_network_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_network_acl]]
+        'read' => Callable[String, Optional[Aws_network_acl]]
       }
     },
     Aws_network_acl_egress_428 => {
@@ -19768,13 +18582,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_acl_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_network_acl_rule]],
-          Tuple[Optional[Aws_network_acl_rule], String]],
+        'create' => Callable[Optional[Aws_network_acl_rule], Tuple[Optional[Aws_network_acl_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_network_acl_rule]]
+        'read' => Callable[String, Optional[Aws_network_acl_rule]]
       }
     },
     Aws_network_interface => {
@@ -19824,13 +18634,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_interfaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_network_interface]],
-          Tuple[Optional[Aws_network_interface], String]],
+        'create' => Callable[Optional[Aws_network_interface], Tuple[Optional[Aws_network_interface], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_network_interface]]
+        'read' => Callable[String, Optional[Aws_network_interface]]
       }
     },
     Aws_network_interface_attachment => {
@@ -19854,13 +18660,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_interface_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_network_interface_attachment]],
-          Tuple[Optional[Aws_network_interface_attachment], String]],
+        'create' => Callable[Optional[Aws_network_interface_attachment], Tuple[Optional[Aws_network_interface_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_network_interface_attachment]]
+        'read' => Callable[String, Optional[Aws_network_interface_attachment]]
       }
     },
     Aws_network_interface_attachment_430 => {
@@ -19885,13 +18687,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_interface_sg_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_network_interface_sg_attachment]],
-          Tuple[Optional[Aws_network_interface_sg_attachment], String]],
+        'create' => Callable[Optional[Aws_network_interface_sg_attachment], Tuple[Optional[Aws_network_interface_sg_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_network_interface_sg_attachment]]
+        'read' => Callable[String, Optional[Aws_network_interface_sg_attachment]]
       }
     },
     Aws_opsworks_application => {
@@ -19963,13 +18761,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_applicationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_application]],
-          Tuple[Optional[Aws_opsworks_application], String]],
+        'create' => Callable[Optional[Aws_opsworks_application], Tuple[Optional[Aws_opsworks_application], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_application]]
+        'read' => Callable[String, Optional[Aws_opsworks_application]]
       }
     },
     Aws_opsworks_application_app_source_431 => {
@@ -20102,13 +18896,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_custom_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_custom_layer]],
-          Tuple[Optional[Aws_opsworks_custom_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_custom_layer], Tuple[Optional[Aws_opsworks_custom_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_custom_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_custom_layer]]
       }
     },
     Aws_opsworks_custom_layer_ebs_volume_434 => {
@@ -20226,13 +19016,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_ganglia_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_ganglia_layer]],
-          Tuple[Optional[Aws_opsworks_ganglia_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_ganglia_layer], Tuple[Optional[Aws_opsworks_ganglia_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_ganglia_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_ganglia_layer]]
       }
     },
     Aws_opsworks_ganglia_layer_ebs_volume_435 => {
@@ -20362,13 +19148,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_haproxy_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_haproxy_layer]],
-          Tuple[Optional[Aws_opsworks_haproxy_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_haproxy_layer], Tuple[Optional[Aws_opsworks_haproxy_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_haproxy_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_haproxy_layer]]
       }
     },
     Aws_opsworks_haproxy_layer_ebs_volume_436 => {
@@ -20574,13 +19356,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_instance]],
-          Tuple[Optional[Aws_opsworks_instance], String]],
+        'create' => Callable[Optional[Aws_opsworks_instance], Tuple[Optional[Aws_opsworks_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_instance]]
+        'read' => Callable[String, Optional[Aws_opsworks_instance]]
       }
     },
     Aws_opsworks_instance_ebs_block_device_437 => {
@@ -20741,13 +19519,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_java_app_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_java_app_layer]],
-          Tuple[Optional[Aws_opsworks_java_app_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_java_app_layer], Tuple[Optional[Aws_opsworks_java_app_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_java_app_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_java_app_layer]]
       }
     },
     Aws_opsworks_java_app_layer_ebs_volume_440 => {
@@ -20860,13 +19634,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_memcached_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_memcached_layer]],
-          Tuple[Optional[Aws_opsworks_memcached_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_memcached_layer], Tuple[Optional[Aws_opsworks_memcached_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_memcached_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_memcached_layer]]
       }
     },
     Aws_opsworks_memcached_layer_ebs_volume_441 => {
@@ -20983,13 +19753,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_mysql_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_mysql_layer]],
-          Tuple[Optional[Aws_opsworks_mysql_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_mysql_layer], Tuple[Optional[Aws_opsworks_mysql_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_mysql_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_mysql_layer]]
       }
     },
     Aws_opsworks_mysql_layer_ebs_volume_442 => {
@@ -21102,13 +19868,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_nodejs_app_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_nodejs_app_layer]],
-          Tuple[Optional[Aws_opsworks_nodejs_app_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_nodejs_app_layer], Tuple[Optional[Aws_opsworks_nodejs_app_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_nodejs_app_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_nodejs_app_layer]]
       }
     },
     Aws_opsworks_nodejs_app_layer_ebs_volume_443 => {
@@ -21157,13 +19919,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_permissionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_permission]],
-          Tuple[Optional[Aws_opsworks_permission], String]],
+        'create' => Callable[Optional[Aws_opsworks_permission], Tuple[Optional[Aws_opsworks_permission], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_permission]]
+        'read' => Callable[String, Optional[Aws_opsworks_permission]]
       }
     },
     Aws_opsworks_php_app_layer => {
@@ -21253,13 +20011,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_php_app_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_php_app_layer]],
-          Tuple[Optional[Aws_opsworks_php_app_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_php_app_layer], Tuple[Optional[Aws_opsworks_php_app_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_php_app_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_php_app_layer]]
       }
     },
     Aws_opsworks_php_app_layer_ebs_volume_444 => {
@@ -21392,13 +20146,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_rails_app_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_rails_app_layer]],
-          Tuple[Optional[Aws_opsworks_rails_app_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_rails_app_layer], Tuple[Optional[Aws_opsworks_rails_app_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_rails_app_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_rails_app_layer]]
       }
     },
     Aws_opsworks_rails_app_layer_ebs_volume_445 => {
@@ -21434,13 +20184,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_rds_db_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_rds_db_instance]],
-          Tuple[Optional[Aws_opsworks_rds_db_instance], String]],
+        'create' => Callable[Optional[Aws_opsworks_rds_db_instance], Tuple[Optional[Aws_opsworks_rds_db_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_rds_db_instance]]
+        'read' => Callable[String, Optional[Aws_opsworks_rds_db_instance]]
       }
     },
     Aws_opsworks_stack => {
@@ -21537,13 +20283,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_stackHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_stack]],
-          Tuple[Optional[Aws_opsworks_stack], String]],
+        'create' => Callable[Optional[Aws_opsworks_stack], Tuple[Optional[Aws_opsworks_stack], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_stack]]
+        'read' => Callable[String, Optional[Aws_opsworks_stack]]
       }
     },
     Aws_opsworks_stack_custom_cookbooks_source_446 => {
@@ -21655,13 +20397,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_static_web_layerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_static_web_layer]],
-          Tuple[Optional[Aws_opsworks_static_web_layer], String]],
+        'create' => Callable[Optional[Aws_opsworks_static_web_layer], Tuple[Optional[Aws_opsworks_static_web_layer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_static_web_layer]]
+        'read' => Callable[String, Optional[Aws_opsworks_static_web_layer]]
       }
     },
     Aws_opsworks_static_web_layer_ebs_volume_447 => {
@@ -21703,13 +20441,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_user_profileHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_opsworks_user_profile]],
-          Tuple[Optional[Aws_opsworks_user_profile], String]],
+        'create' => Callable[Optional[Aws_opsworks_user_profile], Tuple[Optional[Aws_opsworks_user_profile], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_opsworks_user_profile]]
+        'read' => Callable[String, Optional[Aws_opsworks_user_profile]]
       }
     },
     Aws_organizations_account => {
@@ -21748,13 +20482,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_accountHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_organizations_account]],
-          Tuple[Optional[Aws_organizations_account], String]],
+        'create' => Callable[Optional[Aws_organizations_account], Tuple[Optional[Aws_organizations_account], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_organizations_account]]
+        'read' => Callable[String, Optional[Aws_organizations_account]]
       }
     },
     Aws_organizations_organization => {
@@ -21791,13 +20521,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_organizationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_organizations_organization]],
-          Tuple[Optional[Aws_organizations_organization], String]],
+        'create' => Callable[Optional[Aws_organizations_organization], Tuple[Optional[Aws_organizations_organization], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_organizations_organization]]
+        'read' => Callable[String, Optional[Aws_organizations_organization]]
       }
     },
     Aws_organizations_policy => {
@@ -21824,13 +20550,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_organizations_policy]],
-          Tuple[Optional[Aws_organizations_policy], String]],
+        'create' => Callable[Optional[Aws_organizations_policy], Tuple[Optional[Aws_organizations_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_organizations_policy]]
+        'read' => Callable[String, Optional[Aws_organizations_policy]]
       }
     },
     Aws_organizations_policy_attachment => {
@@ -21845,13 +20567,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_organizations_policy_attachment]],
-          Tuple[Optional[Aws_organizations_policy_attachment], String]],
+        'create' => Callable[Optional[Aws_organizations_policy_attachment], Tuple[Optional[Aws_organizations_policy_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_organizations_policy_attachment]]
+        'read' => Callable[String, Optional[Aws_organizations_policy_attachment]]
       }
     },
     Aws_pinpoint_adm_channel => {
@@ -21871,13 +20589,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_adm_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_adm_channel]],
-          Tuple[Optional[Aws_pinpoint_adm_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_adm_channel], Tuple[Optional[Aws_pinpoint_adm_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_adm_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_adm_channel]]
       }
     },
     Aws_pinpoint_apns_channel => {
@@ -21923,13 +20637,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_apns_channel]],
-          Tuple[Optional[Aws_pinpoint_apns_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_apns_channel], Tuple[Optional[Aws_pinpoint_apns_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_apns_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_apns_channel]]
       }
     },
     Aws_pinpoint_apns_sandbox_channel => {
@@ -21975,13 +20685,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_sandbox_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_apns_sandbox_channel]],
-          Tuple[Optional[Aws_pinpoint_apns_sandbox_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_apns_sandbox_channel], Tuple[Optional[Aws_pinpoint_apns_sandbox_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_apns_sandbox_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_apns_sandbox_channel]]
       }
     },
     Aws_pinpoint_apns_voip_channel => {
@@ -22027,13 +20733,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_voip_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_apns_voip_channel]],
-          Tuple[Optional[Aws_pinpoint_apns_voip_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_apns_voip_channel], Tuple[Optional[Aws_pinpoint_apns_voip_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_apns_voip_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_apns_voip_channel]]
       }
     },
     Aws_pinpoint_apns_voip_sandbox_channel => {
@@ -22079,13 +20781,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_voip_sandbox_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_apns_voip_sandbox_channel]],
-          Tuple[Optional[Aws_pinpoint_apns_voip_sandbox_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_apns_voip_sandbox_channel], Tuple[Optional[Aws_pinpoint_apns_voip_sandbox_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_apns_voip_sandbox_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_apns_voip_sandbox_channel]]
       }
     },
     Aws_pinpoint_app => {
@@ -22122,13 +20820,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_appHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_app]],
-          Tuple[Optional[Aws_pinpoint_app], String]],
+        'create' => Callable[Optional[Aws_pinpoint_app], Tuple[Optional[Aws_pinpoint_app], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_app]]
+        'read' => Callable[String, Optional[Aws_pinpoint_app]]
       }
     },
     Aws_pinpoint_app_campaign_hook_448 => {
@@ -22196,13 +20890,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_baidu_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_baidu_channel]],
-          Tuple[Optional[Aws_pinpoint_baidu_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_baidu_channel], Tuple[Optional[Aws_pinpoint_baidu_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_baidu_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_baidu_channel]]
       }
     },
     Aws_pinpoint_email_channel => {
@@ -22227,13 +20917,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_email_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_email_channel]],
-          Tuple[Optional[Aws_pinpoint_email_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_email_channel], Tuple[Optional[Aws_pinpoint_email_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_email_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_email_channel]]
       }
     },
     Aws_pinpoint_event_stream => {
@@ -22249,13 +20935,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_event_streamHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_event_stream]],
-          Tuple[Optional[Aws_pinpoint_event_stream], String]],
+        'create' => Callable[Optional[Aws_pinpoint_event_stream], Tuple[Optional[Aws_pinpoint_event_stream], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_event_stream]]
+        'read' => Callable[String, Optional[Aws_pinpoint_event_stream]]
       }
     },
     Aws_pinpoint_gcm_channel => {
@@ -22274,13 +20956,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_gcm_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_gcm_channel]],
-          Tuple[Optional[Aws_pinpoint_gcm_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_gcm_channel], Tuple[Optional[Aws_pinpoint_gcm_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_gcm_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_gcm_channel]]
       }
     },
     Aws_pinpoint_sms_channel => {
@@ -22314,13 +20992,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_sms_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_pinpoint_sms_channel]],
-          Tuple[Optional[Aws_pinpoint_sms_channel], String]],
+        'create' => Callable[Optional[Aws_pinpoint_sms_channel], Tuple[Optional[Aws_pinpoint_sms_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_pinpoint_sms_channel]]
+        'read' => Callable[String, Optional[Aws_pinpoint_sms_channel]]
       }
     },
     Aws_placement_group => {
@@ -22335,13 +21009,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_placement_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_placement_group]],
-          Tuple[Optional[Aws_placement_group], String]],
+        'create' => Callable[Optional[Aws_placement_group], Tuple[Optional[Aws_placement_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_placement_group]]
+        'read' => Callable[String, Optional[Aws_placement_group]]
       }
     },
     Aws_proxy_protocol_policy => {
@@ -22356,13 +21026,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_proxy_protocol_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_proxy_protocol_policy]],
-          Tuple[Optional[Aws_proxy_protocol_policy], String]],
+        'create' => Callable[Optional[Aws_proxy_protocol_policy], Tuple[Optional[Aws_proxy_protocol_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_proxy_protocol_policy]]
+        'read' => Callable[String, Optional[Aws_proxy_protocol_policy]]
       }
     },
     Aws_ram_resource_share => {
@@ -22384,13 +21050,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ram_resource_shareHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ram_resource_share]],
-          Tuple[Optional[Aws_ram_resource_share], String]],
+        'create' => Callable[Optional[Aws_ram_resource_share], Tuple[Optional[Aws_ram_resource_share], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ram_resource_share]]
+        'read' => Callable[String, Optional[Aws_ram_resource_share]]
       }
     },
     Aws_rds_cluster => {
@@ -22559,13 +21221,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_rds_cluster]],
-          Tuple[Optional[Aws_rds_cluster], String]],
+        'create' => Callable[Optional[Aws_rds_cluster], Tuple[Optional[Aws_rds_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_rds_cluster]]
+        'read' => Callable[String, Optional[Aws_rds_cluster]]
       }
     },
     Aws_rds_cluster_endpoint => {
@@ -22597,13 +21255,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_cluster_endpointHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_rds_cluster_endpoint]],
-          Tuple[Optional[Aws_rds_cluster_endpoint], String]],
+        'create' => Callable[Optional[Aws_rds_cluster_endpoint], Tuple[Optional[Aws_rds_cluster_endpoint], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_rds_cluster_endpoint]]
+        'read' => Callable[String, Optional[Aws_rds_cluster_endpoint]]
       }
     },
     Aws_rds_cluster_instance => {
@@ -22722,13 +21376,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_cluster_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_rds_cluster_instance]],
-          Tuple[Optional[Aws_rds_cluster_instance], String]],
+        'create' => Callable[Optional[Aws_rds_cluster_instance], Tuple[Optional[Aws_rds_cluster_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_rds_cluster_instance]]
+        'read' => Callable[String, Optional[Aws_rds_cluster_instance]]
       }
     },
     Aws_rds_cluster_parameter_group => {
@@ -22766,13 +21416,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_cluster_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_rds_cluster_parameter_group]],
-          Tuple[Optional[Aws_rds_cluster_parameter_group], String]],
+        'create' => Callable[Optional[Aws_rds_cluster_parameter_group], Tuple[Optional[Aws_rds_cluster_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_rds_cluster_parameter_group]]
+        'read' => Callable[String, Optional[Aws_rds_cluster_parameter_group]]
       }
     },
     Aws_rds_cluster_parameter_group_parameter_453 => {
@@ -22856,13 +21502,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_global_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_rds_global_cluster]],
-          Tuple[Optional[Aws_rds_global_cluster], String]],
+        'create' => Callable[Optional[Aws_rds_global_cluster], Tuple[Optional[Aws_rds_global_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_rds_global_cluster]]
+        'read' => Callable[String, Optional[Aws_rds_global_cluster]]
       }
     },
     Aws_redshift_cluster => {
@@ -23021,13 +21663,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_redshift_cluster]],
-          Tuple[Optional[Aws_redshift_cluster], String]],
+        'create' => Callable[Optional[Aws_redshift_cluster], Tuple[Optional[Aws_redshift_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_redshift_cluster]]
+        'read' => Callable[String, Optional[Aws_redshift_cluster]]
       }
     },
     Aws_redshift_cluster_logging_454 => {
@@ -23100,13 +21738,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_event_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_redshift_event_subscription]],
-          Tuple[Optional[Aws_redshift_event_subscription], String]],
+        'create' => Callable[Optional[Aws_redshift_event_subscription], Tuple[Optional[Aws_redshift_event_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_redshift_event_subscription]]
+        'read' => Callable[String, Optional[Aws_redshift_event_subscription]]
       }
     },
     Aws_redshift_parameter_group => {
@@ -23129,13 +21763,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_parameter_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_redshift_parameter_group]],
-          Tuple[Optional[Aws_redshift_parameter_group], String]],
+        'create' => Callable[Optional[Aws_redshift_parameter_group], Tuple[Optional[Aws_redshift_parameter_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_redshift_parameter_group]]
+        'read' => Callable[String, Optional[Aws_redshift_parameter_group]]
       }
     },
     Aws_redshift_parameter_group_parameter_456 => {
@@ -23160,13 +21790,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_security_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_redshift_security_group]],
-          Tuple[Optional[Aws_redshift_security_group], String]],
+        'create' => Callable[Optional[Aws_redshift_security_group], Tuple[Optional[Aws_redshift_security_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_redshift_security_group]]
+        'read' => Callable[String, Optional[Aws_redshift_security_group]]
       }
     },
     Aws_redshift_security_group_ingress_457 => {
@@ -23204,13 +21830,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_snapshot_copy_grantHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_redshift_snapshot_copy_grant]],
-          Tuple[Optional[Aws_redshift_snapshot_copy_grant], String]],
+        'create' => Callable[Optional[Aws_redshift_snapshot_copy_grant], Tuple[Optional[Aws_redshift_snapshot_copy_grant], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_redshift_snapshot_copy_grant]]
+        'read' => Callable[String, Optional[Aws_redshift_snapshot_copy_grant]]
       }
     },
     Aws_redshift_subnet_group => {
@@ -23233,13 +21855,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_subnet_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_redshift_subnet_group]],
-          Tuple[Optional[Aws_redshift_subnet_group], String]],
+        'create' => Callable[Optional[Aws_redshift_subnet_group], Tuple[Optional[Aws_redshift_subnet_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_redshift_subnet_group]]
+        'read' => Callable[String, Optional[Aws_redshift_subnet_group]]
       }
     },
     Aws_resourcegroups_group => {
@@ -23262,13 +21880,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_resourcegroups_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_resourcegroups_group]],
-          Tuple[Optional[Aws_resourcegroups_group], String]],
+        'create' => Callable[Optional[Aws_resourcegroups_group], Tuple[Optional[Aws_resourcegroups_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_resourcegroups_group]]
+        'read' => Callable[String, Optional[Aws_resourcegroups_group]]
       }
     },
     Aws_resourcegroups_group_resource_query_458 => {
@@ -23359,13 +21973,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_delegation_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route53_delegation_set]],
-          Tuple[Optional[Aws_route53_delegation_set], String]],
+        'create' => Callable[Optional[Aws_route53_delegation_set], Tuple[Optional[Aws_route53_delegation_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route53_delegation_set]]
+        'read' => Callable[String, Optional[Aws_route53_delegation_set]]
       }
     },
     Aws_route53_health_check => {
@@ -23451,13 +22061,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_health_checkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route53_health_check]],
-          Tuple[Optional[Aws_route53_health_check], String]],
+        'create' => Callable[Optional[Aws_route53_health_check], Tuple[Optional[Aws_route53_health_check], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route53_health_check]]
+        'read' => Callable[String, Optional[Aws_route53_health_check]]
       }
     },
     Aws_route53_query_log => {
@@ -23472,13 +22078,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_query_logHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route53_query_log]],
-          Tuple[Optional[Aws_route53_query_log], String]],
+        'create' => Callable[Optional[Aws_route53_query_log], Tuple[Optional[Aws_route53_query_log], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route53_query_log]]
+        'read' => Callable[String, Optional[Aws_route53_query_log]]
       }
     },
     Aws_route53_record => {
@@ -23550,13 +22152,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_recordHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route53_record]],
-          Tuple[Optional[Aws_route53_record], String]],
+        'create' => Callable[Optional[Aws_route53_record], Tuple[Optional[Aws_route53_record], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route53_record]]
+        'read' => Callable[String, Optional[Aws_route53_record]]
       }
     },
     Aws_route53_record_alias_459 => {
@@ -23644,13 +22242,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_zoneHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route53_zone]],
-          Tuple[Optional[Aws_route53_zone], String]],
+        'create' => Callable[Optional[Aws_route53_zone], Tuple[Optional[Aws_route53_zone], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route53_zone]]
+        'read' => Callable[String, Optional[Aws_route53_zone]]
       }
     },
     Aws_route53_zone_association => {
@@ -23669,13 +22263,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_zone_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route53_zone_association]],
-          Tuple[Optional[Aws_route53_zone_association], String]],
+        'create' => Callable[Optional[Aws_route53_zone_association], Tuple[Optional[Aws_route53_zone_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route53_zone_association]]
+        'read' => Callable[String, Optional[Aws_route53_zone_association]]
       }
     },
     Aws_route53_zone_vpc_464 => {
@@ -23689,13 +22279,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_routeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route]],
-          Tuple[Optional[Aws_route], String]],
+        'create' => Callable[Optional[Aws_route], Tuple[Optional[Aws_route], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route]]
+        'read' => Callable[String, Optional[Aws_route]]
       }
     },
     Aws_route_table => {
@@ -23725,13 +22311,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route_table]],
-          Tuple[Optional[Aws_route_table], String]],
+        'create' => Callable[Optional[Aws_route_table], Tuple[Optional[Aws_route_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route_table]]
+        'read' => Callable[String, Optional[Aws_route_table]]
       }
     },
     Aws_route_table_association => {
@@ -23746,13 +22328,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_route_table_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_route_table_association]],
-          Tuple[Optional[Aws_route_table_association], String]],
+        'create' => Callable[Optional[Aws_route_table_association], Tuple[Optional[Aws_route_table_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_route_table_association]]
+        'read' => Callable[String, Optional[Aws_route_table_association]]
       }
     },
     Aws_route_table_route_465 => {
@@ -23825,13 +22403,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_account_public_access_blockHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_account_public_access_block]],
-          Tuple[Optional[Aws_s3_account_public_access_block], String]],
+        'create' => Callable[Optional[Aws_s3_account_public_access_block], Tuple[Optional[Aws_s3_account_public_access_block], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_account_public_access_block]]
+        'read' => Callable[String, Optional[Aws_s3_account_public_access_block]]
       }
     },
     Aws_s3_bucket => {
@@ -23936,13 +22510,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucketHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket]],
-          Tuple[Optional[Aws_s3_bucket], String]],
+        'create' => Callable[Optional[Aws_s3_bucket], Tuple[Optional[Aws_s3_bucket], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket]]
+        'read' => Callable[String, Optional[Aws_s3_bucket]]
       }
     },
     Aws_s3_bucket_cors_rule_466 => {
@@ -23990,13 +22560,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_inventoryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket_inventory]],
-          Tuple[Optional[Aws_s3_bucket_inventory], String]],
+        'create' => Callable[Optional[Aws_s3_bucket_inventory], Tuple[Optional[Aws_s3_bucket_inventory], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket_inventory]]
+        'read' => Callable[String, Optional[Aws_s3_bucket_inventory]]
       }
     },
     Aws_s3_bucket_inventory_destination_488 => {
@@ -24162,13 +22728,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_metricHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket_metric]],
-          Tuple[Optional[Aws_s3_bucket_metric], String]],
+        'create' => Callable[Optional[Aws_s3_bucket_metric], Tuple[Optional[Aws_s3_bucket_metric], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket_metric]]
+        'read' => Callable[String, Optional[Aws_s3_bucket_metric]]
       }
     },
     Aws_s3_bucket_metric_filter_495 => {
@@ -24206,13 +22768,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_notificationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket_notification]],
-          Tuple[Optional[Aws_s3_bucket_notification], String]],
+        'create' => Callable[Optional[Aws_s3_bucket_notification], Tuple[Optional[Aws_s3_bucket_notification], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket_notification]]
+        'read' => Callable[String, Optional[Aws_s3_bucket_notification]]
       }
     },
     Aws_s3_bucket_notification_lambda_function_496 => {
@@ -24348,13 +22906,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_objectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket_object]],
-          Tuple[Optional[Aws_s3_bucket_object], String]],
+        'create' => Callable[Optional[Aws_s3_bucket_object], Tuple[Optional[Aws_s3_bucket_object], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket_object]]
+        'read' => Callable[String, Optional[Aws_s3_bucket_object]]
       }
     },
     Aws_s3_bucket_object_lock_configuration_473 => {
@@ -24396,13 +22950,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket_policy]],
-          Tuple[Optional[Aws_s3_bucket_policy], String]],
+        'create' => Callable[Optional[Aws_s3_bucket_policy], Tuple[Optional[Aws_s3_bucket_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket_policy]]
+        'read' => Callable[String, Optional[Aws_s3_bucket_policy]]
       }
     },
     Aws_s3_bucket_public_access_block => {
@@ -24432,13 +22982,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_public_access_blockHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_s3_bucket_public_access_block]],
-          Tuple[Optional[Aws_s3_bucket_public_access_block], String]],
+        'create' => Callable[Optional[Aws_s3_bucket_public_access_block], Tuple[Optional[Aws_s3_bucket_public_access_block], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_s3_bucket_public_access_block]]
+        'read' => Callable[String, Optional[Aws_s3_bucket_public_access_block]]
       }
     },
     Aws_s3_bucket_replication_configuration_476 => {
@@ -24608,13 +23154,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sagemaker_notebook_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sagemaker_notebook_instance]],
-          Tuple[Optional[Aws_sagemaker_notebook_instance], String]],
+        'create' => Callable[Optional[Aws_sagemaker_notebook_instance], Tuple[Optional[Aws_sagemaker_notebook_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sagemaker_notebook_instance]]
+        'read' => Callable[String, Optional[Aws_sagemaker_notebook_instance]]
       }
     },
     Aws_secretsmanager_secret => {
@@ -24671,13 +23213,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_secretsmanager_secretHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_secretsmanager_secret]],
-          Tuple[Optional[Aws_secretsmanager_secret], String]],
+        'create' => Callable[Optional[Aws_secretsmanager_secret], Tuple[Optional[Aws_secretsmanager_secret], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_secretsmanager_secret]]
+        'read' => Callable[String, Optional[Aws_secretsmanager_secret]]
       }
     },
     Aws_secretsmanager_secret_rotation_rules_499 => {
@@ -24716,13 +23254,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_secretsmanager_secret_versionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_secretsmanager_secret_version]],
-          Tuple[Optional[Aws_secretsmanager_secret_version], String]],
+        'create' => Callable[Optional[Aws_secretsmanager_secret_version], Tuple[Optional[Aws_secretsmanager_secret_version], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_secretsmanager_secret_version]]
+        'read' => Callable[String, Optional[Aws_secretsmanager_secret_version]]
       }
     },
     Aws_security_group => {
@@ -24775,13 +23309,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_security_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_security_group]],
-          Tuple[Optional[Aws_security_group], String]],
+        'create' => Callable[Optional[Aws_security_group], Tuple[Optional[Aws_security_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_security_group]]
+        'read' => Callable[String, Optional[Aws_security_group]]
       }
     },
     Aws_security_group_egress_500 => {
@@ -24885,13 +23415,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_security_group_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_security_group_rule]],
-          Tuple[Optional[Aws_security_group_rule], String]],
+        'create' => Callable[Optional[Aws_security_group_rule], Tuple[Optional[Aws_security_group_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_security_group_rule]]
+        'read' => Callable[String, Optional[Aws_security_group_rule]]
       }
     },
     Aws_securityhub_account => {
@@ -24904,13 +23430,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_securityhub_accountHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_securityhub_account]],
-          Tuple[Optional[Aws_securityhub_account], String]],
+        'create' => Callable[Optional[Aws_securityhub_account], Tuple[Optional[Aws_securityhub_account], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_securityhub_account]]
+        'read' => Callable[String, Optional[Aws_securityhub_account]]
       }
     },
     Aws_securityhub_product_subscription => {
@@ -24928,13 +23450,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_securityhub_product_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_securityhub_product_subscription]],
-          Tuple[Optional[Aws_securityhub_product_subscription], String]],
+        'create' => Callable[Optional[Aws_securityhub_product_subscription], Tuple[Optional[Aws_securityhub_product_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_securityhub_product_subscription]]
+        'read' => Callable[String, Optional[Aws_securityhub_product_subscription]]
       }
     },
     Aws_securityhub_standards_subscription => {
@@ -24948,13 +23466,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_securityhub_standards_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_securityhub_standards_subscription]],
-          Tuple[Optional[Aws_securityhub_standards_subscription], String]],
+        'create' => Callable[Optional[Aws_securityhub_standards_subscription], Tuple[Optional[Aws_securityhub_standards_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_securityhub_standards_subscription]]
+        'read' => Callable[String, Optional[Aws_securityhub_standards_subscription]]
       }
     },
     Aws_service_discovery_http_namespace => {
@@ -24976,13 +23490,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_http_namespaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_service_discovery_http_namespace]],
-          Tuple[Optional[Aws_service_discovery_http_namespace], String]],
+        'create' => Callable[Optional[Aws_service_discovery_http_namespace], Tuple[Optional[Aws_service_discovery_http_namespace], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_service_discovery_http_namespace]]
+        'read' => Callable[String, Optional[Aws_service_discovery_http_namespace]]
       }
     },
     Aws_service_discovery_private_dns_namespace => {
@@ -25009,13 +23519,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_private_dns_namespaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_service_discovery_private_dns_namespace]],
-          Tuple[Optional[Aws_service_discovery_private_dns_namespace], String]],
+        'create' => Callable[Optional[Aws_service_discovery_private_dns_namespace], Tuple[Optional[Aws_service_discovery_private_dns_namespace], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_service_discovery_private_dns_namespace]]
+        'read' => Callable[String, Optional[Aws_service_discovery_private_dns_namespace]]
       }
     },
     Aws_service_discovery_public_dns_namespace => {
@@ -25041,13 +23547,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_public_dns_namespaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_service_discovery_public_dns_namespace]],
-          Tuple[Optional[Aws_service_discovery_public_dns_namespace], String]],
+        'create' => Callable[Optional[Aws_service_discovery_public_dns_namespace], Tuple[Optional[Aws_service_discovery_public_dns_namespace], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_service_discovery_public_dns_namespace]]
+        'read' => Callable[String, Optional[Aws_service_discovery_public_dns_namespace]]
       }
     },
     Aws_service_discovery_service => {
@@ -25078,13 +23580,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_service_discovery_service]],
-          Tuple[Optional[Aws_service_discovery_service], String]],
+        'create' => Callable[Optional[Aws_service_discovery_service], Tuple[Optional[Aws_service_discovery_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_service_discovery_service]]
+        'read' => Callable[String, Optional[Aws_service_discovery_service]]
       }
     },
     Aws_service_discovery_service_dns_config_502 => {
@@ -25158,13 +23656,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_servicecatalog_portfolioHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_servicecatalog_portfolio]],
-          Tuple[Optional[Aws_servicecatalog_portfolio], String]],
+        'create' => Callable[Optional[Aws_servicecatalog_portfolio], Tuple[Optional[Aws_servicecatalog_portfolio], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_servicecatalog_portfolio]]
+        'read' => Callable[String, Optional[Aws_servicecatalog_portfolio]]
       }
     },
     Aws_ses_active_receipt_rule_set => {
@@ -25178,13 +23672,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_active_receipt_rule_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_active_receipt_rule_set]],
-          Tuple[Optional[Aws_ses_active_receipt_rule_set], String]],
+        'create' => Callable[Optional[Aws_ses_active_receipt_rule_set], Tuple[Optional[Aws_ses_active_receipt_rule_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_active_receipt_rule_set]]
+        'read' => Callable[String, Optional[Aws_ses_active_receipt_rule_set]]
       }
     },
     Aws_ses_configuration_set => {
@@ -25198,13 +23688,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_configuration_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_configuration_set]],
-          Tuple[Optional[Aws_ses_configuration_set], String]],
+        'create' => Callable[Optional[Aws_ses_configuration_set], Tuple[Optional[Aws_ses_configuration_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_configuration_set]]
+        'read' => Callable[String, Optional[Aws_ses_configuration_set]]
       }
     },
     Aws_ses_domain_dkim => {
@@ -25222,13 +23708,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_dkimHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_domain_dkim]],
-          Tuple[Optional[Aws_ses_domain_dkim], String]],
+        'create' => Callable[Optional[Aws_ses_domain_dkim], Tuple[Optional[Aws_ses_domain_dkim], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_domain_dkim]]
+        'read' => Callable[String, Optional[Aws_ses_domain_dkim]]
       }
     },
     Aws_ses_domain_identity => {
@@ -25250,13 +23732,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_identityHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_domain_identity]],
-          Tuple[Optional[Aws_ses_domain_identity], String]],
+        'create' => Callable[Optional[Aws_ses_domain_identity], Tuple[Optional[Aws_ses_domain_identity], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_domain_identity]]
+        'read' => Callable[String, Optional[Aws_ses_domain_identity]]
       }
     },
     Aws_ses_domain_identity_verification => {
@@ -25274,13 +23752,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_identity_verificationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_domain_identity_verification]],
-          Tuple[Optional[Aws_ses_domain_identity_verification], String]],
+        'create' => Callable[Optional[Aws_ses_domain_identity_verification], Tuple[Optional[Aws_ses_domain_identity_verification], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_domain_identity_verification]]
+        'read' => Callable[String, Optional[Aws_ses_domain_identity_verification]]
       }
     },
     Aws_ses_domain_mail_from => {
@@ -25299,13 +23773,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_mail_fromHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_domain_mail_from]],
-          Tuple[Optional[Aws_ses_domain_mail_from], String]],
+        'create' => Callable[Optional[Aws_ses_domain_mail_from], Tuple[Optional[Aws_ses_domain_mail_from], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_domain_mail_from]]
+        'read' => Callable[String, Optional[Aws_ses_domain_mail_from]]
       }
     },
     Aws_ses_event_destination => {
@@ -25337,13 +23807,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_event_destinationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_event_destination]],
-          Tuple[Optional[Aws_ses_event_destination], String]],
+        'create' => Callable[Optional[Aws_ses_event_destination], Tuple[Optional[Aws_ses_event_destination], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_event_destination]]
+        'read' => Callable[String, Optional[Aws_ses_event_destination]]
       }
     },
     Aws_ses_event_destination_cloudwatch_destination_506 => {
@@ -25380,13 +23846,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_identity_notification_topicHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_identity_notification_topic]],
-          Tuple[Optional[Aws_ses_identity_notification_topic], String]],
+        'create' => Callable[Optional[Aws_ses_identity_notification_topic], Tuple[Optional[Aws_ses_identity_notification_topic], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_identity_notification_topic]]
+        'read' => Callable[String, Optional[Aws_ses_identity_notification_topic]]
       }
     },
     Aws_ses_receipt_filter => {
@@ -25402,13 +23864,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_receipt_filterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_receipt_filter]],
-          Tuple[Optional[Aws_ses_receipt_filter], String]],
+        'create' => Callable[Optional[Aws_ses_receipt_filter], Tuple[Optional[Aws_ses_receipt_filter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_receipt_filter]]
+        'read' => Callable[String, Optional[Aws_ses_receipt_filter]]
       }
     },
     Aws_ses_receipt_rule => {
@@ -25471,13 +23929,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_receipt_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_receipt_rule]],
-          Tuple[Optional[Aws_ses_receipt_rule], String]],
+        'create' => Callable[Optional[Aws_ses_receipt_rule], Tuple[Optional[Aws_ses_receipt_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_receipt_rule]]
+        'read' => Callable[String, Optional[Aws_ses_receipt_rule]]
       }
     },
     Aws_ses_receipt_rule_add_header_action_509 => {
@@ -25546,13 +24000,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_receipt_rule_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_receipt_rule_set]],
-          Tuple[Optional[Aws_ses_receipt_rule_set], String]],
+        'create' => Callable[Optional[Aws_ses_receipt_rule_set], Tuple[Optional[Aws_ses_receipt_rule_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_receipt_rule_set]]
+        'read' => Callable[String, Optional[Aws_ses_receipt_rule_set]]
       }
     },
     Aws_ses_receipt_rule_sns_action_513 => {
@@ -25604,13 +24054,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_templateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ses_template]],
-          Tuple[Optional[Aws_ses_template], String]],
+        'create' => Callable[Optional[Aws_ses_template], Tuple[Optional[Aws_ses_template], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ses_template]]
+        'read' => Callable[String, Optional[Aws_ses_template]]
       }
     },
     Aws_sfn_activity => {
@@ -25632,13 +24078,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sfn_activityHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sfn_activity]],
-          Tuple[Optional[Aws_sfn_activity], String]],
+        'create' => Callable[Optional[Aws_sfn_activity], Tuple[Optional[Aws_sfn_activity], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sfn_activity]]
+        'read' => Callable[String, Optional[Aws_sfn_activity]]
       }
     },
     Aws_sfn_state_machine => {
@@ -25666,13 +24108,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sfn_state_machineHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sfn_state_machine]],
-          Tuple[Optional[Aws_sfn_state_machine], String]],
+        'create' => Callable[Optional[Aws_sfn_state_machine], Tuple[Optional[Aws_sfn_state_machine], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sfn_state_machine]]
+        'read' => Callable[String, Optional[Aws_sfn_state_machine]]
       }
     },
     Aws_simpledb_domain => {
@@ -25686,13 +24124,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_simpledb_domainHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_simpledb_domain]],
-          Tuple[Optional[Aws_simpledb_domain], String]],
+        'create' => Callable[Optional[Aws_simpledb_domain], Tuple[Optional[Aws_simpledb_domain], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_simpledb_domain]]
+        'read' => Callable[String, Optional[Aws_simpledb_domain]]
       }
     },
     Aws_snapshot_create_volume_permission => {
@@ -25707,13 +24141,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_snapshot_create_volume_permissionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_snapshot_create_volume_permission]],
-          Tuple[Optional[Aws_snapshot_create_volume_permission], String]],
+        'create' => Callable[Optional[Aws_snapshot_create_volume_permission], Tuple[Optional[Aws_snapshot_create_volume_permission], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_snapshot_create_volume_permission]]
+        'read' => Callable[String, Optional[Aws_snapshot_create_volume_permission]]
       }
     },
     Aws_sns_platform_application => {
@@ -25765,13 +24195,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_platform_applicationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sns_platform_application]],
-          Tuple[Optional[Aws_sns_platform_application], String]],
+        'create' => Callable[Optional[Aws_sns_platform_application], Tuple[Optional[Aws_sns_platform_application], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sns_platform_application]]
+        'read' => Callable[String, Optional[Aws_sns_platform_application]]
       }
     },
     Aws_sns_sms_preferences => {
@@ -25808,13 +24234,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_sms_preferencesHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sns_sms_preferences]],
-          Tuple[Optional[Aws_sns_sms_preferences], String]],
+        'create' => Callable[Optional[Aws_sns_sms_preferences], Tuple[Optional[Aws_sns_sms_preferences], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sns_sms_preferences]]
+        'read' => Callable[String, Optional[Aws_sns_sms_preferences]]
       }
     },
     Aws_sns_topic => {
@@ -25903,13 +24325,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_topicHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sns_topic]],
-          Tuple[Optional[Aws_sns_topic], String]],
+        'create' => Callable[Optional[Aws_sns_topic], Tuple[Optional[Aws_sns_topic], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sns_topic]]
+        'read' => Callable[String, Optional[Aws_sns_topic]]
       }
     },
     Aws_sns_topic_policy => {
@@ -25924,13 +24342,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_topic_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sns_topic_policy]],
-          Tuple[Optional[Aws_sns_topic_policy], String]],
+        'create' => Callable[Optional[Aws_sns_topic_policy], Tuple[Optional[Aws_sns_topic_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sns_topic_policy]]
+        'read' => Callable[String, Optional[Aws_sns_topic_policy]]
       }
     },
     Aws_sns_topic_subscription => {
@@ -25970,13 +24384,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_topic_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sns_topic_subscription]],
-          Tuple[Optional[Aws_sns_topic_subscription], String]],
+        'create' => Callable[Optional[Aws_sns_topic_subscription], Tuple[Optional[Aws_sns_topic_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sns_topic_subscription]]
+        'read' => Callable[String, Optional[Aws_sns_topic_subscription]]
       }
     },
     Aws_spot_datafeed_subscription => {
@@ -25994,13 +24404,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_spot_datafeed_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_spot_datafeed_subscription]],
-          Tuple[Optional[Aws_spot_datafeed_subscription], String]],
+        'create' => Callable[Optional[Aws_spot_datafeed_subscription], Tuple[Optional[Aws_spot_datafeed_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_spot_datafeed_subscription]]
+        'read' => Callable[String, Optional[Aws_spot_datafeed_subscription]]
       }
     },
     Aws_spot_fleet_request => {
@@ -26076,13 +24482,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_spot_fleet_requestHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_spot_fleet_request]],
-          Tuple[Optional[Aws_spot_fleet_request], String]],
+        'create' => Callable[Optional[Aws_spot_fleet_request], Tuple[Optional[Aws_spot_fleet_request], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_spot_fleet_request]]
+        'read' => Callable[String, Optional[Aws_spot_fleet_request]]
       }
     },
     Aws_spot_fleet_request_launch_specification_516 => {
@@ -26430,13 +24832,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_spot_instance_requestHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_spot_instance_request]],
-          Tuple[Optional[Aws_spot_instance_request], String]],
+        'create' => Callable[Optional[Aws_spot_instance_request], Tuple[Optional[Aws_spot_instance_request], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_spot_instance_request]]
+        'read' => Callable[String, Optional[Aws_spot_instance_request]]
       }
     },
     Aws_spot_instance_request_credit_specification_520 => {
@@ -26597,13 +24995,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sqs_queueHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sqs_queue]],
-          Tuple[Optional[Aws_sqs_queue], String]],
+        'create' => Callable[Optional[Aws_sqs_queue], Tuple[Optional[Aws_sqs_queue], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sqs_queue]]
+        'read' => Callable[String, Optional[Aws_sqs_queue]]
       }
     },
     Aws_sqs_queue_policy => {
@@ -26618,13 +25012,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_sqs_queue_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_sqs_queue_policy]],
-          Tuple[Optional[Aws_sqs_queue_policy], String]],
+        'create' => Callable[Optional[Aws_sqs_queue_policy], Tuple[Optional[Aws_sqs_queue_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_sqs_queue_policy]]
+        'read' => Callable[String, Optional[Aws_sqs_queue_policy]]
       }
     },
     Aws_ssm_activation => {
@@ -26666,13 +25056,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_activationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_activation]],
-          Tuple[Optional[Aws_ssm_activation], String]],
+        'create' => Callable[Optional[Aws_ssm_activation], Tuple[Optional[Aws_ssm_activation], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_activation]]
+        'read' => Callable[String, Optional[Aws_ssm_activation]]
       }
     },
     Aws_ssm_association => {
@@ -26718,13 +25104,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_association]],
-          Tuple[Optional[Aws_ssm_association], String]],
+        'create' => Callable[Optional[Aws_ssm_association], Tuple[Optional[Aws_ssm_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_association]]
+        'read' => Callable[String, Optional[Aws_ssm_association]]
       }
     },
     Aws_ssm_association_output_location_525 => {
@@ -26815,13 +25197,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_documentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_document]],
-          Tuple[Optional[Aws_ssm_document], String]],
+        'create' => Callable[Optional[Aws_ssm_document], Tuple[Optional[Aws_ssm_document], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_document]]
+        'read' => Callable[String, Optional[Aws_ssm_document]]
       }
     },
     Aws_ssm_document_parameter_527 => {
@@ -26878,13 +25256,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_maintenance_windowHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_maintenance_window]],
-          Tuple[Optional[Aws_ssm_maintenance_window], String]],
+        'create' => Callable[Optional[Aws_ssm_maintenance_window], Tuple[Optional[Aws_ssm_maintenance_window], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_maintenance_window]]
+        'read' => Callable[String, Optional[Aws_ssm_maintenance_window]]
       }
     },
     Aws_ssm_maintenance_window_target => {
@@ -26904,13 +25278,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_maintenance_window_targetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_maintenance_window_target]],
-          Tuple[Optional[Aws_ssm_maintenance_window_target], String]],
+        'create' => Callable[Optional[Aws_ssm_maintenance_window_target], Tuple[Optional[Aws_ssm_maintenance_window_target], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_maintenance_window_target]]
+        'read' => Callable[String, Optional[Aws_ssm_maintenance_window_target]]
       }
     },
     Aws_ssm_maintenance_window_target_targets_528 => {
@@ -26956,13 +25326,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_maintenance_window_taskHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_maintenance_window_task]],
-          Tuple[Optional[Aws_ssm_maintenance_window_task], String]],
+        'create' => Callable[Optional[Aws_ssm_maintenance_window_task], Tuple[Optional[Aws_ssm_maintenance_window_task], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_maintenance_window_task]]
+        'read' => Callable[String, Optional[Aws_ssm_maintenance_window_task]]
       }
     },
     Aws_ssm_maintenance_window_task_logging_info_529 => {
@@ -27024,13 +25390,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_parameterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_parameter]],
-          Tuple[Optional[Aws_ssm_parameter], String]],
+        'create' => Callable[Optional[Aws_ssm_parameter], Tuple[Optional[Aws_ssm_parameter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_parameter]]
+        'read' => Callable[String, Optional[Aws_ssm_parameter]]
       }
     },
     Aws_ssm_patch_baseline => {
@@ -27072,13 +25434,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_patch_baselineHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_patch_baseline]],
-          Tuple[Optional[Aws_ssm_patch_baseline], String]],
+        'create' => Callable[Optional[Aws_ssm_patch_baseline], Tuple[Optional[Aws_ssm_patch_baseline], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_patch_baseline]]
+        'read' => Callable[String, Optional[Aws_ssm_patch_baseline]]
       }
     },
     Aws_ssm_patch_baseline_approval_rule_532 => {
@@ -27119,13 +25477,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_patch_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_patch_group]],
-          Tuple[Optional[Aws_ssm_patch_group], String]],
+        'create' => Callable[Optional[Aws_ssm_patch_group], Tuple[Optional[Aws_ssm_patch_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_patch_group]]
+        'read' => Callable[String, Optional[Aws_ssm_patch_group]]
       }
     },
     Aws_ssm_resource_data_sync => {
@@ -27140,13 +25494,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_resource_data_syncHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_ssm_resource_data_sync]],
-          Tuple[Optional[Aws_ssm_resource_data_sync], String]],
+        'create' => Callable[Optional[Aws_ssm_resource_data_sync], Tuple[Optional[Aws_ssm_resource_data_sync], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_ssm_resource_data_sync]]
+        'read' => Callable[String, Optional[Aws_ssm_resource_data_sync]]
       }
     },
     Aws_ssm_resource_data_sync_s3_destination_535 => {
@@ -27179,13 +25529,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_cacheHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_cache]],
-          Tuple[Optional[Aws_storagegateway_cache], String]],
+        'create' => Callable[Optional[Aws_storagegateway_cache], Tuple[Optional[Aws_storagegateway_cache], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_cache]]
+        'read' => Callable[String, Optional[Aws_storagegateway_cache]]
       }
     },
     Aws_storagegateway_cached_iscsi_volume => {
@@ -27238,13 +25584,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_cached_iscsi_volumeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_cached_iscsi_volume]],
-          Tuple[Optional[Aws_storagegateway_cached_iscsi_volume], String]],
+        'create' => Callable[Optional[Aws_storagegateway_cached_iscsi_volume], Tuple[Optional[Aws_storagegateway_cached_iscsi_volume], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_cached_iscsi_volume]]
+        'read' => Callable[String, Optional[Aws_storagegateway_cached_iscsi_volume]]
       }
     },
     Aws_storagegateway_gateway => {
@@ -27295,13 +25637,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_gateway]],
-          Tuple[Optional[Aws_storagegateway_gateway], String]],
+        'create' => Callable[Optional[Aws_storagegateway_gateway], Tuple[Optional[Aws_storagegateway_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_gateway]]
+        'read' => Callable[String, Optional[Aws_storagegateway_gateway]]
       }
     },
     Aws_storagegateway_gateway_smb_active_directory_settings_536 => {
@@ -27369,13 +25707,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_nfs_file_shareHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_nfs_file_share]],
-          Tuple[Optional[Aws_storagegateway_nfs_file_share], String]],
+        'create' => Callable[Optional[Aws_storagegateway_nfs_file_share], Tuple[Optional[Aws_storagegateway_nfs_file_share], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_nfs_file_share]]
+        'read' => Callable[String, Optional[Aws_storagegateway_nfs_file_share]]
       }
     },
     Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537 => {
@@ -27459,13 +25793,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_smb_file_shareHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_smb_file_share]],
-          Tuple[Optional[Aws_storagegateway_smb_file_share], String]],
+        'create' => Callable[Optional[Aws_storagegateway_smb_file_share], Tuple[Optional[Aws_storagegateway_smb_file_share], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_smb_file_share]]
+        'read' => Callable[String, Optional[Aws_storagegateway_smb_file_share]]
       }
     },
     Aws_storagegateway_upload_buffer => {
@@ -27480,13 +25810,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_upload_bufferHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_upload_buffer]],
-          Tuple[Optional[Aws_storagegateway_upload_buffer], String]],
+        'create' => Callable[Optional[Aws_storagegateway_upload_buffer], Tuple[Optional[Aws_storagegateway_upload_buffer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_upload_buffer]]
+        'read' => Callable[String, Optional[Aws_storagegateway_upload_buffer]]
       }
     },
     Aws_storagegateway_working_storage => {
@@ -27501,13 +25827,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_working_storageHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_storagegateway_working_storage]],
-          Tuple[Optional[Aws_storagegateway_working_storage], String]],
+        'create' => Callable[Optional[Aws_storagegateway_working_storage], Tuple[Optional[Aws_storagegateway_working_storage], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_storagegateway_working_storage]]
+        'read' => Callable[String, Optional[Aws_storagegateway_working_storage]]
       }
     },
     Aws_subnet => {
@@ -27558,13 +25880,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_subnetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_subnet]],
-          Tuple[Optional[Aws_subnet], String]],
+        'create' => Callable[Optional[Aws_subnet], Tuple[Optional[Aws_subnet], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_subnet]]
+        'read' => Callable[String, Optional[Aws_subnet]]
       }
     },
     Aws_swf_domain => {
@@ -27590,13 +25908,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_swf_domainHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_swf_domain]],
-          Tuple[Optional[Aws_swf_domain], String]],
+        'create' => Callable[Optional[Aws_swf_domain], Tuple[Optional[Aws_swf_domain], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_swf_domain]]
+        'read' => Callable[String, Optional[Aws_swf_domain]]
       }
     },
     Aws_transfer_server => {
@@ -27641,13 +25955,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_transfer_serverHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_transfer_server]],
-          Tuple[Optional[Aws_transfer_server], String]],
+        'create' => Callable[Optional[Aws_transfer_server], Tuple[Optional[Aws_transfer_server], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_transfer_server]]
+        'read' => Callable[String, Optional[Aws_transfer_server]]
       }
     },
     Aws_transfer_ssh_key => {
@@ -27663,13 +25973,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_transfer_ssh_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_transfer_ssh_key]],
-          Tuple[Optional[Aws_transfer_ssh_key], String]],
+        'create' => Callable[Optional[Aws_transfer_ssh_key], Tuple[Optional[Aws_transfer_ssh_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_transfer_ssh_key]]
+        'read' => Callable[String, Optional[Aws_transfer_ssh_key]]
       }
     },
     Aws_transfer_user => {
@@ -27701,13 +26007,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_transfer_userHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_transfer_user]],
-          Tuple[Optional[Aws_transfer_user], String]],
+        'create' => Callable[Optional[Aws_transfer_user], Tuple[Optional[Aws_transfer_user], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_transfer_user]]
+        'read' => Callable[String, Optional[Aws_transfer_user]]
       }
     },
     Aws_volume_attachment => {
@@ -27731,13 +26033,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_volume_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_volume_attachment]],
-          Tuple[Optional[Aws_volume_attachment], String]],
+        'create' => Callable[Optional[Aws_volume_attachment], Tuple[Optional[Aws_volume_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_volume_attachment]]
+        'read' => Callable[String, Optional[Aws_volume_attachment]]
       }
     },
     Aws_vpc => {
@@ -27815,13 +26113,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpcHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc]],
-          Tuple[Optional[Aws_vpc], String]],
+        'create' => Callable[Optional[Aws_vpc], Tuple[Optional[Aws_vpc], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc]]
+        'read' => Callable[String, Optional[Aws_vpc]]
       }
     },
     Aws_vpc_dhcp_options => {
@@ -27862,13 +26156,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_dhcp_optionsHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_dhcp_options]],
-          Tuple[Optional[Aws_vpc_dhcp_options], String]],
+        'create' => Callable[Optional[Aws_vpc_dhcp_options], Tuple[Optional[Aws_vpc_dhcp_options], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_dhcp_options]]
+        'read' => Callable[String, Optional[Aws_vpc_dhcp_options]]
       }
     },
     Aws_vpc_dhcp_options_association => {
@@ -27883,13 +26173,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_dhcp_options_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_dhcp_options_association]],
-          Tuple[Optional[Aws_vpc_dhcp_options_association], String]],
+        'create' => Callable[Optional[Aws_vpc_dhcp_options_association], Tuple[Optional[Aws_vpc_dhcp_options_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_dhcp_options_association]]
+        'read' => Callable[String, Optional[Aws_vpc_dhcp_options_association]]
       }
     },
     Aws_vpc_endpoint => {
@@ -27952,13 +26238,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpointHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_endpoint]],
-          Tuple[Optional[Aws_vpc_endpoint], String]],
+        'create' => Callable[Optional[Aws_vpc_endpoint], Tuple[Optional[Aws_vpc_endpoint], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_endpoint]]
+        'read' => Callable[String, Optional[Aws_vpc_endpoint]]
       }
     },
     Aws_vpc_endpoint_connection_notification => {
@@ -27989,13 +26271,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_connection_notificationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_endpoint_connection_notification]],
-          Tuple[Optional[Aws_vpc_endpoint_connection_notification], String]],
+        'create' => Callable[Optional[Aws_vpc_endpoint_connection_notification], Tuple[Optional[Aws_vpc_endpoint_connection_notification], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_endpoint_connection_notification]]
+        'read' => Callable[String, Optional[Aws_vpc_endpoint_connection_notification]]
       }
     },
     Aws_vpc_endpoint_dns_entry_538 => {
@@ -28022,13 +26300,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_route_table_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_endpoint_route_table_association]],
-          Tuple[Optional[Aws_vpc_endpoint_route_table_association], String]],
+        'create' => Callable[Optional[Aws_vpc_endpoint_route_table_association], Tuple[Optional[Aws_vpc_endpoint_route_table_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_endpoint_route_table_association]]
+        'read' => Callable[String, Optional[Aws_vpc_endpoint_route_table_association]]
       }
     },
     Aws_vpc_endpoint_service => {
@@ -28071,13 +26345,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_endpoint_service]],
-          Tuple[Optional[Aws_vpc_endpoint_service], String]],
+        'create' => Callable[Optional[Aws_vpc_endpoint_service], Tuple[Optional[Aws_vpc_endpoint_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_endpoint_service]]
+        'read' => Callable[String, Optional[Aws_vpc_endpoint_service]]
       }
     },
     Aws_vpc_endpoint_service_allowed_principal => {
@@ -28092,13 +26362,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_service_allowed_principalHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_endpoint_service_allowed_principal]],
-          Tuple[Optional[Aws_vpc_endpoint_service_allowed_principal], String]],
+        'create' => Callable[Optional[Aws_vpc_endpoint_service_allowed_principal], Tuple[Optional[Aws_vpc_endpoint_service_allowed_principal], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_endpoint_service_allowed_principal]]
+        'read' => Callable[String, Optional[Aws_vpc_endpoint_service_allowed_principal]]
       }
     },
     Aws_vpc_endpoint_subnet_association => {
@@ -28113,13 +26379,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_subnet_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_endpoint_subnet_association]],
-          Tuple[Optional[Aws_vpc_endpoint_subnet_association], String]],
+        'create' => Callable[Optional[Aws_vpc_endpoint_subnet_association], Tuple[Optional[Aws_vpc_endpoint_subnet_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_endpoint_subnet_association]]
+        'read' => Callable[String, Optional[Aws_vpc_endpoint_subnet_association]]
       }
     },
     Aws_vpc_ipv4_cidr_block_association => {
@@ -28134,13 +26396,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_ipv4_cidr_block_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_ipv4_cidr_block_association]],
-          Tuple[Optional[Aws_vpc_ipv4_cidr_block_association], String]],
+        'create' => Callable[Optional[Aws_vpc_ipv4_cidr_block_association], Tuple[Optional[Aws_vpc_ipv4_cidr_block_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_ipv4_cidr_block_association]]
+        'read' => Callable[String, Optional[Aws_vpc_ipv4_cidr_block_association]]
       }
     },
     Aws_vpc_peering_connection => {
@@ -28183,13 +26441,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_peering_connectionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_peering_connection]],
-          Tuple[Optional[Aws_vpc_peering_connection], String]],
+        'create' => Callable[Optional[Aws_vpc_peering_connection], Tuple[Optional[Aws_vpc_peering_connection], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_peering_connection]]
+        'read' => Callable[String, Optional[Aws_vpc_peering_connection]]
       }
     },
     Aws_vpc_peering_connection_accepter => {
@@ -28239,13 +26493,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_peering_connection_accepterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_peering_connection_accepter]],
-          Tuple[Optional[Aws_vpc_peering_connection_accepter], String]],
+        'create' => Callable[Optional[Aws_vpc_peering_connection_accepter], Tuple[Optional[Aws_vpc_peering_connection_accepter], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_peering_connection_accepter]]
+        'read' => Callable[String, Optional[Aws_vpc_peering_connection_accepter]]
       }
     },
     Aws_vpc_peering_connection_accepter_539 => {
@@ -28315,13 +26565,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_peering_connection_optionsHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpc_peering_connection_options]],
-          Tuple[Optional[Aws_vpc_peering_connection_options], String]],
+        'create' => Callable[Optional[Aws_vpc_peering_connection_options], Tuple[Optional[Aws_vpc_peering_connection_options], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpc_peering_connection_options]]
+        'read' => Callable[String, Optional[Aws_vpc_peering_connection_options]]
       }
     },
     Aws_vpc_peering_connection_options_accepter_543 => {
@@ -28468,13 +26714,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_connectionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpn_connection]],
-          Tuple[Optional[Aws_vpn_connection], String]],
+        'create' => Callable[Optional[Aws_vpn_connection], Tuple[Optional[Aws_vpn_connection], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpn_connection]]
+        'read' => Callable[String, Optional[Aws_vpn_connection]]
       }
     },
     Aws_vpn_connection_route => {
@@ -28489,13 +26731,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_connection_routeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpn_connection_route]],
-          Tuple[Optional[Aws_vpn_connection_route], String]],
+        'create' => Callable[Optional[Aws_vpn_connection_route], Tuple[Optional[Aws_vpn_connection_route], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpn_connection_route]]
+        'read' => Callable[String, Optional[Aws_vpn_connection_route]]
       }
     },
     Aws_vpn_connection_routes_545 => {
@@ -28564,13 +26802,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpn_gateway]],
-          Tuple[Optional[Aws_vpn_gateway], String]],
+        'create' => Callable[Optional[Aws_vpn_gateway], Tuple[Optional[Aws_vpn_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpn_gateway]]
+        'read' => Callable[String, Optional[Aws_vpn_gateway]]
       }
     },
     Aws_vpn_gateway_attachment => {
@@ -28585,13 +26819,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_gateway_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpn_gateway_attachment]],
-          Tuple[Optional[Aws_vpn_gateway_attachment], String]],
+        'create' => Callable[Optional[Aws_vpn_gateway_attachment], Tuple[Optional[Aws_vpn_gateway_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpn_gateway_attachment]]
+        'read' => Callable[String, Optional[Aws_vpn_gateway_attachment]]
       }
     },
     Aws_vpn_gateway_route_propagation => {
@@ -28606,13 +26836,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_gateway_route_propagationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_vpn_gateway_route_propagation]],
-          Tuple[Optional[Aws_vpn_gateway_route_propagation], String]],
+        'create' => Callable[Optional[Aws_vpn_gateway_route_propagation], Tuple[Optional[Aws_vpn_gateway_route_propagation], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_vpn_gateway_route_propagation]]
+        'read' => Callable[String, Optional[Aws_vpn_gateway_route_propagation]]
       }
     },
     Aws_waf_byte_match_set => {
@@ -28630,13 +26856,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_byte_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_byte_match_set]],
-          Tuple[Optional[Aws_waf_byte_match_set], String]],
+        'create' => Callable[Optional[Aws_waf_byte_match_set], Tuple[Optional[Aws_waf_byte_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_byte_match_set]]
+        'read' => Callable[String, Optional[Aws_waf_byte_match_set]]
       }
     },
     Aws_waf_byte_match_set_byte_match_tuples_547 => {
@@ -28674,13 +26896,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_geo_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_geo_match_set]],
-          Tuple[Optional[Aws_waf_geo_match_set], String]],
+        'create' => Callable[Optional[Aws_waf_geo_match_set], Tuple[Optional[Aws_waf_geo_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_geo_match_set]]
+        'read' => Callable[String, Optional[Aws_waf_geo_match_set]]
       }
     },
     Aws_waf_geo_match_set_geo_match_constraint_549 => {
@@ -28708,13 +26926,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_ipsetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_ipset]],
-          Tuple[Optional[Aws_waf_ipset], String]],
+        'create' => Callable[Optional[Aws_waf_ipset], Tuple[Optional[Aws_waf_ipset], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_ipset]]
+        'read' => Callable[String, Optional[Aws_waf_ipset]]
       }
     },
     Aws_waf_ipset_ip_set_descriptors_550 => {
@@ -28741,13 +26955,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_rate_based_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_rate_based_rule]],
-          Tuple[Optional[Aws_waf_rate_based_rule], String]],
+        'create' => Callable[Optional[Aws_waf_rate_based_rule], Tuple[Optional[Aws_waf_rate_based_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_rate_based_rule]]
+        'read' => Callable[String, Optional[Aws_waf_rate_based_rule]]
       }
     },
     Aws_waf_rate_based_rule_predicates_551 => {
@@ -28772,13 +26982,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_regex_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_regex_match_set]],
-          Tuple[Optional[Aws_waf_regex_match_set], String]],
+        'create' => Callable[Optional[Aws_waf_regex_match_set], Tuple[Optional[Aws_waf_regex_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_regex_match_set]]
+        'read' => Callable[String, Optional[Aws_waf_regex_match_set]]
       }
     },
     Aws_waf_regex_match_set_regex_match_tuple_552 => {
@@ -28812,13 +27018,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_regex_pattern_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_regex_pattern_set]],
-          Tuple[Optional[Aws_waf_regex_pattern_set], String]],
+        'create' => Callable[Optional[Aws_waf_regex_pattern_set], Tuple[Optional[Aws_waf_regex_pattern_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_regex_pattern_set]]
+        'read' => Callable[String, Optional[Aws_waf_regex_pattern_set]]
       }
     },
     Aws_waf_rule => {
@@ -28837,13 +27039,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_rule]],
-          Tuple[Optional[Aws_waf_rule], String]],
+        'create' => Callable[Optional[Aws_waf_rule], Tuple[Optional[Aws_waf_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_rule]]
+        'read' => Callable[String, Optional[Aws_waf_rule]]
       }
     },
     Aws_waf_rule_group => {
@@ -28862,13 +27060,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_rule_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_rule_group]],
-          Tuple[Optional[Aws_waf_rule_group], String]],
+        'create' => Callable[Optional[Aws_waf_rule_group], Tuple[Optional[Aws_waf_rule_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_rule_group]]
+        'read' => Callable[String, Optional[Aws_waf_rule_group]]
       }
     },
     Aws_waf_rule_group_activated_rule_555 => {
@@ -28909,13 +27103,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_size_constraint_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_size_constraint_set]],
-          Tuple[Optional[Aws_waf_size_constraint_set], String]],
+        'create' => Callable[Optional[Aws_waf_size_constraint_set], Tuple[Optional[Aws_waf_size_constraint_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_size_constraint_set]]
+        'read' => Callable[String, Optional[Aws_waf_size_constraint_set]]
       }
     },
     Aws_waf_size_constraint_set_size_constraints_557 => {
@@ -28950,13 +27140,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_sql_injection_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_sql_injection_match_set]],
-          Tuple[Optional[Aws_waf_sql_injection_match_set], String]],
+        'create' => Callable[Optional[Aws_waf_sql_injection_match_set], Tuple[Optional[Aws_waf_sql_injection_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_sql_injection_match_set]]
+        'read' => Callable[String, Optional[Aws_waf_sql_injection_match_set]]
       }
     },
     Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559 => {
@@ -28991,13 +27177,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_web_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_web_acl]],
-          Tuple[Optional[Aws_waf_web_acl], String]],
+        'create' => Callable[Optional[Aws_waf_web_acl], Tuple[Optional[Aws_waf_web_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_web_acl]]
+        'read' => Callable[String, Optional[Aws_waf_web_acl]]
       }
     },
     Aws_waf_web_acl_default_action_561 => {
@@ -29048,13 +27230,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_xss_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_waf_xss_match_set]],
-          Tuple[Optional[Aws_waf_xss_match_set], String]],
+        'create' => Callable[Optional[Aws_waf_xss_match_set], Tuple[Optional[Aws_waf_xss_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_waf_xss_match_set]]
+        'read' => Callable[String, Optional[Aws_waf_xss_match_set]]
       }
     },
     Aws_waf_xss_match_set_xss_match_tuples_565 => {
@@ -29091,13 +27269,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_byte_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_byte_match_set]],
-          Tuple[Optional[Aws_wafregional_byte_match_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_byte_match_set], Tuple[Optional[Aws_wafregional_byte_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_byte_match_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_byte_match_set]]
       }
     },
     Aws_wafregional_byte_match_set_byte_match_tuple_567 => {
@@ -29155,13 +27329,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_geo_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_geo_match_set]],
-          Tuple[Optional[Aws_wafregional_geo_match_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_geo_match_set], Tuple[Optional[Aws_wafregional_geo_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_geo_match_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_geo_match_set]]
       }
     },
     Aws_wafregional_geo_match_set_geo_match_constraint_571 => {
@@ -29189,13 +27359,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_ipsetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_ipset]],
-          Tuple[Optional[Aws_wafregional_ipset], String]],
+        'create' => Callable[Optional[Aws_wafregional_ipset], Tuple[Optional[Aws_wafregional_ipset], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_ipset]]
+        'read' => Callable[String, Optional[Aws_wafregional_ipset]]
       }
     },
     Aws_wafregional_ipset_ip_set_descriptor_572 => {
@@ -29222,13 +27388,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_rate_based_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_rate_based_rule]],
-          Tuple[Optional[Aws_wafregional_rate_based_rule], String]],
+        'create' => Callable[Optional[Aws_wafregional_rate_based_rule], Tuple[Optional[Aws_wafregional_rate_based_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_rate_based_rule]]
+        'read' => Callable[String, Optional[Aws_wafregional_rate_based_rule]]
       }
     },
     Aws_wafregional_rate_based_rule_predicate_573 => {
@@ -29253,13 +27415,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_regex_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_regex_match_set]],
-          Tuple[Optional[Aws_wafregional_regex_match_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_regex_match_set], Tuple[Optional[Aws_wafregional_regex_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_regex_match_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_regex_match_set]]
       }
     },
     Aws_wafregional_regex_match_set_regex_match_tuple_574 => {
@@ -29293,13 +27451,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_regex_pattern_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_regex_pattern_set]],
-          Tuple[Optional[Aws_wafregional_regex_pattern_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_regex_pattern_set], Tuple[Optional[Aws_wafregional_regex_pattern_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_regex_pattern_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_regex_pattern_set]]
       }
     },
     Aws_wafregional_rule => {
@@ -29318,13 +27472,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_rule]],
-          Tuple[Optional[Aws_wafregional_rule], String]],
+        'create' => Callable[Optional[Aws_wafregional_rule], Tuple[Optional[Aws_wafregional_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_rule]]
+        'read' => Callable[String, Optional[Aws_wafregional_rule]]
       }
     },
     Aws_wafregional_rule_group => {
@@ -29343,13 +27493,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_rule_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_rule_group]],
-          Tuple[Optional[Aws_wafregional_rule_group], String]],
+        'create' => Callable[Optional[Aws_wafregional_rule_group], Tuple[Optional[Aws_wafregional_rule_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_rule_group]]
+        'read' => Callable[String, Optional[Aws_wafregional_rule_group]]
       }
     },
     Aws_wafregional_rule_group_activated_rule_577 => {
@@ -29390,13 +27536,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_size_constraint_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_size_constraint_set]],
-          Tuple[Optional[Aws_wafregional_size_constraint_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_size_constraint_set], Tuple[Optional[Aws_wafregional_size_constraint_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_size_constraint_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_size_constraint_set]]
       }
     },
     Aws_wafregional_size_constraint_set_size_constraints_579 => {
@@ -29431,13 +27573,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_sql_injection_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_sql_injection_match_set]],
-          Tuple[Optional[Aws_wafregional_sql_injection_match_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_sql_injection_match_set], Tuple[Optional[Aws_wafregional_sql_injection_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_sql_injection_match_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_sql_injection_match_set]]
       }
     },
     Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581 => {
@@ -29472,13 +27610,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_web_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_web_acl]],
-          Tuple[Optional[Aws_wafregional_web_acl], String]],
+        'create' => Callable[Optional[Aws_wafregional_web_acl], Tuple[Optional[Aws_wafregional_web_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_web_acl]]
+        'read' => Callable[String, Optional[Aws_wafregional_web_acl]]
       }
     },
     Aws_wafregional_web_acl_association => {
@@ -29493,13 +27627,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_web_acl_associationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_web_acl_association]],
-          Tuple[Optional[Aws_wafregional_web_acl_association], String]],
+        'create' => Callable[Optional[Aws_wafregional_web_acl_association], Tuple[Optional[Aws_wafregional_web_acl_association], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_web_acl_association]]
+        'read' => Callable[String, Optional[Aws_wafregional_web_acl_association]]
       }
     },
     Aws_wafregional_web_acl_default_action_583 => {
@@ -29550,13 +27680,9 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_xss_match_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Aws_wafregional_xss_match_set]],
-          Tuple[Optional[Aws_wafregional_xss_match_set], String]],
+        'create' => Callable[Optional[Aws_wafregional_xss_match_set], Tuple[Optional[Aws_wafregional_xss_match_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Aws_wafregional_xss_match_set]]
+        'read' => Callable[String, Optional[Aws_wafregional_xss_match_set]]
       }
     },
     Aws_wafregional_xss_match_set_xss_match_tuple_587 => {

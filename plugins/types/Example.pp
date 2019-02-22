@@ -1,5 +1,3 @@
-
-# this file is prefixed "aaa" so that it is processed first as it contains types that are needed by other workflows
 # this file is generated
 type Example = TypeSet[{
   pcore_uri => 'http://puppet.com/2016.1/pcore',
@@ -83,16 +81,10 @@ type Example = TypeSet[{
     },
     PersonHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Person]],
-          Tuple[Optional[Person], String]],
+        'create' => Callable[Optional[Person], Tuple[Optional[Person], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Person]],
-        'update' => Callable[
-          [String, Optional[Person]],
-          Optional[Person]]
+        'read' => Callable[String, Optional[Person]],
+        'update' => Callable[String, Optional[Person], Optional[Person]]
       }
     }
   }

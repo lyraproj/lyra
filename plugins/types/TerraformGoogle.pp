@@ -1,5 +1,3 @@
-
-# this file is prefixed "aaa" so that it is processed first as it contains types that are needed by other workflows
 # this file is generated
 type TerraformGoogle = TypeSet[{
   pcore_uri => 'http://puppet.com/2016.1/pcore',
@@ -59,13 +57,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_app_engine_applicationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_app_engine_application]],
-          Tuple[Optional[Google_app_engine_application], String]],
+        'create' => Callable[Optional[Google_app_engine_application], Tuple[Optional[Google_app_engine_application], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_app_engine_application]]
+        'read' => Callable[String, Optional[Google_app_engine_application]]
       }
     },
     Google_app_engine_application_feature_settings_857 => {
@@ -147,13 +141,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigquery_datasetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_bigquery_dataset]],
-          Tuple[Optional[Google_bigquery_dataset], String]],
+        'create' => Callable[Optional[Google_bigquery_dataset], Tuple[Optional[Google_bigquery_dataset], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_bigquery_dataset]]
+        'read' => Callable[String, Optional[Google_bigquery_dataset]]
       }
     },
     Google_bigquery_dataset_access_859 => {
@@ -271,13 +261,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigquery_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_bigquery_table]],
-          Tuple[Optional[Google_bigquery_table], String]],
+        'create' => Callable[Optional[Google_bigquery_table], Tuple[Optional[Google_bigquery_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_bigquery_table]]
+        'read' => Callable[String, Optional[Google_bigquery_table]]
       }
     },
     Google_bigquery_table_time_partitioning_861 => {
@@ -345,13 +331,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigtable_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_bigtable_instance]],
-          Tuple[Optional[Google_bigtable_instance], String]],
+        'create' => Callable[Optional[Google_bigtable_instance], Tuple[Optional[Google_bigtable_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_bigtable_instance]]
+        'read' => Callable[String, Optional[Google_bigtable_instance]]
       }
     },
     Google_bigtable_instance_cluster_863 => {
@@ -394,13 +376,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigtable_tableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_bigtable_table]],
-          Tuple[Optional[Google_bigtable_table], String]],
+        'create' => Callable[Optional[Google_bigtable_table], Tuple[Optional[Google_bigtable_table], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_bigtable_table]]
+        'read' => Callable[String, Optional[Google_bigtable_table]]
       }
     },
     Google_billing_account_iam_binding => {
@@ -420,13 +398,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_billing_account_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_billing_account_iam_binding]],
-          Tuple[Optional[Google_billing_account_iam_binding], String]],
+        'create' => Callable[Optional[Google_billing_account_iam_binding], Tuple[Optional[Google_billing_account_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_billing_account_iam_binding]]
+        'read' => Callable[String, Optional[Google_billing_account_iam_binding]]
       }
     },
     Google_billing_account_iam_member => {
@@ -446,13 +420,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_billing_account_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_billing_account_iam_member]],
-          Tuple[Optional[Google_billing_account_iam_member], String]],
+        'create' => Callable[Optional[Google_billing_account_iam_member], Tuple[Optional[Google_billing_account_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_billing_account_iam_member]]
+        'read' => Callable[String, Optional[Google_billing_account_iam_member]]
       }
     },
     Google_billing_account_iam_policy => {
@@ -471,13 +441,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_billing_account_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_billing_account_iam_policy]],
-          Tuple[Optional[Google_billing_account_iam_policy], String]],
+        'create' => Callable[Optional[Google_billing_account_iam_policy], Tuple[Optional[Google_billing_account_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_billing_account_iam_policy]]
+        'read' => Callable[String, Optional[Google_billing_account_iam_policy]]
       }
     },
     Google_binary_authorization_attestor => {
@@ -500,13 +466,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_binary_authorization_attestorHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_binary_authorization_attestor]],
-          Tuple[Optional[Google_binary_authorization_attestor], String]],
+        'create' => Callable[Optional[Google_binary_authorization_attestor], Tuple[Optional[Google_binary_authorization_attestor], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_binary_authorization_attestor]]
+        'read' => Callable[String, Optional[Google_binary_authorization_attestor]]
       }
     },
     Google_binary_authorization_attestor_attestation_authority_note_864 => {
@@ -562,13 +524,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_binary_authorization_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_binary_authorization_policy]],
-          Tuple[Optional[Google_binary_authorization_policy], String]],
+        'create' => Callable[Optional[Google_binary_authorization_policy], Tuple[Optional[Google_binary_authorization_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_binary_authorization_policy]]
+        'read' => Callable[String, Optional[Google_binary_authorization_policy]]
       }
     },
     Google_binary_authorization_policy_admission_whitelist_patterns_866 => {
@@ -640,13 +598,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_cloudbuild_triggerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_cloudbuild_trigger]],
-          Tuple[Optional[Google_cloudbuild_trigger], String]],
+        'create' => Callable[Optional[Google_cloudbuild_trigger], Tuple[Optional[Google_cloudbuild_trigger], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_cloudbuild_trigger]]
+        'read' => Callable[String, Optional[Google_cloudbuild_trigger]]
       }
     },
     Google_cloudbuild_trigger_build_869 => {
@@ -778,13 +732,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_cloudfunctions_functionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_cloudfunctions_function]],
-          Tuple[Optional[Google_cloudfunctions_function], String]],
+        'create' => Callable[Optional[Google_cloudfunctions_function], Tuple[Optional[Google_cloudfunctions_function], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_cloudfunctions_function]]
+        'read' => Callable[String, Optional[Google_cloudfunctions_function]]
       }
     },
     Google_cloudfunctions_function_event_trigger_872 => {
@@ -841,13 +791,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_cloudiot_registryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_cloudiot_registry]],
-          Tuple[Optional[Google_cloudiot_registry], String]],
+        'create' => Callable[Optional[Google_cloudiot_registry], Tuple[Optional[Google_cloudiot_registry], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_cloudiot_registry]]
+        'read' => Callable[String, Optional[Google_cloudiot_registry]]
       }
     },
     Google_cloudiot_registry_credentials_874 => {
@@ -885,13 +831,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_composer_environmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_composer_environment]],
-          Tuple[Optional[Google_composer_environment], String]],
+        'create' => Callable[Optional[Google_composer_environment], Tuple[Optional[Google_composer_environment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_composer_environment]]
+        'read' => Callable[String, Optional[Google_composer_environment]]
       }
     },
     Google_composer_environment_config_875 => {
@@ -1037,13 +979,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_addressHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_address]],
-          Tuple[Optional[Google_compute_address], String]],
+        'create' => Callable[Optional[Google_compute_address], Tuple[Optional[Google_compute_address], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_address]]
+        'read' => Callable[String, Optional[Google_compute_address]]
       }
     },
     Google_compute_attached_disk => {
@@ -1074,13 +1012,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_attached_diskHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_attached_disk]],
-          Tuple[Optional[Google_compute_attached_disk], String]],
+        'create' => Callable[Optional[Google_compute_attached_disk], Tuple[Optional[Google_compute_attached_disk], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_attached_disk]]
+        'read' => Callable[String, Optional[Google_compute_attached_disk]]
       }
     },
     Google_compute_autoscaler => {
@@ -1116,13 +1050,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_autoscalerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_autoscaler]],
-          Tuple[Optional[Google_compute_autoscaler], String]],
+        'create' => Callable[Optional[Google_compute_autoscaler], Tuple[Optional[Google_compute_autoscaler], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_autoscaler]]
+        'read' => Callable[String, Optional[Google_compute_autoscaler]]
       }
     },
     Google_compute_autoscaler_autoscaling_policy_878 => {
@@ -1196,13 +1126,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_backend_bucketHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_backend_bucket]],
-          Tuple[Optional[Google_compute_backend_bucket], String]],
+        'create' => Callable[Optional[Google_compute_backend_bucket], Tuple[Optional[Google_compute_backend_bucket], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_backend_bucket]]
+        'read' => Callable[String, Optional[Google_compute_backend_bucket]]
       }
     },
     Google_compute_backend_service => {
@@ -1281,13 +1207,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_backend_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_backend_service]],
-          Tuple[Optional[Google_compute_backend_service], String]],
+        'create' => Callable[Optional[Google_compute_backend_service], Tuple[Optional[Google_compute_backend_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_backend_service]]
+        'read' => Callable[String, Optional[Google_compute_backend_service]]
       }
     },
     Google_compute_backend_service_backend_882 => {
@@ -1463,13 +1385,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_diskHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_disk]],
-          Tuple[Optional[Google_compute_disk], String]],
+        'create' => Callable[Optional[Google_compute_disk], Tuple[Optional[Google_compute_disk], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_disk]]
+        'read' => Callable[String, Optional[Google_compute_disk]]
       }
     },
     Google_compute_disk_disk_encryption_key_886 => {
@@ -1584,13 +1502,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_firewallHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_firewall]],
-          Tuple[Optional[Google_compute_firewall], String]],
+        'create' => Callable[Optional[Google_compute_firewall], Tuple[Optional[Google_compute_firewall], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_firewall]]
+        'read' => Callable[String, Optional[Google_compute_firewall]]
       }
     },
     Google_compute_firewall_allow_889 => {
@@ -1702,13 +1616,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_forwarding_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_forwarding_rule]],
-          Tuple[Optional[Google_compute_forwarding_rule], String]],
+        'create' => Callable[Optional[Google_compute_forwarding_rule], Tuple[Optional[Google_compute_forwarding_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_forwarding_rule]]
+        'read' => Callable[String, Optional[Google_compute_forwarding_rule]]
       }
     },
     Google_compute_global_address => {
@@ -1770,13 +1680,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_global_addressHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_global_address]],
-          Tuple[Optional[Google_compute_global_address], String]],
+        'create' => Callable[Optional[Google_compute_global_address], Tuple[Optional[Google_compute_global_address], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_global_address]]
+        'read' => Callable[String, Optional[Google_compute_global_address]]
       }
     },
     Google_compute_global_forwarding_rule => {
@@ -1831,13 +1737,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_global_forwarding_ruleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_global_forwarding_rule]],
-          Tuple[Optional[Google_compute_global_forwarding_rule], String]],
+        'create' => Callable[Optional[Google_compute_global_forwarding_rule], Tuple[Optional[Google_compute_global_forwarding_rule], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_global_forwarding_rule]]
+        'read' => Callable[String, Optional[Google_compute_global_forwarding_rule]]
       }
     },
     Google_compute_health_check => {
@@ -1903,13 +1805,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_health_checkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_health_check]],
-          Tuple[Optional[Google_compute_health_check], String]],
+        'create' => Callable[Optional[Google_compute_health_check], Tuple[Optional[Google_compute_health_check], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_health_check]]
+        'read' => Callable[String, Optional[Google_compute_health_check]]
       }
     },
     Google_compute_health_check_http_health_check_891 => {
@@ -2055,13 +1953,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_http_health_checkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_http_health_check]],
-          Tuple[Optional[Google_compute_http_health_check], String]],
+        'create' => Callable[Optional[Google_compute_http_health_check], Tuple[Optional[Google_compute_http_health_check], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_http_health_check]]
+        'read' => Callable[String, Optional[Google_compute_http_health_check]]
       }
     },
     Google_compute_https_health_check => {
@@ -2119,13 +2013,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_https_health_checkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_https_health_check]],
-          Tuple[Optional[Google_compute_https_health_check], String]],
+        'create' => Callable[Optional[Google_compute_https_health_check], Tuple[Optional[Google_compute_https_health_check], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_https_health_check]]
+        'read' => Callable[String, Optional[Google_compute_https_health_check]]
       }
     },
     Google_compute_image => {
@@ -2179,13 +2069,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_imageHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_image]],
-          Tuple[Optional[Google_compute_image], String]],
+        'create' => Callable[Optional[Google_compute_image], Tuple[Optional[Google_compute_image], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_image]]
+        'read' => Callable[String, Optional[Google_compute_image]]
       }
     },
     Google_compute_image_raw_disk_895 => {
@@ -2315,13 +2201,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_instance]],
-          Tuple[Optional[Google_compute_instance], String]],
+        'create' => Callable[Optional[Google_compute_instance], Tuple[Optional[Google_compute_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_instance]]
+        'read' => Callable[String, Optional[Google_compute_instance]]
       }
     },
     Google_compute_instance_attached_disk_896 => {
@@ -2541,13 +2423,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_from_templateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_instance_from_template]],
-          Tuple[Optional[Google_compute_instance_from_template], String]],
+        'create' => Callable[Optional[Google_compute_instance_from_template], Tuple[Optional[Google_compute_instance_from_template], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_instance_from_template]]
+        'read' => Callable[String, Optional[Google_compute_instance_from_template]]
       }
     },
     Google_compute_instance_from_template_attached_disk_908 => {
@@ -2762,13 +2640,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_instance_group]],
-          Tuple[Optional[Google_compute_instance_group], String]],
+        'create' => Callable[Optional[Google_compute_instance_group], Tuple[Optional[Google_compute_instance_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_instance_group]]
+        'read' => Callable[String, Optional[Google_compute_instance_group]]
       }
     },
     Google_compute_instance_group_manager => {
@@ -2843,13 +2717,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_group_managerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_instance_group_manager]],
-          Tuple[Optional[Google_compute_instance_group_manager], String]],
+        'create' => Callable[Optional[Google_compute_instance_group_manager], Tuple[Optional[Google_compute_instance_group_manager], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_instance_group_manager]]
+        'read' => Callable[String, Optional[Google_compute_instance_group_manager]]
       }
     },
     Google_compute_instance_group_manager_auto_healing_policies_919 => {
@@ -3139,13 +3009,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_templateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_instance_template]],
-          Tuple[Optional[Google_compute_instance_template], String]],
+        'create' => Callable[Optional[Google_compute_instance_template], Tuple[Optional[Google_compute_instance_template], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_instance_template]]
+        'read' => Callable[String, Optional[Google_compute_instance_template]]
       }
     },
     Google_compute_instance_template_disk_924 => {
@@ -3345,13 +3211,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_interconnect_attachmentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_interconnect_attachment]],
-          Tuple[Optional[Google_compute_interconnect_attachment], String]],
+        'create' => Callable[Optional[Google_compute_interconnect_attachment], Tuple[Optional[Google_compute_interconnect_attachment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_interconnect_attachment]]
+        'read' => Callable[String, Optional[Google_compute_interconnect_attachment]]
       }
     },
     Google_compute_interconnect_attachment_private_interconnect_info_932 => {
@@ -3401,13 +3263,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_networkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_network]],
-          Tuple[Optional[Google_compute_network], String]],
+        'create' => Callable[Optional[Google_compute_network], Tuple[Optional[Google_compute_network], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_network]]
+        'read' => Callable[String, Optional[Google_compute_network]]
       }
     },
     Google_compute_network_peering => {
@@ -3435,13 +3293,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_network_peeringHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_network_peering]],
-          Tuple[Optional[Google_compute_network_peering], String]],
+        'create' => Callable[Optional[Google_compute_network_peering], Tuple[Optional[Google_compute_network_peering], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_network_peering]]
+        'read' => Callable[String, Optional[Google_compute_network_peering]]
       }
     },
     Google_compute_project_metadata => {
@@ -3459,13 +3313,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_project_metadataHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_project_metadata]],
-          Tuple[Optional[Google_compute_project_metadata], String]],
+        'create' => Callable[Optional[Google_compute_project_metadata], Tuple[Optional[Google_compute_project_metadata], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_project_metadata]]
+        'read' => Callable[String, Optional[Google_compute_project_metadata]]
       }
     },
     Google_compute_project_metadata_item => {
@@ -3484,13 +3334,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_project_metadata_itemHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_project_metadata_item]],
-          Tuple[Optional[Google_compute_project_metadata_item], String]],
+        'create' => Callable[Optional[Google_compute_project_metadata_item], Tuple[Optional[Google_compute_project_metadata_item], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_project_metadata_item]]
+        'read' => Callable[String, Optional[Google_compute_project_metadata_item]]
       }
     },
     Google_compute_region_autoscaler => {
@@ -3526,13 +3372,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_autoscalerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_region_autoscaler]],
-          Tuple[Optional[Google_compute_region_autoscaler], String]],
+        'create' => Callable[Optional[Google_compute_region_autoscaler], Tuple[Optional[Google_compute_region_autoscaler], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_region_autoscaler]]
+        'read' => Callable[String, Optional[Google_compute_region_autoscaler]]
       }
     },
     Google_compute_region_autoscaler_autoscaling_policy_933 => {
@@ -3626,13 +3468,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_backend_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_region_backend_service]],
-          Tuple[Optional[Google_compute_region_backend_service], String]],
+        'create' => Callable[Optional[Google_compute_region_backend_service], Tuple[Optional[Google_compute_region_backend_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_region_backend_service]]
+        'read' => Callable[String, Optional[Google_compute_region_backend_service]]
       }
     },
     Google_compute_region_backend_service_backend_937 => {
@@ -3723,13 +3561,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_diskHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_region_disk]],
-          Tuple[Optional[Google_compute_region_disk], String]],
+        'create' => Callable[Optional[Google_compute_region_disk], Tuple[Optional[Google_compute_region_disk], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_region_disk]]
+        'read' => Callable[String, Optional[Google_compute_region_disk]]
       }
     },
     Google_compute_region_disk_disk_encryption_key_938 => {
@@ -3829,13 +3663,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_instance_group_managerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_region_instance_group_manager]],
-          Tuple[Optional[Google_compute_region_instance_group_manager], String]],
+        'create' => Callable[Optional[Google_compute_region_instance_group_manager], Tuple[Optional[Google_compute_region_instance_group_manager], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_region_instance_group_manager]]
+        'read' => Callable[String, Optional[Google_compute_region_instance_group_manager]]
       }
     },
     Google_compute_region_instance_group_manager_auto_healing_policies_940 => {
@@ -3955,13 +3785,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_routeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_route]],
-          Tuple[Optional[Google_compute_route], String]],
+        'create' => Callable[Optional[Google_compute_route], Tuple[Optional[Google_compute_route], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_route]]
+        'read' => Callable[String, Optional[Google_compute_route]]
       }
     },
     Google_compute_router => {
@@ -4000,13 +3826,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_routerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_router]],
-          Tuple[Optional[Google_compute_router], String]],
+        'create' => Callable[Optional[Google_compute_router], Tuple[Optional[Google_compute_router], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_router]]
+        'read' => Callable[String, Optional[Google_compute_router]]
       }
     },
     Google_compute_router_bgp_945 => {
@@ -4063,13 +3885,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_router_interfaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_router_interface]],
-          Tuple[Optional[Google_compute_router_interface], String]],
+        'create' => Callable[Optional[Google_compute_router_interface], Tuple[Optional[Google_compute_router_interface], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_router_interface]]
+        'read' => Callable[String, Optional[Google_compute_router_interface]]
       }
     },
     Google_compute_router_nat => {
@@ -4125,13 +3943,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_router_natHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_router_nat]],
-          Tuple[Optional[Google_compute_router_nat], String]],
+        'create' => Callable[Optional[Google_compute_router_nat], Tuple[Optional[Google_compute_router_nat], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_router_nat]]
+        'read' => Callable[String, Optional[Google_compute_router_nat]]
       }
     },
     Google_compute_router_nat_subnetwork_947 => {
@@ -4181,13 +3995,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_router_peerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_router_peer]],
-          Tuple[Optional[Google_compute_router_peer], String]],
+        'create' => Callable[Optional[Google_compute_router_peer], Tuple[Optional[Google_compute_router_peer], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_router_peer]]
+        'read' => Callable[String, Optional[Google_compute_router_peer]]
       }
     },
     Google_compute_security_policy => {
@@ -4221,13 +4031,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_security_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_security_policy]],
-          Tuple[Optional[Google_compute_security_policy], String]],
+        'create' => Callable[Optional[Google_compute_security_policy], Tuple[Optional[Google_compute_security_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_security_policy]]
+        'read' => Callable[String, Optional[Google_compute_security_policy]]
       }
     },
     Google_compute_security_policy_rule_948 => {
@@ -4267,13 +4073,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_shared_vpc_host_projectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_shared_vpc_host_project]],
-          Tuple[Optional[Google_compute_shared_vpc_host_project], String]],
+        'create' => Callable[Optional[Google_compute_shared_vpc_host_project], Tuple[Optional[Google_compute_shared_vpc_host_project], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_shared_vpc_host_project]]
+        'read' => Callable[String, Optional[Google_compute_shared_vpc_host_project]]
       }
     },
     Google_compute_shared_vpc_service_project => {
@@ -4288,13 +4090,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_shared_vpc_service_projectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_shared_vpc_service_project]],
-          Tuple[Optional[Google_compute_shared_vpc_service_project], String]],
+        'create' => Callable[Optional[Google_compute_shared_vpc_service_project], Tuple[Optional[Google_compute_shared_vpc_service_project], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_shared_vpc_service_project]]
+        'read' => Callable[String, Optional[Google_compute_shared_vpc_service_project]]
       }
     },
     Google_compute_snapshot => {
@@ -4381,13 +4179,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_snapshotHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_snapshot]],
-          Tuple[Optional[Google_compute_snapshot], String]],
+        'create' => Callable[Optional[Google_compute_snapshot], Tuple[Optional[Google_compute_snapshot], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_snapshot]]
+        'read' => Callable[String, Optional[Google_compute_snapshot]]
       }
     },
     Google_compute_snapshot_snapshot_encryption_key_951 => {
@@ -4450,13 +4244,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_ssl_certificateHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_ssl_certificate]],
-          Tuple[Optional[Google_compute_ssl_certificate], String]],
+        'create' => Callable[Optional[Google_compute_ssl_certificate], Tuple[Optional[Google_compute_ssl_certificate], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_ssl_certificate]]
+        'read' => Callable[String, Optional[Google_compute_ssl_certificate]]
       }
     },
     Google_compute_ssl_policy => {
@@ -4506,13 +4296,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_ssl_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_ssl_policy]],
-          Tuple[Optional[Google_compute_ssl_policy], String]],
+        'create' => Callable[Optional[Google_compute_ssl_policy], Tuple[Optional[Google_compute_ssl_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_ssl_policy]]
+        'read' => Callable[String, Optional[Google_compute_ssl_policy]]
       }
     },
     Google_compute_subnetwork => {
@@ -4568,13 +4354,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetworkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_subnetwork]],
-          Tuple[Optional[Google_compute_subnetwork], String]],
+        'create' => Callable[Optional[Google_compute_subnetwork], Tuple[Optional[Google_compute_subnetwork], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_subnetwork]]
+        'read' => Callable[String, Optional[Google_compute_subnetwork]]
       }
     },
     Google_compute_subnetwork_iam_binding => {
@@ -4602,13 +4384,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetwork_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_subnetwork_iam_binding]],
-          Tuple[Optional[Google_compute_subnetwork_iam_binding], String]],
+        'create' => Callable[Optional[Google_compute_subnetwork_iam_binding], Tuple[Optional[Google_compute_subnetwork_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_subnetwork_iam_binding]]
+        'read' => Callable[String, Optional[Google_compute_subnetwork_iam_binding]]
       }
     },
     Google_compute_subnetwork_iam_member => {
@@ -4636,13 +4414,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetwork_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_subnetwork_iam_member]],
-          Tuple[Optional[Google_compute_subnetwork_iam_member], String]],
+        'create' => Callable[Optional[Google_compute_subnetwork_iam_member], Tuple[Optional[Google_compute_subnetwork_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_subnetwork_iam_member]]
+        'read' => Callable[String, Optional[Google_compute_subnetwork_iam_member]]
       }
     },
     Google_compute_subnetwork_iam_policy => {
@@ -4669,13 +4443,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetwork_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_subnetwork_iam_policy]],
-          Tuple[Optional[Google_compute_subnetwork_iam_policy], String]],
+        'create' => Callable[Optional[Google_compute_subnetwork_iam_policy], Tuple[Optional[Google_compute_subnetwork_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_subnetwork_iam_policy]]
+        'read' => Callable[String, Optional[Google_compute_subnetwork_iam_policy]]
       }
     },
     Google_compute_subnetwork_secondary_ip_range_953 => {
@@ -4716,13 +4486,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_http_proxyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_target_http_proxy]],
-          Tuple[Optional[Google_compute_target_http_proxy], String]],
+        'create' => Callable[Optional[Google_compute_target_http_proxy], Tuple[Optional[Google_compute_target_http_proxy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_target_http_proxy]]
+        'read' => Callable[String, Optional[Google_compute_target_http_proxy]]
       }
     },
     Google_compute_target_https_proxy => {
@@ -4766,13 +4532,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_https_proxyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_target_https_proxy]],
-          Tuple[Optional[Google_compute_target_https_proxy], String]],
+        'create' => Callable[Optional[Google_compute_target_https_proxy], Tuple[Optional[Google_compute_target_https_proxy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_target_https_proxy]]
+        'read' => Callable[String, Optional[Google_compute_target_https_proxy]]
       }
     },
     Google_compute_target_pool => {
@@ -4822,13 +4584,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_poolHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_target_pool]],
-          Tuple[Optional[Google_compute_target_pool], String]],
+        'create' => Callable[Optional[Google_compute_target_pool], Tuple[Optional[Google_compute_target_pool], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_target_pool]]
+        'read' => Callable[String, Optional[Google_compute_target_pool]]
       }
     },
     Google_compute_target_ssl_proxy => {
@@ -4872,13 +4630,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_ssl_proxyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_target_ssl_proxy]],
-          Tuple[Optional[Google_compute_target_ssl_proxy], String]],
+        'create' => Callable[Optional[Google_compute_target_ssl_proxy], Tuple[Optional[Google_compute_target_ssl_proxy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_target_ssl_proxy]]
+        'read' => Callable[String, Optional[Google_compute_target_ssl_proxy]]
       }
     },
     Google_compute_target_tcp_proxy => {
@@ -4917,13 +4671,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_tcp_proxyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_target_tcp_proxy]],
-          Tuple[Optional[Google_compute_target_tcp_proxy], String]],
+        'create' => Callable[Optional[Google_compute_target_tcp_proxy], Tuple[Optional[Google_compute_target_tcp_proxy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_target_tcp_proxy]]
+        'read' => Callable[String, Optional[Google_compute_target_tcp_proxy]]
       }
     },
     Google_compute_url_map => {
@@ -4970,13 +4720,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_url_mapHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_url_map]],
-          Tuple[Optional[Google_compute_url_map], String]],
+        'create' => Callable[Optional[Google_compute_url_map], Tuple[Optional[Google_compute_url_map], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_url_map]]
+        'read' => Callable[String, Optional[Google_compute_url_map]]
       }
     },
     Google_compute_url_map_host_rule_954 => {
@@ -5052,13 +4798,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_vpn_gatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_vpn_gateway]],
-          Tuple[Optional[Google_compute_vpn_gateway], String]],
+        'create' => Callable[Optional[Google_compute_vpn_gateway], Tuple[Optional[Google_compute_vpn_gateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_vpn_gateway]]
+        'read' => Callable[String, Optional[Google_compute_vpn_gateway]]
       }
     },
     Google_compute_vpn_tunnel => {
@@ -5127,13 +4869,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_vpn_tunnelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_compute_vpn_tunnel]],
-          Tuple[Optional[Google_compute_vpn_tunnel], String]],
+        'create' => Callable[Optional[Google_compute_vpn_tunnel], Tuple[Optional[Google_compute_vpn_tunnel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_compute_vpn_tunnel]]
+        'read' => Callable[String, Optional[Google_compute_vpn_tunnel]]
       }
     },
     Google_container_analysis_note => {
@@ -5152,13 +4890,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_container_analysis_noteHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_container_analysis_note]],
-          Tuple[Optional[Google_container_analysis_note], String]],
+        'create' => Callable[Optional[Google_container_analysis_note], Tuple[Optional[Google_container_analysis_note], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_container_analysis_note]]
+        'read' => Callable[String, Optional[Google_container_analysis_note]]
       }
     },
     Google_container_analysis_note_attestation_authority_958 => {
@@ -5322,13 +5056,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_container_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_container_cluster]],
-          Tuple[Optional[Google_container_cluster], String]],
+        'create' => Callable[Optional[Google_container_cluster], Tuple[Optional[Google_container_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_container_cluster]]
+        'read' => Callable[String, Optional[Google_container_cluster]]
       }
     },
     Google_container_cluster_addons_config_960 => {
@@ -5821,13 +5551,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_container_node_poolHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_container_node_pool]],
-          Tuple[Optional[Google_container_node_pool], String]],
+        'create' => Callable[Optional[Google_container_node_pool], Tuple[Optional[Google_container_node_pool], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_container_node_pool]]
+        'read' => Callable[String, Optional[Google_container_node_pool]]
       }
     },
     Google_container_node_pool_autoscaling_988 => {
@@ -5971,13 +5697,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dataflow_jobHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_dataflow_job]],
-          Tuple[Optional[Google_dataflow_job], String]],
+        'create' => Callable[Optional[Google_dataflow_job], Tuple[Optional[Google_dataflow_job], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_dataflow_job]]
+        'read' => Callable[String, Optional[Google_dataflow_job]]
       }
     },
     Google_dataproc_cluster => {
@@ -6007,13 +5729,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dataproc_clusterHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_dataproc_cluster]],
-          Tuple[Optional[Google_dataproc_cluster], String]],
+        'create' => Callable[Optional[Google_dataproc_cluster], Tuple[Optional[Google_dataproc_cluster], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_dataproc_cluster]]
+        'read' => Callable[String, Optional[Google_dataproc_cluster]]
       }
     },
     Google_dataproc_cluster_cluster_config_994 => {
@@ -6284,13 +6002,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dataproc_jobHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_dataproc_job]],
-          Tuple[Optional[Google_dataproc_job], String]],
+        'create' => Callable[Optional[Google_dataproc_job], Tuple[Optional[Google_dataproc_job], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_dataproc_job]]
+        'read' => Callable[String, Optional[Google_dataproc_job]]
       }
     },
     Google_dataproc_job_hadoop_config_1004 => {
@@ -6599,13 +6313,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dns_managed_zoneHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_dns_managed_zone]],
-          Tuple[Optional[Google_dns_managed_zone], String]],
+        'create' => Callable[Optional[Google_dns_managed_zone], Tuple[Optional[Google_dns_managed_zone], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_dns_managed_zone]]
+        'read' => Callable[String, Optional[Google_dns_managed_zone]]
       }
     },
     Google_dns_record_set => {
@@ -6627,13 +6337,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dns_record_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_dns_record_set]],
-          Tuple[Optional[Google_dns_record_set], String]],
+        'create' => Callable[Optional[Google_dns_record_set], Tuple[Optional[Google_dns_record_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_dns_record_set]]
+        'read' => Callable[String, Optional[Google_dns_record_set]]
       }
     },
     Google_endpoints_service => {
@@ -6683,13 +6389,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_endpoints_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_endpoints_service]],
-          Tuple[Optional[Google_endpoints_service], String]],
+        'create' => Callable[Optional[Google_endpoints_service], Tuple[Optional[Google_endpoints_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_endpoints_service]]
+        'read' => Callable[String, Optional[Google_endpoints_service]]
       }
     },
     Google_endpoints_service_apis_1019 => {
@@ -6779,13 +6481,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_filestore_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_filestore_instance]],
-          Tuple[Optional[Google_filestore_instance], String]],
+        'create' => Callable[Optional[Google_filestore_instance], Tuple[Optional[Google_filestore_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_filestore_instance]]
+        'read' => Callable[String, Optional[Google_filestore_instance]]
       }
     },
     Google_filestore_instance_file_shares_1022 => {
@@ -6832,13 +6530,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folderHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_folder]],
-          Tuple[Optional[Google_folder], String]],
+        'create' => Callable[Optional[Google_folder], Tuple[Optional[Google_folder], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_folder]]
+        'read' => Callable[String, Optional[Google_folder]]
       }
     },
     Google_folder_iam_binding => {
@@ -6858,13 +6552,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_folder_iam_binding]],
-          Tuple[Optional[Google_folder_iam_binding], String]],
+        'create' => Callable[Optional[Google_folder_iam_binding], Tuple[Optional[Google_folder_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_folder_iam_binding]]
+        'read' => Callable[String, Optional[Google_folder_iam_binding]]
       }
     },
     Google_folder_iam_member => {
@@ -6884,13 +6574,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_folder_iam_member]],
-          Tuple[Optional[Google_folder_iam_member], String]],
+        'create' => Callable[Optional[Google_folder_iam_member], Tuple[Optional[Google_folder_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_folder_iam_member]]
+        'read' => Callable[String, Optional[Google_folder_iam_member]]
       }
     },
     Google_folder_iam_policy => {
@@ -6909,13 +6595,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_folder_iam_policy]],
-          Tuple[Optional[Google_folder_iam_policy], String]],
+        'create' => Callable[Optional[Google_folder_iam_policy], Tuple[Optional[Google_folder_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_folder_iam_policy]]
+        'read' => Callable[String, Optional[Google_folder_iam_policy]]
       }
     },
     Google_folder_organization_policy => {
@@ -6954,13 +6636,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_organization_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_folder_organization_policy]],
-          Tuple[Optional[Google_folder_organization_policy], String]],
+        'create' => Callable[Optional[Google_folder_organization_policy], Tuple[Optional[Google_folder_organization_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_folder_organization_policy]]
+        'read' => Callable[String, Optional[Google_folder_organization_policy]]
       }
     },
     Google_folder_organization_policy_boolean_policy_1024 => {
@@ -7033,13 +6711,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_crypto_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_crypto_key]],
-          Tuple[Optional[Google_kms_crypto_key], String]],
+        'create' => Callable[Optional[Google_kms_crypto_key], Tuple[Optional[Google_kms_crypto_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_crypto_key]]
+        'read' => Callable[String, Optional[Google_kms_crypto_key]]
       }
     },
     Google_kms_crypto_key_iam_binding => {
@@ -7059,13 +6733,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_crypto_key_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_crypto_key_iam_binding]],
-          Tuple[Optional[Google_kms_crypto_key_iam_binding], String]],
+        'create' => Callable[Optional[Google_kms_crypto_key_iam_binding], Tuple[Optional[Google_kms_crypto_key_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_crypto_key_iam_binding]]
+        'read' => Callable[String, Optional[Google_kms_crypto_key_iam_binding]]
       }
     },
     Google_kms_crypto_key_iam_member => {
@@ -7085,13 +6755,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_crypto_key_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_crypto_key_iam_member]],
-          Tuple[Optional[Google_kms_crypto_key_iam_member], String]],
+        'create' => Callable[Optional[Google_kms_crypto_key_iam_member], Tuple[Optional[Google_kms_crypto_key_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_crypto_key_iam_member]]
+        'read' => Callable[String, Optional[Google_kms_crypto_key_iam_member]]
       }
     },
     Google_kms_key_ring => {
@@ -7114,13 +6780,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ringHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_key_ring]],
-          Tuple[Optional[Google_kms_key_ring], String]],
+        'create' => Callable[Optional[Google_kms_key_ring], Tuple[Optional[Google_kms_key_ring], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_key_ring]]
+        'read' => Callable[String, Optional[Google_kms_key_ring]]
       }
     },
     Google_kms_key_ring_iam_binding => {
@@ -7140,13 +6802,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ring_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_key_ring_iam_binding]],
-          Tuple[Optional[Google_kms_key_ring_iam_binding], String]],
+        'create' => Callable[Optional[Google_kms_key_ring_iam_binding], Tuple[Optional[Google_kms_key_ring_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_key_ring_iam_binding]]
+        'read' => Callable[String, Optional[Google_kms_key_ring_iam_binding]]
       }
     },
     Google_kms_key_ring_iam_member => {
@@ -7166,13 +6824,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ring_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_key_ring_iam_member]],
-          Tuple[Optional[Google_kms_key_ring_iam_member], String]],
+        'create' => Callable[Optional[Google_kms_key_ring_iam_member], Tuple[Optional[Google_kms_key_ring_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_key_ring_iam_member]]
+        'read' => Callable[String, Optional[Google_kms_key_ring_iam_member]]
       }
     },
     Google_kms_key_ring_iam_policy => {
@@ -7191,13 +6845,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ring_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_kms_key_ring_iam_policy]],
-          Tuple[Optional[Google_kms_key_ring_iam_policy], String]],
+        'create' => Callable[Optional[Google_kms_key_ring_iam_policy], Tuple[Optional[Google_kms_key_ring_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_kms_key_ring_iam_policy]]
+        'read' => Callable[String, Optional[Google_kms_key_ring_iam_policy]]
       }
     },
     Google_logging_billing_account_exclusion => {
@@ -7221,13 +6871,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_billing_account_exclusionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_billing_account_exclusion]],
-          Tuple[Optional[Google_logging_billing_account_exclusion], String]],
+        'create' => Callable[Optional[Google_logging_billing_account_exclusion], Tuple[Optional[Google_logging_billing_account_exclusion], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_billing_account_exclusion]]
+        'read' => Callable[String, Optional[Google_logging_billing_account_exclusion]]
       }
     },
     Google_logging_billing_account_sink => {
@@ -7251,13 +6897,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_billing_account_sinkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_billing_account_sink]],
-          Tuple[Optional[Google_logging_billing_account_sink], String]],
+        'create' => Callable[Optional[Google_logging_billing_account_sink], Tuple[Optional[Google_logging_billing_account_sink], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_billing_account_sink]]
+        'read' => Callable[String, Optional[Google_logging_billing_account_sink]]
       }
     },
     Google_logging_folder_exclusion => {
@@ -7281,13 +6923,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_folder_exclusionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_folder_exclusion]],
-          Tuple[Optional[Google_logging_folder_exclusion], String]],
+        'create' => Callable[Optional[Google_logging_folder_exclusion], Tuple[Optional[Google_logging_folder_exclusion], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_folder_exclusion]]
+        'read' => Callable[String, Optional[Google_logging_folder_exclusion]]
       }
     },
     Google_logging_folder_sink => {
@@ -7315,13 +6953,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_folder_sinkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_folder_sink]],
-          Tuple[Optional[Google_logging_folder_sink], String]],
+        'create' => Callable[Optional[Google_logging_folder_sink], Tuple[Optional[Google_logging_folder_sink], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_folder_sink]]
+        'read' => Callable[String, Optional[Google_logging_folder_sink]]
       }
     },
     Google_logging_organization_exclusion => {
@@ -7345,13 +6979,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_organization_exclusionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_organization_exclusion]],
-          Tuple[Optional[Google_logging_organization_exclusion], String]],
+        'create' => Callable[Optional[Google_logging_organization_exclusion], Tuple[Optional[Google_logging_organization_exclusion], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_organization_exclusion]]
+        'read' => Callable[String, Optional[Google_logging_organization_exclusion]]
       }
     },
     Google_logging_organization_sink => {
@@ -7379,13 +7009,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_organization_sinkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_organization_sink]],
-          Tuple[Optional[Google_logging_organization_sink], String]],
+        'create' => Callable[Optional[Google_logging_organization_sink], Tuple[Optional[Google_logging_organization_sink], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_organization_sink]]
+        'read' => Callable[String, Optional[Google_logging_organization_sink]]
       }
     },
     Google_logging_project_exclusion => {
@@ -7412,13 +7038,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_project_exclusionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_project_exclusion]],
-          Tuple[Optional[Google_logging_project_exclusion], String]],
+        'create' => Callable[Optional[Google_logging_project_exclusion], Tuple[Optional[Google_logging_project_exclusion], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_project_exclusion]]
+        'read' => Callable[String, Optional[Google_logging_project_exclusion]]
       }
     },
     Google_logging_project_sink => {
@@ -7449,13 +7071,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_project_sinkHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_logging_project_sink]],
-          Tuple[Optional[Google_logging_project_sink], String]],
+        'create' => Callable[Optional[Google_logging_project_sink], Tuple[Optional[Google_logging_project_sink], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_logging_project_sink]]
+        'read' => Callable[String, Optional[Google_logging_project_sink]]
       }
     },
     Google_monitoring_alert_policy => {
@@ -7492,13 +7110,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_alert_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_monitoring_alert_policy]],
-          Tuple[Optional[Google_monitoring_alert_policy], String]],
+        'create' => Callable[Optional[Google_monitoring_alert_policy], Tuple[Optional[Google_monitoring_alert_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_monitoring_alert_policy]]
+        'read' => Callable[String, Optional[Google_monitoring_alert_policy]]
       }
     },
     Google_monitoring_alert_policy_conditions_1029 => {
@@ -7689,13 +7303,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_groupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_monitoring_group]],
-          Tuple[Optional[Google_monitoring_group], String]],
+        'create' => Callable[Optional[Google_monitoring_group], Tuple[Optional[Google_monitoring_group], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_monitoring_group]]
+        'read' => Callable[String, Optional[Google_monitoring_group]]
       }
     },
     Google_monitoring_notification_channel => {
@@ -7738,13 +7348,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_notification_channelHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_monitoring_notification_channel]],
-          Tuple[Optional[Google_monitoring_notification_channel], String]],
+        'create' => Callable[Optional[Google_monitoring_notification_channel], Tuple[Optional[Google_monitoring_notification_channel], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_monitoring_notification_channel]]
+        'read' => Callable[String, Optional[Google_monitoring_notification_channel]]
       }
     },
     Google_monitoring_uptime_check_config => {
@@ -7803,13 +7409,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_uptime_check_configHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_monitoring_uptime_check_config]],
-          Tuple[Optional[Google_monitoring_uptime_check_config], String]],
+        'create' => Callable[Optional[Google_monitoring_uptime_check_config], Tuple[Optional[Google_monitoring_uptime_check_config], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_monitoring_uptime_check_config]]
+        'read' => Callable[String, Optional[Google_monitoring_uptime_check_config]]
       }
     },
     Google_monitoring_uptime_check_config_content_matchers_1038 => {
@@ -7924,13 +7526,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_organization_iam_binding]],
-          Tuple[Optional[Google_organization_iam_binding], String]],
+        'create' => Callable[Optional[Google_organization_iam_binding], Tuple[Optional[Google_organization_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_organization_iam_binding]]
+        'read' => Callable[String, Optional[Google_organization_iam_binding]]
       }
     },
     Google_organization_iam_custom_role => {
@@ -7959,13 +7557,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_custom_roleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_organization_iam_custom_role]],
-          Tuple[Optional[Google_organization_iam_custom_role], String]],
+        'create' => Callable[Optional[Google_organization_iam_custom_role], Tuple[Optional[Google_organization_iam_custom_role], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_organization_iam_custom_role]]
+        'read' => Callable[String, Optional[Google_organization_iam_custom_role]]
       }
     },
     Google_organization_iam_member => {
@@ -7985,13 +7579,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_organization_iam_member]],
-          Tuple[Optional[Google_organization_iam_member], String]],
+        'create' => Callable[Optional[Google_organization_iam_member], Tuple[Optional[Google_organization_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_organization_iam_member]]
+        'read' => Callable[String, Optional[Google_organization_iam_member]]
       }
     },
     Google_organization_iam_policy => {
@@ -8010,13 +7600,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_organization_iam_policy]],
-          Tuple[Optional[Google_organization_iam_policy], String]],
+        'create' => Callable[Optional[Google_organization_iam_policy], Tuple[Optional[Google_organization_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_organization_iam_policy]]
+        'read' => Callable[String, Optional[Google_organization_iam_policy]]
       }
     },
     Google_organization_policy => {
@@ -8055,13 +7641,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_organization_policy]],
-          Tuple[Optional[Google_organization_policy], String]],
+        'create' => Callable[Optional[Google_organization_policy], Tuple[Optional[Google_organization_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_organization_policy]]
+        'read' => Callable[String, Optional[Google_organization_policy]]
       }
     },
     Google_organization_policy_boolean_policy_1045 => {
@@ -8166,13 +7748,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_projectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project]],
-          Tuple[Optional[Google_project], String]],
+        'create' => Callable[Optional[Google_project], Tuple[Optional[Google_project], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project]]
+        'read' => Callable[String, Optional[Google_project]]
       }
     },
     Google_project_app_engine_1050 => {
@@ -8263,13 +7841,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_iam_binding]],
-          Tuple[Optional[Google_project_iam_binding], String]],
+        'create' => Callable[Optional[Google_project_iam_binding], Tuple[Optional[Google_project_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_iam_binding]]
+        'read' => Callable[String, Optional[Google_project_iam_binding]]
       }
     },
     Google_project_iam_custom_role => {
@@ -8301,13 +7875,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_custom_roleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_iam_custom_role]],
-          Tuple[Optional[Google_project_iam_custom_role], String]],
+        'create' => Callable[Optional[Google_project_iam_custom_role], Tuple[Optional[Google_project_iam_custom_role], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_iam_custom_role]]
+        'read' => Callable[String, Optional[Google_project_iam_custom_role]]
       }
     },
     Google_project_iam_member => {
@@ -8330,13 +7900,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_iam_member]],
-          Tuple[Optional[Google_project_iam_member], String]],
+        'create' => Callable[Optional[Google_project_iam_member], Tuple[Optional[Google_project_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_iam_member]]
+        'read' => Callable[String, Optional[Google_project_iam_member]]
       }
     },
     Google_project_iam_policy => {
@@ -8370,13 +7936,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_iam_policy]],
-          Tuple[Optional[Google_project_iam_policy], String]],
+        'create' => Callable[Optional[Google_project_iam_policy], Tuple[Optional[Google_project_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_iam_policy]]
+        'read' => Callable[String, Optional[Google_project_iam_policy]]
       }
     },
     Google_project_organization_policy => {
@@ -8415,13 +7977,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_organization_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_organization_policy]],
-          Tuple[Optional[Google_project_organization_policy], String]],
+        'create' => Callable[Optional[Google_project_organization_policy], Tuple[Optional[Google_project_organization_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_organization_policy]]
+        'read' => Callable[String, Optional[Google_project_organization_policy]]
       }
     },
     Google_project_organization_policy_boolean_policy_1053 => {
@@ -8493,13 +8051,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_service]],
-          Tuple[Optional[Google_project_service], String]],
+        'create' => Callable[Optional[Google_project_service], Tuple[Optional[Google_project_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_service]]
+        'read' => Callable[String, Optional[Google_project_service]]
       }
     },
     Google_project_services => {
@@ -8521,13 +8075,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_servicesHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_services]],
-          Tuple[Optional[Google_project_services], String]],
+        'create' => Callable[Optional[Google_project_services], Tuple[Optional[Google_project_services], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_services]]
+        'read' => Callable[String, Optional[Google_project_services]]
       }
     },
     Google_project_usage_export_bucket => {
@@ -8549,13 +8099,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_usage_export_bucketHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_project_usage_export_bucket]],
-          Tuple[Optional[Google_project_usage_export_bucket], String]],
+        'create' => Callable[Optional[Google_project_usage_export_bucket], Tuple[Optional[Google_project_usage_export_bucket], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_project_usage_export_bucket]]
+        'read' => Callable[String, Optional[Google_project_usage_export_bucket]]
       }
     },
     Google_pubsub_subscription => {
@@ -8586,13 +8132,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscriptionHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_subscription]],
-          Tuple[Optional[Google_pubsub_subscription], String]],
+        'create' => Callable[Optional[Google_pubsub_subscription], Tuple[Optional[Google_pubsub_subscription], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_subscription]]
+        'read' => Callable[String, Optional[Google_pubsub_subscription]]
       }
     },
     Google_pubsub_subscription_iam_binding => {
@@ -8616,13 +8158,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscription_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_subscription_iam_binding]],
-          Tuple[Optional[Google_pubsub_subscription_iam_binding], String]],
+        'create' => Callable[Optional[Google_pubsub_subscription_iam_binding], Tuple[Optional[Google_pubsub_subscription_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_subscription_iam_binding]]
+        'read' => Callable[String, Optional[Google_pubsub_subscription_iam_binding]]
       }
     },
     Google_pubsub_subscription_iam_member => {
@@ -8646,13 +8184,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscription_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_subscription_iam_member]],
-          Tuple[Optional[Google_pubsub_subscription_iam_member], String]],
+        'create' => Callable[Optional[Google_pubsub_subscription_iam_member], Tuple[Optional[Google_pubsub_subscription_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_subscription_iam_member]]
+        'read' => Callable[String, Optional[Google_pubsub_subscription_iam_member]]
       }
     },
     Google_pubsub_subscription_iam_policy => {
@@ -8675,13 +8209,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscription_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_subscription_iam_policy]],
-          Tuple[Optional[Google_pubsub_subscription_iam_policy], String]],
+        'create' => Callable[Optional[Google_pubsub_subscription_iam_policy], Tuple[Optional[Google_pubsub_subscription_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_subscription_iam_policy]]
+        'read' => Callable[String, Optional[Google_pubsub_subscription_iam_policy]]
       }
     },
     Google_pubsub_subscription_push_config_1058 => {
@@ -8708,13 +8238,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topicHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_topic]],
-          Tuple[Optional[Google_pubsub_topic], String]],
+        'create' => Callable[Optional[Google_pubsub_topic], Tuple[Optional[Google_pubsub_topic], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_topic]]
+        'read' => Callable[String, Optional[Google_pubsub_topic]]
       }
     },
     Google_pubsub_topic_iam_binding => {
@@ -8738,13 +8264,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topic_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_topic_iam_binding]],
-          Tuple[Optional[Google_pubsub_topic_iam_binding], String]],
+        'create' => Callable[Optional[Google_pubsub_topic_iam_binding], Tuple[Optional[Google_pubsub_topic_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_topic_iam_binding]]
+        'read' => Callable[String, Optional[Google_pubsub_topic_iam_binding]]
       }
     },
     Google_pubsub_topic_iam_member => {
@@ -8768,13 +8290,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topic_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_topic_iam_member]],
-          Tuple[Optional[Google_pubsub_topic_iam_member], String]],
+        'create' => Callable[Optional[Google_pubsub_topic_iam_member], Tuple[Optional[Google_pubsub_topic_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_topic_iam_member]]
+        'read' => Callable[String, Optional[Google_pubsub_topic_iam_member]]
       }
     },
     Google_pubsub_topic_iam_policy => {
@@ -8797,13 +8315,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topic_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_pubsub_topic_iam_policy]],
-          Tuple[Optional[Google_pubsub_topic_iam_policy], String]],
+        'create' => Callable[Optional[Google_pubsub_topic_iam_policy], Tuple[Optional[Google_pubsub_topic_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_pubsub_topic_iam_policy]]
+        'read' => Callable[String, Optional[Google_pubsub_topic_iam_policy]]
       }
     },
     Google_redis_instance => {
@@ -8878,13 +8392,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_redis_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_redis_instance]],
-          Tuple[Optional[Google_redis_instance], String]],
+        'create' => Callable[Optional[Google_redis_instance], Tuple[Optional[Google_redis_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_redis_instance]]
+        'read' => Callable[String, Optional[Google_redis_instance]]
       }
     },
     Google_resource_manager_lien => {
@@ -8909,13 +8419,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_resource_manager_lienHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_resource_manager_lien]],
-          Tuple[Optional[Google_resource_manager_lien], String]],
+        'create' => Callable[Optional[Google_resource_manager_lien], Tuple[Optional[Google_resource_manager_lien], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_resource_manager_lien]]
+        'read' => Callable[String, Optional[Google_resource_manager_lien]]
       }
     },
     Google_runtimeconfig_config => {
@@ -8937,13 +8443,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_runtimeconfig_configHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_runtimeconfig_config]],
-          Tuple[Optional[Google_runtimeconfig_config], String]],
+        'create' => Callable[Optional[Google_runtimeconfig_config], Tuple[Optional[Google_runtimeconfig_config], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_runtimeconfig_config]]
+        'read' => Callable[String, Optional[Google_runtimeconfig_config]]
       }
     },
     Google_runtimeconfig_variable => {
@@ -8974,13 +8476,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_runtimeconfig_variableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_runtimeconfig_variable]],
-          Tuple[Optional[Google_runtimeconfig_variable], String]],
+        'create' => Callable[Optional[Google_runtimeconfig_variable], Tuple[Optional[Google_runtimeconfig_variable], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_runtimeconfig_variable]]
+        'read' => Callable[String, Optional[Google_runtimeconfig_variable]]
       }
     },
     Google_service_account => {
@@ -9018,13 +8516,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_accountHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_service_account]],
-          Tuple[Optional[Google_service_account], String]],
+        'create' => Callable[Optional[Google_service_account], Tuple[Optional[Google_service_account], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_service_account]]
+        'read' => Callable[String, Optional[Google_service_account]]
       }
     },
     Google_service_account_iam_binding => {
@@ -9044,13 +8538,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_service_account_iam_binding]],
-          Tuple[Optional[Google_service_account_iam_binding], String]],
+        'create' => Callable[Optional[Google_service_account_iam_binding], Tuple[Optional[Google_service_account_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_service_account_iam_binding]]
+        'read' => Callable[String, Optional[Google_service_account_iam_binding]]
       }
     },
     Google_service_account_iam_member => {
@@ -9070,13 +8560,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_service_account_iam_member]],
-          Tuple[Optional[Google_service_account_iam_member], String]],
+        'create' => Callable[Optional[Google_service_account_iam_member], Tuple[Optional[Google_service_account_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_service_account_iam_member]]
+        'read' => Callable[String, Optional[Google_service_account_iam_member]]
       }
     },
     Google_service_account_iam_policy => {
@@ -9095,13 +8581,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_service_account_iam_policy]],
-          Tuple[Optional[Google_service_account_iam_policy], String]],
+        'create' => Callable[Optional[Google_service_account_iam_policy], Tuple[Optional[Google_service_account_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_service_account_iam_policy]]
+        'read' => Callable[String, Optional[Google_service_account_iam_policy]]
       }
     },
     Google_service_account_key => {
@@ -9159,13 +8641,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_keyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_service_account_key]],
-          Tuple[Optional[Google_service_account_key], String]],
+        'create' => Callable[Optional[Google_service_account_key], Tuple[Optional[Google_service_account_key], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_service_account_key]]
+        'read' => Callable[String, Optional[Google_service_account_key]]
       }
     },
     Google_sourcerepo_repository => {
@@ -9191,13 +8669,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sourcerepo_repositoryHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_sourcerepo_repository]],
-          Tuple[Optional[Google_sourcerepo_repository], String]],
+        'create' => Callable[Optional[Google_sourcerepo_repository], Tuple[Optional[Google_sourcerepo_repository], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_sourcerepo_repository]]
+        'read' => Callable[String, Optional[Google_sourcerepo_repository]]
       }
     },
     Google_spanner_database => {
@@ -9224,13 +8698,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_databaseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_database]],
-          Tuple[Optional[Google_spanner_database], String]],
+        'create' => Callable[Optional[Google_spanner_database], Tuple[Optional[Google_spanner_database], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_database]]
+        'read' => Callable[String, Optional[Google_spanner_database]]
       }
     },
     Google_spanner_database_iam_binding => {
@@ -9255,13 +8725,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_database_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_database_iam_binding]],
-          Tuple[Optional[Google_spanner_database_iam_binding], String]],
+        'create' => Callable[Optional[Google_spanner_database_iam_binding], Tuple[Optional[Google_spanner_database_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_database_iam_binding]]
+        'read' => Callable[String, Optional[Google_spanner_database_iam_binding]]
       }
     },
     Google_spanner_database_iam_member => {
@@ -9286,13 +8752,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_database_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_database_iam_member]],
-          Tuple[Optional[Google_spanner_database_iam_member], String]],
+        'create' => Callable[Optional[Google_spanner_database_iam_member], Tuple[Optional[Google_spanner_database_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_database_iam_member]]
+        'read' => Callable[String, Optional[Google_spanner_database_iam_member]]
       }
     },
     Google_spanner_database_iam_policy => {
@@ -9316,13 +8778,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_database_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_database_iam_policy]],
-          Tuple[Optional[Google_spanner_database_iam_policy], String]],
+        'create' => Callable[Optional[Google_spanner_database_iam_policy], Tuple[Optional[Google_spanner_database_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_database_iam_policy]]
+        'read' => Callable[String, Optional[Google_spanner_database_iam_policy]]
       }
     },
     Google_spanner_instance => {
@@ -9357,13 +8815,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_instance]],
-          Tuple[Optional[Google_spanner_instance], String]],
+        'create' => Callable[Optional[Google_spanner_instance], Tuple[Optional[Google_spanner_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_instance]]
+        'read' => Callable[String, Optional[Google_spanner_instance]]
       }
     },
     Google_spanner_instance_iam_binding => {
@@ -9387,13 +8841,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instance_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_instance_iam_binding]],
-          Tuple[Optional[Google_spanner_instance_iam_binding], String]],
+        'create' => Callable[Optional[Google_spanner_instance_iam_binding], Tuple[Optional[Google_spanner_instance_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_instance_iam_binding]]
+        'read' => Callable[String, Optional[Google_spanner_instance_iam_binding]]
       }
     },
     Google_spanner_instance_iam_member => {
@@ -9417,13 +8867,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instance_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_instance_iam_member]],
-          Tuple[Optional[Google_spanner_instance_iam_member], String]],
+        'create' => Callable[Optional[Google_spanner_instance_iam_member], Tuple[Optional[Google_spanner_instance_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_instance_iam_member]]
+        'read' => Callable[String, Optional[Google_spanner_instance_iam_member]]
       }
     },
     Google_spanner_instance_iam_policy => {
@@ -9446,13 +8892,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instance_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_spanner_instance_iam_policy]],
-          Tuple[Optional[Google_spanner_instance_iam_policy], String]],
+        'create' => Callable[Optional[Google_spanner_instance_iam_policy], Tuple[Optional[Google_spanner_instance_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_spanner_instance_iam_policy]]
+        'read' => Callable[String, Optional[Google_spanner_instance_iam_policy]]
       }
     },
     Google_sql_database => {
@@ -9483,13 +8925,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_databaseHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_sql_database]],
-          Tuple[Optional[Google_sql_database], String]],
+        'create' => Callable[Optional[Google_sql_database], Tuple[Optional[Google_sql_database], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_sql_database]]
+        'read' => Callable[String, Optional[Google_sql_database]]
       }
     },
     Google_sql_database_instance => {
@@ -9551,13 +8989,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_database_instanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_sql_database_instance]],
-          Tuple[Optional[Google_sql_database_instance], String]],
+        'create' => Callable[Optional[Google_sql_database_instance], Tuple[Optional[Google_sql_database_instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_sql_database_instance]]
+        'read' => Callable[String, Optional[Google_sql_database_instance]]
       }
     },
     Google_sql_database_instance_ip_address_1059 => {
@@ -9845,13 +9279,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_ssl_certHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_sql_ssl_cert]],
-          Tuple[Optional[Google_sql_ssl_cert], String]],
+        'create' => Callable[Optional[Google_sql_ssl_cert], Tuple[Optional[Google_sql_ssl_cert], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_sql_ssl_cert]]
+        'read' => Callable[String, Optional[Google_sql_ssl_cert]]
       }
     },
     Google_sql_user => {
@@ -9878,13 +9308,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_userHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_sql_user]],
-          Tuple[Optional[Google_sql_user], String]],
+        'create' => Callable[Optional[Google_sql_user], Tuple[Optional[Google_sql_user], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_sql_user]]
+        'read' => Callable[String, Optional[Google_sql_user]]
       }
     },
     Google_storage_bucket => {
@@ -9954,13 +9380,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucketHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_bucket]],
-          Tuple[Optional[Google_storage_bucket], String]],
+        'create' => Callable[Optional[Google_storage_bucket], Tuple[Optional[Google_storage_bucket], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_bucket]]
+        'read' => Callable[String, Optional[Google_storage_bucket]]
       }
     },
     Google_storage_bucket_acl => {
@@ -9986,13 +9408,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_bucket_acl]],
-          Tuple[Optional[Google_storage_bucket_acl], String]],
+        'create' => Callable[Optional[Google_storage_bucket_acl], Tuple[Optional[Google_storage_bucket_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_bucket_acl]]
+        'read' => Callable[String, Optional[Google_storage_bucket_acl]]
       }
     },
     Google_storage_bucket_cors_1069 => {
@@ -10037,13 +9455,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_iam_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_bucket_iam_binding]],
-          Tuple[Optional[Google_storage_bucket_iam_binding], String]],
+        'create' => Callable[Optional[Google_storage_bucket_iam_binding], Tuple[Optional[Google_storage_bucket_iam_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_bucket_iam_binding]]
+        'read' => Callable[String, Optional[Google_storage_bucket_iam_binding]]
       }
     },
     Google_storage_bucket_iam_member => {
@@ -10063,13 +9477,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_iam_memberHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_bucket_iam_member]],
-          Tuple[Optional[Google_storage_bucket_iam_member], String]],
+        'create' => Callable[Optional[Google_storage_bucket_iam_member], Tuple[Optional[Google_storage_bucket_iam_member], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_bucket_iam_member]]
+        'read' => Callable[String, Optional[Google_storage_bucket_iam_member]]
       }
     },
     Google_storage_bucket_iam_policy => {
@@ -10088,13 +9498,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_iam_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_bucket_iam_policy]],
-          Tuple[Optional[Google_storage_bucket_iam_policy], String]],
+        'create' => Callable[Optional[Google_storage_bucket_iam_policy], Tuple[Optional[Google_storage_bucket_iam_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_bucket_iam_policy]]
+        'read' => Callable[String, Optional[Google_storage_bucket_iam_policy]]
       }
     },
     Google_storage_bucket_lifecycle_rule_1071 => {
@@ -10205,13 +9611,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_objectHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_bucket_object]],
-          Tuple[Optional[Google_storage_bucket_object], String]],
+        'create' => Callable[Optional[Google_storage_bucket_object], Tuple[Optional[Google_storage_bucket_object], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_bucket_object]]
+        'read' => Callable[String, Optional[Google_storage_bucket_object]]
       }
     },
     Google_storage_bucket_versioning_1075 => {
@@ -10271,13 +9673,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_default_object_access_controlHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_default_object_access_control]],
-          Tuple[Optional[Google_storage_default_object_access_control], String]],
+        'create' => Callable[Optional[Google_storage_default_object_access_control], Tuple[Optional[Google_storage_default_object_access_control], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_default_object_access_control]]
+        'read' => Callable[String, Optional[Google_storage_default_object_access_control]]
       }
     },
     Google_storage_default_object_access_control_project_team_1077 => {
@@ -10307,13 +9705,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_default_object_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_default_object_acl]],
-          Tuple[Optional[Google_storage_default_object_acl], String]],
+        'create' => Callable[Optional[Google_storage_default_object_acl], Tuple[Optional[Google_storage_default_object_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_default_object_acl]]
+        'read' => Callable[String, Optional[Google_storage_default_object_acl]]
       }
     },
     Google_storage_notification => {
@@ -10345,13 +9739,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_notificationHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_notification]],
-          Tuple[Optional[Google_storage_notification], String]],
+        'create' => Callable[Optional[Google_storage_notification], Tuple[Optional[Google_storage_notification], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_notification]]
+        'read' => Callable[String, Optional[Google_storage_notification]]
       }
     },
     Google_storage_object_access_control => {
@@ -10388,13 +9778,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_object_access_controlHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_object_access_control]],
-          Tuple[Optional[Google_storage_object_access_control], String]],
+        'create' => Callable[Optional[Google_storage_object_access_control], Tuple[Optional[Google_storage_object_access_control], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_object_access_control]]
+        'read' => Callable[String, Optional[Google_storage_object_access_control]]
       }
     },
     Google_storage_object_access_control_project_team_1078 => {
@@ -10429,13 +9815,9 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_object_aclHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Google_storage_object_acl]],
-          Tuple[Optional[Google_storage_object_acl], String]],
+        'create' => Callable[Optional[Google_storage_object_acl], Tuple[Optional[Google_storage_object_acl], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Google_storage_object_acl]]
+        'read' => Callable[String, Optional[Google_storage_object_acl]]
       }
     }
   }

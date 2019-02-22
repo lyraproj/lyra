@@ -266,6 +266,8 @@ github.com/lyraproj/puppet-evaluator v0.0.0-20190220162250-4332f4100731 h1:WUrPb
 github.com/lyraproj/puppet-evaluator v0.0.0-20190220162250-4332f4100731/go.mod h1:/w2Dkqs8BNYj5xYQMOTg23yTJD4IUfMrdpgVBCR8xMw=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190221131608-f58f6fb22150 h1:jYUvV7OgvPhhx7OiposQ/sXswFByP3l6rLSeBOre6kM=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190221131608-f58f6fb22150/go.mod h1:/w2Dkqs8BNYj5xYQMOTg23yTJD4IUfMrdpgVBCR8xMw=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190223103850-b1a608924b41 h1:guTLWYQkfCwxD0Fk0ACkNc9oMnxTVWvYPTYGU1Y5lsk=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190223103850-b1a608924b41/go.mod h1:/w2Dkqs8BNYj5xYQMOTg23yTJD4IUfMrdpgVBCR8xMw=
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d h1:iDn6XlJAiA+BuwG6L8xsCapPpc7jz24SGj9z7NQA1sg=
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d/go.mod h1:8va5g/XEw+jP9jnwEXPmanUy/hD9+6iggnaioihPLP0=
 github.com/lyraproj/puppet-parser v0.0.0-20190213110921-6d794c46c75a h1:XG/JMQTVoRZCY9SZgCOZMvCu/hTBFO+ee3fdZ2S2Tac=
@@ -288,6 +290,8 @@ github.com/lyraproj/servicesdk v0.0.0-20190220105000-da78ac393e34 h1:gDqM85RjppO
 github.com/lyraproj/servicesdk v0.0.0-20190220105000-da78ac393e34/go.mod h1:TszLWROByVHvGy/7kMLJRCjXvDG0oCPu+2cjP6nF+YQ=
 github.com/lyraproj/servicesdk v0.0.0-20190220162341-69a3573dc4f8 h1:D15m7et1eQ/4sOie7PeD/KnDjMLGeH2UDJOJ8YaWlOo=
 github.com/lyraproj/servicesdk v0.0.0-20190220162341-69a3573dc4f8/go.mod h1:JfHeFmdDNmGdKDu7Z1QphMaK+C47gbP5NzAJKwXQIog=
+github.com/lyraproj/servicesdk v0.0.0-20190223214851-96da090d4b9d h1:i1vyY0nSbKauZi2yK7pL7vcHUHW+MGS2i46gMk+r4KQ=
+github.com/lyraproj/servicesdk v0.0.0-20190223214851-96da090d4b9d/go.mod h1:w7rJkEKYabaTZsoB56ohV78AU9MuWwg9wsbJa4bFOoY=
 github.com/lyraproj/wfe v0.0.0-20190213141324-1ca88d9ec407 h1:fjJbMN7Ik10r2LcC/IEoMZboXttJLfEVDgKxkV3owok=
 github.com/lyraproj/wfe v0.0.0-20190213141324-1ca88d9ec407/go.mod h1:LdDYELaYRN0JFCboMQfIS+f6X8iWPPb65XsjaB7UuoE=
 github.com/lyraproj/wfe v0.0.0-20190220162440-1888b39c9eca h1:jcCgaMGTxaYuBrIZIy+/aEsxF9FKBqA8j7zPJSJUWJY=

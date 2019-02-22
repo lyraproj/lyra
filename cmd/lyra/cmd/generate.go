@@ -12,6 +12,8 @@ import (
 	_ "github.com/lyraproj/hiera/functions"
 )
 
+var targetDirectory = ``
+
 //NewGenerateCmd generates typesets in the languge of choice
 func NewGenerateCmd() *cobra.Command {
 	cmd := &cobra.Command{
@@ -24,6 +26,7 @@ func NewGenerateCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("flagHomeDir"))
+	cmd.Flags().StringVarP(&targetDirectory, "target-directory", "t", "", i18n.T("flagTargetDir"))
 	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", i18n.T("generateFlagExtData"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
@@ -34,7 +37,7 @@ func NewGenerateCmd() *cobra.Command {
 
 func runGenerateCmd(cmd *cobra.Command, args []string) {
 	language := args[0]
-	err := generate.Generate(language)
+	err := generate.Generate(language, targetDirectory)
 	if err != nil {
 		ui.Message("error", err)
 		os.Exit(0)

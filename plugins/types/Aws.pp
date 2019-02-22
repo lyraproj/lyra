@@ -1,5 +1,3 @@
-
-# this file is prefixed "aaa" so that it is processed first as it contains types that are needed by other workflows
 # this file is generated
 type Aws = TypeSet[{
   pcore_uri => 'http://puppet.com/2016.1/pcore',
@@ -309,13 +307,9 @@ type Aws = TypeSet[{
     },
     InstanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Instance]],
-          Tuple[Optional[Instance], String]],
+        'create' => Callable[Optional[Instance], Tuple[Optional[Instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Instance]]
+        'read' => Callable[String, Optional[Instance]]
       }
     },
     InstanceIpv6Address => {
@@ -365,13 +359,9 @@ type Aws = TypeSet[{
     },
     InternetGatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[InternetGateway]],
-          Tuple[Optional[InternetGateway], String]],
+        'create' => Callable[Optional[InternetGateway], Tuple[Optional[InternetGateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[InternetGateway]]
+        'read' => Callable[String, Optional[InternetGateway]]
       }
     },
     IpPermission => {
@@ -442,13 +432,9 @@ type Aws = TypeSet[{
     },
     KeyPairHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[KeyPair]],
-          Tuple[Optional[KeyPair], String]],
+        'create' => Callable[Optional[KeyPair], Tuple[Optional[KeyPair], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[KeyPair]]
+        'read' => Callable[String, Optional[KeyPair]]
       }
     },
     LaunchTemplateSpecification => {
@@ -1747,68 +1733,44 @@ type Aws = TypeSet[{
     }],
     NativeInstanceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Native::Instance]],
-          Tuple[Optional[Native::Instance], String]],
+        'create' => Callable[Optional[Native::Instance], Tuple[Optional[Native::Instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Native::Instance]]
+        'read' => Callable[String, Optional[Native::Instance]]
       }
     },
     NativeInternetGatewayHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Native::InternetGateway]],
-          Tuple[Optional[Native::InternetGateway], String]],
+        'create' => Callable[Optional[Native::InternetGateway], Tuple[Optional[Native::InternetGateway], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Native::InternetGateway]]
+        'read' => Callable[String, Optional[Native::InternetGateway]]
       }
     },
     NativeRouteTableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Native::RouteTable]],
-          Tuple[Optional[Native::RouteTable], String]],
+        'create' => Callable[Optional[Native::RouteTable], Tuple[Optional[Native::RouteTable], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Native::RouteTable]]
+        'read' => Callable[String, Optional[Native::RouteTable]]
       }
     },
     NativeSecurityGroupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Native::SecurityGroup]],
-          Tuple[Optional[Native::SecurityGroup], String]],
+        'create' => Callable[Optional[Native::SecurityGroup], Tuple[Optional[Native::SecurityGroup], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Native::SecurityGroup]]
+        'read' => Callable[String, Optional[Native::SecurityGroup]]
       }
     },
     NativeSubnetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Native::Subnet]],
-          Tuple[Optional[Native::Subnet], String]],
+        'create' => Callable[Optional[Native::Subnet], Tuple[Optional[Native::Subnet], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Native::Subnet]]
+        'read' => Callable[String, Optional[Native::Subnet]]
       }
     },
     NativeVpcHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Native::Vpc]],
-          Tuple[Optional[Native::Vpc], String]],
+        'create' => Callable[Optional[Native::Vpc], Tuple[Optional[Native::Vpc], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Native::Vpc]]
+        'read' => Callable[String, Optional[Native::Vpc]]
       }
     },
     Placement => {
@@ -1870,13 +1832,9 @@ type Aws = TypeSet[{
     },
     RoleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[IamRole]],
-          Tuple[Optional[IamRole], String]],
+        'create' => Callable[Optional[IamRole], Tuple[Optional[IamRole], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[IamRole]]
+        'read' => Callable[String, Optional[IamRole]]
       }
     },
     Route => {
@@ -1977,13 +1935,9 @@ type Aws = TypeSet[{
     },
     RouteTableHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[RouteTable]],
-          Tuple[Optional[RouteTable], String]],
+        'create' => Callable[Optional[RouteTable], Tuple[Optional[RouteTable], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[RouteTable]]
+        'read' => Callable[String, Optional[RouteTable]]
       }
     },
     SecurityGroup => {
@@ -2018,13 +1972,9 @@ type Aws = TypeSet[{
     },
     SecurityGroupHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[SecurityGroup]],
-          Tuple[Optional[SecurityGroup], String]],
+        'create' => Callable[Optional[SecurityGroup], Tuple[Optional[SecurityGroup], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[SecurityGroup]]
+        'read' => Callable[String, Optional[SecurityGroup]]
       }
     },
     StateReason => {
@@ -2071,13 +2021,9 @@ type Aws = TypeSet[{
     },
     SubnetHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Subnet]],
-          Tuple[Optional[Subnet], String]],
+        'create' => Callable[Optional[Subnet], Tuple[Optional[Subnet], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Subnet]]
+        'read' => Callable[String, Optional[Subnet]]
       }
     },
     UserIdGroupPair => {
@@ -2114,13 +2060,9 @@ type Aws = TypeSet[{
     },
     VPCHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Vpc]],
-          Tuple[Optional[Vpc], String]],
+        'create' => Callable[Optional[Vpc], Tuple[Optional[Vpc], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Vpc]]
+        'read' => Callable[String, Optional[Vpc]]
       }
     },
     Vpc => {
