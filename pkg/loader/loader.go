@@ -109,7 +109,7 @@ func (l *Loader) loadService(c eval.Context, serviceID eval.TypedName) serviceap
 	return service
 }
 
-// PreLoad loads all plugins within reach.
+// PreLoad loads all plugins and manifests within reach.
 func (l *Loader) PreLoad(c eval.Context) {
 	// Use this loader when loading all typesets and definitions
 	c.DoWithLoader(l, func() {
@@ -132,6 +132,19 @@ func (l *Loader) PreLoad(c eval.Context) {
 		// e.g. REST, serverless, Typescript ...
 	})
 }
+
+// PreLoadPlugins loads all plugins within reach.
+func (l *Loader) PreLoadPlugins(c eval.Context) {
+	// Use this loader when loading all typesets and definitions
+	c.DoWithLoader(l, func() {
+		// Embedded plugins
+		l.loadEmbeddedPlugins(c)
+
+		// Go plugins
+		l.loadPlugins(c, dir)
+	})
+}
+
 
 func (l *Loader) loadEmbeddedPlugins(c eval.Context) {
 	l.logger.Debug("reading embedded plugins")

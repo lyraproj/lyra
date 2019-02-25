@@ -19,10 +19,10 @@ require (
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
 	github.com/lyraproj/lyra-operator v0.0.0-20190214121239-e1b92c0c0601
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190221131608-f58f6fb22150
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190223103850-b1a608924b41
 	github.com/lyraproj/puppet-workflow v0.0.0-20190220162536-b0ce7c68c3c9
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190220162341-69a3573dc4f8
+	github.com/lyraproj/servicesdk v0.0.0-20190223214851-96da090d4b9d
 	github.com/lyraproj/wfe v0.0.0-20190220162440-1888b39c9eca
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b

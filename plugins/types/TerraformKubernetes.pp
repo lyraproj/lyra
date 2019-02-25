@@ -1,5 +1,3 @@
-
-# this file is prefixed "aaa" so that it is processed first as it contains types that are needed by other workflows
 # this file is generated
 type TerraformKubernetes = TypeSet[{
   pcore_uri => 'http://puppet.com/2016.1/pcore',
@@ -21,13 +19,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_cluster_role_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_cluster_role_binding]],
-          Tuple[Optional[Kubernetes_cluster_role_binding], String]],
+        'create' => Callable[Optional[Kubernetes_cluster_role_binding], Tuple[Optional[Kubernetes_cluster_role_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_cluster_role_binding]]
+        'read' => Callable[String, Optional[Kubernetes_cluster_role_binding]]
       }
     },
     Kubernetes_cluster_role_binding_metadata_1079 => {
@@ -91,13 +85,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_config_mapHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_config_map]],
-          Tuple[Optional[Kubernetes_config_map], String]],
+        'create' => Callable[Optional[Kubernetes_config_map], Tuple[Optional[Kubernetes_config_map], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_config_map]]
+        'read' => Callable[String, Optional[Kubernetes_config_map]]
       }
     },
     Kubernetes_config_map_metadata_1081 => {
@@ -152,13 +142,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_deploymentHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_deployment]],
-          Tuple[Optional[Kubernetes_deployment], String]],
+        'create' => Callable[Optional[Kubernetes_deployment], Tuple[Optional[Kubernetes_deployment], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_deployment]]
+        'read' => Callable[String, Optional[Kubernetes_deployment]]
       }
     },
     Kubernetes_deployment_metadata_1082 => {
@@ -2285,13 +2271,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_horizontal_pod_autoscalerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_horizontal_pod_autoscaler]],
-          Tuple[Optional[Kubernetes_horizontal_pod_autoscaler], String]],
+        'create' => Callable[Optional[Kubernetes_horizontal_pod_autoscaler], Tuple[Optional[Kubernetes_horizontal_pod_autoscaler], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_horizontal_pod_autoscaler]]
+        'read' => Callable[String, Optional[Kubernetes_horizontal_pod_autoscaler]]
       }
     },
     Kubernetes_horizontal_pod_autoscaler_metadata_1205 => {
@@ -2373,13 +2355,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_limit_rangeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_limit_range]],
-          Tuple[Optional[Kubernetes_limit_range], String]],
+        'create' => Callable[Optional[Kubernetes_limit_range], Tuple[Optional[Kubernetes_limit_range], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_limit_range]]
+        'read' => Callable[String, Optional[Kubernetes_limit_range]]
       }
     },
     Kubernetes_limit_range_metadata_1208 => {
@@ -2469,13 +2447,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_namespaceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_namespace]],
-          Tuple[Optional[Kubernetes_namespace], String]],
+        'create' => Callable[Optional[Kubernetes_namespace], Tuple[Optional[Kubernetes_namespace], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_namespace]]
+        'read' => Callable[String, Optional[Kubernetes_namespace]]
       }
     },
     Kubernetes_namespace_metadata_1211 => {
@@ -2526,13 +2500,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_network_policyHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_network_policy]],
-          Tuple[Optional[Kubernetes_network_policy], String]],
+        'create' => Callable[Optional[Kubernetes_network_policy], Tuple[Optional[Kubernetes_network_policy], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_network_policy]]
+        'read' => Callable[String, Optional[Kubernetes_network_policy]]
       }
     },
     Kubernetes_network_policy_metadata_1212 => {
@@ -2845,13 +2815,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_persistent_volumeHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_persistent_volume]],
-          Tuple[Optional[Kubernetes_persistent_volume], String]],
+        'create' => Callable[Optional[Kubernetes_persistent_volume], Tuple[Optional[Kubernetes_persistent_volume], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_persistent_volume]]
+        'read' => Callable[String, Optional[Kubernetes_persistent_volume]]
       }
     },
     Kubernetes_persistent_volume_claim => {
@@ -2870,13 +2836,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_persistent_volume_claimHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_persistent_volume_claim]],
-          Tuple[Optional[Kubernetes_persistent_volume_claim], String]],
+        'create' => Callable[Optional[Kubernetes_persistent_volume_claim], Tuple[Optional[Kubernetes_persistent_volume_claim], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_persistent_volume_claim]]
+        'read' => Callable[String, Optional[Kubernetes_persistent_volume_claim]]
       }
     },
     Kubernetes_persistent_volume_claim_metadata_1261 => {
@@ -3468,13 +3430,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_podHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_pod]],
-          Tuple[Optional[Kubernetes_pod], String]],
+        'create' => Callable[Optional[Kubernetes_pod], Tuple[Optional[Kubernetes_pod], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_pod]]
+        'read' => Callable[String, Optional[Kubernetes_pod]]
       }
     },
     Kubernetes_pod_metadata_1266 => {
@@ -5470,13 +5428,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_replication_controllerHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_replication_controller]],
-          Tuple[Optional[Kubernetes_replication_controller], String]],
+        'create' => Callable[Optional[Kubernetes_replication_controller], Tuple[Optional[Kubernetes_replication_controller], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_replication_controller]]
+        'read' => Callable[String, Optional[Kubernetes_replication_controller]]
       }
     },
     Kubernetes_replication_controller_metadata_1382 => {
@@ -9478,13 +9432,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_resource_quotaHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_resource_quota]],
-          Tuple[Optional[Kubernetes_resource_quota], String]],
+        'create' => Callable[Optional[Kubernetes_resource_quota], Tuple[Optional[Kubernetes_resource_quota], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_resource_quota]]
+        'read' => Callable[String, Optional[Kubernetes_resource_quota]]
       }
     },
     Kubernetes_resource_quota_metadata_1615 => {
@@ -9551,13 +9501,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_roleHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_role]],
-          Tuple[Optional[Kubernetes_role], String]],
+        'create' => Callable[Optional[Kubernetes_role], Tuple[Optional[Kubernetes_role], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_role]]
+        'read' => Callable[String, Optional[Kubernetes_role]]
       }
     },
     Kubernetes_role_binding => {
@@ -9573,13 +9519,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_role_bindingHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_role_binding]],
-          Tuple[Optional[Kubernetes_role_binding], String]],
+        'create' => Callable[Optional[Kubernetes_role_binding], Tuple[Optional[Kubernetes_role_binding], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_role_binding]]
+        'read' => Callable[String, Optional[Kubernetes_role_binding]]
       }
     },
     Kubernetes_role_binding_metadata_1619 => {
@@ -9702,13 +9644,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_secretHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_secret]],
-          Tuple[Optional[Kubernetes_secret], String]],
+        'create' => Callable[Optional[Kubernetes_secret], Tuple[Optional[Kubernetes_secret], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_secret]]
+        'read' => Callable[String, Optional[Kubernetes_secret]]
       }
     },
     Kubernetes_secret_metadata_1621 => {
@@ -9767,13 +9705,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_serviceHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_service]],
-          Tuple[Optional[Kubernetes_service], String]],
+        'create' => Callable[Optional[Kubernetes_service], Tuple[Optional[Kubernetes_service], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_service]]
+        'read' => Callable[String, Optional[Kubernetes_service]]
       }
     },
     Kubernetes_service_account => {
@@ -9803,13 +9737,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_service_accountHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_service_account]],
-          Tuple[Optional[Kubernetes_service_account], String]],
+        'create' => Callable[Optional[Kubernetes_service_account], Tuple[Optional[Kubernetes_service_account], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_service_account]]
+        'read' => Callable[String, Optional[Kubernetes_service_account]]
       }
     },
     Kubernetes_service_account_image_pull_secret_1626 => {
@@ -9993,13 +9923,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_stateful_setHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_stateful_set]],
-          Tuple[Optional[Kubernetes_stateful_set], String]],
+        'create' => Callable[Optional[Kubernetes_stateful_set], Tuple[Optional[Kubernetes_stateful_set], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_stateful_set]]
+        'read' => Callable[String, Optional[Kubernetes_stateful_set]]
       }
     },
     Kubernetes_stateful_set_metadata_1629 => {
@@ -12231,13 +12157,9 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_storage_classHandler => {
       functions => {
-        'create' => Callable[
-          [Optional[Kubernetes_storage_class]],
-          Tuple[Optional[Kubernetes_storage_class], String]],
+        'create' => Callable[Optional[Kubernetes_storage_class], Tuple[Optional[Kubernetes_storage_class], String]],
         'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Optional[Kubernetes_storage_class]]
+        'read' => Callable[String, Optional[Kubernetes_storage_class]]
       }
     },
     Kubernetes_storage_class_metadata_1758 => {

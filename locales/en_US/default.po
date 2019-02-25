@@ -112,8 +112,12 @@ msgstr "Generate all typesets in the target language"
 msgid "generateCmdExample" 
 msgstr 
 "\n"
-"  # Generate all typesets in yaml\n"
-"  lyra generate yaml\n"
+"  # Generate all typesets in typescript\n"
+"  lyra generate typescript\n"
+
+#: cmd/lyra/cmd/generate.go:29
+msgid "flagTargetDir"
+msgstr "path to target directory"
 
 #: cmd/lyra/cmd/version.go:16
 msgid "versionCmdUse"
