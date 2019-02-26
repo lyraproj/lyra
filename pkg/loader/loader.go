@@ -119,9 +119,6 @@ func (l *Loader) PreLoad(c eval.Context) {
 		// Go plugins
 		l.loadPlugins(c, dir)
 
-		// load typesets from files (NOTE: this is typesets only by convention only at this point, it would attempt to load workflows if found)
-		l.loadPuppetDSL(c, typesDir)
-
 		// Puppet DSL files
 		l.loadPuppetDSL(c, dir)
 
@@ -229,6 +226,7 @@ func (l *Loader) loadLyraLinks(c eval.Context, dir string) {
 		link, ok := yaml.Unmarshal(c, bts.Bytes()).(eval.OrderedMap)
 		if !ok {
 			l.logger.Error("Lyra Link did not contain a map", "file", lf, "err", err)
+			continue
 		}
 		exe := ``
 		if v, ok := link.Get4(`executable`); ok {
@@ -238,6 +236,7 @@ func (l *Loader) loadLyraLinks(c eval.Context, dir string) {
 		}
 		if exe == `` {
 			l.logger.Error("Lyra Link did not contain a valid 'executable' entry", "file", lf, "err", err)
+			continue
 		}
 		exe = os.ExpandEnv(exe)
 
@@ -251,7 +250,10 @@ func (l *Loader) loadLyraLinks(c eval.Context, dir string) {
 				args = []string{os.ExpandEnv(s.String())}
 			}
 		}
-		l.loadLiveMetadataFromPlugin(c, exe, args...)
+		err = l.loadLiveMetadataFromPlugin(c, exe, args...)
+		if err != nil {
+			l.logger.Error("failed to load Lyra Link", "file", lf, "err", err)
+		}
 	}
 }
 
@@ -286,7 +288,10 @@ func (l *Loader) loadPuppetDSL(c eval.Context, dir string) {
 
 	for _, f := range allFiles {
 		l.logger.Debug("loading manifest", "file", f)
-		def := ppServer.Invoke(c, puppet.ManifestLoaderID, `loadManifest`, types.WrapString(f)).(serviceapi.Definition)
+		def := ppServer.Invoke(
+			c, puppet.ManifestLoaderID, `loadManifest`,
+			types.WrapString(dir),
+			types.WrapString(f)).(serviceapi.Definition)
 		sa := &subService{def}
 		l.SetEntry(sa.Identifier(c), eval.NewLoaderEntry(sa, nil))
 		l.loadMetadata(c, ``, nil, sa)
