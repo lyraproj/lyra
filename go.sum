@@ -274,6 +274,8 @@ github.com/lyraproj/puppet-evaluator v0.0.0-20190225114438-77a06b0dfbb3 h1:5sAPw
 github.com/lyraproj/puppet-evaluator v0.0.0-20190225224025-8364f02c3f2b/go.mod h1:/w2Dkqs8BNYj5xYQMOTg23yTJD4IUfMrdpgVBCR8xMw=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190226073100-237317b11e1c h1:h6uC9VPEvNBlHE5hcDZJ1UcGr+HPcdEykv4wWY+oWnA=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190226073100-237317b11e1c/go.mod h1:/w2Dkqs8BNYj5xYQMOTg23yTJD4IUfMrdpgVBCR8xMw=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190226102813-fc0d45f12c67 h1:i+yKuEzGfJGPlihptVGp1CMcua/KgrO61LHgzF0Roxg=
+github.com/lyraproj/puppet-evaluator v0.0.0-20190226102813-fc0d45f12c67/go.mod h1:/w2Dkqs8BNYj5xYQMOTg23yTJD4IUfMrdpgVBCR8xMw=
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d h1:iDn6XlJAiA+BuwG6L8xsCapPpc7jz24SGj9z7NQA1sg=
 github.com/lyraproj/puppet-parser v0.0.0-20181212205830-31c3104fe78d/go.mod h1:8va5g/XEw+jP9jnwEXPmanUy/hD9+6iggnaioihPLP0=
 github.com/lyraproj/puppet-parser v0.0.0-20190213110921-6d794c46c75a h1:XG/JMQTVoRZCY9SZgCOZMvCu/hTBFO+ee3fdZ2S2Tac=
@@ -290,6 +292,8 @@ github.com/lyraproj/puppet-workflow v0.0.0-20190225102826-80d7867cef75 h1:gWeXGm
 github.com/lyraproj/puppet-workflow v0.0.0-20190225102826-80d7867cef75/go.mod h1:IKGsYEYRpnxvZWwtk/DNat14tKmpYXc+oj6Dmlpc7q8=
 github.com/lyraproj/puppet-workflow v0.0.0-20190226074640-d384740877db h1:bpvaB16dV6be8BhJhJuxicRLD+oPI6WvTe94uo790JI=
 github.com/lyraproj/puppet-workflow v0.0.0-20190226074640-d384740877db/go.mod h1:GBwPjCu2kjuV0+rP9Wn72z1kMs9JBD+pCyTF9JKk5yM=
+github.com/lyraproj/puppet-workflow v0.0.0-20190226102913-d5da882243ea h1:XFHORqg2dqE32PcIae/iJYWbslC5ZPMGeBYE57BnB/s=
+github.com/lyraproj/puppet-workflow v0.0.0-20190226102913-d5da882243ea/go.mod h1:GBwPjCu2kjuV0+rP9Wn72z1kMs9JBD+pCyTF9JKk5yM=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190213111125-9b344bb575d1 h1:f5fbA3fPFgQQYhXnGd5Rx+jg2Px1GnxIqtpMHiDSu8E=
