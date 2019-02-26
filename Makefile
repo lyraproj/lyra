@@ -21,15 +21,14 @@ PACKAGE_NAME = github.com/lyraproj/lyra
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTag=$(shell git describe --all --exact-match `git rev-parse HEAD` | grep tags | sed 's/tags\///')"
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --short HEAD)"
-# Strip debug information
-# LDFLAGS += -s -w
+LDFLAGS += -s -w # Strip debug information
 
 LICENSE_TMPFILE = LICENSE_TMPFILE.txt
 
 LINTIGNOREINITIALISMS = "cmd\/goplugin-(aws|example)\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
 
 PHONY+= all
-all: check-mods clean test lyra smoke-test
+all: check-mods clean test lyra content smoke-test
 
 PHONY+= protobuf
 protobuf: tmp/bin/protoc $(GOPATH)/bin/protoc-gen-go
@@ -57,11 +56,15 @@ shrink:
 		upx $$f; \
 	done;
 
-PHONY+= plugins
-plugins: goplugin-example
-
-goplugin-example:
+PHONY+= content
+content: check-mods
+	$(call build,goplugin-aws,cmd/goplugin-aws/main.go)
 	$(call build,goplugin-example,cmd/goplugin-example/main.go)
+	$(call build,goplugin-tf-aws,cmd/goplugin-tf-aws/main.go)
+	$(call build,goplugin-tf-azurerm,cmd/goplugin-tf-azurerm/main.go)
+	$(call build,goplugin-tf-github,cmd/goplugin-tf-github/main.go)
+	$(call build,goplugin-tf-google,cmd/goplugin-tf-google/main.go)
+	$(call build,goplugin-tf-kubernetes,cmd/goplugin-tf-kubernetes/main.go)
 
 PHONY+= lyra
 lyra: check-mods
@@ -141,20 +144,20 @@ dist-release:
 	done;
 
 PHONY+= check-mods
-check-mods: 
+check-mods:
 	@echo "🔘 Ensuring go version is 1.11.4 or later (`date '+%H:%M:%S'`)"
 	@if [ "$(HAS_REQUIRED_GO)" = "" ]; \
 	then \
 		echo "🔴 must be running Go version 1.11.4 or later.  Please upgrade and run go clean -modcache"; \
 		exit 1; \
-	fi	
+	fi
 	@echo "✅ Go version is sufficient  (`date '+%H:%M:%S'`)"
 	@echo "🔘 Ensuring go mod is available and turned on  (`date '+%H:%M:%S'`)"
 	@GO111MODULE=on go mod download || (echo "🔴 The command 'GO111MODULE=on go mod download' did not return zero exit code (exit code was $$?)"; exit 1)
 	@echo "✅ Go mod is available  (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test:
+smoke-test: lyra content
 	@echo "🔘 Running a smoke test with sample workflow"
 	@build/lyra apply sample || (echo "Failed $$?"; exit 1)
 
