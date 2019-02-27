@@ -1,7 +1,7 @@
 import {action, logger, PluginLogger, resource, ServiceBuilder} from 'lyra-workflow';
 import * as util from 'util';
 
-import * as Aws from './Aws';
+import * as Aws from './types/Aws';
 
 function makeRouteTable(
     vpcId: string, tags: {[s: string]: string}): Aws.RouteTable {
