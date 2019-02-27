@@ -1,5 +1,5 @@
-import {PcoreValue} from 'lyra-workflow/dist/pcore/Serializer';
-import {Value} from 'lyra-workflow/dist/pcore/Util';
+// this file is generated
+import {PcoreValue, Value} from 'lyra-workflow';
 
 export class BlockDeviceMapping implements PcoreValue {
   readonly deviceName: string;
@@ -7,7 +7,12 @@ export class BlockDeviceMapping implements PcoreValue {
   readonly noDevice: string;
   readonly virtualName: string;
 
-  constructor({deviceName = '', ebs = null, noDevice = '', virtualName = ''}: {
+  constructor({
+    deviceName = '',
+    ebs = null,
+    noDevice = '',
+    virtualName = ''
+  }: {
     deviceName?: string,
     ebs?: EbsBlockDevice|null,
     noDevice?: string,
@@ -45,8 +50,13 @@ export class CpuOptions implements PcoreValue {
   readonly coreCount: number;
   readonly threadsPerCore: number;
 
-  constructor({coreCount = 0, threadsPerCore = 0}:
-                  {coreCount?: number, threadsPerCore?: number}) {
+  constructor({
+    coreCount = 0,
+    threadsPerCore = 0
+  }: {
+    coreCount?: number,
+    threadsPerCore?: number
+  }) {
     this.coreCount = coreCount;
     this.threadsPerCore = threadsPerCore;
   }
@@ -137,8 +147,13 @@ export class GroupIdentifier implements PcoreValue {
   readonly groupId: string;
   readonly groupName: string;
 
-  constructor({groupId = '',
-               groupName = ''}: {groupId?: string, groupName?: string}) {
+  constructor({
+    groupId = '',
+    groupName = ''
+  }: {
+    groupId?: string,
+    groupName?: string
+  }) {
     this.groupId = groupId;
     this.groupName = groupName;
   }
@@ -164,8 +179,15 @@ export class IamInstanceProfile implements PcoreValue {
   readonly name: string;
   readonly id: string;
 
-  constructor({arn = '', name = '', id = ''}:
-                  {arn?: string, name?: string, id?: string}) {
+  constructor({
+    arn = '',
+    name = '',
+    id = ''
+  }: {
+    arn?: string,
+    name?: string,
+    id?: string
+  }) {
     this.arn = arn;
     this.name = name;
     this.id = id;
@@ -386,7 +408,8 @@ export class Instance implements PcoreValue {
     sriovNetSupport?: string,
     state?: InstanceState|null,
     stateReason?: StateReason|null,
-    stateTransitionReason?: string, tags: {[s: string]: string}|null,
+    stateTransitionReason?: string,
+    tags: {[s: string]: string}|null,
     virtualizationType?: string,
     vpcId?: string
   }) {
@@ -470,8 +493,7 @@ export class Instance implements PcoreValue {
       ih['iamInstanceProfile'] = this.iamInstanceProfile;
     }
     if (this.instanceInitiatedShutdownBehavior !== '') {
-      ih['instanceInitiatedShutdownBehavior'] =
-          this.instanceInitiatedShutdownBehavior;
+      ih['instanceInitiatedShutdownBehavior'] = this.instanceInitiatedShutdownBehavior;
     }
     if (this.ipv6AddressCount !== 0) {
       ih['ipv6AddressCount'] = this.ipv6AddressCount;
@@ -606,7 +628,11 @@ export class InstanceHandler implements PcoreValue {
 export class InstanceIpv6Address implements PcoreValue {
   readonly ipv6Address: string;
 
-  constructor({ipv6Address = ''}: {ipv6Address?: string}) {
+  constructor({
+    ipv6Address = ''
+  }: {
+    ipv6Address?: string
+  }) {
     this.ipv6Address = ipv6Address;
   }
 
@@ -627,7 +653,13 @@ export class InstanceState implements PcoreValue {
   readonly code: number;
   readonly name: string;
 
-  constructor({code = 0, name = ''}: {code?: number, name?: string}) {
+  constructor({
+    code = 0,
+    name = ''
+  }: {
+    code?: number,
+    name?: string
+  }) {
     this.code = code;
     this.name = name;
   }
@@ -653,7 +685,11 @@ export class InternetGateway implements PcoreValue {
   readonly internetGatewayId: string|null;
   readonly attachments: InternetGatewayAttachment[];
 
-  constructor({tags, internetGatewayId = null, attachments = []}: {
+  constructor({
+    tags,
+    internetGatewayId = null,
+    attachments = []
+  }: {
     tags: {[s: string]: string},
     internetGatewayId?: string|null,
     attachments?: InternetGatewayAttachment[]
@@ -684,7 +720,13 @@ export class InternetGatewayAttachment implements PcoreValue {
   readonly state: string;
   readonly vpcId: string;
 
-  constructor({state, vpcId}: {state: string, vpcId: string}) {
+  constructor({
+    state,
+    vpcId
+  }: {
+    state: string,
+    vpcId: string
+  }) {
     this.state = state;
     this.vpcId = vpcId;
   }
@@ -781,8 +823,13 @@ export class IpRange implements PcoreValue {
   readonly cidrIp: string;
   readonly description: string;
 
-  constructor({cidrIp = '',
-               description = ''}: {cidrIp?: string, description?: string}) {
+  constructor({
+    cidrIp = '',
+    description = ''
+  }: {
+    cidrIp?: string,
+    description?: string
+  }) {
     this.cidrIp = cidrIp;
     this.description = description;
   }
@@ -807,8 +854,13 @@ export class Ipv6Range implements PcoreValue {
   readonly cidrIpv6: string;
   readonly description: string;
 
-  constructor({cidrIpv6 = '',
-               description = ''}: {cidrIpv6?: string, description?: string}) {
+  constructor({
+    cidrIpv6 = '',
+    description = ''
+  }: {
+    cidrIpv6?: string,
+    description?: string
+  }) {
     this.cidrIpv6 = cidrIpv6;
     this.description = description;
   }
@@ -834,7 +886,11 @@ export class KeyPair implements PcoreValue {
   readonly keyName: string;
   readonly keyFingerprint: string;
 
-  constructor({publicKeyMaterial, keyName, keyFingerprint = ''}: {
+  constructor({
+    publicKeyMaterial,
+    keyName,
+    keyFingerprint = ''
+  }: {
     publicKeyMaterial: string,
     keyName: string,
     keyFingerprint?: string
@@ -874,7 +930,11 @@ export class LaunchTemplateSpecification implements PcoreValue {
   readonly launchTemplateName: string;
   readonly version: string;
 
-  constructor({launchTemplateId = '', launchTemplateName = '', version = ''}: {
+  constructor({
+    launchTemplateId = '',
+    launchTemplateName = '',
+    version = ''
+  }: {
     launchTemplateId?: string,
     launchTemplateName?: string,
     version?: string
@@ -907,8 +967,13 @@ export class Monitoring implements PcoreValue {
   readonly enabled: boolean;
   readonly state: string;
 
-  constructor({enabled = false,
-               state = ''}: {enabled?: boolean, state?: string}) {
+  constructor({
+    enabled = false,
+    state = ''
+  }: {
+    enabled?: boolean,
+    state?: string
+  }) {
     this.enabled = enabled;
     this.state = state;
   }
@@ -1052,8 +1117,13 @@ export class PrefixListId implements PcoreValue {
   readonly description: string;
   readonly prefixListId: string;
 
-  constructor({description = '', prefixListId = ''}:
-                  {description?: string, prefixListId?: string}) {
+  constructor({
+    description = '',
+    prefixListId = ''
+  }: {
+    description?: string,
+    prefixListId?: string
+  }) {
     this.description = description;
     this.prefixListId = prefixListId;
   }
@@ -1078,8 +1148,13 @@ export class ProductCode implements PcoreValue {
   readonly productCodeId: string;
   readonly productCodeType: string;
 
-  constructor({productCodeId = '', productCodeType = ''}:
-                  {productCodeId?: string, productCodeType?: string}) {
+  constructor({
+    productCodeId = '',
+    productCodeType = ''
+  }: {
+    productCodeId?: string,
+    productCodeType?: string
+  }) {
     this.productCodeId = productCodeId;
     this.productCodeType = productCodeType;
   }
@@ -1103,7 +1178,11 @@ export class ProductCode implements PcoreValue {
 export class PropagatingVgw implements PcoreValue {
   readonly gatewayId: string;
 
-  constructor({gatewayId}: {gatewayId: string}) {
+  constructor({
+    gatewayId
+  }: {
+    gatewayId: string
+  }) {
     this.gatewayId = gatewayId;
   }
 
@@ -1302,7 +1381,12 @@ export class RouteTableAssociation implements PcoreValue {
   readonly subnetId: string;
   readonly routeTableAssociationId: string|null;
 
-  constructor({main, routeTableId, subnetId, routeTableAssociationId = null}: {
+  constructor({
+    main,
+    routeTableId,
+    subnetId,
+    routeTableAssociationId = null
+  }: {
     main: boolean,
     routeTableId: string,
     subnetId: string,
@@ -1366,7 +1450,8 @@ export class SecurityGroup implements PcoreValue {
     groupId?: string,
     ipPermissions?: IpPermission[],
     ipPermissionsEgress?: IpPermission[],
-    ownerId?: string, tags: {[s: string]: string}|null
+    ownerId?: string,
+    tags: {[s: string]: string}|null
   }) {
     this.description = description;
     this.groupName = groupName;
@@ -1420,7 +1505,13 @@ export class StateReason implements PcoreValue {
   readonly code: string;
   readonly message: string;
 
-  constructor({code = '', message = ''}: {code?: string, message?: string}) {
+  constructor({
+    code = '',
+    message = ''
+  }: {
+    code?: string,
+    message?: string
+  }) {
     this.code = code;
     this.message = message;
   }

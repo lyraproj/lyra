@@ -1,3 +1,13 @@
 {
-  "extends": "gts/tslint.json"
+  "extends": "gts/tslint.json",
+  "rules": {
+    "class-name": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "allow-leading-underscore",
+      "allow-trailing-underscore",
+      "allow-snake-case"
+    ]
+  }
 }
