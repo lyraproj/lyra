@@ -143,7 +143,7 @@ dist-release:
 PHONY+= check-mods
 check-mods: 
 	@echo "🔘 Ensuring go version is 1.11.4 or later (`date '+%H:%M:%S'`)"
-	@if [ "$(HAS_REQUIRED_GO)" == "" ]; \
+	@if [ "$(HAS_REQUIRED_GO)" = "" ]; \
 	then \
 		echo "🔴 must be running Go version 1.11.4 or later.  Please upgrade and run go clean -modcache"; \
 		exit 1; \
@@ -161,7 +161,7 @@ smoke-test:
 define build
 	@echo "🔘 building - $(1) (`date '+%H:%M:%S'`)"
 	mkdir -p build/
-	GO111MODULE=on go build -a -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
+	GO111MODULE=on go build -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
 	@echo "✅ build complete - $(1) (`date '+%H:%M:%S'`)"
 endef
 

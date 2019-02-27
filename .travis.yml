@@ -31,3 +31,4 @@ branches:
 cache:
   directories:
   - $GOPATH/pkg/mod/
+  - $HOME/.cache/go-build/
