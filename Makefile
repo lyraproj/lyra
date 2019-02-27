@@ -161,7 +161,7 @@ smoke-test:
 define build
 	@echo "🔘 building - $(1) (`date '+%H:%M:%S'`)"
 	mkdir -p build/
-	GO111MODULE=on go build -a -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
+	GO111MODULE=on go build -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
 	@echo "✅ build complete - $(1) (`date '+%H:%M:%S'`)"
 endef
 
