@@ -143,7 +143,7 @@ dist-release:
 PHONY+= check-mods
 check-mods: 
 	@echo "🔘 Ensuring go version is 1.11.4 or later (`date '+%H:%M:%S'`)"
-	@if [ "$(HAS_REQUIRED_GO)" == "" ]; \
+	@if [ "$(HAS_REQUIRED_GO)" = "" ]; \
 	then \
 		echo "🔴 must be running Go version 1.11.4 or later.  Please upgrade and run go clean -modcache"; \
 		exit 1; \
