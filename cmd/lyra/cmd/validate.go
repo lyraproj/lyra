@@ -3,9 +3,9 @@ package cmd
 import (
 	"os"
 
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/issue/issue"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/spf13/cobra"
 )
@@ -13,10 +13,10 @@ import (
 // NewValidateCmd returns the validate subcommand used to syntactically validate manifests.
 func NewValidateCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     i18n.T("validateCmdUse"),
-		Short:   i18n.T("validateCmdShort"),
-		Long:    i18n.T("validateCmdLong"),
-		Example: i18n.T("validateCmdExample"),
+		Use:     gotext.Get("validate <filename>"),
+		Short:   gotext.Get("Validate a single workflow file"),
+		Long:    gotext.Get("Validate a single workflow file"),
+		Example: gotext.Get("\n  lyra validate plugins/example.pp"),
 		Run:     runValidate,
 		Args:    cobra.ExactArgs(1),
 	}

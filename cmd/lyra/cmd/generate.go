@@ -1,9 +1,9 @@
 package cmd
 
 import (
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/generate"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/spf13/cobra"
 
 	"os"
@@ -17,17 +17,17 @@ var targetDirectory = ``
 //NewGenerateCmd generates typesets in the languge of choice
 func NewGenerateCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     i18n.T("generateCmdUse"),
-		Short:   i18n.T("generateCmdShort"),
-		Long:    i18n.T("generateCmdLong"),
-		Example: i18n.T("generateCmdExample"),
+		Use:     gotext.Get("generate <target-language>"),
+		Short:   gotext.Get("Generate all typesets in the target language"),
+		Long:    gotext.Get("Generate all typesets in the target language"),
+		Example: gotext.Get("\n  # Generate all typesets in typescript\n  lyra generate typescript\n"),
 		Run:     runGenerateCmd,
 		Args:    cobra.ExactArgs(1),
 	}
 
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("flagHomeDir"))
-	cmd.Flags().StringVarP(&targetDirectory, "target-directory", "t", "", i18n.T("flagTargetDir"))
-	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", i18n.T("generateFlagExtData"))
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
+	cmd.Flags().StringVarP(&targetDirectory, "target-directory", "t", "", gotext.Get("path to target directory"))
+	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", gotext.Get("hiera data filename"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)

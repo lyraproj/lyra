@@ -3,21 +3,19 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/version"
-
 	"github.com/spf13/cobra"
 )
 
 // NewVersionCmd returns the version subcommand
 func NewVersionCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     i18n.T("versionCmdUse"),
-		Short:   i18n.T("versionCmdShort"),
-		Long:    i18n.T("versionCmdLong"),
-		Example: i18n.T("versionCmdExample"),
-		Run:     runVersion,
+		Use:   gotext.Get("version"),
+		Short: gotext.Get("Show the current Lyra version"),
+		Long:  gotext.Get("Show the current Lyra version"),
+		Run:   runVersion,
 	}
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/lyra/pkg/version"
 	"github.com/mgutz/ansi"
@@ -24,20 +24,19 @@ var (
 // NewRootCmd returns the root command
 func NewRootCmd() *cobra.Command {
 
-	// Set up gettext
-	i18n.Configure("locales", "en_US", "default")
+	gotext.Configure("locales", "en_US", "default")
 
 	cmd := &cobra.Command{
-		Use:              i18n.T("rootCmdUse"),
-		Short:            i18n.T("rootCmdShort"),
-		Long:             i18n.T("rootCmdLong"),
+		Use:              gotext.Get("lyra <command>"),
+		Short:            gotext.Get("Lyra - Provision and manage cloud native infrastructure"),
+		Long:             gotext.Get("Lyra - Provision and manage cloud native infrastructure.\n  Find more information at: https://github.com/lyraproj/lyra"),
 		Run:              runHelp,
 		PersistentPreRun: initialiseTool,
 		Version:          fmt.Sprintf("%v", version.Get()),
 	}
 
-	cmd.PersistentFlags().BoolVar(&debug, "debug", false, i18n.T("rootFlagDebug"))
-	cmd.PersistentFlags().StringVar(&loglevel, "loglevel", "", i18n.T("rootFlagLoglevel"))
+	cmd.PersistentFlags().BoolVar(&debug, "debug", false, gotext.Get("Sets log level to debug"))
+	cmd.PersistentFlags().StringVar(&loglevel, "loglevel", "", gotext.Get("Set log level to fatal, error, warn, info or debug"))
 
 	cmd.SetHelpTemplate(ansi.Blue + version.LogoFiglet + ansi.Reset + ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
@@ -46,7 +45,7 @@ func NewRootCmd() *cobra.Command {
 	cmd.AddCommand(NewApplyCmd())
 	cmd.AddCommand(NewDeleteCmd())
 	cmd.AddCommand(NewControllerCmd())
-	cmd.AddCommand(NewValidateCmd())
+	// cmd.AddCommand(NewValidateCmd())
 	cmd.AddCommand(NewGenerateCmd())
 	cmd.AddCommand(EmbeddedPluginCmd())
 
