@@ -8,19 +8,19 @@ k8s_namespace_service:
      output: kubernetes_namespace_id
      state:
        metadata:
-         name: lyra-terraform-ns
-         labels:
-           name: lyra-terraform-ns
+         - name: lyra-terraform-ns
+           labels:
+             name: lyra-terraform-ns
    Kubernetes_service:
      output: kubernetes_service_id
      state:
       metadata:
-        name: lyra-terraform-service
+        - name: lyra-terraform-service
       spec:
-        selector:
-          app : anything
-        session_affinity: ClientIP
-        port:
-          port: 80
-          target_port: 80
-        type: LoadBalancer
+        - session_affinity: ClientIP
+          selector:
+            app : anything
+          port:
+            - port: 80
+              target_port: 80
+          type: LoadBalancer
