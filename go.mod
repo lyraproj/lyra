@@ -39,15 +39,12 @@ require (
 	github.com/terraform-providers/terraform-provider-github v1.3.0
 	github.com/terraform-providers/terraform-provider-google v1.20.0
 	github.com/terraform-providers/terraform-provider-kubernetes v1.5.0
-	github.com/toqueteos/trie v1.0.0 // indirect
 	go.opencensus.io v0.19.0 // indirect
 	golang.org/x/crypto v0.0.0-20190211182817-74369b46fc67 // indirect
 	golang.org/x/exp v0.0.0-20190212162250-21964bba6549 // indirect
 	golang.org/x/oauth2 v0.0.0-20190212230446-3e8b2be13635 // indirect
 	golang.org/x/sys v0.0.0-20190213121743-983097b1a8a3 // indirect
 	gonum.org/v1/netlib v0.0.0-20190119082159-9be13e02fd56 // indirect
-	gopkg.in/src-d/enry.v1 v1.6.7
-	gopkg.in/toqueteos/substring.v1 v1.0.2 // indirect
 	k8s.io/client-go v10.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.1.10
 )

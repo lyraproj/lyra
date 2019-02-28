@@ -3,8 +3,11 @@ package apply
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/go-plugin"
+	"os"
+	"strings"
+
+	hclog "github.com/hashicorp/go-hclog"
+	plugin "github.com/hashicorp/go-plugin"
 	"github.com/lyraproj/hiera/lookup"
 	"github.com/lyraproj/hiera/provider"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
@@ -17,10 +20,6 @@ import (
 	"github.com/lyraproj/wfe/api"
 	"github.com/lyraproj/wfe/service"
 	"github.com/lyraproj/wfe/wfe"
-	"gopkg.in/src-d/enry.v1"
-	"io/ioutil"
-	"os"
-	"strings"
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
@@ -164,12 +163,4 @@ func apply(c eval.Context, activityID string, input eval.OrderedMap, intent wfap
 	gcPrefix := a.Identifier() + "/"
 	log.Debug("garbage collecting", "prefix", gcPrefix)
 	service.SweepAndGC(c, gcPrefix)
-}
-
-func getLanguage(path string) (string, error) {
-	content, err := ioutil.ReadFile(path)
-	if err != nil {
-		return "", err
-	}
-	return enry.GetLanguage(path, content), nil
 }
