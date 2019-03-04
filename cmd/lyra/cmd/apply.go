@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"os"
+
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/apply"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/servicesdk/wfapi"
 	"github.com/spf13/cobra"
-	"os"
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
@@ -18,16 +19,16 @@ var hieraDataFilename string
 // NewApplyCmd returns the apply subcommand used to evaluate and apply activities. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     i18n.T("applyCmdUse"),
-		Short:   i18n.T("applyCmdShort"),
-		Long:    i18n.T("applyCmdLong"),
-		Example: i18n.T("applyCmdExample"),
+		Use:     gotext.Get("apply <workflow-name>"),
+		Short:   gotext.Get("Execute a Lyra workflow"),
+		Long:    gotext.Get("Execute a Lyra workflow"),
+		Example: gotext.Get("\n  # Execute a workflow\n  lyra apply sample\n\n  # Execute a workflow using external variable data\n  lyra apply sample --data data.yaml"),
 		Run:     runApplyCmd,
 		Args:    cobra.ExactArgs(1),
 	}
 
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("flagHomeDir"))
-	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", i18n.T("applyFlagExtData"))
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
+	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", gotext.Get("hiera data filename"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)

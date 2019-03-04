@@ -6,16 +6,16 @@ import (
 
 	"github.com/go-logr/logr"
 	hclog "github.com/hashicorp/go-hclog"
-
-	// Ensure that lookup function properly loaded
-	_ "github.com/lyraproj/hiera/functions"
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra-operator/cmd/manager/controller"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/apply"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/spf13/cobra"
 	logf "sigs.k8s.io/controller-runtime/pkg/runtime/log"
+
+	// Ensure that lookup function properly loaded
+	_ "github.com/lyraproj/hiera/functions"
 )
 
 var namespace string
@@ -23,16 +23,15 @@ var namespace string
 // NewControllerCmd starts the Kubernetes controller
 func NewControllerCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "controller",
-		Short:   i18n.T("controllerCmdShort"),
-		Long:    i18n.T("controllerCmdLong"),
-		Example: i18n.T("controllerCmdExample"),
-		Run:     runControllerCmd,
-		Args:    cobra.NoArgs,
+		Use:   gotext.Get("controller"),
+		Short: gotext.Get("Run Lyra as a Kubernetes controller"),
+		Long:  gotext.Get("Run Lyra as a Kubernetes controller"),
+		Run:   runControllerCmd,
+		Args:  cobra.NoArgs,
 	}
 
-	cmd.Flags().StringVarP(&namespace, "namespace", "n", "default", i18n.T("controllerNamespace"))
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("controllerFlagHomeDir"))
+	cmd.Flags().StringVarP(&namespace, "namespace", "n", "default", gotext.Get("controller namesacpe"))
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)

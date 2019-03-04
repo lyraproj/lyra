@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"os"
+
+	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/apply"
-	"github.com/lyraproj/lyra/pkg/i18n"
 	"github.com/lyraproj/servicesdk/wfapi"
 	"github.com/spf13/cobra"
-	"os"
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
@@ -15,15 +16,15 @@ import (
 // NewDeleteCmd returns the delete subcommand used to delete activities.
 func NewDeleteCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     i18n.T("deleteCmdUse"),
-		Short:   i18n.T("deleteCmdShort"),
-		Long:    i18n.T("deleteCmdLong"),
-		Example: i18n.T("deleteCmdExample"),
+		Use:     gotext.Get("delete <workflow-name>"),
+		Short:   gotext.Get("Delete the resources created by a Lyra workflow"),
+		Long:    gotext.Get("Delete the resources created by a Lyra workflow"),
+		Example: gotext.Get("\n  # Delete the resources created by a Lyra workflow\n  lyra delete sample\n"),
 		Run:     runDeleteCmd,
 		Args:    cobra.ExactArgs(1),
 	}
 
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", i18n.T("flagHomeDir"))
+	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
