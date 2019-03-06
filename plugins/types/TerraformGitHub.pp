@@ -38,7 +38,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_branch_protectionHandler => {
       functions => {
-        'create' => Callable[Optional[Github_branch_protection], Tuple[Optional[Github_branch_protection], String]],
+        'create' => Callable[Optional[Github_branch_protection], Tuple[Optional[Github_branch_protection]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_branch_protection]]
       }
@@ -120,7 +120,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_issue_labelHandler => {
       functions => {
-        'create' => Callable[Optional[Github_issue_label], Tuple[Optional[Github_issue_label], String]],
+        'create' => Callable[Optional[Github_issue_label], Tuple[Optional[Github_issue_label]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_issue_label]]
       }
@@ -144,7 +144,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_membershipHandler => {
       functions => {
-        'create' => Callable[Optional[Github_membership], Tuple[Optional[Github_membership], String]],
+        'create' => Callable[Optional[Github_membership], Tuple[Optional[Github_membership]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_membership]]
       }
@@ -172,7 +172,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_organization_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Github_organization_project], Tuple[Optional[Github_organization_project], String]],
+        'create' => Callable[Optional[Github_organization_project], Tuple[Optional[Github_organization_project]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_organization_project]]
       }
@@ -205,7 +205,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_organization_webhookHandler => {
       functions => {
-        'create' => Callable[Optional[Github_organization_webhook], Tuple[Optional[Github_organization_webhook], String]],
+        'create' => Callable[Optional[Github_organization_webhook], Tuple[Optional[Github_organization_webhook]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_organization_webhook]]
       }
@@ -243,7 +243,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_project_columnHandler => {
       functions => {
-        'create' => Callable[Optional[Github_project_column], Tuple[Optional[Github_project_column], String]],
+        'create' => Callable[Optional[Github_project_column], Tuple[Optional[Github_project_column]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_project_column]]
       }
@@ -351,7 +351,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository], Tuple[Optional[Github_repository], String]],
+        'create' => Callable[Optional[Github_repository], Tuple[Optional[Github_repository]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_repository]]
       }
@@ -372,7 +372,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_collaboratorHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_collaborator], Tuple[Optional[Github_repository_collaborator], String]],
+        'create' => Callable[Optional[Github_repository_collaborator], Tuple[Optional[Github_repository_collaborator]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_repository_collaborator]]
       }
@@ -398,7 +398,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_deploy_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_deploy_key], Tuple[Optional[Github_repository_deploy_key], String]],
+        'create' => Callable[Optional[Github_repository_deploy_key], Tuple[Optional[Github_repository_deploy_key]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_repository_deploy_key]]
       }
@@ -427,7 +427,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_project], Tuple[Optional[Github_repository_project], String]],
+        'create' => Callable[Optional[Github_repository_project], Tuple[Optional[Github_repository_project]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_repository_project]]
       }
@@ -461,7 +461,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_webhookHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_webhook], Tuple[Optional[Github_repository_webhook], String]],
+        'create' => Callable[Optional[Github_repository_webhook], Tuple[Optional[Github_repository_webhook]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_repository_webhook]]
       }
@@ -518,7 +518,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_teamHandler => {
       functions => {
-        'create' => Callable[Optional[Github_team], Tuple[Optional[Github_team], String]],
+        'create' => Callable[Optional[Github_team], Tuple[Optional[Github_team]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_team]]
       }
@@ -543,7 +543,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_team_membershipHandler => {
       functions => {
-        'create' => Callable[Optional[Github_team_membership], Tuple[Optional[Github_team_membership], String]],
+        'create' => Callable[Optional[Github_team_membership], Tuple[Optional[Github_team_membership]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_team_membership]]
       }
@@ -568,7 +568,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_team_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Github_team_repository], Tuple[Optional[Github_team_repository], String]],
+        'create' => Callable[Optional[Github_team_repository], Tuple[Optional[Github_team_repository]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_team_repository]]
       }
@@ -592,7 +592,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_user_gpg_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Github_user_gpg_key], Tuple[Optional[Github_user_gpg_key], String]],
+        'create' => Callable[Optional[Github_user_gpg_key], Tuple[Optional[Github_user_gpg_key]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_user_gpg_key]]
       }
@@ -617,7 +617,7 @@ type TerraformGitHub = TypeSet[{
     },
     Github_user_ssh_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Github_user_ssh_key], Tuple[Optional[Github_user_ssh_key], String]],
+        'create' => Callable[Optional[Github_user_ssh_key], Tuple[Optional[Github_user_ssh_key]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Github_user_ssh_key]]
       }

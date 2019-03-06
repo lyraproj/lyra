@@ -1,12 +1,12 @@
 package cmd
 
 import (
+	"os"
+
 	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/generate"
 	"github.com/spf13/cobra"
-
-	"os"
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
@@ -40,8 +40,8 @@ func runGenerateCmd(cmd *cobra.Command, args []string) {
 	err := generate.Generate(language, targetDirectory)
 	if err != nil {
 		ui.Message("error", err)
-		os.Exit(0)
+		os.Exit(1)
 	}
 	ui.ShowMessage("Generation complete")
-	os.Exit(1)
+	os.Exit(0)
 }

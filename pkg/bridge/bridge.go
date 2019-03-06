@@ -30,18 +30,19 @@ func Create(p *schema.Provider, resourceType string, resourceConfig *terraform.R
 	// To get Terraform to create a new resource, the ID must be blank and existing state must be empty (since the
 	// resource does not exist yet), and the diff object should have no old state and all of the new state.
 	info := &terraform.InstanceInfo{Type: resourceType}
-	state := &terraform.InstanceState{}
+	state := &terraform.InstanceState{
+		Attributes: map[string]string{},
+		Meta:       map[string]interface{}{},
+	}
 	diff, err := p.Diff(info, state, resourceConfig)
 	if err != nil {
 		return "", err
 	}
-	newstate, err := p.Apply(info, state, diff)
-	if newstate == nil {
-		// contract.Assertf(err != nil, "expected non-nil error with nil state during Create")
+	state, err = p.Apply(info, state, diff)
+	if state == nil {
 		return "", err
 	}
-	// contract.Assertf(newstate.ID != "", "Expected non-empty ID for new state during Create")
-	return newstate.ID, nil
+	return state.ID, nil
 }
 
 // Read a resource using the Terrform provider
@@ -52,11 +53,34 @@ func Read(p *schema.Provider, resourceType string, id string) (string, map[strin
 		Attributes: map[string]string{},
 		Meta:       map[string]interface{}{},
 	}
-	newstate, err := p.Refresh(info, state)
+	state, err := p.Refresh(info, state)
 	if err != nil {
 		return "", nil, err
 	}
-	return id, expand(newstate), nil
+	return id, expand(state), nil
+}
+
+// Update a resource using the Terrform provider
+func Update(p *schema.Provider, resourceType string, id string, resourceConfig *terraform.ResourceConfig) (map[string]interface{}, error) {
+	info := &terraform.InstanceInfo{Type: resourceType}
+	state := &terraform.InstanceState{
+		ID:         id,
+		Attributes: map[string]string{},
+		Meta:       map[string]interface{}{},
+	}
+	state, err := p.Refresh(info, state)
+	if err != nil {
+		return nil, err
+	}
+	diff, err := p.Diff(info, state, resourceConfig)
+	if err != nil {
+		return nil, err
+	}
+	state, err = p.Apply(info, state, diff)
+	if err != nil {
+		return nil, err
+	}
+	return expand(state), nil
 }
 
 // Delete a resource using the Terrform provider

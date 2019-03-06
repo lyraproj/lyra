@@ -1,7 +1,6 @@
 package loader
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"os/exec"
@@ -147,7 +146,7 @@ func (l *Loader) loadPlugins(c eval.Context) {
 	l.logger.Debug("reading plugins from filesystem")
 	plugins := l.findFiles("goplugin-*")
 	for _, plugin := range plugins {
-		err := l.loadMetadataFromPlugin(c, plugin)
+		err := l.loadLiveMetadataFromPlugin(c, plugin)
 		if err != nil {
 			l.logger.Error("failed to load plugin", "plugin", plugin)
 		}
@@ -305,22 +304,6 @@ func (l *Loader) findFiles(glob string) []string {
 		l.logger.Debug(fmt.Sprintf("found %d files", len(fs)))
 	}
 	return files
-}
-
-func (l *Loader) loadMetadataFromPlugin(c eval.Context, cmd string, cmdArgs ...string) error {
-	context, cancelFunc := context.WithCancel(context.Background())
-	defer cancelFunc()
-
-	// FIXME Load should probably handle the eval.Context
-	serviceCmd := exec.CommandContext(context, cmd, cmdArgs...)
-	service, err := grpc.Load(serviceCmd, nil)
-	if err != nil {
-		return err
-	}
-	l.logger.Debug("loading metadata", "plugin", cmd)
-	l.loadMetadata(c, cmd, cmdArgs, service)
-	l.logger.Debug("done loading metadata", "plugin", cmd)
-	return nil
 }
 
 func (l *Loader) loadLiveMetadataFromPlugin(c eval.Context, cmd string, cmdArgs ...string) error {

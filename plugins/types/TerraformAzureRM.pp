@@ -74,7 +74,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_api_managementHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_api_management], Tuple[Optional[Azurerm_api_management], String]],
+        'create' => Callable[Optional[Azurerm_api_management], Tuple[Optional[Azurerm_api_management]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_api_management]]
       }
@@ -324,7 +324,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_app_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_app_service], Tuple[Optional[Azurerm_app_service], String]],
+        'create' => Callable[Optional[Azurerm_app_service], Tuple[Optional[Azurerm_app_service]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_app_service]]
       }
@@ -342,7 +342,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_app_service_active_slotHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_app_service_active_slot], Tuple[Optional[Azurerm_app_service_active_slot], String]],
+        'create' => Callable[Optional[Azurerm_app_service_active_slot], Tuple[Optional[Azurerm_app_service_active_slot]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_app_service_active_slot]]
       }
@@ -367,7 +367,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_app_service_custom_hostname_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_app_service_custom_hostname_binding], Tuple[Optional[Azurerm_app_service_custom_hostname_binding], String]],
+        'create' => Callable[Optional[Azurerm_app_service_custom_hostname_binding], Tuple[Optional[Azurerm_app_service_custom_hostname_binding]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_app_service_custom_hostname_binding]]
       }
@@ -427,7 +427,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_app_service_planHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_app_service_plan], Tuple[Optional[Azurerm_app_service_plan], String]],
+        'create' => Callable[Optional[Azurerm_app_service_plan], Tuple[Optional[Azurerm_app_service_plan]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_app_service_plan]]
       }
@@ -622,7 +622,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_app_service_slotHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_app_service_slot], Tuple[Optional[Azurerm_app_service_slot], String]],
+        'create' => Callable[Optional[Azurerm_app_service_slot], Tuple[Optional[Azurerm_app_service_slot]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_app_service_slot]]
       }
@@ -809,7 +809,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_application_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_application_gateway], Tuple[Optional[Azurerm_application_gateway], String]],
+        'create' => Callable[Optional[Azurerm_application_gateway], Tuple[Optional[Azurerm_application_gateway]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_application_gateway]]
       }
@@ -1132,7 +1132,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_application_insightsHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_application_insights], Tuple[Optional[Azurerm_application_insights], String]],
+        'create' => Callable[Optional[Azurerm_application_insights], Tuple[Optional[Azurerm_application_insights]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_application_insights]]
       }
@@ -1161,7 +1161,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_application_insights_api_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_application_insights_api_key], Tuple[Optional[Azurerm_application_insights_api_key], String]],
+        'create' => Callable[Optional[Azurerm_application_insights_api_key], Tuple[Optional[Azurerm_application_insights_api_key]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_application_insights_api_key]]
       }
@@ -1183,7 +1183,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_application_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_application_security_group], Tuple[Optional[Azurerm_application_security_group], String]],
+        'create' => Callable[Optional[Azurerm_application_security_group], Tuple[Optional[Azurerm_application_security_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_application_security_group]]
       }
@@ -1218,7 +1218,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_account], Tuple[Optional[Azurerm_automation_account], String]],
+        'create' => Callable[Optional[Azurerm_automation_account], Tuple[Optional[Azurerm_automation_account]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_account]]
       }
@@ -1250,7 +1250,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_credentialHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_credential], Tuple[Optional[Azurerm_automation_credential], String]],
+        'create' => Callable[Optional[Azurerm_automation_credential], Tuple[Optional[Azurerm_automation_credential]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_credential]]
       }
@@ -1282,7 +1282,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_dsc_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_dsc_configuration], Tuple[Optional[Azurerm_automation_dsc_configuration], String]],
+        'create' => Callable[Optional[Azurerm_automation_dsc_configuration], Tuple[Optional[Azurerm_automation_dsc_configuration]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_dsc_configuration]]
       }
@@ -1305,7 +1305,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_dsc_nodeconfigurationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_dsc_nodeconfiguration], Tuple[Optional[Azurerm_automation_dsc_nodeconfiguration], String]],
+        'create' => Callable[Optional[Azurerm_automation_dsc_nodeconfiguration], Tuple[Optional[Azurerm_automation_dsc_nodeconfiguration]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_dsc_nodeconfiguration]]
       }
@@ -1324,7 +1324,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_moduleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_module], Tuple[Optional[Azurerm_automation_module], String]],
+        'create' => Callable[Optional[Azurerm_automation_module], Tuple[Optional[Azurerm_automation_module]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_module]]
       }
@@ -1374,7 +1374,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_runbookHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_runbook], Tuple[Optional[Azurerm_automation_runbook], String]],
+        'create' => Callable[Optional[Azurerm_automation_runbook], Tuple[Optional[Azurerm_automation_runbook]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_runbook]]
       }
@@ -1451,7 +1451,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_automation_scheduleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_automation_schedule], Tuple[Optional[Azurerm_automation_schedule], String]],
+        'create' => Callable[Optional[Azurerm_automation_schedule], Tuple[Optional[Azurerm_automation_schedule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_automation_schedule]]
       }
@@ -1489,7 +1489,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_autoscale_settingHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_autoscale_setting], Tuple[Optional[Azurerm_autoscale_setting], String]],
+        'create' => Callable[Optional[Azurerm_autoscale_setting], Tuple[Optional[Azurerm_autoscale_setting]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_autoscale_setting]]
       }
@@ -1632,7 +1632,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_availability_setHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_availability_set], Tuple[Optional[Azurerm_availability_set], String]],
+        'create' => Callable[Optional[Azurerm_availability_set], Tuple[Optional[Azurerm_availability_set]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_availability_set]]
       }
@@ -1672,7 +1672,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_azuread_applicationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_azuread_application], Tuple[Optional[Azurerm_azuread_application], String]],
+        'create' => Callable[Optional[Azurerm_azuread_application], Tuple[Optional[Azurerm_azuread_application]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_azuread_application]]
       }
@@ -1692,7 +1692,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_azuread_service_principalHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_azuread_service_principal], Tuple[Optional[Azurerm_azuread_service_principal], String]],
+        'create' => Callable[Optional[Azurerm_azuread_service_principal], Tuple[Optional[Azurerm_azuread_service_principal]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_azuread_service_principal]]
       }
@@ -1718,7 +1718,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_azuread_service_principal_passwordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_azuread_service_principal_password], Tuple[Optional[Azurerm_azuread_service_principal_password], String]],
+        'create' => Callable[Optional[Azurerm_azuread_service_principal_password], Tuple[Optional[Azurerm_azuread_service_principal_password]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_azuread_service_principal_password]]
       }
@@ -1748,7 +1748,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_batch_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_batch_account], Tuple[Optional[Azurerm_batch_account], String]],
+        'create' => Callable[Optional[Azurerm_batch_account], Tuple[Optional[Azurerm_batch_account]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_batch_account]]
       }
@@ -1789,7 +1789,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_batch_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_batch_pool], Tuple[Optional[Azurerm_batch_pool], String]],
+        'create' => Callable[Optional[Azurerm_batch_pool], Tuple[Optional[Azurerm_batch_pool]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_batch_pool]]
       }
@@ -1936,7 +1936,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_cdn_endpointHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_cdn_endpoint], Tuple[Optional[Azurerm_cdn_endpoint], String]],
+        'create' => Callable[Optional[Azurerm_cdn_endpoint], Tuple[Optional[Azurerm_cdn_endpoint]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_cdn_endpoint]]
       }
@@ -1980,7 +1980,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_cdn_profileHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_cdn_profile], Tuple[Optional[Azurerm_cdn_profile], String]],
+        'create' => Callable[Optional[Azurerm_cdn_profile], Tuple[Optional[Azurerm_cdn_profile]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_cdn_profile]]
       }
@@ -2008,7 +2008,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_cognitive_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_cognitive_account], Tuple[Optional[Azurerm_cognitive_account], String]],
+        'create' => Callable[Optional[Azurerm_cognitive_account], Tuple[Optional[Azurerm_cognitive_account]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_cognitive_account]]
       }
@@ -2062,7 +2062,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_container_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_container_group], Tuple[Optional[Azurerm_container_group], String]],
+        'create' => Callable[Optional[Azurerm_container_group], Tuple[Optional[Azurerm_container_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_container_group]]
       }
@@ -2188,7 +2188,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_container_registryHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_container_registry], Tuple[Optional[Azurerm_container_registry], String]],
+        'create' => Callable[Optional[Azurerm_container_registry], Tuple[Optional[Azurerm_container_registry]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_container_registry]]
       }
@@ -2225,7 +2225,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_container_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_container_service], Tuple[Optional[Azurerm_container_service], String]],
+        'create' => Callable[Optional[Azurerm_container_service], Tuple[Optional[Azurerm_container_service]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_container_service]]
       }
@@ -2371,7 +2371,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_cosmosdb_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_cosmosdb_account], Tuple[Optional[Azurerm_cosmosdb_account], String]],
+        'create' => Callable[Optional[Azurerm_cosmosdb_account], Tuple[Optional[Azurerm_cosmosdb_account]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_cosmosdb_account]]
       }
@@ -2445,7 +2445,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_data_lake_analytics_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_data_lake_analytics_account], Tuple[Optional[Azurerm_data_lake_analytics_account], String]],
+        'create' => Callable[Optional[Azurerm_data_lake_analytics_account], Tuple[Optional[Azurerm_data_lake_analytics_account]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_data_lake_analytics_account]]
       }
@@ -2465,7 +2465,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_data_lake_analytics_firewall_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_data_lake_analytics_firewall_rule], Tuple[Optional[Azurerm_data_lake_analytics_firewall_rule], String]],
+        'create' => Callable[Optional[Azurerm_data_lake_analytics_firewall_rule], Tuple[Optional[Azurerm_data_lake_analytics_firewall_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_data_lake_analytics_firewall_rule]]
       }
@@ -2511,7 +2511,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_data_lake_storeHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_data_lake_store], Tuple[Optional[Azurerm_data_lake_store], String]],
+        'create' => Callable[Optional[Azurerm_data_lake_store], Tuple[Optional[Azurerm_data_lake_store]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_data_lake_store]]
       }
@@ -2529,7 +2529,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_data_lake_store_fileHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_data_lake_store_file], Tuple[Optional[Azurerm_data_lake_store_file], String]],
+        'create' => Callable[Optional[Azurerm_data_lake_store_file], Tuple[Optional[Azurerm_data_lake_store_file]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_data_lake_store_file]]
       }
@@ -2549,7 +2549,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_data_lake_store_firewall_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_data_lake_store_firewall_rule], Tuple[Optional[Azurerm_data_lake_store_firewall_rule], String]],
+        'create' => Callable[Optional[Azurerm_data_lake_store_firewall_rule], Tuple[Optional[Azurerm_data_lake_store_firewall_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_data_lake_store_firewall_rule]]
       }
@@ -2580,7 +2580,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_databricks_workspaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_databricks_workspace], Tuple[Optional[Azurerm_databricks_workspace], String]],
+        'create' => Callable[Optional[Azurerm_databricks_workspace], Tuple[Optional[Azurerm_databricks_workspace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_databricks_workspace]]
       }
@@ -2630,7 +2630,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dev_test_labHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dev_test_lab], Tuple[Optional[Azurerm_dev_test_lab], String]],
+        'create' => Callable[Optional[Azurerm_dev_test_lab], Tuple[Optional[Azurerm_dev_test_lab]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dev_test_lab]]
       }
@@ -2691,7 +2691,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dev_test_linux_virtual_machineHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dev_test_linux_virtual_machine], Tuple[Optional[Azurerm_dev_test_linux_virtual_machine], String]],
+        'create' => Callable[Optional[Azurerm_dev_test_linux_virtual_machine], Tuple[Optional[Azurerm_dev_test_linux_virtual_machine]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dev_test_linux_virtual_machine]]
       }
@@ -2742,7 +2742,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dev_test_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dev_test_policy], Tuple[Optional[Azurerm_dev_test_policy], String]],
+        'create' => Callable[Optional[Azurerm_dev_test_policy], Tuple[Optional[Azurerm_dev_test_policy]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dev_test_policy]]
       }
@@ -2776,7 +2776,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dev_test_virtual_networkHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dev_test_virtual_network], Tuple[Optional[Azurerm_dev_test_virtual_network], String]],
+        'create' => Callable[Optional[Azurerm_dev_test_virtual_network], Tuple[Optional[Azurerm_dev_test_virtual_network]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dev_test_virtual_network]]
       }
@@ -2846,7 +2846,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dev_test_windows_virtual_machineHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dev_test_windows_virtual_machine], Tuple[Optional[Azurerm_dev_test_windows_virtual_machine], String]],
+        'create' => Callable[Optional[Azurerm_dev_test_windows_virtual_machine], Tuple[Optional[Azurerm_dev_test_windows_virtual_machine]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dev_test_windows_virtual_machine]]
       }
@@ -2894,7 +2894,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_devspace_controllerHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_devspace_controller], Tuple[Optional[Azurerm_devspace_controller], String]],
+        'create' => Callable[Optional[Azurerm_devspace_controller], Tuple[Optional[Azurerm_devspace_controller]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_devspace_controller]]
       }
@@ -2924,7 +2924,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_a_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_a_record], Tuple[Optional[Azurerm_dns_a_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_a_record], Tuple[Optional[Azurerm_dns_a_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_a_record]]
       }
@@ -2948,7 +2948,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_aaaa_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_aaaa_record], Tuple[Optional[Azurerm_dns_aaaa_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_aaaa_record], Tuple[Optional[Azurerm_dns_aaaa_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_aaaa_record]]
       }
@@ -2972,7 +2972,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_caa_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_caa_record], Tuple[Optional[Azurerm_dns_caa_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_caa_record], Tuple[Optional[Azurerm_dns_caa_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_caa_record]]
       }
@@ -3007,7 +3007,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_cname_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_cname_record], Tuple[Optional[Azurerm_dns_cname_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_cname_record], Tuple[Optional[Azurerm_dns_cname_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_cname_record]]
       }
@@ -3031,7 +3031,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_mx_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_mx_record], Tuple[Optional[Azurerm_dns_mx_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_mx_record], Tuple[Optional[Azurerm_dns_mx_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_mx_record]]
       }
@@ -3068,7 +3068,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_ns_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_ns_record], Tuple[Optional[Azurerm_dns_ns_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_ns_record], Tuple[Optional[Azurerm_dns_ns_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_ns_record]]
       }
@@ -3097,7 +3097,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_ptr_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_ptr_record], Tuple[Optional[Azurerm_dns_ptr_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_ptr_record], Tuple[Optional[Azurerm_dns_ptr_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_ptr_record]]
       }
@@ -3121,7 +3121,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_srv_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_srv_record], Tuple[Optional[Azurerm_dns_srv_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_srv_record], Tuple[Optional[Azurerm_dns_srv_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_srv_record]]
       }
@@ -3153,7 +3153,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_txt_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_txt_record], Tuple[Optional[Azurerm_dns_txt_record], String]],
+        'create' => Callable[Optional[Azurerm_dns_txt_record], Tuple[Optional[Azurerm_dns_txt_record]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_txt_record]]
       }
@@ -3203,7 +3203,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_dns_zoneHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_dns_zone], Tuple[Optional[Azurerm_dns_zone], String]],
+        'create' => Callable[Optional[Azurerm_dns_zone], Tuple[Optional[Azurerm_dns_zone]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_dns_zone]]
       }
@@ -3237,7 +3237,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_eventgrid_topicHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_eventgrid_topic], Tuple[Optional[Azurerm_eventgrid_topic], String]],
+        'create' => Callable[Optional[Azurerm_eventgrid_topic], Tuple[Optional[Azurerm_eventgrid_topic]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_eventgrid_topic]]
       }
@@ -3269,7 +3269,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_eventhubHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_eventhub], Tuple[Optional[Azurerm_eventhub], String]],
+        'create' => Callable[Optional[Azurerm_eventhub], Tuple[Optional[Azurerm_eventhub]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_eventhub]]
       }
@@ -3320,7 +3320,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_eventhub_authorization_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_eventhub_authorization_rule], Tuple[Optional[Azurerm_eventhub_authorization_rule], String]],
+        'create' => Callable[Optional[Azurerm_eventhub_authorization_rule], Tuple[Optional[Azurerm_eventhub_authorization_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_eventhub_authorization_rule]]
       }
@@ -3370,7 +3370,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_eventhub_consumer_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_eventhub_consumer_group], Tuple[Optional[Azurerm_eventhub_consumer_group], String]],
+        'create' => Callable[Optional[Azurerm_eventhub_consumer_group], Tuple[Optional[Azurerm_eventhub_consumer_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_eventhub_consumer_group]]
       }
@@ -3425,7 +3425,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_eventhub_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_eventhub_namespace], Tuple[Optional[Azurerm_eventhub_namespace], String]],
+        'create' => Callable[Optional[Azurerm_eventhub_namespace], Tuple[Optional[Azurerm_eventhub_namespace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_eventhub_namespace]]
       }
@@ -3475,7 +3475,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_eventhub_namespace_authorization_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_eventhub_namespace_authorization_rule], Tuple[Optional[Azurerm_eventhub_namespace_authorization_rule], String]],
+        'create' => Callable[Optional[Azurerm_eventhub_namespace_authorization_rule], Tuple[Optional[Azurerm_eventhub_namespace_authorization_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_eventhub_namespace_authorization_rule]]
       }
@@ -3513,7 +3513,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_express_route_circuitHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_express_route_circuit], Tuple[Optional[Azurerm_express_route_circuit], String]],
+        'create' => Callable[Optional[Azurerm_express_route_circuit], Tuple[Optional[Azurerm_express_route_circuit]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_express_route_circuit]]
       }
@@ -3539,7 +3539,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_express_route_circuit_authorizationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_express_route_circuit_authorization], Tuple[Optional[Azurerm_express_route_circuit_authorization], String]],
+        'create' => Callable[Optional[Azurerm_express_route_circuit_authorization], Tuple[Optional[Azurerm_express_route_circuit_authorization]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_express_route_circuit_authorization]]
       }
@@ -3584,7 +3584,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_express_route_circuit_peeringHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_express_route_circuit_peering], Tuple[Optional[Azurerm_express_route_circuit_peering], String]],
+        'create' => Callable[Optional[Azurerm_express_route_circuit_peering], Tuple[Optional[Azurerm_express_route_circuit_peering]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_express_route_circuit_peering]]
       }
@@ -3618,7 +3618,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_firewallHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_firewall], Tuple[Optional[Azurerm_firewall], String]],
+        'create' => Callable[Optional[Azurerm_firewall], Tuple[Optional[Azurerm_firewall]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_firewall]]
       }
@@ -3639,7 +3639,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_firewall_application_rule_collectionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_firewall_application_rule_collection], Tuple[Optional[Azurerm_firewall_application_rule_collection], String]],
+        'create' => Callable[Optional[Azurerm_firewall_application_rule_collection], Tuple[Optional[Azurerm_firewall_application_rule_collection]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_firewall_application_rule_collection]]
       }
@@ -3709,7 +3709,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_firewall_network_rule_collectionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_firewall_network_rule_collection], Tuple[Optional[Azurerm_firewall_network_rule_collection], String]],
+        'create' => Callable[Optional[Azurerm_firewall_network_rule_collection], Tuple[Optional[Azurerm_firewall_network_rule_collection]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_firewall_network_rule_collection]]
       }
@@ -3794,7 +3794,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_function_appHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_function_app], Tuple[Optional[Azurerm_function_app], String]],
+        'create' => Callable[Optional[Azurerm_function_app], Tuple[Optional[Azurerm_function_app]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_function_app]]
       }
@@ -3876,7 +3876,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_imageHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_image], Tuple[Optional[Azurerm_image], String]],
+        'create' => Callable[Optional[Azurerm_image], Tuple[Optional[Azurerm_image]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_image]]
       }
@@ -3987,7 +3987,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_iothubHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_iothub], Tuple[Optional[Azurerm_iothub], String]],
+        'create' => Callable[Optional[Azurerm_iothub], Tuple[Optional[Azurerm_iothub]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_iothub]]
       }
@@ -4006,7 +4006,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_iothub_consumer_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_iothub_consumer_group], Tuple[Optional[Azurerm_iothub_consumer_group], String]],
+        'create' => Callable[Optional[Azurerm_iothub_consumer_group], Tuple[Optional[Azurerm_iothub_consumer_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_iothub_consumer_group]]
       }
@@ -4120,7 +4120,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_key_vaultHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_key_vault], Tuple[Optional[Azurerm_key_vault], String]],
+        'create' => Callable[Optional[Azurerm_key_vault], Tuple[Optional[Azurerm_key_vault]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_key_vault]]
       }
@@ -4155,7 +4155,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_key_vault_access_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_key_vault_access_policy], Tuple[Optional[Azurerm_key_vault_access_policy], String]],
+        'create' => Callable[Optional[Azurerm_key_vault_access_policy], Tuple[Optional[Azurerm_key_vault_access_policy]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_key_vault_access_policy]]
       }
@@ -4219,7 +4219,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_key_vault_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_key_vault_certificate], Tuple[Optional[Azurerm_key_vault_certificate], String]],
+        'create' => Callable[Optional[Azurerm_key_vault_certificate], Tuple[Optional[Azurerm_key_vault_certificate]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_key_vault_certificate]]
       }
@@ -4351,7 +4351,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_key_vault_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_key_vault_key], Tuple[Optional[Azurerm_key_vault_key], String]],
+        'create' => Callable[Optional[Azurerm_key_vault_key], Tuple[Optional[Azurerm_key_vault_key]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_key_vault_key]]
       }
@@ -4395,7 +4395,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_key_vault_secretHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_key_vault_secret], Tuple[Optional[Azurerm_key_vault_secret], String]],
+        'create' => Callable[Optional[Azurerm_key_vault_secret], Tuple[Optional[Azurerm_key_vault_secret]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_key_vault_secret]]
       }
@@ -4469,7 +4469,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_kubernetes_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_kubernetes_cluster], Tuple[Optional[Azurerm_kubernetes_cluster], String]],
+        'create' => Callable[Optional[Azurerm_kubernetes_cluster], Tuple[Optional[Azurerm_kubernetes_cluster]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_kubernetes_cluster]]
       }
@@ -4692,7 +4692,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_lbHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_lb], Tuple[Optional[Azurerm_lb], String]],
+        'create' => Callable[Optional[Azurerm_lb], Tuple[Optional[Azurerm_lb]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_lb]]
       }
@@ -4722,7 +4722,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_lb_backend_address_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_lb_backend_address_pool], Tuple[Optional[Azurerm_lb_backend_address_pool], String]],
+        'create' => Callable[Optional[Azurerm_lb_backend_address_pool], Tuple[Optional[Azurerm_lb_backend_address_pool]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_lb_backend_address_pool]]
       }
@@ -4786,7 +4786,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_lb_nat_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_lb_nat_pool], Tuple[Optional[Azurerm_lb_nat_pool], String]],
+        'create' => Callable[Optional[Azurerm_lb_nat_pool], Tuple[Optional[Azurerm_lb_nat_pool]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_lb_nat_pool]]
       }
@@ -4824,7 +4824,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_lb_nat_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_lb_nat_rule], Tuple[Optional[Azurerm_lb_nat_rule], String]],
+        'create' => Callable[Optional[Azurerm_lb_nat_rule], Tuple[Optional[Azurerm_lb_nat_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_lb_nat_rule]]
       }
@@ -4867,7 +4867,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_lb_probeHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_lb_probe], Tuple[Optional[Azurerm_lb_probe], String]],
+        'create' => Callable[Optional[Azurerm_lb_probe], Tuple[Optional[Azurerm_lb_probe]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_lb_probe]]
       }
@@ -4917,7 +4917,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_lb_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_lb_rule], Tuple[Optional[Azurerm_lb_rule], String]],
+        'create' => Callable[Optional[Azurerm_lb_rule], Tuple[Optional[Azurerm_lb_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_lb_rule]]
       }
@@ -4945,7 +4945,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_local_network_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_local_network_gateway], Tuple[Optional[Azurerm_local_network_gateway], String]],
+        'create' => Callable[Optional[Azurerm_local_network_gateway], Tuple[Optional[Azurerm_local_network_gateway]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_local_network_gateway]]
       }
@@ -4976,7 +4976,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_log_analytics_solutionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_log_analytics_solution], Tuple[Optional[Azurerm_log_analytics_solution], String]],
+        'create' => Callable[Optional[Azurerm_log_analytics_solution], Tuple[Optional[Azurerm_log_analytics_solution]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_log_analytics_solution]]
       }
@@ -5033,7 +5033,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_log_analytics_workspaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_log_analytics_workspace], Tuple[Optional[Azurerm_log_analytics_workspace], String]],
+        'create' => Callable[Optional[Azurerm_log_analytics_workspace], Tuple[Optional[Azurerm_log_analytics_workspace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_log_analytics_workspace]]
       }
@@ -5063,7 +5063,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_log_analytics_workspace_linked_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_log_analytics_workspace_linked_service], Tuple[Optional[Azurerm_log_analytics_workspace_linked_service], String]],
+        'create' => Callable[Optional[Azurerm_log_analytics_workspace_linked_service], Tuple[Optional[Azurerm_log_analytics_workspace_linked_service]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_log_analytics_workspace_linked_service]]
       }
@@ -5081,7 +5081,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_logic_app_action_customHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_logic_app_action_custom], Tuple[Optional[Azurerm_logic_app_action_custom], String]],
+        'create' => Callable[Optional[Azurerm_logic_app_action_custom], Tuple[Optional[Azurerm_logic_app_action_custom]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_logic_app_action_custom]]
       }
@@ -5108,7 +5108,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_logic_app_action_httpHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_logic_app_action_http], Tuple[Optional[Azurerm_logic_app_action_http], String]],
+        'create' => Callable[Optional[Azurerm_logic_app_action_http], Tuple[Optional[Azurerm_logic_app_action_http]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_logic_app_action_http]]
       }
@@ -5126,7 +5126,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_logic_app_trigger_customHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_logic_app_trigger_custom], Tuple[Optional[Azurerm_logic_app_trigger_custom], String]],
+        'create' => Callable[Optional[Azurerm_logic_app_trigger_custom], Tuple[Optional[Azurerm_logic_app_trigger_custom]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_logic_app_trigger_custom]]
       }
@@ -5152,7 +5152,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_logic_app_trigger_http_requestHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_logic_app_trigger_http_request], Tuple[Optional[Azurerm_logic_app_trigger_http_request], String]],
+        'create' => Callable[Optional[Azurerm_logic_app_trigger_http_request], Tuple[Optional[Azurerm_logic_app_trigger_http_request]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_logic_app_trigger_http_request]]
       }
@@ -5171,7 +5171,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_logic_app_trigger_recurrenceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_logic_app_trigger_recurrence], Tuple[Optional[Azurerm_logic_app_trigger_recurrence], String]],
+        'create' => Callable[Optional[Azurerm_logic_app_trigger_recurrence], Tuple[Optional[Azurerm_logic_app_trigger_recurrence]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_logic_app_trigger_recurrence]]
       }
@@ -5209,7 +5209,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_logic_app_workflowHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_logic_app_workflow], Tuple[Optional[Azurerm_logic_app_workflow], String]],
+        'create' => Callable[Optional[Azurerm_logic_app_workflow], Tuple[Optional[Azurerm_logic_app_workflow]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_logic_app_workflow]]
       }
@@ -5261,7 +5261,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_managed_diskHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_managed_disk], Tuple[Optional[Azurerm_managed_disk], String]],
+        'create' => Callable[Optional[Azurerm_managed_disk], Tuple[Optional[Azurerm_managed_disk]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_managed_disk]]
       }
@@ -5317,7 +5317,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_management_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_management_group], Tuple[Optional[Azurerm_management_group], String]],
+        'create' => Callable[Optional[Azurerm_management_group], Tuple[Optional[Azurerm_management_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_management_group]]
       }
@@ -5339,7 +5339,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_management_lockHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_management_lock], Tuple[Optional[Azurerm_management_lock], String]],
+        'create' => Callable[Optional[Azurerm_management_lock], Tuple[Optional[Azurerm_management_lock]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_management_lock]]
       }
@@ -5359,7 +5359,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mariadb_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mariadb_database], Tuple[Optional[Azurerm_mariadb_database], String]],
+        'create' => Callable[Optional[Azurerm_mariadb_database], Tuple[Optional[Azurerm_mariadb_database]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mariadb_database]]
       }
@@ -5391,7 +5391,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mariadb_serverHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mariadb_server], Tuple[Optional[Azurerm_mariadb_server], String]],
+        'create' => Callable[Optional[Azurerm_mariadb_server], Tuple[Optional[Azurerm_mariadb_server]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mariadb_server]]
       }
@@ -5456,7 +5456,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_metric_alertruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_metric_alertrule], Tuple[Optional[Azurerm_metric_alertrule], String]],
+        'create' => Callable[Optional[Azurerm_metric_alertrule], Tuple[Optional[Azurerm_metric_alertrule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_metric_alertrule]]
       }
@@ -5515,7 +5515,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_monitor_action_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_monitor_action_group], Tuple[Optional[Azurerm_monitor_action_group], String]],
+        'create' => Callable[Optional[Azurerm_monitor_action_group], Tuple[Optional[Azurerm_monitor_action_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_monitor_action_group]]
       }
@@ -5569,7 +5569,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_monitor_activity_log_alertHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_monitor_activity_log_alert], Tuple[Optional[Azurerm_monitor_activity_log_alert], String]],
+        'create' => Callable[Optional[Azurerm_monitor_activity_log_alert], Tuple[Optional[Azurerm_monitor_activity_log_alert]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_monitor_activity_log_alert]]
       }
@@ -5660,7 +5660,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_monitor_diagnostic_settingHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_monitor_diagnostic_setting], Tuple[Optional[Azurerm_monitor_diagnostic_setting], String]],
+        'create' => Callable[Optional[Azurerm_monitor_diagnostic_setting], Tuple[Optional[Azurerm_monitor_diagnostic_setting]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_monitor_diagnostic_setting]]
       }
@@ -5725,7 +5725,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_monitor_log_profileHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_monitor_log_profile], Tuple[Optional[Azurerm_monitor_log_profile], String]],
+        'create' => Callable[Optional[Azurerm_monitor_log_profile], Tuple[Optional[Azurerm_monitor_log_profile]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_monitor_log_profile]]
       }
@@ -5785,7 +5785,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_monitor_metric_alertHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_monitor_metric_alert], Tuple[Optional[Azurerm_monitor_metric_alert], String]],
+        'create' => Callable[Optional[Azurerm_monitor_metric_alert], Tuple[Optional[Azurerm_monitor_metric_alert]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_monitor_metric_alert]]
       }
@@ -5851,7 +5851,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mssql_elasticpoolHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mssql_elasticpool], Tuple[Optional[Azurerm_mssql_elasticpool], String]],
+        'create' => Callable[Optional[Azurerm_mssql_elasticpool], Tuple[Optional[Azurerm_mssql_elasticpool]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mssql_elasticpool]]
       }
@@ -5911,7 +5911,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mysql_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mysql_configuration], Tuple[Optional[Azurerm_mysql_configuration], String]],
+        'create' => Callable[Optional[Azurerm_mysql_configuration], Tuple[Optional[Azurerm_mysql_configuration]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mysql_configuration]]
       }
@@ -5931,7 +5931,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mysql_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mysql_database], Tuple[Optional[Azurerm_mysql_database], String]],
+        'create' => Callable[Optional[Azurerm_mysql_database], Tuple[Optional[Azurerm_mysql_database]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mysql_database]]
       }
@@ -5951,7 +5951,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mysql_firewall_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mysql_firewall_rule], Tuple[Optional[Azurerm_mysql_firewall_rule], String]],
+        'create' => Callable[Optional[Azurerm_mysql_firewall_rule], Tuple[Optional[Azurerm_mysql_firewall_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mysql_firewall_rule]]
       }
@@ -5983,7 +5983,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mysql_serverHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mysql_server], Tuple[Optional[Azurerm_mysql_server], String]],
+        'create' => Callable[Optional[Azurerm_mysql_server], Tuple[Optional[Azurerm_mysql_server]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mysql_server]]
       }
@@ -6023,7 +6023,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_mysql_virtual_network_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_mysql_virtual_network_rule], Tuple[Optional[Azurerm_mysql_virtual_network_rule], String]],
+        'create' => Callable[Optional[Azurerm_mysql_virtual_network_rule], Tuple[Optional[Azurerm_mysql_virtual_network_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_mysql_virtual_network_rule]]
       }
@@ -6090,7 +6090,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_interface], Tuple[Optional[Azurerm_network_interface], String]],
+        'create' => Callable[Optional[Azurerm_network_interface], Tuple[Optional[Azurerm_network_interface]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_interface]]
       }
@@ -6108,7 +6108,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association], Tuple[Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association], String]],
+        'create' => Callable[Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association], Tuple[Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association]]
       }
@@ -6126,7 +6126,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_interface_backend_address_pool_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_interface_backend_address_pool_association], Tuple[Optional[Azurerm_network_interface_backend_address_pool_association], String]],
+        'create' => Callable[Optional[Azurerm_network_interface_backend_address_pool_association], Tuple[Optional[Azurerm_network_interface_backend_address_pool_association]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_interface_backend_address_pool_association]]
       }
@@ -6186,7 +6186,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_interface_nat_rule_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_interface_nat_rule_association], Tuple[Optional[Azurerm_network_interface_nat_rule_association], String]],
+        'create' => Callable[Optional[Azurerm_network_interface_nat_rule_association], Tuple[Optional[Azurerm_network_interface_nat_rule_association]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_interface_nat_rule_association]]
       }
@@ -6212,7 +6212,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_security_group], Tuple[Optional[Azurerm_network_security_group], String]],
+        'create' => Callable[Optional[Azurerm_network_security_group], Tuple[Optional[Azurerm_network_security_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_security_group]]
       }
@@ -6331,7 +6331,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_security_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_security_rule], Tuple[Optional[Azurerm_network_security_rule], String]],
+        'create' => Callable[Optional[Azurerm_network_security_rule], Tuple[Optional[Azurerm_network_security_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_security_rule]]
       }
@@ -6353,7 +6353,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_network_watcherHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_network_watcher], Tuple[Optional[Azurerm_network_watcher], String]],
+        'create' => Callable[Optional[Azurerm_network_watcher], Tuple[Optional[Azurerm_network_watcher]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_network_watcher]]
       }
@@ -6380,7 +6380,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_notification_hubHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_notification_hub], Tuple[Optional[Azurerm_notification_hub], String]],
+        'create' => Callable[Optional[Azurerm_notification_hub], Tuple[Optional[Azurerm_notification_hub]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_notification_hub]]
       }
@@ -6428,7 +6428,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_notification_hub_authorization_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_notification_hub_authorization_rule], Tuple[Optional[Azurerm_notification_hub_authorization_rule], String]],
+        'create' => Callable[Optional[Azurerm_notification_hub_authorization_rule], Tuple[Optional[Azurerm_notification_hub_authorization_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_notification_hub_authorization_rule]]
       }
@@ -6461,7 +6461,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_notification_hub_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_notification_hub_namespace], Tuple[Optional[Azurerm_notification_hub_namespace], String]],
+        'create' => Callable[Optional[Azurerm_notification_hub_namespace], Tuple[Optional[Azurerm_notification_hub_namespace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_notification_hub_namespace]]
       }
@@ -6502,7 +6502,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_packet_captureHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_packet_capture], Tuple[Optional[Azurerm_packet_capture], String]],
+        'create' => Callable[Optional[Azurerm_packet_capture], Tuple[Optional[Azurerm_packet_capture]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_packet_capture]]
       }
@@ -6581,7 +6581,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_policy_assignmentHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_policy_assignment], Tuple[Optional[Azurerm_policy_assignment], String]],
+        'create' => Callable[Optional[Azurerm_policy_assignment], Tuple[Optional[Azurerm_policy_assignment]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_policy_assignment]]
       }
@@ -6636,7 +6636,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_policy_definitionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_policy_definition], Tuple[Optional[Azurerm_policy_definition], String]],
+        'create' => Callable[Optional[Azurerm_policy_definition], Tuple[Optional[Azurerm_policy_definition]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_policy_definition]]
       }
@@ -6674,7 +6674,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_policy_set_definitionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_policy_set_definition], Tuple[Optional[Azurerm_policy_set_definition], String]],
+        'create' => Callable[Optional[Azurerm_policy_set_definition], Tuple[Optional[Azurerm_policy_set_definition]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_policy_set_definition]]
       }
@@ -6693,7 +6693,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_postgresql_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_postgresql_configuration], Tuple[Optional[Azurerm_postgresql_configuration], String]],
+        'create' => Callable[Optional[Azurerm_postgresql_configuration], Tuple[Optional[Azurerm_postgresql_configuration]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_postgresql_configuration]]
       }
@@ -6713,7 +6713,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_postgresql_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_postgresql_database], Tuple[Optional[Azurerm_postgresql_database], String]],
+        'create' => Callable[Optional[Azurerm_postgresql_database], Tuple[Optional[Azurerm_postgresql_database]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_postgresql_database]]
       }
@@ -6733,7 +6733,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_postgresql_firewall_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_postgresql_firewall_rule], Tuple[Optional[Azurerm_postgresql_firewall_rule], String]],
+        'create' => Callable[Optional[Azurerm_postgresql_firewall_rule], Tuple[Optional[Azurerm_postgresql_firewall_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_postgresql_firewall_rule]]
       }
@@ -6765,7 +6765,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_postgresql_serverHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_postgresql_server], Tuple[Optional[Azurerm_postgresql_server], String]],
+        'create' => Callable[Optional[Azurerm_postgresql_server], Tuple[Optional[Azurerm_postgresql_server]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_postgresql_server]]
       }
@@ -6809,7 +6809,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_postgresql_virtual_network_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_postgresql_virtual_network_rule], Tuple[Optional[Azurerm_postgresql_virtual_network_rule], String]],
+        'create' => Callable[Optional[Azurerm_postgresql_virtual_network_rule], Tuple[Optional[Azurerm_postgresql_virtual_network_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_postgresql_virtual_network_rule]]
       }
@@ -6871,7 +6871,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_public_ipHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_public_ip], Tuple[Optional[Azurerm_public_ip], String]],
+        'create' => Callable[Optional[Azurerm_public_ip], Tuple[Optional[Azurerm_public_ip]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_public_ip]]
       }
@@ -6894,7 +6894,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_recovery_services_protected_vmHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_recovery_services_protected_vm], Tuple[Optional[Azurerm_recovery_services_protected_vm], String]],
+        'create' => Callable[Optional[Azurerm_recovery_services_protected_vm], Tuple[Optional[Azurerm_recovery_services_protected_vm]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_recovery_services_protected_vm]]
       }
@@ -6937,7 +6937,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_recovery_services_protection_policy_vmHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_recovery_services_protection_policy_vm], Tuple[Optional[Azurerm_recovery_services_protection_policy_vm], String]],
+        'create' => Callable[Optional[Azurerm_recovery_services_protection_policy_vm], Tuple[Optional[Azurerm_recovery_services_protection_policy_vm]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_recovery_services_protection_policy_vm]]
       }
@@ -6996,7 +6996,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_recovery_services_vaultHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_recovery_services_vault], Tuple[Optional[Azurerm_recovery_services_vault], String]],
+        'create' => Callable[Optional[Azurerm_recovery_services_vault], Tuple[Optional[Azurerm_recovery_services_vault]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_recovery_services_vault]]
       }
@@ -7066,7 +7066,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_redis_cacheHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_redis_cache], Tuple[Optional[Azurerm_redis_cache], String]],
+        'create' => Callable[Optional[Azurerm_redis_cache], Tuple[Optional[Azurerm_redis_cache]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_redis_cache]]
       }
@@ -7135,7 +7135,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_redis_firewall_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_redis_firewall_rule], Tuple[Optional[Azurerm_redis_firewall_rule], String]],
+        'create' => Callable[Optional[Azurerm_redis_firewall_rule], Tuple[Optional[Azurerm_redis_firewall_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_redis_firewall_rule]]
       }
@@ -7178,7 +7178,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_relay_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_relay_namespace], Tuple[Optional[Azurerm_relay_namespace], String]],
+        'create' => Callable[Optional[Azurerm_relay_namespace], Tuple[Optional[Azurerm_relay_namespace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_relay_namespace]]
       }
@@ -7204,7 +7204,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_resource_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_resource_group], Tuple[Optional[Azurerm_resource_group], String]],
+        'create' => Callable[Optional[Azurerm_resource_group], Tuple[Optional[Azurerm_resource_group]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_resource_group]]
       }
@@ -7233,7 +7233,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_role_assignmentHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_role_assignment], Tuple[Optional[Azurerm_role_assignment], String]],
+        'create' => Callable[Optional[Azurerm_role_assignment], Tuple[Optional[Azurerm_role_assignment]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_role_assignment]]
       }
@@ -7260,7 +7260,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_role_definitionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_role_definition], Tuple[Optional[Azurerm_role_definition], String]],
+        'create' => Callable[Optional[Azurerm_role_definition], Tuple[Optional[Azurerm_role_definition]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_role_definition]]
       }
@@ -7304,7 +7304,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_routeHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_route], Tuple[Optional[Azurerm_route], String]],
+        'create' => Callable[Optional[Azurerm_route], Tuple[Optional[Azurerm_route]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_route]]
       }
@@ -7338,7 +7338,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_route_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_route_table], Tuple[Optional[Azurerm_route_table], String]],
+        'create' => Callable[Optional[Azurerm_route_table], Tuple[Optional[Azurerm_route_table]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_route_table]]
       }
@@ -7399,7 +7399,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_scheduler_jobHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_scheduler_job], Tuple[Optional[Azurerm_scheduler_job], String]],
+        'create' => Callable[Optional[Azurerm_scheduler_job], Tuple[Optional[Azurerm_scheduler_job]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_scheduler_job]]
       }
@@ -7499,7 +7499,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_scheduler_job_collectionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_scheduler_job_collection], Tuple[Optional[Azurerm_scheduler_job_collection], String]],
+        'create' => Callable[Optional[Azurerm_scheduler_job_collection], Tuple[Optional[Azurerm_scheduler_job_collection]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_scheduler_job_collection]]
       }
@@ -7679,7 +7679,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_search_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_search_service], Tuple[Optional[Azurerm_search_service], String]],
+        'create' => Callable[Optional[Azurerm_search_service], Tuple[Optional[Azurerm_search_service]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_search_service]]
       }
@@ -7698,7 +7698,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_security_center_contactHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_security_center_contact], Tuple[Optional[Azurerm_security_center_contact], String]],
+        'create' => Callable[Optional[Azurerm_security_center_contact], Tuple[Optional[Azurerm_security_center_contact]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_security_center_contact]]
       }
@@ -7714,7 +7714,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_security_center_subscription_pricingHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_security_center_subscription_pricing], Tuple[Optional[Azurerm_security_center_subscription_pricing], String]],
+        'create' => Callable[Optional[Azurerm_security_center_subscription_pricing], Tuple[Optional[Azurerm_security_center_subscription_pricing]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_security_center_subscription_pricing]]
       }
@@ -7731,7 +7731,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_security_center_workspaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_security_center_workspace], Tuple[Optional[Azurerm_security_center_workspace], String]],
+        'create' => Callable[Optional[Azurerm_security_center_workspace], Tuple[Optional[Azurerm_security_center_workspace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_security_center_workspace]]
       }
@@ -7794,7 +7794,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_service_fabric_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_service_fabric_cluster], Tuple[Optional[Azurerm_service_fabric_cluster], String]],
+        'create' => Callable[Optional[Azurerm_service_fabric_cluster], Tuple[Optional[Azurerm_service_fabric_cluster]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_service_fabric_cluster]]
       }
@@ -7925,7 +7925,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_namespace], Tuple[Optional[Azurerm_servicebus_namespace], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_namespace], Tuple[Optional[Azurerm_servicebus_namespace]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_namespace]]
       }
@@ -7971,7 +7971,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_namespace_authorization_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_namespace_authorization_rule], Tuple[Optional[Azurerm_servicebus_namespace_authorization_rule], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_namespace_authorization_rule], Tuple[Optional[Azurerm_servicebus_namespace_authorization_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_namespace_authorization_rule]]
       }
@@ -8045,7 +8045,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_queueHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_queue], Tuple[Optional[Azurerm_servicebus_queue], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_queue], Tuple[Optional[Azurerm_servicebus_queue]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_queue]]
       }
@@ -8092,7 +8092,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_queue_authorization_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_queue_authorization_rule], Tuple[Optional[Azurerm_servicebus_queue_authorization_rule], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_queue_authorization_rule], Tuple[Optional[Azurerm_servicebus_queue_authorization_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_queue_authorization_rule]]
       }
@@ -8148,7 +8148,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_subscription], Tuple[Optional[Azurerm_servicebus_subscription], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_subscription], Tuple[Optional[Azurerm_servicebus_subscription]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_subscription]]
       }
@@ -8181,7 +8181,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_subscription_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_subscription_rule], Tuple[Optional[Azurerm_servicebus_subscription_rule], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_subscription_rule], Tuple[Optional[Azurerm_servicebus_subscription_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_subscription_rule]]
       }
@@ -8283,7 +8283,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_topicHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_topic], Tuple[Optional[Azurerm_servicebus_topic], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_topic], Tuple[Optional[Azurerm_servicebus_topic]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_topic]]
       }
@@ -8330,7 +8330,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_servicebus_topic_authorization_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_servicebus_topic_authorization_rule], Tuple[Optional[Azurerm_servicebus_topic_authorization_rule], String]],
+        'create' => Callable[Optional[Azurerm_servicebus_topic_authorization_rule], Tuple[Optional[Azurerm_servicebus_topic_authorization_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_servicebus_topic_authorization_rule]]
       }
@@ -8371,7 +8371,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_shared_imageHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_shared_image], Tuple[Optional[Azurerm_shared_image], String]],
+        'create' => Callable[Optional[Azurerm_shared_image], Tuple[Optional[Azurerm_shared_image]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_shared_image]]
       }
@@ -8401,7 +8401,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_shared_image_galleryHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_shared_image_gallery], Tuple[Optional[Azurerm_shared_image_gallery], String]],
+        'create' => Callable[Optional[Azurerm_shared_image_gallery], Tuple[Optional[Azurerm_shared_image_gallery]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_shared_image_gallery]]
       }
@@ -8438,7 +8438,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_shared_image_versionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_shared_image_version], Tuple[Optional[Azurerm_shared_image_version], String]],
+        'create' => Callable[Optional[Azurerm_shared_image_version], Tuple[Optional[Azurerm_shared_image_version]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_shared_image_version]]
       }
@@ -8483,7 +8483,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_signalr_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_signalr_service], Tuple[Optional[Azurerm_signalr_service], String]],
+        'create' => Callable[Optional[Azurerm_signalr_service], Tuple[Optional[Azurerm_signalr_service]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_signalr_service]]
       }
@@ -8532,7 +8532,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_snapshotHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_snapshot], Tuple[Optional[Azurerm_snapshot], String]],
+        'create' => Callable[Optional[Azurerm_snapshot], Tuple[Optional[Azurerm_snapshot]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_snapshot]]
       }
@@ -8577,7 +8577,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_sql_active_directory_administratorHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_sql_active_directory_administrator], Tuple[Optional[Azurerm_sql_active_directory_administrator], String]],
+        'create' => Callable[Optional[Azurerm_sql_active_directory_administrator], Tuple[Optional[Azurerm_sql_active_directory_administrator]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_sql_active_directory_administrator]]
       }
@@ -8660,7 +8660,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_sql_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_sql_database], Tuple[Optional[Azurerm_sql_database], String]],
+        'create' => Callable[Optional[Azurerm_sql_database], Tuple[Optional[Azurerm_sql_database]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_sql_database]]
       }
@@ -8751,7 +8751,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_sql_elasticpoolHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_sql_elasticpool], Tuple[Optional[Azurerm_sql_elasticpool], String]],
+        'create' => Callable[Optional[Azurerm_sql_elasticpool], Tuple[Optional[Azurerm_sql_elasticpool]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_sql_elasticpool]]
       }
@@ -8771,7 +8771,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_sql_firewall_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_sql_firewall_rule], Tuple[Optional[Azurerm_sql_firewall_rule], String]],
+        'create' => Callable[Optional[Azurerm_sql_firewall_rule], Tuple[Optional[Azurerm_sql_firewall_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_sql_firewall_rule]]
       }
@@ -8800,7 +8800,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_sql_serverHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_sql_server], Tuple[Optional[Azurerm_sql_server], String]],
+        'create' => Callable[Optional[Azurerm_sql_server], Tuple[Optional[Azurerm_sql_server]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_sql_server]]
       }
@@ -8823,7 +8823,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_sql_virtual_network_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_sql_virtual_network_rule], Tuple[Optional[Azurerm_sql_virtual_network_rule], String]],
+        'create' => Callable[Optional[Azurerm_sql_virtual_network_rule], Tuple[Optional[Azurerm_sql_virtual_network_rule]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_sql_virtual_network_rule]]
       }
@@ -8947,7 +8947,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_storage_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_storage_account], Tuple[Optional[Azurerm_storage_account], String]],
+        'create' => Callable[Optional[Azurerm_storage_account], Tuple[Optional[Azurerm_storage_account]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_storage_account]]
       }
@@ -9036,7 +9036,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_storage_blobHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_storage_blob], Tuple[Optional[Azurerm_storage_blob], String]],
+        'create' => Callable[Optional[Azurerm_storage_blob], Tuple[Optional[Azurerm_storage_blob]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_storage_blob]]
       }
@@ -9062,7 +9062,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_storage_containerHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_storage_container], Tuple[Optional[Azurerm_storage_container], String]],
+        'create' => Callable[Optional[Azurerm_storage_container], Tuple[Optional[Azurerm_storage_container]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_storage_container]]
       }
@@ -9080,7 +9080,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_storage_queueHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_storage_queue], Tuple[Optional[Azurerm_storage_queue], String]],
+        'create' => Callable[Optional[Azurerm_storage_queue], Tuple[Optional[Azurerm_storage_queue]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_storage_queue]]
       }
@@ -9106,7 +9106,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_storage_shareHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_storage_share], Tuple[Optional[Azurerm_storage_share], String]],
+        'create' => Callable[Optional[Azurerm_storage_share], Tuple[Optional[Azurerm_storage_share]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_storage_share]]
       }
@@ -9124,7 +9124,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_storage_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_storage_table], Tuple[Optional[Azurerm_storage_table], String]],
+        'create' => Callable[Optional[Azurerm_storage_table], Tuple[Optional[Azurerm_storage_table]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_storage_table]]
       }
@@ -9163,7 +9163,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_subnetHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_subnet], Tuple[Optional[Azurerm_subnet], String]],
+        'create' => Callable[Optional[Azurerm_subnet], Tuple[Optional[Azurerm_subnet]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_subnet]]
       }
@@ -9195,7 +9195,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_subnet_network_security_group_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_subnet_network_security_group_association], Tuple[Optional[Azurerm_subnet_network_security_group_association], String]],
+        'create' => Callable[Optional[Azurerm_subnet_network_security_group_association], Tuple[Optional[Azurerm_subnet_network_security_group_association]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_subnet_network_security_group_association]]
       }
@@ -9212,7 +9212,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_subnet_route_table_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_subnet_route_table_association], Tuple[Optional[Azurerm_subnet_route_table_association], String]],
+        'create' => Callable[Optional[Azurerm_subnet_route_table_association], Tuple[Optional[Azurerm_subnet_route_table_association]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_subnet_route_table_association]]
       }
@@ -9246,7 +9246,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_template_deploymentHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_template_deployment], Tuple[Optional[Azurerm_template_deployment], String]],
+        'create' => Callable[Optional[Azurerm_template_deployment], Tuple[Optional[Azurerm_template_deployment]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_template_deployment]]
       }
@@ -9301,7 +9301,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_traffic_manager_endpointHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_traffic_manager_endpoint], Tuple[Optional[Azurerm_traffic_manager_endpoint], String]],
+        'create' => Callable[Optional[Azurerm_traffic_manager_endpoint], Tuple[Optional[Azurerm_traffic_manager_endpoint]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_traffic_manager_endpoint]]
       }
@@ -9333,7 +9333,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_traffic_manager_profileHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_traffic_manager_profile], Tuple[Optional[Azurerm_traffic_manager_profile], String]],
+        'create' => Callable[Optional[Azurerm_traffic_manager_profile], Tuple[Optional[Azurerm_traffic_manager_profile]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_traffic_manager_profile]]
       }
@@ -9379,7 +9379,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_user_assigned_identityHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_user_assigned_identity], Tuple[Optional[Azurerm_user_assigned_identity], String]],
+        'create' => Callable[Optional[Azurerm_user_assigned_identity], Tuple[Optional[Azurerm_user_assigned_identity]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_user_assigned_identity]]
       }
@@ -9464,7 +9464,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_machineHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_machine], Tuple[Optional[Azurerm_virtual_machine], String]],
+        'create' => Callable[Optional[Azurerm_virtual_machine], Tuple[Optional[Azurerm_virtual_machine]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_machine]]
       }
@@ -9497,7 +9497,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_machine_data_disk_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_machine_data_disk_attachment], Tuple[Optional[Azurerm_virtual_machine_data_disk_attachment], String]],
+        'create' => Callable[Optional[Azurerm_virtual_machine_data_disk_attachment], Tuple[Optional[Azurerm_virtual_machine_data_disk_attachment]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_machine_data_disk_attachment]]
       }
@@ -9535,7 +9535,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_machine_extensionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_machine_extension], Tuple[Optional[Azurerm_virtual_machine_extension], String]],
+        'create' => Callable[Optional[Azurerm_virtual_machine_extension], Tuple[Optional[Azurerm_virtual_machine_extension]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_machine_extension]]
       }
@@ -9742,7 +9742,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_machine_scale_setHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_machine_scale_set], Tuple[Optional[Azurerm_virtual_machine_scale_set], String]],
+        'create' => Callable[Optional[Azurerm_virtual_machine_scale_set], Tuple[Optional[Azurerm_virtual_machine_scale_set]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_machine_scale_set]]
       }
@@ -10168,7 +10168,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_networkHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_network], Tuple[Optional[Azurerm_virtual_network], String]],
+        'create' => Callable[Optional[Azurerm_virtual_network], Tuple[Optional[Azurerm_virtual_network]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_network]]
       }
@@ -10217,7 +10217,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_network_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_network_gateway], Tuple[Optional[Azurerm_virtual_network_gateway], String]],
+        'create' => Callable[Optional[Azurerm_virtual_network_gateway], Tuple[Optional[Azurerm_virtual_network_gateway]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_network_gateway]]
       }
@@ -10293,7 +10293,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_network_gateway_connectionHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_network_gateway_connection], Tuple[Optional[Azurerm_virtual_network_gateway_connection], String]],
+        'create' => Callable[Optional[Azurerm_virtual_network_gateway_connection], Tuple[Optional[Azurerm_virtual_network_gateway_connection]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_network_gateway_connection]]
       }
@@ -10400,7 +10400,7 @@ type TerraformAzureRM = TypeSet[{
     },
     Azurerm_virtual_network_peeringHandler => {
       functions => {
-        'create' => Callable[Optional[Azurerm_virtual_network_peering], Tuple[Optional[Azurerm_virtual_network_peering], String]],
+        'create' => Callable[Optional[Azurerm_virtual_network_peering], Tuple[Optional[Azurerm_virtual_network_peering]]],
         'delete' => Callable[String],
         'read' => Callable[String, Optional[Azurerm_virtual_network_peering]]
       }
