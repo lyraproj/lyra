@@ -25,8 +25,6 @@ LDFLAGS += -s -w # Strip debug information
 
 LICENSE_TMPFILE = LICENSE_TMPFILE.txt
 
-LINTIGNOREINITIALISMS = "cmd\/goplugin-(aws|example)\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
-
 PHONY+= all
 all: check-mods clean test lyra content smoke-test
 
@@ -112,15 +110,27 @@ clean:
 	@echo "🔘 Cleaning vendor..."
 	@rm -rf vendor
 
-$(GOPATH)/bin/golint:
-	@echo "🔘 Installing golint... (`date '+%H:%M:%S'`)"
-	GO111MODULE=off go get -u golang.org/x/lint/golint
+$(GOPATH)/bin/golangci-lint:
+	@echo "🔘 Installing golangci-lint... (`date '+%H:%M:%S'`)"
+	@GO111MODULE=off go get github.com/golangci/golangci-lint/cmd/golangci-lint
 
 PHONY+= lint
-lint: $(GOPATH)/bin/golint
-	@echo "🔘 Linting... (ignoring style errors in AWS SDK/Provider) (`date '+%H:%M:%S'`)"
-	@lint=`golint ./... | grep -v ^vendor/ | grep -E -v -e ${LINTIGNOREINITIALISMS}`; \
-	if [ "$$lint" != "" ]; then echo "$$lint"; exit 1; fi
+lint: $(GOPATH)/bin/golangci-lint
+	@echo "🔘 Linting... (`date '+%H:%M:%S'`)"
+	@lint=`golangci-lint run cmd/lyra/... pkg/...`; \
+	if [ "$$lint" != "" ]; \
+	then echo "🔴 Lint found"; echo "$$lint"; exit 1; \
+	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
+	fi
+
+PHONY+= lint-all
+lint-all: $(GOPATH)/bin/golangci-lint
+	@echo "🔘 Linting... (`date '+%H:%M:%S'`)"
+	@lint=`golangci-lint run`; \
+	if [ "$$lint" != "" ]; \
+	then echo "🔴 Lint found"; echo "$$lint"; \
+	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
+	fi
 
 PHONY+= vet
 vet:

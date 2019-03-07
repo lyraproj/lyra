@@ -77,7 +77,7 @@ func (l *Loader) LoadEntry(c eval.Context, name eval.TypedName) eval.LoaderEntry
 // LoadService will load the named service. The caller is responsible for unloading it.
 func (l *Loader) loadService(c eval.Context, serviceID eval.TypedName) serviceapi.Service {
 	cmd, foundCmd := l.serviceCmds[serviceID.MapKey()]
-	cmdArgs, _ := l.serviceCmdArgs[serviceID.MapKey()]
+	cmdArgs := l.serviceCmdArgs[serviceID.MapKey()]
 	if !foundCmd {
 		l.logger.Error("unknown service id", "serviceID", serviceID)
 		return nil

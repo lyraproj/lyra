@@ -12,10 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	defaultLogEncoding = "console"
-)
-
 var (
 	debug    bool
 	loglevel string
@@ -53,7 +49,10 @@ func NewRootCmd() *cobra.Command {
 }
 
 func runHelp(cmd *cobra.Command, args []string) {
-	cmd.Help()
+	err := cmd.Help()
+	if err != nil {
+		panic(err)
+	}
 }
 
 func initialiseTool(cmd *cobra.Command, args []string) {

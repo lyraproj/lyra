@@ -1,80 +1,71 @@
 package loader
 
-import (
-	"fmt"
-	"os"
-	"os/user"
-	"path/filepath"
+// var (
+// 	// ToolDir is the home directory for the tool
+// 	ToolDir string
+// 	// DefaultPluginDir is where plugins are stored
+// 	DefaultPluginDir string
+// )
 
-	"github.com/lyraproj/lyra/pkg/logger"
-)
+// const (
+// 	// ToolDirEnvVar can be used to override the default user directory
+// 	ToolDirEnvVar = "LYRA_DIR"
+// 	// DefaultPluginDirEnvVar can be used to override the default plugin directory
+// 	DefaultPluginDirEnvVar = "LYRA_DEFAULT_PLUGINS_DIR"
+// )
 
-var (
-	// ToolDir is the home directory for the tool
-	ToolDir string
-	// DefaultPluginDir is where plugins are stored
-	DefaultPluginDir string
-)
+// // InitializeDirs ensures all directories have been created
+// func initializeDirs() error {
+// 	var err error
+// 	user, err := user.Current()
+// 	if err != nil {
+// 		return err
+// 	}
 
-const (
-	// ToolDirEnvVar can be used to override the default user directory
-	ToolDirEnvVar = "LYRA_DIR"
-	// DefaultPluginDirEnvVar can be used to override the default plugin directory
-	DefaultPluginDirEnvVar = "LYRA_DEFAULT_PLUGINS_DIR"
-)
+// 	if ToolDir, err = initialiseDir(ToolDirEnvVar, filepath.Join(user.HomeDir, ".lyra")); err != nil {
+// 		return err
+// 	}
+// 	if DefaultPluginDir, err = initialiseDir(DefaultPluginDirEnvVar, filepath.Join(ToolDir, "plugins")); err != nil {
+// 		return err
+// 	}
+// 	return nil
+// }
 
-// InitializeDirs ensures all directories have been created
-func initializeDirs() error {
-	var err error
-	user, err := user.Current()
-	if err != nil {
-		return err
-	}
+// func initialiseDir(envvar, defaultpath string) (string, error) {
+// 	path := defaultpath
+// 	if v, ok := os.LookupEnv(envvar); ok {
+// 		path = v
+// 	}
 
-	if ToolDir, err = initialiseDir(ToolDirEnvVar, filepath.Join(user.HomeDir, ".lyra")); err != nil {
-		return err
-	}
-	if DefaultPluginDir, err = initialiseDir(DefaultPluginDirEnvVar, filepath.Join(ToolDir, "plugins")); err != nil {
-		return err
-	}
-	return nil
-}
+// 	return path, ensureDir(path)
+// }
 
-func initialiseDir(envvar, defaultpath string) (string, error) {
-	path := defaultpath
-	if v, ok := os.LookupEnv(envvar); ok {
-		path = v
-	}
+// // Find returns paths to files matching the pattern relative to the
+// // supplied directory
+// func find(dir, pattern string) ([]string, error) {
+// 	stat, err := os.Stat(dir)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	if !stat.IsDir() {
+// 		return nil, fmt.Errorf("not a directory")
+// 	}
+// 	return filepath.Glob(filepath.Join(dir, pattern))
+// }
 
-	return path, ensureDir(path)
-}
+// func ensureDir(path string) error {
+// 	log := logger.Get()
+// 	log.Debug("ensure directory exists", "path", path)
+// 	info, err := os.Stat(path)
 
-// Find returns paths to files matching the pattern relative to the
-// supplied directory
-func find(dir, pattern string) ([]string, error) {
-	stat, err := os.Stat(dir)
-	if err != nil {
-		return nil, err
-	}
-	if !stat.IsDir() {
-		return nil, fmt.Errorf("not a directory")
-	}
-	return filepath.Glob(filepath.Join(dir, pattern))
-}
+// 	if os.IsNotExist(err) {
+// 		log.Debug("create directory", "path", path)
+// 		return os.MkdirAll(path, 0755)
+// 	}
 
-func ensureDir(path string) error {
-	log := logger.Get()
-	log.Debug("ensure directory exists", "path", path)
-	info, err := os.Stat(path)
+// 	if info.Mode().IsRegular() {
+// 		return fmt.Errorf("file exists at path")
+// 	}
 
-	if os.IsNotExist(err) {
-		log.Debug("create directory", "path", path)
-		return os.MkdirAll(path, 0755)
-	}
-
-	if info.Mode().IsRegular() {
-		return fmt.Errorf("file exists at path")
-	}
-
-	return nil
-}
+// 	return nil
+// }
