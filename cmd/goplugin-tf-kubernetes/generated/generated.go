@@ -8,6 +8,8 @@ package generated
 import (
 	"sync"
 
+	"github.com/davecgh/go-spew/spew"
+	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
@@ -124,6 +126,10 @@ type Kubernetes_cluster_role_bindingHandler struct {
 
 // Create ...
 func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_cluster_role_binding) (*Kubernetes_cluster_role_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -141,6 +147,10 @@ func (h *Kubernetes_cluster_role_bindingHandler) Create(desired *Kubernetes_clus
 
 // Read ...
 func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kubernetes_cluster_role_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_cluster_role_binding", externalID)
 	if err != nil {
@@ -148,11 +158,18 @@ func (h *Kubernetes_cluster_role_bindingHandler) Read(externalID string) (*Kuber
 	}
 	x := &Kubernetes_cluster_role_binding{ Kubernetes_cluster_role_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_cluster_role_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_cluster_role_binding", externalID)
 }
@@ -196,6 +213,10 @@ type Kubernetes_config_mapHandler struct {
 
 // Create ...
 func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*Kubernetes_config_map, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -213,6 +234,10 @@ func (h *Kubernetes_config_mapHandler) Create(desired *Kubernetes_config_map) (*
 
 // Read ...
 func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_config_map, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_config_map", externalID)
 	if err != nil {
@@ -220,11 +245,18 @@ func (h *Kubernetes_config_mapHandler) Read(externalID string) (*Kubernetes_conf
 	}
 	x := &Kubernetes_config_map{ Kubernetes_config_map_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_config_mapHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_config_map", externalID)
 }
@@ -1632,6 +1664,10 @@ type Kubernetes_deploymentHandler struct {
 
 // Create ...
 func (h *Kubernetes_deploymentHandler) Create(desired *Kubernetes_deployment) (*Kubernetes_deployment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1649,6 +1685,10 @@ func (h *Kubernetes_deploymentHandler) Create(desired *Kubernetes_deployment) (*
 
 // Read ...
 func (h *Kubernetes_deploymentHandler) Read(externalID string) (*Kubernetes_deployment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_deployment", externalID)
 	if err != nil {
@@ -1656,11 +1696,18 @@ func (h *Kubernetes_deploymentHandler) Read(externalID string) (*Kubernetes_depl
 	}
 	x := &Kubernetes_deployment{ Kubernetes_deployment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_deploymentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_deployment", externalID)
 }
@@ -1726,6 +1773,10 @@ type Kubernetes_horizontal_pod_autoscalerHandler struct {
 
 // Create ...
 func (h *Kubernetes_horizontal_pod_autoscalerHandler) Create(desired *Kubernetes_horizontal_pod_autoscaler) (*Kubernetes_horizontal_pod_autoscaler, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1743,6 +1794,10 @@ func (h *Kubernetes_horizontal_pod_autoscalerHandler) Create(desired *Kubernetes
 
 // Read ...
 func (h *Kubernetes_horizontal_pod_autoscalerHandler) Read(externalID string) (*Kubernetes_horizontal_pod_autoscaler, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
 	if err != nil {
@@ -1750,11 +1805,18 @@ func (h *Kubernetes_horizontal_pod_autoscalerHandler) Read(externalID string) (*
 	}
 	x := &Kubernetes_horizontal_pod_autoscaler{ Kubernetes_horizontal_pod_autoscaler_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_horizontal_pod_autoscalerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_horizontal_pod_autoscaler", externalID)
 }
@@ -1820,6 +1882,10 @@ type Kubernetes_limit_rangeHandler struct {
 
 // Create ...
 func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) (*Kubernetes_limit_range, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1837,6 +1903,10 @@ func (h *Kubernetes_limit_rangeHandler) Create(desired *Kubernetes_limit_range) 
 
 // Read ...
 func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_limit_range, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_limit_range", externalID)
 	if err != nil {
@@ -1844,11 +1914,18 @@ func (h *Kubernetes_limit_rangeHandler) Read(externalID string) (*Kubernetes_lim
 	}
 	x := &Kubernetes_limit_range{ Kubernetes_limit_range_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_limit_rangeHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_limit_range", externalID)
 }
@@ -1888,6 +1965,10 @@ type Kubernetes_namespaceHandler struct {
 
 // Create ...
 func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Kubernetes_namespace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1905,6 +1986,10 @@ func (h *Kubernetes_namespaceHandler) Create(desired *Kubernetes_namespace) (*Ku
 
 // Read ...
 func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_namespace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_namespace", externalID)
 	if err != nil {
@@ -1912,11 +1997,18 @@ func (h *Kubernetes_namespaceHandler) Read(externalID string) (*Kubernetes_names
 	}
 	x := &Kubernetes_namespace{ Kubernetes_namespace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_namespaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_namespace", externalID)
 }
@@ -2130,6 +2222,10 @@ type Kubernetes_network_policyHandler struct {
 
 // Create ...
 func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_policy) (*Kubernetes_network_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2147,6 +2243,10 @@ func (h *Kubernetes_network_policyHandler) Create(desired *Kubernetes_network_po
 
 // Read ...
 func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_network_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_network_policy", externalID)
 	if err != nil {
@@ -2154,11 +2254,18 @@ func (h *Kubernetes_network_policyHandler) Read(externalID string) (*Kubernetes_
 	}
 	x := &Kubernetes_network_policy{ Kubernetes_network_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_network_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_network_policy", externalID)
 }
@@ -2518,6 +2625,10 @@ type Kubernetes_persistent_volumeHandler struct {
 
 // Create ...
 func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persistent_volume) (*Kubernetes_persistent_volume, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2535,6 +2646,10 @@ func (h *Kubernetes_persistent_volumeHandler) Create(desired *Kubernetes_persist
 
 // Read ...
 func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernetes_persistent_volume, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume", externalID)
 	if err != nil {
@@ -2542,11 +2657,18 @@ func (h *Kubernetes_persistent_volumeHandler) Read(externalID string) (*Kubernet
 	}
 	x := &Kubernetes_persistent_volume{ Kubernetes_persistent_volume_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_persistent_volumeHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_persistent_volume", externalID)
 }
@@ -2632,6 +2754,10 @@ type Kubernetes_persistent_volume_claimHandler struct {
 
 // Create ...
 func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_persistent_volume_claim) (*Kubernetes_persistent_volume_claim, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2649,6 +2775,10 @@ func (h *Kubernetes_persistent_volume_claimHandler) Create(desired *Kubernetes_p
 
 // Read ...
 func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Kubernetes_persistent_volume_claim, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_persistent_volume_claim", externalID)
 	if err != nil {
@@ -2656,11 +2786,18 @@ func (h *Kubernetes_persistent_volume_claimHandler) Read(externalID string) (*Ku
 	}
 	x := &Kubernetes_persistent_volume_claim{ Kubernetes_persistent_volume_claim_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_persistent_volume_claimHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_persistent_volume_claim", externalID)
 }
@@ -3984,6 +4121,10 @@ type Kubernetes_podHandler struct {
 
 // Create ...
 func (h *Kubernetes_podHandler) Create(desired *Kubernetes_pod) (*Kubernetes_pod, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4001,6 +4142,10 @@ func (h *Kubernetes_podHandler) Create(desired *Kubernetes_pod) (*Kubernetes_pod
 
 // Read ...
 func (h *Kubernetes_podHandler) Read(externalID string) (*Kubernetes_pod, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_pod", externalID)
 	if err != nil {
@@ -4008,11 +4153,18 @@ func (h *Kubernetes_podHandler) Read(externalID string) (*Kubernetes_pod, error)
 	}
 	x := &Kubernetes_pod{ Kubernetes_pod_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_podHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_pod", externalID)
 }
@@ -6654,6 +6806,10 @@ type Kubernetes_replication_controllerHandler struct {
 
 // Create ...
 func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_replication_controller) (*Kubernetes_replication_controller, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6671,6 +6827,10 @@ func (h *Kubernetes_replication_controllerHandler) Create(desired *Kubernetes_re
 
 // Read ...
 func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kubernetes_replication_controller, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_replication_controller", externalID)
 	if err != nil {
@@ -6678,11 +6838,18 @@ func (h *Kubernetes_replication_controllerHandler) Read(externalID string) (*Kub
 	}
 	x := &Kubernetes_replication_controller{ Kubernetes_replication_controller_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_replication_controllerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_replication_controller", externalID)
 }
@@ -6734,6 +6901,10 @@ type Kubernetes_resource_quotaHandler struct {
 
 // Create ...
 func (h *Kubernetes_resource_quotaHandler) Create(desired *Kubernetes_resource_quota) (*Kubernetes_resource_quota, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6751,6 +6922,10 @@ func (h *Kubernetes_resource_quotaHandler) Create(desired *Kubernetes_resource_q
 
 // Read ...
 func (h *Kubernetes_resource_quotaHandler) Read(externalID string) (*Kubernetes_resource_quota, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_resource_quota", externalID)
 	if err != nil {
@@ -6758,11 +6933,18 @@ func (h *Kubernetes_resource_quotaHandler) Read(externalID string) (*Kubernetes_
 	}
 	x := &Kubernetes_resource_quota{ Kubernetes_resource_quota_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_resource_quotaHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_resource_quota", externalID)
 }
@@ -6818,6 +7000,10 @@ type Kubernetes_roleHandler struct {
 
 // Create ...
 func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_role, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6835,6 +7021,10 @@ func (h *Kubernetes_roleHandler) Create(desired *Kubernetes_role) (*Kubernetes_r
 
 // Read ...
 func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_role", externalID)
 	if err != nil {
@@ -6842,11 +7032,18 @@ func (h *Kubernetes_roleHandler) Read(externalID string) (*Kubernetes_role, erro
 	}
 	x := &Kubernetes_role{ Kubernetes_role_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_roleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_role", externalID)
 }
@@ -6902,6 +7099,10 @@ type Kubernetes_role_bindingHandler struct {
 
 // Create ...
 func (h *Kubernetes_role_bindingHandler) Create(desired *Kubernetes_role_binding) (*Kubernetes_role_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6919,6 +7120,10 @@ func (h *Kubernetes_role_bindingHandler) Create(desired *Kubernetes_role_binding
 
 // Read ...
 func (h *Kubernetes_role_bindingHandler) Read(externalID string) (*Kubernetes_role_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_role_binding", externalID)
 	if err != nil {
@@ -6926,11 +7131,18 @@ func (h *Kubernetes_role_bindingHandler) Read(externalID string) (*Kubernetes_ro
 	}
 	x := &Kubernetes_role_binding{ Kubernetes_role_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_role_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_role_binding", externalID)
 }
@@ -6976,6 +7188,10 @@ type Kubernetes_secretHandler struct {
 
 // Create ...
 func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernetes_secret, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6993,6 +7209,10 @@ func (h *Kubernetes_secretHandler) Create(desired *Kubernetes_secret) (*Kubernet
 
 // Read ...
 func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_secret", externalID)
 	if err != nil {
@@ -7000,11 +7220,18 @@ func (h *Kubernetes_secretHandler) Read(externalID string) (*Kubernetes_secret, 
 	}
 	x := &Kubernetes_secret{ Kubernetes_secret_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_secretHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_secret", externalID)
 }
@@ -7094,6 +7321,10 @@ type Kubernetes_serviceHandler struct {
 
 // Create ...
 func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubernetes_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7111,6 +7342,10 @@ func (h *Kubernetes_serviceHandler) Create(desired *Kubernetes_service) (*Kubern
 
 // Read ...
 func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_service", externalID)
 	if err != nil {
@@ -7118,11 +7353,18 @@ func (h *Kubernetes_serviceHandler) Read(externalID string) (*Kubernetes_service
 	}
 	x := &Kubernetes_service{ Kubernetes_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_service", externalID)
 }
@@ -7184,6 +7426,10 @@ type Kubernetes_service_accountHandler struct {
 
 // Create ...
 func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_account) (*Kubernetes_service_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7201,6 +7447,10 @@ func (h *Kubernetes_service_accountHandler) Create(desired *Kubernetes_service_a
 
 // Read ...
 func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes_service_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_service_account", externalID)
 	if err != nil {
@@ -7208,11 +7458,18 @@ func (h *Kubernetes_service_accountHandler) Read(externalID string) (*Kubernetes
 	}
 	x := &Kubernetes_service_account{ Kubernetes_service_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_service_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_service_account", externalID)
 }
@@ -8686,6 +8943,10 @@ type Kubernetes_stateful_setHandler struct {
 
 // Create ...
 func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set) (*Kubernetes_stateful_set, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8703,6 +8964,10 @@ func (h *Kubernetes_stateful_setHandler) Create(desired *Kubernetes_stateful_set
 
 // Read ...
 func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_stateful_set, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_stateful_set", externalID)
 	if err != nil {
@@ -8710,11 +8975,18 @@ func (h *Kubernetes_stateful_setHandler) Read(externalID string) (*Kubernetes_st
 	}
 	x := &Kubernetes_stateful_set{ Kubernetes_stateful_set_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_stateful_setHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_stateful_set", externalID)
 }
@@ -8762,6 +9034,10 @@ type Kubernetes_storage_classHandler struct {
 
 // Create ...
 func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_class) (*Kubernetes_storage_class, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8779,6 +9055,10 @@ func (h *Kubernetes_storage_classHandler) Create(desired *Kubernetes_storage_cla
 
 // Read ...
 func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_storage_class, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "kubernetes_storage_class", externalID)
 	if err != nil {
@@ -8786,11 +9066,18 @@ func (h *Kubernetes_storage_classHandler) Read(externalID string) (*Kubernetes_s
 	}
 	x := &Kubernetes_storage_class{ Kubernetes_storage_class_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Kubernetes_storage_classHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "kubernetes_storage_class", externalID)
 }

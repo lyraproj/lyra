@@ -8,6 +8,8 @@ package generated
 import (
 	"sync"
 
+	"github.com/davecgh/go-spew/spew"
+	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
@@ -586,6 +588,10 @@ type Azurerm_api_managementHandler struct {
 
 // Create ...
 func (h *Azurerm_api_managementHandler) Create(desired *Azurerm_api_management) (*Azurerm_api_management, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -603,6 +609,10 @@ func (h *Azurerm_api_managementHandler) Create(desired *Azurerm_api_management) 
 
 // Read ...
 func (h *Azurerm_api_managementHandler) Read(externalID string) (*Azurerm_api_management, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_api_management", externalID)
 	if err != nil {
@@ -610,11 +620,18 @@ func (h *Azurerm_api_managementHandler) Read(externalID string) (*Azurerm_api_ma
 	}
 	x := &Azurerm_api_management{ Azurerm_api_management_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_api_managementHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_api_management", externalID)
 }
@@ -758,6 +775,10 @@ type Azurerm_app_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_app_serviceHandler) Create(desired *Azurerm_app_service) (*Azurerm_app_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -775,6 +796,10 @@ func (h *Azurerm_app_serviceHandler) Create(desired *Azurerm_app_service) (*Azur
 
 // Read ...
 func (h *Azurerm_app_serviceHandler) Read(externalID string) (*Azurerm_app_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service", externalID)
 	if err != nil {
@@ -782,11 +807,18 @@ func (h *Azurerm_app_serviceHandler) Read(externalID string) (*Azurerm_app_servi
 	}
 	x := &Azurerm_app_service{ Azurerm_app_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_app_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service", externalID)
 }
@@ -810,6 +842,10 @@ type Azurerm_app_service_active_slotHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_active_slotHandler) Create(desired *Azurerm_app_service_active_slot) (*Azurerm_app_service_active_slot, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -827,6 +863,10 @@ func (h *Azurerm_app_service_active_slotHandler) Create(desired *Azurerm_app_ser
 
 // Read ...
 func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azurerm_app_service_active_slot, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_active_slot", externalID)
 	if err != nil {
@@ -834,11 +874,18 @@ func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_app_service_active_slot{ Azurerm_app_service_active_slot_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_app_service_active_slotHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_active_slot", externalID)
 }
@@ -862,6 +909,10 @@ type Azurerm_app_service_custom_hostname_bindingHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_custom_hostname_bindingHandler) Create(desired *Azurerm_app_service_custom_hostname_binding) (*Azurerm_app_service_custom_hostname_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -879,6 +930,10 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID string) (*Azurerm_app_service_custom_hostname_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
 	if err != nil {
@@ -886,11 +941,18 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID str
 	}
 	x := &Azurerm_app_service_custom_hostname_binding{ Azurerm_app_service_custom_hostname_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_app_service_custom_hostname_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_custom_hostname_binding", externalID)
 }
@@ -950,6 +1012,10 @@ type Azurerm_app_service_planHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_planHandler) Create(desired *Azurerm_app_service_plan) (*Azurerm_app_service_plan, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -967,6 +1033,10 @@ func (h *Azurerm_app_service_planHandler) Create(desired *Azurerm_app_service_pl
 
 // Read ...
 func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_service_plan, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_plan", externalID)
 	if err != nil {
@@ -974,11 +1044,18 @@ func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_
 	}
 	x := &Azurerm_app_service_plan{ Azurerm_app_service_plan_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_app_service_planHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_plan", externalID)
 }
@@ -1100,6 +1177,10 @@ type Azurerm_app_service_slotHandler struct {
 
 // Create ...
 func (h *Azurerm_app_service_slotHandler) Create(desired *Azurerm_app_service_slot) (*Azurerm_app_service_slot, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1117,6 +1198,10 @@ func (h *Azurerm_app_service_slotHandler) Create(desired *Azurerm_app_service_sl
 
 // Read ...
 func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_service_slot, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_app_service_slot", externalID)
 	if err != nil {
@@ -1124,11 +1209,18 @@ func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_
 	}
 	x := &Azurerm_app_service_slot{ Azurerm_app_service_slot_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_app_service_slotHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_app_service_slot", externalID)
 }
@@ -1426,6 +1518,10 @@ type Azurerm_application_gatewayHandler struct {
 
 // Create ...
 func (h *Azurerm_application_gatewayHandler) Create(desired *Azurerm_application_gateway) (*Azurerm_application_gateway, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1443,6 +1539,10 @@ func (h *Azurerm_application_gatewayHandler) Create(desired *Azurerm_application
 
 // Read ...
 func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_application_gateway, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_gateway", externalID)
 	if err != nil {
@@ -1450,11 +1550,18 @@ func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_a
 	}
 	x := &Azurerm_application_gateway{ Azurerm_application_gateway_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_application_gatewayHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_gateway", externalID)
 }
@@ -1486,6 +1593,10 @@ type Azurerm_application_insightsHandler struct {
 
 // Create ...
 func (h *Azurerm_application_insightsHandler) Create(desired *Azurerm_application_insights) (*Azurerm_application_insights, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1503,6 +1614,10 @@ func (h *Azurerm_application_insightsHandler) Create(desired *Azurerm_applicatio
 
 // Read ...
 func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_application_insights, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_insights", externalID)
 	if err != nil {
@@ -1510,11 +1625,18 @@ func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_application_insights{ Azurerm_application_insights_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_application_insightsHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_insights", externalID)
 }
@@ -1542,6 +1664,10 @@ type Azurerm_application_insights_api_keyHandler struct {
 
 // Create ...
 func (h *Azurerm_application_insights_api_keyHandler) Create(desired *Azurerm_application_insights_api_key) (*Azurerm_application_insights_api_key, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1559,6 +1685,10 @@ func (h *Azurerm_application_insights_api_keyHandler) Create(desired *Azurerm_ap
 
 // Read ...
 func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*Azurerm_application_insights_api_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_insights_api_key", externalID)
 	if err != nil {
@@ -1566,11 +1696,18 @@ func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*
 	}
 	x := &Azurerm_application_insights_api_key{ Azurerm_application_insights_api_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_application_insights_api_keyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_insights_api_key", externalID)
 }
@@ -1596,6 +1733,10 @@ type Azurerm_application_security_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_application_security_groupHandler) Create(desired *Azurerm_application_security_group) (*Azurerm_application_security_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1613,6 +1754,10 @@ func (h *Azurerm_application_security_groupHandler) Create(desired *Azurerm_appl
 
 // Read ...
 func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Azurerm_application_security_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_application_security_group", externalID)
 	if err != nil {
@@ -1620,11 +1765,18 @@ func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Az
 	}
 	x := &Azurerm_application_security_group{ Azurerm_application_security_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_application_security_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_application_security_group", externalID)
 }
@@ -1664,6 +1816,10 @@ type Azurerm_automation_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_accountHandler) Create(desired *Azurerm_automation_account) (*Azurerm_automation_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1681,6 +1837,10 @@ func (h *Azurerm_automation_accountHandler) Create(desired *Azurerm_automation_a
 
 // Read ...
 func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_automation_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_account", externalID)
 	if err != nil {
@@ -1688,11 +1848,18 @@ func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_au
 	}
 	x := &Azurerm_automation_account{ Azurerm_automation_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_account", externalID)
 }
@@ -1722,6 +1889,10 @@ type Azurerm_automation_credentialHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_credentialHandler) Create(desired *Azurerm_automation_credential) (*Azurerm_automation_credential, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1739,6 +1910,10 @@ func (h *Azurerm_automation_credentialHandler) Create(desired *Azurerm_automatio
 
 // Read ...
 func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm_automation_credential, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_credential", externalID)
 	if err != nil {
@@ -1746,11 +1921,18 @@ func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_automation_credential{ Azurerm_automation_credential_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_credentialHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_credential", externalID)
 }
@@ -1784,6 +1966,10 @@ type Azurerm_automation_dsc_configurationHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_dsc_configurationHandler) Create(desired *Azurerm_automation_dsc_configuration) (*Azurerm_automation_dsc_configuration, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1801,6 +1987,10 @@ func (h *Azurerm_automation_dsc_configurationHandler) Create(desired *Azurerm_au
 
 // Read ...
 func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*Azurerm_automation_dsc_configuration, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_configuration", externalID)
 	if err != nil {
@@ -1808,11 +1998,18 @@ func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*
 	}
 	x := &Azurerm_automation_dsc_configuration{ Azurerm_automation_dsc_configuration_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_dsc_configurationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_dsc_configuration", externalID)
 }
@@ -1840,6 +2037,10 @@ type Azurerm_automation_dsc_nodeconfigurationHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Create(desired *Azurerm_automation_dsc_nodeconfiguration) (*Azurerm_automation_dsc_nodeconfiguration, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1857,6 +2058,10 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Create(desired *Azurer
 
 // Read ...
 func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string) (*Azurerm_automation_dsc_nodeconfiguration, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
 	if err != nil {
@@ -1864,11 +2069,18 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string
 	}
 	x := &Azurerm_automation_dsc_nodeconfiguration{ Azurerm_automation_dsc_nodeconfiguration_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID)
 }
@@ -1910,6 +2122,10 @@ type Azurerm_automation_moduleHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_moduleHandler) Create(desired *Azurerm_automation_module) (*Azurerm_automation_module, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1927,6 +2143,10 @@ func (h *Azurerm_automation_moduleHandler) Create(desired *Azurerm_automation_mo
 
 // Read ...
 func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_automation_module, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_module", externalID)
 	if err != nil {
@@ -1934,11 +2154,18 @@ func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_aut
 	}
 	x := &Azurerm_automation_module{ Azurerm_automation_module_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_moduleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_module", externalID)
 }
@@ -1996,6 +2223,10 @@ type Azurerm_automation_runbookHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_runbookHandler) Create(desired *Azurerm_automation_runbook) (*Azurerm_automation_runbook, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2013,6 +2244,10 @@ func (h *Azurerm_automation_runbookHandler) Create(desired *Azurerm_automation_r
 
 // Read ...
 func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_automation_runbook, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_runbook", externalID)
 	if err != nil {
@@ -2020,11 +2255,18 @@ func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_au
 	}
 	x := &Azurerm_automation_runbook{ Azurerm_automation_runbook_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_runbookHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_runbook", externalID)
 }
@@ -2076,6 +2318,10 @@ type Azurerm_automation_scheduleHandler struct {
 
 // Create ...
 func (h *Azurerm_automation_scheduleHandler) Create(desired *Azurerm_automation_schedule) (*Azurerm_automation_schedule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2093,6 +2339,10 @@ func (h *Azurerm_automation_scheduleHandler) Create(desired *Azurerm_automation_
 
 // Read ...
 func (h *Azurerm_automation_scheduleHandler) Read(externalID string) (*Azurerm_automation_schedule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_automation_schedule", externalID)
 	if err != nil {
@@ -2100,11 +2350,18 @@ func (h *Azurerm_automation_scheduleHandler) Read(externalID string) (*Azurerm_a
 	}
 	x := &Azurerm_automation_schedule{ Azurerm_automation_schedule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_automation_scheduleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_automation_schedule", externalID)
 }
@@ -2250,6 +2507,10 @@ type Azurerm_autoscale_settingHandler struct {
 
 // Create ...
 func (h *Azurerm_autoscale_settingHandler) Create(desired *Azurerm_autoscale_setting) (*Azurerm_autoscale_setting, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2267,6 +2528,10 @@ func (h *Azurerm_autoscale_settingHandler) Create(desired *Azurerm_autoscale_set
 
 // Read ...
 func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_autoscale_setting, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_autoscale_setting", externalID)
 	if err != nil {
@@ -2274,11 +2539,18 @@ func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_aut
 	}
 	x := &Azurerm_autoscale_setting{ Azurerm_autoscale_setting_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_autoscale_settingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_autoscale_setting", externalID)
 }
@@ -2310,6 +2582,10 @@ type Azurerm_availability_setHandler struct {
 
 // Create ...
 func (h *Azurerm_availability_setHandler) Create(desired *Azurerm_availability_set) (*Azurerm_availability_set, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2327,6 +2603,10 @@ func (h *Azurerm_availability_setHandler) Create(desired *Azurerm_availability_s
 
 // Read ...
 func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_availability_set, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_availability_set", externalID)
 	if err != nil {
@@ -2334,11 +2614,18 @@ func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_avai
 	}
 	x := &Azurerm_availability_set{ Azurerm_availability_set_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_availability_setHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_availability_set", externalID)
 }
@@ -2370,6 +2657,10 @@ type Azurerm_azuread_applicationHandler struct {
 
 // Create ...
 func (h *Azurerm_azuread_applicationHandler) Create(desired *Azurerm_azuread_application) (*Azurerm_azuread_application, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2387,6 +2678,10 @@ func (h *Azurerm_azuread_applicationHandler) Create(desired *Azurerm_azuread_app
 
 // Read ...
 func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_azuread_application, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_application", externalID)
 	if err != nil {
@@ -2394,11 +2689,18 @@ func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_a
 	}
 	x := &Azurerm_azuread_application{ Azurerm_azuread_application_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_azuread_applicationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_azuread_application", externalID)
 }
@@ -2420,6 +2722,10 @@ type Azurerm_azuread_service_principalHandler struct {
 
 // Create ...
 func (h *Azurerm_azuread_service_principalHandler) Create(desired *Azurerm_azuread_service_principal) (*Azurerm_azuread_service_principal, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2437,6 +2743,10 @@ func (h *Azurerm_azuread_service_principalHandler) Create(desired *Azurerm_azure
 
 // Read ...
 func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azurerm_azuread_service_principal, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal", externalID)
 	if err != nil {
@@ -2444,11 +2754,18 @@ func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azu
 	}
 	x := &Azurerm_azuread_service_principal{ Azurerm_azuread_service_principal_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_azuread_service_principalHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_azuread_service_principal", externalID)
 }
@@ -2476,6 +2793,10 @@ type Azurerm_azuread_service_principal_passwordHandler struct {
 
 // Create ...
 func (h *Azurerm_azuread_service_principal_passwordHandler) Create(desired *Azurerm_azuread_service_principal_password) (*Azurerm_azuread_service_principal_password, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2493,6 +2814,10 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Create(desired *Azur
 
 // Read ...
 func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID string) (*Azurerm_azuread_service_principal_password, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_azuread_service_principal_password", externalID)
 	if err != nil {
@@ -2500,11 +2825,18 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID stri
 	}
 	x := &Azurerm_azuread_service_principal_password{ Azurerm_azuread_service_principal_password_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_azuread_service_principal_passwordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_azuread_service_principal_password", externalID)
 }
@@ -2534,6 +2866,10 @@ type Azurerm_batch_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_batch_accountHandler) Create(desired *Azurerm_batch_account) (*Azurerm_batch_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2551,6 +2887,10 @@ func (h *Azurerm_batch_accountHandler) Create(desired *Azurerm_batch_account) (*
 
 // Read ...
 func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_batch_account", externalID)
 	if err != nil {
@@ -2558,11 +2898,18 @@ func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_a
 	}
 	x := &Azurerm_batch_account{ Azurerm_batch_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_batch_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_batch_account", externalID)
 }
@@ -2664,6 +3011,10 @@ type Azurerm_batch_poolHandler struct {
 
 // Create ...
 func (h *Azurerm_batch_poolHandler) Create(desired *Azurerm_batch_pool) (*Azurerm_batch_pool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2681,6 +3032,10 @@ func (h *Azurerm_batch_poolHandler) Create(desired *Azurerm_batch_pool) (*Azurer
 
 // Read ...
 func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_batch_pool", externalID)
 	if err != nil {
@@ -2688,11 +3043,18 @@ func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool
 	}
 	x := &Azurerm_batch_pool{ Azurerm_batch_pool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_batch_poolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_batch_pool", externalID)
 }
@@ -2766,6 +3128,10 @@ type Azurerm_cdn_endpointHandler struct {
 
 // Create ...
 func (h *Azurerm_cdn_endpointHandler) Create(desired *Azurerm_cdn_endpoint) (*Azurerm_cdn_endpoint, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2783,6 +3149,10 @@ func (h *Azurerm_cdn_endpointHandler) Create(desired *Azurerm_cdn_endpoint) (*Az
 
 // Read ...
 func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endpoint, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cdn_endpoint", externalID)
 	if err != nil {
@@ -2790,11 +3160,18 @@ func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endp
 	}
 	x := &Azurerm_cdn_endpoint{ Azurerm_cdn_endpoint_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_cdn_endpointHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cdn_endpoint", externalID)
 }
@@ -2822,6 +3199,10 @@ type Azurerm_cdn_profileHandler struct {
 
 // Create ...
 func (h *Azurerm_cdn_profileHandler) Create(desired *Azurerm_cdn_profile) (*Azurerm_cdn_profile, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2839,6 +3220,10 @@ func (h *Azurerm_cdn_profileHandler) Create(desired *Azurerm_cdn_profile) (*Azur
 
 // Read ...
 func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profile, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cdn_profile", externalID)
 	if err != nil {
@@ -2846,11 +3231,18 @@ func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profi
 	}
 	x := &Azurerm_cdn_profile{ Azurerm_cdn_profile_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_cdn_profileHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cdn_profile", externalID)
 }
@@ -2890,6 +3282,10 @@ type Azurerm_cognitive_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_cognitive_accountHandler) Create(desired *Azurerm_cognitive_account) (*Azurerm_cognitive_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2907,6 +3303,10 @@ func (h *Azurerm_cognitive_accountHandler) Create(desired *Azurerm_cognitive_acc
 
 // Read ...
 func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cognitive_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cognitive_account", externalID)
 	if err != nil {
@@ -2914,11 +3314,18 @@ func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cog
 	}
 	x := &Azurerm_cognitive_account{ Azurerm_cognitive_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_cognitive_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cognitive_account", externalID)
 }
@@ -3022,6 +3429,10 @@ type Azurerm_container_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_container_groupHandler) Create(desired *Azurerm_container_group) (*Azurerm_container_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3039,6 +3450,10 @@ func (h *Azurerm_container_groupHandler) Create(desired *Azurerm_container_group
 
 // Read ...
 func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_container_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_container_group", externalID)
 	if err != nil {
@@ -3046,11 +3461,18 @@ func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_conta
 	}
 	x := &Azurerm_container_group{ Azurerm_container_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_container_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_container_group", externalID)
 }
@@ -3100,6 +3522,10 @@ type Azurerm_container_registryHandler struct {
 
 // Create ...
 func (h *Azurerm_container_registryHandler) Create(desired *Azurerm_container_registry) (*Azurerm_container_registry, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3117,6 +3543,10 @@ func (h *Azurerm_container_registryHandler) Create(desired *Azurerm_container_re
 
 // Read ...
 func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_container_registry, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_container_registry", externalID)
 	if err != nil {
@@ -3124,11 +3554,18 @@ func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_co
 	}
 	x := &Azurerm_container_registry{ Azurerm_container_registry_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_container_registryHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_container_registry", externalID)
 }
@@ -3220,6 +3657,10 @@ type Azurerm_container_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_container_serviceHandler) Create(desired *Azurerm_container_service) (*Azurerm_container_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3237,6 +3678,10 @@ func (h *Azurerm_container_serviceHandler) Create(desired *Azurerm_container_ser
 
 // Read ...
 func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_container_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_container_service", externalID)
 	if err != nil {
@@ -3244,11 +3689,18 @@ func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_con
 	}
 	x := &Azurerm_container_service{ Azurerm_container_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_container_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_container_service", externalID)
 }
@@ -3356,6 +3808,10 @@ type Azurerm_cosmosdb_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_cosmosdb_accountHandler) Create(desired *Azurerm_cosmosdb_account) (*Azurerm_cosmosdb_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3373,6 +3829,10 @@ func (h *Azurerm_cosmosdb_accountHandler) Create(desired *Azurerm_cosmosdb_accou
 
 // Read ...
 func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosmosdb_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_cosmosdb_account", externalID)
 	if err != nil {
@@ -3380,11 +3840,18 @@ func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosm
 	}
 	x := &Azurerm_cosmosdb_account{ Azurerm_cosmosdb_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_cosmosdb_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_cosmosdb_account", externalID)
 }
@@ -3414,6 +3881,10 @@ type Azurerm_data_lake_analytics_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_analytics_accountHandler) Create(desired *Azurerm_data_lake_analytics_account) (*Azurerm_data_lake_analytics_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3431,6 +3902,10 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Create(desired *Azurerm_dat
 
 // Read ...
 func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*Azurerm_data_lake_analytics_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_account", externalID)
 	if err != nil {
@@ -3438,11 +3913,18 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*A
 	}
 	x := &Azurerm_data_lake_analytics_account{ Azurerm_data_lake_analytics_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_data_lake_analytics_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_account", externalID)
 }
@@ -3470,6 +3952,10 @@ type Azurerm_data_lake_analytics_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Create(desired *Azurerm_data_lake_analytics_firewall_rule) (*Azurerm_data_lake_analytics_firewall_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3487,6 +3973,10 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Create(desired *Azure
 
 // Read ...
 func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_analytics_firewall_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
 	if err != nil {
@@ -3494,11 +3984,18 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID strin
 	}
 	x := &Azurerm_data_lake_analytics_firewall_rule{ Azurerm_data_lake_analytics_firewall_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID)
 }
@@ -3536,6 +4033,10 @@ type Azurerm_data_lake_storeHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_storeHandler) Create(desired *Azurerm_data_lake_store) (*Azurerm_data_lake_store, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3553,6 +4054,10 @@ func (h *Azurerm_data_lake_storeHandler) Create(desired *Azurerm_data_lake_store
 
 // Read ...
 func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_lake_store, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store", externalID)
 	if err != nil {
@@ -3560,11 +4065,18 @@ func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_
 	}
 	x := &Azurerm_data_lake_store{ Azurerm_data_lake_store_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_data_lake_storeHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_store", externalID)
 }
@@ -3588,6 +4100,10 @@ type Azurerm_data_lake_store_fileHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_store_fileHandler) Create(desired *Azurerm_data_lake_store_file) (*Azurerm_data_lake_store_file, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3605,6 +4121,10 @@ func (h *Azurerm_data_lake_store_fileHandler) Create(desired *Azurerm_data_lake_
 
 // Read ...
 func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_data_lake_store_file, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_file", externalID)
 	if err != nil {
@@ -3612,11 +4132,18 @@ func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_data_lake_store_file{ Azurerm_data_lake_store_file_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_data_lake_store_fileHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_store_file", externalID)
 }
@@ -3644,6 +4171,10 @@ type Azurerm_data_lake_store_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_data_lake_store_firewall_ruleHandler) Create(desired *Azurerm_data_lake_store_firewall_rule) (*Azurerm_data_lake_store_firewall_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3661,6 +4192,10 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Create(desired *Azurerm_d
 
 // Read ...
 func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (*Azurerm_data_lake_store_firewall_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
 	if err != nil {
@@ -3668,11 +4203,18 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (
 	}
 	x := &Azurerm_data_lake_store_firewall_rule{ Azurerm_data_lake_store_firewall_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_data_lake_store_firewall_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_data_lake_store_firewall_rule", externalID)
 }
@@ -3704,6 +4246,10 @@ type Azurerm_databricks_workspaceHandler struct {
 
 // Create ...
 func (h *Azurerm_databricks_workspaceHandler) Create(desired *Azurerm_databricks_workspace) (*Azurerm_databricks_workspace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3721,6 +4267,10 @@ func (h *Azurerm_databricks_workspaceHandler) Create(desired *Azurerm_databricks
 
 // Read ...
 func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_databricks_workspace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_databricks_workspace", externalID)
 	if err != nil {
@@ -3728,11 +4278,18 @@ func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_databricks_workspace{ Azurerm_databricks_workspace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_databricks_workspaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_databricks_workspace", externalID)
 }
@@ -3772,6 +4329,10 @@ type Azurerm_dev_test_labHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_labHandler) Create(desired *Azurerm_dev_test_lab) (*Azurerm_dev_test_lab, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3789,6 +4350,10 @@ func (h *Azurerm_dev_test_labHandler) Create(desired *Azurerm_dev_test_lab) (*Az
 
 // Read ...
 func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test_lab, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_lab", externalID)
 	if err != nil {
@@ -3796,11 +4361,18 @@ func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test
 	}
 	x := &Azurerm_dev_test_lab{ Azurerm_dev_test_lab_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dev_test_labHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_lab", externalID)
 }
@@ -3878,6 +4450,10 @@ type Azurerm_dev_test_linux_virtual_machineHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_linux_virtual_machineHandler) Create(desired *Azurerm_dev_test_linux_virtual_machine) (*Azurerm_dev_test_linux_virtual_machine, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3895,6 +4471,10 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_linux_virtual_machine, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
 	if err != nil {
@@ -3902,11 +4482,18 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) 
 	}
 	x := &Azurerm_dev_test_linux_virtual_machine{ Azurerm_dev_test_linux_virtual_machine_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dev_test_linux_virtual_machineHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID)
 }
@@ -3942,6 +4529,10 @@ type Azurerm_dev_test_policyHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_policyHandler) Create(desired *Azurerm_dev_test_policy) (*Azurerm_dev_test_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3959,6 +4550,10 @@ func (h *Azurerm_dev_test_policyHandler) Create(desired *Azurerm_dev_test_policy
 
 // Read ...
 func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_test_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_policy", externalID)
 	if err != nil {
@@ -3966,11 +4561,18 @@ func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_t
 	}
 	x := &Azurerm_dev_test_policy{ Azurerm_dev_test_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dev_test_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_policy", externalID)
 }
@@ -4012,6 +4614,10 @@ type Azurerm_dev_test_virtual_networkHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_virtual_networkHandler) Create(desired *Azurerm_dev_test_virtual_network) (*Azurerm_dev_test_virtual_network, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4029,6 +4635,10 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Create(desired *Azurerm_dev_te
 
 // Read ...
 func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azurerm_dev_test_virtual_network, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_virtual_network", externalID)
 	if err != nil {
@@ -4036,11 +4646,18 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_dev_test_virtual_network{ Azurerm_dev_test_virtual_network_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dev_test_virtual_networkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_virtual_network", externalID)
 }
@@ -4116,6 +4733,10 @@ type Azurerm_dev_test_windows_virtual_machineHandler struct {
 
 // Create ...
 func (h *Azurerm_dev_test_windows_virtual_machineHandler) Create(desired *Azurerm_dev_test_windows_virtual_machine) (*Azurerm_dev_test_windows_virtual_machine, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4133,6 +4754,10 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Create(desired *Azurer
 
 // Read ...
 func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string) (*Azurerm_dev_test_windows_virtual_machine, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
 	if err != nil {
@@ -4140,11 +4765,18 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string
 	}
 	x := &Azurerm_dev_test_windows_virtual_machine{ Azurerm_dev_test_windows_virtual_machine_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dev_test_windows_virtual_machineHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID)
 }
@@ -4188,6 +4820,10 @@ type Azurerm_devspace_controllerHandler struct {
 
 // Create ...
 func (h *Azurerm_devspace_controllerHandler) Create(desired *Azurerm_devspace_controller) (*Azurerm_devspace_controller, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4205,6 +4841,10 @@ func (h *Azurerm_devspace_controllerHandler) Create(desired *Azurerm_devspace_co
 
 // Read ...
 func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_devspace_controller, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_devspace_controller", externalID)
 	if err != nil {
@@ -4212,11 +4852,18 @@ func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_d
 	}
 	x := &Azurerm_devspace_controller{ Azurerm_devspace_controller_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_devspace_controllerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_devspace_controller", externalID)
 }
@@ -4246,6 +4893,10 @@ type Azurerm_dns_a_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_a_recordHandler) Create(desired *Azurerm_dns_a_record) (*Azurerm_dns_a_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4263,6 +4914,10 @@ func (h *Azurerm_dns_a_recordHandler) Create(desired *Azurerm_dns_a_record) (*Az
 
 // Read ...
 func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_a_record", externalID)
 	if err != nil {
@@ -4270,11 +4925,18 @@ func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_re
 	}
 	x := &Azurerm_dns_a_record{ Azurerm_dns_a_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_a_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_a_record", externalID)
 }
@@ -4304,6 +4966,10 @@ type Azurerm_dns_aaaa_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_aaaa_recordHandler) Create(desired *Azurerm_dns_aaaa_record) (*Azurerm_dns_aaaa_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4321,6 +4987,10 @@ func (h *Azurerm_dns_aaaa_recordHandler) Create(desired *Azurerm_dns_aaaa_record
 
 // Read ...
 func (h *Azurerm_dns_aaaa_recordHandler) Read(externalID string) (*Azurerm_dns_aaaa_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_aaaa_record", externalID)
 	if err != nil {
@@ -4328,11 +4998,18 @@ func (h *Azurerm_dns_aaaa_recordHandler) Read(externalID string) (*Azurerm_dns_a
 	}
 	x := &Azurerm_dns_aaaa_record{ Azurerm_dns_aaaa_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_aaaa_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_aaaa_record", externalID)
 }
@@ -4372,6 +5049,10 @@ type Azurerm_dns_caa_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_caa_recordHandler) Create(desired *Azurerm_dns_caa_record) (*Azurerm_dns_caa_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4389,6 +5070,10 @@ func (h *Azurerm_dns_caa_recordHandler) Create(desired *Azurerm_dns_caa_record) 
 
 // Read ...
 func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_caa_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_caa_record", externalID)
 	if err != nil {
@@ -4396,11 +5081,18 @@ func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_ca
 	}
 	x := &Azurerm_dns_caa_record{ Azurerm_dns_caa_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_caa_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_caa_record", externalID)
 }
@@ -4432,6 +5124,10 @@ type Azurerm_dns_cname_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_cname_recordHandler) Create(desired *Azurerm_dns_cname_record) (*Azurerm_dns_cname_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4449,6 +5145,10 @@ func (h *Azurerm_dns_cname_recordHandler) Create(desired *Azurerm_dns_cname_reco
 
 // Read ...
 func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_cname_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_cname_record", externalID)
 	if err != nil {
@@ -4456,11 +5156,18 @@ func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_
 	}
 	x := &Azurerm_dns_cname_record{ Azurerm_dns_cname_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_cname_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_cname_record", externalID)
 }
@@ -4498,6 +5205,10 @@ type Azurerm_dns_mx_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_mx_recordHandler) Create(desired *Azurerm_dns_mx_record) (*Azurerm_dns_mx_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4515,6 +5226,10 @@ func (h *Azurerm_dns_mx_recordHandler) Create(desired *Azurerm_dns_mx_record) (*
 
 // Read ...
 func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_mx_record", externalID)
 	if err != nil {
@@ -4522,11 +5237,18 @@ func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_
 	}
 	x := &Azurerm_dns_mx_record{ Azurerm_dns_mx_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_mx_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_mx_record", externalID)
 }
@@ -4564,6 +5286,10 @@ type Azurerm_dns_ns_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_ns_recordHandler) Create(desired *Azurerm_dns_ns_record) (*Azurerm_dns_ns_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4581,6 +5307,10 @@ func (h *Azurerm_dns_ns_recordHandler) Create(desired *Azurerm_dns_ns_record) (*
 
 // Read ...
 func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_ns_record", externalID)
 	if err != nil {
@@ -4588,11 +5318,18 @@ func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_
 	}
 	x := &Azurerm_dns_ns_record{ Azurerm_dns_ns_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_ns_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_ns_record", externalID)
 }
@@ -4622,6 +5359,10 @@ type Azurerm_dns_ptr_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_ptr_recordHandler) Create(desired *Azurerm_dns_ptr_record) (*Azurerm_dns_ptr_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4639,6 +5380,10 @@ func (h *Azurerm_dns_ptr_recordHandler) Create(desired *Azurerm_dns_ptr_record) 
 
 // Read ...
 func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_ptr_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_ptr_record", externalID)
 	if err != nil {
@@ -4646,11 +5391,18 @@ func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_pt
 	}
 	x := &Azurerm_dns_ptr_record{ Azurerm_dns_ptr_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_ptr_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_ptr_record", externalID)
 }
@@ -4692,6 +5444,10 @@ type Azurerm_dns_srv_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_srv_recordHandler) Create(desired *Azurerm_dns_srv_record) (*Azurerm_dns_srv_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4709,6 +5465,10 @@ func (h *Azurerm_dns_srv_recordHandler) Create(desired *Azurerm_dns_srv_record) 
 
 // Read ...
 func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_srv_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_srv_record", externalID)
 	if err != nil {
@@ -4716,11 +5476,18 @@ func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_sr
 	}
 	x := &Azurerm_dns_srv_record{ Azurerm_dns_srv_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_srv_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_srv_record", externalID)
 }
@@ -4756,6 +5523,10 @@ type Azurerm_dns_txt_recordHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_txt_recordHandler) Create(desired *Azurerm_dns_txt_record) (*Azurerm_dns_txt_record, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4773,6 +5544,10 @@ func (h *Azurerm_dns_txt_recordHandler) Create(desired *Azurerm_dns_txt_record) 
 
 // Read ...
 func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_txt_record, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_txt_record", externalID)
 	if err != nil {
@@ -4780,11 +5555,18 @@ func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_tx
 	}
 	x := &Azurerm_dns_txt_record{ Azurerm_dns_txt_record_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_txt_recordHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_txt_record", externalID)
 }
@@ -4820,6 +5602,10 @@ type Azurerm_dns_zoneHandler struct {
 
 // Create ...
 func (h *Azurerm_dns_zoneHandler) Create(desired *Azurerm_dns_zone) (*Azurerm_dns_zone, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4837,6 +5623,10 @@ func (h *Azurerm_dns_zoneHandler) Create(desired *Azurerm_dns_zone) (*Azurerm_dn
 
 // Read ...
 func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_dns_zone", externalID)
 	if err != nil {
@@ -4844,11 +5634,18 @@ func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, er
 	}
 	x := &Azurerm_dns_zone{ Azurerm_dns_zone_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_dns_zoneHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_dns_zone", externalID)
 }
@@ -4880,6 +5677,10 @@ type Azurerm_eventgrid_topicHandler struct {
 
 // Create ...
 func (h *Azurerm_eventgrid_topicHandler) Create(desired *Azurerm_eventgrid_topic) (*Azurerm_eventgrid_topic, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4897,6 +5698,10 @@ func (h *Azurerm_eventgrid_topicHandler) Create(desired *Azurerm_eventgrid_topic
 
 // Read ...
 func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_eventgrid_topic, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventgrid_topic", externalID)
 	if err != nil {
@@ -4904,11 +5709,18 @@ func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_event
 	}
 	x := &Azurerm_eventgrid_topic{ Azurerm_eventgrid_topic_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_eventgrid_topicHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventgrid_topic", externalID)
 }
@@ -4968,6 +5780,10 @@ type Azurerm_eventhubHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhubHandler) Create(desired *Azurerm_eventhub) (*Azurerm_eventhub, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4985,6 +5801,10 @@ func (h *Azurerm_eventhubHandler) Create(desired *Azurerm_eventhub) (*Azurerm_ev
 
 // Read ...
 func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub", externalID)
 	if err != nil {
@@ -4992,11 +5812,18 @@ func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, er
 	}
 	x := &Azurerm_eventhub{ Azurerm_eventhub_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_eventhubHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub", externalID)
 }
@@ -5038,6 +5865,10 @@ type Azurerm_eventhub_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_authorization_ruleHandler) Create(desired *Azurerm_eventhub_authorization_rule) (*Azurerm_eventhub_authorization_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5055,6 +5886,10 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Create(desired *Azurerm_eve
 
 // Read ...
 func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_authorization_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_authorization_rule", externalID)
 	if err != nil {
@@ -5062,11 +5897,18 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*A
 	}
 	x := &Azurerm_eventhub_authorization_rule{ Azurerm_eventhub_authorization_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_eventhub_authorization_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_authorization_rule", externalID)
 }
@@ -5096,6 +5938,10 @@ type Azurerm_eventhub_consumer_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_consumer_groupHandler) Create(desired *Azurerm_eventhub_consumer_group) (*Azurerm_eventhub_consumer_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5113,6 +5959,10 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Create(desired *Azurerm_eventhu
 
 // Read ...
 func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azurerm_eventhub_consumer_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_consumer_group", externalID)
 	if err != nil {
@@ -5120,11 +5970,18 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_eventhub_consumer_group{ Azurerm_eventhub_consumer_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_eventhub_consumer_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_consumer_group", externalID)
 }
@@ -5168,6 +6025,10 @@ type Azurerm_eventhub_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_namespaceHandler) Create(desired *Azurerm_eventhub_namespace) (*Azurerm_eventhub_namespace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5185,6 +6046,10 @@ func (h *Azurerm_eventhub_namespaceHandler) Create(desired *Azurerm_eventhub_nam
 
 // Read ...
 func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_eventhub_namespace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace", externalID)
 	if err != nil {
@@ -5192,11 +6057,18 @@ func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_ev
 	}
 	x := &Azurerm_eventhub_namespace{ Azurerm_eventhub_namespace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_eventhub_namespaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_namespace", externalID)
 }
@@ -5236,6 +6108,10 @@ type Azurerm_eventhub_namespace_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Create(desired *Azurerm_eventhub_namespace_authorization_rule) (*Azurerm_eventhub_namespace_authorization_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5253,6 +6129,10 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Create(desired *A
 
 // Read ...
 func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_eventhub_namespace_authorization_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
 	if err != nil {
@@ -5260,11 +6140,18 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID s
 	}
 	x := &Azurerm_eventhub_namespace_authorization_rule{ Azurerm_eventhub_namespace_authorization_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID)
 }
@@ -5312,6 +6199,10 @@ type Azurerm_express_route_circuitHandler struct {
 
 // Create ...
 func (h *Azurerm_express_route_circuitHandler) Create(desired *Azurerm_express_route_circuit) (*Azurerm_express_route_circuit, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5329,6 +6220,10 @@ func (h *Azurerm_express_route_circuitHandler) Create(desired *Azurerm_express_r
 
 // Read ...
 func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm_express_route_circuit, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit", externalID)
 	if err != nil {
@@ -5336,11 +6231,18 @@ func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_express_route_circuit{ Azurerm_express_route_circuit_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_express_route_circuitHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_express_route_circuit", externalID)
 }
@@ -5368,6 +6270,10 @@ type Azurerm_express_route_circuit_authorizationHandler struct {
 
 // Create ...
 func (h *Azurerm_express_route_circuit_authorizationHandler) Create(desired *Azurerm_express_route_circuit_authorization) (*Azurerm_express_route_circuit_authorization, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5385,6 +6291,10 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID string) (*Azurerm_express_route_circuit_authorization, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_authorization", externalID)
 	if err != nil {
@@ -5392,11 +6302,18 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID str
 	}
 	x := &Azurerm_express_route_circuit_authorization{ Azurerm_express_route_circuit_authorization_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_express_route_circuit_authorizationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_express_route_circuit_authorization", externalID)
 }
@@ -5444,6 +6361,10 @@ type Azurerm_express_route_circuit_peeringHandler struct {
 
 // Create ...
 func (h *Azurerm_express_route_circuit_peeringHandler) Create(desired *Azurerm_express_route_circuit_peering) (*Azurerm_express_route_circuit_peering, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5461,6 +6382,10 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Create(desired *Azurerm_e
 
 // Read ...
 func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (*Azurerm_express_route_circuit_peering, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_express_route_circuit_peering", externalID)
 	if err != nil {
@@ -5468,11 +6393,18 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (
 	}
 	x := &Azurerm_express_route_circuit_peering{ Azurerm_express_route_circuit_peering_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_express_route_circuit_peeringHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_express_route_circuit_peering", externalID)
 }
@@ -5514,6 +6446,10 @@ type Azurerm_firewallHandler struct {
 
 // Create ...
 func (h *Azurerm_firewallHandler) Create(desired *Azurerm_firewall) (*Azurerm_firewall, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5531,6 +6467,10 @@ func (h *Azurerm_firewallHandler) Create(desired *Azurerm_firewall) (*Azurerm_fi
 
 // Read ...
 func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_firewall", externalID)
 	if err != nil {
@@ -5538,11 +6478,18 @@ func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, er
 	}
 	x := &Azurerm_firewall{ Azurerm_firewall_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_firewallHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_firewall", externalID)
 }
@@ -5596,6 +6543,10 @@ type Azurerm_firewall_application_rule_collectionHandler struct {
 
 // Create ...
 func (h *Azurerm_firewall_application_rule_collectionHandler) Create(desired *Azurerm_firewall_application_rule_collection) (*Azurerm_firewall_application_rule_collection, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5613,6 +6564,10 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_application_rule_collection, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_firewall_application_rule_collection", externalID)
 	if err != nil {
@@ -5620,11 +6575,18 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID st
 	}
 	x := &Azurerm_firewall_application_rule_collection{ Azurerm_firewall_application_rule_collection_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_firewall_application_rule_collectionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_firewall_application_rule_collection", externalID)
 }
@@ -5670,6 +6632,10 @@ type Azurerm_firewall_network_rule_collectionHandler struct {
 
 // Create ...
 func (h *Azurerm_firewall_network_rule_collectionHandler) Create(desired *Azurerm_firewall_network_rule_collection) (*Azurerm_firewall_network_rule_collection, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5687,6 +6653,10 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Create(desired *Azurer
 
 // Read ...
 func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string) (*Azurerm_firewall_network_rule_collection, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_firewall_network_rule_collection", externalID)
 	if err != nil {
@@ -5694,11 +6664,18 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string
 	}
 	x := &Azurerm_firewall_network_rule_collection{ Azurerm_firewall_network_rule_collection_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_firewall_network_rule_collectionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_firewall_network_rule_collection", externalID)
 }
@@ -5790,6 +6767,10 @@ type Azurerm_function_appHandler struct {
 
 // Create ...
 func (h *Azurerm_function_appHandler) Create(desired *Azurerm_function_app) (*Azurerm_function_app, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5807,6 +6788,10 @@ func (h *Azurerm_function_appHandler) Create(desired *Azurerm_function_app) (*Az
 
 // Read ...
 func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function_app, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_function_app", externalID)
 	if err != nil {
@@ -5814,11 +6799,18 @@ func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function
 	}
 	x := &Azurerm_function_app{ Azurerm_function_app_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_function_appHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_function_app", externalID)
 }
@@ -5880,6 +6872,10 @@ type Azurerm_imageHandler struct {
 
 // Create ...
 func (h *Azurerm_imageHandler) Create(desired *Azurerm_image) (*Azurerm_image, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5897,6 +6893,10 @@ func (h *Azurerm_imageHandler) Create(desired *Azurerm_image) (*Azurerm_image, s
 
 // Read ...
 func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_image", externalID)
 	if err != nil {
@@ -5904,11 +6904,18 @@ func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
 	}
 	x := &Azurerm_image{ Azurerm_image_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_imageHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_image", externalID)
 }
@@ -6010,6 +7017,10 @@ type Azurerm_iothubHandler struct {
 
 // Create ...
 func (h *Azurerm_iothubHandler) Create(desired *Azurerm_iothub) (*Azurerm_iothub, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6027,6 +7038,10 @@ func (h *Azurerm_iothubHandler) Create(desired *Azurerm_iothub) (*Azurerm_iothub
 
 // Read ...
 func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_iothub", externalID)
 	if err != nil {
@@ -6034,11 +7049,18 @@ func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error)
 	}
 	x := &Azurerm_iothub{ Azurerm_iothub_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_iothubHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_iothub", externalID)
 }
@@ -6064,6 +7086,10 @@ type Azurerm_iothub_consumer_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_iothub_consumer_groupHandler) Create(desired *Azurerm_iothub_consumer_group) (*Azurerm_iothub_consumer_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6081,6 +7107,10 @@ func (h *Azurerm_iothub_consumer_groupHandler) Create(desired *Azurerm_iothub_co
 
 // Read ...
 func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm_iothub_consumer_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_iothub_consumer_group", externalID)
 	if err != nil {
@@ -6088,11 +7118,18 @@ func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_iothub_consumer_group{ Azurerm_iothub_consumer_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_iothub_consumer_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_iothub_consumer_group", externalID)
 }
@@ -6168,6 +7205,10 @@ type Azurerm_key_vaultHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vaultHandler) Create(desired *Azurerm_key_vault) (*Azurerm_key_vault, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6185,6 +7226,10 @@ func (h *Azurerm_key_vaultHandler) Create(desired *Azurerm_key_vault) (*Azurerm_
 
 // Read ...
 func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault", externalID)
 	if err != nil {
@@ -6192,11 +7237,18 @@ func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, 
 	}
 	x := &Azurerm_key_vault{ Azurerm_key_vault_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_key_vaultHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault", externalID)
 }
@@ -6230,6 +7282,10 @@ type Azurerm_key_vault_access_policyHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_access_policyHandler) Create(desired *Azurerm_key_vault_access_policy) (*Azurerm_key_vault_access_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6247,6 +7303,10 @@ func (h *Azurerm_key_vault_access_policyHandler) Create(desired *Azurerm_key_vau
 
 // Read ...
 func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azurerm_key_vault_access_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_access_policy", externalID)
 	if err != nil {
@@ -6254,11 +7314,18 @@ func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_key_vault_access_policy{ Azurerm_key_vault_access_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_key_vault_access_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_access_policy", externalID)
 }
@@ -6386,6 +7453,10 @@ type Azurerm_key_vault_certificateHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_certificateHandler) Create(desired *Azurerm_key_vault_certificate) (*Azurerm_key_vault_certificate, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6403,6 +7474,10 @@ func (h *Azurerm_key_vault_certificateHandler) Create(desired *Azurerm_key_vault
 
 // Read ...
 func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm_key_vault_certificate, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_certificate", externalID)
 	if err != nil {
@@ -6410,11 +7485,18 @@ func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_key_vault_certificate{ Azurerm_key_vault_certificate_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_key_vault_certificateHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_certificate", externalID)
 }
@@ -6450,6 +7532,10 @@ type Azurerm_key_vault_keyHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_keyHandler) Create(desired *Azurerm_key_vault_key) (*Azurerm_key_vault_key, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6467,6 +7553,10 @@ func (h *Azurerm_key_vault_keyHandler) Create(desired *Azurerm_key_vault_key) (*
 
 // Read ...
 func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vault_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_key", externalID)
 	if err != nil {
@@ -6474,11 +7564,18 @@ func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vau
 	}
 	x := &Azurerm_key_vault_key{ Azurerm_key_vault_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_key_vault_keyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_key", externalID)
 }
@@ -6508,6 +7605,10 @@ type Azurerm_key_vault_secretHandler struct {
 
 // Create ...
 func (h *Azurerm_key_vault_secretHandler) Create(desired *Azurerm_key_vault_secret) (*Azurerm_key_vault_secret, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6525,6 +7626,10 @@ func (h *Azurerm_key_vault_secretHandler) Create(desired *Azurerm_key_vault_secr
 
 // Read ...
 func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_vault_secret, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_key_vault_secret", externalID)
 	if err != nil {
@@ -6532,11 +7637,18 @@ func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_
 	}
 	x := &Azurerm_key_vault_secret{ Azurerm_key_vault_secret_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_key_vault_secretHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_key_vault_secret", externalID)
 }
@@ -6734,6 +7846,10 @@ type Azurerm_kubernetes_clusterHandler struct {
 
 // Create ...
 func (h *Azurerm_kubernetes_clusterHandler) Create(desired *Azurerm_kubernetes_cluster) (*Azurerm_kubernetes_cluster, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6751,6 +7867,10 @@ func (h *Azurerm_kubernetes_clusterHandler) Create(desired *Azurerm_kubernetes_c
 
 // Read ...
 func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_kubernetes_cluster, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_kubernetes_cluster", externalID)
 	if err != nil {
@@ -6758,11 +7878,18 @@ func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_ku
 	}
 	x := &Azurerm_kubernetes_cluster{ Azurerm_kubernetes_cluster_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_kubernetes_clusterHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_kubernetes_cluster", externalID)
 }
@@ -6816,6 +7943,10 @@ type Azurerm_lbHandler struct {
 
 // Create ...
 func (h *Azurerm_lbHandler) Create(desired *Azurerm_lb) (*Azurerm_lb, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6833,6 +7964,10 @@ func (h *Azurerm_lbHandler) Create(desired *Azurerm_lb) (*Azurerm_lb, string, er
 
 // Read ...
 func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb", externalID)
 	if err != nil {
@@ -6840,11 +7975,18 @@ func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
 	}
 	x := &Azurerm_lb{ Azurerm_lb_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_lbHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb", externalID)
 }
@@ -6874,6 +8016,10 @@ type Azurerm_lb_backend_address_poolHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_backend_address_poolHandler) Create(desired *Azurerm_lb_backend_address_pool) (*Azurerm_lb_backend_address_pool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6891,6 +8037,10 @@ func (h *Azurerm_lb_backend_address_poolHandler) Create(desired *Azurerm_lb_back
 
 // Read ...
 func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azurerm_lb_backend_address_pool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_backend_address_pool", externalID)
 	if err != nil {
@@ -6898,11 +8048,18 @@ func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_lb_backend_address_pool{ Azurerm_lb_backend_address_pool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_lb_backend_address_poolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_backend_address_pool", externalID)
 }
@@ -6940,6 +8097,10 @@ type Azurerm_lb_nat_poolHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_nat_poolHandler) Create(desired *Azurerm_lb_nat_pool) (*Azurerm_lb_nat_pool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6957,6 +8118,10 @@ func (h *Azurerm_lb_nat_poolHandler) Create(desired *Azurerm_lb_nat_pool) (*Azur
 
 // Read ...
 func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_pool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_nat_pool", externalID)
 	if err != nil {
@@ -6964,11 +8129,18 @@ func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_po
 	}
 	x := &Azurerm_lb_nat_pool{ Azurerm_lb_nat_pool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_lb_nat_poolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_nat_pool", externalID)
 }
@@ -7008,6 +8180,10 @@ type Azurerm_lb_nat_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_nat_ruleHandler) Create(desired *Azurerm_lb_nat_rule) (*Azurerm_lb_nat_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7025,6 +8201,10 @@ func (h *Azurerm_lb_nat_ruleHandler) Create(desired *Azurerm_lb_nat_rule) (*Azur
 
 // Read ...
 func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_nat_rule", externalID)
 	if err != nil {
@@ -7032,11 +8212,18 @@ func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_ru
 	}
 	x := &Azurerm_lb_nat_rule{ Azurerm_lb_nat_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_lb_nat_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_nat_rule", externalID)
 }
@@ -7074,6 +8261,10 @@ type Azurerm_lb_probeHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_probeHandler) Create(desired *Azurerm_lb_probe) (*Azurerm_lb_probe, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7091,6 +8282,10 @@ func (h *Azurerm_lb_probeHandler) Create(desired *Azurerm_lb_probe) (*Azurerm_lb
 
 // Read ...
 func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_probe", externalID)
 	if err != nil {
@@ -7098,11 +8293,18 @@ func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, er
 	}
 	x := &Azurerm_lb_probe{ Azurerm_lb_probe_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_lb_probeHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_probe", externalID)
 }
@@ -7148,6 +8350,10 @@ type Azurerm_lb_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_lb_ruleHandler) Create(desired *Azurerm_lb_rule) (*Azurerm_lb_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7165,6 +8371,10 @@ func (h *Azurerm_lb_ruleHandler) Create(desired *Azurerm_lb_rule) (*Azurerm_lb_r
 
 // Read ...
 func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_lb_rule", externalID)
 	if err != nil {
@@ -7172,11 +8382,18 @@ func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, erro
 	}
 	x := &Azurerm_lb_rule{ Azurerm_lb_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_lb_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_lb_rule", externalID)
 }
@@ -7218,6 +8435,10 @@ type Azurerm_local_network_gatewayHandler struct {
 
 // Create ...
 func (h *Azurerm_local_network_gatewayHandler) Create(desired *Azurerm_local_network_gateway) (*Azurerm_local_network_gateway, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7235,6 +8456,10 @@ func (h *Azurerm_local_network_gatewayHandler) Create(desired *Azurerm_local_net
 
 // Read ...
 func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm_local_network_gateway, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_local_network_gateway", externalID)
 	if err != nil {
@@ -7242,11 +8467,18 @@ func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_local_network_gateway{ Azurerm_local_network_gateway_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_local_network_gatewayHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_local_network_gateway", externalID)
 }
@@ -7288,6 +8520,10 @@ type Azurerm_log_analytics_solutionHandler struct {
 
 // Create ...
 func (h *Azurerm_log_analytics_solutionHandler) Create(desired *Azurerm_log_analytics_solution) (*Azurerm_log_analytics_solution, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7305,6 +8541,10 @@ func (h *Azurerm_log_analytics_solutionHandler) Create(desired *Azurerm_log_anal
 
 // Read ...
 func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurerm_log_analytics_solution, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_solution", externalID)
 	if err != nil {
@@ -7312,11 +8552,18 @@ func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurer
 	}
 	x := &Azurerm_log_analytics_solution{ Azurerm_log_analytics_solution_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_log_analytics_solutionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_log_analytics_solution", externalID)
 }
@@ -7354,6 +8601,10 @@ type Azurerm_log_analytics_workspaceHandler struct {
 
 // Create ...
 func (h *Azurerm_log_analytics_workspaceHandler) Create(desired *Azurerm_log_analytics_workspace) (*Azurerm_log_analytics_workspace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7371,6 +8622,10 @@ func (h *Azurerm_log_analytics_workspaceHandler) Create(desired *Azurerm_log_ana
 
 // Read ...
 func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace", externalID)
 	if err != nil {
@@ -7378,11 +8633,18 @@ func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_log_analytics_workspace{ Azurerm_log_analytics_workspace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_log_analytics_workspaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace", externalID)
 }
@@ -7412,6 +8674,10 @@ type Azurerm_log_analytics_workspace_linked_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Create(desired *Azurerm_log_analytics_workspace_linked_service) (*Azurerm_log_analytics_workspace_linked_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7429,6 +8695,10 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Create(desired *
 
 // Read ...
 func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID string) (*Azurerm_log_analytics_workspace_linked_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
 	if err != nil {
@@ -7436,11 +8706,18 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID 
 	}
 	x := &Azurerm_log_analytics_workspace_linked_service{ Azurerm_log_analytics_workspace_linked_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID)
 }
@@ -7464,6 +8741,10 @@ type Azurerm_logic_app_action_customHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_action_customHandler) Create(desired *Azurerm_logic_app_action_custom) (*Azurerm_logic_app_action_custom, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7481,6 +8762,10 @@ func (h *Azurerm_logic_app_action_customHandler) Create(desired *Azurerm_logic_a
 
 // Read ...
 func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azurerm_logic_app_action_custom, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_custom", externalID)
 	if err != nil {
@@ -7488,11 +8773,18 @@ func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_logic_app_action_custom{ Azurerm_logic_app_action_custom_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_logic_app_action_customHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_action_custom", externalID)
 }
@@ -7522,6 +8814,10 @@ type Azurerm_logic_app_action_httpHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_action_httpHandler) Create(desired *Azurerm_logic_app_action_http) (*Azurerm_logic_app_action_http, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7539,6 +8835,10 @@ func (h *Azurerm_logic_app_action_httpHandler) Create(desired *Azurerm_logic_app
 
 // Read ...
 func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm_logic_app_action_http, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_action_http", externalID)
 	if err != nil {
@@ -7546,11 +8846,18 @@ func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_logic_app_action_http{ Azurerm_logic_app_action_http_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_logic_app_action_httpHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_action_http", externalID)
 }
@@ -7574,6 +8881,10 @@ type Azurerm_logic_app_trigger_customHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_trigger_customHandler) Create(desired *Azurerm_logic_app_trigger_custom) (*Azurerm_logic_app_trigger_custom, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7591,6 +8902,10 @@ func (h *Azurerm_logic_app_trigger_customHandler) Create(desired *Azurerm_logic_
 
 // Read ...
 func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azurerm_logic_app_trigger_custom, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_custom", externalID)
 	if err != nil {
@@ -7598,11 +8913,18 @@ func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_logic_app_trigger_custom{ Azurerm_logic_app_trigger_custom_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_logic_app_trigger_customHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_custom", externalID)
 }
@@ -7630,6 +8952,10 @@ type Azurerm_logic_app_trigger_http_requestHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_trigger_http_requestHandler) Create(desired *Azurerm_logic_app_trigger_http_request) (*Azurerm_logic_app_trigger_http_request, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7647,6 +8973,10 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) (*Azurerm_logic_app_trigger_http_request, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
 	if err != nil {
@@ -7654,11 +8984,18 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) 
 	}
 	x := &Azurerm_logic_app_trigger_http_request{ Azurerm_logic_app_trigger_http_request_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_logic_app_trigger_http_requestHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_http_request", externalID)
 }
@@ -7684,6 +9021,10 @@ type Azurerm_logic_app_trigger_recurrenceHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_trigger_recurrenceHandler) Create(desired *Azurerm_logic_app_trigger_recurrence) (*Azurerm_logic_app_trigger_recurrence, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7701,6 +9042,10 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Create(desired *Azurerm_lo
 
 // Read ...
 func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*Azurerm_logic_app_trigger_recurrence, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
 	if err != nil {
@@ -7708,11 +9053,18 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*
 	}
 	x := &Azurerm_logic_app_trigger_recurrence{ Azurerm_logic_app_trigger_recurrence_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_logic_app_trigger_recurrenceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_trigger_recurrence", externalID)
 }
@@ -7746,6 +9098,10 @@ type Azurerm_logic_app_workflowHandler struct {
 
 // Create ...
 func (h *Azurerm_logic_app_workflowHandler) Create(desired *Azurerm_logic_app_workflow) (*Azurerm_logic_app_workflow, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7763,6 +9119,10 @@ func (h *Azurerm_logic_app_workflowHandler) Create(desired *Azurerm_logic_app_wo
 
 // Read ...
 func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_logic_app_workflow, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_logic_app_workflow", externalID)
 	if err != nil {
@@ -7770,11 +9130,18 @@ func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_lo
 	}
 	x := &Azurerm_logic_app_workflow{ Azurerm_logic_app_workflow_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_logic_app_workflowHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_logic_app_workflow", externalID)
 }
@@ -7844,6 +9211,10 @@ type Azurerm_managed_diskHandler struct {
 
 // Create ...
 func (h *Azurerm_managed_diskHandler) Create(desired *Azurerm_managed_disk) (*Azurerm_managed_disk, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7861,6 +9232,10 @@ func (h *Azurerm_managed_diskHandler) Create(desired *Azurerm_managed_disk) (*Az
 
 // Read ...
 func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_disk, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_managed_disk", externalID)
 	if err != nil {
@@ -7868,11 +9243,18 @@ func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_
 	}
 	x := &Azurerm_managed_disk{ Azurerm_managed_disk_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_managed_diskHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_managed_disk", externalID)
 }
@@ -7898,6 +9280,10 @@ type Azurerm_management_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_management_groupHandler) Create(desired *Azurerm_management_group) (*Azurerm_management_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7915,6 +9301,10 @@ func (h *Azurerm_management_groupHandler) Create(desired *Azurerm_management_gro
 
 // Read ...
 func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_management_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_management_group", externalID)
 	if err != nil {
@@ -7922,11 +9312,18 @@ func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_mana
 	}
 	x := &Azurerm_management_group{ Azurerm_management_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_management_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_management_group", externalID)
 }
@@ -7952,6 +9349,10 @@ type Azurerm_management_lockHandler struct {
 
 // Create ...
 func (h *Azurerm_management_lockHandler) Create(desired *Azurerm_management_lock) (*Azurerm_management_lock, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7969,6 +9370,10 @@ func (h *Azurerm_management_lockHandler) Create(desired *Azurerm_management_lock
 
 // Read ...
 func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_management_lock, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_management_lock", externalID)
 	if err != nil {
@@ -7976,11 +9381,18 @@ func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_manag
 	}
 	x := &Azurerm_management_lock{ Azurerm_management_lock_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_management_lockHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_management_lock", externalID)
 }
@@ -8008,6 +9420,10 @@ type Azurerm_mariadb_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_mariadb_databaseHandler) Create(desired *Azurerm_mariadb_database) (*Azurerm_mariadb_database, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8025,6 +9441,10 @@ func (h *Azurerm_mariadb_databaseHandler) Create(desired *Azurerm_mariadb_databa
 
 // Read ...
 func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mariadb_database, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mariadb_database", externalID)
 	if err != nil {
@@ -8032,11 +9452,18 @@ func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mari
 	}
 	x := &Azurerm_mariadb_database{ Azurerm_mariadb_database_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mariadb_databaseHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mariadb_database", externalID)
 }
@@ -8098,6 +9525,10 @@ type Azurerm_mariadb_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_mariadb_serverHandler) Create(desired *Azurerm_mariadb_server) (*Azurerm_mariadb_server, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8115,6 +9546,10 @@ func (h *Azurerm_mariadb_serverHandler) Create(desired *Azurerm_mariadb_server) 
 
 // Read ...
 func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariadb_server, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mariadb_server", externalID)
 	if err != nil {
@@ -8122,11 +9557,18 @@ func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariad
 	}
 	x := &Azurerm_mariadb_server{ Azurerm_mariadb_server_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mariadb_serverHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mariadb_server", externalID)
 }
@@ -8188,6 +9630,10 @@ type Azurerm_metric_alertruleHandler struct {
 
 // Create ...
 func (h *Azurerm_metric_alertruleHandler) Create(desired *Azurerm_metric_alertrule) (*Azurerm_metric_alertrule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8205,6 +9651,10 @@ func (h *Azurerm_metric_alertruleHandler) Create(desired *Azurerm_metric_alertru
 
 // Read ...
 func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metric_alertrule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_metric_alertrule", externalID)
 	if err != nil {
@@ -8212,11 +9662,18 @@ func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metr
 	}
 	x := &Azurerm_metric_alertrule{ Azurerm_metric_alertrule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_metric_alertruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_metric_alertrule", externalID)
 }
@@ -8276,6 +9733,10 @@ type Azurerm_monitor_action_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_action_groupHandler) Create(desired *Azurerm_monitor_action_group) (*Azurerm_monitor_action_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8293,6 +9754,10 @@ func (h *Azurerm_monitor_action_groupHandler) Create(desired *Azurerm_monitor_ac
 
 // Read ...
 func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_monitor_action_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_action_group", externalID)
 	if err != nil {
@@ -8300,11 +9765,18 @@ func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_monitor_action_group{ Azurerm_monitor_action_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_monitor_action_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_action_group", externalID)
 }
@@ -8370,6 +9842,10 @@ type Azurerm_monitor_activity_log_alertHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_activity_log_alertHandler) Create(desired *Azurerm_monitor_activity_log_alert) (*Azurerm_monitor_activity_log_alert, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8387,6 +9863,10 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Create(desired *Azurerm_moni
 
 // Read ...
 func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Azurerm_monitor_activity_log_alert, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_activity_log_alert", externalID)
 	if err != nil {
@@ -8394,11 +9874,18 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Az
 	}
 	x := &Azurerm_monitor_activity_log_alert{ Azurerm_monitor_activity_log_alert_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_monitor_activity_log_alertHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_activity_log_alert", externalID)
 }
@@ -8468,6 +9955,10 @@ type Azurerm_monitor_diagnostic_settingHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_diagnostic_settingHandler) Create(desired *Azurerm_monitor_diagnostic_setting) (*Azurerm_monitor_diagnostic_setting, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8485,6 +9976,10 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Create(desired *Azurerm_moni
 
 // Read ...
 func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Azurerm_monitor_diagnostic_setting, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
 	if err != nil {
@@ -8492,11 +9987,18 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Az
 	}
 	x := &Azurerm_monitor_diagnostic_setting{ Azurerm_monitor_diagnostic_setting_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_monitor_diagnostic_settingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_diagnostic_setting", externalID)
 }
@@ -8534,6 +10036,10 @@ type Azurerm_monitor_log_profileHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_log_profileHandler) Create(desired *Azurerm_monitor_log_profile) (*Azurerm_monitor_log_profile, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8551,6 +10057,10 @@ func (h *Azurerm_monitor_log_profileHandler) Create(desired *Azurerm_monitor_log
 
 // Read ...
 func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_monitor_log_profile, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_log_profile", externalID)
 	if err != nil {
@@ -8558,11 +10068,18 @@ func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_m
 	}
 	x := &Azurerm_monitor_log_profile{ Azurerm_monitor_log_profile_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_monitor_log_profileHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_log_profile", externalID)
 }
@@ -8638,6 +10155,10 @@ type Azurerm_monitor_metric_alertHandler struct {
 
 // Create ...
 func (h *Azurerm_monitor_metric_alertHandler) Create(desired *Azurerm_monitor_metric_alert) (*Azurerm_monitor_metric_alert, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8655,6 +10176,10 @@ func (h *Azurerm_monitor_metric_alertHandler) Create(desired *Azurerm_monitor_me
 
 // Read ...
 func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_monitor_metric_alert, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_monitor_metric_alert", externalID)
 	if err != nil {
@@ -8662,11 +10187,18 @@ func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_monitor_metric_alert{ Azurerm_monitor_metric_alert_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_monitor_metric_alertHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_monitor_metric_alert", externalID)
 }
@@ -8738,6 +10270,10 @@ type Azurerm_mssql_elasticpoolHandler struct {
 
 // Create ...
 func (h *Azurerm_mssql_elasticpoolHandler) Create(desired *Azurerm_mssql_elasticpool) (*Azurerm_mssql_elasticpool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8755,6 +10291,10 @@ func (h *Azurerm_mssql_elasticpoolHandler) Create(desired *Azurerm_mssql_elastic
 
 // Read ...
 func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mssql_elasticpool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mssql_elasticpool", externalID)
 	if err != nil {
@@ -8762,11 +10302,18 @@ func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mss
 	}
 	x := &Azurerm_mssql_elasticpool{ Azurerm_mssql_elasticpool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mssql_elasticpoolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mssql_elasticpool", externalID)
 }
@@ -8792,6 +10339,10 @@ type Azurerm_mysql_configurationHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_configurationHandler) Create(desired *Azurerm_mysql_configuration) (*Azurerm_mysql_configuration, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8809,6 +10360,10 @@ func (h *Azurerm_mysql_configurationHandler) Create(desired *Azurerm_mysql_confi
 
 // Read ...
 func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_mysql_configuration, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_configuration", externalID)
 	if err != nil {
@@ -8816,11 +10371,18 @@ func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_m
 	}
 	x := &Azurerm_mysql_configuration{ Azurerm_mysql_configuration_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mysql_configurationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_configuration", externalID)
 }
@@ -8848,6 +10410,10 @@ type Azurerm_mysql_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_databaseHandler) Create(desired *Azurerm_mysql_database) (*Azurerm_mysql_database, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8865,6 +10431,10 @@ func (h *Azurerm_mysql_databaseHandler) Create(desired *Azurerm_mysql_database) 
 
 // Read ...
 func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_database, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_database", externalID)
 	if err != nil {
@@ -8872,11 +10442,18 @@ func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_
 	}
 	x := &Azurerm_mysql_database{ Azurerm_mysql_database_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mysql_databaseHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_database", externalID)
 }
@@ -8904,6 +10481,10 @@ type Azurerm_mysql_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_firewall_ruleHandler) Create(desired *Azurerm_mysql_firewall_rule) (*Azurerm_mysql_firewall_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8921,6 +10502,10 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Create(desired *Azurerm_mysql_firew
 
 // Read ...
 func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_mysql_firewall_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_firewall_rule", externalID)
 	if err != nil {
@@ -8928,11 +10513,18 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_m
 	}
 	x := &Azurerm_mysql_firewall_rule{ Azurerm_mysql_firewall_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mysql_firewall_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_firewall_rule", externalID)
 }
@@ -8994,6 +10586,10 @@ type Azurerm_mysql_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_serverHandler) Create(desired *Azurerm_mysql_server) (*Azurerm_mysql_server, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9011,6 +10607,10 @@ func (h *Azurerm_mysql_serverHandler) Create(desired *Azurerm_mysql_server) (*Az
 
 // Read ...
 func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_server, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_server", externalID)
 	if err != nil {
@@ -9018,11 +10618,18 @@ func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_se
 	}
 	x := &Azurerm_mysql_server{ Azurerm_mysql_server_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mysql_serverHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_server", externalID)
 }
@@ -9048,6 +10655,10 @@ type Azurerm_mysql_virtual_network_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_mysql_virtual_network_ruleHandler) Create(desired *Azurerm_mysql_virtual_network_rule) (*Azurerm_mysql_virtual_network_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9065,6 +10676,10 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Create(desired *Azurerm_mysq
 
 // Read ...
 func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_mysql_virtual_network_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
 	if err != nil {
@@ -9072,11 +10687,18 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Az
 	}
 	x := &Azurerm_mysql_virtual_network_rule{ Azurerm_mysql_virtual_network_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_mysql_virtual_network_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_mysql_virtual_network_rule", externalID)
 }
@@ -9152,6 +10774,10 @@ type Azurerm_network_interfaceHandler struct {
 
 // Create ...
 func (h *Azurerm_network_interfaceHandler) Create(desired *Azurerm_network_interface) (*Azurerm_network_interface, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9169,6 +10795,10 @@ func (h *Azurerm_network_interfaceHandler) Create(desired *Azurerm_network_inter
 
 // Read ...
 func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_network_interface, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface", externalID)
 	if err != nil {
@@ -9176,11 +10806,18 @@ func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_net
 	}
 	x := &Azurerm_network_interface{ Azurerm_network_interface_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_interfaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface", externalID)
 }
@@ -9204,6 +10841,10 @@ type Azurerm_network_interface_application_gateway_backend_address_pool_associat
 
 // Create ...
 func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_application_gateway_backend_address_pool_association) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9221,6 +10862,10 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 
 // Read ...
 func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_application_gateway_backend_address_pool_association, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
 	if err != nil {
@@ -9228,11 +10873,18 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 	}
 	x := &Azurerm_network_interface_application_gateway_backend_address_pool_association{ Azurerm_network_interface_application_gateway_backend_address_pool_association_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID)
 }
@@ -9256,6 +10908,10 @@ type Azurerm_network_interface_backend_address_pool_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Create(desired *Azurerm_network_interface_backend_address_pool_association) (*Azurerm_network_interface_backend_address_pool_association, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9273,6 +10929,10 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Crea
 
 // Read ...
 func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read(externalID string) (*Azurerm_network_interface_backend_address_pool_association, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
 	if err != nil {
@@ -9280,11 +10940,18 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read
 	}
 	x := &Azurerm_network_interface_backend_address_pool_association{ Azurerm_network_interface_backend_address_pool_association_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID)
 }
@@ -9308,6 +10975,10 @@ type Azurerm_network_interface_nat_rule_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_network_interface_nat_rule_associationHandler) Create(desired *Azurerm_network_interface_nat_rule_association) (*Azurerm_network_interface_nat_rule_association, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9325,6 +10996,10 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Create(desired *
 
 // Read ...
 func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID string) (*Azurerm_network_interface_nat_rule_association, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
 	if err != nil {
@@ -9332,11 +11007,18 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID 
 	}
 	x := &Azurerm_network_interface_nat_rule_association{ Azurerm_network_interface_nat_rule_association_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_interface_nat_rule_associationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_interface_nat_rule_association", externalID)
 }
@@ -9400,6 +11082,10 @@ type Azurerm_network_security_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_network_security_groupHandler) Create(desired *Azurerm_network_security_group) (*Azurerm_network_security_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9417,6 +11103,10 @@ func (h *Azurerm_network_security_groupHandler) Create(desired *Azurerm_network_
 
 // Read ...
 func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurerm_network_security_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_security_group", externalID)
 	if err != nil {
@@ -9424,11 +11114,18 @@ func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurer
 	}
 	x := &Azurerm_network_security_group{ Azurerm_network_security_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_security_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_security_group", externalID)
 }
@@ -9482,6 +11179,10 @@ type Azurerm_network_security_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_network_security_ruleHandler) Create(desired *Azurerm_network_security_rule) (*Azurerm_network_security_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9499,6 +11200,10 @@ func (h *Azurerm_network_security_ruleHandler) Create(desired *Azurerm_network_s
 
 // Read ...
 func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm_network_security_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_security_rule", externalID)
 	if err != nil {
@@ -9506,11 +11211,18 @@ func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_network_security_rule{ Azurerm_network_security_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_security_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_security_rule", externalID)
 }
@@ -9536,6 +11248,10 @@ type Azurerm_network_watcherHandler struct {
 
 // Create ...
 func (h *Azurerm_network_watcherHandler) Create(desired *Azurerm_network_watcher) (*Azurerm_network_watcher, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9553,6 +11269,10 @@ func (h *Azurerm_network_watcherHandler) Create(desired *Azurerm_network_watcher
 
 // Read ...
 func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_network_watcher, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_network_watcher", externalID)
 	if err != nil {
@@ -9560,11 +11280,18 @@ func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_netwo
 	}
 	x := &Azurerm_network_watcher{ Azurerm_network_watcher_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_network_watcherHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_network_watcher", externalID)
 }
@@ -9614,6 +11341,10 @@ type Azurerm_notification_hubHandler struct {
 
 // Create ...
 func (h *Azurerm_notification_hubHandler) Create(desired *Azurerm_notification_hub) (*Azurerm_notification_hub, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9631,6 +11362,10 @@ func (h *Azurerm_notification_hubHandler) Create(desired *Azurerm_notification_h
 
 // Read ...
 func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_notification_hub, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub", externalID)
 	if err != nil {
@@ -9638,11 +11373,18 @@ func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_noti
 	}
 	x := &Azurerm_notification_hub{ Azurerm_notification_hub_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_notification_hubHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_notification_hub", externalID)
 }
@@ -9678,6 +11420,10 @@ type Azurerm_notification_hub_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_notification_hub_authorization_ruleHandler) Create(desired *Azurerm_notification_hub_authorization_rule) (*Azurerm_notification_hub_authorization_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9695,6 +11441,10 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID string) (*Azurerm_notification_hub_authorization_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
 	if err != nil {
@@ -9702,11 +11452,18 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID str
 	}
 	x := &Azurerm_notification_hub_authorization_rule{ Azurerm_notification_hub_authorization_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_notification_hub_authorization_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_notification_hub_authorization_rule", externalID)
 }
@@ -9744,6 +11501,10 @@ type Azurerm_notification_hub_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_notification_hub_namespaceHandler) Create(desired *Azurerm_notification_hub_namespace) (*Azurerm_notification_hub_namespace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9761,6 +11522,10 @@ func (h *Azurerm_notification_hub_namespaceHandler) Create(desired *Azurerm_noti
 
 // Read ...
 func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Azurerm_notification_hub_namespace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_notification_hub_namespace", externalID)
 	if err != nil {
@@ -9768,11 +11533,18 @@ func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Az
 	}
 	x := &Azurerm_notification_hub_namespace{ Azurerm_notification_hub_namespace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_notification_hub_namespaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_notification_hub_namespace", externalID)
 }
@@ -9832,6 +11604,10 @@ type Azurerm_packet_captureHandler struct {
 
 // Create ...
 func (h *Azurerm_packet_captureHandler) Create(desired *Azurerm_packet_capture) (*Azurerm_packet_capture, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9849,6 +11625,10 @@ func (h *Azurerm_packet_captureHandler) Create(desired *Azurerm_packet_capture) 
 
 // Read ...
 func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet_capture, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_packet_capture", externalID)
 	if err != nil {
@@ -9856,11 +11636,18 @@ func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet
 	}
 	x := &Azurerm_packet_capture{ Azurerm_packet_capture_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_packet_captureHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_packet_capture", externalID)
 }
@@ -9906,6 +11693,10 @@ type Azurerm_policy_assignmentHandler struct {
 
 // Create ...
 func (h *Azurerm_policy_assignmentHandler) Create(desired *Azurerm_policy_assignment) (*Azurerm_policy_assignment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9923,6 +11714,10 @@ func (h *Azurerm_policy_assignmentHandler) Create(desired *Azurerm_policy_assign
 
 // Read ...
 func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_policy_assignment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_policy_assignment", externalID)
 	if err != nil {
@@ -9930,11 +11725,18 @@ func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_pol
 	}
 	x := &Azurerm_policy_assignment{ Azurerm_policy_assignment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_policy_assignmentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_policy_assignment", externalID)
 }
@@ -9970,6 +11772,10 @@ type Azurerm_policy_definitionHandler struct {
 
 // Create ...
 func (h *Azurerm_policy_definitionHandler) Create(desired *Azurerm_policy_definition) (*Azurerm_policy_definition, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9987,6 +11793,10 @@ func (h *Azurerm_policy_definitionHandler) Create(desired *Azurerm_policy_defini
 
 // Read ...
 func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_policy_definition, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_policy_definition", externalID)
 	if err != nil {
@@ -9994,11 +11804,18 @@ func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_pol
 	}
 	x := &Azurerm_policy_definition{ Azurerm_policy_definition_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_policy_definitionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_policy_definition", externalID)
 }
@@ -10032,6 +11849,10 @@ type Azurerm_policy_set_definitionHandler struct {
 
 // Create ...
 func (h *Azurerm_policy_set_definitionHandler) Create(desired *Azurerm_policy_set_definition) (*Azurerm_policy_set_definition, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10049,6 +11870,10 @@ func (h *Azurerm_policy_set_definitionHandler) Create(desired *Azurerm_policy_se
 
 // Read ...
 func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm_policy_set_definition, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_policy_set_definition", externalID)
 	if err != nil {
@@ -10056,11 +11881,18 @@ func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm
 	}
 	x := &Azurerm_policy_set_definition{ Azurerm_policy_set_definition_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_policy_set_definitionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_policy_set_definition", externalID)
 }
@@ -10086,6 +11918,10 @@ type Azurerm_postgresql_configurationHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_configurationHandler) Create(desired *Azurerm_postgresql_configuration) (*Azurerm_postgresql_configuration, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10103,6 +11939,10 @@ func (h *Azurerm_postgresql_configurationHandler) Create(desired *Azurerm_postgr
 
 // Read ...
 func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azurerm_postgresql_configuration, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_configuration", externalID)
 	if err != nil {
@@ -10110,11 +11950,18 @@ func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_postgresql_configuration{ Azurerm_postgresql_configuration_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_postgresql_configurationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_configuration", externalID)
 }
@@ -10142,6 +11989,10 @@ type Azurerm_postgresql_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_databaseHandler) Create(desired *Azurerm_postgresql_database) (*Azurerm_postgresql_database, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10159,6 +12010,10 @@ func (h *Azurerm_postgresql_databaseHandler) Create(desired *Azurerm_postgresql_
 
 // Read ...
 func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_postgresql_database, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_database", externalID)
 	if err != nil {
@@ -10166,11 +12021,18 @@ func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_p
 	}
 	x := &Azurerm_postgresql_database{ Azurerm_postgresql_database_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_postgresql_databaseHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_database", externalID)
 }
@@ -10198,6 +12060,10 @@ type Azurerm_postgresql_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_firewall_ruleHandler) Create(desired *Azurerm_postgresql_firewall_rule) (*Azurerm_postgresql_firewall_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10215,6 +12081,10 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Create(desired *Azurerm_postgr
 
 // Read ...
 func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azurerm_postgresql_firewall_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_firewall_rule", externalID)
 	if err != nil {
@@ -10222,11 +12092,18 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_postgresql_firewall_rule{ Azurerm_postgresql_firewall_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_postgresql_firewall_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_firewall_rule", externalID)
 }
@@ -10288,6 +12165,10 @@ type Azurerm_postgresql_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_serverHandler) Create(desired *Azurerm_postgresql_server) (*Azurerm_postgresql_server, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10305,6 +12186,10 @@ func (h *Azurerm_postgresql_serverHandler) Create(desired *Azurerm_postgresql_se
 
 // Read ...
 func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_postgresql_server, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_server", externalID)
 	if err != nil {
@@ -10312,11 +12197,18 @@ func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_pos
 	}
 	x := &Azurerm_postgresql_server{ Azurerm_postgresql_server_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_postgresql_serverHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_server", externalID)
 }
@@ -10344,6 +12236,10 @@ type Azurerm_postgresql_virtual_network_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_postgresql_virtual_network_ruleHandler) Create(desired *Azurerm_postgresql_virtual_network_rule) (*Azurerm_postgresql_virtual_network_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10361,6 +12257,10 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Create(desired *Azurerm
 
 // Read ...
 func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_postgresql_virtual_network_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
 	if err != nil {
@@ -10368,11 +12268,18 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string)
 	}
 	x := &Azurerm_postgresql_virtual_network_rule{ Azurerm_postgresql_virtual_network_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_postgresql_virtual_network_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_postgresql_virtual_network_rule", externalID)
 }
@@ -10418,6 +12325,10 @@ type Azurerm_public_ipHandler struct {
 
 // Create ...
 func (h *Azurerm_public_ipHandler) Create(desired *Azurerm_public_ip) (*Azurerm_public_ip, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10435,6 +12346,10 @@ func (h *Azurerm_public_ipHandler) Create(desired *Azurerm_public_ip) (*Azurerm_
 
 // Read ...
 func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_public_ip", externalID)
 	if err != nil {
@@ -10442,11 +12357,18 @@ func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, 
 	}
 	x := &Azurerm_public_ip{ Azurerm_public_ip_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_public_ipHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_public_ip", externalID)
 }
@@ -10474,6 +12396,10 @@ type Azurerm_recovery_services_protected_vmHandler struct {
 
 // Create ...
 func (h *Azurerm_recovery_services_protected_vmHandler) Create(desired *Azurerm_recovery_services_protected_vm) (*Azurerm_recovery_services_protected_vm, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10491,6 +12417,10 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protected_vm, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protected_vm", externalID)
 	if err != nil {
@@ -10498,11 +12428,18 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) 
 	}
 	x := &Azurerm_recovery_services_protected_vm{ Azurerm_recovery_services_protected_vm_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_recovery_services_protected_vmHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_recovery_services_protected_vm", externalID)
 }
@@ -10586,6 +12523,10 @@ type Azurerm_recovery_services_protection_policy_vmHandler struct {
 
 // Create ...
 func (h *Azurerm_recovery_services_protection_policy_vmHandler) Create(desired *Azurerm_recovery_services_protection_policy_vm) (*Azurerm_recovery_services_protection_policy_vm, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10603,6 +12544,10 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Create(desired *
 
 // Read ...
 func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID string) (*Azurerm_recovery_services_protection_policy_vm, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
 	if err != nil {
@@ -10610,11 +12555,18 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID 
 	}
 	x := &Azurerm_recovery_services_protection_policy_vm{ Azurerm_recovery_services_protection_policy_vm_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_recovery_services_protection_policy_vmHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID)
 }
@@ -10642,6 +12594,10 @@ type Azurerm_recovery_services_vaultHandler struct {
 
 // Create ...
 func (h *Azurerm_recovery_services_vaultHandler) Create(desired *Azurerm_recovery_services_vault) (*Azurerm_recovery_services_vault, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10659,6 +12615,10 @@ func (h *Azurerm_recovery_services_vaultHandler) Create(desired *Azurerm_recover
 
 // Read ...
 func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azurerm_recovery_services_vault, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_recovery_services_vault", externalID)
 	if err != nil {
@@ -10666,11 +12626,18 @@ func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_recovery_services_vault{ Azurerm_recovery_services_vault_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_recovery_services_vaultHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_recovery_services_vault", externalID)
 }
@@ -10756,6 +12723,10 @@ type Azurerm_redis_cacheHandler struct {
 
 // Create ...
 func (h *Azurerm_redis_cacheHandler) Create(desired *Azurerm_redis_cache) (*Azurerm_redis_cache, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10773,6 +12744,10 @@ func (h *Azurerm_redis_cacheHandler) Create(desired *Azurerm_redis_cache) (*Azur
 
 // Read ...
 func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cache, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_redis_cache", externalID)
 	if err != nil {
@@ -10780,11 +12755,18 @@ func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cac
 	}
 	x := &Azurerm_redis_cache{ Azurerm_redis_cache_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_redis_cacheHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_redis_cache", externalID)
 }
@@ -10812,6 +12794,10 @@ type Azurerm_redis_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_redis_firewall_ruleHandler) Create(desired *Azurerm_redis_firewall_rule) (*Azurerm_redis_firewall_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10829,6 +12815,10 @@ func (h *Azurerm_redis_firewall_ruleHandler) Create(desired *Azurerm_redis_firew
 
 // Read ...
 func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_redis_firewall_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_redis_firewall_rule", externalID)
 	if err != nil {
@@ -10836,11 +12826,18 @@ func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_r
 	}
 	x := &Azurerm_redis_firewall_rule{ Azurerm_redis_firewall_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_redis_firewall_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_redis_firewall_rule", externalID)
 }
@@ -10884,6 +12881,10 @@ type Azurerm_relay_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_relay_namespaceHandler) Create(desired *Azurerm_relay_namespace) (*Azurerm_relay_namespace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10901,6 +12902,10 @@ func (h *Azurerm_relay_namespaceHandler) Create(desired *Azurerm_relay_namespace
 
 // Read ...
 func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay_namespace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_relay_namespace", externalID)
 	if err != nil {
@@ -10908,11 +12913,18 @@ func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay
 	}
 	x := &Azurerm_relay_namespace{ Azurerm_relay_namespace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_relay_namespaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_relay_namespace", externalID)
 }
@@ -10936,6 +12948,10 @@ type Azurerm_resource_groupHandler struct {
 
 // Create ...
 func (h *Azurerm_resource_groupHandler) Create(desired *Azurerm_resource_group) (*Azurerm_resource_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10953,6 +12969,10 @@ func (h *Azurerm_resource_groupHandler) Create(desired *Azurerm_resource_group) 
 
 // Read ...
 func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resource_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_resource_group", externalID)
 	if err != nil {
@@ -10960,11 +12980,18 @@ func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resour
 	}
 	x := &Azurerm_resource_group{ Azurerm_resource_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_resource_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_resource_group", externalID)
 }
@@ -10992,6 +13019,10 @@ type Azurerm_role_assignmentHandler struct {
 
 // Create ...
 func (h *Azurerm_role_assignmentHandler) Create(desired *Azurerm_role_assignment) (*Azurerm_role_assignment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11009,6 +13040,10 @@ func (h *Azurerm_role_assignmentHandler) Create(desired *Azurerm_role_assignment
 
 // Read ...
 func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_assignment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_role_assignment", externalID)
 	if err != nil {
@@ -11016,11 +13051,18 @@ func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_
 	}
 	x := &Azurerm_role_assignment{ Azurerm_role_assignment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_role_assignmentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_role_assignment", externalID)
 }
@@ -11062,6 +13104,10 @@ type Azurerm_role_definitionHandler struct {
 
 // Create ...
 func (h *Azurerm_role_definitionHandler) Create(desired *Azurerm_role_definition) (*Azurerm_role_definition, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11079,6 +13125,10 @@ func (h *Azurerm_role_definitionHandler) Create(desired *Azurerm_role_definition
 
 // Read ...
 func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_definition, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_role_definition", externalID)
 	if err != nil {
@@ -11086,11 +13136,18 @@ func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_
 	}
 	x := &Azurerm_role_definition{ Azurerm_role_definition_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_role_definitionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_role_definition", externalID)
 }
@@ -11120,6 +13177,10 @@ type Azurerm_routeHandler struct {
 
 // Create ...
 func (h *Azurerm_routeHandler) Create(desired *Azurerm_route) (*Azurerm_route, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11137,6 +13198,10 @@ func (h *Azurerm_routeHandler) Create(desired *Azurerm_route) (*Azurerm_route, s
 
 // Read ...
 func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_route", externalID)
 	if err != nil {
@@ -11144,11 +13209,18 @@ func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
 	}
 	x := &Azurerm_route{ Azurerm_route_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_routeHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_route", externalID)
 }
@@ -11192,6 +13264,10 @@ type Azurerm_route_tableHandler struct {
 
 // Create ...
 func (h *Azurerm_route_tableHandler) Create(desired *Azurerm_route_table) (*Azurerm_route_table, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11209,6 +13285,10 @@ func (h *Azurerm_route_tableHandler) Create(desired *Azurerm_route_table) (*Azur
 
 // Read ...
 func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_table, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_route_table", externalID)
 	if err != nil {
@@ -11216,11 +13296,18 @@ func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_tab
 	}
 	x := &Azurerm_route_table{ Azurerm_route_table_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_route_tableHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_route_table", externalID)
 }
@@ -11426,6 +13513,10 @@ type Azurerm_scheduler_jobHandler struct {
 
 // Create ...
 func (h *Azurerm_scheduler_jobHandler) Create(desired *Azurerm_scheduler_job) (*Azurerm_scheduler_job, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11443,6 +13534,10 @@ func (h *Azurerm_scheduler_jobHandler) Create(desired *Azurerm_scheduler_job) (*
 
 // Read ...
 func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_scheduler_job, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_scheduler_job", externalID)
 	if err != nil {
@@ -11450,11 +13545,18 @@ func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_schedul
 	}
 	x := &Azurerm_scheduler_job{ Azurerm_scheduler_job_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_scheduler_jobHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_scheduler_job", externalID)
 }
@@ -11498,6 +13600,10 @@ type Azurerm_scheduler_job_collectionHandler struct {
 
 // Create ...
 func (h *Azurerm_scheduler_job_collectionHandler) Create(desired *Azurerm_scheduler_job_collection) (*Azurerm_scheduler_job_collection, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11515,6 +13621,10 @@ func (h *Azurerm_scheduler_job_collectionHandler) Create(desired *Azurerm_schedu
 
 // Read ...
 func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azurerm_scheduler_job_collection, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_scheduler_job_collection", externalID)
 	if err != nil {
@@ -11522,11 +13632,18 @@ func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_scheduler_job_collection{ Azurerm_scheduler_job_collection_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_scheduler_job_collectionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_scheduler_job_collection", externalID)
 }
@@ -11562,6 +13679,10 @@ type Azurerm_search_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_search_serviceHandler) Create(desired *Azurerm_search_service) (*Azurerm_search_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11579,6 +13700,10 @@ func (h *Azurerm_search_serviceHandler) Create(desired *Azurerm_search_service) 
 
 // Read ...
 func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_search_service", externalID)
 	if err != nil {
@@ -11586,11 +13711,18 @@ func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search
 	}
 	x := &Azurerm_search_service{ Azurerm_search_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_search_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_search_service", externalID)
 }
@@ -11616,6 +13748,10 @@ type Azurerm_security_center_contactHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_contactHandler) Create(desired *Azurerm_security_center_contact) (*Azurerm_security_center_contact, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11633,6 +13769,10 @@ func (h *Azurerm_security_center_contactHandler) Create(desired *Azurerm_securit
 
 // Read ...
 func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azurerm_security_center_contact, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_contact", externalID)
 	if err != nil {
@@ -11640,11 +13780,18 @@ func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_security_center_contact{ Azurerm_security_center_contact_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_security_center_contactHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_security_center_contact", externalID)
 }
@@ -11664,6 +13811,10 @@ type Azurerm_security_center_subscription_pricingHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Create(desired *Azurerm_security_center_subscription_pricing) (*Azurerm_security_center_subscription_pricing, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11681,6 +13832,10 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Read(externalID string) (*Azurerm_security_center_subscription_pricing, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_subscription_pricing", externalID)
 	if err != nil {
@@ -11688,11 +13843,18 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Read(externalID st
 	}
 	x := &Azurerm_security_center_subscription_pricing{ Azurerm_security_center_subscription_pricing_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_security_center_subscription_pricingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_security_center_subscription_pricing", externalID)
 }
@@ -11714,6 +13876,10 @@ type Azurerm_security_center_workspaceHandler struct {
 
 // Create ...
 func (h *Azurerm_security_center_workspaceHandler) Create(desired *Azurerm_security_center_workspace) (*Azurerm_security_center_workspace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11731,6 +13897,10 @@ func (h *Azurerm_security_center_workspaceHandler) Create(desired *Azurerm_secur
 
 // Read ...
 func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azurerm_security_center_workspace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_security_center_workspace", externalID)
 	if err != nil {
@@ -11738,11 +13908,18 @@ func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azu
 	}
 	x := &Azurerm_security_center_workspace{ Azurerm_security_center_workspace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_security_center_workspaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_security_center_workspace", externalID)
 }
@@ -11894,6 +14071,10 @@ type Azurerm_service_fabric_clusterHandler struct {
 
 // Create ...
 func (h *Azurerm_service_fabric_clusterHandler) Create(desired *Azurerm_service_fabric_cluster) (*Azurerm_service_fabric_cluster, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11911,6 +14092,10 @@ func (h *Azurerm_service_fabric_clusterHandler) Create(desired *Azurerm_service_
 
 // Read ...
 func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurerm_service_fabric_cluster, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_service_fabric_cluster", externalID)
 	if err != nil {
@@ -11918,11 +14103,18 @@ func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurer
 	}
 	x := &Azurerm_service_fabric_cluster{ Azurerm_service_fabric_cluster_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_service_fabric_clusterHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_service_fabric_cluster", externalID)
 }
@@ -11960,6 +14152,10 @@ type Azurerm_servicebus_namespaceHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_namespaceHandler) Create(desired *Azurerm_servicebus_namespace) (*Azurerm_servicebus_namespace, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11977,6 +14173,10 @@ func (h *Azurerm_servicebus_namespaceHandler) Create(desired *Azurerm_servicebus
 
 // Read ...
 func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_servicebus_namespace, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace", externalID)
 	if err != nil {
@@ -11984,11 +14184,18 @@ func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_servicebus_namespace{ Azurerm_servicebus_namespace_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_namespaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_namespace", externalID)
 }
@@ -12026,6 +14233,10 @@ type Azurerm_servicebus_namespace_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Create(desired *Azurerm_servicebus_namespace_authorization_rule) (*Azurerm_servicebus_namespace_authorization_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12043,6 +14254,10 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Create(desired 
 
 // Read ...
 func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_namespace_authorization_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
 	if err != nil {
@@ -12050,11 +14265,18 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID
 	}
 	x := &Azurerm_servicebus_namespace_authorization_rule{ Azurerm_servicebus_namespace_authorization_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID)
 }
@@ -12106,6 +14328,10 @@ type Azurerm_servicebus_queueHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_queueHandler) Create(desired *Azurerm_servicebus_queue) (*Azurerm_servicebus_queue, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12123,6 +14349,10 @@ func (h *Azurerm_servicebus_queueHandler) Create(desired *Azurerm_servicebus_que
 
 // Read ...
 func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_servicebus_queue, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue", externalID)
 	if err != nil {
@@ -12130,11 +14360,18 @@ func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_serv
 	}
 	x := &Azurerm_servicebus_queue{ Azurerm_servicebus_queue_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_queueHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_queue", externalID)
 }
@@ -12174,6 +14411,10 @@ type Azurerm_servicebus_queue_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Create(desired *Azurerm_servicebus_queue_authorization_rule) (*Azurerm_servicebus_queue_authorization_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12191,6 +14432,10 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_queue_authorization_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
 	if err != nil {
@@ -12198,11 +14443,18 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID str
 	}
 	x := &Azurerm_servicebus_queue_authorization_rule{ Azurerm_servicebus_queue_authorization_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID)
 }
@@ -12248,6 +14500,10 @@ type Azurerm_servicebus_subscriptionHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_subscriptionHandler) Create(desired *Azurerm_servicebus_subscription) (*Azurerm_servicebus_subscription, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12265,6 +14521,10 @@ func (h *Azurerm_servicebus_subscriptionHandler) Create(desired *Azurerm_service
 
 // Read ...
 func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azurerm_servicebus_subscription, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription", externalID)
 	if err != nil {
@@ -12272,11 +14532,18 @@ func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_servicebus_subscription{ Azurerm_servicebus_subscription_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_subscriptionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_subscription", externalID)
 }
@@ -12332,6 +14599,10 @@ type Azurerm_servicebus_subscription_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_subscription_ruleHandler) Create(desired *Azurerm_servicebus_subscription_rule) (*Azurerm_servicebus_subscription_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12349,6 +14620,10 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Create(desired *Azurerm_se
 
 // Read ...
 func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*Azurerm_servicebus_subscription_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_subscription_rule", externalID)
 	if err != nil {
@@ -12356,11 +14631,18 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*
 	}
 	x := &Azurerm_servicebus_subscription_rule{ Azurerm_servicebus_subscription_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_subscription_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_subscription_rule", externalID)
 }
@@ -12408,6 +14690,10 @@ type Azurerm_servicebus_topicHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_topicHandler) Create(desired *Azurerm_servicebus_topic) (*Azurerm_servicebus_topic, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12425,6 +14711,10 @@ func (h *Azurerm_servicebus_topicHandler) Create(desired *Azurerm_servicebus_top
 
 // Read ...
 func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_servicebus_topic, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic", externalID)
 	if err != nil {
@@ -12432,11 +14722,18 @@ func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_serv
 	}
 	x := &Azurerm_servicebus_topic{ Azurerm_servicebus_topic_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_topicHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_topic", externalID)
 }
@@ -12476,6 +14773,10 @@ type Azurerm_servicebus_topic_authorization_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Create(desired *Azurerm_servicebus_topic_authorization_rule) (*Azurerm_servicebus_topic_authorization_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12493,6 +14794,10 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Create(desired *Azu
 
 // Read ...
 func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID string) (*Azurerm_servicebus_topic_authorization_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
 	if err != nil {
@@ -12500,11 +14805,18 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID str
 	}
 	x := &Azurerm_servicebus_topic_authorization_rule{ Azurerm_servicebus_topic_authorization_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID)
 }
@@ -12554,6 +14866,10 @@ type Azurerm_shared_imageHandler struct {
 
 // Create ...
 func (h *Azurerm_shared_imageHandler) Create(desired *Azurerm_shared_image) (*Azurerm_shared_image, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12571,6 +14887,10 @@ func (h *Azurerm_shared_imageHandler) Create(desired *Azurerm_shared_image) (*Az
 
 // Read ...
 func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_image, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image", externalID)
 	if err != nil {
@@ -12578,11 +14898,18 @@ func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_i
 	}
 	x := &Azurerm_shared_image{ Azurerm_shared_image_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_shared_imageHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_shared_image", externalID)
 }
@@ -12612,6 +14939,10 @@ type Azurerm_shared_image_galleryHandler struct {
 
 // Create ...
 func (h *Azurerm_shared_image_galleryHandler) Create(desired *Azurerm_shared_image_gallery) (*Azurerm_shared_image_gallery, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12629,6 +14960,10 @@ func (h *Azurerm_shared_image_galleryHandler) Create(desired *Azurerm_shared_ima
 
 // Read ...
 func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_shared_image_gallery, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image_gallery", externalID)
 	if err != nil {
@@ -12636,11 +14971,18 @@ func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_shared_image_gallery{ Azurerm_shared_image_gallery_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_shared_image_galleryHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_shared_image_gallery", externalID)
 }
@@ -12684,6 +15026,10 @@ type Azurerm_shared_image_versionHandler struct {
 
 // Create ...
 func (h *Azurerm_shared_image_versionHandler) Create(desired *Azurerm_shared_image_version) (*Azurerm_shared_image_version, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12701,6 +15047,10 @@ func (h *Azurerm_shared_image_versionHandler) Create(desired *Azurerm_shared_ima
 
 // Read ...
 func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_shared_image_version, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_shared_image_version", externalID)
 	if err != nil {
@@ -12708,11 +15058,18 @@ func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_
 	}
 	x := &Azurerm_shared_image_version{ Azurerm_shared_image_version_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_shared_image_versionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_shared_image_version", externalID)
 }
@@ -12756,6 +15113,10 @@ type Azurerm_signalr_serviceHandler struct {
 
 // Create ...
 func (h *Azurerm_signalr_serviceHandler) Create(desired *Azurerm_signalr_service) (*Azurerm_signalr_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12773,6 +15134,10 @@ func (h *Azurerm_signalr_serviceHandler) Create(desired *Azurerm_signalr_service
 
 // Read ...
 func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signalr_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_signalr_service", externalID)
 	if err != nil {
@@ -12780,11 +15145,18 @@ func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signa
 	}
 	x := &Azurerm_signalr_service{ Azurerm_signalr_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_signalr_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_signalr_service", externalID)
 }
@@ -12848,6 +15220,10 @@ type Azurerm_snapshotHandler struct {
 
 // Create ...
 func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_snapshot, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12865,6 +15241,10 @@ func (h *Azurerm_snapshotHandler) Create(desired *Azurerm_snapshot) (*Azurerm_sn
 
 // Read ...
 func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_snapshot", externalID)
 	if err != nil {
@@ -12872,11 +15252,18 @@ func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, er
 	}
 	x := &Azurerm_snapshot{ Azurerm_snapshot_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_snapshotHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_snapshot", externalID)
 }
@@ -12904,6 +15291,10 @@ type Azurerm_sql_active_directory_administratorHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_active_directory_administratorHandler) Create(desired *Azurerm_sql_active_directory_administrator) (*Azurerm_sql_active_directory_administrator, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12921,6 +15312,10 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Create(desired *Azur
 
 // Read ...
 func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID string) (*Azurerm_sql_active_directory_administrator, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_active_directory_administrator", externalID)
 	if err != nil {
@@ -12928,11 +15323,18 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID stri
 	}
 	x := &Azurerm_sql_active_directory_administrator{ Azurerm_sql_active_directory_administrator_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_sql_active_directory_administratorHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_active_directory_administrator", externalID)
 }
@@ -13028,6 +15430,10 @@ type Azurerm_sql_databaseHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_databaseHandler) Create(desired *Azurerm_sql_database) (*Azurerm_sql_database, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13045,6 +15451,10 @@ func (h *Azurerm_sql_databaseHandler) Create(desired *Azurerm_sql_database) (*Az
 
 // Read ...
 func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_database, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_database", externalID)
 	if err != nil {
@@ -13052,11 +15462,18 @@ func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_data
 	}
 	x := &Azurerm_sql_database{ Azurerm_sql_database_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_sql_databaseHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_database", externalID)
 }
@@ -13096,6 +15513,10 @@ type Azurerm_sql_elasticpoolHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_elasticpoolHandler) Create(desired *Azurerm_sql_elasticpool) (*Azurerm_sql_elasticpool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13113,6 +15534,10 @@ func (h *Azurerm_sql_elasticpoolHandler) Create(desired *Azurerm_sql_elasticpool
 
 // Read ...
 func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_elasticpool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_elasticpool", externalID)
 	if err != nil {
@@ -13120,11 +15545,18 @@ func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_e
 	}
 	x := &Azurerm_sql_elasticpool{ Azurerm_sql_elasticpool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_sql_elasticpoolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_elasticpool", externalID)
 }
@@ -13152,6 +15584,10 @@ type Azurerm_sql_firewall_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_firewall_ruleHandler) Create(desired *Azurerm_sql_firewall_rule) (*Azurerm_sql_firewall_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13169,6 +15605,10 @@ func (h *Azurerm_sql_firewall_ruleHandler) Create(desired *Azurerm_sql_firewall_
 
 // Read ...
 func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql_firewall_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_firewall_rule", externalID)
 	if err != nil {
@@ -13176,11 +15616,18 @@ func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql
 	}
 	x := &Azurerm_sql_firewall_rule{ Azurerm_sql_firewall_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_sql_firewall_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_firewall_rule", externalID)
 }
@@ -13214,6 +15661,10 @@ type Azurerm_sql_serverHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_serverHandler) Create(desired *Azurerm_sql_server) (*Azurerm_sql_server, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13231,6 +15682,10 @@ func (h *Azurerm_sql_serverHandler) Create(desired *Azurerm_sql_server) (*Azurer
 
 // Read ...
 func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_server", externalID)
 	if err != nil {
@@ -13238,11 +15693,18 @@ func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server
 	}
 	x := &Azurerm_sql_server{ Azurerm_sql_server_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_sql_serverHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_server", externalID)
 }
@@ -13270,6 +15732,10 @@ type Azurerm_sql_virtual_network_ruleHandler struct {
 
 // Create ...
 func (h *Azurerm_sql_virtual_network_ruleHandler) Create(desired *Azurerm_sql_virtual_network_rule) (*Azurerm_sql_virtual_network_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13287,6 +15753,10 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Create(desired *Azurerm_sql_vi
 
 // Read ...
 func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azurerm_sql_virtual_network_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_sql_virtual_network_rule", externalID)
 	if err != nil {
@@ -13294,11 +15764,18 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_sql_virtual_network_rule{ Azurerm_sql_virtual_network_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_sql_virtual_network_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_sql_virtual_network_rule", externalID)
 }
@@ -13406,6 +15883,10 @@ type Azurerm_storage_accountHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_accountHandler) Create(desired *Azurerm_storage_account) (*Azurerm_storage_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13423,6 +15904,10 @@ func (h *Azurerm_storage_accountHandler) Create(desired *Azurerm_storage_account
 
 // Read ...
 func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_storage_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_account", externalID)
 	if err != nil {
@@ -13430,11 +15915,18 @@ func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_stora
 	}
 	x := &Azurerm_storage_account{ Azurerm_storage_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_storage_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_account", externalID)
 }
@@ -13476,6 +15968,10 @@ type Azurerm_storage_blobHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_blobHandler) Create(desired *Azurerm_storage_blob) (*Azurerm_storage_blob, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13493,6 +15989,10 @@ func (h *Azurerm_storage_blobHandler) Create(desired *Azurerm_storage_blob) (*Az
 
 // Read ...
 func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_blob, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_blob", externalID)
 	if err != nil {
@@ -13500,11 +16000,18 @@ func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_
 	}
 	x := &Azurerm_storage_blob{ Azurerm_storage_blob_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_storage_blobHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_blob", externalID)
 }
@@ -13532,6 +16039,10 @@ type Azurerm_storage_containerHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_containerHandler) Create(desired *Azurerm_storage_container) (*Azurerm_storage_container, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13549,6 +16060,10 @@ func (h *Azurerm_storage_containerHandler) Create(desired *Azurerm_storage_conta
 
 // Read ...
 func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_storage_container, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_container", externalID)
 	if err != nil {
@@ -13556,11 +16071,18 @@ func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_sto
 	}
 	x := &Azurerm_storage_container{ Azurerm_storage_container_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_storage_containerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_container", externalID)
 }
@@ -13584,6 +16106,10 @@ type Azurerm_storage_queueHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_queueHandler) Create(desired *Azurerm_storage_queue) (*Azurerm_storage_queue, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13601,6 +16127,10 @@ func (h *Azurerm_storage_queueHandler) Create(desired *Azurerm_storage_queue) (*
 
 // Read ...
 func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage_queue, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_queue", externalID)
 	if err != nil {
@@ -13608,11 +16138,18 @@ func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage
 	}
 	x := &Azurerm_storage_queue{ Azurerm_storage_queue_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_storage_queueHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_queue", externalID)
 }
@@ -13640,6 +16177,10 @@ type Azurerm_storage_shareHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_shareHandler) Create(desired *Azurerm_storage_share) (*Azurerm_storage_share, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13657,6 +16198,10 @@ func (h *Azurerm_storage_shareHandler) Create(desired *Azurerm_storage_share) (*
 
 // Read ...
 func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage_share, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_share", externalID)
 	if err != nil {
@@ -13664,11 +16209,18 @@ func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage
 	}
 	x := &Azurerm_storage_share{ Azurerm_storage_share_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_storage_shareHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_share", externalID)
 }
@@ -13692,6 +16244,10 @@ type Azurerm_storage_tableHandler struct {
 
 // Create ...
 func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*Azurerm_storage_table, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13709,6 +16265,10 @@ func (h *Azurerm_storage_tableHandler) Create(desired *Azurerm_storage_table) (*
 
 // Read ...
 func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage_table, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_storage_table", externalID)
 	if err != nil {
@@ -13716,11 +16276,18 @@ func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage
 	}
 	x := &Azurerm_storage_table{ Azurerm_storage_table_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_storage_tableHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_storage_table", externalID)
 }
@@ -13772,6 +16339,10 @@ type Azurerm_subnetHandler struct {
 
 // Create ...
 func (h *Azurerm_subnetHandler) Create(desired *Azurerm_subnet) (*Azurerm_subnet, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13789,6 +16360,10 @@ func (h *Azurerm_subnetHandler) Create(desired *Azurerm_subnet) (*Azurerm_subnet
 
 // Read ...
 func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_subnet", externalID)
 	if err != nil {
@@ -13796,11 +16371,18 @@ func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error)
 	}
 	x := &Azurerm_subnet{ Azurerm_subnet_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_subnetHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_subnet", externalID)
 }
@@ -13822,6 +16404,10 @@ type Azurerm_subnet_network_security_group_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_subnet_network_security_group_associationHandler) Create(desired *Azurerm_subnet_network_security_group_association) (*Azurerm_subnet_network_security_group_association, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13839,6 +16425,10 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Create(desire
 
 // Read ...
 func (h *Azurerm_subnet_network_security_group_associationHandler) Read(externalID string) (*Azurerm_subnet_network_security_group_association, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_subnet_network_security_group_association", externalID)
 	if err != nil {
@@ -13846,11 +16436,18 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Read(external
 	}
 	x := &Azurerm_subnet_network_security_group_association{ Azurerm_subnet_network_security_group_association_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_subnet_network_security_group_associationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_subnet_network_security_group_association", externalID)
 }
@@ -13872,6 +16469,10 @@ type Azurerm_subnet_route_table_associationHandler struct {
 
 // Create ...
 func (h *Azurerm_subnet_route_table_associationHandler) Create(desired *Azurerm_subnet_route_table_association) (*Azurerm_subnet_route_table_association, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13889,6 +16490,10 @@ func (h *Azurerm_subnet_route_table_associationHandler) Create(desired *Azurerm_
 
 // Read ...
 func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) (*Azurerm_subnet_route_table_association, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_subnet_route_table_association", externalID)
 	if err != nil {
@@ -13896,11 +16501,18 @@ func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) 
 	}
 	x := &Azurerm_subnet_route_table_association{ Azurerm_subnet_route_table_association_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_subnet_route_table_associationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_subnet_route_table_association", externalID)
 }
@@ -13932,6 +16544,10 @@ type Azurerm_template_deploymentHandler struct {
 
 // Create ...
 func (h *Azurerm_template_deploymentHandler) Create(desired *Azurerm_template_deployment) (*Azurerm_template_deployment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -13949,6 +16565,10 @@ func (h *Azurerm_template_deploymentHandler) Create(desired *Azurerm_template_de
 
 // Read ...
 func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_template_deployment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_template_deployment", externalID)
 	if err != nil {
@@ -13956,11 +16576,18 @@ func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_t
 	}
 	x := &Azurerm_template_deployment{ Azurerm_template_deployment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_template_deploymentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_template_deployment", externalID)
 }
@@ -14004,6 +16631,10 @@ type Azurerm_traffic_manager_endpointHandler struct {
 
 // Create ...
 func (h *Azurerm_traffic_manager_endpointHandler) Create(desired *Azurerm_traffic_manager_endpoint) (*Azurerm_traffic_manager_endpoint, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14021,6 +16652,10 @@ func (h *Azurerm_traffic_manager_endpointHandler) Create(desired *Azurerm_traffi
 
 // Read ...
 func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azurerm_traffic_manager_endpoint, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_endpoint", externalID)
 	if err != nil {
@@ -14028,11 +16663,18 @@ func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azur
 	}
 	x := &Azurerm_traffic_manager_endpoint{ Azurerm_traffic_manager_endpoint_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_traffic_manager_endpointHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_traffic_manager_endpoint", externalID)
 }
@@ -14084,6 +16726,10 @@ type Azurerm_traffic_manager_profileHandler struct {
 
 // Create ...
 func (h *Azurerm_traffic_manager_profileHandler) Create(desired *Azurerm_traffic_manager_profile) (*Azurerm_traffic_manager_profile, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14101,6 +16747,10 @@ func (h *Azurerm_traffic_manager_profileHandler) Create(desired *Azurerm_traffic
 
 // Read ...
 func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azurerm_traffic_manager_profile, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_traffic_manager_profile", externalID)
 	if err != nil {
@@ -14108,11 +16758,18 @@ func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_traffic_manager_profile{ Azurerm_traffic_manager_profile_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_traffic_manager_profileHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_traffic_manager_profile", externalID)
 }
@@ -14142,6 +16799,10 @@ type Azurerm_user_assigned_identityHandler struct {
 
 // Create ...
 func (h *Azurerm_user_assigned_identityHandler) Create(desired *Azurerm_user_assigned_identity) (*Azurerm_user_assigned_identity, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14159,6 +16820,10 @@ func (h *Azurerm_user_assigned_identityHandler) Create(desired *Azurerm_user_ass
 
 // Read ...
 func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurerm_user_assigned_identity, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_user_assigned_identity", externalID)
 	if err != nil {
@@ -14166,11 +16831,18 @@ func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurer
 	}
 	x := &Azurerm_user_assigned_identity{ Azurerm_user_assigned_identity_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_user_assigned_identityHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_user_assigned_identity", externalID)
 }
@@ -14398,6 +17070,10 @@ type Azurerm_virtual_machineHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machineHandler) Create(desired *Azurerm_virtual_machine) (*Azurerm_virtual_machine, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14415,6 +17091,10 @@ func (h *Azurerm_virtual_machineHandler) Create(desired *Azurerm_virtual_machine
 
 // Read ...
 func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtual_machine, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine", externalID)
 	if err != nil {
@@ -14422,11 +17102,18 @@ func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtu
 	}
 	x := &Azurerm_virtual_machine{ Azurerm_virtual_machine_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_machineHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine", externalID)
 }
@@ -14456,6 +17143,10 @@ type Azurerm_virtual_machine_data_disk_attachmentHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Create(desired *Azurerm_virtual_machine_data_disk_attachment) (*Azurerm_virtual_machine_data_disk_attachment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14473,6 +17164,10 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Create(desired *Az
 
 // Read ...
 func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID string) (*Azurerm_virtual_machine_data_disk_attachment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
 	if err != nil {
@@ -14480,11 +17175,18 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID st
 	}
 	x := &Azurerm_virtual_machine_data_disk_attachment{ Azurerm_virtual_machine_data_disk_attachment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID)
 }
@@ -14524,6 +17226,10 @@ type Azurerm_virtual_machine_extensionHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machine_extensionHandler) Create(desired *Azurerm_virtual_machine_extension) (*Azurerm_virtual_machine_extension, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14541,6 +17247,10 @@ func (h *Azurerm_virtual_machine_extensionHandler) Create(desired *Azurerm_virtu
 
 // Read ...
 func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azurerm_virtual_machine_extension, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_extension", externalID)
 	if err != nil {
@@ -14548,11 +17258,18 @@ func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azu
 	}
 	x := &Azurerm_virtual_machine_extension{ Azurerm_virtual_machine_extension_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_machine_extensionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine_extension", externalID)
 }
@@ -14868,6 +17585,10 @@ type Azurerm_virtual_machine_scale_setHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_machine_scale_setHandler) Create(desired *Azurerm_virtual_machine_scale_set) (*Azurerm_virtual_machine_scale_set, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14885,6 +17606,10 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Create(desired *Azurerm_virtu
 
 // Read ...
 func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azurerm_virtual_machine_scale_set, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_machine_scale_set", externalID)
 	if err != nil {
@@ -14892,11 +17617,18 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azu
 	}
 	x := &Azurerm_virtual_machine_scale_set{ Azurerm_virtual_machine_scale_set_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_machine_scale_setHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_machine_scale_set", externalID)
 }
@@ -14940,6 +17672,10 @@ type Azurerm_virtual_networkHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_networkHandler) Create(desired *Azurerm_virtual_network) (*Azurerm_virtual_network, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -14957,6 +17693,10 @@ func (h *Azurerm_virtual_networkHandler) Create(desired *Azurerm_virtual_network
 
 // Read ...
 func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtual_network, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network", externalID)
 	if err != nil {
@@ -14964,11 +17704,18 @@ func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtu
 	}
 	x := &Azurerm_virtual_network{ Azurerm_virtual_network_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_networkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network", externalID)
 }
@@ -15066,6 +17813,10 @@ type Azurerm_virtual_network_gatewayHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_network_gatewayHandler) Create(desired *Azurerm_virtual_network_gateway) (*Azurerm_virtual_network_gateway, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -15083,6 +17834,10 @@ func (h *Azurerm_virtual_network_gatewayHandler) Create(desired *Azurerm_virtual
 
 // Read ...
 func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azurerm_virtual_network_gateway, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway", externalID)
 	if err != nil {
@@ -15090,11 +17845,18 @@ func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_virtual_network_gateway{ Azurerm_virtual_network_gateway_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_network_gatewayHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway", externalID)
 }
@@ -15162,6 +17924,10 @@ type Azurerm_virtual_network_gateway_connectionHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_network_gateway_connectionHandler) Create(desired *Azurerm_virtual_network_gateway_connection) (*Azurerm_virtual_network_gateway_connection, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -15179,6 +17945,10 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Create(desired *Azur
 
 // Read ...
 func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID string) (*Azurerm_virtual_network_gateway_connection, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
 	if err != nil {
@@ -15186,11 +17956,18 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID stri
 	}
 	x := &Azurerm_virtual_network_gateway_connection{ Azurerm_virtual_network_gateway_connection_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_network_gateway_connectionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network_gateway_connection", externalID)
 }
@@ -15224,6 +18001,10 @@ type Azurerm_virtual_network_peeringHandler struct {
 
 // Create ...
 func (h *Azurerm_virtual_network_peeringHandler) Create(desired *Azurerm_virtual_network_peering) (*Azurerm_virtual_network_peering, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -15241,6 +18022,10 @@ func (h *Azurerm_virtual_network_peeringHandler) Create(desired *Azurerm_virtual
 
 // Read ...
 func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azurerm_virtual_network_peering, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "azurerm_virtual_network_peering", externalID)
 	if err != nil {
@@ -15248,11 +18033,18 @@ func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azure
 	}
 	x := &Azurerm_virtual_network_peering{ Azurerm_virtual_network_peering_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Azurerm_virtual_network_peeringHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "azurerm_virtual_network_peering", externalID)
 }

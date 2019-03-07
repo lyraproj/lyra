@@ -8,6 +8,8 @@ package generated
 import (
 	"sync"
 
+	"github.com/davecgh/go-spew/spew"
+	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
@@ -396,6 +398,10 @@ type Google_app_engine_applicationHandler struct {
 
 // Create ...
 func (h *Google_app_engine_applicationHandler) Create(desired *Google_app_engine_application) (*Google_app_engine_application, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -413,6 +419,10 @@ func (h *Google_app_engine_applicationHandler) Create(desired *Google_app_engine
 
 // Read ...
 func (h *Google_app_engine_applicationHandler) Read(externalID string) (*Google_app_engine_application, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_app_engine_application", externalID)
 	if err != nil {
@@ -420,11 +430,18 @@ func (h *Google_app_engine_applicationHandler) Read(externalID string) (*Google_
 	}
 	x := &Google_app_engine_application{ Google_app_engine_application_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_app_engine_applicationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_app_engine_application", externalID)
 }
@@ -492,6 +509,10 @@ type Google_bigquery_datasetHandler struct {
 
 // Create ...
 func (h *Google_bigquery_datasetHandler) Create(desired *Google_bigquery_dataset) (*Google_bigquery_dataset, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -509,6 +530,10 @@ func (h *Google_bigquery_datasetHandler) Create(desired *Google_bigquery_dataset
 
 // Read ...
 func (h *Google_bigquery_datasetHandler) Read(externalID string) (*Google_bigquery_dataset, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_bigquery_dataset", externalID)
 	if err != nil {
@@ -516,11 +541,18 @@ func (h *Google_bigquery_datasetHandler) Read(externalID string) (*Google_bigque
 	}
 	x := &Google_bigquery_dataset{ Google_bigquery_dataset_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_bigquery_datasetHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_bigquery_dataset", externalID)
 }
@@ -594,6 +626,10 @@ type Google_bigquery_tableHandler struct {
 
 // Create ...
 func (h *Google_bigquery_tableHandler) Create(desired *Google_bigquery_table) (*Google_bigquery_table, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -611,6 +647,10 @@ func (h *Google_bigquery_tableHandler) Create(desired *Google_bigquery_table) (*
 
 // Read ...
 func (h *Google_bigquery_tableHandler) Read(externalID string) (*Google_bigquery_table, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_bigquery_table", externalID)
 	if err != nil {
@@ -618,11 +658,18 @@ func (h *Google_bigquery_tableHandler) Read(externalID string) (*Google_bigquery
 	}
 	x := &Google_bigquery_table{ Google_bigquery_table_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_bigquery_tableHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_bigquery_table", externalID)
 }
@@ -670,6 +717,10 @@ type Google_bigtable_instanceHandler struct {
 
 // Create ...
 func (h *Google_bigtable_instanceHandler) Create(desired *Google_bigtable_instance) (*Google_bigtable_instance, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -687,6 +738,10 @@ func (h *Google_bigtable_instanceHandler) Create(desired *Google_bigtable_instan
 
 // Read ...
 func (h *Google_bigtable_instanceHandler) Read(externalID string) (*Google_bigtable_instance, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_bigtable_instance", externalID)
 	if err != nil {
@@ -694,11 +749,18 @@ func (h *Google_bigtable_instanceHandler) Read(externalID string) (*Google_bigta
 	}
 	x := &Google_bigtable_instance{ Google_bigtable_instance_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_bigtable_instanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_bigtable_instance", externalID)
 }
@@ -724,6 +786,10 @@ type Google_bigtable_tableHandler struct {
 
 // Create ...
 func (h *Google_bigtable_tableHandler) Create(desired *Google_bigtable_table) (*Google_bigtable_table, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -741,6 +807,10 @@ func (h *Google_bigtable_tableHandler) Create(desired *Google_bigtable_table) (*
 
 // Read ...
 func (h *Google_bigtable_tableHandler) Read(externalID string) (*Google_bigtable_table, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_bigtable_table", externalID)
 	if err != nil {
@@ -748,11 +818,18 @@ func (h *Google_bigtable_tableHandler) Read(externalID string) (*Google_bigtable
 	}
 	x := &Google_bigtable_table{ Google_bigtable_table_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_bigtable_tableHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_bigtable_table", externalID)
 }
@@ -778,6 +855,10 @@ type Google_billing_account_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_billing_account_iam_bindingHandler) Create(desired *Google_billing_account_iam_binding) (*Google_billing_account_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -795,6 +876,10 @@ func (h *Google_billing_account_iam_bindingHandler) Create(desired *Google_billi
 
 // Read ...
 func (h *Google_billing_account_iam_bindingHandler) Read(externalID string) (*Google_billing_account_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_billing_account_iam_binding", externalID)
 	if err != nil {
@@ -802,11 +887,18 @@ func (h *Google_billing_account_iam_bindingHandler) Read(externalID string) (*Go
 	}
 	x := &Google_billing_account_iam_binding{ Google_billing_account_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_billing_account_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_billing_account_iam_binding", externalID)
 }
@@ -832,6 +924,10 @@ type Google_billing_account_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_billing_account_iam_memberHandler) Create(desired *Google_billing_account_iam_member) (*Google_billing_account_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -849,6 +945,10 @@ func (h *Google_billing_account_iam_memberHandler) Create(desired *Google_billin
 
 // Read ...
 func (h *Google_billing_account_iam_memberHandler) Read(externalID string) (*Google_billing_account_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_billing_account_iam_member", externalID)
 	if err != nil {
@@ -856,11 +956,18 @@ func (h *Google_billing_account_iam_memberHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_billing_account_iam_member{ Google_billing_account_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_billing_account_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_billing_account_iam_member", externalID)
 }
@@ -884,6 +991,10 @@ type Google_billing_account_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_billing_account_iam_policyHandler) Create(desired *Google_billing_account_iam_policy) (*Google_billing_account_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -901,6 +1012,10 @@ func (h *Google_billing_account_iam_policyHandler) Create(desired *Google_billin
 
 // Read ...
 func (h *Google_billing_account_iam_policyHandler) Read(externalID string) (*Google_billing_account_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_billing_account_iam_policy", externalID)
 	if err != nil {
@@ -908,11 +1023,18 @@ func (h *Google_billing_account_iam_policyHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_billing_account_iam_policy{ Google_billing_account_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_billing_account_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_billing_account_iam_policy", externalID)
 }
@@ -958,6 +1080,10 @@ type Google_binary_authorization_attestorHandler struct {
 
 // Create ...
 func (h *Google_binary_authorization_attestorHandler) Create(desired *Google_binary_authorization_attestor) (*Google_binary_authorization_attestor, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -975,6 +1101,10 @@ func (h *Google_binary_authorization_attestorHandler) Create(desired *Google_bin
 
 // Read ...
 func (h *Google_binary_authorization_attestorHandler) Read(externalID string) (*Google_binary_authorization_attestor, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_binary_authorization_attestor", externalID)
 	if err != nil {
@@ -982,11 +1112,18 @@ func (h *Google_binary_authorization_attestorHandler) Read(externalID string) (*
 	}
 	x := &Google_binary_authorization_attestor{ Google_binary_authorization_attestor_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_binary_authorization_attestorHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_binary_authorization_attestor", externalID)
 }
@@ -1042,6 +1179,10 @@ type Google_binary_authorization_policyHandler struct {
 
 // Create ...
 func (h *Google_binary_authorization_policyHandler) Create(desired *Google_binary_authorization_policy) (*Google_binary_authorization_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1059,6 +1200,10 @@ func (h *Google_binary_authorization_policyHandler) Create(desired *Google_binar
 
 // Read ...
 func (h *Google_binary_authorization_policyHandler) Read(externalID string) (*Google_binary_authorization_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_binary_authorization_policy", externalID)
 	if err != nil {
@@ -1066,11 +1211,18 @@ func (h *Google_binary_authorization_policyHandler) Read(externalID string) (*Go
 	}
 	x := &Google_binary_authorization_policy{ Google_binary_authorization_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_binary_authorization_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_binary_authorization_policy", externalID)
 }
@@ -1134,6 +1286,10 @@ type Google_cloudbuild_triggerHandler struct {
 
 // Create ...
 func (h *Google_cloudbuild_triggerHandler) Create(desired *Google_cloudbuild_trigger) (*Google_cloudbuild_trigger, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1151,6 +1307,10 @@ func (h *Google_cloudbuild_triggerHandler) Create(desired *Google_cloudbuild_tri
 
 // Read ...
 func (h *Google_cloudbuild_triggerHandler) Read(externalID string) (*Google_cloudbuild_trigger, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_cloudbuild_trigger", externalID)
 	if err != nil {
@@ -1158,11 +1318,18 @@ func (h *Google_cloudbuild_triggerHandler) Read(externalID string) (*Google_clou
 	}
 	x := &Google_cloudbuild_trigger{ Google_cloudbuild_trigger_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_cloudbuild_triggerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_cloudbuild_trigger", externalID)
 }
@@ -1232,6 +1399,10 @@ type Google_cloudfunctions_functionHandler struct {
 
 // Create ...
 func (h *Google_cloudfunctions_functionHandler) Create(desired *Google_cloudfunctions_function) (*Google_cloudfunctions_function, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1249,6 +1420,10 @@ func (h *Google_cloudfunctions_functionHandler) Create(desired *Google_cloudfunc
 
 // Read ...
 func (h *Google_cloudfunctions_functionHandler) Read(externalID string) (*Google_cloudfunctions_function, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_cloudfunctions_function", externalID)
 	if err != nil {
@@ -1256,11 +1431,18 @@ func (h *Google_cloudfunctions_functionHandler) Read(externalID string) (*Google
 	}
 	x := &Google_cloudfunctions_function{ Google_cloudfunctions_function_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_cloudfunctions_functionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_cloudfunctions_function", externalID)
 }
@@ -1300,6 +1482,10 @@ type Google_cloudiot_registryHandler struct {
 
 // Create ...
 func (h *Google_cloudiot_registryHandler) Create(desired *Google_cloudiot_registry) (*Google_cloudiot_registry, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1317,6 +1503,10 @@ func (h *Google_cloudiot_registryHandler) Create(desired *Google_cloudiot_regist
 
 // Read ...
 func (h *Google_cloudiot_registryHandler) Read(externalID string) (*Google_cloudiot_registry, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_cloudiot_registry", externalID)
 	if err != nil {
@@ -1324,11 +1514,18 @@ func (h *Google_cloudiot_registryHandler) Read(externalID string) (*Google_cloud
 	}
 	x := &Google_cloudiot_registry{ Google_cloudiot_registry_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_cloudiot_registryHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_cloudiot_registry", externalID)
 }
@@ -1404,6 +1601,10 @@ type Google_composer_environmentHandler struct {
 
 // Create ...
 func (h *Google_composer_environmentHandler) Create(desired *Google_composer_environment) (*Google_composer_environment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1421,6 +1622,10 @@ func (h *Google_composer_environmentHandler) Create(desired *Google_composer_env
 
 // Read ...
 func (h *Google_composer_environmentHandler) Read(externalID string) (*Google_composer_environment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_composer_environment", externalID)
 	if err != nil {
@@ -1428,11 +1633,18 @@ func (h *Google_composer_environmentHandler) Read(externalID string) (*Google_co
 	}
 	x := &Google_composer_environment{ Google_composer_environment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_composer_environmentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_composer_environment", externalID)
 }
@@ -1476,6 +1688,10 @@ type Google_compute_addressHandler struct {
 
 // Create ...
 func (h *Google_compute_addressHandler) Create(desired *Google_compute_address) (*Google_compute_address, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1493,6 +1709,10 @@ func (h *Google_compute_addressHandler) Create(desired *Google_compute_address) 
 
 // Read ...
 func (h *Google_compute_addressHandler) Read(externalID string) (*Google_compute_address, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_address", externalID)
 	if err != nil {
@@ -1500,11 +1720,18 @@ func (h *Google_compute_addressHandler) Read(externalID string) (*Google_compute
 	}
 	x := &Google_compute_address{ Google_compute_address_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_addressHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_address", externalID)
 }
@@ -1534,6 +1761,10 @@ type Google_compute_attached_diskHandler struct {
 
 // Create ...
 func (h *Google_compute_attached_diskHandler) Create(desired *Google_compute_attached_disk) (*Google_compute_attached_disk, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1551,6 +1782,10 @@ func (h *Google_compute_attached_diskHandler) Create(desired *Google_compute_att
 
 // Read ...
 func (h *Google_compute_attached_diskHandler) Read(externalID string) (*Google_compute_attached_disk, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_attached_disk", externalID)
 	if err != nil {
@@ -1558,11 +1793,18 @@ func (h *Google_compute_attached_diskHandler) Read(externalID string) (*Google_c
 	}
 	x := &Google_compute_attached_disk{ Google_compute_attached_disk_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_attached_diskHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_attached_disk", externalID)
 }
@@ -1634,6 +1876,10 @@ type Google_compute_autoscalerHandler struct {
 
 // Create ...
 func (h *Google_compute_autoscalerHandler) Create(desired *Google_compute_autoscaler) (*Google_compute_autoscaler, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1651,6 +1897,10 @@ func (h *Google_compute_autoscalerHandler) Create(desired *Google_compute_autosc
 
 // Read ...
 func (h *Google_compute_autoscalerHandler) Read(externalID string) (*Google_compute_autoscaler, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_autoscaler", externalID)
 	if err != nil {
@@ -1658,11 +1908,18 @@ func (h *Google_compute_autoscalerHandler) Read(externalID string) (*Google_comp
 	}
 	x := &Google_compute_autoscaler{ Google_compute_autoscaler_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_autoscalerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_autoscaler", externalID)
 }
@@ -1694,6 +1951,10 @@ type Google_compute_backend_bucketHandler struct {
 
 // Create ...
 func (h *Google_compute_backend_bucketHandler) Create(desired *Google_compute_backend_bucket) (*Google_compute_backend_bucket, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1711,6 +1972,10 @@ func (h *Google_compute_backend_bucketHandler) Create(desired *Google_compute_ba
 
 // Read ...
 func (h *Google_compute_backend_bucketHandler) Read(externalID string) (*Google_compute_backend_bucket, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_backend_bucket", externalID)
 	if err != nil {
@@ -1718,11 +1983,18 @@ func (h *Google_compute_backend_bucketHandler) Read(externalID string) (*Google_
 	}
 	x := &Google_compute_backend_bucket{ Google_compute_backend_bucket_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_backend_bucketHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_backend_bucket", externalID)
 }
@@ -1826,6 +2098,10 @@ type Google_compute_backend_serviceHandler struct {
 
 // Create ...
 func (h *Google_compute_backend_serviceHandler) Create(desired *Google_compute_backend_service) (*Google_compute_backend_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1843,6 +2119,10 @@ func (h *Google_compute_backend_serviceHandler) Create(desired *Google_compute_b
 
 // Read ...
 func (h *Google_compute_backend_serviceHandler) Read(externalID string) (*Google_compute_backend_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_backend_service", externalID)
 	if err != nil {
@@ -1850,11 +2130,18 @@ func (h *Google_compute_backend_serviceHandler) Read(externalID string) (*Google
 	}
 	x := &Google_compute_backend_service{ Google_compute_backend_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_backend_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_backend_service", externalID)
 }
@@ -1940,6 +2227,10 @@ type Google_compute_diskHandler struct {
 
 // Create ...
 func (h *Google_compute_diskHandler) Create(desired *Google_compute_disk) (*Google_compute_disk, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -1957,6 +2248,10 @@ func (h *Google_compute_diskHandler) Create(desired *Google_compute_disk) (*Goog
 
 // Read ...
 func (h *Google_compute_diskHandler) Read(externalID string) (*Google_compute_disk, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_disk", externalID)
 	if err != nil {
@@ -1964,11 +2259,18 @@ func (h *Google_compute_diskHandler) Read(externalID string) (*Google_compute_di
 	}
 	x := &Google_compute_disk{ Google_compute_disk_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_diskHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_disk", externalID)
 }
@@ -2038,6 +2340,10 @@ type Google_compute_firewallHandler struct {
 
 // Create ...
 func (h *Google_compute_firewallHandler) Create(desired *Google_compute_firewall) (*Google_compute_firewall, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2055,6 +2361,10 @@ func (h *Google_compute_firewallHandler) Create(desired *Google_compute_firewall
 
 // Read ...
 func (h *Google_compute_firewallHandler) Read(externalID string) (*Google_compute_firewall, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_firewall", externalID)
 	if err != nil {
@@ -2062,11 +2372,18 @@ func (h *Google_compute_firewallHandler) Read(externalID string) (*Google_comput
 	}
 	x := &Google_compute_firewall{ Google_compute_firewall_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_firewallHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_firewall", externalID)
 }
@@ -2126,6 +2443,10 @@ type Google_compute_forwarding_ruleHandler struct {
 
 // Create ...
 func (h *Google_compute_forwarding_ruleHandler) Create(desired *Google_compute_forwarding_rule) (*Google_compute_forwarding_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2143,6 +2464,10 @@ func (h *Google_compute_forwarding_ruleHandler) Create(desired *Google_compute_f
 
 // Read ...
 func (h *Google_compute_forwarding_ruleHandler) Read(externalID string) (*Google_compute_forwarding_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_forwarding_rule", externalID)
 	if err != nil {
@@ -2150,11 +2475,18 @@ func (h *Google_compute_forwarding_ruleHandler) Read(externalID string) (*Google
 	}
 	x := &Google_compute_forwarding_rule{ Google_compute_forwarding_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_forwarding_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_forwarding_rule", externalID)
 }
@@ -2198,6 +2530,10 @@ type Google_compute_global_addressHandler struct {
 
 // Create ...
 func (h *Google_compute_global_addressHandler) Create(desired *Google_compute_global_address) (*Google_compute_global_address, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2215,6 +2551,10 @@ func (h *Google_compute_global_addressHandler) Create(desired *Google_compute_gl
 
 // Read ...
 func (h *Google_compute_global_addressHandler) Read(externalID string) (*Google_compute_global_address, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_global_address", externalID)
 	if err != nil {
@@ -2222,11 +2562,18 @@ func (h *Google_compute_global_addressHandler) Read(externalID string) (*Google_
 	}
 	x := &Google_compute_global_address{ Google_compute_global_address_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_global_addressHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_global_address", externalID)
 }
@@ -2268,6 +2615,10 @@ type Google_compute_global_forwarding_ruleHandler struct {
 
 // Create ...
 func (h *Google_compute_global_forwarding_ruleHandler) Create(desired *Google_compute_global_forwarding_rule) (*Google_compute_global_forwarding_rule, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2285,6 +2636,10 @@ func (h *Google_compute_global_forwarding_ruleHandler) Create(desired *Google_co
 
 // Read ...
 func (h *Google_compute_global_forwarding_ruleHandler) Read(externalID string) (*Google_compute_global_forwarding_rule, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_global_forwarding_rule", externalID)
 	if err != nil {
@@ -2292,11 +2647,18 @@ func (h *Google_compute_global_forwarding_ruleHandler) Read(externalID string) (
 	}
 	x := &Google_compute_global_forwarding_rule{ Google_compute_global_forwarding_rule_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_global_forwarding_ruleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_global_forwarding_rule", externalID)
 }
@@ -2394,6 +2756,10 @@ type Google_compute_health_checkHandler struct {
 
 // Create ...
 func (h *Google_compute_health_checkHandler) Create(desired *Google_compute_health_check) (*Google_compute_health_check, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2411,6 +2777,10 @@ func (h *Google_compute_health_checkHandler) Create(desired *Google_compute_heal
 
 // Read ...
 func (h *Google_compute_health_checkHandler) Read(externalID string) (*Google_compute_health_check, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_health_check", externalID)
 	if err != nil {
@@ -2418,11 +2788,18 @@ func (h *Google_compute_health_checkHandler) Read(externalID string) (*Google_co
 	}
 	x := &Google_compute_health_check{ Google_compute_health_check_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_health_checkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_health_check", externalID)
 }
@@ -2464,6 +2841,10 @@ type Google_compute_http_health_checkHandler struct {
 
 // Create ...
 func (h *Google_compute_http_health_checkHandler) Create(desired *Google_compute_http_health_check) (*Google_compute_http_health_check, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2481,6 +2862,10 @@ func (h *Google_compute_http_health_checkHandler) Create(desired *Google_compute
 
 // Read ...
 func (h *Google_compute_http_health_checkHandler) Read(externalID string) (*Google_compute_http_health_check, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_http_health_check", externalID)
 	if err != nil {
@@ -2488,11 +2873,18 @@ func (h *Google_compute_http_health_checkHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_compute_http_health_check{ Google_compute_http_health_check_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_http_health_checkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_http_health_check", externalID)
 }
@@ -2534,6 +2926,10 @@ type Google_compute_https_health_checkHandler struct {
 
 // Create ...
 func (h *Google_compute_https_health_checkHandler) Create(desired *Google_compute_https_health_check) (*Google_compute_https_health_check, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2551,6 +2947,10 @@ func (h *Google_compute_https_health_checkHandler) Create(desired *Google_comput
 
 // Read ...
 func (h *Google_compute_https_health_checkHandler) Read(externalID string) (*Google_compute_https_health_check, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_https_health_check", externalID)
 	if err != nil {
@@ -2558,11 +2958,18 @@ func (h *Google_compute_https_health_checkHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_compute_https_health_check{ Google_compute_https_health_check_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_https_health_checkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_https_health_check", externalID)
 }
@@ -2612,6 +3019,10 @@ type Google_compute_imageHandler struct {
 
 // Create ...
 func (h *Google_compute_imageHandler) Create(desired *Google_compute_image) (*Google_compute_image, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2629,6 +3040,10 @@ func (h *Google_compute_imageHandler) Create(desired *Google_compute_image) (*Go
 
 // Read ...
 func (h *Google_compute_imageHandler) Read(externalID string) (*Google_compute_image, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_image", externalID)
 	if err != nil {
@@ -2636,11 +3051,18 @@ func (h *Google_compute_imageHandler) Read(externalID string) (*Google_compute_i
 	}
 	x := &Google_compute_image{ Google_compute_image_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_imageHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_image", externalID)
 }
@@ -2864,6 +3286,10 @@ type Google_compute_instanceHandler struct {
 
 // Create ...
 func (h *Google_compute_instanceHandler) Create(desired *Google_compute_instance) (*Google_compute_instance, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -2881,6 +3307,10 @@ func (h *Google_compute_instanceHandler) Create(desired *Google_compute_instance
 
 // Read ...
 func (h *Google_compute_instanceHandler) Read(externalID string) (*Google_compute_instance, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_instance", externalID)
 	if err != nil {
@@ -2888,11 +3318,18 @@ func (h *Google_compute_instanceHandler) Read(externalID string) (*Google_comput
 	}
 	x := &Google_compute_instance{ Google_compute_instance_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_instanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_instance", externalID)
 }
@@ -3076,6 +3513,10 @@ type Google_compute_instance_from_templateHandler struct {
 
 // Create ...
 func (h *Google_compute_instance_from_templateHandler) Create(desired *Google_compute_instance_from_template) (*Google_compute_instance_from_template, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3093,6 +3534,10 @@ func (h *Google_compute_instance_from_templateHandler) Create(desired *Google_co
 
 // Read ...
 func (h *Google_compute_instance_from_templateHandler) Read(externalID string) (*Google_compute_instance_from_template, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_instance_from_template", externalID)
 	if err != nil {
@@ -3100,11 +3545,18 @@ func (h *Google_compute_instance_from_templateHandler) Read(externalID string) (
 	}
 	x := &Google_compute_instance_from_template{ Google_compute_instance_from_template_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_instance_from_templateHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_instance_from_template", externalID)
 }
@@ -3148,6 +3600,10 @@ type Google_compute_instance_groupHandler struct {
 
 // Create ...
 func (h *Google_compute_instance_groupHandler) Create(desired *Google_compute_instance_group) (*Google_compute_instance_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3165,6 +3621,10 @@ func (h *Google_compute_instance_groupHandler) Create(desired *Google_compute_in
 
 // Read ...
 func (h *Google_compute_instance_groupHandler) Read(externalID string) (*Google_compute_instance_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_instance_group", externalID)
 	if err != nil {
@@ -3172,11 +3632,18 @@ func (h *Google_compute_instance_groupHandler) Read(externalID string) (*Google_
 	}
 	x := &Google_compute_instance_group{ Google_compute_instance_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_instance_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_instance_group", externalID)
 }
@@ -3280,6 +3747,10 @@ type Google_compute_instance_group_managerHandler struct {
 
 // Create ...
 func (h *Google_compute_instance_group_managerHandler) Create(desired *Google_compute_instance_group_manager) (*Google_compute_instance_group_manager, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3297,6 +3768,10 @@ func (h *Google_compute_instance_group_managerHandler) Create(desired *Google_co
 
 // Read ...
 func (h *Google_compute_instance_group_managerHandler) Read(externalID string) (*Google_compute_instance_group_manager, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_instance_group_manager", externalID)
 	if err != nil {
@@ -3304,11 +3779,18 @@ func (h *Google_compute_instance_group_managerHandler) Read(externalID string) (
 	}
 	x := &Google_compute_instance_group_manager{ Google_compute_instance_group_manager_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_instance_group_managerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_instance_group_manager", externalID)
 }
@@ -3468,6 +3950,10 @@ type Google_compute_instance_templateHandler struct {
 
 // Create ...
 func (h *Google_compute_instance_templateHandler) Create(desired *Google_compute_instance_template) (*Google_compute_instance_template, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3485,6 +3971,10 @@ func (h *Google_compute_instance_templateHandler) Create(desired *Google_compute
 
 // Read ...
 func (h *Google_compute_instance_templateHandler) Read(externalID string) (*Google_compute_instance_template, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_instance_template", externalID)
 	if err != nil {
@@ -3492,11 +3982,18 @@ func (h *Google_compute_instance_templateHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_compute_instance_template{ Google_compute_instance_template_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_instance_templateHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_instance_template", externalID)
 }
@@ -3544,6 +4041,10 @@ type Google_compute_interconnect_attachmentHandler struct {
 
 // Create ...
 func (h *Google_compute_interconnect_attachmentHandler) Create(desired *Google_compute_interconnect_attachment) (*Google_compute_interconnect_attachment, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3561,6 +4062,10 @@ func (h *Google_compute_interconnect_attachmentHandler) Create(desired *Google_c
 
 // Read ...
 func (h *Google_compute_interconnect_attachmentHandler) Read(externalID string) (*Google_compute_interconnect_attachment, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_interconnect_attachment", externalID)
 	if err != nil {
@@ -3568,11 +4073,18 @@ func (h *Google_compute_interconnect_attachmentHandler) Read(externalID string) 
 	}
 	x := &Google_compute_interconnect_attachment{ Google_compute_interconnect_attachment_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_interconnect_attachmentHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_interconnect_attachment", externalID)
 }
@@ -3606,6 +4118,10 @@ type Google_compute_networkHandler struct {
 
 // Create ...
 func (h *Google_compute_networkHandler) Create(desired *Google_compute_network) (*Google_compute_network, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3623,6 +4139,10 @@ func (h *Google_compute_networkHandler) Create(desired *Google_compute_network) 
 
 // Read ...
 func (h *Google_compute_networkHandler) Read(externalID string) (*Google_compute_network, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_network", externalID)
 	if err != nil {
@@ -3630,11 +4150,18 @@ func (h *Google_compute_networkHandler) Read(externalID string) (*Google_compute
 	}
 	x := &Google_compute_network{ Google_compute_network_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_networkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_network", externalID)
 }
@@ -3664,6 +4191,10 @@ type Google_compute_network_peeringHandler struct {
 
 // Create ...
 func (h *Google_compute_network_peeringHandler) Create(desired *Google_compute_network_peering) (*Google_compute_network_peering, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3681,6 +4212,10 @@ func (h *Google_compute_network_peeringHandler) Create(desired *Google_compute_n
 
 // Read ...
 func (h *Google_compute_network_peeringHandler) Read(externalID string) (*Google_compute_network_peering, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_network_peering", externalID)
 	if err != nil {
@@ -3688,11 +4223,18 @@ func (h *Google_compute_network_peeringHandler) Read(externalID string) (*Google
 	}
 	x := &Google_compute_network_peering{ Google_compute_network_peering_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_network_peeringHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_network_peering", externalID)
 }
@@ -3714,6 +4256,10 @@ type Google_compute_project_metadataHandler struct {
 
 // Create ...
 func (h *Google_compute_project_metadataHandler) Create(desired *Google_compute_project_metadata) (*Google_compute_project_metadata, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3731,6 +4277,10 @@ func (h *Google_compute_project_metadataHandler) Create(desired *Google_compute_
 
 // Read ...
 func (h *Google_compute_project_metadataHandler) Read(externalID string) (*Google_compute_project_metadata, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_project_metadata", externalID)
 	if err != nil {
@@ -3738,11 +4288,18 @@ func (h *Google_compute_project_metadataHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_compute_project_metadata{ Google_compute_project_metadata_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_project_metadataHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_project_metadata", externalID)
 }
@@ -3766,6 +4323,10 @@ type Google_compute_project_metadata_itemHandler struct {
 
 // Create ...
 func (h *Google_compute_project_metadata_itemHandler) Create(desired *Google_compute_project_metadata_item) (*Google_compute_project_metadata_item, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3783,6 +4344,10 @@ func (h *Google_compute_project_metadata_itemHandler) Create(desired *Google_com
 
 // Read ...
 func (h *Google_compute_project_metadata_itemHandler) Read(externalID string) (*Google_compute_project_metadata_item, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_project_metadata_item", externalID)
 	if err != nil {
@@ -3790,11 +4355,18 @@ func (h *Google_compute_project_metadata_itemHandler) Read(externalID string) (*
 	}
 	x := &Google_compute_project_metadata_item{ Google_compute_project_metadata_item_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_project_metadata_itemHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_project_metadata_item", externalID)
 }
@@ -3866,6 +4438,10 @@ type Google_compute_region_autoscalerHandler struct {
 
 // Create ...
 func (h *Google_compute_region_autoscalerHandler) Create(desired *Google_compute_region_autoscaler) (*Google_compute_region_autoscaler, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3883,6 +4459,10 @@ func (h *Google_compute_region_autoscalerHandler) Create(desired *Google_compute
 
 // Read ...
 func (h *Google_compute_region_autoscalerHandler) Read(externalID string) (*Google_compute_region_autoscaler, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_region_autoscaler", externalID)
 	if err != nil {
@@ -3890,11 +4470,18 @@ func (h *Google_compute_region_autoscalerHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_compute_region_autoscaler{ Google_compute_region_autoscaler_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_region_autoscalerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_region_autoscaler", externalID)
 }
@@ -3944,6 +4531,10 @@ type Google_compute_region_backend_serviceHandler struct {
 
 // Create ...
 func (h *Google_compute_region_backend_serviceHandler) Create(desired *Google_compute_region_backend_service) (*Google_compute_region_backend_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -3961,6 +4552,10 @@ func (h *Google_compute_region_backend_serviceHandler) Create(desired *Google_co
 
 // Read ...
 func (h *Google_compute_region_backend_serviceHandler) Read(externalID string) (*Google_compute_region_backend_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_region_backend_service", externalID)
 	if err != nil {
@@ -3968,11 +4563,18 @@ func (h *Google_compute_region_backend_serviceHandler) Read(externalID string) (
 	}
 	x := &Google_compute_region_backend_service{ Google_compute_region_backend_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_region_backend_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_region_backend_service", externalID)
 }
@@ -4042,6 +4644,10 @@ type Google_compute_region_diskHandler struct {
 
 // Create ...
 func (h *Google_compute_region_diskHandler) Create(desired *Google_compute_region_disk) (*Google_compute_region_disk, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4059,6 +4665,10 @@ func (h *Google_compute_region_diskHandler) Create(desired *Google_compute_regio
 
 // Read ...
 func (h *Google_compute_region_diskHandler) Read(externalID string) (*Google_compute_region_disk, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_region_disk", externalID)
 	if err != nil {
@@ -4066,11 +4676,18 @@ func (h *Google_compute_region_diskHandler) Read(externalID string) (*Google_com
 	}
 	x := &Google_compute_region_disk{ Google_compute_region_disk_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_region_diskHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_region_disk", externalID)
 }
@@ -4176,6 +4793,10 @@ type Google_compute_region_instance_group_managerHandler struct {
 
 // Create ...
 func (h *Google_compute_region_instance_group_managerHandler) Create(desired *Google_compute_region_instance_group_manager) (*Google_compute_region_instance_group_manager, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4193,6 +4814,10 @@ func (h *Google_compute_region_instance_group_managerHandler) Create(desired *Go
 
 // Read ...
 func (h *Google_compute_region_instance_group_managerHandler) Read(externalID string) (*Google_compute_region_instance_group_manager, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_region_instance_group_manager", externalID)
 	if err != nil {
@@ -4200,11 +4825,18 @@ func (h *Google_compute_region_instance_group_managerHandler) Read(externalID st
 	}
 	x := &Google_compute_region_instance_group_manager{ Google_compute_region_instance_group_manager_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_region_instance_group_managerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_region_instance_group_manager", externalID)
 }
@@ -4250,6 +4882,10 @@ type Google_compute_routeHandler struct {
 
 // Create ...
 func (h *Google_compute_routeHandler) Create(desired *Google_compute_route) (*Google_compute_route, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4267,6 +4903,10 @@ func (h *Google_compute_routeHandler) Create(desired *Google_compute_route) (*Go
 
 // Read ...
 func (h *Google_compute_routeHandler) Read(externalID string) (*Google_compute_route, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_route", externalID)
 	if err != nil {
@@ -4274,11 +4914,18 @@ func (h *Google_compute_routeHandler) Read(externalID string) (*Google_compute_r
 	}
 	x := &Google_compute_route{ Google_compute_route_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_routeHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_route", externalID)
 }
@@ -4332,6 +4979,10 @@ type Google_compute_routerHandler struct {
 
 // Create ...
 func (h *Google_compute_routerHandler) Create(desired *Google_compute_router) (*Google_compute_router, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4349,6 +5000,10 @@ func (h *Google_compute_routerHandler) Create(desired *Google_compute_router) (*
 
 // Read ...
 func (h *Google_compute_routerHandler) Read(externalID string) (*Google_compute_router, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_router", externalID)
 	if err != nil {
@@ -4356,11 +5011,18 @@ func (h *Google_compute_routerHandler) Read(externalID string) (*Google_compute_
 	}
 	x := &Google_compute_router{ Google_compute_router_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_routerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_router", externalID)
 }
@@ -4390,6 +5052,10 @@ type Google_compute_router_interfaceHandler struct {
 
 // Create ...
 func (h *Google_compute_router_interfaceHandler) Create(desired *Google_compute_router_interface) (*Google_compute_router_interface, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4407,6 +5073,10 @@ func (h *Google_compute_router_interfaceHandler) Create(desired *Google_compute_
 
 // Read ...
 func (h *Google_compute_router_interfaceHandler) Read(externalID string) (*Google_compute_router_interface, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_router_interface", externalID)
 	if err != nil {
@@ -4414,11 +5084,18 @@ func (h *Google_compute_router_interfaceHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_compute_router_interface{ Google_compute_router_interface_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_router_interfaceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_router_interface", externalID)
 }
@@ -4472,6 +5149,10 @@ type Google_compute_router_natHandler struct {
 
 // Create ...
 func (h *Google_compute_router_natHandler) Create(desired *Google_compute_router_nat) (*Google_compute_router_nat, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4489,6 +5170,10 @@ func (h *Google_compute_router_natHandler) Create(desired *Google_compute_router
 
 // Read ...
 func (h *Google_compute_router_natHandler) Read(externalID string) (*Google_compute_router_nat, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_router_nat", externalID)
 	if err != nil {
@@ -4496,11 +5181,18 @@ func (h *Google_compute_router_natHandler) Read(externalID string) (*Google_comp
 	}
 	x := &Google_compute_router_nat{ Google_compute_router_nat_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_router_natHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_router_nat", externalID)
 }
@@ -4536,6 +5228,10 @@ type Google_compute_router_peerHandler struct {
 
 // Create ...
 func (h *Google_compute_router_peerHandler) Create(desired *Google_compute_router_peer) (*Google_compute_router_peer, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4553,6 +5249,10 @@ func (h *Google_compute_router_peerHandler) Create(desired *Google_compute_route
 
 // Read ...
 func (h *Google_compute_router_peerHandler) Read(externalID string) (*Google_compute_router_peer, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_router_peer", externalID)
 	if err != nil {
@@ -4560,11 +5260,18 @@ func (h *Google_compute_router_peerHandler) Read(externalID string) (*Google_com
 	}
 	x := &Google_compute_router_peer{ Google_compute_router_peer_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_router_peerHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_router_peer", externalID)
 }
@@ -4622,6 +5329,10 @@ type Google_compute_security_policyHandler struct {
 
 // Create ...
 func (h *Google_compute_security_policyHandler) Create(desired *Google_compute_security_policy) (*Google_compute_security_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4639,6 +5350,10 @@ func (h *Google_compute_security_policyHandler) Create(desired *Google_compute_s
 
 // Read ...
 func (h *Google_compute_security_policyHandler) Read(externalID string) (*Google_compute_security_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_security_policy", externalID)
 	if err != nil {
@@ -4646,11 +5361,18 @@ func (h *Google_compute_security_policyHandler) Read(externalID string) (*Google
 	}
 	x := &Google_compute_security_policy{ Google_compute_security_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_security_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_security_policy", externalID)
 }
@@ -4670,6 +5392,10 @@ type Google_compute_shared_vpc_host_projectHandler struct {
 
 // Create ...
 func (h *Google_compute_shared_vpc_host_projectHandler) Create(desired *Google_compute_shared_vpc_host_project) (*Google_compute_shared_vpc_host_project, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4687,6 +5413,10 @@ func (h *Google_compute_shared_vpc_host_projectHandler) Create(desired *Google_c
 
 // Read ...
 func (h *Google_compute_shared_vpc_host_projectHandler) Read(externalID string) (*Google_compute_shared_vpc_host_project, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_shared_vpc_host_project", externalID)
 	if err != nil {
@@ -4694,11 +5424,18 @@ func (h *Google_compute_shared_vpc_host_projectHandler) Read(externalID string) 
 	}
 	x := &Google_compute_shared_vpc_host_project{ Google_compute_shared_vpc_host_project_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_shared_vpc_host_projectHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_shared_vpc_host_project", externalID)
 }
@@ -4720,6 +5457,10 @@ type Google_compute_shared_vpc_service_projectHandler struct {
 
 // Create ...
 func (h *Google_compute_shared_vpc_service_projectHandler) Create(desired *Google_compute_shared_vpc_service_project) (*Google_compute_shared_vpc_service_project, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4737,6 +5478,10 @@ func (h *Google_compute_shared_vpc_service_projectHandler) Create(desired *Googl
 
 // Read ...
 func (h *Google_compute_shared_vpc_service_projectHandler) Read(externalID string) (*Google_compute_shared_vpc_service_project, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_shared_vpc_service_project", externalID)
 	if err != nil {
@@ -4744,11 +5489,18 @@ func (h *Google_compute_shared_vpc_service_projectHandler) Read(externalID strin
 	}
 	x := &Google_compute_shared_vpc_service_project{ Google_compute_shared_vpc_service_project_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_shared_vpc_service_projectHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_shared_vpc_service_project", externalID)
 }
@@ -4820,6 +5572,10 @@ type Google_compute_snapshotHandler struct {
 
 // Create ...
 func (h *Google_compute_snapshotHandler) Create(desired *Google_compute_snapshot) (*Google_compute_snapshot, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4837,6 +5593,10 @@ func (h *Google_compute_snapshotHandler) Create(desired *Google_compute_snapshot
 
 // Read ...
 func (h *Google_compute_snapshotHandler) Read(externalID string) (*Google_compute_snapshot, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_snapshot", externalID)
 	if err != nil {
@@ -4844,11 +5604,18 @@ func (h *Google_compute_snapshotHandler) Read(externalID string) (*Google_comput
 	}
 	x := &Google_compute_snapshot{ Google_compute_snapshot_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_snapshotHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_snapshot", externalID)
 }
@@ -4884,6 +5651,10 @@ type Google_compute_ssl_certificateHandler struct {
 
 // Create ...
 func (h *Google_compute_ssl_certificateHandler) Create(desired *Google_compute_ssl_certificate) (*Google_compute_ssl_certificate, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4901,6 +5672,10 @@ func (h *Google_compute_ssl_certificateHandler) Create(desired *Google_compute_s
 
 // Read ...
 func (h *Google_compute_ssl_certificateHandler) Read(externalID string) (*Google_compute_ssl_certificate, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_ssl_certificate", externalID)
 	if err != nil {
@@ -4908,11 +5683,18 @@ func (h *Google_compute_ssl_certificateHandler) Read(externalID string) (*Google
 	}
 	x := &Google_compute_ssl_certificate{ Google_compute_ssl_certificate_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_ssl_certificateHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_ssl_certificate", externalID)
 }
@@ -4950,6 +5732,10 @@ type Google_compute_ssl_policyHandler struct {
 
 // Create ...
 func (h *Google_compute_ssl_policyHandler) Create(desired *Google_compute_ssl_policy) (*Google_compute_ssl_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -4967,6 +5753,10 @@ func (h *Google_compute_ssl_policyHandler) Create(desired *Google_compute_ssl_po
 
 // Read ...
 func (h *Google_compute_ssl_policyHandler) Read(externalID string) (*Google_compute_ssl_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_ssl_policy", externalID)
 	if err != nil {
@@ -4974,11 +5764,18 @@ func (h *Google_compute_ssl_policyHandler) Read(externalID string) (*Google_comp
 	}
 	x := &Google_compute_ssl_policy{ Google_compute_ssl_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_ssl_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_ssl_policy", externalID)
 }
@@ -5030,6 +5827,10 @@ type Google_compute_subnetworkHandler struct {
 
 // Create ...
 func (h *Google_compute_subnetworkHandler) Create(desired *Google_compute_subnetwork) (*Google_compute_subnetwork, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5047,6 +5848,10 @@ func (h *Google_compute_subnetworkHandler) Create(desired *Google_compute_subnet
 
 // Read ...
 func (h *Google_compute_subnetworkHandler) Read(externalID string) (*Google_compute_subnetwork, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork", externalID)
 	if err != nil {
@@ -5054,11 +5859,18 @@ func (h *Google_compute_subnetworkHandler) Read(externalID string) (*Google_comp
 	}
 	x := &Google_compute_subnetwork{ Google_compute_subnetwork_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_subnetworkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_subnetwork", externalID)
 }
@@ -5088,6 +5900,10 @@ type Google_compute_subnetwork_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_compute_subnetwork_iam_bindingHandler) Create(desired *Google_compute_subnetwork_iam_binding) (*Google_compute_subnetwork_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5105,6 +5921,10 @@ func (h *Google_compute_subnetwork_iam_bindingHandler) Create(desired *Google_co
 
 // Read ...
 func (h *Google_compute_subnetwork_iam_bindingHandler) Read(externalID string) (*Google_compute_subnetwork_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_binding", externalID)
 	if err != nil {
@@ -5112,11 +5932,18 @@ func (h *Google_compute_subnetwork_iam_bindingHandler) Read(externalID string) (
 	}
 	x := &Google_compute_subnetwork_iam_binding{ Google_compute_subnetwork_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_subnetwork_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_binding", externalID)
 }
@@ -5146,6 +5973,10 @@ type Google_compute_subnetwork_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_compute_subnetwork_iam_memberHandler) Create(desired *Google_compute_subnetwork_iam_member) (*Google_compute_subnetwork_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5163,6 +5994,10 @@ func (h *Google_compute_subnetwork_iam_memberHandler) Create(desired *Google_com
 
 // Read ...
 func (h *Google_compute_subnetwork_iam_memberHandler) Read(externalID string) (*Google_compute_subnetwork_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_member", externalID)
 	if err != nil {
@@ -5170,11 +6005,18 @@ func (h *Google_compute_subnetwork_iam_memberHandler) Read(externalID string) (*
 	}
 	x := &Google_compute_subnetwork_iam_member{ Google_compute_subnetwork_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_subnetwork_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_member", externalID)
 }
@@ -5202,6 +6044,10 @@ type Google_compute_subnetwork_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_compute_subnetwork_iam_policyHandler) Create(desired *Google_compute_subnetwork_iam_policy) (*Google_compute_subnetwork_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5219,6 +6065,10 @@ func (h *Google_compute_subnetwork_iam_policyHandler) Create(desired *Google_com
 
 // Read ...
 func (h *Google_compute_subnetwork_iam_policyHandler) Read(externalID string) (*Google_compute_subnetwork_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_subnetwork_iam_policy", externalID)
 	if err != nil {
@@ -5226,11 +6076,18 @@ func (h *Google_compute_subnetwork_iam_policyHandler) Read(externalID string) (*
 	}
 	x := &Google_compute_subnetwork_iam_policy{ Google_compute_subnetwork_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_subnetwork_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_subnetwork_iam_policy", externalID)
 }
@@ -5262,6 +6119,10 @@ type Google_compute_target_http_proxyHandler struct {
 
 // Create ...
 func (h *Google_compute_target_http_proxyHandler) Create(desired *Google_compute_target_http_proxy) (*Google_compute_target_http_proxy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5279,6 +6140,10 @@ func (h *Google_compute_target_http_proxyHandler) Create(desired *Google_compute
 
 // Read ...
 func (h *Google_compute_target_http_proxyHandler) Read(externalID string) (*Google_compute_target_http_proxy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_target_http_proxy", externalID)
 	if err != nil {
@@ -5286,11 +6151,18 @@ func (h *Google_compute_target_http_proxyHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_compute_target_http_proxy{ Google_compute_target_http_proxy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_target_http_proxyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_target_http_proxy", externalID)
 }
@@ -5328,6 +6200,10 @@ type Google_compute_target_https_proxyHandler struct {
 
 // Create ...
 func (h *Google_compute_target_https_proxyHandler) Create(desired *Google_compute_target_https_proxy) (*Google_compute_target_https_proxy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5345,6 +6221,10 @@ func (h *Google_compute_target_https_proxyHandler) Create(desired *Google_comput
 
 // Read ...
 func (h *Google_compute_target_https_proxyHandler) Read(externalID string) (*Google_compute_target_https_proxy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_target_https_proxy", externalID)
 	if err != nil {
@@ -5352,11 +6232,18 @@ func (h *Google_compute_target_https_proxyHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_compute_target_https_proxy{ Google_compute_target_https_proxy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_target_https_proxyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_target_https_proxy", externalID)
 }
@@ -5394,6 +6281,10 @@ type Google_compute_target_poolHandler struct {
 
 // Create ...
 func (h *Google_compute_target_poolHandler) Create(desired *Google_compute_target_pool) (*Google_compute_target_pool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5411,6 +6302,10 @@ func (h *Google_compute_target_poolHandler) Create(desired *Google_compute_targe
 
 // Read ...
 func (h *Google_compute_target_poolHandler) Read(externalID string) (*Google_compute_target_pool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_target_pool", externalID)
 	if err != nil {
@@ -5418,11 +6313,18 @@ func (h *Google_compute_target_poolHandler) Read(externalID string) (*Google_com
 	}
 	x := &Google_compute_target_pool{ Google_compute_target_pool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_target_poolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_target_pool", externalID)
 }
@@ -5460,6 +6362,10 @@ type Google_compute_target_ssl_proxyHandler struct {
 
 // Create ...
 func (h *Google_compute_target_ssl_proxyHandler) Create(desired *Google_compute_target_ssl_proxy) (*Google_compute_target_ssl_proxy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5477,6 +6383,10 @@ func (h *Google_compute_target_ssl_proxyHandler) Create(desired *Google_compute_
 
 // Read ...
 func (h *Google_compute_target_ssl_proxyHandler) Read(externalID string) (*Google_compute_target_ssl_proxy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_target_ssl_proxy", externalID)
 	if err != nil {
@@ -5484,11 +6394,18 @@ func (h *Google_compute_target_ssl_proxyHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_compute_target_ssl_proxy{ Google_compute_target_ssl_proxy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_target_ssl_proxyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_target_ssl_proxy", externalID)
 }
@@ -5522,6 +6439,10 @@ type Google_compute_target_tcp_proxyHandler struct {
 
 // Create ...
 func (h *Google_compute_target_tcp_proxyHandler) Create(desired *Google_compute_target_tcp_proxy) (*Google_compute_target_tcp_proxy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5539,6 +6460,10 @@ func (h *Google_compute_target_tcp_proxyHandler) Create(desired *Google_compute_
 
 // Read ...
 func (h *Google_compute_target_tcp_proxyHandler) Read(externalID string) (*Google_compute_target_tcp_proxy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_target_tcp_proxy", externalID)
 	if err != nil {
@@ -5546,11 +6471,18 @@ func (h *Google_compute_target_tcp_proxyHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_compute_target_tcp_proxy{ Google_compute_target_tcp_proxy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_target_tcp_proxyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_target_tcp_proxy", externalID)
 }
@@ -5630,6 +6562,10 @@ type Google_compute_url_mapHandler struct {
 
 // Create ...
 func (h *Google_compute_url_mapHandler) Create(desired *Google_compute_url_map) (*Google_compute_url_map, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5647,6 +6583,10 @@ func (h *Google_compute_url_mapHandler) Create(desired *Google_compute_url_map) 
 
 // Read ...
 func (h *Google_compute_url_mapHandler) Read(externalID string) (*Google_compute_url_map, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_url_map", externalID)
 	if err != nil {
@@ -5654,11 +6594,18 @@ func (h *Google_compute_url_mapHandler) Read(externalID string) (*Google_compute
 	}
 	x := &Google_compute_url_map{ Google_compute_url_map_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_url_mapHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_url_map", externalID)
 }
@@ -5690,6 +6637,10 @@ type Google_compute_vpn_gatewayHandler struct {
 
 // Create ...
 func (h *Google_compute_vpn_gatewayHandler) Create(desired *Google_compute_vpn_gateway) (*Google_compute_vpn_gateway, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5707,6 +6658,10 @@ func (h *Google_compute_vpn_gatewayHandler) Create(desired *Google_compute_vpn_g
 
 // Read ...
 func (h *Google_compute_vpn_gatewayHandler) Read(externalID string) (*Google_compute_vpn_gateway, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_vpn_gateway", externalID)
 	if err != nil {
@@ -5714,11 +6669,18 @@ func (h *Google_compute_vpn_gatewayHandler) Read(externalID string) (*Google_com
 	}
 	x := &Google_compute_vpn_gateway{ Google_compute_vpn_gateway_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_vpn_gatewayHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_vpn_gateway", externalID)
 }
@@ -5770,6 +6732,10 @@ type Google_compute_vpn_tunnelHandler struct {
 
 // Create ...
 func (h *Google_compute_vpn_tunnelHandler) Create(desired *Google_compute_vpn_tunnel) (*Google_compute_vpn_tunnel, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5787,6 +6753,10 @@ func (h *Google_compute_vpn_tunnelHandler) Create(desired *Google_compute_vpn_tu
 
 // Read ...
 func (h *Google_compute_vpn_tunnelHandler) Read(externalID string) (*Google_compute_vpn_tunnel, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_compute_vpn_tunnel", externalID)
 	if err != nil {
@@ -5794,11 +6764,18 @@ func (h *Google_compute_vpn_tunnelHandler) Read(externalID string) (*Google_comp
 	}
 	x := &Google_compute_vpn_tunnel{ Google_compute_vpn_tunnel_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_compute_vpn_tunnelHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_compute_vpn_tunnel", externalID)
 }
@@ -5834,6 +6811,10 @@ type Google_container_analysis_noteHandler struct {
 
 // Create ...
 func (h *Google_container_analysis_noteHandler) Create(desired *Google_container_analysis_note) (*Google_container_analysis_note, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -5851,6 +6832,10 @@ func (h *Google_container_analysis_noteHandler) Create(desired *Google_container
 
 // Read ...
 func (h *Google_container_analysis_noteHandler) Read(externalID string) (*Google_container_analysis_note, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_container_analysis_note", externalID)
 	if err != nil {
@@ -5858,11 +6843,18 @@ func (h *Google_container_analysis_noteHandler) Read(externalID string) (*Google
 	}
 	x := &Google_container_analysis_note{ Google_container_analysis_note_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_container_analysis_noteHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_container_analysis_note", externalID)
 }
@@ -6256,6 +7248,10 @@ type Google_container_clusterHandler struct {
 
 // Create ...
 func (h *Google_container_clusterHandler) Create(desired *Google_container_cluster) (*Google_container_cluster, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6273,6 +7269,10 @@ func (h *Google_container_clusterHandler) Create(desired *Google_container_clust
 
 // Read ...
 func (h *Google_container_clusterHandler) Read(externalID string) (*Google_container_cluster, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_container_cluster", externalID)
 	if err != nil {
@@ -6280,11 +7280,18 @@ func (h *Google_container_clusterHandler) Read(externalID string) (*Google_conta
 	}
 	x := &Google_container_cluster{ Google_container_cluster_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_container_clusterHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_container_cluster", externalID)
 }
@@ -6404,6 +7411,10 @@ type Google_container_node_poolHandler struct {
 
 // Create ...
 func (h *Google_container_node_poolHandler) Create(desired *Google_container_node_pool) (*Google_container_node_pool, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6421,6 +7432,10 @@ func (h *Google_container_node_poolHandler) Create(desired *Google_container_nod
 
 // Read ...
 func (h *Google_container_node_poolHandler) Read(externalID string) (*Google_container_node_pool, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_container_node_pool", externalID)
 	if err != nil {
@@ -6428,11 +7443,18 @@ func (h *Google_container_node_poolHandler) Read(externalID string) (*Google_con
 	}
 	x := &Google_container_node_pool{ Google_container_node_pool_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_container_node_poolHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_container_node_pool", externalID)
 }
@@ -6470,6 +7492,10 @@ type Google_dataflow_jobHandler struct {
 
 // Create ...
 func (h *Google_dataflow_jobHandler) Create(desired *Google_dataflow_job) (*Google_dataflow_job, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6487,6 +7513,10 @@ func (h *Google_dataflow_jobHandler) Create(desired *Google_dataflow_job) (*Goog
 
 // Read ...
 func (h *Google_dataflow_jobHandler) Read(externalID string) (*Google_dataflow_job, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_dataflow_job", externalID)
 	if err != nil {
@@ -6494,11 +7524,18 @@ func (h *Google_dataflow_jobHandler) Read(externalID string) (*Google_dataflow_j
 	}
 	x := &Google_dataflow_job{ Google_dataflow_job_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_dataflow_jobHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_dataflow_job", externalID)
 }
@@ -6646,6 +7683,10 @@ type Google_dataproc_clusterHandler struct {
 
 // Create ...
 func (h *Google_dataproc_clusterHandler) Create(desired *Google_dataproc_cluster) (*Google_dataproc_cluster, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6663,6 +7704,10 @@ func (h *Google_dataproc_clusterHandler) Create(desired *Google_dataproc_cluster
 
 // Read ...
 func (h *Google_dataproc_clusterHandler) Read(externalID string) (*Google_dataproc_cluster, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_dataproc_cluster", externalID)
 	if err != nil {
@@ -6670,11 +7715,18 @@ func (h *Google_dataproc_clusterHandler) Read(externalID string) (*Google_datapr
 	}
 	x := &Google_dataproc_cluster{ Google_dataproc_cluster_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_dataproc_clusterHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_dataproc_cluster", externalID)
 }
@@ -6896,6 +7948,10 @@ type Google_dataproc_jobHandler struct {
 
 // Create ...
 func (h *Google_dataproc_jobHandler) Create(desired *Google_dataproc_job) (*Google_dataproc_job, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6913,6 +7969,10 @@ func (h *Google_dataproc_jobHandler) Create(desired *Google_dataproc_job) (*Goog
 
 // Read ...
 func (h *Google_dataproc_jobHandler) Read(externalID string) (*Google_dataproc_job, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_dataproc_job", externalID)
 	if err != nil {
@@ -6920,11 +7980,18 @@ func (h *Google_dataproc_jobHandler) Read(externalID string) (*Google_dataproc_j
 	}
 	x := &Google_dataproc_job{ Google_dataproc_job_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_dataproc_jobHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_dataproc_job", externalID)
 }
@@ -6954,6 +8021,10 @@ type Google_dns_managed_zoneHandler struct {
 
 // Create ...
 func (h *Google_dns_managed_zoneHandler) Create(desired *Google_dns_managed_zone) (*Google_dns_managed_zone, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -6971,6 +8042,10 @@ func (h *Google_dns_managed_zoneHandler) Create(desired *Google_dns_managed_zone
 
 // Read ...
 func (h *Google_dns_managed_zoneHandler) Read(externalID string) (*Google_dns_managed_zone, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_dns_managed_zone", externalID)
 	if err != nil {
@@ -6978,11 +8053,18 @@ func (h *Google_dns_managed_zoneHandler) Read(externalID string) (*Google_dns_ma
 	}
 	x := &Google_dns_managed_zone{ Google_dns_managed_zone_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_dns_managed_zoneHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_dns_managed_zone", externalID)
 }
@@ -7012,6 +8094,10 @@ type Google_dns_record_setHandler struct {
 
 // Create ...
 func (h *Google_dns_record_setHandler) Create(desired *Google_dns_record_set) (*Google_dns_record_set, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7029,6 +8115,10 @@ func (h *Google_dns_record_setHandler) Create(desired *Google_dns_record_set) (*
 
 // Read ...
 func (h *Google_dns_record_setHandler) Read(externalID string) (*Google_dns_record_set, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_dns_record_set", externalID)
 	if err != nil {
@@ -7036,11 +8126,18 @@ func (h *Google_dns_record_setHandler) Read(externalID string) (*Google_dns_reco
 	}
 	x := &Google_dns_record_set{ Google_dns_record_set_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_dns_record_setHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_dns_record_set", externalID)
 }
@@ -7110,6 +8207,10 @@ type Google_endpoints_serviceHandler struct {
 
 // Create ...
 func (h *Google_endpoints_serviceHandler) Create(desired *Google_endpoints_service) (*Google_endpoints_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7127,6 +8228,10 @@ func (h *Google_endpoints_serviceHandler) Create(desired *Google_endpoints_servi
 
 // Read ...
 func (h *Google_endpoints_serviceHandler) Read(externalID string) (*Google_endpoints_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_endpoints_service", externalID)
 	if err != nil {
@@ -7134,11 +8239,18 @@ func (h *Google_endpoints_serviceHandler) Read(externalID string) (*Google_endpo
 	}
 	x := &Google_endpoints_service{ Google_endpoints_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_endpoints_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_endpoints_service", externalID)
 }
@@ -7196,6 +8308,10 @@ type Google_filestore_instanceHandler struct {
 
 // Create ...
 func (h *Google_filestore_instanceHandler) Create(desired *Google_filestore_instance) (*Google_filestore_instance, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7213,6 +8329,10 @@ func (h *Google_filestore_instanceHandler) Create(desired *Google_filestore_inst
 
 // Read ...
 func (h *Google_filestore_instanceHandler) Read(externalID string) (*Google_filestore_instance, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_filestore_instance", externalID)
 	if err != nil {
@@ -7220,11 +8340,18 @@ func (h *Google_filestore_instanceHandler) Read(externalID string) (*Google_file
 	}
 	x := &Google_filestore_instance{ Google_filestore_instance_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_filestore_instanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_filestore_instance", externalID)
 }
@@ -7252,6 +8379,10 @@ type Google_folderHandler struct {
 
 // Create ...
 func (h *Google_folderHandler) Create(desired *Google_folder) (*Google_folder, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7269,6 +8400,10 @@ func (h *Google_folderHandler) Create(desired *Google_folder) (*Google_folder, s
 
 // Read ...
 func (h *Google_folderHandler) Read(externalID string) (*Google_folder, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_folder", externalID)
 	if err != nil {
@@ -7276,11 +8411,18 @@ func (h *Google_folderHandler) Read(externalID string) (*Google_folder, error) {
 	}
 	x := &Google_folder{ Google_folder_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_folderHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_folder", externalID)
 }
@@ -7306,6 +8448,10 @@ type Google_folder_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_folder_iam_bindingHandler) Create(desired *Google_folder_iam_binding) (*Google_folder_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7323,6 +8469,10 @@ func (h *Google_folder_iam_bindingHandler) Create(desired *Google_folder_iam_bin
 
 // Read ...
 func (h *Google_folder_iam_bindingHandler) Read(externalID string) (*Google_folder_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_folder_iam_binding", externalID)
 	if err != nil {
@@ -7330,11 +8480,18 @@ func (h *Google_folder_iam_bindingHandler) Read(externalID string) (*Google_fold
 	}
 	x := &Google_folder_iam_binding{ Google_folder_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_folder_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_folder_iam_binding", externalID)
 }
@@ -7360,6 +8517,10 @@ type Google_folder_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_folder_iam_memberHandler) Create(desired *Google_folder_iam_member) (*Google_folder_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7377,6 +8538,10 @@ func (h *Google_folder_iam_memberHandler) Create(desired *Google_folder_iam_memb
 
 // Read ...
 func (h *Google_folder_iam_memberHandler) Read(externalID string) (*Google_folder_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_folder_iam_member", externalID)
 	if err != nil {
@@ -7384,11 +8549,18 @@ func (h *Google_folder_iam_memberHandler) Read(externalID string) (*Google_folde
 	}
 	x := &Google_folder_iam_member{ Google_folder_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_folder_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_folder_iam_member", externalID)
 }
@@ -7412,6 +8584,10 @@ type Google_folder_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_folder_iam_policyHandler) Create(desired *Google_folder_iam_policy) (*Google_folder_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7429,6 +8605,10 @@ func (h *Google_folder_iam_policyHandler) Create(desired *Google_folder_iam_poli
 
 // Read ...
 func (h *Google_folder_iam_policyHandler) Read(externalID string) (*Google_folder_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_folder_iam_policy", externalID)
 	if err != nil {
@@ -7436,11 +8616,18 @@ func (h *Google_folder_iam_policyHandler) Read(externalID string) (*Google_folde
 	}
 	x := &Google_folder_iam_policy{ Google_folder_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_folder_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_folder_iam_policy", externalID)
 }
@@ -7512,6 +8699,10 @@ type Google_folder_organization_policyHandler struct {
 
 // Create ...
 func (h *Google_folder_organization_policyHandler) Create(desired *Google_folder_organization_policy) (*Google_folder_organization_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7529,6 +8720,10 @@ func (h *Google_folder_organization_policyHandler) Create(desired *Google_folder
 
 // Read ...
 func (h *Google_folder_organization_policyHandler) Read(externalID string) (*Google_folder_organization_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_folder_organization_policy", externalID)
 	if err != nil {
@@ -7536,11 +8731,18 @@ func (h *Google_folder_organization_policyHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_folder_organization_policy{ Google_folder_organization_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_folder_organization_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_folder_organization_policy", externalID)
 }
@@ -7566,6 +8768,10 @@ type Google_kms_crypto_keyHandler struct {
 
 // Create ...
 func (h *Google_kms_crypto_keyHandler) Create(desired *Google_kms_crypto_key) (*Google_kms_crypto_key, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7583,6 +8789,10 @@ func (h *Google_kms_crypto_keyHandler) Create(desired *Google_kms_crypto_key) (*
 
 // Read ...
 func (h *Google_kms_crypto_keyHandler) Read(externalID string) (*Google_kms_crypto_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_crypto_key", externalID)
 	if err != nil {
@@ -7590,11 +8800,18 @@ func (h *Google_kms_crypto_keyHandler) Read(externalID string) (*Google_kms_cryp
 	}
 	x := &Google_kms_crypto_key{ Google_kms_crypto_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_crypto_keyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_crypto_key", externalID)
 }
@@ -7620,6 +8837,10 @@ type Google_kms_crypto_key_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_kms_crypto_key_iam_bindingHandler) Create(desired *Google_kms_crypto_key_iam_binding) (*Google_kms_crypto_key_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7637,6 +8858,10 @@ func (h *Google_kms_crypto_key_iam_bindingHandler) Create(desired *Google_kms_cr
 
 // Read ...
 func (h *Google_kms_crypto_key_iam_bindingHandler) Read(externalID string) (*Google_kms_crypto_key_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_crypto_key_iam_binding", externalID)
 	if err != nil {
@@ -7644,11 +8869,18 @@ func (h *Google_kms_crypto_key_iam_bindingHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_kms_crypto_key_iam_binding{ Google_kms_crypto_key_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_crypto_key_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_crypto_key_iam_binding", externalID)
 }
@@ -7674,6 +8906,10 @@ type Google_kms_crypto_key_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_kms_crypto_key_iam_memberHandler) Create(desired *Google_kms_crypto_key_iam_member) (*Google_kms_crypto_key_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7691,6 +8927,10 @@ func (h *Google_kms_crypto_key_iam_memberHandler) Create(desired *Google_kms_cry
 
 // Read ...
 func (h *Google_kms_crypto_key_iam_memberHandler) Read(externalID string) (*Google_kms_crypto_key_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_crypto_key_iam_member", externalID)
 	if err != nil {
@@ -7698,11 +8938,18 @@ func (h *Google_kms_crypto_key_iam_memberHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_kms_crypto_key_iam_member{ Google_kms_crypto_key_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_crypto_key_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_crypto_key_iam_member", externalID)
 }
@@ -7728,6 +8975,10 @@ type Google_kms_key_ringHandler struct {
 
 // Create ...
 func (h *Google_kms_key_ringHandler) Create(desired *Google_kms_key_ring) (*Google_kms_key_ring, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7745,6 +8996,10 @@ func (h *Google_kms_key_ringHandler) Create(desired *Google_kms_key_ring) (*Goog
 
 // Read ...
 func (h *Google_kms_key_ringHandler) Read(externalID string) (*Google_kms_key_ring, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring", externalID)
 	if err != nil {
@@ -7752,11 +9007,18 @@ func (h *Google_kms_key_ringHandler) Read(externalID string) (*Google_kms_key_ri
 	}
 	x := &Google_kms_key_ring{ Google_kms_key_ring_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_key_ringHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_key_ring", externalID)
 }
@@ -7782,6 +9044,10 @@ type Google_kms_key_ring_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_kms_key_ring_iam_bindingHandler) Create(desired *Google_kms_key_ring_iam_binding) (*Google_kms_key_ring_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7799,6 +9065,10 @@ func (h *Google_kms_key_ring_iam_bindingHandler) Create(desired *Google_kms_key_
 
 // Read ...
 func (h *Google_kms_key_ring_iam_bindingHandler) Read(externalID string) (*Google_kms_key_ring_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_binding", externalID)
 	if err != nil {
@@ -7806,11 +9076,18 @@ func (h *Google_kms_key_ring_iam_bindingHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_kms_key_ring_iam_binding{ Google_kms_key_ring_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_key_ring_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_key_ring_iam_binding", externalID)
 }
@@ -7836,6 +9113,10 @@ type Google_kms_key_ring_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_kms_key_ring_iam_memberHandler) Create(desired *Google_kms_key_ring_iam_member) (*Google_kms_key_ring_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7853,6 +9134,10 @@ func (h *Google_kms_key_ring_iam_memberHandler) Create(desired *Google_kms_key_r
 
 // Read ...
 func (h *Google_kms_key_ring_iam_memberHandler) Read(externalID string) (*Google_kms_key_ring_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_member", externalID)
 	if err != nil {
@@ -7860,11 +9145,18 @@ func (h *Google_kms_key_ring_iam_memberHandler) Read(externalID string) (*Google
 	}
 	x := &Google_kms_key_ring_iam_member{ Google_kms_key_ring_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_key_ring_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_key_ring_iam_member", externalID)
 }
@@ -7888,6 +9180,10 @@ type Google_kms_key_ring_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_kms_key_ring_iam_policyHandler) Create(desired *Google_kms_key_ring_iam_policy) (*Google_kms_key_ring_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7905,6 +9201,10 @@ func (h *Google_kms_key_ring_iam_policyHandler) Create(desired *Google_kms_key_r
 
 // Read ...
 func (h *Google_kms_key_ring_iam_policyHandler) Read(externalID string) (*Google_kms_key_ring_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_kms_key_ring_iam_policy", externalID)
 	if err != nil {
@@ -7912,11 +9212,18 @@ func (h *Google_kms_key_ring_iam_policyHandler) Read(externalID string) (*Google
 	}
 	x := &Google_kms_key_ring_iam_policy{ Google_kms_key_ring_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_kms_key_ring_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_kms_key_ring_iam_policy", externalID)
 }
@@ -7944,6 +9251,10 @@ type Google_logging_billing_account_exclusionHandler struct {
 
 // Create ...
 func (h *Google_logging_billing_account_exclusionHandler) Create(desired *Google_logging_billing_account_exclusion) (*Google_logging_billing_account_exclusion, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -7961,6 +9272,10 @@ func (h *Google_logging_billing_account_exclusionHandler) Create(desired *Google
 
 // Read ...
 func (h *Google_logging_billing_account_exclusionHandler) Read(externalID string) (*Google_logging_billing_account_exclusion, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_billing_account_exclusion", externalID)
 	if err != nil {
@@ -7968,11 +9283,18 @@ func (h *Google_logging_billing_account_exclusionHandler) Read(externalID string
 	}
 	x := &Google_logging_billing_account_exclusion{ Google_logging_billing_account_exclusion_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_billing_account_exclusionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_billing_account_exclusion", externalID)
 }
@@ -8000,6 +9322,10 @@ type Google_logging_billing_account_sinkHandler struct {
 
 // Create ...
 func (h *Google_logging_billing_account_sinkHandler) Create(desired *Google_logging_billing_account_sink) (*Google_logging_billing_account_sink, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8017,6 +9343,10 @@ func (h *Google_logging_billing_account_sinkHandler) Create(desired *Google_logg
 
 // Read ...
 func (h *Google_logging_billing_account_sinkHandler) Read(externalID string) (*Google_logging_billing_account_sink, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_billing_account_sink", externalID)
 	if err != nil {
@@ -8024,11 +9354,18 @@ func (h *Google_logging_billing_account_sinkHandler) Read(externalID string) (*G
 	}
 	x := &Google_logging_billing_account_sink{ Google_logging_billing_account_sink_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_billing_account_sinkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_billing_account_sink", externalID)
 }
@@ -8056,6 +9393,10 @@ type Google_logging_folder_exclusionHandler struct {
 
 // Create ...
 func (h *Google_logging_folder_exclusionHandler) Create(desired *Google_logging_folder_exclusion) (*Google_logging_folder_exclusion, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8073,6 +9414,10 @@ func (h *Google_logging_folder_exclusionHandler) Create(desired *Google_logging_
 
 // Read ...
 func (h *Google_logging_folder_exclusionHandler) Read(externalID string) (*Google_logging_folder_exclusion, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_folder_exclusion", externalID)
 	if err != nil {
@@ -8080,11 +9425,18 @@ func (h *Google_logging_folder_exclusionHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_logging_folder_exclusion{ Google_logging_folder_exclusion_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_folder_exclusionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_folder_exclusion", externalID)
 }
@@ -8114,6 +9466,10 @@ type Google_logging_folder_sinkHandler struct {
 
 // Create ...
 func (h *Google_logging_folder_sinkHandler) Create(desired *Google_logging_folder_sink) (*Google_logging_folder_sink, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8131,6 +9487,10 @@ func (h *Google_logging_folder_sinkHandler) Create(desired *Google_logging_folde
 
 // Read ...
 func (h *Google_logging_folder_sinkHandler) Read(externalID string) (*Google_logging_folder_sink, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_folder_sink", externalID)
 	if err != nil {
@@ -8138,11 +9498,18 @@ func (h *Google_logging_folder_sinkHandler) Read(externalID string) (*Google_log
 	}
 	x := &Google_logging_folder_sink{ Google_logging_folder_sink_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_folder_sinkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_folder_sink", externalID)
 }
@@ -8170,6 +9537,10 @@ type Google_logging_organization_exclusionHandler struct {
 
 // Create ...
 func (h *Google_logging_organization_exclusionHandler) Create(desired *Google_logging_organization_exclusion) (*Google_logging_organization_exclusion, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8187,6 +9558,10 @@ func (h *Google_logging_organization_exclusionHandler) Create(desired *Google_lo
 
 // Read ...
 func (h *Google_logging_organization_exclusionHandler) Read(externalID string) (*Google_logging_organization_exclusion, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_organization_exclusion", externalID)
 	if err != nil {
@@ -8194,11 +9569,18 @@ func (h *Google_logging_organization_exclusionHandler) Read(externalID string) (
 	}
 	x := &Google_logging_organization_exclusion{ Google_logging_organization_exclusion_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_organization_exclusionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_organization_exclusion", externalID)
 }
@@ -8228,6 +9610,10 @@ type Google_logging_organization_sinkHandler struct {
 
 // Create ...
 func (h *Google_logging_organization_sinkHandler) Create(desired *Google_logging_organization_sink) (*Google_logging_organization_sink, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8245,6 +9631,10 @@ func (h *Google_logging_organization_sinkHandler) Create(desired *Google_logging
 
 // Read ...
 func (h *Google_logging_organization_sinkHandler) Read(externalID string) (*Google_logging_organization_sink, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_organization_sink", externalID)
 	if err != nil {
@@ -8252,11 +9642,18 @@ func (h *Google_logging_organization_sinkHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_logging_organization_sink{ Google_logging_organization_sink_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_organization_sinkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_organization_sink", externalID)
 }
@@ -8284,6 +9681,10 @@ type Google_logging_project_exclusionHandler struct {
 
 // Create ...
 func (h *Google_logging_project_exclusionHandler) Create(desired *Google_logging_project_exclusion) (*Google_logging_project_exclusion, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8301,6 +9702,10 @@ func (h *Google_logging_project_exclusionHandler) Create(desired *Google_logging
 
 // Read ...
 func (h *Google_logging_project_exclusionHandler) Read(externalID string) (*Google_logging_project_exclusion, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_project_exclusion", externalID)
 	if err != nil {
@@ -8308,11 +9713,18 @@ func (h *Google_logging_project_exclusionHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_logging_project_exclusion{ Google_logging_project_exclusion_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_project_exclusionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_project_exclusion", externalID)
 }
@@ -8342,6 +9754,10 @@ type Google_logging_project_sinkHandler struct {
 
 // Create ...
 func (h *Google_logging_project_sinkHandler) Create(desired *Google_logging_project_sink) (*Google_logging_project_sink, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8359,6 +9775,10 @@ func (h *Google_logging_project_sinkHandler) Create(desired *Google_logging_proj
 
 // Read ...
 func (h *Google_logging_project_sinkHandler) Read(externalID string) (*Google_logging_project_sink, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_logging_project_sink", externalID)
 	if err != nil {
@@ -8366,11 +9786,18 @@ func (h *Google_logging_project_sinkHandler) Read(externalID string) (*Google_lo
 	}
 	x := &Google_logging_project_sink{ Google_logging_project_sink_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_logging_project_sinkHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_logging_project_sink", externalID)
 }
@@ -8510,6 +9937,10 @@ type Google_monitoring_alert_policyHandler struct {
 
 // Create ...
 func (h *Google_monitoring_alert_policyHandler) Create(desired *Google_monitoring_alert_policy) (*Google_monitoring_alert_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8527,6 +9958,10 @@ func (h *Google_monitoring_alert_policyHandler) Create(desired *Google_monitorin
 
 // Read ...
 func (h *Google_monitoring_alert_policyHandler) Read(externalID string) (*Google_monitoring_alert_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_monitoring_alert_policy", externalID)
 	if err != nil {
@@ -8534,11 +9969,18 @@ func (h *Google_monitoring_alert_policyHandler) Read(externalID string) (*Google
 	}
 	x := &Google_monitoring_alert_policy{ Google_monitoring_alert_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_monitoring_alert_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_monitoring_alert_policy", externalID)
 }
@@ -8568,6 +10010,10 @@ type Google_monitoring_groupHandler struct {
 
 // Create ...
 func (h *Google_monitoring_groupHandler) Create(desired *Google_monitoring_group) (*Google_monitoring_group, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8585,6 +10031,10 @@ func (h *Google_monitoring_groupHandler) Create(desired *Google_monitoring_group
 
 // Read ...
 func (h *Google_monitoring_groupHandler) Read(externalID string) (*Google_monitoring_group, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_monitoring_group", externalID)
 	if err != nil {
@@ -8592,11 +10042,18 @@ func (h *Google_monitoring_groupHandler) Read(externalID string) (*Google_monito
 	}
 	x := &Google_monitoring_group{ Google_monitoring_group_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_monitoring_groupHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_monitoring_group", externalID)
 }
@@ -8632,6 +10089,10 @@ type Google_monitoring_notification_channelHandler struct {
 
 // Create ...
 func (h *Google_monitoring_notification_channelHandler) Create(desired *Google_monitoring_notification_channel) (*Google_monitoring_notification_channel, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8649,6 +10110,10 @@ func (h *Google_monitoring_notification_channelHandler) Create(desired *Google_m
 
 // Read ...
 func (h *Google_monitoring_notification_channelHandler) Read(externalID string) (*Google_monitoring_notification_channel, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_monitoring_notification_channel", externalID)
 	if err != nil {
@@ -8656,11 +10121,18 @@ func (h *Google_monitoring_notification_channelHandler) Read(externalID string) 
 	}
 	x := &Google_monitoring_notification_channel{ Google_monitoring_notification_channel_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_monitoring_notification_channelHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_monitoring_notification_channel", externalID)
 }
@@ -8770,6 +10242,10 @@ type Google_monitoring_uptime_check_configHandler struct {
 
 // Create ...
 func (h *Google_monitoring_uptime_check_configHandler) Create(desired *Google_monitoring_uptime_check_config) (*Google_monitoring_uptime_check_config, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8787,6 +10263,10 @@ func (h *Google_monitoring_uptime_check_configHandler) Create(desired *Google_mo
 
 // Read ...
 func (h *Google_monitoring_uptime_check_configHandler) Read(externalID string) (*Google_monitoring_uptime_check_config, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_monitoring_uptime_check_config", externalID)
 	if err != nil {
@@ -8794,11 +10274,18 @@ func (h *Google_monitoring_uptime_check_configHandler) Read(externalID string) (
 	}
 	x := &Google_monitoring_uptime_check_config{ Google_monitoring_uptime_check_config_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_monitoring_uptime_check_configHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_monitoring_uptime_check_config", externalID)
 }
@@ -8824,6 +10311,10 @@ type Google_organization_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_organization_iam_bindingHandler) Create(desired *Google_organization_iam_binding) (*Google_organization_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8841,6 +10332,10 @@ func (h *Google_organization_iam_bindingHandler) Create(desired *Google_organiza
 
 // Read ...
 func (h *Google_organization_iam_bindingHandler) Read(externalID string) (*Google_organization_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_organization_iam_binding", externalID)
 	if err != nil {
@@ -8848,11 +10343,18 @@ func (h *Google_organization_iam_bindingHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_organization_iam_binding{ Google_organization_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_organization_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_organization_iam_binding", externalID)
 }
@@ -8884,6 +10386,10 @@ type Google_organization_iam_custom_roleHandler struct {
 
 // Create ...
 func (h *Google_organization_iam_custom_roleHandler) Create(desired *Google_organization_iam_custom_role) (*Google_organization_iam_custom_role, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8901,6 +10407,10 @@ func (h *Google_organization_iam_custom_roleHandler) Create(desired *Google_orga
 
 // Read ...
 func (h *Google_organization_iam_custom_roleHandler) Read(externalID string) (*Google_organization_iam_custom_role, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_organization_iam_custom_role", externalID)
 	if err != nil {
@@ -8908,11 +10418,18 @@ func (h *Google_organization_iam_custom_roleHandler) Read(externalID string) (*G
 	}
 	x := &Google_organization_iam_custom_role{ Google_organization_iam_custom_role_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_organization_iam_custom_roleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_organization_iam_custom_role", externalID)
 }
@@ -8938,6 +10455,10 @@ type Google_organization_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_organization_iam_memberHandler) Create(desired *Google_organization_iam_member) (*Google_organization_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -8955,6 +10476,10 @@ func (h *Google_organization_iam_memberHandler) Create(desired *Google_organizat
 
 // Read ...
 func (h *Google_organization_iam_memberHandler) Read(externalID string) (*Google_organization_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_organization_iam_member", externalID)
 	if err != nil {
@@ -8962,11 +10487,18 @@ func (h *Google_organization_iam_memberHandler) Read(externalID string) (*Google
 	}
 	x := &Google_organization_iam_member{ Google_organization_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_organization_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_organization_iam_member", externalID)
 }
@@ -8990,6 +10522,10 @@ type Google_organization_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_organization_iam_policyHandler) Create(desired *Google_organization_iam_policy) (*Google_organization_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9007,6 +10543,10 @@ func (h *Google_organization_iam_policyHandler) Create(desired *Google_organizat
 
 // Read ...
 func (h *Google_organization_iam_policyHandler) Read(externalID string) (*Google_organization_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_organization_iam_policy", externalID)
 	if err != nil {
@@ -9014,11 +10554,18 @@ func (h *Google_organization_iam_policyHandler) Read(externalID string) (*Google
 	}
 	x := &Google_organization_iam_policy{ Google_organization_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_organization_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_organization_iam_policy", externalID)
 }
@@ -9090,6 +10637,10 @@ type Google_organization_policyHandler struct {
 
 // Create ...
 func (h *Google_organization_policyHandler) Create(desired *Google_organization_policy) (*Google_organization_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9107,6 +10658,10 @@ func (h *Google_organization_policyHandler) Create(desired *Google_organization_
 
 // Read ...
 func (h *Google_organization_policyHandler) Read(externalID string) (*Google_organization_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_organization_policy", externalID)
 	if err != nil {
@@ -9114,11 +10669,18 @@ func (h *Google_organization_policyHandler) Read(externalID string) (*Google_org
 	}
 	x := &Google_organization_policy{ Google_organization_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_organization_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_organization_policy", externalID)
 }
@@ -9200,6 +10762,10 @@ type Google_projectHandler struct {
 
 // Create ...
 func (h *Google_projectHandler) Create(desired *Google_project) (*Google_project, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9217,6 +10783,10 @@ func (h *Google_projectHandler) Create(desired *Google_project) (*Google_project
 
 // Read ...
 func (h *Google_projectHandler) Read(externalID string) (*Google_project, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project", externalID)
 	if err != nil {
@@ -9224,11 +10794,18 @@ func (h *Google_projectHandler) Read(externalID string) (*Google_project, error)
 	}
 	x := &Google_project{ Google_project_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_projectHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project", externalID)
 }
@@ -9254,6 +10831,10 @@ type Google_project_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_project_iam_bindingHandler) Create(desired *Google_project_iam_binding) (*Google_project_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9271,6 +10852,10 @@ func (h *Google_project_iam_bindingHandler) Create(desired *Google_project_iam_b
 
 // Read ...
 func (h *Google_project_iam_bindingHandler) Read(externalID string) (*Google_project_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_iam_binding", externalID)
 	if err != nil {
@@ -9278,11 +10863,18 @@ func (h *Google_project_iam_bindingHandler) Read(externalID string) (*Google_pro
 	}
 	x := &Google_project_iam_binding{ Google_project_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_iam_binding", externalID)
 }
@@ -9314,6 +10906,10 @@ type Google_project_iam_custom_roleHandler struct {
 
 // Create ...
 func (h *Google_project_iam_custom_roleHandler) Create(desired *Google_project_iam_custom_role) (*Google_project_iam_custom_role, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9331,6 +10927,10 @@ func (h *Google_project_iam_custom_roleHandler) Create(desired *Google_project_i
 
 // Read ...
 func (h *Google_project_iam_custom_roleHandler) Read(externalID string) (*Google_project_iam_custom_role, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_iam_custom_role", externalID)
 	if err != nil {
@@ -9338,11 +10938,18 @@ func (h *Google_project_iam_custom_roleHandler) Read(externalID string) (*Google
 	}
 	x := &Google_project_iam_custom_role{ Google_project_iam_custom_role_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_iam_custom_roleHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_iam_custom_role", externalID)
 }
@@ -9368,6 +10975,10 @@ type Google_project_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_project_iam_memberHandler) Create(desired *Google_project_iam_member) (*Google_project_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9385,6 +10996,10 @@ func (h *Google_project_iam_memberHandler) Create(desired *Google_project_iam_me
 
 // Read ...
 func (h *Google_project_iam_memberHandler) Read(externalID string) (*Google_project_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_iam_member", externalID)
 	if err != nil {
@@ -9392,11 +11007,18 @@ func (h *Google_project_iam_memberHandler) Read(externalID string) (*Google_proj
 	}
 	x := &Google_project_iam_member{ Google_project_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_iam_member", externalID)
 }
@@ -9426,6 +11048,10 @@ type Google_project_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_project_iam_policyHandler) Create(desired *Google_project_iam_policy) (*Google_project_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9443,6 +11069,10 @@ func (h *Google_project_iam_policyHandler) Create(desired *Google_project_iam_po
 
 // Read ...
 func (h *Google_project_iam_policyHandler) Read(externalID string) (*Google_project_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_iam_policy", externalID)
 	if err != nil {
@@ -9450,11 +11080,18 @@ func (h *Google_project_iam_policyHandler) Read(externalID string) (*Google_proj
 	}
 	x := &Google_project_iam_policy{ Google_project_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_iam_policy", externalID)
 }
@@ -9526,6 +11163,10 @@ type Google_project_organization_policyHandler struct {
 
 // Create ...
 func (h *Google_project_organization_policyHandler) Create(desired *Google_project_organization_policy) (*Google_project_organization_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9543,6 +11184,10 @@ func (h *Google_project_organization_policyHandler) Create(desired *Google_proje
 
 // Read ...
 func (h *Google_project_organization_policyHandler) Read(externalID string) (*Google_project_organization_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_organization_policy", externalID)
 	if err != nil {
@@ -9550,11 +11195,18 @@ func (h *Google_project_organization_policyHandler) Read(externalID string) (*Go
 	}
 	x := &Google_project_organization_policy{ Google_project_organization_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_organization_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_organization_policy", externalID)
 }
@@ -9578,6 +11230,10 @@ type Google_project_serviceHandler struct {
 
 // Create ...
 func (h *Google_project_serviceHandler) Create(desired *Google_project_service) (*Google_project_service, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9595,6 +11251,10 @@ func (h *Google_project_serviceHandler) Create(desired *Google_project_service) 
 
 // Read ...
 func (h *Google_project_serviceHandler) Read(externalID string) (*Google_project_service, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_service", externalID)
 	if err != nil {
@@ -9602,11 +11262,18 @@ func (h *Google_project_serviceHandler) Read(externalID string) (*Google_project
 	}
 	x := &Google_project_service{ Google_project_service_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_serviceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_service", externalID)
 }
@@ -9630,6 +11297,10 @@ type Google_project_servicesHandler struct {
 
 // Create ...
 func (h *Google_project_servicesHandler) Create(desired *Google_project_services) (*Google_project_services, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9647,6 +11318,10 @@ func (h *Google_project_servicesHandler) Create(desired *Google_project_services
 
 // Read ...
 func (h *Google_project_servicesHandler) Read(externalID string) (*Google_project_services, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_services", externalID)
 	if err != nil {
@@ -9654,11 +11329,18 @@ func (h *Google_project_servicesHandler) Read(externalID string) (*Google_projec
 	}
 	x := &Google_project_services{ Google_project_services_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_servicesHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_services", externalID)
 }
@@ -9682,6 +11364,10 @@ type Google_project_usage_export_bucketHandler struct {
 
 // Create ...
 func (h *Google_project_usage_export_bucketHandler) Create(desired *Google_project_usage_export_bucket) (*Google_project_usage_export_bucket, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9699,6 +11385,10 @@ func (h *Google_project_usage_export_bucketHandler) Create(desired *Google_proje
 
 // Read ...
 func (h *Google_project_usage_export_bucketHandler) Read(externalID string) (*Google_project_usage_export_bucket, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_project_usage_export_bucket", externalID)
 	if err != nil {
@@ -9706,11 +11396,18 @@ func (h *Google_project_usage_export_bucketHandler) Read(externalID string) (*Go
 	}
 	x := &Google_project_usage_export_bucket{ Google_project_usage_export_bucket_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_project_usage_export_bucketHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_project_usage_export_bucket", externalID)
 }
@@ -9748,6 +11445,10 @@ type Google_pubsub_subscriptionHandler struct {
 
 // Create ...
 func (h *Google_pubsub_subscriptionHandler) Create(desired *Google_pubsub_subscription) (*Google_pubsub_subscription, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9765,6 +11466,10 @@ func (h *Google_pubsub_subscriptionHandler) Create(desired *Google_pubsub_subscr
 
 // Read ...
 func (h *Google_pubsub_subscriptionHandler) Read(externalID string) (*Google_pubsub_subscription, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription", externalID)
 	if err != nil {
@@ -9772,11 +11477,18 @@ func (h *Google_pubsub_subscriptionHandler) Read(externalID string) (*Google_pub
 	}
 	x := &Google_pubsub_subscription{ Google_pubsub_subscription_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_subscriptionHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_subscription", externalID)
 }
@@ -9804,6 +11516,10 @@ type Google_pubsub_subscription_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_pubsub_subscription_iam_bindingHandler) Create(desired *Google_pubsub_subscription_iam_binding) (*Google_pubsub_subscription_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9821,6 +11537,10 @@ func (h *Google_pubsub_subscription_iam_bindingHandler) Create(desired *Google_p
 
 // Read ...
 func (h *Google_pubsub_subscription_iam_bindingHandler) Read(externalID string) (*Google_pubsub_subscription_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_binding", externalID)
 	if err != nil {
@@ -9828,11 +11548,18 @@ func (h *Google_pubsub_subscription_iam_bindingHandler) Read(externalID string) 
 	}
 	x := &Google_pubsub_subscription_iam_binding{ Google_pubsub_subscription_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_subscription_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_binding", externalID)
 }
@@ -9860,6 +11587,10 @@ type Google_pubsub_subscription_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_pubsub_subscription_iam_memberHandler) Create(desired *Google_pubsub_subscription_iam_member) (*Google_pubsub_subscription_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9877,6 +11608,10 @@ func (h *Google_pubsub_subscription_iam_memberHandler) Create(desired *Google_pu
 
 // Read ...
 func (h *Google_pubsub_subscription_iam_memberHandler) Read(externalID string) (*Google_pubsub_subscription_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_member", externalID)
 	if err != nil {
@@ -9884,11 +11619,18 @@ func (h *Google_pubsub_subscription_iam_memberHandler) Read(externalID string) (
 	}
 	x := &Google_pubsub_subscription_iam_member{ Google_pubsub_subscription_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_subscription_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_member", externalID)
 }
@@ -9914,6 +11656,10 @@ type Google_pubsub_subscription_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_pubsub_subscription_iam_policyHandler) Create(desired *Google_pubsub_subscription_iam_policy) (*Google_pubsub_subscription_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9931,6 +11677,10 @@ func (h *Google_pubsub_subscription_iam_policyHandler) Create(desired *Google_pu
 
 // Read ...
 func (h *Google_pubsub_subscription_iam_policyHandler) Read(externalID string) (*Google_pubsub_subscription_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_subscription_iam_policy", externalID)
 	if err != nil {
@@ -9938,11 +11688,18 @@ func (h *Google_pubsub_subscription_iam_policyHandler) Read(externalID string) (
 	}
 	x := &Google_pubsub_subscription_iam_policy{ Google_pubsub_subscription_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_subscription_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_subscription_iam_policy", externalID)
 }
@@ -9964,6 +11721,10 @@ type Google_pubsub_topicHandler struct {
 
 // Create ...
 func (h *Google_pubsub_topicHandler) Create(desired *Google_pubsub_topic) (*Google_pubsub_topic, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -9981,6 +11742,10 @@ func (h *Google_pubsub_topicHandler) Create(desired *Google_pubsub_topic) (*Goog
 
 // Read ...
 func (h *Google_pubsub_topicHandler) Read(externalID string) (*Google_pubsub_topic, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic", externalID)
 	if err != nil {
@@ -9988,11 +11753,18 @@ func (h *Google_pubsub_topicHandler) Read(externalID string) (*Google_pubsub_top
 	}
 	x := &Google_pubsub_topic{ Google_pubsub_topic_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_topicHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_topic", externalID)
 }
@@ -10020,6 +11792,10 @@ type Google_pubsub_topic_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_pubsub_topic_iam_bindingHandler) Create(desired *Google_pubsub_topic_iam_binding) (*Google_pubsub_topic_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10037,6 +11813,10 @@ func (h *Google_pubsub_topic_iam_bindingHandler) Create(desired *Google_pubsub_t
 
 // Read ...
 func (h *Google_pubsub_topic_iam_bindingHandler) Read(externalID string) (*Google_pubsub_topic_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_binding", externalID)
 	if err != nil {
@@ -10044,11 +11824,18 @@ func (h *Google_pubsub_topic_iam_bindingHandler) Read(externalID string) (*Googl
 	}
 	x := &Google_pubsub_topic_iam_binding{ Google_pubsub_topic_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_topic_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_topic_iam_binding", externalID)
 }
@@ -10076,6 +11863,10 @@ type Google_pubsub_topic_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_pubsub_topic_iam_memberHandler) Create(desired *Google_pubsub_topic_iam_member) (*Google_pubsub_topic_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10093,6 +11884,10 @@ func (h *Google_pubsub_topic_iam_memberHandler) Create(desired *Google_pubsub_to
 
 // Read ...
 func (h *Google_pubsub_topic_iam_memberHandler) Read(externalID string) (*Google_pubsub_topic_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_member", externalID)
 	if err != nil {
@@ -10100,11 +11895,18 @@ func (h *Google_pubsub_topic_iam_memberHandler) Read(externalID string) (*Google
 	}
 	x := &Google_pubsub_topic_iam_member{ Google_pubsub_topic_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_topic_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_topic_iam_member", externalID)
 }
@@ -10130,6 +11932,10 @@ type Google_pubsub_topic_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_pubsub_topic_iam_policyHandler) Create(desired *Google_pubsub_topic_iam_policy) (*Google_pubsub_topic_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10147,6 +11953,10 @@ func (h *Google_pubsub_topic_iam_policyHandler) Create(desired *Google_pubsub_to
 
 // Read ...
 func (h *Google_pubsub_topic_iam_policyHandler) Read(externalID string) (*Google_pubsub_topic_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_pubsub_topic_iam_policy", externalID)
 	if err != nil {
@@ -10154,11 +11964,18 @@ func (h *Google_pubsub_topic_iam_policyHandler) Read(externalID string) (*Google
 	}
 	x := &Google_pubsub_topic_iam_policy{ Google_pubsub_topic_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_pubsub_topic_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_pubsub_topic_iam_policy", externalID)
 }
@@ -10210,6 +12027,10 @@ type Google_redis_instanceHandler struct {
 
 // Create ...
 func (h *Google_redis_instanceHandler) Create(desired *Google_redis_instance) (*Google_redis_instance, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10227,6 +12048,10 @@ func (h *Google_redis_instanceHandler) Create(desired *Google_redis_instance) (*
 
 // Read ...
 func (h *Google_redis_instanceHandler) Read(externalID string) (*Google_redis_instance, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_redis_instance", externalID)
 	if err != nil {
@@ -10234,11 +12059,18 @@ func (h *Google_redis_instanceHandler) Read(externalID string) (*Google_redis_in
 	}
 	x := &Google_redis_instance{ Google_redis_instance_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_redis_instanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_redis_instance", externalID)
 }
@@ -10268,6 +12100,10 @@ type Google_resource_manager_lienHandler struct {
 
 // Create ...
 func (h *Google_resource_manager_lienHandler) Create(desired *Google_resource_manager_lien) (*Google_resource_manager_lien, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10285,6 +12121,10 @@ func (h *Google_resource_manager_lienHandler) Create(desired *Google_resource_ma
 
 // Read ...
 func (h *Google_resource_manager_lienHandler) Read(externalID string) (*Google_resource_manager_lien, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_resource_manager_lien", externalID)
 	if err != nil {
@@ -10292,11 +12132,18 @@ func (h *Google_resource_manager_lienHandler) Read(externalID string) (*Google_r
 	}
 	x := &Google_resource_manager_lien{ Google_resource_manager_lien_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_resource_manager_lienHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_resource_manager_lien", externalID)
 }
@@ -10320,6 +12167,10 @@ type Google_runtimeconfig_configHandler struct {
 
 // Create ...
 func (h *Google_runtimeconfig_configHandler) Create(desired *Google_runtimeconfig_config) (*Google_runtimeconfig_config, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10337,6 +12188,10 @@ func (h *Google_runtimeconfig_configHandler) Create(desired *Google_runtimeconfi
 
 // Read ...
 func (h *Google_runtimeconfig_configHandler) Read(externalID string) (*Google_runtimeconfig_config, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_runtimeconfig_config", externalID)
 	if err != nil {
@@ -10344,11 +12199,18 @@ func (h *Google_runtimeconfig_configHandler) Read(externalID string) (*Google_ru
 	}
 	x := &Google_runtimeconfig_config{ Google_runtimeconfig_config_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_runtimeconfig_configHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_runtimeconfig_config", externalID)
 }
@@ -10378,6 +12240,10 @@ type Google_runtimeconfig_variableHandler struct {
 
 // Create ...
 func (h *Google_runtimeconfig_variableHandler) Create(desired *Google_runtimeconfig_variable) (*Google_runtimeconfig_variable, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10395,6 +12261,10 @@ func (h *Google_runtimeconfig_variableHandler) Create(desired *Google_runtimecon
 
 // Read ...
 func (h *Google_runtimeconfig_variableHandler) Read(externalID string) (*Google_runtimeconfig_variable, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_runtimeconfig_variable", externalID)
 	if err != nil {
@@ -10402,11 +12272,18 @@ func (h *Google_runtimeconfig_variableHandler) Read(externalID string) (*Google_
 	}
 	x := &Google_runtimeconfig_variable{ Google_runtimeconfig_variable_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_runtimeconfig_variableHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_runtimeconfig_variable", externalID)
 }
@@ -10438,6 +12315,10 @@ type Google_service_accountHandler struct {
 
 // Create ...
 func (h *Google_service_accountHandler) Create(desired *Google_service_account) (*Google_service_account, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10455,6 +12336,10 @@ func (h *Google_service_accountHandler) Create(desired *Google_service_account) 
 
 // Read ...
 func (h *Google_service_accountHandler) Read(externalID string) (*Google_service_account, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_service_account", externalID)
 	if err != nil {
@@ -10462,11 +12347,18 @@ func (h *Google_service_accountHandler) Read(externalID string) (*Google_service
 	}
 	x := &Google_service_account{ Google_service_account_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_service_accountHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_service_account", externalID)
 }
@@ -10492,6 +12384,10 @@ type Google_service_account_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_service_account_iam_bindingHandler) Create(desired *Google_service_account_iam_binding) (*Google_service_account_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10509,6 +12405,10 @@ func (h *Google_service_account_iam_bindingHandler) Create(desired *Google_servi
 
 // Read ...
 func (h *Google_service_account_iam_bindingHandler) Read(externalID string) (*Google_service_account_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_service_account_iam_binding", externalID)
 	if err != nil {
@@ -10516,11 +12416,18 @@ func (h *Google_service_account_iam_bindingHandler) Read(externalID string) (*Go
 	}
 	x := &Google_service_account_iam_binding{ Google_service_account_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_service_account_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_service_account_iam_binding", externalID)
 }
@@ -10546,6 +12453,10 @@ type Google_service_account_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_service_account_iam_memberHandler) Create(desired *Google_service_account_iam_member) (*Google_service_account_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10563,6 +12474,10 @@ func (h *Google_service_account_iam_memberHandler) Create(desired *Google_servic
 
 // Read ...
 func (h *Google_service_account_iam_memberHandler) Read(externalID string) (*Google_service_account_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_service_account_iam_member", externalID)
 	if err != nil {
@@ -10570,11 +12485,18 @@ func (h *Google_service_account_iam_memberHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_service_account_iam_member{ Google_service_account_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_service_account_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_service_account_iam_member", externalID)
 }
@@ -10598,6 +12520,10 @@ type Google_service_account_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_service_account_iam_policyHandler) Create(desired *Google_service_account_iam_policy) (*Google_service_account_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10615,6 +12541,10 @@ func (h *Google_service_account_iam_policyHandler) Create(desired *Google_servic
 
 // Read ...
 func (h *Google_service_account_iam_policyHandler) Read(externalID string) (*Google_service_account_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_service_account_iam_policy", externalID)
 	if err != nil {
@@ -10622,11 +12552,18 @@ func (h *Google_service_account_iam_policyHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_service_account_iam_policy{ Google_service_account_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_service_account_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_service_account_iam_policy", externalID)
 }
@@ -10668,6 +12605,10 @@ type Google_service_account_keyHandler struct {
 
 // Create ...
 func (h *Google_service_account_keyHandler) Create(desired *Google_service_account_key) (*Google_service_account_key, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10685,6 +12626,10 @@ func (h *Google_service_account_keyHandler) Create(desired *Google_service_accou
 
 // Read ...
 func (h *Google_service_account_keyHandler) Read(externalID string) (*Google_service_account_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_service_account_key", externalID)
 	if err != nil {
@@ -10692,11 +12637,18 @@ func (h *Google_service_account_keyHandler) Read(externalID string) (*Google_ser
 	}
 	x := &Google_service_account_key{ Google_service_account_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_service_account_keyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_service_account_key", externalID)
 }
@@ -10722,6 +12674,10 @@ type Google_sourcerepo_repositoryHandler struct {
 
 // Create ...
 func (h *Google_sourcerepo_repositoryHandler) Create(desired *Google_sourcerepo_repository) (*Google_sourcerepo_repository, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10739,6 +12695,10 @@ func (h *Google_sourcerepo_repositoryHandler) Create(desired *Google_sourcerepo_
 
 // Read ...
 func (h *Google_sourcerepo_repositoryHandler) Read(externalID string) (*Google_sourcerepo_repository, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_sourcerepo_repository", externalID)
 	if err != nil {
@@ -10746,11 +12706,18 @@ func (h *Google_sourcerepo_repositoryHandler) Read(externalID string) (*Google_s
 	}
 	x := &Google_sourcerepo_repository{ Google_sourcerepo_repository_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_sourcerepo_repositoryHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_sourcerepo_repository", externalID)
 }
@@ -10778,6 +12745,10 @@ type Google_spanner_databaseHandler struct {
 
 // Create ...
 func (h *Google_spanner_databaseHandler) Create(desired *Google_spanner_database) (*Google_spanner_database, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10795,6 +12766,10 @@ func (h *Google_spanner_databaseHandler) Create(desired *Google_spanner_database
 
 // Read ...
 func (h *Google_spanner_databaseHandler) Read(externalID string) (*Google_spanner_database, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_database", externalID)
 	if err != nil {
@@ -10802,11 +12777,18 @@ func (h *Google_spanner_databaseHandler) Read(externalID string) (*Google_spanne
 	}
 	x := &Google_spanner_database{ Google_spanner_database_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_databaseHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_database", externalID)
 }
@@ -10836,6 +12818,10 @@ type Google_spanner_database_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_spanner_database_iam_bindingHandler) Create(desired *Google_spanner_database_iam_binding) (*Google_spanner_database_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10853,6 +12839,10 @@ func (h *Google_spanner_database_iam_bindingHandler) Create(desired *Google_span
 
 // Read ...
 func (h *Google_spanner_database_iam_bindingHandler) Read(externalID string) (*Google_spanner_database_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_database_iam_binding", externalID)
 	if err != nil {
@@ -10860,11 +12850,18 @@ func (h *Google_spanner_database_iam_bindingHandler) Read(externalID string) (*G
 	}
 	x := &Google_spanner_database_iam_binding{ Google_spanner_database_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_database_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_database_iam_binding", externalID)
 }
@@ -10894,6 +12891,10 @@ type Google_spanner_database_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_spanner_database_iam_memberHandler) Create(desired *Google_spanner_database_iam_member) (*Google_spanner_database_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10911,6 +12912,10 @@ func (h *Google_spanner_database_iam_memberHandler) Create(desired *Google_spann
 
 // Read ...
 func (h *Google_spanner_database_iam_memberHandler) Read(externalID string) (*Google_spanner_database_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_database_iam_member", externalID)
 	if err != nil {
@@ -10918,11 +12923,18 @@ func (h *Google_spanner_database_iam_memberHandler) Read(externalID string) (*Go
 	}
 	x := &Google_spanner_database_iam_member{ Google_spanner_database_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_database_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_database_iam_member", externalID)
 }
@@ -10950,6 +12962,10 @@ type Google_spanner_database_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_spanner_database_iam_policyHandler) Create(desired *Google_spanner_database_iam_policy) (*Google_spanner_database_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -10967,6 +12983,10 @@ func (h *Google_spanner_database_iam_policyHandler) Create(desired *Google_spann
 
 // Read ...
 func (h *Google_spanner_database_iam_policyHandler) Read(externalID string) (*Google_spanner_database_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_database_iam_policy", externalID)
 	if err != nil {
@@ -10974,11 +12994,18 @@ func (h *Google_spanner_database_iam_policyHandler) Read(externalID string) (*Go
 	}
 	x := &Google_spanner_database_iam_policy{ Google_spanner_database_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_database_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_database_iam_policy", externalID)
 }
@@ -11010,6 +13037,10 @@ type Google_spanner_instanceHandler struct {
 
 // Create ...
 func (h *Google_spanner_instanceHandler) Create(desired *Google_spanner_instance) (*Google_spanner_instance, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11027,6 +13058,10 @@ func (h *Google_spanner_instanceHandler) Create(desired *Google_spanner_instance
 
 // Read ...
 func (h *Google_spanner_instanceHandler) Read(externalID string) (*Google_spanner_instance, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_instance", externalID)
 	if err != nil {
@@ -11034,11 +13069,18 @@ func (h *Google_spanner_instanceHandler) Read(externalID string) (*Google_spanne
 	}
 	x := &Google_spanner_instance{ Google_spanner_instance_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_instanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_instance", externalID)
 }
@@ -11066,6 +13108,10 @@ type Google_spanner_instance_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_spanner_instance_iam_bindingHandler) Create(desired *Google_spanner_instance_iam_binding) (*Google_spanner_instance_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11083,6 +13129,10 @@ func (h *Google_spanner_instance_iam_bindingHandler) Create(desired *Google_span
 
 // Read ...
 func (h *Google_spanner_instance_iam_bindingHandler) Read(externalID string) (*Google_spanner_instance_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_binding", externalID)
 	if err != nil {
@@ -11090,11 +13140,18 @@ func (h *Google_spanner_instance_iam_bindingHandler) Read(externalID string) (*G
 	}
 	x := &Google_spanner_instance_iam_binding{ Google_spanner_instance_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_instance_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_instance_iam_binding", externalID)
 }
@@ -11122,6 +13179,10 @@ type Google_spanner_instance_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_spanner_instance_iam_memberHandler) Create(desired *Google_spanner_instance_iam_member) (*Google_spanner_instance_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11139,6 +13200,10 @@ func (h *Google_spanner_instance_iam_memberHandler) Create(desired *Google_spann
 
 // Read ...
 func (h *Google_spanner_instance_iam_memberHandler) Read(externalID string) (*Google_spanner_instance_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_member", externalID)
 	if err != nil {
@@ -11146,11 +13211,18 @@ func (h *Google_spanner_instance_iam_memberHandler) Read(externalID string) (*Go
 	}
 	x := &Google_spanner_instance_iam_member{ Google_spanner_instance_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_instance_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_instance_iam_member", externalID)
 }
@@ -11176,6 +13248,10 @@ type Google_spanner_instance_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_spanner_instance_iam_policyHandler) Create(desired *Google_spanner_instance_iam_policy) (*Google_spanner_instance_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11193,6 +13269,10 @@ func (h *Google_spanner_instance_iam_policyHandler) Create(desired *Google_spann
 
 // Read ...
 func (h *Google_spanner_instance_iam_policyHandler) Read(externalID string) (*Google_spanner_instance_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_spanner_instance_iam_policy", externalID)
 	if err != nil {
@@ -11200,11 +13280,18 @@ func (h *Google_spanner_instance_iam_policyHandler) Read(externalID string) (*Go
 	}
 	x := &Google_spanner_instance_iam_policy{ Google_spanner_instance_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_spanner_instance_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_spanner_instance_iam_policy", externalID)
 }
@@ -11234,6 +13321,10 @@ type Google_sql_databaseHandler struct {
 
 // Create ...
 func (h *Google_sql_databaseHandler) Create(desired *Google_sql_database) (*Google_sql_database, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11251,6 +13342,10 @@ func (h *Google_sql_databaseHandler) Create(desired *Google_sql_database) (*Goog
 
 // Read ...
 func (h *Google_sql_databaseHandler) Read(externalID string) (*Google_sql_database, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_sql_database", externalID)
 	if err != nil {
@@ -11258,11 +13353,18 @@ func (h *Google_sql_databaseHandler) Read(externalID string) (*Google_sql_databa
 	}
 	x := &Google_sql_database{ Google_sql_database_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_sql_databaseHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_sql_database", externalID)
 }
@@ -11450,6 +13552,10 @@ type Google_sql_database_instanceHandler struct {
 
 // Create ...
 func (h *Google_sql_database_instanceHandler) Create(desired *Google_sql_database_instance) (*Google_sql_database_instance, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11467,6 +13573,10 @@ func (h *Google_sql_database_instanceHandler) Create(desired *Google_sql_databas
 
 // Read ...
 func (h *Google_sql_database_instanceHandler) Read(externalID string) (*Google_sql_database_instance, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_sql_database_instance", externalID)
 	if err != nil {
@@ -11474,11 +13584,18 @@ func (h *Google_sql_database_instanceHandler) Read(externalID string) (*Google_s
 	}
 	x := &Google_sql_database_instance{ Google_sql_database_instance_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_sql_database_instanceHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_sql_database_instance", externalID)
 }
@@ -11514,6 +13631,10 @@ type Google_sql_ssl_certHandler struct {
 
 // Create ...
 func (h *Google_sql_ssl_certHandler) Create(desired *Google_sql_ssl_cert) (*Google_sql_ssl_cert, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11531,6 +13652,10 @@ func (h *Google_sql_ssl_certHandler) Create(desired *Google_sql_ssl_cert) (*Goog
 
 // Read ...
 func (h *Google_sql_ssl_certHandler) Read(externalID string) (*Google_sql_ssl_cert, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_sql_ssl_cert", externalID)
 	if err != nil {
@@ -11538,11 +13663,18 @@ func (h *Google_sql_ssl_certHandler) Read(externalID string) (*Google_sql_ssl_ce
 	}
 	x := &Google_sql_ssl_cert{ Google_sql_ssl_cert_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_sql_ssl_certHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_sql_ssl_cert", externalID)
 }
@@ -11570,6 +13702,10 @@ type Google_sql_userHandler struct {
 
 // Create ...
 func (h *Google_sql_userHandler) Create(desired *Google_sql_user) (*Google_sql_user, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11587,6 +13723,10 @@ func (h *Google_sql_userHandler) Create(desired *Google_sql_user) (*Google_sql_u
 
 // Read ...
 func (h *Google_sql_userHandler) Read(externalID string) (*Google_sql_user, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_sql_user", externalID)
 	if err != nil {
@@ -11594,11 +13734,18 @@ func (h *Google_sql_userHandler) Read(externalID string) (*Google_sql_user, erro
 	}
 	x := &Google_sql_user{ Google_sql_user_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_sql_userHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_sql_user", externalID)
 }
@@ -11716,6 +13863,10 @@ type Google_storage_bucketHandler struct {
 
 // Create ...
 func (h *Google_storage_bucketHandler) Create(desired *Google_storage_bucket) (*Google_storage_bucket, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11733,6 +13884,10 @@ func (h *Google_storage_bucketHandler) Create(desired *Google_storage_bucket) (*
 
 // Read ...
 func (h *Google_storage_bucketHandler) Read(externalID string) (*Google_storage_bucket, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_bucket", externalID)
 	if err != nil {
@@ -11740,11 +13895,18 @@ func (h *Google_storage_bucketHandler) Read(externalID string) (*Google_storage_
 	}
 	x := &Google_storage_bucket{ Google_storage_bucket_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_bucketHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_bucket", externalID)
 }
@@ -11770,6 +13932,10 @@ type Google_storage_bucket_aclHandler struct {
 
 // Create ...
 func (h *Google_storage_bucket_aclHandler) Create(desired *Google_storage_bucket_acl) (*Google_storage_bucket_acl, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11787,6 +13953,10 @@ func (h *Google_storage_bucket_aclHandler) Create(desired *Google_storage_bucket
 
 // Read ...
 func (h *Google_storage_bucket_aclHandler) Read(externalID string) (*Google_storage_bucket_acl, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_acl", externalID)
 	if err != nil {
@@ -11794,11 +13964,18 @@ func (h *Google_storage_bucket_aclHandler) Read(externalID string) (*Google_stor
 	}
 	x := &Google_storage_bucket_acl{ Google_storage_bucket_acl_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_bucket_aclHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_bucket_acl", externalID)
 }
@@ -11824,6 +14001,10 @@ type Google_storage_bucket_iam_bindingHandler struct {
 
 // Create ...
 func (h *Google_storage_bucket_iam_bindingHandler) Create(desired *Google_storage_bucket_iam_binding) (*Google_storage_bucket_iam_binding, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11841,6 +14022,10 @@ func (h *Google_storage_bucket_iam_bindingHandler) Create(desired *Google_storag
 
 // Read ...
 func (h *Google_storage_bucket_iam_bindingHandler) Read(externalID string) (*Google_storage_bucket_iam_binding, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_binding", externalID)
 	if err != nil {
@@ -11848,11 +14033,18 @@ func (h *Google_storage_bucket_iam_bindingHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_storage_bucket_iam_binding{ Google_storage_bucket_iam_binding_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_bucket_iam_bindingHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_bucket_iam_binding", externalID)
 }
@@ -11878,6 +14070,10 @@ type Google_storage_bucket_iam_memberHandler struct {
 
 // Create ...
 func (h *Google_storage_bucket_iam_memberHandler) Create(desired *Google_storage_bucket_iam_member) (*Google_storage_bucket_iam_member, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11895,6 +14091,10 @@ func (h *Google_storage_bucket_iam_memberHandler) Create(desired *Google_storage
 
 // Read ...
 func (h *Google_storage_bucket_iam_memberHandler) Read(externalID string) (*Google_storage_bucket_iam_member, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_member", externalID)
 	if err != nil {
@@ -11902,11 +14102,18 @@ func (h *Google_storage_bucket_iam_memberHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_storage_bucket_iam_member{ Google_storage_bucket_iam_member_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_bucket_iam_memberHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_bucket_iam_member", externalID)
 }
@@ -11930,6 +14137,10 @@ type Google_storage_bucket_iam_policyHandler struct {
 
 // Create ...
 func (h *Google_storage_bucket_iam_policyHandler) Create(desired *Google_storage_bucket_iam_policy) (*Google_storage_bucket_iam_policy, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -11947,6 +14158,10 @@ func (h *Google_storage_bucket_iam_policyHandler) Create(desired *Google_storage
 
 // Read ...
 func (h *Google_storage_bucket_iam_policyHandler) Read(externalID string) (*Google_storage_bucket_iam_policy, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_iam_policy", externalID)
 	if err != nil {
@@ -11954,11 +14169,18 @@ func (h *Google_storage_bucket_iam_policyHandler) Read(externalID string) (*Goog
 	}
 	x := &Google_storage_bucket_iam_policy{ Google_storage_bucket_iam_policy_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_bucket_iam_policyHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_bucket_iam_policy", externalID)
 }
@@ -12004,6 +14226,10 @@ type Google_storage_bucket_objectHandler struct {
 
 // Create ...
 func (h *Google_storage_bucket_objectHandler) Create(desired *Google_storage_bucket_object) (*Google_storage_bucket_object, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12021,6 +14247,10 @@ func (h *Google_storage_bucket_objectHandler) Create(desired *Google_storage_buc
 
 // Read ...
 func (h *Google_storage_bucket_objectHandler) Read(externalID string) (*Google_storage_bucket_object, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_bucket_object", externalID)
 	if err != nil {
@@ -12028,11 +14258,18 @@ func (h *Google_storage_bucket_objectHandler) Read(externalID string) (*Google_s
 	}
 	x := &Google_storage_bucket_object{ Google_storage_bucket_object_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_bucket_objectHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_bucket_object", externalID)
 }
@@ -12076,6 +14313,10 @@ type Google_storage_default_object_access_controlHandler struct {
 
 // Create ...
 func (h *Google_storage_default_object_access_controlHandler) Create(desired *Google_storage_default_object_access_control) (*Google_storage_default_object_access_control, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12093,6 +14334,10 @@ func (h *Google_storage_default_object_access_controlHandler) Create(desired *Go
 
 // Read ...
 func (h *Google_storage_default_object_access_controlHandler) Read(externalID string) (*Google_storage_default_object_access_control, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_default_object_access_control", externalID)
 	if err != nil {
@@ -12100,11 +14345,18 @@ func (h *Google_storage_default_object_access_controlHandler) Read(externalID st
 	}
 	x := &Google_storage_default_object_access_control{ Google_storage_default_object_access_control_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_default_object_access_controlHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_default_object_access_control", externalID)
 }
@@ -12126,6 +14378,10 @@ type Google_storage_default_object_aclHandler struct {
 
 // Create ...
 func (h *Google_storage_default_object_aclHandler) Create(desired *Google_storage_default_object_acl) (*Google_storage_default_object_acl, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12143,6 +14399,10 @@ func (h *Google_storage_default_object_aclHandler) Create(desired *Google_storag
 
 // Read ...
 func (h *Google_storage_default_object_aclHandler) Read(externalID string) (*Google_storage_default_object_acl, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_default_object_acl", externalID)
 	if err != nil {
@@ -12150,11 +14410,18 @@ func (h *Google_storage_default_object_aclHandler) Read(externalID string) (*Goo
 	}
 	x := &Google_storage_default_object_acl{ Google_storage_default_object_acl_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_default_object_aclHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_default_object_acl", externalID)
 }
@@ -12186,6 +14453,10 @@ type Google_storage_notificationHandler struct {
 
 // Create ...
 func (h *Google_storage_notificationHandler) Create(desired *Google_storage_notification) (*Google_storage_notification, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12203,6 +14474,10 @@ func (h *Google_storage_notificationHandler) Create(desired *Google_storage_noti
 
 // Read ...
 func (h *Google_storage_notificationHandler) Read(externalID string) (*Google_storage_notification, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_notification", externalID)
 	if err != nil {
@@ -12210,11 +14485,18 @@ func (h *Google_storage_notificationHandler) Read(externalID string) (*Google_st
 	}
 	x := &Google_storage_notification{ Google_storage_notification_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_notificationHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_notification", externalID)
 }
@@ -12258,6 +14540,10 @@ type Google_storage_object_access_controlHandler struct {
 
 // Create ...
 func (h *Google_storage_object_access_controlHandler) Create(desired *Google_storage_object_access_control) (*Google_storage_object_access_control, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12275,6 +14561,10 @@ func (h *Google_storage_object_access_controlHandler) Create(desired *Google_sto
 
 // Read ...
 func (h *Google_storage_object_access_controlHandler) Read(externalID string) (*Google_storage_object_access_control, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_object_access_control", externalID)
 	if err != nil {
@@ -12282,11 +14572,18 @@ func (h *Google_storage_object_access_controlHandler) Read(externalID string) (*
 	}
 	x := &Google_storage_object_access_control{ Google_storage_object_access_control_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_object_access_controlHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_object_access_control", externalID)
 }
@@ -12312,6 +14609,10 @@ type Google_storage_object_aclHandler struct {
 
 // Create ...
 func (h *Google_storage_object_aclHandler) Create(desired *Google_storage_object_acl) (*Google_storage_object_acl, string, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
@@ -12329,6 +14630,10 @@ func (h *Google_storage_object_aclHandler) Create(desired *Google_storage_object
 
 // Read ...
 func (h *Google_storage_object_aclHandler) Read(externalID string) (*Google_storage_object_acl, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "google_storage_object_acl", externalID)
 	if err != nil {
@@ -12336,11 +14641,18 @@ func (h *Google_storage_object_aclHandler) Read(externalID string) (*Google_stor
 	}
 	x := &Google_storage_object_acl{ Google_storage_object_acl_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+	}
 	return x, nil
 }
 
 // Delete ...
 func (h *Google_storage_object_aclHandler) Delete(externalID string) error {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Delete {.TFType}}", "externalID", externalID)
+	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "google_storage_object_acl", externalID)
 }

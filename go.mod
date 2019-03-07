@@ -19,7 +19,7 @@ require (
 	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
 	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190226102813-fc0d45f12c67
+	github.com/lyraproj/puppet-evaluator v0.0.0-20190304221938-dfca410f5e9b
 	github.com/lyraproj/puppet-workflow v0.0.0-20190226102913-d5da882243ea
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
 	github.com/lyraproj/servicesdk v0.0.0-20190227091652-cbae88715c21
