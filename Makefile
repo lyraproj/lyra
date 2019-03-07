@@ -28,7 +28,7 @@ LICENSE_TMPFILE = LICENSE_TMPFILE.txt
 LINTIGNOREINITIALISMS = "cmd\/goplugin-(aws|example)\/.*\.go:.+: (func parameter|var|type|struct field|const|func) ([^ ]+) should be ([^ ]+)"
 
 PHONY+= all
-all: check-mods clean test lyra content smoke-test
+all: check-mods clean test lyra plugins smoke-test
 
 PHONY+= protobuf
 protobuf: tmp/bin/protoc $(GOPATH)/bin/protoc-gen-go
@@ -56,10 +56,12 @@ shrink:
 		upx $$f; \
 	done;
 
-PHONY+= content
-content: check-mods
+PHONY+= plugins
+plugins: check-mods
 	$(call build,goplugin-aws,cmd/goplugin-aws/main.go)
 	$(call build,goplugin-example,cmd/goplugin-example/main.go)
+	$(call build,goplugin-identity,cmd/goplugin-identity/main.go)
+	$(call build,goplugin-puppetdsl,cmd/goplugin-puppetdsl/main.go)
 	$(call build,goplugin-tf-aws,cmd/goplugin-tf-aws/main.go)
 	$(call build,goplugin-tf-azurerm,cmd/goplugin-tf-azurerm/main.go)
 	$(call build,goplugin-tf-github,cmd/goplugin-tf-github/main.go)
@@ -157,7 +159,7 @@ check-mods:
 	@echo "✅ Go mod is available  (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test: lyra content
+smoke-test: lyra plugins
 	@echo "🔘 Running a smoke test with sample workflow"
 	@build/lyra apply sample || (echo "Failed $$?"; exit 1)
 

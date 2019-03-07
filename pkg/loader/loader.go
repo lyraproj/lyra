@@ -17,10 +17,7 @@ import (
 	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
-var embeddedPluginNames = []string{
-	"identity",
-	"puppet",
-}
+var embeddedPluginNames = []string{}
 
 var defaultLoadPath = []string{"./plugins", "./build"}
 
@@ -101,8 +98,9 @@ func (l *Loader) loadService(c eval.Context, serviceID eval.TypedName) serviceap
 func (l *Loader) PreLoad(c eval.Context) {
 	// Use this loader when loading all typesets and definitions
 	c.DoWithLoader(l, func() {
-		// Embedded plugins
-		l.loadEmbeddedPlugins(c)
+
+		// Embedded plugins - DISABLED but kept just in case ...
+		// l.loadEmbeddedPlugins(c)
 
 		// Go plugins
 		l.loadPlugins(c)
@@ -122,8 +120,9 @@ func (l *Loader) PreLoad(c eval.Context) {
 func (l *Loader) PreLoadPlugins(c eval.Context) {
 	// Use this loader when loading all typesets and definitions
 	c.DoWithLoader(l, func() {
-		// Embedded plugins
-		l.loadEmbeddedPlugins(c)
+
+		// Embedded plugins - DISABLED but kept just in case ...
+		// l.loadEmbeddedPlugins(c)
 
 		// Go plugins
 		l.loadPlugins(c)
