@@ -97,7 +97,7 @@ checklicences: $(GOPATH)/bin/licenses
 	fi
 
 PHONY+= test
-test: vet lint
+test: lint
 	@echo "🔘 Running unit tests... (`date '+%H:%M:%S'`)"
 	go test -race github.com/lyraproj/lyra/...
 
@@ -116,26 +116,24 @@ $(GOPATH)/bin/golangci-lint:
 
 PHONY+= lint
 lint: $(GOPATH)/bin/golangci-lint
-	@echo "🔘 Linting... (`date '+%H:%M:%S'`)"
-	@lint=`golangci-lint run cmd/lyra/... pkg/...`; \
-	if [ "$$lint" != "" ]; \
-	then echo "🔴 Lint found"; echo "$$lint"; exit 1; \
-	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
-	fi
+	$(call checklint,pkg/...)
+	$(call checklint,cmd/lyra/...)
+	$(call checklint,cmd/goplugin-aws/...)
+	$(call checklint,cmd/goplugin-example/...)
+	$(call checklint,cmd/goplugin-tf-aws/...)
+	$(call checklint,cmd/goplugin-tf-azurerm/...)
+	$(call checklint,cmd/goplugin-tf-github/...)
+	$(call checklint,cmd/goplugin-tf-google/...)
+	$(call checklint,cmd/goplugin-tf-kubernetes/...)
 
-PHONY+= lint-all
-lint-all: $(GOPATH)/bin/golangci-lint
-	@echo "🔘 Linting... (`date '+%H:%M:%S'`)"
-	@lint=`golangci-lint run`; \
+define checklint
+	@echo "🔘 Linting $(1) (`date '+%H:%M:%S'`)"
+	@lint=`golangci-lint run $(1)`; \
 	if [ "$$lint" != "" ]; \
 	then echo "🔴 Lint found"; echo "$$lint"; \
 	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
 	fi
-
-PHONY+= vet
-vet:
-	@echo "🔘 Running go vet... (`date '+%H:%M:%S'`)"
-	@go vet ./...
+endef
 
 PHONY+= dist-release
 dist-release:
