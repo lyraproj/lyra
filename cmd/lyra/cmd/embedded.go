@@ -3,9 +3,7 @@ package cmd
 import (
 	"os"
 
-	"github.com/lyraproj/lyra/cmd/goplugin-identity/identity"
 	"github.com/lyraproj/lyra/pkg/logger"
-	"github.com/lyraproj/puppet-workflow/puppet"
 	"github.com/spf13/cobra"
 )
 
@@ -26,10 +24,7 @@ func EmbeddedPluginCmd() *cobra.Command {
 func startPlugin(cmd *cobra.Command, args []string) {
 	name := args[0]
 	switch name {
-	case "identity":
-		identity.Start("identity.db")
-	case "puppet":
-		puppet.Start(`Puppet`)
+	// Embedded plugins go here
 	default:
 		logger.Get().Error("Unknown embedded plugin", "name", name)
 		os.Exit(1)
