@@ -3,22 +3,11 @@ package resource
 import (
 	"encoding/base64"
 	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/hashicorp/go-hclog"
-)
-
-const (
-	// The state of the instance, as a 16-bit unsigned integer. The high
-	// byte is an opaque internal value and should be ignored. The low
-	// byte is set based on the state represented.
-	instanceStateCodePending      = "0"
-	instanceStateCodeRunning      = "16"
-	instanceStateCodeShuttingDown = "32"
-	instanceStateCodeTerminated   = "48"
-	instanceStateCodeStopping     = "64"
-	instanceStateCodeStopped      = "80"
+	hclog "github.com/hashicorp/go-hclog"
 )
 
 //InstanceHandler creates, reads and deletes the Instance Resource
