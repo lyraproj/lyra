@@ -204,9 +204,9 @@ func TerraformUnmarshal(m map[string]interface{}, s interface{}) {
 }
 
 func unmarshalStruct(name string, ptr reflect.Value, value interface{}) {
-	switch value.(type) {
+	switch value := value.(type) {
 	case map[string]interface{}:
-		TerraformUnmarshal(value.(map[string]interface{}), ptr.Interface())
+		TerraformUnmarshal(value, ptr.Interface())
 	default:
 		logger.Get().Error(fmt.Sprintf("TerraformUnmarshal: Skipping unsupported struct value type for field '%s': %T %v", name, value, spew.Sdump(value)))
 	}
@@ -228,20 +228,18 @@ func unmarshalValue(t reflect.Type, value interface{}) reflect.Value {
 		}
 		return reflect.ValueOf(castvalue)
 	case reflect.Bool:
-		var castvalue bool
-		var err error
-		switch value.(type) {
+		switch value := value.(type) {
 		case string:
-			castvalue, err = strconv.ParseBool(value.(string))
+			boolvalue, err := strconv.ParseBool(value)
 			if err != nil {
 				panic(fmt.Sprintf("TerraformUnmarshal: Bool conversion failed in unmarshalField: %v %v", value, err))
 			}
+			return reflect.ValueOf(boolvalue)
 		case bool:
-			castvalue = value.(bool)
+			return reflect.ValueOf(value)
 		default:
 			panic(fmt.Sprintf("TerraformUnmarshal: Unsupported bool conversion in unmarshalField: %v", value))
 		}
-		return reflect.ValueOf(castvalue)
 	case reflect.Float64:
 		castvalue, err := strconv.ParseFloat(value.(string), 64)
 		if err != nil {

@@ -35,10 +35,6 @@ type Llama struct {
 	Location *string
 }
 
-type Item struct {
-	Name string
-}
-
 type Person struct {
 	PersonID   string `lyra:"ignore"`
 	FirstName  string
