@@ -35,43 +35,60 @@ func configureProvider(p *schema.Provider) {
 }
 
 func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
-    var evs []eval.Type
-    evs = sb.RegisterTypes("TerraformGitHub", Github_branch_protection{})
-    sb.RegisterHandler("TerraformGitHub::Github_branch_protectionHandler", &Github_branch_protectionHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_issue_label{})
-    sb.RegisterHandler("TerraformGitHub::Github_issue_labelHandler", &Github_issue_labelHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_membership{})
-    sb.RegisterHandler("TerraformGitHub::Github_membershipHandler", &Github_membershipHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_organization_project{})
-    sb.RegisterHandler("TerraformGitHub::Github_organization_projectHandler", &Github_organization_projectHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_organization_webhook{})
-    sb.RegisterHandler("TerraformGitHub::Github_organization_webhookHandler", &Github_organization_webhookHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_project_column{})
-    sb.RegisterHandler("TerraformGitHub::Github_project_columnHandler", &Github_project_columnHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_repository{})
-    sb.RegisterHandler("TerraformGitHub::Github_repositoryHandler", &Github_repositoryHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_repository_collaborator{})
-    sb.RegisterHandler("TerraformGitHub::Github_repository_collaboratorHandler", &Github_repository_collaboratorHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_repository_deploy_key{})
-    sb.RegisterHandler("TerraformGitHub::Github_repository_deploy_keyHandler", &Github_repository_deploy_keyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_repository_project{})
-    sb.RegisterHandler("TerraformGitHub::Github_repository_projectHandler", &Github_repository_projectHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_repository_webhook{})
-    sb.RegisterHandler("TerraformGitHub::Github_repository_webhookHandler", &Github_repository_webhookHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_team{})
-    sb.RegisterHandler("TerraformGitHub::Github_teamHandler", &Github_teamHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_team_membership{})
-    sb.RegisterHandler("TerraformGitHub::Github_team_membershipHandler", &Github_team_membershipHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_team_repository{})
-    sb.RegisterHandler("TerraformGitHub::Github_team_repositoryHandler", &Github_team_repositoryHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_user_gpg_key{})
-    sb.RegisterHandler("TerraformGitHub::Github_user_gpg_keyHandler", &Github_user_gpg_keyHandler{provider: p}, evs[0])
-    evs = sb.RegisterTypes("TerraformGitHub", Github_user_ssh_key{})
-    sb.RegisterHandler("TerraformGitHub::Github_user_ssh_keyHandler", &Github_user_ssh_keyHandler{provider: p}, evs[0])
+	var evs []eval.Type
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_branch_protection{}, Github_branch_protection_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_branch_protectionHandler", &Github_branch_protectionHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_issue_label{}, Github_issue_label_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_issue_labelHandler", &Github_issue_labelHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_membership{}, Github_membership_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_membershipHandler", &Github_membershipHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_organization_project{}, Github_organization_project_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_organization_projectHandler", &Github_organization_projectHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_organization_webhook{}, Github_organization_webhook_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_organization_webhookHandler", &Github_organization_webhookHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_project_column{}, Github_project_column_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_project_columnHandler", &Github_project_columnHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository{}, Github_repository_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_repositoryHandler", &Github_repositoryHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_collaborator{}, Github_repository_collaborator_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_repository_collaboratorHandler", &Github_repository_collaboratorHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_deploy_key{}, Github_repository_deploy_key_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_repository_deploy_keyHandler", &Github_repository_deploy_keyHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_project{}, Github_repository_project_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_repository_projectHandler", &Github_repository_projectHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_webhook{}, Github_repository_webhook_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_repository_webhookHandler", &Github_repository_webhookHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team{}, Github_team_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_teamHandler", &Github_teamHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team_membership{}, Github_team_membership_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_team_membershipHandler", &Github_team_membershipHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team_repository{}, Github_team_repository_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_team_repositoryHandler", &Github_team_repositoryHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_user_gpg_key{}, Github_user_gpg_key_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_user_gpg_keyHandler", &Github_user_gpg_keyHandler{provider: p}, evs[0])
+
+	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_user_ssh_key{}, Github_user_ssh_key_rtb))
+	sb.RegisterHandler("TerraformGitHub::Github_user_ssh_keyHandler", &Github_user_ssh_keyHandler{provider: p}, evs[0])
+
 }
 
+type Github_branch_protection_required_pull_request_reviews_1 struct {
 
-type Github_branch_protection_required_pull_request_reviews_852 struct {
 
     Dismiss_stale_reviews *bool
 
@@ -85,7 +102,8 @@ type Github_branch_protection_required_pull_request_reviews_852 struct {
 
 }
 
-type Github_branch_protection_required_status_checks_853 struct {
+type Github_branch_protection_required_status_checks_2 struct {
+
 
     Contexts *[]string
 
@@ -95,7 +113,8 @@ type Github_branch_protection_required_status_checks_853 struct {
 
 }
 
-type Github_branch_protection_restrictions_854 struct {
+type Github_branch_protection_restrictions_3 struct {
+
 
     Teams *[]string
 
@@ -105,7 +124,7 @@ type Github_branch_protection_restrictions_854 struct {
 
 type Github_branch_protection struct {
 
-    Github_branch_protection_id *string `lyra:"ignore"`
+	Github_branch_protection_id *string `lyra:"ignore"`
 
     Branch string
 
@@ -115,12 +134,36 @@ type Github_branch_protection struct {
 
     Repository string
 
-    Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_852
+    Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_1
 
-    Required_status_checks *[]Github_branch_protection_required_status_checks_853
+    Required_status_checks *[]Github_branch_protection_required_status_checks_2
 
-    Restrictions *[]Github_branch_protection_restrictions_854
+    Restrictions *[]Github_branch_protection_restrictions_3
 
+}
+
+var Github_branch_protection_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_branch_protection_id",
+
+		"enforce_admins",
+
+		"etag",
+
+		"required_pull_request_reviews",
+
+		"required_status_checks",
+
+		"restrictions",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"branch",
+
+		"repository",
+
+	)
 }
 
 // Github_branch_protectionHandler ...
@@ -132,7 +175,7 @@ type Github_branch_protectionHandler struct {
 func (h *Github_branch_protectionHandler) Create(desired *Github_branch_protection) (*Github_branch_protection, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_branch_protection", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -149,11 +192,33 @@ func (h *Github_branch_protectionHandler) Create(desired *Github_branch_protecti
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_branch_protectionHandler) Update(externalID string, desired *Github_branch_protection) (*Github_branch_protection, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_branch_protection", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_branch_protection", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_branch_protection{ Github_branch_protection_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_branch_protection", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_branch_protectionHandler) Read(externalID string) (*Github_branch_protection, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_branch_protection", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_branch_protection", externalID)
@@ -163,7 +228,7 @@ func (h *Github_branch_protectionHandler) Read(externalID string) (*Github_branc
 	x := &Github_branch_protection{ Github_branch_protection_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_branch_protection", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -172,7 +237,7 @@ func (h *Github_branch_protectionHandler) Read(externalID string) (*Github_branc
 func (h *Github_branch_protectionHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_branch_protection", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_branch_protection", externalID)
@@ -180,7 +245,7 @@ func (h *Github_branch_protectionHandler) Delete(externalID string) error {
 
 type Github_issue_label struct {
 
-    Github_issue_label_id *string `lyra:"ignore"`
+	Github_issue_label_id *string `lyra:"ignore"`
 
     Color string
 
@@ -196,6 +261,24 @@ type Github_issue_label struct {
 
 }
 
+var Github_issue_label_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_issue_label_id",
+
+		"description",
+
+		"etag",
+
+		"url",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"repository",
+
+	)
+}
+
 // Github_issue_labelHandler ...
 type Github_issue_labelHandler struct {
 	provider *schema.Provider
@@ -205,7 +288,7 @@ type Github_issue_labelHandler struct {
 func (h *Github_issue_labelHandler) Create(desired *Github_issue_label) (*Github_issue_label, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_issue_label", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -222,11 +305,33 @@ func (h *Github_issue_labelHandler) Create(desired *Github_issue_label) (*Github
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_issue_labelHandler) Update(externalID string, desired *Github_issue_label) (*Github_issue_label, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_issue_label", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_issue_label", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_issue_label{ Github_issue_label_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_issue_label", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_issue_labelHandler) Read(externalID string) (*Github_issue_label, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_issue_label", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_issue_label", externalID)
@@ -236,7 +341,7 @@ func (h *Github_issue_labelHandler) Read(externalID string) (*Github_issue_label
 	x := &Github_issue_label{ Github_issue_label_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_issue_label", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -245,7 +350,7 @@ func (h *Github_issue_labelHandler) Read(externalID string) (*Github_issue_label
 func (h *Github_issue_labelHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_issue_label", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_issue_label", externalID)
@@ -253,7 +358,7 @@ func (h *Github_issue_labelHandler) Delete(externalID string) error {
 
 type Github_membership struct {
 
-    Github_membership_id *string `lyra:"ignore"`
+	Github_membership_id *string `lyra:"ignore"`
 
     Etag *string
 
@@ -261,6 +366,22 @@ type Github_membership struct {
 
     Username string
 
+}
+
+var Github_membership_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_membership_id",
+
+		"etag",
+
+		"role",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"username",
+
+	)
 }
 
 // Github_membershipHandler ...
@@ -272,7 +393,7 @@ type Github_membershipHandler struct {
 func (h *Github_membershipHandler) Create(desired *Github_membership) (*Github_membership, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_membership", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -289,11 +410,33 @@ func (h *Github_membershipHandler) Create(desired *Github_membership) (*Github_m
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_membershipHandler) Update(externalID string, desired *Github_membership) (*Github_membership, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_membership", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_membership", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_membership{ Github_membership_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_membership", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_membershipHandler) Read(externalID string) (*Github_membership, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_membership", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_membership", externalID)
@@ -303,7 +446,7 @@ func (h *Github_membershipHandler) Read(externalID string) (*Github_membership, 
 	x := &Github_membership{ Github_membership_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_membership", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -312,7 +455,7 @@ func (h *Github_membershipHandler) Read(externalID string) (*Github_membership, 
 func (h *Github_membershipHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_membership", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_membership", externalID)
@@ -320,7 +463,7 @@ func (h *Github_membershipHandler) Delete(externalID string) error {
 
 type Github_organization_project struct {
 
-    Github_organization_project_id *string `lyra:"ignore"`
+	Github_organization_project_id *string `lyra:"ignore"`
 
     Body *string
 
@@ -332,6 +475,22 @@ type Github_organization_project struct {
 
 }
 
+var Github_organization_project_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_organization_project_id",
+
+		"body",
+
+		"etag",
+
+		"url",
+
+	)
+	rtb.ImmutableAttributes(
+
+	)
+}
+
 // Github_organization_projectHandler ...
 type Github_organization_projectHandler struct {
 	provider *schema.Provider
@@ -341,7 +500,7 @@ type Github_organization_projectHandler struct {
 func (h *Github_organization_projectHandler) Create(desired *Github_organization_project) (*Github_organization_project, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_organization_project", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -358,11 +517,33 @@ func (h *Github_organization_projectHandler) Create(desired *Github_organization
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_organization_projectHandler) Update(externalID string, desired *Github_organization_project) (*Github_organization_project, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_organization_project", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_organization_project", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_organization_project{ Github_organization_project_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_organization_project", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_organization_projectHandler) Read(externalID string) (*Github_organization_project, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_organization_project", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_organization_project", externalID)
@@ -372,7 +553,7 @@ func (h *Github_organization_projectHandler) Read(externalID string) (*Github_or
 	x := &Github_organization_project{ Github_organization_project_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_organization_project", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -381,13 +562,14 @@ func (h *Github_organization_projectHandler) Read(externalID string) (*Github_or
 func (h *Github_organization_projectHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_organization_project", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_organization_project", externalID)
 }
 
-type Github_organization_webhook_configuration_855 struct {
+type Github_organization_webhook_configuration_4 struct {
+
 
     Content_type *string
 
@@ -401,11 +583,11 @@ type Github_organization_webhook_configuration_855 struct {
 
 type Github_organization_webhook struct {
 
-    Github_organization_webhook_id *string `lyra:"ignore"`
+	Github_organization_webhook_id *string `lyra:"ignore"`
 
     Active *bool
 
-    Configuration *[]Github_organization_webhook_configuration_855
+    Configuration *[]Github_organization_webhook_configuration_4
 
     Etag *string
 
@@ -417,6 +599,26 @@ type Github_organization_webhook struct {
 
 }
 
+var Github_organization_webhook_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_organization_webhook_id",
+
+		"active",
+
+		"configuration",
+
+		"etag",
+
+		"url",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"name",
+
+	)
+}
+
 // Github_organization_webhookHandler ...
 type Github_organization_webhookHandler struct {
 	provider *schema.Provider
@@ -426,7 +628,7 @@ type Github_organization_webhookHandler struct {
 func (h *Github_organization_webhookHandler) Create(desired *Github_organization_webhook) (*Github_organization_webhook, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_organization_webhook", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -443,11 +645,33 @@ func (h *Github_organization_webhookHandler) Create(desired *Github_organization
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_organization_webhookHandler) Update(externalID string, desired *Github_organization_webhook) (*Github_organization_webhook, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_organization_webhook", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_organization_webhook", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_organization_webhook{ Github_organization_webhook_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_organization_webhook", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_organization_webhookHandler) Read(externalID string) (*Github_organization_webhook, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_organization_webhook", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_organization_webhook", externalID)
@@ -457,7 +681,7 @@ func (h *Github_organization_webhookHandler) Read(externalID string) (*Github_or
 	x := &Github_organization_webhook{ Github_organization_webhook_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_organization_webhook", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -466,7 +690,7 @@ func (h *Github_organization_webhookHandler) Read(externalID string) (*Github_or
 func (h *Github_organization_webhookHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_organization_webhook", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_organization_webhook", externalID)
@@ -474,7 +698,7 @@ func (h *Github_organization_webhookHandler) Delete(externalID string) error {
 
 type Github_project_column struct {
 
-    Github_project_column_id *string `lyra:"ignore"`
+	Github_project_column_id *string `lyra:"ignore"`
 
     Etag *string
 
@@ -482,6 +706,20 @@ type Github_project_column struct {
 
     Project_id string
 
+}
+
+var Github_project_column_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_project_column_id",
+
+		"etag",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"project_id",
+
+	)
 }
 
 // Github_project_columnHandler ...
@@ -493,7 +731,7 @@ type Github_project_columnHandler struct {
 func (h *Github_project_columnHandler) Create(desired *Github_project_column) (*Github_project_column, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_project_column", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -510,11 +748,33 @@ func (h *Github_project_columnHandler) Create(desired *Github_project_column) (*
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_project_columnHandler) Update(externalID string, desired *Github_project_column) (*Github_project_column, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_project_column", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_project_column", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_project_column{ Github_project_column_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_project_column", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_project_columnHandler) Read(externalID string) (*Github_project_column, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_project_column", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_project_column", externalID)
@@ -524,7 +784,7 @@ func (h *Github_project_columnHandler) Read(externalID string) (*Github_project_
 	x := &Github_project_column{ Github_project_column_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_project_column", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -533,7 +793,7 @@ func (h *Github_project_columnHandler) Read(externalID string) (*Github_project_
 func (h *Github_project_columnHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_project_column", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_project_column", externalID)
@@ -541,7 +801,7 @@ func (h *Github_project_columnHandler) Delete(externalID string) error {
 
 type Github_repository struct {
 
-    Github_repository_id *string `lyra:"ignore"`
+	Github_repository_id *string `lyra:"ignore"`
 
     Allow_merge_commit *bool
 
@@ -593,6 +853,70 @@ type Github_repository struct {
 
 }
 
+var Github_repository_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_repository_id",
+
+		"allow_merge_commit",
+
+		"allow_rebase_merge",
+
+		"allow_squash_merge",
+
+		"archived",
+
+		"auto_init",
+
+		"default_branch",
+
+		"description",
+
+		"etag",
+
+		"full_name",
+
+		"git_clone_url",
+
+		"gitignore_template",
+
+		"has_downloads",
+
+		"has_issues",
+
+		"has_projects",
+
+		"has_wiki",
+
+		"homepage_url",
+
+		"html_url",
+
+		"http_clone_url",
+
+		"license_template",
+
+		"private",
+
+		"ssh_clone_url",
+
+		"svn_url",
+
+		"topics",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"auto_init",
+
+		"gitignore_template",
+
+		"license_template",
+
+		"name",
+
+	)
+}
+
 // Github_repositoryHandler ...
 type Github_repositoryHandler struct {
 	provider *schema.Provider
@@ -602,7 +926,7 @@ type Github_repositoryHandler struct {
 func (h *Github_repositoryHandler) Create(desired *Github_repository) (*Github_repository, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_repository", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -619,11 +943,33 @@ func (h *Github_repositoryHandler) Create(desired *Github_repository) (*Github_r
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_repositoryHandler) Update(externalID string, desired *Github_repository) (*Github_repository, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_repository", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_repository", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_repository{ Github_repository_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_repository", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_repositoryHandler) Read(externalID string) (*Github_repository, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_repository", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository", externalID)
@@ -633,7 +979,7 @@ func (h *Github_repositoryHandler) Read(externalID string) (*Github_repository, 
 	x := &Github_repository{ Github_repository_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_repository", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -642,7 +988,7 @@ func (h *Github_repositoryHandler) Read(externalID string) (*Github_repository, 
 func (h *Github_repositoryHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_repository", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository", externalID)
@@ -650,7 +996,7 @@ func (h *Github_repositoryHandler) Delete(externalID string) error {
 
 type Github_repository_collaborator struct {
 
-    Github_repository_collaborator_id *string `lyra:"ignore"`
+	Github_repository_collaborator_id *string `lyra:"ignore"`
 
     Permission *string
 
@@ -658,6 +1004,24 @@ type Github_repository_collaborator struct {
 
     Username string
 
+}
+
+var Github_repository_collaborator_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_repository_collaborator_id",
+
+		"permission",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"permission",
+
+		"repository",
+
+		"username",
+
+	)
 }
 
 // Github_repository_collaboratorHandler ...
@@ -669,7 +1033,7 @@ type Github_repository_collaboratorHandler struct {
 func (h *Github_repository_collaboratorHandler) Create(desired *Github_repository_collaborator) (*Github_repository_collaborator, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_repository_collaborator", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -686,11 +1050,33 @@ func (h *Github_repository_collaboratorHandler) Create(desired *Github_repositor
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_repository_collaboratorHandler) Update(externalID string, desired *Github_repository_collaborator) (*Github_repository_collaborator, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_repository_collaborator", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_repository_collaborator", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_repository_collaborator{ Github_repository_collaborator_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_repository_collaborator", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_repository_collaboratorHandler) Read(externalID string) (*Github_repository_collaborator, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_repository_collaborator", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_collaborator", externalID)
@@ -700,7 +1086,7 @@ func (h *Github_repository_collaboratorHandler) Read(externalID string) (*Github
 	x := &Github_repository_collaborator{ Github_repository_collaborator_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_repository_collaborator", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -709,7 +1095,7 @@ func (h *Github_repository_collaboratorHandler) Read(externalID string) (*Github
 func (h *Github_repository_collaboratorHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_repository_collaborator", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_collaborator", externalID)
@@ -717,7 +1103,7 @@ func (h *Github_repository_collaboratorHandler) Delete(externalID string) error 
 
 type Github_repository_deploy_key struct {
 
-    Github_repository_deploy_key_id *string `lyra:"ignore"`
+	Github_repository_deploy_key_id *string `lyra:"ignore"`
 
     Etag *string
 
@@ -731,6 +1117,28 @@ type Github_repository_deploy_key struct {
 
 }
 
+var Github_repository_deploy_key_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_repository_deploy_key_id",
+
+		"etag",
+
+		"read_only",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"key",
+
+		"read_only",
+
+		"repository",
+
+		"title",
+
+	)
+}
+
 // Github_repository_deploy_keyHandler ...
 type Github_repository_deploy_keyHandler struct {
 	provider *schema.Provider
@@ -740,7 +1148,7 @@ type Github_repository_deploy_keyHandler struct {
 func (h *Github_repository_deploy_keyHandler) Create(desired *Github_repository_deploy_key) (*Github_repository_deploy_key, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_repository_deploy_key", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -757,11 +1165,33 @@ func (h *Github_repository_deploy_keyHandler) Create(desired *Github_repository_
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_repository_deploy_keyHandler) Update(externalID string, desired *Github_repository_deploy_key) (*Github_repository_deploy_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_repository_deploy_key", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_repository_deploy_key", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_repository_deploy_key{ Github_repository_deploy_key_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_repository_deploy_key", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_repository_deploy_keyHandler) Read(externalID string) (*Github_repository_deploy_key, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_repository_deploy_key", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_deploy_key", externalID)
@@ -771,7 +1201,7 @@ func (h *Github_repository_deploy_keyHandler) Read(externalID string) (*Github_r
 	x := &Github_repository_deploy_key{ Github_repository_deploy_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_repository_deploy_key", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -780,7 +1210,7 @@ func (h *Github_repository_deploy_keyHandler) Read(externalID string) (*Github_r
 func (h *Github_repository_deploy_keyHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_repository_deploy_key", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_deploy_key", externalID)
@@ -788,7 +1218,7 @@ func (h *Github_repository_deploy_keyHandler) Delete(externalID string) error {
 
 type Github_repository_project struct {
 
-    Github_repository_project_id *string `lyra:"ignore"`
+	Github_repository_project_id *string `lyra:"ignore"`
 
     Body *string
 
@@ -802,6 +1232,24 @@ type Github_repository_project struct {
 
 }
 
+var Github_repository_project_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_repository_project_id",
+
+		"body",
+
+		"etag",
+
+		"url",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"repository",
+
+	)
+}
+
 // Github_repository_projectHandler ...
 type Github_repository_projectHandler struct {
 	provider *schema.Provider
@@ -811,7 +1259,7 @@ type Github_repository_projectHandler struct {
 func (h *Github_repository_projectHandler) Create(desired *Github_repository_project) (*Github_repository_project, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_repository_project", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -828,11 +1276,33 @@ func (h *Github_repository_projectHandler) Create(desired *Github_repository_pro
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_repository_projectHandler) Update(externalID string, desired *Github_repository_project) (*Github_repository_project, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_repository_project", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_repository_project", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_repository_project{ Github_repository_project_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_repository_project", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_repository_projectHandler) Read(externalID string) (*Github_repository_project, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_repository_project", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_project", externalID)
@@ -842,7 +1312,7 @@ func (h *Github_repository_projectHandler) Read(externalID string) (*Github_repo
 	x := &Github_repository_project{ Github_repository_project_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_repository_project", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -851,13 +1321,14 @@ func (h *Github_repository_projectHandler) Read(externalID string) (*Github_repo
 func (h *Github_repository_projectHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_repository_project", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_project", externalID)
 }
 
-type Github_repository_webhook_configuration_856 struct {
+type Github_repository_webhook_configuration_5 struct {
+
 
     Content_type *string
 
@@ -871,11 +1342,11 @@ type Github_repository_webhook_configuration_856 struct {
 
 type Github_repository_webhook struct {
 
-    Github_repository_webhook_id *string `lyra:"ignore"`
+	Github_repository_webhook_id *string `lyra:"ignore"`
 
     Active *bool
 
-    Configuration *[]Github_repository_webhook_configuration_856
+    Configuration *[]Github_repository_webhook_configuration_5
 
     Etag *string
 
@@ -889,6 +1360,28 @@ type Github_repository_webhook struct {
 
 }
 
+var Github_repository_webhook_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_repository_webhook_id",
+
+		"active",
+
+		"configuration",
+
+		"etag",
+
+		"url",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"name",
+
+		"repository",
+
+	)
+}
+
 // Github_repository_webhookHandler ...
 type Github_repository_webhookHandler struct {
 	provider *schema.Provider
@@ -898,7 +1391,7 @@ type Github_repository_webhookHandler struct {
 func (h *Github_repository_webhookHandler) Create(desired *Github_repository_webhook) (*Github_repository_webhook, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_repository_webhook", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -915,11 +1408,33 @@ func (h *Github_repository_webhookHandler) Create(desired *Github_repository_web
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_repository_webhookHandler) Update(externalID string, desired *Github_repository_webhook) (*Github_repository_webhook, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_repository_webhook", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_repository_webhook", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_repository_webhook{ Github_repository_webhook_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_repository_webhook", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_repository_webhookHandler) Read(externalID string) (*Github_repository_webhook, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_repository_webhook", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_repository_webhook", externalID)
@@ -929,7 +1444,7 @@ func (h *Github_repository_webhookHandler) Read(externalID string) (*Github_repo
 	x := &Github_repository_webhook{ Github_repository_webhook_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_repository_webhook", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -938,7 +1453,7 @@ func (h *Github_repository_webhookHandler) Read(externalID string) (*Github_repo
 func (h *Github_repository_webhookHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_repository_webhook", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_repository_webhook", externalID)
@@ -946,7 +1461,7 @@ func (h *Github_repository_webhookHandler) Delete(externalID string) error {
 
 type Github_team struct {
 
-    Github_team_id *string `lyra:"ignore"`
+	Github_team_id *string `lyra:"ignore"`
 
     Description *string
 
@@ -964,6 +1479,28 @@ type Github_team struct {
 
 }
 
+var Github_team_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_team_id",
+
+		"description",
+
+		"etag",
+
+		"ldap_dn",
+
+		"parent_team_id",
+
+		"privacy",
+
+		"slug",
+
+	)
+	rtb.ImmutableAttributes(
+
+	)
+}
+
 // Github_teamHandler ...
 type Github_teamHandler struct {
 	provider *schema.Provider
@@ -973,7 +1510,7 @@ type Github_teamHandler struct {
 func (h *Github_teamHandler) Create(desired *Github_team) (*Github_team, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_team", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -990,11 +1527,33 @@ func (h *Github_teamHandler) Create(desired *Github_team) (*Github_team, string,
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_teamHandler) Update(externalID string, desired *Github_team) (*Github_team, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_team", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_team", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_team{ Github_team_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_team", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_teamHandler) Read(externalID string) (*Github_team, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_team", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_team", externalID)
@@ -1004,7 +1563,7 @@ func (h *Github_teamHandler) Read(externalID string) (*Github_team, error) {
 	x := &Github_team{ Github_team_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_team", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -1013,7 +1572,7 @@ func (h *Github_teamHandler) Read(externalID string) (*Github_team, error) {
 func (h *Github_teamHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_team", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_team", externalID)
@@ -1021,7 +1580,7 @@ func (h *Github_teamHandler) Delete(externalID string) error {
 
 type Github_team_membership struct {
 
-    Github_team_membership_id *string `lyra:"ignore"`
+	Github_team_membership_id *string `lyra:"ignore"`
 
     Etag *string
 
@@ -1033,6 +1592,24 @@ type Github_team_membership struct {
 
 }
 
+var Github_team_membership_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_team_membership_id",
+
+		"etag",
+
+		"role",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"team_id",
+
+		"username",
+
+	)
+}
+
 // Github_team_membershipHandler ...
 type Github_team_membershipHandler struct {
 	provider *schema.Provider
@@ -1042,7 +1619,7 @@ type Github_team_membershipHandler struct {
 func (h *Github_team_membershipHandler) Create(desired *Github_team_membership) (*Github_team_membership, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_team_membership", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -1059,11 +1636,33 @@ func (h *Github_team_membershipHandler) Create(desired *Github_team_membership) 
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_team_membershipHandler) Update(externalID string, desired *Github_team_membership) (*Github_team_membership, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_team_membership", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_team_membership", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_team_membership{ Github_team_membership_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_team_membership", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_team_membershipHandler) Read(externalID string) (*Github_team_membership, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_team_membership", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_team_membership", externalID)
@@ -1073,7 +1672,7 @@ func (h *Github_team_membershipHandler) Read(externalID string) (*Github_team_me
 	x := &Github_team_membership{ Github_team_membership_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_team_membership", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -1082,7 +1681,7 @@ func (h *Github_team_membershipHandler) Read(externalID string) (*Github_team_me
 func (h *Github_team_membershipHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_team_membership", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_team_membership", externalID)
@@ -1090,7 +1689,7 @@ func (h *Github_team_membershipHandler) Delete(externalID string) error {
 
 type Github_team_repository struct {
 
-    Github_team_repository_id *string `lyra:"ignore"`
+	Github_team_repository_id *string `lyra:"ignore"`
 
     Etag *string
 
@@ -1102,6 +1701,24 @@ type Github_team_repository struct {
 
 }
 
+var Github_team_repository_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_team_repository_id",
+
+		"etag",
+
+		"permission",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"repository",
+
+		"team_id",
+
+	)
+}
+
 // Github_team_repositoryHandler ...
 type Github_team_repositoryHandler struct {
 	provider *schema.Provider
@@ -1111,7 +1728,7 @@ type Github_team_repositoryHandler struct {
 func (h *Github_team_repositoryHandler) Create(desired *Github_team_repository) (*Github_team_repository, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_team_repository", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -1128,11 +1745,33 @@ func (h *Github_team_repositoryHandler) Create(desired *Github_team_repository) 
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_team_repositoryHandler) Update(externalID string, desired *Github_team_repository) (*Github_team_repository, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_team_repository", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_team_repository", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_team_repository{ Github_team_repository_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_team_repository", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_team_repositoryHandler) Read(externalID string) (*Github_team_repository, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_team_repository", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_team_repository", externalID)
@@ -1142,7 +1781,7 @@ func (h *Github_team_repositoryHandler) Read(externalID string) (*Github_team_re
 	x := &Github_team_repository{ Github_team_repository_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_team_repository", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -1151,7 +1790,7 @@ func (h *Github_team_repositoryHandler) Read(externalID string) (*Github_team_re
 func (h *Github_team_repositoryHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_team_repository", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_team_repository", externalID)
@@ -1159,7 +1798,7 @@ func (h *Github_team_repositoryHandler) Delete(externalID string) error {
 
 type Github_user_gpg_key struct {
 
-    Github_user_gpg_key_id *string `lyra:"ignore"`
+	Github_user_gpg_key_id *string `lyra:"ignore"`
 
     Armored_public_key string
 
@@ -1167,6 +1806,22 @@ type Github_user_gpg_key struct {
 
     Key_id *string
 
+}
+
+var Github_user_gpg_key_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_user_gpg_key_id",
+
+		"etag",
+
+		"key_id",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"armored_public_key",
+
+	)
 }
 
 // Github_user_gpg_keyHandler ...
@@ -1178,7 +1833,7 @@ type Github_user_gpg_keyHandler struct {
 func (h *Github_user_gpg_keyHandler) Create(desired *Github_user_gpg_key) (*Github_user_gpg_key, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_user_gpg_key", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -1195,11 +1850,33 @@ func (h *Github_user_gpg_keyHandler) Create(desired *Github_user_gpg_key) (*Gith
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_user_gpg_keyHandler) Update(externalID string, desired *Github_user_gpg_key) (*Github_user_gpg_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_user_gpg_key", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_user_gpg_key", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_user_gpg_key{ Github_user_gpg_key_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_user_gpg_key", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_user_gpg_keyHandler) Read(externalID string) (*Github_user_gpg_key, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_user_gpg_key", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_user_gpg_key", externalID)
@@ -1209,7 +1886,7 @@ func (h *Github_user_gpg_keyHandler) Read(externalID string) (*Github_user_gpg_k
 	x := &Github_user_gpg_key{ Github_user_gpg_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_user_gpg_key", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -1218,7 +1895,7 @@ func (h *Github_user_gpg_keyHandler) Read(externalID string) (*Github_user_gpg_k
 func (h *Github_user_gpg_keyHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_user_gpg_key", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_user_gpg_key", externalID)
@@ -1226,7 +1903,7 @@ func (h *Github_user_gpg_keyHandler) Delete(externalID string) error {
 
 type Github_user_ssh_key struct {
 
-    Github_user_ssh_key_id *string `lyra:"ignore"`
+	Github_user_ssh_key_id *string `lyra:"ignore"`
 
     Etag *string
 
@@ -1238,6 +1915,24 @@ type Github_user_ssh_key struct {
 
 }
 
+var Github_user_ssh_key_rtb = func(rtb service.ResourceTypeBuilder) {
+	rtb.ProvidedAttributes(
+		"github_user_ssh_key_id",
+
+		"etag",
+
+		"url",
+
+	)
+	rtb.ImmutableAttributes(
+
+		"key",
+
+		"title",
+
+	)
+}
+
 // Github_user_ssh_keyHandler ...
 type Github_user_ssh_keyHandler struct {
 	provider *schema.Provider
@@ -1247,7 +1942,7 @@ type Github_user_ssh_keyHandler struct {
 func (h *Github_user_ssh_keyHandler) Create(desired *Github_user_ssh_key) (*Github_user_ssh_key, string, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Create {.TFType}}", "desired", spew.Sdump(desired))
+		log.Info("Create Github_user_ssh_key", "desired", spew.Sdump(desired))
 	}
 	configureProvider(h.provider)
 	rc := &terraform.ResourceConfig{
@@ -1264,11 +1959,33 @@ func (h *Github_user_ssh_keyHandler) Create(desired *Github_user_ssh_key) (*Gith
 	return actual, id, nil
 }
 
+// Update ...
+func (h *Github_user_ssh_keyHandler) Update(externalID string, desired *Github_user_ssh_key) (*Github_user_ssh_key, error) {
+	log := hclog.Default()
+	if log.IsInfo() {
+		log.Info("Update Github_user_ssh_key", "desired", spew.Sdump(desired))
+	}
+	configureProvider(h.provider)
+	rc := &terraform.ResourceConfig{
+		Config: bridge.TerraformMarshal(desired),
+	}
+	actual, err := bridge.Update(h.provider, "github_user_ssh_key", externalID,  rc)
+	if err != nil {
+		return nil, err
+	}
+	x := &Github_user_ssh_key{ Github_user_ssh_key_id: &externalID }
+	bridge.TerraformUnmarshal(actual, x)
+	if log.IsInfo() {
+		log.Info("Update Actual State Github_user_ssh_key", "actual", spew.Sdump(x))
+	}
+	return x, nil
+}
+
 // Read ...
 func (h *Github_user_ssh_keyHandler) Read(externalID string) (*Github_user_ssh_key, error) {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "externalID", externalID)
+		log.Info("Read Github_user_ssh_key", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	id, actual, err := bridge.Read(h.provider, "github_user_ssh_key", externalID)
@@ -1278,7 +1995,7 @@ func (h *Github_user_ssh_keyHandler) Read(externalID string) (*Github_user_ssh_k
 	x := &Github_user_ssh_key{ Github_user_ssh_key_id: &id }
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
-		log.Info("Read {.TFType}}", "actual", spew.Sdump(x))
+		log.Info("Read Actual State Github_user_ssh_key", "actual", spew.Sdump(x))
 	}
 	return x, nil
 }
@@ -1287,7 +2004,7 @@ func (h *Github_user_ssh_keyHandler) Read(externalID string) (*Github_user_ssh_k
 func (h *Github_user_ssh_keyHandler) Delete(externalID string) error {
 	log := hclog.Default()
 	if log.IsInfo() {
-		log.Info("Delete {.TFType}}", "externalID", externalID)
+		log.Info("Delete Github_user_ssh_key", "externalID", externalID)
 	}
 	configureProvider(h.provider)
 	return bridge.Delete(h.provider, "github_user_ssh_key", externalID)
