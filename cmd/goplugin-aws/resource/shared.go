@@ -8,12 +8,11 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/hashicorp/go-hclog"
+	hclog "github.com/hashicorp/go-hclog"
 )
 
 const (
-	maxRetries   = 5
-	logicalIDTag = "lyra-logical-id"
+	maxRetries = 5
 )
 
 // newClient() creates a new ec2 client
@@ -32,10 +31,6 @@ func newClient() *ec2.EC2 {
 	return ec2.New(sess)
 }
 
-func tagResource(client ec2.EC2, tags map[string]string, resourceIds ...*string) error {
-	awsTags := tagsToAws(tags)
-	return tagResource2(client, awsTags, resourceIds...)
-}
 func tagResource2(client ec2.EC2, awsTags []*ec2.Tag, resourceIds ...*string) error {
 	if len(resourceIds) == 0 || awsTags == nil || len(awsTags) == 0 {
 		hclog.Default().Debug("Nothing to tag", "resourceIds", resourceIds, "awsTags", awsTags)

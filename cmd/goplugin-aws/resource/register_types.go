@@ -16,7 +16,7 @@ func Server(c eval.Context) *service.Server {
 }
 
 func registerSDKTypes(sb *service.ServerBuilder) {
-	var evs []eval.Type
+	var evs []eval.Type // nolint
 
 	//this list is generated using the test TestGetAllNestedTypes
 	//ec2.Vpc
@@ -103,7 +103,7 @@ func registerSDKTypes(sb *service.ServerBuilder) {
 }
 
 func registerNonSDKTypes(sb *service.ServerBuilder) {
-	var evs []eval.Type
+	var evs []eval.Type // nolint
 	evs = sb.RegisterTypes("Aws", Vpc{})
 	sb.RegisterTypes("Aws",
 		sb.BuildResource(&Vpc{}, func(rtb service.ResourceTypeBuilder) {
@@ -111,7 +111,6 @@ func registerNonSDKTypes(sb *service.ServerBuilder) {
 			rtb.ImmutableAttributes(`tags`)
 		}),
 	)
-
 	sb.RegisterHandler("Aws::VPCHandler", &VPCHandler{}, evs[0])
 	evs = sb.RegisterTypes("Aws",
 		sb.BuildResource(&Subnet{}, func(rtb service.ResourceTypeBuilder) {

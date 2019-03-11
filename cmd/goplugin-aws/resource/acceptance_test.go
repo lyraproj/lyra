@@ -310,15 +310,6 @@ func anInternetGateway() *InternetGateway {
 	return &r
 }
 
-func aKeyPair() *KeyPair {
-	name := fmt.Sprintf("lyra-test-%d", time.Now().Unix())
-	kp := KeyPair{
-		KeyName:           name,
-		PublicKeyMaterial: publicKey,
-	}
-	return &kp
-}
-
 func anInstance() *Instance {
 	r := Instance{}
 	r.InstanceType = "t2.nano"

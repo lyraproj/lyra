@@ -17,8 +17,6 @@ import (
 	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
-var embeddedPluginNames = []string{}
-
 var defaultLoadPath = []string{"./plugins", "./build"}
 
 // Loader implements the Loader API from go-servicesdk
@@ -99,9 +97,6 @@ func (l *Loader) PreLoad(c eval.Context) {
 	// Use this loader when loading all typesets and definitions
 	c.DoWithLoader(l, func() {
 
-		// Embedded plugins - DISABLED but kept just in case ...
-		// l.loadEmbeddedPlugins(c)
-
 		// Go plugins
 		l.loadPlugins(c)
 
@@ -127,18 +122,6 @@ func (l *Loader) PreLoadPlugins(c eval.Context) {
 		// Go plugins
 		l.loadPlugins(c)
 	})
-}
-
-func (l *Loader) loadEmbeddedPlugins(c eval.Context) {
-	l.logger.Debug("reading embedded plugins")
-	l.logger.Debug(fmt.Sprintf("found %d embedded plugins", len(embeddedPluginNames)))
-	for _, plugin := range embeddedPluginNames {
-		cmd := os.Args[0] // This is this binary itself
-		err := l.loadLiveMetadataFromPlugin(c, cmd, "--debug", "plugin", plugin)
-		if err != nil {
-			l.logger.Error("failed to load embedded plugin", "cmd", cmd, "plugin", plugin)
-		}
-	}
 }
 
 func (l *Loader) loadPlugins(c eval.Context) {

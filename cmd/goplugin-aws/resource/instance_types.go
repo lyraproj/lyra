@@ -1,9 +1,5 @@
 package resource
 
-import (
-	"github.com/aws/aws-sdk-go/service/ec2"
-)
-
 //StateReason type
 type StateReason struct {
 	Code    string `puppet:"type=>String, value=>''"`
@@ -140,11 +136,4 @@ type Instance struct {
 	Tags                              map[string]string `puppet:"type=>Hash[String,String], kind=>given_or_derived"`
 	VirtualizationType                string            `puppet:"type=>String, value=>''"`
 	VpcId                             string            `puppet:"type=>String, value=>''"`
-}
-
-type reservationInstance struct {
-	reservationId *string
-	ownerId       *string
-	requesterId   *string
-	instance      *ec2.Instance
 }
