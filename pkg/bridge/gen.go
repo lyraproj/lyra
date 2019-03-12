@@ -54,7 +54,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
-	"github.com/lyraproj/puppet-evaluator/eval"
+	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/service"
 )
 
@@ -75,8 +75,8 @@ func configureProvider(p *schema.Provider) {
 	})
 }
 
-func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
-	var evs []eval.Type
+func Initialize(sb *service.Builder, p *schema.Provider) {
+	var evs []px.Type
 {{range .StructTypes}}
 	evs = sb.RegisterTypes("{{$.Namespace}}", sb.BuildResource(&{{.}}{}, {{.}}_rtb))
 	sb.RegisterHandler("{{$.Namespace}}::{{.}}Handler", &{{.}}Handler{provider: p}, evs[0])

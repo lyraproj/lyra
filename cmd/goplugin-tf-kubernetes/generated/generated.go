@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/pkg/bridge"
-	"github.com/lyraproj/puppet-evaluator/eval"
+	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/service"
 )
 
@@ -34,8 +34,8 @@ func configureProvider(p *schema.Provider) {
 	})
 }
 
-func Initialize(sb *service.ServerBuilder, p *schema.Provider) {
-	var evs []eval.Type
+func Initialize(sb *service.Builder, p *schema.Provider) {
+	var evs []px.Type
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_cluster_role_binding{}, Kubernetes_cluster_role_binding_rtb))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_cluster_role_bindingHandler", &Kubernetes_cluster_role_bindingHandler{provider: p}, evs[0])

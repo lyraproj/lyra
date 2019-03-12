@@ -10,20 +10,20 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc // indirect
 	github.com/hashicorp/go-azure-helpers v0.0.0-20190129193224-166dfd221bb2 // indirect
-	github.com/hashicorp/go-hclog v0.7.0
+	github.com/hashicorp/go-hclog v0.8.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.11
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190123103955-fe409985fbd6
+	github.com/lyraproj/hiera v0.0.0-20190312105858-74b3e041e7e4
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
 	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190304221938-dfca410f5e9b
-	github.com/lyraproj/puppet-workflow v0.0.0-20190226102913-d5da882243ea
+	github.com/lyraproj/pcore v0.0.0-20190312215929-fcacd5c4e31e
+	github.com/lyraproj/puppet-workflow v0.0.0-20190313064637-b5043cfccafe
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190227091652-cbae88715c21
-	github.com/lyraproj/wfe v0.0.0-20190220162440-1888b39c9eca
+	github.com/lyraproj/servicesdk v0.0.0-20190312223546-a9540b746bb8
+	github.com/lyraproj/wfe v0.0.0-20190313064913-f1cbde61948a
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -40,10 +40,8 @@ require (
 	github.com/terraform-providers/terraform-provider-google v1.20.0
 	github.com/terraform-providers/terraform-provider-kubernetes v1.5.0
 	go.opencensus.io v0.19.0 // indirect
-	golang.org/x/crypto v0.0.0-20190211182817-74369b46fc67 // indirect
 	golang.org/x/exp v0.0.0-20190212162250-21964bba6549 // indirect
 	golang.org/x/oauth2 v0.0.0-20190212230446-3e8b2be13635 // indirect
-	golang.org/x/sys v0.0.0-20190213121743-983097b1a8a3 // indirect
 	gonum.org/v1/netlib v0.0.0-20190119082159-9be13e02fd56 // indirect
 	k8s.io/client-go v10.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.1.10

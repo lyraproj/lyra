@@ -4,16 +4,18 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"github.com/lyraproj/puppet-evaluator/eval"
-	"github.com/lyraproj/puppet-evaluator/types"
-	"github.com/lyraproj/semver/semver"
-	"github.com/lyraproj/servicesdk/grpc"
-	"github.com/lyraproj/servicesdk/service"
-	"github.com/lyraproj/servicesdk/serviceapi"
 	"path/filepath"
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/lyraproj/pcore/pcore"
+	"github.com/lyraproj/pcore/px"
+	"github.com/lyraproj/pcore/types"
+	"github.com/lyraproj/semver/semver"
+	"github.com/lyraproj/servicesdk/grpc"
+	"github.com/lyraproj/servicesdk/service"
+	"github.com/lyraproj/servicesdk/serviceapi"
 
 	"github.com/boltdb/bolt"
 )
@@ -58,8 +60,8 @@ var supportedVersions = semver.MustParseVersionRange("1.x")
 
 // Start the Identity service running
 func Start(filename string) {
-	eval.Puppet.Do(func(c eval.Context) {
-		sb := service.NewServerBuilder(c, "Default::Identity::Service")
+	pcore.Do(func(c px.Context) {
+		sb := service.NewServiceBuilder(c, "Default::Identity::Service")
 		id, err := NewIdentity(filename)
 		if err != nil {
 			panic(err)
@@ -73,8 +75,8 @@ func Start(filename string) {
 // ValueTuple creates a four element Array consisting of InternalID, ExternalID, Timestamp, and GCEra.
 //
 // The Pcore type of the tuple is Tuple[String, String, Timestamp, Integer]
-func (t *tuple) ValueTuple() eval.List {
-	return types.WrapValues([]eval.Value{
+func (t *tuple) ValueTuple() px.List {
+	return types.WrapValues([]px.Value{
 		types.WrapString(t.InternalID),
 		types.WrapString(t.ExternalID),
 		types.WrapTimestamp(t.Timestamp),
@@ -296,8 +298,8 @@ func (i *Identity) RemoveInternal(internalID string) error {
 //
 // The tuples are returned in the order they were added to the store. An empty slice is returned when no tuples
 // are found.
-func (i *Identity) Search(internalIDPrefix string) (eval.List, error) {
-	found := make([]eval.Value, 0, 32)
+func (i *Identity) Search(internalIDPrefix string) (px.List, error) {
+	found := make([]px.Value, 0, 32)
 	err := i.withDb(func(db *bolt.DB) error {
 		return db.View(func(tx *bolt.Tx) error {
 			return tx.Bucket(internalToExternal).ForEach(func(k, v []byte) error {
@@ -337,8 +339,8 @@ func (i *Identity) Sweep(internalIDPrefix string) error {
 
 // Garbage finds all tuples that have been moved to the garbage bin. The tuples are returned in the order they were
 // added to the store. An empty slice is returned when no tuples are found.
-func (i *Identity) Garbage() (eval.List, error) {
-	found := make([]eval.Value, 0, 32)
+func (i *Identity) Garbage() (px.List, error) {
+	found := make([]px.Value, 0, 32)
 	err := i.withDb(func(db *bolt.DB) error {
 		return db.View(func(tx *bolt.Tx) error {
 			return tx.Bucket(garbage).ForEach(func(k, v []byte) error {
@@ -481,10 +483,10 @@ func unmarshalUnknown(n string, src []byte, s interface{}) {
 	}
 }
 
-func sortedValueTuples(vts []eval.Value) eval.List {
+func sortedValueTuples(vts []px.Value) px.List {
 	sort.Slice(vts, func(i, j int) bool {
-		t1 := vts[i].(eval.List).At(2).(*types.TimestampValue).Time()
-		t2 := vts[j].(eval.List).At(2).(*types.TimestampValue).Time()
+		t1 := vts[i].(px.List).At(2).(*types.Timestamp).Time()
+		t2 := vts[j].(px.List).At(2).(*types.Timestamp).Time()
 		return t1.Before(t2)
 	})
 	return types.WrapValues(vts)

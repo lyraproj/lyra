@@ -2,7 +2,8 @@ package example
 
 import (
 	"github.com/lyraproj/lyra/cmd/goplugin-example/resource"
-	"github.com/lyraproj/puppet-evaluator/eval"
+	"github.com/lyraproj/pcore/pcore"
+	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/annotation"
 	"github.com/lyraproj/servicesdk/grpc"
 	"github.com/lyraproj/servicesdk/service"
@@ -10,16 +11,16 @@ import (
 
 // Start the example plugin running
 func Start() {
-	eval.Puppet.Do(func(c eval.Context) {
+	pcore.Do(func(c px.Context) {
 		s := Server(c)
 		grpc.Serve(c, s)
 	})
 }
 
 // Server returns the built server to be served
-func Server(c eval.Context) *service.Server {
+func Server(c px.Context) *service.Server {
 
-	sb := service.NewServerBuilder(c, `Example`)
+	sb := service.NewServiceBuilder(c, `Example`)
 	evs := sb.RegisterTypes("Example",
 		resource.Person{},
 		resource.Address{})

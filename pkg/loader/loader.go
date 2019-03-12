@@ -2,17 +2,17 @@ package loader
 
 import (
 	"fmt"
+	"github.com/lyraproj/puppet-workflow/puppetwf"
 	"os"
 	"os/exec"
 	"path/filepath"
 
-	"github.com/lyraproj/puppet-evaluator/types"
-	"github.com/lyraproj/puppet-workflow/puppet"
+	"github.com/lyraproj/pcore/types"
 
-	hclog "github.com/hashicorp/go-hclog"
+	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/issue/issue"
-	"github.com/lyraproj/puppet-evaluator/eval"
-	"github.com/lyraproj/puppet-evaluator/yaml"
+	"github.com/lyraproj/pcore/px"
+	"github.com/lyraproj/pcore/yaml"
 	"github.com/lyraproj/servicesdk/grpc"
 	"github.com/lyraproj/servicesdk/serviceapi"
 )
@@ -21,7 +21,7 @@ var defaultLoadPath = []string{"./plugins", "./build"}
 
 // Loader implements the Loader API from go-servicesdk
 type Loader struct {
-	eval.DefiningLoader
+	px.DefiningLoader
 	serviceCmds    map[string]string
 	serviceCmdArgs map[string][]string
 	pluginPath     []string
@@ -29,10 +29,10 @@ type Loader struct {
 }
 
 // New creates a loader instance
-func New(parentLogger hclog.Logger, parentLoader eval.Loader) *Loader {
+func New(parentLogger hclog.Logger, parentLoader px.Loader) *Loader {
 	logger := parentLogger.Named("loader")
 	loader := &Loader{
-		DefiningLoader: eval.NewParentedLoader(parentLoader),
+		DefiningLoader: px.NewParentedLoader(parentLoader),
 		serviceCmds:    map[string]string{},
 		serviceCmdArgs: map[string][]string{},
 		pluginPath:     defaultLoadPath,
@@ -42,23 +42,23 @@ func New(parentLogger hclog.Logger, parentLoader eval.Loader) *Loader {
 }
 
 // NameAuthority returns the name authority
-func (l *Loader) NameAuthority() eval.URI {
+func (l *Loader) NameAuthority() px.URI {
 	return l.DefiningLoader.NameAuthority()
 }
 
 // Parent returns the parent loader
-func (l *Loader) Parent() eval.Loader {
-	return l.DefiningLoader.(eval.ParentedLoader).Parent()
+func (l *Loader) Parent() px.Loader {
+	return l.DefiningLoader.(px.ParentedLoader).Parent()
 }
 
 // LoadEntry returns the requested entry or nil if no such entry can be found
-func (l *Loader) LoadEntry(c eval.Context, name eval.TypedName) eval.LoaderEntry {
+func (l *Loader) LoadEntry(c px.Context, name px.TypedName) px.LoaderEntry {
 	entry := l.DefiningLoader.LoadEntry(c, name)
 	if entry != nil && entry.Value() != nil {
 		return entry
 	}
 
-	if name.Namespace() != eval.NsService {
+	if name.Namespace() != px.NsService {
 		return nil
 	}
 
@@ -66,11 +66,11 @@ func (l *Loader) LoadEntry(c eval.Context, name eval.TypedName) eval.LoaderEntry
 	if s == nil {
 		return entry
 	}
-	return eval.NewLoaderEntry(s, nil)
+	return px.NewLoaderEntry(s, nil)
 }
 
 // LoadService will load the named service. The caller is responsible for unloading it.
-func (l *Loader) loadService(c eval.Context, serviceID eval.TypedName) serviceapi.Service {
+func (l *Loader) loadService(c px.Context, serviceID px.TypedName) serviceapi.Service {
 	cmd, foundCmd := l.serviceCmds[serviceID.MapKey()]
 	cmdArgs := l.serviceCmdArgs[serviceID.MapKey()]
 	if !foundCmd {
@@ -93,7 +93,7 @@ func (l *Loader) loadService(c eval.Context, serviceID eval.TypedName) serviceap
 }
 
 // PreLoad loads all plugins and manifests within reach.
-func (l *Loader) PreLoad(c eval.Context) {
+func (l *Loader) PreLoad(c px.Context) {
 	// Use this loader when loading all typesets and definitions
 	c.DoWithLoader(l, func() {
 
@@ -112,7 +112,7 @@ func (l *Loader) PreLoad(c eval.Context) {
 }
 
 // PreLoadPlugins loads all plugins within reach.
-func (l *Loader) PreLoadPlugins(c eval.Context) {
+func (l *Loader) PreLoadPlugins(c px.Context) {
 	// Use this loader when loading all typesets and definitions
 	c.DoWithLoader(l, func() {
 
@@ -124,7 +124,7 @@ func (l *Loader) PreLoadPlugins(c eval.Context) {
 	})
 }
 
-func (l *Loader) loadPlugins(c eval.Context) {
+func (l *Loader) loadPlugins(c px.Context) {
 	l.logger.Debug("reading plugins from filesystem")
 	plugins := l.findFiles("goplugin-*")
 	for _, plugin := range plugins {
@@ -139,57 +139,57 @@ type subService struct {
 	def serviceapi.Definition
 }
 
-func (s *subService) Parent(c eval.Context) serviceapi.Service {
-	x, ok := eval.Load(c, s.def.ServiceId())
+func (s *subService) Parent(c px.Context) serviceapi.Service {
+	x, ok := px.Load(c, s.def.ServiceId())
 	if !ok {
 		panic(fmt.Errorf("failed to load %s", s.def.ServiceId()))
 	}
 	return x.(serviceapi.Service)
 }
 
-func (s *subService) Invoke(c eval.Context, identifier, name string, arguments ...eval.Value) eval.Value {
-	args := make([]eval.Value, 2, 2+len(arguments))
+func (s *subService) Invoke(c px.Context, identifier, name string, arguments ...px.Value) px.Value {
+	args := make([]px.Value, 2, 2+len(arguments))
 	args[0] = types.WrapString(identifier)
 	args[1] = types.WrapString(name)
 	args = append(args, arguments...)
 	return s.Parent(c).Invoke(c, s.def.Identifier().Name(), "invoke", args...)
 }
 
-func (s *subService) Metadata(c eval.Context) (typeSet eval.TypeSet, definitions []serviceapi.Definition) {
-	v := s.Parent(c).Invoke(c, s.def.Identifier().Name(), "metadata").(eval.List)
-	if ts, ok := v.At(0).(eval.TypeSet); ok {
+func (s *subService) Metadata(c px.Context) (typeSet px.TypeSet, definitions []serviceapi.Definition) {
+	v := s.Parent(c).Invoke(c, s.def.Identifier().Name(), "metadata").(px.List)
+	if ts, ok := v.At(0).(px.TypeSet); ok {
 		typeSet = ts
 	}
-	if dl, ok := v.At(1).(eval.List); ok {
+	if dl, ok := v.At(1).(px.List); ok {
 		definitions = make([]serviceapi.Definition, dl.Len())
-		dl.EachWithIndex(func(d eval.Value, i int) {
+		dl.EachWithIndex(func(d px.Value, i int) {
 			definitions[i] = d.(serviceapi.Definition)
 		})
 	}
 	return
 }
 
-func (s *subService) State(c eval.Context, name string, input eval.OrderedMap) eval.PuppetObject {
-	return s.Parent(c).Invoke(c, s.def.Identifier().Name(), "state", types.WrapString(name), input).(eval.PuppetObject)
+func (s *subService) State(c px.Context, name string, input px.OrderedMap) px.PuppetObject {
+	return s.Parent(c).Invoke(c, s.def.Identifier().Name(), "state", types.WrapString(name), input).(px.PuppetObject)
 }
 
-func (s *subService) Identifier(eval.Context) eval.TypedName {
-	return eval.NewTypedName(eval.NsService, s.def.Identifier().Name())
+func (s *subService) Identifier(px.Context) px.TypedName {
+	return px.NewTypedName(px.NsService, s.def.Identifier().Name())
 }
 
-func (l *Loader) loadLyraLinks(c eval.Context) {
+func (l *Loader) loadLyraLinks(c px.Context) {
 	llFiles := l.findFiles("*.ll")
 	for _, lf := range llFiles {
 		l.logger.Debug("reading Lyra Link", "file", lf)
-		bts := types.BinaryFromFile(c, lf)
-		link, ok := yaml.Unmarshal(c, bts.Bytes()).(eval.OrderedMap)
+		bts := types.BinaryFromFile(lf)
+		link, ok := yaml.Unmarshal(c, bts.Bytes()).(px.OrderedMap)
 		if !ok {
 			l.logger.Error("Lyra Link did not contain a map", "file", lf)
 			continue
 		}
 		exe := ``
 		if v, ok := link.Get4(`executable`); ok {
-			if s, ok := v.(eval.StringValue); ok {
+			if s, ok := v.(px.StringValue); ok {
 				exe = s.String()
 			}
 		}
@@ -201,10 +201,10 @@ func (l *Loader) loadLyraLinks(c eval.Context) {
 		args := []string{}
 		if v, ok := link.Get4(`arguments`); ok {
 			// Accepts array of strings or a string
-			if a, ok := v.(*types.ArrayValue); ok {
+			if a, ok := v.(*types.Array); ok {
 				args = make([]string, a.Len())
-				a.EachWithIndex(func(s eval.Value, i int) { args[i] = os.ExpandEnv(s.String()) })
-			} else if s, ok := v.(eval.StringValue); ok {
+				a.EachWithIndex(func(s px.Value, i int) { args[i] = os.ExpandEnv(s.String()) })
+			} else if s, ok := v.(px.StringValue); ok {
 				args = []string{os.ExpandEnv(s.String())}
 			}
 		}
@@ -215,8 +215,8 @@ func (l *Loader) loadLyraLinks(c eval.Context) {
 	}
 }
 
-func (l *Loader) loadPuppetDSL(c eval.Context) {
-	x, ok := eval.Load(c, eval.NewTypedName(eval.NsService, `Puppet`))
+func (l *Loader) loadPuppetDSL(c px.Context) {
+	x, ok := px.Load(c, px.NewTypedName(px.NsService, `Puppet`))
 	if !ok {
 		l.logger.Error("failed to load Puppet DSL Service plugin")
 		return
@@ -237,11 +237,11 @@ func (l *Loader) loadPuppetDSL(c eval.Context) {
 	for _, f := range allFiles {
 		l.logger.Debug("loading manifest", "file", f)
 		def := ppServer.Invoke(
-			c, puppet.ManifestLoaderID, `loadManifest`,
+			c, puppetwf.ManifestLoaderID, `loadManifest`,
 			types.WrapString(filepath.Dir(f)),
 			types.WrapString(f)).(serviceapi.Definition)
 		sa := &subService{def}
-		l.SetEntry(sa.Identifier(c), eval.NewLoaderEntry(sa, nil))
+		l.SetEntry(sa.Identifier(c), px.NewLoaderEntry(sa, nil))
 		l.loadMetadata(c, ``, nil, sa)
 	}
 }
@@ -249,24 +249,9 @@ func (l *Loader) loadPuppetDSL(c eval.Context) {
 func (l *Loader) findFiles(glob string) []string {
 	files := []string{}
 	for _, pluginDir := range l.pluginPath {
-		// Check for a nested 'types' dir first
-		typesDir := filepath.Join(pluginDir, "types")
-		stat, err := os.Stat(typesDir)
-		if err == nil && stat.IsDir() {
-			l.logger.Debug(fmt.Sprintf("checking '%s' for '%s' files ...", typesDir, glob))
-			fullGlob := filepath.Join(typesDir, glob)
-			fs, err := filepath.Glob(fullGlob)
-			if err != nil {
-				l.logger.Error("failed to load plugins from types dir", "typesDir", typesDir, "err", err)
-				continue
-			}
-			files = append(files, fs...)
-			l.logger.Debug(fmt.Sprintf("found %d files", len(fs)))
-		}
-
 		// Now load from the specified plugin dir
 		l.logger.Debug(fmt.Sprintf("checking '%s' for '%s' files ...", pluginDir, glob))
-		stat, err = os.Stat(pluginDir)
+		stat, err := os.Stat(pluginDir)
 		if err != nil && os.IsNotExist(err) {
 			l.logger.Error("specified plugins directory not found, ignoring", "pluginDir", pluginDir)
 			continue
@@ -288,14 +273,14 @@ func (l *Loader) findFiles(glob string) []string {
 	return files
 }
 
-func (l *Loader) loadLiveMetadataFromPlugin(c eval.Context, cmd string, cmdArgs ...string) error {
-	// FIXME Load should probably handle the eval.Context
+func (l *Loader) loadLiveMetadataFromPlugin(c px.Context, cmd string, cmdArgs ...string) error {
+	// FIXME Load should probably handle the px.Context
 	serviceCmd := exec.CommandContext(c, cmd, cmdArgs...)
 	service, err := grpc.Load(serviceCmd, nil)
 	if err != nil {
 		return err
 	}
-	l.SetEntry(service.Identifier(c), eval.NewLoaderEntry(service, nil))
+	l.SetEntry(service.Identifier(c), px.NewLoaderEntry(service, nil))
 
 	l.logger.Debug("loading metadata", "plugin", cmd)
 	l.loadMetadata(c, cmd, cmdArgs, service)
@@ -303,7 +288,7 @@ func (l *Loader) loadLiveMetadataFromPlugin(c eval.Context, cmd string, cmdArgs 
 	return nil
 }
 
-func (l *Loader) loadMetadata(c eval.Context, cmd string, cmdArgs []string, service serviceapi.Service) {
+func (l *Loader) loadMetadata(c px.Context, cmd string, cmdArgs []string, service serviceapi.Service) {
 	_, defs := service.Metadata(c)
 	if len(defs) == 0 {
 		return
@@ -323,13 +308,13 @@ func (l *Loader) loadMetadata(c eval.Context, cmd string, cmdArgs []string, serv
 
 	// Register definitions
 	for _, def := range defs {
-		l.SetEntry(def.Identifier(), eval.NewLoaderEntry(def, nil))
-		l.logger.Debug("registered definition", "definition", def.Identifier())
+		l.SetEntry(def.Identifier(), px.NewLoaderEntry(def, nil))
+		l.logger.Debug("registered definition", "definition", def.Identifier().Name())
 
 		if handlerFor, ok := def.Properties().Get4(`handlerFor`); ok {
-			hn := eval.NewTypedName(eval.NsHandler, handlerFor.(issue.Named).Name())
-			l.SetEntry(hn, eval.NewLoaderEntry(def, nil))
-			l.logger.Debug("registered handler", "definition", def.Identifier(), "handler for", hn)
+			hn := px.NewTypedName(px.NsHandler, handlerFor.(issue.Named).Name())
+			l.SetEntry(hn, px.NewLoaderEntry(def, nil))
+			l.logger.Debug("registered handler", "definition", def.Identifier().Name(), "handler for", hn.Name())
 		}
 	}
 }

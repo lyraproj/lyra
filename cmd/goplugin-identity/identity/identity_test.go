@@ -1,7 +1,7 @@
 package identity
 
 import (
-	"github.com/lyraproj/puppet-evaluator/eval"
+	"github.com/lyraproj/pcore/px"
 	"os"
 	"testing"
 
@@ -231,8 +231,8 @@ func TestAccessSetEra(t *testing.T) {
 	mappings, err := id.Search("a:")
 	require.Nil(t, err)
 	require.EqualValues(t, 2, mappings.Len())
-	require.EqualValues(t, int64(0), mappings.At(0).(eval.List).At(3).(eval.NumericValue).Int())
-	require.EqualValues(t, int64(0), mappings.At(1).(eval.List).At(3).(eval.NumericValue).Int())
+	require.EqualValues(t, int64(0), mappings.At(0).(px.List).At(3).(px.Number).Int())
+	require.EqualValues(t, int64(0), mappings.At(1).(px.List).At(3).(px.Number).Int())
 
 	// Bump era
 	require.Nil(t, id.BumpEra())
@@ -245,8 +245,8 @@ func TestAccessSetEra(t *testing.T) {
 	mappings, err = id.Search("a:")
 	require.Nil(t, err)
 	require.EqualValues(t, 2, mappings.Len())
-	require.EqualValues(t, int64(1), mappings.At(0).(eval.List).At(3).(eval.NumericValue).Int())
-	require.EqualValues(t, int64(0), mappings.At(1).(eval.List).At(3).(eval.NumericValue).Int())
+	require.EqualValues(t, int64(1), mappings.At(0).(px.List).At(3).(px.Number).Int())
+	require.EqualValues(t, int64(0), mappings.At(1).(px.List).At(3).(px.Number).Int())
 }
 
 func TestSweep(t *testing.T) {
@@ -278,12 +278,12 @@ func TestSweep(t *testing.T) {
 	require.EqualValues(t, 2, garbage.Len())
 
 	// Accessed between BumpEra and Sweep and then explicitly removed
-	require.EqualValues(t, "e2", garbage.At(0).(eval.List).At(1).String())
-	require.EqualValues(t, int64(1), garbage.At(0).(eval.List).At(3).(eval.NumericValue).Int())
+	require.EqualValues(t, "e2", garbage.At(0).(px.List).At(1).String())
+	require.EqualValues(t, int64(1), garbage.At(0).(px.List).At(3).(px.Number).Int())
 
 	// Never accessed between BumpEra and Sweep
-	require.EqualValues(t, "e3", garbage.At(1).(eval.List).At(1).String())
-	require.EqualValues(t, int64(0), garbage.At(1).(eval.List).At(3).(eval.NumericValue).Int())
+	require.EqualValues(t, "e3", garbage.At(1).(px.List).At(1).String())
+	require.EqualValues(t, int64(0), garbage.At(1).(px.List).At(3).(px.Number).Int())
 }
 
 func TestPurge(t *testing.T) {
@@ -322,5 +322,5 @@ func TestPurge(t *testing.T) {
 	require.EqualValues(t, 1, garbage.Len())
 
 	// Not purged
-	require.EqualValues(t, "e3", garbage.At(0).(eval.List).At(1).String())
+	require.EqualValues(t, "e3", garbage.At(0).(px.List).At(1).String())
 }

@@ -62,7 +62,7 @@ func validateFile(path string) error {
 	// 	return err
 	// }
 
-	// err = eval.Puppet.DoWithParent(eval.Puppet.RootContext(), func(c eval.Context) error {
+	// err = pcore.DoWithParent(pcore.RootContext(), func(c px.Context) error {
 	// 	var err error
 	// 	switch lang {
 	// 	case "Puppet":

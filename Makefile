@@ -42,6 +42,9 @@ plugins: check-mods
 	$(call build,goplugin-tf-google,cmd/goplugin-tf-google/main.go)
 	$(call build,goplugin-tf-kubernetes,cmd/goplugin-tf-kubernetes/main.go)
 
+puppet-dsl:
+	$(call build,goplugin-puppetdsl,cmd/goplugin-puppetdsl/main.go)
+
 PHONY+= lyra
 lyra: check-mods
 	$(call build,lyra,cmd/lyra/main.go)
