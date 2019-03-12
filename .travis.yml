@@ -1,17 +1,17 @@
 language: go
 go:
-- stable
+  - stable
 env:
-- GO111MODULE=on
+  - GO111MODULE=on
 jobs:
   include:
-  - stage: Test and build
-    script:
-    - rm go.sum # Workaround for https://github.com/kubernetes/kubernetes/issues/69040
-    - make
-    before_deploy:
-    - sudo apt-get install -y upx
-    - make dist-release
+    - stage: Test and build
+      script:
+        - rm go.sum # Workaround for https://github.com/kubernetes/kubernetes/issues/69040
+        - make all
+      before_deploy:
+        - sudo apt-get install -y upx
+        - make dist-release
 deploy:
   provider: releases
   api_key:
@@ -27,8 +27,8 @@ notifications:
     secure: t03TPD1KQogKliNQ9yB1HGLIUcIiLIjsY/PVCkILBMXCXNuO28Yd9S+T4KkvNHds+HvzLTMVqN03/vdqubhtJb4HLmv5Wib18lRao3MOkeZEVbs3qGoEjgpWELJHIrF22bBxPm4tvGM8NDGHV2bgZuGszu7peEGRaJ8IhhpHlA1T3jgmfKCaJxvvxYxn0tPOLVGBdisDZT9JsfXEdf8CeiiyipwWq07w0M48BbqbqPUhfPlL325+SmDgkM+NY+FhMagqcme+F0JaosvAqvotLO/PzhyguCrm5q6hC7gnkIeJaYrPJeWLrIPABhtc62WR7fBkmTrrqSwppKcHSiwuiDsXbEBemxN5BsDE1r6L3DJvyCuhdwBVMjmT2ZZx0ABnf3TBBVmYEhuk4yORU1SS81SSv+PvouOaiHylIWV4Dw0tx7gMakcnZkGmLVt3pKXWuwwPMJG1LKPq4aNR0YgZ2xeBeaKBbxPlAeB3Awp9vJlkAz8egXk98IN6vMZaO26nIwUcMD81tRZe9WWSUk5f5epHG0A4w5BE9Jg2xFuvghNo2CY65cg3V3AsNgkzdNS7THGlgKZWvK4pyIbSQF8HBf3c4VHF0xB7F9Bm/zPTbu2u2uetjOJWI+06HQ48e00hgbfNc1YTo3lsb3mx3RDawGgwkZCR3ovaDjJNTbI59Xc=
 branches:
   except:
-  - /(ux.+|ux)/
+    - /(ux.+|ux)/
 cache:
   directories:
-  - $GOPATH/pkg/mod/
-  - $HOME/.cache/go-build/
+    - $GOPATH/pkg/mod/
+    - $HOME/.cache/go-build/
