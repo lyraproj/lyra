@@ -7,17 +7,23 @@ type TerraformAzureRM = TypeSet[{
   version => '0.1.0',
   types => {
     Azurerm_api_management => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_api_management_id', 'additional_location', 'certificate', 'gateway_regional_url', 'gateway_url', 'hostname_configuration', 'identity', 'management_api_url', 'notification_sender_email', 'portal_url', 'public_ip_addresses', 'scm_url', 'security', 'tags']
+        }
+      },
       attributes => {
         'azurerm_api_management_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'additional_location' => {
-          'type' => Optional[Array[Azurerm_api_management_additional_location_589]],
+          'type' => Optional[Array[Azurerm_api_management_additional_location_1]],
           'value' => undef
         },
         'certificate' => {
-          'type' => Optional[Array[Azurerm_api_management_certificate_590]],
+          'type' => Optional[Array[Azurerm_api_management_certificate_2]],
           'value' => undef
         },
         'gateway_regional_url' => {
@@ -29,11 +35,11 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'hostname_configuration' => {
-          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_591]],
+          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_3]],
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_api_management_identity_596]],
+          'type' => Optional[Array[Azurerm_api_management_identity_8]],
           'value' => undef
         },
         'location' => String,
@@ -62,10 +68,10 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'security' => {
-          'type' => Optional[Array[Azurerm_api_management_security_597]],
+          'type' => Optional[Array[Azurerm_api_management_security_9]],
           'value' => undef
         },
-        'sku' => Array[Azurerm_api_management_sku_598],
+        'sku' => Array[Azurerm_api_management_sku_10],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -76,10 +82,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_api_management], Tuple[Optional[Azurerm_api_management]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_api_management]]
+        'read' => Callable[String, Optional[Azurerm_api_management]],
+        'update' => Callable[String, Optional[Azurerm_api_management]]
       }
     },
-    Azurerm_api_management_additional_location_589 => {
+    Azurerm_api_management_additional_location_1 => {
       attributes => {
         'gateway_regional_url' => {
           'type' => Optional[String],
@@ -92,34 +99,34 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_api_management_certificate_590 => {
+    Azurerm_api_management_certificate_2 => {
       attributes => {
         'certificate_password' => String,
         'encoded_certificate' => String,
         'store_name' => String
       }
     },
-    Azurerm_api_management_hostname_configuration_591 => {
+    Azurerm_api_management_hostname_configuration_3 => {
       attributes => {
         'management' => {
-          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_591_management_592]],
+          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_3_management_4]],
           'value' => undef
         },
         'portal' => {
-          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_591_portal_593]],
+          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_3_portal_5]],
           'value' => undef
         },
         'proxy' => {
-          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_591_proxy_594]],
+          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_3_proxy_6]],
           'value' => undef
         },
         'scm' => {
-          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_591_scm_595]],
+          'type' => Optional[Array[Azurerm_api_management_hostname_configuration_3_scm_7]],
           'value' => undef
         }
       }
     },
-    Azurerm_api_management_hostname_configuration_591_management_592 => {
+    Azurerm_api_management_hostname_configuration_3_management_4 => {
       attributes => {
         'certificate' => {
           'type' => Optional[String],
@@ -140,7 +147,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_api_management_hostname_configuration_591_portal_593 => {
+    Azurerm_api_management_hostname_configuration_3_portal_5 => {
       attributes => {
         'certificate' => {
           'type' => Optional[String],
@@ -161,7 +168,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_api_management_hostname_configuration_591_proxy_594 => {
+    Azurerm_api_management_hostname_configuration_3_proxy_6 => {
       attributes => {
         'certificate' => {
           'type' => Optional[String],
@@ -186,7 +193,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_api_management_hostname_configuration_591_scm_595 => {
+    Azurerm_api_management_hostname_configuration_3_scm_7 => {
       attributes => {
         'certificate' => {
           'type' => Optional[String],
@@ -207,7 +214,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_api_management_identity_596 => {
+    Azurerm_api_management_identity_8 => {
       attributes => {
         'principal_id' => {
           'type' => Optional[String],
@@ -220,7 +227,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_api_management_security_597 => {
+    Azurerm_api_management_security_9 => {
       attributes => {
         'disable_backend_ssl30' => {
           'type' => Optional[Boolean],
@@ -252,13 +259,19 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_api_management_sku_598 => {
+    Azurerm_api_management_sku_10 => {
       attributes => {
         'capacity' => Integer,
         'name' => String
       }
     },
     Azurerm_app_service => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['app_service_plan_id', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_app_service_id', 'app_settings', 'client_affinity_enabled', 'connection_string', 'default_site_hostname', 'enabled', 'https_only', 'identity', 'outbound_ip_addresses', 'possible_outbound_ip_addresses', 'site_config', 'site_credential', 'source_control', 'tags']
+        }
+      },
       attributes => {
         'azurerm_app_service_id' => {
           'type' => Optional[String],
@@ -274,7 +287,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'connection_string' => {
-          'type' => Optional[Array[Azurerm_app_service_connection_string_599]],
+          'type' => Optional[Array[Azurerm_app_service_connection_string_11]],
           'value' => undef
         },
         'default_site_hostname' => {
@@ -290,7 +303,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_app_service_identity_600]],
+          'type' => Optional[Array[Azurerm_app_service_identity_12]],
           'value' => undef
         },
         'location' => String,
@@ -305,15 +318,15 @@ type TerraformAzureRM = TypeSet[{
         },
         'resource_group_name' => String,
         'site_config' => {
-          'type' => Optional[Array[Azurerm_app_service_site_config_601]],
+          'type' => Optional[Array[Azurerm_app_service_site_config_13]],
           'value' => undef
         },
         'site_credential' => {
-          'type' => Optional[Array[Azurerm_app_service_site_credential_603]],
+          'type' => Optional[Array[Azurerm_app_service_site_credential_15]],
           'value' => undef
         },
         'source_control' => {
-          'type' => Optional[Array[Azurerm_app_service_source_control_604]],
+          'type' => Optional[Array[Azurerm_app_service_source_control_16]],
           'value' => undef
         },
         'tags' => {
@@ -326,10 +339,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_app_service], Tuple[Optional[Azurerm_app_service]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_app_service]]
+        'read' => Callable[String, Optional[Azurerm_app_service]],
+        'update' => Callable[String, Optional[Azurerm_app_service]]
       }
     },
     Azurerm_app_service_active_slot => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['app_service_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_app_service_active_slot_id']
+        }
+      },
       attributes => {
         'azurerm_app_service_active_slot_id' => {
           'type' => Optional[String],
@@ -344,10 +364,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_app_service_active_slot], Tuple[Optional[Azurerm_app_service_active_slot]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_app_service_active_slot]]
+        'read' => Callable[String, Optional[Azurerm_app_service_active_slot]],
+        'update' => Callable[String, Optional[Azurerm_app_service_active_slot]]
       }
     },
-    Azurerm_app_service_connection_string_599 => {
+    Azurerm_app_service_connection_string_11 => {
       attributes => {
         'name' => String,
         'type' => String,
@@ -355,6 +376,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_app_service_custom_hostname_binding => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['app_service_name', 'hostname', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_app_service_custom_hostname_binding_id']
+        }
+      },
       attributes => {
         'azurerm_app_service_custom_hostname_binding_id' => {
           'type' => Optional[String],
@@ -369,10 +396,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_app_service_custom_hostname_binding], Tuple[Optional[Azurerm_app_service_custom_hostname_binding]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_app_service_custom_hostname_binding]]
+        'read' => Callable[String, Optional[Azurerm_app_service_custom_hostname_binding]],
+        'update' => Callable[String, Optional[Azurerm_app_service_custom_hostname_binding]]
       }
     },
-    Azurerm_app_service_identity_600 => {
+    Azurerm_app_service_identity_12 => {
       attributes => {
         'principal_id' => {
           'type' => Optional[String],
@@ -386,6 +414,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_app_service_plan => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['app_service_environment_id', 'kind', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_app_service_plan_id', 'app_service_environment_id', 'kind', 'maximum_number_of_workers', 'per_site_scaling', 'properties', 'reserved', 'tags']
+        }
+      },
       attributes => {
         'azurerm_app_service_plan_id' => {
           'type' => Optional[String],
@@ -410,7 +444,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'properties' => {
-          'type' => Optional[Array[Azurerm_app_service_plan_properties_605]],
+          'type' => Optional[Array[Azurerm_app_service_plan_properties_17]],
           'value' => undef
         },
         'reserved' => {
@@ -418,7 +452,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_app_service_plan_sku_606],
+        'sku' => Array[Azurerm_app_service_plan_sku_18],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -429,10 +463,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_app_service_plan], Tuple[Optional[Azurerm_app_service_plan]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_app_service_plan]]
+        'read' => Callable[String, Optional[Azurerm_app_service_plan]],
+        'update' => Callable[String, Optional[Azurerm_app_service_plan]]
       }
     },
-    Azurerm_app_service_plan_properties_605 => {
+    Azurerm_app_service_plan_properties_17 => {
       attributes => {
         'app_service_environment_id' => {
           'type' => Optional[String],
@@ -448,7 +483,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_app_service_plan_sku_606 => {
+    Azurerm_app_service_plan_sku_18 => {
       attributes => {
         'capacity' => {
           'type' => Optional[Integer],
@@ -458,7 +493,7 @@ type TerraformAzureRM = TypeSet[{
         'tier' => String
       }
     },
-    Azurerm_app_service_site_config_601 => {
+    Azurerm_app_service_site_config_13 => {
       attributes => {
         'always_on' => {
           'type' => Optional[Boolean],
@@ -485,7 +520,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'ip_restriction' => {
-          'type' => Optional[Array[Azurerm_app_service_site_config_601_ip_restriction_602]],
+          'type' => Optional[Array[Azurerm_app_service_site_config_13_ip_restriction_14]],
           'value' => undef
         },
         'java_container' => {
@@ -550,7 +585,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_app_service_site_config_601_ip_restriction_602 => {
+    Azurerm_app_service_site_config_13_ip_restriction_14 => {
       attributes => {
         'ip_address' => String,
         'subnet_mask' => {
@@ -559,7 +594,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_app_service_site_credential_603 => {
+    Azurerm_app_service_site_credential_15 => {
       attributes => {
         'password' => {
           'type' => Optional[String],
@@ -572,6 +607,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_app_service_slot => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['app_service_name', 'app_service_plan_id', 'identity', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_app_service_slot_id', 'app_settings', 'client_affinity_enabled', 'connection_string', 'default_site_hostname', 'enabled', 'https_only', 'identity', 'site_config', 'tags']
+        }
+      },
       attributes => {
         'azurerm_app_service_slot_id' => {
           'type' => Optional[String],
@@ -588,7 +629,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'connection_string' => {
-          'type' => Optional[Array[Azurerm_app_service_slot_connection_string_607]],
+          'type' => Optional[Array[Azurerm_app_service_slot_connection_string_19]],
           'value' => undef
         },
         'default_site_hostname' => {
@@ -604,14 +645,14 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_app_service_slot_identity_608]],
+          'type' => Optional[Array[Azurerm_app_service_slot_identity_20]],
           'value' => undef
         },
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
         'site_config' => {
-          'type' => Optional[Array[Azurerm_app_service_slot_site_config_609]],
+          'type' => Optional[Array[Azurerm_app_service_slot_site_config_21]],
           'value' => undef
         },
         'tags' => {
@@ -624,17 +665,18 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_app_service_slot], Tuple[Optional[Azurerm_app_service_slot]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_app_service_slot]]
+        'read' => Callable[String, Optional[Azurerm_app_service_slot]],
+        'update' => Callable[String, Optional[Azurerm_app_service_slot]]
       }
     },
-    Azurerm_app_service_slot_connection_string_607 => {
+    Azurerm_app_service_slot_connection_string_19 => {
       attributes => {
         'name' => String,
         'type' => String,
         'value' => String
       }
     },
-    Azurerm_app_service_slot_identity_608 => {
+    Azurerm_app_service_slot_identity_20 => {
       attributes => {
         'principal_id' => {
           'type' => Optional[String],
@@ -647,7 +689,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_app_service_slot_site_config_609 => {
+    Azurerm_app_service_slot_site_config_21 => {
       attributes => {
         'always_on' => {
           'type' => Optional[Boolean],
@@ -674,7 +716,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'ip_restriction' => {
-          'type' => Optional[Array[Azurerm_app_service_slot_site_config_609_ip_restriction_610]],
+          'type' => Optional[Array[Azurerm_app_service_slot_site_config_21_ip_restriction_22]],
           'value' => undef
         },
         'java_container' => {
@@ -739,7 +781,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_app_service_slot_site_config_609_ip_restriction_610 => {
+    Azurerm_app_service_slot_site_config_21_ip_restriction_22 => {
       attributes => {
         'ip_address' => String,
         'subnet_mask' => {
@@ -748,7 +790,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_app_service_source_control_604 => {
+    Azurerm_app_service_source_control_16 => {
       attributes => {
         'branch' => {
           'type' => Optional[String],
@@ -761,36 +803,42 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_application_gateway => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_application_gateway_id', 'authentication_certificate', 'disabled_ssl_protocols', 'probe', 'ssl_certificate', 'tags', 'url_path_map', 'waf_configuration']
+        }
+      },
       attributes => {
         'azurerm_application_gateway_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'authentication_certificate' => {
-          'type' => Optional[Array[Azurerm_application_gateway_authentication_certificate_611]],
+          'type' => Optional[Array[Azurerm_application_gateway_authentication_certificate_23]],
           'value' => undef
         },
-        'backend_address_pool' => Array[Azurerm_application_gateway_backend_address_pool_612],
-        'backend_http_settings' => Array[Azurerm_application_gateway_backend_http_settings_613],
+        'backend_address_pool' => Array[Azurerm_application_gateway_backend_address_pool_24],
+        'backend_http_settings' => Array[Azurerm_application_gateway_backend_http_settings_25],
         'disabled_ssl_protocols' => {
           'type' => Optional[Array[String]],
           'value' => undef
         },
-        'frontend_ip_configuration' => Array[Azurerm_application_gateway_frontend_ip_configuration_615],
-        'frontend_port' => Array[Azurerm_application_gateway_frontend_port_616],
-        'gateway_ip_configuration' => Array[Azurerm_application_gateway_gateway_ip_configuration_617],
-        'http_listener' => Array[Azurerm_application_gateway_http_listener_618],
+        'frontend_ip_configuration' => Array[Azurerm_application_gateway_frontend_ip_configuration_27],
+        'frontend_port' => Array[Azurerm_application_gateway_frontend_port_28],
+        'gateway_ip_configuration' => Array[Azurerm_application_gateway_gateway_ip_configuration_29],
+        'http_listener' => Array[Azurerm_application_gateway_http_listener_30],
         'location' => String,
         'name' => String,
         'probe' => {
-          'type' => Optional[Array[Azurerm_application_gateway_probe_619]],
+          'type' => Optional[Array[Azurerm_application_gateway_probe_31]],
           'value' => undef
         },
-        'request_routing_rule' => Array[Azurerm_application_gateway_request_routing_rule_621],
+        'request_routing_rule' => Array[Azurerm_application_gateway_request_routing_rule_33],
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_application_gateway_sku_622],
+        'sku' => Array[Azurerm_application_gateway_sku_34],
         'ssl_certificate' => {
-          'type' => Optional[Array[Azurerm_application_gateway_ssl_certificate_623]],
+          'type' => Optional[Array[Azurerm_application_gateway_ssl_certificate_35]],
           'value' => undef
         },
         'tags' => {
@@ -798,11 +846,11 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'url_path_map' => {
-          'type' => Optional[Array[Azurerm_application_gateway_url_path_map_624]],
+          'type' => Optional[Array[Azurerm_application_gateway_url_path_map_36]],
           'value' => undef
         },
         'waf_configuration' => {
-          'type' => Optional[Array[Azurerm_application_gateway_waf_configuration_626]],
+          'type' => Optional[Array[Azurerm_application_gateway_waf_configuration_38]],
           'value' => undef
         }
       }
@@ -811,10 +859,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_application_gateway], Tuple[Optional[Azurerm_application_gateway]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_application_gateway]]
+        'read' => Callable[String, Optional[Azurerm_application_gateway]],
+        'update' => Callable[String, Optional[Azurerm_application_gateway]]
       }
     },
-    Azurerm_application_gateway_authentication_certificate_611 => {
+    Azurerm_application_gateway_authentication_certificate_23 => {
       attributes => {
         'data' => String,
         'id' => {
@@ -824,7 +873,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String
       }
     },
-    Azurerm_application_gateway_backend_address_pool_612 => {
+    Azurerm_application_gateway_backend_address_pool_24 => {
       attributes => {
         'fqdn_list' => {
           'type' => Optional[Array[String]],
@@ -841,10 +890,10 @@ type TerraformAzureRM = TypeSet[{
         'name' => String
       }
     },
-    Azurerm_application_gateway_backend_http_settings_613 => {
+    Azurerm_application_gateway_backend_http_settings_25 => {
       attributes => {
         'authentication_certificate' => {
-          'type' => Optional[Array[Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614]],
+          'type' => Optional[Array[Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26]],
           'value' => undef
         },
         'cookie_based_affinity' => String,
@@ -869,7 +918,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614 => {
+    Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -878,7 +927,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String
       }
     },
-    Azurerm_application_gateway_frontend_ip_configuration_615 => {
+    Azurerm_application_gateway_frontend_ip_configuration_27 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -903,7 +952,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_application_gateway_frontend_port_616 => {
+    Azurerm_application_gateway_frontend_port_28 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -913,7 +962,7 @@ type TerraformAzureRM = TypeSet[{
         'port' => Integer
       }
     },
-    Azurerm_application_gateway_gateway_ip_configuration_617 => {
+    Azurerm_application_gateway_gateway_ip_configuration_29 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -923,7 +972,7 @@ type TerraformAzureRM = TypeSet[{
         'subnet_id' => String
       }
     },
-    Azurerm_application_gateway_http_listener_618 => {
+    Azurerm_application_gateway_http_listener_30 => {
       attributes => {
         'frontend_ip_configuration_id' => {
           'type' => Optional[String],
@@ -959,7 +1008,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_application_gateway_probe_619 => {
+    Azurerm_application_gateway_probe_31 => {
       attributes => {
         'host' => String,
         'id' => {
@@ -968,7 +1017,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'interval' => Integer,
         'match' => {
-          'type' => Optional[Array[Azurerm_application_gateway_probe_619_match_620]],
+          'type' => Optional[Array[Azurerm_application_gateway_probe_31_match_32]],
           'value' => undef
         },
         'minimum_servers' => {
@@ -982,7 +1031,7 @@ type TerraformAzureRM = TypeSet[{
         'unhealthy_threshold' => Integer
       }
     },
-    Azurerm_application_gateway_probe_619_match_620 => {
+    Azurerm_application_gateway_probe_31_match_32 => {
       attributes => {
         'body' => {
           'type' => Optional[String],
@@ -994,7 +1043,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_application_gateway_request_routing_rule_621 => {
+    Azurerm_application_gateway_request_routing_rule_33 => {
       attributes => {
         'backend_address_pool_id' => {
           'type' => Optional[String],
@@ -1033,14 +1082,14 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_application_gateway_sku_622 => {
+    Azurerm_application_gateway_sku_34 => {
       attributes => {
         'capacity' => Integer,
         'name' => String,
         'tier' => String
       }
     },
-    Azurerm_application_gateway_ssl_certificate_623 => {
+    Azurerm_application_gateway_ssl_certificate_35 => {
       attributes => {
         'data' => String,
         'id' => {
@@ -1055,7 +1104,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_application_gateway_url_path_map_624 => {
+    Azurerm_application_gateway_url_path_map_36 => {
       attributes => {
         'default_backend_address_pool_id' => {
           'type' => Optional[String],
@@ -1072,10 +1121,10 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'path_rule' => Array[Azurerm_application_gateway_url_path_map_624_path_rule_625]
+        'path_rule' => Array[Azurerm_application_gateway_url_path_map_36_path_rule_37]
       }
     },
-    Azurerm_application_gateway_url_path_map_624_path_rule_625 => {
+    Azurerm_application_gateway_url_path_map_36_path_rule_37 => {
       attributes => {
         'backend_address_pool_id' => {
           'type' => Optional[String],
@@ -1095,7 +1144,7 @@ type TerraformAzureRM = TypeSet[{
         'paths' => Array[String]
       }
     },
-    Azurerm_application_gateway_waf_configuration_626 => {
+    Azurerm_application_gateway_waf_configuration_38 => {
       attributes => {
         'enabled' => Boolean,
         'firewall_mode' => String,
@@ -1107,6 +1156,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_application_insights => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['application_type', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_application_insights_id', 'app_id', 'instrumentation_key', 'tags']
+        }
+      },
       attributes => {
         'azurerm_application_insights_id' => {
           'type' => Optional[String],
@@ -1134,10 +1189,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_application_insights], Tuple[Optional[Azurerm_application_insights]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_application_insights]]
+        'read' => Callable[String, Optional[Azurerm_application_insights]],
+        'update' => Callable[String, Optional[Azurerm_application_insights]]
       }
     },
     Azurerm_application_insights_api_key => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['application_insights_id', 'name', 'read_permissions', 'write_permissions'],
+          'providedAttributes' => ['azurerm_application_insights_api_key_id', 'api_key', 'read_permissions', 'write_permissions']
+        }
+      },
       attributes => {
         'azurerm_application_insights_api_key_id' => {
           'type' => Optional[String],
@@ -1163,10 +1225,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_application_insights_api_key], Tuple[Optional[Azurerm_application_insights_api_key]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_application_insights_api_key]]
+        'read' => Callable[String, Optional[Azurerm_application_insights_api_key]],
+        'update' => Callable[String, Optional[Azurerm_application_insights_api_key]]
       }
     },
     Azurerm_application_security_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_application_security_group_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_application_security_group_id' => {
           'type' => Optional[String],
@@ -1185,10 +1254,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_application_security_group], Tuple[Optional[Azurerm_application_security_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_application_security_group]]
+        'read' => Callable[String, Optional[Azurerm_application_security_group]],
+        'update' => Callable[String, Optional[Azurerm_application_security_group]]
       }
     },
     Azurerm_automation_account => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_automation_account_id', 'dsc_primary_access_key', 'dsc_secondary_access_key', 'dsc_server_endpoint', 'tags']
+        }
+      },
       attributes => {
         'azurerm_automation_account_id' => {
           'type' => Optional[String],
@@ -1209,7 +1285,7 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_automation_account_sku_627],
+        'sku' => Array[Azurerm_automation_account_sku_39],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -1220,10 +1296,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_account], Tuple[Optional[Azurerm_automation_account]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_account]]
+        'read' => Callable[String, Optional[Azurerm_automation_account]],
+        'update' => Callable[String, Optional[Azurerm_automation_account]]
       }
     },
-    Azurerm_automation_account_sku_627 => {
+    Azurerm_automation_account_sku_39 => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -1232,6 +1309,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_automation_credential => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_automation_credential_id', 'description']
+        }
+      },
       attributes => {
         'azurerm_automation_credential_id' => {
           'type' => Optional[String],
@@ -1252,10 +1335,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_credential], Tuple[Optional[Azurerm_automation_credential]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_credential]]
+        'read' => Callable[String, Optional[Azurerm_automation_credential]],
+        'update' => Callable[String, Optional[Azurerm_automation_credential]]
       }
     },
     Azurerm_automation_dsc_configuration => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['automation_account_name', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_automation_dsc_configuration_id', 'description', 'log_verbose', 'state']
+        }
+      },
       attributes => {
         'azurerm_automation_dsc_configuration_id' => {
           'type' => Optional[String],
@@ -1284,10 +1374,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_dsc_configuration], Tuple[Optional[Azurerm_automation_dsc_configuration]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_dsc_configuration]]
+        'read' => Callable[String, Optional[Azurerm_automation_dsc_configuration]],
+        'update' => Callable[String, Optional[Azurerm_automation_dsc_configuration]]
       }
     },
     Azurerm_automation_dsc_nodeconfiguration => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['automation_account_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_automation_dsc_nodeconfiguration_id', 'configuration_name']
+        }
+      },
       attributes => {
         'azurerm_automation_dsc_nodeconfiguration_id' => {
           'type' => Optional[String],
@@ -1307,17 +1404,24 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_dsc_nodeconfiguration], Tuple[Optional[Azurerm_automation_dsc_nodeconfiguration]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_dsc_nodeconfiguration]]
+        'read' => Callable[String, Optional[Azurerm_automation_dsc_nodeconfiguration]],
+        'update' => Callable[String, Optional[Azurerm_automation_dsc_nodeconfiguration]]
       }
     },
     Azurerm_automation_module => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['automation_account_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_automation_module_id']
+        }
+      },
       attributes => {
         'azurerm_automation_module_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'automation_account_name' => String,
-        'module_link' => Array[Azurerm_automation_module_module_link_628],
+        'module_link' => Array[Azurerm_automation_module_module_link_40],
         'name' => String,
         'resource_group_name' => String
       }
@@ -1326,25 +1430,32 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_module], Tuple[Optional[Azurerm_automation_module]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_module]]
+        'read' => Callable[String, Optional[Azurerm_automation_module]],
+        'update' => Callable[String, Optional[Azurerm_automation_module]]
       }
     },
-    Azurerm_automation_module_module_link_628 => {
+    Azurerm_automation_module_module_link_40 => {
       attributes => {
         'hash' => {
-          'type' => Optional[Array[Azurerm_automation_module_module_link_628_hash_629]],
+          'type' => Optional[Array[Azurerm_automation_module_module_link_40_hash_41]],
           'value' => undef
         },
         'uri' => String
       }
     },
-    Azurerm_automation_module_module_link_628_hash_629 => {
+    Azurerm_automation_module_module_link_40_hash_41 => {
       attributes => {
         'algorithm' => String,
         'value' => String
       }
     },
     Azurerm_automation_runbook => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_name', 'location', 'name', 'resource_group_name', 'runbook_type'],
+          'providedAttributes' => ['azurerm_automation_runbook_id', 'content', 'description', 'tags']
+        }
+      },
       attributes => {
         'azurerm_automation_runbook_id' => {
           'type' => Optional[String],
@@ -1363,7 +1474,7 @@ type TerraformAzureRM = TypeSet[{
         'log_progress' => Boolean,
         'log_verbose' => Boolean,
         'name' => String,
-        'publish_content_link' => Array[Azurerm_automation_runbook_publish_content_link_630],
+        'publish_content_link' => Array[Azurerm_automation_runbook_publish_content_link_42],
         'resource_group_name' => String,
         'runbook_type' => String,
         'tags' => {
@@ -1376,13 +1487,14 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_runbook], Tuple[Optional[Azurerm_automation_runbook]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_runbook]]
+        'read' => Callable[String, Optional[Azurerm_automation_runbook]],
+        'update' => Callable[String, Optional[Azurerm_automation_runbook]]
       }
     },
-    Azurerm_automation_runbook_publish_content_link_630 => {
+    Azurerm_automation_runbook_publish_content_link_42 => {
       attributes => {
         'hash' => {
-          'type' => Optional[Array[Azurerm_automation_runbook_publish_content_link_630_hash_631]],
+          'type' => Optional[Array[Azurerm_automation_runbook_publish_content_link_42_hash_43]],
           'value' => undef
         },
         'uri' => String,
@@ -1392,13 +1504,19 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_automation_runbook_publish_content_link_630_hash_631 => {
+    Azurerm_automation_runbook_publish_content_link_42_hash_43 => {
       attributes => {
         'algorithm' => String,
         'value' => String
       }
     },
     Azurerm_automation_schedule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_automation_schedule_id', 'account_name', 'automation_account_name', 'description', 'expiry_time', 'interval', 'month_days', 'monthly_occurrence', 'start_time', 'timezone', 'week_days']
+        }
+      },
       attributes => {
         'azurerm_automation_schedule_id' => {
           'type' => Optional[String],
@@ -1430,7 +1548,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'monthly_occurrence' => {
-          'type' => Optional[Array[Azurerm_automation_schedule_monthly_occurrence_632]],
+          'type' => Optional[Array[Azurerm_automation_schedule_monthly_occurrence_44]],
           'value' => undef
         },
         'name' => String,
@@ -1453,16 +1571,23 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_automation_schedule], Tuple[Optional[Azurerm_automation_schedule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_automation_schedule]]
+        'read' => Callable[String, Optional[Azurerm_automation_schedule]],
+        'update' => Callable[String, Optional[Azurerm_automation_schedule]]
       }
     },
-    Azurerm_automation_schedule_monthly_occurrence_632 => {
+    Azurerm_automation_schedule_monthly_occurrence_44 => {
       attributes => {
         'day' => String,
         'occurrence' => Integer
       }
     },
     Azurerm_autoscale_setting => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'target_resource_id'],
+          'providedAttributes' => ['azurerm_autoscale_setting_id', 'enabled', 'notification', 'tags']
+        }
+      },
       attributes => {
         'azurerm_autoscale_setting_id' => {
           'type' => Optional[String],
@@ -1475,10 +1600,10 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'notification' => {
-          'type' => Optional[Array[Azurerm_autoscale_setting_notification_633]],
+          'type' => Optional[Array[Azurerm_autoscale_setting_notification_45]],
           'value' => undef
         },
-        'profile' => Array[Azurerm_autoscale_setting_profile_636],
+        'profile' => Array[Azurerm_autoscale_setting_profile_48],
         'resource_group_name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -1491,22 +1616,23 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_autoscale_setting], Tuple[Optional[Azurerm_autoscale_setting]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_autoscale_setting]]
+        'read' => Callable[String, Optional[Azurerm_autoscale_setting]],
+        'update' => Callable[String, Optional[Azurerm_autoscale_setting]]
       }
     },
-    Azurerm_autoscale_setting_notification_633 => {
+    Azurerm_autoscale_setting_notification_45 => {
       attributes => {
         'email' => {
-          'type' => Optional[Array[Azurerm_autoscale_setting_notification_633_email_634]],
+          'type' => Optional[Array[Azurerm_autoscale_setting_notification_45_email_46]],
           'value' => undef
         },
         'webhook' => {
-          'type' => Optional[Array[Azurerm_autoscale_setting_notification_633_webhook_635]],
+          'type' => Optional[Array[Azurerm_autoscale_setting_notification_45_webhook_47]],
           'value' => undef
         }
       }
     },
-    Azurerm_autoscale_setting_notification_633_email_634 => {
+    Azurerm_autoscale_setting_notification_45_email_46 => {
       attributes => {
         'custom_emails' => {
           'type' => Optional[Array[String]],
@@ -1522,7 +1648,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_autoscale_setting_notification_633_webhook_635 => {
+    Azurerm_autoscale_setting_notification_45_webhook_47 => {
       attributes => {
         'properties' => {
           'type' => Optional[Hash[String, String]],
@@ -1531,32 +1657,32 @@ type TerraformAzureRM = TypeSet[{
         'service_uri' => String
       }
     },
-    Azurerm_autoscale_setting_profile_636 => {
+    Azurerm_autoscale_setting_profile_48 => {
       attributes => {
-        'capacity' => Array[Azurerm_autoscale_setting_profile_636_capacity_637],
+        'capacity' => Array[Azurerm_autoscale_setting_profile_48_capacity_49],
         'fixed_date' => {
-          'type' => Optional[Array[Azurerm_autoscale_setting_profile_636_fixed_date_638]],
+          'type' => Optional[Array[Azurerm_autoscale_setting_profile_48_fixed_date_50]],
           'value' => undef
         },
         'name' => String,
         'recurrence' => {
-          'type' => Optional[Array[Azurerm_autoscale_setting_profile_636_recurrence_639]],
+          'type' => Optional[Array[Azurerm_autoscale_setting_profile_48_recurrence_51]],
           'value' => undef
         },
         'rule' => {
-          'type' => Optional[Array[Azurerm_autoscale_setting_profile_636_rule_640]],
+          'type' => Optional[Array[Azurerm_autoscale_setting_profile_48_rule_52]],
           'value' => undef
         }
       }
     },
-    Azurerm_autoscale_setting_profile_636_capacity_637 => {
+    Azurerm_autoscale_setting_profile_48_capacity_49 => {
       attributes => {
         'default' => Integer,
         'maximum' => Integer,
         'minimum' => Integer
       }
     },
-    Azurerm_autoscale_setting_profile_636_fixed_date_638 => {
+    Azurerm_autoscale_setting_profile_48_fixed_date_50 => {
       attributes => {
         'end' => String,
         'start' => String,
@@ -1566,7 +1692,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_autoscale_setting_profile_636_recurrence_639 => {
+    Azurerm_autoscale_setting_profile_48_recurrence_51 => {
       attributes => {
         'days' => Array[String],
         'hours' => Array[Integer],
@@ -1577,13 +1703,13 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_autoscale_setting_profile_636_rule_640 => {
+    Azurerm_autoscale_setting_profile_48_rule_52 => {
       attributes => {
-        'metric_trigger' => Array[Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641],
-        'scale_action' => Array[Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642]
+        'metric_trigger' => Array[Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53],
+        'scale_action' => Array[Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54]
       }
     },
-    Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641 => {
+    Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53 => {
       attributes => {
         'metric_name' => String,
         'metric_resource_id' => String,
@@ -1595,7 +1721,7 @@ type TerraformAzureRM = TypeSet[{
         'time_window' => String
       }
     },
-    Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642 => {
+    Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54 => {
       attributes => {
         'cooldown' => String,
         'direction' => String,
@@ -1604,6 +1730,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_availability_set => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'managed', 'name', 'platform_fault_domain_count', 'platform_update_domain_count', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_availability_set_id', 'managed', 'platform_fault_domain_count', 'platform_update_domain_count', 'tags']
+        }
+      },
       attributes => {
         'azurerm_availability_set_id' => {
           'type' => Optional[String],
@@ -1634,10 +1766,16 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_availability_set], Tuple[Optional[Azurerm_availability_set]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_availability_set]]
+        'read' => Callable[String, Optional[Azurerm_availability_set]],
+        'update' => Callable[String, Optional[Azurerm_availability_set]]
       }
     },
     Azurerm_azuread_application => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['azurerm_azuread_application_id', 'application_id', 'available_to_other_tenants', 'homepage', 'identifier_uris', 'oauth2_allow_implicit_flow', 'reply_urls']
+        }
+      },
       attributes => {
         'azurerm_azuread_application_id' => {
           'type' => Optional[String],
@@ -1674,10 +1812,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_azuread_application], Tuple[Optional[Azurerm_azuread_application]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_azuread_application]]
+        'read' => Callable[String, Optional[Azurerm_azuread_application]],
+        'update' => Callable[String, Optional[Azurerm_azuread_application]]
       }
     },
     Azurerm_azuread_service_principal => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['application_id'],
+          'providedAttributes' => ['azurerm_azuread_service_principal_id', 'display_name']
+        }
+      },
       attributes => {
         'azurerm_azuread_service_principal_id' => {
           'type' => Optional[String],
@@ -1694,10 +1839,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_azuread_service_principal], Tuple[Optional[Azurerm_azuread_service_principal]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_azuread_service_principal]]
+        'read' => Callable[String, Optional[Azurerm_azuread_service_principal]],
+        'update' => Callable[String, Optional[Azurerm_azuread_service_principal]]
       }
     },
     Azurerm_azuread_service_principal_password => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['end_date', 'key_id', 'service_principal_id', 'start_date', 'value'],
+          'providedAttributes' => ['azurerm_azuread_service_principal_password_id', 'key_id', 'start_date']
+        }
+      },
       attributes => {
         'azurerm_azuread_service_principal_password_id' => {
           'type' => Optional[String],
@@ -1720,10 +1872,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_azuread_service_principal_password], Tuple[Optional[Azurerm_azuread_service_principal_password]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_azuread_service_principal_password]]
+        'read' => Callable[String, Optional[Azurerm_azuread_service_principal_password]],
+        'update' => Callable[String, Optional[Azurerm_azuread_service_principal_password]]
       }
     },
     Azurerm_batch_account => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_batch_account_id', 'pool_allocation_mode', 'storage_account_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_batch_account_id' => {
           'type' => Optional[String],
@@ -1750,10 +1909,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_batch_account], Tuple[Optional[Azurerm_batch_account]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_batch_account]]
+        'read' => Callable[String, Optional[Azurerm_batch_account]],
+        'update' => Callable[String, Optional[Azurerm_batch_account]]
       }
     },
     Azurerm_batch_pool => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_name', 'display_name', 'name', 'node_agent_sku_id', 'resource_group_name', 'storage_image_reference', 'vm_size'],
+          'providedAttributes' => ['azurerm_batch_pool_id', 'auto_scale', 'display_name', 'fixed_scale', 'start_task', 'stop_pending_resize_operation']
+        }
+      },
       attributes => {
         'azurerm_batch_pool_id' => {
           'type' => Optional[String],
@@ -1761,7 +1927,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'account_name' => String,
         'auto_scale' => {
-          'type' => Optional[Array[Azurerm_batch_pool_auto_scale_643]],
+          'type' => Optional[Array[Azurerm_batch_pool_auto_scale_55]],
           'value' => undef
         },
         'display_name' => {
@@ -1769,21 +1935,21 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'fixed_scale' => {
-          'type' => Optional[Array[Azurerm_batch_pool_fixed_scale_644]],
+          'type' => Optional[Array[Azurerm_batch_pool_fixed_scale_56]],
           'value' => undef
         },
         'name' => String,
         'node_agent_sku_id' => String,
         'resource_group_name' => String,
         'start_task' => {
-          'type' => Optional[Array[Azurerm_batch_pool_start_task_645]],
+          'type' => Optional[Array[Azurerm_batch_pool_start_task_57]],
           'value' => undef
         },
         'stop_pending_resize_operation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'storage_image_reference' => Array[Azurerm_batch_pool_storage_image_reference_648],
+        'storage_image_reference' => Array[Azurerm_batch_pool_storage_image_reference_60],
         'vm_size' => String
       }
     },
@@ -1791,10 +1957,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_batch_pool], Tuple[Optional[Azurerm_batch_pool]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_batch_pool]]
+        'read' => Callable[String, Optional[Azurerm_batch_pool]],
+        'update' => Callable[String, Optional[Azurerm_batch_pool]]
       }
     },
-    Azurerm_batch_pool_auto_scale_643 => {
+    Azurerm_batch_pool_auto_scale_55 => {
       attributes => {
         'evaluation_interval' => {
           'type' => Optional[String],
@@ -1803,7 +1970,7 @@ type TerraformAzureRM = TypeSet[{
         'formula' => String
       }
     },
-    Azurerm_batch_pool_fixed_scale_644 => {
+    Azurerm_batch_pool_fixed_scale_56 => {
       attributes => {
         'resize_timeout' => {
           'type' => Optional[String],
@@ -1819,7 +1986,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_batch_pool_start_task_645 => {
+    Azurerm_batch_pool_start_task_57 => {
       attributes => {
         'command_line' => String,
         'environment' => {
@@ -1830,17 +1997,17 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[Integer],
           'value' => undef
         },
-        'user_identity' => Array[Azurerm_batch_pool_start_task_645_user_identity_646],
+        'user_identity' => Array[Azurerm_batch_pool_start_task_57_user_identity_58],
         'wait_for_success' => {
           'type' => Optional[Boolean],
           'value' => undef
         }
       }
     },
-    Azurerm_batch_pool_start_task_645_user_identity_646 => {
+    Azurerm_batch_pool_start_task_57_user_identity_58 => {
       attributes => {
         'auto_user' => {
-          'type' => Optional[Array[Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647]],
+          'type' => Optional[Array[Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59]],
           'value' => undef
         },
         'user_name' => {
@@ -1849,7 +2016,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647 => {
+    Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59 => {
       attributes => {
         'elevation_level' => {
           'type' => Optional[String],
@@ -1861,7 +2028,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_batch_pool_storage_image_reference_648 => {
+    Azurerm_batch_pool_storage_image_reference_60 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -1874,6 +2041,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_cdn_endpoint => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'origin', 'profile_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_cdn_endpoint_id', 'content_types_to_compress', 'geo_filter', 'host_name', 'is_compression_enabled', 'is_http_allowed', 'is_https_allowed', 'optimization_type', 'origin_host_header', 'origin_path', 'probe_path', 'querystring_caching_behaviour', 'tags']
+        }
+      },
       attributes => {
         'azurerm_cdn_endpoint_id' => {
           'type' => Optional[String],
@@ -1884,7 +2057,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'geo_filter' => {
-          'type' => Optional[Array[Azurerm_cdn_endpoint_geo_filter_649]],
+          'type' => Optional[Array[Azurerm_cdn_endpoint_geo_filter_61]],
           'value' => undef
         },
         'host_name' => {
@@ -1909,7 +2082,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'origin' => Array[Azurerm_cdn_endpoint_origin_650],
+        'origin' => Array[Azurerm_cdn_endpoint_origin_62],
         'origin_host_header' => {
           'type' => Optional[String],
           'value' => undef
@@ -1938,17 +2111,18 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_cdn_endpoint], Tuple[Optional[Azurerm_cdn_endpoint]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_cdn_endpoint]]
+        'read' => Callable[String, Optional[Azurerm_cdn_endpoint]],
+        'update' => Callable[String, Optional[Azurerm_cdn_endpoint]]
       }
     },
-    Azurerm_cdn_endpoint_geo_filter_649 => {
+    Azurerm_cdn_endpoint_geo_filter_61 => {
       attributes => {
         'action' => String,
         'country_codes' => Array[String],
         'relative_path' => String
       }
     },
-    Azurerm_cdn_endpoint_origin_650 => {
+    Azurerm_cdn_endpoint_origin_62 => {
       attributes => {
         'host_name' => String,
         'http_port' => {
@@ -1963,6 +2137,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_cdn_profile => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'sku'],
+          'providedAttributes' => ['azurerm_cdn_profile_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_cdn_profile_id' => {
           'type' => Optional[String],
@@ -1982,10 +2162,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_cdn_profile], Tuple[Optional[Azurerm_cdn_profile]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_cdn_profile]]
+        'read' => Callable[String, Optional[Azurerm_cdn_profile]],
+        'update' => Callable[String, Optional[Azurerm_cdn_profile]]
       }
     },
     Azurerm_cognitive_account => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['kind', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_cognitive_account_id', 'endpoint', 'tags']
+        }
+      },
       attributes => {
         'azurerm_cognitive_account_id' => {
           'type' => Optional[String],
@@ -1999,7 +2186,7 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_cognitive_account_sku_651],
+        'sku' => Array[Azurerm_cognitive_account_sku_63],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -2010,22 +2197,29 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_cognitive_account], Tuple[Optional[Azurerm_cognitive_account]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_cognitive_account]]
+        'read' => Callable[String, Optional[Azurerm_cognitive_account]],
+        'update' => Callable[String, Optional[Azurerm_cognitive_account]]
       }
     },
-    Azurerm_cognitive_account_sku_651 => {
+    Azurerm_cognitive_account_sku_63 => {
       attributes => {
         'name' => String,
         'tier' => String
       }
     },
     Azurerm_container_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['container', 'dns_name_label', 'image_registry_credential', 'ip_address_type', 'location', 'name', 'os_type', 'resource_group_name', 'restart_policy', 'tags'],
+          'providedAttributes' => ['azurerm_container_group_id', 'dns_name_label', 'fqdn', 'image_registry_credential', 'ip_address', 'ip_address_type', 'restart_policy', 'tags']
+        }
+      },
       attributes => {
         'azurerm_container_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'container' => Array[Azurerm_container_group_container_652],
+        'container' => Array[Azurerm_container_group_container_64],
         'dns_name_label' => {
           'type' => Optional[String],
           'value' => undef
@@ -2035,7 +2229,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'image_registry_credential' => {
-          'type' => Optional[Array[Azurerm_container_group_image_registry_credential_655]],
+          'type' => Optional[Array[Azurerm_container_group_image_registry_credential_67]],
           'value' => undef
         },
         'ip_address' => {
@@ -2064,10 +2258,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_container_group], Tuple[Optional[Azurerm_container_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_container_group]]
+        'read' => Callable[String, Optional[Azurerm_container_group]],
+        'update' => Callable[String, Optional[Azurerm_container_group]]
       }
     },
-    Azurerm_container_group_container_652 => {
+    Azurerm_container_group_container_64 => {
       attributes => {
         'command' => {
           'type' => Optional[String],
@@ -2090,7 +2285,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'ports' => {
-          'type' => Optional[Array[Azurerm_container_group_container_652_ports_653]],
+          'type' => Optional[Array[Azurerm_container_group_container_64_ports_65]],
           'value' => undef
         },
         'protocol' => {
@@ -2102,12 +2297,12 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Array[Azurerm_container_group_container_652_volume_654]],
+          'type' => Optional[Array[Azurerm_container_group_container_64_volume_66]],
           'value' => undef
         }
       }
     },
-    Azurerm_container_group_container_652_ports_653 => {
+    Azurerm_container_group_container_64_ports_65 => {
       attributes => {
         'port' => {
           'type' => Optional[Integer],
@@ -2119,7 +2314,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_container_group_container_652_volume_654 => {
+    Azurerm_container_group_container_64_volume_66 => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -2132,7 +2327,7 @@ type TerraformAzureRM = TypeSet[{
         'storage_account_name' => String
       }
     },
-    Azurerm_container_group_image_registry_credential_655 => {
+    Azurerm_container_group_image_registry_credential_67 => {
       attributes => {
         'password' => String,
         'server' => String,
@@ -2140,6 +2335,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_container_registry => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_container_registry_id', 'admin_enabled', 'admin_password', 'admin_username', 'georeplication_locations', 'login_server', 'sku', 'storage_account', 'storage_account_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_container_registry_id' => {
           'type' => Optional[String],
@@ -2173,7 +2374,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'storage_account' => {
-          'type' => Optional[Array[Azurerm_container_registry_storage_account_656]],
+          'type' => Optional[Array[Azurerm_container_registry_storage_account_68]],
           'value' => undef
         },
         'storage_account_id' => {
@@ -2190,31 +2391,38 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_container_registry], Tuple[Optional[Azurerm_container_registry]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_container_registry]]
+        'read' => Callable[String, Optional[Azurerm_container_registry]],
+        'update' => Callable[String, Optional[Azurerm_container_registry]]
       }
     },
-    Azurerm_container_registry_storage_account_656 => {
+    Azurerm_container_registry_storage_account_68 => {
       attributes => {
         'access_key' => String,
         'name' => String
       }
     },
     Azurerm_container_service => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'orchestration_platform', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_container_service_id', 'service_principal', 'tags']
+        }
+      },
       attributes => {
         'azurerm_container_service_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'agent_pool_profile' => Array[Azurerm_container_service_agent_pool_profile_657],
-        'diagnostics_profile' => Array[Azurerm_container_service_diagnostics_profile_658],
-        'linux_profile' => Array[Azurerm_container_service_linux_profile_659],
+        'agent_pool_profile' => Array[Azurerm_container_service_agent_pool_profile_69],
+        'diagnostics_profile' => Array[Azurerm_container_service_diagnostics_profile_70],
+        'linux_profile' => Array[Azurerm_container_service_linux_profile_71],
         'location' => String,
-        'master_profile' => Array[Azurerm_container_service_master_profile_661],
+        'master_profile' => Array[Azurerm_container_service_master_profile_73],
         'name' => String,
         'orchestration_platform' => String,
         'resource_group_name' => String,
         'service_principal' => {
-          'type' => Optional[Array[Azurerm_container_service_service_principal_662]],
+          'type' => Optional[Array[Azurerm_container_service_service_principal_74]],
           'value' => undef
         },
         'tags' => {
@@ -2227,10 +2435,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_container_service], Tuple[Optional[Azurerm_container_service]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_container_service]]
+        'read' => Callable[String, Optional[Azurerm_container_service]],
+        'update' => Callable[String, Optional[Azurerm_container_service]]
       }
     },
-    Azurerm_container_service_agent_pool_profile_657 => {
+    Azurerm_container_service_agent_pool_profile_69 => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -2245,7 +2454,7 @@ type TerraformAzureRM = TypeSet[{
         'vm_size' => String
       }
     },
-    Azurerm_container_service_diagnostics_profile_658 => {
+    Azurerm_container_service_diagnostics_profile_70 => {
       attributes => {
         'enabled' => Boolean,
         'storage_uri' => {
@@ -2254,18 +2463,18 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_container_service_linux_profile_659 => {
+    Azurerm_container_service_linux_profile_71 => {
       attributes => {
         'admin_username' => String,
-        'ssh_key' => Array[Azurerm_container_service_linux_profile_659_ssh_key_660]
+        'ssh_key' => Array[Azurerm_container_service_linux_profile_71_ssh_key_72]
       }
     },
-    Azurerm_container_service_linux_profile_659_ssh_key_660 => {
+    Azurerm_container_service_linux_profile_71_ssh_key_72 => {
       attributes => {
         'key_data' => String
       }
     },
-    Azurerm_container_service_master_profile_661 => {
+    Azurerm_container_service_master_profile_73 => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -2278,27 +2487,33 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_container_service_service_principal_662 => {
+    Azurerm_container_service_service_principal_74 => {
       attributes => {
         'client_id' => String,
         'client_secret' => String
       }
     },
     Azurerm_cosmosdb_account => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['kind', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_cosmosdb_account_id', 'capabilities', 'connection_strings', 'enable_automatic_failover', 'enable_multiple_write_locations', 'endpoint', 'failover_policy', 'geo_location', 'ip_range_filter', 'is_virtual_network_filter_enabled', 'kind', 'primary_master_key', 'primary_readonly_master_key', 'read_endpoints', 'secondary_master_key', 'secondary_readonly_master_key', 'tags', 'virtual_network_rule', 'write_endpoints']
+        }
+      },
       attributes => {
         'azurerm_cosmosdb_account_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Azurerm_cosmosdb_account_capabilities_663]],
+          'type' => Optional[Array[Azurerm_cosmosdb_account_capabilities_75]],
           'value' => undef
         },
         'connection_strings' => {
           'type' => Optional[Array[String]],
           'value' => undef
         },
-        'consistency_policy' => Array[Azurerm_cosmosdb_account_consistency_policy_664],
+        'consistency_policy' => Array[Azurerm_cosmosdb_account_consistency_policy_76],
         'enable_automatic_failover' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -2312,11 +2527,11 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'failover_policy' => {
-          'type' => Optional[Array[Azurerm_cosmosdb_account_failover_policy_665]],
+          'type' => Optional[Array[Azurerm_cosmosdb_account_failover_policy_77]],
           'value' => undef
         },
         'geo_location' => {
-          'type' => Optional[Array[Azurerm_cosmosdb_account_geo_location_666]],
+          'type' => Optional[Array[Azurerm_cosmosdb_account_geo_location_78]],
           'value' => undef
         },
         'ip_range_filter' => {
@@ -2360,7 +2575,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'virtual_network_rule' => {
-          'type' => Optional[Array[Azurerm_cosmosdb_account_virtual_network_rule_667]],
+          'type' => Optional[Array[Azurerm_cosmosdb_account_virtual_network_rule_79]],
           'value' => undef
         },
         'write_endpoints' => {
@@ -2373,15 +2588,16 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_cosmosdb_account], Tuple[Optional[Azurerm_cosmosdb_account]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_cosmosdb_account]]
+        'read' => Callable[String, Optional[Azurerm_cosmosdb_account]],
+        'update' => Callable[String, Optional[Azurerm_cosmosdb_account]]
       }
     },
-    Azurerm_cosmosdb_account_capabilities_663 => {
+    Azurerm_cosmosdb_account_capabilities_75 => {
       attributes => {
         'name' => String
       }
     },
-    Azurerm_cosmosdb_account_consistency_policy_664 => {
+    Azurerm_cosmosdb_account_consistency_policy_76 => {
       attributes => {
         'consistency_level' => String,
         'max_interval_in_seconds' => {
@@ -2394,7 +2610,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_cosmosdb_account_failover_policy_665 => {
+    Azurerm_cosmosdb_account_failover_policy_77 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -2404,7 +2620,7 @@ type TerraformAzureRM = TypeSet[{
         'priority' => Integer
       }
     },
-    Azurerm_cosmosdb_account_geo_location_666 => {
+    Azurerm_cosmosdb_account_geo_location_78 => {
       attributes => {
         'failover_priority' => Integer,
         'id' => {
@@ -2418,12 +2634,18 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_cosmosdb_account_virtual_network_rule_667 => {
+    Azurerm_cosmosdb_account_virtual_network_rule_79 => {
       attributes => {
         'id' => String
       }
     },
     Azurerm_data_lake_analytics_account => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['default_store_account_name', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_data_lake_analytics_account_id', 'tags', 'tier']
+        }
+      },
       attributes => {
         'azurerm_data_lake_analytics_account_id' => {
           'type' => Optional[String],
@@ -2447,10 +2669,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_data_lake_analytics_account], Tuple[Optional[Azurerm_data_lake_analytics_account]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_data_lake_analytics_account]]
+        'read' => Callable[String, Optional[Azurerm_data_lake_analytics_account]],
+        'update' => Callable[String, Optional[Azurerm_data_lake_analytics_account]]
       }
     },
     Azurerm_data_lake_analytics_firewall_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_data_lake_analytics_firewall_rule_id']
+        }
+      },
       attributes => {
         'azurerm_data_lake_analytics_firewall_rule_id' => {
           'type' => Optional[String],
@@ -2467,10 +2696,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_data_lake_analytics_firewall_rule], Tuple[Optional[Azurerm_data_lake_analytics_firewall_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_data_lake_analytics_firewall_rule]]
+        'read' => Callable[String, Optional[Azurerm_data_lake_analytics_firewall_rule]],
+        'update' => Callable[String, Optional[Azurerm_data_lake_analytics_firewall_rule]]
       }
     },
     Azurerm_data_lake_store => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['encryption_state', 'encryption_type', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_data_lake_store_id', 'encryption_state', 'encryption_type', 'endpoint', 'firewall_allow_azure_ips', 'firewall_state', 'tags', 'tier']
+        }
+      },
       attributes => {
         'azurerm_data_lake_store_id' => {
           'type' => Optional[String],
@@ -2513,10 +2749,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_data_lake_store], Tuple[Optional[Azurerm_data_lake_store]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_data_lake_store]]
+        'read' => Callable[String, Optional[Azurerm_data_lake_store]],
+        'update' => Callable[String, Optional[Azurerm_data_lake_store]]
       }
     },
     Azurerm_data_lake_store_file => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_name', 'local_file_path', 'remote_file_path'],
+          'providedAttributes' => ['azurerm_data_lake_store_file_id']
+        }
+      },
       attributes => {
         'azurerm_data_lake_store_file_id' => {
           'type' => Optional[String],
@@ -2531,10 +2774,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_data_lake_store_file], Tuple[Optional[Azurerm_data_lake_store_file]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_data_lake_store_file]]
+        'read' => Callable[String, Optional[Azurerm_data_lake_store_file]],
+        'update' => Callable[String, Optional[Azurerm_data_lake_store_file]]
       }
     },
     Azurerm_data_lake_store_firewall_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_data_lake_store_firewall_rule_id']
+        }
+      },
       attributes => {
         'azurerm_data_lake_store_firewall_rule_id' => {
           'type' => Optional[String],
@@ -2551,10 +2801,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_data_lake_store_firewall_rule], Tuple[Optional[Azurerm_data_lake_store_firewall_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_data_lake_store_firewall_rule]]
+        'read' => Callable[String, Optional[Azurerm_data_lake_store_firewall_rule]],
+        'update' => Callable[String, Optional[Azurerm_data_lake_store_firewall_rule]]
       }
     },
     Azurerm_databricks_workspace => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'managed_resource_group_name', 'name', 'resource_group_name', 'sku'],
+          'providedAttributes' => ['azurerm_databricks_workspace_id', 'managed_resource_group_id', 'managed_resource_group_name', 'tags']
+        }
+      },
       attributes => {
         'azurerm_databricks_workspace_id' => {
           'type' => Optional[String],
@@ -2582,10 +2839,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_databricks_workspace], Tuple[Optional[Azurerm_databricks_workspace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_databricks_workspace]]
+        'read' => Callable[String, Optional[Azurerm_databricks_workspace]],
+        'update' => Callable[String, Optional[Azurerm_databricks_workspace]]
       }
     },
     Azurerm_dev_test_lab => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dev_test_lab_id', 'artifacts_storage_account_id', 'default_premium_storage_account_id', 'default_storage_account_id', 'key_vault_id', 'premium_data_disk_storage_account_id', 'storage_type', 'tags', 'unique_identifier']
+        }
+      },
       attributes => {
         'azurerm_dev_test_lab_id' => {
           'type' => Optional[String],
@@ -2632,10 +2896,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dev_test_lab], Tuple[Optional[Azurerm_dev_test_lab]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dev_test_lab]]
+        'read' => Callable[String, Optional[Azurerm_dev_test_lab]],
+        'update' => Callable[String, Optional[Azurerm_dev_test_lab]]
       }
     },
     Azurerm_dev_test_linux_virtual_machine => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['disallow_public_ip_address', 'inbound_nat_rule', 'lab_name', 'lab_subnet_name', 'lab_virtual_network_id', 'location', 'name', 'password', 'resource_group_name', 'size', 'ssh_key', 'username'],
+          'providedAttributes' => ['azurerm_dev_test_linux_virtual_machine_id', 'allow_claim', 'disallow_public_ip_address', 'fqdn', 'inbound_nat_rule', 'notes', 'password', 'ssh_key', 'tags', 'unique_identifier']
+        }
+      },
       attributes => {
         'azurerm_dev_test_linux_virtual_machine_id' => {
           'type' => Optional[String],
@@ -2653,9 +2924,9 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'gallery_image_reference' => Array[Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668],
+        'gallery_image_reference' => Array[Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80],
         'inbound_nat_rule' => {
-          'type' => Optional[Array[Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669]],
+          'type' => Optional[Array[Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81]],
           'value' => undef
         },
         'lab_name' => String,
@@ -2693,10 +2964,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dev_test_linux_virtual_machine], Tuple[Optional[Azurerm_dev_test_linux_virtual_machine]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dev_test_linux_virtual_machine]]
+        'read' => Callable[String, Optional[Azurerm_dev_test_linux_virtual_machine]],
+        'update' => Callable[String, Optional[Azurerm_dev_test_linux_virtual_machine]]
       }
     },
-    Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668 => {
+    Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80 => {
       attributes => {
         'offer' => String,
         'publisher' => String,
@@ -2704,7 +2976,7 @@ type TerraformAzureRM = TypeSet[{
         'version' => String
       }
     },
-    Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669 => {
+    Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81 => {
       attributes => {
         'backend_port' => Integer,
         'frontend_port' => {
@@ -2715,6 +2987,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_dev_test_policy => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['evaluator_type', 'lab_name', 'name', 'policy_set_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dev_test_policy_id', 'description', 'fact_data', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dev_test_policy_id' => {
           'type' => Optional[String],
@@ -2744,10 +3022,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dev_test_policy], Tuple[Optional[Azurerm_dev_test_policy]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dev_test_policy]]
+        'read' => Callable[String, Optional[Azurerm_dev_test_policy]],
+        'update' => Callable[String, Optional[Azurerm_dev_test_policy]]
       }
     },
     Azurerm_dev_test_virtual_network => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['lab_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dev_test_virtual_network_id', 'description', 'subnet', 'tags', 'unique_identifier']
+        }
+      },
       attributes => {
         'azurerm_dev_test_virtual_network_id' => {
           'type' => Optional[String],
@@ -2761,7 +3046,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'resource_group_name' => String,
         'subnet' => {
-          'type' => Optional[Array[Azurerm_dev_test_virtual_network_subnet_670]],
+          'type' => Optional[Array[Azurerm_dev_test_virtual_network_subnet_82]],
           'value' => undef
         },
         'tags' => {
@@ -2778,10 +3063,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dev_test_virtual_network], Tuple[Optional[Azurerm_dev_test_virtual_network]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dev_test_virtual_network]]
+        'read' => Callable[String, Optional[Azurerm_dev_test_virtual_network]],
+        'update' => Callable[String, Optional[Azurerm_dev_test_virtual_network]]
       }
     },
-    Azurerm_dev_test_virtual_network_subnet_670 => {
+    Azurerm_dev_test_virtual_network_subnet_82 => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -2798,6 +3084,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_dev_test_windows_virtual_machine => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['disallow_public_ip_address', 'inbound_nat_rule', 'lab_name', 'lab_subnet_name', 'lab_virtual_network_id', 'location', 'name', 'password', 'resource_group_name', 'size', 'username'],
+          'providedAttributes' => ['azurerm_dev_test_windows_virtual_machine_id', 'allow_claim', 'disallow_public_ip_address', 'fqdn', 'inbound_nat_rule', 'notes', 'tags', 'unique_identifier']
+        }
+      },
       attributes => {
         'azurerm_dev_test_windows_virtual_machine_id' => {
           'type' => Optional[String],
@@ -2815,9 +3107,9 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'gallery_image_reference' => Array[Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671],
+        'gallery_image_reference' => Array[Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83],
         'inbound_nat_rule' => {
-          'type' => Optional[Array[Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672]],
+          'type' => Optional[Array[Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84]],
           'value' => undef
         },
         'lab_name' => String,
@@ -2848,10 +3140,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dev_test_windows_virtual_machine], Tuple[Optional[Azurerm_dev_test_windows_virtual_machine]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dev_test_windows_virtual_machine]]
+        'read' => Callable[String, Optional[Azurerm_dev_test_windows_virtual_machine]],
+        'update' => Callable[String, Optional[Azurerm_dev_test_windows_virtual_machine]]
       }
     },
-    Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671 => {
+    Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83 => {
       attributes => {
         'offer' => String,
         'publisher' => String,
@@ -2859,7 +3152,7 @@ type TerraformAzureRM = TypeSet[{
         'version' => String
       }
     },
-    Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672 => {
+    Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84 => {
       attributes => {
         'backend_port' => Integer,
         'frontend_port' => {
@@ -2870,6 +3163,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_devspace_controller => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['host_suffix', 'location', 'name', 'resource_group_name', 'sku', 'target_container_host_credentials_base64', 'target_container_host_resource_id'],
+          'providedAttributes' => ['azurerm_devspace_controller_id', 'data_plane_fqdn', 'tags']
+        }
+      },
       attributes => {
         'azurerm_devspace_controller_id' => {
           'type' => Optional[String],
@@ -2883,7 +3182,7 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_devspace_controller_sku_673],
+        'sku' => Array[Azurerm_devspace_controller_sku_85],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -2896,16 +3195,23 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_devspace_controller], Tuple[Optional[Azurerm_devspace_controller]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_devspace_controller]]
+        'read' => Callable[String, Optional[Azurerm_devspace_controller]],
+        'update' => Callable[String, Optional[Azurerm_devspace_controller]]
       }
     },
-    Azurerm_devspace_controller_sku_673 => {
+    Azurerm_devspace_controller_sku_85 => {
       attributes => {
         'name' => String,
         'tier' => String
       }
     },
     Azurerm_dns_a_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_a_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_a_record_id' => {
           'type' => Optional[String],
@@ -2926,10 +3232,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_a_record], Tuple[Optional[Azurerm_dns_a_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_a_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_a_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_a_record]]
       }
     },
     Azurerm_dns_aaaa_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_aaaa_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_aaaa_record_id' => {
           'type' => Optional[String],
@@ -2950,17 +3263,24 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_aaaa_record], Tuple[Optional[Azurerm_dns_aaaa_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_aaaa_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_aaaa_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_aaaa_record]]
       }
     },
     Azurerm_dns_caa_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_caa_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_caa_record_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'record' => Array[Azurerm_dns_caa_record_record_674],
+        'record' => Array[Azurerm_dns_caa_record_record_86],
         'resource_group_name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -2974,10 +3294,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_caa_record], Tuple[Optional[Azurerm_dns_caa_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_caa_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_caa_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_caa_record]]
       }
     },
-    Azurerm_dns_caa_record_record_674 => {
+    Azurerm_dns_caa_record_record_86 => {
       attributes => {
         'flags' => Integer,
         'tag' => String,
@@ -2985,6 +3306,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_dns_cname_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_cname_record_id', 'records', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_cname_record_id' => {
           'type' => Optional[String],
@@ -3009,17 +3336,24 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_cname_record], Tuple[Optional[Azurerm_dns_cname_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_cname_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_cname_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_cname_record]]
       }
     },
     Azurerm_dns_mx_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_mx_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_mx_record_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'record' => Array[Azurerm_dns_mx_record_record_675],
+        'record' => Array[Azurerm_dns_mx_record_record_87],
         'resource_group_name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -3033,16 +3367,23 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_mx_record], Tuple[Optional[Azurerm_dns_mx_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_mx_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_mx_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_mx_record]]
       }
     },
-    Azurerm_dns_mx_record_record_675 => {
+    Azurerm_dns_mx_record_record_87 => {
       attributes => {
         'exchange' => String,
         'preference' => String
       }
     },
     Azurerm_dns_ns_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_ns_record_id', 'record', 'records', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_ns_record_id' => {
           'type' => Optional[String],
@@ -3050,7 +3391,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'name' => String,
         'record' => {
-          'type' => Optional[Array[Azurerm_dns_ns_record_record_676]],
+          'type' => Optional[Array[Azurerm_dns_ns_record_record_88]],
           'value' => undef
         },
         'records' => {
@@ -3070,15 +3411,22 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_ns_record], Tuple[Optional[Azurerm_dns_ns_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_ns_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_ns_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_ns_record]]
       }
     },
-    Azurerm_dns_ns_record_record_676 => {
+    Azurerm_dns_ns_record_record_88 => {
       attributes => {
         'nsdname' => String
       }
     },
     Azurerm_dns_ptr_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_ptr_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_ptr_record_id' => {
           'type' => Optional[String],
@@ -3099,17 +3447,24 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_ptr_record], Tuple[Optional[Azurerm_dns_ptr_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_ptr_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_ptr_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_ptr_record]]
       }
     },
     Azurerm_dns_srv_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_srv_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_srv_record_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'record' => Array[Azurerm_dns_srv_record_record_677],
+        'record' => Array[Azurerm_dns_srv_record_record_89],
         'resource_group_name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -3123,10 +3478,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_srv_record], Tuple[Optional[Azurerm_dns_srv_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_srv_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_srv_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_srv_record]]
       }
     },
-    Azurerm_dns_srv_record_record_677 => {
+    Azurerm_dns_srv_record_record_89 => {
       attributes => {
         'port' => Integer,
         'priority' => Integer,
@@ -3135,13 +3491,19 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_dns_txt_record => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_txt_record_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_dns_txt_record_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'name' => String,
-        'record' => Array[Azurerm_dns_txt_record_record_678],
+        'record' => Array[Azurerm_dns_txt_record_record_90],
         'resource_group_name' => String,
         'tags' => {
           'type' => Optional[Hash[String, String]],
@@ -3155,15 +3517,22 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_txt_record], Tuple[Optional[Azurerm_dns_txt_record]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_txt_record]]
+        'read' => Callable[String, Optional[Azurerm_dns_txt_record]],
+        'update' => Callable[String, Optional[Azurerm_dns_txt_record]]
       }
     },
-    Azurerm_dns_txt_record_record_678 => {
+    Azurerm_dns_txt_record_record_90 => {
       attributes => {
         'value' => String
       }
     },
     Azurerm_dns_zone => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_dns_zone_id', 'max_number_of_record_sets', 'name_servers', 'number_of_record_sets', 'registration_virtual_network_ids', 'resolution_virtual_network_ids', 'tags', 'zone_type']
+        }
+      },
       attributes => {
         'azurerm_dns_zone_id' => {
           'type' => Optional[String],
@@ -3205,10 +3574,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_dns_zone], Tuple[Optional[Azurerm_dns_zone]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_dns_zone]]
+        'read' => Callable[String, Optional[Azurerm_dns_zone]],
+        'update' => Callable[String, Optional[Azurerm_dns_zone]]
       }
     },
     Azurerm_eventgrid_topic => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_eventgrid_topic_id', 'endpoint', 'primary_access_key', 'secondary_access_key', 'tags']
+        }
+      },
       attributes => {
         'azurerm_eventgrid_topic_id' => {
           'type' => Optional[String],
@@ -3239,17 +3615,24 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_eventgrid_topic], Tuple[Optional[Azurerm_eventgrid_topic]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_eventgrid_topic]]
+        'read' => Callable[String, Optional[Azurerm_eventgrid_topic]],
+        'update' => Callable[String, Optional[Azurerm_eventgrid_topic]]
       }
     },
     Azurerm_eventhub => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'namespace_name', 'partition_count', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_eventhub_id', 'capture_description', 'location', 'partition_ids']
+        }
+      },
       attributes => {
         'azurerm_eventhub_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'capture_description' => {
-          'type' => Optional[Array[Azurerm_eventhub_capture_description_679]],
+          'type' => Optional[Array[Azurerm_eventhub_capture_description_91]],
           'value' => undef
         },
         'location' => {
@@ -3271,10 +3654,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_eventhub], Tuple[Optional[Azurerm_eventhub]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_eventhub]]
+        'read' => Callable[String, Optional[Azurerm_eventhub]],
+        'update' => Callable[String, Optional[Azurerm_eventhub]]
       }
     },
     Azurerm_eventhub_authorization_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['eventhub_name', 'location', 'name', 'namespace_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_eventhub_authorization_rule_id', 'listen', 'location', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+        }
+      },
       attributes => {
         'azurerm_eventhub_authorization_rule_id' => {
           'type' => Optional[String],
@@ -3322,12 +3712,13 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_eventhub_authorization_rule], Tuple[Optional[Azurerm_eventhub_authorization_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_eventhub_authorization_rule]]
+        'read' => Callable[String, Optional[Azurerm_eventhub_authorization_rule]],
+        'update' => Callable[String, Optional[Azurerm_eventhub_authorization_rule]]
       }
     },
-    Azurerm_eventhub_capture_description_679 => {
+    Azurerm_eventhub_capture_description_91 => {
       attributes => {
-        'destination' => Array[Azurerm_eventhub_capture_description_679_destination_680],
+        'destination' => Array[Azurerm_eventhub_capture_description_91_destination_92],
         'enabled' => Boolean,
         'encoding' => String,
         'interval_in_seconds' => {
@@ -3340,7 +3731,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_eventhub_capture_description_679_destination_680 => {
+    Azurerm_eventhub_capture_description_91_destination_92 => {
       attributes => {
         'archive_name_format' => String,
         'blob_container_name' => String,
@@ -3349,6 +3740,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_eventhub_consumer_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['eventhub_name', 'location', 'name', 'namespace_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_eventhub_consumer_group_id', 'location', 'user_metadata']
+        }
+      },
       attributes => {
         'azurerm_eventhub_consumer_group_id' => {
           'type' => Optional[String],
@@ -3372,10 +3769,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_eventhub_consumer_group], Tuple[Optional[Azurerm_eventhub_consumer_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_eventhub_consumer_group]]
+        'read' => Callable[String, Optional[Azurerm_eventhub_consumer_group]],
+        'update' => Callable[String, Optional[Azurerm_eventhub_consumer_group]]
       }
     },
     Azurerm_eventhub_namespace => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_eventhub_namespace_id', 'auto_inflate_enabled', 'capacity', 'default_primary_connection_string', 'default_primary_key', 'default_secondary_connection_string', 'default_secondary_key', 'kafka_enabled', 'maximum_throughput_units', 'tags']
+        }
+      },
       attributes => {
         'azurerm_eventhub_namespace_id' => {
           'type' => Optional[String],
@@ -3427,10 +3831,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_eventhub_namespace], Tuple[Optional[Azurerm_eventhub_namespace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_eventhub_namespace]]
+        'read' => Callable[String, Optional[Azurerm_eventhub_namespace]],
+        'update' => Callable[String, Optional[Azurerm_eventhub_namespace]]
       }
     },
     Azurerm_eventhub_namespace_authorization_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'namespace_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_eventhub_namespace_authorization_rule_id', 'listen', 'location', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+        }
+      },
       attributes => {
         'azurerm_eventhub_namespace_authorization_rule_id' => {
           'type' => Optional[String],
@@ -3477,10 +3888,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_eventhub_namespace_authorization_rule], Tuple[Optional[Azurerm_eventhub_namespace_authorization_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_eventhub_namespace_authorization_rule]]
+        'read' => Callable[String, Optional[Azurerm_eventhub_namespace_authorization_rule]],
+        'update' => Callable[String, Optional[Azurerm_eventhub_namespace_authorization_rule]]
       }
     },
     Azurerm_express_route_circuit => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'peering_location', 'resource_group_name', 'service_provider_name'],
+          'providedAttributes' => ['azurerm_express_route_circuit_id', 'allow_classic_operations', 'service_key', 'service_provider_provisioning_state', 'tags']
+        }
+      },
       attributes => {
         'azurerm_express_route_circuit_id' => {
           'type' => Optional[String],
@@ -3504,7 +3922,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'sku' => Array[Azurerm_express_route_circuit_sku_681],
+        'sku' => Array[Azurerm_express_route_circuit_sku_93],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -3515,10 +3933,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_express_route_circuit], Tuple[Optional[Azurerm_express_route_circuit]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_express_route_circuit]]
+        'read' => Callable[String, Optional[Azurerm_express_route_circuit]],
+        'update' => Callable[String, Optional[Azurerm_express_route_circuit]]
       }
     },
     Azurerm_express_route_circuit_authorization => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['express_route_circuit_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_express_route_circuit_authorization_id', 'authorization_key', 'authorization_use_status']
+        }
+      },
       attributes => {
         'azurerm_express_route_circuit_authorization_id' => {
           'type' => Optional[String],
@@ -3541,10 +3966,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_express_route_circuit_authorization], Tuple[Optional[Azurerm_express_route_circuit_authorization]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_express_route_circuit_authorization]]
+        'read' => Callable[String, Optional[Azurerm_express_route_circuit_authorization]],
+        'update' => Callable[String, Optional[Azurerm_express_route_circuit_authorization]]
       }
     },
     Azurerm_express_route_circuit_peering => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['express_route_circuit_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_express_route_circuit_peering_id', 'azure_asn', 'microsoft_peering_config', 'peer_asn', 'primary_azure_port', 'secondary_azure_port', 'shared_key']
+        }
+      },
       attributes => {
         'azurerm_express_route_circuit_peering_id' => {
           'type' => Optional[String],
@@ -3556,7 +3988,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'express_route_circuit_name' => String,
         'microsoft_peering_config' => {
-          'type' => Optional[Array[Azurerm_express_route_circuit_peering_microsoft_peering_config_682]],
+          'type' => Optional[Array[Azurerm_express_route_circuit_peering_microsoft_peering_config_94]],
           'value' => undef
         },
         'peer_asn' => {
@@ -3586,27 +4018,34 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_express_route_circuit_peering], Tuple[Optional[Azurerm_express_route_circuit_peering]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_express_route_circuit_peering]]
+        'read' => Callable[String, Optional[Azurerm_express_route_circuit_peering]],
+        'update' => Callable[String, Optional[Azurerm_express_route_circuit_peering]]
       }
     },
-    Azurerm_express_route_circuit_peering_microsoft_peering_config_682 => {
+    Azurerm_express_route_circuit_peering_microsoft_peering_config_94 => {
       attributes => {
         'advertised_public_prefixes' => Array[String]
       }
     },
-    Azurerm_express_route_circuit_sku_681 => {
+    Azurerm_express_route_circuit_sku_93 => {
       attributes => {
         'family' => String,
         'tier' => String
       }
     },
     Azurerm_firewall => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_firewall_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_firewall_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'ip_configuration' => Array[Azurerm_firewall_ip_configuration_683],
+        'ip_configuration' => Array[Azurerm_firewall_ip_configuration_95],
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
@@ -3620,10 +4059,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_firewall], Tuple[Optional[Azurerm_firewall]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_firewall]]
+        'read' => Callable[String, Optional[Azurerm_firewall]],
+        'update' => Callable[String, Optional[Azurerm_firewall]]
       }
     },
     Azurerm_firewall_application_rule_collection => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['azure_firewall_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_firewall_application_rule_collection_id']
+        }
+      },
       attributes => {
         'azurerm_firewall_application_rule_collection_id' => {
           'type' => Optional[String],
@@ -3634,17 +4080,18 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'priority' => Integer,
         'resource_group_name' => String,
-        'rule' => Array[Azurerm_firewall_application_rule_collection_rule_684]
+        'rule' => Array[Azurerm_firewall_application_rule_collection_rule_96]
       }
     },
     Azurerm_firewall_application_rule_collectionHandler => {
       functions => {
         'create' => Callable[Optional[Azurerm_firewall_application_rule_collection], Tuple[Optional[Azurerm_firewall_application_rule_collection]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_firewall_application_rule_collection]]
+        'read' => Callable[String, Optional[Azurerm_firewall_application_rule_collection]],
+        'update' => Callable[String, Optional[Azurerm_firewall_application_rule_collection]]
       }
     },
-    Azurerm_firewall_application_rule_collection_rule_684 => {
+    Azurerm_firewall_application_rule_collection_rule_96 => {
       attributes => {
         'description' => {
           'type' => Optional[String],
@@ -3656,7 +4103,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'name' => String,
         'protocol' => {
-          'type' => Optional[Array[Azurerm_firewall_application_rule_collection_rule_684_protocol_685]],
+          'type' => Optional[Array[Azurerm_firewall_application_rule_collection_rule_96_protocol_97]],
           'value' => undef
         },
         'source_addresses' => Array[String],
@@ -3666,7 +4113,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_firewall_application_rule_collection_rule_684_protocol_685 => {
+    Azurerm_firewall_application_rule_collection_rule_96_protocol_97 => {
       attributes => {
         'port' => {
           'type' => Optional[Integer],
@@ -3675,7 +4122,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_firewall_ip_configuration_683 => {
+    Azurerm_firewall_ip_configuration_95 => {
       attributes => {
         'internal_public_ip_address_id' => {
           'type' => Optional[String],
@@ -3694,6 +4141,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_firewall_network_rule_collection => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['azure_firewall_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_firewall_network_rule_collection_id']
+        }
+      },
       attributes => {
         'azurerm_firewall_network_rule_collection_id' => {
           'type' => Optional[String],
@@ -3704,17 +4157,18 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'priority' => Integer,
         'resource_group_name' => String,
-        'rule' => Array[Azurerm_firewall_network_rule_collection_rule_686]
+        'rule' => Array[Azurerm_firewall_network_rule_collection_rule_98]
       }
     },
     Azurerm_firewall_network_rule_collectionHandler => {
       functions => {
         'create' => Callable[Optional[Azurerm_firewall_network_rule_collection], Tuple[Optional[Azurerm_firewall_network_rule_collection]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_firewall_network_rule_collection]]
+        'read' => Callable[String, Optional[Azurerm_firewall_network_rule_collection]],
+        'update' => Callable[String, Optional[Azurerm_firewall_network_rule_collection]]
       }
     },
-    Azurerm_firewall_network_rule_collection_rule_686 => {
+    Azurerm_firewall_network_rule_collection_rule_98 => {
       attributes => {
         'description' => {
           'type' => Optional[String],
@@ -3728,6 +4182,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_function_app => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['app_service_plan_id', 'location', 'name', 'resource_group_name', 'storage_connection_string'],
+          'providedAttributes' => ['azurerm_function_app_id', 'app_settings', 'client_affinity_enabled', 'connection_string', 'default_hostname', 'enable_builtin_logging', 'enabled', 'https_only', 'identity', 'outbound_ip_addresses', 'site_config', 'site_credential', 'tags', 'version']
+        }
+      },
       attributes => {
         'azurerm_function_app_id' => {
           'type' => Optional[String],
@@ -3743,7 +4203,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'connection_string' => {
-          'type' => Optional[Array[Azurerm_function_app_connection_string_687]],
+          'type' => Optional[Array[Azurerm_function_app_connection_string_99]],
           'value' => undef
         },
         'default_hostname' => {
@@ -3763,7 +4223,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_function_app_identity_688]],
+          'type' => Optional[Array[Azurerm_function_app_identity_100]],
           'value' => undef
         },
         'location' => String,
@@ -3774,11 +4234,11 @@ type TerraformAzureRM = TypeSet[{
         },
         'resource_group_name' => String,
         'site_config' => {
-          'type' => Optional[Array[Azurerm_function_app_site_config_689]],
+          'type' => Optional[Array[Azurerm_function_app_site_config_101]],
           'value' => undef
         },
         'site_credential' => {
-          'type' => Optional[Array[Azurerm_function_app_site_credential_690]],
+          'type' => Optional[Array[Azurerm_function_app_site_credential_102]],
           'value' => undef
         },
         'storage_connection_string' => String,
@@ -3796,17 +4256,18 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_function_app], Tuple[Optional[Azurerm_function_app]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_function_app]]
+        'read' => Callable[String, Optional[Azurerm_function_app]],
+        'update' => Callable[String, Optional[Azurerm_function_app]]
       }
     },
-    Azurerm_function_app_connection_string_687 => {
+    Azurerm_function_app_connection_string_99 => {
       attributes => {
         'name' => String,
         'type' => String,
         'value' => String
       }
     },
-    Azurerm_function_app_identity_688 => {
+    Azurerm_function_app_identity_100 => {
       attributes => {
         'principal_id' => {
           'type' => Optional[String],
@@ -3819,7 +4280,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_function_app_site_config_689 => {
+    Azurerm_function_app_site_config_101 => {
       attributes => {
         'always_on' => {
           'type' => Optional[Boolean],
@@ -3835,7 +4296,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_function_app_site_credential_690 => {
+    Azurerm_function_app_site_credential_102 => {
       attributes => {
         'password' => {
           'type' => Optional[String],
@@ -3848,19 +4309,25 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_image => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'os_disk', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_image_id', 'data_disk', 'os_disk', 'source_virtual_machine_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_image_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'data_disk' => {
-          'type' => Optional[Array[Azurerm_image_data_disk_691]],
+          'type' => Optional[Array[Azurerm_image_data_disk_103]],
           'value' => undef
         },
         'location' => String,
         'name' => String,
         'os_disk' => {
-          'type' => Optional[Array[Azurerm_image_os_disk_692]],
+          'type' => Optional[Array[Azurerm_image_os_disk_104]],
           'value' => undef
         },
         'resource_group_name' => String,
@@ -3878,10 +4345,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_image], Tuple[Optional[Azurerm_image]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_image]]
+        'read' => Callable[String, Optional[Azurerm_image]],
+        'update' => Callable[String, Optional[Azurerm_image]]
       }
     },
-    Azurerm_image_data_disk_691 => {
+    Azurerm_image_data_disk_103 => {
       attributes => {
         'blob_uri' => {
           'type' => Optional[String],
@@ -3905,7 +4373,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_image_os_disk_692 => {
+    Azurerm_image_os_disk_104 => {
       attributes => {
         'blob_uri' => {
           'type' => Optional[String],
@@ -3934,13 +4402,19 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_iothub => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_iothub_id', 'endpoint', 'event_hub_events_endpoint', 'event_hub_events_path', 'event_hub_operations_endpoint', 'event_hub_operations_path', 'hostname', 'route', 'shared_access_policy', 'tags', 'type']
+        }
+      },
       attributes => {
         'azurerm_iothub_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'endpoint' => {
-          'type' => Optional[Array[Azurerm_iothub_endpoint_693]],
+          'type' => Optional[Array[Azurerm_iothub_endpoint_105]],
           'value' => undef
         },
         'event_hub_events_endpoint' => {
@@ -3967,14 +4441,14 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'resource_group_name' => String,
         'route' => {
-          'type' => Optional[Array[Azurerm_iothub_route_694]],
+          'type' => Optional[Array[Azurerm_iothub_route_106]],
           'value' => undef
         },
         'shared_access_policy' => {
-          'type' => Optional[Array[Azurerm_iothub_shared_access_policy_695]],
+          'type' => Optional[Array[Azurerm_iothub_shared_access_policy_107]],
           'value' => undef
         },
-        'sku' => Array[Azurerm_iothub_sku_696],
+        'sku' => Array[Azurerm_iothub_sku_108],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -3989,10 +4463,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_iothub], Tuple[Optional[Azurerm_iothub]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_iothub]]
+        'read' => Callable[String, Optional[Azurerm_iothub]],
+        'update' => Callable[String, Optional[Azurerm_iothub]]
       }
     },
     Azurerm_iothub_consumer_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['eventhub_endpoint_name', 'iothub_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_iothub_consumer_group_id']
+        }
+      },
       attributes => {
         'azurerm_iothub_consumer_group_id' => {
           'type' => Optional[String],
@@ -4008,10 +4489,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_iothub_consumer_group], Tuple[Optional[Azurerm_iothub_consumer_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_iothub_consumer_group]]
+        'read' => Callable[String, Optional[Azurerm_iothub_consumer_group]],
+        'update' => Callable[String, Optional[Azurerm_iothub_consumer_group]]
       }
     },
-    Azurerm_iothub_endpoint_693 => {
+    Azurerm_iothub_endpoint_105 => {
       attributes => {
         'batch_frequency_in_seconds' => {
           'type' => Optional[Integer],
@@ -4038,7 +4520,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_iothub_route_694 => {
+    Azurerm_iothub_route_106 => {
       attributes => {
         'condition' => {
           'type' => Optional[String],
@@ -4050,7 +4532,7 @@ type TerraformAzureRM = TypeSet[{
         'source' => String
       }
     },
-    Azurerm_iothub_shared_access_policy_695 => {
+    Azurerm_iothub_shared_access_policy_107 => {
       attributes => {
         'key_name' => {
           'type' => Optional[String],
@@ -4070,7 +4552,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_iothub_sku_696 => {
+    Azurerm_iothub_sku_108 => {
       attributes => {
         'capacity' => Integer,
         'name' => String,
@@ -4078,13 +4560,19 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_key_vault => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_key_vault_id', 'access_policy', 'enabled_for_deployment', 'enabled_for_disk_encryption', 'enabled_for_template_deployment', 'network_acls', 'tags', 'vault_uri']
+        }
+      },
       attributes => {
         'azurerm_key_vault_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'access_policy' => {
-          'type' => Optional[Array[Azurerm_key_vault_access_policy_697]],
+          'type' => Optional[Array[Azurerm_key_vault_access_policy_109]],
           'value' => undef
         },
         'enabled_for_deployment' => {
@@ -4102,11 +4590,11 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'network_acls' => {
-          'type' => Optional[Array[Azurerm_key_vault_network_acls_698]],
+          'type' => Optional[Array[Azurerm_key_vault_network_acls_110]],
           'value' => undef
         },
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_key_vault_sku_699],
+        'sku' => Array[Azurerm_key_vault_sku_111],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -4122,10 +4610,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_key_vault], Tuple[Optional[Azurerm_key_vault]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_key_vault]]
+        'read' => Callable[String, Optional[Azurerm_key_vault]],
+        'update' => Callable[String, Optional[Azurerm_key_vault]]
       }
     },
     Azurerm_key_vault_access_policy => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['application_id', 'object_id', 'resource_group_name', 'tenant_id', 'vault_name'],
+          'providedAttributes' => ['azurerm_key_vault_access_policy_id', 'application_id', 'certificate_permissions', 'key_permissions', 'secret_permissions']
+        }
+      },
       attributes => {
         'azurerm_key_vault_access_policy_id' => {
           'type' => Optional[String],
@@ -4157,10 +4652,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_key_vault_access_policy], Tuple[Optional[Azurerm_key_vault_access_policy]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_key_vault_access_policy]]
+        'read' => Callable[String, Optional[Azurerm_key_vault_access_policy]],
+        'update' => Callable[String, Optional[Azurerm_key_vault_access_policy]]
       }
     },
-    Azurerm_key_vault_access_policy_697 => {
+    Azurerm_key_vault_access_policy_109 => {
       attributes => {
         'application_id' => {
           'type' => Optional[String],
@@ -4183,20 +4679,26 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_key_vault_certificate => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['certificate', 'certificate_policy', 'name', 'vault_uri'],
+          'providedAttributes' => ['azurerm_key_vault_certificate_id', 'certificate', 'certificate_data', 'secret_id', 'tags', 'thumbprint', 'version']
+        }
+      },
       attributes => {
         'azurerm_key_vault_certificate_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'certificate' => {
-          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_700]],
+          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_112]],
           'value' => undef
         },
         'certificate_data' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'certificate_policy' => Array[Azurerm_key_vault_certificate_certificate_policy_701],
+        'certificate_policy' => Array[Azurerm_key_vault_certificate_certificate_policy_113],
         'name' => String,
         'secret_id' => {
           'type' => Optional[String],
@@ -4221,10 +4723,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_key_vault_certificate], Tuple[Optional[Azurerm_key_vault_certificate]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_key_vault_certificate]]
+        'read' => Callable[String, Optional[Azurerm_key_vault_certificate]],
+        'update' => Callable[String, Optional[Azurerm_key_vault_certificate]]
       }
     },
-    Azurerm_key_vault_certificate_certificate_700 => {
+    Azurerm_key_vault_certificate_certificate_112 => {
       attributes => {
         'contents' => String,
         'password' => {
@@ -4233,27 +4736,27 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701 => {
+    Azurerm_key_vault_certificate_certificate_policy_113 => {
       attributes => {
-        'issuer_parameters' => Array[Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702],
-        'key_properties' => Array[Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703],
+        'issuer_parameters' => Array[Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114],
+        'key_properties' => Array[Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115],
         'lifetime_action' => {
-          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704]],
+          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116]],
           'value' => undef
         },
-        'secret_properties' => Array[Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707],
+        'secret_properties' => Array[Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119],
         'x509_certificate_properties' => {
-          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708]],
+          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120]],
           'value' => undef
         }
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114 => {
       attributes => {
         'name' => String
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115 => {
       attributes => {
         'exportable' => Boolean,
         'key_size' => Integer,
@@ -4261,18 +4764,18 @@ type TerraformAzureRM = TypeSet[{
         'reuse_key' => Boolean
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116 => {
       attributes => {
-        'action' => Array[Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705],
-        'trigger' => Array[Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706]
+        'action' => Array[Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117],
+        'trigger' => Array[Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118]
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117 => {
       attributes => {
         'action_type' => String
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118 => {
       attributes => {
         'days_before_expiry' => {
           'type' => Optional[Integer],
@@ -4284,12 +4787,12 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119 => {
       attributes => {
         'content_type' => String
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120 => {
       attributes => {
         'extended_key_usage' => {
           'type' => Optional[Array[String]],
@@ -4298,13 +4801,13 @@ type TerraformAzureRM = TypeSet[{
         'key_usage' => Array[String],
         'subject' => String,
         'subject_alternative_names' => {
-          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709]],
+          'type' => Optional[Array[Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121]],
           'value' => undef
         },
         'validity_in_months' => Integer
       }
     },
-    Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709 => {
+    Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121 => {
       attributes => {
         'dns_names' => {
           'type' => Optional[Array[String]],
@@ -4321,6 +4824,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_key_vault_key => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['key_size', 'key_type', 'name', 'vault_uri'],
+          'providedAttributes' => ['azurerm_key_vault_key_id', 'e', 'n', 'tags', 'version']
+        }
+      },
       attributes => {
         'azurerm_key_vault_key_id' => {
           'type' => Optional[String],
@@ -4353,10 +4862,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_key_vault_key], Tuple[Optional[Azurerm_key_vault_key]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_key_vault_key]]
+        'read' => Callable[String, Optional[Azurerm_key_vault_key]],
+        'update' => Callable[String, Optional[Azurerm_key_vault_key]]
       }
     },
-    Azurerm_key_vault_network_acls_698 => {
+    Azurerm_key_vault_network_acls_110 => {
       attributes => {
         'bypass' => String,
         'default_action' => String,
@@ -4371,6 +4881,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_key_vault_secret => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'vault_uri'],
+          'providedAttributes' => ['azurerm_key_vault_secret_id', 'content_type', 'tags', 'version']
+        }
+      },
       attributes => {
         'azurerm_key_vault_secret_id' => {
           'type' => Optional[String],
@@ -4397,32 +4913,39 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_key_vault_secret], Tuple[Optional[Azurerm_key_vault_secret]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_key_vault_secret]]
+        'read' => Callable[String, Optional[Azurerm_key_vault_secret]],
+        'update' => Callable[String, Optional[Azurerm_key_vault_secret]]
       }
     },
-    Azurerm_key_vault_sku_699 => {
+    Azurerm_key_vault_sku_111 => {
       attributes => {
         'name' => String
       }
     },
     Azurerm_kubernetes_cluster => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['dns_prefix', 'location', 'name', 'network_profile', 'resource_group_name', 'role_based_access_control'],
+          'providedAttributes' => ['azurerm_kubernetes_cluster_id', 'addon_profile', 'fqdn', 'kube_admin_config', 'kube_admin_config_raw', 'kube_config', 'kube_config_raw', 'kubernetes_version', 'linux_profile', 'network_profile', 'node_resource_group', 'role_based_access_control', 'tags']
+        }
+      },
       attributes => {
         'azurerm_kubernetes_cluster_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'addon_profile' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_710]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_122]],
           'value' => undef
         },
-        'agent_pool_profile' => Array[Azurerm_kubernetes_cluster_agent_pool_profile_714],
+        'agent_pool_profile' => Array[Azurerm_kubernetes_cluster_agent_pool_profile_126],
         'dns_prefix' => String,
         'fqdn' => {
           'type' => Optional[String],
           'value' => undef
         },
         'kube_admin_config' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_kube_admin_config_715]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_kube_admin_config_127]],
           'value' => undef
         },
         'kube_admin_config_raw' => {
@@ -4430,7 +4953,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'kube_config' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_kube_config_716]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_kube_config_128]],
           'value' => undef
         },
         'kube_config_raw' => {
@@ -4442,13 +4965,13 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'linux_profile' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_linux_profile_717]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_linux_profile_129]],
           'value' => undef
         },
         'location' => String,
         'name' => String,
         'network_profile' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_network_profile_719]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_network_profile_131]],
           'value' => undef
         },
         'node_resource_group' => {
@@ -4457,10 +4980,10 @@ type TerraformAzureRM = TypeSet[{
         },
         'resource_group_name' => String,
         'role_based_access_control' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_role_based_access_control_720]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_role_based_access_control_132]],
           'value' => undef
         },
-        'service_principal' => Array[Azurerm_kubernetes_cluster_service_principal_722],
+        'service_principal' => Array[Azurerm_kubernetes_cluster_service_principal_134],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -4471,32 +4994,33 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_kubernetes_cluster], Tuple[Optional[Azurerm_kubernetes_cluster]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_kubernetes_cluster]]
+        'read' => Callable[String, Optional[Azurerm_kubernetes_cluster]],
+        'update' => Callable[String, Optional[Azurerm_kubernetes_cluster]]
       }
     },
-    Azurerm_kubernetes_cluster_addon_profile_710 => {
+    Azurerm_kubernetes_cluster_addon_profile_122 => {
       attributes => {
         'aci_connector_linux' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123]],
           'value' => undef
         },
         'http_application_routing' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124]],
           'value' => undef
         },
         'oms_agent' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125]],
           'value' => undef
         }
       }
     },
-    Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711 => {
+    Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123 => {
       attributes => {
         'enabled' => Boolean,
         'subnet_name' => String
       }
     },
-    Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712 => {
+    Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124 => {
       attributes => {
         'enabled' => Boolean,
         'http_application_routing_zone_name' => {
@@ -4505,13 +5029,13 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713 => {
+    Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125 => {
       attributes => {
         'enabled' => Boolean,
         'log_analytics_workspace_id' => String
       }
     },
-    Azurerm_kubernetes_cluster_agent_pool_profile_714 => {
+    Azurerm_kubernetes_cluster_agent_pool_profile_126 => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -4545,7 +5069,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_kubernetes_cluster_kube_admin_config_715 => {
+    Azurerm_kubernetes_cluster_kube_admin_config_127 => {
       attributes => {
         'client_certificate' => {
           'type' => Optional[String],
@@ -4573,7 +5097,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_kubernetes_cluster_kube_config_716 => {
+    Azurerm_kubernetes_cluster_kube_config_128 => {
       attributes => {
         'client_certificate' => {
           'type' => Optional[String],
@@ -4601,18 +5125,18 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_kubernetes_cluster_linux_profile_717 => {
+    Azurerm_kubernetes_cluster_linux_profile_129 => {
       attributes => {
         'admin_username' => String,
-        'ssh_key' => Array[Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718]
+        'ssh_key' => Array[Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130]
       }
     },
-    Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718 => {
+    Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130 => {
       attributes => {
         'key_data' => String
       }
     },
-    Azurerm_kubernetes_cluster_network_profile_719 => {
+    Azurerm_kubernetes_cluster_network_profile_131 => {
       attributes => {
         'dns_service_ip' => {
           'type' => Optional[String],
@@ -4633,16 +5157,16 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_kubernetes_cluster_role_based_access_control_720 => {
+    Azurerm_kubernetes_cluster_role_based_access_control_132 => {
       attributes => {
         'azure_active_directory' => {
-          'type' => Optional[Array[Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721]],
+          'type' => Optional[Array[Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133]],
           'value' => undef
         },
         'enabled' => Boolean
       }
     },
-    Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721 => {
+    Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133 => {
       attributes => {
         'client_app_id' => String,
         'server_app_id' => String,
@@ -4653,20 +5177,26 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_kubernetes_cluster_service_principal_722 => {
+    Azurerm_kubernetes_cluster_service_principal_134 => {
       attributes => {
         'client_id' => String,
         'client_secret' => String
       }
     },
     Azurerm_lb => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'sku'],
+          'providedAttributes' => ['azurerm_lb_id', 'frontend_ip_configuration', 'private_ip_address', 'private_ip_addresses', 'sku', 'tags']
+        }
+      },
       attributes => {
         'azurerm_lb_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'frontend_ip_configuration' => {
-          'type' => Optional[Array[Azurerm_lb_frontend_ip_configuration_723]],
+          'type' => Optional[Array[Azurerm_lb_frontend_ip_configuration_135]],
           'value' => undef
         },
         'location' => String,
@@ -4694,10 +5224,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_lb], Tuple[Optional[Azurerm_lb]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_lb]]
+        'read' => Callable[String, Optional[Azurerm_lb]],
+        'update' => Callable[String, Optional[Azurerm_lb]]
       }
     },
     Azurerm_lb_backend_address_pool => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_lb_backend_address_pool_id', 'backend_ip_configurations', 'load_balancing_rules', 'location']
+        }
+      },
       attributes => {
         'azurerm_lb_backend_address_pool_id' => {
           'type' => Optional[String],
@@ -4724,10 +5261,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_lb_backend_address_pool], Tuple[Optional[Azurerm_lb_backend_address_pool]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_lb_backend_address_pool]]
+        'read' => Callable[String, Optional[Azurerm_lb_backend_address_pool]],
+        'update' => Callable[String, Optional[Azurerm_lb_backend_address_pool]]
       }
     },
-    Azurerm_lb_frontend_ip_configuration_723 => {
+    Azurerm_lb_frontend_ip_configuration_135 => {
       attributes => {
         'inbound_nat_rules' => {
           'type' => Optional[Array[String]],
@@ -4761,6 +5299,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_lb_nat_pool => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_lb_nat_pool_id', 'frontend_ip_configuration_id', 'location']
+        }
+      },
       attributes => {
         'azurerm_lb_nat_pool_id' => {
           'type' => Optional[String],
@@ -4788,10 +5332,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_lb_nat_pool], Tuple[Optional[Azurerm_lb_nat_pool]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_lb_nat_pool]]
+        'read' => Callable[String, Optional[Azurerm_lb_nat_pool]],
+        'update' => Callable[String, Optional[Azurerm_lb_nat_pool]]
       }
     },
     Azurerm_lb_nat_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_lb_nat_rule_id', 'backend_ip_configuration_id', 'enable_floating_ip', 'frontend_ip_configuration_id', 'location']
+        }
+      },
       attributes => {
         'azurerm_lb_nat_rule_id' => {
           'type' => Optional[String],
@@ -4826,10 +5377,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_lb_nat_rule], Tuple[Optional[Azurerm_lb_nat_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_lb_nat_rule]]
+        'read' => Callable[String, Optional[Azurerm_lb_nat_rule]],
+        'update' => Callable[String, Optional[Azurerm_lb_nat_rule]]
       }
     },
     Azurerm_lb_probe => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_lb_probe_id', 'interval_in_seconds', 'load_balancer_rules', 'location', 'number_of_probes', 'protocol', 'request_path']
+        }
+      },
       attributes => {
         'azurerm_lb_probe_id' => {
           'type' => Optional[String],
@@ -4869,10 +5427,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_lb_probe], Tuple[Optional[Azurerm_lb_probe]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_lb_probe]]
+        'read' => Callable[String, Optional[Azurerm_lb_probe]],
+        'update' => Callable[String, Optional[Azurerm_lb_probe]]
       }
     },
     Azurerm_lb_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_lb_rule_id', 'backend_address_pool_id', 'enable_floating_ip', 'frontend_ip_configuration_id', 'idle_timeout_in_minutes', 'load_distribution', 'location', 'probe_id']
+        }
+      },
       attributes => {
         'azurerm_lb_rule_id' => {
           'type' => Optional[String],
@@ -4919,10 +5484,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_lb_rule], Tuple[Optional[Azurerm_lb_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_lb_rule]]
+        'read' => Callable[String, Optional[Azurerm_lb_rule]],
+        'update' => Callable[String, Optional[Azurerm_lb_rule]]
       }
     },
     Azurerm_local_network_gateway => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_local_network_gateway_id', 'bgp_settings', 'tags']
+        }
+      },
       attributes => {
         'azurerm_local_network_gateway_id' => {
           'type' => Optional[String],
@@ -4930,7 +5502,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'address_space' => Array[String],
         'bgp_settings' => {
-          'type' => Optional[Array[Azurerm_local_network_gateway_bgp_settings_724]],
+          'type' => Optional[Array[Azurerm_local_network_gateway_bgp_settings_136]],
           'value' => undef
         },
         'gateway_address' => String,
@@ -4947,10 +5519,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_local_network_gateway], Tuple[Optional[Azurerm_local_network_gateway]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_local_network_gateway]]
+        'read' => Callable[String, Optional[Azurerm_local_network_gateway]],
+        'update' => Callable[String, Optional[Azurerm_local_network_gateway]]
       }
     },
-    Azurerm_local_network_gateway_bgp_settings_724 => {
+    Azurerm_local_network_gateway_bgp_settings_136 => {
       attributes => {
         'asn' => Integer,
         'bgp_peering_address' => String,
@@ -4961,13 +5534,19 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_log_analytics_solution => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'resource_group_name', 'solution_name', 'workspace_name', 'workspace_resource_id'],
+          'providedAttributes' => ['azurerm_log_analytics_solution_id']
+        }
+      },
       attributes => {
         'azurerm_log_analytics_solution_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'location' => String,
-        'plan' => Array[Azurerm_log_analytics_solution_plan_725],
+        'plan' => Array[Azurerm_log_analytics_solution_plan_137],
         'resource_group_name' => String,
         'solution_name' => String,
         'workspace_name' => String,
@@ -4978,10 +5557,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_log_analytics_solution], Tuple[Optional[Azurerm_log_analytics_solution]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_log_analytics_solution]]
+        'read' => Callable[String, Optional[Azurerm_log_analytics_solution]],
+        'update' => Callable[String, Optional[Azurerm_log_analytics_solution]]
       }
     },
-    Azurerm_log_analytics_solution_plan_725 => {
+    Azurerm_log_analytics_solution_plan_137 => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4996,6 +5576,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_log_analytics_workspace => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'sku'],
+          'providedAttributes' => ['azurerm_log_analytics_workspace_id', 'portal_url', 'primary_shared_key', 'retention_in_days', 'secondary_shared_key', 'tags', 'workspace_id']
+        }
+      },
       attributes => {
         'azurerm_log_analytics_workspace_id' => {
           'type' => Optional[String],
@@ -5035,10 +5621,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_log_analytics_workspace], Tuple[Optional[Azurerm_log_analytics_workspace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_log_analytics_workspace]]
+        'read' => Callable[String, Optional[Azurerm_log_analytics_workspace]],
+        'update' => Callable[String, Optional[Azurerm_log_analytics_workspace]]
       }
     },
     Azurerm_log_analytics_workspace_linked_service => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['linked_service_name', 'linked_service_properties', 'resource_group_name', 'workspace_name'],
+          'providedAttributes' => ['azurerm_log_analytics_workspace_linked_service_id', 'linked_service_name', 'name', 'tags']
+        }
+      },
       attributes => {
         'azurerm_log_analytics_workspace_linked_service_id' => {
           'type' => Optional[String],
@@ -5065,10 +5658,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_log_analytics_workspace_linked_service], Tuple[Optional[Azurerm_log_analytics_workspace_linked_service]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_log_analytics_workspace_linked_service]]
+        'read' => Callable[String, Optional[Azurerm_log_analytics_workspace_linked_service]],
+        'update' => Callable[String, Optional[Azurerm_log_analytics_workspace_linked_service]]
       }
     },
     Azurerm_logic_app_action_custom => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['logic_app_id', 'name'],
+          'providedAttributes' => ['azurerm_logic_app_action_custom_id']
+        }
+      },
       attributes => {
         'azurerm_logic_app_action_custom_id' => {
           'type' => Optional[String],
@@ -5083,10 +5683,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_logic_app_action_custom], Tuple[Optional[Azurerm_logic_app_action_custom]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_logic_app_action_custom]]
+        'read' => Callable[String, Optional[Azurerm_logic_app_action_custom]],
+        'update' => Callable[String, Optional[Azurerm_logic_app_action_custom]]
       }
     },
     Azurerm_logic_app_action_http => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['logic_app_id', 'name'],
+          'providedAttributes' => ['azurerm_logic_app_action_http_id', 'body', 'headers']
+        }
+      },
       attributes => {
         'azurerm_logic_app_action_http_id' => {
           'type' => Optional[String],
@@ -5110,10 +5717,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_logic_app_action_http], Tuple[Optional[Azurerm_logic_app_action_http]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_logic_app_action_http]]
+        'read' => Callable[String, Optional[Azurerm_logic_app_action_http]],
+        'update' => Callable[String, Optional[Azurerm_logic_app_action_http]]
       }
     },
     Azurerm_logic_app_trigger_custom => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['logic_app_id', 'name'],
+          'providedAttributes' => ['azurerm_logic_app_trigger_custom_id']
+        }
+      },
       attributes => {
         'azurerm_logic_app_trigger_custom_id' => {
           'type' => Optional[String],
@@ -5128,10 +5742,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_logic_app_trigger_custom], Tuple[Optional[Azurerm_logic_app_trigger_custom]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_logic_app_trigger_custom]]
+        'read' => Callable[String, Optional[Azurerm_logic_app_trigger_custom]],
+        'update' => Callable[String, Optional[Azurerm_logic_app_trigger_custom]]
       }
     },
     Azurerm_logic_app_trigger_http_request => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['logic_app_id', 'name'],
+          'providedAttributes' => ['azurerm_logic_app_trigger_http_request_id', 'method', 'relative_path']
+        }
+      },
       attributes => {
         'azurerm_logic_app_trigger_http_request_id' => {
           'type' => Optional[String],
@@ -5154,10 +5775,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_logic_app_trigger_http_request], Tuple[Optional[Azurerm_logic_app_trigger_http_request]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_logic_app_trigger_http_request]]
+        'read' => Callable[String, Optional[Azurerm_logic_app_trigger_http_request]],
+        'update' => Callable[String, Optional[Azurerm_logic_app_trigger_http_request]]
       }
     },
     Azurerm_logic_app_trigger_recurrence => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['logic_app_id', 'name'],
+          'providedAttributes' => ['azurerm_logic_app_trigger_recurrence_id']
+        }
+      },
       attributes => {
         'azurerm_logic_app_trigger_recurrence_id' => {
           'type' => Optional[String],
@@ -5173,10 +5801,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_logic_app_trigger_recurrence], Tuple[Optional[Azurerm_logic_app_trigger_recurrence]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_logic_app_trigger_recurrence]]
+        'read' => Callable[String, Optional[Azurerm_logic_app_trigger_recurrence]],
+        'update' => Callable[String, Optional[Azurerm_logic_app_trigger_recurrence]]
       }
     },
     Azurerm_logic_app_workflow => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'workflow_schema', 'workflow_version'],
+          'providedAttributes' => ['azurerm_logic_app_workflow_id', 'access_endpoint', 'parameters', 'tags', 'workflow_schema', 'workflow_version']
+        }
+      },
       attributes => {
         'azurerm_logic_app_workflow_id' => {
           'type' => Optional[String],
@@ -5211,10 +5846,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_logic_app_workflow], Tuple[Optional[Azurerm_logic_app_workflow]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_logic_app_workflow]]
+        'read' => Callable[String, Optional[Azurerm_logic_app_workflow]],
+        'update' => Callable[String, Optional[Azurerm_logic_app_workflow]]
       }
     },
     Azurerm_managed_disk => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['create_option', 'image_reference_id', 'location', 'name', 'resource_group_name', 'source_resource_id', 'source_uri', 'zones'],
+          'providedAttributes' => ['azurerm_managed_disk_id', 'disk_size_gb', 'encryption_settings', 'image_reference_id', 'os_type', 'source_resource_id', 'source_uri', 'tags', 'zones']
+        }
+      },
       attributes => {
         'azurerm_managed_disk_id' => {
           'type' => Optional[String],
@@ -5226,7 +5868,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'encryption_settings' => {
-          'type' => Optional[Array[Azurerm_managed_disk_encryption_settings_726]],
+          'type' => Optional[Array[Azurerm_managed_disk_encryption_settings_138]],
           'value' => undef
         },
         'image_reference_id' => {
@@ -5263,35 +5905,42 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_managed_disk], Tuple[Optional[Azurerm_managed_disk]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_managed_disk]]
+        'read' => Callable[String, Optional[Azurerm_managed_disk]],
+        'update' => Callable[String, Optional[Azurerm_managed_disk]]
       }
     },
-    Azurerm_managed_disk_encryption_settings_726 => {
+    Azurerm_managed_disk_encryption_settings_138 => {
       attributes => {
         'disk_encryption_key' => {
-          'type' => Optional[Array[Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727]],
+          'type' => Optional[Array[Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139]],
           'value' => undef
         },
         'enabled' => Boolean,
         'key_encryption_key' => {
-          'type' => Optional[Array[Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728]],
+          'type' => Optional[Array[Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140]],
           'value' => undef
         }
       }
     },
-    Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727 => {
+    Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139 => {
       attributes => {
         'secret_url' => String,
         'source_vault_id' => String
       }
     },
-    Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728 => {
+    Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140 => {
       attributes => {
         'key_url' => String,
         'source_vault_id' => String
       }
     },
     Azurerm_management_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['group_id'],
+          'providedAttributes' => ['azurerm_management_group_id', 'display_name', 'group_id', 'parent_management_group_id', 'subscription_ids']
+        }
+      },
       attributes => {
         'azurerm_management_group_id' => {
           'type' => Optional[String],
@@ -5319,10 +5968,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_management_group], Tuple[Optional[Azurerm_management_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_management_group]]
+        'read' => Callable[String, Optional[Azurerm_management_group]],
+        'update' => Callable[String, Optional[Azurerm_management_group]]
       }
     },
     Azurerm_management_lock => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['lock_level', 'name', 'notes', 'scope'],
+          'providedAttributes' => ['azurerm_management_lock_id', 'notes']
+        }
+      },
       attributes => {
         'azurerm_management_lock_id' => {
           'type' => Optional[String],
@@ -5341,10 +5997,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_management_lock], Tuple[Optional[Azurerm_management_lock]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_management_lock]]
+        'read' => Callable[String, Optional[Azurerm_management_lock]],
+        'update' => Callable[String, Optional[Azurerm_management_lock]]
       }
     },
     Azurerm_mariadb_database => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['charset', 'collation', 'name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_mariadb_database_id']
+        }
+      },
       attributes => {
         'azurerm_mariadb_database_id' => {
           'type' => Optional[String],
@@ -5361,10 +6024,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mariadb_database], Tuple[Optional[Azurerm_mariadb_database]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mariadb_database]]
+        'read' => Callable[String, Optional[Azurerm_mariadb_database]],
+        'update' => Callable[String, Optional[Azurerm_mariadb_database]]
       }
     },
     Azurerm_mariadb_server => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['administrator_login', 'location', 'name', 'resource_group_name', 'version'],
+          'providedAttributes' => ['azurerm_mariadb_server_id', 'fqdn', 'tags']
+        }
+      },
       attributes => {
         'azurerm_mariadb_server_id' => {
           'type' => Optional[String],
@@ -5379,9 +6049,9 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_mariadb_server_sku_729],
+        'sku' => Array[Azurerm_mariadb_server_sku_141],
         'ssl_enforcement' => String,
-        'storage_profile' => Array[Azurerm_mariadb_server_storage_profile_730],
+        'storage_profile' => Array[Azurerm_mariadb_server_storage_profile_142],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -5393,10 +6063,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mariadb_server], Tuple[Optional[Azurerm_mariadb_server]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mariadb_server]]
+        'read' => Callable[String, Optional[Azurerm_mariadb_server]],
+        'update' => Callable[String, Optional[Azurerm_mariadb_server]]
       }
     },
-    Azurerm_mariadb_server_sku_729 => {
+    Azurerm_mariadb_server_sku_141 => {
       attributes => {
         'capacity' => Integer,
         'family' => String,
@@ -5404,7 +6075,7 @@ type TerraformAzureRM = TypeSet[{
         'tier' => String
       }
     },
-    Azurerm_mariadb_server_storage_profile_730 => {
+    Azurerm_mariadb_server_storage_profile_142 => {
       attributes => {
         'backup_retention_days' => {
           'type' => Optional[Integer],
@@ -5418,6 +6089,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_metric_alertrule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_metric_alertrule_id', 'description', 'email_action', 'enabled', 'tags', 'webhook_action']
+        }
+      },
       attributes => {
         'azurerm_metric_alertrule_id' => {
           'type' => Optional[String],
@@ -5429,7 +6106,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'email_action' => {
-          'type' => Optional[Array[Azurerm_metric_alertrule_email_action_731]],
+          'type' => Optional[Array[Azurerm_metric_alertrule_email_action_143]],
           'value' => undef
         },
         'enabled' => {
@@ -5449,7 +6126,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'threshold' => Float,
         'webhook_action' => {
-          'type' => Optional[Array[Azurerm_metric_alertrule_webhook_action_732]],
+          'type' => Optional[Array[Azurerm_metric_alertrule_webhook_action_144]],
           'value' => undef
         }
       }
@@ -5458,10 +6135,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_metric_alertrule], Tuple[Optional[Azurerm_metric_alertrule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_metric_alertrule]]
+        'read' => Callable[String, Optional[Azurerm_metric_alertrule]],
+        'update' => Callable[String, Optional[Azurerm_metric_alertrule]]
       }
     },
-    Azurerm_metric_alertrule_email_action_731 => {
+    Azurerm_metric_alertrule_email_action_143 => {
       attributes => {
         'custom_emails' => {
           'type' => Optional[Array[String]],
@@ -5473,7 +6151,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_metric_alertrule_webhook_action_732 => {
+    Azurerm_metric_alertrule_webhook_action_144 => {
       attributes => {
         'properties' => {
           'type' => Optional[Hash[String, String]],
@@ -5483,13 +6161,19 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_monitor_action_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_monitor_action_group_id', 'email_receiver', 'enabled', 'sms_receiver', 'tags', 'webhook_receiver']
+        }
+      },
       attributes => {
         'azurerm_monitor_action_group_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'email_receiver' => {
-          'type' => Optional[Array[Azurerm_monitor_action_group_email_receiver_733]],
+          'type' => Optional[Array[Azurerm_monitor_action_group_email_receiver_145]],
           'value' => undef
         },
         'enabled' => {
@@ -5500,7 +6184,7 @@ type TerraformAzureRM = TypeSet[{
         'resource_group_name' => String,
         'short_name' => String,
         'sms_receiver' => {
-          'type' => Optional[Array[Azurerm_monitor_action_group_sms_receiver_734]],
+          'type' => Optional[Array[Azurerm_monitor_action_group_sms_receiver_146]],
           'value' => undef
         },
         'tags' => {
@@ -5508,7 +6192,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'webhook_receiver' => {
-          'type' => Optional[Array[Azurerm_monitor_action_group_webhook_receiver_735]],
+          'type' => Optional[Array[Azurerm_monitor_action_group_webhook_receiver_147]],
           'value' => undef
         }
       }
@@ -5517,39 +6201,46 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_monitor_action_group], Tuple[Optional[Azurerm_monitor_action_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_monitor_action_group]]
+        'read' => Callable[String, Optional[Azurerm_monitor_action_group]],
+        'update' => Callable[String, Optional[Azurerm_monitor_action_group]]
       }
     },
-    Azurerm_monitor_action_group_email_receiver_733 => {
+    Azurerm_monitor_action_group_email_receiver_145 => {
       attributes => {
         'email_address' => String,
         'name' => String
       }
     },
-    Azurerm_monitor_action_group_sms_receiver_734 => {
+    Azurerm_monitor_action_group_sms_receiver_146 => {
       attributes => {
         'country_code' => String,
         'name' => String,
         'phone_number' => String
       }
     },
-    Azurerm_monitor_action_group_webhook_receiver_735 => {
+    Azurerm_monitor_action_group_webhook_receiver_147 => {
       attributes => {
         'name' => String,
         'service_uri' => String
       }
     },
     Azurerm_monitor_activity_log_alert => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_monitor_activity_log_alert_id', 'action', 'description', 'enabled', 'tags']
+        }
+      },
       attributes => {
         'azurerm_monitor_activity_log_alert_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'action' => {
-          'type' => Optional[Array[Azurerm_monitor_activity_log_alert_action_736]],
+          'type' => Optional[Array[Azurerm_monitor_activity_log_alert_action_148]],
           'value' => undef
         },
-        'criteria' => Array[Azurerm_monitor_activity_log_alert_criteria_737],
+        'criteria' => Array[Azurerm_monitor_activity_log_alert_criteria_149],
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -5571,10 +6262,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_monitor_activity_log_alert], Tuple[Optional[Azurerm_monitor_activity_log_alert]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_monitor_activity_log_alert]]
+        'read' => Callable[String, Optional[Azurerm_monitor_activity_log_alert]],
+        'update' => Callable[String, Optional[Azurerm_monitor_activity_log_alert]]
       }
     },
-    Azurerm_monitor_activity_log_alert_action_736 => {
+    Azurerm_monitor_activity_log_alert_action_148 => {
       attributes => {
         'action_group_id' => String,
         'webhook_properties' => {
@@ -5583,7 +6275,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_monitor_activity_log_alert_criteria_737 => {
+    Azurerm_monitor_activity_log_alert_criteria_149 => {
       attributes => {
         'caller' => {
           'type' => Optional[String],
@@ -5625,6 +6317,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_monitor_diagnostic_setting => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['eventhub_authorization_rule_id', 'eventhub_name', 'log_analytics_workspace_id', 'name', 'storage_account_id', 'target_resource_id'],
+          'providedAttributes' => ['azurerm_monitor_diagnostic_setting_id', 'eventhub_authorization_rule_id', 'eventhub_name', 'log', 'log_analytics_workspace_id', 'metric', 'storage_account_id']
+        }
+      },
       attributes => {
         'azurerm_monitor_diagnostic_setting_id' => {
           'type' => Optional[String],
@@ -5639,7 +6337,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'log' => {
-          'type' => Optional[Array[Azurerm_monitor_diagnostic_setting_log_738]],
+          'type' => Optional[Array[Azurerm_monitor_diagnostic_setting_log_150]],
           'value' => undef
         },
         'log_analytics_workspace_id' => {
@@ -5647,7 +6345,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'metric' => {
-          'type' => Optional[Array[Azurerm_monitor_diagnostic_setting_metric_740]],
+          'type' => Optional[Array[Azurerm_monitor_diagnostic_setting_metric_152]],
           'value' => undef
         },
         'name' => String,
@@ -5662,20 +6360,21 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_monitor_diagnostic_setting], Tuple[Optional[Azurerm_monitor_diagnostic_setting]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_monitor_diagnostic_setting]]
+        'read' => Callable[String, Optional[Azurerm_monitor_diagnostic_setting]],
+        'update' => Callable[String, Optional[Azurerm_monitor_diagnostic_setting]]
       }
     },
-    Azurerm_monitor_diagnostic_setting_log_738 => {
+    Azurerm_monitor_diagnostic_setting_log_150 => {
       attributes => {
         'category' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'retention_policy' => Array[Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739]
+        'retention_policy' => Array[Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151]
       }
     },
-    Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739 => {
+    Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151 => {
       attributes => {
         'days' => {
           'type' => Optional[Integer],
@@ -5684,17 +6383,17 @@ type TerraformAzureRM = TypeSet[{
         'enabled' => Boolean
       }
     },
-    Azurerm_monitor_diagnostic_setting_metric_740 => {
+    Azurerm_monitor_diagnostic_setting_metric_152 => {
       attributes => {
         'category' => String,
         'enabled' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'retention_policy' => Array[Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741]
+        'retention_policy' => Array[Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153]
       }
     },
-    Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741 => {
+    Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153 => {
       attributes => {
         'days' => {
           'type' => Optional[Integer],
@@ -5704,6 +6403,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_monitor_log_profile => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name'],
+          'providedAttributes' => ['azurerm_monitor_log_profile_id', 'servicebus_rule_id', 'storage_account_id']
+        }
+      },
       attributes => {
         'azurerm_monitor_log_profile_id' => {
           'type' => Optional[String],
@@ -5712,7 +6417,7 @@ type TerraformAzureRM = TypeSet[{
         'categories' => Array[String],
         'locations' => Array[String],
         'name' => String,
-        'retention_policy' => Array[Azurerm_monitor_log_profile_retention_policy_742],
+        'retention_policy' => Array[Azurerm_monitor_log_profile_retention_policy_154],
         'servicebus_rule_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -5727,10 +6432,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_monitor_log_profile], Tuple[Optional[Azurerm_monitor_log_profile]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_monitor_log_profile]]
+        'read' => Callable[String, Optional[Azurerm_monitor_log_profile]],
+        'update' => Callable[String, Optional[Azurerm_monitor_log_profile]]
       }
     },
-    Azurerm_monitor_log_profile_retention_policy_742 => {
+    Azurerm_monitor_log_profile_retention_policy_154 => {
       attributes => {
         'days' => {
           'type' => Optional[Integer],
@@ -5740,20 +6446,26 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_monitor_metric_alert => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_monitor_metric_alert_id', 'action', 'auto_mitigate', 'description', 'enabled', 'frequency', 'severity', 'tags', 'window_size']
+        }
+      },
       attributes => {
         'azurerm_monitor_metric_alert_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'action' => {
-          'type' => Optional[Array[Azurerm_monitor_metric_alert_action_743]],
+          'type' => Optional[Array[Azurerm_monitor_metric_alert_action_155]],
           'value' => undef
         },
         'auto_mitigate' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'criteria' => Array[Azurerm_monitor_metric_alert_criteria_744],
+        'criteria' => Array[Azurerm_monitor_metric_alert_criteria_156],
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -5787,10 +6499,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_monitor_metric_alert], Tuple[Optional[Azurerm_monitor_metric_alert]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_monitor_metric_alert]]
+        'read' => Callable[String, Optional[Azurerm_monitor_metric_alert]],
+        'update' => Callable[String, Optional[Azurerm_monitor_metric_alert]]
       }
     },
-    Azurerm_monitor_metric_alert_action_743 => {
+    Azurerm_monitor_metric_alert_action_155 => {
       attributes => {
         'action_group_id' => String,
         'webhook_properties' => {
@@ -5799,11 +6512,11 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_monitor_metric_alert_criteria_744 => {
+    Azurerm_monitor_metric_alert_criteria_156 => {
       attributes => {
         'aggregation' => String,
         'dimension' => {
-          'type' => Optional[Array[Azurerm_monitor_metric_alert_criteria_744_dimension_745]],
+          'type' => Optional[Array[Azurerm_monitor_metric_alert_criteria_156_dimension_157]],
           'value' => undef
         },
         'metric_name' => String,
@@ -5812,7 +6525,7 @@ type TerraformAzureRM = TypeSet[{
         'threshold' => Float
       }
     },
-    Azurerm_monitor_metric_alert_criteria_744_dimension_745 => {
+    Azurerm_monitor_metric_alert_criteria_156_dimension_157 => {
       attributes => {
         'name' => String,
         'operator' => String,
@@ -5820,13 +6533,19 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_mssql_elasticpool => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_mssql_elasticpool_id', 'elastic_pool_properties', 'max_size_bytes', 'tags', 'zone_redundant']
+        }
+      },
       attributes => {
         'azurerm_mssql_elasticpool_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'elastic_pool_properties' => {
-          'type' => Optional[Array[Azurerm_mssql_elasticpool_elastic_pool_properties_746]],
+          'type' => Optional[Array[Azurerm_mssql_elasticpool_elastic_pool_properties_158]],
           'value' => undef
         },
         'location' => String,
@@ -5835,10 +6554,10 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'per_database_settings' => Array[Azurerm_mssql_elasticpool_per_database_settings_747],
+        'per_database_settings' => Array[Azurerm_mssql_elasticpool_per_database_settings_159],
         'resource_group_name' => String,
         'server_name' => String,
-        'sku' => Array[Azurerm_mssql_elasticpool_sku_748],
+        'sku' => Array[Azurerm_mssql_elasticpool_sku_160],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -5853,10 +6572,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mssql_elasticpool], Tuple[Optional[Azurerm_mssql_elasticpool]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mssql_elasticpool]]
+        'read' => Callable[String, Optional[Azurerm_mssql_elasticpool]],
+        'update' => Callable[String, Optional[Azurerm_mssql_elasticpool]]
       }
     },
-    Azurerm_mssql_elasticpool_elastic_pool_properties_746 => {
+    Azurerm_mssql_elasticpool_elastic_pool_properties_158 => {
       attributes => {
         'creation_date' => {
           'type' => Optional[String],
@@ -5880,13 +6600,13 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_mssql_elasticpool_per_database_settings_747 => {
+    Azurerm_mssql_elasticpool_per_database_settings_159 => {
       attributes => {
         'max_capacity' => Float,
         'min_capacity' => Float
       }
     },
-    Azurerm_mssql_elasticpool_sku_748 => {
+    Azurerm_mssql_elasticpool_sku_160 => {
       attributes => {
         'capacity' => Integer,
         'family' => {
@@ -5898,6 +6618,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_mysql_configuration => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name', 'value'],
+          'providedAttributes' => ['azurerm_mysql_configuration_id']
+        }
+      },
       attributes => {
         'azurerm_mysql_configuration_id' => {
           'type' => Optional[String],
@@ -5913,10 +6639,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mysql_configuration], Tuple[Optional[Azurerm_mysql_configuration]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mysql_configuration]]
+        'read' => Callable[String, Optional[Azurerm_mysql_configuration]],
+        'update' => Callable[String, Optional[Azurerm_mysql_configuration]]
       }
     },
     Azurerm_mysql_database => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['charset', 'collation', 'name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_mysql_database_id']
+        }
+      },
       attributes => {
         'azurerm_mysql_database_id' => {
           'type' => Optional[String],
@@ -5933,10 +6666,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mysql_database], Tuple[Optional[Azurerm_mysql_database]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mysql_database]]
+        'read' => Callable[String, Optional[Azurerm_mysql_database]],
+        'update' => Callable[String, Optional[Azurerm_mysql_database]]
       }
     },
     Azurerm_mysql_firewall_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_mysql_firewall_rule_id']
+        }
+      },
       attributes => {
         'azurerm_mysql_firewall_rule_id' => {
           'type' => Optional[String],
@@ -5953,10 +6693,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mysql_firewall_rule], Tuple[Optional[Azurerm_mysql_firewall_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mysql_firewall_rule]]
+        'read' => Callable[String, Optional[Azurerm_mysql_firewall_rule]],
+        'update' => Callable[String, Optional[Azurerm_mysql_firewall_rule]]
       }
     },
     Azurerm_mysql_server => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['administrator_login', 'location', 'name', 'resource_group_name', 'version'],
+          'providedAttributes' => ['azurerm_mysql_server_id', 'fqdn', 'tags']
+        }
+      },
       attributes => {
         'azurerm_mysql_server_id' => {
           'type' => Optional[String],
@@ -5971,9 +6718,9 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_mysql_server_sku_749],
+        'sku' => Array[Azurerm_mysql_server_sku_161],
         'ssl_enforcement' => String,
-        'storage_profile' => Array[Azurerm_mysql_server_storage_profile_750],
+        'storage_profile' => Array[Azurerm_mysql_server_storage_profile_162],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -5985,10 +6732,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mysql_server], Tuple[Optional[Azurerm_mysql_server]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mysql_server]]
+        'read' => Callable[String, Optional[Azurerm_mysql_server]],
+        'update' => Callable[String, Optional[Azurerm_mysql_server]]
       }
     },
-    Azurerm_mysql_server_sku_749 => {
+    Azurerm_mysql_server_sku_161 => {
       attributes => {
         'capacity' => Integer,
         'family' => String,
@@ -5996,7 +6744,7 @@ type TerraformAzureRM = TypeSet[{
         'tier' => String
       }
     },
-    Azurerm_mysql_server_storage_profile_750 => {
+    Azurerm_mysql_server_storage_profile_162 => {
       attributes => {
         'backup_retention_days' => {
           'type' => Optional[Integer],
@@ -6010,6 +6758,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_mysql_virtual_network_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_mysql_virtual_network_rule_id']
+        }
+      },
       attributes => {
         'azurerm_mysql_virtual_network_rule_id' => {
           'type' => Optional[String],
@@ -6025,10 +6779,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_mysql_virtual_network_rule], Tuple[Optional[Azurerm_mysql_virtual_network_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_mysql_virtual_network_rule]]
+        'read' => Callable[String, Optional[Azurerm_mysql_virtual_network_rule]],
+        'update' => Callable[String, Optional[Azurerm_mysql_virtual_network_rule]]
       }
     },
     Azurerm_network_interface => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_network_interface_id', 'applied_dns_servers', 'dns_servers', 'enable_accelerated_networking', 'enable_ip_forwarding', 'internal_dns_name_label', 'internal_fqdn', 'mac_address', 'network_security_group_id', 'private_ip_address', 'private_ip_addresses', 'tags', 'virtual_machine_id']
+        }
+      },
       attributes => {
         'azurerm_network_interface_id' => {
           'type' => Optional[String],
@@ -6058,7 +6819,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'ip_configuration' => Array[Azurerm_network_interface_ip_configuration_751],
+        'ip_configuration' => Array[Azurerm_network_interface_ip_configuration_163],
         'location' => String,
         'mac_address' => {
           'type' => Optional[String],
@@ -6092,10 +6853,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_interface], Tuple[Optional[Azurerm_network_interface]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_interface]]
+        'read' => Callable[String, Optional[Azurerm_network_interface]],
+        'update' => Callable[String, Optional[Azurerm_network_interface]]
       }
     },
     Azurerm_network_interface_application_gateway_backend_address_pool_association => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['backend_address_pool_id', 'ip_configuration_name', 'network_interface_id'],
+          'providedAttributes' => ['azurerm_network_interface_application_gateway_backend_address_pool_association_id']
+        }
+      },
       attributes => {
         'azurerm_network_interface_application_gateway_backend_address_pool_association_id' => {
           'type' => Optional[String],
@@ -6110,10 +6878,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association], Tuple[Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association]]
+        'read' => Callable[String, Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association]],
+        'update' => Callable[String, Optional[Azurerm_network_interface_application_gateway_backend_address_pool_association]]
       }
     },
     Azurerm_network_interface_backend_address_pool_association => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['backend_address_pool_id', 'ip_configuration_name', 'network_interface_id'],
+          'providedAttributes' => ['azurerm_network_interface_backend_address_pool_association_id']
+        }
+      },
       attributes => {
         'azurerm_network_interface_backend_address_pool_association_id' => {
           'type' => Optional[String],
@@ -6128,10 +6903,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_interface_backend_address_pool_association], Tuple[Optional[Azurerm_network_interface_backend_address_pool_association]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_interface_backend_address_pool_association]]
+        'read' => Callable[String, Optional[Azurerm_network_interface_backend_address_pool_association]],
+        'update' => Callable[String, Optional[Azurerm_network_interface_backend_address_pool_association]]
       }
     },
-    Azurerm_network_interface_ip_configuration_751 => {
+    Azurerm_network_interface_ip_configuration_163 => {
       attributes => {
         'application_gateway_backend_address_pools_ids' => {
           'type' => Optional[Array[String]],
@@ -6174,6 +6950,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_network_interface_nat_rule_association => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['ip_configuration_name', 'nat_rule_id', 'network_interface_id'],
+          'providedAttributes' => ['azurerm_network_interface_nat_rule_association_id']
+        }
+      },
       attributes => {
         'azurerm_network_interface_nat_rule_association_id' => {
           'type' => Optional[String],
@@ -6188,10 +6970,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_interface_nat_rule_association], Tuple[Optional[Azurerm_network_interface_nat_rule_association]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_interface_nat_rule_association]]
+        'read' => Callable[String, Optional[Azurerm_network_interface_nat_rule_association]],
+        'update' => Callable[String, Optional[Azurerm_network_interface_nat_rule_association]]
       }
     },
     Azurerm_network_security_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_network_security_group_id', 'security_rule', 'tags']
+        }
+      },
       attributes => {
         'azurerm_network_security_group_id' => {
           'type' => Optional[String],
@@ -6201,7 +6990,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'resource_group_name' => String,
         'security_rule' => {
-          'type' => Optional[Array[Azurerm_network_security_group_security_rule_752]],
+          'type' => Optional[Array[Azurerm_network_security_group_security_rule_164]],
           'value' => undef
         },
         'tags' => {
@@ -6214,10 +7003,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_security_group], Tuple[Optional[Azurerm_network_security_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_security_group]]
+        'read' => Callable[String, Optional[Azurerm_network_security_group]],
+        'update' => Callable[String, Optional[Azurerm_network_security_group]]
       }
     },
-    Azurerm_network_security_group_security_rule_752 => {
+    Azurerm_network_security_group_security_rule_164 => {
       attributes => {
         'access' => String,
         'description' => {
@@ -6271,6 +7061,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_network_security_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'network_security_group_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_network_security_rule_id', 'description', 'destination_address_prefix', 'destination_address_prefixes', 'destination_application_security_group_ids', 'destination_port_range', 'destination_port_ranges', 'source_address_prefix', 'source_address_prefixes', 'source_application_security_group_ids', 'source_port_range', 'source_port_ranges']
+        }
+      },
       attributes => {
         'azurerm_network_security_rule_id' => {
           'type' => Optional[String],
@@ -6333,10 +7129,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_security_rule], Tuple[Optional[Azurerm_network_security_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_security_rule]]
+        'read' => Callable[String, Optional[Azurerm_network_security_rule]],
+        'update' => Callable[String, Optional[Azurerm_network_security_rule]]
       }
     },
     Azurerm_network_watcher => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_network_watcher_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_network_watcher_id' => {
           'type' => Optional[String],
@@ -6355,21 +7158,28 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_network_watcher], Tuple[Optional[Azurerm_network_watcher]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_network_watcher]]
+        'read' => Callable[String, Optional[Azurerm_network_watcher]],
+        'update' => Callable[String, Optional[Azurerm_network_watcher]]
       }
     },
     Azurerm_notification_hub => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'namespace_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_notification_hub_id', 'apns_credential', 'gcm_credential']
+        }
+      },
       attributes => {
         'azurerm_notification_hub_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'apns_credential' => {
-          'type' => Optional[Array[Azurerm_notification_hub_apns_credential_753]],
+          'type' => Optional[Array[Azurerm_notification_hub_apns_credential_165]],
           'value' => undef
         },
         'gcm_credential' => {
-          'type' => Optional[Array[Azurerm_notification_hub_gcm_credential_754]],
+          'type' => Optional[Array[Azurerm_notification_hub_gcm_credential_166]],
           'value' => undef
         },
         'location' => String,
@@ -6382,10 +7192,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_notification_hub], Tuple[Optional[Azurerm_notification_hub]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_notification_hub]]
+        'read' => Callable[String, Optional[Azurerm_notification_hub]],
+        'update' => Callable[String, Optional[Azurerm_notification_hub]]
       }
     },
-    Azurerm_notification_hub_apns_credential_753 => {
+    Azurerm_notification_hub_apns_credential_165 => {
       attributes => {
         'application_mode' => String,
         'bundle_id' => String,
@@ -6395,6 +7206,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_notification_hub_authorization_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'namespace_name', 'notification_hub_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_notification_hub_authorization_rule_id', 'listen', 'manage', 'primary_access_key', 'secondary_access_key', 'send']
+        }
+      },
       attributes => {
         'azurerm_notification_hub_authorization_rule_id' => {
           'type' => Optional[String],
@@ -6430,15 +7247,22 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_notification_hub_authorization_rule], Tuple[Optional[Azurerm_notification_hub_authorization_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_notification_hub_authorization_rule]]
+        'read' => Callable[String, Optional[Azurerm_notification_hub_authorization_rule]],
+        'update' => Callable[String, Optional[Azurerm_notification_hub_authorization_rule]]
       }
     },
-    Azurerm_notification_hub_gcm_credential_754 => {
+    Azurerm_notification_hub_gcm_credential_166 => {
       attributes => {
         'api_key' => String
       }
     },
     Azurerm_notification_hub_namespace => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_notification_hub_namespace_id', 'enabled', 'servicebus_endpoint']
+        }
+      },
       attributes => {
         'azurerm_notification_hub_namespace_id' => {
           'type' => Optional[String],
@@ -6456,29 +7280,36 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'sku' => Array[Azurerm_notification_hub_namespace_sku_755]
+        'sku' => Array[Azurerm_notification_hub_namespace_sku_167]
       }
     },
     Azurerm_notification_hub_namespaceHandler => {
       functions => {
         'create' => Callable[Optional[Azurerm_notification_hub_namespace], Tuple[Optional[Azurerm_notification_hub_namespace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_notification_hub_namespace]]
+        'read' => Callable[String, Optional[Azurerm_notification_hub_namespace]],
+        'update' => Callable[String, Optional[Azurerm_notification_hub_namespace]]
       }
     },
-    Azurerm_notification_hub_namespace_sku_755 => {
+    Azurerm_notification_hub_namespace_sku_167 => {
       attributes => {
         'name' => String
       }
     },
     Azurerm_packet_capture => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['filter', 'maximum_bytes_per_packet', 'maximum_bytes_per_session', 'maximum_capture_duration', 'name', 'network_watcher_name', 'resource_group_name', 'storage_location', 'target_resource_id'],
+          'providedAttributes' => ['azurerm_packet_capture_id', 'filter', 'maximum_bytes_per_packet', 'maximum_bytes_per_session', 'maximum_capture_duration']
+        }
+      },
       attributes => {
         'azurerm_packet_capture_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'filter' => {
-          'type' => Optional[Array[Azurerm_packet_capture_filter_756]],
+          'type' => Optional[Array[Azurerm_packet_capture_filter_168]],
           'value' => undef
         },
         'maximum_bytes_per_packet' => {
@@ -6496,7 +7327,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'network_watcher_name' => String,
         'resource_group_name' => String,
-        'storage_location' => Array[Azurerm_packet_capture_storage_location_757],
+        'storage_location' => Array[Azurerm_packet_capture_storage_location_169],
         'target_resource_id' => String
       }
     },
@@ -6504,10 +7335,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_packet_capture], Tuple[Optional[Azurerm_packet_capture]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_packet_capture]]
+        'read' => Callable[String, Optional[Azurerm_packet_capture]],
+        'update' => Callable[String, Optional[Azurerm_packet_capture]]
       }
     },
-    Azurerm_packet_capture_filter_756 => {
+    Azurerm_packet_capture_filter_168 => {
       attributes => {
         'local_ip_address' => {
           'type' => Optional[String],
@@ -6528,7 +7360,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_packet_capture_storage_location_757 => {
+    Azurerm_packet_capture_storage_location_169 => {
       attributes => {
         'file_path' => {
           'type' => Optional[String],
@@ -6545,6 +7377,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_policy_assignment => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'parameters', 'policy_definition_id', 'scope'],
+          'providedAttributes' => ['azurerm_policy_assignment_id', 'description', 'display_name', 'identity', 'location', 'not_scopes', 'parameters']
+        }
+      },
       attributes => {
         'azurerm_policy_assignment_id' => {
           'type' => Optional[String],
@@ -6559,7 +7397,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_policy_assignment_identity_758]],
+          'type' => Optional[Array[Azurerm_policy_assignment_identity_170]],
           'value' => undef
         },
         'location' => {
@@ -6583,10 +7421,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_policy_assignment], Tuple[Optional[Azurerm_policy_assignment]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_policy_assignment]]
+        'read' => Callable[String, Optional[Azurerm_policy_assignment]],
+        'update' => Callable[String, Optional[Azurerm_policy_assignment]]
       }
     },
-    Azurerm_policy_assignment_identity_758 => {
+    Azurerm_policy_assignment_identity_170 => {
       attributes => {
         'principal_id' => {
           'type' => Optional[String],
@@ -6603,6 +7442,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_policy_definition => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['management_group_id', 'mode', 'name', 'policy_type'],
+          'providedAttributes' => ['azurerm_policy_definition_id', 'description', 'management_group_id', 'metadata', 'parameters', 'policy_rule']
+        }
+      },
       attributes => {
         'azurerm_policy_definition_id' => {
           'type' => Optional[String],
@@ -6638,10 +7483,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_policy_definition], Tuple[Optional[Azurerm_policy_definition]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_policy_definition]]
+        'read' => Callable[String, Optional[Azurerm_policy_definition]],
+        'update' => Callable[String, Optional[Azurerm_policy_definition]]
       }
     },
     Azurerm_policy_set_definition => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['management_group_id', 'name', 'policy_type'],
+          'providedAttributes' => ['azurerm_policy_set_definition_id', 'description', 'management_group_id', 'metadata', 'parameters', 'policy_definitions']
+        }
+      },
       attributes => {
         'azurerm_policy_set_definition_id' => {
           'type' => Optional[String],
@@ -6676,10 +7528,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_policy_set_definition], Tuple[Optional[Azurerm_policy_set_definition]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_policy_set_definition]]
+        'read' => Callable[String, Optional[Azurerm_policy_set_definition]],
+        'update' => Callable[String, Optional[Azurerm_policy_set_definition]]
       }
     },
     Azurerm_postgresql_configuration => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name', 'value'],
+          'providedAttributes' => ['azurerm_postgresql_configuration_id']
+        }
+      },
       attributes => {
         'azurerm_postgresql_configuration_id' => {
           'type' => Optional[String],
@@ -6695,10 +7554,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_postgresql_configuration], Tuple[Optional[Azurerm_postgresql_configuration]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_postgresql_configuration]]
+        'read' => Callable[String, Optional[Azurerm_postgresql_configuration]],
+        'update' => Callable[String, Optional[Azurerm_postgresql_configuration]]
       }
     },
     Azurerm_postgresql_database => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['charset', 'collation', 'name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_postgresql_database_id']
+        }
+      },
       attributes => {
         'azurerm_postgresql_database_id' => {
           'type' => Optional[String],
@@ -6715,10 +7581,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_postgresql_database], Tuple[Optional[Azurerm_postgresql_database]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_postgresql_database]]
+        'read' => Callable[String, Optional[Azurerm_postgresql_database]],
+        'update' => Callable[String, Optional[Azurerm_postgresql_database]]
       }
     },
     Azurerm_postgresql_firewall_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['end_ip_address', 'name', 'resource_group_name', 'server_name', 'start_ip_address'],
+          'providedAttributes' => ['azurerm_postgresql_firewall_rule_id']
+        }
+      },
       attributes => {
         'azurerm_postgresql_firewall_rule_id' => {
           'type' => Optional[String],
@@ -6735,10 +7608,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_postgresql_firewall_rule], Tuple[Optional[Azurerm_postgresql_firewall_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_postgresql_firewall_rule]]
+        'read' => Callable[String, Optional[Azurerm_postgresql_firewall_rule]],
+        'update' => Callable[String, Optional[Azurerm_postgresql_firewall_rule]]
       }
     },
     Azurerm_postgresql_server => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['administrator_login', 'location', 'name', 'resource_group_name', 'version'],
+          'providedAttributes' => ['azurerm_postgresql_server_id', 'fqdn', 'tags']
+        }
+      },
       attributes => {
         'azurerm_postgresql_server_id' => {
           'type' => Optional[String],
@@ -6753,9 +7633,9 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
-        'sku' => Array[Azurerm_postgresql_server_sku_759],
+        'sku' => Array[Azurerm_postgresql_server_sku_171],
         'ssl_enforcement' => String,
-        'storage_profile' => Array[Azurerm_postgresql_server_storage_profile_760],
+        'storage_profile' => Array[Azurerm_postgresql_server_storage_profile_172],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -6767,10 +7647,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_postgresql_server], Tuple[Optional[Azurerm_postgresql_server]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_postgresql_server]]
+        'read' => Callable[String, Optional[Azurerm_postgresql_server]],
+        'update' => Callable[String, Optional[Azurerm_postgresql_server]]
       }
     },
-    Azurerm_postgresql_server_sku_759 => {
+    Azurerm_postgresql_server_sku_171 => {
       attributes => {
         'capacity' => Integer,
         'family' => String,
@@ -6778,7 +7659,7 @@ type TerraformAzureRM = TypeSet[{
         'tier' => String
       }
     },
-    Azurerm_postgresql_server_storage_profile_760 => {
+    Azurerm_postgresql_server_storage_profile_172 => {
       attributes => {
         'backup_retention_days' => {
           'type' => Optional[Integer],
@@ -6792,6 +7673,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_postgresql_virtual_network_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_postgresql_virtual_network_rule_id', 'ignore_missing_vnet_service_endpoint']
+        }
+      },
       attributes => {
         'azurerm_postgresql_virtual_network_rule_id' => {
           'type' => Optional[String],
@@ -6811,10 +7698,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_postgresql_virtual_network_rule], Tuple[Optional[Azurerm_postgresql_virtual_network_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_postgresql_virtual_network_rule]]
+        'read' => Callable[String, Optional[Azurerm_postgresql_virtual_network_rule]],
+        'update' => Callable[String, Optional[Azurerm_postgresql_virtual_network_rule]]
       }
     },
     Azurerm_public_ip => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['ip_version', 'location', 'name', 'resource_group_name', 'sku', 'zones'],
+          'providedAttributes' => ['azurerm_public_ip_id', 'allocation_method', 'domain_name_label', 'fqdn', 'idle_timeout_in_minutes', 'ip_address', 'ip_version', 'public_ip_address_allocation', 'reverse_fqdn', 'sku', 'tags', 'zones']
+        }
+      },
       attributes => {
         'azurerm_public_ip_id' => {
           'type' => Optional[String],
@@ -6873,10 +7767,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_public_ip], Tuple[Optional[Azurerm_public_ip]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_public_ip]]
+        'read' => Callable[String, Optional[Azurerm_public_ip]],
+        'update' => Callable[String, Optional[Azurerm_public_ip]]
       }
     },
     Azurerm_recovery_services_protected_vm => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['backup_policy_id', 'recovery_vault_name', 'resource_group_name', 'source_vm_id'],
+          'providedAttributes' => ['azurerm_recovery_services_protected_vm_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_recovery_services_protected_vm_id' => {
           'type' => Optional[String],
@@ -6896,33 +7797,40 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_recovery_services_protected_vm], Tuple[Optional[Azurerm_recovery_services_protected_vm]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_recovery_services_protected_vm]]
+        'read' => Callable[String, Optional[Azurerm_recovery_services_protected_vm]],
+        'update' => Callable[String, Optional[Azurerm_recovery_services_protected_vm]]
       }
     },
     Azurerm_recovery_services_protection_policy_vm => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'recovery_vault_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_recovery_services_protection_policy_vm_id', 'retention_daily', 'retention_monthly', 'retention_weekly', 'retention_yearly', 'tags', 'timezone']
+        }
+      },
       attributes => {
         'azurerm_recovery_services_protection_policy_vm_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'backup' => Array[Azurerm_recovery_services_protection_policy_vm_backup_761],
+        'backup' => Array[Azurerm_recovery_services_protection_policy_vm_backup_173],
         'name' => String,
         'recovery_vault_name' => String,
         'resource_group_name' => String,
         'retention_daily' => {
-          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_daily_762]],
+          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_daily_174]],
           'value' => undef
         },
         'retention_monthly' => {
-          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_monthly_763]],
+          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_monthly_175]],
           'value' => undef
         },
         'retention_weekly' => {
-          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_weekly_764]],
+          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_weekly_176]],
           'value' => undef
         },
         'retention_yearly' => {
-          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_yearly_765]],
+          'type' => Optional[Array[Azurerm_recovery_services_protection_policy_vm_retention_yearly_177]],
           'value' => undef
         },
         'tags' => {
@@ -6939,10 +7847,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_recovery_services_protection_policy_vm], Tuple[Optional[Azurerm_recovery_services_protection_policy_vm]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_recovery_services_protection_policy_vm]]
+        'read' => Callable[String, Optional[Azurerm_recovery_services_protection_policy_vm]],
+        'update' => Callable[String, Optional[Azurerm_recovery_services_protection_policy_vm]]
       }
     },
-    Azurerm_recovery_services_protection_policy_vm_backup_761 => {
+    Azurerm_recovery_services_protection_policy_vm_backup_173 => {
       attributes => {
         'frequency' => String,
         'time' => String,
@@ -6952,25 +7861,25 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_recovery_services_protection_policy_vm_retention_daily_762 => {
+    Azurerm_recovery_services_protection_policy_vm_retention_daily_174 => {
       attributes => {
         'count' => Integer
       }
     },
-    Azurerm_recovery_services_protection_policy_vm_retention_monthly_763 => {
+    Azurerm_recovery_services_protection_policy_vm_retention_monthly_175 => {
       attributes => {
         'count' => Integer,
         'weekdays' => Array[String],
         'weeks' => Array[String]
       }
     },
-    Azurerm_recovery_services_protection_policy_vm_retention_weekly_764 => {
+    Azurerm_recovery_services_protection_policy_vm_retention_weekly_176 => {
       attributes => {
         'count' => Integer,
         'weekdays' => Array[String]
       }
     },
-    Azurerm_recovery_services_protection_policy_vm_retention_yearly_765 => {
+    Azurerm_recovery_services_protection_policy_vm_retention_yearly_177 => {
       attributes => {
         'count' => Integer,
         'months' => Array[String],
@@ -6979,6 +7888,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_recovery_services_vault => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_recovery_services_vault_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_recovery_services_vault_id' => {
           'type' => Optional[String],
@@ -6998,10 +7913,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_recovery_services_vault], Tuple[Optional[Azurerm_recovery_services_vault]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_recovery_services_vault]]
+        'read' => Callable[String, Optional[Azurerm_recovery_services_vault]],
+        'update' => Callable[String, Optional[Azurerm_recovery_services_vault]]
       }
     },
     Azurerm_redis_cache => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'private_static_ip_address', 'resource_group_name', 'subnet_id', 'zones'],
+          'providedAttributes' => ['azurerm_redis_cache_id', 'enable_non_ssl_port', 'hostname', 'patch_schedule', 'port', 'primary_access_key', 'private_static_ip_address', 'secondary_access_key', 'shard_count', 'ssl_port', 'subnet_id', 'tags', 'zones']
+        }
+      },
       attributes => {
         'azurerm_redis_cache_id' => {
           'type' => Optional[String],
@@ -7020,7 +7942,7 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'patch_schedule' => {
-          'type' => Optional[Array[Azurerm_redis_cache_patch_schedule_766]],
+          'type' => Optional[Array[Azurerm_redis_cache_patch_schedule_178]],
           'value' => undef
         },
         'port' => {
@@ -7035,7 +7957,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'redis_configuration' => Array[Azurerm_redis_cache_redis_configuration_767],
+        'redis_configuration' => Array[Azurerm_redis_cache_redis_configuration_179],
         'resource_group_name' => String,
         'secondary_access_key' => {
           'type' => Optional[String],
@@ -7068,10 +7990,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_redis_cache], Tuple[Optional[Azurerm_redis_cache]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_redis_cache]]
+        'read' => Callable[String, Optional[Azurerm_redis_cache]],
+        'update' => Callable[String, Optional[Azurerm_redis_cache]]
       }
     },
-    Azurerm_redis_cache_patch_schedule_766 => {
+    Azurerm_redis_cache_patch_schedule_178 => {
       attributes => {
         'day_of_week' => String,
         'start_hour_utc' => {
@@ -7080,7 +8003,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_redis_cache_redis_configuration_767 => {
+    Azurerm_redis_cache_redis_configuration_179 => {
       attributes => {
         'maxclients' => {
           'type' => Optional[Integer],
@@ -7121,6 +8044,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_redis_firewall_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'redis_cache_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_redis_firewall_rule_id']
+        }
+      },
       attributes => {
         'azurerm_redis_firewall_rule_id' => {
           'type' => Optional[String],
@@ -7137,10 +8066,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_redis_firewall_rule], Tuple[Optional[Azurerm_redis_firewall_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_redis_firewall_rule]]
+        'read' => Callable[String, Optional[Azurerm_redis_firewall_rule]],
+        'update' => Callable[String, Optional[Azurerm_redis_firewall_rule]]
       }
     },
     Azurerm_relay_namespace => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_relay_namespace_id', 'metric_id', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'tags']
+        }
+      },
       attributes => {
         'azurerm_relay_namespace_id' => {
           'type' => Optional[String],
@@ -7169,7 +8105,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'sku' => Array[Azurerm_relay_namespace_sku_768],
+        'sku' => Array[Azurerm_relay_namespace_sku_180],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -7180,15 +8116,22 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_relay_namespace], Tuple[Optional[Azurerm_relay_namespace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_relay_namespace]]
+        'read' => Callable[String, Optional[Azurerm_relay_namespace]],
+        'update' => Callable[String, Optional[Azurerm_relay_namespace]]
       }
     },
-    Azurerm_relay_namespace_sku_768 => {
+    Azurerm_relay_namespace_sku_180 => {
       attributes => {
         'name' => String
       }
     },
     Azurerm_resource_group => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name'],
+          'providedAttributes' => ['azurerm_resource_group_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_resource_group_id' => {
           'type' => Optional[String],
@@ -7206,10 +8149,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_resource_group], Tuple[Optional[Azurerm_resource_group]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_resource_group]]
+        'read' => Callable[String, Optional[Azurerm_resource_group]],
+        'update' => Callable[String, Optional[Azurerm_resource_group]]
       }
     },
     Azurerm_role_assignment => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'principal_id', 'role_definition_id', 'role_definition_name', 'scope'],
+          'providedAttributes' => ['azurerm_role_assignment_id', 'name', 'role_definition_id', 'role_definition_name']
+        }
+      },
       attributes => {
         'azurerm_role_assignment_id' => {
           'type' => Optional[String],
@@ -7235,10 +8185,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_role_assignment], Tuple[Optional[Azurerm_role_assignment]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_role_assignment]]
+        'read' => Callable[String, Optional[Azurerm_role_assignment]],
+        'update' => Callable[String, Optional[Azurerm_role_assignment]]
       }
     },
     Azurerm_role_definition => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['role_definition_id', 'scope'],
+          'providedAttributes' => ['azurerm_role_definition_id', 'description', 'role_definition_id']
+        }
+      },
       attributes => {
         'azurerm_role_definition_id' => {
           'type' => Optional[String],
@@ -7250,7 +8207,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'name' => String,
-        'permissions' => Array[Azurerm_role_definition_permissions_769],
+        'permissions' => Array[Azurerm_role_definition_permissions_181],
         'role_definition_id' => {
           'type' => Optional[String],
           'value' => undef
@@ -7262,10 +8219,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_role_definition], Tuple[Optional[Azurerm_role_definition]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_role_definition]]
+        'read' => Callable[String, Optional[Azurerm_role_definition]],
+        'update' => Callable[String, Optional[Azurerm_role_definition]]
       }
     },
-    Azurerm_role_definition_permissions_769 => {
+    Azurerm_role_definition_permissions_181 => {
       attributes => {
         'actions' => {
           'type' => Optional[Array[String]],
@@ -7286,6 +8244,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_route => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'route_table_name'],
+          'providedAttributes' => ['azurerm_route_id', 'next_hop_in_ip_address']
+        }
+      },
       attributes => {
         'azurerm_route_id' => {
           'type' => Optional[String],
@@ -7306,10 +8270,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_route], Tuple[Optional[Azurerm_route]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_route]]
+        'read' => Callable[String, Optional[Azurerm_route]],
+        'update' => Callable[String, Optional[Azurerm_route]]
       }
     },
     Azurerm_route_table => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_route_table_id', 'disable_bgp_route_propagation', 'route', 'subnets', 'tags']
+        }
+      },
       attributes => {
         'azurerm_route_table_id' => {
           'type' => Optional[String],
@@ -7323,7 +8294,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'resource_group_name' => String,
         'route' => {
-          'type' => Optional[Array[Azurerm_route_table_route_770]],
+          'type' => Optional[Array[Azurerm_route_table_route_182]],
           'value' => undef
         },
         'subnets' => {
@@ -7340,10 +8311,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_route_table], Tuple[Optional[Azurerm_route_table]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_route_table]]
+        'read' => Callable[String, Optional[Azurerm_route_table]],
+        'update' => Callable[String, Optional[Azurerm_route_table]]
       }
     },
-    Azurerm_route_table_route_770 => {
+    Azurerm_route_table_route_182 => {
       attributes => {
         'address_prefix' => String,
         'name' => String,
@@ -7355,36 +8327,42 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_scheduler_job => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['job_collection_name', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_scheduler_job_id', 'action_storage_queue', 'action_web', 'error_action_storage_queue', 'error_action_web', 'recurrence', 'retry', 'start_time', 'state']
+        }
+      },
       attributes => {
         'azurerm_scheduler_job_id' => {
           'type' => Optional[String],
           'value' => undef
         },
         'action_storage_queue' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_action_storage_queue_771]],
+          'type' => Optional[Array[Azurerm_scheduler_job_action_storage_queue_183]],
           'value' => undef
         },
         'action_web' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_action_web_772]],
+          'type' => Optional[Array[Azurerm_scheduler_job_action_web_184]],
           'value' => undef
         },
         'error_action_storage_queue' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_error_action_storage_queue_776]],
+          'type' => Optional[Array[Azurerm_scheduler_job_error_action_storage_queue_188]],
           'value' => undef
         },
         'error_action_web' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_777]],
+          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_189]],
           'value' => undef
         },
         'job_collection_name' => String,
         'name' => String,
         'recurrence' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_recurrence_781]],
+          'type' => Optional[Array[Azurerm_scheduler_job_recurrence_193]],
           'value' => undef
         },
         'resource_group_name' => String,
         'retry' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_retry_783]],
+          'type' => Optional[Array[Azurerm_scheduler_job_retry_195]],
           'value' => undef
         },
         'start_time' => {
@@ -7401,10 +8379,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_scheduler_job], Tuple[Optional[Azurerm_scheduler_job]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_scheduler_job]]
+        'read' => Callable[String, Optional[Azurerm_scheduler_job]],
+        'update' => Callable[String, Optional[Azurerm_scheduler_job]]
       }
     },
-    Azurerm_scheduler_job_action_storage_queue_771 => {
+    Azurerm_scheduler_job_action_storage_queue_183 => {
       attributes => {
         'message' => String,
         'sas_token' => String,
@@ -7412,18 +8391,18 @@ type TerraformAzureRM = TypeSet[{
         'storage_queue_name' => String
       }
     },
-    Azurerm_scheduler_job_action_web_772 => {
+    Azurerm_scheduler_job_action_web_184 => {
       attributes => {
         'authentication_active_directory' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_action_web_772_authentication_active_directory_773]],
+          'type' => Optional[Array[Azurerm_scheduler_job_action_web_184_authentication_active_directory_185]],
           'value' => undef
         },
         'authentication_basic' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_action_web_772_authentication_basic_774]],
+          'type' => Optional[Array[Azurerm_scheduler_job_action_web_184_authentication_basic_186]],
           'value' => undef
         },
         'authentication_certificate' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_action_web_772_authentication_certificate_775]],
+          'type' => Optional[Array[Azurerm_scheduler_job_action_web_184_authentication_certificate_187]],
           'value' => undef
         },
         'body' => {
@@ -7438,7 +8417,7 @@ type TerraformAzureRM = TypeSet[{
         'url' => String
       }
     },
-    Azurerm_scheduler_job_action_web_772_authentication_active_directory_773 => {
+    Azurerm_scheduler_job_action_web_184_authentication_active_directory_185 => {
       attributes => {
         'audience' => {
           'type' => Optional[String],
@@ -7449,13 +8428,13 @@ type TerraformAzureRM = TypeSet[{
         'tenant_id' => String
       }
     },
-    Azurerm_scheduler_job_action_web_772_authentication_basic_774 => {
+    Azurerm_scheduler_job_action_web_184_authentication_basic_186 => {
       attributes => {
         'password' => String,
         'username' => String
       }
     },
-    Azurerm_scheduler_job_action_web_772_authentication_certificate_775 => {
+    Azurerm_scheduler_job_action_web_184_authentication_certificate_187 => {
       attributes => {
         'expiration' => {
           'type' => Optional[String],
@@ -7474,6 +8453,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_scheduler_job_collection => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_scheduler_job_collection_id', 'quota', 'state', 'tags']
+        }
+      },
       attributes => {
         'azurerm_scheduler_job_collection_id' => {
           'type' => Optional[String],
@@ -7482,7 +8467,7 @@ type TerraformAzureRM = TypeSet[{
         'location' => String,
         'name' => String,
         'quota' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_collection_quota_784]],
+          'type' => Optional[Array[Azurerm_scheduler_job_collection_quota_196]],
           'value' => undef
         },
         'resource_group_name' => String,
@@ -7501,10 +8486,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_scheduler_job_collection], Tuple[Optional[Azurerm_scheduler_job_collection]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_scheduler_job_collection]]
+        'read' => Callable[String, Optional[Azurerm_scheduler_job_collection]],
+        'update' => Callable[String, Optional[Azurerm_scheduler_job_collection]]
       }
     },
-    Azurerm_scheduler_job_collection_quota_784 => {
+    Azurerm_scheduler_job_collection_quota_196 => {
       attributes => {
         'max_job_count' => {
           'type' => Optional[Integer],
@@ -7521,7 +8507,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_scheduler_job_error_action_storage_queue_776 => {
+    Azurerm_scheduler_job_error_action_storage_queue_188 => {
       attributes => {
         'message' => String,
         'sas_token' => String,
@@ -7529,18 +8515,18 @@ type TerraformAzureRM = TypeSet[{
         'storage_queue_name' => String
       }
     },
-    Azurerm_scheduler_job_error_action_web_777 => {
+    Azurerm_scheduler_job_error_action_web_189 => {
       attributes => {
         'authentication_active_directory' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778]],
+          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190]],
           'value' => undef
         },
         'authentication_basic' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_777_authentication_basic_779]],
+          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_189_authentication_basic_191]],
           'value' => undef
         },
         'authentication_certificate' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780]],
+          'type' => Optional[Array[Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192]],
           'value' => undef
         },
         'body' => {
@@ -7555,7 +8541,7 @@ type TerraformAzureRM = TypeSet[{
         'url' => String
       }
     },
-    Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778 => {
+    Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190 => {
       attributes => {
         'audience' => {
           'type' => Optional[String],
@@ -7566,13 +8552,13 @@ type TerraformAzureRM = TypeSet[{
         'tenant_id' => String
       }
     },
-    Azurerm_scheduler_job_error_action_web_777_authentication_basic_779 => {
+    Azurerm_scheduler_job_error_action_web_189_authentication_basic_191 => {
       attributes => {
         'password' => String,
         'username' => String
       }
     },
-    Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780 => {
+    Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192 => {
       attributes => {
         'expiration' => {
           'type' => Optional[String],
@@ -7590,7 +8576,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_scheduler_job_recurrence_781 => {
+    Azurerm_scheduler_job_recurrence_193 => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -7618,7 +8604,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'monthly_occurrences' => {
-          'type' => Optional[Array[Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782]],
+          'type' => Optional[Array[Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194]],
           'value' => undef
         },
         'week_days' => {
@@ -7627,13 +8613,13 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782 => {
+    Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194 => {
       attributes => {
         'day' => String,
         'occurrence' => Integer
       }
     },
-    Azurerm_scheduler_job_retry_783 => {
+    Azurerm_scheduler_job_retry_195 => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -7646,6 +8632,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_search_service => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'partition_count', 'replica_count', 'resource_group_name', 'sku', 'tags'],
+          'providedAttributes' => ['azurerm_search_service_id', 'partition_count', 'primary_key', 'replica_count', 'secondary_key', 'tags']
+        }
+      },
       attributes => {
         'azurerm_search_service_id' => {
           'type' => Optional[String],
@@ -7681,10 +8673,16 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_search_service], Tuple[Optional[Azurerm_search_service]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_search_service]]
+        'read' => Callable[String, Optional[Azurerm_search_service]],
+        'update' => Callable[String, Optional[Azurerm_search_service]]
       }
     },
     Azurerm_security_center_contact => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['azurerm_security_center_contact_id']
+        }
+      },
       attributes => {
         'azurerm_security_center_contact_id' => {
           'type' => Optional[String],
@@ -7700,10 +8698,16 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_security_center_contact], Tuple[Optional[Azurerm_security_center_contact]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_security_center_contact]]
+        'read' => Callable[String, Optional[Azurerm_security_center_contact]],
+        'update' => Callable[String, Optional[Azurerm_security_center_contact]]
       }
     },
     Azurerm_security_center_subscription_pricing => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['azurerm_security_center_subscription_pricing_id']
+        }
+      },
       attributes => {
         'azurerm_security_center_subscription_pricing_id' => {
           'type' => Optional[String],
@@ -7716,10 +8720,16 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_security_center_subscription_pricing], Tuple[Optional[Azurerm_security_center_subscription_pricing]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_security_center_subscription_pricing]]
+        'read' => Callable[String, Optional[Azurerm_security_center_subscription_pricing]],
+        'update' => Callable[String, Optional[Azurerm_security_center_subscription_pricing]]
       }
     },
     Azurerm_security_center_workspace => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['azurerm_security_center_workspace_id']
+        }
+      },
       attributes => {
         'azurerm_security_center_workspace_id' => {
           'type' => Optional[String],
@@ -7733,10 +8743,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_security_center_workspace], Tuple[Optional[Azurerm_security_center_workspace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_security_center_workspace]]
+        'read' => Callable[String, Optional[Azurerm_security_center_workspace]],
+        'update' => Callable[String, Optional[Azurerm_security_center_workspace]]
       }
     },
     Azurerm_service_fabric_cluster => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['azure_active_directory', 'diagnostics_config', 'location', 'management_endpoint', 'name', 'resource_group_name', 'vm_image'],
+          'providedAttributes' => ['azurerm_service_fabric_cluster_id', 'add_on_features', 'azure_active_directory', 'certificate', 'client_certificate_thumbprint', 'cluster_code_version', 'cluster_endpoint', 'diagnostics_config', 'fabric_settings', 'reverse_proxy_certificate', 'tags']
+        }
+      },
       attributes => {
         'azurerm_service_fabric_cluster_id' => {
           'type' => Optional[String],
@@ -7747,15 +8764,15 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'azure_active_directory' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_azure_active_directory_785]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_azure_active_directory_197]],
           'value' => undef
         },
         'certificate' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_certificate_786]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_certificate_198]],
           'value' => undef
         },
         'client_certificate_thumbprint' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_client_certificate_thumbprint_787]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_client_certificate_thumbprint_199]],
           'value' => undef
         },
         'cluster_code_version' => {
@@ -7767,21 +8784,21 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'diagnostics_config' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_diagnostics_config_788]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_diagnostics_config_200]],
           'value' => undef
         },
         'fabric_settings' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_fabric_settings_789]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_fabric_settings_201]],
           'value' => undef
         },
         'location' => String,
         'management_endpoint' => String,
         'name' => String,
-        'node_type' => Array[Azurerm_service_fabric_cluster_node_type_790],
+        'node_type' => Array[Azurerm_service_fabric_cluster_node_type_202],
         'reliability_level' => String,
         'resource_group_name' => String,
         'reverse_proxy_certificate' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_reverse_proxy_certificate_793]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_reverse_proxy_certificate_205]],
           'value' => undef
         },
         'tags' => {
@@ -7796,17 +8813,18 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_service_fabric_cluster], Tuple[Optional[Azurerm_service_fabric_cluster]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_service_fabric_cluster]]
+        'read' => Callable[String, Optional[Azurerm_service_fabric_cluster]],
+        'update' => Callable[String, Optional[Azurerm_service_fabric_cluster]]
       }
     },
-    Azurerm_service_fabric_cluster_azure_active_directory_785 => {
+    Azurerm_service_fabric_cluster_azure_active_directory_197 => {
       attributes => {
         'client_application_id' => String,
         'cluster_application_id' => String,
         'tenant_id' => String
       }
     },
-    Azurerm_service_fabric_cluster_certificate_786 => {
+    Azurerm_service_fabric_cluster_certificate_198 => {
       attributes => {
         'thumbprint' => String,
         'thumbprint_secondary' => {
@@ -7816,13 +8834,13 @@ type TerraformAzureRM = TypeSet[{
         'x509_store_name' => String
       }
     },
-    Azurerm_service_fabric_cluster_client_certificate_thumbprint_787 => {
+    Azurerm_service_fabric_cluster_client_certificate_thumbprint_199 => {
       attributes => {
         'is_admin' => Boolean,
         'thumbprint' => String
       }
     },
-    Azurerm_service_fabric_cluster_diagnostics_config_788 => {
+    Azurerm_service_fabric_cluster_diagnostics_config_200 => {
       attributes => {
         'blob_endpoint' => String,
         'protected_account_key_name' => String,
@@ -7831,7 +8849,7 @@ type TerraformAzureRM = TypeSet[{
         'table_endpoint' => String
       }
     },
-    Azurerm_service_fabric_cluster_fabric_settings_789 => {
+    Azurerm_service_fabric_cluster_fabric_settings_201 => {
       attributes => {
         'name' => String,
         'parameters' => {
@@ -7840,10 +8858,10 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_service_fabric_cluster_node_type_790 => {
+    Azurerm_service_fabric_cluster_node_type_202 => {
       attributes => {
         'application_ports' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_node_type_790_application_ports_791]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_node_type_202_application_ports_203]],
           'value' => undef
         },
         'client_endpoint_port' => Integer,
@@ -7852,7 +8870,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'ephemeral_ports' => {
-          'type' => Optional[Array[Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792]],
+          'type' => Optional[Array[Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204]],
           'value' => undef
         },
         'http_endpoint_port' => Integer,
@@ -7865,19 +8883,19 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_service_fabric_cluster_node_type_790_application_ports_791 => {
+    Azurerm_service_fabric_cluster_node_type_202_application_ports_203 => {
       attributes => {
         'end_port' => Integer,
         'start_port' => Integer
       }
     },
-    Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792 => {
+    Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204 => {
       attributes => {
         'end_port' => Integer,
         'start_port' => Integer
       }
     },
-    Azurerm_service_fabric_cluster_reverse_proxy_certificate_793 => {
+    Azurerm_service_fabric_cluster_reverse_proxy_certificate_205 => {
       attributes => {
         'thumbprint' => String,
         'thumbprint_secondary' => {
@@ -7888,6 +8906,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_servicebus_namespace => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'sku'],
+          'providedAttributes' => ['azurerm_servicebus_namespace_id', 'capacity', 'default_primary_connection_string', 'default_primary_key', 'default_secondary_connection_string', 'default_secondary_key', 'tags']
+        }
+      },
       attributes => {
         'azurerm_servicebus_namespace_id' => {
           'type' => Optional[String],
@@ -7927,10 +8951,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_namespace], Tuple[Optional[Azurerm_servicebus_namespace]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_namespace]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_namespace]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_namespace]]
       }
     },
     Azurerm_servicebus_namespace_authorization_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_servicebus_namespace_authorization_rule_id', 'listen', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+        }
+      },
       attributes => {
         'azurerm_servicebus_namespace_authorization_rule_id' => {
           'type' => Optional[String],
@@ -7973,10 +9004,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_namespace_authorization_rule], Tuple[Optional[Azurerm_servicebus_namespace_authorization_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_namespace_authorization_rule]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_namespace_authorization_rule]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_namespace_authorization_rule]]
       }
     },
     Azurerm_servicebus_queue => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['enable_partitioning', 'location', 'name', 'namespace_name', 'requires_duplicate_detection', 'requires_session', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_servicebus_queue_id', 'auto_delete_on_idle', 'dead_lettering_on_message_expiration', 'default_message_ttl', 'duplicate_detection_history_time_window', 'enable_batched_operations', 'enable_express', 'enable_partitioning', 'location', 'lock_duration', 'max_delivery_count', 'max_size_in_megabytes', 'requires_duplicate_detection', 'requires_session', 'support_ordering']
+        }
+      },
       attributes => {
         'azurerm_servicebus_queue_id' => {
           'type' => Optional[String],
@@ -8047,10 +9085,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_queue], Tuple[Optional[Azurerm_servicebus_queue]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_queue]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_queue]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_queue]]
       }
     },
     Azurerm_servicebus_queue_authorization_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'namespace_name', 'queue_name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_servicebus_queue_authorization_rule_id', 'listen', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+        }
+      },
       attributes => {
         'azurerm_servicebus_queue_authorization_rule_id' => {
           'type' => Optional[String],
@@ -8094,10 +9139,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_queue_authorization_rule], Tuple[Optional[Azurerm_servicebus_queue_authorization_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_queue_authorization_rule]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_queue_authorization_rule]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_queue_authorization_rule]]
       }
     },
     Azurerm_servicebus_subscription => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'namespace_name', 'requires_session', 'resource_group_name', 'topic_name'],
+          'providedAttributes' => ['azurerm_servicebus_subscription_id', 'auto_delete_on_idle', 'dead_lettering_on_filter_evaluation_exceptions', 'dead_lettering_on_message_expiration', 'default_message_ttl', 'enable_batched_operations', 'forward_to', 'location', 'lock_duration', 'requires_session']
+        }
+      },
       attributes => {
         'azurerm_servicebus_subscription_id' => {
           'type' => Optional[String],
@@ -8150,10 +9202,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_subscription], Tuple[Optional[Azurerm_servicebus_subscription]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_subscription]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_subscription]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_subscription]]
       }
     },
     Azurerm_servicebus_subscription_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name', 'subscription_name', 'topic_name'],
+          'providedAttributes' => ['azurerm_servicebus_subscription_rule_id', 'action', 'correlation_filter', 'sql_filter']
+        }
+      },
       attributes => {
         'azurerm_servicebus_subscription_rule_id' => {
           'type' => Optional[String],
@@ -8164,7 +9223,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'correlation_filter' => {
-          'type' => Optional[Array[Azurerm_servicebus_subscription_rule_correlation_filter_794]],
+          'type' => Optional[Array[Azurerm_servicebus_subscription_rule_correlation_filter_206]],
           'value' => undef
         },
         'filter_type' => String,
@@ -8183,10 +9242,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_subscription_rule], Tuple[Optional[Azurerm_servicebus_subscription_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_subscription_rule]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_subscription_rule]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_subscription_rule]]
       }
     },
-    Azurerm_servicebus_subscription_rule_correlation_filter_794 => {
+    Azurerm_servicebus_subscription_rule_correlation_filter_206 => {
       attributes => {
         'content_type' => {
           'type' => Optional[String],
@@ -8223,6 +9283,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_servicebus_topic => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['enable_partitioning', 'location', 'name', 'namespace_name', 'requires_duplicate_detection', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_servicebus_topic_id', 'auto_delete_on_idle', 'default_message_ttl', 'duplicate_detection_history_time_window', 'enable_batched_operations', 'enable_express', 'enable_filtering_messages_before_publishing', 'enable_partitioning', 'location', 'max_size_in_megabytes', 'requires_duplicate_detection', 'status', 'support_ordering']
+        }
+      },
       attributes => {
         'azurerm_servicebus_topic_id' => {
           'type' => Optional[String],
@@ -8285,10 +9351,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_topic], Tuple[Optional[Azurerm_servicebus_topic]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_topic]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_topic]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_topic]]
       }
     },
     Azurerm_servicebus_topic_authorization_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name', 'topic_name'],
+          'providedAttributes' => ['azurerm_servicebus_topic_authorization_rule_id', 'listen', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+        }
+      },
       attributes => {
         'azurerm_servicebus_topic_authorization_rule_id' => {
           'type' => Optional[String],
@@ -8332,10 +9405,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_servicebus_topic_authorization_rule], Tuple[Optional[Azurerm_servicebus_topic_authorization_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_servicebus_topic_authorization_rule]]
+        'read' => Callable[String, Optional[Azurerm_servicebus_topic_authorization_rule]],
+        'update' => Callable[String, Optional[Azurerm_servicebus_topic_authorization_rule]]
       }
     },
     Azurerm_shared_image => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['gallery_name', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_shared_image_id', 'description', 'eula', 'privacy_statement_uri', 'release_note_uri', 'tags']
+        }
+      },
       attributes => {
         'azurerm_shared_image_id' => {
           'type' => Optional[String],
@@ -8350,7 +9430,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'gallery_name' => String,
-        'identifier' => Array[Azurerm_shared_image_identifier_795],
+        'identifier' => Array[Azurerm_shared_image_identifier_207],
         'location' => String,
         'name' => String,
         'os_type' => String,
@@ -8373,10 +9453,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_shared_image], Tuple[Optional[Azurerm_shared_image]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_shared_image]]
+        'read' => Callable[String, Optional[Azurerm_shared_image]],
+        'update' => Callable[String, Optional[Azurerm_shared_image]]
       }
     },
     Azurerm_shared_image_gallery => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_shared_image_gallery_id', 'description', 'tags', 'unique_name']
+        }
+      },
       attributes => {
         'azurerm_shared_image_gallery_id' => {
           'type' => Optional[String],
@@ -8403,10 +9490,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_shared_image_gallery], Tuple[Optional[Azurerm_shared_image_gallery]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_shared_image_gallery]]
+        'read' => Callable[String, Optional[Azurerm_shared_image_gallery]],
+        'update' => Callable[String, Optional[Azurerm_shared_image_gallery]]
       }
     },
-    Azurerm_shared_image_identifier_795 => {
+    Azurerm_shared_image_identifier_207 => {
       attributes => {
         'offer' => String,
         'publisher' => String,
@@ -8414,6 +9502,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_shared_image_version => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['gallery_name', 'image_name', 'location', 'managed_image_id', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_shared_image_version_id', 'exclude_from_latest', 'tags']
+        }
+      },
       attributes => {
         'azurerm_shared_image_version_id' => {
           'type' => Optional[String],
@@ -8433,23 +9527,30 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'target_region' => Array[Azurerm_shared_image_version_target_region_796]
+        'target_region' => Array[Azurerm_shared_image_version_target_region_208]
       }
     },
     Azurerm_shared_image_versionHandler => {
       functions => {
         'create' => Callable[Optional[Azurerm_shared_image_version], Tuple[Optional[Azurerm_shared_image_version]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_shared_image_version]]
+        'read' => Callable[String, Optional[Azurerm_shared_image_version]],
+        'update' => Callable[String, Optional[Azurerm_shared_image_version]]
       }
     },
-    Azurerm_shared_image_version_target_region_796 => {
+    Azurerm_shared_image_version_target_region_208 => {
       attributes => {
         'name' => String,
         'regional_replica_count' => Integer
       }
     },
     Azurerm_signalr_service => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_signalr_service_id', 'hostname', 'ip_address', 'public_port', 'server_port', 'tags']
+        }
+      },
       attributes => {
         'azurerm_signalr_service_id' => {
           'type' => Optional[String],
@@ -8474,7 +9575,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[Integer],
           'value' => undef
         },
-        'sku' => Array[Azurerm_signalr_service_sku_797],
+        'sku' => Array[Azurerm_signalr_service_sku_209],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -8485,16 +9586,23 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_signalr_service], Tuple[Optional[Azurerm_signalr_service]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_signalr_service]]
+        'read' => Callable[String, Optional[Azurerm_signalr_service]],
+        'update' => Callable[String, Optional[Azurerm_signalr_service]]
       }
     },
-    Azurerm_signalr_service_sku_797 => {
+    Azurerm_signalr_service_sku_209 => {
       attributes => {
         'capacity' => Integer,
         'name' => String
       }
     },
     Azurerm_snapshot => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'source_resource_id', 'source_uri', 'storage_account_id'],
+          'providedAttributes' => ['azurerm_snapshot_id', 'disk_size_gb', 'encryption_settings', 'source_resource_id', 'source_uri', 'storage_account_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_snapshot_id' => {
           'type' => Optional[String],
@@ -8506,7 +9614,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'encryption_settings' => {
-          'type' => Optional[Array[Azurerm_snapshot_encryption_settings_798]],
+          'type' => Optional[Array[Azurerm_snapshot_encryption_settings_210]],
           'value' => undef
         },
         'location' => String,
@@ -8534,35 +9642,42 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_snapshot], Tuple[Optional[Azurerm_snapshot]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_snapshot]]
+        'read' => Callable[String, Optional[Azurerm_snapshot]],
+        'update' => Callable[String, Optional[Azurerm_snapshot]]
       }
     },
-    Azurerm_snapshot_encryption_settings_798 => {
+    Azurerm_snapshot_encryption_settings_210 => {
       attributes => {
         'disk_encryption_key' => {
-          'type' => Optional[Array[Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799]],
+          'type' => Optional[Array[Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211]],
           'value' => undef
         },
         'enabled' => Boolean,
         'key_encryption_key' => {
-          'type' => Optional[Array[Azurerm_snapshot_encryption_settings_798_key_encryption_key_800]],
+          'type' => Optional[Array[Azurerm_snapshot_encryption_settings_210_key_encryption_key_212]],
           'value' => undef
         }
       }
     },
-    Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799 => {
+    Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211 => {
       attributes => {
         'secret_url' => String,
         'source_vault_id' => String
       }
     },
-    Azurerm_snapshot_encryption_settings_798_key_encryption_key_800 => {
+    Azurerm_snapshot_encryption_settings_210_key_encryption_key_212 => {
       attributes => {
         'key_url' => String,
         'source_vault_id' => String
       }
     },
     Azurerm_sql_active_directory_administrator => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_sql_active_directory_administrator_id']
+        }
+      },
       attributes => {
         'azurerm_sql_active_directory_administrator_id' => {
           'type' => Optional[String],
@@ -8579,10 +9694,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_sql_active_directory_administrator], Tuple[Optional[Azurerm_sql_active_directory_administrator]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_sql_active_directory_administrator]]
+        'read' => Callable[String, Optional[Azurerm_sql_active_directory_administrator]],
+        'update' => Callable[String, Optional[Azurerm_sql_active_directory_administrator]]
       }
     },
     Azurerm_sql_database => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['collation', 'location', 'name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_sql_database_id', 'collation', 'create_mode', 'creation_date', 'default_secondary_location', 'edition', 'elastic_pool_name', 'encryption', 'import', 'max_size_bytes', 'requested_service_objective_id', 'requested_service_objective_name', 'restore_point_in_time', 'source_database_deletion_date', 'source_database_id', 'tags', 'threat_detection_policy']
+        }
+      },
       attributes => {
         'azurerm_sql_database_id' => {
           'type' => Optional[String],
@@ -8617,7 +9739,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'import' => {
-          'type' => Optional[Array[Azurerm_sql_database_import_801]],
+          'type' => Optional[Array[Azurerm_sql_database_import_213]],
           'value' => undef
         },
         'location' => String,
@@ -8653,7 +9775,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'threat_detection_policy' => {
-          'type' => Optional[Array[Azurerm_sql_database_threat_detection_policy_802]],
+          'type' => Optional[Array[Azurerm_sql_database_threat_detection_policy_214]],
           'value' => undef
         }
       }
@@ -8662,10 +9784,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_sql_database], Tuple[Optional[Azurerm_sql_database]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_sql_database]]
+        'read' => Callable[String, Optional[Azurerm_sql_database]],
+        'update' => Callable[String, Optional[Azurerm_sql_database]]
       }
     },
-    Azurerm_sql_database_import_801 => {
+    Azurerm_sql_database_import_213 => {
       attributes => {
         'administrator_login' => String,
         'administrator_login_password' => String,
@@ -8679,7 +9802,7 @@ type TerraformAzureRM = TypeSet[{
         'storage_uri' => String
       }
     },
-    Azurerm_sql_database_threat_detection_policy_802 => {
+    Azurerm_sql_database_threat_detection_policy_214 => {
       attributes => {
         'disabled_alerts' => {
           'type' => Optional[Array[String]],
@@ -8716,6 +9839,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_sql_elasticpool => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['edition', 'location', 'name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_sql_elasticpool_id', 'creation_date', 'db_dtu_max', 'db_dtu_min', 'pool_size', 'tags']
+        }
+      },
       attributes => {
         'azurerm_sql_elasticpool_id' => {
           'type' => Optional[String],
@@ -8753,10 +9882,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_sql_elasticpool], Tuple[Optional[Azurerm_sql_elasticpool]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_sql_elasticpool]]
+        'read' => Callable[String, Optional[Azurerm_sql_elasticpool]],
+        'update' => Callable[String, Optional[Azurerm_sql_elasticpool]]
       }
     },
     Azurerm_sql_firewall_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_sql_firewall_rule_id']
+        }
+      },
       attributes => {
         'azurerm_sql_firewall_rule_id' => {
           'type' => Optional[String],
@@ -8773,10 +9909,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_sql_firewall_rule], Tuple[Optional[Azurerm_sql_firewall_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_sql_firewall_rule]]
+        'read' => Callable[String, Optional[Azurerm_sql_firewall_rule]],
+        'update' => Callable[String, Optional[Azurerm_sql_firewall_rule]]
       }
     },
     Azurerm_sql_server => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['administrator_login', 'location', 'name', 'resource_group_name', 'version'],
+          'providedAttributes' => ['azurerm_sql_server_id', 'fully_qualified_domain_name', 'tags']
+        }
+      },
       attributes => {
         'azurerm_sql_server_id' => {
           'type' => Optional[String],
@@ -8802,10 +9945,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_sql_server], Tuple[Optional[Azurerm_sql_server]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_sql_server]]
+        'read' => Callable[String, Optional[Azurerm_sql_server]],
+        'update' => Callable[String, Optional[Azurerm_sql_server]]
       }
     },
     Azurerm_sql_virtual_network_rule => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
+          'providedAttributes' => ['azurerm_sql_virtual_network_rule_id', 'ignore_missing_vnet_service_endpoint']
+        }
+      },
       attributes => {
         'azurerm_sql_virtual_network_rule_id' => {
           'type' => Optional[String],
@@ -8825,10 +9975,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_sql_virtual_network_rule], Tuple[Optional[Azurerm_sql_virtual_network_rule]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_sql_virtual_network_rule]]
+        'read' => Callable[String, Optional[Azurerm_sql_virtual_network_rule]],
+        'update' => Callable[String, Optional[Azurerm_sql_virtual_network_rule]]
       }
     },
     Azurerm_storage_account => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['account_kind', 'account_tier', 'location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_storage_account_id', 'access_tier', 'account_encryption_source', 'account_kind', 'account_type', 'custom_domain', 'enable_blob_encryption', 'enable_file_encryption', 'enable_https_traffic_only', 'identity', 'network_rules', 'primary_access_key', 'primary_blob_connection_string', 'primary_blob_endpoint', 'primary_connection_string', 'primary_file_endpoint', 'primary_location', 'primary_queue_endpoint', 'primary_table_endpoint', 'secondary_access_key', 'secondary_blob_connection_string', 'secondary_blob_endpoint', 'secondary_connection_string', 'secondary_location', 'secondary_queue_endpoint', 'secondary_table_endpoint', 'tags']
+        }
+      },
       attributes => {
         'azurerm_storage_account_id' => {
           'type' => Optional[String],
@@ -8853,7 +10010,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'custom_domain' => {
-          'type' => Optional[Array[Azurerm_storage_account_custom_domain_803]],
+          'type' => Optional[Array[Azurerm_storage_account_custom_domain_215]],
           'value' => undef
         },
         'enable_blob_encryption' => {
@@ -8869,13 +10026,13 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_storage_account_identity_804]],
+          'type' => Optional[Array[Azurerm_storage_account_identity_216]],
           'value' => undef
         },
         'location' => String,
         'name' => String,
         'network_rules' => {
-          'type' => Optional[Array[Azurerm_storage_account_network_rules_805]],
+          'type' => Optional[Array[Azurerm_storage_account_network_rules_217]],
           'value' => undef
         },
         'primary_access_key' => {
@@ -8949,10 +10106,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_storage_account], Tuple[Optional[Azurerm_storage_account]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_storage_account]]
+        'read' => Callable[String, Optional[Azurerm_storage_account]],
+        'update' => Callable[String, Optional[Azurerm_storage_account]]
       }
     },
-    Azurerm_storage_account_custom_domain_803 => {
+    Azurerm_storage_account_custom_domain_215 => {
       attributes => {
         'name' => String,
         'use_subdomain' => {
@@ -8961,7 +10119,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_storage_account_identity_804 => {
+    Azurerm_storage_account_identity_216 => {
       attributes => {
         'principal_id' => {
           'type' => Optional[String],
@@ -8974,7 +10132,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_storage_account_network_rules_805 => {
+    Azurerm_storage_account_network_rules_217 => {
       attributes => {
         'bypass' => {
           'type' => Optional[Array[String]],
@@ -8991,6 +10149,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_storage_blob => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['attempts', 'name', 'parallelism', 'resource_group_name', 'size', 'source', 'source_uri', 'storage_account_name', 'storage_container_name', 'type'],
+          'providedAttributes' => ['azurerm_storage_blob_id', 'attempts', 'content_type', 'parallelism', 'size', 'source', 'source_uri', 'type', 'url']
+        }
+      },
       attributes => {
         'azurerm_storage_blob_id' => {
           'type' => Optional[String],
@@ -9038,10 +10202,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_storage_blob], Tuple[Optional[Azurerm_storage_blob]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_storage_blob]]
+        'read' => Callable[String, Optional[Azurerm_storage_blob]],
+        'update' => Callable[String, Optional[Azurerm_storage_blob]]
       }
     },
     Azurerm_storage_container => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'storage_account_name'],
+          'providedAttributes' => ['azurerm_storage_container_id', 'container_access_type', 'properties']
+        }
+      },
       attributes => {
         'azurerm_storage_container_id' => {
           'type' => Optional[String],
@@ -9064,10 +10235,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_storage_container], Tuple[Optional[Azurerm_storage_container]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_storage_container]]
+        'read' => Callable[String, Optional[Azurerm_storage_container]],
+        'update' => Callable[String, Optional[Azurerm_storage_container]]
       }
     },
     Azurerm_storage_queue => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'storage_account_name'],
+          'providedAttributes' => ['azurerm_storage_queue_id']
+        }
+      },
       attributes => {
         'azurerm_storage_queue_id' => {
           'type' => Optional[String],
@@ -9082,10 +10260,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_storage_queue], Tuple[Optional[Azurerm_storage_queue]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_storage_queue]]
+        'read' => Callable[String, Optional[Azurerm_storage_queue]],
+        'update' => Callable[String, Optional[Azurerm_storage_queue]]
       }
     },
     Azurerm_storage_share => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'storage_account_name'],
+          'providedAttributes' => ['azurerm_storage_share_id', 'quota', 'url']
+        }
+      },
       attributes => {
         'azurerm_storage_share_id' => {
           'type' => Optional[String],
@@ -9108,10 +10293,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_storage_share], Tuple[Optional[Azurerm_storage_share]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_storage_share]]
+        'read' => Callable[String, Optional[Azurerm_storage_share]],
+        'update' => Callable[String, Optional[Azurerm_storage_share]]
       }
     },
     Azurerm_storage_table => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'storage_account_name'],
+          'providedAttributes' => ['azurerm_storage_table_id']
+        }
+      },
       attributes => {
         'azurerm_storage_table_id' => {
           'type' => Optional[String],
@@ -9126,10 +10318,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_storage_table], Tuple[Optional[Azurerm_storage_table]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_storage_table]]
+        'read' => Callable[String, Optional[Azurerm_storage_table]],
+        'update' => Callable[String, Optional[Azurerm_storage_table]]
       }
     },
     Azurerm_subnet => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name', 'virtual_network_name'],
+          'providedAttributes' => ['azurerm_subnet_id', 'delegation', 'ip_configurations', 'network_security_group_id', 'route_table_id', 'service_endpoints']
+        }
+      },
       attributes => {
         'azurerm_subnet_id' => {
           'type' => Optional[String],
@@ -9137,7 +10336,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'address_prefix' => String,
         'delegation' => {
-          'type' => Optional[Array[Azurerm_subnet_delegation_806]],
+          'type' => Optional[Array[Azurerm_subnet_delegation_218]],
           'value' => undef
         },
         'ip_configurations' => {
@@ -9165,16 +10364,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_subnet], Tuple[Optional[Azurerm_subnet]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_subnet]]
+        'read' => Callable[String, Optional[Azurerm_subnet]],
+        'update' => Callable[String, Optional[Azurerm_subnet]]
       }
     },
-    Azurerm_subnet_delegation_806 => {
+    Azurerm_subnet_delegation_218 => {
       attributes => {
         'name' => String,
-        'service_delegation' => Array[Azurerm_subnet_delegation_806_service_delegation_807]
+        'service_delegation' => Array[Azurerm_subnet_delegation_218_service_delegation_219]
       }
     },
-    Azurerm_subnet_delegation_806_service_delegation_807 => {
+    Azurerm_subnet_delegation_218_service_delegation_219 => {
       attributes => {
         'actions' => {
           'type' => Optional[Array[String]],
@@ -9184,6 +10384,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_subnet_network_security_group_association => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['network_security_group_id', 'subnet_id'],
+          'providedAttributes' => ['azurerm_subnet_network_security_group_association_id']
+        }
+      },
       attributes => {
         'azurerm_subnet_network_security_group_association_id' => {
           'type' => Optional[String],
@@ -9197,10 +10403,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_subnet_network_security_group_association], Tuple[Optional[Azurerm_subnet_network_security_group_association]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_subnet_network_security_group_association]]
+        'read' => Callable[String, Optional[Azurerm_subnet_network_security_group_association]],
+        'update' => Callable[String, Optional[Azurerm_subnet_network_security_group_association]]
       }
     },
     Azurerm_subnet_route_table_association => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['route_table_id', 'subnet_id'],
+          'providedAttributes' => ['azurerm_subnet_route_table_association_id']
+        }
+      },
       attributes => {
         'azurerm_subnet_route_table_association_id' => {
           'type' => Optional[String],
@@ -9214,10 +10427,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_subnet_route_table_association], Tuple[Optional[Azurerm_subnet_route_table_association]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_subnet_route_table_association]]
+        'read' => Callable[String, Optional[Azurerm_subnet_route_table_association]],
+        'update' => Callable[String, Optional[Azurerm_subnet_route_table_association]]
       }
     },
     Azurerm_template_deployment => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_template_deployment_id', 'outputs', 'parameters', 'parameters_body', 'template_body']
+        }
+      },
       attributes => {
         'azurerm_template_deployment_id' => {
           'type' => Optional[String],
@@ -9248,10 +10468,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_template_deployment], Tuple[Optional[Azurerm_template_deployment]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_template_deployment]]
+        'read' => Callable[String, Optional[Azurerm_template_deployment]],
+        'update' => Callable[String, Optional[Azurerm_template_deployment]]
       }
     },
     Azurerm_traffic_manager_endpoint => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'profile_name', 'resource_group_name', 'type'],
+          'providedAttributes' => ['azurerm_traffic_manager_endpoint_id', 'endpoint_location', 'endpoint_monitor_status', 'endpoint_status', 'geo_mappings', 'min_child_endpoints', 'priority', 'target', 'target_resource_id', 'weight']
+        }
+      },
       attributes => {
         'azurerm_traffic_manager_endpoint_id' => {
           'type' => Optional[String],
@@ -9303,21 +10530,28 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_traffic_manager_endpoint], Tuple[Optional[Azurerm_traffic_manager_endpoint]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_traffic_manager_endpoint]]
+        'read' => Callable[String, Optional[Azurerm_traffic_manager_endpoint]],
+        'update' => Callable[String, Optional[Azurerm_traffic_manager_endpoint]]
       }
     },
     Azurerm_traffic_manager_profile => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_traffic_manager_profile_id', 'fqdn', 'profile_status', 'tags']
+        }
+      },
       attributes => {
         'azurerm_traffic_manager_profile_id' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'dns_config' => Array[Azurerm_traffic_manager_profile_dns_config_808],
+        'dns_config' => Array[Azurerm_traffic_manager_profile_dns_config_220],
         'fqdn' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'monitor_config' => Array[Azurerm_traffic_manager_profile_monitor_config_809],
+        'monitor_config' => Array[Azurerm_traffic_manager_profile_monitor_config_221],
         'name' => String,
         'profile_status' => {
           'type' => Optional[String],
@@ -9335,16 +10569,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_traffic_manager_profile], Tuple[Optional[Azurerm_traffic_manager_profile]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_traffic_manager_profile]]
+        'read' => Callable[String, Optional[Azurerm_traffic_manager_profile]],
+        'update' => Callable[String, Optional[Azurerm_traffic_manager_profile]]
       }
     },
-    Azurerm_traffic_manager_profile_dns_config_808 => {
+    Azurerm_traffic_manager_profile_dns_config_220 => {
       attributes => {
         'relative_name' => String,
         'ttl' => Integer
       }
     },
-    Azurerm_traffic_manager_profile_monitor_config_809 => {
+    Azurerm_traffic_manager_profile_monitor_config_221 => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -9355,6 +10590,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_user_assigned_identity => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_user_assigned_identity_id', 'client_id', 'principal_id', 'tags']
+        }
+      },
       attributes => {
         'azurerm_user_assigned_identity_id' => {
           'type' => Optional[String],
@@ -9381,10 +10622,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_user_assigned_identity], Tuple[Optional[Azurerm_user_assigned_identity]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_user_assigned_identity]]
+        'read' => Callable[String, Optional[Azurerm_user_assigned_identity]],
+        'update' => Callable[String, Optional[Azurerm_user_assigned_identity]]
       }
     },
     Azurerm_virtual_machine => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['availability_set_id', 'location', 'name', 'resource_group_name', 'storage_image_reference', 'zones'],
+          'providedAttributes' => ['azurerm_virtual_machine_id', 'availability_set_id', 'boot_diagnostics', 'delete_data_disks_on_termination', 'delete_os_disk_on_termination', 'identity', 'license_type', 'os_profile', 'os_profile_linux_config', 'os_profile_secrets', 'os_profile_windows_config', 'plan', 'primary_network_interface_id', 'storage_data_disk', 'storage_image_reference', 'tags', 'zones']
+        }
+      },
       attributes => {
         'azurerm_virtual_machine_id' => {
           'type' => Optional[String],
@@ -9395,7 +10643,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'boot_diagnostics' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_boot_diagnostics_810]],
+          'type' => Optional[Array[Azurerm_virtual_machine_boot_diagnostics_222]],
           'value' => undef
         },
         'delete_data_disks_on_termination' => {
@@ -9407,7 +10655,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_identity_811]],
+          'type' => Optional[Array[Azurerm_virtual_machine_identity_223]],
           'value' => undef
         },
         'license_type' => {
@@ -9418,23 +10666,23 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'network_interface_ids' => Array[String],
         'os_profile' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_812]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_224]],
           'value' => undef
         },
         'os_profile_linux_config' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_linux_config_813]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_linux_config_225]],
           'value' => undef
         },
         'os_profile_secrets' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_secrets_815]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_secrets_227]],
           'value' => undef
         },
         'os_profile_windows_config' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_windows_config_817]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_windows_config_229]],
           'value' => undef
         },
         'plan' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_plan_820]],
+          'type' => Optional[Array[Azurerm_virtual_machine_plan_232]],
           'value' => undef
         },
         'primary_network_interface_id' => {
@@ -9443,14 +10691,14 @@ type TerraformAzureRM = TypeSet[{
         },
         'resource_group_name' => String,
         'storage_data_disk' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_storage_data_disk_821]],
+          'type' => Optional[Array[Azurerm_virtual_machine_storage_data_disk_233]],
           'value' => undef
         },
         'storage_image_reference' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_storage_image_reference_822]],
+          'type' => Optional[Array[Azurerm_virtual_machine_storage_image_reference_234]],
           'value' => undef
         },
-        'storage_os_disk' => Array[Azurerm_virtual_machine_storage_os_disk_823],
+        'storage_os_disk' => Array[Azurerm_virtual_machine_storage_os_disk_235],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -9466,16 +10714,23 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_machine], Tuple[Optional[Azurerm_virtual_machine]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_machine]]
+        'read' => Callable[String, Optional[Azurerm_virtual_machine]],
+        'update' => Callable[String, Optional[Azurerm_virtual_machine]]
       }
     },
-    Azurerm_virtual_machine_boot_diagnostics_810 => {
+    Azurerm_virtual_machine_boot_diagnostics_222 => {
       attributes => {
         'enabled' => Boolean,
         'storage_uri' => String
       }
     },
     Azurerm_virtual_machine_data_disk_attachment => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['create_option', 'lun', 'managed_disk_id', 'virtual_machine_id'],
+          'providedAttributes' => ['azurerm_virtual_machine_data_disk_attachment_id', 'create_option', 'write_accelerator_enabled']
+        }
+      },
       attributes => {
         'azurerm_virtual_machine_data_disk_attachment_id' => {
           'type' => Optional[String],
@@ -9499,10 +10754,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_machine_data_disk_attachment], Tuple[Optional[Azurerm_virtual_machine_data_disk_attachment]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_machine_data_disk_attachment]]
+        'read' => Callable[String, Optional[Azurerm_virtual_machine_data_disk_attachment]],
+        'update' => Callable[String, Optional[Azurerm_virtual_machine_data_disk_attachment]]
       }
     },
     Azurerm_virtual_machine_extension => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'virtual_machine_name'],
+          'providedAttributes' => ['azurerm_virtual_machine_extension_id', 'auto_upgrade_minor_version', 'protected_settings', 'settings', 'tags']
+        }
+      },
       attributes => {
         'azurerm_virtual_machine_extension_id' => {
           'type' => Optional[String],
@@ -9537,10 +10799,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_machine_extension], Tuple[Optional[Azurerm_virtual_machine_extension]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_machine_extension]]
+        'read' => Callable[String, Optional[Azurerm_virtual_machine_extension]],
+        'update' => Callable[String, Optional[Azurerm_virtual_machine_extension]]
       }
     },
-    Azurerm_virtual_machine_identity_811 => {
+    Azurerm_virtual_machine_identity_223 => {
       attributes => {
         'identity_ids' => {
           'type' => Optional[Array[String]],
@@ -9553,7 +10816,7 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_virtual_machine_os_profile_812 => {
+    Azurerm_virtual_machine_os_profile_224 => {
       attributes => {
         'admin_password' => {
           'type' => Optional[String],
@@ -9567,31 +10830,31 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_os_profile_linux_config_813 => {
+    Azurerm_virtual_machine_os_profile_linux_config_225 => {
       attributes => {
         'disable_password_authentication' => Boolean,
         'ssh_keys' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226]],
           'value' => undef
         }
       }
     },
-    Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814 => {
+    Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226 => {
       attributes => {
         'key_data' => String,
         'path' => String
       }
     },
-    Azurerm_virtual_machine_os_profile_secrets_815 => {
+    Azurerm_virtual_machine_os_profile_secrets_227 => {
       attributes => {
         'source_vault_id' => String,
         'vault_certificates' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228]],
           'value' => undef
         }
       }
     },
-    Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816 => {
+    Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228 => {
       attributes => {
         'certificate_store' => {
           'type' => Optional[String],
@@ -9600,10 +10863,10 @@ type TerraformAzureRM = TypeSet[{
         'certificate_url' => String
       }
     },
-    Azurerm_virtual_machine_os_profile_windows_config_817 => {
+    Azurerm_virtual_machine_os_profile_windows_config_229 => {
       attributes => {
         'additional_unattend_config' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230]],
           'value' => undef
         },
         'enable_automatic_upgrades' => {
@@ -9619,12 +10882,12 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'winrm' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819]],
+          'type' => Optional[Array[Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231]],
           'value' => undef
         }
       }
     },
-    Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818 => {
+    Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230 => {
       attributes => {
         'component' => String,
         'content' => String,
@@ -9632,7 +10895,7 @@ type TerraformAzureRM = TypeSet[{
         'setting_name' => String
       }
     },
-    Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819 => {
+    Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231 => {
       attributes => {
         'certificate_url' => {
           'type' => Optional[String],
@@ -9641,7 +10904,7 @@ type TerraformAzureRM = TypeSet[{
         'protocol' => String
       }
     },
-    Azurerm_virtual_machine_plan_820 => {
+    Azurerm_virtual_machine_plan_232 => {
       attributes => {
         'name' => String,
         'product' => String,
@@ -9649,6 +10912,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_virtual_machine_scale_set => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['eviction_policy', 'location', 'name', 'priority', 'resource_group_name', 'single_placement_group', 'zones'],
+          'providedAttributes' => ['azurerm_virtual_machine_scale_set_id', 'automatic_os_upgrade', 'boot_diagnostics', 'eviction_policy', 'extension', 'health_probe_id', 'identity', 'license_type', 'os_profile_linux_config', 'os_profile_secrets', 'os_profile_windows_config', 'overprovision', 'plan', 'priority', 'rolling_upgrade_policy', 'single_placement_group', 'storage_profile_data_disk', 'storage_profile_image_reference', 'tags', 'zones']
+        }
+      },
       attributes => {
         'azurerm_virtual_machine_scale_set_id' => {
           'type' => Optional[String],
@@ -9659,7 +10928,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'boot_diagnostics' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_boot_diagnostics_824]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_boot_diagnostics_236]],
           'value' => undef
         },
         'eviction_policy' => {
@@ -9667,7 +10936,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'extension' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_extension_825]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_extension_237]],
           'value' => undef
         },
         'health_probe_id' => {
@@ -9675,7 +10944,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'identity' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_identity_826]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_identity_238]],
           'value' => undef
         },
         'license_type' => {
@@ -9684,18 +10953,18 @@ type TerraformAzureRM = TypeSet[{
         },
         'location' => String,
         'name' => String,
-        'network_profile' => Array[Azurerm_virtual_machine_scale_set_network_profile_827],
-        'os_profile' => Array[Azurerm_virtual_machine_scale_set_os_profile_831],
+        'network_profile' => Array[Azurerm_virtual_machine_scale_set_network_profile_239],
+        'os_profile' => Array[Azurerm_virtual_machine_scale_set_os_profile_243],
         'os_profile_linux_config' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_linux_config_832]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_linux_config_244]],
           'value' => undef
         },
         'os_profile_secrets' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_secrets_834]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_secrets_246]],
           'value' => undef
         },
         'os_profile_windows_config' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_windows_config_836]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_windows_config_248]],
           'value' => undef
         },
         'overprovision' => {
@@ -9703,7 +10972,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'plan' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_plan_839]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_plan_251]],
           'value' => undef
         },
         'priority' => {
@@ -9712,23 +10981,23 @@ type TerraformAzureRM = TypeSet[{
         },
         'resource_group_name' => String,
         'rolling_upgrade_policy' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252]],
           'value' => undef
         },
         'single_placement_group' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'sku' => Array[Azurerm_virtual_machine_scale_set_sku_841],
+        'sku' => Array[Azurerm_virtual_machine_scale_set_sku_253],
         'storage_profile_data_disk' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254]],
           'value' => undef
         },
         'storage_profile_image_reference' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255]],
           'value' => undef
         },
-        'storage_profile_os_disk' => Array[Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844],
+        'storage_profile_os_disk' => Array[Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256],
         'tags' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -9744,10 +11013,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_machine_scale_set], Tuple[Optional[Azurerm_virtual_machine_scale_set]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_machine_scale_set]]
+        'read' => Callable[String, Optional[Azurerm_virtual_machine_scale_set]],
+        'update' => Callable[String, Optional[Azurerm_virtual_machine_scale_set]]
       }
     },
-    Azurerm_virtual_machine_scale_set_boot_diagnostics_824 => {
+    Azurerm_virtual_machine_scale_set_boot_diagnostics_236 => {
       attributes => {
         'enabled' => {
           'type' => Optional[Boolean],
@@ -9756,7 +11026,7 @@ type TerraformAzureRM = TypeSet[{
         'storage_uri' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_extension_825 => {
+    Azurerm_virtual_machine_scale_set_extension_237 => {
       attributes => {
         'auto_upgrade_minor_version' => {
           'type' => Optional[Boolean],
@@ -9776,7 +11046,7 @@ type TerraformAzureRM = TypeSet[{
         'type_handler_version' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_identity_826 => {
+    Azurerm_virtual_machine_scale_set_identity_238 => {
       attributes => {
         'identity_ids' => {
           'type' => Optional[Array[String]],
@@ -9789,17 +11059,17 @@ type TerraformAzureRM = TypeSet[{
         'type' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_network_profile_827 => {
+    Azurerm_virtual_machine_scale_set_network_profile_239 => {
       attributes => {
         'accelerated_networking' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'dns_settings' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240]],
           'value' => undef
         },
-        'ip_configuration' => Array[Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829],
+        'ip_configuration' => Array[Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241],
         'ip_forwarding' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -9812,12 +11082,12 @@ type TerraformAzureRM = TypeSet[{
         'primary' => Boolean
       }
     },
-    Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828 => {
+    Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240 => {
       attributes => {
         'dns_servers' => Array[String]
       }
     },
-    Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829 => {
+    Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241 => {
       attributes => {
         'application_gateway_backend_address_pool_ids' => {
           'type' => Optional[Array[String]],
@@ -9838,20 +11108,20 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'primary' => Boolean,
         'public_ip_address_configuration' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242]],
           'value' => undef
         },
         'subnet_id' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830 => {
+    Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242 => {
       attributes => {
         'domain_name_label' => String,
         'idle_timeout' => Integer,
         'name' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_831 => {
+    Azurerm_virtual_machine_scale_set_os_profile_243 => {
       attributes => {
         'admin_password' => {
           'type' => Optional[String],
@@ -9865,19 +11135,19 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_linux_config_832 => {
+    Azurerm_virtual_machine_scale_set_os_profile_linux_config_244 => {
       attributes => {
         'disable_password_authentication' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'ssh_keys' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245]],
           'value' => undef
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833 => {
+    Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245 => {
       attributes => {
         'key_data' => {
           'type' => Optional[String],
@@ -9886,16 +11156,16 @@ type TerraformAzureRM = TypeSet[{
         'path' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_secrets_834 => {
+    Azurerm_virtual_machine_scale_set_os_profile_secrets_246 => {
       attributes => {
         'source_vault_id' => String,
         'vault_certificates' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247]],
           'value' => undef
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835 => {
+    Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247 => {
       attributes => {
         'certificate_store' => {
           'type' => Optional[String],
@@ -9904,10 +11174,10 @@ type TerraformAzureRM = TypeSet[{
         'certificate_url' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_windows_config_836 => {
+    Azurerm_virtual_machine_scale_set_os_profile_windows_config_248 => {
       attributes => {
         'additional_unattend_config' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249]],
           'value' => undef
         },
         'enable_automatic_upgrades' => {
@@ -9919,12 +11189,12 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'winrm' => {
-          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838]],
+          'type' => Optional[Array[Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250]],
           'value' => undef
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837 => {
+    Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249 => {
       attributes => {
         'component' => String,
         'content' => String,
@@ -9932,7 +11202,7 @@ type TerraformAzureRM = TypeSet[{
         'setting_name' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838 => {
+    Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250 => {
       attributes => {
         'certificate_url' => {
           'type' => Optional[String],
@@ -9941,14 +11211,14 @@ type TerraformAzureRM = TypeSet[{
         'protocol' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_plan_839 => {
+    Azurerm_virtual_machine_scale_set_plan_251 => {
       attributes => {
         'name' => String,
         'product' => String,
         'publisher' => String
       }
     },
-    Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840 => {
+    Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252 => {
       attributes => {
         'max_batch_instance_percent' => {
           'type' => Optional[Integer],
@@ -9968,7 +11238,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_sku_841 => {
+    Azurerm_virtual_machine_scale_set_sku_253 => {
       attributes => {
         'capacity' => Integer,
         'name' => String,
@@ -9978,7 +11248,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842 => {
+    Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254 => {
       attributes => {
         'caching' => {
           'type' => Optional[String],
@@ -9996,7 +11266,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843 => {
+    Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -10020,7 +11290,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844 => {
+    Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256 => {
       attributes => {
         'caching' => {
           'type' => Optional[String],
@@ -10049,7 +11319,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_storage_data_disk_821 => {
+    Azurerm_virtual_machine_storage_data_disk_233 => {
       attributes => {
         'caching' => {
           'type' => Optional[String],
@@ -10080,7 +11350,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_storage_image_reference_822 => {
+    Azurerm_virtual_machine_storage_image_reference_234 => {
       attributes => {
         'id' => {
           'type' => Optional[String],
@@ -10104,7 +11374,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_machine_storage_os_disk_823 => {
+    Azurerm_virtual_machine_storage_os_disk_235 => {
       attributes => {
         'caching' => {
           'type' => Optional[String],
@@ -10143,6 +11413,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_virtual_network => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name'],
+          'providedAttributes' => ['azurerm_virtual_network_id', 'dns_servers', 'subnet', 'tags']
+        }
+      },
       attributes => {
         'azurerm_virtual_network_id' => {
           'type' => Optional[String],
@@ -10157,7 +11433,7 @@ type TerraformAzureRM = TypeSet[{
         'name' => String,
         'resource_group_name' => String,
         'subnet' => {
-          'type' => Optional[Array[Azurerm_virtual_network_subnet_845]],
+          'type' => Optional[Array[Azurerm_virtual_network_subnet_257]],
           'value' => undef
         },
         'tags' => {
@@ -10170,10 +11446,17 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_network], Tuple[Optional[Azurerm_virtual_network]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_network]]
+        'read' => Callable[String, Optional[Azurerm_virtual_network]],
+        'update' => Callable[String, Optional[Azurerm_virtual_network]]
       }
     },
     Azurerm_virtual_network_gateway => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['location', 'name', 'resource_group_name', 'type', 'vpn_type'],
+          'providedAttributes' => ['azurerm_virtual_network_gateway_id', 'active_active', 'bgp_settings', 'default_local_network_gateway_id', 'enable_bgp', 'tags', 'vpn_client_configuration', 'vpn_type']
+        }
+      },
       attributes => {
         'azurerm_virtual_network_gateway_id' => {
           'type' => Optional[String],
@@ -10184,7 +11467,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'bgp_settings' => {
-          'type' => Optional[Array[Azurerm_virtual_network_gateway_bgp_settings_846]],
+          'type' => Optional[Array[Azurerm_virtual_network_gateway_bgp_settings_258]],
           'value' => undef
         },
         'default_local_network_gateway_id' => {
@@ -10195,7 +11478,7 @@ type TerraformAzureRM = TypeSet[{
           'type' => Optional[Boolean],
           'value' => undef
         },
-        'ip_configuration' => Array[Azurerm_virtual_network_gateway_ip_configuration_847],
+        'ip_configuration' => Array[Azurerm_virtual_network_gateway_ip_configuration_259],
         'location' => String,
         'name' => String,
         'resource_group_name' => String,
@@ -10206,7 +11489,7 @@ type TerraformAzureRM = TypeSet[{
         },
         'type' => String,
         'vpn_client_configuration' => {
-          'type' => Optional[Array[Azurerm_virtual_network_gateway_vpn_client_configuration_848]],
+          'type' => Optional[Array[Azurerm_virtual_network_gateway_vpn_client_configuration_260]],
           'value' => undef
         },
         'vpn_type' => {
@@ -10219,10 +11502,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_network_gateway], Tuple[Optional[Azurerm_virtual_network_gateway]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_network_gateway]]
+        'read' => Callable[String, Optional[Azurerm_virtual_network_gateway]],
+        'update' => Callable[String, Optional[Azurerm_virtual_network_gateway]]
       }
     },
-    Azurerm_virtual_network_gateway_bgp_settings_846 => {
+    Azurerm_virtual_network_gateway_bgp_settings_258 => {
       attributes => {
         'asn' => {
           'type' => Optional[Integer],
@@ -10239,6 +11523,12 @@ type TerraformAzureRM = TypeSet[{
       }
     },
     Azurerm_virtual_network_gateway_connection => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['express_route_circuit_id', 'location', 'name', 'peer_virtual_network_gateway_id', 'resource_group_name', 'type', 'virtual_network_gateway_id'],
+          'providedAttributes' => ['azurerm_virtual_network_gateway_connection_id', 'authorization_key', 'enable_bgp', 'express_route_circuit_id', 'ipsec_policy', 'local_network_gateway_id', 'peer_virtual_network_gateway_id', 'routing_weight', 'shared_key', 'tags', 'use_policy_based_traffic_selectors']
+        }
+      },
       attributes => {
         'azurerm_virtual_network_gateway_connection_id' => {
           'type' => Optional[String],
@@ -10257,7 +11547,7 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'ipsec_policy' => {
-          'type' => Optional[Array[Azurerm_virtual_network_gateway_connection_ipsec_policy_851]],
+          'type' => Optional[Array[Azurerm_virtual_network_gateway_connection_ipsec_policy_263]],
           'value' => undef
         },
         'local_network_gateway_id' => {
@@ -10295,10 +11585,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_network_gateway_connection], Tuple[Optional[Azurerm_virtual_network_gateway_connection]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_network_gateway_connection]]
+        'read' => Callable[String, Optional[Azurerm_virtual_network_gateway_connection]],
+        'update' => Callable[String, Optional[Azurerm_virtual_network_gateway_connection]]
       }
     },
-    Azurerm_virtual_network_gateway_connection_ipsec_policy_851 => {
+    Azurerm_virtual_network_gateway_connection_ipsec_policy_263 => {
       attributes => {
         'dh_group' => String,
         'ike_encryption' => String,
@@ -10316,7 +11607,7 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_network_gateway_ip_configuration_847 => {
+    Azurerm_virtual_network_gateway_ip_configuration_259 => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -10333,7 +11624,7 @@ type TerraformAzureRM = TypeSet[{
         'subnet_id' => String
       }
     },
-    Azurerm_virtual_network_gateway_vpn_client_configuration_848 => {
+    Azurerm_virtual_network_gateway_vpn_client_configuration_260 => {
       attributes => {
         'address_space' => Array[String],
         'radius_server_address' => {
@@ -10345,11 +11636,11 @@ type TerraformAzureRM = TypeSet[{
           'value' => undef
         },
         'revoked_certificate' => {
-          'type' => Optional[Array[Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849]],
+          'type' => Optional[Array[Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261]],
           'value' => undef
         },
         'root_certificate' => {
-          'type' => Optional[Array[Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850]],
+          'type' => Optional[Array[Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262]],
           'value' => undef
         },
         'vpn_client_protocols' => {
@@ -10358,19 +11649,25 @@ type TerraformAzureRM = TypeSet[{
         }
       }
     },
-    Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849 => {
+    Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261 => {
       attributes => {
         'name' => String,
         'thumbprint' => String
       }
     },
-    Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850 => {
+    Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262 => {
       attributes => {
         'name' => String,
         'public_cert_data' => String
       }
     },
     Azurerm_virtual_network_peering => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['name', 'remote_virtual_network_id', 'resource_group_name', 'virtual_network_name'],
+          'providedAttributes' => ['azurerm_virtual_network_peering_id', 'allow_forwarded_traffic', 'allow_gateway_transit', 'allow_virtual_network_access', 'use_remote_gateways']
+        }
+      },
       attributes => {
         'azurerm_virtual_network_peering_id' => {
           'type' => Optional[String],
@@ -10402,10 +11699,11 @@ type TerraformAzureRM = TypeSet[{
       functions => {
         'create' => Callable[Optional[Azurerm_virtual_network_peering], Tuple[Optional[Azurerm_virtual_network_peering]]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Azurerm_virtual_network_peering]]
+        'read' => Callable[String, Optional[Azurerm_virtual_network_peering]],
+        'update' => Callable[String, Optional[Azurerm_virtual_network_peering]]
       }
     },
-    Azurerm_virtual_network_subnet_845 => {
+    Azurerm_virtual_network_subnet_257 => {
       attributes => {
         'address_prefix' => String,
         'id' => {
