@@ -6,17 +6,17 @@ import (
 	"os"
 	"strings"
 
-	hclog "github.com/hashicorp/go-hclog"
-	plugin "github.com/hashicorp/go-plugin"
+	"github.com/hashicorp/go-hclog"
+	"github.com/hashicorp/go-plugin"
 	"github.com/lyraproj/hiera/lookup"
 	"github.com/lyraproj/hiera/provider"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/lyra/pkg/logger"
-	"github.com/lyraproj/puppet-evaluator/eval"
-	"github.com/lyraproj/puppet-evaluator/types"
+	"github.com/lyraproj/pcore/px"
+	"github.com/lyraproj/pcore/types"
 	"github.com/lyraproj/servicesdk/serviceapi"
-	"github.com/lyraproj/servicesdk/wfapi"
+	"github.com/lyraproj/servicesdk/wf"
 	"github.com/lyraproj/wfe/api"
 	"github.com/lyraproj/wfe/service"
 	"github.com/lyraproj/wfe/wfe"
@@ -38,14 +38,14 @@ func (e cmdError) Error() string {
 
 // ApplyWorkflowWithHieraData will apply the named workflow with the supplied hiera data
 func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
-	a.applyWithHieraData(workflowName, hieraData, wfapi.Upsert)
+	a.applyWithHieraData(workflowName, hieraData, wf.Upsert)
 }
 
-func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wfapi.Operation) {
+func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wf.Operation) {
 	m := convertToDeepMap(hieraData)
 	hclog.Default().Debug("converted map to hiera data", "m", m)
-	v := eval.Wrap(nil, m).(eval.OrderedMap)
-	tp := func(ic lookup.ProviderContext, key string, _ map[string]eval.Value) (eval.Value, bool) {
+	v := px.Wrap(nil, m).(px.OrderedMap)
+	tp := func(ic lookup.ProviderContext, key string, _ map[string]px.Value) (px.Value, bool) {
 		return v.Get4(key)
 	}
 	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName, intent))
@@ -76,11 +76,11 @@ func convertToDeepMap(hieraData map[string]string) map[string]interface{} {
 
 // DeleteWorkflowWithHieraData will delete the named workflow with the supplied hiera data
 func (a *Applicator) DeleteWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
-	a.applyWithHieraData(workflowName, hieraData, wfapi.Delete)
+	a.applyWithHieraData(workflowName, hieraData, wf.Delete)
 }
 
 // ApplyWorkflow will apply the named workflow getting hiera data from file
-func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, intent wfapi.Operation) (exitCode int) {
+func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, intent wf.Operation) (exitCode int) {
 	if a.HomeDir != `` {
 		if err := os.Chdir(a.HomeDir); err != nil {
 			ui.Message("error", fmt.Errorf("Unable to change directory to '%s'", a.HomeDir))
@@ -101,7 +101,7 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 		}
 	}()
 
-	lookupOptions := map[string]eval.Value{
+	lookupOptions := map[string]px.Value{
 		`path`:                      types.WrapString(hieraDataFilename),
 		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
 
@@ -109,21 +109,21 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 	return 0
 }
 
-func applyWithContext(workflowName string, intent wfapi.Operation) func(eval.Context) {
-	return func(c eval.Context) {
+func applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
+	return func(c px.Context) {
 		logger := logger.Get()
 		loader := loader.New(logger, c.Loader())
 		loader.PreLoad(c)
 		logger.Debug("all plugins loaded")
 		c.DoWithLoader(loader, func() {
-			if intent == wfapi.Delete {
+			if intent == wf.Delete {
 				logger.Debug("calling delete")
 				delete(c, workflowName)
 				ui.ShowMessage("delete done:", workflowName)
 				logger.Debug("delete finished")
 			} else {
 				logger.Debug("calling apply")
-				apply(c, workflowName, eval.EMPTY_MAP, intent) // TODO: Perhaps provide top-level input from command line args
+				apply(c, workflowName, px.EmptyMap, intent) // TODO: Perhaps provide top-level input from command line args
 				ui.ShowMessage("apply done:", workflowName)
 				logger.Debug("apply finished")
 			}
@@ -131,15 +131,15 @@ func applyWithContext(workflowName string, intent wfapi.Operation) func(eval.Con
 	}
 }
 
-func loadActivity(c eval.Context, activityID string) api.Activity {
-	def, ok := eval.Load(c, eval.NewTypedName(eval.NsDefinition, activityID))
+func loadActivity(c px.Context, activityID string) api.Activity {
+	def, ok := px.Load(c, px.NewTypedName(px.NsDefinition, activityID))
 	if !ok {
 		panic(cmdError(fmt.Sprintf("Unable to find definition for activity %s", activityID)))
 	}
 	return wfe.CreateActivity(def.(serviceapi.Definition))
 }
 
-func delete(c eval.Context, activityID string) {
+func delete(c px.Context, activityID string) {
 	log := logger.Get()
 	log.Debug("deleting", "activityID", activityID)
 
@@ -148,16 +148,16 @@ func delete(c eval.Context, activityID string) {
 	service.SweepAndGC(c, loadActivity(c, activityID).Identifier()+"/")
 }
 
-func apply(c eval.Context, activityID string, input eval.OrderedMap, intent wfapi.Operation) {
+func apply(c px.Context, activityID string, input px.OrderedMap, intent wf.Operation) {
 	log := logger.Get()
 
 	log.Debug("configuring scope")
-	c.Scope().Set(service.ActivityContextKey, types.SingletonHash2(`operation`, types.WrapInteger(int64(intent))))
+	c.Set(service.ActivityContextKey, px.SingletonMap(`operation`, types.WrapInteger(int64(intent))))
 
 	log.Debug("applying", "activityID", activityID)
 	service.StartEra(c)
 	a := loadActivity(c, activityID)
-	result := a.Run(c, eval.Wrap(c, input).(eval.OrderedMap))
+	result := a.Run(c, px.Wrap(c, input).(px.OrderedMap))
 	log.Debug("Apply done", "result", result)
 
 	gcPrefix := a.Identifier() + "/"

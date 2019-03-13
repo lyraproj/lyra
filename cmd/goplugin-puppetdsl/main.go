@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/lyraproj/puppet-workflow/puppet"
+	"github.com/lyraproj/puppet-workflow/puppetwf"
 )
 
 func main() {
-	puppet.Start(`Puppet`)
+	puppetwf.Start(`Puppet`)
 }

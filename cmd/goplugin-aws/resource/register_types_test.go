@@ -5,23 +5,21 @@ import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/aws/aws-sdk-go/service/iam"
-	"github.com/lyraproj/puppet-evaluator/eval"
+	"github.com/lyraproj/pcore/pcore"
+	"github.com/lyraproj/pcore/px"
 	"reflect"
 	"testing"
 	"time"
-
-	// Initialize pcore
-	_ "github.com/lyraproj/puppet-evaluator/pcore"
 )
 
 func TestGeneratePuppetTypes(t *testing.T) {
 	//this can be used to as the definiion of the typeset (currently in aaws.pp)
-	eval.Puppet.Do(func(c eval.Context) {
+	pcore.Do(func(c px.Context) {
 		s := Server(c)
 		typeSet, _ := s.Metadata(c)
 		b := bytes.NewBufferString("\ntype Aws = ")
 
-		typeSet.ToString(b, eval.PRETTY_EXPANDED, nil)
+		typeSet.ToString(b, px.PrettyExpanded, nil)
 		output := b.String()
 		t.Log(output)
 	})

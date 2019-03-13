@@ -6,7 +6,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/apply"
-	"github.com/lyraproj/servicesdk/wfapi"
+	"github.com/lyraproj/servicesdk/wf"
 	"github.com/spf13/cobra"
 
 	// Ensure that lookup function properly loaded
@@ -39,7 +39,7 @@ func NewApplyCmd() *cobra.Command {
 func runApplyCmd(cmd *cobra.Command, args []string) {
 	applicator := &apply.Applicator{HomeDir: homeDir}
 	workflowName := args[0]
-	exitCode := applicator.ApplyWorkflow(workflowName, hieraDataFilename, wfapi.Upsert)
+	exitCode := applicator.ApplyWorkflow(workflowName, hieraDataFilename, wf.Upsert)
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}

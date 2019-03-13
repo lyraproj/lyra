@@ -2,21 +2,21 @@ package resource
 
 import (
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/lyraproj/puppet-evaluator/eval"
+	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/service"
 )
 
 //Server returns a ServerBuilder bound to the passed context with types registered
-func Server(c eval.Context) *service.Server {
-	sb := service.NewServerBuilder(c, `Aws`)
+func Server(c px.Context) *service.Server {
+	sb := service.NewServiceBuilder(c, `Aws`)
 	registerSDKTypes(sb)
 	registerNonSDKTypes(sb)
 	s := sb.Server()
 	return s
 }
 
-func registerSDKTypes(sb *service.ServerBuilder) {
-	var evs []eval.Type // nolint
+func registerSDKTypes(sb *service.Builder) {
+	var evs []px.Type // nolint
 
 	//this list is generated using the test TestGetAllNestedTypes
 	//ec2.Vpc
@@ -102,8 +102,8 @@ func registerSDKTypes(sb *service.ServerBuilder) {
 	sb.RegisterHandler("Aws::NativeInstanceHandler", &NativeInstanceHandler{}, evs[0])
 }
 
-func registerNonSDKTypes(sb *service.ServerBuilder) {
-	var evs []eval.Type // nolint
+func registerNonSDKTypes(sb *service.Builder) {
+	var evs []px.Type // nolint
 	evs = sb.RegisterTypes("Aws", Vpc{})
 	sb.RegisterTypes("Aws",
 		sb.BuildResource(&Vpc{}, func(rtb service.ResourceTypeBuilder) {
