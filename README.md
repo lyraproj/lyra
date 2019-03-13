@@ -25,7 +25,7 @@ For a more detailed view of how we think about Lyra, check out our introductory 
 The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [go modules](https://github.com/golang/go/wiki/Modules) to be on.
 
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
-2. Build the binary: `$ cd lyra; make lyra plugins`
+2. Build the binary: `$ cd lyra; make`
 
 ### Deploying Workflows with CLI
 
