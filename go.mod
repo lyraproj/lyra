@@ -16,14 +16,14 @@ require (
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190312105858-74b3e041e7e4
+	github.com/lyraproj/hiera v0.0.0-20190313120414-23c940ce7383
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
 	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
-	github.com/lyraproj/pcore v0.0.0-20190312215929-fcacd5c4e31e
-	github.com/lyraproj/puppet-workflow v0.0.0-20190313064637-b5043cfccafe
+	github.com/lyraproj/pcore v0.0.0-20190313112821-30e7bb7af627
+	github.com/lyraproj/puppet-workflow v0.0.0-20190313115913-ed685e5f03fd
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
-	github.com/lyraproj/servicesdk v0.0.0-20190312223546-a9540b746bb8
-	github.com/lyraproj/wfe v0.0.0-20190313064913-f1cbde61948a
+	github.com/lyraproj/servicesdk v0.0.0-20190313114433-a66d98e28e69
+	github.com/lyraproj/wfe v0.0.0-20190313115747-595a82b1cd4f
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
