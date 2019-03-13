@@ -12,6 +12,8 @@ LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTime=$(shell date -u '+%Y-%m-%d 
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTag=$(shell git describe --all --exact-match `git rev-parse HEAD` | grep tags | sed 's/tags\///')"
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --short HEAD)"
 
+GO_PLUGINS := $(subst cmd/,,$(wildcard cmd/goplugin-*))
+
 PHONY+= default
 default: LINTFLAGS = --fast
 default: everything
@@ -32,22 +34,14 @@ shrink:
 
 PHONY+= plugins
 plugins: check-mods
-	$(call build,goplugin-aws,cmd/goplugin-aws/main.go)
-	$(call build,goplugin-example,cmd/goplugin-example/main.go)
-	$(call build,goplugin-identity,cmd/goplugin-identity/main.go)
-	$(call build,goplugin-puppetdsl,cmd/goplugin-puppetdsl/main.go)
-	$(call build,goplugin-tf-aws,cmd/goplugin-tf-aws/main.go)
-	$(call build,goplugin-tf-azurerm,cmd/goplugin-tf-azurerm/main.go)
-	$(call build,goplugin-tf-github,cmd/goplugin-tf-github/main.go)
-	$(call build,goplugin-tf-google,cmd/goplugin-tf-google/main.go)
-	$(call build,goplugin-tf-kubernetes,cmd/goplugin-tf-kubernetes/main.go)
+	@$(foreach plugin,$(GO_PLUGINS),$(call build,$(plugin),cmd/$(plugin)/main.go);)
 
 puppet-dsl:
 	$(call build,goplugin-puppetdsl,cmd/goplugin-puppetdsl/main.go)
 
 PHONY+= lyra
 lyra: check-mods
-	$(call build,lyra,cmd/lyra/main.go)
+	@$(call build,lyra,cmd/lyra/main.go)
 
 PHONY+= test
 test:
@@ -65,15 +59,21 @@ clean:
 
 PHONY+= lint
 lint: $(GOPATH)/bin/golangci-lint
-	$(call checklint,pkg/...)
-	$(call checklint,cmd/lyra/...)
-	$(call checklint,cmd/goplugin-aws/...)
-	$(call checklint,cmd/goplugin-example/...)
-	$(call checklint,cmd/goplugin-tf-aws/...)
-	$(call checklint,cmd/goplugin-tf-azurerm/...)
-	$(call checklint,cmd/goplugin-tf-github/...)
-	$(call checklint,cmd/goplugin-tf-google/...)
-	$(call checklint,cmd/goplugin-tf-kubernetes/...)
+	@$(call checklint,pkg/...)
+	@$(call checklint,cmd/lyra/...)
+	@$(foreach plugin,$(GO_PLUGINS),$(call checklint,cmd/$(plugin)/...);)
+
+PHONY+= generate
+generate:
+	@echo "🔘 Regenerating bridge plugins (tf-gen) ... (`date '+%H:%M:%S'`)"
+	@go run cmd/tf-gen/main.go
+	@echo "✅ Generation complete (`date '+%H:%M:%S'`)"
+	@echo "🔘 Rebuilding ... (`date '+%H:%M:%S'`)"
+	@$(MAKE) lyra plugins
+	@echo "🔘 Generating Puppet types ... (`date '+%H:%M:%S'`)"
+	@go run cmd/lyra/main.go generate puppet
+	@echo "🔘 Smoke test ... (`date '+%H:%M:%S'`)"
+	@build/lyra apply sample || (echo "Failed $$?"; exit 1)
 
 PHONY+= dist-release
 dist-release:
@@ -99,10 +99,10 @@ check-mods:
 		echo "🔴 must be running Go version 1.11.4 or later.  Please upgrade and run go clean -modcache"; \
 		exit 1; \
 	fi
-	@echo "✅ Go version is sufficient  (`date '+%H:%M:%S'`)"
+	@echo "✅ Go version is sufficient (`date '+%H:%M:%S'`)"
 	@echo "🔘 Ensuring go mod is available and turned on  (`date '+%H:%M:%S'`)"
 	@GO111MODULE=on go mod download || (echo "🔴 The command 'GO111MODULE=on go mod download' did not return zero exit code (exit code was $$?)"; exit 1)
-	@echo "✅ Go mod is available  (`date '+%H:%M:%S'`)"
+	@echo "✅ Go mod is available (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
 smoke-test: lyra plugins
@@ -110,15 +110,15 @@ smoke-test: lyra plugins
 	@build/lyra apply sample || (echo "Failed $$?"; exit 1)
 
 define build
-	@echo "🔘 building - $(1) (`date '+%H:%M:%S'`)"
+	echo "🔘 Building - $(1) (`date '+%H:%M:%S'`)"
 	mkdir -p build/
 	GO111MODULE=on go build -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
-	@echo "✅ build complete - $(1) (`date '+%H:%M:%S'`)"
+	echo "✅ Build complete - $(1) (`date '+%H:%M:%S'`)"
 endef
 
 define checklint
-	@echo "🔘 Linting $(1) (`date '+%H:%M:%S'`)"
-	@lint=`GO111MODULE=on golangci-lint run $(LINTFLAGS) $(1)`; \
+	echo "🔘 Linting $(1) (`date '+%H:%M:%S'`)"
+	lint=`GO111MODULE=on golangci-lint run $(LINTFLAGS) $(1)`; \
 	if [ "$$lint" != "" ]; \
 	then echo "🔴 Lint found"; echo "$$lint"; exit 1;\
 	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
