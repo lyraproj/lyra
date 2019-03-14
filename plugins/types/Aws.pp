@@ -2066,6 +2066,11 @@ type Aws = TypeSet[{
       }
     },
     Vpc => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['vpcId', 'dhcpOptionsId', 'instanceTenancy']
+        }
+      },
       attributes => {
         'amazonProvidedIpv6CidrBlock' => Boolean,
         'cidrBlock' => String,

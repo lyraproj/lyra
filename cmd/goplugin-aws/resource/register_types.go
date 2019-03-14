@@ -104,11 +104,9 @@ func registerSDKTypes(sb *service.Builder) {
 
 func registerNonSDKTypes(sb *service.Builder) {
 	var evs []px.Type // nolint
-	evs = sb.RegisterTypes("Aws", Vpc{})
-	sb.RegisterTypes("Aws",
+	evs = sb.RegisterTypes("Aws",
 		sb.BuildResource(&Vpc{}, func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`vpcId`, `dhcpOptionsId`)
-			rtb.ImmutableAttributes(`tags`)
+			rtb.ProvidedAttributes(`vpcId`, `dhcpOptionsId`, `instanceTenancy`)
 		}),
 	)
 	sb.RegisterHandler("Aws::VPCHandler", &VPCHandler{}, evs[0])
