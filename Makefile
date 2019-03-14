@@ -52,7 +52,7 @@ lyra: check-mods
 PHONY+= test
 test:
 	@echo "🔘 Running unit tests... (`date '+%H:%M:%S'`)"
-	go test $(TESTFLAGS) github.com/lyraproj/lyra/...
+	GO111MODULE=on go test $(TESTFLAGS) github.com/lyraproj/lyra/...
 
 PHONY+= clean
 clean:
@@ -118,7 +118,7 @@ endef
 
 define checklint
 	@echo "🔘 Linting $(1) (`date '+%H:%M:%S'`)"
-	@lint=`golangci-lint run $(LINTFLAGS) $(1)`; \
+	@lint=`GO111MODULE=on golangci-lint run $(LINTFLAGS) $(1)`; \
 	if [ "$$lint" != "" ]; \
 	then echo "🔴 Lint found"; echo "$$lint"; exit 1;\
 	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
