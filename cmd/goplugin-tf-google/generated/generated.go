@@ -502,49 +502,41 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 }
 
 type Google_app_engine_application_feature_settings_1 struct {
-
-
-    Split_health_checks *bool
-
+	Split_health_checks *bool
 }
 
 type Google_app_engine_application_url_dispatch_rule_2 struct {
+	Domain *string
 
+	Path *string
 
-    Domain *string
-
-    Path *string
-
-    Service *string
-
+	Service *string
 }
 
 type Google_app_engine_application struct {
-
 	Google_app_engine_application_id *string `lyra:"ignore"`
 
-    Auth_domain *string
+	Auth_domain *string
 
-    Code_bucket *string
+	Code_bucket *string
 
-    Default_bucket *string
+	Default_bucket *string
 
-    Default_hostname *string
+	Default_hostname *string
 
-    Feature_settings *[]Google_app_engine_application_feature_settings_1
+	Feature_settings *[]Google_app_engine_application_feature_settings_1
 
-    Gcr_domain *string
+	Gcr_domain *string
 
-    Location_id string
+	Location_id string
 
-    Name *string
+	Name *string
 
-    Project *string
+	Project *string
 
-    Serving_status *string
+	Serving_status *string
 
-    Url_dispatch_rule *[]Google_app_engine_application_url_dispatch_rule_2
-
+	Url_dispatch_rule *[]Google_app_engine_application_url_dispatch_rule_2
 }
 
 var Google_app_engine_application_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -570,12 +562,10 @@ var Google_app_engine_application_rtb = func(rtb service.ResourceTypeBuilder) {
 		"serving_status",
 
 		"url_dispatch_rule",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -615,11 +605,11 @@ func (h *Google_app_engine_applicationHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_app_engine_application", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_app_engine_application", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_app_engine_application{ Google_app_engine_application_id: &externalID }
+	x := &Google_app_engine_application{Google_app_engine_application_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_app_engine_application", "actual", spew.Sdump(x))
@@ -638,7 +628,7 @@ func (h *Google_app_engine_applicationHandler) Read(externalID string) (*Google_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_app_engine_application{ Google_app_engine_application_id: &id }
+	x := &Google_app_engine_application{Google_app_engine_application_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_app_engine_application", "actual", spew.Sdump(x))
@@ -657,61 +647,53 @@ func (h *Google_app_engine_applicationHandler) Delete(externalID string) error {
 }
 
 type Google_bigquery_dataset_access_3_view_4 struct {
+	Dataset_id string
 
+	Project_id string
 
-    Dataset_id string
-
-    Project_id string
-
-    Table_id string
-
+	Table_id string
 }
 
 type Google_bigquery_dataset_access_3 struct {
+	Domain *string
 
+	Group_by_email *string
 
-    Domain *string
+	Role *string
 
-    Group_by_email *string
+	Special_group *string
 
-    Role *string
+	User_by_email *string
 
-    Special_group *string
-
-    User_by_email *string
-
-    View *[]Google_bigquery_dataset_access_3_view_4
-
+	View *[]Google_bigquery_dataset_access_3_view_4
 }
 
 type Google_bigquery_dataset struct {
-
 	Google_bigquery_dataset_id *string `lyra:"ignore"`
 
-    Access *[]Google_bigquery_dataset_access_3
+	Access *[]Google_bigquery_dataset_access_3
 
-    Creation_time *int
+	Creation_time *int
 
-    Dataset_id string
+	Dataset_id string
 
-    Default_table_expiration_ms *int
+	Default_table_expiration_ms *int
 
-    Description *string
+	Description *string
 
-    Etag *string
+	Etag *string
 
-    Friendly_name *string
+	Friendly_name *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Last_modified_time *int
+	Last_modified_time *int
 
-    Location *string
+	Location *string
 
-    Project *string
+	Project *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_bigquery_dataset_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -739,7 +721,6 @@ var Google_bigquery_dataset_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -748,7 +729,6 @@ var Google_bigquery_dataset_rtb = func(rtb service.ResourceTypeBuilder) {
 		"location",
 
 		"project",
-
 	)
 }
 
@@ -788,11 +768,11 @@ func (h *Google_bigquery_datasetHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_bigquery_dataset", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_bigquery_dataset", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigquery_dataset{ Google_bigquery_dataset_id: &externalID }
+	x := &Google_bigquery_dataset{Google_bigquery_dataset_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_bigquery_dataset", "actual", spew.Sdump(x))
@@ -811,7 +791,7 @@ func (h *Google_bigquery_datasetHandler) Read(externalID string) (*Google_bigque
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigquery_dataset{ Google_bigquery_dataset_id: &id }
+	x := &Google_bigquery_dataset{Google_bigquery_dataset_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_bigquery_dataset", "actual", spew.Sdump(x))
@@ -830,67 +810,59 @@ func (h *Google_bigquery_datasetHandler) Delete(externalID string) error {
 }
 
 type Google_bigquery_table_time_partitioning_5 struct {
+	Expiration_ms *int
 
+	Field *string
 
-    Expiration_ms *int
-
-    Field *string
-
-    Type string
-
+	Type string
 }
 
 type Google_bigquery_table_view_6 struct {
+	Query string
 
-
-    Query string
-
-    Use_legacy_sql *bool
-
+	Use_legacy_sql *bool
 }
 
 type Google_bigquery_table struct {
-
 	Google_bigquery_table_id *string `lyra:"ignore"`
 
-    Creation_time *int
+	Creation_time *int
 
-    Dataset_id string
+	Dataset_id string
 
-    Description *string
+	Description *string
 
-    Etag *string
+	Etag *string
 
-    Expiration_time *int
+	Expiration_time *int
 
-    Friendly_name *string
+	Friendly_name *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Last_modified_time *int
+	Last_modified_time *int
 
-    Location *string
+	Location *string
 
-    Num_bytes *int
+	Num_bytes *int
 
-    Num_long_term_bytes *int
+	Num_long_term_bytes *int
 
-    Num_rows *int
+	Num_rows *int
 
-    Project *string
+	Project *string
 
-    Schema *string
+	Schema *string
 
-    Self_link *string
+	Self_link *string
 
-    Table_id string
+	Table_id string
 
-    Time_partitioning *[]Google_bigquery_table_time_partitioning_5
+	Time_partitioning *[]Google_bigquery_table_time_partitioning_5
 
-    Type *string
+	Type *string
 
-    View *[]Google_bigquery_table_view_6
-
+	View *[]Google_bigquery_table_view_6
 }
 
 var Google_bigquery_table_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -930,7 +902,6 @@ var Google_bigquery_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"type",
 
 		"view",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -939,7 +910,6 @@ var Google_bigquery_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"table_id",
-
 	)
 }
 
@@ -979,11 +949,11 @@ func (h *Google_bigquery_tableHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_bigquery_table", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_bigquery_table", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigquery_table{ Google_bigquery_table_id: &externalID }
+	x := &Google_bigquery_table{Google_bigquery_table_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_bigquery_table", "actual", spew.Sdump(x))
@@ -1002,7 +972,7 @@ func (h *Google_bigquery_tableHandler) Read(externalID string) (*Google_bigquery
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigquery_table{ Google_bigquery_table_id: &id }
+	x := &Google_bigquery_table{Google_bigquery_table_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_bigquery_table", "actual", spew.Sdump(x))
@@ -1021,40 +991,35 @@ func (h *Google_bigquery_tableHandler) Delete(externalID string) error {
 }
 
 type Google_bigtable_instance_cluster_7 struct {
+	Cluster_id *string
 
+	Num_nodes *int
 
-    Cluster_id *string
+	Storage_type *string
 
-    Num_nodes *int
-
-    Storage_type *string
-
-    Zone *string
-
+	Zone *string
 }
 
 type Google_bigtable_instance struct {
-
 	Google_bigtable_instance_id *string `lyra:"ignore"`
 
-    Cluster *[]Google_bigtable_instance_cluster_7
+	Cluster *[]Google_bigtable_instance_cluster_7
 
-    Cluster_id *string
+	Cluster_id *string
 
-    Display_name *string
+	Display_name *string
 
-    Instance_type *string
+	Instance_type *string
 
-    Name string
+	Name string
 
-    Num_nodes *int
+	Num_nodes *int
 
-    Project *string
+	Project *string
 
-    Storage_type *string
+	Storage_type *string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_bigtable_instance_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1076,7 +1041,6 @@ var Google_bigtable_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_type",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1089,7 +1053,6 @@ var Google_bigtable_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"zone",
-
 	)
 }
 
@@ -1129,11 +1092,11 @@ func (h *Google_bigtable_instanceHandler) Update(externalID string, desired *Goo
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_bigtable_instance", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_bigtable_instance", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigtable_instance{ Google_bigtable_instance_id: &externalID }
+	x := &Google_bigtable_instance{Google_bigtable_instance_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_bigtable_instance", "actual", spew.Sdump(x))
@@ -1152,7 +1115,7 @@ func (h *Google_bigtable_instanceHandler) Read(externalID string) (*Google_bigta
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigtable_instance{ Google_bigtable_instance_id: &id }
+	x := &Google_bigtable_instance{Google_bigtable_instance_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_bigtable_instance", "actual", spew.Sdump(x))
@@ -1171,17 +1134,15 @@ func (h *Google_bigtable_instanceHandler) Delete(externalID string) error {
 }
 
 type Google_bigtable_table struct {
-
 	Google_bigtable_table_id *string `lyra:"ignore"`
 
-    Instance_name string
+	Instance_name string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Split_keys *[]string
-
+	Split_keys *[]string
 }
 
 var Google_bigtable_table_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1191,7 +1152,6 @@ var Google_bigtable_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"split_keys",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1202,7 +1162,6 @@ var Google_bigtable_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"split_keys",
-
 	)
 }
 
@@ -1242,11 +1201,11 @@ func (h *Google_bigtable_tableHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_bigtable_table", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_bigtable_table", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigtable_table{ Google_bigtable_table_id: &externalID }
+	x := &Google_bigtable_table{Google_bigtable_table_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_bigtable_table", "actual", spew.Sdump(x))
@@ -1265,7 +1224,7 @@ func (h *Google_bigtable_tableHandler) Read(externalID string) (*Google_bigtable
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_bigtable_table{ Google_bigtable_table_id: &id }
+	x := &Google_bigtable_table{Google_bigtable_table_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_bigtable_table", "actual", spew.Sdump(x))
@@ -1284,17 +1243,15 @@ func (h *Google_bigtable_tableHandler) Delete(externalID string) error {
 }
 
 type Google_billing_account_iam_binding struct {
-
 	Google_billing_account_iam_binding_id *string `lyra:"ignore"`
 
-    Billing_account_id string
+	Billing_account_id string
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Role string
-
+	Role string
 }
 
 var Google_billing_account_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1302,14 +1259,12 @@ var Google_billing_account_iam_binding_rtb = func(rtb service.ResourceTypeBuilde
 		"google_billing_account_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"billing_account_id",
 
 		"role",
-
 	)
 }
 
@@ -1349,11 +1304,11 @@ func (h *Google_billing_account_iam_bindingHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_billing_account_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_billing_account_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_billing_account_iam_binding{ Google_billing_account_iam_binding_id: &externalID }
+	x := &Google_billing_account_iam_binding{Google_billing_account_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_billing_account_iam_binding", "actual", spew.Sdump(x))
@@ -1372,7 +1327,7 @@ func (h *Google_billing_account_iam_bindingHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_billing_account_iam_binding{ Google_billing_account_iam_binding_id: &id }
+	x := &Google_billing_account_iam_binding{Google_billing_account_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_billing_account_iam_binding", "actual", spew.Sdump(x))
@@ -1391,17 +1346,15 @@ func (h *Google_billing_account_iam_bindingHandler) Delete(externalID string) er
 }
 
 type Google_billing_account_iam_member struct {
-
 	Google_billing_account_iam_member_id *string `lyra:"ignore"`
 
-    Billing_account_id string
+	Billing_account_id string
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Role string
-
+	Role string
 }
 
 var Google_billing_account_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1409,7 +1362,6 @@ var Google_billing_account_iam_member_rtb = func(rtb service.ResourceTypeBuilder
 		"google_billing_account_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1418,7 +1370,6 @@ var Google_billing_account_iam_member_rtb = func(rtb service.ResourceTypeBuilder
 		"member",
 
 		"role",
-
 	)
 }
 
@@ -1458,11 +1409,11 @@ func (h *Google_billing_account_iam_memberHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_billing_account_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_billing_account_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_billing_account_iam_member{ Google_billing_account_iam_member_id: &externalID }
+	x := &Google_billing_account_iam_member{Google_billing_account_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_billing_account_iam_member", "actual", spew.Sdump(x))
@@ -1481,7 +1432,7 @@ func (h *Google_billing_account_iam_memberHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_billing_account_iam_member{ Google_billing_account_iam_member_id: &id }
+	x := &Google_billing_account_iam_member{Google_billing_account_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_billing_account_iam_member", "actual", spew.Sdump(x))
@@ -1500,15 +1451,13 @@ func (h *Google_billing_account_iam_memberHandler) Delete(externalID string) err
 }
 
 type Google_billing_account_iam_policy struct {
-
 	Google_billing_account_iam_policy_id *string `lyra:"ignore"`
 
-    Billing_account_id string
+	Billing_account_id string
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
-
+	Policy_data string
 }
 
 var Google_billing_account_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1516,12 +1465,10 @@ var Google_billing_account_iam_policy_rtb = func(rtb service.ResourceTypeBuilder
 		"google_billing_account_iam_policy_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"billing_account_id",
-
 	)
 }
 
@@ -1561,11 +1508,11 @@ func (h *Google_billing_account_iam_policyHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_billing_account_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_billing_account_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_billing_account_iam_policy{ Google_billing_account_iam_policy_id: &externalID }
+	x := &Google_billing_account_iam_policy{Google_billing_account_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_billing_account_iam_policy", "actual", spew.Sdump(x))
@@ -1584,7 +1531,7 @@ func (h *Google_billing_account_iam_policyHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_billing_account_iam_policy{ Google_billing_account_iam_policy_id: &id }
+	x := &Google_billing_account_iam_policy{Google_billing_account_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_billing_account_iam_policy", "actual", spew.Sdump(x))
@@ -1603,39 +1550,31 @@ func (h *Google_billing_account_iam_policyHandler) Delete(externalID string) err
 }
 
 type Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9 struct {
+	Ascii_armored_pgp_public_key string
 
+	Comment *string
 
-    Ascii_armored_pgp_public_key string
-
-    Comment *string
-
-    Id *string
-
+	Id *string
 }
 
 type Google_binary_authorization_attestor_attestation_authority_note_8 struct {
+	Delegation_service_account_email *string
 
+	Note_reference string
 
-    Delegation_service_account_email *string
-
-    Note_reference string
-
-    Public_keys *[]Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9
-
+	Public_keys *[]Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9
 }
 
 type Google_binary_authorization_attestor struct {
-
 	Google_binary_authorization_attestor_id *string `lyra:"ignore"`
 
-    Attestation_authority_note []Google_binary_authorization_attestor_attestation_authority_note_8
+	Attestation_authority_note []Google_binary_authorization_attestor_attestation_authority_note_8
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_binary_authorization_attestor_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1645,14 +1584,12 @@ var Google_binary_authorization_attestor_rtb = func(rtb service.ResourceTypeBuil
 		"description",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -1692,11 +1629,11 @@ func (h *Google_binary_authorization_attestorHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_binary_authorization_attestor", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_binary_authorization_attestor", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_binary_authorization_attestor{ Google_binary_authorization_attestor_id: &externalID }
+	x := &Google_binary_authorization_attestor{Google_binary_authorization_attestor_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_binary_authorization_attestor", "actual", spew.Sdump(x))
@@ -1715,7 +1652,7 @@ func (h *Google_binary_authorization_attestorHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_binary_authorization_attestor{ Google_binary_authorization_attestor_id: &id }
+	x := &Google_binary_authorization_attestor{Google_binary_authorization_attestor_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_binary_authorization_attestor", "actual", spew.Sdump(x))
@@ -1734,50 +1671,39 @@ func (h *Google_binary_authorization_attestorHandler) Delete(externalID string) 
 }
 
 type Google_binary_authorization_policy_admission_whitelist_patterns_10 struct {
-
-
-    Name_pattern *string
-
+	Name_pattern *string
 }
 
 type Google_binary_authorization_policy_cluster_admission_rules_11 struct {
+	Cluster string
 
+	Enforcement_mode *string
 
-    Cluster string
+	Evaluation_mode *string
 
-    Enforcement_mode *string
-
-    Evaluation_mode *string
-
-    Require_attestations_by *[]string
-
+	Require_attestations_by *[]string
 }
 
 type Google_binary_authorization_policy_default_admission_rule_12 struct {
+	Enforcement_mode string
 
+	Evaluation_mode string
 
-    Enforcement_mode string
-
-    Evaluation_mode string
-
-    Require_attestations_by *[]string
-
+	Require_attestations_by *[]string
 }
 
 type Google_binary_authorization_policy struct {
-
 	Google_binary_authorization_policy_id *string `lyra:"ignore"`
 
-    Admission_whitelist_patterns *[]Google_binary_authorization_policy_admission_whitelist_patterns_10
+	Admission_whitelist_patterns *[]Google_binary_authorization_policy_admission_whitelist_patterns_10
 
-    Cluster_admission_rules *[]Google_binary_authorization_policy_cluster_admission_rules_11
+	Cluster_admission_rules *[]Google_binary_authorization_policy_cluster_admission_rules_11
 
-    Default_admission_rule []Google_binary_authorization_policy_default_admission_rule_12
+	Default_admission_rule []Google_binary_authorization_policy_default_admission_rule_12
 
-    Description *string
+	Description *string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_binary_authorization_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1791,12 +1717,10 @@ var Google_binary_authorization_policy_rtb = func(rtb service.ResourceTypeBuilde
 		"description",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -1836,11 +1760,11 @@ func (h *Google_binary_authorization_policyHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_binary_authorization_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_binary_authorization_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_binary_authorization_policy{ Google_binary_authorization_policy_id: &externalID }
+	x := &Google_binary_authorization_policy{Google_binary_authorization_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_binary_authorization_policy", "actual", spew.Sdump(x))
@@ -1859,7 +1783,7 @@ func (h *Google_binary_authorization_policyHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_binary_authorization_policy{ Google_binary_authorization_policy_id: &id }
+	x := &Google_binary_authorization_policy{Google_binary_authorization_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_binary_authorization_policy", "actual", spew.Sdump(x))
@@ -1878,58 +1802,47 @@ func (h *Google_binary_authorization_policyHandler) Delete(externalID string) er
 }
 
 type Google_cloudbuild_trigger_build_13_step_14 struct {
+	Args *string
 
-
-    Args *string
-
-    Name *string
-
+	Name *string
 }
 
 type Google_cloudbuild_trigger_build_13 struct {
+	Images *[]string
 
+	Step *[]Google_cloudbuild_trigger_build_13_step_14
 
-    Images *[]string
-
-    Step *[]Google_cloudbuild_trigger_build_13_step_14
-
-    Tags *[]string
-
+	Tags *[]string
 }
 
 type Google_cloudbuild_trigger_trigger_template_15 struct {
+	Branch_name *string
 
+	Commit_sha *string
 
-    Branch_name *string
+	Dir *string
 
-    Commit_sha *string
+	Project *string
 
-    Dir *string
+	Repo_name *string
 
-    Project *string
-
-    Repo_name *string
-
-    Tag_name *string
-
+	Tag_name *string
 }
 
 type Google_cloudbuild_trigger struct {
-
 	Google_cloudbuild_trigger_id *string `lyra:"ignore"`
 
-    Build *[]Google_cloudbuild_trigger_build_13
+	Build *[]Google_cloudbuild_trigger_build_13
 
-    Description *string
+	Description *string
 
-    Filename *string
+	Filename *string
 
-    Project *string
+	Project *string
 
-    Substitutions *map[string]string
+	Substitutions *map[string]string
 
-    Trigger_template *[]Google_cloudbuild_trigger_trigger_template_15
-
+	Trigger_template *[]Google_cloudbuild_trigger_trigger_template_15
 }
 
 var Google_cloudbuild_trigger_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1947,7 +1860,6 @@ var Google_cloudbuild_trigger_rtb = func(rtb service.ResourceTypeBuilder) {
 		"substitutions",
 
 		"trigger_template",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1962,7 +1874,6 @@ var Google_cloudbuild_trigger_rtb = func(rtb service.ResourceTypeBuilder) {
 		"substitutions",
 
 		"trigger_template",
-
 	)
 }
 
@@ -2002,11 +1913,11 @@ func (h *Google_cloudbuild_triggerHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_cloudbuild_trigger", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_cloudbuild_trigger", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_cloudbuild_trigger{ Google_cloudbuild_trigger_id: &externalID }
+	x := &Google_cloudbuild_trigger{Google_cloudbuild_trigger_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_cloudbuild_trigger", "actual", spew.Sdump(x))
@@ -2025,7 +1936,7 @@ func (h *Google_cloudbuild_triggerHandler) Read(externalID string) (*Google_clou
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_cloudbuild_trigger{ Google_cloudbuild_trigger_id: &id }
+	x := &Google_cloudbuild_trigger{Google_cloudbuild_trigger_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_cloudbuild_trigger", "actual", spew.Sdump(x))
@@ -2044,63 +1955,55 @@ func (h *Google_cloudbuild_triggerHandler) Delete(externalID string) error {
 }
 
 type Google_cloudfunctions_function_event_trigger_16_failure_policy_17 struct {
-
-
-    Retry bool
-
+	Retry bool
 }
 
 type Google_cloudfunctions_function_event_trigger_16 struct {
+	Event_type string
 
+	Failure_policy *[]Google_cloudfunctions_function_event_trigger_16_failure_policy_17
 
-    Event_type string
-
-    Failure_policy *[]Google_cloudfunctions_function_event_trigger_16_failure_policy_17
-
-    Resource string
-
+	Resource string
 }
 
 type Google_cloudfunctions_function struct {
-
 	Google_cloudfunctions_function_id *string `lyra:"ignore"`
 
-    Available_memory_mb *int
+	Available_memory_mb *int
 
-    Description *string
+	Description *string
 
-    Entry_point *string
+	Entry_point *string
 
-    Environment_variables *map[string]string
+	Environment_variables *map[string]string
 
-    Event_trigger *[]Google_cloudfunctions_function_event_trigger_16
+	Event_trigger *[]Google_cloudfunctions_function_event_trigger_16
 
-    Https_trigger_url *string
+	Https_trigger_url *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Retry_on_failure *bool
+	Retry_on_failure *bool
 
-    Runtime *string
+	Runtime *string
 
-    Source_archive_bucket string
+	Source_archive_bucket string
 
-    Source_archive_object string
+	Source_archive_object string
 
-    Timeout *int
+	Timeout *int
 
-    Trigger_bucket *string
+	Trigger_bucket *string
 
-    Trigger_http *bool
+	Trigger_http *bool
 
-    Trigger_topic *string
-
+	Trigger_topic *string
 }
 
 var Google_cloudfunctions_function_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2136,7 +2039,6 @@ var Google_cloudfunctions_function_rtb = func(rtb service.ResourceTypeBuilder) {
 		"trigger_http",
 
 		"trigger_topic",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2149,7 +2051,6 @@ var Google_cloudfunctions_function_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"trigger_http",
-
 	)
 }
 
@@ -2189,11 +2090,11 @@ func (h *Google_cloudfunctions_functionHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_cloudfunctions_function", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_cloudfunctions_function", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_cloudfunctions_function{ Google_cloudfunctions_function_id: &externalID }
+	x := &Google_cloudfunctions_function{Google_cloudfunctions_function_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_cloudfunctions_function", "actual", spew.Sdump(x))
@@ -2212,7 +2113,7 @@ func (h *Google_cloudfunctions_functionHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_cloudfunctions_function{ Google_cloudfunctions_function_id: &id }
+	x := &Google_cloudfunctions_function{Google_cloudfunctions_function_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_cloudfunctions_function", "actual", spew.Sdump(x))
@@ -2231,32 +2132,27 @@ func (h *Google_cloudfunctions_functionHandler) Delete(externalID string) error 
 }
 
 type Google_cloudiot_registry_credentials_18 struct {
-
-
-    Public_key_certificate *map[string]string
-
+	Public_key_certificate *map[string]string
 }
 
 type Google_cloudiot_registry struct {
-
 	Google_cloudiot_registry_id *string `lyra:"ignore"`
 
-    Credentials *[]Google_cloudiot_registry_credentials_18
+	Credentials *[]Google_cloudiot_registry_credentials_18
 
-    Event_notification_config *map[string]string
+	Event_notification_config *map[string]string
 
-    Http_config *map[string]string
+	Http_config *map[string]string
 
-    Mqtt_config *map[string]string
+	Mqtt_config *map[string]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    State_notification_config *map[string]string
-
+	State_notification_config *map[string]string
 }
 
 var Google_cloudiot_registry_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2276,7 +2172,6 @@ var Google_cloudiot_registry_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"state_notification_config",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2285,7 +2180,6 @@ var Google_cloudiot_registry_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -2325,11 +2219,11 @@ func (h *Google_cloudiot_registryHandler) Update(externalID string, desired *Goo
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_cloudiot_registry", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_cloudiot_registry", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_cloudiot_registry{ Google_cloudiot_registry_id: &externalID }
+	x := &Google_cloudiot_registry{Google_cloudiot_registry_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_cloudiot_registry", "actual", spew.Sdump(x))
@@ -2348,7 +2242,7 @@ func (h *Google_cloudiot_registryHandler) Read(externalID string) (*Google_cloud
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_cloudiot_registry{ Google_cloudiot_registry_id: &id }
+	x := &Google_cloudiot_registry{Google_cloudiot_registry_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_cloudiot_registry", "actual", spew.Sdump(x))
@@ -2367,70 +2261,59 @@ func (h *Google_cloudiot_registryHandler) Delete(externalID string) error {
 }
 
 type Google_composer_environment_config_19_node_config_20 struct {
+	Disk_size_gb *int
 
+	Machine_type *string
 
-    Disk_size_gb *int
+	Network *string
 
-    Machine_type *string
+	Oauth_scopes *[]string
 
-    Network *string
+	Service_account *string
 
-    Oauth_scopes *[]string
+	Subnetwork *string
 
-    Service_account *string
+	Tags *[]string
 
-    Subnetwork *string
-
-    Tags *[]string
-
-    Zone *string
-
+	Zone *string
 }
 
 type Google_composer_environment_config_19_software_config_21 struct {
+	Airflow_config_overrides *map[string]string
 
+	Env_variables *map[string]string
 
-    Airflow_config_overrides *map[string]string
+	Image_version *string
 
-    Env_variables *map[string]string
-
-    Image_version *string
-
-    Pypi_packages *map[string]string
-
+	Pypi_packages *map[string]string
 }
 
 type Google_composer_environment_config_19 struct {
+	Airflow_uri *string
 
+	Dag_gcs_prefix *string
 
-    Airflow_uri *string
+	Gke_cluster *string
 
-    Dag_gcs_prefix *string
+	Node_config *[]Google_composer_environment_config_19_node_config_20
 
-    Gke_cluster *string
+	Node_count *int
 
-    Node_config *[]Google_composer_environment_config_19_node_config_20
-
-    Node_count *int
-
-    Software_config *[]Google_composer_environment_config_19_software_config_21
-
+	Software_config *[]Google_composer_environment_config_19_software_config_21
 }
 
 type Google_composer_environment struct {
-
 	Google_composer_environment_id *string `lyra:"ignore"`
 
-    Config *[]Google_composer_environment_config_19
+	Config *[]Google_composer_environment_config_19
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
-
+	Region *string
 }
 
 var Google_composer_environment_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2444,7 +2327,6 @@ var Google_composer_environment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2453,7 +2335,6 @@ var Google_composer_environment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -2493,11 +2374,11 @@ func (h *Google_composer_environmentHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_composer_environment", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_composer_environment", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_composer_environment{ Google_composer_environment_id: &externalID }
+	x := &Google_composer_environment{Google_composer_environment_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_composer_environment", "actual", spew.Sdump(x))
@@ -2516,7 +2397,7 @@ func (h *Google_composer_environmentHandler) Read(externalID string) (*Google_co
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_composer_environment{ Google_composer_environment_id: &id }
+	x := &Google_composer_environment{Google_composer_environment_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_composer_environment", "actual", spew.Sdump(x))
@@ -2535,35 +2416,33 @@ func (h *Google_composer_environmentHandler) Delete(externalID string) error {
 }
 
 type Google_compute_address struct {
-
 	Google_compute_address_id *string `lyra:"ignore"`
 
-    Address *string
+	Address *string
 
-    Address_type *string
+	Address_type *string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Network_tier *string
+	Network_tier *string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
+	Self_link *string
 
-    Subnetwork *string
+	Subnetwork *string
 
-    Users *[]string
-
+	Users *[]string
 }
 
 var Google_compute_address_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2593,7 +2472,6 @@ var Google_compute_address_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnetwork",
 
 		"users",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2612,7 +2490,6 @@ var Google_compute_address_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"subnetwork",
-
 	)
 }
 
@@ -2652,11 +2529,11 @@ func (h *Google_compute_addressHandler) Update(externalID string, desired *Googl
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_address", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_address", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_address{ Google_compute_address_id: &externalID }
+	x := &Google_compute_address{Google_compute_address_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_address", "actual", spew.Sdump(x))
@@ -2675,7 +2552,7 @@ func (h *Google_compute_addressHandler) Read(externalID string) (*Google_compute
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_address{ Google_compute_address_id: &id }
+	x := &Google_compute_address{Google_compute_address_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_address", "actual", spew.Sdump(x))
@@ -2694,21 +2571,19 @@ func (h *Google_compute_addressHandler) Delete(externalID string) error {
 }
 
 type Google_compute_attached_disk struct {
-
 	Google_compute_attached_disk_id *string `lyra:"ignore"`
 
-    Device_name *string
+	Device_name *string
 
-    Disk string
+	Disk string
 
-    Instance string
+	Instance string
 
-    Mode *string
+	Mode *string
 
-    Project *string
+	Project *string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_attached_disk_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2722,7 +2597,6 @@ var Google_compute_attached_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2737,7 +2611,6 @@ var Google_compute_attached_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"zone",
-
 	)
 }
 
@@ -2777,11 +2650,11 @@ func (h *Google_compute_attached_diskHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_attached_disk", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_attached_disk", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_attached_disk{ Google_compute_attached_disk_id: &externalID }
+	x := &Google_compute_attached_disk{Google_compute_attached_disk_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_attached_disk", "actual", spew.Sdump(x))
@@ -2800,7 +2673,7 @@ func (h *Google_compute_attached_diskHandler) Read(externalID string) (*Google_c
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_attached_disk{ Google_compute_attached_disk_id: &id }
+	x := &Google_compute_attached_disk{Google_compute_attached_disk_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_attached_disk", "actual", spew.Sdump(x))
@@ -2819,67 +2692,53 @@ func (h *Google_compute_attached_diskHandler) Delete(externalID string) error {
 }
 
 type Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23 struct {
-
-
-    Target float64
-
+	Target float64
 }
 
 type Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24 struct {
-
-
-    Target float64
-
+	Target float64
 }
 
 type Google_compute_autoscaler_autoscaling_policy_22_metric_25 struct {
+	Name string
 
+	Target float64
 
-    Name string
-
-    Target float64
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_autoscaler_autoscaling_policy_22 struct {
+	Cooldown_period *int
 
+	Cpu_utilization *[]Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23
 
-    Cooldown_period *int
+	Load_balancing_utilization *[]Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24
 
-    Cpu_utilization *[]Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23
+	Max_replicas int
 
-    Load_balancing_utilization *[]Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24
+	Metric *[]Google_compute_autoscaler_autoscaling_policy_22_metric_25
 
-    Max_replicas int
-
-    Metric *[]Google_compute_autoscaler_autoscaling_policy_22_metric_25
-
-    Min_replicas int
-
+	Min_replicas int
 }
 
 type Google_compute_autoscaler struct {
-
 	Google_compute_autoscaler_id *string `lyra:"ignore"`
 
-    Autoscaling_policy []Google_compute_autoscaler_autoscaling_policy_22
+	Autoscaling_policy []Google_compute_autoscaler_autoscaling_policy_22
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Target string
+	Target string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_autoscaler_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2895,7 +2754,6 @@ var Google_compute_autoscaler_rtb = func(rtb service.ResourceTypeBuilder) {
 		"self_link",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2904,7 +2762,6 @@ var Google_compute_autoscaler_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"zone",
-
 	)
 }
 
@@ -2944,11 +2801,11 @@ func (h *Google_compute_autoscalerHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_autoscaler", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_autoscaler", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_autoscaler{ Google_compute_autoscaler_id: &externalID }
+	x := &Google_compute_autoscaler{Google_compute_autoscaler_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_autoscaler", "actual", spew.Sdump(x))
@@ -2967,7 +2824,7 @@ func (h *Google_compute_autoscalerHandler) Read(externalID string) (*Google_comp
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_autoscaler{ Google_compute_autoscaler_id: &id }
+	x := &Google_compute_autoscaler{Google_compute_autoscaler_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_autoscaler", "actual", spew.Sdump(x))
@@ -2986,23 +2843,21 @@ func (h *Google_compute_autoscalerHandler) Delete(externalID string) error {
 }
 
 type Google_compute_backend_bucket struct {
-
 	Google_compute_backend_bucket_id *string `lyra:"ignore"`
 
-    Bucket_name string
+	Bucket_name string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Enable_cdn *bool
+	Enable_cdn *bool
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_backend_bucket_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3018,14 +2873,12 @@ var Google_compute_backend_bucket_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -3065,11 +2918,11 @@ func (h *Google_compute_backend_bucketHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_backend_bucket", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_backend_bucket", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_backend_bucket{ Google_compute_backend_bucket_id: &externalID }
+	x := &Google_compute_backend_bucket{Google_compute_backend_bucket_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_backend_bucket", "actual", spew.Sdump(x))
@@ -3088,7 +2941,7 @@ func (h *Google_compute_backend_bucketHandler) Read(externalID string) (*Google_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_backend_bucket{ Google_compute_backend_bucket_id: &id }
+	x := &Google_compute_backend_bucket{Google_compute_backend_bucket_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_backend_bucket", "actual", spew.Sdump(x))
@@ -3107,99 +2960,85 @@ func (h *Google_compute_backend_bucketHandler) Delete(externalID string) error {
 }
 
 type Google_compute_backend_service_backend_26 struct {
+	Balancing_mode *string
 
+	Capacity_scaler *float64
 
-    Balancing_mode *string
+	Description *string
 
-    Capacity_scaler *float64
+	Group *string
 
-    Description *string
+	Max_connections *int
 
-    Group *string
+	Max_connections_per_instance *int
 
-    Max_connections *int
+	Max_rate *int
 
-    Max_connections_per_instance *int
+	Max_rate_per_instance *float64
 
-    Max_rate *int
-
-    Max_rate_per_instance *float64
-
-    Max_utilization *float64
-
+	Max_utilization *float64
 }
 
 type Google_compute_backend_service_cdn_policy_27_cache_key_policy_28 struct {
+	Include_host *bool
 
+	Include_protocol *bool
 
-    Include_host *bool
+	Include_query_string *bool
 
-    Include_protocol *bool
+	Query_string_blacklist *[]string
 
-    Include_query_string *bool
-
-    Query_string_blacklist *[]string
-
-    Query_string_whitelist *[]string
-
+	Query_string_whitelist *[]string
 }
 
 type Google_compute_backend_service_cdn_policy_27 struct {
-
-
-    Cache_key_policy *[]Google_compute_backend_service_cdn_policy_27_cache_key_policy_28
-
+	Cache_key_policy *[]Google_compute_backend_service_cdn_policy_27_cache_key_policy_28
 }
 
 type Google_compute_backend_service_iap_29 struct {
+	Oauth2_client_id string
 
-
-    Oauth2_client_id string
-
-    Oauth2_client_secret string
-
+	Oauth2_client_secret string
 }
 
 type Google_compute_backend_service struct {
-
 	Google_compute_backend_service_id *string `lyra:"ignore"`
 
-    Backend *[]Google_compute_backend_service_backend_26
+	Backend *[]Google_compute_backend_service_backend_26
 
-    Cdn_policy *[]Google_compute_backend_service_cdn_policy_27
+	Cdn_policy *[]Google_compute_backend_service_cdn_policy_27
 
-    Connection_draining_timeout_sec *int
+	Connection_draining_timeout_sec *int
 
-    Custom_request_headers *[]string
+	Custom_request_headers *[]string
 
-    Description *string
+	Description *string
 
-    Enable_cdn *bool
+	Enable_cdn *bool
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Health_checks []string
+	Health_checks []string
 
-    Iap *[]Google_compute_backend_service_iap_29
+	Iap *[]Google_compute_backend_service_iap_29
 
-    Name string
+	Name string
 
-    Port_name *string
+	Port_name *string
 
-    Project *string
+	Project *string
 
-    Protocol *string
+	Protocol *string
 
-    Region *string
+	Region *string
 
-    Security_policy *string
+	Security_policy *string
 
-    Self_link *string
+	Self_link *string
 
-    Session_affinity *string
+	Session_affinity *string
 
-    Timeout_sec *int
-
+	Timeout_sec *int
 }
 
 var Google_compute_backend_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3237,7 +3076,6 @@ var Google_compute_backend_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"session_affinity",
 
 		"timeout_sec",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3246,7 +3084,6 @@ var Google_compute_backend_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -3286,11 +3123,11 @@ func (h *Google_compute_backend_serviceHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_backend_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_backend_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_backend_service{ Google_compute_backend_service_id: &externalID }
+	x := &Google_compute_backend_service{Google_compute_backend_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_backend_service", "actual", spew.Sdump(x))
@@ -3309,7 +3146,7 @@ func (h *Google_compute_backend_serviceHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_backend_service{ Google_compute_backend_service_id: &id }
+	x := &Google_compute_backend_service{Google_compute_backend_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_backend_service", "actual", spew.Sdump(x))
@@ -3328,80 +3165,69 @@ func (h *Google_compute_backend_serviceHandler) Delete(externalID string) error 
 }
 
 type Google_compute_disk_disk_encryption_key_30 struct {
+	Raw_key *string
 
-
-    Raw_key *string
-
-    Sha256 *string
-
+	Sha256 *string
 }
 
 type Google_compute_disk_source_image_encryption_key_31 struct {
+	Raw_key *string
 
-
-    Raw_key *string
-
-    Sha256 *string
-
+	Sha256 *string
 }
 
 type Google_compute_disk_source_snapshot_encryption_key_32 struct {
+	Raw_key *string
 
-
-    Raw_key *string
-
-    Sha256 *string
-
+	Sha256 *string
 }
 
 type Google_compute_disk struct {
-
 	Google_compute_disk_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Disk_encryption_key *[]Google_compute_disk_disk_encryption_key_30
+	Disk_encryption_key *[]Google_compute_disk_disk_encryption_key_30
 
-    Disk_encryption_key_raw *string
+	Disk_encryption_key_raw *string
 
-    Disk_encryption_key_sha256 *string
+	Disk_encryption_key_sha256 *string
 
-    Image *string
+	Image *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Last_attach_timestamp *string
+	Last_attach_timestamp *string
 
-    Last_detach_timestamp *string
+	Last_detach_timestamp *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Size *int
+	Size *int
 
-    Snapshot *string
+	Snapshot *string
 
-    Source_image_encryption_key *[]Google_compute_disk_source_image_encryption_key_31
+	Source_image_encryption_key *[]Google_compute_disk_source_image_encryption_key_31
 
-    Source_image_id *string
+	Source_image_id *string
 
-    Source_snapshot_encryption_key *[]Google_compute_disk_source_snapshot_encryption_key_32
+	Source_snapshot_encryption_key *[]Google_compute_disk_source_snapshot_encryption_key_32
 
-    Source_snapshot_id *string
+	Source_snapshot_id *string
 
-    Type *string
+	Type *string
 
-    Users *[]string
+	Users *[]string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_disk_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3449,7 +3275,6 @@ var Google_compute_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"users",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3472,7 +3297,6 @@ var Google_compute_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"type",
 
 		"zone",
-
 	)
 }
 
@@ -3512,11 +3336,11 @@ func (h *Google_compute_diskHandler) Update(externalID string, desired *Google_c
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_disk", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_disk", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_disk{ Google_compute_disk_id: &externalID }
+	x := &Google_compute_disk{Google_compute_disk_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_disk", "actual", spew.Sdump(x))
@@ -3535,7 +3359,7 @@ func (h *Google_compute_diskHandler) Read(externalID string) (*Google_compute_di
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_disk{ Google_compute_disk_id: &id }
+	x := &Google_compute_disk{Google_compute_disk_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_disk", "actual", spew.Sdump(x))
@@ -3554,63 +3378,55 @@ func (h *Google_compute_diskHandler) Delete(externalID string) error {
 }
 
 type Google_compute_firewall_allow_33 struct {
+	Ports *[]string
 
-
-    Ports *[]string
-
-    Protocol string
-
+	Protocol string
 }
 
 type Google_compute_firewall_deny_34 struct {
+	Ports *[]string
 
-
-    Ports *[]string
-
-    Protocol string
-
+	Protocol string
 }
 
 type Google_compute_firewall struct {
-
 	Google_compute_firewall_id *string `lyra:"ignore"`
 
-    Allow *[]Google_compute_firewall_allow_33
+	Allow *[]Google_compute_firewall_allow_33
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Deny *[]Google_compute_firewall_deny_34
+	Deny *[]Google_compute_firewall_deny_34
 
-    Description *string
+	Description *string
 
-    Destination_ranges *[]string
+	Destination_ranges *[]string
 
-    Direction *string
+	Direction *string
 
-    Disabled *bool
+	Disabled *bool
 
-    Enable_logging *bool
+	Enable_logging *bool
 
-    Name string
+	Name string
 
-    Network string
+	Network string
 
-    Priority *int
+	Priority *int
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Source_ranges *[]string
+	Source_ranges *[]string
 
-    Source_service_accounts *[]string
+	Source_service_accounts *[]string
 
-    Source_tags *[]string
+	Source_tags *[]string
 
-    Target_service_accounts *[]string
+	Target_service_accounts *[]string
 
-    Target_tags *[]string
-
+	Target_tags *[]string
 }
 
 var Google_compute_firewall_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3648,14 +3464,12 @@ var Google_compute_firewall_rtb = func(rtb service.ResourceTypeBuilder) {
 		"target_service_accounts",
 
 		"target_tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -3695,11 +3509,11 @@ func (h *Google_compute_firewallHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_firewall", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_firewall", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_firewall{ Google_compute_firewall_id: &externalID }
+	x := &Google_compute_firewall{Google_compute_firewall_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_firewall", "actual", spew.Sdump(x))
@@ -3718,7 +3532,7 @@ func (h *Google_compute_firewallHandler) Read(externalID string) (*Google_comput
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_firewall{ Google_compute_firewall_id: &id }
+	x := &Google_compute_firewall{Google_compute_firewall_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_firewall", "actual", spew.Sdump(x))
@@ -3737,51 +3551,49 @@ func (h *Google_compute_firewallHandler) Delete(externalID string) error {
 }
 
 type Google_compute_forwarding_rule struct {
-
 	Google_compute_forwarding_rule_id *string `lyra:"ignore"`
 
-    Backend_service *string
+	Backend_service *string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Ip_address *string
+	Ip_address *string
 
-    Ip_protocol *string
+	Ip_protocol *string
 
-    Ip_version *string
+	Ip_version *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Load_balancing_scheme *string
+	Load_balancing_scheme *string
 
-    Name string
+	Name string
 
-    Network *string
+	Network *string
 
-    Network_tier *string
+	Network_tier *string
 
-    Port_range *string
+	Port_range *string
 
-    Ports *[]string
+	Ports *[]string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
+	Self_link *string
 
-    Service_label *string
+	Service_label *string
 
-    Service_name *string
+	Service_name *string
 
-    Subnetwork *string
+	Subnetwork *string
 
-    Target *string
-
+	Target *string
 }
 
 var Google_compute_forwarding_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3827,7 +3639,6 @@ var Google_compute_forwarding_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnetwork",
 
 		"target",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3860,7 +3671,6 @@ var Google_compute_forwarding_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"service_label",
 
 		"subnetwork",
-
 	)
 }
 
@@ -3900,11 +3710,11 @@ func (h *Google_compute_forwarding_ruleHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_forwarding_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_forwarding_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_forwarding_rule{ Google_compute_forwarding_rule_id: &externalID }
+	x := &Google_compute_forwarding_rule{Google_compute_forwarding_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_forwarding_rule", "actual", spew.Sdump(x))
@@ -3923,7 +3733,7 @@ func (h *Google_compute_forwarding_ruleHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_forwarding_rule{ Google_compute_forwarding_rule_id: &id }
+	x := &Google_compute_forwarding_rule{Google_compute_forwarding_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_forwarding_rule", "actual", spew.Sdump(x))
@@ -3942,35 +3752,33 @@ func (h *Google_compute_forwarding_ruleHandler) Delete(externalID string) error 
 }
 
 type Google_compute_global_address struct {
-
 	Google_compute_global_address_id *string `lyra:"ignore"`
 
-    Address *string
+	Address *string
 
-    Address_type *string
+	Address_type *string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Ip_version *string
+	Ip_version *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Network *string
+	Network *string
 
-    Prefix_length *int
+	Prefix_length *int
 
-    Project *string
+	Project *string
 
-    Purpose *string
+	Purpose *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_global_address_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4000,7 +3808,6 @@ var Google_compute_global_address_rtb = func(rtb service.ResourceTypeBuilder) {
 		"purpose",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4019,7 +3826,6 @@ var Google_compute_global_address_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"purpose",
-
 	)
 }
 
@@ -4059,11 +3865,11 @@ func (h *Google_compute_global_addressHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_global_address", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_global_address", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_global_address{ Google_compute_global_address_id: &externalID }
+	x := &Google_compute_global_address{Google_compute_global_address_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_global_address", "actual", spew.Sdump(x))
@@ -4082,7 +3888,7 @@ func (h *Google_compute_global_addressHandler) Read(externalID string) (*Google_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_global_address{ Google_compute_global_address_id: &id }
+	x := &Google_compute_global_address{Google_compute_global_address_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_global_address", "actual", spew.Sdump(x))
@@ -4101,33 +3907,31 @@ func (h *Google_compute_global_addressHandler) Delete(externalID string) error {
 }
 
 type Google_compute_global_forwarding_rule struct {
-
 	Google_compute_global_forwarding_rule_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Ip_address *string
+	Ip_address *string
 
-    Ip_protocol *string
+	Ip_protocol *string
 
-    Ip_version *string
+	Ip_version *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Port_range *string
+	Port_range *string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
+	Self_link *string
 
-    Target string
-
+	Target string
 }
 
 var Google_compute_global_forwarding_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4153,7 +3957,6 @@ var Google_compute_global_forwarding_rule_rtb = func(rtb service.ResourceTypeBui
 		"region",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4172,7 +3975,6 @@ var Google_compute_global_forwarding_rule_rtb = func(rtb service.ResourceTypeBui
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -4212,11 +4014,11 @@ func (h *Google_compute_global_forwarding_ruleHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_global_forwarding_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_global_forwarding_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_global_forwarding_rule{ Google_compute_global_forwarding_rule_id: &externalID }
+	x := &Google_compute_global_forwarding_rule{Google_compute_global_forwarding_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_global_forwarding_rule", "actual", spew.Sdump(x))
@@ -4235,7 +4037,7 @@ func (h *Google_compute_global_forwarding_ruleHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_global_forwarding_rule{ Google_compute_global_forwarding_rule_id: &id }
+	x := &Google_compute_global_forwarding_rule{Google_compute_global_forwarding_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_global_forwarding_rule", "actual", spew.Sdump(x))
@@ -4254,93 +4056,79 @@ func (h *Google_compute_global_forwarding_ruleHandler) Delete(externalID string)
 }
 
 type Google_compute_health_check_http_health_check_35 struct {
+	Host *string
 
+	Port *int
 
-    Host *string
+	Proxy_header *string
 
-    Port *int
+	Request_path *string
 
-    Proxy_header *string
-
-    Request_path *string
-
-    Response *string
-
+	Response *string
 }
 
 type Google_compute_health_check_https_health_check_36 struct {
+	Host *string
 
+	Port *int
 
-    Host *string
+	Proxy_header *string
 
-    Port *int
+	Request_path *string
 
-    Proxy_header *string
-
-    Request_path *string
-
-    Response *string
-
+	Response *string
 }
 
 type Google_compute_health_check_ssl_health_check_37 struct {
+	Port *int
 
+	Proxy_header *string
 
-    Port *int
+	Request *string
 
-    Proxy_header *string
-
-    Request *string
-
-    Response *string
-
+	Response *string
 }
 
 type Google_compute_health_check_tcp_health_check_38 struct {
+	Port *int
 
+	Proxy_header *string
 
-    Port *int
+	Request *string
 
-    Proxy_header *string
-
-    Request *string
-
-    Response *string
-
+	Response *string
 }
 
 type Google_compute_health_check struct {
-
 	Google_compute_health_check_id *string `lyra:"ignore"`
 
-    Check_interval_sec *int
+	Check_interval_sec *int
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Healthy_threshold *int
+	Healthy_threshold *int
 
-    Http_health_check *[]Google_compute_health_check_http_health_check_35
+	Http_health_check *[]Google_compute_health_check_http_health_check_35
 
-    Https_health_check *[]Google_compute_health_check_https_health_check_36
+	Https_health_check *[]Google_compute_health_check_https_health_check_36
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Ssl_health_check *[]Google_compute_health_check_ssl_health_check_37
+	Ssl_health_check *[]Google_compute_health_check_ssl_health_check_37
 
-    Tcp_health_check *[]Google_compute_health_check_tcp_health_check_38
+	Tcp_health_check *[]Google_compute_health_check_tcp_health_check_38
 
-    Timeout_sec *int
+	Timeout_sec *int
 
-    Type *string
+	Type *string
 
-    Unhealthy_threshold *int
-
+	Unhealthy_threshold *int
 }
 
 var Google_compute_health_check_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4372,14 +4160,12 @@ var Google_compute_health_check_rtb = func(rtb service.ResourceTypeBuilder) {
 		"type",
 
 		"unhealthy_threshold",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -4419,11 +4205,11 @@ func (h *Google_compute_health_checkHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_health_check", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_health_check", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_health_check{ Google_compute_health_check_id: &externalID }
+	x := &Google_compute_health_check{Google_compute_health_check_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_health_check", "actual", spew.Sdump(x))
@@ -4442,7 +4228,7 @@ func (h *Google_compute_health_checkHandler) Read(externalID string) (*Google_co
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_health_check{ Google_compute_health_check_id: &id }
+	x := &Google_compute_health_check{Google_compute_health_check_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_health_check", "actual", spew.Sdump(x))
@@ -4461,33 +4247,31 @@ func (h *Google_compute_health_checkHandler) Delete(externalID string) error {
 }
 
 type Google_compute_http_health_check struct {
-
 	Google_compute_http_health_check_id *string `lyra:"ignore"`
 
-    Check_interval_sec *int
+	Check_interval_sec *int
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Healthy_threshold *int
+	Healthy_threshold *int
 
-    Host *string
+	Host *string
 
-    Name string
+	Name string
 
-    Port *int
+	Port *int
 
-    Project *string
+	Project *string
 
-    Request_path *string
+	Request_path *string
 
-    Self_link *string
+	Self_link *string
 
-    Timeout_sec *int
+	Timeout_sec *int
 
-    Unhealthy_threshold *int
-
+	Unhealthy_threshold *int
 }
 
 var Google_compute_http_health_check_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4515,14 +4299,12 @@ var Google_compute_http_health_check_rtb = func(rtb service.ResourceTypeBuilder)
 		"timeout_sec",
 
 		"unhealthy_threshold",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -4562,11 +4344,11 @@ func (h *Google_compute_http_health_checkHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_http_health_check", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_http_health_check", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_http_health_check{ Google_compute_http_health_check_id: &externalID }
+	x := &Google_compute_http_health_check{Google_compute_http_health_check_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_http_health_check", "actual", spew.Sdump(x))
@@ -4585,7 +4367,7 @@ func (h *Google_compute_http_health_checkHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_http_health_check{ Google_compute_http_health_check_id: &id }
+	x := &Google_compute_http_health_check{Google_compute_http_health_check_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_http_health_check", "actual", spew.Sdump(x))
@@ -4604,33 +4386,31 @@ func (h *Google_compute_http_health_checkHandler) Delete(externalID string) erro
 }
 
 type Google_compute_https_health_check struct {
-
 	Google_compute_https_health_check_id *string `lyra:"ignore"`
 
-    Check_interval_sec *int
+	Check_interval_sec *int
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Healthy_threshold *int
+	Healthy_threshold *int
 
-    Host *string
+	Host *string
 
-    Name string
+	Name string
 
-    Port *int
+	Port *int
 
-    Project *string
+	Project *string
 
-    Request_path *string
+	Request_path *string
 
-    Self_link *string
+	Self_link *string
 
-    Timeout_sec *int
+	Timeout_sec *int
 
-    Unhealthy_threshold *int
-
+	Unhealthy_threshold *int
 }
 
 var Google_compute_https_health_check_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4658,14 +4438,12 @@ var Google_compute_https_health_check_rtb = func(rtb service.ResourceTypeBuilder
 		"timeout_sec",
 
 		"unhealthy_threshold",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -4705,11 +4483,11 @@ func (h *Google_compute_https_health_checkHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_https_health_check", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_https_health_check", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_https_health_check{ Google_compute_https_health_check_id: &externalID }
+	x := &Google_compute_https_health_check{Google_compute_https_health_check_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_https_health_check", "actual", spew.Sdump(x))
@@ -4728,7 +4506,7 @@ func (h *Google_compute_https_health_checkHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_https_health_check{ Google_compute_https_health_check_id: &id }
+	x := &Google_compute_https_health_check{Google_compute_https_health_check_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_https_health_check", "actual", spew.Sdump(x))
@@ -4747,42 +4525,37 @@ func (h *Google_compute_https_health_checkHandler) Delete(externalID string) err
 }
 
 type Google_compute_image_raw_disk_39 struct {
+	Container_type *string
 
+	Sha1 *string
 
-    Container_type *string
-
-    Sha1 *string
-
-    Source string
-
+	Source string
 }
 
 type Google_compute_image struct {
-
 	Google_compute_image_id *string `lyra:"ignore"`
 
-    Create_timeout *int
+	Create_timeout *int
 
-    Description *string
+	Description *string
 
-    Family *string
+	Family *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Licenses *[]string
+	Licenses *[]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Raw_disk *[]Google_compute_image_raw_disk_39
+	Raw_disk *[]Google_compute_image_raw_disk_39
 
-    Self_link *string
+	Self_link *string
 
-    Source_disk *string
-
+	Source_disk *string
 }
 
 var Google_compute_image_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4808,7 +4581,6 @@ var Google_compute_image_rtb = func(rtb service.ResourceTypeBuilder) {
 		"self_link",
 
 		"source_disk",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4825,7 +4597,6 @@ var Google_compute_image_rtb = func(rtb service.ResourceTypeBuilder) {
 		"raw_disk",
 
 		"source_disk",
-
 	)
 }
 
@@ -4865,11 +4636,11 @@ func (h *Google_compute_imageHandler) Update(externalID string, desired *Google_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_image", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_image", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_image{ Google_compute_image_id: &externalID }
+	x := &Google_compute_image{Google_compute_image_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_image", "actual", spew.Sdump(x))
@@ -4888,7 +4659,7 @@ func (h *Google_compute_imageHandler) Read(externalID string) (*Google_compute_i
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_image{ Google_compute_image_id: &id }
+	x := &Google_compute_image{Google_compute_image_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_image", "actual", spew.Sdump(x))
@@ -4907,227 +4678,189 @@ func (h *Google_compute_imageHandler) Delete(externalID string) error {
 }
 
 type Google_compute_instance_attached_disk_40 struct {
+	Device_name *string
 
+	Disk_encryption_key_raw *string
 
-    Device_name *string
+	Disk_encryption_key_sha256 *string
 
-    Disk_encryption_key_raw *string
+	Mode *string
 
-    Disk_encryption_key_sha256 *string
-
-    Mode *string
-
-    Source string
-
+	Source string
 }
 
 type Google_compute_instance_boot_disk_41_initialize_params_42 struct {
+	Image *string
 
+	Size *int
 
-    Image *string
-
-    Size *int
-
-    Type *string
-
+	Type *string
 }
 
 type Google_compute_instance_boot_disk_41 struct {
+	Auto_delete *bool
 
+	Device_name *string
 
-    Auto_delete *bool
+	Disk_encryption_key_raw *string
 
-    Device_name *string
+	Disk_encryption_key_sha256 *string
 
-    Disk_encryption_key_raw *string
+	Initialize_params *[]Google_compute_instance_boot_disk_41_initialize_params_42
 
-    Disk_encryption_key_sha256 *string
-
-    Initialize_params *[]Google_compute_instance_boot_disk_41_initialize_params_42
-
-    Source *string
-
+	Source *string
 }
 
 type Google_compute_instance_disk_43 struct {
+	Auto_delete *bool
 
+	Device_name *string
 
-    Auto_delete *bool
+	Disk *string
 
-    Device_name *string
+	Disk_encryption_key_raw *string
 
-    Disk *string
+	Disk_encryption_key_sha256 *string
 
-    Disk_encryption_key_raw *string
+	Image *string
 
-    Disk_encryption_key_sha256 *string
+	Scratch *bool
 
-    Image *string
+	Size *int
 
-    Scratch *bool
-
-    Size *int
-
-    Type *string
-
+	Type *string
 }
 
 type Google_compute_instance_guest_accelerator_44 struct {
+	Count int
 
-
-    Count int
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_instance_network_45 struct {
+	Address *string
 
+	External_address *string
 
-    Address *string
+	Internal_address *string
 
-    External_address *string
+	Name *string
 
-    Internal_address *string
-
-    Name *string
-
-    Source string
-
+	Source string
 }
 
 type Google_compute_instance_network_interface_46_access_config_47 struct {
+	Assigned_nat_ip *string
 
+	Nat_ip *string
 
-    Assigned_nat_ip *string
+	Network_tier *string
 
-    Nat_ip *string
-
-    Network_tier *string
-
-    Public_ptr_domain_name *string
-
+	Public_ptr_domain_name *string
 }
 
 type Google_compute_instance_network_interface_46_alias_ip_range_48 struct {
+	Ip_cidr_range string
 
-
-    Ip_cidr_range string
-
-    Subnetwork_range_name *string
-
+	Subnetwork_range_name *string
 }
 
 type Google_compute_instance_network_interface_46 struct {
+	Access_config *[]Google_compute_instance_network_interface_46_access_config_47
 
+	Address *string
 
-    Access_config *[]Google_compute_instance_network_interface_46_access_config_47
+	Alias_ip_range *[]Google_compute_instance_network_interface_46_alias_ip_range_48
 
-    Address *string
+	Name *string
 
-    Alias_ip_range *[]Google_compute_instance_network_interface_46_alias_ip_range_48
+	Network *string
 
-    Name *string
+	Network_ip *string
 
-    Network *string
+	Subnetwork *string
 
-    Network_ip *string
-
-    Subnetwork *string
-
-    Subnetwork_project *string
-
+	Subnetwork_project *string
 }
 
 type Google_compute_instance_scheduling_49 struct {
+	Automatic_restart *bool
 
+	On_host_maintenance *string
 
-    Automatic_restart *bool
-
-    On_host_maintenance *string
-
-    Preemptible *bool
-
+	Preemptible *bool
 }
 
 type Google_compute_instance_scratch_disk_50 struct {
-
-
-    Interface *string
-
+	Interface *string
 }
 
 type Google_compute_instance_service_account_51 struct {
+	Email *string
 
-
-    Email *string
-
-    Scopes []string
-
+	Scopes []string
 }
 
 type Google_compute_instance struct {
-
 	Google_compute_instance_id *string `lyra:"ignore"`
 
-    Allow_stopping_for_update *bool
+	Allow_stopping_for_update *bool
 
-    Attached_disk *[]Google_compute_instance_attached_disk_40
+	Attached_disk *[]Google_compute_instance_attached_disk_40
 
-    Boot_disk []Google_compute_instance_boot_disk_41
+	Boot_disk []Google_compute_instance_boot_disk_41
 
-    Can_ip_forward *bool
+	Can_ip_forward *bool
 
-    Cpu_platform *string
+	Cpu_platform *string
 
-    Create_timeout *int
+	Create_timeout *int
 
-    Deletion_protection *bool
+	Deletion_protection *bool
 
-    Description *string
+	Description *string
 
-    Disk *[]Google_compute_instance_disk_43
+	Disk *[]Google_compute_instance_disk_43
 
-    Guest_accelerator *[]Google_compute_instance_guest_accelerator_44
+	Guest_accelerator *[]Google_compute_instance_guest_accelerator_44
 
-    Instance_id *string
+	Instance_id *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Machine_type string
+	Machine_type string
 
-    Metadata *map[string]string
+	Metadata *map[string]string
 
-    Metadata_fingerprint *string
+	Metadata_fingerprint *string
 
-    Metadata_startup_script *string
+	Metadata_startup_script *string
 
-    Min_cpu_platform *string
+	Min_cpu_platform *string
 
-    Name string
+	Name string
 
-    Network *[]Google_compute_instance_network_45
+	Network *[]Google_compute_instance_network_45
 
-    Network_interface []Google_compute_instance_network_interface_46
+	Network_interface []Google_compute_instance_network_interface_46
 
-    Project *string
+	Project *string
 
-    Scheduling *[]Google_compute_instance_scheduling_49
+	Scheduling *[]Google_compute_instance_scheduling_49
 
-    Scratch_disk *[]Google_compute_instance_scratch_disk_50
+	Scratch_disk *[]Google_compute_instance_scratch_disk_50
 
-    Self_link *string
+	Self_link *string
 
-    Service_account *[]Google_compute_instance_service_account_51
+	Service_account *[]Google_compute_instance_service_account_51
 
-    Tags *[]string
+	Tags *[]string
 
-    Tags_fingerprint *string
+	Tags_fingerprint *string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_instance_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5183,7 +4916,6 @@ var Google_compute_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags_fingerprint",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5210,7 +4942,6 @@ var Google_compute_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"scratch_disk",
 
 		"zone",
-
 	)
 }
 
@@ -5250,11 +4981,11 @@ func (h *Google_compute_instanceHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_instance", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_instance", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance{ Google_compute_instance_id: &externalID }
+	x := &Google_compute_instance{Google_compute_instance_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_instance", "actual", spew.Sdump(x))
@@ -5273,7 +5004,7 @@ func (h *Google_compute_instanceHandler) Read(externalID string) (*Google_comput
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance{ Google_compute_instance_id: &id }
+	x := &Google_compute_instance{Google_compute_instance_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_instance", "actual", spew.Sdump(x))
@@ -5292,185 +5023,153 @@ func (h *Google_compute_instanceHandler) Delete(externalID string) error {
 }
 
 type Google_compute_instance_from_template_attached_disk_52 struct {
+	Device_name *string
 
+	Disk_encryption_key_raw *string
 
-    Device_name *string
+	Disk_encryption_key_sha256 *string
 
-    Disk_encryption_key_raw *string
+	Mode *string
 
-    Disk_encryption_key_sha256 *string
-
-    Mode *string
-
-    Source string
-
+	Source string
 }
 
 type Google_compute_instance_from_template_boot_disk_53_initialize_params_54 struct {
+	Image *string
 
+	Size *int
 
-    Image *string
-
-    Size *int
-
-    Type *string
-
+	Type *string
 }
 
 type Google_compute_instance_from_template_boot_disk_53 struct {
+	Auto_delete *bool
 
+	Device_name *string
 
-    Auto_delete *bool
+	Disk_encryption_key_raw *string
 
-    Device_name *string
+	Disk_encryption_key_sha256 *string
 
-    Disk_encryption_key_raw *string
+	Initialize_params *[]Google_compute_instance_from_template_boot_disk_53_initialize_params_54
 
-    Disk_encryption_key_sha256 *string
-
-    Initialize_params *[]Google_compute_instance_from_template_boot_disk_53_initialize_params_54
-
-    Source *string
-
+	Source *string
 }
 
 type Google_compute_instance_from_template_guest_accelerator_55 struct {
+	Count int
 
-
-    Count int
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_instance_from_template_network_interface_56_access_config_57 struct {
+	Assigned_nat_ip *string
 
+	Nat_ip *string
 
-    Assigned_nat_ip *string
+	Network_tier *string
 
-    Nat_ip *string
-
-    Network_tier *string
-
-    Public_ptr_domain_name *string
-
+	Public_ptr_domain_name *string
 }
 
 type Google_compute_instance_from_template_network_interface_56_alias_ip_range_58 struct {
+	Ip_cidr_range string
 
-
-    Ip_cidr_range string
-
-    Subnetwork_range_name *string
-
+	Subnetwork_range_name *string
 }
 
 type Google_compute_instance_from_template_network_interface_56 struct {
+	Access_config *[]Google_compute_instance_from_template_network_interface_56_access_config_57
 
+	Address *string
 
-    Access_config *[]Google_compute_instance_from_template_network_interface_56_access_config_57
+	Alias_ip_range *[]Google_compute_instance_from_template_network_interface_56_alias_ip_range_58
 
-    Address *string
+	Name *string
 
-    Alias_ip_range *[]Google_compute_instance_from_template_network_interface_56_alias_ip_range_58
+	Network *string
 
-    Name *string
+	Network_ip *string
 
-    Network *string
+	Subnetwork *string
 
-    Network_ip *string
-
-    Subnetwork *string
-
-    Subnetwork_project *string
-
+	Subnetwork_project *string
 }
 
 type Google_compute_instance_from_template_scheduling_59 struct {
+	Automatic_restart *bool
 
+	On_host_maintenance *string
 
-    Automatic_restart *bool
-
-    On_host_maintenance *string
-
-    Preemptible *bool
-
+	Preemptible *bool
 }
 
 type Google_compute_instance_from_template_scratch_disk_60 struct {
-
-
-    Interface *string
-
+	Interface *string
 }
 
 type Google_compute_instance_from_template_service_account_61 struct {
+	Email *string
 
-
-    Email *string
-
-    Scopes []string
-
+	Scopes []string
 }
 
 type Google_compute_instance_from_template struct {
-
 	Google_compute_instance_from_template_id *string `lyra:"ignore"`
 
-    Allow_stopping_for_update *bool
+	Allow_stopping_for_update *bool
 
-    Attached_disk *[]Google_compute_instance_from_template_attached_disk_52
+	Attached_disk *[]Google_compute_instance_from_template_attached_disk_52
 
-    Boot_disk *[]Google_compute_instance_from_template_boot_disk_53
+	Boot_disk *[]Google_compute_instance_from_template_boot_disk_53
 
-    Can_ip_forward *bool
+	Can_ip_forward *bool
 
-    Cpu_platform *string
+	Cpu_platform *string
 
-    Deletion_protection *bool
+	Deletion_protection *bool
 
-    Description *string
+	Description *string
 
-    Guest_accelerator *[]Google_compute_instance_from_template_guest_accelerator_55
+	Guest_accelerator *[]Google_compute_instance_from_template_guest_accelerator_55
 
-    Instance_id *string
+	Instance_id *string
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Machine_type *string
+	Machine_type *string
 
-    Metadata *map[string]string
+	Metadata *map[string]string
 
-    Metadata_fingerprint *string
+	Metadata_fingerprint *string
 
-    Metadata_startup_script *string
+	Metadata_startup_script *string
 
-    Min_cpu_platform *string
+	Min_cpu_platform *string
 
-    Name string
+	Name string
 
-    Network_interface *[]Google_compute_instance_from_template_network_interface_56
+	Network_interface *[]Google_compute_instance_from_template_network_interface_56
 
-    Project *string
+	Project *string
 
-    Scheduling *[]Google_compute_instance_from_template_scheduling_59
+	Scheduling *[]Google_compute_instance_from_template_scheduling_59
 
-    Scratch_disk *[]Google_compute_instance_from_template_scratch_disk_60
+	Scratch_disk *[]Google_compute_instance_from_template_scratch_disk_60
 
-    Self_link *string
+	Self_link *string
 
-    Service_account *[]Google_compute_instance_from_template_service_account_61
+	Service_account *[]Google_compute_instance_from_template_service_account_61
 
-    Source_instance_template string
+	Source_instance_template string
 
-    Tags *[]string
+	Tags *[]string
 
-    Tags_fingerprint *string
+	Tags_fingerprint *string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_instance_from_template_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5526,7 +5225,6 @@ var Google_compute_instance_from_template_rtb = func(rtb service.ResourceTypeBui
 		"tags_fingerprint",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5551,7 +5249,6 @@ var Google_compute_instance_from_template_rtb = func(rtb service.ResourceTypeBui
 		"source_instance_template",
 
 		"zone",
-
 	)
 }
 
@@ -5591,11 +5288,11 @@ func (h *Google_compute_instance_from_templateHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_instance_from_template", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_instance_from_template", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_from_template{ Google_compute_instance_from_template_id: &externalID }
+	x := &Google_compute_instance_from_template{Google_compute_instance_from_template_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_instance_from_template", "actual", spew.Sdump(x))
@@ -5614,7 +5311,7 @@ func (h *Google_compute_instance_from_templateHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_from_template{ Google_compute_instance_from_template_id: &id }
+	x := &Google_compute_instance_from_template{Google_compute_instance_from_template_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_instance_from_template", "actual", spew.Sdump(x))
@@ -5633,36 +5330,31 @@ func (h *Google_compute_instance_from_templateHandler) Delete(externalID string)
 }
 
 type Google_compute_instance_group_named_port_62 struct {
+	Name string
 
-
-    Name string
-
-    Port int
-
+	Port int
 }
 
 type Google_compute_instance_group struct {
-
 	Google_compute_instance_group_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Instances *[]string
+	Instances *[]string
 
-    Name string
+	Name string
 
-    Named_port *[]Google_compute_instance_group_named_port_62
+	Named_port *[]Google_compute_instance_group_named_port_62
 
-    Network *string
+	Network *string
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Size *int
+	Size *int
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_instance_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5684,7 +5376,6 @@ var Google_compute_instance_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"size",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5697,7 +5388,6 @@ var Google_compute_instance_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"zone",
-
 	)
 }
 
@@ -5737,11 +5427,11 @@ func (h *Google_compute_instance_groupHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_instance_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_instance_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_group{ Google_compute_instance_group_id: &externalID }
+	x := &Google_compute_instance_group{Google_compute_instance_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_instance_group", "actual", spew.Sdump(x))
@@ -5760,7 +5450,7 @@ func (h *Google_compute_instance_groupHandler) Read(externalID string) (*Google_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_group{ Google_compute_instance_group_id: &id }
+	x := &Google_compute_instance_group{Google_compute_instance_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_instance_group", "actual", spew.Sdump(x))
@@ -5779,100 +5469,83 @@ func (h *Google_compute_instance_groupHandler) Delete(externalID string) error {
 }
 
 type Google_compute_instance_group_manager_auto_healing_policies_63 struct {
+	Health_check string
 
-
-    Health_check string
-
-    Initial_delay_sec int
-
+	Initial_delay_sec int
 }
 
 type Google_compute_instance_group_manager_named_port_64 struct {
+	Name string
 
-
-    Name string
-
-    Port int
-
+	Port int
 }
 
 type Google_compute_instance_group_manager_rolling_update_policy_65 struct {
+	Max_surge_fixed *int
 
+	Max_surge_percent *int
 
-    Max_surge_fixed *int
+	Max_unavailable_fixed *int
 
-    Max_surge_percent *int
+	Max_unavailable_percent *int
 
-    Max_unavailable_fixed *int
+	Min_ready_sec *int
 
-    Max_unavailable_percent *int
+	Minimal_action string
 
-    Min_ready_sec *int
-
-    Minimal_action string
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_instance_group_manager_version_66_target_size_67 struct {
+	Fixed *int
 
-
-    Fixed *int
-
-    Percent *int
-
+	Percent *int
 }
 
 type Google_compute_instance_group_manager_version_66 struct {
+	Instance_template string
 
+	Name string
 
-    Instance_template string
-
-    Name string
-
-    Target_size *[]Google_compute_instance_group_manager_version_66_target_size_67
-
+	Target_size *[]Google_compute_instance_group_manager_version_66_target_size_67
 }
 
 type Google_compute_instance_group_manager struct {
-
 	Google_compute_instance_group_manager_id *string `lyra:"ignore"`
 
-    Auto_healing_policies *[]Google_compute_instance_group_manager_auto_healing_policies_63
+	Auto_healing_policies *[]Google_compute_instance_group_manager_auto_healing_policies_63
 
-    Base_instance_name string
+	Base_instance_name string
 
-    Description *string
+	Description *string
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Instance_group *string
+	Instance_group *string
 
-    Instance_template *string
+	Instance_template *string
 
-    Name string
+	Name string
 
-    Named_port *[]Google_compute_instance_group_manager_named_port_64
+	Named_port *[]Google_compute_instance_group_manager_named_port_64
 
-    Project *string
+	Project *string
 
-    Rolling_update_policy *[]Google_compute_instance_group_manager_rolling_update_policy_65
+	Rolling_update_policy *[]Google_compute_instance_group_manager_rolling_update_policy_65
 
-    Self_link *string
+	Self_link *string
 
-    Target_pools *[]string
+	Target_pools *[]string
 
-    Target_size *int
+	Target_size *int
 
-    Update_strategy *string
+	Update_strategy *string
 
-    Version *[]Google_compute_instance_group_manager_version_66
+	Version *[]Google_compute_instance_group_manager_version_66
 
-    Wait_for_instances *bool
+	Wait_for_instances *bool
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_instance_group_manager_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5908,7 +5581,6 @@ var Google_compute_instance_group_manager_rtb = func(rtb service.ResourceTypeBui
 		"wait_for_instances",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5921,7 +5593,6 @@ var Google_compute_instance_group_manager_rtb = func(rtb service.ResourceTypeBui
 		"project",
 
 		"zone",
-
 	)
 }
 
@@ -5961,11 +5632,11 @@ func (h *Google_compute_instance_group_managerHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_instance_group_manager", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_instance_group_manager", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_group_manager{ Google_compute_instance_group_manager_id: &externalID }
+	x := &Google_compute_instance_group_manager{Google_compute_instance_group_manager_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_instance_group_manager", "actual", spew.Sdump(x))
@@ -5984,7 +5655,7 @@ func (h *Google_compute_instance_group_managerHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_group_manager{ Google_compute_instance_group_manager_id: &id }
+	x := &Google_compute_instance_group_manager{Google_compute_instance_group_manager_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_instance_group_manager", "actual", spew.Sdump(x))
@@ -6003,159 +5674,133 @@ func (h *Google_compute_instance_group_managerHandler) Delete(externalID string)
 }
 
 type Google_compute_instance_template_disk_68_disk_encryption_key_69 struct {
-
-
-    Kms_key_self_link *string
-
+	Kms_key_self_link *string
 }
 
 type Google_compute_instance_template_disk_68 struct {
+	Auto_delete *bool
 
+	Boot *bool
 
-    Auto_delete *bool
+	Device_name *string
 
-    Boot *bool
+	Disk_encryption_key *[]Google_compute_instance_template_disk_68_disk_encryption_key_69
 
-    Device_name *string
+	Disk_name *string
 
-    Disk_encryption_key *[]Google_compute_instance_template_disk_68_disk_encryption_key_69
+	Disk_size_gb *int
 
-    Disk_name *string
+	Disk_type *string
 
-    Disk_size_gb *int
+	Interface *string
 
-    Disk_type *string
+	Mode *string
 
-    Interface *string
+	Source *string
 
-    Mode *string
+	Source_image *string
 
-    Source *string
-
-    Source_image *string
-
-    Type *string
-
+	Type *string
 }
 
 type Google_compute_instance_template_guest_accelerator_70 struct {
+	Count int
 
-
-    Count int
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_instance_template_network_interface_71_access_config_72 struct {
+	Assigned_nat_ip *string
 
+	Nat_ip *string
 
-    Assigned_nat_ip *string
-
-    Nat_ip *string
-
-    Network_tier *string
-
+	Network_tier *string
 }
 
 type Google_compute_instance_template_network_interface_71_alias_ip_range_73 struct {
+	Ip_cidr_range string
 
-
-    Ip_cidr_range string
-
-    Subnetwork_range_name *string
-
+	Subnetwork_range_name *string
 }
 
 type Google_compute_instance_template_network_interface_71 struct {
+	Access_config *[]Google_compute_instance_template_network_interface_71_access_config_72
 
+	Address *string
 
-    Access_config *[]Google_compute_instance_template_network_interface_71_access_config_72
+	Alias_ip_range *[]Google_compute_instance_template_network_interface_71_alias_ip_range_73
 
-    Address *string
+	Network *string
 
-    Alias_ip_range *[]Google_compute_instance_template_network_interface_71_alias_ip_range_73
+	Network_ip *string
 
-    Network *string
+	Subnetwork *string
 
-    Network_ip *string
-
-    Subnetwork *string
-
-    Subnetwork_project *string
-
+	Subnetwork_project *string
 }
 
 type Google_compute_instance_template_scheduling_74 struct {
+	Automatic_restart *bool
 
+	On_host_maintenance *string
 
-    Automatic_restart *bool
-
-    On_host_maintenance *string
-
-    Preemptible *bool
-
+	Preemptible *bool
 }
 
 type Google_compute_instance_template_service_account_75 struct {
+	Email *string
 
-
-    Email *string
-
-    Scopes []string
-
+	Scopes []string
 }
 
 type Google_compute_instance_template struct {
-
 	Google_compute_instance_template_id *string `lyra:"ignore"`
 
-    Automatic_restart *bool
+	Automatic_restart *bool
 
-    Can_ip_forward *bool
+	Can_ip_forward *bool
 
-    Description *string
+	Description *string
 
-    Disk []Google_compute_instance_template_disk_68
+	Disk []Google_compute_instance_template_disk_68
 
-    Guest_accelerator *[]Google_compute_instance_template_guest_accelerator_70
+	Guest_accelerator *[]Google_compute_instance_template_guest_accelerator_70
 
-    Instance_description *string
+	Instance_description *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Machine_type string
+	Machine_type string
 
-    Metadata *map[string]string
+	Metadata *map[string]string
 
-    Metadata_fingerprint *string
+	Metadata_fingerprint *string
 
-    Metadata_startup_script *string
+	Metadata_startup_script *string
 
-    Min_cpu_platform *string
+	Min_cpu_platform *string
 
-    Name *string
+	Name *string
 
-    Name_prefix *string
+	Name_prefix *string
 
-    Network_interface *[]Google_compute_instance_template_network_interface_71
+	Network_interface *[]Google_compute_instance_template_network_interface_71
 
-    On_host_maintenance *string
+	On_host_maintenance *string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Scheduling *[]Google_compute_instance_template_scheduling_74
+	Scheduling *[]Google_compute_instance_template_scheduling_74
 
-    Self_link *string
+	Self_link *string
 
-    Service_account *[]Google_compute_instance_template_service_account_75
+	Service_account *[]Google_compute_instance_template_service_account_75
 
-    Tags *[]string
+	Tags *[]string
 
-    Tags_fingerprint *string
-
+	Tags_fingerprint *string
 }
 
 var Google_compute_instance_template_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6203,7 +5848,6 @@ var Google_compute_instance_template_rtb = func(rtb service.ResourceTypeBuilder)
 		"tags",
 
 		"tags_fingerprint",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6246,7 +5890,6 @@ var Google_compute_instance_template_rtb = func(rtb service.ResourceTypeBuilder)
 		"service_account",
 
 		"tags",
-
 	)
 }
 
@@ -6286,11 +5929,11 @@ func (h *Google_compute_instance_templateHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_instance_template", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_instance_template", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_template{ Google_compute_instance_template_id: &externalID }
+	x := &Google_compute_instance_template{Google_compute_instance_template_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_instance_template", "actual", spew.Sdump(x))
@@ -6309,7 +5952,7 @@ func (h *Google_compute_instance_templateHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_instance_template{ Google_compute_instance_template_id: &id }
+	x := &Google_compute_instance_template{Google_compute_instance_template_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_instance_template", "actual", spew.Sdump(x))
@@ -6328,40 +5971,35 @@ func (h *Google_compute_instance_templateHandler) Delete(externalID string) erro
 }
 
 type Google_compute_interconnect_attachment_private_interconnect_info_76 struct {
-
-
-    Tag8021q *int
-
+	Tag8021q *int
 }
 
 type Google_compute_interconnect_attachment struct {
-
 	Google_compute_interconnect_attachment_id *string `lyra:"ignore"`
 
-    Cloud_router_ip_address *string
+	Cloud_router_ip_address *string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Customer_router_ip_address *string
+	Customer_router_ip_address *string
 
-    Description *string
+	Description *string
 
-    Google_reference_id *string
+	Google_reference_id *string
 
-    Interconnect string
+	Interconnect string
 
-    Name string
+	Name string
 
-    Private_interconnect_info *[]Google_compute_interconnect_attachment_private_interconnect_info_76
+	Private_interconnect_info *[]Google_compute_interconnect_attachment_private_interconnect_info_76
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Router string
+	Router string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_interconnect_attachment_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6385,7 +6023,6 @@ var Google_compute_interconnect_attachment_rtb = func(rtb service.ResourceTypeBu
 		"region",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6400,7 +6037,6 @@ var Google_compute_interconnect_attachment_rtb = func(rtb service.ResourceTypeBu
 		"region",
 
 		"router",
-
 	)
 }
 
@@ -6440,11 +6076,11 @@ func (h *Google_compute_interconnect_attachmentHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_interconnect_attachment", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_interconnect_attachment", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_interconnect_attachment{ Google_compute_interconnect_attachment_id: &externalID }
+	x := &Google_compute_interconnect_attachment{Google_compute_interconnect_attachment_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_interconnect_attachment", "actual", spew.Sdump(x))
@@ -6463,7 +6099,7 @@ func (h *Google_compute_interconnect_attachmentHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_interconnect_attachment{ Google_compute_interconnect_attachment_id: &id }
+	x := &Google_compute_interconnect_attachment{Google_compute_interconnect_attachment_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_interconnect_attachment", "actual", spew.Sdump(x))
@@ -6482,25 +6118,23 @@ func (h *Google_compute_interconnect_attachmentHandler) Delete(externalID string
 }
 
 type Google_compute_network struct {
-
 	Google_compute_network_id *string `lyra:"ignore"`
 
-    Auto_create_subnetworks *bool
+	Auto_create_subnetworks *bool
 
-    Description *string
+	Description *string
 
-    Gateway_ipv4 *string
+	Gateway_ipv4 *string
 
-    Ipv4_range *string
+	Ipv4_range *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Routing_mode *string
+	Routing_mode *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_network_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6520,7 +6154,6 @@ var Google_compute_network_rtb = func(rtb service.ResourceTypeBuilder) {
 		"routing_mode",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6533,7 +6166,6 @@ var Google_compute_network_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -6573,11 +6205,11 @@ func (h *Google_compute_networkHandler) Update(externalID string, desired *Googl
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_network", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_network", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_network{ Google_compute_network_id: &externalID }
+	x := &Google_compute_network{Google_compute_network_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_network", "actual", spew.Sdump(x))
@@ -6596,7 +6228,7 @@ func (h *Google_compute_networkHandler) Read(externalID string) (*Google_compute
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_network{ Google_compute_network_id: &id }
+	x := &Google_compute_network{Google_compute_network_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_network", "actual", spew.Sdump(x))
@@ -6615,21 +6247,19 @@ func (h *Google_compute_networkHandler) Delete(externalID string) error {
 }
 
 type Google_compute_network_peering struct {
-
 	Google_compute_network_peering_id *string `lyra:"ignore"`
 
-    Auto_create_routes *bool
+	Auto_create_routes *bool
 
-    Name string
+	Name string
 
-    Network string
+	Network string
 
-    Peer_network string
+	Peer_network string
 
-    State *string
+	State *string
 
-    State_details *string
-
+	State_details *string
 }
 
 var Google_compute_network_peering_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6641,7 +6271,6 @@ var Google_compute_network_peering_rtb = func(rtb service.ResourceTypeBuilder) {
 		"state",
 
 		"state_details",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6652,7 +6281,6 @@ var Google_compute_network_peering_rtb = func(rtb service.ResourceTypeBuilder) {
 		"network",
 
 		"peer_network",
-
 	)
 }
 
@@ -6692,11 +6320,11 @@ func (h *Google_compute_network_peeringHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_network_peering", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_network_peering", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_network_peering{ Google_compute_network_peering_id: &externalID }
+	x := &Google_compute_network_peering{Google_compute_network_peering_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_network_peering", "actual", spew.Sdump(x))
@@ -6715,7 +6343,7 @@ func (h *Google_compute_network_peeringHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_network_peering{ Google_compute_network_peering_id: &id }
+	x := &Google_compute_network_peering{Google_compute_network_peering_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_network_peering", "actual", spew.Sdump(x))
@@ -6734,13 +6362,11 @@ func (h *Google_compute_network_peeringHandler) Delete(externalID string) error 
 }
 
 type Google_compute_project_metadata struct {
-
 	Google_compute_project_metadata_id *string `lyra:"ignore"`
 
-    Metadata map[string]string
+	Metadata map[string]string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_compute_project_metadata_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6748,12 +6374,10 @@ var Google_compute_project_metadata_rtb = func(rtb service.ResourceTypeBuilder) 
 		"google_compute_project_metadata_id",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -6793,11 +6417,11 @@ func (h *Google_compute_project_metadataHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_project_metadata", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_project_metadata", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_project_metadata{ Google_compute_project_metadata_id: &externalID }
+	x := &Google_compute_project_metadata{Google_compute_project_metadata_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_project_metadata", "actual", spew.Sdump(x))
@@ -6816,7 +6440,7 @@ func (h *Google_compute_project_metadataHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_project_metadata{ Google_compute_project_metadata_id: &id }
+	x := &Google_compute_project_metadata{Google_compute_project_metadata_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_project_metadata", "actual", spew.Sdump(x))
@@ -6835,15 +6459,13 @@ func (h *Google_compute_project_metadataHandler) Delete(externalID string) error
 }
 
 type Google_compute_project_metadata_item struct {
-
 	Google_compute_project_metadata_item_id *string `lyra:"ignore"`
 
-    Key string
+	Key string
 
-    Project *string
+	Project *string
 
-    Value string
-
+	Value string
 }
 
 var Google_compute_project_metadata_item_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6851,14 +6473,12 @@ var Google_compute_project_metadata_item_rtb = func(rtb service.ResourceTypeBuil
 		"google_compute_project_metadata_item_id",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"key",
 
 		"project",
-
 	)
 }
 
@@ -6898,11 +6518,11 @@ func (h *Google_compute_project_metadata_itemHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_project_metadata_item", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_project_metadata_item", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_project_metadata_item{ Google_compute_project_metadata_item_id: &externalID }
+	x := &Google_compute_project_metadata_item{Google_compute_project_metadata_item_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_project_metadata_item", "actual", spew.Sdump(x))
@@ -6921,7 +6541,7 @@ func (h *Google_compute_project_metadata_itemHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_project_metadata_item{ Google_compute_project_metadata_item_id: &id }
+	x := &Google_compute_project_metadata_item{Google_compute_project_metadata_item_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_project_metadata_item", "actual", spew.Sdump(x))
@@ -6940,67 +6560,53 @@ func (h *Google_compute_project_metadata_itemHandler) Delete(externalID string) 
 }
 
 type Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78 struct {
-
-
-    Target float64
-
+	Target float64
 }
 
 type Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79 struct {
-
-
-    Target float64
-
+	Target float64
 }
 
 type Google_compute_region_autoscaler_autoscaling_policy_77_metric_80 struct {
+	Name string
 
+	Target float64
 
-    Name string
-
-    Target float64
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_region_autoscaler_autoscaling_policy_77 struct {
+	Cooldown_period *int
 
+	Cpu_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78
 
-    Cooldown_period *int
+	Load_balancing_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79
 
-    Cpu_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78
+	Max_replicas int
 
-    Load_balancing_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79
+	Metric *[]Google_compute_region_autoscaler_autoscaling_policy_77_metric_80
 
-    Max_replicas int
-
-    Metric *[]Google_compute_region_autoscaler_autoscaling_policy_77_metric_80
-
-    Min_replicas int
-
+	Min_replicas int
 }
 
 type Google_compute_region_autoscaler struct {
-
 	Google_compute_region_autoscaler_id *string `lyra:"ignore"`
 
-    Autoscaling_policy []Google_compute_region_autoscaler_autoscaling_policy_77
+	Autoscaling_policy []Google_compute_region_autoscaler_autoscaling_policy_77
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
+	Self_link *string
 
-    Target string
-
+	Target string
 }
 
 var Google_compute_region_autoscaler_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7016,7 +6622,6 @@ var Google_compute_region_autoscaler_rtb = func(rtb service.ResourceTypeBuilder)
 		"region",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7025,7 +6630,6 @@ var Google_compute_region_autoscaler_rtb = func(rtb service.ResourceTypeBuilder)
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -7065,11 +6669,11 @@ func (h *Google_compute_region_autoscalerHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_region_autoscaler", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_region_autoscaler", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_autoscaler{ Google_compute_region_autoscaler_id: &externalID }
+	x := &Google_compute_region_autoscaler{Google_compute_region_autoscaler_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_region_autoscaler", "actual", spew.Sdump(x))
@@ -7088,7 +6692,7 @@ func (h *Google_compute_region_autoscalerHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_autoscaler{ Google_compute_region_autoscaler_id: &id }
+	x := &Google_compute_region_autoscaler{Google_compute_region_autoscaler_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_region_autoscaler", "actual", spew.Sdump(x))
@@ -7107,42 +6711,37 @@ func (h *Google_compute_region_autoscalerHandler) Delete(externalID string) erro
 }
 
 type Google_compute_region_backend_service_backend_81 struct {
+	Description *string
 
-
-    Description *string
-
-    Group *string
-
+	Group *string
 }
 
 type Google_compute_region_backend_service struct {
-
 	Google_compute_region_backend_service_id *string `lyra:"ignore"`
 
-    Backend *[]Google_compute_region_backend_service_backend_81
+	Backend *[]Google_compute_region_backend_service_backend_81
 
-    Connection_draining_timeout_sec *int
+	Connection_draining_timeout_sec *int
 
-    Description *string
+	Description *string
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Health_checks []string
+	Health_checks []string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Protocol *string
+	Protocol *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
+	Self_link *string
 
-    Session_affinity *string
+	Session_affinity *string
 
-    Timeout_sec *int
-
+	Timeout_sec *int
 }
 
 var Google_compute_region_backend_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7168,7 +6767,6 @@ var Google_compute_region_backend_service_rtb = func(rtb service.ResourceTypeBui
 		"session_affinity",
 
 		"timeout_sec",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7177,7 +6775,6 @@ var Google_compute_region_backend_service_rtb = func(rtb service.ResourceTypeBui
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -7217,11 +6814,11 @@ func (h *Google_compute_region_backend_serviceHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_region_backend_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_region_backend_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_backend_service{ Google_compute_region_backend_service_id: &externalID }
+	x := &Google_compute_region_backend_service{Google_compute_region_backend_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_region_backend_service", "actual", spew.Sdump(x))
@@ -7240,7 +6837,7 @@ func (h *Google_compute_region_backend_serviceHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_backend_service{ Google_compute_region_backend_service_id: &id }
+	x := &Google_compute_region_backend_service{Google_compute_region_backend_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_region_backend_service", "actual", spew.Sdump(x))
@@ -7259,63 +6856,55 @@ func (h *Google_compute_region_backend_serviceHandler) Delete(externalID string)
 }
 
 type Google_compute_region_disk_disk_encryption_key_82 struct {
+	Raw_key *string
 
-
-    Raw_key *string
-
-    Sha256 *string
-
+	Sha256 *string
 }
 
 type Google_compute_region_disk_source_snapshot_encryption_key_83 struct {
+	Raw_key *string
 
-
-    Raw_key *string
-
-    Sha256 *string
-
+	Sha256 *string
 }
 
 type Google_compute_region_disk struct {
-
 	Google_compute_region_disk_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Disk_encryption_key *[]Google_compute_region_disk_disk_encryption_key_82
+	Disk_encryption_key *[]Google_compute_region_disk_disk_encryption_key_82
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Last_attach_timestamp *string
+	Last_attach_timestamp *string
 
-    Last_detach_timestamp *string
+	Last_detach_timestamp *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Replica_zones []string
+	Replica_zones []string
 
-    Self_link *string
+	Self_link *string
 
-    Size *int
+	Size *int
 
-    Snapshot *string
+	Snapshot *string
 
-    Source_snapshot_encryption_key *[]Google_compute_region_disk_source_snapshot_encryption_key_83
+	Source_snapshot_encryption_key *[]Google_compute_region_disk_source_snapshot_encryption_key_83
 
-    Source_snapshot_id *string
+	Source_snapshot_id *string
 
-    Type *string
+	Type *string
 
-    Users *[]string
-
+	Users *[]string
 }
 
 var Google_compute_region_disk_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7353,7 +6942,6 @@ var Google_compute_region_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"type",
 
 		"users",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7374,7 +6962,6 @@ var Google_compute_region_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_snapshot_encryption_key",
 
 		"type",
-
 	)
 }
 
@@ -7414,11 +7001,11 @@ func (h *Google_compute_region_diskHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_region_disk", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_region_disk", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_disk{ Google_compute_region_disk_id: &externalID }
+	x := &Google_compute_region_disk{Google_compute_region_disk_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_region_disk", "actual", spew.Sdump(x))
@@ -7437,7 +7024,7 @@ func (h *Google_compute_region_diskHandler) Read(externalID string) (*Google_com
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_disk{ Google_compute_region_disk_id: &id }
+	x := &Google_compute_region_disk{Google_compute_region_disk_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_region_disk", "actual", spew.Sdump(x))
@@ -7456,102 +7043,85 @@ func (h *Google_compute_region_diskHandler) Delete(externalID string) error {
 }
 
 type Google_compute_region_instance_group_manager_auto_healing_policies_84 struct {
+	Health_check string
 
-
-    Health_check string
-
-    Initial_delay_sec int
-
+	Initial_delay_sec int
 }
 
 type Google_compute_region_instance_group_manager_named_port_85 struct {
+	Name string
 
-
-    Name string
-
-    Port int
-
+	Port int
 }
 
 type Google_compute_region_instance_group_manager_rolling_update_policy_86 struct {
+	Max_surge_fixed *int
 
+	Max_surge_percent *int
 
-    Max_surge_fixed *int
+	Max_unavailable_fixed *int
 
-    Max_surge_percent *int
+	Max_unavailable_percent *int
 
-    Max_unavailable_fixed *int
+	Min_ready_sec *int
 
-    Max_unavailable_percent *int
+	Minimal_action string
 
-    Min_ready_sec *int
-
-    Minimal_action string
-
-    Type string
-
+	Type string
 }
 
 type Google_compute_region_instance_group_manager_version_87_target_size_88 struct {
+	Fixed *int
 
-
-    Fixed *int
-
-    Percent *int
-
+	Percent *int
 }
 
 type Google_compute_region_instance_group_manager_version_87 struct {
+	Instance_template string
 
+	Name string
 
-    Instance_template string
-
-    Name string
-
-    Target_size *[]Google_compute_region_instance_group_manager_version_87_target_size_88
-
+	Target_size *[]Google_compute_region_instance_group_manager_version_87_target_size_88
 }
 
 type Google_compute_region_instance_group_manager struct {
-
 	Google_compute_region_instance_group_manager_id *string `lyra:"ignore"`
 
-    Auto_healing_policies *[]Google_compute_region_instance_group_manager_auto_healing_policies_84
+	Auto_healing_policies *[]Google_compute_region_instance_group_manager_auto_healing_policies_84
 
-    Base_instance_name string
+	Base_instance_name string
 
-    Description *string
+	Description *string
 
-    Distribution_policy_zones *[]string
+	Distribution_policy_zones *[]string
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Instance_group *string
+	Instance_group *string
 
-    Instance_template *string
+	Instance_template *string
 
-    Name string
+	Name string
 
-    Named_port *[]Google_compute_region_instance_group_manager_named_port_85
+	Named_port *[]Google_compute_region_instance_group_manager_named_port_85
 
-    Project *string
+	Project *string
 
-    Region string
+	Region string
 
-    Rolling_update_policy *[]Google_compute_region_instance_group_manager_rolling_update_policy_86
+	Rolling_update_policy *[]Google_compute_region_instance_group_manager_rolling_update_policy_86
 
-    Self_link *string
+	Self_link *string
 
-    Target_pools *[]string
+	Target_pools *[]string
 
-    Target_size *int
+	Target_size *int
 
-    Update_strategy *string
+	Update_strategy *string
 
-    Version *[]Google_compute_region_instance_group_manager_version_87
+	Version *[]Google_compute_region_instance_group_manager_version_87
 
-    Wait_for_instances *bool
-
+	Wait_for_instances *bool
 }
 
 var Google_compute_region_instance_group_manager_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7587,7 +7157,6 @@ var Google_compute_region_instance_group_manager_rtb = func(rtb service.Resource
 		"version",
 
 		"wait_for_instances",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7602,7 +7171,6 @@ var Google_compute_region_instance_group_manager_rtb = func(rtb service.Resource
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -7642,11 +7210,11 @@ func (h *Google_compute_region_instance_group_managerHandler) Update(externalID 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_region_instance_group_manager", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_region_instance_group_manager", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_instance_group_manager{ Google_compute_region_instance_group_manager_id: &externalID }
+	x := &Google_compute_region_instance_group_manager{Google_compute_region_instance_group_manager_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_region_instance_group_manager", "actual", spew.Sdump(x))
@@ -7665,7 +7233,7 @@ func (h *Google_compute_region_instance_group_managerHandler) Read(externalID st
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_region_instance_group_manager{ Google_compute_region_instance_group_manager_id: &id }
+	x := &Google_compute_region_instance_group_manager{Google_compute_region_instance_group_manager_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_region_instance_group_manager", "actual", spew.Sdump(x))
@@ -7684,37 +7252,35 @@ func (h *Google_compute_region_instance_group_managerHandler) Delete(externalID 
 }
 
 type Google_compute_route struct {
-
 	Google_compute_route_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Dest_range string
+	Dest_range string
 
-    Name string
+	Name string
 
-    Network string
+	Network string
 
-    Next_hop_gateway *string
+	Next_hop_gateway *string
 
-    Next_hop_instance *string
+	Next_hop_instance *string
 
-    Next_hop_instance_zone *string
+	Next_hop_instance_zone *string
 
-    Next_hop_ip *string
+	Next_hop_ip *string
 
-    Next_hop_network *string
+	Next_hop_network *string
 
-    Next_hop_vpn_tunnel *string
+	Next_hop_vpn_tunnel *string
 
-    Priority *int
+	Priority *int
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Tags *[]string
-
+	Tags *[]string
 }
 
 var Google_compute_route_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7742,7 +7308,6 @@ var Google_compute_route_rtb = func(rtb service.ResourceTypeBuilder) {
 		"self_link",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7769,7 +7334,6 @@ var Google_compute_route_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"tags",
-
 	)
 }
 
@@ -7809,11 +7373,11 @@ func (h *Google_compute_routeHandler) Update(externalID string, desired *Google_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_route", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_route", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_route{ Google_compute_route_id: &externalID }
+	x := &Google_compute_route{Google_compute_route_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_route", "actual", spew.Sdump(x))
@@ -7832,7 +7396,7 @@ func (h *Google_compute_routeHandler) Read(externalID string) (*Google_compute_r
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_route{ Google_compute_route_id: &id }
+	x := &Google_compute_route{Google_compute_route_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_route", "actual", spew.Sdump(x))
@@ -7851,47 +7415,39 @@ func (h *Google_compute_routeHandler) Delete(externalID string) error {
 }
 
 type Google_compute_router_bgp_89_advertised_ip_ranges_90 struct {
+	Description *string
 
-
-    Description *string
-
-    Range *string
-
+	Range *string
 }
 
 type Google_compute_router_bgp_89 struct {
+	Advertise_mode *string
 
+	Advertised_groups *[]string
 
-    Advertise_mode *string
+	Advertised_ip_ranges *[]Google_compute_router_bgp_89_advertised_ip_ranges_90
 
-    Advertised_groups *[]string
-
-    Advertised_ip_ranges *[]Google_compute_router_bgp_89_advertised_ip_ranges_90
-
-    Asn int
-
+	Asn int
 }
 
 type Google_compute_router struct {
-
 	Google_compute_router_id *string `lyra:"ignore"`
 
-    Bgp *[]Google_compute_router_bgp_89
+	Bgp *[]Google_compute_router_bgp_89
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Network string
+	Network string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_router_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7909,7 +7465,6 @@ var Google_compute_router_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7920,7 +7475,6 @@ var Google_compute_router_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -7960,11 +7514,11 @@ func (h *Google_compute_routerHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_router", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_router", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router{ Google_compute_router_id: &externalID }
+	x := &Google_compute_router{Google_compute_router_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_router", "actual", spew.Sdump(x))
@@ -7983,7 +7537,7 @@ func (h *Google_compute_routerHandler) Read(externalID string) (*Google_compute_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router{ Google_compute_router_id: &id }
+	x := &Google_compute_router{Google_compute_router_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_router", "actual", spew.Sdump(x))
@@ -8002,21 +7556,19 @@ func (h *Google_compute_routerHandler) Delete(externalID string) error {
 }
 
 type Google_compute_router_interface struct {
-
 	Google_compute_router_interface_id *string `lyra:"ignore"`
 
-    Ip_range *string
+	Ip_range *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Router string
+	Router string
 
-    Vpn_tunnel string
-
+	Vpn_tunnel string
 }
 
 var Google_compute_router_interface_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8028,7 +7580,6 @@ var Google_compute_router_interface_rtb = func(rtb service.ResourceTypeBuilder) 
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8043,7 +7594,6 @@ var Google_compute_router_interface_rtb = func(rtb service.ResourceTypeBuilder) 
 		"router",
 
 		"vpn_tunnel",
-
 	)
 }
 
@@ -8083,11 +7633,11 @@ func (h *Google_compute_router_interfaceHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_router_interface", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_router_interface", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router_interface{ Google_compute_router_interface_id: &externalID }
+	x := &Google_compute_router_interface{Google_compute_router_interface_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_router_interface", "actual", spew.Sdump(x))
@@ -8106,7 +7656,7 @@ func (h *Google_compute_router_interfaceHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router_interface{ Google_compute_router_interface_id: &id }
+	x := &Google_compute_router_interface{Google_compute_router_interface_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_router_interface", "actual", spew.Sdump(x))
@@ -8125,46 +7675,41 @@ func (h *Google_compute_router_interfaceHandler) Delete(externalID string) error
 }
 
 type Google_compute_router_nat_subnetwork_91 struct {
+	Name string
 
+	Secondary_ip_range_names *[]string
 
-    Name string
-
-    Secondary_ip_range_names *[]string
-
-    Source_ip_ranges_to_nat *[]string
-
+	Source_ip_ranges_to_nat *[]string
 }
 
 type Google_compute_router_nat struct {
-
 	Google_compute_router_nat_id *string `lyra:"ignore"`
 
-    Icmp_idle_timeout_sec *int
+	Icmp_idle_timeout_sec *int
 
-    Min_ports_per_vm *int
+	Min_ports_per_vm *int
 
-    Name string
+	Name string
 
-    Nat_ip_allocate_option string
+	Nat_ip_allocate_option string
 
-    Nat_ips *[]string
+	Nat_ips *[]string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Router string
+	Router string
 
-    Source_subnetwork_ip_ranges_to_nat *string
+	Source_subnetwork_ip_ranges_to_nat *string
 
-    Subnetwork *[]Google_compute_router_nat_subnetwork_91
+	Subnetwork *[]Google_compute_router_nat_subnetwork_91
 
-    Tcp_established_idle_timeout_sec *int
+	Tcp_established_idle_timeout_sec *int
 
-    Tcp_transitory_idle_timeout_sec *int
+	Tcp_transitory_idle_timeout_sec *int
 
-    Udp_idle_timeout_sec *int
-
+	Udp_idle_timeout_sec *int
 }
 
 var Google_compute_router_nat_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8190,7 +7735,6 @@ var Google_compute_router_nat_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tcp_transitory_idle_timeout_sec",
 
 		"udp_idle_timeout_sec",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8219,7 +7763,6 @@ var Google_compute_router_nat_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tcp_transitory_idle_timeout_sec",
 
 		"udp_idle_timeout_sec",
-
 	)
 }
 
@@ -8259,11 +7802,11 @@ func (h *Google_compute_router_natHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_router_nat", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_router_nat", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router_nat{ Google_compute_router_nat_id: &externalID }
+	x := &Google_compute_router_nat{Google_compute_router_nat_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_router_nat", "actual", spew.Sdump(x))
@@ -8282,7 +7825,7 @@ func (h *Google_compute_router_natHandler) Read(externalID string) (*Google_comp
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router_nat{ Google_compute_router_nat_id: &id }
+	x := &Google_compute_router_nat{Google_compute_router_nat_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_router_nat", "actual", spew.Sdump(x))
@@ -8301,27 +7844,25 @@ func (h *Google_compute_router_natHandler) Delete(externalID string) error {
 }
 
 type Google_compute_router_peer struct {
-
 	Google_compute_router_peer_id *string `lyra:"ignore"`
 
-    Advertised_route_priority *int
+	Advertised_route_priority *int
 
-    Interface string
+	Interface string
 
-    Ip_address *string
+	Ip_address *string
 
-    Name string
+	Name string
 
-    Peer_asn int
+	Peer_asn int
 
-    Peer_ip_address *string
+	Peer_ip_address *string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Router string
-
+	Router string
 }
 
 var Google_compute_router_peer_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8337,7 +7878,6 @@ var Google_compute_router_peer_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8356,7 +7896,6 @@ var Google_compute_router_peer_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"router",
-
 	)
 }
 
@@ -8396,11 +7935,11 @@ func (h *Google_compute_router_peerHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_router_peer", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_router_peer", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router_peer{ Google_compute_router_peer_id: &externalID }
+	x := &Google_compute_router_peer{Google_compute_router_peer_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_router_peer", "actual", spew.Sdump(x))
@@ -8419,7 +7958,7 @@ func (h *Google_compute_router_peerHandler) Read(externalID string) (*Google_com
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_router_peer{ Google_compute_router_peer_id: &id }
+	x := &Google_compute_router_peer{Google_compute_router_peer_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_router_peer", "actual", spew.Sdump(x))
@@ -8438,52 +7977,41 @@ func (h *Google_compute_router_peerHandler) Delete(externalID string) error {
 }
 
 type Google_compute_security_policy_rule_92_match_93_config_94 struct {
-
-
-    Src_ip_ranges []string
-
+	Src_ip_ranges []string
 }
 
 type Google_compute_security_policy_rule_92_match_93 struct {
+	Config []Google_compute_security_policy_rule_92_match_93_config_94
 
-
-    Config []Google_compute_security_policy_rule_92_match_93_config_94
-
-    Versioned_expr string
-
+	Versioned_expr string
 }
 
 type Google_compute_security_policy_rule_92 struct {
+	Action string
 
+	Description *string
 
-    Action string
+	Match []Google_compute_security_policy_rule_92_match_93
 
-    Description *string
+	Preview *bool
 
-    Match []Google_compute_security_policy_rule_92_match_93
-
-    Preview *bool
-
-    Priority int
-
+	Priority int
 }
 
 type Google_compute_security_policy struct {
-
 	Google_compute_security_policy_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Rule *[]Google_compute_security_policy_rule_92
+	Rule *[]Google_compute_security_policy_rule_92
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_security_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8499,14 +8027,12 @@ var Google_compute_security_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"rule",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -8546,11 +8072,11 @@ func (h *Google_compute_security_policyHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_security_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_security_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_security_policy{ Google_compute_security_policy_id: &externalID }
+	x := &Google_compute_security_policy{Google_compute_security_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_security_policy", "actual", spew.Sdump(x))
@@ -8569,7 +8095,7 @@ func (h *Google_compute_security_policyHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_security_policy{ Google_compute_security_policy_id: &id }
+	x := &Google_compute_security_policy{Google_compute_security_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_security_policy", "actual", spew.Sdump(x))
@@ -8588,22 +8114,18 @@ func (h *Google_compute_security_policyHandler) Delete(externalID string) error 
 }
 
 type Google_compute_shared_vpc_host_project struct {
-
 	Google_compute_shared_vpc_host_project_id *string `lyra:"ignore"`
 
-    Project string
-
+	Project string
 }
 
 var Google_compute_shared_vpc_host_project_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"google_compute_shared_vpc_host_project_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -8643,11 +8165,11 @@ func (h *Google_compute_shared_vpc_host_projectHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_shared_vpc_host_project", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_shared_vpc_host_project", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_shared_vpc_host_project{ Google_compute_shared_vpc_host_project_id: &externalID }
+	x := &Google_compute_shared_vpc_host_project{Google_compute_shared_vpc_host_project_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_shared_vpc_host_project", "actual", spew.Sdump(x))
@@ -8666,7 +8188,7 @@ func (h *Google_compute_shared_vpc_host_projectHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_shared_vpc_host_project{ Google_compute_shared_vpc_host_project_id: &id }
+	x := &Google_compute_shared_vpc_host_project{Google_compute_shared_vpc_host_project_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_shared_vpc_host_project", "actual", spew.Sdump(x))
@@ -8685,26 +8207,22 @@ func (h *Google_compute_shared_vpc_host_projectHandler) Delete(externalID string
 }
 
 type Google_compute_shared_vpc_service_project struct {
-
 	Google_compute_shared_vpc_service_project_id *string `lyra:"ignore"`
 
-    Host_project string
+	Host_project string
 
-    Service_project string
-
+	Service_project string
 }
 
 var Google_compute_shared_vpc_service_project_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"google_compute_shared_vpc_service_project_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"host_project",
 
 		"service_project",
-
 	)
 }
 
@@ -8744,11 +8262,11 @@ func (h *Google_compute_shared_vpc_service_projectHandler) Update(externalID str
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_shared_vpc_service_project", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_shared_vpc_service_project", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_shared_vpc_service_project{ Google_compute_shared_vpc_service_project_id: &externalID }
+	x := &Google_compute_shared_vpc_service_project{Google_compute_shared_vpc_service_project_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_shared_vpc_service_project", "actual", spew.Sdump(x))
@@ -8767,7 +8285,7 @@ func (h *Google_compute_shared_vpc_service_projectHandler) Read(externalID strin
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_shared_vpc_service_project{ Google_compute_shared_vpc_service_project_id: &id }
+	x := &Google_compute_shared_vpc_service_project{Google_compute_shared_vpc_service_project_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_shared_vpc_service_project", "actual", spew.Sdump(x))
@@ -8786,65 +8304,57 @@ func (h *Google_compute_shared_vpc_service_projectHandler) Delete(externalID str
 }
 
 type Google_compute_snapshot_snapshot_encryption_key_95 struct {
+	Raw_key *string
 
-
-    Raw_key *string
-
-    Sha256 *string
-
+	Sha256 *string
 }
 
 type Google_compute_snapshot_source_disk_encryption_key_96 struct {
-
-
-    Raw_key *string
-
+	Raw_key *string
 }
 
 type Google_compute_snapshot struct {
-
 	Google_compute_snapshot_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Disk_size_gb *int
+	Disk_size_gb *int
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Licenses *[]string
+	Licenses *[]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Snapshot_encryption_key *[]Google_compute_snapshot_snapshot_encryption_key_95
+	Snapshot_encryption_key *[]Google_compute_snapshot_snapshot_encryption_key_95
 
-    Snapshot_encryption_key_raw *string
+	Snapshot_encryption_key_raw *string
 
-    Snapshot_encryption_key_sha256 *string
+	Snapshot_encryption_key_sha256 *string
 
-    Snapshot_id *int
+	Snapshot_id *int
 
-    Source_disk string
+	Source_disk string
 
-    Source_disk_encryption_key *[]Google_compute_snapshot_source_disk_encryption_key_96
+	Source_disk_encryption_key *[]Google_compute_snapshot_source_disk_encryption_key_96
 
-    Source_disk_encryption_key_raw *string
+	Source_disk_encryption_key_raw *string
 
-    Source_disk_encryption_key_sha256 *string
+	Source_disk_encryption_key_sha256 *string
 
-    Source_disk_link *string
+	Source_disk_link *string
 
-    Storage_bytes *int
+	Storage_bytes *int
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_compute_snapshot_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8886,7 +8396,6 @@ var Google_compute_snapshot_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_bytes",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8899,7 +8408,6 @@ var Google_compute_snapshot_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_disk",
 
 		"zone",
-
 	)
 }
 
@@ -8939,11 +8447,11 @@ func (h *Google_compute_snapshotHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_snapshot", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_snapshot", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_snapshot{ Google_compute_snapshot_id: &externalID }
+	x := &Google_compute_snapshot{Google_compute_snapshot_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_snapshot", "actual", spew.Sdump(x))
@@ -8962,7 +8470,7 @@ func (h *Google_compute_snapshotHandler) Read(externalID string) (*Google_comput
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_snapshot{ Google_compute_snapshot_id: &id }
+	x := &Google_compute_snapshot{Google_compute_snapshot_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_snapshot", "actual", spew.Sdump(x))
@@ -8981,27 +8489,25 @@ func (h *Google_compute_snapshotHandler) Delete(externalID string) error {
 }
 
 type Google_compute_ssl_certificate struct {
-
 	Google_compute_ssl_certificate_id *string `lyra:"ignore"`
 
-    Certificate string
+	Certificate string
 
-    Certificate_id *int
+	Certificate_id *int
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name *string
+	Name *string
 
-    Name_prefix *string
+	Name_prefix *string
 
-    Private_key string
+	Private_key string
 
-    Project *string
+	Project *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_ssl_certificate_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9021,7 +8527,6 @@ var Google_compute_ssl_certificate_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9036,7 +8541,6 @@ var Google_compute_ssl_certificate_rtb = func(rtb service.ResourceTypeBuilder) {
 		"private_key",
 
 		"project",
-
 	)
 }
 
@@ -9076,11 +8580,11 @@ func (h *Google_compute_ssl_certificateHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_ssl_certificate", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_ssl_certificate", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_ssl_certificate{ Google_compute_ssl_certificate_id: &externalID }
+	x := &Google_compute_ssl_certificate{Google_compute_ssl_certificate_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_ssl_certificate", "actual", spew.Sdump(x))
@@ -9099,7 +8603,7 @@ func (h *Google_compute_ssl_certificateHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_ssl_certificate{ Google_compute_ssl_certificate_id: &id }
+	x := &Google_compute_ssl_certificate{Google_compute_ssl_certificate_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_ssl_certificate", "actual", spew.Sdump(x))
@@ -9118,29 +8622,27 @@ func (h *Google_compute_ssl_certificateHandler) Delete(externalID string) error 
 }
 
 type Google_compute_ssl_policy struct {
-
 	Google_compute_ssl_policy_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Custom_features *[]string
+	Custom_features *[]string
 
-    Description *string
+	Description *string
 
-    Enabled_features *[]string
+	Enabled_features *[]string
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Min_tls_version *string
+	Min_tls_version *string
 
-    Name string
+	Name string
 
-    Profile *string
+	Profile *string
 
-    Project *string
+	Project *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_ssl_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9164,7 +8666,6 @@ var Google_compute_ssl_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9173,7 +8674,6 @@ var Google_compute_ssl_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -9213,11 +8713,11 @@ func (h *Google_compute_ssl_policyHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_ssl_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_ssl_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_ssl_policy{ Google_compute_ssl_policy_id: &externalID }
+	x := &Google_compute_ssl_policy{Google_compute_ssl_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_ssl_policy", "actual", spew.Sdump(x))
@@ -9236,7 +8736,7 @@ func (h *Google_compute_ssl_policyHandler) Read(externalID string) (*Google_comp
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_ssl_policy{ Google_compute_ssl_policy_id: &id }
+	x := &Google_compute_ssl_policy{Google_compute_ssl_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_ssl_policy", "actual", spew.Sdump(x))
@@ -9255,44 +8755,39 @@ func (h *Google_compute_ssl_policyHandler) Delete(externalID string) error {
 }
 
 type Google_compute_subnetwork_secondary_ip_range_97 struct {
+	Ip_cidr_range string
 
-
-    Ip_cidr_range string
-
-    Range_name string
-
+	Range_name string
 }
 
 type Google_compute_subnetwork struct {
-
 	Google_compute_subnetwork_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Enable_flow_logs *bool
+	Enable_flow_logs *bool
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Gateway_address *string
+	Gateway_address *string
 
-    Ip_cidr_range string
+	Ip_cidr_range string
 
-    Name string
+	Name string
 
-    Network string
+	Network string
 
-    Private_ip_google_access *bool
+	Private_ip_google_access *bool
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Secondary_ip_range *[]Google_compute_subnetwork_secondary_ip_range_97
+	Secondary_ip_range *[]Google_compute_subnetwork_secondary_ip_range_97
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_subnetwork_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9318,7 +8813,6 @@ var Google_compute_subnetwork_rtb = func(rtb service.ResourceTypeBuilder) {
 		"secondary_ip_range",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9331,7 +8825,6 @@ var Google_compute_subnetwork_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -9371,11 +8864,11 @@ func (h *Google_compute_subnetworkHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_subnetwork", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_subnetwork", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork{ Google_compute_subnetwork_id: &externalID }
+	x := &Google_compute_subnetwork{Google_compute_subnetwork_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_subnetwork", "actual", spew.Sdump(x))
@@ -9394,7 +8887,7 @@ func (h *Google_compute_subnetworkHandler) Read(externalID string) (*Google_comp
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork{ Google_compute_subnetwork_id: &id }
+	x := &Google_compute_subnetwork{Google_compute_subnetwork_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_subnetwork", "actual", spew.Sdump(x))
@@ -9413,21 +8906,19 @@ func (h *Google_compute_subnetworkHandler) Delete(externalID string) error {
 }
 
 type Google_compute_subnetwork_iam_binding struct {
-
 	Google_compute_subnetwork_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Role string
+	Role string
 
-    Subnetwork string
-
+	Subnetwork string
 }
 
 var Google_compute_subnetwork_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9439,7 +8930,6 @@ var Google_compute_subnetwork_iam_binding_rtb = func(rtb service.ResourceTypeBui
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9450,7 +8940,6 @@ var Google_compute_subnetwork_iam_binding_rtb = func(rtb service.ResourceTypeBui
 		"role",
 
 		"subnetwork",
-
 	)
 }
 
@@ -9490,11 +8979,11 @@ func (h *Google_compute_subnetwork_iam_bindingHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_subnetwork_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_subnetwork_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork_iam_binding{ Google_compute_subnetwork_iam_binding_id: &externalID }
+	x := &Google_compute_subnetwork_iam_binding{Google_compute_subnetwork_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_subnetwork_iam_binding", "actual", spew.Sdump(x))
@@ -9513,7 +9002,7 @@ func (h *Google_compute_subnetwork_iam_bindingHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork_iam_binding{ Google_compute_subnetwork_iam_binding_id: &id }
+	x := &Google_compute_subnetwork_iam_binding{Google_compute_subnetwork_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_subnetwork_iam_binding", "actual", spew.Sdump(x))
@@ -9532,21 +9021,19 @@ func (h *Google_compute_subnetwork_iam_bindingHandler) Delete(externalID string)
 }
 
 type Google_compute_subnetwork_iam_member struct {
-
 	Google_compute_subnetwork_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Role string
+	Role string
 
-    Subnetwork string
-
+	Subnetwork string
 }
 
 var Google_compute_subnetwork_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9558,7 +9045,6 @@ var Google_compute_subnetwork_iam_member_rtb = func(rtb service.ResourceTypeBuil
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9571,7 +9057,6 @@ var Google_compute_subnetwork_iam_member_rtb = func(rtb service.ResourceTypeBuil
 		"role",
 
 		"subnetwork",
-
 	)
 }
 
@@ -9611,11 +9096,11 @@ func (h *Google_compute_subnetwork_iam_memberHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_subnetwork_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_subnetwork_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork_iam_member{ Google_compute_subnetwork_iam_member_id: &externalID }
+	x := &Google_compute_subnetwork_iam_member{Google_compute_subnetwork_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_subnetwork_iam_member", "actual", spew.Sdump(x))
@@ -9634,7 +9119,7 @@ func (h *Google_compute_subnetwork_iam_memberHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork_iam_member{ Google_compute_subnetwork_iam_member_id: &id }
+	x := &Google_compute_subnetwork_iam_member{Google_compute_subnetwork_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_subnetwork_iam_member", "actual", spew.Sdump(x))
@@ -9653,19 +9138,17 @@ func (h *Google_compute_subnetwork_iam_memberHandler) Delete(externalID string) 
 }
 
 type Google_compute_subnetwork_iam_policy struct {
-
 	Google_compute_subnetwork_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
+	Policy_data string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Subnetwork string
-
+	Subnetwork string
 }
 
 var Google_compute_subnetwork_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9677,7 +9160,6 @@ var Google_compute_subnetwork_iam_policy_rtb = func(rtb service.ResourceTypeBuil
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9686,7 +9168,6 @@ var Google_compute_subnetwork_iam_policy_rtb = func(rtb service.ResourceTypeBuil
 		"region",
 
 		"subnetwork",
-
 	)
 }
 
@@ -9726,11 +9207,11 @@ func (h *Google_compute_subnetwork_iam_policyHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_subnetwork_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_subnetwork_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork_iam_policy{ Google_compute_subnetwork_iam_policy_id: &externalID }
+	x := &Google_compute_subnetwork_iam_policy{Google_compute_subnetwork_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_subnetwork_iam_policy", "actual", spew.Sdump(x))
@@ -9749,7 +9230,7 @@ func (h *Google_compute_subnetwork_iam_policyHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_subnetwork_iam_policy{ Google_compute_subnetwork_iam_policy_id: &id }
+	x := &Google_compute_subnetwork_iam_policy{Google_compute_subnetwork_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_subnetwork_iam_policy", "actual", spew.Sdump(x))
@@ -9768,23 +9249,21 @@ func (h *Google_compute_subnetwork_iam_policyHandler) Delete(externalID string) 
 }
 
 type Google_compute_target_http_proxy struct {
-
 	Google_compute_target_http_proxy_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Proxy_id *int
+	Proxy_id *int
 
-    Self_link *string
+	Self_link *string
 
-    Url_map string
-
+	Url_map string
 }
 
 var Google_compute_target_http_proxy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9800,7 +9279,6 @@ var Google_compute_target_http_proxy_rtb = func(rtb service.ResourceTypeBuilder)
 		"proxy_id",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9809,7 +9287,6 @@ var Google_compute_target_http_proxy_rtb = func(rtb service.ResourceTypeBuilder)
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -9849,11 +9326,11 @@ func (h *Google_compute_target_http_proxyHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_target_http_proxy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_target_http_proxy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_http_proxy{ Google_compute_target_http_proxy_id: &externalID }
+	x := &Google_compute_target_http_proxy{Google_compute_target_http_proxy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_target_http_proxy", "actual", spew.Sdump(x))
@@ -9872,7 +9349,7 @@ func (h *Google_compute_target_http_proxyHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_http_proxy{ Google_compute_target_http_proxy_id: &id }
+	x := &Google_compute_target_http_proxy{Google_compute_target_http_proxy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_target_http_proxy", "actual", spew.Sdump(x))
@@ -9891,29 +9368,27 @@ func (h *Google_compute_target_http_proxyHandler) Delete(externalID string) erro
 }
 
 type Google_compute_target_https_proxy struct {
-
 	Google_compute_target_https_proxy_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Proxy_id *int
+	Proxy_id *int
 
-    Quic_override *string
+	Quic_override *string
 
-    Self_link *string
+	Self_link *string
 
-    Ssl_certificates []string
+	Ssl_certificates []string
 
-    Ssl_policy *string
+	Ssl_policy *string
 
-    Url_map string
-
+	Url_map string
 }
 
 var Google_compute_target_https_proxy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9933,7 +9408,6 @@ var Google_compute_target_https_proxy_rtb = func(rtb service.ResourceTypeBuilder
 		"self_link",
 
 		"ssl_policy",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9942,7 +9416,6 @@ var Google_compute_target_https_proxy_rtb = func(rtb service.ResourceTypeBuilder
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -9982,11 +9455,11 @@ func (h *Google_compute_target_https_proxyHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_target_https_proxy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_target_https_proxy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_https_proxy{ Google_compute_target_https_proxy_id: &externalID }
+	x := &Google_compute_target_https_proxy{Google_compute_target_https_proxy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_target_https_proxy", "actual", spew.Sdump(x))
@@ -10005,7 +9478,7 @@ func (h *Google_compute_target_https_proxyHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_https_proxy{ Google_compute_target_https_proxy_id: &id }
+	x := &Google_compute_target_https_proxy{Google_compute_target_https_proxy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_target_https_proxy", "actual", spew.Sdump(x))
@@ -10024,29 +9497,27 @@ func (h *Google_compute_target_https_proxyHandler) Delete(externalID string) err
 }
 
 type Google_compute_target_pool struct {
-
 	Google_compute_target_pool_id *string `lyra:"ignore"`
 
-    Backup_pool *string
+	Backup_pool *string
 
-    Description *string
+	Description *string
 
-    Failover_ratio *float64
+	Failover_ratio *float64
 
-    Health_checks *[]string
+	Health_checks *[]string
 
-    Instances *[]string
+	Instances *[]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
+	Self_link *string
 
-    Session_affinity *string
-
+	Session_affinity *string
 }
 
 var Google_compute_target_pool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10070,7 +9541,6 @@ var Google_compute_target_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"self_link",
 
 		"session_affinity",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10085,7 +9555,6 @@ var Google_compute_target_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"session_affinity",
-
 	)
 }
 
@@ -10125,11 +9594,11 @@ func (h *Google_compute_target_poolHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_target_pool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_target_pool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_pool{ Google_compute_target_pool_id: &externalID }
+	x := &Google_compute_target_pool{Google_compute_target_pool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_target_pool", "actual", spew.Sdump(x))
@@ -10148,7 +9617,7 @@ func (h *Google_compute_target_poolHandler) Read(externalID string) (*Google_com
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_pool{ Google_compute_target_pool_id: &id }
+	x := &Google_compute_target_pool{Google_compute_target_pool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_target_pool", "actual", spew.Sdump(x))
@@ -10167,29 +9636,27 @@ func (h *Google_compute_target_poolHandler) Delete(externalID string) error {
 }
 
 type Google_compute_target_ssl_proxy struct {
-
 	Google_compute_target_ssl_proxy_id *string `lyra:"ignore"`
 
-    Backend_service string
+	Backend_service string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Proxy_header *string
+	Proxy_header *string
 
-    Proxy_id *int
+	Proxy_id *int
 
-    Self_link *string
+	Self_link *string
 
-    Ssl_certificates []string
+	Ssl_certificates []string
 
-    Ssl_policy *string
-
+	Ssl_policy *string
 }
 
 var Google_compute_target_ssl_proxy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10209,7 +9676,6 @@ var Google_compute_target_ssl_proxy_rtb = func(rtb service.ResourceTypeBuilder) 
 		"self_link",
 
 		"ssl_policy",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10218,7 +9684,6 @@ var Google_compute_target_ssl_proxy_rtb = func(rtb service.ResourceTypeBuilder) 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -10258,11 +9723,11 @@ func (h *Google_compute_target_ssl_proxyHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_target_ssl_proxy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_target_ssl_proxy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_ssl_proxy{ Google_compute_target_ssl_proxy_id: &externalID }
+	x := &Google_compute_target_ssl_proxy{Google_compute_target_ssl_proxy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_target_ssl_proxy", "actual", spew.Sdump(x))
@@ -10281,7 +9746,7 @@ func (h *Google_compute_target_ssl_proxyHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_ssl_proxy{ Google_compute_target_ssl_proxy_id: &id }
+	x := &Google_compute_target_ssl_proxy{Google_compute_target_ssl_proxy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_target_ssl_proxy", "actual", spew.Sdump(x))
@@ -10300,25 +9765,23 @@ func (h *Google_compute_target_ssl_proxyHandler) Delete(externalID string) error
 }
 
 type Google_compute_target_tcp_proxy struct {
-
 	Google_compute_target_tcp_proxy_id *string `lyra:"ignore"`
 
-    Backend_service string
+	Backend_service string
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Proxy_header *string
+	Proxy_header *string
 
-    Proxy_id *int
+	Proxy_id *int
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_target_tcp_proxy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10336,7 +9799,6 @@ var Google_compute_target_tcp_proxy_rtb = func(rtb service.ResourceTypeBuilder) 
 		"proxy_id",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10345,7 +9807,6 @@ var Google_compute_target_tcp_proxy_rtb = func(rtb service.ResourceTypeBuilder) 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -10385,11 +9846,11 @@ func (h *Google_compute_target_tcp_proxyHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_target_tcp_proxy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_target_tcp_proxy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_tcp_proxy{ Google_compute_target_tcp_proxy_id: &externalID }
+	x := &Google_compute_target_tcp_proxy{Google_compute_target_tcp_proxy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_target_tcp_proxy", "actual", spew.Sdump(x))
@@ -10408,7 +9869,7 @@ func (h *Google_compute_target_tcp_proxyHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_target_tcp_proxy{ Google_compute_target_tcp_proxy_id: &id }
+	x := &Google_compute_target_tcp_proxy{Google_compute_target_tcp_proxy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_target_tcp_proxy", "actual", spew.Sdump(x))
@@ -10427,75 +9888,61 @@ func (h *Google_compute_target_tcp_proxyHandler) Delete(externalID string) error
 }
 
 type Google_compute_url_map_host_rule_98 struct {
+	Description *string
 
+	Hosts []string
 
-    Description *string
-
-    Hosts []string
-
-    Path_matcher string
-
+	Path_matcher string
 }
 
 type Google_compute_url_map_path_matcher_99_path_rule_100 struct {
+	Paths []string
 
-
-    Paths []string
-
-    Service string
-
+	Service string
 }
 
 type Google_compute_url_map_path_matcher_99 struct {
+	Default_service string
 
+	Description *string
 
-    Default_service string
+	Name string
 
-    Description *string
-
-    Name string
-
-    Path_rule *[]Google_compute_url_map_path_matcher_99_path_rule_100
-
+	Path_rule *[]Google_compute_url_map_path_matcher_99_path_rule_100
 }
 
 type Google_compute_url_map_test_101 struct {
+	Description *string
 
+	Host string
 
-    Description *string
+	Path string
 
-    Host string
-
-    Path string
-
-    Service string
-
+	Service string
 }
 
 type Google_compute_url_map struct {
-
 	Google_compute_url_map_id *string `lyra:"ignore"`
 
-    Default_service string
+	Default_service string
 
-    Description *string
+	Description *string
 
-    Fingerprint *string
+	Fingerprint *string
 
-    Host_rule *[]Google_compute_url_map_host_rule_98
+	Host_rule *[]Google_compute_url_map_host_rule_98
 
-    Map_id *string
+	Map_id *string
 
-    Name string
+	Name string
 
-    Path_matcher *[]Google_compute_url_map_path_matcher_99
+	Path_matcher *[]Google_compute_url_map_path_matcher_99
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Test *[]Google_compute_url_map_test_101
-
+	Test *[]Google_compute_url_map_test_101
 }
 
 var Google_compute_url_map_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10517,14 +9964,12 @@ var Google_compute_url_map_rtb = func(rtb service.ResourceTypeBuilder) {
 		"self_link",
 
 		"test",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -10564,11 +10009,11 @@ func (h *Google_compute_url_mapHandler) Update(externalID string, desired *Googl
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_url_map", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_url_map", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_url_map{ Google_compute_url_map_id: &externalID }
+	x := &Google_compute_url_map{Google_compute_url_map_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_url_map", "actual", spew.Sdump(x))
@@ -10587,7 +10032,7 @@ func (h *Google_compute_url_mapHandler) Read(externalID string) (*Google_compute
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_url_map{ Google_compute_url_map_id: &id }
+	x := &Google_compute_url_map{Google_compute_url_map_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_url_map", "actual", spew.Sdump(x))
@@ -10606,23 +10051,21 @@ func (h *Google_compute_url_mapHandler) Delete(externalID string) error {
 }
 
 type Google_compute_vpn_gateway struct {
-
 	Google_compute_vpn_gateway_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Network string
+	Network string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_compute_vpn_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10638,7 +10081,6 @@ var Google_compute_vpn_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10651,7 +10093,6 @@ var Google_compute_vpn_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -10691,11 +10132,11 @@ func (h *Google_compute_vpn_gatewayHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_vpn_gateway", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_vpn_gateway", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_vpn_gateway{ Google_compute_vpn_gateway_id: &externalID }
+	x := &Google_compute_vpn_gateway{Google_compute_vpn_gateway_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_vpn_gateway", "actual", spew.Sdump(x))
@@ -10714,7 +10155,7 @@ func (h *Google_compute_vpn_gatewayHandler) Read(externalID string) (*Google_com
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_vpn_gateway{ Google_compute_vpn_gateway_id: &id }
+	x := &Google_compute_vpn_gateway{Google_compute_vpn_gateway_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_vpn_gateway", "actual", spew.Sdump(x))
@@ -10733,43 +10174,41 @@ func (h *Google_compute_vpn_gatewayHandler) Delete(externalID string) error {
 }
 
 type Google_compute_vpn_tunnel struct {
-
 	Google_compute_vpn_tunnel_id *string `lyra:"ignore"`
 
-    Creation_timestamp *string
+	Creation_timestamp *string
 
-    Description *string
+	Description *string
 
-    Detailed_status *string
+	Detailed_status *string
 
-    Ike_version *int
+	Ike_version *int
 
-    Label_fingerprint *string
+	Label_fingerprint *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Local_traffic_selector *[]string
+	Local_traffic_selector *[]string
 
-    Name string
+	Name string
 
-    Peer_ip string
+	Peer_ip string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Remote_traffic_selector *[]string
+	Remote_traffic_selector *[]string
 
-    Router *string
+	Router *string
 
-    Self_link *string
+	Self_link *string
 
-    Shared_secret string
+	Shared_secret string
 
-    Shared_secret_hash *string
+	Shared_secret_hash *string
 
-    Target_vpn_gateway string
-
+	Target_vpn_gateway string
 }
 
 var Google_compute_vpn_tunnel_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10801,7 +10240,6 @@ var Google_compute_vpn_tunnel_rtb = func(rtb service.ResourceTypeBuilder) {
 		"self_link",
 
 		"shared_secret_hash",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10826,7 +10264,6 @@ var Google_compute_vpn_tunnel_rtb = func(rtb service.ResourceTypeBuilder) {
 		"shared_secret",
 
 		"target_vpn_gateway",
-
 	)
 }
 
@@ -10866,11 +10303,11 @@ func (h *Google_compute_vpn_tunnelHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_compute_vpn_tunnel", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_compute_vpn_tunnel", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_vpn_tunnel{ Google_compute_vpn_tunnel_id: &externalID }
+	x := &Google_compute_vpn_tunnel{Google_compute_vpn_tunnel_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_compute_vpn_tunnel", "actual", spew.Sdump(x))
@@ -10889,7 +10326,7 @@ func (h *Google_compute_vpn_tunnelHandler) Read(externalID string) (*Google_comp
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_compute_vpn_tunnel{ Google_compute_vpn_tunnel_id: &id }
+	x := &Google_compute_vpn_tunnel{Google_compute_vpn_tunnel_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_compute_vpn_tunnel", "actual", spew.Sdump(x))
@@ -10908,29 +10345,21 @@ func (h *Google_compute_vpn_tunnelHandler) Delete(externalID string) error {
 }
 
 type Google_container_analysis_note_attestation_authority_102_hint_103 struct {
-
-
-    Human_readable_name string
-
+	Human_readable_name string
 }
 
 type Google_container_analysis_note_attestation_authority_102 struct {
-
-
-    Hint []Google_container_analysis_note_attestation_authority_102_hint_103
-
+	Hint []Google_container_analysis_note_attestation_authority_102_hint_103
 }
 
 type Google_container_analysis_note struct {
-
 	Google_container_analysis_note_id *string `lyra:"ignore"`
 
-    Attestation_authority []Google_container_analysis_note_attestation_authority_102
+	Attestation_authority []Google_container_analysis_note_attestation_authority_102
 
-    Name string
+	Name string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_container_analysis_note_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10938,14 +10367,12 @@ var Google_container_analysis_note_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_container_analysis_note_id",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -10985,11 +10412,11 @@ func (h *Google_container_analysis_noteHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_container_analysis_note", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_container_analysis_note", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_container_analysis_note{ Google_container_analysis_note_id: &externalID }
+	x := &Google_container_analysis_note{Google_container_analysis_note_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_container_analysis_note", "actual", spew.Sdump(x))
@@ -11008,7 +10435,7 @@ func (h *Google_container_analysis_noteHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_container_analysis_note{ Google_container_analysis_note_id: &id }
+	x := &Google_container_analysis_note{Google_container_analysis_note_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_container_analysis_note", "actual", spew.Sdump(x))
@@ -11027,413 +10454,327 @@ func (h *Google_container_analysis_noteHandler) Delete(externalID string) error 
 }
 
 type Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105 struct {
-
-
-    Disabled *bool
-
+	Disabled *bool
 }
 
 type Google_container_cluster_addons_config_104_http_load_balancing_106 struct {
-
-
-    Disabled *bool
-
+	Disabled *bool
 }
 
 type Google_container_cluster_addons_config_104_kubernetes_dashboard_107 struct {
-
-
-    Disabled *bool
-
+	Disabled *bool
 }
 
 type Google_container_cluster_addons_config_104_network_policy_config_108 struct {
-
-
-    Disabled *bool
-
+	Disabled *bool
 }
 
 type Google_container_cluster_addons_config_104 struct {
+	Horizontal_pod_autoscaling *[]Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105
 
+	Http_load_balancing *[]Google_container_cluster_addons_config_104_http_load_balancing_106
 
-    Horizontal_pod_autoscaling *[]Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105
+	Kubernetes_dashboard *[]Google_container_cluster_addons_config_104_kubernetes_dashboard_107
 
-    Http_load_balancing *[]Google_container_cluster_addons_config_104_http_load_balancing_106
-
-    Kubernetes_dashboard *[]Google_container_cluster_addons_config_104_kubernetes_dashboard_107
-
-    Network_policy_config *[]Google_container_cluster_addons_config_104_network_policy_config_108
-
+	Network_policy_config *[]Google_container_cluster_addons_config_104_network_policy_config_108
 }
 
 type Google_container_cluster_cluster_autoscaling_109_resource_limits_110 struct {
+	Maximum *int
 
+	Minimum *int
 
-    Maximum *int
-
-    Minimum *int
-
-    Resource_type string
-
+	Resource_type string
 }
 
 type Google_container_cluster_cluster_autoscaling_109 struct {
+	Enabled bool
 
-
-    Enabled bool
-
-    Resource_limits *[]Google_container_cluster_cluster_autoscaling_109_resource_limits_110
-
+	Resource_limits *[]Google_container_cluster_cluster_autoscaling_109_resource_limits_110
 }
 
 type Google_container_cluster_ip_allocation_policy_111 struct {
+	Cluster_ipv4_cidr_block *string
 
+	Cluster_secondary_range_name *string
 
-    Cluster_ipv4_cidr_block *string
+	Create_subnetwork *bool
 
-    Cluster_secondary_range_name *string
+	Services_ipv4_cidr_block *string
 
-    Create_subnetwork *bool
+	Services_secondary_range_name *string
 
-    Services_ipv4_cidr_block *string
-
-    Services_secondary_range_name *string
-
-    Subnetwork_name *string
-
+	Subnetwork_name *string
 }
 
 type Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113 struct {
+	Duration *string
 
-
-    Duration *string
-
-    Start_time string
-
+	Start_time string
 }
 
 type Google_container_cluster_maintenance_policy_112 struct {
-
-
-    Daily_maintenance_window []Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113
-
+	Daily_maintenance_window []Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113
 }
 
 type Google_container_cluster_master_auth_114_client_certificate_config_115 struct {
-
-
-    Issue_client_certificate bool
-
+	Issue_client_certificate bool
 }
 
 type Google_container_cluster_master_auth_114 struct {
+	Client_certificate *string
 
+	Client_certificate_config *[]Google_container_cluster_master_auth_114_client_certificate_config_115
 
-    Client_certificate *string
+	Client_key *string
 
-    Client_certificate_config *[]Google_container_cluster_master_auth_114_client_certificate_config_115
+	Cluster_ca_certificate *string
 
-    Client_key *string
+	Password string
 
-    Cluster_ca_certificate *string
-
-    Password string
-
-    Username string
-
+	Username string
 }
 
 type Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117 struct {
+	Cidr_block string
 
-
-    Cidr_block string
-
-    Display_name *string
-
+	Display_name *string
 }
 
 type Google_container_cluster_master_authorized_networks_config_116 struct {
-
-
-    Cidr_blocks *[]Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117
-
+	Cidr_blocks *[]Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117
 }
 
 type Google_container_cluster_network_policy_118 struct {
+	Enabled *bool
 
-
-    Enabled *bool
-
-    Provider *string
-
+	Provider *string
 }
 
 type Google_container_cluster_node_config_119_guest_accelerator_120 struct {
+	Count int
 
-
-    Count int
-
-    Type string
-
+	Type string
 }
 
 type Google_container_cluster_node_config_119_taint_121 struct {
+	Effect string
 
+	Key string
 
-    Effect string
-
-    Key string
-
-    Value string
-
+	Value string
 }
 
 type Google_container_cluster_node_config_119_workload_metadata_config_122 struct {
-
-
-    Node_metadata string
-
+	Node_metadata string
 }
 
 type Google_container_cluster_node_config_119 struct {
+	Disk_size_gb *int
 
+	Disk_type *string
 
-    Disk_size_gb *int
+	Guest_accelerator *[]Google_container_cluster_node_config_119_guest_accelerator_120
 
-    Disk_type *string
+	Image_type *string
 
-    Guest_accelerator *[]Google_container_cluster_node_config_119_guest_accelerator_120
+	Labels *map[string]string
 
-    Image_type *string
+	Local_ssd_count *int
 
-    Labels *map[string]string
+	Machine_type *string
 
-    Local_ssd_count *int
+	Metadata *map[string]string
 
-    Machine_type *string
+	Min_cpu_platform *string
 
-    Metadata *map[string]string
+	Oauth_scopes *[]string
 
-    Min_cpu_platform *string
+	Preemptible *bool
 
-    Oauth_scopes *[]string
+	Service_account *string
 
-    Preemptible *bool
+	Tags *[]string
 
-    Service_account *string
+	Taint *[]Google_container_cluster_node_config_119_taint_121
 
-    Tags *[]string
-
-    Taint *[]Google_container_cluster_node_config_119_taint_121
-
-    Workload_metadata_config *[]Google_container_cluster_node_config_119_workload_metadata_config_122
-
+	Workload_metadata_config *[]Google_container_cluster_node_config_119_workload_metadata_config_122
 }
 
 type Google_container_cluster_node_pool_123_autoscaling_124 struct {
+	Max_node_count int
 
-
-    Max_node_count int
-
-    Min_node_count int
-
+	Min_node_count int
 }
 
 type Google_container_cluster_node_pool_123_management_125 struct {
+	Auto_repair *bool
 
-
-    Auto_repair *bool
-
-    Auto_upgrade *bool
-
+	Auto_upgrade *bool
 }
 
 type Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127 struct {
+	Count int
 
-
-    Count int
-
-    Type string
-
+	Type string
 }
 
 type Google_container_cluster_node_pool_123_node_config_126_taint_128 struct {
+	Effect string
 
+	Key string
 
-    Effect string
-
-    Key string
-
-    Value string
-
+	Value string
 }
 
 type Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129 struct {
-
-
-    Node_metadata string
-
+	Node_metadata string
 }
 
 type Google_container_cluster_node_pool_123_node_config_126 struct {
+	Disk_size_gb *int
 
+	Disk_type *string
 
-    Disk_size_gb *int
+	Guest_accelerator *[]Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127
 
-    Disk_type *string
+	Image_type *string
 
-    Guest_accelerator *[]Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127
+	Labels *map[string]string
 
-    Image_type *string
+	Local_ssd_count *int
 
-    Labels *map[string]string
+	Machine_type *string
 
-    Local_ssd_count *int
+	Metadata *map[string]string
 
-    Machine_type *string
+	Min_cpu_platform *string
 
-    Metadata *map[string]string
+	Oauth_scopes *[]string
 
-    Min_cpu_platform *string
+	Preemptible *bool
 
-    Oauth_scopes *[]string
+	Service_account *string
 
-    Preemptible *bool
+	Tags *[]string
 
-    Service_account *string
+	Taint *[]Google_container_cluster_node_pool_123_node_config_126_taint_128
 
-    Tags *[]string
-
-    Taint *[]Google_container_cluster_node_pool_123_node_config_126_taint_128
-
-    Workload_metadata_config *[]Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129
-
+	Workload_metadata_config *[]Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129
 }
 
 type Google_container_cluster_node_pool_123 struct {
+	Autoscaling *[]Google_container_cluster_node_pool_123_autoscaling_124
 
+	Initial_node_count *int
 
-    Autoscaling *[]Google_container_cluster_node_pool_123_autoscaling_124
+	Instance_group_urls *[]string
 
-    Initial_node_count *int
+	Management *[]Google_container_cluster_node_pool_123_management_125
 
-    Instance_group_urls *[]string
+	Max_pods_per_node *int
 
-    Management *[]Google_container_cluster_node_pool_123_management_125
+	Name *string
 
-    Max_pods_per_node *int
+	Name_prefix *string
 
-    Name *string
+	Node_config *[]Google_container_cluster_node_pool_123_node_config_126
 
-    Name_prefix *string
+	Node_count *int
 
-    Node_config *[]Google_container_cluster_node_pool_123_node_config_126
-
-    Node_count *int
-
-    Version *string
-
+	Version *string
 }
 
 type Google_container_cluster_pod_security_policy_config_130 struct {
-
-
-    Enabled bool
-
+	Enabled bool
 }
 
 type Google_container_cluster_private_cluster_config_131 struct {
+	Enable_private_endpoint *bool
 
+	Enable_private_nodes *bool
 
-    Enable_private_endpoint *bool
+	Master_ipv4_cidr_block *string
 
-    Enable_private_nodes *bool
+	Private_endpoint *string
 
-    Master_ipv4_cidr_block *string
-
-    Private_endpoint *string
-
-    Public_endpoint *string
-
+	Public_endpoint *string
 }
 
 type Google_container_cluster struct {
-
 	Google_container_cluster_id *string `lyra:"ignore"`
 
-    Additional_zones *[]string
+	Additional_zones *[]string
 
-    Addons_config *[]Google_container_cluster_addons_config_104
+	Addons_config *[]Google_container_cluster_addons_config_104
 
-    Cluster_autoscaling *[]Google_container_cluster_cluster_autoscaling_109
+	Cluster_autoscaling *[]Google_container_cluster_cluster_autoscaling_109
 
-    Cluster_ipv4_cidr *string
+	Cluster_ipv4_cidr *string
 
-    Description *string
+	Description *string
 
-    Enable_binary_authorization *bool
+	Enable_binary_authorization *bool
 
-    Enable_kubernetes_alpha *bool
+	Enable_kubernetes_alpha *bool
 
-    Enable_legacy_abac *bool
+	Enable_legacy_abac *bool
 
-    Enable_tpu *bool
+	Enable_tpu *bool
 
-    Endpoint *string
+	Endpoint *string
 
-    Initial_node_count *int
+	Initial_node_count *int
 
-    Instance_group_urls *[]string
+	Instance_group_urls *[]string
 
-    Ip_allocation_policy *[]Google_container_cluster_ip_allocation_policy_111
+	Ip_allocation_policy *[]Google_container_cluster_ip_allocation_policy_111
 
-    Logging_service *string
+	Logging_service *string
 
-    Maintenance_policy *[]Google_container_cluster_maintenance_policy_112
+	Maintenance_policy *[]Google_container_cluster_maintenance_policy_112
 
-    Master_auth *[]Google_container_cluster_master_auth_114
+	Master_auth *[]Google_container_cluster_master_auth_114
 
-    Master_authorized_networks_config *[]Google_container_cluster_master_authorized_networks_config_116
+	Master_authorized_networks_config *[]Google_container_cluster_master_authorized_networks_config_116
 
-    Master_ipv4_cidr_block *string
+	Master_ipv4_cidr_block *string
 
-    Master_version *string
+	Master_version *string
 
-    Min_master_version *string
+	Min_master_version *string
 
-    Monitoring_service *string
+	Monitoring_service *string
 
-    Name string
+	Name string
 
-    Network *string
+	Network *string
 
-    Network_policy *[]Google_container_cluster_network_policy_118
+	Network_policy *[]Google_container_cluster_network_policy_118
 
-    Node_config *[]Google_container_cluster_node_config_119
+	Node_config *[]Google_container_cluster_node_config_119
 
-    Node_pool *[]Google_container_cluster_node_pool_123
+	Node_pool *[]Google_container_cluster_node_pool_123
 
-    Node_version *string
+	Node_version *string
 
-    Pod_security_policy_config *[]Google_container_cluster_pod_security_policy_config_130
+	Pod_security_policy_config *[]Google_container_cluster_pod_security_policy_config_130
 
-    Private_cluster *bool
+	Private_cluster *bool
 
-    Private_cluster_config *[]Google_container_cluster_private_cluster_config_131
+	Private_cluster_config *[]Google_container_cluster_private_cluster_config_131
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Remove_default_node_pool *bool
+	Remove_default_node_pool *bool
 
-    Resource_labels *map[string]string
+	Resource_labels *map[string]string
 
-    Subnetwork *string
+	Subnetwork *string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_container_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11509,7 +10850,6 @@ var Google_container_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnetwork",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11544,7 +10884,6 @@ var Google_container_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnetwork",
 
 		"zone",
-
 	)
 }
 
@@ -11584,11 +10923,11 @@ func (h *Google_container_clusterHandler) Update(externalID string, desired *Goo
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_container_cluster", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_container_cluster", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_container_cluster{ Google_container_cluster_id: &externalID }
+	x := &Google_container_cluster{Google_container_cluster_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_container_cluster", "actual", spew.Sdump(x))
@@ -11607,7 +10946,7 @@ func (h *Google_container_clusterHandler) Read(externalID string) (*Google_conta
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_container_cluster{ Google_container_cluster_id: &id }
+	x := &Google_container_cluster{Google_container_cluster_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_container_cluster", "actual", spew.Sdump(x))
@@ -11626,117 +10965,97 @@ func (h *Google_container_clusterHandler) Delete(externalID string) error {
 }
 
 type Google_container_node_pool_autoscaling_132 struct {
+	Max_node_count int
 
-
-    Max_node_count int
-
-    Min_node_count int
-
+	Min_node_count int
 }
 
 type Google_container_node_pool_management_133 struct {
+	Auto_repair *bool
 
-
-    Auto_repair *bool
-
-    Auto_upgrade *bool
-
+	Auto_upgrade *bool
 }
 
 type Google_container_node_pool_node_config_134_guest_accelerator_135 struct {
+	Count int
 
-
-    Count int
-
-    Type string
-
+	Type string
 }
 
 type Google_container_node_pool_node_config_134_taint_136 struct {
+	Effect string
 
+	Key string
 
-    Effect string
-
-    Key string
-
-    Value string
-
+	Value string
 }
 
 type Google_container_node_pool_node_config_134_workload_metadata_config_137 struct {
-
-
-    Node_metadata string
-
+	Node_metadata string
 }
 
 type Google_container_node_pool_node_config_134 struct {
+	Disk_size_gb *int
 
+	Disk_type *string
 
-    Disk_size_gb *int
+	Guest_accelerator *[]Google_container_node_pool_node_config_134_guest_accelerator_135
 
-    Disk_type *string
+	Image_type *string
 
-    Guest_accelerator *[]Google_container_node_pool_node_config_134_guest_accelerator_135
+	Labels *map[string]string
 
-    Image_type *string
+	Local_ssd_count *int
 
-    Labels *map[string]string
+	Machine_type *string
 
-    Local_ssd_count *int
+	Metadata *map[string]string
 
-    Machine_type *string
+	Min_cpu_platform *string
 
-    Metadata *map[string]string
+	Oauth_scopes *[]string
 
-    Min_cpu_platform *string
+	Preemptible *bool
 
-    Oauth_scopes *[]string
+	Service_account *string
 
-    Preemptible *bool
+	Tags *[]string
 
-    Service_account *string
+	Taint *[]Google_container_node_pool_node_config_134_taint_136
 
-    Tags *[]string
-
-    Taint *[]Google_container_node_pool_node_config_134_taint_136
-
-    Workload_metadata_config *[]Google_container_node_pool_node_config_134_workload_metadata_config_137
-
+	Workload_metadata_config *[]Google_container_node_pool_node_config_134_workload_metadata_config_137
 }
 
 type Google_container_node_pool struct {
-
 	Google_container_node_pool_id *string `lyra:"ignore"`
 
-    Autoscaling *[]Google_container_node_pool_autoscaling_132
+	Autoscaling *[]Google_container_node_pool_autoscaling_132
 
-    Cluster string
+	Cluster string
 
-    Initial_node_count *int
+	Initial_node_count *int
 
-    Instance_group_urls *[]string
+	Instance_group_urls *[]string
 
-    Management *[]Google_container_node_pool_management_133
+	Management *[]Google_container_node_pool_management_133
 
-    Max_pods_per_node *int
+	Max_pods_per_node *int
 
-    Name *string
+	Name *string
 
-    Name_prefix *string
+	Name_prefix *string
 
-    Node_config *[]Google_container_node_pool_node_config_134
+	Node_config *[]Google_container_node_pool_node_config_134
 
-    Node_count *int
+	Node_count *int
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Version *string
+	Version *string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_container_node_pool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11768,7 +11087,6 @@ var Google_container_node_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"version",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11789,7 +11107,6 @@ var Google_container_node_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"region",
 
 		"zone",
-
 	)
 }
 
@@ -11829,11 +11146,11 @@ func (h *Google_container_node_poolHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_container_node_pool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_container_node_pool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_container_node_pool{ Google_container_node_pool_id: &externalID }
+	x := &Google_container_node_pool{Google_container_node_pool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_container_node_pool", "actual", spew.Sdump(x))
@@ -11852,7 +11169,7 @@ func (h *Google_container_node_poolHandler) Read(externalID string) (*Google_con
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_container_node_pool{ Google_container_node_pool_id: &id }
+	x := &Google_container_node_pool{Google_container_node_pool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_container_node_pool", "actual", spew.Sdump(x))
@@ -11871,29 +11188,27 @@ func (h *Google_container_node_poolHandler) Delete(externalID string) error {
 }
 
 type Google_dataflow_job struct {
-
 	Google_dataflow_job_id *string `lyra:"ignore"`
 
-    Max_workers *int
+	Max_workers *int
 
-    Name string
+	Name string
 
-    On_delete *string
+	On_delete *string
 
-    Parameters *map[string]string
+	Parameters *map[string]string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    State *string
+	State *string
 
-    Temp_gcs_location string
+	Temp_gcs_location string
 
-    Template_gcs_path string
+	Template_gcs_path string
 
-    Zone *string
-
+	Zone *string
 }
 
 var Google_dataflow_job_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11913,7 +11228,6 @@ var Google_dataflow_job_rtb = func(rtb service.ResourceTypeBuilder) {
 		"state",
 
 		"zone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11934,7 +11248,6 @@ var Google_dataflow_job_rtb = func(rtb service.ResourceTypeBuilder) {
 		"template_gcs_path",
 
 		"zone",
-
 	)
 }
 
@@ -11974,11 +11287,11 @@ func (h *Google_dataflow_jobHandler) Update(externalID string, desired *Google_d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_dataflow_job", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_dataflow_job", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dataflow_job{ Google_dataflow_job_id: &externalID }
+	x := &Google_dataflow_job{Google_dataflow_job_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_dataflow_job", "actual", spew.Sdump(x))
@@ -11997,7 +11310,7 @@ func (h *Google_dataflow_jobHandler) Read(externalID string) (*Google_dataflow_j
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dataflow_job{ Google_dataflow_job_id: &id }
+	x := &Google_dataflow_job{Google_dataflow_job_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_dataflow_job", "actual", spew.Sdump(x))
@@ -12016,149 +11329,117 @@ func (h *Google_dataflow_jobHandler) Delete(externalID string) error {
 }
 
 type Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139 struct {
+	Internal_ip_only *bool
 
+	Metadata *map[string]string
 
-    Internal_ip_only *bool
+	Network *string
 
-    Metadata *map[string]string
+	Service_account *string
 
-    Network *string
+	Service_account_scopes *[]string
 
-    Service_account *string
+	Subnetwork *string
 
-    Service_account_scopes *[]string
+	Tags *[]string
 
-    Subnetwork *string
-
-    Tags *[]string
-
-    Zone *string
-
+	Zone *string
 }
 
 type Google_dataproc_cluster_cluster_config_138_initialization_action_140 struct {
+	Script string
 
-
-    Script string
-
-    Timeout_sec *int
-
+	Timeout_sec *int
 }
 
 type Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142 struct {
+	Boot_disk_size_gb *int
 
+	Boot_disk_type *string
 
-    Boot_disk_size_gb *int
-
-    Boot_disk_type *string
-
-    Num_local_ssds *int
-
+	Num_local_ssds *int
 }
 
 type Google_dataproc_cluster_cluster_config_138_master_config_141 struct {
+	Disk_config *[]Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142
 
+	Instance_names *[]string
 
-    Disk_config *[]Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142
+	Machine_type *string
 
-    Instance_names *[]string
-
-    Machine_type *string
-
-    Num_instances *int
-
+	Num_instances *int
 }
 
 type Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144 struct {
-
-
-    Boot_disk_size_gb *int
-
+	Boot_disk_size_gb *int
 }
 
 type Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143 struct {
+	Disk_config *[]Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144
 
+	Instance_names *[]string
 
-    Disk_config *[]Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144
-
-    Instance_names *[]string
-
-    Num_instances *int
-
+	Num_instances *int
 }
 
 type Google_dataproc_cluster_cluster_config_138_software_config_145 struct {
+	Image_version *string
 
+	Override_properties *map[string]string
 
-    Image_version *string
-
-    Override_properties *map[string]string
-
-    Properties *map[string]string
-
+	Properties *map[string]string
 }
 
 type Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147 struct {
+	Boot_disk_size_gb *int
 
+	Boot_disk_type *string
 
-    Boot_disk_size_gb *int
-
-    Boot_disk_type *string
-
-    Num_local_ssds *int
-
+	Num_local_ssds *int
 }
 
 type Google_dataproc_cluster_cluster_config_138_worker_config_146 struct {
+	Disk_config *[]Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147
 
+	Instance_names *[]string
 
-    Disk_config *[]Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147
+	Machine_type *string
 
-    Instance_names *[]string
-
-    Machine_type *string
-
-    Num_instances *int
-
+	Num_instances *int
 }
 
 type Google_dataproc_cluster_cluster_config_138 struct {
+	Bucket *string
 
+	Delete_autogen_bucket *bool
 
-    Bucket *string
+	Gce_cluster_config *[]Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139
 
-    Delete_autogen_bucket *bool
+	Initialization_action *[]Google_dataproc_cluster_cluster_config_138_initialization_action_140
 
-    Gce_cluster_config *[]Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139
+	Master_config *[]Google_dataproc_cluster_cluster_config_138_master_config_141
 
-    Initialization_action *[]Google_dataproc_cluster_cluster_config_138_initialization_action_140
+	Preemptible_worker_config *[]Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143
 
-    Master_config *[]Google_dataproc_cluster_cluster_config_138_master_config_141
+	Software_config *[]Google_dataproc_cluster_cluster_config_138_software_config_145
 
-    Preemptible_worker_config *[]Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143
+	Staging_bucket *string
 
-    Software_config *[]Google_dataproc_cluster_cluster_config_138_software_config_145
-
-    Staging_bucket *string
-
-    Worker_config *[]Google_dataproc_cluster_cluster_config_138_worker_config_146
-
+	Worker_config *[]Google_dataproc_cluster_cluster_config_138_worker_config_146
 }
 
 type Google_dataproc_cluster struct {
-
 	Google_dataproc_cluster_id *string `lyra:"ignore"`
 
-    Cluster_config *[]Google_dataproc_cluster_cluster_config_138
+	Cluster_config *[]Google_dataproc_cluster_cluster_config_138
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Region *string
-
+	Region *string
 }
 
 var Google_dataproc_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12172,7 +11453,6 @@ var Google_dataproc_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12181,7 +11461,6 @@ var Google_dataproc_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -12221,11 +11500,11 @@ func (h *Google_dataproc_clusterHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_dataproc_cluster", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_dataproc_cluster", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dataproc_cluster{ Google_dataproc_cluster_id: &externalID }
+	x := &Google_dataproc_cluster{Google_dataproc_cluster_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_dataproc_cluster", "actual", spew.Sdump(x))
@@ -12244,7 +11523,7 @@ func (h *Google_dataproc_clusterHandler) Read(externalID string) (*Google_datapr
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dataproc_cluster{ Google_dataproc_cluster_id: &id }
+	x := &Google_dataproc_cluster{Google_dataproc_cluster_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_dataproc_cluster", "actual", spew.Sdump(x))
@@ -12263,228 +11542,181 @@ func (h *Google_dataproc_clusterHandler) Delete(externalID string) error {
 }
 
 type Google_dataproc_job_hadoop_config_148_logging_config_149 struct {
-
-
-    Driver_log_levels *map[string]string
-
+	Driver_log_levels *map[string]string
 }
 
 type Google_dataproc_job_hadoop_config_148 struct {
+	Archive_uris *[]string
 
+	Args *[]string
 
-    Archive_uris *[]string
+	File_uris *[]string
 
-    Args *[]string
+	Jar_file_uris *[]string
 
-    File_uris *[]string
+	Logging_config *[]Google_dataproc_job_hadoop_config_148_logging_config_149
 
-    Jar_file_uris *[]string
+	Main_class *string
 
-    Logging_config *[]Google_dataproc_job_hadoop_config_148_logging_config_149
+	Main_jar_file_uri *string
 
-    Main_class *string
-
-    Main_jar_file_uri *string
-
-    Properties *map[string]string
-
+	Properties *map[string]string
 }
 
 type Google_dataproc_job_hive_config_150 struct {
+	Continue_on_failure *bool
 
+	Jar_file_uris *[]string
 
-    Continue_on_failure *bool
+	Properties *map[string]string
 
-    Jar_file_uris *[]string
+	Query_file_uri *string
 
-    Properties *map[string]string
+	Query_list *[]string
 
-    Query_file_uri *string
-
-    Query_list *[]string
-
-    Script_variables *map[string]string
-
+	Script_variables *map[string]string
 }
 
 type Google_dataproc_job_pig_config_151_logging_config_152 struct {
-
-
-    Driver_log_levels *map[string]string
-
+	Driver_log_levels *map[string]string
 }
 
 type Google_dataproc_job_pig_config_151 struct {
+	Continue_on_failure *bool
 
+	Jar_file_uris *[]string
 
-    Continue_on_failure *bool
+	Logging_config *[]Google_dataproc_job_pig_config_151_logging_config_152
 
-    Jar_file_uris *[]string
+	Properties *map[string]string
 
-    Logging_config *[]Google_dataproc_job_pig_config_151_logging_config_152
+	Query_file_uri *string
 
-    Properties *map[string]string
+	Query_list *[]string
 
-    Query_file_uri *string
-
-    Query_list *[]string
-
-    Script_variables *map[string]string
-
+	Script_variables *map[string]string
 }
 
 type Google_dataproc_job_placement_153 struct {
+	Cluster_name string
 
-
-    Cluster_name string
-
-    Cluster_uuid *string
-
+	Cluster_uuid *string
 }
 
 type Google_dataproc_job_pyspark_config_154_logging_config_155 struct {
-
-
-    Driver_log_levels *map[string]string
-
+	Driver_log_levels *map[string]string
 }
 
 type Google_dataproc_job_pyspark_config_154 struct {
+	Archive_uris *[]string
 
+	Args *[]string
 
-    Archive_uris *[]string
+	File_uris *[]string
 
-    Args *[]string
+	Jar_file_uris *[]string
 
-    File_uris *[]string
+	Logging_config *[]Google_dataproc_job_pyspark_config_154_logging_config_155
 
-    Jar_file_uris *[]string
+	Main_python_file_uri string
 
-    Logging_config *[]Google_dataproc_job_pyspark_config_154_logging_config_155
+	Properties *map[string]string
 
-    Main_python_file_uri string
-
-    Properties *map[string]string
-
-    Python_file_uris *[]string
-
+	Python_file_uris *[]string
 }
 
 type Google_dataproc_job_reference_156 struct {
-
-
-    Job_id *string
-
+	Job_id *string
 }
 
 type Google_dataproc_job_scheduling_157 struct {
-
-
-    Max_failures_per_hour *int
-
+	Max_failures_per_hour *int
 }
 
 type Google_dataproc_job_spark_config_158_logging_config_159 struct {
-
-
-    Driver_log_levels *map[string]string
-
+	Driver_log_levels *map[string]string
 }
 
 type Google_dataproc_job_spark_config_158 struct {
+	Archive_uris *[]string
 
+	Args *[]string
 
-    Archive_uris *[]string
+	File_uris *[]string
 
-    Args *[]string
+	Jar_file_uris *[]string
 
-    File_uris *[]string
+	Logging_config *[]Google_dataproc_job_spark_config_158_logging_config_159
 
-    Jar_file_uris *[]string
+	Main_class *string
 
-    Logging_config *[]Google_dataproc_job_spark_config_158_logging_config_159
+	Main_jar_file_uri *string
 
-    Main_class *string
-
-    Main_jar_file_uri *string
-
-    Properties *map[string]string
-
+	Properties *map[string]string
 }
 
 type Google_dataproc_job_sparksql_config_160_logging_config_161 struct {
-
-
-    Driver_log_levels *map[string]string
-
+	Driver_log_levels *map[string]string
 }
 
 type Google_dataproc_job_sparksql_config_160 struct {
+	Jar_file_uris *[]string
 
+	Logging_config *[]Google_dataproc_job_sparksql_config_160_logging_config_161
 
-    Jar_file_uris *[]string
+	Properties *map[string]string
 
-    Logging_config *[]Google_dataproc_job_sparksql_config_160_logging_config_161
+	Query_file_uri *string
 
-    Properties *map[string]string
+	Query_list *[]string
 
-    Query_file_uri *string
-
-    Query_list *[]string
-
-    Script_variables *map[string]string
-
+	Script_variables *map[string]string
 }
 
 type Google_dataproc_job_status_162 struct {
+	Details *string
 
+	State *string
 
-    Details *string
+	State_start_time *string
 
-    State *string
-
-    State_start_time *string
-
-    Substate *string
-
+	Substate *string
 }
 
 type Google_dataproc_job struct {
-
 	Google_dataproc_job_id *string `lyra:"ignore"`
 
-    Driver_controls_files_uri *string
+	Driver_controls_files_uri *string
 
-    Driver_output_resource_uri *string
+	Driver_output_resource_uri *string
 
-    Force_delete *bool
+	Force_delete *bool
 
-    Hadoop_config *[]Google_dataproc_job_hadoop_config_148
+	Hadoop_config *[]Google_dataproc_job_hadoop_config_148
 
-    Hive_config *[]Google_dataproc_job_hive_config_150
+	Hive_config *[]Google_dataproc_job_hive_config_150
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Pig_config *[]Google_dataproc_job_pig_config_151
+	Pig_config *[]Google_dataproc_job_pig_config_151
 
-    Placement []Google_dataproc_job_placement_153
+	Placement []Google_dataproc_job_placement_153
 
-    Project *string
+	Project *string
 
-    Pyspark_config *[]Google_dataproc_job_pyspark_config_154
+	Pyspark_config *[]Google_dataproc_job_pyspark_config_154
 
-    Reference *[]Google_dataproc_job_reference_156
+	Reference *[]Google_dataproc_job_reference_156
 
-    Region *string
+	Region *string
 
-    Scheduling *[]Google_dataproc_job_scheduling_157
+	Scheduling *[]Google_dataproc_job_scheduling_157
 
-    Spark_config *[]Google_dataproc_job_spark_config_158
+	Spark_config *[]Google_dataproc_job_spark_config_158
 
-    Sparksql_config *[]Google_dataproc_job_sparksql_config_160
+	Sparksql_config *[]Google_dataproc_job_sparksql_config_160
 
-    Status *[]Google_dataproc_job_status_162
-
+	Status *[]Google_dataproc_job_status_162
 }
 
 var Google_dataproc_job_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12520,7 +11752,6 @@ var Google_dataproc_job_rtb = func(rtb service.ResourceTypeBuilder) {
 		"sparksql_config",
 
 		"status",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12543,7 +11774,6 @@ var Google_dataproc_job_rtb = func(rtb service.ResourceTypeBuilder) {
 		"spark_config",
 
 		"sparksql_config",
-
 	)
 }
 
@@ -12583,11 +11813,11 @@ func (h *Google_dataproc_jobHandler) Update(externalID string, desired *Google_d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_dataproc_job", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_dataproc_job", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dataproc_job{ Google_dataproc_job_id: &externalID }
+	x := &Google_dataproc_job{Google_dataproc_job_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_dataproc_job", "actual", spew.Sdump(x))
@@ -12606,7 +11836,7 @@ func (h *Google_dataproc_jobHandler) Read(externalID string) (*Google_dataproc_j
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dataproc_job{ Google_dataproc_job_id: &id }
+	x := &Google_dataproc_job{Google_dataproc_job_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_dataproc_job", "actual", spew.Sdump(x))
@@ -12625,21 +11855,19 @@ func (h *Google_dataproc_jobHandler) Delete(externalID string) error {
 }
 
 type Google_dns_managed_zone struct {
-
 	Google_dns_managed_zone_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Dns_name string
+	Dns_name string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Name_servers *[]string
+	Name_servers *[]string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_dns_managed_zone_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12653,7 +11881,6 @@ var Google_dns_managed_zone_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name_servers",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12662,7 +11889,6 @@ var Google_dns_managed_zone_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -12702,11 +11928,11 @@ func (h *Google_dns_managed_zoneHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_dns_managed_zone", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_dns_managed_zone", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dns_managed_zone{ Google_dns_managed_zone_id: &externalID }
+	x := &Google_dns_managed_zone{Google_dns_managed_zone_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_dns_managed_zone", "actual", spew.Sdump(x))
@@ -12725,7 +11951,7 @@ func (h *Google_dns_managed_zoneHandler) Read(externalID string) (*Google_dns_ma
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dns_managed_zone{ Google_dns_managed_zone_id: &id }
+	x := &Google_dns_managed_zone{Google_dns_managed_zone_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_dns_managed_zone", "actual", spew.Sdump(x))
@@ -12744,21 +11970,19 @@ func (h *Google_dns_managed_zoneHandler) Delete(externalID string) error {
 }
 
 type Google_dns_record_set struct {
-
 	Google_dns_record_set_id *string `lyra:"ignore"`
 
-    Managed_zone string
+	Managed_zone string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Rrdatas []string
+	Rrdatas []string
 
-    Ttl int
+	Ttl int
 
-    Type string
-
+	Type string
 }
 
 var Google_dns_record_set_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12766,7 +11990,6 @@ var Google_dns_record_set_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_dns_record_set_id",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12775,7 +11998,6 @@ var Google_dns_record_set_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -12815,11 +12037,11 @@ func (h *Google_dns_record_setHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_dns_record_set", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_dns_record_set", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dns_record_set{ Google_dns_record_set_id: &externalID }
+	x := &Google_dns_record_set{Google_dns_record_set_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_dns_record_set", "actual", spew.Sdump(x))
@@ -12838,7 +12060,7 @@ func (h *Google_dns_record_setHandler) Read(externalID string) (*Google_dns_reco
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_dns_record_set{ Google_dns_record_set_id: &id }
+	x := &Google_dns_record_set{Google_dns_record_set_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_dns_record_set", "actual", spew.Sdump(x))
@@ -12857,64 +12079,53 @@ func (h *Google_dns_record_setHandler) Delete(externalID string) error {
 }
 
 type Google_endpoints_service_apis_163_methods_164 struct {
+	Name *string
 
+	Request_type *string
 
-    Name *string
+	Response_type *string
 
-    Request_type *string
-
-    Response_type *string
-
-    Syntax *string
-
+	Syntax *string
 }
 
 type Google_endpoints_service_apis_163 struct {
+	Methods *[]Google_endpoints_service_apis_163_methods_164
 
+	Name *string
 
-    Methods *[]Google_endpoints_service_apis_163_methods_164
+	Syntax *string
 
-    Name *string
-
-    Syntax *string
-
-    Version *string
-
+	Version *string
 }
 
 type Google_endpoints_service_endpoints_165 struct {
+	Address *string
 
-
-    Address *string
-
-    Name *string
-
+	Name *string
 }
 
 type Google_endpoints_service struct {
-
 	Google_endpoints_service_id *string `lyra:"ignore"`
 
-    Apis *[]Google_endpoints_service_apis_163
+	Apis *[]Google_endpoints_service_apis_163
 
-    Config_id *string
+	Config_id *string
 
-    Dns_address *string
+	Dns_address *string
 
-    Endpoints *[]Google_endpoints_service_endpoints_165
+	Endpoints *[]Google_endpoints_service_endpoints_165
 
-    Grpc_config *string
+	Grpc_config *string
 
-    Openapi_config *string
+	Openapi_config *string
 
-    Project *string
+	Project *string
 
-    Protoc_output *string
+	Protoc_output *string
 
-    Protoc_output_base64 *string
+	Protoc_output_base64 *string
 
-    Service_name string
-
+	Service_name string
 }
 
 var Google_endpoints_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12938,14 +12149,12 @@ var Google_endpoints_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"protoc_output",
 
 		"protoc_output_base64",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
 
 		"service_name",
-
 	)
 }
 
@@ -12985,11 +12194,11 @@ func (h *Google_endpoints_serviceHandler) Update(externalID string, desired *Goo
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_endpoints_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_endpoints_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_endpoints_service{ Google_endpoints_service_id: &externalID }
+	x := &Google_endpoints_service{Google_endpoints_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_endpoints_service", "actual", spew.Sdump(x))
@@ -13008,7 +12217,7 @@ func (h *Google_endpoints_serviceHandler) Read(externalID string) (*Google_endpo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_endpoints_service{ Google_endpoints_service_id: &id }
+	x := &Google_endpoints_service{Google_endpoints_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_endpoints_service", "actual", spew.Sdump(x))
@@ -13027,51 +12236,43 @@ func (h *Google_endpoints_serviceHandler) Delete(externalID string) error {
 }
 
 type Google_filestore_instance_file_shares_166 struct {
+	Capacity_gb int
 
-
-    Capacity_gb int
-
-    Name string
-
+	Name string
 }
 
 type Google_filestore_instance_networks_167 struct {
+	Ip_addresses *[]string
 
+	Modes []string
 
-    Ip_addresses *[]string
+	Network string
 
-    Modes []string
-
-    Network string
-
-    Reserved_ip_range *string
-
+	Reserved_ip_range *string
 }
 
 type Google_filestore_instance struct {
-
 	Google_filestore_instance_id *string `lyra:"ignore"`
 
-    Create_time *string
+	Create_time *string
 
-    Description *string
+	Description *string
 
-    Etag *string
+	Etag *string
 
-    File_shares []Google_filestore_instance_file_shares_166
+	File_shares []Google_filestore_instance_file_shares_166
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Networks []Google_filestore_instance_networks_167
+	Networks []Google_filestore_instance_networks_167
 
-    Project *string
+	Project *string
 
-    Tier string
+	Tier string
 
-    Zone string
-
+	Zone string
 }
 
 var Google_filestore_instance_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13087,7 +12288,6 @@ var Google_filestore_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"labels",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -13098,7 +12298,6 @@ var Google_filestore_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tier",
 
 		"zone",
-
 	)
 }
 
@@ -13138,11 +12337,11 @@ func (h *Google_filestore_instanceHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_filestore_instance", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_filestore_instance", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_filestore_instance{ Google_filestore_instance_id: &externalID }
+	x := &Google_filestore_instance{Google_filestore_instance_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_filestore_instance", "actual", spew.Sdump(x))
@@ -13161,7 +12360,7 @@ func (h *Google_filestore_instanceHandler) Read(externalID string) (*Google_file
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_filestore_instance{ Google_filestore_instance_id: &id }
+	x := &Google_filestore_instance{Google_filestore_instance_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_filestore_instance", "actual", spew.Sdump(x))
@@ -13180,19 +12379,17 @@ func (h *Google_filestore_instanceHandler) Delete(externalID string) error {
 }
 
 type Google_folder struct {
-
 	Google_folder_id *string `lyra:"ignore"`
 
-    Create_time *string
+	Create_time *string
 
-    Display_name string
+	Display_name string
 
-    Lifecycle_state *string
+	Lifecycle_state *string
 
-    Name *string
+	Name *string
 
-    Parent string
-
+	Parent string
 }
 
 var Google_folder_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13204,11 +12401,8 @@ var Google_folder_rtb = func(rtb service.ResourceTypeBuilder) {
 		"lifecycle_state",
 
 		"name",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Google_folderHandler ...
@@ -13247,11 +12441,11 @@ func (h *Google_folderHandler) Update(externalID string, desired *Google_folder)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_folder", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_folder", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder{ Google_folder_id: &externalID }
+	x := &Google_folder{Google_folder_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_folder", "actual", spew.Sdump(x))
@@ -13270,7 +12464,7 @@ func (h *Google_folderHandler) Read(externalID string) (*Google_folder, error) {
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder{ Google_folder_id: &id }
+	x := &Google_folder{Google_folder_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_folder", "actual", spew.Sdump(x))
@@ -13289,17 +12483,15 @@ func (h *Google_folderHandler) Delete(externalID string) error {
 }
 
 type Google_folder_iam_binding struct {
-
 	Google_folder_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Folder string
+	Folder string
 
-    Members []string
+	Members []string
 
-    Role string
-
+	Role string
 }
 
 var Google_folder_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13307,14 +12499,12 @@ var Google_folder_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_folder_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"folder",
 
 		"role",
-
 	)
 }
 
@@ -13354,11 +12544,11 @@ func (h *Google_folder_iam_bindingHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_folder_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_folder_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_iam_binding{ Google_folder_iam_binding_id: &externalID }
+	x := &Google_folder_iam_binding{Google_folder_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_folder_iam_binding", "actual", spew.Sdump(x))
@@ -13377,7 +12567,7 @@ func (h *Google_folder_iam_bindingHandler) Read(externalID string) (*Google_fold
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_iam_binding{ Google_folder_iam_binding_id: &id }
+	x := &Google_folder_iam_binding{Google_folder_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_folder_iam_binding", "actual", spew.Sdump(x))
@@ -13396,17 +12586,15 @@ func (h *Google_folder_iam_bindingHandler) Delete(externalID string) error {
 }
 
 type Google_folder_iam_member struct {
-
 	Google_folder_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Folder string
+	Folder string
 
-    Member string
+	Member string
 
-    Role string
-
+	Role string
 }
 
 var Google_folder_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13414,7 +12602,6 @@ var Google_folder_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_folder_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -13423,7 +12610,6 @@ var Google_folder_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"member",
 
 		"role",
-
 	)
 }
 
@@ -13463,11 +12649,11 @@ func (h *Google_folder_iam_memberHandler) Update(externalID string, desired *Goo
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_folder_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_folder_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_iam_member{ Google_folder_iam_member_id: &externalID }
+	x := &Google_folder_iam_member{Google_folder_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_folder_iam_member", "actual", spew.Sdump(x))
@@ -13486,7 +12672,7 @@ func (h *Google_folder_iam_memberHandler) Read(externalID string) (*Google_folde
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_iam_member{ Google_folder_iam_member_id: &id }
+	x := &Google_folder_iam_member{Google_folder_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_folder_iam_member", "actual", spew.Sdump(x))
@@ -13505,15 +12691,13 @@ func (h *Google_folder_iam_memberHandler) Delete(externalID string) error {
 }
 
 type Google_folder_iam_policy struct {
-
 	Google_folder_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Folder string
+	Folder string
 
-    Policy_data string
-
+	Policy_data string
 }
 
 var Google_folder_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13521,12 +12705,10 @@ var Google_folder_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_folder_iam_policy_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"folder",
-
 	)
 }
 
@@ -13566,11 +12748,11 @@ func (h *Google_folder_iam_policyHandler) Update(externalID string, desired *Goo
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_folder_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_folder_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_iam_policy{ Google_folder_iam_policy_id: &externalID }
+	x := &Google_folder_iam_policy{Google_folder_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_folder_iam_policy", "actual", spew.Sdump(x))
@@ -13589,7 +12771,7 @@ func (h *Google_folder_iam_policyHandler) Read(externalID string) (*Google_folde
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_iam_policy{ Google_folder_iam_policy_id: &id }
+	x := &Google_folder_iam_policy{Google_folder_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_folder_iam_policy", "actual", spew.Sdump(x))
@@ -13608,68 +12790,51 @@ func (h *Google_folder_iam_policyHandler) Delete(externalID string) error {
 }
 
 type Google_folder_organization_policy_boolean_policy_168 struct {
-
-
-    Enforced bool
-
+	Enforced bool
 }
 
 type Google_folder_organization_policy_list_policy_169_allow_170 struct {
+	All *bool
 
-
-    All *bool
-
-    Values *[]string
-
+	Values *[]string
 }
 
 type Google_folder_organization_policy_list_policy_169_deny_171 struct {
+	All *bool
 
-
-    All *bool
-
-    Values *[]string
-
+	Values *[]string
 }
 
 type Google_folder_organization_policy_list_policy_169 struct {
+	Allow *[]Google_folder_organization_policy_list_policy_169_allow_170
 
+	Deny *[]Google_folder_organization_policy_list_policy_169_deny_171
 
-    Allow *[]Google_folder_organization_policy_list_policy_169_allow_170
-
-    Deny *[]Google_folder_organization_policy_list_policy_169_deny_171
-
-    Suggested_value *string
-
+	Suggested_value *string
 }
 
 type Google_folder_organization_policy_restore_policy_172 struct {
-
-
-    Default bool
-
+	Default bool
 }
 
 type Google_folder_organization_policy struct {
-
 	Google_folder_organization_policy_id *string `lyra:"ignore"`
 
-    Boolean_policy *[]Google_folder_organization_policy_boolean_policy_168
+	Boolean_policy *[]Google_folder_organization_policy_boolean_policy_168
 
-    Constraint string
+	Constraint string
 
-    Etag *string
+	Etag *string
 
-    Folder string
+	Folder string
 
-    List_policy *[]Google_folder_organization_policy_list_policy_169
+	List_policy *[]Google_folder_organization_policy_list_policy_169
 
-    Restore_policy *[]Google_folder_organization_policy_restore_policy_172
+	Restore_policy *[]Google_folder_organization_policy_restore_policy_172
 
-    Update_time *string
+	Update_time *string
 
-    Version *int
-
+	Version *int
 }
 
 var Google_folder_organization_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13687,14 +12852,12 @@ var Google_folder_organization_policy_rtb = func(rtb service.ResourceTypeBuilder
 		"update_time",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"constraint",
 
 		"folder",
-
 	)
 }
 
@@ -13734,11 +12897,11 @@ func (h *Google_folder_organization_policyHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_folder_organization_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_folder_organization_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_organization_policy{ Google_folder_organization_policy_id: &externalID }
+	x := &Google_folder_organization_policy{Google_folder_organization_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_folder_organization_policy", "actual", spew.Sdump(x))
@@ -13757,7 +12920,7 @@ func (h *Google_folder_organization_policyHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_folder_organization_policy{ Google_folder_organization_policy_id: &id }
+	x := &Google_folder_organization_policy{Google_folder_organization_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_folder_organization_policy", "actual", spew.Sdump(x))
@@ -13776,17 +12939,15 @@ func (h *Google_folder_organization_policyHandler) Delete(externalID string) err
 }
 
 type Google_kms_crypto_key struct {
-
 	Google_kms_crypto_key_id *string `lyra:"ignore"`
 
-    Key_ring string
+	Key_ring string
 
-    Name string
+	Name string
 
-    Rotation_period *string
+	Rotation_period *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_kms_crypto_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13796,14 +12957,12 @@ var Google_kms_crypto_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"rotation_period",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"key_ring",
 
 		"name",
-
 	)
 }
 
@@ -13843,11 +13002,11 @@ func (h *Google_kms_crypto_keyHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_crypto_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_crypto_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_crypto_key{ Google_kms_crypto_key_id: &externalID }
+	x := &Google_kms_crypto_key{Google_kms_crypto_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_crypto_key", "actual", spew.Sdump(x))
@@ -13866,7 +13025,7 @@ func (h *Google_kms_crypto_keyHandler) Read(externalID string) (*Google_kms_cryp
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_crypto_key{ Google_kms_crypto_key_id: &id }
+	x := &Google_kms_crypto_key{Google_kms_crypto_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_crypto_key", "actual", spew.Sdump(x))
@@ -13885,17 +13044,15 @@ func (h *Google_kms_crypto_keyHandler) Delete(externalID string) error {
 }
 
 type Google_kms_crypto_key_iam_binding struct {
-
 	Google_kms_crypto_key_iam_binding_id *string `lyra:"ignore"`
 
-    Crypto_key_id string
+	Crypto_key_id string
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Role string
-
+	Role string
 }
 
 var Google_kms_crypto_key_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13903,14 +13060,12 @@ var Google_kms_crypto_key_iam_binding_rtb = func(rtb service.ResourceTypeBuilder
 		"google_kms_crypto_key_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"crypto_key_id",
 
 		"role",
-
 	)
 }
 
@@ -13950,11 +13105,11 @@ func (h *Google_kms_crypto_key_iam_bindingHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_crypto_key_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_crypto_key_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_crypto_key_iam_binding{ Google_kms_crypto_key_iam_binding_id: &externalID }
+	x := &Google_kms_crypto_key_iam_binding{Google_kms_crypto_key_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_crypto_key_iam_binding", "actual", spew.Sdump(x))
@@ -13973,7 +13128,7 @@ func (h *Google_kms_crypto_key_iam_bindingHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_crypto_key_iam_binding{ Google_kms_crypto_key_iam_binding_id: &id }
+	x := &Google_kms_crypto_key_iam_binding{Google_kms_crypto_key_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_crypto_key_iam_binding", "actual", spew.Sdump(x))
@@ -13992,17 +13147,15 @@ func (h *Google_kms_crypto_key_iam_bindingHandler) Delete(externalID string) err
 }
 
 type Google_kms_crypto_key_iam_member struct {
-
 	Google_kms_crypto_key_iam_member_id *string `lyra:"ignore"`
 
-    Crypto_key_id string
+	Crypto_key_id string
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Role string
-
+	Role string
 }
 
 var Google_kms_crypto_key_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14010,7 +13163,6 @@ var Google_kms_crypto_key_iam_member_rtb = func(rtb service.ResourceTypeBuilder)
 		"google_kms_crypto_key_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14019,7 +13171,6 @@ var Google_kms_crypto_key_iam_member_rtb = func(rtb service.ResourceTypeBuilder)
 		"member",
 
 		"role",
-
 	)
 }
 
@@ -14059,11 +13210,11 @@ func (h *Google_kms_crypto_key_iam_memberHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_crypto_key_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_crypto_key_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_crypto_key_iam_member{ Google_kms_crypto_key_iam_member_id: &externalID }
+	x := &Google_kms_crypto_key_iam_member{Google_kms_crypto_key_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_crypto_key_iam_member", "actual", spew.Sdump(x))
@@ -14082,7 +13233,7 @@ func (h *Google_kms_crypto_key_iam_memberHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_crypto_key_iam_member{ Google_kms_crypto_key_iam_member_id: &id }
+	x := &Google_kms_crypto_key_iam_member{Google_kms_crypto_key_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_crypto_key_iam_member", "actual", spew.Sdump(x))
@@ -14101,17 +13252,15 @@ func (h *Google_kms_crypto_key_iam_memberHandler) Delete(externalID string) erro
 }
 
 type Google_kms_key_ring struct {
-
 	Google_kms_key_ring_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_kms_key_ring_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14121,7 +13270,6 @@ var Google_kms_key_ring_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14130,7 +13278,6 @@ var Google_kms_key_ring_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -14170,11 +13317,11 @@ func (h *Google_kms_key_ringHandler) Update(externalID string, desired *Google_k
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_key_ring", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_key_ring", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring{ Google_kms_key_ring_id: &externalID }
+	x := &Google_kms_key_ring{Google_kms_key_ring_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_key_ring", "actual", spew.Sdump(x))
@@ -14193,7 +13340,7 @@ func (h *Google_kms_key_ringHandler) Read(externalID string) (*Google_kms_key_ri
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring{ Google_kms_key_ring_id: &id }
+	x := &Google_kms_key_ring{Google_kms_key_ring_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_key_ring", "actual", spew.Sdump(x))
@@ -14212,17 +13359,15 @@ func (h *Google_kms_key_ringHandler) Delete(externalID string) error {
 }
 
 type Google_kms_key_ring_iam_binding struct {
-
 	Google_kms_key_ring_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Key_ring_id string
+	Key_ring_id string
 
-    Members []string
+	Members []string
 
-    Role string
-
+	Role string
 }
 
 var Google_kms_key_ring_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14230,14 +13375,12 @@ var Google_kms_key_ring_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) 
 		"google_kms_key_ring_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"key_ring_id",
 
 		"role",
-
 	)
 }
 
@@ -14277,11 +13420,11 @@ func (h *Google_kms_key_ring_iam_bindingHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_key_ring_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_key_ring_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring_iam_binding{ Google_kms_key_ring_iam_binding_id: &externalID }
+	x := &Google_kms_key_ring_iam_binding{Google_kms_key_ring_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_key_ring_iam_binding", "actual", spew.Sdump(x))
@@ -14300,7 +13443,7 @@ func (h *Google_kms_key_ring_iam_bindingHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring_iam_binding{ Google_kms_key_ring_iam_binding_id: &id }
+	x := &Google_kms_key_ring_iam_binding{Google_kms_key_ring_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_key_ring_iam_binding", "actual", spew.Sdump(x))
@@ -14319,17 +13462,15 @@ func (h *Google_kms_key_ring_iam_bindingHandler) Delete(externalID string) error
 }
 
 type Google_kms_key_ring_iam_member struct {
-
 	Google_kms_key_ring_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Key_ring_id string
+	Key_ring_id string
 
-    Member string
+	Member string
 
-    Role string
-
+	Role string
 }
 
 var Google_kms_key_ring_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14337,7 +13478,6 @@ var Google_kms_key_ring_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_kms_key_ring_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14346,7 +13486,6 @@ var Google_kms_key_ring_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"member",
 
 		"role",
-
 	)
 }
 
@@ -14386,11 +13525,11 @@ func (h *Google_kms_key_ring_iam_memberHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_key_ring_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_key_ring_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring_iam_member{ Google_kms_key_ring_iam_member_id: &externalID }
+	x := &Google_kms_key_ring_iam_member{Google_kms_key_ring_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_key_ring_iam_member", "actual", spew.Sdump(x))
@@ -14409,7 +13548,7 @@ func (h *Google_kms_key_ring_iam_memberHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring_iam_member{ Google_kms_key_ring_iam_member_id: &id }
+	x := &Google_kms_key_ring_iam_member{Google_kms_key_ring_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_key_ring_iam_member", "actual", spew.Sdump(x))
@@ -14428,15 +13567,13 @@ func (h *Google_kms_key_ring_iam_memberHandler) Delete(externalID string) error 
 }
 
 type Google_kms_key_ring_iam_policy struct {
-
 	Google_kms_key_ring_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Key_ring_id string
+	Key_ring_id string
 
-    Policy_data string
-
+	Policy_data string
 }
 
 var Google_kms_key_ring_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14444,12 +13581,10 @@ var Google_kms_key_ring_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_kms_key_ring_iam_policy_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"key_ring_id",
-
 	)
 }
 
@@ -14489,11 +13624,11 @@ func (h *Google_kms_key_ring_iam_policyHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_kms_key_ring_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_kms_key_ring_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring_iam_policy{ Google_kms_key_ring_iam_policy_id: &externalID }
+	x := &Google_kms_key_ring_iam_policy{Google_kms_key_ring_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_kms_key_ring_iam_policy", "actual", spew.Sdump(x))
@@ -14512,7 +13647,7 @@ func (h *Google_kms_key_ring_iam_policyHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_kms_key_ring_iam_policy{ Google_kms_key_ring_iam_policy_id: &id }
+	x := &Google_kms_key_ring_iam_policy{Google_kms_key_ring_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_kms_key_ring_iam_policy", "actual", spew.Sdump(x))
@@ -14531,19 +13666,17 @@ func (h *Google_kms_key_ring_iam_policyHandler) Delete(externalID string) error 
 }
 
 type Google_logging_billing_account_exclusion struct {
-
 	Google_logging_billing_account_exclusion_id *string `lyra:"ignore"`
 
-    Billing_account string
+	Billing_account string
 
-    Description *string
+	Description *string
 
-    Disabled *bool
+	Disabled *bool
 
-    Filter string
+	Filter string
 
-    Name string
-
+	Name string
 }
 
 var Google_logging_billing_account_exclusion_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14553,14 +13686,12 @@ var Google_logging_billing_account_exclusion_rtb = func(rtb service.ResourceType
 		"description",
 
 		"disabled",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"billing_account",
 
 		"name",
-
 	)
 }
 
@@ -14600,11 +13731,11 @@ func (h *Google_logging_billing_account_exclusionHandler) Update(externalID stri
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_billing_account_exclusion", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_billing_account_exclusion", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_billing_account_exclusion{ Google_logging_billing_account_exclusion_id: &externalID }
+	x := &Google_logging_billing_account_exclusion{Google_logging_billing_account_exclusion_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_billing_account_exclusion", "actual", spew.Sdump(x))
@@ -14623,7 +13754,7 @@ func (h *Google_logging_billing_account_exclusionHandler) Read(externalID string
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_billing_account_exclusion{ Google_logging_billing_account_exclusion_id: &id }
+	x := &Google_logging_billing_account_exclusion{Google_logging_billing_account_exclusion_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_billing_account_exclusion", "actual", spew.Sdump(x))
@@ -14642,19 +13773,17 @@ func (h *Google_logging_billing_account_exclusionHandler) Delete(externalID stri
 }
 
 type Google_logging_billing_account_sink struct {
-
 	Google_logging_billing_account_sink_id *string `lyra:"ignore"`
 
-    Billing_account string
+	Billing_account string
 
-    Destination string
+	Destination string
 
-    Filter *string
+	Filter *string
 
-    Name string
+	Name string
 
-    Writer_identity *string
-
+	Writer_identity *string
 }
 
 var Google_logging_billing_account_sink_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14664,14 +13793,12 @@ var Google_logging_billing_account_sink_rtb = func(rtb service.ResourceTypeBuild
 		"filter",
 
 		"writer_identity",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"billing_account",
 
 		"name",
-
 	)
 }
 
@@ -14711,11 +13838,11 @@ func (h *Google_logging_billing_account_sinkHandler) Update(externalID string, d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_billing_account_sink", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_billing_account_sink", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_billing_account_sink{ Google_logging_billing_account_sink_id: &externalID }
+	x := &Google_logging_billing_account_sink{Google_logging_billing_account_sink_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_billing_account_sink", "actual", spew.Sdump(x))
@@ -14734,7 +13861,7 @@ func (h *Google_logging_billing_account_sinkHandler) Read(externalID string) (*G
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_billing_account_sink{ Google_logging_billing_account_sink_id: &id }
+	x := &Google_logging_billing_account_sink{Google_logging_billing_account_sink_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_billing_account_sink", "actual", spew.Sdump(x))
@@ -14753,19 +13880,17 @@ func (h *Google_logging_billing_account_sinkHandler) Delete(externalID string) e
 }
 
 type Google_logging_folder_exclusion struct {
-
 	Google_logging_folder_exclusion_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Disabled *bool
+	Disabled *bool
 
-    Filter string
+	Filter string
 
-    Folder string
+	Folder string
 
-    Name string
-
+	Name string
 }
 
 var Google_logging_folder_exclusion_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14775,14 +13900,12 @@ var Google_logging_folder_exclusion_rtb = func(rtb service.ResourceTypeBuilder) 
 		"description",
 
 		"disabled",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"folder",
 
 		"name",
-
 	)
 }
 
@@ -14822,11 +13945,11 @@ func (h *Google_logging_folder_exclusionHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_folder_exclusion", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_folder_exclusion", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_folder_exclusion{ Google_logging_folder_exclusion_id: &externalID }
+	x := &Google_logging_folder_exclusion{Google_logging_folder_exclusion_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_folder_exclusion", "actual", spew.Sdump(x))
@@ -14845,7 +13968,7 @@ func (h *Google_logging_folder_exclusionHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_folder_exclusion{ Google_logging_folder_exclusion_id: &id }
+	x := &Google_logging_folder_exclusion{Google_logging_folder_exclusion_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_folder_exclusion", "actual", spew.Sdump(x))
@@ -14864,21 +13987,19 @@ func (h *Google_logging_folder_exclusionHandler) Delete(externalID string) error
 }
 
 type Google_logging_folder_sink struct {
-
 	Google_logging_folder_sink_id *string `lyra:"ignore"`
 
-    Destination string
+	Destination string
 
-    Filter *string
+	Filter *string
 
-    Folder string
+	Folder string
 
-    Include_children *bool
+	Include_children *bool
 
-    Name string
+	Name string
 
-    Writer_identity *string
-
+	Writer_identity *string
 }
 
 var Google_logging_folder_sink_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14890,7 +14011,6 @@ var Google_logging_folder_sink_rtb = func(rtb service.ResourceTypeBuilder) {
 		"include_children",
 
 		"writer_identity",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14899,7 +14019,6 @@ var Google_logging_folder_sink_rtb = func(rtb service.ResourceTypeBuilder) {
 		"include_children",
 
 		"name",
-
 	)
 }
 
@@ -14939,11 +14058,11 @@ func (h *Google_logging_folder_sinkHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_folder_sink", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_folder_sink", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_folder_sink{ Google_logging_folder_sink_id: &externalID }
+	x := &Google_logging_folder_sink{Google_logging_folder_sink_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_folder_sink", "actual", spew.Sdump(x))
@@ -14962,7 +14081,7 @@ func (h *Google_logging_folder_sinkHandler) Read(externalID string) (*Google_log
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_folder_sink{ Google_logging_folder_sink_id: &id }
+	x := &Google_logging_folder_sink{Google_logging_folder_sink_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_folder_sink", "actual", spew.Sdump(x))
@@ -14981,19 +14100,17 @@ func (h *Google_logging_folder_sinkHandler) Delete(externalID string) error {
 }
 
 type Google_logging_organization_exclusion struct {
-
 	Google_logging_organization_exclusion_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Disabled *bool
+	Disabled *bool
 
-    Filter string
+	Filter string
 
-    Name string
+	Name string
 
-    Org_id string
-
+	Org_id string
 }
 
 var Google_logging_organization_exclusion_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15003,14 +14120,12 @@ var Google_logging_organization_exclusion_rtb = func(rtb service.ResourceTypeBui
 		"description",
 
 		"disabled",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"org_id",
-
 	)
 }
 
@@ -15050,11 +14165,11 @@ func (h *Google_logging_organization_exclusionHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_organization_exclusion", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_organization_exclusion", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_organization_exclusion{ Google_logging_organization_exclusion_id: &externalID }
+	x := &Google_logging_organization_exclusion{Google_logging_organization_exclusion_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_organization_exclusion", "actual", spew.Sdump(x))
@@ -15073,7 +14188,7 @@ func (h *Google_logging_organization_exclusionHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_organization_exclusion{ Google_logging_organization_exclusion_id: &id }
+	x := &Google_logging_organization_exclusion{Google_logging_organization_exclusion_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_organization_exclusion", "actual", spew.Sdump(x))
@@ -15092,21 +14207,19 @@ func (h *Google_logging_organization_exclusionHandler) Delete(externalID string)
 }
 
 type Google_logging_organization_sink struct {
-
 	Google_logging_organization_sink_id *string `lyra:"ignore"`
 
-    Destination string
+	Destination string
 
-    Filter *string
+	Filter *string
 
-    Include_children *bool
+	Include_children *bool
 
-    Name string
+	Name string
 
-    Org_id string
+	Org_id string
 
-    Writer_identity *string
-
+	Writer_identity *string
 }
 
 var Google_logging_organization_sink_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15118,14 +14231,12 @@ var Google_logging_organization_sink_rtb = func(rtb service.ResourceTypeBuilder)
 		"include_children",
 
 		"writer_identity",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"include_children",
 
 		"name",
-
 	)
 }
 
@@ -15165,11 +14276,11 @@ func (h *Google_logging_organization_sinkHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_organization_sink", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_organization_sink", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_organization_sink{ Google_logging_organization_sink_id: &externalID }
+	x := &Google_logging_organization_sink{Google_logging_organization_sink_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_organization_sink", "actual", spew.Sdump(x))
@@ -15188,7 +14299,7 @@ func (h *Google_logging_organization_sinkHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_organization_sink{ Google_logging_organization_sink_id: &id }
+	x := &Google_logging_organization_sink{Google_logging_organization_sink_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_organization_sink", "actual", spew.Sdump(x))
@@ -15207,19 +14318,17 @@ func (h *Google_logging_organization_sinkHandler) Delete(externalID string) erro
 }
 
 type Google_logging_project_exclusion struct {
-
 	Google_logging_project_exclusion_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Disabled *bool
+	Disabled *bool
 
-    Filter string
+	Filter string
 
-    Name string
+	Name string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_logging_project_exclusion_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15231,14 +14340,12 @@ var Google_logging_project_exclusion_rtb = func(rtb service.ResourceTypeBuilder)
 		"disabled",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -15278,11 +14385,11 @@ func (h *Google_logging_project_exclusionHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_project_exclusion", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_project_exclusion", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_project_exclusion{ Google_logging_project_exclusion_id: &externalID }
+	x := &Google_logging_project_exclusion{Google_logging_project_exclusion_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_project_exclusion", "actual", spew.Sdump(x))
@@ -15301,7 +14408,7 @@ func (h *Google_logging_project_exclusionHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_project_exclusion{ Google_logging_project_exclusion_id: &id }
+	x := &Google_logging_project_exclusion{Google_logging_project_exclusion_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_project_exclusion", "actual", spew.Sdump(x))
@@ -15320,21 +14427,19 @@ func (h *Google_logging_project_exclusionHandler) Delete(externalID string) erro
 }
 
 type Google_logging_project_sink struct {
-
 	Google_logging_project_sink_id *string `lyra:"ignore"`
 
-    Destination string
+	Destination string
 
-    Filter *string
+	Filter *string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Unique_writer_identity *bool
+	Unique_writer_identity *bool
 
-    Writer_identity *string
-
+	Writer_identity *string
 }
 
 var Google_logging_project_sink_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15348,7 +14453,6 @@ var Google_logging_project_sink_rtb = func(rtb service.ResourceTypeBuilder) {
 		"unique_writer_identity",
 
 		"writer_identity",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15357,7 +14461,6 @@ var Google_logging_project_sink_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"unique_writer_identity",
-
 	)
 }
 
@@ -15397,11 +14500,11 @@ func (h *Google_logging_project_sinkHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_logging_project_sink", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_logging_project_sink", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_project_sink{ Google_logging_project_sink_id: &externalID }
+	x := &Google_logging_project_sink{Google_logging_project_sink_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_logging_project_sink", "actual", spew.Sdump(x))
@@ -15420,7 +14523,7 @@ func (h *Google_logging_project_sinkHandler) Read(externalID string) (*Google_lo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_logging_project_sink{ Google_logging_project_sink_id: &id }
+	x := &Google_logging_project_sink{Google_logging_project_sink_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_logging_project_sink", "actual", spew.Sdump(x))
@@ -15439,140 +14542,111 @@ func (h *Google_logging_project_sinkHandler) Delete(externalID string) error {
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175 struct {
+	Alignment_period *string
 
+	Cross_series_reducer *string
 
-    Alignment_period *string
+	Group_by_fields *[]string
 
-    Cross_series_reducer *string
-
-    Group_by_fields *[]string
-
-    Per_series_aligner *string
-
+	Per_series_aligner *string
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176 struct {
+	Count *int
 
-
-    Count *int
-
-    Percent *float64
-
+	Percent *float64
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_absent_174 struct {
+	Aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175
 
+	Duration string
 
-    Aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175
+	Filter *string
 
-    Duration string
-
-    Filter *string
-
-    Trigger *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176
-
+	Trigger *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178 struct {
+	Alignment_period *string
 
+	Cross_series_reducer *string
 
-    Alignment_period *string
+	Group_by_fields *[]string
 
-    Cross_series_reducer *string
-
-    Group_by_fields *[]string
-
-    Per_series_aligner *string
-
+	Per_series_aligner *string
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179 struct {
+	Alignment_period *string
 
+	Cross_series_reducer *string
 
-    Alignment_period *string
+	Group_by_fields *[]string
 
-    Cross_series_reducer *string
-
-    Group_by_fields *[]string
-
-    Per_series_aligner *string
-
+	Per_series_aligner *string
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180 struct {
+	Count *int
 
-
-    Count *int
-
-    Percent *float64
-
+	Percent *float64
 }
 
 type Google_monitoring_alert_policy_conditions_173_condition_threshold_177 struct {
+	Aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178
 
+	Comparison string
 
-    Aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178
+	Denominator_aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179
 
-    Comparison string
+	Denominator_filter *string
 
-    Denominator_aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179
+	Duration string
 
-    Denominator_filter *string
+	Filter *string
 
-    Duration string
+	Threshold_value *float64
 
-    Filter *string
-
-    Threshold_value *float64
-
-    Trigger *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180
-
+	Trigger *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180
 }
 
 type Google_monitoring_alert_policy_conditions_173 struct {
+	Condition_absent *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174
 
+	Condition_threshold *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177
 
-    Condition_absent *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174
+	Display_name string
 
-    Condition_threshold *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177
-
-    Display_name string
-
-    Name *string
-
+	Name *string
 }
 
 type Google_monitoring_alert_policy_creation_record_181 struct {
+	Mutate_time *string
 
-
-    Mutate_time *string
-
-    Mutated_by *string
-
+	Mutated_by *string
 }
 
 type Google_monitoring_alert_policy struct {
-
 	Google_monitoring_alert_policy_id *string `lyra:"ignore"`
 
-    Combiner string
+	Combiner string
 
-    Conditions []Google_monitoring_alert_policy_conditions_173
+	Conditions []Google_monitoring_alert_policy_conditions_173
 
-    Creation_record *[]Google_monitoring_alert_policy_creation_record_181
+	Creation_record *[]Google_monitoring_alert_policy_creation_record_181
 
-    Display_name string
+	Display_name string
 
-    Enabled bool
+	Enabled bool
 
-    Labels *[]string
+	Labels *[]string
 
-    Name *string
+	Name *string
 
-    Notification_channels *[]string
+	Notification_channels *[]string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_monitoring_alert_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15588,12 +14662,10 @@ var Google_monitoring_alert_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"notification_channels",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -15633,11 +14705,11 @@ func (h *Google_monitoring_alert_policyHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_monitoring_alert_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_monitoring_alert_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_alert_policy{ Google_monitoring_alert_policy_id: &externalID }
+	x := &Google_monitoring_alert_policy{Google_monitoring_alert_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_monitoring_alert_policy", "actual", spew.Sdump(x))
@@ -15656,7 +14728,7 @@ func (h *Google_monitoring_alert_policyHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_alert_policy{ Google_monitoring_alert_policy_id: &id }
+	x := &Google_monitoring_alert_policy{Google_monitoring_alert_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_monitoring_alert_policy", "actual", spew.Sdump(x))
@@ -15675,21 +14747,19 @@ func (h *Google_monitoring_alert_policyHandler) Delete(externalID string) error 
 }
 
 type Google_monitoring_group struct {
-
 	Google_monitoring_group_id *string `lyra:"ignore"`
 
-    Display_name string
+	Display_name string
 
-    Filter string
+	Filter string
 
-    Is_cluster *bool
+	Is_cluster *bool
 
-    Name *string
+	Name *string
 
-    Parent_name *string
+	Parent_name *string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_monitoring_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15703,12 +14773,10 @@ var Google_monitoring_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"parent_name",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -15748,11 +14816,11 @@ func (h *Google_monitoring_groupHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_monitoring_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_monitoring_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_group{ Google_monitoring_group_id: &externalID }
+	x := &Google_monitoring_group{Google_monitoring_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_monitoring_group", "actual", spew.Sdump(x))
@@ -15771,7 +14839,7 @@ func (h *Google_monitoring_groupHandler) Read(externalID string) (*Google_monito
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_group{ Google_monitoring_group_id: &id }
+	x := &Google_monitoring_group{Google_monitoring_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_monitoring_group", "actual", spew.Sdump(x))
@@ -15790,27 +14858,25 @@ func (h *Google_monitoring_groupHandler) Delete(externalID string) error {
 }
 
 type Google_monitoring_notification_channel struct {
-
 	Google_monitoring_notification_channel_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Display_name string
+	Display_name string
 
-    Enabled *bool
+	Enabled *bool
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name *string
+	Name *string
 
-    Project *string
+	Project *string
 
-    Type string
+	Type string
 
-    User_labels *map[string]string
+	User_labels *map[string]string
 
-    Verification_status *string
-
+	Verification_status *string
 }
 
 var Google_monitoring_notification_channel_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15830,12 +14896,10 @@ var Google_monitoring_notification_channel_rtb = func(rtb service.ResourceTypeBu
 		"user_labels",
 
 		"verification_status",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -15875,11 +14939,11 @@ func (h *Google_monitoring_notification_channelHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_monitoring_notification_channel", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_monitoring_notification_channel", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_notification_channel{ Google_monitoring_notification_channel_id: &externalID }
+	x := &Google_monitoring_notification_channel{Google_monitoring_notification_channel_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_monitoring_notification_channel", "actual", spew.Sdump(x))
@@ -15898,7 +14962,7 @@ func (h *Google_monitoring_notification_channelHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_notification_channel{ Google_monitoring_notification_channel_id: &id }
+	x := &Google_monitoring_notification_channel{Google_monitoring_notification_channel_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_monitoring_notification_channel", "actual", spew.Sdump(x))
@@ -15917,108 +14981,85 @@ func (h *Google_monitoring_notification_channelHandler) Delete(externalID string
 }
 
 type Google_monitoring_uptime_check_config_content_matchers_182 struct {
-
-
-    Content *string
-
+	Content *string
 }
 
 type Google_monitoring_uptime_check_config_http_check_183_auth_info_184 struct {
+	Password *string
 
-
-    Password *string
-
-    Username *string
-
+	Username *string
 }
 
 type Google_monitoring_uptime_check_config_http_check_183 struct {
+	Auth_info *[]Google_monitoring_uptime_check_config_http_check_183_auth_info_184
 
+	Headers *map[string]string
 
-    Auth_info *[]Google_monitoring_uptime_check_config_http_check_183_auth_info_184
+	Mask_headers *bool
 
-    Headers *map[string]string
+	Path *string
 
-    Mask_headers *bool
+	Port *int
 
-    Path *string
-
-    Port *int
-
-    Use_ssl *bool
-
+	Use_ssl *bool
 }
 
 type Google_monitoring_uptime_check_config_internal_checkers_185 struct {
+	Display_name *string
 
+	Gcp_zone *string
 
-    Display_name *string
+	Name *string
 
-    Gcp_zone *string
+	Network *string
 
-    Name *string
-
-    Network *string
-
-    Peer_project_id *string
-
+	Peer_project_id *string
 }
 
 type Google_monitoring_uptime_check_config_monitored_resource_186 struct {
+	Labels map[string]string
 
-
-    Labels map[string]string
-
-    Type string
-
+	Type string
 }
 
 type Google_monitoring_uptime_check_config_resource_group_187 struct {
+	Group_id *string
 
-
-    Group_id *string
-
-    Resource_type *string
-
+	Resource_type *string
 }
 
 type Google_monitoring_uptime_check_config_tcp_check_188 struct {
-
-
-    Port int
-
+	Port int
 }
 
 type Google_monitoring_uptime_check_config struct {
-
 	Google_monitoring_uptime_check_config_id *string `lyra:"ignore"`
 
-    Content_matchers *[]Google_monitoring_uptime_check_config_content_matchers_182
+	Content_matchers *[]Google_monitoring_uptime_check_config_content_matchers_182
 
-    Display_name string
+	Display_name string
 
-    Http_check *[]Google_monitoring_uptime_check_config_http_check_183
+	Http_check *[]Google_monitoring_uptime_check_config_http_check_183
 
-    Internal_checkers *[]Google_monitoring_uptime_check_config_internal_checkers_185
+	Internal_checkers *[]Google_monitoring_uptime_check_config_internal_checkers_185
 
-    Is_internal *bool
+	Is_internal *bool
 
-    Monitored_resource *[]Google_monitoring_uptime_check_config_monitored_resource_186
+	Monitored_resource *[]Google_monitoring_uptime_check_config_monitored_resource_186
 
-    Name *string
+	Name *string
 
-    Period *string
+	Period *string
 
-    Project *string
+	Project *string
 
-    Resource_group *[]Google_monitoring_uptime_check_config_resource_group_187
+	Resource_group *[]Google_monitoring_uptime_check_config_resource_group_187
 
-    Selected_regions *[]string
+	Selected_regions *[]string
 
-    Tcp_check *[]Google_monitoring_uptime_check_config_tcp_check_188
+	Tcp_check *[]Google_monitoring_uptime_check_config_tcp_check_188
 
-    Timeout string
-
+	Timeout string
 }
 
 var Google_monitoring_uptime_check_config_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16046,12 +15087,10 @@ var Google_monitoring_uptime_check_config_rtb = func(rtb service.ResourceTypeBui
 		"selected_regions",
 
 		"tcp_check",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -16091,11 +15130,11 @@ func (h *Google_monitoring_uptime_check_configHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_monitoring_uptime_check_config", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_monitoring_uptime_check_config", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_uptime_check_config{ Google_monitoring_uptime_check_config_id: &externalID }
+	x := &Google_monitoring_uptime_check_config{Google_monitoring_uptime_check_config_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_monitoring_uptime_check_config", "actual", spew.Sdump(x))
@@ -16114,7 +15153,7 @@ func (h *Google_monitoring_uptime_check_configHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_monitoring_uptime_check_config{ Google_monitoring_uptime_check_config_id: &id }
+	x := &Google_monitoring_uptime_check_config{Google_monitoring_uptime_check_config_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_monitoring_uptime_check_config", "actual", spew.Sdump(x))
@@ -16133,17 +15172,15 @@ func (h *Google_monitoring_uptime_check_configHandler) Delete(externalID string)
 }
 
 type Google_organization_iam_binding struct {
-
 	Google_organization_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Org_id string
+	Org_id string
 
-    Role string
-
+	Role string
 }
 
 var Google_organization_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16151,14 +15188,12 @@ var Google_organization_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) 
 		"google_organization_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"org_id",
 
 		"role",
-
 	)
 }
 
@@ -16198,11 +15233,11 @@ func (h *Google_organization_iam_bindingHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_organization_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_organization_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_binding{ Google_organization_iam_binding_id: &externalID }
+	x := &Google_organization_iam_binding{Google_organization_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_organization_iam_binding", "actual", spew.Sdump(x))
@@ -16221,7 +15256,7 @@ func (h *Google_organization_iam_bindingHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_binding{ Google_organization_iam_binding_id: &id }
+	x := &Google_organization_iam_binding{Google_organization_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_organization_iam_binding", "actual", spew.Sdump(x))
@@ -16240,23 +15275,21 @@ func (h *Google_organization_iam_bindingHandler) Delete(externalID string) error
 }
 
 type Google_organization_iam_custom_role struct {
-
 	Google_organization_iam_custom_role_id *string `lyra:"ignore"`
 
-    Deleted *bool
+	Deleted *bool
 
-    Description *string
+	Description *string
 
-    Org_id string
+	Org_id string
 
-    Permissions []string
+	Permissions []string
 
-    Role_id string
+	Role_id string
 
-    Stage *string
+	Stage *string
 
-    Title string
-
+	Title string
 }
 
 var Google_organization_iam_custom_role_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16268,14 +15301,12 @@ var Google_organization_iam_custom_role_rtb = func(rtb service.ResourceTypeBuild
 		"description",
 
 		"stage",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"org_id",
 
 		"role_id",
-
 	)
 }
 
@@ -16315,11 +15346,11 @@ func (h *Google_organization_iam_custom_roleHandler) Update(externalID string, d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_organization_iam_custom_role", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_organization_iam_custom_role", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_custom_role{ Google_organization_iam_custom_role_id: &externalID }
+	x := &Google_organization_iam_custom_role{Google_organization_iam_custom_role_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_organization_iam_custom_role", "actual", spew.Sdump(x))
@@ -16338,7 +15369,7 @@ func (h *Google_organization_iam_custom_roleHandler) Read(externalID string) (*G
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_custom_role{ Google_organization_iam_custom_role_id: &id }
+	x := &Google_organization_iam_custom_role{Google_organization_iam_custom_role_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_organization_iam_custom_role", "actual", spew.Sdump(x))
@@ -16357,17 +15388,15 @@ func (h *Google_organization_iam_custom_roleHandler) Delete(externalID string) e
 }
 
 type Google_organization_iam_member struct {
-
 	Google_organization_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Org_id string
+	Org_id string
 
-    Role string
-
+	Role string
 }
 
 var Google_organization_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16375,7 +15404,6 @@ var Google_organization_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_organization_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16384,7 +15412,6 @@ var Google_organization_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"org_id",
 
 		"role",
-
 	)
 }
 
@@ -16424,11 +15451,11 @@ func (h *Google_organization_iam_memberHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_organization_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_organization_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_member{ Google_organization_iam_member_id: &externalID }
+	x := &Google_organization_iam_member{Google_organization_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_organization_iam_member", "actual", spew.Sdump(x))
@@ -16447,7 +15474,7 @@ func (h *Google_organization_iam_memberHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_member{ Google_organization_iam_member_id: &id }
+	x := &Google_organization_iam_member{Google_organization_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_organization_iam_member", "actual", spew.Sdump(x))
@@ -16466,15 +15493,13 @@ func (h *Google_organization_iam_memberHandler) Delete(externalID string) error 
 }
 
 type Google_organization_iam_policy struct {
-
 	Google_organization_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Org_id string
+	Org_id string
 
-    Policy_data string
-
+	Policy_data string
 }
 
 var Google_organization_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16482,12 +15507,10 @@ var Google_organization_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_organization_iam_policy_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"org_id",
-
 	)
 }
 
@@ -16527,11 +15550,11 @@ func (h *Google_organization_iam_policyHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_organization_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_organization_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_policy{ Google_organization_iam_policy_id: &externalID }
+	x := &Google_organization_iam_policy{Google_organization_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_organization_iam_policy", "actual", spew.Sdump(x))
@@ -16550,7 +15573,7 @@ func (h *Google_organization_iam_policyHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_iam_policy{ Google_organization_iam_policy_id: &id }
+	x := &Google_organization_iam_policy{Google_organization_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_organization_iam_policy", "actual", spew.Sdump(x))
@@ -16569,68 +15592,51 @@ func (h *Google_organization_iam_policyHandler) Delete(externalID string) error 
 }
 
 type Google_organization_policy_boolean_policy_189 struct {
-
-
-    Enforced bool
-
+	Enforced bool
 }
 
 type Google_organization_policy_list_policy_190_allow_191 struct {
+	All *bool
 
-
-    All *bool
-
-    Values *[]string
-
+	Values *[]string
 }
 
 type Google_organization_policy_list_policy_190_deny_192 struct {
+	All *bool
 
-
-    All *bool
-
-    Values *[]string
-
+	Values *[]string
 }
 
 type Google_organization_policy_list_policy_190 struct {
+	Allow *[]Google_organization_policy_list_policy_190_allow_191
 
+	Deny *[]Google_organization_policy_list_policy_190_deny_192
 
-    Allow *[]Google_organization_policy_list_policy_190_allow_191
-
-    Deny *[]Google_organization_policy_list_policy_190_deny_192
-
-    Suggested_value *string
-
+	Suggested_value *string
 }
 
 type Google_organization_policy_restore_policy_193 struct {
-
-
-    Default bool
-
+	Default bool
 }
 
 type Google_organization_policy struct {
-
 	Google_organization_policy_id *string `lyra:"ignore"`
 
-    Boolean_policy *[]Google_organization_policy_boolean_policy_189
+	Boolean_policy *[]Google_organization_policy_boolean_policy_189
 
-    Constraint string
+	Constraint string
 
-    Etag *string
+	Etag *string
 
-    List_policy *[]Google_organization_policy_list_policy_190
+	List_policy *[]Google_organization_policy_list_policy_190
 
-    Org_id string
+	Org_id string
 
-    Restore_policy *[]Google_organization_policy_restore_policy_193
+	Restore_policy *[]Google_organization_policy_restore_policy_193
 
-    Update_time *string
+	Update_time *string
 
-    Version *int
-
+	Version *int
 }
 
 var Google_organization_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16648,14 +15654,12 @@ var Google_organization_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"update_time",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"constraint",
 
 		"org_id",
-
 	)
 }
 
@@ -16695,11 +15699,11 @@ func (h *Google_organization_policyHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_organization_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_organization_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_policy{ Google_organization_policy_id: &externalID }
+	x := &Google_organization_policy{Google_organization_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_organization_policy", "actual", spew.Sdump(x))
@@ -16718,7 +15722,7 @@ func (h *Google_organization_policyHandler) Read(externalID string) (*Google_org
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_organization_policy{ Google_organization_policy_id: &id }
+	x := &Google_organization_policy{Google_organization_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_organization_policy", "actual", spew.Sdump(x))
@@ -16737,76 +15741,65 @@ func (h *Google_organization_policyHandler) Delete(externalID string) error {
 }
 
 type Google_project_app_engine_194_feature_settings_195 struct {
-
-
-    Split_health_checks *bool
-
+	Split_health_checks *bool
 }
 
 type Google_project_app_engine_194_url_dispatch_rule_196 struct {
+	Domain *string
 
+	Path *string
 
-    Domain *string
-
-    Path *string
-
-    Service *string
-
+	Service *string
 }
 
 type Google_project_app_engine_194 struct {
+	Auth_domain *string
 
+	Code_bucket *string
 
-    Auth_domain *string
+	Default_bucket *string
 
-    Code_bucket *string
+	Default_hostname *string
 
-    Default_bucket *string
+	Feature_settings *[]Google_project_app_engine_194_feature_settings_195
 
-    Default_hostname *string
+	Gcr_domain *string
 
-    Feature_settings *[]Google_project_app_engine_194_feature_settings_195
+	Location_id *string
 
-    Gcr_domain *string
+	Name *string
 
-    Location_id *string
+	Serving_status *string
 
-    Name *string
-
-    Serving_status *string
-
-    Url_dispatch_rule *[]Google_project_app_engine_194_url_dispatch_rule_196
-
+	Url_dispatch_rule *[]Google_project_app_engine_194_url_dispatch_rule_196
 }
 
 type Google_project struct {
-
 	Google_project_id *string `lyra:"ignore"`
 
-    App_engine *[]Google_project_app_engine_194
+	App_engine *[]Google_project_app_engine_194
 
-    Auto_create_network *bool
+	Auto_create_network *bool
 
-    Billing_account *string
+	Billing_account *string
 
-    Folder_id *string
+	Folder_id *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name string
+	Name string
 
-    Number *string
+	Number *string
 
-    Org_id *string
+	Org_id *string
 
-    Policy_data *string
+	Policy_data *string
 
-    Policy_etag *string
+	Policy_etag *string
 
-    Project_id string
+	Project_id string
 
-    Skip_delete *bool
-
+	Skip_delete *bool
 }
 
 var Google_project_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16832,12 +15825,10 @@ var Google_project_rtb = func(rtb service.ResourceTypeBuilder) {
 		"policy_etag",
 
 		"skip_delete",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project_id",
-
 	)
 }
 
@@ -16877,11 +15868,11 @@ func (h *Google_projectHandler) Update(externalID string, desired *Google_projec
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project{ Google_project_id: &externalID }
+	x := &Google_project{Google_project_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project", "actual", spew.Sdump(x))
@@ -16900,7 +15891,7 @@ func (h *Google_projectHandler) Read(externalID string) (*Google_project, error)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project{ Google_project_id: &id }
+	x := &Google_project{Google_project_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project", "actual", spew.Sdump(x))
@@ -16919,17 +15910,15 @@ func (h *Google_projectHandler) Delete(externalID string) error {
 }
 
 type Google_project_iam_binding struct {
-
 	Google_project_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Project *string
+	Project *string
 
-    Role string
-
+	Role string
 }
 
 var Google_project_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16939,14 +15928,12 @@ var Google_project_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
 
 		"role",
-
 	)
 }
 
@@ -16986,11 +15973,11 @@ func (h *Google_project_iam_bindingHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_binding{ Google_project_iam_binding_id: &externalID }
+	x := &Google_project_iam_binding{Google_project_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_iam_binding", "actual", spew.Sdump(x))
@@ -17009,7 +15996,7 @@ func (h *Google_project_iam_bindingHandler) Read(externalID string) (*Google_pro
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_binding{ Google_project_iam_binding_id: &id }
+	x := &Google_project_iam_binding{Google_project_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_iam_binding", "actual", spew.Sdump(x))
@@ -17028,23 +16015,21 @@ func (h *Google_project_iam_bindingHandler) Delete(externalID string) error {
 }
 
 type Google_project_iam_custom_role struct {
-
 	Google_project_iam_custom_role_id *string `lyra:"ignore"`
 
-    Deleted *bool
+	Deleted *bool
 
-    Description *string
+	Description *string
 
-    Permissions []string
+	Permissions []string
 
-    Project *string
+	Project *string
 
-    Role_id string
+	Role_id string
 
-    Stage *string
+	Stage *string
 
-    Title string
-
+	Title string
 }
 
 var Google_project_iam_custom_role_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17058,14 +16043,12 @@ var Google_project_iam_custom_role_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"stage",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
 
 		"role_id",
-
 	)
 }
 
@@ -17105,11 +16088,11 @@ func (h *Google_project_iam_custom_roleHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_iam_custom_role", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_iam_custom_role", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_custom_role{ Google_project_iam_custom_role_id: &externalID }
+	x := &Google_project_iam_custom_role{Google_project_iam_custom_role_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_iam_custom_role", "actual", spew.Sdump(x))
@@ -17128,7 +16111,7 @@ func (h *Google_project_iam_custom_roleHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_custom_role{ Google_project_iam_custom_role_id: &id }
+	x := &Google_project_iam_custom_role{Google_project_iam_custom_role_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_iam_custom_role", "actual", spew.Sdump(x))
@@ -17147,17 +16130,15 @@ func (h *Google_project_iam_custom_roleHandler) Delete(externalID string) error 
 }
 
 type Google_project_iam_member struct {
-
 	Google_project_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Project *string
+	Project *string
 
-    Role string
-
+	Role string
 }
 
 var Google_project_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17167,7 +16148,6 @@ var Google_project_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17176,7 +16156,6 @@ var Google_project_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"role",
-
 	)
 }
 
@@ -17216,11 +16195,11 @@ func (h *Google_project_iam_memberHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_member{ Google_project_iam_member_id: &externalID }
+	x := &Google_project_iam_member{Google_project_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_iam_member", "actual", spew.Sdump(x))
@@ -17239,7 +16218,7 @@ func (h *Google_project_iam_memberHandler) Read(externalID string) (*Google_proj
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_member{ Google_project_iam_member_id: &id }
+	x := &Google_project_iam_member{Google_project_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_iam_member", "actual", spew.Sdump(x))
@@ -17258,21 +16237,19 @@ func (h *Google_project_iam_memberHandler) Delete(externalID string) error {
 }
 
 type Google_project_iam_policy struct {
-
 	Google_project_iam_policy_id *string `lyra:"ignore"`
 
-    Authoritative *bool
+	Authoritative *bool
 
-    Disable_project *bool
+	Disable_project *bool
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
+	Policy_data string
 
-    Project *string
+	Project *string
 
-    Restore_policy *string
-
+	Restore_policy *string
 }
 
 var Google_project_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17288,12 +16265,10 @@ var Google_project_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"restore_policy",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -17333,11 +16308,11 @@ func (h *Google_project_iam_policyHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_policy{ Google_project_iam_policy_id: &externalID }
+	x := &Google_project_iam_policy{Google_project_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_iam_policy", "actual", spew.Sdump(x))
@@ -17356,7 +16331,7 @@ func (h *Google_project_iam_policyHandler) Read(externalID string) (*Google_proj
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_iam_policy{ Google_project_iam_policy_id: &id }
+	x := &Google_project_iam_policy{Google_project_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_iam_policy", "actual", spew.Sdump(x))
@@ -17375,68 +16350,51 @@ func (h *Google_project_iam_policyHandler) Delete(externalID string) error {
 }
 
 type Google_project_organization_policy_boolean_policy_197 struct {
-
-
-    Enforced bool
-
+	Enforced bool
 }
 
 type Google_project_organization_policy_list_policy_198_allow_199 struct {
+	All *bool
 
-
-    All *bool
-
-    Values *[]string
-
+	Values *[]string
 }
 
 type Google_project_organization_policy_list_policy_198_deny_200 struct {
+	All *bool
 
-
-    All *bool
-
-    Values *[]string
-
+	Values *[]string
 }
 
 type Google_project_organization_policy_list_policy_198 struct {
+	Allow *[]Google_project_organization_policy_list_policy_198_allow_199
 
+	Deny *[]Google_project_organization_policy_list_policy_198_deny_200
 
-    Allow *[]Google_project_organization_policy_list_policy_198_allow_199
-
-    Deny *[]Google_project_organization_policy_list_policy_198_deny_200
-
-    Suggested_value *string
-
+	Suggested_value *string
 }
 
 type Google_project_organization_policy_restore_policy_201 struct {
-
-
-    Default bool
-
+	Default bool
 }
 
 type Google_project_organization_policy struct {
-
 	Google_project_organization_policy_id *string `lyra:"ignore"`
 
-    Boolean_policy *[]Google_project_organization_policy_boolean_policy_197
+	Boolean_policy *[]Google_project_organization_policy_boolean_policy_197
 
-    Constraint string
+	Constraint string
 
-    Etag *string
+	Etag *string
 
-    List_policy *[]Google_project_organization_policy_list_policy_198
+	List_policy *[]Google_project_organization_policy_list_policy_198
 
-    Project string
+	Project string
 
-    Restore_policy *[]Google_project_organization_policy_restore_policy_201
+	Restore_policy *[]Google_project_organization_policy_restore_policy_201
 
-    Update_time *string
+	Update_time *string
 
-    Version *int
-
+	Version *int
 }
 
 var Google_project_organization_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17454,14 +16412,12 @@ var Google_project_organization_policy_rtb = func(rtb service.ResourceTypeBuilde
 		"update_time",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"constraint",
 
 		"project",
-
 	)
 }
 
@@ -17501,11 +16457,11 @@ func (h *Google_project_organization_policyHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_organization_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_organization_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_organization_policy{ Google_project_organization_policy_id: &externalID }
+	x := &Google_project_organization_policy{Google_project_organization_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_organization_policy", "actual", spew.Sdump(x))
@@ -17524,7 +16480,7 @@ func (h *Google_project_organization_policyHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_organization_policy{ Google_project_organization_policy_id: &id }
+	x := &Google_project_organization_policy{Google_project_organization_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_organization_policy", "actual", spew.Sdump(x))
@@ -17543,15 +16499,13 @@ func (h *Google_project_organization_policyHandler) Delete(externalID string) er
 }
 
 type Google_project_service struct {
-
 	Google_project_service_id *string `lyra:"ignore"`
 
-    Disable_on_destroy *bool
+	Disable_on_destroy *bool
 
-    Project *string
+	Project *string
 
-    Service string
-
+	Service string
 }
 
 var Google_project_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17561,14 +16515,12 @@ var Google_project_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"disable_on_destroy",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
 
 		"service",
-
 	)
 }
 
@@ -17608,11 +16560,11 @@ func (h *Google_project_serviceHandler) Update(externalID string, desired *Googl
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_service{ Google_project_service_id: &externalID }
+	x := &Google_project_service{Google_project_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_service", "actual", spew.Sdump(x))
@@ -17631,7 +16583,7 @@ func (h *Google_project_serviceHandler) Read(externalID string) (*Google_project
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_service{ Google_project_service_id: &id }
+	x := &Google_project_service{Google_project_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_service", "actual", spew.Sdump(x))
@@ -17650,15 +16602,13 @@ func (h *Google_project_serviceHandler) Delete(externalID string) error {
 }
 
 type Google_project_services struct {
-
 	Google_project_services_id *string `lyra:"ignore"`
 
-    Disable_on_destroy *bool
+	Disable_on_destroy *bool
 
-    Project *string
+	Project *string
 
-    Services []string
-
+	Services []string
 }
 
 var Google_project_services_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17668,12 +16618,10 @@ var Google_project_services_rtb = func(rtb service.ResourceTypeBuilder) {
 		"disable_on_destroy",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
-
 	)
 }
 
@@ -17713,11 +16661,11 @@ func (h *Google_project_servicesHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_services", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_services", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_services{ Google_project_services_id: &externalID }
+	x := &Google_project_services{Google_project_services_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_services", "actual", spew.Sdump(x))
@@ -17736,7 +16684,7 @@ func (h *Google_project_servicesHandler) Read(externalID string) (*Google_projec
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_services{ Google_project_services_id: &id }
+	x := &Google_project_services{Google_project_services_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_services", "actual", spew.Sdump(x))
@@ -17755,15 +16703,13 @@ func (h *Google_project_servicesHandler) Delete(externalID string) error {
 }
 
 type Google_project_usage_export_bucket struct {
-
 	Google_project_usage_export_bucket_id *string `lyra:"ignore"`
 
-    Bucket_name string
+	Bucket_name string
 
-    Prefix *string
+	Prefix *string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_project_usage_export_bucket_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17773,7 +16719,6 @@ var Google_project_usage_export_bucket_rtb = func(rtb service.ResourceTypeBuilde
 		"prefix",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17782,7 +16727,6 @@ var Google_project_usage_export_bucket_rtb = func(rtb service.ResourceTypeBuilde
 		"prefix",
 
 		"project",
-
 	)
 }
 
@@ -17822,11 +16766,11 @@ func (h *Google_project_usage_export_bucketHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_project_usage_export_bucket", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_project_usage_export_bucket", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_usage_export_bucket{ Google_project_usage_export_bucket_id: &externalID }
+	x := &Google_project_usage_export_bucket{Google_project_usage_export_bucket_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_project_usage_export_bucket", "actual", spew.Sdump(x))
@@ -17845,7 +16789,7 @@ func (h *Google_project_usage_export_bucketHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_project_usage_export_bucket{ Google_project_usage_export_bucket_id: &id }
+	x := &Google_project_usage_export_bucket{Google_project_usage_export_bucket_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_project_usage_export_bucket", "actual", spew.Sdump(x))
@@ -17864,30 +16808,25 @@ func (h *Google_project_usage_export_bucketHandler) Delete(externalID string) er
 }
 
 type Google_pubsub_subscription_push_config_202 struct {
+	Attributes *map[string]string
 
-
-    Attributes *map[string]string
-
-    Push_endpoint string
-
+	Push_endpoint string
 }
 
 type Google_pubsub_subscription struct {
-
 	Google_pubsub_subscription_id *string `lyra:"ignore"`
 
-    Ack_deadline_seconds *int
+	Ack_deadline_seconds *int
 
-    Name string
+	Name string
 
-    Path *string
+	Path *string
 
-    Project *string
+	Project *string
 
-    Push_config *[]Google_pubsub_subscription_push_config_202
+	Push_config *[]Google_pubsub_subscription_push_config_202
 
-    Topic string
-
+	Topic string
 }
 
 var Google_pubsub_subscription_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17901,7 +16840,6 @@ var Google_pubsub_subscription_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"push_config",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17912,7 +16850,6 @@ var Google_pubsub_subscription_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"topic",
-
 	)
 }
 
@@ -17952,11 +16889,11 @@ func (h *Google_pubsub_subscriptionHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_subscription", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_subscription", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription{ Google_pubsub_subscription_id: &externalID }
+	x := &Google_pubsub_subscription{Google_pubsub_subscription_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_subscription", "actual", spew.Sdump(x))
@@ -17975,7 +16912,7 @@ func (h *Google_pubsub_subscriptionHandler) Read(externalID string) (*Google_pub
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription{ Google_pubsub_subscription_id: &id }
+	x := &Google_pubsub_subscription{Google_pubsub_subscription_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_subscription", "actual", spew.Sdump(x))
@@ -17994,19 +16931,17 @@ func (h *Google_pubsub_subscriptionHandler) Delete(externalID string) error {
 }
 
 type Google_pubsub_subscription_iam_binding struct {
-
 	Google_pubsub_subscription_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Project *string
+	Project *string
 
-    Role string
+	Role string
 
-    Subscription string
-
+	Subscription string
 }
 
 var Google_pubsub_subscription_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18016,7 +16951,6 @@ var Google_pubsub_subscription_iam_binding_rtb = func(rtb service.ResourceTypeBu
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18025,7 +16959,6 @@ var Google_pubsub_subscription_iam_binding_rtb = func(rtb service.ResourceTypeBu
 		"role",
 
 		"subscription",
-
 	)
 }
 
@@ -18065,11 +16998,11 @@ func (h *Google_pubsub_subscription_iam_bindingHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_subscription_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_subscription_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription_iam_binding{ Google_pubsub_subscription_iam_binding_id: &externalID }
+	x := &Google_pubsub_subscription_iam_binding{Google_pubsub_subscription_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_subscription_iam_binding", "actual", spew.Sdump(x))
@@ -18088,7 +17021,7 @@ func (h *Google_pubsub_subscription_iam_bindingHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription_iam_binding{ Google_pubsub_subscription_iam_binding_id: &id }
+	x := &Google_pubsub_subscription_iam_binding{Google_pubsub_subscription_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_subscription_iam_binding", "actual", spew.Sdump(x))
@@ -18107,19 +17040,17 @@ func (h *Google_pubsub_subscription_iam_bindingHandler) Delete(externalID string
 }
 
 type Google_pubsub_subscription_iam_member struct {
-
 	Google_pubsub_subscription_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Project *string
+	Project *string
 
-    Role string
+	Role string
 
-    Subscription string
-
+	Subscription string
 }
 
 var Google_pubsub_subscription_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18129,7 +17060,6 @@ var Google_pubsub_subscription_iam_member_rtb = func(rtb service.ResourceTypeBui
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18140,7 +17070,6 @@ var Google_pubsub_subscription_iam_member_rtb = func(rtb service.ResourceTypeBui
 		"role",
 
 		"subscription",
-
 	)
 }
 
@@ -18180,11 +17109,11 @@ func (h *Google_pubsub_subscription_iam_memberHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_subscription_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_subscription_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription_iam_member{ Google_pubsub_subscription_iam_member_id: &externalID }
+	x := &Google_pubsub_subscription_iam_member{Google_pubsub_subscription_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_subscription_iam_member", "actual", spew.Sdump(x))
@@ -18203,7 +17132,7 @@ func (h *Google_pubsub_subscription_iam_memberHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription_iam_member{ Google_pubsub_subscription_iam_member_id: &id }
+	x := &Google_pubsub_subscription_iam_member{Google_pubsub_subscription_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_subscription_iam_member", "actual", spew.Sdump(x))
@@ -18222,17 +17151,15 @@ func (h *Google_pubsub_subscription_iam_memberHandler) Delete(externalID string)
 }
 
 type Google_pubsub_subscription_iam_policy struct {
-
 	Google_pubsub_subscription_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
+	Policy_data string
 
-    Project *string
+	Project *string
 
-    Subscription string
-
+	Subscription string
 }
 
 var Google_pubsub_subscription_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18242,14 +17169,12 @@ var Google_pubsub_subscription_iam_policy_rtb = func(rtb service.ResourceTypeBui
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
 
 		"subscription",
-
 	)
 }
 
@@ -18289,11 +17214,11 @@ func (h *Google_pubsub_subscription_iam_policyHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_subscription_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_subscription_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription_iam_policy{ Google_pubsub_subscription_iam_policy_id: &externalID }
+	x := &Google_pubsub_subscription_iam_policy{Google_pubsub_subscription_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_subscription_iam_policy", "actual", spew.Sdump(x))
@@ -18312,7 +17237,7 @@ func (h *Google_pubsub_subscription_iam_policyHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_subscription_iam_policy{ Google_pubsub_subscription_iam_policy_id: &id }
+	x := &Google_pubsub_subscription_iam_policy{Google_pubsub_subscription_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_subscription_iam_policy", "actual", spew.Sdump(x))
@@ -18331,13 +17256,11 @@ func (h *Google_pubsub_subscription_iam_policyHandler) Delete(externalID string)
 }
 
 type Google_pubsub_topic struct {
-
 	Google_pubsub_topic_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_pubsub_topic_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18345,14 +17268,12 @@ var Google_pubsub_topic_rtb = func(rtb service.ResourceTypeBuilder) {
 		"google_pubsub_topic_id",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -18392,11 +17313,11 @@ func (h *Google_pubsub_topicHandler) Update(externalID string, desired *Google_p
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_topic", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_topic", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic{ Google_pubsub_topic_id: &externalID }
+	x := &Google_pubsub_topic{Google_pubsub_topic_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_topic", "actual", spew.Sdump(x))
@@ -18415,7 +17336,7 @@ func (h *Google_pubsub_topicHandler) Read(externalID string) (*Google_pubsub_top
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic{ Google_pubsub_topic_id: &id }
+	x := &Google_pubsub_topic{Google_pubsub_topic_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_topic", "actual", spew.Sdump(x))
@@ -18434,19 +17355,17 @@ func (h *Google_pubsub_topicHandler) Delete(externalID string) error {
 }
 
 type Google_pubsub_topic_iam_binding struct {
-
 	Google_pubsub_topic_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Project *string
+	Project *string
 
-    Role string
+	Role string
 
-    Topic string
-
+	Topic string
 }
 
 var Google_pubsub_topic_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18456,7 +17375,6 @@ var Google_pubsub_topic_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) 
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18465,7 +17383,6 @@ var Google_pubsub_topic_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) 
 		"role",
 
 		"topic",
-
 	)
 }
 
@@ -18505,11 +17422,11 @@ func (h *Google_pubsub_topic_iam_bindingHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_topic_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_topic_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic_iam_binding{ Google_pubsub_topic_iam_binding_id: &externalID }
+	x := &Google_pubsub_topic_iam_binding{Google_pubsub_topic_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_topic_iam_binding", "actual", spew.Sdump(x))
@@ -18528,7 +17445,7 @@ func (h *Google_pubsub_topic_iam_bindingHandler) Read(externalID string) (*Googl
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic_iam_binding{ Google_pubsub_topic_iam_binding_id: &id }
+	x := &Google_pubsub_topic_iam_binding{Google_pubsub_topic_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_topic_iam_binding", "actual", spew.Sdump(x))
@@ -18547,19 +17464,17 @@ func (h *Google_pubsub_topic_iam_bindingHandler) Delete(externalID string) error
 }
 
 type Google_pubsub_topic_iam_member struct {
-
 	Google_pubsub_topic_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Project *string
+	Project *string
 
-    Role string
+	Role string
 
-    Topic string
-
+	Topic string
 }
 
 var Google_pubsub_topic_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18569,7 +17484,6 @@ var Google_pubsub_topic_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18580,7 +17494,6 @@ var Google_pubsub_topic_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
 		"role",
 
 		"topic",
-
 	)
 }
 
@@ -18620,11 +17533,11 @@ func (h *Google_pubsub_topic_iam_memberHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_topic_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_topic_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic_iam_member{ Google_pubsub_topic_iam_member_id: &externalID }
+	x := &Google_pubsub_topic_iam_member{Google_pubsub_topic_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_topic_iam_member", "actual", spew.Sdump(x))
@@ -18643,7 +17556,7 @@ func (h *Google_pubsub_topic_iam_memberHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic_iam_member{ Google_pubsub_topic_iam_member_id: &id }
+	x := &Google_pubsub_topic_iam_member{Google_pubsub_topic_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_topic_iam_member", "actual", spew.Sdump(x))
@@ -18662,17 +17575,15 @@ func (h *Google_pubsub_topic_iam_memberHandler) Delete(externalID string) error 
 }
 
 type Google_pubsub_topic_iam_policy struct {
-
 	Google_pubsub_topic_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
+	Policy_data string
 
-    Project *string
+	Project *string
 
-    Topic string
-
+	Topic string
 }
 
 var Google_pubsub_topic_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18682,14 +17593,12 @@ var Google_pubsub_topic_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project",
 
 		"topic",
-
 	)
 }
 
@@ -18729,11 +17638,11 @@ func (h *Google_pubsub_topic_iam_policyHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_pubsub_topic_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_pubsub_topic_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic_iam_policy{ Google_pubsub_topic_iam_policy_id: &externalID }
+	x := &Google_pubsub_topic_iam_policy{Google_pubsub_topic_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_pubsub_topic_iam_policy", "actual", spew.Sdump(x))
@@ -18752,7 +17661,7 @@ func (h *Google_pubsub_topic_iam_policyHandler) Read(externalID string) (*Google
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_pubsub_topic_iam_policy{ Google_pubsub_topic_iam_policy_id: &id }
+	x := &Google_pubsub_topic_iam_policy{Google_pubsub_topic_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_pubsub_topic_iam_policy", "actual", spew.Sdump(x))
@@ -18771,43 +17680,41 @@ func (h *Google_pubsub_topic_iam_policyHandler) Delete(externalID string) error 
 }
 
 type Google_redis_instance struct {
-
 	Google_redis_instance_id *string `lyra:"ignore"`
 
-    Alternative_location_id *string
+	Alternative_location_id *string
 
-    Authorized_network *string
+	Authorized_network *string
 
-    Create_time *string
+	Create_time *string
 
-    Current_location_id *string
+	Current_location_id *string
 
-    Display_name *string
+	Display_name *string
 
-    Host *string
+	Host *string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Location_id *string
+	Location_id *string
 
-    Memory_size_gb int
+	Memory_size_gb int
 
-    Name string
+	Name string
 
-    Port *int
+	Port *int
 
-    Project *string
+	Project *string
 
-    Redis_configs *map[string]string
+	Redis_configs *map[string]string
 
-    Redis_version *string
+	Redis_version *string
 
-    Region *string
+	Region *string
 
-    Reserved_ip_range *string
+	Reserved_ip_range *string
 
-    Tier *string
-
+	Tier *string
 }
 
 var Google_redis_instance_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18843,7 +17750,6 @@ var Google_redis_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"reserved_ip_range",
 
 		"tier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18864,7 +17770,6 @@ var Google_redis_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"reserved_ip_range",
 
 		"tier",
-
 	)
 }
 
@@ -18904,11 +17809,11 @@ func (h *Google_redis_instanceHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_redis_instance", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_redis_instance", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_redis_instance{ Google_redis_instance_id: &externalID }
+	x := &Google_redis_instance{Google_redis_instance_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_redis_instance", "actual", spew.Sdump(x))
@@ -18927,7 +17832,7 @@ func (h *Google_redis_instanceHandler) Read(externalID string) (*Google_redis_in
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_redis_instance{ Google_redis_instance_id: &id }
+	x := &Google_redis_instance{Google_redis_instance_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_redis_instance", "actual", spew.Sdump(x))
@@ -18946,21 +17851,19 @@ func (h *Google_redis_instanceHandler) Delete(externalID string) error {
 }
 
 type Google_resource_manager_lien struct {
-
 	Google_resource_manager_lien_id *string `lyra:"ignore"`
 
-    Create_time *string
+	Create_time *string
 
-    Name *string
+	Name *string
 
-    Origin string
+	Origin string
 
-    Parent string
+	Parent string
 
-    Reason string
+	Reason string
 
-    Restrictions []string
-
+	Restrictions []string
 }
 
 var Google_resource_manager_lien_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18970,7 +17873,6 @@ var Google_resource_manager_lien_rtb = func(rtb service.ResourceTypeBuilder) {
 		"create_time",
 
 		"name",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18981,7 +17883,6 @@ var Google_resource_manager_lien_rtb = func(rtb service.ResourceTypeBuilder) {
 		"reason",
 
 		"restrictions",
-
 	)
 }
 
@@ -19021,11 +17922,11 @@ func (h *Google_resource_manager_lienHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_resource_manager_lien", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_resource_manager_lien", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_resource_manager_lien{ Google_resource_manager_lien_id: &externalID }
+	x := &Google_resource_manager_lien{Google_resource_manager_lien_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_resource_manager_lien", "actual", spew.Sdump(x))
@@ -19044,7 +17945,7 @@ func (h *Google_resource_manager_lienHandler) Read(externalID string) (*Google_r
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_resource_manager_lien{ Google_resource_manager_lien_id: &id }
+	x := &Google_resource_manager_lien{Google_resource_manager_lien_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_resource_manager_lien", "actual", spew.Sdump(x))
@@ -19063,15 +17964,13 @@ func (h *Google_resource_manager_lienHandler) Delete(externalID string) error {
 }
 
 type Google_runtimeconfig_config struct {
-
 	Google_runtimeconfig_config_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_runtimeconfig_config_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19081,14 +17980,12 @@ var Google_runtimeconfig_config_rtb = func(rtb service.ResourceTypeBuilder) {
 		"description",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -19128,11 +18025,11 @@ func (h *Google_runtimeconfig_configHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_runtimeconfig_config", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_runtimeconfig_config", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_runtimeconfig_config{ Google_runtimeconfig_config_id: &externalID }
+	x := &Google_runtimeconfig_config{Google_runtimeconfig_config_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_runtimeconfig_config", "actual", spew.Sdump(x))
@@ -19151,7 +18048,7 @@ func (h *Google_runtimeconfig_configHandler) Read(externalID string) (*Google_ru
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_runtimeconfig_config{ Google_runtimeconfig_config_id: &id }
+	x := &Google_runtimeconfig_config{Google_runtimeconfig_config_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_runtimeconfig_config", "actual", spew.Sdump(x))
@@ -19170,21 +18067,19 @@ func (h *Google_runtimeconfig_configHandler) Delete(externalID string) error {
 }
 
 type Google_runtimeconfig_variable struct {
-
 	Google_runtimeconfig_variable_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Parent string
+	Parent string
 
-    Project *string
+	Project *string
 
-    Text *string
+	Text *string
 
-    Update_time *string
+	Update_time *string
 
-    Value *string
-
+	Value *string
 }
 
 var Google_runtimeconfig_variable_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19198,7 +18093,6 @@ var Google_runtimeconfig_variable_rtb = func(rtb service.ResourceTypeBuilder) {
 		"update_time",
 
 		"value",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19207,7 +18101,6 @@ var Google_runtimeconfig_variable_rtb = func(rtb service.ResourceTypeBuilder) {
 		"parent",
 
 		"project",
-
 	)
 }
 
@@ -19247,11 +18140,11 @@ func (h *Google_runtimeconfig_variableHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_runtimeconfig_variable", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_runtimeconfig_variable", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_runtimeconfig_variable{ Google_runtimeconfig_variable_id: &externalID }
+	x := &Google_runtimeconfig_variable{Google_runtimeconfig_variable_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_runtimeconfig_variable", "actual", spew.Sdump(x))
@@ -19270,7 +18163,7 @@ func (h *Google_runtimeconfig_variableHandler) Read(externalID string) (*Google_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_runtimeconfig_variable{ Google_runtimeconfig_variable_id: &id }
+	x := &Google_runtimeconfig_variable{Google_runtimeconfig_variable_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_runtimeconfig_variable", "actual", spew.Sdump(x))
@@ -19289,23 +18182,21 @@ func (h *Google_runtimeconfig_variableHandler) Delete(externalID string) error {
 }
 
 type Google_service_account struct {
-
 	Google_service_account_id *string `lyra:"ignore"`
 
-    Account_id string
+	Account_id string
 
-    Display_name *string
+	Display_name *string
 
-    Email *string
+	Email *string
 
-    Name *string
+	Name *string
 
-    Policy_data *string
+	Policy_data *string
 
-    Project *string
+	Project *string
 
-    Unique_id *string
-
+	Unique_id *string
 }
 
 var Google_service_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19323,14 +18214,12 @@ var Google_service_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"unique_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"account_id",
 
 		"project",
-
 	)
 }
 
@@ -19370,11 +18259,11 @@ func (h *Google_service_accountHandler) Update(externalID string, desired *Googl
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_service_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_service_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account{ Google_service_account_id: &externalID }
+	x := &Google_service_account{Google_service_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_service_account", "actual", spew.Sdump(x))
@@ -19393,7 +18282,7 @@ func (h *Google_service_accountHandler) Read(externalID string) (*Google_service
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account{ Google_service_account_id: &id }
+	x := &Google_service_account{Google_service_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_service_account", "actual", spew.Sdump(x))
@@ -19412,17 +18301,15 @@ func (h *Google_service_accountHandler) Delete(externalID string) error {
 }
 
 type Google_service_account_iam_binding struct {
-
 	Google_service_account_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Role string
+	Role string
 
-    Service_account_id string
-
+	Service_account_id string
 }
 
 var Google_service_account_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19430,14 +18317,12 @@ var Google_service_account_iam_binding_rtb = func(rtb service.ResourceTypeBuilde
 		"google_service_account_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"role",
 
 		"service_account_id",
-
 	)
 }
 
@@ -19477,11 +18362,11 @@ func (h *Google_service_account_iam_bindingHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_service_account_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_service_account_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_iam_binding{ Google_service_account_iam_binding_id: &externalID }
+	x := &Google_service_account_iam_binding{Google_service_account_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_service_account_iam_binding", "actual", spew.Sdump(x))
@@ -19500,7 +18385,7 @@ func (h *Google_service_account_iam_bindingHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_iam_binding{ Google_service_account_iam_binding_id: &id }
+	x := &Google_service_account_iam_binding{Google_service_account_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_service_account_iam_binding", "actual", spew.Sdump(x))
@@ -19519,17 +18404,15 @@ func (h *Google_service_account_iam_bindingHandler) Delete(externalID string) er
 }
 
 type Google_service_account_iam_member struct {
-
 	Google_service_account_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Role string
+	Role string
 
-    Service_account_id string
-
+	Service_account_id string
 }
 
 var Google_service_account_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19537,7 +18420,6 @@ var Google_service_account_iam_member_rtb = func(rtb service.ResourceTypeBuilder
 		"google_service_account_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19546,7 +18428,6 @@ var Google_service_account_iam_member_rtb = func(rtb service.ResourceTypeBuilder
 		"role",
 
 		"service_account_id",
-
 	)
 }
 
@@ -19586,11 +18467,11 @@ func (h *Google_service_account_iam_memberHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_service_account_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_service_account_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_iam_member{ Google_service_account_iam_member_id: &externalID }
+	x := &Google_service_account_iam_member{Google_service_account_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_service_account_iam_member", "actual", spew.Sdump(x))
@@ -19609,7 +18490,7 @@ func (h *Google_service_account_iam_memberHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_iam_member{ Google_service_account_iam_member_id: &id }
+	x := &Google_service_account_iam_member{Google_service_account_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_service_account_iam_member", "actual", spew.Sdump(x))
@@ -19628,15 +18509,13 @@ func (h *Google_service_account_iam_memberHandler) Delete(externalID string) err
 }
 
 type Google_service_account_iam_policy struct {
-
 	Google_service_account_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
+	Policy_data string
 
-    Service_account_id string
-
+	Service_account_id string
 }
 
 var Google_service_account_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19644,12 +18523,10 @@ var Google_service_account_iam_policy_rtb = func(rtb service.ResourceTypeBuilder
 		"google_service_account_iam_policy_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"service_account_id",
-
 	)
 }
 
@@ -19689,11 +18566,11 @@ func (h *Google_service_account_iam_policyHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_service_account_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_service_account_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_iam_policy{ Google_service_account_iam_policy_id: &externalID }
+	x := &Google_service_account_iam_policy{Google_service_account_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_service_account_iam_policy", "actual", spew.Sdump(x))
@@ -19712,7 +18589,7 @@ func (h *Google_service_account_iam_policyHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_iam_policy{ Google_service_account_iam_policy_id: &id }
+	x := &Google_service_account_iam_policy{Google_service_account_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_service_account_iam_policy", "actual", spew.Sdump(x))
@@ -19731,33 +18608,31 @@ func (h *Google_service_account_iam_policyHandler) Delete(externalID string) err
 }
 
 type Google_service_account_key struct {
-
 	Google_service_account_key_id *string `lyra:"ignore"`
 
-    Key_algorithm *string
+	Key_algorithm *string
 
-    Name *string
+	Name *string
 
-    Pgp_key *string
+	Pgp_key *string
 
-    Private_key *string
+	Private_key *string
 
-    Private_key_encrypted *string
+	Private_key_encrypted *string
 
-    Private_key_fingerprint *string
+	Private_key_fingerprint *string
 
-    Private_key_type *string
+	Private_key_type *string
 
-    Public_key *string
+	Public_key *string
 
-    Public_key_type *string
+	Public_key_type *string
 
-    Service_account_id string
+	Service_account_id string
 
-    Valid_after *string
+	Valid_after *string
 
-    Valid_before *string
-
+	Valid_before *string
 }
 
 var Google_service_account_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19785,7 +18660,6 @@ var Google_service_account_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"valid_after",
 
 		"valid_before",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19802,7 +18676,6 @@ var Google_service_account_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"public_key_type",
 
 		"service_account_id",
-
 	)
 }
 
@@ -19842,11 +18715,11 @@ func (h *Google_service_account_keyHandler) Update(externalID string, desired *G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_service_account_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_service_account_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_key{ Google_service_account_key_id: &externalID }
+	x := &Google_service_account_key{Google_service_account_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_service_account_key", "actual", spew.Sdump(x))
@@ -19865,7 +18738,7 @@ func (h *Google_service_account_keyHandler) Read(externalID string) (*Google_ser
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_service_account_key{ Google_service_account_key_id: &id }
+	x := &Google_service_account_key{Google_service_account_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_service_account_key", "actual", spew.Sdump(x))
@@ -19884,17 +18757,15 @@ func (h *Google_service_account_keyHandler) Delete(externalID string) error {
 }
 
 type Google_sourcerepo_repository struct {
-
 	Google_sourcerepo_repository_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Size *int
+	Size *int
 
-    Url *string
-
+	Url *string
 }
 
 var Google_sourcerepo_repository_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19906,14 +18777,12 @@ var Google_sourcerepo_repository_rtb = func(rtb service.ResourceTypeBuilder) {
 		"size",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -19953,11 +18822,11 @@ func (h *Google_sourcerepo_repositoryHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_sourcerepo_repository", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_sourcerepo_repository", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sourcerepo_repository{ Google_sourcerepo_repository_id: &externalID }
+	x := &Google_sourcerepo_repository{Google_sourcerepo_repository_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_sourcerepo_repository", "actual", spew.Sdump(x))
@@ -19976,7 +18845,7 @@ func (h *Google_sourcerepo_repositoryHandler) Read(externalID string) (*Google_s
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sourcerepo_repository{ Google_sourcerepo_repository_id: &id }
+	x := &Google_sourcerepo_repository{Google_sourcerepo_repository_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_sourcerepo_repository", "actual", spew.Sdump(x))
@@ -19995,19 +18864,17 @@ func (h *Google_sourcerepo_repositoryHandler) Delete(externalID string) error {
 }
 
 type Google_spanner_database struct {
-
 	Google_spanner_database_id *string `lyra:"ignore"`
 
-    Ddl *[]string
+	Ddl *[]string
 
-    Instance string
+	Instance string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    State *string
-
+	State *string
 }
 
 var Google_spanner_database_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20019,7 +18886,6 @@ var Google_spanner_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"state",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20030,7 +18896,6 @@ var Google_spanner_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -20070,11 +18935,11 @@ func (h *Google_spanner_databaseHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_database", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_database", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database{ Google_spanner_database_id: &externalID }
+	x := &Google_spanner_database{Google_spanner_database_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_database", "actual", spew.Sdump(x))
@@ -20093,7 +18958,7 @@ func (h *Google_spanner_databaseHandler) Read(externalID string) (*Google_spanne
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database{ Google_spanner_database_id: &id }
+	x := &Google_spanner_database{Google_spanner_database_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_database", "actual", spew.Sdump(x))
@@ -20112,21 +18977,19 @@ func (h *Google_spanner_databaseHandler) Delete(externalID string) error {
 }
 
 type Google_spanner_database_iam_binding struct {
-
 	Google_spanner_database_iam_binding_id *string `lyra:"ignore"`
 
-    Database string
+	Database string
 
-    Etag *string
+	Etag *string
 
-    Instance string
+	Instance string
 
-    Members []string
+	Members []string
 
-    Project *string
+	Project *string
 
-    Role string
-
+	Role string
 }
 
 var Google_spanner_database_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20136,7 +18999,6 @@ var Google_spanner_database_iam_binding_rtb = func(rtb service.ResourceTypeBuild
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20147,7 +19009,6 @@ var Google_spanner_database_iam_binding_rtb = func(rtb service.ResourceTypeBuild
 		"project",
 
 		"role",
-
 	)
 }
 
@@ -20187,11 +19048,11 @@ func (h *Google_spanner_database_iam_bindingHandler) Update(externalID string, d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_database_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_database_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database_iam_binding{ Google_spanner_database_iam_binding_id: &externalID }
+	x := &Google_spanner_database_iam_binding{Google_spanner_database_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_database_iam_binding", "actual", spew.Sdump(x))
@@ -20210,7 +19071,7 @@ func (h *Google_spanner_database_iam_bindingHandler) Read(externalID string) (*G
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database_iam_binding{ Google_spanner_database_iam_binding_id: &id }
+	x := &Google_spanner_database_iam_binding{Google_spanner_database_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_database_iam_binding", "actual", spew.Sdump(x))
@@ -20229,21 +19090,19 @@ func (h *Google_spanner_database_iam_bindingHandler) Delete(externalID string) e
 }
 
 type Google_spanner_database_iam_member struct {
-
 	Google_spanner_database_iam_member_id *string `lyra:"ignore"`
 
-    Database string
+	Database string
 
-    Etag *string
+	Etag *string
 
-    Instance string
+	Instance string
 
-    Member string
+	Member string
 
-    Project *string
+	Project *string
 
-    Role string
-
+	Role string
 }
 
 var Google_spanner_database_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20253,7 +19112,6 @@ var Google_spanner_database_iam_member_rtb = func(rtb service.ResourceTypeBuilde
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20266,7 +19124,6 @@ var Google_spanner_database_iam_member_rtb = func(rtb service.ResourceTypeBuilde
 		"project",
 
 		"role",
-
 	)
 }
 
@@ -20306,11 +19163,11 @@ func (h *Google_spanner_database_iam_memberHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_database_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_database_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database_iam_member{ Google_spanner_database_iam_member_id: &externalID }
+	x := &Google_spanner_database_iam_member{Google_spanner_database_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_database_iam_member", "actual", spew.Sdump(x))
@@ -20329,7 +19186,7 @@ func (h *Google_spanner_database_iam_memberHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database_iam_member{ Google_spanner_database_iam_member_id: &id }
+	x := &Google_spanner_database_iam_member{Google_spanner_database_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_database_iam_member", "actual", spew.Sdump(x))
@@ -20348,19 +19205,17 @@ func (h *Google_spanner_database_iam_memberHandler) Delete(externalID string) er
 }
 
 type Google_spanner_database_iam_policy struct {
-
 	Google_spanner_database_iam_policy_id *string `lyra:"ignore"`
 
-    Database string
+	Database string
 
-    Etag *string
+	Etag *string
 
-    Instance string
+	Instance string
 
-    Policy_data string
+	Policy_data string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_spanner_database_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20370,7 +19225,6 @@ var Google_spanner_database_iam_policy_rtb = func(rtb service.ResourceTypeBuilde
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20379,7 +19233,6 @@ var Google_spanner_database_iam_policy_rtb = func(rtb service.ResourceTypeBuilde
 		"instance",
 
 		"project",
-
 	)
 }
 
@@ -20419,11 +19272,11 @@ func (h *Google_spanner_database_iam_policyHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_database_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_database_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database_iam_policy{ Google_spanner_database_iam_policy_id: &externalID }
+	x := &Google_spanner_database_iam_policy{Google_spanner_database_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_database_iam_policy", "actual", spew.Sdump(x))
@@ -20442,7 +19295,7 @@ func (h *Google_spanner_database_iam_policyHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_database_iam_policy{ Google_spanner_database_iam_policy_id: &id }
+	x := &Google_spanner_database_iam_policy{Google_spanner_database_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_database_iam_policy", "actual", spew.Sdump(x))
@@ -20461,23 +19314,21 @@ func (h *Google_spanner_database_iam_policyHandler) Delete(externalID string) er
 }
 
 type Google_spanner_instance struct {
-
 	Google_spanner_instance_id *string `lyra:"ignore"`
 
-    Config string
+	Config string
 
-    Display_name string
+	Display_name string
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Name *string
+	Name *string
 
-    Num_nodes *int
+	Num_nodes *int
 
-    Project *string
+	Project *string
 
-    State *string
-
+	State *string
 }
 
 var Google_spanner_instance_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20493,7 +19344,6 @@ var Google_spanner_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"state",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20502,7 +19352,6 @@ var Google_spanner_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -20542,11 +19391,11 @@ func (h *Google_spanner_instanceHandler) Update(externalID string, desired *Goog
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_instance", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_instance", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance{ Google_spanner_instance_id: &externalID }
+	x := &Google_spanner_instance{Google_spanner_instance_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_instance", "actual", spew.Sdump(x))
@@ -20565,7 +19414,7 @@ func (h *Google_spanner_instanceHandler) Read(externalID string) (*Google_spanne
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance{ Google_spanner_instance_id: &id }
+	x := &Google_spanner_instance{Google_spanner_instance_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_instance", "actual", spew.Sdump(x))
@@ -20584,19 +19433,17 @@ func (h *Google_spanner_instanceHandler) Delete(externalID string) error {
 }
 
 type Google_spanner_instance_iam_binding struct {
-
 	Google_spanner_instance_iam_binding_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Instance string
+	Instance string
 
-    Members []string
+	Members []string
 
-    Project *string
+	Project *string
 
-    Role string
-
+	Role string
 }
 
 var Google_spanner_instance_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20606,7 +19453,6 @@ var Google_spanner_instance_iam_binding_rtb = func(rtb service.ResourceTypeBuild
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20615,7 +19461,6 @@ var Google_spanner_instance_iam_binding_rtb = func(rtb service.ResourceTypeBuild
 		"project",
 
 		"role",
-
 	)
 }
 
@@ -20655,11 +19500,11 @@ func (h *Google_spanner_instance_iam_bindingHandler) Update(externalID string, d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_instance_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_instance_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance_iam_binding{ Google_spanner_instance_iam_binding_id: &externalID }
+	x := &Google_spanner_instance_iam_binding{Google_spanner_instance_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_instance_iam_binding", "actual", spew.Sdump(x))
@@ -20678,7 +19523,7 @@ func (h *Google_spanner_instance_iam_bindingHandler) Read(externalID string) (*G
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance_iam_binding{ Google_spanner_instance_iam_binding_id: &id }
+	x := &Google_spanner_instance_iam_binding{Google_spanner_instance_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_instance_iam_binding", "actual", spew.Sdump(x))
@@ -20697,19 +19542,17 @@ func (h *Google_spanner_instance_iam_bindingHandler) Delete(externalID string) e
 }
 
 type Google_spanner_instance_iam_member struct {
-
 	Google_spanner_instance_iam_member_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Instance string
+	Instance string
 
-    Member string
+	Member string
 
-    Project *string
+	Project *string
 
-    Role string
-
+	Role string
 }
 
 var Google_spanner_instance_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20719,7 +19562,6 @@ var Google_spanner_instance_iam_member_rtb = func(rtb service.ResourceTypeBuilde
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20730,7 +19572,6 @@ var Google_spanner_instance_iam_member_rtb = func(rtb service.ResourceTypeBuilde
 		"project",
 
 		"role",
-
 	)
 }
 
@@ -20770,11 +19611,11 @@ func (h *Google_spanner_instance_iam_memberHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_instance_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_instance_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance_iam_member{ Google_spanner_instance_iam_member_id: &externalID }
+	x := &Google_spanner_instance_iam_member{Google_spanner_instance_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_instance_iam_member", "actual", spew.Sdump(x))
@@ -20793,7 +19634,7 @@ func (h *Google_spanner_instance_iam_memberHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance_iam_member{ Google_spanner_instance_iam_member_id: &id }
+	x := &Google_spanner_instance_iam_member{Google_spanner_instance_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_instance_iam_member", "actual", spew.Sdump(x))
@@ -20812,17 +19653,15 @@ func (h *Google_spanner_instance_iam_memberHandler) Delete(externalID string) er
 }
 
 type Google_spanner_instance_iam_policy struct {
-
 	Google_spanner_instance_iam_policy_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Instance string
+	Instance string
 
-    Policy_data string
+	Policy_data string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_spanner_instance_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20832,14 +19671,12 @@ var Google_spanner_instance_iam_policy_rtb = func(rtb service.ResourceTypeBuilde
 		"etag",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"instance",
 
 		"project",
-
 	)
 }
 
@@ -20879,11 +19716,11 @@ func (h *Google_spanner_instance_iam_policyHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_spanner_instance_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_spanner_instance_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance_iam_policy{ Google_spanner_instance_iam_policy_id: &externalID }
+	x := &Google_spanner_instance_iam_policy{Google_spanner_instance_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_spanner_instance_iam_policy", "actual", spew.Sdump(x))
@@ -20902,7 +19739,7 @@ func (h *Google_spanner_instance_iam_policyHandler) Read(externalID string) (*Go
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_spanner_instance_iam_policy{ Google_spanner_instance_iam_policy_id: &id }
+	x := &Google_spanner_instance_iam_policy{Google_spanner_instance_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_spanner_instance_iam_policy", "actual", spew.Sdump(x))
@@ -20921,21 +19758,19 @@ func (h *Google_spanner_instance_iam_policyHandler) Delete(externalID string) er
 }
 
 type Google_sql_database struct {
-
 	Google_sql_database_id *string `lyra:"ignore"`
 
-    Charset *string
+	Charset *string
 
-    Collation *string
+	Collation *string
 
-    Instance string
+	Instance string
 
-    Name string
+	Name string
 
-    Project *string
+	Project *string
 
-    Self_link *string
-
+	Self_link *string
 }
 
 var Google_sql_database_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20949,7 +19784,6 @@ var Google_sql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20958,7 +19792,6 @@ var Google_sql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -20998,11 +19831,11 @@ func (h *Google_sql_databaseHandler) Update(externalID string, desired *Google_s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_sql_database", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_sql_database", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_database{ Google_sql_database_id: &externalID }
+	x := &Google_sql_database{Google_sql_database_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_sql_database", "actual", spew.Sdump(x))
@@ -21021,7 +19854,7 @@ func (h *Google_sql_databaseHandler) Read(externalID string) (*Google_sql_databa
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_database{ Google_sql_database_id: &id }
+	x := &Google_sql_database{Google_sql_database_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_sql_database", "actual", spew.Sdump(x))
@@ -21040,189 +19873,157 @@ func (h *Google_sql_databaseHandler) Delete(externalID string) error {
 }
 
 type Google_sql_database_instance_ip_address_203 struct {
+	Ip_address *string
 
-
-    Ip_address *string
-
-    Time_to_retire *string
-
+	Time_to_retire *string
 }
 
 type Google_sql_database_instance_replica_configuration_204 struct {
+	Ca_certificate *string
 
+	Client_certificate *string
 
-    Ca_certificate *string
+	Client_key *string
 
-    Client_certificate *string
+	Connect_retry_interval *int
 
-    Client_key *string
+	Dump_file_path *string
 
-    Connect_retry_interval *int
+	Failover_target *bool
 
-    Dump_file_path *string
+	Master_heartbeat_period *int
 
-    Failover_target *bool
+	Password *string
 
-    Master_heartbeat_period *int
+	Ssl_cipher *string
 
-    Password *string
+	Username *string
 
-    Ssl_cipher *string
-
-    Username *string
-
-    Verify_server_certificate *bool
-
+	Verify_server_certificate *bool
 }
 
 type Google_sql_database_instance_server_ca_cert_205 struct {
+	Cert *string
 
+	Common_name *string
 
-    Cert *string
+	Create_time *string
 
-    Common_name *string
+	Expiration_time *string
 
-    Create_time *string
-
-    Expiration_time *string
-
-    Sha1_fingerprint *string
-
+	Sha1_fingerprint *string
 }
 
 type Google_sql_database_instance_settings_206_backup_configuration_207 struct {
+	Binary_log_enabled *bool
 
+	Enabled *bool
 
-    Binary_log_enabled *bool
-
-    Enabled *bool
-
-    Start_time *string
-
+	Start_time *string
 }
 
 type Google_sql_database_instance_settings_206_database_flags_208 struct {
+	Name *string
 
-
-    Name *string
-
-    Value *string
-
+	Value *string
 }
 
 type Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210 struct {
+	Expiration_time *string
 
+	Name *string
 
-    Expiration_time *string
-
-    Name *string
-
-    Value *string
-
+	Value *string
 }
 
 type Google_sql_database_instance_settings_206_ip_configuration_209 struct {
+	Authorized_networks *[]Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210
 
+	Ipv4_enabled *bool
 
-    Authorized_networks *[]Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210
+	Private_network *string
 
-    Ipv4_enabled *bool
-
-    Private_network *string
-
-    Require_ssl *bool
-
+	Require_ssl *bool
 }
 
 type Google_sql_database_instance_settings_206_location_preference_211 struct {
+	Follow_gae_application *string
 
-
-    Follow_gae_application *string
-
-    Zone *string
-
+	Zone *string
 }
 
 type Google_sql_database_instance_settings_206_maintenance_window_212 struct {
+	Day *int
 
+	Hour *int
 
-    Day *int
-
-    Hour *int
-
-    Update_track *string
-
+	Update_track *string
 }
 
 type Google_sql_database_instance_settings_206 struct {
+	Activation_policy *string
 
+	Authorized_gae_applications *[]string
 
-    Activation_policy *string
+	Availability_type *string
 
-    Authorized_gae_applications *[]string
+	Backup_configuration *[]Google_sql_database_instance_settings_206_backup_configuration_207
 
-    Availability_type *string
+	Crash_safe_replication *bool
 
-    Backup_configuration *[]Google_sql_database_instance_settings_206_backup_configuration_207
+	Database_flags *[]Google_sql_database_instance_settings_206_database_flags_208
 
-    Crash_safe_replication *bool
+	Disk_autoresize *bool
 
-    Database_flags *[]Google_sql_database_instance_settings_206_database_flags_208
+	Disk_size *int
 
-    Disk_autoresize *bool
+	Disk_type *string
 
-    Disk_size *int
+	Ip_configuration *[]Google_sql_database_instance_settings_206_ip_configuration_209
 
-    Disk_type *string
+	Location_preference *[]Google_sql_database_instance_settings_206_location_preference_211
 
-    Ip_configuration *[]Google_sql_database_instance_settings_206_ip_configuration_209
+	Maintenance_window *[]Google_sql_database_instance_settings_206_maintenance_window_212
 
-    Location_preference *[]Google_sql_database_instance_settings_206_location_preference_211
+	Pricing_plan *string
 
-    Maintenance_window *[]Google_sql_database_instance_settings_206_maintenance_window_212
+	Replication_type *string
 
-    Pricing_plan *string
+	Tier string
 
-    Replication_type *string
+	User_labels *map[string]string
 
-    Tier string
-
-    User_labels *map[string]string
-
-    Version *int
-
+	Version *int
 }
 
 type Google_sql_database_instance struct {
-
 	Google_sql_database_instance_id *string `lyra:"ignore"`
 
-    Connection_name *string
+	Connection_name *string
 
-    Database_version *string
+	Database_version *string
 
-    First_ip_address *string
+	First_ip_address *string
 
-    Ip_address *[]Google_sql_database_instance_ip_address_203
+	Ip_address *[]Google_sql_database_instance_ip_address_203
 
-    Master_instance_name *string
+	Master_instance_name *string
 
-    Name *string
+	Name *string
 
-    Project *string
+	Project *string
 
-    Region *string
+	Region *string
 
-    Replica_configuration *[]Google_sql_database_instance_replica_configuration_204
+	Replica_configuration *[]Google_sql_database_instance_replica_configuration_204
 
-    Self_link *string
+	Self_link *string
 
-    Server_ca_cert *[]Google_sql_database_instance_server_ca_cert_205
+	Server_ca_cert *[]Google_sql_database_instance_server_ca_cert_205
 
-    Service_account_email_address *string
+	Service_account_email_address *string
 
-    Settings []Google_sql_database_instance_settings_206
-
+	Settings []Google_sql_database_instance_settings_206
 }
 
 var Google_sql_database_instance_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21252,7 +20053,6 @@ var Google_sql_database_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"server_ca_cert",
 
 		"service_account_email_address",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21265,7 +20065,6 @@ var Google_sql_database_instance_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"region",
-
 	)
 }
 
@@ -21305,11 +20104,11 @@ func (h *Google_sql_database_instanceHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_sql_database_instance", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_sql_database_instance", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_database_instance{ Google_sql_database_instance_id: &externalID }
+	x := &Google_sql_database_instance{Google_sql_database_instance_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_sql_database_instance", "actual", spew.Sdump(x))
@@ -21328,7 +20127,7 @@ func (h *Google_sql_database_instanceHandler) Read(externalID string) (*Google_s
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_database_instance{ Google_sql_database_instance_id: &id }
+	x := &Google_sql_database_instance{Google_sql_database_instance_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_sql_database_instance", "actual", spew.Sdump(x))
@@ -21347,27 +20146,25 @@ func (h *Google_sql_database_instanceHandler) Delete(externalID string) error {
 }
 
 type Google_sql_ssl_cert struct {
-
 	Google_sql_ssl_cert_id *string `lyra:"ignore"`
 
-    Cert *string
+	Cert *string
 
-    Cert_serial_number *string
+	Cert_serial_number *string
 
-    Common_name string
+	Common_name string
 
-    Create_time *string
+	Create_time *string
 
-    Expiration_time *string
+	Expiration_time *string
 
-    Instance string
+	Instance string
 
-    Private_key *string
+	Private_key *string
 
-    Server_ca_cert *string
+	Server_ca_cert *string
 
-    Sha1_fingerprint *string
-
+	Sha1_fingerprint *string
 }
 
 var Google_sql_ssl_cert_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21387,14 +20184,12 @@ var Google_sql_ssl_cert_rtb = func(rtb service.ResourceTypeBuilder) {
 		"server_ca_cert",
 
 		"sha1_fingerprint",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"common_name",
 
 		"instance",
-
 	)
 }
 
@@ -21434,11 +20229,11 @@ func (h *Google_sql_ssl_certHandler) Update(externalID string, desired *Google_s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_sql_ssl_cert", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_sql_ssl_cert", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_ssl_cert{ Google_sql_ssl_cert_id: &externalID }
+	x := &Google_sql_ssl_cert{Google_sql_ssl_cert_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_sql_ssl_cert", "actual", spew.Sdump(x))
@@ -21457,7 +20252,7 @@ func (h *Google_sql_ssl_certHandler) Read(externalID string) (*Google_sql_ssl_ce
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_ssl_cert{ Google_sql_ssl_cert_id: &id }
+	x := &Google_sql_ssl_cert{Google_sql_ssl_cert_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_sql_ssl_cert", "actual", spew.Sdump(x))
@@ -21476,19 +20271,17 @@ func (h *Google_sql_ssl_certHandler) Delete(externalID string) error {
 }
 
 type Google_sql_user struct {
-
 	Google_sql_user_id *string `lyra:"ignore"`
 
-    Host *string
+	Host *string
 
-    Instance string
+	Instance string
 
-    Name string
+	Name string
 
-    Password *string
+	Password *string
 
-    Project *string
-
+	Project *string
 }
 
 var Google_sql_user_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21500,7 +20293,6 @@ var Google_sql_user_rtb = func(rtb service.ResourceTypeBuilder) {
 		"password",
 
 		"project",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21511,7 +20303,6 @@ var Google_sql_user_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"project",
-
 	)
 }
 
@@ -21551,11 +20342,11 @@ func (h *Google_sql_userHandler) Update(externalID string, desired *Google_sql_u
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_sql_user", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_sql_user", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_user{ Google_sql_user_id: &externalID }
+	x := &Google_sql_user{Google_sql_user_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_sql_user", "actual", spew.Sdump(x))
@@ -21574,7 +20365,7 @@ func (h *Google_sql_userHandler) Read(externalID string) (*Google_sql_user, erro
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_sql_user{ Google_sql_user_id: &id }
+	x := &Google_sql_user{Google_sql_user_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_sql_user", "actual", spew.Sdump(x))
@@ -21593,117 +20384,91 @@ func (h *Google_sql_userHandler) Delete(externalID string) error {
 }
 
 type Google_storage_bucket_cors_213 struct {
+	Max_age_seconds *int
 
+	Method *[]string
 
-    Max_age_seconds *int
+	Origin *[]string
 
-    Method *[]string
-
-    Origin *[]string
-
-    Response_header *[]string
-
+	Response_header *[]string
 }
 
 type Google_storage_bucket_encryption_214 struct {
-
-
-    Default_kms_key_name string
-
+	Default_kms_key_name string
 }
 
 type Google_storage_bucket_lifecycle_rule_215_action_216 struct {
+	Storage_class *string
 
-
-    Storage_class *string
-
-    Type string
-
+	Type string
 }
 
 type Google_storage_bucket_lifecycle_rule_215_condition_217 struct {
+	Age *int
 
+	Created_before *string
 
-    Age *int
+	Is_live *bool
 
-    Created_before *string
+	Matches_storage_class *[]string
 
-    Is_live *bool
-
-    Matches_storage_class *[]string
-
-    Num_newer_versions *int
-
+	Num_newer_versions *int
 }
 
 type Google_storage_bucket_lifecycle_rule_215 struct {
+	Action []Google_storage_bucket_lifecycle_rule_215_action_216
 
-
-    Action []Google_storage_bucket_lifecycle_rule_215_action_216
-
-    Condition []Google_storage_bucket_lifecycle_rule_215_condition_217
-
+	Condition []Google_storage_bucket_lifecycle_rule_215_condition_217
 }
 
 type Google_storage_bucket_logging_218 struct {
+	Log_bucket string
 
-
-    Log_bucket string
-
-    Log_object_prefix *string
-
+	Log_object_prefix *string
 }
 
 type Google_storage_bucket_versioning_219 struct {
-
-
-    Enabled *bool
-
+	Enabled *bool
 }
 
 type Google_storage_bucket_website_220 struct {
+	Main_page_suffix *string
 
-
-    Main_page_suffix *string
-
-    Not_found_page *string
-
+	Not_found_page *string
 }
 
 type Google_storage_bucket struct {
-
 	Google_storage_bucket_id *string `lyra:"ignore"`
 
-    Cors *[]Google_storage_bucket_cors_213
+	Cors *[]Google_storage_bucket_cors_213
 
-    Encryption *[]Google_storage_bucket_encryption_214
+	Encryption *[]Google_storage_bucket_encryption_214
 
-    Force_destroy *bool
+	Force_destroy *bool
 
-    Labels *map[string]string
+	Labels *map[string]string
 
-    Lifecycle_rule *[]Google_storage_bucket_lifecycle_rule_215
+	Lifecycle_rule *[]Google_storage_bucket_lifecycle_rule_215
 
-    Location *string
+	Location *string
 
-    Logging *[]Google_storage_bucket_logging_218
+	Logging *[]Google_storage_bucket_logging_218
 
-    Name string
+	Name string
 
-    Predefined_acl *string
+	Predefined_acl *string
 
-    Project *string
+	Project *string
 
-    Self_link *string
+	Self_link *string
 
-    Storage_class *string
+	Storage_class *string
 
-    Url *string
+	Url *string
 
-    Versioning *[]Google_storage_bucket_versioning_219
+	Versioning *[]Google_storage_bucket_versioning_219
 
-    Website *[]Google_storage_bucket_website_220
-
+	Website *[]Google_storage_bucket_website_220
 }
 
 var Google_storage_bucket_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21737,7 +20502,6 @@ var Google_storage_bucket_rtb = func(rtb service.ResourceTypeBuilder) {
 		"versioning",
 
 		"website",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21750,7 +20514,6 @@ var Google_storage_bucket_rtb = func(rtb service.ResourceTypeBuilder) {
 		"project",
 
 		"storage_class",
-
 	)
 }
 
@@ -21790,11 +20553,11 @@ func (h *Google_storage_bucketHandler) Update(externalID string, desired *Google
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_bucket", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_bucket", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket{ Google_storage_bucket_id: &externalID }
+	x := &Google_storage_bucket{Google_storage_bucket_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_bucket", "actual", spew.Sdump(x))
@@ -21813,7 +20576,7 @@ func (h *Google_storage_bucketHandler) Read(externalID string) (*Google_storage_
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket{ Google_storage_bucket_id: &id }
+	x := &Google_storage_bucket{Google_storage_bucket_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_bucket", "actual", spew.Sdump(x))
@@ -21832,17 +20595,15 @@ func (h *Google_storage_bucketHandler) Delete(externalID string) error {
 }
 
 type Google_storage_bucket_acl struct {
-
 	Google_storage_bucket_acl_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Default_acl *string
+	Default_acl *string
 
-    Predefined_acl *string
+	Predefined_acl *string
 
-    Role_entity *[]string
-
+	Role_entity *[]string
 }
 
 var Google_storage_bucket_acl_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21854,14 +20615,12 @@ var Google_storage_bucket_acl_rtb = func(rtb service.ResourceTypeBuilder) {
 		"predefined_acl",
 
 		"role_entity",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"bucket",
 
 		"predefined_acl",
-
 	)
 }
 
@@ -21901,11 +20660,11 @@ func (h *Google_storage_bucket_aclHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_bucket_acl", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_bucket_acl", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_acl{ Google_storage_bucket_acl_id: &externalID }
+	x := &Google_storage_bucket_acl{Google_storage_bucket_acl_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_bucket_acl", "actual", spew.Sdump(x))
@@ -21924,7 +20683,7 @@ func (h *Google_storage_bucket_aclHandler) Read(externalID string) (*Google_stor
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_acl{ Google_storage_bucket_acl_id: &id }
+	x := &Google_storage_bucket_acl{Google_storage_bucket_acl_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_bucket_acl", "actual", spew.Sdump(x))
@@ -21943,17 +20702,15 @@ func (h *Google_storage_bucket_aclHandler) Delete(externalID string) error {
 }
 
 type Google_storage_bucket_iam_binding struct {
-
 	Google_storage_bucket_iam_binding_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Etag *string
+	Etag *string
 
-    Members []string
+	Members []string
 
-    Role string
-
+	Role string
 }
 
 var Google_storage_bucket_iam_binding_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21961,14 +20718,12 @@ var Google_storage_bucket_iam_binding_rtb = func(rtb service.ResourceTypeBuilder
 		"google_storage_bucket_iam_binding_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"bucket",
 
 		"role",
-
 	)
 }
 
@@ -22008,11 +20763,11 @@ func (h *Google_storage_bucket_iam_bindingHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_bucket_iam_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_bucket_iam_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_iam_binding{ Google_storage_bucket_iam_binding_id: &externalID }
+	x := &Google_storage_bucket_iam_binding{Google_storage_bucket_iam_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_bucket_iam_binding", "actual", spew.Sdump(x))
@@ -22031,7 +20786,7 @@ func (h *Google_storage_bucket_iam_bindingHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_iam_binding{ Google_storage_bucket_iam_binding_id: &id }
+	x := &Google_storage_bucket_iam_binding{Google_storage_bucket_iam_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_bucket_iam_binding", "actual", spew.Sdump(x))
@@ -22050,17 +20805,15 @@ func (h *Google_storage_bucket_iam_bindingHandler) Delete(externalID string) err
 }
 
 type Google_storage_bucket_iam_member struct {
-
 	Google_storage_bucket_iam_member_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Etag *string
+	Etag *string
 
-    Member string
+	Member string
 
-    Role string
-
+	Role string
 }
 
 var Google_storage_bucket_iam_member_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22068,7 +20821,6 @@ var Google_storage_bucket_iam_member_rtb = func(rtb service.ResourceTypeBuilder)
 		"google_storage_bucket_iam_member_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22077,7 +20829,6 @@ var Google_storage_bucket_iam_member_rtb = func(rtb service.ResourceTypeBuilder)
 		"member",
 
 		"role",
-
 	)
 }
 
@@ -22117,11 +20868,11 @@ func (h *Google_storage_bucket_iam_memberHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_bucket_iam_member", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_bucket_iam_member", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_iam_member{ Google_storage_bucket_iam_member_id: &externalID }
+	x := &Google_storage_bucket_iam_member{Google_storage_bucket_iam_member_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_bucket_iam_member", "actual", spew.Sdump(x))
@@ -22140,7 +20891,7 @@ func (h *Google_storage_bucket_iam_memberHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_iam_member{ Google_storage_bucket_iam_member_id: &id }
+	x := &Google_storage_bucket_iam_member{Google_storage_bucket_iam_member_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_bucket_iam_member", "actual", spew.Sdump(x))
@@ -22159,15 +20910,13 @@ func (h *Google_storage_bucket_iam_memberHandler) Delete(externalID string) erro
 }
 
 type Google_storage_bucket_iam_policy struct {
-
 	Google_storage_bucket_iam_policy_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Etag *string
+	Etag *string
 
-    Policy_data string
-
+	Policy_data string
 }
 
 var Google_storage_bucket_iam_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22175,12 +20924,10 @@ var Google_storage_bucket_iam_policy_rtb = func(rtb service.ResourceTypeBuilder)
 		"google_storage_bucket_iam_policy_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"bucket",
-
 	)
 }
 
@@ -22220,11 +20967,11 @@ func (h *Google_storage_bucket_iam_policyHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_bucket_iam_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_bucket_iam_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_iam_policy{ Google_storage_bucket_iam_policy_id: &externalID }
+	x := &Google_storage_bucket_iam_policy{Google_storage_bucket_iam_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_bucket_iam_policy", "actual", spew.Sdump(x))
@@ -22243,7 +20990,7 @@ func (h *Google_storage_bucket_iam_policyHandler) Read(externalID string) (*Goog
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_iam_policy{ Google_storage_bucket_iam_policy_id: &id }
+	x := &Google_storage_bucket_iam_policy{Google_storage_bucket_iam_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_bucket_iam_policy", "actual", spew.Sdump(x))
@@ -22262,37 +21009,35 @@ func (h *Google_storage_bucket_iam_policyHandler) Delete(externalID string) erro
 }
 
 type Google_storage_bucket_object struct {
-
 	Google_storage_bucket_object_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Cache_control *string
+	Cache_control *string
 
-    Content *string
+	Content *string
 
-    Content_disposition *string
+	Content_disposition *string
 
-    Content_encoding *string
+	Content_encoding *string
 
-    Content_language *string
+	Content_language *string
 
-    Content_type *string
+	Content_type *string
 
-    Crc32c *string
+	Crc32c *string
 
-    Detect_md5hash *string
+	Detect_md5hash *string
 
-    Md5hash *string
+	Md5hash *string
 
-    Name string
+	Name string
 
-    Predefined_acl *string
+	Predefined_acl *string
 
-    Source *string
+	Source *string
 
-    Storage_class *string
-
+	Storage_class *string
 }
 
 var Google_storage_bucket_object_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22322,7 +21067,6 @@ var Google_storage_bucket_object_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source",
 
 		"storage_class",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22349,7 +21093,6 @@ var Google_storage_bucket_object_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source",
 
 		"storage_class",
-
 	)
 }
 
@@ -22389,11 +21132,11 @@ func (h *Google_storage_bucket_objectHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_bucket_object", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_bucket_object", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_object{ Google_storage_bucket_object_id: &externalID }
+	x := &Google_storage_bucket_object{Google_storage_bucket_object_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_bucket_object", "actual", spew.Sdump(x))
@@ -22412,7 +21155,7 @@ func (h *Google_storage_bucket_objectHandler) Read(externalID string) (*Google_s
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_bucket_object{ Google_storage_bucket_object_id: &id }
+	x := &Google_storage_bucket_object{Google_storage_bucket_object_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_bucket_object", "actual", spew.Sdump(x))
@@ -22431,36 +21174,31 @@ func (h *Google_storage_bucket_objectHandler) Delete(externalID string) error {
 }
 
 type Google_storage_default_object_access_control_project_team_221 struct {
+	Project_number *string
 
-
-    Project_number *string
-
-    Team *string
-
+	Team *string
 }
 
 type Google_storage_default_object_access_control struct {
-
 	Google_storage_default_object_access_control_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Domain *string
+	Domain *string
 
-    Email *string
+	Email *string
 
-    Entity string
+	Entity string
 
-    Entity_id *string
+	Entity_id *string
 
-    Generation *int
+	Generation *int
 
-    Object *string
+	Object *string
 
-    Project_team *[]Google_storage_default_object_access_control_project_team_221
+	Project_team *[]Google_storage_default_object_access_control_project_team_221
 
-    Role string
-
+	Role string
 }
 
 var Google_storage_default_object_access_control_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22478,11 +21216,8 @@ var Google_storage_default_object_access_control_rtb = func(rtb service.Resource
 		"object",
 
 		"project_team",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Google_storage_default_object_access_controlHandler ...
@@ -22521,11 +21256,11 @@ func (h *Google_storage_default_object_access_controlHandler) Update(externalID 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_default_object_access_control", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_default_object_access_control", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_default_object_access_control{ Google_storage_default_object_access_control_id: &externalID }
+	x := &Google_storage_default_object_access_control{Google_storage_default_object_access_control_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_default_object_access_control", "actual", spew.Sdump(x))
@@ -22544,7 +21279,7 @@ func (h *Google_storage_default_object_access_controlHandler) Read(externalID st
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_default_object_access_control{ Google_storage_default_object_access_control_id: &id }
+	x := &Google_storage_default_object_access_control{Google_storage_default_object_access_control_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_default_object_access_control", "actual", spew.Sdump(x))
@@ -22563,13 +21298,11 @@ func (h *Google_storage_default_object_access_controlHandler) Delete(externalID 
 }
 
 type Google_storage_default_object_acl struct {
-
 	Google_storage_default_object_acl_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Role_entity *[]string
-
+	Role_entity *[]string
 }
 
 var Google_storage_default_object_acl_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22577,12 +21310,10 @@ var Google_storage_default_object_acl_rtb = func(rtb service.ResourceTypeBuilder
 		"google_storage_default_object_acl_id",
 
 		"role_entity",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"bucket",
-
 	)
 }
 
@@ -22622,11 +21353,11 @@ func (h *Google_storage_default_object_aclHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_default_object_acl", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_default_object_acl", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_default_object_acl{ Google_storage_default_object_acl_id: &externalID }
+	x := &Google_storage_default_object_acl{Google_storage_default_object_acl_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_default_object_acl", "actual", spew.Sdump(x))
@@ -22645,7 +21376,7 @@ func (h *Google_storage_default_object_aclHandler) Read(externalID string) (*Goo
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_default_object_acl{ Google_storage_default_object_acl_id: &id }
+	x := &Google_storage_default_object_acl{Google_storage_default_object_acl_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_default_object_acl", "actual", spew.Sdump(x))
@@ -22664,23 +21395,21 @@ func (h *Google_storage_default_object_aclHandler) Delete(externalID string) err
 }
 
 type Google_storage_notification struct {
-
 	Google_storage_notification_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Custom_attributes *map[string]string
+	Custom_attributes *map[string]string
 
-    Event_types *[]string
+	Event_types *[]string
 
-    Object_name_prefix *string
+	Object_name_prefix *string
 
-    Payload_format string
+	Payload_format string
 
-    Self_link *string
+	Self_link *string
 
-    Topic string
-
+	Topic string
 }
 
 var Google_storage_notification_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22694,7 +21423,6 @@ var Google_storage_notification_rtb = func(rtb service.ResourceTypeBuilder) {
 		"object_name_prefix",
 
 		"self_link",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22709,7 +21437,6 @@ var Google_storage_notification_rtb = func(rtb service.ResourceTypeBuilder) {
 		"payload_format",
 
 		"topic",
-
 	)
 }
 
@@ -22749,11 +21476,11 @@ func (h *Google_storage_notificationHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_notification", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_notification", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_notification{ Google_storage_notification_id: &externalID }
+	x := &Google_storage_notification{Google_storage_notification_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_notification", "actual", spew.Sdump(x))
@@ -22772,7 +21499,7 @@ func (h *Google_storage_notificationHandler) Read(externalID string) (*Google_st
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_notification{ Google_storage_notification_id: &id }
+	x := &Google_storage_notification{Google_storage_notification_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_notification", "actual", spew.Sdump(x))
@@ -22791,36 +21518,31 @@ func (h *Google_storage_notificationHandler) Delete(externalID string) error {
 }
 
 type Google_storage_object_access_control_project_team_222 struct {
+	Project_number *string
 
-
-    Project_number *string
-
-    Team *string
-
+	Team *string
 }
 
 type Google_storage_object_access_control struct {
-
 	Google_storage_object_access_control_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Domain *string
+	Domain *string
 
-    Email *string
+	Email *string
 
-    Entity string
+	Entity string
 
-    Entity_id *string
+	Entity_id *string
 
-    Generation *int
+	Generation *int
 
-    Object string
+	Object string
 
-    Project_team *[]Google_storage_object_access_control_project_team_222
+	Project_team *[]Google_storage_object_access_control_project_team_222
 
-    Role string
-
+	Role string
 }
 
 var Google_storage_object_access_control_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22836,11 +21558,8 @@ var Google_storage_object_access_control_rtb = func(rtb service.ResourceTypeBuil
 		"generation",
 
 		"project_team",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Google_storage_object_access_controlHandler ...
@@ -22879,11 +21598,11 @@ func (h *Google_storage_object_access_controlHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_object_access_control", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_object_access_control", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_object_access_control{ Google_storage_object_access_control_id: &externalID }
+	x := &Google_storage_object_access_control{Google_storage_object_access_control_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_object_access_control", "actual", spew.Sdump(x))
@@ -22902,7 +21621,7 @@ func (h *Google_storage_object_access_controlHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_object_access_control{ Google_storage_object_access_control_id: &id }
+	x := &Google_storage_object_access_control{Google_storage_object_access_control_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_object_access_control", "actual", spew.Sdump(x))
@@ -22921,17 +21640,15 @@ func (h *Google_storage_object_access_controlHandler) Delete(externalID string) 
 }
 
 type Google_storage_object_acl struct {
-
 	Google_storage_object_acl_id *string `lyra:"ignore"`
 
-    Bucket string
+	Bucket string
 
-    Object string
+	Object string
 
-    Predefined_acl *string
+	Predefined_acl *string
 
-    Role_entity *[]string
-
+	Role_entity *[]string
 }
 
 var Google_storage_object_acl_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22941,7 +21658,6 @@ var Google_storage_object_acl_rtb = func(rtb service.ResourceTypeBuilder) {
 		"predefined_acl",
 
 		"role_entity",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22950,7 +21666,6 @@ var Google_storage_object_acl_rtb = func(rtb service.ResourceTypeBuilder) {
 		"object",
 
 		"predefined_acl",
-
 	)
 }
 
@@ -22990,11 +21705,11 @@ func (h *Google_storage_object_aclHandler) Update(externalID string, desired *Go
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "google_storage_object_acl", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "google_storage_object_acl", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_object_acl{ Google_storage_object_acl_id: &externalID }
+	x := &Google_storage_object_acl{Google_storage_object_acl_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Google_storage_object_acl", "actual", spew.Sdump(x))
@@ -23013,7 +21728,7 @@ func (h *Google_storage_object_aclHandler) Read(externalID string) (*Google_stor
 	if err != nil {
 		return nil, err
 	}
-	x := &Google_storage_object_acl{ Google_storage_object_acl_id: &id }
+	x := &Google_storage_object_acl{Google_storage_object_acl_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Google_storage_object_acl", "actual", spew.Sdump(x))

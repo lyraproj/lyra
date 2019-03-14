@@ -3,6 +3,7 @@ package bridge
 import (
 	"bytes"
 	"fmt"
+	"go/format"
 	"os"
 	"path/filepath"
 	"sort"
@@ -341,6 +342,17 @@ func generateResource(nativeType string, r *schema.Resource) {
 	code = append(code, buf.String())
 }
 
+// formatCode reformats the code as `go fmt` would
+func formatCode() {
+	for k, v := range code {
+		b, err := format.Source([]byte(v))
+		if err != nil {
+			panic(fmt.Sprintf("Unexpected rror running format.Source on %v", v))
+		}
+		code[k] = string(b)
+	}
+}
+
 func writeSourceFile(filename string) {
 	mkdirs(filename)
 	f, err := os.Create(filename)
@@ -377,6 +389,8 @@ func Generate(p *schema.Provider, ns, filename string) {
 		generateResource(nativeType, r)
 	}
 	generatePrefix()
+
+	formatCode()
 
 	// Write source
 	writeSourceFile(filename)

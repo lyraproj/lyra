@@ -598,183 +598,151 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 }
 
 type Azurerm_api_management_additional_location_1 struct {
+	Gateway_regional_url *string
 
+	Location string
 
-    Gateway_regional_url *string
-
-    Location string
-
-    Public_ip_addresses *[]string
-
+	Public_ip_addresses *[]string
 }
 
 type Azurerm_api_management_certificate_2 struct {
+	Certificate_password string
 
+	Encoded_certificate string
 
-    Certificate_password string
-
-    Encoded_certificate string
-
-    Store_name string
-
+	Store_name string
 }
 
 type Azurerm_api_management_hostname_configuration_3_management_4 struct {
+	Certificate *string
 
+	Certificate_password *string
 
-    Certificate *string
+	Host_name string
 
-    Certificate_password *string
+	Key_vault_id *string
 
-    Host_name string
-
-    Key_vault_id *string
-
-    Negotiate_client_certificate *bool
-
+	Negotiate_client_certificate *bool
 }
 
 type Azurerm_api_management_hostname_configuration_3_portal_5 struct {
+	Certificate *string
 
+	Certificate_password *string
 
-    Certificate *string
+	Host_name string
 
-    Certificate_password *string
+	Key_vault_id *string
 
-    Host_name string
-
-    Key_vault_id *string
-
-    Negotiate_client_certificate *bool
-
+	Negotiate_client_certificate *bool
 }
 
 type Azurerm_api_management_hostname_configuration_3_proxy_6 struct {
+	Certificate *string
 
+	Certificate_password *string
 
-    Certificate *string
+	Default_ssl_binding *bool
 
-    Certificate_password *string
+	Host_name string
 
-    Default_ssl_binding *bool
+	Key_vault_id *string
 
-    Host_name string
-
-    Key_vault_id *string
-
-    Negotiate_client_certificate *bool
-
+	Negotiate_client_certificate *bool
 }
 
 type Azurerm_api_management_hostname_configuration_3_scm_7 struct {
+	Certificate *string
 
+	Certificate_password *string
 
-    Certificate *string
+	Host_name string
 
-    Certificate_password *string
+	Key_vault_id *string
 
-    Host_name string
-
-    Key_vault_id *string
-
-    Negotiate_client_certificate *bool
-
+	Negotiate_client_certificate *bool
 }
 
 type Azurerm_api_management_hostname_configuration_3 struct {
+	Management *[]Azurerm_api_management_hostname_configuration_3_management_4
 
+	Portal *[]Azurerm_api_management_hostname_configuration_3_portal_5
 
-    Management *[]Azurerm_api_management_hostname_configuration_3_management_4
+	Proxy *[]Azurerm_api_management_hostname_configuration_3_proxy_6
 
-    Portal *[]Azurerm_api_management_hostname_configuration_3_portal_5
-
-    Proxy *[]Azurerm_api_management_hostname_configuration_3_proxy_6
-
-    Scm *[]Azurerm_api_management_hostname_configuration_3_scm_7
-
+	Scm *[]Azurerm_api_management_hostname_configuration_3_scm_7
 }
 
 type Azurerm_api_management_identity_8 struct {
+	Principal_id *string
 
+	Tenant_id *string
 
-    Principal_id *string
-
-    Tenant_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_api_management_security_9 struct {
+	Disable_backend_ssl30 *bool
 
+	Disable_backend_tls10 *bool
 
-    Disable_backend_ssl30 *bool
+	Disable_backend_tls11 *bool
 
-    Disable_backend_tls10 *bool
+	Disable_frontend_ssl30 *bool
 
-    Disable_backend_tls11 *bool
+	Disable_frontend_tls10 *bool
 
-    Disable_frontend_ssl30 *bool
+	Disable_frontend_tls11 *bool
 
-    Disable_frontend_tls10 *bool
-
-    Disable_frontend_tls11 *bool
-
-    Disable_triple_des_chipers *bool
-
+	Disable_triple_des_chipers *bool
 }
 
 type Azurerm_api_management_sku_10 struct {
+	Capacity int
 
-
-    Capacity int
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_api_management struct {
-
 	Azurerm_api_management_id *string `lyra:"ignore"`
 
-    Additional_location *[]Azurerm_api_management_additional_location_1
+	Additional_location *[]Azurerm_api_management_additional_location_1
 
-    Certificate *[]Azurerm_api_management_certificate_2
+	Certificate *[]Azurerm_api_management_certificate_2
 
-    Gateway_regional_url *string
+	Gateway_regional_url *string
 
-    Gateway_url *string
+	Gateway_url *string
 
-    Hostname_configuration *[]Azurerm_api_management_hostname_configuration_3
+	Hostname_configuration *[]Azurerm_api_management_hostname_configuration_3
 
-    Identity *[]Azurerm_api_management_identity_8
+	Identity *[]Azurerm_api_management_identity_8
 
-    Location string
+	Location string
 
-    Management_api_url *string
+	Management_api_url *string
 
-    Name string
+	Name string
 
-    Notification_sender_email *string
+	Notification_sender_email *string
 
-    Portal_url *string
+	Portal_url *string
 
-    Public_ip_addresses *[]string
+	Public_ip_addresses *[]string
 
-    Publisher_email string
+	Publisher_email string
 
-    Publisher_name string
+	Publisher_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Scm_url *string
+	Scm_url *string
 
-    Security *[]Azurerm_api_management_security_9
+	Security *[]Azurerm_api_management_security_9
 
-    Sku []Azurerm_api_management_sku_10
+	Sku []Azurerm_api_management_sku_10
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_api_management_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -806,7 +774,6 @@ var Azurerm_api_management_rtb = func(rtb service.ResourceTypeBuilder) {
 		"security",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -815,7 +782,6 @@ var Azurerm_api_management_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -855,11 +821,11 @@ func (h *Azurerm_api_managementHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_api_management", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_api_management", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_api_management{ Azurerm_api_management_id: &externalID }
+	x := &Azurerm_api_management{Azurerm_api_management_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_api_management", "actual", spew.Sdump(x))
@@ -878,7 +844,7 @@ func (h *Azurerm_api_managementHandler) Read(externalID string) (*Azurerm_api_ma
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_api_management{ Azurerm_api_management_id: &id }
+	x := &Azurerm_api_management{Azurerm_api_management_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_api_management", "actual", spew.Sdump(x))
@@ -897,141 +863,121 @@ func (h *Azurerm_api_managementHandler) Delete(externalID string) error {
 }
 
 type Azurerm_app_service_connection_string_11 struct {
+	Name string
 
+	Type string
 
-    Name string
-
-    Type string
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_app_service_identity_12 struct {
+	Principal_id *string
 
+	Tenant_id *string
 
-    Principal_id *string
-
-    Tenant_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_app_service_site_config_13_ip_restriction_14 struct {
+	Ip_address string
 
-
-    Ip_address string
-
-    Subnet_mask *string
-
+	Subnet_mask *string
 }
 
 type Azurerm_app_service_site_config_13 struct {
+	Always_on *bool
 
+	App_command_line *string
 
-    Always_on *bool
+	Default_documents *[]string
 
-    App_command_line *string
+	Dotnet_framework_version *string
 
-    Default_documents *[]string
+	Ftps_state *string
 
-    Dotnet_framework_version *string
+	Http2_enabled *bool
 
-    Ftps_state *string
+	Ip_restriction *[]Azurerm_app_service_site_config_13_ip_restriction_14
 
-    Http2_enabled *bool
+	Java_container *string
 
-    Ip_restriction *[]Azurerm_app_service_site_config_13_ip_restriction_14
+	Java_container_version *string
 
-    Java_container *string
+	Java_version *string
 
-    Java_container_version *string
+	Linux_fx_version *string
 
-    Java_version *string
+	Local_mysql_enabled *bool
 
-    Linux_fx_version *string
+	Managed_pipeline_mode *string
 
-    Local_mysql_enabled *bool
+	Min_tls_version *string
 
-    Managed_pipeline_mode *string
+	Php_version *string
 
-    Min_tls_version *string
+	Python_version *string
 
-    Php_version *string
+	Remote_debugging_enabled *bool
 
-    Python_version *string
+	Remote_debugging_version *string
 
-    Remote_debugging_enabled *bool
+	Scm_type *string
 
-    Remote_debugging_version *string
+	Use_32_bit_worker_process *bool
 
-    Scm_type *string
+	Virtual_network_name *string
 
-    Use_32_bit_worker_process *bool
-
-    Virtual_network_name *string
-
-    Websockets_enabled *bool
-
+	Websockets_enabled *bool
 }
 
 type Azurerm_app_service_site_credential_15 struct {
+	Password *string
 
-
-    Password *string
-
-    Username *string
-
+	Username *string
 }
 
 type Azurerm_app_service_source_control_16 struct {
+	Branch *string
 
-
-    Branch *string
-
-    Repo_url *string
-
+	Repo_url *string
 }
 
 type Azurerm_app_service struct {
-
 	Azurerm_app_service_id *string `lyra:"ignore"`
 
-    App_service_plan_id string
+	App_service_plan_id string
 
-    App_settings *map[string]string
+	App_settings *map[string]string
 
-    Client_affinity_enabled *bool
+	Client_affinity_enabled *bool
 
-    Connection_string *[]Azurerm_app_service_connection_string_11
+	Connection_string *[]Azurerm_app_service_connection_string_11
 
-    Default_site_hostname *string
+	Default_site_hostname *string
 
-    Enabled *bool
+	Enabled *bool
 
-    Https_only *bool
+	Https_only *bool
 
-    Identity *[]Azurerm_app_service_identity_12
+	Identity *[]Azurerm_app_service_identity_12
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Outbound_ip_addresses *string
+	Outbound_ip_addresses *string
 
-    Possible_outbound_ip_addresses *string
+	Possible_outbound_ip_addresses *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Site_config *[]Azurerm_app_service_site_config_13
+	Site_config *[]Azurerm_app_service_site_config_13
 
-    Site_credential *[]Azurerm_app_service_site_credential_15
+	Site_credential *[]Azurerm_app_service_site_credential_15
 
-    Source_control *[]Azurerm_app_service_source_control_16
+	Source_control *[]Azurerm_app_service_source_control_16
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_app_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1063,7 +1009,6 @@ var Azurerm_app_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_control",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1074,7 +1019,6 @@ var Azurerm_app_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -1114,11 +1058,11 @@ func (h *Azurerm_app_serviceHandler) Update(externalID string, desired *Azurerm_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_app_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_app_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service{ Azurerm_app_service_id: &externalID }
+	x := &Azurerm_app_service{Azurerm_app_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_app_service", "actual", spew.Sdump(x))
@@ -1137,7 +1081,7 @@ func (h *Azurerm_app_serviceHandler) Read(externalID string) (*Azurerm_app_servi
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service{ Azurerm_app_service_id: &id }
+	x := &Azurerm_app_service{Azurerm_app_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_app_service", "actual", spew.Sdump(x))
@@ -1156,28 +1100,24 @@ func (h *Azurerm_app_serviceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_app_service_active_slot struct {
-
 	Azurerm_app_service_active_slot_id *string `lyra:"ignore"`
 
-    App_service_name string
+	App_service_name string
 
-    App_service_slot_name string
+	App_service_slot_name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_app_service_active_slot_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_app_service_active_slot_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"app_service_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -1217,11 +1157,11 @@ func (h *Azurerm_app_service_active_slotHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_app_service_active_slot", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_app_service_active_slot", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_active_slot{ Azurerm_app_service_active_slot_id: &externalID }
+	x := &Azurerm_app_service_active_slot{Azurerm_app_service_active_slot_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_app_service_active_slot", "actual", spew.Sdump(x))
@@ -1240,7 +1180,7 @@ func (h *Azurerm_app_service_active_slotHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_active_slot{ Azurerm_app_service_active_slot_id: &id }
+	x := &Azurerm_app_service_active_slot{Azurerm_app_service_active_slot_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_app_service_active_slot", "actual", spew.Sdump(x))
@@ -1259,21 +1199,18 @@ func (h *Azurerm_app_service_active_slotHandler) Delete(externalID string) error
 }
 
 type Azurerm_app_service_custom_hostname_binding struct {
-
 	Azurerm_app_service_custom_hostname_binding_id *string `lyra:"ignore"`
 
-    App_service_name string
+	App_service_name string
 
-    Hostname string
+	Hostname string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_app_service_custom_hostname_binding_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_app_service_custom_hostname_binding_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1282,7 +1219,6 @@ var Azurerm_app_service_custom_hostname_binding_rtb = func(rtb service.ResourceT
 		"hostname",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -1322,11 +1258,11 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Update(externalID s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_app_service_custom_hostname_binding", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_app_service_custom_hostname_binding", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_custom_hostname_binding{ Azurerm_app_service_custom_hostname_binding_id: &externalID }
+	x := &Azurerm_app_service_custom_hostname_binding{Azurerm_app_service_custom_hostname_binding_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_app_service_custom_hostname_binding", "actual", spew.Sdump(x))
@@ -1345,7 +1281,7 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Read(externalID str
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_custom_hostname_binding{ Azurerm_app_service_custom_hostname_binding_id: &id }
+	x := &Azurerm_app_service_custom_hostname_binding{Azurerm_app_service_custom_hostname_binding_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_app_service_custom_hostname_binding", "actual", spew.Sdump(x))
@@ -1364,53 +1300,45 @@ func (h *Azurerm_app_service_custom_hostname_bindingHandler) Delete(externalID s
 }
 
 type Azurerm_app_service_plan_properties_17 struct {
+	App_service_environment_id *string
 
+	Per_site_scaling *bool
 
-    App_service_environment_id *string
-
-    Per_site_scaling *bool
-
-    Reserved *bool
-
+	Reserved *bool
 }
 
 type Azurerm_app_service_plan_sku_18 struct {
+	Capacity *int
 
+	Size string
 
-    Capacity *int
-
-    Size string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_app_service_plan struct {
-
 	Azurerm_app_service_plan_id *string `lyra:"ignore"`
 
-    App_service_environment_id *string
+	App_service_environment_id *string
 
-    Kind *string
+	Kind *string
 
-    Location string
+	Location string
 
-    Maximum_number_of_workers *int
+	Maximum_number_of_workers *int
 
-    Name string
+	Name string
 
-    Per_site_scaling *bool
+	Per_site_scaling *bool
 
-    Properties *[]Azurerm_app_service_plan_properties_17
+	Properties *[]Azurerm_app_service_plan_properties_17
 
-    Reserved *bool
+	Reserved *bool
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_app_service_plan_sku_18
+	Sku []Azurerm_app_service_plan_sku_18
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_app_service_plan_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1430,7 +1358,6 @@ var Azurerm_app_service_plan_rtb = func(rtb service.ResourceTypeBuilder) {
 		"reserved",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1443,7 +1370,6 @@ var Azurerm_app_service_plan_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -1483,11 +1409,11 @@ func (h *Azurerm_app_service_planHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_app_service_plan", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_app_service_plan", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_plan{ Azurerm_app_service_plan_id: &externalID }
+	x := &Azurerm_app_service_plan{Azurerm_app_service_plan_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_app_service_plan", "actual", spew.Sdump(x))
@@ -1506,7 +1432,7 @@ func (h *Azurerm_app_service_planHandler) Read(externalID string) (*Azurerm_app_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_plan{ Azurerm_app_service_plan_id: &id }
+	x := &Azurerm_app_service_plan{Azurerm_app_service_plan_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_app_service_plan", "actual", spew.Sdump(x))
@@ -1525,117 +1451,103 @@ func (h *Azurerm_app_service_planHandler) Delete(externalID string) error {
 }
 
 type Azurerm_app_service_slot_connection_string_19 struct {
+	Name string
 
+	Type string
 
-    Name string
-
-    Type string
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_app_service_slot_identity_20 struct {
+	Principal_id *string
 
+	Tenant_id *string
 
-    Principal_id *string
-
-    Tenant_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_app_service_slot_site_config_21_ip_restriction_22 struct {
+	Ip_address string
 
-
-    Ip_address string
-
-    Subnet_mask *string
-
+	Subnet_mask *string
 }
 
 type Azurerm_app_service_slot_site_config_21 struct {
+	Always_on *bool
 
+	App_command_line *string
 
-    Always_on *bool
+	Default_documents *[]string
 
-    App_command_line *string
+	Dotnet_framework_version *string
 
-    Default_documents *[]string
+	Ftps_state *string
 
-    Dotnet_framework_version *string
+	Http2_enabled *bool
 
-    Ftps_state *string
+	Ip_restriction *[]Azurerm_app_service_slot_site_config_21_ip_restriction_22
 
-    Http2_enabled *bool
+	Java_container *string
 
-    Ip_restriction *[]Azurerm_app_service_slot_site_config_21_ip_restriction_22
+	Java_container_version *string
 
-    Java_container *string
+	Java_version *string
 
-    Java_container_version *string
+	Linux_fx_version *string
 
-    Java_version *string
+	Local_mysql_enabled *bool
 
-    Linux_fx_version *string
+	Managed_pipeline_mode *string
 
-    Local_mysql_enabled *bool
+	Min_tls_version *string
 
-    Managed_pipeline_mode *string
+	Php_version *string
 
-    Min_tls_version *string
+	Python_version *string
 
-    Php_version *string
+	Remote_debugging_enabled *bool
 
-    Python_version *string
+	Remote_debugging_version *string
 
-    Remote_debugging_enabled *bool
+	Scm_type *string
 
-    Remote_debugging_version *string
+	Use_32_bit_worker_process *bool
 
-    Scm_type *string
+	Virtual_network_name *string
 
-    Use_32_bit_worker_process *bool
-
-    Virtual_network_name *string
-
-    Websockets_enabled *bool
-
+	Websockets_enabled *bool
 }
 
 type Azurerm_app_service_slot struct {
-
 	Azurerm_app_service_slot_id *string `lyra:"ignore"`
 
-    App_service_name string
+	App_service_name string
 
-    App_service_plan_id string
+	App_service_plan_id string
 
-    App_settings *map[string]string
+	App_settings *map[string]string
 
-    Client_affinity_enabled *bool
+	Client_affinity_enabled *bool
 
-    Connection_string *[]Azurerm_app_service_slot_connection_string_19
+	Connection_string *[]Azurerm_app_service_slot_connection_string_19
 
-    Default_site_hostname *string
+	Default_site_hostname *string
 
-    Enabled *bool
+	Enabled *bool
 
-    Https_only *bool
+	Https_only *bool
 
-    Identity *[]Azurerm_app_service_slot_identity_20
+	Identity *[]Azurerm_app_service_slot_identity_20
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Site_config *[]Azurerm_app_service_slot_site_config_21
+	Site_config *[]Azurerm_app_service_slot_site_config_21
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_app_service_slot_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1659,7 +1571,6 @@ var Azurerm_app_service_slot_rtb = func(rtb service.ResourceTypeBuilder) {
 		"site_config",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1674,7 +1585,6 @@ var Azurerm_app_service_slot_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -1714,11 +1624,11 @@ func (h *Azurerm_app_service_slotHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_app_service_slot", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_app_service_slot", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_slot{ Azurerm_app_service_slot_id: &externalID }
+	x := &Azurerm_app_service_slot{Azurerm_app_service_slot_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_app_service_slot", "actual", spew.Sdump(x))
@@ -1737,7 +1647,7 @@ func (h *Azurerm_app_service_slotHandler) Read(externalID string) (*Azurerm_app_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_app_service_slot{ Azurerm_app_service_slot_id: &id }
+	x := &Azurerm_app_service_slot{Azurerm_app_service_slot_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_app_service_slot", "actual", spew.Sdump(x))
@@ -1756,305 +1666,255 @@ func (h *Azurerm_app_service_slotHandler) Delete(externalID string) error {
 }
 
 type Azurerm_application_gateway_authentication_certificate_23 struct {
+	Data string
 
+	Id *string
 
-    Data string
-
-    Id *string
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_application_gateway_backend_address_pool_24 struct {
+	Fqdn_list *[]string
 
+	Id *string
 
-    Fqdn_list *[]string
+	Ip_address_list *[]string
 
-    Id *string
-
-    Ip_address_list *[]string
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26 struct {
+	Id *string
 
-
-    Id *string
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_application_gateway_backend_http_settings_25 struct {
+	Authentication_certificate *[]Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26
 
+	Cookie_based_affinity string
 
-    Authentication_certificate *[]Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26
+	Id *string
 
-    Cookie_based_affinity string
+	Name string
 
-    Id *string
+	Port int
 
-    Name string
+	Probe_id *string
 
-    Port int
+	Probe_name *string
 
-    Probe_id *string
+	Protocol string
 
-    Probe_name *string
-
-    Protocol string
-
-    Request_timeout *int
-
+	Request_timeout *int
 }
 
 type Azurerm_application_gateway_frontend_ip_configuration_27 struct {
+	Id *string
 
+	Name string
 
-    Id *string
+	Private_ip_address *string
 
-    Name string
+	Private_ip_address_allocation *string
 
-    Private_ip_address *string
+	Public_ip_address_id *string
 
-    Private_ip_address_allocation *string
-
-    Public_ip_address_id *string
-
-    Subnet_id *string
-
+	Subnet_id *string
 }
 
 type Azurerm_application_gateway_frontend_port_28 struct {
+	Id *string
 
+	Name string
 
-    Id *string
-
-    Name string
-
-    Port int
-
+	Port int
 }
 
 type Azurerm_application_gateway_gateway_ip_configuration_29 struct {
+	Id *string
 
+	Name string
 
-    Id *string
-
-    Name string
-
-    Subnet_id string
-
+	Subnet_id string
 }
 
 type Azurerm_application_gateway_http_listener_30 struct {
+	Frontend_ip_configuration_id *string
 
+	Frontend_ip_configuration_name string
 
-    Frontend_ip_configuration_id *string
+	Frontend_port_id *string
 
-    Frontend_ip_configuration_name string
+	Frontend_port_name string
 
-    Frontend_port_id *string
+	Host_name *string
 
-    Frontend_port_name string
+	Id *string
 
-    Host_name *string
+	Name string
 
-    Id *string
+	Protocol string
 
-    Name string
+	Require_sni *bool
 
-    Protocol string
+	Ssl_certificate_id *string
 
-    Require_sni *bool
-
-    Ssl_certificate_id *string
-
-    Ssl_certificate_name *string
-
+	Ssl_certificate_name *string
 }
 
 type Azurerm_application_gateway_probe_31_match_32 struct {
+	Body *string
 
-
-    Body *string
-
-    Status_code *[]string
-
+	Status_code *[]string
 }
 
 type Azurerm_application_gateway_probe_31 struct {
+	Host string
 
+	Id *string
 
-    Host string
+	Interval int
 
-    Id *string
+	Match *[]Azurerm_application_gateway_probe_31_match_32
 
-    Interval int
+	Minimum_servers *int
 
-    Match *[]Azurerm_application_gateway_probe_31_match_32
+	Name string
 
-    Minimum_servers *int
+	Path string
 
-    Name string
+	Protocol string
 
-    Path string
+	Timeout int
 
-    Protocol string
-
-    Timeout int
-
-    Unhealthy_threshold int
-
+	Unhealthy_threshold int
 }
 
 type Azurerm_application_gateway_request_routing_rule_33 struct {
+	Backend_address_pool_id *string
 
+	Backend_address_pool_name *string
 
-    Backend_address_pool_id *string
+	Backend_http_settings_id *string
 
-    Backend_address_pool_name *string
+	Backend_http_settings_name *string
 
-    Backend_http_settings_id *string
+	Http_listener_id *string
 
-    Backend_http_settings_name *string
+	Http_listener_name string
 
-    Http_listener_id *string
+	Id *string
 
-    Http_listener_name string
+	Name string
 
-    Id *string
+	Rule_type string
 
-    Name string
+	Url_path_map_id *string
 
-    Rule_type string
-
-    Url_path_map_id *string
-
-    Url_path_map_name *string
-
+	Url_path_map_name *string
 }
 
 type Azurerm_application_gateway_sku_34 struct {
+	Capacity int
 
+	Name string
 
-    Capacity int
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_application_gateway_ssl_certificate_35 struct {
+	Data string
 
+	Id *string
 
-    Data string
+	Name string
 
-    Id *string
+	Password string
 
-    Name string
-
-    Password string
-
-    Public_cert_data *string
-
+	Public_cert_data *string
 }
 
 type Azurerm_application_gateway_url_path_map_36_path_rule_37 struct {
+	Backend_address_pool_id *string
 
+	Backend_address_pool_name string
 
-    Backend_address_pool_id *string
+	Backend_http_settings_id *string
 
-    Backend_address_pool_name string
+	Backend_http_settings_name string
 
-    Backend_http_settings_id *string
+	Id *string
 
-    Backend_http_settings_name string
+	Name string
 
-    Id *string
-
-    Name string
-
-    Paths []string
-
+	Paths []string
 }
 
 type Azurerm_application_gateway_url_path_map_36 struct {
+	Default_backend_address_pool_id *string
 
+	Default_backend_address_pool_name string
 
-    Default_backend_address_pool_id *string
+	Default_backend_http_settings_id *string
 
-    Default_backend_address_pool_name string
+	Default_backend_http_settings_name string
 
-    Default_backend_http_settings_id *string
+	Id *string
 
-    Default_backend_http_settings_name string
+	Name string
 
-    Id *string
-
-    Name string
-
-    Path_rule []Azurerm_application_gateway_url_path_map_36_path_rule_37
-
+	Path_rule []Azurerm_application_gateway_url_path_map_36_path_rule_37
 }
 
 type Azurerm_application_gateway_waf_configuration_38 struct {
+	Enabled bool
 
+	Firewall_mode string
 
-    Enabled bool
+	Rule_set_type *string
 
-    Firewall_mode string
-
-    Rule_set_type *string
-
-    Rule_set_version string
-
+	Rule_set_version string
 }
 
 type Azurerm_application_gateway struct {
-
 	Azurerm_application_gateway_id *string `lyra:"ignore"`
 
-    Authentication_certificate *[]Azurerm_application_gateway_authentication_certificate_23
+	Authentication_certificate *[]Azurerm_application_gateway_authentication_certificate_23
 
-    Backend_address_pool []Azurerm_application_gateway_backend_address_pool_24
+	Backend_address_pool []Azurerm_application_gateway_backend_address_pool_24
 
-    Backend_http_settings []Azurerm_application_gateway_backend_http_settings_25
+	Backend_http_settings []Azurerm_application_gateway_backend_http_settings_25
 
-    Disabled_ssl_protocols *[]string
+	Disabled_ssl_protocols *[]string
 
-    Frontend_ip_configuration []Azurerm_application_gateway_frontend_ip_configuration_27
+	Frontend_ip_configuration []Azurerm_application_gateway_frontend_ip_configuration_27
 
-    Frontend_port []Azurerm_application_gateway_frontend_port_28
+	Frontend_port []Azurerm_application_gateway_frontend_port_28
 
-    Gateway_ip_configuration []Azurerm_application_gateway_gateway_ip_configuration_29
+	Gateway_ip_configuration []Azurerm_application_gateway_gateway_ip_configuration_29
 
-    Http_listener []Azurerm_application_gateway_http_listener_30
+	Http_listener []Azurerm_application_gateway_http_listener_30
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Probe *[]Azurerm_application_gateway_probe_31
+	Probe *[]Azurerm_application_gateway_probe_31
 
-    Request_routing_rule []Azurerm_application_gateway_request_routing_rule_33
+	Request_routing_rule []Azurerm_application_gateway_request_routing_rule_33
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_application_gateway_sku_34
+	Sku []Azurerm_application_gateway_sku_34
 
-    Ssl_certificate *[]Azurerm_application_gateway_ssl_certificate_35
+	Ssl_certificate *[]Azurerm_application_gateway_ssl_certificate_35
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Url_path_map *[]Azurerm_application_gateway_url_path_map_36
+	Url_path_map *[]Azurerm_application_gateway_url_path_map_36
 
-    Waf_configuration *[]Azurerm_application_gateway_waf_configuration_38
-
+	Waf_configuration *[]Azurerm_application_gateway_waf_configuration_38
 }
 
 var Azurerm_application_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2074,7 +1934,6 @@ var Azurerm_application_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
 		"url_path_map",
 
 		"waf_configuration",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2083,7 +1942,6 @@ var Azurerm_application_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2123,11 +1981,11 @@ func (h *Azurerm_application_gatewayHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_application_gateway", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_application_gateway", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_gateway{ Azurerm_application_gateway_id: &externalID }
+	x := &Azurerm_application_gateway{Azurerm_application_gateway_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_application_gateway", "actual", spew.Sdump(x))
@@ -2146,7 +2004,7 @@ func (h *Azurerm_application_gatewayHandler) Read(externalID string) (*Azurerm_a
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_gateway{ Azurerm_application_gateway_id: &id }
+	x := &Azurerm_application_gateway{Azurerm_application_gateway_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_application_gateway", "actual", spew.Sdump(x))
@@ -2165,23 +2023,21 @@ func (h *Azurerm_application_gatewayHandler) Delete(externalID string) error {
 }
 
 type Azurerm_application_insights struct {
-
 	Azurerm_application_insights_id *string `lyra:"ignore"`
 
-    App_id *string
+	App_id *string
 
-    Application_type string
+	Application_type string
 
-    Instrumentation_key *string
+	Instrumentation_key *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_application_insights_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2193,7 +2049,6 @@ var Azurerm_application_insights_rtb = func(rtb service.ResourceTypeBuilder) {
 		"instrumentation_key",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2204,7 +2059,6 @@ var Azurerm_application_insights_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2244,11 +2098,11 @@ func (h *Azurerm_application_insightsHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_application_insights", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_application_insights", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_insights{ Azurerm_application_insights_id: &externalID }
+	x := &Azurerm_application_insights{Azurerm_application_insights_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_application_insights", "actual", spew.Sdump(x))
@@ -2267,7 +2121,7 @@ func (h *Azurerm_application_insightsHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_insights{ Azurerm_application_insights_id: &id }
+	x := &Azurerm_application_insights{Azurerm_application_insights_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_application_insights", "actual", spew.Sdump(x))
@@ -2286,19 +2140,17 @@ func (h *Azurerm_application_insightsHandler) Delete(externalID string) error {
 }
 
 type Azurerm_application_insights_api_key struct {
-
 	Azurerm_application_insights_api_key_id *string `lyra:"ignore"`
 
-    Api_key *string
+	Api_key *string
 
-    Application_insights_id string
+	Application_insights_id string
 
-    Name string
+	Name string
 
-    Read_permissions *[]string
+	Read_permissions *[]string
 
-    Write_permissions *[]string
-
+	Write_permissions *[]string
 }
 
 var Azurerm_application_insights_api_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2310,7 +2162,6 @@ var Azurerm_application_insights_api_key_rtb = func(rtb service.ResourceTypeBuil
 		"read_permissions",
 
 		"write_permissions",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2321,7 +2172,6 @@ var Azurerm_application_insights_api_key_rtb = func(rtb service.ResourceTypeBuil
 		"read_permissions",
 
 		"write_permissions",
-
 	)
 }
 
@@ -2361,11 +2211,11 @@ func (h *Azurerm_application_insights_api_keyHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_application_insights_api_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_application_insights_api_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_insights_api_key{ Azurerm_application_insights_api_key_id: &externalID }
+	x := &Azurerm_application_insights_api_key{Azurerm_application_insights_api_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_application_insights_api_key", "actual", spew.Sdump(x))
@@ -2384,7 +2234,7 @@ func (h *Azurerm_application_insights_api_keyHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_insights_api_key{ Azurerm_application_insights_api_key_id: &id }
+	x := &Azurerm_application_insights_api_key{Azurerm_application_insights_api_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_application_insights_api_key", "actual", spew.Sdump(x))
@@ -2403,17 +2253,15 @@ func (h *Azurerm_application_insights_api_keyHandler) Delete(externalID string) 
 }
 
 type Azurerm_application_security_group struct {
-
 	Azurerm_application_security_group_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_application_security_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2421,7 +2269,6 @@ var Azurerm_application_security_group_rtb = func(rtb service.ResourceTypeBuilde
 		"azurerm_application_security_group_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2430,7 +2277,6 @@ var Azurerm_application_security_group_rtb = func(rtb service.ResourceTypeBuilde
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2470,11 +2316,11 @@ func (h *Azurerm_application_security_groupHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_application_security_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_application_security_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_security_group{ Azurerm_application_security_group_id: &externalID }
+	x := &Azurerm_application_security_group{Azurerm_application_security_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_application_security_group", "actual", spew.Sdump(x))
@@ -2493,7 +2339,7 @@ func (h *Azurerm_application_security_groupHandler) Read(externalID string) (*Az
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_application_security_group{ Azurerm_application_security_group_id: &id }
+	x := &Azurerm_application_security_group{Azurerm_application_security_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_application_security_group", "actual", spew.Sdump(x))
@@ -2512,32 +2358,27 @@ func (h *Azurerm_application_security_groupHandler) Delete(externalID string) er
 }
 
 type Azurerm_automation_account_sku_39 struct {
-
-
-    Name *string
-
+	Name *string
 }
 
 type Azurerm_automation_account struct {
-
 	Azurerm_automation_account_id *string `lyra:"ignore"`
 
-    Dsc_primary_access_key *string
+	Dsc_primary_access_key *string
 
-    Dsc_secondary_access_key *string
+	Dsc_secondary_access_key *string
 
-    Dsc_server_endpoint *string
+	Dsc_server_endpoint *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_automation_account_sku_39
+	Sku []Azurerm_automation_account_sku_39
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_automation_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2551,7 +2392,6 @@ var Azurerm_automation_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"dsc_server_endpoint",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2560,7 +2400,6 @@ var Azurerm_automation_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2600,11 +2439,11 @@ func (h *Azurerm_automation_accountHandler) Update(externalID string, desired *A
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_account{ Azurerm_automation_account_id: &externalID }
+	x := &Azurerm_automation_account{Azurerm_automation_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_account", "actual", spew.Sdump(x))
@@ -2623,7 +2462,7 @@ func (h *Azurerm_automation_accountHandler) Read(externalID string) (*Azurerm_au
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_account{ Azurerm_automation_account_id: &id }
+	x := &Azurerm_automation_account{Azurerm_automation_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_account", "actual", spew.Sdump(x))
@@ -2642,21 +2481,19 @@ func (h *Azurerm_automation_accountHandler) Delete(externalID string) error {
 }
 
 type Azurerm_automation_credential struct {
-
 	Azurerm_automation_credential_id *string `lyra:"ignore"`
 
-    Account_name string
+	Account_name string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Password string
+	Password string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Username string
-
+	Username string
 }
 
 var Azurerm_automation_credential_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2664,7 +2501,6 @@ var Azurerm_automation_credential_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_automation_credential_id",
 
 		"description",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2673,7 +2509,6 @@ var Azurerm_automation_credential_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2713,11 +2548,11 @@ func (h *Azurerm_automation_credentialHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_credential", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_credential", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_credential{ Azurerm_automation_credential_id: &externalID }
+	x := &Azurerm_automation_credential{Azurerm_automation_credential_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_credential", "actual", spew.Sdump(x))
@@ -2736,7 +2571,7 @@ func (h *Azurerm_automation_credentialHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_credential{ Azurerm_automation_credential_id: &id }
+	x := &Azurerm_automation_credential{Azurerm_automation_credential_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_credential", "actual", spew.Sdump(x))
@@ -2755,25 +2590,23 @@ func (h *Azurerm_automation_credentialHandler) Delete(externalID string) error {
 }
 
 type Azurerm_automation_dsc_configuration struct {
-
 	Azurerm_automation_dsc_configuration_id *string `lyra:"ignore"`
 
-    Automation_account_name string
+	Automation_account_name string
 
-    Content_embedded string
+	Content_embedded string
 
-    Description *string
+	Description *string
 
-    Location string
+	Location string
 
-    Log_verbose *bool
+	Log_verbose *bool
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    State *string
-
+	State *string
 }
 
 var Azurerm_automation_dsc_configuration_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2785,7 +2618,6 @@ var Azurerm_automation_dsc_configuration_rtb = func(rtb service.ResourceTypeBuil
 		"log_verbose",
 
 		"state",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2796,7 +2628,6 @@ var Azurerm_automation_dsc_configuration_rtb = func(rtb service.ResourceTypeBuil
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2836,11 +2667,11 @@ func (h *Azurerm_automation_dsc_configurationHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_dsc_configuration", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_dsc_configuration", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_dsc_configuration{ Azurerm_automation_dsc_configuration_id: &externalID }
+	x := &Azurerm_automation_dsc_configuration{Azurerm_automation_dsc_configuration_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_dsc_configuration", "actual", spew.Sdump(x))
@@ -2859,7 +2690,7 @@ func (h *Azurerm_automation_dsc_configurationHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_dsc_configuration{ Azurerm_automation_dsc_configuration_id: &id }
+	x := &Azurerm_automation_dsc_configuration{Azurerm_automation_dsc_configuration_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_dsc_configuration", "actual", spew.Sdump(x))
@@ -2878,19 +2709,17 @@ func (h *Azurerm_automation_dsc_configurationHandler) Delete(externalID string) 
 }
 
 type Azurerm_automation_dsc_nodeconfiguration struct {
-
 	Azurerm_automation_dsc_nodeconfiguration_id *string `lyra:"ignore"`
 
-    Automation_account_name string
+	Automation_account_name string
 
-    Configuration_name *string
+	Configuration_name *string
 
-    Content_embedded string
+	Content_embedded string
 
-    Name string
+	Name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_automation_dsc_nodeconfiguration_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -2898,7 +2727,6 @@ var Azurerm_automation_dsc_nodeconfiguration_rtb = func(rtb service.ResourceType
 		"azurerm_automation_dsc_nodeconfiguration_id",
 
 		"configuration_name",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -2907,7 +2735,6 @@ var Azurerm_automation_dsc_nodeconfiguration_rtb = func(rtb service.ResourceType
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -2947,11 +2774,11 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Update(externalID stri
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_dsc_nodeconfiguration", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_dsc_nodeconfiguration{ Azurerm_automation_dsc_nodeconfiguration_id: &externalID }
+	x := &Azurerm_automation_dsc_nodeconfiguration{Azurerm_automation_dsc_nodeconfiguration_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_dsc_nodeconfiguration", "actual", spew.Sdump(x))
@@ -2970,7 +2797,7 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Read(externalID string
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_dsc_nodeconfiguration{ Azurerm_automation_dsc_nodeconfiguration_id: &id }
+	x := &Azurerm_automation_dsc_nodeconfiguration{Azurerm_automation_dsc_nodeconfiguration_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_dsc_nodeconfiguration", "actual", spew.Sdump(x))
@@ -2989,41 +2816,32 @@ func (h *Azurerm_automation_dsc_nodeconfigurationHandler) Delete(externalID stri
 }
 
 type Azurerm_automation_module_module_link_40_hash_41 struct {
+	Algorithm string
 
-
-    Algorithm string
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_automation_module_module_link_40 struct {
+	Hash *[]Azurerm_automation_module_module_link_40_hash_41
 
-
-    Hash *[]Azurerm_automation_module_module_link_40_hash_41
-
-    Uri string
-
+	Uri string
 }
 
 type Azurerm_automation_module struct {
-
 	Azurerm_automation_module_id *string `lyra:"ignore"`
 
-    Automation_account_name string
+	Automation_account_name string
 
-    Module_link []Azurerm_automation_module_module_link_40
+	Module_link []Azurerm_automation_module_module_link_40
 
-    Name string
+	Name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_automation_module_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_automation_module_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3032,7 +2850,6 @@ var Azurerm_automation_module_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -3072,11 +2889,11 @@ func (h *Azurerm_automation_moduleHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_module", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_module", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_module{ Azurerm_automation_module_id: &externalID }
+	x := &Azurerm_automation_module{Azurerm_automation_module_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_module", "actual", spew.Sdump(x))
@@ -3095,7 +2912,7 @@ func (h *Azurerm_automation_moduleHandler) Read(externalID string) (*Azurerm_aut
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_module{ Azurerm_automation_module_id: &id }
+	x := &Azurerm_automation_module{Azurerm_automation_module_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_module", "actual", spew.Sdump(x))
@@ -3114,51 +2931,43 @@ func (h *Azurerm_automation_moduleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_automation_runbook_publish_content_link_42_hash_43 struct {
+	Algorithm string
 
-
-    Algorithm string
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_automation_runbook_publish_content_link_42 struct {
+	Hash *[]Azurerm_automation_runbook_publish_content_link_42_hash_43
 
+	Uri string
 
-    Hash *[]Azurerm_automation_runbook_publish_content_link_42_hash_43
-
-    Uri string
-
-    Version *string
-
+	Version *string
 }
 
 type Azurerm_automation_runbook struct {
-
 	Azurerm_automation_runbook_id *string `lyra:"ignore"`
 
-    Account_name string
+	Account_name string
 
-    Content *string
+	Content *string
 
-    Description *string
+	Description *string
 
-    Location string
+	Location string
 
-    Log_progress bool
+	Log_progress bool
 
-    Log_verbose bool
+	Log_verbose bool
 
-    Name string
+	Name string
 
-    Publish_content_link []Azurerm_automation_runbook_publish_content_link_42
+	Publish_content_link []Azurerm_automation_runbook_publish_content_link_42
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Runbook_type string
+	Runbook_type string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_automation_runbook_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3170,7 +2979,6 @@ var Azurerm_automation_runbook_rtb = func(rtb service.ResourceTypeBuilder) {
 		"description",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3183,7 +2991,6 @@ var Azurerm_automation_runbook_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"runbook_type",
-
 	)
 }
 
@@ -3223,11 +3030,11 @@ func (h *Azurerm_automation_runbookHandler) Update(externalID string, desired *A
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_runbook", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_runbook", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_runbook{ Azurerm_automation_runbook_id: &externalID }
+	x := &Azurerm_automation_runbook{Azurerm_automation_runbook_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_runbook", "actual", spew.Sdump(x))
@@ -3246,7 +3053,7 @@ func (h *Azurerm_automation_runbookHandler) Read(externalID string) (*Azurerm_au
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_runbook{ Azurerm_automation_runbook_id: &id }
+	x := &Azurerm_automation_runbook{Azurerm_automation_runbook_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_runbook", "actual", spew.Sdump(x))
@@ -3265,44 +3072,39 @@ func (h *Azurerm_automation_runbookHandler) Delete(externalID string) error {
 }
 
 type Azurerm_automation_schedule_monthly_occurrence_44 struct {
+	Day string
 
-
-    Day string
-
-    Occurrence int
-
+	Occurrence int
 }
 
 type Azurerm_automation_schedule struct {
-
 	Azurerm_automation_schedule_id *string `lyra:"ignore"`
 
-    Account_name *string
+	Account_name *string
 
-    Automation_account_name *string
+	Automation_account_name *string
 
-    Description *string
+	Description *string
 
-    Expiry_time *string
+	Expiry_time *string
 
-    Frequency string
+	Frequency string
 
-    Interval *int
+	Interval *int
 
-    Month_days *[]int
+	Month_days *[]int
 
-    Monthly_occurrence *[]Azurerm_automation_schedule_monthly_occurrence_44
+	Monthly_occurrence *[]Azurerm_automation_schedule_monthly_occurrence_44
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Start_time *string
+	Start_time *string
 
-    Timezone *string
+	Timezone *string
 
-    Week_days *[]string
-
+	Week_days *[]string
 }
 
 var Azurerm_automation_schedule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3328,14 +3130,12 @@ var Azurerm_automation_schedule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"timezone",
 
 		"week_days",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -3375,11 +3175,11 @@ func (h *Azurerm_automation_scheduleHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_automation_schedule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_automation_schedule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_schedule{ Azurerm_automation_schedule_id: &externalID }
+	x := &Azurerm_automation_schedule{Azurerm_automation_schedule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_automation_schedule", "actual", spew.Sdump(x))
@@ -3398,7 +3198,7 @@ func (h *Azurerm_automation_scheduleHandler) Read(externalID string) (*Azurerm_a
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_automation_schedule{ Azurerm_automation_schedule_id: &id }
+	x := &Azurerm_automation_schedule{Azurerm_automation_schedule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_automation_schedule", "actual", spew.Sdump(x))
@@ -3417,147 +3217,115 @@ func (h *Azurerm_automation_scheduleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_autoscale_setting_notification_45_email_46 struct {
+	Custom_emails *[]string
 
+	Send_to_subscription_administrator *bool
 
-    Custom_emails *[]string
-
-    Send_to_subscription_administrator *bool
-
-    Send_to_subscription_co_administrator *bool
-
+	Send_to_subscription_co_administrator *bool
 }
 
 type Azurerm_autoscale_setting_notification_45_webhook_47 struct {
+	Properties *map[string]string
 
-
-    Properties *map[string]string
-
-    Service_uri string
-
+	Service_uri string
 }
 
 type Azurerm_autoscale_setting_notification_45 struct {
+	Email *[]Azurerm_autoscale_setting_notification_45_email_46
 
-
-    Email *[]Azurerm_autoscale_setting_notification_45_email_46
-
-    Webhook *[]Azurerm_autoscale_setting_notification_45_webhook_47
-
+	Webhook *[]Azurerm_autoscale_setting_notification_45_webhook_47
 }
 
 type Azurerm_autoscale_setting_profile_48_capacity_49 struct {
+	Default int
 
+	Maximum int
 
-    Default int
-
-    Maximum int
-
-    Minimum int
-
+	Minimum int
 }
 
 type Azurerm_autoscale_setting_profile_48_fixed_date_50 struct {
+	End string
 
+	Start string
 
-    End string
-
-    Start string
-
-    Timezone *string
-
+	Timezone *string
 }
 
 type Azurerm_autoscale_setting_profile_48_recurrence_51 struct {
+	Days []string
 
+	Hours []int
 
-    Days []string
+	Minutes []int
 
-    Hours []int
-
-    Minutes []int
-
-    Timezone *string
-
+	Timezone *string
 }
 
 type Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53 struct {
+	Metric_name string
 
+	Metric_resource_id string
 
-    Metric_name string
+	Operator string
 
-    Metric_resource_id string
+	Statistic string
 
-    Operator string
+	Threshold float64
 
-    Statistic string
+	Time_aggregation string
 
-    Threshold float64
+	Time_grain string
 
-    Time_aggregation string
-
-    Time_grain string
-
-    Time_window string
-
+	Time_window string
 }
 
 type Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54 struct {
+	Cooldown string
 
+	Direction string
 
-    Cooldown string
+	Type string
 
-    Direction string
-
-    Type string
-
-    Value int
-
+	Value int
 }
 
 type Azurerm_autoscale_setting_profile_48_rule_52 struct {
+	Metric_trigger []Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53
 
-
-    Metric_trigger []Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53
-
-    Scale_action []Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54
-
+	Scale_action []Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54
 }
 
 type Azurerm_autoscale_setting_profile_48 struct {
+	Capacity []Azurerm_autoscale_setting_profile_48_capacity_49
 
+	Fixed_date *[]Azurerm_autoscale_setting_profile_48_fixed_date_50
 
-    Capacity []Azurerm_autoscale_setting_profile_48_capacity_49
+	Name string
 
-    Fixed_date *[]Azurerm_autoscale_setting_profile_48_fixed_date_50
+	Recurrence *[]Azurerm_autoscale_setting_profile_48_recurrence_51
 
-    Name string
-
-    Recurrence *[]Azurerm_autoscale_setting_profile_48_recurrence_51
-
-    Rule *[]Azurerm_autoscale_setting_profile_48_rule_52
-
+	Rule *[]Azurerm_autoscale_setting_profile_48_rule_52
 }
 
 type Azurerm_autoscale_setting struct {
-
 	Azurerm_autoscale_setting_id *string `lyra:"ignore"`
 
-    Enabled *bool
+	Enabled *bool
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Notification *[]Azurerm_autoscale_setting_notification_45
+	Notification *[]Azurerm_autoscale_setting_notification_45
 
-    Profile []Azurerm_autoscale_setting_profile_48
+	Profile []Azurerm_autoscale_setting_profile_48
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Target_resource_id string
-
+	Target_resource_id string
 }
 
 var Azurerm_autoscale_setting_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3569,7 +3337,6 @@ var Azurerm_autoscale_setting_rtb = func(rtb service.ResourceTypeBuilder) {
 		"notification",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3580,7 +3347,6 @@ var Azurerm_autoscale_setting_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"target_resource_id",
-
 	)
 }
 
@@ -3620,11 +3386,11 @@ func (h *Azurerm_autoscale_settingHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_autoscale_setting", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_autoscale_setting", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_autoscale_setting{ Azurerm_autoscale_setting_id: &externalID }
+	x := &Azurerm_autoscale_setting{Azurerm_autoscale_setting_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_autoscale_setting", "actual", spew.Sdump(x))
@@ -3643,7 +3409,7 @@ func (h *Azurerm_autoscale_settingHandler) Read(externalID string) (*Azurerm_aut
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_autoscale_setting{ Azurerm_autoscale_setting_id: &id }
+	x := &Azurerm_autoscale_setting{Azurerm_autoscale_setting_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_autoscale_setting", "actual", spew.Sdump(x))
@@ -3662,23 +3428,21 @@ func (h *Azurerm_autoscale_settingHandler) Delete(externalID string) error {
 }
 
 type Azurerm_availability_set struct {
-
 	Azurerm_availability_set_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Managed *bool
+	Managed *bool
 
-    Name string
+	Name string
 
-    Platform_fault_domain_count *int
+	Platform_fault_domain_count *int
 
-    Platform_update_domain_count *int
+	Platform_update_domain_count *int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_availability_set_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3692,7 +3456,6 @@ var Azurerm_availability_set_rtb = func(rtb service.ResourceTypeBuilder) {
 		"platform_update_domain_count",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -3707,7 +3470,6 @@ var Azurerm_availability_set_rtb = func(rtb service.ResourceTypeBuilder) {
 		"platform_update_domain_count",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -3747,11 +3509,11 @@ func (h *Azurerm_availability_setHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_availability_set", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_availability_set", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_availability_set{ Azurerm_availability_set_id: &externalID }
+	x := &Azurerm_availability_set{Azurerm_availability_set_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_availability_set", "actual", spew.Sdump(x))
@@ -3770,7 +3532,7 @@ func (h *Azurerm_availability_setHandler) Read(externalID string) (*Azurerm_avai
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_availability_set{ Azurerm_availability_set_id: &id }
+	x := &Azurerm_availability_set{Azurerm_availability_set_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_availability_set", "actual", spew.Sdump(x))
@@ -3789,23 +3551,21 @@ func (h *Azurerm_availability_setHandler) Delete(externalID string) error {
 }
 
 type Azurerm_azuread_application struct {
-
 	Azurerm_azuread_application_id *string `lyra:"ignore"`
 
-    Application_id *string
+	Application_id *string
 
-    Available_to_other_tenants *bool
+	Available_to_other_tenants *bool
 
-    Homepage *string
+	Homepage *string
 
-    Identifier_uris *[]string
+	Identifier_uris *[]string
 
-    Name string
+	Name string
 
-    Oauth2_allow_implicit_flow *bool
+	Oauth2_allow_implicit_flow *bool
 
-    Reply_urls *[]string
-
+	Reply_urls *[]string
 }
 
 var Azurerm_azuread_application_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3823,11 +3583,8 @@ var Azurerm_azuread_application_rtb = func(rtb service.ResourceTypeBuilder) {
 		"oauth2_allow_implicit_flow",
 
 		"reply_urls",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Azurerm_azuread_applicationHandler ...
@@ -3866,11 +3623,11 @@ func (h *Azurerm_azuread_applicationHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_azuread_application", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_azuread_application", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_azuread_application{ Azurerm_azuread_application_id: &externalID }
+	x := &Azurerm_azuread_application{Azurerm_azuread_application_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_azuread_application", "actual", spew.Sdump(x))
@@ -3889,7 +3646,7 @@ func (h *Azurerm_azuread_applicationHandler) Read(externalID string) (*Azurerm_a
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_azuread_application{ Azurerm_azuread_application_id: &id }
+	x := &Azurerm_azuread_application{Azurerm_azuread_application_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_azuread_application", "actual", spew.Sdump(x))
@@ -3908,13 +3665,11 @@ func (h *Azurerm_azuread_applicationHandler) Delete(externalID string) error {
 }
 
 type Azurerm_azuread_service_principal struct {
-
 	Azurerm_azuread_service_principal_id *string `lyra:"ignore"`
 
-    Application_id string
+	Application_id string
 
-    Display_name *string
-
+	Display_name *string
 }
 
 var Azurerm_azuread_service_principal_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -3922,12 +3677,10 @@ var Azurerm_azuread_service_principal_rtb = func(rtb service.ResourceTypeBuilder
 		"azurerm_azuread_service_principal_id",
 
 		"display_name",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"application_id",
-
 	)
 }
 
@@ -3967,11 +3720,11 @@ func (h *Azurerm_azuread_service_principalHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_azuread_service_principal", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_azuread_service_principal", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_azuread_service_principal{ Azurerm_azuread_service_principal_id: &externalID }
+	x := &Azurerm_azuread_service_principal{Azurerm_azuread_service_principal_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_azuread_service_principal", "actual", spew.Sdump(x))
@@ -3990,7 +3743,7 @@ func (h *Azurerm_azuread_service_principalHandler) Read(externalID string) (*Azu
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_azuread_service_principal{ Azurerm_azuread_service_principal_id: &id }
+	x := &Azurerm_azuread_service_principal{Azurerm_azuread_service_principal_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_azuread_service_principal", "actual", spew.Sdump(x))
@@ -4009,19 +3762,17 @@ func (h *Azurerm_azuread_service_principalHandler) Delete(externalID string) err
 }
 
 type Azurerm_azuread_service_principal_password struct {
-
 	Azurerm_azuread_service_principal_password_id *string `lyra:"ignore"`
 
-    End_date string
+	End_date string
 
-    Key_id *string
+	Key_id *string
 
-    Service_principal_id string
+	Service_principal_id string
 
-    Start_date *string
+	Start_date *string
 
-    Value string
-
+	Value string
 }
 
 var Azurerm_azuread_service_principal_password_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4031,7 +3782,6 @@ var Azurerm_azuread_service_principal_password_rtb = func(rtb service.ResourceTy
 		"key_id",
 
 		"start_date",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4044,7 +3794,6 @@ var Azurerm_azuread_service_principal_password_rtb = func(rtb service.ResourceTy
 		"start_date",
 
 		"value",
-
 	)
 }
 
@@ -4084,11 +3833,11 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Update(externalID st
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_azuread_service_principal_password", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_azuread_service_principal_password", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_azuread_service_principal_password{ Azurerm_azuread_service_principal_password_id: &externalID }
+	x := &Azurerm_azuread_service_principal_password{Azurerm_azuread_service_principal_password_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_azuread_service_principal_password", "actual", spew.Sdump(x))
@@ -4107,7 +3856,7 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Read(externalID stri
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_azuread_service_principal_password{ Azurerm_azuread_service_principal_password_id: &id }
+	x := &Azurerm_azuread_service_principal_password{Azurerm_azuread_service_principal_password_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_azuread_service_principal_password", "actual", spew.Sdump(x))
@@ -4126,21 +3875,19 @@ func (h *Azurerm_azuread_service_principal_passwordHandler) Delete(externalID st
 }
 
 type Azurerm_batch_account struct {
-
 	Azurerm_batch_account_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Pool_allocation_mode *string
+	Pool_allocation_mode *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_account_id *string
+	Storage_account_id *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_batch_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4152,7 +3899,6 @@ var Azurerm_batch_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_account_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4161,7 +3907,6 @@ var Azurerm_batch_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -4201,11 +3946,11 @@ func (h *Azurerm_batch_accountHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_batch_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_batch_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_batch_account{ Azurerm_batch_account_id: &externalID }
+	x := &Azurerm_batch_account{Azurerm_batch_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_batch_account", "actual", spew.Sdump(x))
@@ -4224,7 +3969,7 @@ func (h *Azurerm_batch_accountHandler) Read(externalID string) (*Azurerm_batch_a
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_batch_account{ Azurerm_batch_account_id: &id }
+	x := &Azurerm_batch_account{Azurerm_batch_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_batch_account", "actual", spew.Sdump(x))
@@ -4243,99 +3988,79 @@ func (h *Azurerm_batch_accountHandler) Delete(externalID string) error {
 }
 
 type Azurerm_batch_pool_auto_scale_55 struct {
+	Evaluation_interval *string
 
-
-    Evaluation_interval *string
-
-    Formula string
-
+	Formula string
 }
 
 type Azurerm_batch_pool_fixed_scale_56 struct {
+	Resize_timeout *string
 
+	Target_dedicated_nodes *int
 
-    Resize_timeout *string
-
-    Target_dedicated_nodes *int
-
-    Target_low_priority_nodes *int
-
+	Target_low_priority_nodes *int
 }
 
 type Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59 struct {
+	Elevation_level *string
 
-
-    Elevation_level *string
-
-    Scope *string
-
+	Scope *string
 }
 
 type Azurerm_batch_pool_start_task_57_user_identity_58 struct {
+	Auto_user *[]Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59
 
-
-    Auto_user *[]Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59
-
-    User_name *string
-
+	User_name *string
 }
 
 type Azurerm_batch_pool_start_task_57 struct {
+	Command_line string
 
+	Environment *map[string]string
 
-    Command_line string
+	Max_task_retry_count *int
 
-    Environment *map[string]string
+	User_identity []Azurerm_batch_pool_start_task_57_user_identity_58
 
-    Max_task_retry_count *int
-
-    User_identity []Azurerm_batch_pool_start_task_57_user_identity_58
-
-    Wait_for_success *bool
-
+	Wait_for_success *bool
 }
 
 type Azurerm_batch_pool_storage_image_reference_60 struct {
+	Id *string
 
+	Offer string
 
-    Id *string
+	Publisher string
 
-    Offer string
+	Sku string
 
-    Publisher string
-
-    Sku string
-
-    Version string
-
+	Version string
 }
 
 type Azurerm_batch_pool struct {
-
 	Azurerm_batch_pool_id *string `lyra:"ignore"`
 
-    Account_name string
+	Account_name string
 
-    Auto_scale *[]Azurerm_batch_pool_auto_scale_55
+	Auto_scale *[]Azurerm_batch_pool_auto_scale_55
 
-    Display_name *string
+	Display_name *string
 
-    Fixed_scale *[]Azurerm_batch_pool_fixed_scale_56
+	Fixed_scale *[]Azurerm_batch_pool_fixed_scale_56
 
-    Name string
+	Name string
 
-    Node_agent_sku_id string
+	Node_agent_sku_id string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Start_task *[]Azurerm_batch_pool_start_task_57
+	Start_task *[]Azurerm_batch_pool_start_task_57
 
-    Stop_pending_resize_operation *bool
+	Stop_pending_resize_operation *bool
 
-    Storage_image_reference []Azurerm_batch_pool_storage_image_reference_60
+	Storage_image_reference []Azurerm_batch_pool_storage_image_reference_60
 
-    Vm_size string
-
+	Vm_size string
 }
 
 var Azurerm_batch_pool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4351,7 +4076,6 @@ var Azurerm_batch_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"start_task",
 
 		"stop_pending_resize_operation",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4368,7 +4092,6 @@ var Azurerm_batch_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_image_reference",
 
 		"vm_size",
-
 	)
 }
 
@@ -4408,11 +4131,11 @@ func (h *Azurerm_batch_poolHandler) Update(externalID string, desired *Azurerm_b
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_batch_pool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_batch_pool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_batch_pool{ Azurerm_batch_pool_id: &externalID }
+	x := &Azurerm_batch_pool{Azurerm_batch_pool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_batch_pool", "actual", spew.Sdump(x))
@@ -4431,7 +4154,7 @@ func (h *Azurerm_batch_poolHandler) Read(externalID string) (*Azurerm_batch_pool
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_batch_pool{ Azurerm_batch_pool_id: &id }
+	x := &Azurerm_batch_pool{Azurerm_batch_pool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_batch_pool", "actual", spew.Sdump(x))
@@ -4450,67 +4173,59 @@ func (h *Azurerm_batch_poolHandler) Delete(externalID string) error {
 }
 
 type Azurerm_cdn_endpoint_geo_filter_61 struct {
+	Action string
 
+	Country_codes []string
 
-    Action string
-
-    Country_codes []string
-
-    Relative_path string
-
+	Relative_path string
 }
 
 type Azurerm_cdn_endpoint_origin_62 struct {
+	Host_name string
 
+	Http_port *int
 
-    Host_name string
+	Https_port *int
 
-    Http_port *int
-
-    Https_port *int
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_cdn_endpoint struct {
-
 	Azurerm_cdn_endpoint_id *string `lyra:"ignore"`
 
-    Content_types_to_compress *[]string
+	Content_types_to_compress *[]string
 
-    Geo_filter *[]Azurerm_cdn_endpoint_geo_filter_61
+	Geo_filter *[]Azurerm_cdn_endpoint_geo_filter_61
 
-    Host_name *string
+	Host_name *string
 
-    Is_compression_enabled *bool
+	Is_compression_enabled *bool
 
-    Is_http_allowed *bool
+	Is_http_allowed *bool
 
-    Is_https_allowed *bool
+	Is_https_allowed *bool
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Optimization_type *string
+	Optimization_type *string
 
-    Origin []Azurerm_cdn_endpoint_origin_62
+	Origin []Azurerm_cdn_endpoint_origin_62
 
-    Origin_host_header *string
+	Origin_host_header *string
 
-    Origin_path *string
+	Origin_path *string
 
-    Probe_path *string
+	Probe_path *string
 
-    Profile_name string
+	Profile_name string
 
-    Querystring_caching_behaviour *string
+	Querystring_caching_behaviour *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_cdn_endpoint_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4540,7 +4255,6 @@ var Azurerm_cdn_endpoint_rtb = func(rtb service.ResourceTypeBuilder) {
 		"querystring_caching_behaviour",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4553,7 +4267,6 @@ var Azurerm_cdn_endpoint_rtb = func(rtb service.ResourceTypeBuilder) {
 		"profile_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -4593,11 +4306,11 @@ func (h *Azurerm_cdn_endpointHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_cdn_endpoint", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_cdn_endpoint", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cdn_endpoint{ Azurerm_cdn_endpoint_id: &externalID }
+	x := &Azurerm_cdn_endpoint{Azurerm_cdn_endpoint_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_cdn_endpoint", "actual", spew.Sdump(x))
@@ -4616,7 +4329,7 @@ func (h *Azurerm_cdn_endpointHandler) Read(externalID string) (*Azurerm_cdn_endp
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cdn_endpoint{ Azurerm_cdn_endpoint_id: &id }
+	x := &Azurerm_cdn_endpoint{Azurerm_cdn_endpoint_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_cdn_endpoint", "actual", spew.Sdump(x))
@@ -4635,19 +4348,17 @@ func (h *Azurerm_cdn_endpointHandler) Delete(externalID string) error {
 }
 
 type Azurerm_cdn_profile struct {
-
 	Azurerm_cdn_profile_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_cdn_profile_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4655,7 +4366,6 @@ var Azurerm_cdn_profile_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_cdn_profile_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4666,7 +4376,6 @@ var Azurerm_cdn_profile_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"sku",
-
 	)
 }
 
@@ -4706,11 +4415,11 @@ func (h *Azurerm_cdn_profileHandler) Update(externalID string, desired *Azurerm_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_cdn_profile", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_cdn_profile", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cdn_profile{ Azurerm_cdn_profile_id: &externalID }
+	x := &Azurerm_cdn_profile{Azurerm_cdn_profile_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_cdn_profile", "actual", spew.Sdump(x))
@@ -4729,7 +4438,7 @@ func (h *Azurerm_cdn_profileHandler) Read(externalID string) (*Azurerm_cdn_profi
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cdn_profile{ Azurerm_cdn_profile_id: &id }
+	x := &Azurerm_cdn_profile{Azurerm_cdn_profile_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_cdn_profile", "actual", spew.Sdump(x))
@@ -4748,32 +4457,27 @@ func (h *Azurerm_cdn_profileHandler) Delete(externalID string) error {
 }
 
 type Azurerm_cognitive_account_sku_63 struct {
+	Name string
 
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_cognitive_account struct {
-
 	Azurerm_cognitive_account_id *string `lyra:"ignore"`
 
-    Endpoint *string
+	Endpoint *string
 
-    Kind string
+	Kind string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_cognitive_account_sku_63
+	Sku []Azurerm_cognitive_account_sku_63
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_cognitive_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4783,7 +4487,6 @@ var Azurerm_cognitive_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"endpoint",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -4794,7 +4497,6 @@ var Azurerm_cognitive_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -4834,11 +4536,11 @@ func (h *Azurerm_cognitive_accountHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_cognitive_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_cognitive_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cognitive_account{ Azurerm_cognitive_account_id: &externalID }
+	x := &Azurerm_cognitive_account{Azurerm_cognitive_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_cognitive_account", "actual", spew.Sdump(x))
@@ -4857,7 +4559,7 @@ func (h *Azurerm_cognitive_accountHandler) Read(externalID string) (*Azurerm_cog
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cognitive_account{ Azurerm_cognitive_account_id: &id }
+	x := &Azurerm_cognitive_account{Azurerm_cognitive_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_cognitive_account", "actual", spew.Sdump(x))
@@ -4876,99 +4578,85 @@ func (h *Azurerm_cognitive_accountHandler) Delete(externalID string) error {
 }
 
 type Azurerm_container_group_container_64_ports_65 struct {
+	Port *int
 
-
-    Port *int
-
-    Protocol *string
-
+	Protocol *string
 }
 
 type Azurerm_container_group_container_64_volume_66 struct {
+	Mount_path string
 
+	Name string
 
-    Mount_path string
+	Read_only *bool
 
-    Name string
+	Share_name string
 
-    Read_only *bool
+	Storage_account_key string
 
-    Share_name string
-
-    Storage_account_key string
-
-    Storage_account_name string
-
+	Storage_account_name string
 }
 
 type Azurerm_container_group_container_64 struct {
+	Command *string
 
+	Commands *[]string
 
-    Command *string
+	Cpu float64
 
-    Commands *[]string
+	Environment_variables *map[string]string
 
-    Cpu float64
+	Image string
 
-    Environment_variables *map[string]string
+	Memory float64
 
-    Image string
+	Name string
 
-    Memory float64
+	Port *int
 
-    Name string
+	Ports *[]Azurerm_container_group_container_64_ports_65
 
-    Port *int
+	Protocol *string
 
-    Ports *[]Azurerm_container_group_container_64_ports_65
+	Secure_environment_variables *map[string]string
 
-    Protocol *string
-
-    Secure_environment_variables *map[string]string
-
-    Volume *[]Azurerm_container_group_container_64_volume_66
-
+	Volume *[]Azurerm_container_group_container_64_volume_66
 }
 
 type Azurerm_container_group_image_registry_credential_67 struct {
+	Password string
 
+	Server string
 
-    Password string
-
-    Server string
-
-    Username string
-
+	Username string
 }
 
 type Azurerm_container_group struct {
-
 	Azurerm_container_group_id *string `lyra:"ignore"`
 
-    Container []Azurerm_container_group_container_64
+	Container []Azurerm_container_group_container_64
 
-    Dns_name_label *string
+	Dns_name_label *string
 
-    Fqdn *string
+	Fqdn *string
 
-    Image_registry_credential *[]Azurerm_container_group_image_registry_credential_67
+	Image_registry_credential *[]Azurerm_container_group_image_registry_credential_67
 
-    Ip_address *string
+	Ip_address *string
 
-    Ip_address_type *string
+	Ip_address_type *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Os_type string
+	Os_type string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Restart_policy *string
+	Restart_policy *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_container_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -4988,7 +4676,6 @@ var Azurerm_container_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"restart_policy",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5011,7 +4698,6 @@ var Azurerm_container_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"restart_policy",
 
 		"tags",
-
 	)
 }
 
@@ -5051,11 +4737,11 @@ func (h *Azurerm_container_groupHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_container_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_container_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_container_group{ Azurerm_container_group_id: &externalID }
+	x := &Azurerm_container_group{Azurerm_container_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_container_group", "actual", spew.Sdump(x))
@@ -5074,7 +4760,7 @@ func (h *Azurerm_container_groupHandler) Read(externalID string) (*Azurerm_conta
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_container_group{ Azurerm_container_group_id: &id }
+	x := &Azurerm_container_group{Azurerm_container_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_container_group", "actual", spew.Sdump(x))
@@ -5093,42 +4779,37 @@ func (h *Azurerm_container_groupHandler) Delete(externalID string) error {
 }
 
 type Azurerm_container_registry_storage_account_68 struct {
+	Access_key string
 
-
-    Access_key string
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_container_registry struct {
-
 	Azurerm_container_registry_id *string `lyra:"ignore"`
 
-    Admin_enabled *bool
+	Admin_enabled *bool
 
-    Admin_password *string
+	Admin_password *string
 
-    Admin_username *string
+	Admin_username *string
 
-    Georeplication_locations *[]string
+	Georeplication_locations *[]string
 
-    Location string
+	Location string
 
-    Login_server *string
+	Login_server *string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku *string
+	Sku *string
 
-    Storage_account *[]Azurerm_container_registry_storage_account_68
+	Storage_account *[]Azurerm_container_registry_storage_account_68
 
-    Storage_account_id *string
+	Storage_account_id *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_container_registry_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5152,7 +4833,6 @@ var Azurerm_container_registry_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_account_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5161,7 +4841,6 @@ var Azurerm_container_registry_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -5201,11 +4880,11 @@ func (h *Azurerm_container_registryHandler) Update(externalID string, desired *A
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_container_registry", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_container_registry", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_container_registry{ Azurerm_container_registry_id: &externalID }
+	x := &Azurerm_container_registry{Azurerm_container_registry_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_container_registry", "actual", spew.Sdump(x))
@@ -5224,7 +4903,7 @@ func (h *Azurerm_container_registryHandler) Read(externalID string) (*Azurerm_co
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_container_registry{ Azurerm_container_registry_id: &id }
+	x := &Azurerm_container_registry{Azurerm_container_registry_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_container_registry", "actual", spew.Sdump(x))
@@ -5243,89 +4922,69 @@ func (h *Azurerm_container_registryHandler) Delete(externalID string) error {
 }
 
 type Azurerm_container_service_agent_pool_profile_69 struct {
+	Count *int
 
+	Dns_prefix string
 
-    Count *int
+	Fqdn *string
 
-    Dns_prefix string
+	Name string
 
-    Fqdn *string
-
-    Name string
-
-    Vm_size string
-
+	Vm_size string
 }
 
 type Azurerm_container_service_diagnostics_profile_70 struct {
+	Enabled bool
 
-
-    Enabled bool
-
-    Storage_uri *string
-
+	Storage_uri *string
 }
 
 type Azurerm_container_service_linux_profile_71_ssh_key_72 struct {
-
-
-    Key_data string
-
+	Key_data string
 }
 
 type Azurerm_container_service_linux_profile_71 struct {
+	Admin_username string
 
-
-    Admin_username string
-
-    Ssh_key []Azurerm_container_service_linux_profile_71_ssh_key_72
-
+	Ssh_key []Azurerm_container_service_linux_profile_71_ssh_key_72
 }
 
 type Azurerm_container_service_master_profile_73 struct {
+	Count *int
 
+	Dns_prefix string
 
-    Count *int
-
-    Dns_prefix string
-
-    Fqdn *string
-
+	Fqdn *string
 }
 
 type Azurerm_container_service_service_principal_74 struct {
+	Client_id string
 
-
-    Client_id string
-
-    Client_secret string
-
+	Client_secret string
 }
 
 type Azurerm_container_service struct {
-
 	Azurerm_container_service_id *string `lyra:"ignore"`
 
-    Agent_pool_profile []Azurerm_container_service_agent_pool_profile_69
+	Agent_pool_profile []Azurerm_container_service_agent_pool_profile_69
 
-    Diagnostics_profile []Azurerm_container_service_diagnostics_profile_70
+	Diagnostics_profile []Azurerm_container_service_diagnostics_profile_70
 
-    Linux_profile []Azurerm_container_service_linux_profile_71
+	Linux_profile []Azurerm_container_service_linux_profile_71
 
-    Location string
+	Location string
 
-    Master_profile []Azurerm_container_service_master_profile_73
+	Master_profile []Azurerm_container_service_master_profile_73
 
-    Name string
+	Name string
 
-    Orchestration_platform string
+	Orchestration_platform string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Service_principal *[]Azurerm_container_service_service_principal_74
+	Service_principal *[]Azurerm_container_service_service_principal_74
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_container_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5335,7 +4994,6 @@ var Azurerm_container_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"service_principal",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5346,7 +5004,6 @@ var Azurerm_container_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"orchestration_platform",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -5386,11 +5043,11 @@ func (h *Azurerm_container_serviceHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_container_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_container_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_container_service{ Azurerm_container_service_id: &externalID }
+	x := &Azurerm_container_service{Azurerm_container_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_container_service", "actual", spew.Sdump(x))
@@ -5409,7 +5066,7 @@ func (h *Azurerm_container_serviceHandler) Read(externalID string) (*Azurerm_con
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_container_service{ Azurerm_container_service_id: &id }
+	x := &Azurerm_container_service{Azurerm_container_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_container_service", "actual", spew.Sdump(x))
@@ -5428,104 +5085,87 @@ func (h *Azurerm_container_serviceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_cosmosdb_account_capabilities_75 struct {
-
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_cosmosdb_account_consistency_policy_76 struct {
+	Consistency_level string
 
+	Max_interval_in_seconds *int
 
-    Consistency_level string
-
-    Max_interval_in_seconds *int
-
-    Max_staleness_prefix *int
-
+	Max_staleness_prefix *int
 }
 
 type Azurerm_cosmosdb_account_failover_policy_77 struct {
+	Id *string
 
+	Location string
 
-    Id *string
-
-    Location string
-
-    Priority int
-
+	Priority int
 }
 
 type Azurerm_cosmosdb_account_geo_location_78 struct {
+	Failover_priority int
 
+	Id *string
 
-    Failover_priority int
+	Location string
 
-    Id *string
-
-    Location string
-
-    Prefix *string
-
+	Prefix *string
 }
 
 type Azurerm_cosmosdb_account_virtual_network_rule_79 struct {
-
-
-    Id string
-
+	Id string
 }
 
 type Azurerm_cosmosdb_account struct {
-
 	Azurerm_cosmosdb_account_id *string `lyra:"ignore"`
 
-    Capabilities *[]Azurerm_cosmosdb_account_capabilities_75
+	Capabilities *[]Azurerm_cosmosdb_account_capabilities_75
 
-    Connection_strings *[]string
+	Connection_strings *[]string
 
-    Consistency_policy []Azurerm_cosmosdb_account_consistency_policy_76
+	Consistency_policy []Azurerm_cosmosdb_account_consistency_policy_76
 
-    Enable_automatic_failover *bool
+	Enable_automatic_failover *bool
 
-    Enable_multiple_write_locations *bool
+	Enable_multiple_write_locations *bool
 
-    Endpoint *string
+	Endpoint *string
 
-    Failover_policy *[]Azurerm_cosmosdb_account_failover_policy_77
+	Failover_policy *[]Azurerm_cosmosdb_account_failover_policy_77
 
-    Geo_location *[]Azurerm_cosmosdb_account_geo_location_78
+	Geo_location *[]Azurerm_cosmosdb_account_geo_location_78
 
-    Ip_range_filter *string
+	Ip_range_filter *string
 
-    Is_virtual_network_filter_enabled *bool
+	Is_virtual_network_filter_enabled *bool
 
-    Kind *string
+	Kind *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Offer_type string
+	Offer_type string
 
-    Primary_master_key *string
+	Primary_master_key *string
 
-    Primary_readonly_master_key *string
+	Primary_readonly_master_key *string
 
-    Read_endpoints *[]string
+	Read_endpoints *[]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_master_key *string
+	Secondary_master_key *string
 
-    Secondary_readonly_master_key *string
+	Secondary_readonly_master_key *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Virtual_network_rule *[]Azurerm_cosmosdb_account_virtual_network_rule_79
+	Virtual_network_rule *[]Azurerm_cosmosdb_account_virtual_network_rule_79
 
-    Write_endpoints *[]string
-
+	Write_endpoints *[]string
 }
 
 var Azurerm_cosmosdb_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5567,7 +5207,6 @@ var Azurerm_cosmosdb_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"virtual_network_rule",
 
 		"write_endpoints",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5578,7 +5217,6 @@ var Azurerm_cosmosdb_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -5618,11 +5256,11 @@ func (h *Azurerm_cosmosdb_accountHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_cosmosdb_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_cosmosdb_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cosmosdb_account{ Azurerm_cosmosdb_account_id: &externalID }
+	x := &Azurerm_cosmosdb_account{Azurerm_cosmosdb_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_cosmosdb_account", "actual", spew.Sdump(x))
@@ -5641,7 +5279,7 @@ func (h *Azurerm_cosmosdb_accountHandler) Read(externalID string) (*Azurerm_cosm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_cosmosdb_account{ Azurerm_cosmosdb_account_id: &id }
+	x := &Azurerm_cosmosdb_account{Azurerm_cosmosdb_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_cosmosdb_account", "actual", spew.Sdump(x))
@@ -5660,21 +5298,19 @@ func (h *Azurerm_cosmosdb_accountHandler) Delete(externalID string) error {
 }
 
 type Azurerm_data_lake_analytics_account struct {
-
 	Azurerm_data_lake_analytics_account_id *string `lyra:"ignore"`
 
-    Default_store_account_name string
+	Default_store_account_name string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Tier *string
-
+	Tier *string
 }
 
 var Azurerm_data_lake_analytics_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5684,7 +5320,6 @@ var Azurerm_data_lake_analytics_account_rtb = func(rtb service.ResourceTypeBuild
 		"tags",
 
 		"tier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5695,7 +5330,6 @@ var Azurerm_data_lake_analytics_account_rtb = func(rtb service.ResourceTypeBuild
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -5735,11 +5369,11 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Update(externalID string, d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_data_lake_analytics_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_data_lake_analytics_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_analytics_account{ Azurerm_data_lake_analytics_account_id: &externalID }
+	x := &Azurerm_data_lake_analytics_account{Azurerm_data_lake_analytics_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_data_lake_analytics_account", "actual", spew.Sdump(x))
@@ -5758,7 +5392,7 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Read(externalID string) (*A
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_analytics_account{ Azurerm_data_lake_analytics_account_id: &id }
+	x := &Azurerm_data_lake_analytics_account{Azurerm_data_lake_analytics_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_data_lake_analytics_account", "actual", spew.Sdump(x))
@@ -5777,25 +5411,22 @@ func (h *Azurerm_data_lake_analytics_accountHandler) Delete(externalID string) e
 }
 
 type Azurerm_data_lake_analytics_firewall_rule struct {
-
 	Azurerm_data_lake_analytics_firewall_rule_id *string `lyra:"ignore"`
 
-    Account_name string
+	Account_name string
 
-    End_ip_address string
+	End_ip_address string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Start_ip_address string
-
+	Start_ip_address string
 }
 
 var Azurerm_data_lake_analytics_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_data_lake_analytics_firewall_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5804,7 +5435,6 @@ var Azurerm_data_lake_analytics_firewall_rule_rtb = func(rtb service.ResourceTyp
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -5844,11 +5474,11 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Update(externalID str
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_data_lake_analytics_firewall_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_analytics_firewall_rule{ Azurerm_data_lake_analytics_firewall_rule_id: &externalID }
+	x := &Azurerm_data_lake_analytics_firewall_rule{Azurerm_data_lake_analytics_firewall_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_data_lake_analytics_firewall_rule", "actual", spew.Sdump(x))
@@ -5867,7 +5497,7 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Read(externalID strin
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_analytics_firewall_rule{ Azurerm_data_lake_analytics_firewall_rule_id: &id }
+	x := &Azurerm_data_lake_analytics_firewall_rule{Azurerm_data_lake_analytics_firewall_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_data_lake_analytics_firewall_rule", "actual", spew.Sdump(x))
@@ -5886,29 +5516,27 @@ func (h *Azurerm_data_lake_analytics_firewall_ruleHandler) Delete(externalID str
 }
 
 type Azurerm_data_lake_store struct {
-
 	Azurerm_data_lake_store_id *string `lyra:"ignore"`
 
-    Encryption_state *string
+	Encryption_state *string
 
-    Encryption_type *string
+	Encryption_type *string
 
-    Endpoint *string
+	Endpoint *string
 
-    Firewall_allow_azure_ips *string
+	Firewall_allow_azure_ips *string
 
-    Firewall_state *string
+	Firewall_state *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Tier *string
-
+	Tier *string
 }
 
 var Azurerm_data_lake_store_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -5928,7 +5556,6 @@ var Azurerm_data_lake_store_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"tier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -5941,7 +5568,6 @@ var Azurerm_data_lake_store_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -5981,11 +5607,11 @@ func (h *Azurerm_data_lake_storeHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_data_lake_store", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_data_lake_store", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_store{ Azurerm_data_lake_store_id: &externalID }
+	x := &Azurerm_data_lake_store{Azurerm_data_lake_store_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_data_lake_store", "actual", spew.Sdump(x))
@@ -6004,7 +5630,7 @@ func (h *Azurerm_data_lake_storeHandler) Read(externalID string) (*Azurerm_data_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_store{ Azurerm_data_lake_store_id: &id }
+	x := &Azurerm_data_lake_store{Azurerm_data_lake_store_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_data_lake_store", "actual", spew.Sdump(x))
@@ -6023,21 +5649,18 @@ func (h *Azurerm_data_lake_storeHandler) Delete(externalID string) error {
 }
 
 type Azurerm_data_lake_store_file struct {
-
 	Azurerm_data_lake_store_file_id *string `lyra:"ignore"`
 
-    Account_name string
+	Account_name string
 
-    Local_file_path string
+	Local_file_path string
 
-    Remote_file_path string
-
+	Remote_file_path string
 }
 
 var Azurerm_data_lake_store_file_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_data_lake_store_file_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6046,7 +5669,6 @@ var Azurerm_data_lake_store_file_rtb = func(rtb service.ResourceTypeBuilder) {
 		"local_file_path",
 
 		"remote_file_path",
-
 	)
 }
 
@@ -6086,11 +5708,11 @@ func (h *Azurerm_data_lake_store_fileHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_data_lake_store_file", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_data_lake_store_file", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_store_file{ Azurerm_data_lake_store_file_id: &externalID }
+	x := &Azurerm_data_lake_store_file{Azurerm_data_lake_store_file_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_data_lake_store_file", "actual", spew.Sdump(x))
@@ -6109,7 +5731,7 @@ func (h *Azurerm_data_lake_store_fileHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_store_file{ Azurerm_data_lake_store_file_id: &id }
+	x := &Azurerm_data_lake_store_file{Azurerm_data_lake_store_file_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_data_lake_store_file", "actual", spew.Sdump(x))
@@ -6128,25 +5750,22 @@ func (h *Azurerm_data_lake_store_fileHandler) Delete(externalID string) error {
 }
 
 type Azurerm_data_lake_store_firewall_rule struct {
-
 	Azurerm_data_lake_store_firewall_rule_id *string `lyra:"ignore"`
 
-    Account_name string
+	Account_name string
 
-    End_ip_address string
+	End_ip_address string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Start_ip_address string
-
+	Start_ip_address string
 }
 
 var Azurerm_data_lake_store_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_data_lake_store_firewall_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6155,7 +5774,6 @@ var Azurerm_data_lake_store_firewall_rule_rtb = func(rtb service.ResourceTypeBui
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -6195,11 +5813,11 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_data_lake_store_firewall_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_data_lake_store_firewall_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_store_firewall_rule{ Azurerm_data_lake_store_firewall_rule_id: &externalID }
+	x := &Azurerm_data_lake_store_firewall_rule{Azurerm_data_lake_store_firewall_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_data_lake_store_firewall_rule", "actual", spew.Sdump(x))
@@ -6218,7 +5836,7 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_data_lake_store_firewall_rule{ Azurerm_data_lake_store_firewall_rule_id: &id }
+	x := &Azurerm_data_lake_store_firewall_rule{Azurerm_data_lake_store_firewall_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_data_lake_store_firewall_rule", "actual", spew.Sdump(x))
@@ -6237,23 +5855,21 @@ func (h *Azurerm_data_lake_store_firewall_ruleHandler) Delete(externalID string)
 }
 
 type Azurerm_databricks_workspace struct {
-
 	Azurerm_databricks_workspace_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Managed_resource_group_id *string
+	Managed_resource_group_id *string
 
-    Managed_resource_group_name *string
+	Managed_resource_group_name *string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_databricks_workspace_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6265,7 +5881,6 @@ var Azurerm_databricks_workspace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"managed_resource_group_name",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6278,7 +5893,6 @@ var Azurerm_databricks_workspace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"sku",
-
 	)
 }
 
@@ -6318,11 +5932,11 @@ func (h *Azurerm_databricks_workspaceHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_databricks_workspace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_databricks_workspace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_databricks_workspace{ Azurerm_databricks_workspace_id: &externalID }
+	x := &Azurerm_databricks_workspace{Azurerm_databricks_workspace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_databricks_workspace", "actual", spew.Sdump(x))
@@ -6341,7 +5955,7 @@ func (h *Azurerm_databricks_workspaceHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_databricks_workspace{ Azurerm_databricks_workspace_id: &id }
+	x := &Azurerm_databricks_workspace{Azurerm_databricks_workspace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_databricks_workspace", "actual", spew.Sdump(x))
@@ -6360,31 +5974,29 @@ func (h *Azurerm_databricks_workspaceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dev_test_lab struct {
-
 	Azurerm_dev_test_lab_id *string `lyra:"ignore"`
 
-    Artifacts_storage_account_id *string
+	Artifacts_storage_account_id *string
 
-    Default_premium_storage_account_id *string
+	Default_premium_storage_account_id *string
 
-    Default_storage_account_id *string
+	Default_storage_account_id *string
 
-    Key_vault_id *string
+	Key_vault_id *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Premium_data_disk_storage_account_id *string
+	Premium_data_disk_storage_account_id *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_type *string
+	Storage_type *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Unique_identifier *string
-
+	Unique_identifier *string
 }
 
 var Azurerm_dev_test_lab_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6406,7 +6018,6 @@ var Azurerm_dev_test_lab_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"unique_identifier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6415,7 +6026,6 @@ var Azurerm_dev_test_lab_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -6455,11 +6065,11 @@ func (h *Azurerm_dev_test_labHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dev_test_lab", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dev_test_lab", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_lab{ Azurerm_dev_test_lab_id: &externalID }
+	x := &Azurerm_dev_test_lab{Azurerm_dev_test_lab_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dev_test_lab", "actual", spew.Sdump(x))
@@ -6478,7 +6088,7 @@ func (h *Azurerm_dev_test_labHandler) Read(externalID string) (*Azurerm_dev_test
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_lab{ Azurerm_dev_test_lab_id: &id }
+	x := &Azurerm_dev_test_lab{Azurerm_dev_test_lab_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dev_test_lab", "actual", spew.Sdump(x))
@@ -6497,71 +6107,63 @@ func (h *Azurerm_dev_test_labHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80 struct {
+	Offer string
 
+	Publisher string
 
-    Offer string
+	Sku string
 
-    Publisher string
-
-    Sku string
-
-    Version string
-
+	Version string
 }
 
 type Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81 struct {
+	Backend_port int
 
+	Frontend_port *int
 
-    Backend_port int
-
-    Frontend_port *int
-
-    Protocol string
-
+	Protocol string
 }
 
 type Azurerm_dev_test_linux_virtual_machine struct {
-
 	Azurerm_dev_test_linux_virtual_machine_id *string `lyra:"ignore"`
 
-    Allow_claim *bool
+	Allow_claim *bool
 
-    Disallow_public_ip_address *bool
+	Disallow_public_ip_address *bool
 
-    Fqdn *string
+	Fqdn *string
 
-    Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80
+	Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80
 
-    Inbound_nat_rule *[]Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81
+	Inbound_nat_rule *[]Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81
 
-    Lab_name string
+	Lab_name string
 
-    Lab_subnet_name string
+	Lab_subnet_name string
 
-    Lab_virtual_network_id string
+	Lab_virtual_network_id string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Notes *string
+	Notes *string
 
-    Password *string
+	Password *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Size string
+	Size string
 
-    Ssh_key *string
+	Ssh_key *string
 
-    Storage_type string
+	Storage_type string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Unique_identifier *string
+	Unique_identifier *string
 
-    Username string
-
+	Username string
 }
 
 var Azurerm_dev_test_linux_virtual_machine_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6585,7 +6187,6 @@ var Azurerm_dev_test_linux_virtual_machine_rtb = func(rtb service.ResourceTypeBu
 		"tags",
 
 		"unique_identifier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6612,7 +6213,6 @@ var Azurerm_dev_test_linux_virtual_machine_rtb = func(rtb service.ResourceTypeBu
 		"ssh_key",
 
 		"username",
-
 	)
 }
 
@@ -6652,11 +6252,11 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dev_test_linux_virtual_machine", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_linux_virtual_machine{ Azurerm_dev_test_linux_virtual_machine_id: &externalID }
+	x := &Azurerm_dev_test_linux_virtual_machine{Azurerm_dev_test_linux_virtual_machine_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dev_test_linux_virtual_machine", "actual", spew.Sdump(x))
@@ -6675,7 +6275,7 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_linux_virtual_machine{ Azurerm_dev_test_linux_virtual_machine_id: &id }
+	x := &Azurerm_dev_test_linux_virtual_machine{Azurerm_dev_test_linux_virtual_machine_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dev_test_linux_virtual_machine", "actual", spew.Sdump(x))
@@ -6694,27 +6294,25 @@ func (h *Azurerm_dev_test_linux_virtual_machineHandler) Delete(externalID string
 }
 
 type Azurerm_dev_test_policy struct {
-
 	Azurerm_dev_test_policy_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Evaluator_type string
+	Evaluator_type string
 
-    Fact_data *string
+	Fact_data *string
 
-    Lab_name string
+	Lab_name string
 
-    Name string
+	Name string
 
-    Policy_set_name string
+	Policy_set_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Threshold string
-
+	Threshold string
 }
 
 var Azurerm_dev_test_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6726,7 +6324,6 @@ var Azurerm_dev_test_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"fact_data",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6739,7 +6336,6 @@ var Azurerm_dev_test_policy_rtb = func(rtb service.ResourceTypeBuilder) {
 		"policy_set_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -6779,11 +6375,11 @@ func (h *Azurerm_dev_test_policyHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dev_test_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dev_test_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_policy{ Azurerm_dev_test_policy_id: &externalID }
+	x := &Azurerm_dev_test_policy{Azurerm_dev_test_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dev_test_policy", "actual", spew.Sdump(x))
@@ -6802,7 +6398,7 @@ func (h *Azurerm_dev_test_policyHandler) Read(externalID string) (*Azurerm_dev_t
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_policy{ Azurerm_dev_test_policy_id: &id }
+	x := &Azurerm_dev_test_policy{Azurerm_dev_test_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dev_test_policy", "actual", spew.Sdump(x))
@@ -6821,34 +6417,29 @@ func (h *Azurerm_dev_test_policyHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dev_test_virtual_network_subnet_82 struct {
+	Name *string
 
+	Use_in_virtual_machine_creation *string
 
-    Name *string
-
-    Use_in_virtual_machine_creation *string
-
-    Use_public_ip_address *string
-
+	Use_public_ip_address *string
 }
 
 type Azurerm_dev_test_virtual_network struct {
-
 	Azurerm_dev_test_virtual_network_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Lab_name string
+	Lab_name string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Subnet *[]Azurerm_dev_test_virtual_network_subnet_82
+	Subnet *[]Azurerm_dev_test_virtual_network_subnet_82
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Unique_identifier *string
-
+	Unique_identifier *string
 }
 
 var Azurerm_dev_test_virtual_network_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -6862,7 +6453,6 @@ var Azurerm_dev_test_virtual_network_rtb = func(rtb service.ResourceTypeBuilder)
 		"tags",
 
 		"unique_identifier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -6871,7 +6461,6 @@ var Azurerm_dev_test_virtual_network_rtb = func(rtb service.ResourceTypeBuilder)
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -6911,11 +6500,11 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dev_test_virtual_network", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dev_test_virtual_network", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_virtual_network{ Azurerm_dev_test_virtual_network_id: &externalID }
+	x := &Azurerm_dev_test_virtual_network{Azurerm_dev_test_virtual_network_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dev_test_virtual_network", "actual", spew.Sdump(x))
@@ -6934,7 +6523,7 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_virtual_network{ Azurerm_dev_test_virtual_network_id: &id }
+	x := &Azurerm_dev_test_virtual_network{Azurerm_dev_test_virtual_network_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dev_test_virtual_network", "actual", spew.Sdump(x))
@@ -6953,69 +6542,61 @@ func (h *Azurerm_dev_test_virtual_networkHandler) Delete(externalID string) erro
 }
 
 type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83 struct {
+	Offer string
 
+	Publisher string
 
-    Offer string
+	Sku string
 
-    Publisher string
-
-    Sku string
-
-    Version string
-
+	Version string
 }
 
 type Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84 struct {
+	Backend_port int
 
+	Frontend_port *int
 
-    Backend_port int
-
-    Frontend_port *int
-
-    Protocol string
-
+	Protocol string
 }
 
 type Azurerm_dev_test_windows_virtual_machine struct {
-
 	Azurerm_dev_test_windows_virtual_machine_id *string `lyra:"ignore"`
 
-    Allow_claim *bool
+	Allow_claim *bool
 
-    Disallow_public_ip_address *bool
+	Disallow_public_ip_address *bool
 
-    Fqdn *string
+	Fqdn *string
 
-    Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83
+	Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83
 
-    Inbound_nat_rule *[]Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84
+	Inbound_nat_rule *[]Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84
 
-    Lab_name string
+	Lab_name string
 
-    Lab_subnet_name string
+	Lab_subnet_name string
 
-    Lab_virtual_network_id string
+	Lab_virtual_network_id string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Notes *string
+	Notes *string
 
-    Password string
+	Password string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Size string
+	Size string
 
-    Storage_type string
+	Storage_type string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Unique_identifier *string
+	Unique_identifier *string
 
-    Username string
-
+	Username string
 }
 
 var Azurerm_dev_test_windows_virtual_machine_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7035,7 +6616,6 @@ var Azurerm_dev_test_windows_virtual_machine_rtb = func(rtb service.ResourceType
 		"tags",
 
 		"unique_identifier",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7060,7 +6640,6 @@ var Azurerm_dev_test_windows_virtual_machine_rtb = func(rtb service.ResourceType
 		"size",
 
 		"username",
-
 	)
 }
 
@@ -7100,11 +6679,11 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Update(externalID stri
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dev_test_windows_virtual_machine", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_windows_virtual_machine{ Azurerm_dev_test_windows_virtual_machine_id: &externalID }
+	x := &Azurerm_dev_test_windows_virtual_machine{Azurerm_dev_test_windows_virtual_machine_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dev_test_windows_virtual_machine", "actual", spew.Sdump(x))
@@ -7123,7 +6702,7 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Read(externalID string
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dev_test_windows_virtual_machine{ Azurerm_dev_test_windows_virtual_machine_id: &id }
+	x := &Azurerm_dev_test_windows_virtual_machine{Azurerm_dev_test_windows_virtual_machine_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dev_test_windows_virtual_machine", "actual", spew.Sdump(x))
@@ -7142,36 +6721,31 @@ func (h *Azurerm_dev_test_windows_virtual_machineHandler) Delete(externalID stri
 }
 
 type Azurerm_devspace_controller_sku_85 struct {
+	Name string
 
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_devspace_controller struct {
-
 	Azurerm_devspace_controller_id *string `lyra:"ignore"`
 
-    Data_plane_fqdn *string
+	Data_plane_fqdn *string
 
-    Host_suffix string
+	Host_suffix string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_devspace_controller_sku_85
+	Sku []Azurerm_devspace_controller_sku_85
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Target_container_host_credentials_base64 string
+	Target_container_host_credentials_base64 string
 
-    Target_container_host_resource_id string
-
+	Target_container_host_resource_id string
 }
 
 var Azurerm_devspace_controller_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7181,7 +6755,6 @@ var Azurerm_devspace_controller_rtb = func(rtb service.ResourceTypeBuilder) {
 		"data_plane_fqdn",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -7198,7 +6771,6 @@ var Azurerm_devspace_controller_rtb = func(rtb service.ResourceTypeBuilder) {
 		"target_container_host_credentials_base64",
 
 		"target_container_host_resource_id",
-
 	)
 }
 
@@ -7238,11 +6810,11 @@ func (h *Azurerm_devspace_controllerHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_devspace_controller", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_devspace_controller", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_devspace_controller{ Azurerm_devspace_controller_id: &externalID }
+	x := &Azurerm_devspace_controller{Azurerm_devspace_controller_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_devspace_controller", "actual", spew.Sdump(x))
@@ -7261,7 +6833,7 @@ func (h *Azurerm_devspace_controllerHandler) Read(externalID string) (*Azurerm_d
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_devspace_controller{ Azurerm_devspace_controller_id: &id }
+	x := &Azurerm_devspace_controller{Azurerm_devspace_controller_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_devspace_controller", "actual", spew.Sdump(x))
@@ -7280,21 +6852,19 @@ func (h *Azurerm_devspace_controllerHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_a_record struct {
-
 	Azurerm_dns_a_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Records []string
+	Records []string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_a_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7302,14 +6872,12 @@ var Azurerm_dns_a_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_a_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -7349,11 +6917,11 @@ func (h *Azurerm_dns_a_recordHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_a_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_a_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_a_record{ Azurerm_dns_a_record_id: &externalID }
+	x := &Azurerm_dns_a_record{Azurerm_dns_a_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_a_record", "actual", spew.Sdump(x))
@@ -7372,7 +6940,7 @@ func (h *Azurerm_dns_a_recordHandler) Read(externalID string) (*Azurerm_dns_a_re
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_a_record{ Azurerm_dns_a_record_id: &id }
+	x := &Azurerm_dns_a_record{Azurerm_dns_a_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_a_record", "actual", spew.Sdump(x))
@@ -7391,21 +6959,19 @@ func (h *Azurerm_dns_a_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_aaaa_record struct {
-
 	Azurerm_dns_aaaa_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Records []string
+	Records []string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_aaaa_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7413,14 +6979,12 @@ var Azurerm_dns_aaaa_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_aaaa_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -7460,11 +7024,11 @@ func (h *Azurerm_dns_aaaa_recordHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_aaaa_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_aaaa_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_aaaa_record{ Azurerm_dns_aaaa_record_id: &externalID }
+	x := &Azurerm_dns_aaaa_record{Azurerm_dns_aaaa_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_aaaa_record", "actual", spew.Sdump(x))
@@ -7483,7 +7047,7 @@ func (h *Azurerm_dns_aaaa_recordHandler) Read(externalID string) (*Azurerm_dns_a
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_aaaa_record{ Azurerm_dns_aaaa_record_id: &id }
+	x := &Azurerm_dns_aaaa_record{Azurerm_dns_aaaa_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_aaaa_record", "actual", spew.Sdump(x))
@@ -7502,32 +7066,27 @@ func (h *Azurerm_dns_aaaa_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_caa_record_record_86 struct {
+	Flags int
 
+	Tag string
 
-    Flags int
-
-    Tag string
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_dns_caa_record struct {
-
 	Azurerm_dns_caa_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Record []Azurerm_dns_caa_record_record_86
+	Record []Azurerm_dns_caa_record_record_86
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_caa_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7535,14 +7094,12 @@ var Azurerm_dns_caa_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_caa_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -7582,11 +7139,11 @@ func (h *Azurerm_dns_caa_recordHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_caa_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_caa_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_caa_record{ Azurerm_dns_caa_record_id: &externalID }
+	x := &Azurerm_dns_caa_record{Azurerm_dns_caa_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_caa_record", "actual", spew.Sdump(x))
@@ -7605,7 +7162,7 @@ func (h *Azurerm_dns_caa_recordHandler) Read(externalID string) (*Azurerm_dns_ca
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_caa_record{ Azurerm_dns_caa_record_id: &id }
+	x := &Azurerm_dns_caa_record{Azurerm_dns_caa_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_caa_record", "actual", spew.Sdump(x))
@@ -7624,23 +7181,21 @@ func (h *Azurerm_dns_caa_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_cname_record struct {
-
 	Azurerm_dns_cname_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Record string
+	Record string
 
-    Records *string
+	Records *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_cname_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7650,14 +7205,12 @@ var Azurerm_dns_cname_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"records",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -7697,11 +7250,11 @@ func (h *Azurerm_dns_cname_recordHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_cname_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_cname_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_cname_record{ Azurerm_dns_cname_record_id: &externalID }
+	x := &Azurerm_dns_cname_record{Azurerm_dns_cname_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_cname_record", "actual", spew.Sdump(x))
@@ -7720,7 +7273,7 @@ func (h *Azurerm_dns_cname_recordHandler) Read(externalID string) (*Azurerm_dns_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_cname_record{ Azurerm_dns_cname_record_id: &id }
+	x := &Azurerm_dns_cname_record{Azurerm_dns_cname_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_cname_record", "actual", spew.Sdump(x))
@@ -7739,30 +7292,25 @@ func (h *Azurerm_dns_cname_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_mx_record_record_87 struct {
+	Exchange string
 
-
-    Exchange string
-
-    Preference string
-
+	Preference string
 }
 
 type Azurerm_dns_mx_record struct {
-
 	Azurerm_dns_mx_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Record []Azurerm_dns_mx_record_record_87
+	Record []Azurerm_dns_mx_record_record_87
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_mx_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7770,14 +7318,12 @@ var Azurerm_dns_mx_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_mx_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -7817,11 +7363,11 @@ func (h *Azurerm_dns_mx_recordHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_mx_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_mx_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_mx_record{ Azurerm_dns_mx_record_id: &externalID }
+	x := &Azurerm_dns_mx_record{Azurerm_dns_mx_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_mx_record", "actual", spew.Sdump(x))
@@ -7840,7 +7386,7 @@ func (h *Azurerm_dns_mx_recordHandler) Read(externalID string) (*Azurerm_dns_mx_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_mx_record{ Azurerm_dns_mx_record_id: &id }
+	x := &Azurerm_dns_mx_record{Azurerm_dns_mx_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_mx_record", "actual", spew.Sdump(x))
@@ -7859,30 +7405,25 @@ func (h *Azurerm_dns_mx_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_ns_record_record_88 struct {
-
-
-    Nsdname string
-
+	Nsdname string
 }
 
 type Azurerm_dns_ns_record struct {
-
 	Azurerm_dns_ns_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Record *[]Azurerm_dns_ns_record_record_88
+	Record *[]Azurerm_dns_ns_record_record_88
 
-    Records *[]string
+	Records *[]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_ns_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -7894,14 +7435,12 @@ var Azurerm_dns_ns_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"records",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -7941,11 +7480,11 @@ func (h *Azurerm_dns_ns_recordHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_ns_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_ns_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_ns_record{ Azurerm_dns_ns_record_id: &externalID }
+	x := &Azurerm_dns_ns_record{Azurerm_dns_ns_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_ns_record", "actual", spew.Sdump(x))
@@ -7964,7 +7503,7 @@ func (h *Azurerm_dns_ns_recordHandler) Read(externalID string) (*Azurerm_dns_ns_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_ns_record{ Azurerm_dns_ns_record_id: &id }
+	x := &Azurerm_dns_ns_record{Azurerm_dns_ns_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_ns_record", "actual", spew.Sdump(x))
@@ -7983,21 +7522,19 @@ func (h *Azurerm_dns_ns_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_ptr_record struct {
-
 	Azurerm_dns_ptr_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Records []string
+	Records []string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_ptr_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8005,14 +7542,12 @@ var Azurerm_dns_ptr_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_ptr_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8052,11 +7587,11 @@ func (h *Azurerm_dns_ptr_recordHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_ptr_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_ptr_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_ptr_record{ Azurerm_dns_ptr_record_id: &externalID }
+	x := &Azurerm_dns_ptr_record{Azurerm_dns_ptr_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_ptr_record", "actual", spew.Sdump(x))
@@ -8075,7 +7610,7 @@ func (h *Azurerm_dns_ptr_recordHandler) Read(externalID string) (*Azurerm_dns_pt
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_ptr_record{ Azurerm_dns_ptr_record_id: &id }
+	x := &Azurerm_dns_ptr_record{Azurerm_dns_ptr_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_ptr_record", "actual", spew.Sdump(x))
@@ -8094,34 +7629,29 @@ func (h *Azurerm_dns_ptr_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_srv_record_record_89 struct {
+	Port int
 
+	Priority int
 
-    Port int
+	Target string
 
-    Priority int
-
-    Target string
-
-    Weight int
-
+	Weight int
 }
 
 type Azurerm_dns_srv_record struct {
-
 	Azurerm_dns_srv_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Record []Azurerm_dns_srv_record_record_89
+	Record []Azurerm_dns_srv_record_record_89
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_srv_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8129,14 +7659,12 @@ var Azurerm_dns_srv_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_srv_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8176,11 +7704,11 @@ func (h *Azurerm_dns_srv_recordHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_srv_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_srv_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_srv_record{ Azurerm_dns_srv_record_id: &externalID }
+	x := &Azurerm_dns_srv_record{Azurerm_dns_srv_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_srv_record", "actual", spew.Sdump(x))
@@ -8199,7 +7727,7 @@ func (h *Azurerm_dns_srv_recordHandler) Read(externalID string) (*Azurerm_dns_sr
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_srv_record{ Azurerm_dns_srv_record_id: &id }
+	x := &Azurerm_dns_srv_record{Azurerm_dns_srv_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_srv_record", "actual", spew.Sdump(x))
@@ -8218,28 +7746,23 @@ func (h *Azurerm_dns_srv_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_txt_record_record_90 struct {
-
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_dns_txt_record struct {
-
 	Azurerm_dns_txt_record_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Record []Azurerm_dns_txt_record_record_90
+	Record []Azurerm_dns_txt_record_record_90
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Ttl int
+	Ttl int
 
-    Zone_name string
-
+	Zone_name string
 }
 
 var Azurerm_dns_txt_record_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8247,14 +7770,12 @@ var Azurerm_dns_txt_record_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_dns_txt_record_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8294,11 +7815,11 @@ func (h *Azurerm_dns_txt_recordHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_txt_record", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_txt_record", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_txt_record{ Azurerm_dns_txt_record_id: &externalID }
+	x := &Azurerm_dns_txt_record{Azurerm_dns_txt_record_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_txt_record", "actual", spew.Sdump(x))
@@ -8317,7 +7838,7 @@ func (h *Azurerm_dns_txt_recordHandler) Read(externalID string) (*Azurerm_dns_tx
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_txt_record{ Azurerm_dns_txt_record_id: &id }
+	x := &Azurerm_dns_txt_record{Azurerm_dns_txt_record_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_txt_record", "actual", spew.Sdump(x))
@@ -8336,27 +7857,25 @@ func (h *Azurerm_dns_txt_recordHandler) Delete(externalID string) error {
 }
 
 type Azurerm_dns_zone struct {
-
 	Azurerm_dns_zone_id *string `lyra:"ignore"`
 
-    Max_number_of_record_sets *int
+	Max_number_of_record_sets *int
 
-    Name string
+	Name string
 
-    Name_servers *[]string
+	Name_servers *[]string
 
-    Number_of_record_sets *int
+	Number_of_record_sets *int
 
-    Registration_virtual_network_ids *[]string
+	Registration_virtual_network_ids *[]string
 
-    Resolution_virtual_network_ids *[]string
+	Resolution_virtual_network_ids *[]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Zone_type *string
-
+	Zone_type *string
 }
 
 var Azurerm_dns_zone_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8376,14 +7895,12 @@ var Azurerm_dns_zone_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"zone_type",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8423,11 +7940,11 @@ func (h *Azurerm_dns_zoneHandler) Update(externalID string, desired *Azurerm_dns
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_dns_zone", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_dns_zone", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_zone{ Azurerm_dns_zone_id: &externalID }
+	x := &Azurerm_dns_zone{Azurerm_dns_zone_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_dns_zone", "actual", spew.Sdump(x))
@@ -8446,7 +7963,7 @@ func (h *Azurerm_dns_zoneHandler) Read(externalID string) (*Azurerm_dns_zone, er
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_dns_zone{ Azurerm_dns_zone_id: &id }
+	x := &Azurerm_dns_zone{Azurerm_dns_zone_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_dns_zone", "actual", spew.Sdump(x))
@@ -8465,23 +7982,21 @@ func (h *Azurerm_dns_zoneHandler) Delete(externalID string) error {
 }
 
 type Azurerm_eventgrid_topic struct {
-
 	Azurerm_eventgrid_topic_id *string `lyra:"ignore"`
 
-    Endpoint *string
+	Endpoint *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Primary_access_key *string
+	Primary_access_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_access_key *string
+	Secondary_access_key *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_eventgrid_topic_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8495,7 +8010,6 @@ var Azurerm_eventgrid_topic_rtb = func(rtb service.ResourceTypeBuilder) {
 		"secondary_access_key",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8504,7 +8018,6 @@ var Azurerm_eventgrid_topic_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8544,11 +8057,11 @@ func (h *Azurerm_eventgrid_topicHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_eventgrid_topic", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_eventgrid_topic", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventgrid_topic{ Azurerm_eventgrid_topic_id: &externalID }
+	x := &Azurerm_eventgrid_topic{Azurerm_eventgrid_topic_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_eventgrid_topic", "actual", spew.Sdump(x))
@@ -8567,7 +8080,7 @@ func (h *Azurerm_eventgrid_topicHandler) Read(externalID string) (*Azurerm_event
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventgrid_topic{ Azurerm_eventgrid_topic_id: &id }
+	x := &Azurerm_eventgrid_topic{Azurerm_eventgrid_topic_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_eventgrid_topic", "actual", spew.Sdump(x))
@@ -8586,53 +8099,45 @@ func (h *Azurerm_eventgrid_topicHandler) Delete(externalID string) error {
 }
 
 type Azurerm_eventhub_capture_description_91_destination_92 struct {
+	Archive_name_format string
 
+	Blob_container_name string
 
-    Archive_name_format string
+	Name string
 
-    Blob_container_name string
-
-    Name string
-
-    Storage_account_id string
-
+	Storage_account_id string
 }
 
 type Azurerm_eventhub_capture_description_91 struct {
+	Destination []Azurerm_eventhub_capture_description_91_destination_92
 
+	Enabled bool
 
-    Destination []Azurerm_eventhub_capture_description_91_destination_92
+	Encoding string
 
-    Enabled bool
+	Interval_in_seconds *int
 
-    Encoding string
-
-    Interval_in_seconds *int
-
-    Size_limit_in_bytes *int
-
+	Size_limit_in_bytes *int
 }
 
 type Azurerm_eventhub struct {
-
 	Azurerm_eventhub_id *string `lyra:"ignore"`
 
-    Capture_description *[]Azurerm_eventhub_capture_description_91
+	Capture_description *[]Azurerm_eventhub_capture_description_91
 
-    Location *string
+	Location *string
 
-    Message_retention int
+	Message_retention int
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Partition_count int
+	Partition_count int
 
-    Partition_ids *[]string
+	Partition_ids *[]string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_eventhub_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8644,7 +8149,6 @@ var Azurerm_eventhub_rtb = func(rtb service.ResourceTypeBuilder) {
 		"location",
 
 		"partition_ids",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8657,7 +8161,6 @@ var Azurerm_eventhub_rtb = func(rtb service.ResourceTypeBuilder) {
 		"partition_count",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8697,11 +8200,11 @@ func (h *Azurerm_eventhubHandler) Update(externalID string, desired *Azurerm_eve
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_eventhub", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_eventhub", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub{ Azurerm_eventhub_id: &externalID }
+	x := &Azurerm_eventhub{Azurerm_eventhub_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_eventhub", "actual", spew.Sdump(x))
@@ -8720,7 +8223,7 @@ func (h *Azurerm_eventhubHandler) Read(externalID string) (*Azurerm_eventhub, er
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub{ Azurerm_eventhub_id: &id }
+	x := &Azurerm_eventhub{Azurerm_eventhub_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_eventhub", "actual", spew.Sdump(x))
@@ -8739,33 +8242,31 @@ func (h *Azurerm_eventhubHandler) Delete(externalID string) error {
 }
 
 type Azurerm_eventhub_authorization_rule struct {
-
 	Azurerm_eventhub_authorization_rule_id *string `lyra:"ignore"`
 
-    Eventhub_name string
+	Eventhub_name string
 
-    Listen *bool
+	Listen *bool
 
-    Location *string
+	Location *string
 
-    Manage *bool
+	Manage *bool
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_key *string
+	Primary_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Send *bool
-
+	Send *bool
 }
 
 var Azurerm_eventhub_authorization_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8787,7 +8288,6 @@ var Azurerm_eventhub_authorization_rule_rtb = func(rtb service.ResourceTypeBuild
 		"secondary_key",
 
 		"send",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8800,7 +8300,6 @@ var Azurerm_eventhub_authorization_rule_rtb = func(rtb service.ResourceTypeBuild
 		"namespace_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8840,11 +8339,11 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Update(externalID string, d
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_eventhub_authorization_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_eventhub_authorization_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_authorization_rule{ Azurerm_eventhub_authorization_rule_id: &externalID }
+	x := &Azurerm_eventhub_authorization_rule{Azurerm_eventhub_authorization_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_eventhub_authorization_rule", "actual", spew.Sdump(x))
@@ -8863,7 +8362,7 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Read(externalID string) (*A
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_authorization_rule{ Azurerm_eventhub_authorization_rule_id: &id }
+	x := &Azurerm_eventhub_authorization_rule{Azurerm_eventhub_authorization_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_eventhub_authorization_rule", "actual", spew.Sdump(x))
@@ -8882,21 +8381,19 @@ func (h *Azurerm_eventhub_authorization_ruleHandler) Delete(externalID string) e
 }
 
 type Azurerm_eventhub_consumer_group struct {
-
 	Azurerm_eventhub_consumer_group_id *string `lyra:"ignore"`
 
-    Eventhub_name string
+	Eventhub_name string
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    User_metadata *string
-
+	User_metadata *string
 }
 
 var Azurerm_eventhub_consumer_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -8906,7 +8403,6 @@ var Azurerm_eventhub_consumer_group_rtb = func(rtb service.ResourceTypeBuilder) 
 		"location",
 
 		"user_metadata",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -8919,7 +8415,6 @@ var Azurerm_eventhub_consumer_group_rtb = func(rtb service.ResourceTypeBuilder) 
 		"namespace_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -8959,11 +8454,11 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_eventhub_consumer_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_eventhub_consumer_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_consumer_group{ Azurerm_eventhub_consumer_group_id: &externalID }
+	x := &Azurerm_eventhub_consumer_group{Azurerm_eventhub_consumer_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_eventhub_consumer_group", "actual", spew.Sdump(x))
@@ -8982,7 +8477,7 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_consumer_group{ Azurerm_eventhub_consumer_group_id: &id }
+	x := &Azurerm_eventhub_consumer_group{Azurerm_eventhub_consumer_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_eventhub_consumer_group", "actual", spew.Sdump(x))
@@ -9001,35 +8496,33 @@ func (h *Azurerm_eventhub_consumer_groupHandler) Delete(externalID string) error
 }
 
 type Azurerm_eventhub_namespace struct {
-
 	Azurerm_eventhub_namespace_id *string `lyra:"ignore"`
 
-    Auto_inflate_enabled *bool
+	Auto_inflate_enabled *bool
 
-    Capacity *int
+	Capacity *int
 
-    Default_primary_connection_string *string
+	Default_primary_connection_string *string
 
-    Default_primary_key *string
+	Default_primary_key *string
 
-    Default_secondary_connection_string *string
+	Default_secondary_connection_string *string
 
-    Default_secondary_key *string
+	Default_secondary_key *string
 
-    Kafka_enabled *bool
+	Kafka_enabled *bool
 
-    Location string
+	Location string
 
-    Maximum_throughput_units *int
+	Maximum_throughput_units *int
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_eventhub_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9053,7 +8546,6 @@ var Azurerm_eventhub_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"maximum_throughput_units",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9062,7 +8554,6 @@ var Azurerm_eventhub_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -9102,11 +8593,11 @@ func (h *Azurerm_eventhub_namespaceHandler) Update(externalID string, desired *A
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_eventhub_namespace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_eventhub_namespace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_namespace{ Azurerm_eventhub_namespace_id: &externalID }
+	x := &Azurerm_eventhub_namespace{Azurerm_eventhub_namespace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_eventhub_namespace", "actual", spew.Sdump(x))
@@ -9125,7 +8616,7 @@ func (h *Azurerm_eventhub_namespaceHandler) Read(externalID string) (*Azurerm_ev
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_namespace{ Azurerm_eventhub_namespace_id: &id }
+	x := &Azurerm_eventhub_namespace{Azurerm_eventhub_namespace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_eventhub_namespace", "actual", spew.Sdump(x))
@@ -9144,31 +8635,29 @@ func (h *Azurerm_eventhub_namespaceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_eventhub_namespace_authorization_rule struct {
-
 	Azurerm_eventhub_namespace_authorization_rule_id *string `lyra:"ignore"`
 
-    Listen *bool
+	Listen *bool
 
-    Location *string
+	Location *string
 
-    Manage *bool
+	Manage *bool
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_key *string
+	Primary_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Send *bool
-
+	Send *bool
 }
 
 var Azurerm_eventhub_namespace_authorization_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9190,7 +8679,6 @@ var Azurerm_eventhub_namespace_authorization_rule_rtb = func(rtb service.Resourc
 		"secondary_key",
 
 		"send",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9201,7 +8689,6 @@ var Azurerm_eventhub_namespace_authorization_rule_rtb = func(rtb service.Resourc
 		"namespace_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -9241,11 +8728,11 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Update(externalID
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_eventhub_namespace_authorization_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_namespace_authorization_rule{ Azurerm_eventhub_namespace_authorization_rule_id: &externalID }
+	x := &Azurerm_eventhub_namespace_authorization_rule{Azurerm_eventhub_namespace_authorization_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_eventhub_namespace_authorization_rule", "actual", spew.Sdump(x))
@@ -9264,7 +8751,7 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Read(externalID s
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_eventhub_namespace_authorization_rule{ Azurerm_eventhub_namespace_authorization_rule_id: &id }
+	x := &Azurerm_eventhub_namespace_authorization_rule{Azurerm_eventhub_namespace_authorization_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_eventhub_namespace_authorization_rule", "actual", spew.Sdump(x))
@@ -9283,40 +8770,35 @@ func (h *Azurerm_eventhub_namespace_authorization_ruleHandler) Delete(externalID
 }
 
 type Azurerm_express_route_circuit_sku_93 struct {
+	Family string
 
-
-    Family string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_express_route_circuit struct {
-
 	Azurerm_express_route_circuit_id *string `lyra:"ignore"`
 
-    Allow_classic_operations *bool
+	Allow_classic_operations *bool
 
-    Bandwidth_in_mbps int
+	Bandwidth_in_mbps int
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Peering_location string
+	Peering_location string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Service_key *string
+	Service_key *string
 
-    Service_provider_name string
+	Service_provider_name string
 
-    Service_provider_provisioning_state *string
+	Service_provider_provisioning_state *string
 
-    Sku []Azurerm_express_route_circuit_sku_93
+	Sku []Azurerm_express_route_circuit_sku_93
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_express_route_circuit_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9330,7 +8812,6 @@ var Azurerm_express_route_circuit_rtb = func(rtb service.ResourceTypeBuilder) {
 		"service_provider_provisioning_state",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9343,7 +8824,6 @@ var Azurerm_express_route_circuit_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"service_provider_name",
-
 	)
 }
 
@@ -9383,11 +8863,11 @@ func (h *Azurerm_express_route_circuitHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_express_route_circuit", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_express_route_circuit", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_express_route_circuit{ Azurerm_express_route_circuit_id: &externalID }
+	x := &Azurerm_express_route_circuit{Azurerm_express_route_circuit_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_express_route_circuit", "actual", spew.Sdump(x))
@@ -9406,7 +8886,7 @@ func (h *Azurerm_express_route_circuitHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_express_route_circuit{ Azurerm_express_route_circuit_id: &id }
+	x := &Azurerm_express_route_circuit{Azurerm_express_route_circuit_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_express_route_circuit", "actual", spew.Sdump(x))
@@ -9425,19 +8905,17 @@ func (h *Azurerm_express_route_circuitHandler) Delete(externalID string) error {
 }
 
 type Azurerm_express_route_circuit_authorization struct {
-
 	Azurerm_express_route_circuit_authorization_id *string `lyra:"ignore"`
 
-    Authorization_key *string
+	Authorization_key *string
 
-    Authorization_use_status *string
+	Authorization_use_status *string
 
-    Express_route_circuit_name string
+	Express_route_circuit_name string
 
-    Name string
+	Name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_express_route_circuit_authorization_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9447,7 +8925,6 @@ var Azurerm_express_route_circuit_authorization_rtb = func(rtb service.ResourceT
 		"authorization_key",
 
 		"authorization_use_status",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9456,7 +8933,6 @@ var Azurerm_express_route_circuit_authorization_rtb = func(rtb service.ResourceT
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -9496,11 +8972,11 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Update(externalID s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_express_route_circuit_authorization", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_express_route_circuit_authorization", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_express_route_circuit_authorization{ Azurerm_express_route_circuit_authorization_id: &externalID }
+	x := &Azurerm_express_route_circuit_authorization{Azurerm_express_route_circuit_authorization_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_express_route_circuit_authorization", "actual", spew.Sdump(x))
@@ -9519,7 +8995,7 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Read(externalID str
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_express_route_circuit_authorization{ Azurerm_express_route_circuit_authorization_id: &id }
+	x := &Azurerm_express_route_circuit_authorization{Azurerm_express_route_circuit_authorization_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_express_route_circuit_authorization", "actual", spew.Sdump(x))
@@ -9538,40 +9014,35 @@ func (h *Azurerm_express_route_circuit_authorizationHandler) Delete(externalID s
 }
 
 type Azurerm_express_route_circuit_peering_microsoft_peering_config_94 struct {
-
-
-    Advertised_public_prefixes []string
-
+	Advertised_public_prefixes []string
 }
 
 type Azurerm_express_route_circuit_peering struct {
-
 	Azurerm_express_route_circuit_peering_id *string `lyra:"ignore"`
 
-    Azure_asn *int
+	Azure_asn *int
 
-    Express_route_circuit_name string
+	Express_route_circuit_name string
 
-    Microsoft_peering_config *[]Azurerm_express_route_circuit_peering_microsoft_peering_config_94
+	Microsoft_peering_config *[]Azurerm_express_route_circuit_peering_microsoft_peering_config_94
 
-    Peer_asn *int
+	Peer_asn *int
 
-    Peering_type string
+	Peering_type string
 
-    Primary_azure_port *string
+	Primary_azure_port *string
 
-    Primary_peer_address_prefix string
+	Primary_peer_address_prefix string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_azure_port *string
+	Secondary_azure_port *string
 
-    Secondary_peer_address_prefix string
+	Secondary_peer_address_prefix string
 
-    Shared_key *string
+	Shared_key *string
 
-    Vlan_id int
-
+	Vlan_id int
 }
 
 var Azurerm_express_route_circuit_peering_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9589,14 +9060,12 @@ var Azurerm_express_route_circuit_peering_rtb = func(rtb service.ResourceTypeBui
 		"secondary_azure_port",
 
 		"shared_key",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"express_route_circuit_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -9636,11 +9105,11 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Update(externalID string,
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_express_route_circuit_peering", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_express_route_circuit_peering", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_express_route_circuit_peering{ Azurerm_express_route_circuit_peering_id: &externalID }
+	x := &Azurerm_express_route_circuit_peering{Azurerm_express_route_circuit_peering_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_express_route_circuit_peering", "actual", spew.Sdump(x))
@@ -9659,7 +9128,7 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Read(externalID string) (
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_express_route_circuit_peering{ Azurerm_express_route_circuit_peering_id: &id }
+	x := &Azurerm_express_route_circuit_peering{Azurerm_express_route_circuit_peering_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_express_route_circuit_peering", "actual", spew.Sdump(x))
@@ -9678,34 +9147,29 @@ func (h *Azurerm_express_route_circuit_peeringHandler) Delete(externalID string)
 }
 
 type Azurerm_firewall_ip_configuration_95 struct {
+	Internal_public_ip_address_id *string
 
+	Name string
 
-    Internal_public_ip_address_id *string
+	Private_ip_address *string
 
-    Name string
+	Public_ip_address_id *string
 
-    Private_ip_address *string
-
-    Public_ip_address_id *string
-
-    Subnet_id string
-
+	Subnet_id string
 }
 
 type Azurerm_firewall struct {
-
 	Azurerm_firewall_id *string `lyra:"ignore"`
 
-    Ip_configuration []Azurerm_firewall_ip_configuration_95
+	Ip_configuration []Azurerm_firewall_ip_configuration_95
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_firewall_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -9713,7 +9177,6 @@ var Azurerm_firewall_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_firewall_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9722,7 +9185,6 @@ var Azurerm_firewall_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -9762,11 +9224,11 @@ func (h *Azurerm_firewallHandler) Update(externalID string, desired *Azurerm_fir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_firewall", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_firewall", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_firewall{ Azurerm_firewall_id: &externalID }
+	x := &Azurerm_firewall{Azurerm_firewall_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_firewall", "actual", spew.Sdump(x))
@@ -9785,7 +9247,7 @@ func (h *Azurerm_firewallHandler) Read(externalID string) (*Azurerm_firewall, er
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_firewall{ Azurerm_firewall_id: &id }
+	x := &Azurerm_firewall{Azurerm_firewall_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_firewall", "actual", spew.Sdump(x))
@@ -9804,53 +9266,44 @@ func (h *Azurerm_firewallHandler) Delete(externalID string) error {
 }
 
 type Azurerm_firewall_application_rule_collection_rule_96_protocol_97 struct {
+	Port *int
 
-
-    Port *int
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_firewall_application_rule_collection_rule_96 struct {
+	Description *string
 
+	Fqdn_tags *[]string
 
-    Description *string
+	Name string
 
-    Fqdn_tags *[]string
+	Protocol *[]Azurerm_firewall_application_rule_collection_rule_96_protocol_97
 
-    Name string
+	Source_addresses []string
 
-    Protocol *[]Azurerm_firewall_application_rule_collection_rule_96_protocol_97
-
-    Source_addresses []string
-
-    Target_fqdns *[]string
-
+	Target_fqdns *[]string
 }
 
 type Azurerm_firewall_application_rule_collection struct {
-
 	Azurerm_firewall_application_rule_collection_id *string `lyra:"ignore"`
 
-    Action string
+	Action string
 
-    Azure_firewall_name string
+	Azure_firewall_name string
 
-    Name string
+	Name string
 
-    Priority int
+	Priority int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Rule []Azurerm_firewall_application_rule_collection_rule_96
-
+	Rule []Azurerm_firewall_application_rule_collection_rule_96
 }
 
 var Azurerm_firewall_application_rule_collection_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_firewall_application_rule_collection_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9859,7 +9312,6 @@ var Azurerm_firewall_application_rule_collection_rtb = func(rtb service.Resource
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -9899,11 +9351,11 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Update(externalID 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_firewall_application_rule_collection", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_firewall_application_rule_collection", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_firewall_application_rule_collection{ Azurerm_firewall_application_rule_collection_id: &externalID }
+	x := &Azurerm_firewall_application_rule_collection{Azurerm_firewall_application_rule_collection_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_firewall_application_rule_collection", "actual", spew.Sdump(x))
@@ -9922,7 +9374,7 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Read(externalID st
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_firewall_application_rule_collection{ Azurerm_firewall_application_rule_collection_id: &id }
+	x := &Azurerm_firewall_application_rule_collection{Azurerm_firewall_application_rule_collection_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_firewall_application_rule_collection", "actual", spew.Sdump(x))
@@ -9941,44 +9393,38 @@ func (h *Azurerm_firewall_application_rule_collectionHandler) Delete(externalID 
 }
 
 type Azurerm_firewall_network_rule_collection_rule_98 struct {
+	Description *string
 
+	Destination_addresses []string
 
-    Description *string
+	Destination_ports []string
 
-    Destination_addresses []string
+	Name string
 
-    Destination_ports []string
+	Protocols []string
 
-    Name string
-
-    Protocols []string
-
-    Source_addresses []string
-
+	Source_addresses []string
 }
 
 type Azurerm_firewall_network_rule_collection struct {
-
 	Azurerm_firewall_network_rule_collection_id *string `lyra:"ignore"`
 
-    Action string
+	Action string
 
-    Azure_firewall_name string
+	Azure_firewall_name string
 
-    Name string
+	Name string
 
-    Priority int
+	Priority int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Rule []Azurerm_firewall_network_rule_collection_rule_98
-
+	Rule []Azurerm_firewall_network_rule_collection_rule_98
 }
 
 var Azurerm_firewall_network_rule_collection_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_firewall_network_rule_collection_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -9987,7 +9433,6 @@ var Azurerm_firewall_network_rule_collection_rtb = func(rtb service.ResourceType
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -10027,11 +9472,11 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Update(externalID stri
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_firewall_network_rule_collection", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_firewall_network_rule_collection", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_firewall_network_rule_collection{ Azurerm_firewall_network_rule_collection_id: &externalID }
+	x := &Azurerm_firewall_network_rule_collection{Azurerm_firewall_network_rule_collection_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_firewall_network_rule_collection", "actual", spew.Sdump(x))
@@ -10050,7 +9495,7 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Read(externalID string
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_firewall_network_rule_collection{ Azurerm_firewall_network_rule_collection_id: &id }
+	x := &Azurerm_firewall_network_rule_collection{Azurerm_firewall_network_rule_collection_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_firewall_network_rule_collection", "actual", spew.Sdump(x))
@@ -10069,87 +9514,73 @@ func (h *Azurerm_firewall_network_rule_collectionHandler) Delete(externalID stri
 }
 
 type Azurerm_function_app_connection_string_99 struct {
+	Name string
 
+	Type string
 
-    Name string
-
-    Type string
-
-    Value string
-
+	Value string
 }
 
 type Azurerm_function_app_identity_100 struct {
+	Principal_id *string
 
+	Tenant_id *string
 
-    Principal_id *string
-
-    Tenant_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_function_app_site_config_101 struct {
+	Always_on *bool
 
+	Use_32_bit_worker_process *bool
 
-    Always_on *bool
-
-    Use_32_bit_worker_process *bool
-
-    Websockets_enabled *bool
-
+	Websockets_enabled *bool
 }
 
 type Azurerm_function_app_site_credential_102 struct {
+	Password *string
 
-
-    Password *string
-
-    Username *string
-
+	Username *string
 }
 
 type Azurerm_function_app struct {
-
 	Azurerm_function_app_id *string `lyra:"ignore"`
 
-    App_service_plan_id string
+	App_service_plan_id string
 
-    App_settings *map[string]string
+	App_settings *map[string]string
 
-    Client_affinity_enabled *bool
+	Client_affinity_enabled *bool
 
-    Connection_string *[]Azurerm_function_app_connection_string_99
+	Connection_string *[]Azurerm_function_app_connection_string_99
 
-    Default_hostname *string
+	Default_hostname *string
 
-    Enable_builtin_logging *bool
+	Enable_builtin_logging *bool
 
-    Enabled *bool
+	Enabled *bool
 
-    Https_only *bool
+	Https_only *bool
 
-    Identity *[]Azurerm_function_app_identity_100
+	Identity *[]Azurerm_function_app_identity_100
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Outbound_ip_addresses *string
+	Outbound_ip_addresses *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Site_config *[]Azurerm_function_app_site_config_101
+	Site_config *[]Azurerm_function_app_site_config_101
 
-    Site_credential *[]Azurerm_function_app_site_credential_102
+	Site_credential *[]Azurerm_function_app_site_credential_102
 
-    Storage_connection_string string
+	Storage_connection_string string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Version *string
-
+	Version *string
 }
 
 var Azurerm_function_app_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10181,7 +9612,6 @@ var Azurerm_function_app_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10194,7 +9624,6 @@ var Azurerm_function_app_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"storage_connection_string",
-
 	)
 }
 
@@ -10234,11 +9663,11 @@ func (h *Azurerm_function_appHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_function_app", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_function_app", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_function_app{ Azurerm_function_app_id: &externalID }
+	x := &Azurerm_function_app{Azurerm_function_app_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_function_app", "actual", spew.Sdump(x))
@@ -10257,7 +9686,7 @@ func (h *Azurerm_function_appHandler) Read(externalID string) (*Azurerm_function
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_function_app{ Azurerm_function_app_id: &id }
+	x := &Azurerm_function_app{Azurerm_function_app_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_function_app", "actual", spew.Sdump(x))
@@ -10276,55 +9705,47 @@ func (h *Azurerm_function_appHandler) Delete(externalID string) error {
 }
 
 type Azurerm_image_data_disk_103 struct {
+	Blob_uri *string
 
+	Caching *string
 
-    Blob_uri *string
+	Lun *int
 
-    Caching *string
+	Managed_disk_id *string
 
-    Lun *int
-
-    Managed_disk_id *string
-
-    Size_gb *int
-
+	Size_gb *int
 }
 
 type Azurerm_image_os_disk_104 struct {
+	Blob_uri *string
 
+	Caching *string
 
-    Blob_uri *string
+	Managed_disk_id *string
 
-    Caching *string
+	Os_state *string
 
-    Managed_disk_id *string
+	Os_type *string
 
-    Os_state *string
-
-    Os_type *string
-
-    Size_gb *int
-
+	Size_gb *int
 }
 
 type Azurerm_image struct {
-
 	Azurerm_image_id *string `lyra:"ignore"`
 
-    Data_disk *[]Azurerm_image_data_disk_103
+	Data_disk *[]Azurerm_image_data_disk_103
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Os_disk *[]Azurerm_image_os_disk_104
+	Os_disk *[]Azurerm_image_os_disk_104
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Source_virtual_machine_id *string
+	Source_virtual_machine_id *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_image_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10338,7 +9759,6 @@ var Azurerm_image_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_virtual_machine_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10349,7 +9769,6 @@ var Azurerm_image_rtb = func(rtb service.ResourceTypeBuilder) {
 		"os_disk",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -10389,11 +9808,11 @@ func (h *Azurerm_imageHandler) Update(externalID string, desired *Azurerm_image)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_image", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_image", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_image{ Azurerm_image_id: &externalID }
+	x := &Azurerm_image{Azurerm_image_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_image", "actual", spew.Sdump(x))
@@ -10412,7 +9831,7 @@ func (h *Azurerm_imageHandler) Read(externalID string) (*Azurerm_image, error) {
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_image{ Azurerm_image_id: &id }
+	x := &Azurerm_image{Azurerm_image_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_image", "actual", spew.Sdump(x))
@@ -10431,97 +9850,83 @@ func (h *Azurerm_imageHandler) Delete(externalID string) error {
 }
 
 type Azurerm_iothub_endpoint_105 struct {
+	Batch_frequency_in_seconds *int
 
+	Connection_string string
 
-    Batch_frequency_in_seconds *int
+	Container_name *string
 
-    Connection_string string
+	Encoding *string
 
-    Container_name *string
+	File_name_format *string
 
-    Encoding *string
+	Max_chunk_size_in_bytes *int
 
-    File_name_format *string
+	Name string
 
-    Max_chunk_size_in_bytes *int
-
-    Name string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_iothub_route_106 struct {
+	Condition *string
 
+	Enabled bool
 
-    Condition *string
+	Endpoint_names []string
 
-    Enabled bool
+	Name string
 
-    Endpoint_names []string
-
-    Name string
-
-    Source string
-
+	Source string
 }
 
 type Azurerm_iothub_shared_access_policy_107 struct {
+	Key_name *string
 
+	Permissions *string
 
-    Key_name *string
+	Primary_key *string
 
-    Permissions *string
-
-    Primary_key *string
-
-    Secondary_key *string
-
+	Secondary_key *string
 }
 
 type Azurerm_iothub_sku_108 struct {
+	Capacity int
 
+	Name string
 
-    Capacity int
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_iothub struct {
-
 	Azurerm_iothub_id *string `lyra:"ignore"`
 
-    Endpoint *[]Azurerm_iothub_endpoint_105
+	Endpoint *[]Azurerm_iothub_endpoint_105
 
-    Event_hub_events_endpoint *string
+	Event_hub_events_endpoint *string
 
-    Event_hub_events_path *string
+	Event_hub_events_path *string
 
-    Event_hub_operations_endpoint *string
+	Event_hub_operations_endpoint *string
 
-    Event_hub_operations_path *string
+	Event_hub_operations_path *string
 
-    Hostname *string
+	Hostname *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Route *[]Azurerm_iothub_route_106
+	Route *[]Azurerm_iothub_route_106
 
-    Shared_access_policy *[]Azurerm_iothub_shared_access_policy_107
+	Shared_access_policy *[]Azurerm_iothub_shared_access_policy_107
 
-    Sku []Azurerm_iothub_sku_108
+	Sku []Azurerm_iothub_sku_108
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Type *string
-
+	Type *string
 }
 
 var Azurerm_iothub_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10547,7 +9952,6 @@ var Azurerm_iothub_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"type",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10556,7 +9960,6 @@ var Azurerm_iothub_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -10596,11 +9999,11 @@ func (h *Azurerm_iothubHandler) Update(externalID string, desired *Azurerm_iothu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_iothub", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_iothub", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_iothub{ Azurerm_iothub_id: &externalID }
+	x := &Azurerm_iothub{Azurerm_iothub_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_iothub", "actual", spew.Sdump(x))
@@ -10619,7 +10022,7 @@ func (h *Azurerm_iothubHandler) Read(externalID string) (*Azurerm_iothub, error)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_iothub{ Azurerm_iothub_id: &id }
+	x := &Azurerm_iothub{Azurerm_iothub_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_iothub", "actual", spew.Sdump(x))
@@ -10638,23 +10041,20 @@ func (h *Azurerm_iothubHandler) Delete(externalID string) error {
 }
 
 type Azurerm_iothub_consumer_group struct {
-
 	Azurerm_iothub_consumer_group_id *string `lyra:"ignore"`
 
-    Eventhub_endpoint_name string
+	Eventhub_endpoint_name string
 
-    Iothub_name string
+	Iothub_name string
 
-    Name string
+	Name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_iothub_consumer_group_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_iothub_consumer_group_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10665,7 +10065,6 @@ var Azurerm_iothub_consumer_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -10705,11 +10104,11 @@ func (h *Azurerm_iothub_consumer_groupHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_iothub_consumer_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_iothub_consumer_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_iothub_consumer_group{ Azurerm_iothub_consumer_group_id: &externalID }
+	x := &Azurerm_iothub_consumer_group{Azurerm_iothub_consumer_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_iothub_consumer_group", "actual", spew.Sdump(x))
@@ -10728,7 +10127,7 @@ func (h *Azurerm_iothub_consumer_groupHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_iothub_consumer_group{ Azurerm_iothub_consumer_group_id: &id }
+	x := &Azurerm_iothub_consumer_group{Azurerm_iothub_consumer_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_iothub_consumer_group", "actual", spew.Sdump(x))
@@ -10747,70 +10146,59 @@ func (h *Azurerm_iothub_consumer_groupHandler) Delete(externalID string) error {
 }
 
 type Azurerm_key_vault_access_policy_109 struct {
+	Application_id *string
 
+	Certificate_permissions *[]string
 
-    Application_id *string
+	Key_permissions *[]string
 
-    Certificate_permissions *[]string
+	Object_id string
 
-    Key_permissions *[]string
+	Secret_permissions *[]string
 
-    Object_id string
-
-    Secret_permissions *[]string
-
-    Tenant_id string
-
+	Tenant_id string
 }
 
 type Azurerm_key_vault_network_acls_110 struct {
+	Bypass string
 
+	Default_action string
 
-    Bypass string
+	Ip_rules *[]string
 
-    Default_action string
-
-    Ip_rules *[]string
-
-    Virtual_network_subnet_ids *[]string
-
+	Virtual_network_subnet_ids *[]string
 }
 
 type Azurerm_key_vault_sku_111 struct {
-
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_key_vault struct {
-
 	Azurerm_key_vault_id *string `lyra:"ignore"`
 
-    Access_policy *[]Azurerm_key_vault_access_policy_109
+	Access_policy *[]Azurerm_key_vault_access_policy_109
 
-    Enabled_for_deployment *bool
+	Enabled_for_deployment *bool
 
-    Enabled_for_disk_encryption *bool
+	Enabled_for_disk_encryption *bool
 
-    Enabled_for_template_deployment *bool
+	Enabled_for_template_deployment *bool
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Network_acls *[]Azurerm_key_vault_network_acls_110
+	Network_acls *[]Azurerm_key_vault_network_acls_110
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_key_vault_sku_111
+	Sku []Azurerm_key_vault_sku_111
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Tenant_id string
+	Tenant_id string
 
-    Vault_uri *string
-
+	Vault_uri *string
 }
 
 var Azurerm_key_vault_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10830,7 +10218,6 @@ var Azurerm_key_vault_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"vault_uri",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10839,7 +10226,6 @@ var Azurerm_key_vault_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -10879,11 +10265,11 @@ func (h *Azurerm_key_vaultHandler) Update(externalID string, desired *Azurerm_ke
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_key_vault", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_key_vault", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault{ Azurerm_key_vault_id: &externalID }
+	x := &Azurerm_key_vault{Azurerm_key_vault_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_key_vault", "actual", spew.Sdump(x))
@@ -10902,7 +10288,7 @@ func (h *Azurerm_key_vaultHandler) Read(externalID string) (*Azurerm_key_vault, 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault{ Azurerm_key_vault_id: &id }
+	x := &Azurerm_key_vault{Azurerm_key_vault_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_key_vault", "actual", spew.Sdump(x))
@@ -10921,25 +10307,23 @@ func (h *Azurerm_key_vaultHandler) Delete(externalID string) error {
 }
 
 type Azurerm_key_vault_access_policy struct {
-
 	Azurerm_key_vault_access_policy_id *string `lyra:"ignore"`
 
-    Application_id *string
+	Application_id *string
 
-    Certificate_permissions *[]string
+	Certificate_permissions *[]string
 
-    Key_permissions *[]string
+	Key_permissions *[]string
 
-    Object_id string
+	Object_id string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secret_permissions *[]string
+	Secret_permissions *[]string
 
-    Tenant_id string
+	Tenant_id string
 
-    Vault_name string
-
+	Vault_name string
 }
 
 var Azurerm_key_vault_access_policy_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -10953,7 +10337,6 @@ var Azurerm_key_vault_access_policy_rtb = func(rtb service.ResourceTypeBuilder) 
 		"key_permissions",
 
 		"secret_permissions",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -10966,7 +10349,6 @@ var Azurerm_key_vault_access_policy_rtb = func(rtb service.ResourceTypeBuilder) 
 		"tenant_id",
 
 		"vault_name",
-
 	)
 }
 
@@ -11006,11 +10388,11 @@ func (h *Azurerm_key_vault_access_policyHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_key_vault_access_policy", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_key_vault_access_policy", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_access_policy{ Azurerm_key_vault_access_policy_id: &externalID }
+	x := &Azurerm_key_vault_access_policy{Azurerm_key_vault_access_policy_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_key_vault_access_policy", "actual", spew.Sdump(x))
@@ -11029,7 +10411,7 @@ func (h *Azurerm_key_vault_access_policyHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_access_policy{ Azurerm_key_vault_access_policy_id: &id }
+	x := &Azurerm_key_vault_access_policy{Azurerm_key_vault_access_policy_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_key_vault_access_policy", "actual", spew.Sdump(x))
@@ -11048,129 +10430,97 @@ func (h *Azurerm_key_vault_access_policyHandler) Delete(externalID string) error
 }
 
 type Azurerm_key_vault_certificate_certificate_112 struct {
+	Contents string
 
-
-    Contents string
-
-    Password *string
-
+	Password *string
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114 struct {
-
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115 struct {
+	Exportable bool
 
+	Key_size int
 
-    Exportable bool
+	Key_type string
 
-    Key_size int
-
-    Key_type string
-
-    Reuse_key bool
-
+	Reuse_key bool
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117 struct {
-
-
-    Action_type string
-
+	Action_type string
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118 struct {
+	Days_before_expiry *int
 
-
-    Days_before_expiry *int
-
-    Lifetime_percentage *int
-
+	Lifetime_percentage *int
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116 struct {
+	Action []Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117
 
-
-    Action []Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117
-
-    Trigger []Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118
-
+	Trigger []Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119 struct {
-
-
-    Content_type string
-
+	Content_type string
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121 struct {
+	Dns_names *[]string
 
+	Emails *[]string
 
-    Dns_names *[]string
-
-    Emails *[]string
-
-    Upns *[]string
-
+	Upns *[]string
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120 struct {
+	Extended_key_usage *[]string
 
+	Key_usage []string
 
-    Extended_key_usage *[]string
+	Subject string
 
-    Key_usage []string
+	Subject_alternative_names *[]Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121
 
-    Subject string
-
-    Subject_alternative_names *[]Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121
-
-    Validity_in_months int
-
+	Validity_in_months int
 }
 
 type Azurerm_key_vault_certificate_certificate_policy_113 struct {
+	Issuer_parameters []Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114
 
+	Key_properties []Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115
 
-    Issuer_parameters []Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114
+	Lifetime_action *[]Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116
 
-    Key_properties []Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115
+	Secret_properties []Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119
 
-    Lifetime_action *[]Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116
-
-    Secret_properties []Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119
-
-    X509_certificate_properties *[]Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120
-
+	X509_certificate_properties *[]Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120
 }
 
 type Azurerm_key_vault_certificate struct {
-
 	Azurerm_key_vault_certificate_id *string `lyra:"ignore"`
 
-    Certificate *[]Azurerm_key_vault_certificate_certificate_112
+	Certificate *[]Azurerm_key_vault_certificate_certificate_112
 
-    Certificate_data *string
+	Certificate_data *string
 
-    Certificate_policy []Azurerm_key_vault_certificate_certificate_policy_113
+	Certificate_policy []Azurerm_key_vault_certificate_certificate_policy_113
 
-    Name string
+	Name string
 
-    Secret_id *string
+	Secret_id *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Thumbprint *string
+	Thumbprint *string
 
-    Vault_uri string
+	Vault_uri string
 
-    Version *string
-
+	Version *string
 }
 
 var Azurerm_key_vault_certificate_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11188,7 +10538,6 @@ var Azurerm_key_vault_certificate_rtb = func(rtb service.ResourceTypeBuilder) {
 		"thumbprint",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11199,7 +10548,6 @@ var Azurerm_key_vault_certificate_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"vault_uri",
-
 	)
 }
 
@@ -11239,11 +10587,11 @@ func (h *Azurerm_key_vault_certificateHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_key_vault_certificate", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_key_vault_certificate", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_certificate{ Azurerm_key_vault_certificate_id: &externalID }
+	x := &Azurerm_key_vault_certificate{Azurerm_key_vault_certificate_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_key_vault_certificate", "actual", spew.Sdump(x))
@@ -11262,7 +10610,7 @@ func (h *Azurerm_key_vault_certificateHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_certificate{ Azurerm_key_vault_certificate_id: &id }
+	x := &Azurerm_key_vault_certificate{Azurerm_key_vault_certificate_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_key_vault_certificate", "actual", spew.Sdump(x))
@@ -11281,27 +10629,25 @@ func (h *Azurerm_key_vault_certificateHandler) Delete(externalID string) error {
 }
 
 type Azurerm_key_vault_key struct {
-
 	Azurerm_key_vault_key_id *string `lyra:"ignore"`
 
-    E *string
+	E *string
 
-    Key_opts []string
+	Key_opts []string
 
-    Key_size int
+	Key_size int
 
-    Key_type string
+	Key_type string
 
-    N *string
+	N *string
 
-    Name string
+	Name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Vault_uri string
+	Vault_uri string
 
-    Version *string
-
+	Version *string
 }
 
 var Azurerm_key_vault_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11315,7 +10661,6 @@ var Azurerm_key_vault_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11326,7 +10671,6 @@ var Azurerm_key_vault_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"vault_uri",
-
 	)
 }
 
@@ -11366,11 +10710,11 @@ func (h *Azurerm_key_vault_keyHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_key_vault_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_key_vault_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_key{ Azurerm_key_vault_key_id: &externalID }
+	x := &Azurerm_key_vault_key{Azurerm_key_vault_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_key_vault_key", "actual", spew.Sdump(x))
@@ -11389,7 +10733,7 @@ func (h *Azurerm_key_vault_keyHandler) Read(externalID string) (*Azurerm_key_vau
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_key{ Azurerm_key_vault_key_id: &id }
+	x := &Azurerm_key_vault_key{Azurerm_key_vault_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_key_vault_key", "actual", spew.Sdump(x))
@@ -11408,21 +10752,19 @@ func (h *Azurerm_key_vault_keyHandler) Delete(externalID string) error {
 }
 
 type Azurerm_key_vault_secret struct {
-
 	Azurerm_key_vault_secret_id *string `lyra:"ignore"`
 
-    Content_type *string
+	Content_type *string
 
-    Name string
+	Name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Value string
+	Value string
 
-    Vault_uri string
+	Vault_uri string
 
-    Version *string
-
+	Version *string
 }
 
 var Azurerm_key_vault_secret_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11434,14 +10776,12 @@ var Azurerm_key_vault_secret_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"version",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"vault_uri",
-
 	)
 }
 
@@ -11481,11 +10821,11 @@ func (h *Azurerm_key_vault_secretHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_key_vault_secret", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_key_vault_secret", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_secret{ Azurerm_key_vault_secret_id: &externalID }
+	x := &Azurerm_key_vault_secret{Azurerm_key_vault_secret_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_key_vault_secret", "actual", spew.Sdump(x))
@@ -11504,7 +10844,7 @@ func (h *Azurerm_key_vault_secretHandler) Read(externalID string) (*Azurerm_key_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_key_vault_secret{ Azurerm_key_vault_secret_id: &id }
+	x := &Azurerm_key_vault_secret{Azurerm_key_vault_secret_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_key_vault_secret", "actual", spew.Sdump(x))
@@ -11523,202 +10863,161 @@ func (h *Azurerm_key_vault_secretHandler) Delete(externalID string) error {
 }
 
 type Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123 struct {
+	Enabled bool
 
-
-    Enabled bool
-
-    Subnet_name string
-
+	Subnet_name string
 }
 
 type Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124 struct {
+	Enabled bool
 
-
-    Enabled bool
-
-    Http_application_routing_zone_name *string
-
+	Http_application_routing_zone_name *string
 }
 
 type Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125 struct {
+	Enabled bool
 
-
-    Enabled bool
-
-    Log_analytics_workspace_id string
-
+	Log_analytics_workspace_id string
 }
 
 type Azurerm_kubernetes_cluster_addon_profile_122 struct {
+	Aci_connector_linux *[]Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123
 
+	Http_application_routing *[]Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124
 
-    Aci_connector_linux *[]Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123
-
-    Http_application_routing *[]Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124
-
-    Oms_agent *[]Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125
-
+	Oms_agent *[]Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125
 }
 
 type Azurerm_kubernetes_cluster_agent_pool_profile_126 struct {
+	Count *int
 
+	Dns_prefix *string
 
-    Count *int
+	Fqdn *string
 
-    Dns_prefix *string
+	Max_pods *int
 
-    Fqdn *string
+	Name string
 
-    Max_pods *int
+	Os_disk_size_gb *int
 
-    Name string
+	Os_type *string
 
-    Os_disk_size_gb *int
+	Vm_size string
 
-    Os_type *string
-
-    Vm_size string
-
-    Vnet_subnet_id *string
-
+	Vnet_subnet_id *string
 }
 
 type Azurerm_kubernetes_cluster_kube_admin_config_127 struct {
+	Client_certificate *string
 
+	Client_key *string
 
-    Client_certificate *string
+	Cluster_ca_certificate *string
 
-    Client_key *string
+	Host *string
 
-    Cluster_ca_certificate *string
+	Password *string
 
-    Host *string
-
-    Password *string
-
-    Username *string
-
+	Username *string
 }
 
 type Azurerm_kubernetes_cluster_kube_config_128 struct {
+	Client_certificate *string
 
+	Client_key *string
 
-    Client_certificate *string
+	Cluster_ca_certificate *string
 
-    Client_key *string
+	Host *string
 
-    Cluster_ca_certificate *string
+	Password *string
 
-    Host *string
-
-    Password *string
-
-    Username *string
-
+	Username *string
 }
 
 type Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130 struct {
-
-
-    Key_data string
-
+	Key_data string
 }
 
 type Azurerm_kubernetes_cluster_linux_profile_129 struct {
+	Admin_username string
 
-
-    Admin_username string
-
-    Ssh_key []Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130
-
+	Ssh_key []Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130
 }
 
 type Azurerm_kubernetes_cluster_network_profile_131 struct {
+	Dns_service_ip *string
 
+	Docker_bridge_cidr *string
 
-    Dns_service_ip *string
+	Network_plugin string
 
-    Docker_bridge_cidr *string
+	Pod_cidr *string
 
-    Network_plugin string
-
-    Pod_cidr *string
-
-    Service_cidr *string
-
+	Service_cidr *string
 }
 
 type Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133 struct {
+	Client_app_id string
 
+	Server_app_id string
 
-    Client_app_id string
+	Server_app_secret string
 
-    Server_app_id string
-
-    Server_app_secret string
-
-    Tenant_id *string
-
+	Tenant_id *string
 }
 
 type Azurerm_kubernetes_cluster_role_based_access_control_132 struct {
+	Azure_active_directory *[]Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133
 
-
-    Azure_active_directory *[]Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133
-
-    Enabled bool
-
+	Enabled bool
 }
 
 type Azurerm_kubernetes_cluster_service_principal_134 struct {
+	Client_id string
 
-
-    Client_id string
-
-    Client_secret string
-
+	Client_secret string
 }
 
 type Azurerm_kubernetes_cluster struct {
-
 	Azurerm_kubernetes_cluster_id *string `lyra:"ignore"`
 
-    Addon_profile *[]Azurerm_kubernetes_cluster_addon_profile_122
+	Addon_profile *[]Azurerm_kubernetes_cluster_addon_profile_122
 
-    Agent_pool_profile []Azurerm_kubernetes_cluster_agent_pool_profile_126
+	Agent_pool_profile []Azurerm_kubernetes_cluster_agent_pool_profile_126
 
-    Dns_prefix string
+	Dns_prefix string
 
-    Fqdn *string
+	Fqdn *string
 
-    Kube_admin_config *[]Azurerm_kubernetes_cluster_kube_admin_config_127
+	Kube_admin_config *[]Azurerm_kubernetes_cluster_kube_admin_config_127
 
-    Kube_admin_config_raw *string
+	Kube_admin_config_raw *string
 
-    Kube_config *[]Azurerm_kubernetes_cluster_kube_config_128
+	Kube_config *[]Azurerm_kubernetes_cluster_kube_config_128
 
-    Kube_config_raw *string
+	Kube_config_raw *string
 
-    Kubernetes_version *string
+	Kubernetes_version *string
 
-    Linux_profile *[]Azurerm_kubernetes_cluster_linux_profile_129
+	Linux_profile *[]Azurerm_kubernetes_cluster_linux_profile_129
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Network_profile *[]Azurerm_kubernetes_cluster_network_profile_131
+	Network_profile *[]Azurerm_kubernetes_cluster_network_profile_131
 
-    Node_resource_group *string
+	Node_resource_group *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_132
+	Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_132
 
-    Service_principal []Azurerm_kubernetes_cluster_service_principal_134
+	Service_principal []Azurerm_kubernetes_cluster_service_principal_134
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_kubernetes_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11748,7 +11047,6 @@ var Azurerm_kubernetes_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"role_based_access_control",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11763,7 +11061,6 @@ var Azurerm_kubernetes_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"role_based_access_control",
-
 	)
 }
 
@@ -11803,11 +11100,11 @@ func (h *Azurerm_kubernetes_clusterHandler) Update(externalID string, desired *A
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_kubernetes_cluster", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_kubernetes_cluster", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_kubernetes_cluster{ Azurerm_kubernetes_cluster_id: &externalID }
+	x := &Azurerm_kubernetes_cluster{Azurerm_kubernetes_cluster_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_kubernetes_cluster", "actual", spew.Sdump(x))
@@ -11826,7 +11123,7 @@ func (h *Azurerm_kubernetes_clusterHandler) Read(externalID string) (*Azurerm_ku
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_kubernetes_cluster{ Azurerm_kubernetes_cluster_id: &id }
+	x := &Azurerm_kubernetes_cluster{Azurerm_kubernetes_cluster_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_kubernetes_cluster", "actual", spew.Sdump(x))
@@ -11845,46 +11142,41 @@ func (h *Azurerm_kubernetes_clusterHandler) Delete(externalID string) error {
 }
 
 type Azurerm_lb_frontend_ip_configuration_135 struct {
+	Inbound_nat_rules *[]string
 
+	Load_balancer_rules *[]string
 
-    Inbound_nat_rules *[]string
+	Name string
 
-    Load_balancer_rules *[]string
+	Private_ip_address *string
 
-    Name string
+	Private_ip_address_allocation *string
 
-    Private_ip_address *string
+	Public_ip_address_id *string
 
-    Private_ip_address_allocation *string
+	Subnet_id *string
 
-    Public_ip_address_id *string
-
-    Subnet_id *string
-
-    Zones *[]string
-
+	Zones *[]string
 }
 
 type Azurerm_lb struct {
-
 	Azurerm_lb_id *string `lyra:"ignore"`
 
-    Frontend_ip_configuration *[]Azurerm_lb_frontend_ip_configuration_135
+	Frontend_ip_configuration *[]Azurerm_lb_frontend_ip_configuration_135
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Private_ip_address *string
+	Private_ip_address *string
 
-    Private_ip_addresses *[]string
+	Private_ip_addresses *[]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku *string
+	Sku *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_lb_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -11900,7 +11192,6 @@ var Azurerm_lb_rtb = func(rtb service.ResourceTypeBuilder) {
 		"sku",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -11911,7 +11202,6 @@ var Azurerm_lb_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"sku",
-
 	)
 }
 
@@ -11951,11 +11241,11 @@ func (h *Azurerm_lbHandler) Update(externalID string, desired *Azurerm_lb) (*Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_lb", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_lb", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb{ Azurerm_lb_id: &externalID }
+	x := &Azurerm_lb{Azurerm_lb_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_lb", "actual", spew.Sdump(x))
@@ -11974,7 +11264,7 @@ func (h *Azurerm_lbHandler) Read(externalID string) (*Azurerm_lb, error) {
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb{ Azurerm_lb_id: &id }
+	x := &Azurerm_lb{Azurerm_lb_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_lb", "actual", spew.Sdump(x))
@@ -11993,21 +11283,19 @@ func (h *Azurerm_lbHandler) Delete(externalID string) error {
 }
 
 type Azurerm_lb_backend_address_pool struct {
-
 	Azurerm_lb_backend_address_pool_id *string `lyra:"ignore"`
 
-    Backend_ip_configurations *[]string
+	Backend_ip_configurations *[]string
 
-    Load_balancing_rules *[]string
+	Load_balancing_rules *[]string
 
-    Loadbalancer_id string
+	Loadbalancer_id string
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_lb_backend_address_pool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12019,7 +11307,6 @@ var Azurerm_lb_backend_address_pool_rtb = func(rtb service.ResourceTypeBuilder) 
 		"load_balancing_rules",
 
 		"location",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12030,7 +11317,6 @@ var Azurerm_lb_backend_address_pool_rtb = func(rtb service.ResourceTypeBuilder) 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -12070,11 +11356,11 @@ func (h *Azurerm_lb_backend_address_poolHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_lb_backend_address_pool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_lb_backend_address_pool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_backend_address_pool{ Azurerm_lb_backend_address_pool_id: &externalID }
+	x := &Azurerm_lb_backend_address_pool{Azurerm_lb_backend_address_pool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_lb_backend_address_pool", "actual", spew.Sdump(x))
@@ -12093,7 +11379,7 @@ func (h *Azurerm_lb_backend_address_poolHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_backend_address_pool{ Azurerm_lb_backend_address_pool_id: &id }
+	x := &Azurerm_lb_backend_address_pool{Azurerm_lb_backend_address_pool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_lb_backend_address_pool", "actual", spew.Sdump(x))
@@ -12112,29 +11398,27 @@ func (h *Azurerm_lb_backend_address_poolHandler) Delete(externalID string) error
 }
 
 type Azurerm_lb_nat_pool struct {
-
 	Azurerm_lb_nat_pool_id *string `lyra:"ignore"`
 
-    Backend_port int
+	Backend_port int
 
-    Frontend_ip_configuration_id *string
+	Frontend_ip_configuration_id *string
 
-    Frontend_ip_configuration_name string
+	Frontend_ip_configuration_name string
 
-    Frontend_port_end int
+	Frontend_port_end int
 
-    Frontend_port_start int
+	Frontend_port_start int
 
-    Loadbalancer_id string
+	Loadbalancer_id string
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Protocol string
+	Protocol string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_lb_nat_pool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12144,7 +11428,6 @@ var Azurerm_lb_nat_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"frontend_ip_configuration_id",
 
 		"location",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12155,7 +11438,6 @@ var Azurerm_lb_nat_pool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -12195,11 +11477,11 @@ func (h *Azurerm_lb_nat_poolHandler) Update(externalID string, desired *Azurerm_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_lb_nat_pool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_lb_nat_pool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_nat_pool{ Azurerm_lb_nat_pool_id: &externalID }
+	x := &Azurerm_lb_nat_pool{Azurerm_lb_nat_pool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_lb_nat_pool", "actual", spew.Sdump(x))
@@ -12218,7 +11500,7 @@ func (h *Azurerm_lb_nat_poolHandler) Read(externalID string) (*Azurerm_lb_nat_po
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_nat_pool{ Azurerm_lb_nat_pool_id: &id }
+	x := &Azurerm_lb_nat_pool{Azurerm_lb_nat_pool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_lb_nat_pool", "actual", spew.Sdump(x))
@@ -12237,31 +11519,29 @@ func (h *Azurerm_lb_nat_poolHandler) Delete(externalID string) error {
 }
 
 type Azurerm_lb_nat_rule struct {
-
 	Azurerm_lb_nat_rule_id *string `lyra:"ignore"`
 
-    Backend_ip_configuration_id *string
+	Backend_ip_configuration_id *string
 
-    Backend_port int
+	Backend_port int
 
-    Enable_floating_ip *bool
+	Enable_floating_ip *bool
 
-    Frontend_ip_configuration_id *string
+	Frontend_ip_configuration_id *string
 
-    Frontend_ip_configuration_name string
+	Frontend_ip_configuration_name string
 
-    Frontend_port int
+	Frontend_port int
 
-    Loadbalancer_id string
+	Loadbalancer_id string
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Protocol string
+	Protocol string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_lb_nat_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12275,7 +11555,6 @@ var Azurerm_lb_nat_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"frontend_ip_configuration_id",
 
 		"location",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12286,7 +11565,6 @@ var Azurerm_lb_nat_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -12326,11 +11604,11 @@ func (h *Azurerm_lb_nat_ruleHandler) Update(externalID string, desired *Azurerm_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_lb_nat_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_lb_nat_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_nat_rule{ Azurerm_lb_nat_rule_id: &externalID }
+	x := &Azurerm_lb_nat_rule{Azurerm_lb_nat_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_lb_nat_rule", "actual", spew.Sdump(x))
@@ -12349,7 +11627,7 @@ func (h *Azurerm_lb_nat_ruleHandler) Read(externalID string) (*Azurerm_lb_nat_ru
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_nat_rule{ Azurerm_lb_nat_rule_id: &id }
+	x := &Azurerm_lb_nat_rule{Azurerm_lb_nat_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_lb_nat_rule", "actual", spew.Sdump(x))
@@ -12368,29 +11646,27 @@ func (h *Azurerm_lb_nat_ruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_lb_probe struct {
-
 	Azurerm_lb_probe_id *string `lyra:"ignore"`
 
-    Interval_in_seconds *int
+	Interval_in_seconds *int
 
-    Load_balancer_rules *[]string
+	Load_balancer_rules *[]string
 
-    Loadbalancer_id string
+	Loadbalancer_id string
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Number_of_probes *int
+	Number_of_probes *int
 
-    Port int
+	Port int
 
-    Protocol *string
+	Protocol *string
 
-    Request_path *string
+	Request_path *string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_lb_probe_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12408,7 +11684,6 @@ var Azurerm_lb_probe_rtb = func(rtb service.ResourceTypeBuilder) {
 		"protocol",
 
 		"request_path",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12419,7 +11694,6 @@ var Azurerm_lb_probe_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -12459,11 +11733,11 @@ func (h *Azurerm_lb_probeHandler) Update(externalID string, desired *Azurerm_lb_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_lb_probe", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_lb_probe", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_probe{ Azurerm_lb_probe_id: &externalID }
+	x := &Azurerm_lb_probe{Azurerm_lb_probe_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_lb_probe", "actual", spew.Sdump(x))
@@ -12482,7 +11756,7 @@ func (h *Azurerm_lb_probeHandler) Read(externalID string) (*Azurerm_lb_probe, er
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_probe{ Azurerm_lb_probe_id: &id }
+	x := &Azurerm_lb_probe{Azurerm_lb_probe_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_lb_probe", "actual", spew.Sdump(x))
@@ -12501,37 +11775,35 @@ func (h *Azurerm_lb_probeHandler) Delete(externalID string) error {
 }
 
 type Azurerm_lb_rule struct {
-
 	Azurerm_lb_rule_id *string `lyra:"ignore"`
 
-    Backend_address_pool_id *string
+	Backend_address_pool_id *string
 
-    Backend_port int
+	Backend_port int
 
-    Enable_floating_ip *bool
+	Enable_floating_ip *bool
 
-    Frontend_ip_configuration_id *string
+	Frontend_ip_configuration_id *string
 
-    Frontend_ip_configuration_name string
+	Frontend_ip_configuration_name string
 
-    Frontend_port int
+	Frontend_port int
 
-    Idle_timeout_in_minutes *int
+	Idle_timeout_in_minutes *int
 
-    Load_distribution *string
+	Load_distribution *string
 
-    Loadbalancer_id string
+	Loadbalancer_id string
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Probe_id *string
+	Probe_id *string
 
-    Protocol string
+	Protocol string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_lb_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12551,7 +11823,6 @@ var Azurerm_lb_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"location",
 
 		"probe_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12562,7 +11833,6 @@ var Azurerm_lb_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -12602,11 +11872,11 @@ func (h *Azurerm_lb_ruleHandler) Update(externalID string, desired *Azurerm_lb_r
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_lb_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_lb_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_rule{ Azurerm_lb_rule_id: &externalID }
+	x := &Azurerm_lb_rule{Azurerm_lb_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_lb_rule", "actual", spew.Sdump(x))
@@ -12625,7 +11895,7 @@ func (h *Azurerm_lb_ruleHandler) Read(externalID string) (*Azurerm_lb_rule, erro
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_lb_rule{ Azurerm_lb_rule_id: &id }
+	x := &Azurerm_lb_rule{Azurerm_lb_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_lb_rule", "actual", spew.Sdump(x))
@@ -12644,34 +11914,29 @@ func (h *Azurerm_lb_ruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_local_network_gateway_bgp_settings_136 struct {
+	Asn int
 
+	Bgp_peering_address string
 
-    Asn int
-
-    Bgp_peering_address string
-
-    Peer_weight *int
-
+	Peer_weight *int
 }
 
 type Azurerm_local_network_gateway struct {
-
 	Azurerm_local_network_gateway_id *string `lyra:"ignore"`
 
-    Address_space []string
+	Address_space []string
 
-    Bgp_settings *[]Azurerm_local_network_gateway_bgp_settings_136
+	Bgp_settings *[]Azurerm_local_network_gateway_bgp_settings_136
 
-    Gateway_address string
+	Gateway_address string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_local_network_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12681,7 +11946,6 @@ var Azurerm_local_network_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
 		"bgp_settings",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12690,7 +11954,6 @@ var Azurerm_local_network_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -12730,11 +11993,11 @@ func (h *Azurerm_local_network_gatewayHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_local_network_gateway", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_local_network_gateway", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_local_network_gateway{ Azurerm_local_network_gateway_id: &externalID }
+	x := &Azurerm_local_network_gateway{Azurerm_local_network_gateway_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_local_network_gateway", "actual", spew.Sdump(x))
@@ -12753,7 +12016,7 @@ func (h *Azurerm_local_network_gatewayHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_local_network_gateway{ Azurerm_local_network_gateway_id: &id }
+	x := &Azurerm_local_network_gateway{Azurerm_local_network_gateway_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_local_network_gateway", "actual", spew.Sdump(x))
@@ -12772,40 +12035,34 @@ func (h *Azurerm_local_network_gatewayHandler) Delete(externalID string) error {
 }
 
 type Azurerm_log_analytics_solution_plan_137 struct {
+	Name *string
 
+	Product string
 
-    Name *string
+	Promotion_code *string
 
-    Product string
-
-    Promotion_code *string
-
-    Publisher string
-
+	Publisher string
 }
 
 type Azurerm_log_analytics_solution struct {
-
 	Azurerm_log_analytics_solution_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Plan []Azurerm_log_analytics_solution_plan_137
+	Plan []Azurerm_log_analytics_solution_plan_137
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Solution_name string
+	Solution_name string
 
-    Workspace_name string
+	Workspace_name string
 
-    Workspace_resource_id string
-
+	Workspace_resource_id string
 }
 
 var Azurerm_log_analytics_solution_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_log_analytics_solution_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12818,7 +12075,6 @@ var Azurerm_log_analytics_solution_rtb = func(rtb service.ResourceTypeBuilder) {
 		"workspace_name",
 
 		"workspace_resource_id",
-
 	)
 }
 
@@ -12858,11 +12114,11 @@ func (h *Azurerm_log_analytics_solutionHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_log_analytics_solution", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_log_analytics_solution", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_log_analytics_solution{ Azurerm_log_analytics_solution_id: &externalID }
+	x := &Azurerm_log_analytics_solution{Azurerm_log_analytics_solution_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_log_analytics_solution", "actual", spew.Sdump(x))
@@ -12881,7 +12137,7 @@ func (h *Azurerm_log_analytics_solutionHandler) Read(externalID string) (*Azurer
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_log_analytics_solution{ Azurerm_log_analytics_solution_id: &id }
+	x := &Azurerm_log_analytics_solution{Azurerm_log_analytics_solution_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_log_analytics_solution", "actual", spew.Sdump(x))
@@ -12900,29 +12156,27 @@ func (h *Azurerm_log_analytics_solutionHandler) Delete(externalID string) error 
 }
 
 type Azurerm_log_analytics_workspace struct {
-
 	Azurerm_log_analytics_workspace_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Portal_url *string
+	Portal_url *string
 
-    Primary_shared_key *string
+	Primary_shared_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Retention_in_days *int
+	Retention_in_days *int
 
-    Secondary_shared_key *string
+	Secondary_shared_key *string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Workspace_id *string
-
+	Workspace_id *string
 }
 
 var Azurerm_log_analytics_workspace_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -12940,7 +12194,6 @@ var Azurerm_log_analytics_workspace_rtb = func(rtb service.ResourceTypeBuilder) 
 		"tags",
 
 		"workspace_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -12951,7 +12204,6 @@ var Azurerm_log_analytics_workspace_rtb = func(rtb service.ResourceTypeBuilder) 
 		"resource_group_name",
 
 		"sku",
-
 	)
 }
 
@@ -12991,11 +12243,11 @@ func (h *Azurerm_log_analytics_workspaceHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_log_analytics_workspace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_log_analytics_workspace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_log_analytics_workspace{ Azurerm_log_analytics_workspace_id: &externalID }
+	x := &Azurerm_log_analytics_workspace{Azurerm_log_analytics_workspace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_log_analytics_workspace", "actual", spew.Sdump(x))
@@ -13014,7 +12266,7 @@ func (h *Azurerm_log_analytics_workspaceHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_log_analytics_workspace{ Azurerm_log_analytics_workspace_id: &id }
+	x := &Azurerm_log_analytics_workspace{Azurerm_log_analytics_workspace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_log_analytics_workspace", "actual", spew.Sdump(x))
@@ -13033,21 +12285,19 @@ func (h *Azurerm_log_analytics_workspaceHandler) Delete(externalID string) error
 }
 
 type Azurerm_log_analytics_workspace_linked_service struct {
-
 	Azurerm_log_analytics_workspace_linked_service_id *string `lyra:"ignore"`
 
-    Linked_service_name *string
+	Linked_service_name *string
 
-    Linked_service_properties map[string]string
+	Linked_service_properties map[string]string
 
-    Name *string
+	Name *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Workspace_name string
-
+	Workspace_name string
 }
 
 var Azurerm_log_analytics_workspace_linked_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13059,7 +12309,6 @@ var Azurerm_log_analytics_workspace_linked_service_rtb = func(rtb service.Resour
 		"name",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -13070,7 +12319,6 @@ var Azurerm_log_analytics_workspace_linked_service_rtb = func(rtb service.Resour
 		"resource_group_name",
 
 		"workspace_name",
-
 	)
 }
 
@@ -13110,11 +12358,11 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Update(externalI
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_log_analytics_workspace_linked_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_log_analytics_workspace_linked_service{ Azurerm_log_analytics_workspace_linked_service_id: &externalID }
+	x := &Azurerm_log_analytics_workspace_linked_service{Azurerm_log_analytics_workspace_linked_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_log_analytics_workspace_linked_service", "actual", spew.Sdump(x))
@@ -13133,7 +12381,7 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Read(externalID 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_log_analytics_workspace_linked_service{ Azurerm_log_analytics_workspace_linked_service_id: &id }
+	x := &Azurerm_log_analytics_workspace_linked_service{Azurerm_log_analytics_workspace_linked_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_log_analytics_workspace_linked_service", "actual", spew.Sdump(x))
@@ -13152,28 +12400,24 @@ func (h *Azurerm_log_analytics_workspace_linked_serviceHandler) Delete(externalI
 }
 
 type Azurerm_logic_app_action_custom struct {
-
 	Azurerm_logic_app_action_custom_id *string `lyra:"ignore"`
 
-    Body string
+	Body string
 
-    Logic_app_id string
+	Logic_app_id string
 
-    Name string
-
+	Name string
 }
 
 var Azurerm_logic_app_action_custom_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_logic_app_action_custom_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"logic_app_id",
 
 		"name",
-
 	)
 }
 
@@ -13213,11 +12457,11 @@ func (h *Azurerm_logic_app_action_customHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_logic_app_action_custom", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_logic_app_action_custom", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_action_custom{ Azurerm_logic_app_action_custom_id: &externalID }
+	x := &Azurerm_logic_app_action_custom{Azurerm_logic_app_action_custom_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_logic_app_action_custom", "actual", spew.Sdump(x))
@@ -13236,7 +12480,7 @@ func (h *Azurerm_logic_app_action_customHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_action_custom{ Azurerm_logic_app_action_custom_id: &id }
+	x := &Azurerm_logic_app_action_custom{Azurerm_logic_app_action_custom_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_logic_app_action_custom", "actual", spew.Sdump(x))
@@ -13255,21 +12499,19 @@ func (h *Azurerm_logic_app_action_customHandler) Delete(externalID string) error
 }
 
 type Azurerm_logic_app_action_http struct {
-
 	Azurerm_logic_app_action_http_id *string `lyra:"ignore"`
 
-    Body *string
+	Body *string
 
-    Headers *map[string]string
+	Headers *map[string]string
 
-    Logic_app_id string
+	Logic_app_id string
 
-    Method string
+	Method string
 
-    Name string
+	Name string
 
-    Uri string
-
+	Uri string
 }
 
 var Azurerm_logic_app_action_http_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13279,14 +12521,12 @@ var Azurerm_logic_app_action_http_rtb = func(rtb service.ResourceTypeBuilder) {
 		"body",
 
 		"headers",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"logic_app_id",
 
 		"name",
-
 	)
 }
 
@@ -13326,11 +12566,11 @@ func (h *Azurerm_logic_app_action_httpHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_logic_app_action_http", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_logic_app_action_http", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_action_http{ Azurerm_logic_app_action_http_id: &externalID }
+	x := &Azurerm_logic_app_action_http{Azurerm_logic_app_action_http_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_logic_app_action_http", "actual", spew.Sdump(x))
@@ -13349,7 +12589,7 @@ func (h *Azurerm_logic_app_action_httpHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_action_http{ Azurerm_logic_app_action_http_id: &id }
+	x := &Azurerm_logic_app_action_http{Azurerm_logic_app_action_http_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_logic_app_action_http", "actual", spew.Sdump(x))
@@ -13368,28 +12608,24 @@ func (h *Azurerm_logic_app_action_httpHandler) Delete(externalID string) error {
 }
 
 type Azurerm_logic_app_trigger_custom struct {
-
 	Azurerm_logic_app_trigger_custom_id *string `lyra:"ignore"`
 
-    Body string
+	Body string
 
-    Logic_app_id string
+	Logic_app_id string
 
-    Name string
-
+	Name string
 }
 
 var Azurerm_logic_app_trigger_custom_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_logic_app_trigger_custom_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"logic_app_id",
 
 		"name",
-
 	)
 }
 
@@ -13429,11 +12665,11 @@ func (h *Azurerm_logic_app_trigger_customHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_logic_app_trigger_custom", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_logic_app_trigger_custom", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_trigger_custom{ Azurerm_logic_app_trigger_custom_id: &externalID }
+	x := &Azurerm_logic_app_trigger_custom{Azurerm_logic_app_trigger_custom_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_logic_app_trigger_custom", "actual", spew.Sdump(x))
@@ -13452,7 +12688,7 @@ func (h *Azurerm_logic_app_trigger_customHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_trigger_custom{ Azurerm_logic_app_trigger_custom_id: &id }
+	x := &Azurerm_logic_app_trigger_custom{Azurerm_logic_app_trigger_custom_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_logic_app_trigger_custom", "actual", spew.Sdump(x))
@@ -13471,19 +12707,17 @@ func (h *Azurerm_logic_app_trigger_customHandler) Delete(externalID string) erro
 }
 
 type Azurerm_logic_app_trigger_http_request struct {
-
 	Azurerm_logic_app_trigger_http_request_id *string `lyra:"ignore"`
 
-    Logic_app_id string
+	Logic_app_id string
 
-    Method *string
+	Method *string
 
-    Name string
+	Name string
 
-    Relative_path *string
+	Relative_path *string
 
-    Schema string
-
+	Schema string
 }
 
 var Azurerm_logic_app_trigger_http_request_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13493,14 +12727,12 @@ var Azurerm_logic_app_trigger_http_request_rtb = func(rtb service.ResourceTypeBu
 		"method",
 
 		"relative_path",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"logic_app_id",
 
 		"name",
-
 	)
 }
 
@@ -13540,11 +12772,11 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_logic_app_trigger_http_request", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_logic_app_trigger_http_request", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_trigger_http_request{ Azurerm_logic_app_trigger_http_request_id: &externalID }
+	x := &Azurerm_logic_app_trigger_http_request{Azurerm_logic_app_trigger_http_request_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_logic_app_trigger_http_request", "actual", spew.Sdump(x))
@@ -13563,7 +12795,7 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_trigger_http_request{ Azurerm_logic_app_trigger_http_request_id: &id }
+	x := &Azurerm_logic_app_trigger_http_request{Azurerm_logic_app_trigger_http_request_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_logic_app_trigger_http_request", "actual", spew.Sdump(x))
@@ -13582,30 +12814,26 @@ func (h *Azurerm_logic_app_trigger_http_requestHandler) Delete(externalID string
 }
 
 type Azurerm_logic_app_trigger_recurrence struct {
-
 	Azurerm_logic_app_trigger_recurrence_id *string `lyra:"ignore"`
 
-    Frequency string
+	Frequency string
 
-    Interval int
+	Interval int
 
-    Logic_app_id string
+	Logic_app_id string
 
-    Name string
-
+	Name string
 }
 
 var Azurerm_logic_app_trigger_recurrence_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_logic_app_trigger_recurrence_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"logic_app_id",
 
 		"name",
-
 	)
 }
 
@@ -13645,11 +12873,11 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_logic_app_trigger_recurrence", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_logic_app_trigger_recurrence", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_trigger_recurrence{ Azurerm_logic_app_trigger_recurrence_id: &externalID }
+	x := &Azurerm_logic_app_trigger_recurrence{Azurerm_logic_app_trigger_recurrence_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_logic_app_trigger_recurrence", "actual", spew.Sdump(x))
@@ -13668,7 +12896,7 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_trigger_recurrence{ Azurerm_logic_app_trigger_recurrence_id: &id }
+	x := &Azurerm_logic_app_trigger_recurrence{Azurerm_logic_app_trigger_recurrence_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_logic_app_trigger_recurrence", "actual", spew.Sdump(x))
@@ -13687,25 +12915,23 @@ func (h *Azurerm_logic_app_trigger_recurrenceHandler) Delete(externalID string) 
 }
 
 type Azurerm_logic_app_workflow struct {
-
 	Azurerm_logic_app_workflow_id *string `lyra:"ignore"`
 
-    Access_endpoint *string
+	Access_endpoint *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Parameters *map[string]string
+	Parameters *map[string]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Workflow_schema *string
+	Workflow_schema *string
 
-    Workflow_version *string
-
+	Workflow_version *string
 }
 
 var Azurerm_logic_app_workflow_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13721,7 +12947,6 @@ var Azurerm_logic_app_workflow_rtb = func(rtb service.ResourceTypeBuilder) {
 		"workflow_schema",
 
 		"workflow_version",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -13734,7 +12959,6 @@ var Azurerm_logic_app_workflow_rtb = func(rtb service.ResourceTypeBuilder) {
 		"workflow_schema",
 
 		"workflow_version",
-
 	)
 }
 
@@ -13774,11 +12998,11 @@ func (h *Azurerm_logic_app_workflowHandler) Update(externalID string, desired *A
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_logic_app_workflow", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_logic_app_workflow", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_workflow{ Azurerm_logic_app_workflow_id: &externalID }
+	x := &Azurerm_logic_app_workflow{Azurerm_logic_app_workflow_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_logic_app_workflow", "actual", spew.Sdump(x))
@@ -13797,7 +13021,7 @@ func (h *Azurerm_logic_app_workflowHandler) Read(externalID string) (*Azurerm_lo
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_logic_app_workflow{ Azurerm_logic_app_workflow_id: &id }
+	x := &Azurerm_logic_app_workflow{Azurerm_logic_app_workflow_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_logic_app_workflow", "actual", spew.Sdump(x))
@@ -13816,64 +13040,53 @@ func (h *Azurerm_logic_app_workflowHandler) Delete(externalID string) error {
 }
 
 type Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139 struct {
+	Secret_url string
 
-
-    Secret_url string
-
-    Source_vault_id string
-
+	Source_vault_id string
 }
 
 type Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140 struct {
+	Key_url string
 
-
-    Key_url string
-
-    Source_vault_id string
-
+	Source_vault_id string
 }
 
 type Azurerm_managed_disk_encryption_settings_138 struct {
+	Disk_encryption_key *[]Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139
 
+	Enabled bool
 
-    Disk_encryption_key *[]Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139
-
-    Enabled bool
-
-    Key_encryption_key *[]Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140
-
+	Key_encryption_key *[]Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140
 }
 
 type Azurerm_managed_disk struct {
-
 	Azurerm_managed_disk_id *string `lyra:"ignore"`
 
-    Create_option string
+	Create_option string
 
-    Disk_size_gb *int
+	Disk_size_gb *int
 
-    Encryption_settings *[]Azurerm_managed_disk_encryption_settings_138
+	Encryption_settings *[]Azurerm_managed_disk_encryption_settings_138
 
-    Image_reference_id *string
+	Image_reference_id *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Os_type *string
+	Os_type *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Source_resource_id *string
+	Source_resource_id *string
 
-    Source_uri *string
+	Source_uri *string
 
-    Storage_account_type string
+	Storage_account_type string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Zones *[]string
-
+	Zones *[]string
 }
 
 var Azurerm_managed_disk_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -13895,7 +13108,6 @@ var Azurerm_managed_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"zones",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -13914,7 +13126,6 @@ var Azurerm_managed_disk_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_uri",
 
 		"zones",
-
 	)
 }
 
@@ -13954,11 +13165,11 @@ func (h *Azurerm_managed_diskHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_managed_disk", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_managed_disk", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_managed_disk{ Azurerm_managed_disk_id: &externalID }
+	x := &Azurerm_managed_disk{Azurerm_managed_disk_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_managed_disk", "actual", spew.Sdump(x))
@@ -13977,7 +13188,7 @@ func (h *Azurerm_managed_diskHandler) Read(externalID string) (*Azurerm_managed_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_managed_disk{ Azurerm_managed_disk_id: &id }
+	x := &Azurerm_managed_disk{Azurerm_managed_disk_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_managed_disk", "actual", spew.Sdump(x))
@@ -13996,17 +13207,15 @@ func (h *Azurerm_managed_diskHandler) Delete(externalID string) error {
 }
 
 type Azurerm_management_group struct {
-
 	Azurerm_management_group_id *string `lyra:"ignore"`
 
-    Display_name *string
+	Display_name *string
 
-    Group_id *string
+	Group_id *string
 
-    Parent_management_group_id *string
+	Parent_management_group_id *string
 
-    Subscription_ids *[]string
-
+	Subscription_ids *[]string
 }
 
 var Azurerm_management_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14020,12 +13229,10 @@ var Azurerm_management_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"parent_management_group_id",
 
 		"subscription_ids",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"group_id",
-
 	)
 }
 
@@ -14065,11 +13272,11 @@ func (h *Azurerm_management_groupHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_management_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_management_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_management_group{ Azurerm_management_group_id: &externalID }
+	x := &Azurerm_management_group{Azurerm_management_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_management_group", "actual", spew.Sdump(x))
@@ -14088,7 +13295,7 @@ func (h *Azurerm_management_groupHandler) Read(externalID string) (*Azurerm_mana
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_management_group{ Azurerm_management_group_id: &id }
+	x := &Azurerm_management_group{Azurerm_management_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_management_group", "actual", spew.Sdump(x))
@@ -14107,17 +13314,15 @@ func (h *Azurerm_management_groupHandler) Delete(externalID string) error {
 }
 
 type Azurerm_management_lock struct {
-
 	Azurerm_management_lock_id *string `lyra:"ignore"`
 
-    Lock_level string
+	Lock_level string
 
-    Name string
+	Name string
 
-    Notes *string
+	Notes *string
 
-    Scope string
-
+	Scope string
 }
 
 var Azurerm_management_lock_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14125,7 +13330,6 @@ var Azurerm_management_lock_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_management_lock_id",
 
 		"notes",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14136,7 +13340,6 @@ var Azurerm_management_lock_rtb = func(rtb service.ResourceTypeBuilder) {
 		"notes",
 
 		"scope",
-
 	)
 }
 
@@ -14176,11 +13379,11 @@ func (h *Azurerm_management_lockHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_management_lock", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_management_lock", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_management_lock{ Azurerm_management_lock_id: &externalID }
+	x := &Azurerm_management_lock{Azurerm_management_lock_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_management_lock", "actual", spew.Sdump(x))
@@ -14199,7 +13402,7 @@ func (h *Azurerm_management_lockHandler) Read(externalID string) (*Azurerm_manag
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_management_lock{ Azurerm_management_lock_id: &id }
+	x := &Azurerm_management_lock{Azurerm_management_lock_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_management_lock", "actual", spew.Sdump(x))
@@ -14218,25 +13421,22 @@ func (h *Azurerm_management_lockHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mariadb_database struct {
-
 	Azurerm_mariadb_database_id *string `lyra:"ignore"`
 
-    Charset string
+	Charset string
 
-    Collation string
+	Collation string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
-
+	Server_name string
 }
 
 var Azurerm_mariadb_database_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_mariadb_database_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14249,7 +13449,6 @@ var Azurerm_mariadb_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -14289,11 +13488,11 @@ func (h *Azurerm_mariadb_databaseHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mariadb_database", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mariadb_database", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mariadb_database{ Azurerm_mariadb_database_id: &externalID }
+	x := &Azurerm_mariadb_database{Azurerm_mariadb_database_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mariadb_database", "actual", spew.Sdump(x))
@@ -14312,7 +13511,7 @@ func (h *Azurerm_mariadb_databaseHandler) Read(externalID string) (*Azurerm_mari
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mariadb_database{ Azurerm_mariadb_database_id: &id }
+	x := &Azurerm_mariadb_database{Azurerm_mariadb_database_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mariadb_database", "actual", spew.Sdump(x))
@@ -14331,55 +13530,47 @@ func (h *Azurerm_mariadb_databaseHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mariadb_server_sku_141 struct {
+	Capacity int
 
+	Family string
 
-    Capacity int
+	Name string
 
-    Family string
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_mariadb_server_storage_profile_142 struct {
+	Backup_retention_days *int
 
+	Geo_redundant_backup *string
 
-    Backup_retention_days *int
-
-    Geo_redundant_backup *string
-
-    Storage_mb int
-
+	Storage_mb int
 }
 
 type Azurerm_mariadb_server struct {
-
 	Azurerm_mariadb_server_id *string `lyra:"ignore"`
 
-    Administrator_login string
+	Administrator_login string
 
-    Administrator_login_password string
+	Administrator_login_password string
 
-    Fqdn *string
+	Fqdn *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_mariadb_server_sku_141
+	Sku []Azurerm_mariadb_server_sku_141
 
-    Ssl_enforcement string
+	Ssl_enforcement string
 
-    Storage_profile []Azurerm_mariadb_server_storage_profile_142
+	Storage_profile []Azurerm_mariadb_server_storage_profile_142
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Version string
-
+	Version string
 }
 
 var Azurerm_mariadb_server_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14389,7 +13580,6 @@ var Azurerm_mariadb_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"fqdn",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14402,7 +13592,6 @@ var Azurerm_mariadb_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"version",
-
 	)
 }
 
@@ -14442,11 +13631,11 @@ func (h *Azurerm_mariadb_serverHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mariadb_server", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mariadb_server", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mariadb_server{ Azurerm_mariadb_server_id: &externalID }
+	x := &Azurerm_mariadb_server{Azurerm_mariadb_server_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mariadb_server", "actual", spew.Sdump(x))
@@ -14465,7 +13654,7 @@ func (h *Azurerm_mariadb_serverHandler) Read(externalID string) (*Azurerm_mariad
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mariadb_server{ Azurerm_mariadb_server_id: &id }
+	x := &Azurerm_mariadb_server{Azurerm_mariadb_server_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mariadb_server", "actual", spew.Sdump(x))
@@ -14484,55 +13673,47 @@ func (h *Azurerm_mariadb_serverHandler) Delete(externalID string) error {
 }
 
 type Azurerm_metric_alertrule_email_action_143 struct {
+	Custom_emails *[]string
 
-
-    Custom_emails *[]string
-
-    Send_to_service_owners *bool
-
+	Send_to_service_owners *bool
 }
 
 type Azurerm_metric_alertrule_webhook_action_144 struct {
+	Properties *map[string]string
 
-
-    Properties *map[string]string
-
-    Service_uri string
-
+	Service_uri string
 }
 
 type Azurerm_metric_alertrule struct {
-
 	Azurerm_metric_alertrule_id *string `lyra:"ignore"`
 
-    Aggregation string
+	Aggregation string
 
-    Description *string
+	Description *string
 
-    Email_action *[]Azurerm_metric_alertrule_email_action_143
+	Email_action *[]Azurerm_metric_alertrule_email_action_143
 
-    Enabled *bool
+	Enabled *bool
 
-    Location string
+	Location string
 
-    Metric_name string
+	Metric_name string
 
-    Name string
+	Name string
 
-    Operator string
+	Operator string
 
-    Period string
+	Period string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Resource_id string
+	Resource_id string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Threshold float64
+	Threshold float64
 
-    Webhook_action *[]Azurerm_metric_alertrule_webhook_action_144
-
+	Webhook_action *[]Azurerm_metric_alertrule_webhook_action_144
 }
 
 var Azurerm_metric_alertrule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14548,7 +13729,6 @@ var Azurerm_metric_alertrule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"webhook_action",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -14557,7 +13737,6 @@ var Azurerm_metric_alertrule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -14597,11 +13776,11 @@ func (h *Azurerm_metric_alertruleHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_metric_alertrule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_metric_alertrule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_metric_alertrule{ Azurerm_metric_alertrule_id: &externalID }
+	x := &Azurerm_metric_alertrule{Azurerm_metric_alertrule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_metric_alertrule", "actual", spew.Sdump(x))
@@ -14620,7 +13799,7 @@ func (h *Azurerm_metric_alertruleHandler) Read(externalID string) (*Azurerm_metr
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_metric_alertrule{ Azurerm_metric_alertrule_id: &id }
+	x := &Azurerm_metric_alertrule{Azurerm_metric_alertrule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_metric_alertrule", "actual", spew.Sdump(x))
@@ -14639,54 +13818,43 @@ func (h *Azurerm_metric_alertruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_monitor_action_group_email_receiver_145 struct {
+	Email_address string
 
-
-    Email_address string
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_monitor_action_group_sms_receiver_146 struct {
+	Country_code string
 
+	Name string
 
-    Country_code string
-
-    Name string
-
-    Phone_number string
-
+	Phone_number string
 }
 
 type Azurerm_monitor_action_group_webhook_receiver_147 struct {
+	Name string
 
-
-    Name string
-
-    Service_uri string
-
+	Service_uri string
 }
 
 type Azurerm_monitor_action_group struct {
-
 	Azurerm_monitor_action_group_id *string `lyra:"ignore"`
 
-    Email_receiver *[]Azurerm_monitor_action_group_email_receiver_145
+	Email_receiver *[]Azurerm_monitor_action_group_email_receiver_145
 
-    Enabled *bool
+	Enabled *bool
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Short_name string
+	Short_name string
 
-    Sms_receiver *[]Azurerm_monitor_action_group_sms_receiver_146
+	Sms_receiver *[]Azurerm_monitor_action_group_sms_receiver_146
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Webhook_receiver *[]Azurerm_monitor_action_group_webhook_receiver_147
-
+	Webhook_receiver *[]Azurerm_monitor_action_group_webhook_receiver_147
 }
 
 var Azurerm_monitor_action_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14702,14 +13870,12 @@ var Azurerm_monitor_action_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"webhook_receiver",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -14749,11 +13915,11 @@ func (h *Azurerm_monitor_action_groupHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_monitor_action_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_monitor_action_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_action_group{ Azurerm_monitor_action_group_id: &externalID }
+	x := &Azurerm_monitor_action_group{Azurerm_monitor_action_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_monitor_action_group", "actual", spew.Sdump(x))
@@ -14772,7 +13938,7 @@ func (h *Azurerm_monitor_action_groupHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_action_group{ Azurerm_monitor_action_group_id: &id }
+	x := &Azurerm_monitor_action_group{Azurerm_monitor_action_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_monitor_action_group", "actual", spew.Sdump(x))
@@ -14791,59 +13957,51 @@ func (h *Azurerm_monitor_action_groupHandler) Delete(externalID string) error {
 }
 
 type Azurerm_monitor_activity_log_alert_action_148 struct {
+	Action_group_id string
 
-
-    Action_group_id string
-
-    Webhook_properties *map[string]string
-
+	Webhook_properties *map[string]string
 }
 
 type Azurerm_monitor_activity_log_alert_criteria_149 struct {
+	Caller *string
 
+	Category string
 
-    Caller *string
+	Level *string
 
-    Category string
+	Operation_name *string
 
-    Level *string
+	Resource_group *string
 
-    Operation_name *string
+	Resource_id *string
 
-    Resource_group *string
+	Resource_provider *string
 
-    Resource_id *string
+	Resource_type *string
 
-    Resource_provider *string
+	Status *string
 
-    Resource_type *string
-
-    Status *string
-
-    Sub_status *string
-
+	Sub_status *string
 }
 
 type Azurerm_monitor_activity_log_alert struct {
-
 	Azurerm_monitor_activity_log_alert_id *string `lyra:"ignore"`
 
-    Action *[]Azurerm_monitor_activity_log_alert_action_148
+	Action *[]Azurerm_monitor_activity_log_alert_action_148
 
-    Criteria []Azurerm_monitor_activity_log_alert_criteria_149
+	Criteria []Azurerm_monitor_activity_log_alert_criteria_149
 
-    Description *string
+	Description *string
 
-    Enabled *bool
+	Enabled *bool
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Scopes []string
+	Scopes []string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_monitor_activity_log_alert_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -14857,14 +14015,12 @@ var Azurerm_monitor_activity_log_alert_rtb = func(rtb service.ResourceTypeBuilde
 		"enabled",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -14904,11 +14060,11 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_monitor_activity_log_alert", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_monitor_activity_log_alert", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_activity_log_alert{ Azurerm_monitor_activity_log_alert_id: &externalID }
+	x := &Azurerm_monitor_activity_log_alert{Azurerm_monitor_activity_log_alert_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_monitor_activity_log_alert", "actual", spew.Sdump(x))
@@ -14927,7 +14083,7 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Read(externalID string) (*Az
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_activity_log_alert{ Azurerm_monitor_activity_log_alert_id: &id }
+	x := &Azurerm_monitor_activity_log_alert{Azurerm_monitor_activity_log_alert_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_monitor_activity_log_alert", "actual", spew.Sdump(x))
@@ -14946,65 +14102,51 @@ func (h *Azurerm_monitor_activity_log_alertHandler) Delete(externalID string) er
 }
 
 type Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151 struct {
+	Days *int
 
-
-    Days *int
-
-    Enabled bool
-
+	Enabled bool
 }
 
 type Azurerm_monitor_diagnostic_setting_log_150 struct {
+	Category string
 
+	Enabled *bool
 
-    Category string
-
-    Enabled *bool
-
-    Retention_policy []Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151
-
+	Retention_policy []Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151
 }
 
 type Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153 struct {
+	Days *int
 
-
-    Days *int
-
-    Enabled bool
-
+	Enabled bool
 }
 
 type Azurerm_monitor_diagnostic_setting_metric_152 struct {
+	Category string
 
+	Enabled *bool
 
-    Category string
-
-    Enabled *bool
-
-    Retention_policy []Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153
-
+	Retention_policy []Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153
 }
 
 type Azurerm_monitor_diagnostic_setting struct {
-
 	Azurerm_monitor_diagnostic_setting_id *string `lyra:"ignore"`
 
-    Eventhub_authorization_rule_id *string
+	Eventhub_authorization_rule_id *string
 
-    Eventhub_name *string
+	Eventhub_name *string
 
-    Log *[]Azurerm_monitor_diagnostic_setting_log_150
+	Log *[]Azurerm_monitor_diagnostic_setting_log_150
 
-    Log_analytics_workspace_id *string
+	Log_analytics_workspace_id *string
 
-    Metric *[]Azurerm_monitor_diagnostic_setting_metric_152
+	Metric *[]Azurerm_monitor_diagnostic_setting_metric_152
 
-    Name string
+	Name string
 
-    Storage_account_id *string
+	Storage_account_id *string
 
-    Target_resource_id string
-
+	Target_resource_id string
 }
 
 var Azurerm_monitor_diagnostic_setting_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15022,7 +14164,6 @@ var Azurerm_monitor_diagnostic_setting_rtb = func(rtb service.ResourceTypeBuilde
 		"metric",
 
 		"storage_account_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15037,7 +14178,6 @@ var Azurerm_monitor_diagnostic_setting_rtb = func(rtb service.ResourceTypeBuilde
 		"storage_account_id",
 
 		"target_resource_id",
-
 	)
 }
 
@@ -15077,11 +14217,11 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_monitor_diagnostic_setting", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_monitor_diagnostic_setting", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_diagnostic_setting{ Azurerm_monitor_diagnostic_setting_id: &externalID }
+	x := &Azurerm_monitor_diagnostic_setting{Azurerm_monitor_diagnostic_setting_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_monitor_diagnostic_setting", "actual", spew.Sdump(x))
@@ -15100,7 +14240,7 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Read(externalID string) (*Az
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_diagnostic_setting{ Azurerm_monitor_diagnostic_setting_id: &id }
+	x := &Azurerm_monitor_diagnostic_setting{Azurerm_monitor_diagnostic_setting_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_monitor_diagnostic_setting", "actual", spew.Sdump(x))
@@ -15119,30 +14259,25 @@ func (h *Azurerm_monitor_diagnostic_settingHandler) Delete(externalID string) er
 }
 
 type Azurerm_monitor_log_profile_retention_policy_154 struct {
+	Days *int
 
-
-    Days *int
-
-    Enabled bool
-
+	Enabled bool
 }
 
 type Azurerm_monitor_log_profile struct {
-
 	Azurerm_monitor_log_profile_id *string `lyra:"ignore"`
 
-    Categories []string
+	Categories []string
 
-    Locations []string
+	Locations []string
 
-    Name string
+	Name string
 
-    Retention_policy []Azurerm_monitor_log_profile_retention_policy_154
+	Retention_policy []Azurerm_monitor_log_profile_retention_policy_154
 
-    Servicebus_rule_id *string
+	Servicebus_rule_id *string
 
-    Storage_account_id *string
-
+	Storage_account_id *string
 }
 
 var Azurerm_monitor_log_profile_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15152,12 +14287,10 @@ var Azurerm_monitor_log_profile_rtb = func(rtb service.ResourceTypeBuilder) {
 		"servicebus_rule_id",
 
 		"storage_account_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
-
 	)
 }
 
@@ -15197,11 +14330,11 @@ func (h *Azurerm_monitor_log_profileHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_monitor_log_profile", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_monitor_log_profile", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_log_profile{ Azurerm_monitor_log_profile_id: &externalID }
+	x := &Azurerm_monitor_log_profile{Azurerm_monitor_log_profile_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_monitor_log_profile", "actual", spew.Sdump(x))
@@ -15220,7 +14353,7 @@ func (h *Azurerm_monitor_log_profileHandler) Read(externalID string) (*Azurerm_m
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_log_profile{ Azurerm_monitor_log_profile_id: &id }
+	x := &Azurerm_monitor_log_profile{Azurerm_monitor_log_profile_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_monitor_log_profile", "actual", spew.Sdump(x))
@@ -15239,70 +14372,59 @@ func (h *Azurerm_monitor_log_profileHandler) Delete(externalID string) error {
 }
 
 type Azurerm_monitor_metric_alert_action_155 struct {
+	Action_group_id string
 
-
-    Action_group_id string
-
-    Webhook_properties *map[string]string
-
+	Webhook_properties *map[string]string
 }
 
 type Azurerm_monitor_metric_alert_criteria_156_dimension_157 struct {
+	Name string
 
+	Operator string
 
-    Name string
-
-    Operator string
-
-    Values []string
-
+	Values []string
 }
 
 type Azurerm_monitor_metric_alert_criteria_156 struct {
+	Aggregation string
 
+	Dimension *[]Azurerm_monitor_metric_alert_criteria_156_dimension_157
 
-    Aggregation string
+	Metric_name string
 
-    Dimension *[]Azurerm_monitor_metric_alert_criteria_156_dimension_157
+	Metric_namespace string
 
-    Metric_name string
+	Operator string
 
-    Metric_namespace string
-
-    Operator string
-
-    Threshold float64
-
+	Threshold float64
 }
 
 type Azurerm_monitor_metric_alert struct {
-
 	Azurerm_monitor_metric_alert_id *string `lyra:"ignore"`
 
-    Action *[]Azurerm_monitor_metric_alert_action_155
+	Action *[]Azurerm_monitor_metric_alert_action_155
 
-    Auto_mitigate *bool
+	Auto_mitigate *bool
 
-    Criteria []Azurerm_monitor_metric_alert_criteria_156
+	Criteria []Azurerm_monitor_metric_alert_criteria_156
 
-    Description *string
+	Description *string
 
-    Enabled *bool
+	Enabled *bool
 
-    Frequency *string
+	Frequency *string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Scopes []string
+	Scopes []string
 
-    Severity *int
+	Severity *int
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Window_size *string
-
+	Window_size *string
 }
 
 var Azurerm_monitor_metric_alert_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15324,14 +14446,12 @@ var Azurerm_monitor_metric_alert_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"window_size",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -15371,11 +14491,11 @@ func (h *Azurerm_monitor_metric_alertHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_monitor_metric_alert", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_monitor_metric_alert", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_metric_alert{ Azurerm_monitor_metric_alert_id: &externalID }
+	x := &Azurerm_monitor_metric_alert{Azurerm_monitor_metric_alert_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_monitor_metric_alert", "actual", spew.Sdump(x))
@@ -15394,7 +14514,7 @@ func (h *Azurerm_monitor_metric_alertHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_monitor_metric_alert{ Azurerm_monitor_metric_alert_id: &id }
+	x := &Azurerm_monitor_metric_alert{Azurerm_monitor_metric_alert_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_monitor_metric_alert", "actual", spew.Sdump(x))
@@ -15413,66 +14533,55 @@ func (h *Azurerm_monitor_metric_alertHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mssql_elasticpool_elastic_pool_properties_158 struct {
+	Creation_date *string
 
+	License_type *string
 
-    Creation_date *string
+	Max_size_bytes *int
 
-    License_type *string
+	State *string
 
-    Max_size_bytes *int
-
-    State *string
-
-    Zone_redundant *bool
-
+	Zone_redundant *bool
 }
 
 type Azurerm_mssql_elasticpool_per_database_settings_159 struct {
+	Max_capacity float64
 
-
-    Max_capacity float64
-
-    Min_capacity float64
-
+	Min_capacity float64
 }
 
 type Azurerm_mssql_elasticpool_sku_160 struct {
+	Capacity int
 
+	Family *string
 
-    Capacity int
+	Name string
 
-    Family *string
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_mssql_elasticpool struct {
-
 	Azurerm_mssql_elasticpool_id *string `lyra:"ignore"`
 
-    Elastic_pool_properties *[]Azurerm_mssql_elasticpool_elastic_pool_properties_158
+	Elastic_pool_properties *[]Azurerm_mssql_elasticpool_elastic_pool_properties_158
 
-    Location string
+	Location string
 
-    Max_size_bytes *int
+	Max_size_bytes *int
 
-    Name string
+	Name string
 
-    Per_database_settings []Azurerm_mssql_elasticpool_per_database_settings_159
+	Per_database_settings []Azurerm_mssql_elasticpool_per_database_settings_159
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Sku []Azurerm_mssql_elasticpool_sku_160
+	Sku []Azurerm_mssql_elasticpool_sku_160
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Zone_redundant *bool
-
+	Zone_redundant *bool
 }
 
 var Azurerm_mssql_elasticpool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15486,7 +14595,6 @@ var Azurerm_mssql_elasticpool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"zone_redundant",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15497,7 +14605,6 @@ var Azurerm_mssql_elasticpool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -15537,11 +14644,11 @@ func (h *Azurerm_mssql_elasticpoolHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mssql_elasticpool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mssql_elasticpool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mssql_elasticpool{ Azurerm_mssql_elasticpool_id: &externalID }
+	x := &Azurerm_mssql_elasticpool{Azurerm_mssql_elasticpool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mssql_elasticpool", "actual", spew.Sdump(x))
@@ -15560,7 +14667,7 @@ func (h *Azurerm_mssql_elasticpoolHandler) Read(externalID string) (*Azurerm_mss
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mssql_elasticpool{ Azurerm_mssql_elasticpool_id: &id }
+	x := &Azurerm_mssql_elasticpool{Azurerm_mssql_elasticpool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mssql_elasticpool", "actual", spew.Sdump(x))
@@ -15579,23 +14686,20 @@ func (h *Azurerm_mssql_elasticpoolHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mysql_configuration struct {
-
 	Azurerm_mysql_configuration_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Value string
-
+	Value string
 }
 
 var Azurerm_mysql_configuration_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_mysql_configuration_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15606,7 +14710,6 @@ var Azurerm_mysql_configuration_rtb = func(rtb service.ResourceTypeBuilder) {
 		"server_name",
 
 		"value",
-
 	)
 }
 
@@ -15646,11 +14749,11 @@ func (h *Azurerm_mysql_configurationHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mysql_configuration", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mysql_configuration", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_configuration{ Azurerm_mysql_configuration_id: &externalID }
+	x := &Azurerm_mysql_configuration{Azurerm_mysql_configuration_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mysql_configuration", "actual", spew.Sdump(x))
@@ -15669,7 +14772,7 @@ func (h *Azurerm_mysql_configurationHandler) Read(externalID string) (*Azurerm_m
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_configuration{ Azurerm_mysql_configuration_id: &id }
+	x := &Azurerm_mysql_configuration{Azurerm_mysql_configuration_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mysql_configuration", "actual", spew.Sdump(x))
@@ -15688,25 +14791,22 @@ func (h *Azurerm_mysql_configurationHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mysql_database struct {
-
 	Azurerm_mysql_database_id *string `lyra:"ignore"`
 
-    Charset string
+	Charset string
 
-    Collation string
+	Collation string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
-
+	Server_name string
 }
 
 var Azurerm_mysql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_mysql_database_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15719,7 +14819,6 @@ var Azurerm_mysql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -15759,11 +14858,11 @@ func (h *Azurerm_mysql_databaseHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mysql_database", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mysql_database", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_database{ Azurerm_mysql_database_id: &externalID }
+	x := &Azurerm_mysql_database{Azurerm_mysql_database_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mysql_database", "actual", spew.Sdump(x))
@@ -15782,7 +14881,7 @@ func (h *Azurerm_mysql_databaseHandler) Read(externalID string) (*Azurerm_mysql_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_database{ Azurerm_mysql_database_id: &id }
+	x := &Azurerm_mysql_database{Azurerm_mysql_database_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mysql_database", "actual", spew.Sdump(x))
@@ -15801,25 +14900,22 @@ func (h *Azurerm_mysql_databaseHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mysql_firewall_rule struct {
-
 	Azurerm_mysql_firewall_rule_id *string `lyra:"ignore"`
 
-    End_ip_address string
+	End_ip_address string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Start_ip_address string
-
+	Start_ip_address string
 }
 
 var Azurerm_mysql_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_mysql_firewall_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15828,7 +14924,6 @@ var Azurerm_mysql_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -15868,11 +14963,11 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mysql_firewall_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mysql_firewall_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_firewall_rule{ Azurerm_mysql_firewall_rule_id: &externalID }
+	x := &Azurerm_mysql_firewall_rule{Azurerm_mysql_firewall_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mysql_firewall_rule", "actual", spew.Sdump(x))
@@ -15891,7 +14986,7 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Read(externalID string) (*Azurerm_m
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_firewall_rule{ Azurerm_mysql_firewall_rule_id: &id }
+	x := &Azurerm_mysql_firewall_rule{Azurerm_mysql_firewall_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mysql_firewall_rule", "actual", spew.Sdump(x))
@@ -15910,55 +15005,47 @@ func (h *Azurerm_mysql_firewall_ruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mysql_server_sku_161 struct {
+	Capacity int
 
+	Family string
 
-    Capacity int
+	Name string
 
-    Family string
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_mysql_server_storage_profile_162 struct {
+	Backup_retention_days *int
 
+	Geo_redundant_backup *string
 
-    Backup_retention_days *int
-
-    Geo_redundant_backup *string
-
-    Storage_mb int
-
+	Storage_mb int
 }
 
 type Azurerm_mysql_server struct {
-
 	Azurerm_mysql_server_id *string `lyra:"ignore"`
 
-    Administrator_login string
+	Administrator_login string
 
-    Administrator_login_password string
+	Administrator_login_password string
 
-    Fqdn *string
+	Fqdn *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_mysql_server_sku_161
+	Sku []Azurerm_mysql_server_sku_161
 
-    Ssl_enforcement string
+	Ssl_enforcement string
 
-    Storage_profile []Azurerm_mysql_server_storage_profile_162
+	Storage_profile []Azurerm_mysql_server_storage_profile_162
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Version string
-
+	Version string
 }
 
 var Azurerm_mysql_server_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -15968,7 +15055,6 @@ var Azurerm_mysql_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"fqdn",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -15981,7 +15067,6 @@ var Azurerm_mysql_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"version",
-
 	)
 }
 
@@ -16021,11 +15106,11 @@ func (h *Azurerm_mysql_serverHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mysql_server", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mysql_server", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_server{ Azurerm_mysql_server_id: &externalID }
+	x := &Azurerm_mysql_server{Azurerm_mysql_server_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mysql_server", "actual", spew.Sdump(x))
@@ -16044,7 +15129,7 @@ func (h *Azurerm_mysql_serverHandler) Read(externalID string) (*Azurerm_mysql_se
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_server{ Azurerm_mysql_server_id: &id }
+	x := &Azurerm_mysql_server{Azurerm_mysql_server_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mysql_server", "actual", spew.Sdump(x))
@@ -16063,23 +15148,20 @@ func (h *Azurerm_mysql_serverHandler) Delete(externalID string) error {
 }
 
 type Azurerm_mysql_virtual_network_rule struct {
-
 	Azurerm_mysql_virtual_network_rule_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Subnet_id string
-
+	Subnet_id string
 }
 
 var Azurerm_mysql_virtual_network_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_mysql_virtual_network_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16088,7 +15170,6 @@ var Azurerm_mysql_virtual_network_rule_rtb = func(rtb service.ResourceTypeBuilde
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -16128,11 +15209,11 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_mysql_virtual_network_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_mysql_virtual_network_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_virtual_network_rule{ Azurerm_mysql_virtual_network_rule_id: &externalID }
+	x := &Azurerm_mysql_virtual_network_rule{Azurerm_mysql_virtual_network_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_mysql_virtual_network_rule", "actual", spew.Sdump(x))
@@ -16151,7 +15232,7 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Read(externalID string) (*Az
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_mysql_virtual_network_rule{ Azurerm_mysql_virtual_network_rule_id: &id }
+	x := &Azurerm_mysql_virtual_network_rule{Azurerm_mysql_virtual_network_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_mysql_virtual_network_rule", "actual", spew.Sdump(x))
@@ -16170,68 +15251,63 @@ func (h *Azurerm_mysql_virtual_network_ruleHandler) Delete(externalID string) er
 }
 
 type Azurerm_network_interface_ip_configuration_163 struct {
+	Application_gateway_backend_address_pools_ids *[]string
 
+	Application_security_group_ids *[]string
 
-    Application_gateway_backend_address_pools_ids *[]string
+	Load_balancer_backend_address_pools_ids *[]string
 
-    Application_security_group_ids *[]string
+	Load_balancer_inbound_nat_rules_ids *[]string
 
-    Load_balancer_backend_address_pools_ids *[]string
+	Name string
 
-    Load_balancer_inbound_nat_rules_ids *[]string
+	Primary *bool
 
-    Name string
+	Private_ip_address *string
 
-    Primary *bool
+	Private_ip_address_allocation string
 
-    Private_ip_address *string
+	Private_ip_address_version *string
 
-    Private_ip_address_allocation string
+	Public_ip_address_id *string
 
-    Private_ip_address_version *string
-
-    Public_ip_address_id *string
-
-    Subnet_id *string
-
+	Subnet_id *string
 }
 
 type Azurerm_network_interface struct {
-
 	Azurerm_network_interface_id *string `lyra:"ignore"`
 
-    Applied_dns_servers *[]string
+	Applied_dns_servers *[]string
 
-    Dns_servers *[]string
+	Dns_servers *[]string
 
-    Enable_accelerated_networking *bool
+	Enable_accelerated_networking *bool
 
-    Enable_ip_forwarding *bool
+	Enable_ip_forwarding *bool
 
-    Internal_dns_name_label *string
+	Internal_dns_name_label *string
 
-    Internal_fqdn *string
+	Internal_fqdn *string
 
-    Ip_configuration []Azurerm_network_interface_ip_configuration_163
+	Ip_configuration []Azurerm_network_interface_ip_configuration_163
 
-    Location string
+	Location string
 
-    Mac_address *string
+	Mac_address *string
 
-    Name string
+	Name string
 
-    Network_security_group_id *string
+	Network_security_group_id *string
 
-    Private_ip_address *string
+	Private_ip_address *string
 
-    Private_ip_addresses *[]string
+	Private_ip_addresses *[]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Virtual_machine_id *string
-
+	Virtual_machine_id *string
 }
 
 var Azurerm_network_interface_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16261,7 +15337,6 @@ var Azurerm_network_interface_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"virtual_machine_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16270,7 +15345,6 @@ var Azurerm_network_interface_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -16310,11 +15384,11 @@ func (h *Azurerm_network_interfaceHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_interface", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_interface", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface{ Azurerm_network_interface_id: &externalID }
+	x := &Azurerm_network_interface{Azurerm_network_interface_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_interface", "actual", spew.Sdump(x))
@@ -16333,7 +15407,7 @@ func (h *Azurerm_network_interfaceHandler) Read(externalID string) (*Azurerm_net
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface{ Azurerm_network_interface_id: &id }
+	x := &Azurerm_network_interface{Azurerm_network_interface_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_interface", "actual", spew.Sdump(x))
@@ -16352,21 +15426,18 @@ func (h *Azurerm_network_interfaceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_network_interface_application_gateway_backend_address_pool_association struct {
-
 	Azurerm_network_interface_application_gateway_backend_address_pool_association_id *string `lyra:"ignore"`
 
-    Backend_address_pool_id string
+	Backend_address_pool_id string
 
-    Ip_configuration_name string
+	Ip_configuration_name string
 
-    Network_interface_id string
-
+	Network_interface_id string
 }
 
 var Azurerm_network_interface_application_gateway_backend_address_pool_association_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_network_interface_application_gateway_backend_address_pool_association_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16375,7 +15446,6 @@ var Azurerm_network_interface_application_gateway_backend_address_pool_associati
 		"ip_configuration_name",
 
 		"network_interface_id",
-
 	)
 }
 
@@ -16415,11 +15485,11 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_interface_application_gateway_backend_address_pool_association", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface_application_gateway_backend_address_pool_association{ Azurerm_network_interface_application_gateway_backend_address_pool_association_id: &externalID }
+	x := &Azurerm_network_interface_application_gateway_backend_address_pool_association{Azurerm_network_interface_application_gateway_backend_address_pool_association_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_interface_application_gateway_backend_address_pool_association", "actual", spew.Sdump(x))
@@ -16438,7 +15508,7 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface_application_gateway_backend_address_pool_association{ Azurerm_network_interface_application_gateway_backend_address_pool_association_id: &id }
+	x := &Azurerm_network_interface_application_gateway_backend_address_pool_association{Azurerm_network_interface_application_gateway_backend_address_pool_association_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_interface_application_gateway_backend_address_pool_association", "actual", spew.Sdump(x))
@@ -16457,21 +15527,18 @@ func (h *Azurerm_network_interface_application_gateway_backend_address_pool_asso
 }
 
 type Azurerm_network_interface_backend_address_pool_association struct {
-
 	Azurerm_network_interface_backend_address_pool_association_id *string `lyra:"ignore"`
 
-    Backend_address_pool_id string
+	Backend_address_pool_id string
 
-    Ip_configuration_name string
+	Ip_configuration_name string
 
-    Network_interface_id string
-
+	Network_interface_id string
 }
 
 var Azurerm_network_interface_backend_address_pool_association_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_network_interface_backend_address_pool_association_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16480,7 +15547,6 @@ var Azurerm_network_interface_backend_address_pool_association_rtb = func(rtb se
 		"ip_configuration_name",
 
 		"network_interface_id",
-
 	)
 }
 
@@ -16520,11 +15586,11 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Upda
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_interface_backend_address_pool_association", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface_backend_address_pool_association{ Azurerm_network_interface_backend_address_pool_association_id: &externalID }
+	x := &Azurerm_network_interface_backend_address_pool_association{Azurerm_network_interface_backend_address_pool_association_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_interface_backend_address_pool_association", "actual", spew.Sdump(x))
@@ -16543,7 +15609,7 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Read
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface_backend_address_pool_association{ Azurerm_network_interface_backend_address_pool_association_id: &id }
+	x := &Azurerm_network_interface_backend_address_pool_association{Azurerm_network_interface_backend_address_pool_association_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_interface_backend_address_pool_association", "actual", spew.Sdump(x))
@@ -16562,21 +15628,18 @@ func (h *Azurerm_network_interface_backend_address_pool_associationHandler) Dele
 }
 
 type Azurerm_network_interface_nat_rule_association struct {
-
 	Azurerm_network_interface_nat_rule_association_id *string `lyra:"ignore"`
 
-    Ip_configuration_name string
+	Ip_configuration_name string
 
-    Nat_rule_id string
+	Nat_rule_id string
 
-    Network_interface_id string
-
+	Network_interface_id string
 }
 
 var Azurerm_network_interface_nat_rule_association_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_network_interface_nat_rule_association_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16585,7 +15648,6 @@ var Azurerm_network_interface_nat_rule_association_rtb = func(rtb service.Resour
 		"nat_rule_id",
 
 		"network_interface_id",
-
 	)
 }
 
@@ -16625,11 +15687,11 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Update(externalI
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_interface_nat_rule_association", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_interface_nat_rule_association", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface_nat_rule_association{ Azurerm_network_interface_nat_rule_association_id: &externalID }
+	x := &Azurerm_network_interface_nat_rule_association{Azurerm_network_interface_nat_rule_association_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_interface_nat_rule_association", "actual", spew.Sdump(x))
@@ -16648,7 +15710,7 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Read(externalID 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_interface_nat_rule_association{ Azurerm_network_interface_nat_rule_association_id: &id }
+	x := &Azurerm_network_interface_nat_rule_association{Azurerm_network_interface_nat_rule_association_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_interface_nat_rule_association", "actual", spew.Sdump(x))
@@ -16667,56 +15729,51 @@ func (h *Azurerm_network_interface_nat_rule_associationHandler) Delete(externalI
 }
 
 type Azurerm_network_security_group_security_rule_164 struct {
+	Access string
 
+	Description *string
 
-    Access string
+	Destination_address_prefix *string
 
-    Description *string
+	Destination_address_prefixes *[]string
 
-    Destination_address_prefix *string
+	Destination_application_security_group_ids *[]string
 
-    Destination_address_prefixes *[]string
+	Destination_port_range *string
 
-    Destination_application_security_group_ids *[]string
+	Destination_port_ranges *[]string
 
-    Destination_port_range *string
+	Direction string
 
-    Destination_port_ranges *[]string
+	Name string
 
-    Direction string
+	Priority int
 
-    Name string
+	Protocol string
 
-    Priority int
+	Source_address_prefix *string
 
-    Protocol string
+	Source_address_prefixes *[]string
 
-    Source_address_prefix *string
+	Source_application_security_group_ids *[]string
 
-    Source_address_prefixes *[]string
+	Source_port_range *string
 
-    Source_application_security_group_ids *[]string
-
-    Source_port_range *string
-
-    Source_port_ranges *[]string
-
+	Source_port_ranges *[]string
 }
 
 type Azurerm_network_security_group struct {
-
 	Azurerm_network_security_group_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Security_rule *[]Azurerm_network_security_group_security_rule_164
+	Security_rule *[]Azurerm_network_security_group_security_rule_164
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_network_security_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16726,7 +15783,6 @@ var Azurerm_network_security_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"security_rule",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16735,7 +15791,6 @@ var Azurerm_network_security_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -16775,11 +15830,11 @@ func (h *Azurerm_network_security_groupHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_security_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_security_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_security_group{ Azurerm_network_security_group_id: &externalID }
+	x := &Azurerm_network_security_group{Azurerm_network_security_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_security_group", "actual", spew.Sdump(x))
@@ -16798,7 +15853,7 @@ func (h *Azurerm_network_security_groupHandler) Read(externalID string) (*Azurer
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_security_group{ Azurerm_network_security_group_id: &id }
+	x := &Azurerm_network_security_group{Azurerm_network_security_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_security_group", "actual", spew.Sdump(x))
@@ -16817,45 +15872,43 @@ func (h *Azurerm_network_security_groupHandler) Delete(externalID string) error 
 }
 
 type Azurerm_network_security_rule struct {
-
 	Azurerm_network_security_rule_id *string `lyra:"ignore"`
 
-    Access string
+	Access string
 
-    Description *string
+	Description *string
 
-    Destination_address_prefix *string
+	Destination_address_prefix *string
 
-    Destination_address_prefixes *[]string
+	Destination_address_prefixes *[]string
 
-    Destination_application_security_group_ids *[]string
+	Destination_application_security_group_ids *[]string
 
-    Destination_port_range *string
+	Destination_port_range *string
 
-    Destination_port_ranges *[]string
+	Destination_port_ranges *[]string
 
-    Direction string
+	Direction string
 
-    Name string
+	Name string
 
-    Network_security_group_name string
+	Network_security_group_name string
 
-    Priority int
+	Priority int
 
-    Protocol string
+	Protocol string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Source_address_prefix *string
+	Source_address_prefix *string
 
-    Source_address_prefixes *[]string
+	Source_address_prefixes *[]string
 
-    Source_application_security_group_ids *[]string
+	Source_application_security_group_ids *[]string
 
-    Source_port_range *string
+	Source_port_range *string
 
-    Source_port_ranges *[]string
-
+	Source_port_ranges *[]string
 }
 
 var Azurerm_network_security_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16883,7 +15936,6 @@ var Azurerm_network_security_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_port_range",
 
 		"source_port_ranges",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -16892,7 +15944,6 @@ var Azurerm_network_security_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"network_security_group_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -16932,11 +15983,11 @@ func (h *Azurerm_network_security_ruleHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_security_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_security_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_security_rule{ Azurerm_network_security_rule_id: &externalID }
+	x := &Azurerm_network_security_rule{Azurerm_network_security_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_security_rule", "actual", spew.Sdump(x))
@@ -16955,7 +16006,7 @@ func (h *Azurerm_network_security_ruleHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_security_rule{ Azurerm_network_security_rule_id: &id }
+	x := &Azurerm_network_security_rule{Azurerm_network_security_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_security_rule", "actual", spew.Sdump(x))
@@ -16974,17 +16025,15 @@ func (h *Azurerm_network_security_ruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_network_watcher struct {
-
 	Azurerm_network_watcher_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_network_watcher_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -16992,7 +16041,6 @@ var Azurerm_network_watcher_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_network_watcher_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17001,7 +16049,6 @@ var Azurerm_network_watcher_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -17041,11 +16088,11 @@ func (h *Azurerm_network_watcherHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_network_watcher", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_network_watcher", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_watcher{ Azurerm_network_watcher_id: &externalID }
+	x := &Azurerm_network_watcher{Azurerm_network_watcher_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_network_watcher", "actual", spew.Sdump(x))
@@ -17064,7 +16111,7 @@ func (h *Azurerm_network_watcherHandler) Read(externalID string) (*Azurerm_netwo
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_network_watcher{ Azurerm_network_watcher_id: &id }
+	x := &Azurerm_network_watcher{Azurerm_network_watcher_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_network_watcher", "actual", spew.Sdump(x))
@@ -17083,43 +16130,35 @@ func (h *Azurerm_network_watcherHandler) Delete(externalID string) error {
 }
 
 type Azurerm_notification_hub_apns_credential_165 struct {
+	Application_mode string
 
+	Bundle_id string
 
-    Application_mode string
+	Key_id string
 
-    Bundle_id string
+	Team_id string
 
-    Key_id string
-
-    Team_id string
-
-    Token string
-
+	Token string
 }
 
 type Azurerm_notification_hub_gcm_credential_166 struct {
-
-
-    Api_key string
-
+	Api_key string
 }
 
 type Azurerm_notification_hub struct {
-
 	Azurerm_notification_hub_id *string `lyra:"ignore"`
 
-    Apns_credential *[]Azurerm_notification_hub_apns_credential_165
+	Apns_credential *[]Azurerm_notification_hub_apns_credential_165
 
-    Gcm_credential *[]Azurerm_notification_hub_gcm_credential_166
+	Gcm_credential *[]Azurerm_notification_hub_gcm_credential_166
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Resource_group_name string
-
+	Resource_group_name string
 }
 
 var Azurerm_notification_hub_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17129,7 +16168,6 @@ var Azurerm_notification_hub_rtb = func(rtb service.ResourceTypeBuilder) {
 		"apns_credential",
 
 		"gcm_credential",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17140,7 +16178,6 @@ var Azurerm_notification_hub_rtb = func(rtb service.ResourceTypeBuilder) {
 		"namespace_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -17180,11 +16217,11 @@ func (h *Azurerm_notification_hubHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_notification_hub", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_notification_hub", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_notification_hub{ Azurerm_notification_hub_id: &externalID }
+	x := &Azurerm_notification_hub{Azurerm_notification_hub_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_notification_hub", "actual", spew.Sdump(x))
@@ -17203,7 +16240,7 @@ func (h *Azurerm_notification_hubHandler) Read(externalID string) (*Azurerm_noti
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_notification_hub{ Azurerm_notification_hub_id: &id }
+	x := &Azurerm_notification_hub{Azurerm_notification_hub_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_notification_hub", "actual", spew.Sdump(x))
@@ -17222,27 +16259,25 @@ func (h *Azurerm_notification_hubHandler) Delete(externalID string) error {
 }
 
 type Azurerm_notification_hub_authorization_rule struct {
-
 	Azurerm_notification_hub_authorization_rule_id *string `lyra:"ignore"`
 
-    Listen *bool
+	Listen *bool
 
-    Manage *bool
+	Manage *bool
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Notification_hub_name string
+	Notification_hub_name string
 
-    Primary_access_key *string
+	Primary_access_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_access_key *string
+	Secondary_access_key *string
 
-    Send *bool
-
+	Send *bool
 }
 
 var Azurerm_notification_hub_authorization_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17258,7 +16293,6 @@ var Azurerm_notification_hub_authorization_rule_rtb = func(rtb service.ResourceT
 		"secondary_access_key",
 
 		"send",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17269,7 +16303,6 @@ var Azurerm_notification_hub_authorization_rule_rtb = func(rtb service.ResourceT
 		"notification_hub_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -17309,11 +16342,11 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Update(externalID s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_notification_hub_authorization_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_notification_hub_authorization_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_notification_hub_authorization_rule{ Azurerm_notification_hub_authorization_rule_id: &externalID }
+	x := &Azurerm_notification_hub_authorization_rule{Azurerm_notification_hub_authorization_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_notification_hub_authorization_rule", "actual", spew.Sdump(x))
@@ -17332,7 +16365,7 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Read(externalID str
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_notification_hub_authorization_rule{ Azurerm_notification_hub_authorization_rule_id: &id }
+	x := &Azurerm_notification_hub_authorization_rule{Azurerm_notification_hub_authorization_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_notification_hub_authorization_rule", "actual", spew.Sdump(x))
@@ -17351,30 +16384,25 @@ func (h *Azurerm_notification_hub_authorization_ruleHandler) Delete(externalID s
 }
 
 type Azurerm_notification_hub_namespace_sku_167 struct {
-
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_notification_hub_namespace struct {
-
 	Azurerm_notification_hub_namespace_id *string `lyra:"ignore"`
 
-    Enabled *bool
+	Enabled *bool
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Namespace_type string
+	Namespace_type string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Servicebus_endpoint *string
+	Servicebus_endpoint *string
 
-    Sku []Azurerm_notification_hub_namespace_sku_167
-
+	Sku []Azurerm_notification_hub_namespace_sku_167
 }
 
 var Azurerm_notification_hub_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17384,7 +16412,6 @@ var Azurerm_notification_hub_namespace_rtb = func(rtb service.ResourceTypeBuilde
 		"enabled",
 
 		"servicebus_endpoint",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17393,7 +16420,6 @@ var Azurerm_notification_hub_namespace_rtb = func(rtb service.ResourceTypeBuilde
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -17433,11 +16459,11 @@ func (h *Azurerm_notification_hub_namespaceHandler) Update(externalID string, de
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_notification_hub_namespace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_notification_hub_namespace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_notification_hub_namespace{ Azurerm_notification_hub_namespace_id: &externalID }
+	x := &Azurerm_notification_hub_namespace{Azurerm_notification_hub_namespace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_notification_hub_namespace", "actual", spew.Sdump(x))
@@ -17456,7 +16482,7 @@ func (h *Azurerm_notification_hub_namespaceHandler) Read(externalID string) (*Az
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_notification_hub_namespace{ Azurerm_notification_hub_namespace_id: &id }
+	x := &Azurerm_notification_hub_namespace{Azurerm_notification_hub_namespace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_notification_hub_namespace", "actual", spew.Sdump(x))
@@ -17475,53 +16501,45 @@ func (h *Azurerm_notification_hub_namespaceHandler) Delete(externalID string) er
 }
 
 type Azurerm_packet_capture_filter_168 struct {
+	Local_ip_address *string
 
+	Local_port *string
 
-    Local_ip_address *string
+	Protocol string
 
-    Local_port *string
+	Remote_ip_address *string
 
-    Protocol string
-
-    Remote_ip_address *string
-
-    Remote_port *string
-
+	Remote_port *string
 }
 
 type Azurerm_packet_capture_storage_location_169 struct {
+	File_path *string
 
+	Storage_account_id *string
 
-    File_path *string
-
-    Storage_account_id *string
-
-    Storage_path *string
-
+	Storage_path *string
 }
 
 type Azurerm_packet_capture struct {
-
 	Azurerm_packet_capture_id *string `lyra:"ignore"`
 
-    Filter *[]Azurerm_packet_capture_filter_168
+	Filter *[]Azurerm_packet_capture_filter_168
 
-    Maximum_bytes_per_packet *int
+	Maximum_bytes_per_packet *int
 
-    Maximum_bytes_per_session *int
+	Maximum_bytes_per_session *int
 
-    Maximum_capture_duration *int
+	Maximum_capture_duration *int
 
-    Name string
+	Name string
 
-    Network_watcher_name string
+	Network_watcher_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_location []Azurerm_packet_capture_storage_location_169
+	Storage_location []Azurerm_packet_capture_storage_location_169
 
-    Target_resource_id string
-
+	Target_resource_id string
 }
 
 var Azurerm_packet_capture_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17535,7 +16553,6 @@ var Azurerm_packet_capture_rtb = func(rtb service.ResourceTypeBuilder) {
 		"maximum_bytes_per_session",
 
 		"maximum_capture_duration",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17556,7 +16573,6 @@ var Azurerm_packet_capture_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_location",
 
 		"target_resource_id",
-
 	)
 }
 
@@ -17596,11 +16612,11 @@ func (h *Azurerm_packet_captureHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_packet_capture", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_packet_capture", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_packet_capture{ Azurerm_packet_capture_id: &externalID }
+	x := &Azurerm_packet_capture{Azurerm_packet_capture_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_packet_capture", "actual", spew.Sdump(x))
@@ -17619,7 +16635,7 @@ func (h *Azurerm_packet_captureHandler) Read(externalID string) (*Azurerm_packet
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_packet_capture{ Azurerm_packet_capture_id: &id }
+	x := &Azurerm_packet_capture{Azurerm_packet_capture_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_packet_capture", "actual", spew.Sdump(x))
@@ -17638,38 +16654,33 @@ func (h *Azurerm_packet_captureHandler) Delete(externalID string) error {
 }
 
 type Azurerm_policy_assignment_identity_170 struct {
+	Principal_id *string
 
+	Tenant_id *string
 
-    Principal_id *string
-
-    Tenant_id *string
-
-    Type *string
-
+	Type *string
 }
 
 type Azurerm_policy_assignment struct {
-
 	Azurerm_policy_assignment_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Display_name *string
+	Display_name *string
 
-    Identity *[]Azurerm_policy_assignment_identity_170
+	Identity *[]Azurerm_policy_assignment_identity_170
 
-    Location *string
+	Location *string
 
-    Name string
+	Name string
 
-    Not_scopes *[]string
+	Not_scopes *[]string
 
-    Parameters *string
+	Parameters *string
 
-    Policy_definition_id string
+	Policy_definition_id string
 
-    Scope string
-
+	Scope string
 }
 
 var Azurerm_policy_assignment_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17687,7 +16698,6 @@ var Azurerm_policy_assignment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"not_scopes",
 
 		"parameters",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17700,7 +16710,6 @@ var Azurerm_policy_assignment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"policy_definition_id",
 
 		"scope",
-
 	)
 }
 
@@ -17740,11 +16749,11 @@ func (h *Azurerm_policy_assignmentHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_policy_assignment", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_policy_assignment", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_policy_assignment{ Azurerm_policy_assignment_id: &externalID }
+	x := &Azurerm_policy_assignment{Azurerm_policy_assignment_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_policy_assignment", "actual", spew.Sdump(x))
@@ -17763,7 +16772,7 @@ func (h *Azurerm_policy_assignmentHandler) Read(externalID string) (*Azurerm_pol
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_policy_assignment{ Azurerm_policy_assignment_id: &id }
+	x := &Azurerm_policy_assignment{Azurerm_policy_assignment_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_policy_assignment", "actual", spew.Sdump(x))
@@ -17782,27 +16791,25 @@ func (h *Azurerm_policy_assignmentHandler) Delete(externalID string) error {
 }
 
 type Azurerm_policy_definition struct {
-
 	Azurerm_policy_definition_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Display_name string
+	Display_name string
 
-    Management_group_id *string
+	Management_group_id *string
 
-    Metadata *string
+	Metadata *string
 
-    Mode string
+	Mode string
 
-    Name string
+	Name string
 
-    Parameters *string
+	Parameters *string
 
-    Policy_rule *string
+	Policy_rule *string
 
-    Policy_type string
-
+	Policy_type string
 }
 
 var Azurerm_policy_definition_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17818,7 +16825,6 @@ var Azurerm_policy_definition_rtb = func(rtb service.ResourceTypeBuilder) {
 		"parameters",
 
 		"policy_rule",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17829,7 +16835,6 @@ var Azurerm_policy_definition_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"policy_type",
-
 	)
 }
 
@@ -17869,11 +16874,11 @@ func (h *Azurerm_policy_definitionHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_policy_definition", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_policy_definition", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_policy_definition{ Azurerm_policy_definition_id: &externalID }
+	x := &Azurerm_policy_definition{Azurerm_policy_definition_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_policy_definition", "actual", spew.Sdump(x))
@@ -17892,7 +16897,7 @@ func (h *Azurerm_policy_definitionHandler) Read(externalID string) (*Azurerm_pol
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_policy_definition{ Azurerm_policy_definition_id: &id }
+	x := &Azurerm_policy_definition{Azurerm_policy_definition_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_policy_definition", "actual", spew.Sdump(x))
@@ -17911,25 +16916,23 @@ func (h *Azurerm_policy_definitionHandler) Delete(externalID string) error {
 }
 
 type Azurerm_policy_set_definition struct {
-
 	Azurerm_policy_set_definition_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Display_name string
+	Display_name string
 
-    Management_group_id *string
+	Management_group_id *string
 
-    Metadata *string
+	Metadata *string
 
-    Name string
+	Name string
 
-    Parameters *string
+	Parameters *string
 
-    Policy_definitions *string
+	Policy_definitions *string
 
-    Policy_type string
-
+	Policy_type string
 }
 
 var Azurerm_policy_set_definition_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -17945,7 +16948,6 @@ var Azurerm_policy_set_definition_rtb = func(rtb service.ResourceTypeBuilder) {
 		"parameters",
 
 		"policy_definitions",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -17954,7 +16956,6 @@ var Azurerm_policy_set_definition_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"policy_type",
-
 	)
 }
 
@@ -17994,11 +16995,11 @@ func (h *Azurerm_policy_set_definitionHandler) Update(externalID string, desired
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_policy_set_definition", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_policy_set_definition", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_policy_set_definition{ Azurerm_policy_set_definition_id: &externalID }
+	x := &Azurerm_policy_set_definition{Azurerm_policy_set_definition_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_policy_set_definition", "actual", spew.Sdump(x))
@@ -18017,7 +17018,7 @@ func (h *Azurerm_policy_set_definitionHandler) Read(externalID string) (*Azurerm
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_policy_set_definition{ Azurerm_policy_set_definition_id: &id }
+	x := &Azurerm_policy_set_definition{Azurerm_policy_set_definition_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_policy_set_definition", "actual", spew.Sdump(x))
@@ -18036,23 +17037,20 @@ func (h *Azurerm_policy_set_definitionHandler) Delete(externalID string) error {
 }
 
 type Azurerm_postgresql_configuration struct {
-
 	Azurerm_postgresql_configuration_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Value string
-
+	Value string
 }
 
 var Azurerm_postgresql_configuration_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_postgresql_configuration_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18063,7 +17061,6 @@ var Azurerm_postgresql_configuration_rtb = func(rtb service.ResourceTypeBuilder)
 		"server_name",
 
 		"value",
-
 	)
 }
 
@@ -18103,11 +17100,11 @@ func (h *Azurerm_postgresql_configurationHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_postgresql_configuration", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_postgresql_configuration", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_configuration{ Azurerm_postgresql_configuration_id: &externalID }
+	x := &Azurerm_postgresql_configuration{Azurerm_postgresql_configuration_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_postgresql_configuration", "actual", spew.Sdump(x))
@@ -18126,7 +17123,7 @@ func (h *Azurerm_postgresql_configurationHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_configuration{ Azurerm_postgresql_configuration_id: &id }
+	x := &Azurerm_postgresql_configuration{Azurerm_postgresql_configuration_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_postgresql_configuration", "actual", spew.Sdump(x))
@@ -18145,25 +17142,22 @@ func (h *Azurerm_postgresql_configurationHandler) Delete(externalID string) erro
 }
 
 type Azurerm_postgresql_database struct {
-
 	Azurerm_postgresql_database_id *string `lyra:"ignore"`
 
-    Charset string
+	Charset string
 
-    Collation string
+	Collation string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
-
+	Server_name string
 }
 
 var Azurerm_postgresql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_postgresql_database_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18176,7 +17170,6 @@ var Azurerm_postgresql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -18216,11 +17209,11 @@ func (h *Azurerm_postgresql_databaseHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_postgresql_database", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_postgresql_database", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_database{ Azurerm_postgresql_database_id: &externalID }
+	x := &Azurerm_postgresql_database{Azurerm_postgresql_database_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_postgresql_database", "actual", spew.Sdump(x))
@@ -18239,7 +17232,7 @@ func (h *Azurerm_postgresql_databaseHandler) Read(externalID string) (*Azurerm_p
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_database{ Azurerm_postgresql_database_id: &id }
+	x := &Azurerm_postgresql_database{Azurerm_postgresql_database_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_postgresql_database", "actual", spew.Sdump(x))
@@ -18258,25 +17251,22 @@ func (h *Azurerm_postgresql_databaseHandler) Delete(externalID string) error {
 }
 
 type Azurerm_postgresql_firewall_rule struct {
-
 	Azurerm_postgresql_firewall_rule_id *string `lyra:"ignore"`
 
-    End_ip_address string
+	End_ip_address string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Start_ip_address string
-
+	Start_ip_address string
 }
 
 var Azurerm_postgresql_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_postgresql_firewall_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18289,7 +17279,6 @@ var Azurerm_postgresql_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder)
 		"server_name",
 
 		"start_ip_address",
-
 	)
 }
 
@@ -18329,11 +17318,11 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_postgresql_firewall_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_postgresql_firewall_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_firewall_rule{ Azurerm_postgresql_firewall_rule_id: &externalID }
+	x := &Azurerm_postgresql_firewall_rule{Azurerm_postgresql_firewall_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_postgresql_firewall_rule", "actual", spew.Sdump(x))
@@ -18352,7 +17341,7 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_firewall_rule{ Azurerm_postgresql_firewall_rule_id: &id }
+	x := &Azurerm_postgresql_firewall_rule{Azurerm_postgresql_firewall_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_postgresql_firewall_rule", "actual", spew.Sdump(x))
@@ -18371,55 +17360,47 @@ func (h *Azurerm_postgresql_firewall_ruleHandler) Delete(externalID string) erro
 }
 
 type Azurerm_postgresql_server_sku_171 struct {
+	Capacity int
 
+	Family string
 
-    Capacity int
+	Name string
 
-    Family string
-
-    Name string
-
-    Tier string
-
+	Tier string
 }
 
 type Azurerm_postgresql_server_storage_profile_172 struct {
+	Backup_retention_days *int
 
+	Geo_redundant_backup *string
 
-    Backup_retention_days *int
-
-    Geo_redundant_backup *string
-
-    Storage_mb int
-
+	Storage_mb int
 }
 
 type Azurerm_postgresql_server struct {
-
 	Azurerm_postgresql_server_id *string `lyra:"ignore"`
 
-    Administrator_login string
+	Administrator_login string
 
-    Administrator_login_password string
+	Administrator_login_password string
 
-    Fqdn *string
+	Fqdn *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku []Azurerm_postgresql_server_sku_171
+	Sku []Azurerm_postgresql_server_sku_171
 
-    Ssl_enforcement string
+	Ssl_enforcement string
 
-    Storage_profile []Azurerm_postgresql_server_storage_profile_172
+	Storage_profile []Azurerm_postgresql_server_storage_profile_172
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Version string
-
+	Version string
 }
 
 var Azurerm_postgresql_server_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18429,7 +17410,6 @@ var Azurerm_postgresql_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"fqdn",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18442,7 +17422,6 @@ var Azurerm_postgresql_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"version",
-
 	)
 }
 
@@ -18482,11 +17461,11 @@ func (h *Azurerm_postgresql_serverHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_postgresql_server", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_postgresql_server", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_server{ Azurerm_postgresql_server_id: &externalID }
+	x := &Azurerm_postgresql_server{Azurerm_postgresql_server_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_postgresql_server", "actual", spew.Sdump(x))
@@ -18505,7 +17484,7 @@ func (h *Azurerm_postgresql_serverHandler) Read(externalID string) (*Azurerm_pos
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_server{ Azurerm_postgresql_server_id: &id }
+	x := &Azurerm_postgresql_server{Azurerm_postgresql_server_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_postgresql_server", "actual", spew.Sdump(x))
@@ -18524,19 +17503,17 @@ func (h *Azurerm_postgresql_serverHandler) Delete(externalID string) error {
 }
 
 type Azurerm_postgresql_virtual_network_rule struct {
-
 	Azurerm_postgresql_virtual_network_rule_id *string `lyra:"ignore"`
 
-    Ignore_missing_vnet_service_endpoint *bool
+	Ignore_missing_vnet_service_endpoint *bool
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Subnet_id string
-
+	Subnet_id string
 }
 
 var Azurerm_postgresql_virtual_network_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18544,7 +17521,6 @@ var Azurerm_postgresql_virtual_network_rule_rtb = func(rtb service.ResourceTypeB
 		"azurerm_postgresql_virtual_network_rule_id",
 
 		"ignore_missing_vnet_service_endpoint",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18553,7 +17529,6 @@ var Azurerm_postgresql_virtual_network_rule_rtb = func(rtb service.ResourceTypeB
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -18593,11 +17568,11 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Update(externalID strin
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_postgresql_virtual_network_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_postgresql_virtual_network_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_virtual_network_rule{ Azurerm_postgresql_virtual_network_rule_id: &externalID }
+	x := &Azurerm_postgresql_virtual_network_rule{Azurerm_postgresql_virtual_network_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_postgresql_virtual_network_rule", "actual", spew.Sdump(x))
@@ -18616,7 +17591,7 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Read(externalID string)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_postgresql_virtual_network_rule{ Azurerm_postgresql_virtual_network_rule_id: &id }
+	x := &Azurerm_postgresql_virtual_network_rule{Azurerm_postgresql_virtual_network_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_postgresql_virtual_network_rule", "actual", spew.Sdump(x))
@@ -18635,37 +17610,35 @@ func (h *Azurerm_postgresql_virtual_network_ruleHandler) Delete(externalID strin
 }
 
 type Azurerm_public_ip struct {
-
 	Azurerm_public_ip_id *string `lyra:"ignore"`
 
-    Allocation_method *string
+	Allocation_method *string
 
-    Domain_name_label *string
+	Domain_name_label *string
 
-    Fqdn *string
+	Fqdn *string
 
-    Idle_timeout_in_minutes *int
+	Idle_timeout_in_minutes *int
 
-    Ip_address *string
+	Ip_address *string
 
-    Ip_version *string
+	Ip_version *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Public_ip_address_allocation *string
+	Public_ip_address_allocation *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Reverse_fqdn *string
+	Reverse_fqdn *string
 
-    Sku *string
+	Sku *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Zones *[]string
-
+	Zones *[]string
 }
 
 var Azurerm_public_ip_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18693,7 +17666,6 @@ var Azurerm_public_ip_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"zones",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18708,7 +17680,6 @@ var Azurerm_public_ip_rtb = func(rtb service.ResourceTypeBuilder) {
 		"sku",
 
 		"zones",
-
 	)
 }
 
@@ -18748,11 +17719,11 @@ func (h *Azurerm_public_ipHandler) Update(externalID string, desired *Azurerm_pu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_public_ip", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_public_ip", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_public_ip{ Azurerm_public_ip_id: &externalID }
+	x := &Azurerm_public_ip{Azurerm_public_ip_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_public_ip", "actual", spew.Sdump(x))
@@ -18771,7 +17742,7 @@ func (h *Azurerm_public_ipHandler) Read(externalID string) (*Azurerm_public_ip, 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_public_ip{ Azurerm_public_ip_id: &id }
+	x := &Azurerm_public_ip{Azurerm_public_ip_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_public_ip", "actual", spew.Sdump(x))
@@ -18790,19 +17761,17 @@ func (h *Azurerm_public_ipHandler) Delete(externalID string) error {
 }
 
 type Azurerm_recovery_services_protected_vm struct {
-
 	Azurerm_recovery_services_protected_vm_id *string `lyra:"ignore"`
 
-    Backup_policy_id string
+	Backup_policy_id string
 
-    Recovery_vault_name string
+	Recovery_vault_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Source_vm_id string
+	Source_vm_id string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_recovery_services_protected_vm_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18810,7 +17779,6 @@ var Azurerm_recovery_services_protected_vm_rtb = func(rtb service.ResourceTypeBu
 		"azurerm_recovery_services_protected_vm_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -18821,7 +17789,6 @@ var Azurerm_recovery_services_protected_vm_rtb = func(rtb service.ResourceTypeBu
 		"resource_group_name",
 
 		"source_vm_id",
-
 	)
 }
 
@@ -18861,11 +17828,11 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_recovery_services_protected_vm", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_recovery_services_protected_vm", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_recovery_services_protected_vm{ Azurerm_recovery_services_protected_vm_id: &externalID }
+	x := &Azurerm_recovery_services_protected_vm{Azurerm_recovery_services_protected_vm_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_recovery_services_protected_vm", "actual", spew.Sdump(x))
@@ -18884,7 +17851,7 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_recovery_services_protected_vm{ Azurerm_recovery_services_protected_vm_id: &id }
+	x := &Azurerm_recovery_services_protected_vm{Azurerm_recovery_services_protected_vm_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_recovery_services_protected_vm", "actual", spew.Sdump(x))
@@ -18903,80 +17870,63 @@ func (h *Azurerm_recovery_services_protected_vmHandler) Delete(externalID string
 }
 
 type Azurerm_recovery_services_protection_policy_vm_backup_173 struct {
+	Frequency string
 
+	Time string
 
-    Frequency string
-
-    Time string
-
-    Weekdays *[]string
-
+	Weekdays *[]string
 }
 
 type Azurerm_recovery_services_protection_policy_vm_retention_daily_174 struct {
-
-
-    Count int
-
+	Count int
 }
 
 type Azurerm_recovery_services_protection_policy_vm_retention_monthly_175 struct {
+	Count int
 
+	Weekdays []string
 
-    Count int
-
-    Weekdays []string
-
-    Weeks []string
-
+	Weeks []string
 }
 
 type Azurerm_recovery_services_protection_policy_vm_retention_weekly_176 struct {
+	Count int
 
-
-    Count int
-
-    Weekdays []string
-
+	Weekdays []string
 }
 
 type Azurerm_recovery_services_protection_policy_vm_retention_yearly_177 struct {
+	Count int
 
+	Months []string
 
-    Count int
+	Weekdays []string
 
-    Months []string
-
-    Weekdays []string
-
-    Weeks []string
-
+	Weeks []string
 }
 
 type Azurerm_recovery_services_protection_policy_vm struct {
-
 	Azurerm_recovery_services_protection_policy_vm_id *string `lyra:"ignore"`
 
-    Backup []Azurerm_recovery_services_protection_policy_vm_backup_173
+	Backup []Azurerm_recovery_services_protection_policy_vm_backup_173
 
-    Name string
+	Name string
 
-    Recovery_vault_name string
+	Recovery_vault_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Retention_daily *[]Azurerm_recovery_services_protection_policy_vm_retention_daily_174
+	Retention_daily *[]Azurerm_recovery_services_protection_policy_vm_retention_daily_174
 
-    Retention_monthly *[]Azurerm_recovery_services_protection_policy_vm_retention_monthly_175
+	Retention_monthly *[]Azurerm_recovery_services_protection_policy_vm_retention_monthly_175
 
-    Retention_weekly *[]Azurerm_recovery_services_protection_policy_vm_retention_weekly_176
+	Retention_weekly *[]Azurerm_recovery_services_protection_policy_vm_retention_weekly_176
 
-    Retention_yearly *[]Azurerm_recovery_services_protection_policy_vm_retention_yearly_177
+	Retention_yearly *[]Azurerm_recovery_services_protection_policy_vm_retention_yearly_177
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Timezone *string
-
+	Timezone *string
 }
 
 var Azurerm_recovery_services_protection_policy_vm_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -18994,7 +17944,6 @@ var Azurerm_recovery_services_protection_policy_vm_rtb = func(rtb service.Resour
 		"tags",
 
 		"timezone",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19003,7 +17952,6 @@ var Azurerm_recovery_services_protection_policy_vm_rtb = func(rtb service.Resour
 		"recovery_vault_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -19043,11 +17991,11 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Update(externalI
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_recovery_services_protection_policy_vm", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_recovery_services_protection_policy_vm{ Azurerm_recovery_services_protection_policy_vm_id: &externalID }
+	x := &Azurerm_recovery_services_protection_policy_vm{Azurerm_recovery_services_protection_policy_vm_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_recovery_services_protection_policy_vm", "actual", spew.Sdump(x))
@@ -19066,7 +18014,7 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Read(externalID 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_recovery_services_protection_policy_vm{ Azurerm_recovery_services_protection_policy_vm_id: &id }
+	x := &Azurerm_recovery_services_protection_policy_vm{Azurerm_recovery_services_protection_policy_vm_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_recovery_services_protection_policy_vm", "actual", spew.Sdump(x))
@@ -19085,19 +18033,17 @@ func (h *Azurerm_recovery_services_protection_policy_vmHandler) Delete(externalI
 }
 
 type Azurerm_recovery_services_vault struct {
-
 	Azurerm_recovery_services_vault_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_recovery_services_vault_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19105,7 +18051,6 @@ var Azurerm_recovery_services_vault_rtb = func(rtb service.ResourceTypeBuilder) 
 		"azurerm_recovery_services_vault_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19114,7 +18059,6 @@ var Azurerm_recovery_services_vault_rtb = func(rtb service.ResourceTypeBuilder) 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -19154,11 +18098,11 @@ func (h *Azurerm_recovery_services_vaultHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_recovery_services_vault", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_recovery_services_vault", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_recovery_services_vault{ Azurerm_recovery_services_vault_id: &externalID }
+	x := &Azurerm_recovery_services_vault{Azurerm_recovery_services_vault_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_recovery_services_vault", "actual", spew.Sdump(x))
@@ -19177,7 +18121,7 @@ func (h *Azurerm_recovery_services_vaultHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_recovery_services_vault{ Azurerm_recovery_services_vault_id: &id }
+	x := &Azurerm_recovery_services_vault{Azurerm_recovery_services_vault_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_recovery_services_vault", "actual", spew.Sdump(x))
@@ -19196,79 +18140,71 @@ func (h *Azurerm_recovery_services_vaultHandler) Delete(externalID string) error
 }
 
 type Azurerm_redis_cache_patch_schedule_178 struct {
+	Day_of_week string
 
-
-    Day_of_week string
-
-    Start_hour_utc *int
-
+	Start_hour_utc *int
 }
 
 type Azurerm_redis_cache_redis_configuration_179 struct {
+	Maxclients *int
 
+	Maxmemory_delta *int
 
-    Maxclients *int
+	Maxmemory_policy *string
 
-    Maxmemory_delta *int
+	Maxmemory_reserved *int
 
-    Maxmemory_policy *string
+	Notify_keyspace_events *string
 
-    Maxmemory_reserved *int
+	Rdb_backup_enabled *bool
 
-    Notify_keyspace_events *string
+	Rdb_backup_frequency *int
 
-    Rdb_backup_enabled *bool
+	Rdb_backup_max_snapshot_count *int
 
-    Rdb_backup_frequency *int
-
-    Rdb_backup_max_snapshot_count *int
-
-    Rdb_storage_connection_string *string
-
+	Rdb_storage_connection_string *string
 }
 
 type Azurerm_redis_cache struct {
-
 	Azurerm_redis_cache_id *string `lyra:"ignore"`
 
-    Capacity int
+	Capacity int
 
-    Enable_non_ssl_port *bool
+	Enable_non_ssl_port *bool
 
-    Family string
+	Family string
 
-    Hostname *string
+	Hostname *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Patch_schedule *[]Azurerm_redis_cache_patch_schedule_178
+	Patch_schedule *[]Azurerm_redis_cache_patch_schedule_178
 
-    Port *int
+	Port *int
 
-    Primary_access_key *string
+	Primary_access_key *string
 
-    Private_static_ip_address *string
+	Private_static_ip_address *string
 
-    Redis_configuration []Azurerm_redis_cache_redis_configuration_179
+	Redis_configuration []Azurerm_redis_cache_redis_configuration_179
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_access_key *string
+	Secondary_access_key *string
 
-    Shard_count *int
+	Shard_count *int
 
-    Sku_name string
+	Sku_name string
 
-    Ssl_port *int
+	Ssl_port *int
 
-    Subnet_id *string
+	Subnet_id *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Zones *[]string
-
+	Zones *[]string
 }
 
 var Azurerm_redis_cache_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19298,7 +18234,6 @@ var Azurerm_redis_cache_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"zones",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19313,7 +18248,6 @@ var Azurerm_redis_cache_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnet_id",
 
 		"zones",
-
 	)
 }
 
@@ -19353,11 +18287,11 @@ func (h *Azurerm_redis_cacheHandler) Update(externalID string, desired *Azurerm_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_redis_cache", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_redis_cache", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_redis_cache{ Azurerm_redis_cache_id: &externalID }
+	x := &Azurerm_redis_cache{Azurerm_redis_cache_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_redis_cache", "actual", spew.Sdump(x))
@@ -19376,7 +18310,7 @@ func (h *Azurerm_redis_cacheHandler) Read(externalID string) (*Azurerm_redis_cac
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_redis_cache{ Azurerm_redis_cache_id: &id }
+	x := &Azurerm_redis_cache{Azurerm_redis_cache_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_redis_cache", "actual", spew.Sdump(x))
@@ -19395,25 +18329,22 @@ func (h *Azurerm_redis_cacheHandler) Delete(externalID string) error {
 }
 
 type Azurerm_redis_firewall_rule struct {
-
 	Azurerm_redis_firewall_rule_id *string `lyra:"ignore"`
 
-    End_ip string
+	End_ip string
 
-    Name string
+	Name string
 
-    Redis_cache_name string
+	Redis_cache_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Start_ip string
-
+	Start_ip string
 }
 
 var Azurerm_redis_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_redis_firewall_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19422,7 +18353,6 @@ var Azurerm_redis_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"redis_cache_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -19462,11 +18392,11 @@ func (h *Azurerm_redis_firewall_ruleHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_redis_firewall_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_redis_firewall_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_redis_firewall_rule{ Azurerm_redis_firewall_rule_id: &externalID }
+	x := &Azurerm_redis_firewall_rule{Azurerm_redis_firewall_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_redis_firewall_rule", "actual", spew.Sdump(x))
@@ -19485,7 +18415,7 @@ func (h *Azurerm_redis_firewall_ruleHandler) Read(externalID string) (*Azurerm_r
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_redis_firewall_rule{ Azurerm_redis_firewall_rule_id: &id }
+	x := &Azurerm_redis_firewall_rule{Azurerm_redis_firewall_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_redis_firewall_rule", "actual", spew.Sdump(x))
@@ -19504,36 +18434,31 @@ func (h *Azurerm_redis_firewall_ruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_relay_namespace_sku_180 struct {
-
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_relay_namespace struct {
-
 	Azurerm_relay_namespace_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Metric_id *string
+	Metric_id *string
 
-    Name string
+	Name string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_key *string
+	Primary_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Sku []Azurerm_relay_namespace_sku_180
+	Sku []Azurerm_relay_namespace_sku_180
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_relay_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19551,7 +18476,6 @@ var Azurerm_relay_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"secondary_key",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19560,7 +18484,6 @@ var Azurerm_relay_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -19600,11 +18523,11 @@ func (h *Azurerm_relay_namespaceHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_relay_namespace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_relay_namespace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_relay_namespace{ Azurerm_relay_namespace_id: &externalID }
+	x := &Azurerm_relay_namespace{Azurerm_relay_namespace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_relay_namespace", "actual", spew.Sdump(x))
@@ -19623,7 +18546,7 @@ func (h *Azurerm_relay_namespaceHandler) Read(externalID string) (*Azurerm_relay
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_relay_namespace{ Azurerm_relay_namespace_id: &id }
+	x := &Azurerm_relay_namespace{Azurerm_relay_namespace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_relay_namespace", "actual", spew.Sdump(x))
@@ -19642,15 +18565,13 @@ func (h *Azurerm_relay_namespaceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_resource_group struct {
-
 	Azurerm_resource_group_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_resource_group_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19658,14 +18579,12 @@ var Azurerm_resource_group_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_resource_group_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"location",
 
 		"name",
-
 	)
 }
 
@@ -19705,11 +18624,11 @@ func (h *Azurerm_resource_groupHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_resource_group", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_resource_group", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_resource_group{ Azurerm_resource_group_id: &externalID }
+	x := &Azurerm_resource_group{Azurerm_resource_group_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_resource_group", "actual", spew.Sdump(x))
@@ -19728,7 +18647,7 @@ func (h *Azurerm_resource_groupHandler) Read(externalID string) (*Azurerm_resour
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_resource_group{ Azurerm_resource_group_id: &id }
+	x := &Azurerm_resource_group{Azurerm_resource_group_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_resource_group", "actual", spew.Sdump(x))
@@ -19747,19 +18666,17 @@ func (h *Azurerm_resource_groupHandler) Delete(externalID string) error {
 }
 
 type Azurerm_role_assignment struct {
-
 	Azurerm_role_assignment_id *string `lyra:"ignore"`
 
-    Name *string
+	Name *string
 
-    Principal_id string
+	Principal_id string
 
-    Role_definition_id *string
+	Role_definition_id *string
 
-    Role_definition_name *string
+	Role_definition_name *string
 
-    Scope string
-
+	Scope string
 }
 
 var Azurerm_role_assignment_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19771,7 +18688,6 @@ var Azurerm_role_assignment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"role_definition_id",
 
 		"role_definition_name",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -19784,7 +18700,6 @@ var Azurerm_role_assignment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"role_definition_name",
 
 		"scope",
-
 	)
 }
 
@@ -19824,11 +18739,11 @@ func (h *Azurerm_role_assignmentHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_role_assignment", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_role_assignment", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_role_assignment{ Azurerm_role_assignment_id: &externalID }
+	x := &Azurerm_role_assignment{Azurerm_role_assignment_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_role_assignment", "actual", spew.Sdump(x))
@@ -19847,7 +18762,7 @@ func (h *Azurerm_role_assignmentHandler) Read(externalID string) (*Azurerm_role_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_role_assignment{ Azurerm_role_assignment_id: &id }
+	x := &Azurerm_role_assignment{Azurerm_role_assignment_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_role_assignment", "actual", spew.Sdump(x))
@@ -19866,34 +18781,29 @@ func (h *Azurerm_role_assignmentHandler) Delete(externalID string) error {
 }
 
 type Azurerm_role_definition_permissions_181 struct {
+	Actions *[]string
 
+	Data_actions *[]string
 
-    Actions *[]string
+	Not_actions *[]string
 
-    Data_actions *[]string
-
-    Not_actions *[]string
-
-    Not_data_actions *[]string
-
+	Not_data_actions *[]string
 }
 
 type Azurerm_role_definition struct {
-
 	Azurerm_role_definition_id *string `lyra:"ignore"`
 
-    Assignable_scopes []string
+	Assignable_scopes []string
 
-    Description *string
+	Description *string
 
-    Name string
+	Name string
 
-    Permissions []Azurerm_role_definition_permissions_181
+	Permissions []Azurerm_role_definition_permissions_181
 
-    Role_definition_id *string
+	Role_definition_id *string
 
-    Scope string
-
+	Scope string
 }
 
 var Azurerm_role_definition_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -19903,14 +18813,12 @@ var Azurerm_role_definition_rtb = func(rtb service.ResourceTypeBuilder) {
 		"description",
 
 		"role_definition_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"role_definition_id",
 
 		"scope",
-
 	)
 }
 
@@ -19950,11 +18858,11 @@ func (h *Azurerm_role_definitionHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_role_definition", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_role_definition", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_role_definition{ Azurerm_role_definition_id: &externalID }
+	x := &Azurerm_role_definition{Azurerm_role_definition_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_role_definition", "actual", spew.Sdump(x))
@@ -19973,7 +18881,7 @@ func (h *Azurerm_role_definitionHandler) Read(externalID string) (*Azurerm_role_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_role_definition{ Azurerm_role_definition_id: &id }
+	x := &Azurerm_role_definition{Azurerm_role_definition_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_role_definition", "actual", spew.Sdump(x))
@@ -19992,21 +18900,19 @@ func (h *Azurerm_role_definitionHandler) Delete(externalID string) error {
 }
 
 type Azurerm_route struct {
-
 	Azurerm_route_id *string `lyra:"ignore"`
 
-    Address_prefix string
+	Address_prefix string
 
-    Name string
+	Name string
 
-    Next_hop_in_ip_address *string
+	Next_hop_in_ip_address *string
 
-    Next_hop_type string
+	Next_hop_type string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Route_table_name string
-
+	Route_table_name string
 }
 
 var Azurerm_route_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20014,7 +18920,6 @@ var Azurerm_route_rtb = func(rtb service.ResourceTypeBuilder) {
 		"azurerm_route_id",
 
 		"next_hop_in_ip_address",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20023,7 +18928,6 @@ var Azurerm_route_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"route_table_name",
-
 	)
 }
 
@@ -20063,11 +18967,11 @@ func (h *Azurerm_routeHandler) Update(externalID string, desired *Azurerm_route)
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_route", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_route", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_route{ Azurerm_route_id: &externalID }
+	x := &Azurerm_route{Azurerm_route_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_route", "actual", spew.Sdump(x))
@@ -20086,7 +18990,7 @@ func (h *Azurerm_routeHandler) Read(externalID string) (*Azurerm_route, error) {
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_route{ Azurerm_route_id: &id }
+	x := &Azurerm_route{Azurerm_route_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_route", "actual", spew.Sdump(x))
@@ -20105,36 +19009,31 @@ func (h *Azurerm_routeHandler) Delete(externalID string) error {
 }
 
 type Azurerm_route_table_route_182 struct {
+	Address_prefix string
 
+	Name string
 
-    Address_prefix string
+	Next_hop_in_ip_address *string
 
-    Name string
-
-    Next_hop_in_ip_address *string
-
-    Next_hop_type string
-
+	Next_hop_type string
 }
 
 type Azurerm_route_table struct {
-
 	Azurerm_route_table_id *string `lyra:"ignore"`
 
-    Disable_bgp_route_propagation *bool
+	Disable_bgp_route_propagation *bool
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Route *[]Azurerm_route_table_route_182
+	Route *[]Azurerm_route_table_route_182
 
-    Subnets *[]string
+	Subnets *[]string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_route_table_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20148,7 +19047,6 @@ var Azurerm_route_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnets",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20157,7 +19055,6 @@ var Azurerm_route_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -20197,11 +19094,11 @@ func (h *Azurerm_route_tableHandler) Update(externalID string, desired *Azurerm_
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_route_table", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_route_table", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_route_table{ Azurerm_route_table_id: &externalID }
+	x := &Azurerm_route_table{Azurerm_route_table_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_route_table", "actual", spew.Sdump(x))
@@ -20220,7 +19117,7 @@ func (h *Azurerm_route_tableHandler) Read(externalID string) (*Azurerm_route_tab
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_route_table{ Azurerm_route_table_id: &id }
+	x := &Azurerm_route_table{Azurerm_route_table_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_route_table", "actual", spew.Sdump(x))
@@ -20239,210 +19136,169 @@ func (h *Azurerm_route_tableHandler) Delete(externalID string) error {
 }
 
 type Azurerm_scheduler_job_action_storage_queue_183 struct {
+	Message string
 
+	Sas_token string
 
-    Message string
+	Storage_account_name string
 
-    Sas_token string
-
-    Storage_account_name string
-
-    Storage_queue_name string
-
+	Storage_queue_name string
 }
 
 type Azurerm_scheduler_job_action_web_184_authentication_active_directory_185 struct {
+	Audience *string
 
+	Client_id string
 
-    Audience *string
+	Secret string
 
-    Client_id string
-
-    Secret string
-
-    Tenant_id string
-
+	Tenant_id string
 }
 
 type Azurerm_scheduler_job_action_web_184_authentication_basic_186 struct {
+	Password string
 
-
-    Password string
-
-    Username string
-
+	Username string
 }
 
 type Azurerm_scheduler_job_action_web_184_authentication_certificate_187 struct {
+	Expiration *string
 
+	Password string
 
-    Expiration *string
+	Pfx string
 
-    Password string
+	Subject_name *string
 
-    Pfx string
-
-    Subject_name *string
-
-    Thumbprint *string
-
+	Thumbprint *string
 }
 
 type Azurerm_scheduler_job_action_web_184 struct {
+	Authentication_active_directory *[]Azurerm_scheduler_job_action_web_184_authentication_active_directory_185
 
+	Authentication_basic *[]Azurerm_scheduler_job_action_web_184_authentication_basic_186
 
-    Authentication_active_directory *[]Azurerm_scheduler_job_action_web_184_authentication_active_directory_185
+	Authentication_certificate *[]Azurerm_scheduler_job_action_web_184_authentication_certificate_187
 
-    Authentication_basic *[]Azurerm_scheduler_job_action_web_184_authentication_basic_186
+	Body *string
 
-    Authentication_certificate *[]Azurerm_scheduler_job_action_web_184_authentication_certificate_187
+	Headers *map[string]string
 
-    Body *string
+	Method string
 
-    Headers *map[string]string
-
-    Method string
-
-    Url string
-
+	Url string
 }
 
 type Azurerm_scheduler_job_error_action_storage_queue_188 struct {
+	Message string
 
+	Sas_token string
 
-    Message string
+	Storage_account_name string
 
-    Sas_token string
-
-    Storage_account_name string
-
-    Storage_queue_name string
-
+	Storage_queue_name string
 }
 
 type Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190 struct {
+	Audience *string
 
+	Client_id string
 
-    Audience *string
+	Secret string
 
-    Client_id string
-
-    Secret string
-
-    Tenant_id string
-
+	Tenant_id string
 }
 
 type Azurerm_scheduler_job_error_action_web_189_authentication_basic_191 struct {
+	Password string
 
-
-    Password string
-
-    Username string
-
+	Username string
 }
 
 type Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192 struct {
+	Expiration *string
 
+	Password string
 
-    Expiration *string
+	Pfx string
 
-    Password string
+	Subject_name *string
 
-    Pfx string
-
-    Subject_name *string
-
-    Thumbprint *string
-
+	Thumbprint *string
 }
 
 type Azurerm_scheduler_job_error_action_web_189 struct {
+	Authentication_active_directory *[]Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190
 
+	Authentication_basic *[]Azurerm_scheduler_job_error_action_web_189_authentication_basic_191
 
-    Authentication_active_directory *[]Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190
+	Authentication_certificate *[]Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192
 
-    Authentication_basic *[]Azurerm_scheduler_job_error_action_web_189_authentication_basic_191
+	Body *string
 
-    Authentication_certificate *[]Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192
+	Headers *map[string]string
 
-    Body *string
+	Method string
 
-    Headers *map[string]string
-
-    Method string
-
-    Url string
-
+	Url string
 }
 
 type Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194 struct {
+	Day string
 
-
-    Day string
-
-    Occurrence int
-
+	Occurrence int
 }
 
 type Azurerm_scheduler_job_recurrence_193 struct {
+	Count *int
 
+	End_time *string
 
-    Count *int
+	Frequency string
 
-    End_time *string
+	Hours *[]int
 
-    Frequency string
+	Interval *int
 
-    Hours *[]int
+	Minutes *[]int
 
-    Interval *int
+	Month_days *[]int
 
-    Minutes *[]int
+	Monthly_occurrences *[]Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194
 
-    Month_days *[]int
-
-    Monthly_occurrences *[]Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194
-
-    Week_days *[]string
-
+	Week_days *[]string
 }
 
 type Azurerm_scheduler_job_retry_195 struct {
+	Count *int
 
-
-    Count *int
-
-    Interval *string
-
+	Interval *string
 }
 
 type Azurerm_scheduler_job struct {
-
 	Azurerm_scheduler_job_id *string `lyra:"ignore"`
 
-    Action_storage_queue *[]Azurerm_scheduler_job_action_storage_queue_183
+	Action_storage_queue *[]Azurerm_scheduler_job_action_storage_queue_183
 
-    Action_web *[]Azurerm_scheduler_job_action_web_184
+	Action_web *[]Azurerm_scheduler_job_action_web_184
 
-    Error_action_storage_queue *[]Azurerm_scheduler_job_error_action_storage_queue_188
+	Error_action_storage_queue *[]Azurerm_scheduler_job_error_action_storage_queue_188
 
-    Error_action_web *[]Azurerm_scheduler_job_error_action_web_189
+	Error_action_web *[]Azurerm_scheduler_job_error_action_web_189
 
-    Job_collection_name string
+	Job_collection_name string
 
-    Name string
+	Name string
 
-    Recurrence *[]Azurerm_scheduler_job_recurrence_193
+	Recurrence *[]Azurerm_scheduler_job_recurrence_193
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Retry *[]Azurerm_scheduler_job_retry_195
+	Retry *[]Azurerm_scheduler_job_retry_195
 
-    Start_time *string
+	Start_time *string
 
-    State *string
-
+	State *string
 }
 
 var Azurerm_scheduler_job_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20464,7 +19320,6 @@ var Azurerm_scheduler_job_rtb = func(rtb service.ResourceTypeBuilder) {
 		"start_time",
 
 		"state",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20473,7 +19328,6 @@ var Azurerm_scheduler_job_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -20513,11 +19367,11 @@ func (h *Azurerm_scheduler_jobHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_scheduler_job", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_scheduler_job", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_scheduler_job{ Azurerm_scheduler_job_id: &externalID }
+	x := &Azurerm_scheduler_job{Azurerm_scheduler_job_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_scheduler_job", "actual", spew.Sdump(x))
@@ -20536,7 +19390,7 @@ func (h *Azurerm_scheduler_jobHandler) Read(externalID string) (*Azurerm_schedul
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_scheduler_job{ Azurerm_scheduler_job_id: &id }
+	x := &Azurerm_scheduler_job{Azurerm_scheduler_job_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_scheduler_job", "actual", spew.Sdump(x))
@@ -20555,36 +19409,31 @@ func (h *Azurerm_scheduler_jobHandler) Delete(externalID string) error {
 }
 
 type Azurerm_scheduler_job_collection_quota_196 struct {
+	Max_job_count *int
 
+	Max_recurrence_frequency string
 
-    Max_job_count *int
+	Max_recurrence_interval *int
 
-    Max_recurrence_frequency string
-
-    Max_recurrence_interval *int
-
-    Max_retry_interval *int
-
+	Max_retry_interval *int
 }
 
 type Azurerm_scheduler_job_collection struct {
-
 	Azurerm_scheduler_job_collection_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Quota *[]Azurerm_scheduler_job_collection_quota_196
+	Quota *[]Azurerm_scheduler_job_collection_quota_196
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    State *string
+	State *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_scheduler_job_collection_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20596,7 +19445,6 @@ var Azurerm_scheduler_job_collection_rtb = func(rtb service.ResourceTypeBuilder)
 		"state",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20605,7 +19453,6 @@ var Azurerm_scheduler_job_collection_rtb = func(rtb service.ResourceTypeBuilder)
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -20645,11 +19492,11 @@ func (h *Azurerm_scheduler_job_collectionHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_scheduler_job_collection", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_scheduler_job_collection", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_scheduler_job_collection{ Azurerm_scheduler_job_collection_id: &externalID }
+	x := &Azurerm_scheduler_job_collection{Azurerm_scheduler_job_collection_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_scheduler_job_collection", "actual", spew.Sdump(x))
@@ -20668,7 +19515,7 @@ func (h *Azurerm_scheduler_job_collectionHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_scheduler_job_collection{ Azurerm_scheduler_job_collection_id: &id }
+	x := &Azurerm_scheduler_job_collection{Azurerm_scheduler_job_collection_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_scheduler_job_collection", "actual", spew.Sdump(x))
@@ -20687,27 +19534,25 @@ func (h *Azurerm_scheduler_job_collectionHandler) Delete(externalID string) erro
 }
 
 type Azurerm_search_service struct {
-
 	Azurerm_search_service_id *string `lyra:"ignore"`
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Partition_count *int
+	Partition_count *int
 
-    Primary_key *string
+	Primary_key *string
 
-    Replica_count *int
+	Replica_count *int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_search_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -20723,7 +19568,6 @@ var Azurerm_search_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"secondary_key",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -20740,7 +19584,6 @@ var Azurerm_search_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"sku",
 
 		"tags",
-
 	)
 }
 
@@ -20780,11 +19623,11 @@ func (h *Azurerm_search_serviceHandler) Update(externalID string, desired *Azure
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_search_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_search_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_search_service{ Azurerm_search_service_id: &externalID }
+	x := &Azurerm_search_service{Azurerm_search_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_search_service", "actual", spew.Sdump(x))
@@ -20803,7 +19646,7 @@ func (h *Azurerm_search_serviceHandler) Read(externalID string) (*Azurerm_search
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_search_service{ Azurerm_search_service_id: &id }
+	x := &Azurerm_search_service{Azurerm_search_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_search_service", "actual", spew.Sdump(x))
@@ -20822,27 +19665,22 @@ func (h *Azurerm_search_serviceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_security_center_contact struct {
-
 	Azurerm_security_center_contact_id *string `lyra:"ignore"`
 
-    Alert_notifications bool
+	Alert_notifications bool
 
-    Alerts_to_admins bool
+	Alerts_to_admins bool
 
-    Email string
+	Email string
 
-    Phone string
-
+	Phone string
 }
 
 var Azurerm_security_center_contact_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_security_center_contact_id",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Azurerm_security_center_contactHandler ...
@@ -20881,11 +19719,11 @@ func (h *Azurerm_security_center_contactHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_security_center_contact", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_security_center_contact", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_security_center_contact{ Azurerm_security_center_contact_id: &externalID }
+	x := &Azurerm_security_center_contact{Azurerm_security_center_contact_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_security_center_contact", "actual", spew.Sdump(x))
@@ -20904,7 +19742,7 @@ func (h *Azurerm_security_center_contactHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_security_center_contact{ Azurerm_security_center_contact_id: &id }
+	x := &Azurerm_security_center_contact{Azurerm_security_center_contact_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_security_center_contact", "actual", spew.Sdump(x))
@@ -20923,21 +19761,16 @@ func (h *Azurerm_security_center_contactHandler) Delete(externalID string) error
 }
 
 type Azurerm_security_center_subscription_pricing struct {
-
 	Azurerm_security_center_subscription_pricing_id *string `lyra:"ignore"`
 
-    Tier string
-
+	Tier string
 }
 
 var Azurerm_security_center_subscription_pricing_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_security_center_subscription_pricing_id",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Azurerm_security_center_subscription_pricingHandler ...
@@ -20976,11 +19809,11 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Update(externalID 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_security_center_subscription_pricing", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_security_center_subscription_pricing", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_security_center_subscription_pricing{ Azurerm_security_center_subscription_pricing_id: &externalID }
+	x := &Azurerm_security_center_subscription_pricing{Azurerm_security_center_subscription_pricing_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_security_center_subscription_pricing", "actual", spew.Sdump(x))
@@ -20999,7 +19832,7 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Read(externalID st
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_security_center_subscription_pricing{ Azurerm_security_center_subscription_pricing_id: &id }
+	x := &Azurerm_security_center_subscription_pricing{Azurerm_security_center_subscription_pricing_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_security_center_subscription_pricing", "actual", spew.Sdump(x))
@@ -21018,23 +19851,18 @@ func (h *Azurerm_security_center_subscription_pricingHandler) Delete(externalID 
 }
 
 type Azurerm_security_center_workspace struct {
-
 	Azurerm_security_center_workspace_id *string `lyra:"ignore"`
 
-    Scope string
+	Scope string
 
-    Workspace_id string
-
+	Workspace_id string
 }
 
 var Azurerm_security_center_workspace_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_security_center_workspace_id",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Azurerm_security_center_workspaceHandler ...
@@ -21073,11 +19901,11 @@ func (h *Azurerm_security_center_workspaceHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_security_center_workspace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_security_center_workspace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_security_center_workspace{ Azurerm_security_center_workspace_id: &externalID }
+	x := &Azurerm_security_center_workspace{Azurerm_security_center_workspace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_security_center_workspace", "actual", spew.Sdump(x))
@@ -21096,7 +19924,7 @@ func (h *Azurerm_security_center_workspaceHandler) Read(externalID string) (*Azu
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_security_center_workspace{ Azurerm_security_center_workspace_id: &id }
+	x := &Azurerm_security_center_workspace{Azurerm_security_center_workspace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_security_center_workspace", "actual", spew.Sdump(x))
@@ -21115,152 +19943,123 @@ func (h *Azurerm_security_center_workspaceHandler) Delete(externalID string) err
 }
 
 type Azurerm_service_fabric_cluster_azure_active_directory_197 struct {
+	Client_application_id string
 
+	Cluster_application_id string
 
-    Client_application_id string
-
-    Cluster_application_id string
-
-    Tenant_id string
-
+	Tenant_id string
 }
 
 type Azurerm_service_fabric_cluster_certificate_198 struct {
+	Thumbprint string
 
+	Thumbprint_secondary *string
 
-    Thumbprint string
-
-    Thumbprint_secondary *string
-
-    X509_store_name string
-
+	X509_store_name string
 }
 
 type Azurerm_service_fabric_cluster_client_certificate_thumbprint_199 struct {
+	Is_admin bool
 
-
-    Is_admin bool
-
-    Thumbprint string
-
+	Thumbprint string
 }
 
 type Azurerm_service_fabric_cluster_diagnostics_config_200 struct {
+	Blob_endpoint string
 
+	Protected_account_key_name string
 
-    Blob_endpoint string
+	Queue_endpoint string
 
-    Protected_account_key_name string
+	Storage_account_name string
 
-    Queue_endpoint string
-
-    Storage_account_name string
-
-    Table_endpoint string
-
+	Table_endpoint string
 }
 
 type Azurerm_service_fabric_cluster_fabric_settings_201 struct {
+	Name string
 
-
-    Name string
-
-    Parameters *map[string]string
-
+	Parameters *map[string]string
 }
 
 type Azurerm_service_fabric_cluster_node_type_202_application_ports_203 struct {
+	End_port int
 
-
-    End_port int
-
-    Start_port int
-
+	Start_port int
 }
 
 type Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204 struct {
+	End_port int
 
-
-    End_port int
-
-    Start_port int
-
+	Start_port int
 }
 
 type Azurerm_service_fabric_cluster_node_type_202 struct {
+	Application_ports *[]Azurerm_service_fabric_cluster_node_type_202_application_ports_203
 
+	Client_endpoint_port int
 
-    Application_ports *[]Azurerm_service_fabric_cluster_node_type_202_application_ports_203
+	Durability_level *string
 
-    Client_endpoint_port int
+	Ephemeral_ports *[]Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204
 
-    Durability_level *string
+	Http_endpoint_port int
 
-    Ephemeral_ports *[]Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204
+	Instance_count int
 
-    Http_endpoint_port int
+	Is_primary bool
 
-    Instance_count int
+	Name string
 
-    Is_primary bool
-
-    Name string
-
-    Reverse_proxy_endpoint_port *int
-
+	Reverse_proxy_endpoint_port *int
 }
 
 type Azurerm_service_fabric_cluster_reverse_proxy_certificate_205 struct {
+	Thumbprint string
 
+	Thumbprint_secondary *string
 
-    Thumbprint string
-
-    Thumbprint_secondary *string
-
-    X509_store_name string
-
+	X509_store_name string
 }
 
 type Azurerm_service_fabric_cluster struct {
-
 	Azurerm_service_fabric_cluster_id *string `lyra:"ignore"`
 
-    Add_on_features *[]string
+	Add_on_features *[]string
 
-    Azure_active_directory *[]Azurerm_service_fabric_cluster_azure_active_directory_197
+	Azure_active_directory *[]Azurerm_service_fabric_cluster_azure_active_directory_197
 
-    Certificate *[]Azurerm_service_fabric_cluster_certificate_198
+	Certificate *[]Azurerm_service_fabric_cluster_certificate_198
 
-    Client_certificate_thumbprint *[]Azurerm_service_fabric_cluster_client_certificate_thumbprint_199
+	Client_certificate_thumbprint *[]Azurerm_service_fabric_cluster_client_certificate_thumbprint_199
 
-    Cluster_code_version *string
+	Cluster_code_version *string
 
-    Cluster_endpoint *string
+	Cluster_endpoint *string
 
-    Diagnostics_config *[]Azurerm_service_fabric_cluster_diagnostics_config_200
+	Diagnostics_config *[]Azurerm_service_fabric_cluster_diagnostics_config_200
 
-    Fabric_settings *[]Azurerm_service_fabric_cluster_fabric_settings_201
+	Fabric_settings *[]Azurerm_service_fabric_cluster_fabric_settings_201
 
-    Location string
+	Location string
 
-    Management_endpoint string
+	Management_endpoint string
 
-    Name string
+	Name string
 
-    Node_type []Azurerm_service_fabric_cluster_node_type_202
+	Node_type []Azurerm_service_fabric_cluster_node_type_202
 
-    Reliability_level string
+	Reliability_level string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Reverse_proxy_certificate *[]Azurerm_service_fabric_cluster_reverse_proxy_certificate_205
+	Reverse_proxy_certificate *[]Azurerm_service_fabric_cluster_reverse_proxy_certificate_205
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Upgrade_mode string
+	Upgrade_mode string
 
-    Vm_image string
-
+	Vm_image string
 }
 
 var Azurerm_service_fabric_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21286,7 +20085,6 @@ var Azurerm_service_fabric_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"reverse_proxy_certificate",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21303,7 +20101,6 @@ var Azurerm_service_fabric_cluster_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"vm_image",
-
 	)
 }
 
@@ -21343,11 +20140,11 @@ func (h *Azurerm_service_fabric_clusterHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_service_fabric_cluster", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_service_fabric_cluster", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_service_fabric_cluster{ Azurerm_service_fabric_cluster_id: &externalID }
+	x := &Azurerm_service_fabric_cluster{Azurerm_service_fabric_cluster_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_service_fabric_cluster", "actual", spew.Sdump(x))
@@ -21366,7 +20163,7 @@ func (h *Azurerm_service_fabric_clusterHandler) Read(externalID string) (*Azurer
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_service_fabric_cluster{ Azurerm_service_fabric_cluster_id: &id }
+	x := &Azurerm_service_fabric_cluster{Azurerm_service_fabric_cluster_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_service_fabric_cluster", "actual", spew.Sdump(x))
@@ -21385,29 +20182,27 @@ func (h *Azurerm_service_fabric_clusterHandler) Delete(externalID string) error 
 }
 
 type Azurerm_servicebus_namespace struct {
-
 	Azurerm_servicebus_namespace_id *string `lyra:"ignore"`
 
-    Capacity *int
+	Capacity *int
 
-    Default_primary_connection_string *string
+	Default_primary_connection_string *string
 
-    Default_primary_key *string
+	Default_primary_key *string
 
-    Default_secondary_connection_string *string
+	Default_secondary_connection_string *string
 
-    Default_secondary_key *string
+	Default_secondary_key *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_servicebus_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21425,7 +20220,6 @@ var Azurerm_servicebus_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"default_secondary_key",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21436,7 +20230,6 @@ var Azurerm_servicebus_namespace_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"sku",
-
 	)
 }
 
@@ -21476,11 +20269,11 @@ func (h *Azurerm_servicebus_namespaceHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_namespace", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_namespace", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_namespace{ Azurerm_servicebus_namespace_id: &externalID }
+	x := &Azurerm_servicebus_namespace{Azurerm_servicebus_namespace_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_namespace", "actual", spew.Sdump(x))
@@ -21499,7 +20292,7 @@ func (h *Azurerm_servicebus_namespaceHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_namespace{ Azurerm_servicebus_namespace_id: &id }
+	x := &Azurerm_servicebus_namespace{Azurerm_servicebus_namespace_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_namespace", "actual", spew.Sdump(x))
@@ -21518,29 +20311,27 @@ func (h *Azurerm_servicebus_namespaceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_servicebus_namespace_authorization_rule struct {
-
 	Azurerm_servicebus_namespace_authorization_rule_id *string `lyra:"ignore"`
 
-    Listen *bool
+	Listen *bool
 
-    Manage *bool
+	Manage *bool
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_key *string
+	Primary_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Send *bool
-
+	Send *bool
 }
 
 var Azurerm_servicebus_namespace_authorization_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21560,7 +20351,6 @@ var Azurerm_servicebus_namespace_authorization_rule_rtb = func(rtb service.Resou
 		"secondary_key",
 
 		"send",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21569,7 +20359,6 @@ var Azurerm_servicebus_namespace_authorization_rule_rtb = func(rtb service.Resou
 		"namespace_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -21609,11 +20398,11 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Update(external
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_namespace_authorization_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_namespace_authorization_rule{ Azurerm_servicebus_namespace_authorization_rule_id: &externalID }
+	x := &Azurerm_servicebus_namespace_authorization_rule{Azurerm_servicebus_namespace_authorization_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_namespace_authorization_rule", "actual", spew.Sdump(x))
@@ -21632,7 +20421,7 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Read(externalID
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_namespace_authorization_rule{ Azurerm_servicebus_namespace_authorization_rule_id: &id }
+	x := &Azurerm_servicebus_namespace_authorization_rule{Azurerm_servicebus_namespace_authorization_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_namespace_authorization_rule", "actual", spew.Sdump(x))
@@ -21651,43 +20440,41 @@ func (h *Azurerm_servicebus_namespace_authorization_ruleHandler) Delete(external
 }
 
 type Azurerm_servicebus_queue struct {
-
 	Azurerm_servicebus_queue_id *string `lyra:"ignore"`
 
-    Auto_delete_on_idle *string
+	Auto_delete_on_idle *string
 
-    Dead_lettering_on_message_expiration *bool
+	Dead_lettering_on_message_expiration *bool
 
-    Default_message_ttl *string
+	Default_message_ttl *string
 
-    Duplicate_detection_history_time_window *string
+	Duplicate_detection_history_time_window *string
 
-    Enable_batched_operations *bool
+	Enable_batched_operations *bool
 
-    Enable_express *bool
+	Enable_express *bool
 
-    Enable_partitioning *bool
+	Enable_partitioning *bool
 
-    Location *string
+	Location *string
 
-    Lock_duration *string
+	Lock_duration *string
 
-    Max_delivery_count *int
+	Max_delivery_count *int
 
-    Max_size_in_megabytes *int
+	Max_size_in_megabytes *int
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Requires_duplicate_detection *bool
+	Requires_duplicate_detection *bool
 
-    Requires_session *bool
+	Requires_session *bool
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Support_ordering *bool
-
+	Support_ordering *bool
 }
 
 var Azurerm_servicebus_queue_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21721,7 +20508,6 @@ var Azurerm_servicebus_queue_rtb = func(rtb service.ResourceTypeBuilder) {
 		"requires_session",
 
 		"support_ordering",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21738,7 +20524,6 @@ var Azurerm_servicebus_queue_rtb = func(rtb service.ResourceTypeBuilder) {
 		"requires_session",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -21778,11 +20563,11 @@ func (h *Azurerm_servicebus_queueHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_queue", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_queue", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_queue{ Azurerm_servicebus_queue_id: &externalID }
+	x := &Azurerm_servicebus_queue{Azurerm_servicebus_queue_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_queue", "actual", spew.Sdump(x))
@@ -21801,7 +20586,7 @@ func (h *Azurerm_servicebus_queueHandler) Read(externalID string) (*Azurerm_serv
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_queue{ Azurerm_servicebus_queue_id: &id }
+	x := &Azurerm_servicebus_queue{Azurerm_servicebus_queue_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_queue", "actual", spew.Sdump(x))
@@ -21820,31 +20605,29 @@ func (h *Azurerm_servicebus_queueHandler) Delete(externalID string) error {
 }
 
 type Azurerm_servicebus_queue_authorization_rule struct {
-
 	Azurerm_servicebus_queue_authorization_rule_id *string `lyra:"ignore"`
 
-    Listen *bool
+	Listen *bool
 
-    Manage *bool
+	Manage *bool
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_key *string
+	Primary_key *string
 
-    Queue_name string
+	Queue_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Send *bool
-
+	Send *bool
 }
 
 var Azurerm_servicebus_queue_authorization_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -21864,7 +20647,6 @@ var Azurerm_servicebus_queue_authorization_rule_rtb = func(rtb service.ResourceT
 		"secondary_key",
 
 		"send",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -21875,7 +20657,6 @@ var Azurerm_servicebus_queue_authorization_rule_rtb = func(rtb service.ResourceT
 		"queue_name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -21915,11 +20696,11 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Update(externalID s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_queue_authorization_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_queue_authorization_rule{ Azurerm_servicebus_queue_authorization_rule_id: &externalID }
+	x := &Azurerm_servicebus_queue_authorization_rule{Azurerm_servicebus_queue_authorization_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_queue_authorization_rule", "actual", spew.Sdump(x))
@@ -21938,7 +20719,7 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Read(externalID str
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_queue_authorization_rule{ Azurerm_servicebus_queue_authorization_rule_id: &id }
+	x := &Azurerm_servicebus_queue_authorization_rule{Azurerm_servicebus_queue_authorization_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_queue_authorization_rule", "actual", spew.Sdump(x))
@@ -21957,37 +20738,35 @@ func (h *Azurerm_servicebus_queue_authorization_ruleHandler) Delete(externalID s
 }
 
 type Azurerm_servicebus_subscription struct {
-
 	Azurerm_servicebus_subscription_id *string `lyra:"ignore"`
 
-    Auto_delete_on_idle *string
+	Auto_delete_on_idle *string
 
-    Dead_lettering_on_filter_evaluation_exceptions *bool
+	Dead_lettering_on_filter_evaluation_exceptions *bool
 
-    Dead_lettering_on_message_expiration *bool
+	Dead_lettering_on_message_expiration *bool
 
-    Default_message_ttl *string
+	Default_message_ttl *string
 
-    Enable_batched_operations *bool
+	Enable_batched_operations *bool
 
-    Forward_to *string
+	Forward_to *string
 
-    Location *string
+	Location *string
 
-    Lock_duration *string
+	Lock_duration *string
 
-    Max_delivery_count int
+	Max_delivery_count int
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Requires_session *bool
+	Requires_session *bool
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Topic_name string
-
+	Topic_name string
 }
 
 var Azurerm_servicebus_subscription_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22011,7 +20790,6 @@ var Azurerm_servicebus_subscription_rtb = func(rtb service.ResourceTypeBuilder) 
 		"lock_duration",
 
 		"requires_session",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22026,7 +20804,6 @@ var Azurerm_servicebus_subscription_rtb = func(rtb service.ResourceTypeBuilder) 
 		"resource_group_name",
 
 		"topic_name",
-
 	)
 }
 
@@ -22066,11 +20843,11 @@ func (h *Azurerm_servicebus_subscriptionHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_subscription", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_subscription", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_subscription{ Azurerm_servicebus_subscription_id: &externalID }
+	x := &Azurerm_servicebus_subscription{Azurerm_servicebus_subscription_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_subscription", "actual", spew.Sdump(x))
@@ -22089,7 +20866,7 @@ func (h *Azurerm_servicebus_subscriptionHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_subscription{ Azurerm_servicebus_subscription_id: &id }
+	x := &Azurerm_servicebus_subscription{Azurerm_servicebus_subscription_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_subscription", "actual", spew.Sdump(x))
@@ -22108,48 +20885,43 @@ func (h *Azurerm_servicebus_subscriptionHandler) Delete(externalID string) error
 }
 
 type Azurerm_servicebus_subscription_rule_correlation_filter_206 struct {
+	Content_type *string
 
+	Correlation_id *string
 
-    Content_type *string
+	Label *string
 
-    Correlation_id *string
+	Message_id *string
 
-    Label *string
+	Reply_to *string
 
-    Message_id *string
+	Reply_to_session_id *string
 
-    Reply_to *string
+	Session_id *string
 
-    Reply_to_session_id *string
-
-    Session_id *string
-
-    To *string
-
+	To *string
 }
 
 type Azurerm_servicebus_subscription_rule struct {
-
 	Azurerm_servicebus_subscription_rule_id *string `lyra:"ignore"`
 
-    Action *string
+	Action *string
 
-    Correlation_filter *[]Azurerm_servicebus_subscription_rule_correlation_filter_206
+	Correlation_filter *[]Azurerm_servicebus_subscription_rule_correlation_filter_206
 
-    Filter_type string
+	Filter_type string
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sql_filter *string
+	Sql_filter *string
 
-    Subscription_name string
+	Subscription_name string
 
-    Topic_name string
-
+	Topic_name string
 }
 
 var Azurerm_servicebus_subscription_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22161,7 +20933,6 @@ var Azurerm_servicebus_subscription_rule_rtb = func(rtb service.ResourceTypeBuil
 		"correlation_filter",
 
 		"sql_filter",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22174,7 +20945,6 @@ var Azurerm_servicebus_subscription_rule_rtb = func(rtb service.ResourceTypeBuil
 		"subscription_name",
 
 		"topic_name",
-
 	)
 }
 
@@ -22214,11 +20984,11 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Update(externalID string, 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_subscription_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_subscription_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_subscription_rule{ Azurerm_servicebus_subscription_rule_id: &externalID }
+	x := &Azurerm_servicebus_subscription_rule{Azurerm_servicebus_subscription_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_subscription_rule", "actual", spew.Sdump(x))
@@ -22237,7 +21007,7 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Read(externalID string) (*
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_subscription_rule{ Azurerm_servicebus_subscription_rule_id: &id }
+	x := &Azurerm_servicebus_subscription_rule{Azurerm_servicebus_subscription_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_subscription_rule", "actual", spew.Sdump(x))
@@ -22256,39 +21026,37 @@ func (h *Azurerm_servicebus_subscription_ruleHandler) Delete(externalID string) 
 }
 
 type Azurerm_servicebus_topic struct {
-
 	Azurerm_servicebus_topic_id *string `lyra:"ignore"`
 
-    Auto_delete_on_idle *string
+	Auto_delete_on_idle *string
 
-    Default_message_ttl *string
+	Default_message_ttl *string
 
-    Duplicate_detection_history_time_window *string
+	Duplicate_detection_history_time_window *string
 
-    Enable_batched_operations *bool
+	Enable_batched_operations *bool
 
-    Enable_express *bool
+	Enable_express *bool
 
-    Enable_filtering_messages_before_publishing *bool
+	Enable_filtering_messages_before_publishing *bool
 
-    Enable_partitioning *bool
+	Enable_partitioning *bool
 
-    Location *string
+	Location *string
 
-    Max_size_in_megabytes *int
+	Max_size_in_megabytes *int
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Requires_duplicate_detection *bool
+	Requires_duplicate_detection *bool
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Status *string
+	Status *string
 
-    Support_ordering *bool
-
+	Support_ordering *bool
 }
 
 var Azurerm_servicebus_topic_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22318,7 +21086,6 @@ var Azurerm_servicebus_topic_rtb = func(rtb service.ResourceTypeBuilder) {
 		"status",
 
 		"support_ordering",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22333,7 +21100,6 @@ var Azurerm_servicebus_topic_rtb = func(rtb service.ResourceTypeBuilder) {
 		"requires_duplicate_detection",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -22373,11 +21139,11 @@ func (h *Azurerm_servicebus_topicHandler) Update(externalID string, desired *Azu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_topic", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_topic", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_topic{ Azurerm_servicebus_topic_id: &externalID }
+	x := &Azurerm_servicebus_topic{Azurerm_servicebus_topic_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_topic", "actual", spew.Sdump(x))
@@ -22396,7 +21162,7 @@ func (h *Azurerm_servicebus_topicHandler) Read(externalID string) (*Azurerm_serv
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_topic{ Azurerm_servicebus_topic_id: &id }
+	x := &Azurerm_servicebus_topic{Azurerm_servicebus_topic_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_topic", "actual", spew.Sdump(x))
@@ -22415,31 +21181,29 @@ func (h *Azurerm_servicebus_topicHandler) Delete(externalID string) error {
 }
 
 type Azurerm_servicebus_topic_authorization_rule struct {
-
 	Azurerm_servicebus_topic_authorization_rule_id *string `lyra:"ignore"`
 
-    Listen *bool
+	Listen *bool
 
-    Manage *bool
+	Manage *bool
 
-    Name string
+	Name string
 
-    Namespace_name string
+	Namespace_name string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_key *string
+	Primary_key *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_key *string
+	Secondary_key *string
 
-    Send *bool
+	Send *bool
 
-    Topic_name string
-
+	Topic_name string
 }
 
 var Azurerm_servicebus_topic_authorization_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22459,7 +21223,6 @@ var Azurerm_servicebus_topic_authorization_rule_rtb = func(rtb service.ResourceT
 		"secondary_key",
 
 		"send",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22470,7 +21233,6 @@ var Azurerm_servicebus_topic_authorization_rule_rtb = func(rtb service.ResourceT
 		"resource_group_name",
 
 		"topic_name",
-
 	)
 }
 
@@ -22510,11 +21272,11 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Update(externalID s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_servicebus_topic_authorization_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_topic_authorization_rule{ Azurerm_servicebus_topic_authorization_rule_id: &externalID }
+	x := &Azurerm_servicebus_topic_authorization_rule{Azurerm_servicebus_topic_authorization_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_servicebus_topic_authorization_rule", "actual", spew.Sdump(x))
@@ -22533,7 +21295,7 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Read(externalID str
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_servicebus_topic_authorization_rule{ Azurerm_servicebus_topic_authorization_rule_id: &id }
+	x := &Azurerm_servicebus_topic_authorization_rule{Azurerm_servicebus_topic_authorization_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_servicebus_topic_authorization_rule", "actual", spew.Sdump(x))
@@ -22552,42 +21314,37 @@ func (h *Azurerm_servicebus_topic_authorization_ruleHandler) Delete(externalID s
 }
 
 type Azurerm_shared_image_identifier_207 struct {
+	Offer string
 
+	Publisher string
 
-    Offer string
-
-    Publisher string
-
-    Sku string
-
+	Sku string
 }
 
 type Azurerm_shared_image struct {
-
 	Azurerm_shared_image_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Eula *string
+	Eula *string
 
-    Gallery_name string
+	Gallery_name string
 
-    Identifier []Azurerm_shared_image_identifier_207
+	Identifier []Azurerm_shared_image_identifier_207
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Os_type string
+	Os_type string
 
-    Privacy_statement_uri *string
+	Privacy_statement_uri *string
 
-    Release_note_uri *string
+	Release_note_uri *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_shared_image_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22603,7 +21360,6 @@ var Azurerm_shared_image_rtb = func(rtb service.ResourceTypeBuilder) {
 		"release_note_uri",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22614,7 +21370,6 @@ var Azurerm_shared_image_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -22654,11 +21409,11 @@ func (h *Azurerm_shared_imageHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_shared_image", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_shared_image", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_shared_image{ Azurerm_shared_image_id: &externalID }
+	x := &Azurerm_shared_image{Azurerm_shared_image_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_shared_image", "actual", spew.Sdump(x))
@@ -22677,7 +21432,7 @@ func (h *Azurerm_shared_imageHandler) Read(externalID string) (*Azurerm_shared_i
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_shared_image{ Azurerm_shared_image_id: &id }
+	x := &Azurerm_shared_image{Azurerm_shared_image_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_shared_image", "actual", spew.Sdump(x))
@@ -22696,21 +21451,19 @@ func (h *Azurerm_shared_imageHandler) Delete(externalID string) error {
 }
 
 type Azurerm_shared_image_gallery struct {
-
 	Azurerm_shared_image_gallery_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Unique_name *string
-
+	Unique_name *string
 }
 
 var Azurerm_shared_image_gallery_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22722,7 +21475,6 @@ var Azurerm_shared_image_gallery_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"unique_name",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22731,7 +21483,6 @@ var Azurerm_shared_image_gallery_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -22771,11 +21522,11 @@ func (h *Azurerm_shared_image_galleryHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_shared_image_gallery", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_shared_image_gallery", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_shared_image_gallery{ Azurerm_shared_image_gallery_id: &externalID }
+	x := &Azurerm_shared_image_gallery{Azurerm_shared_image_gallery_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_shared_image_gallery", "actual", spew.Sdump(x))
@@ -22794,7 +21545,7 @@ func (h *Azurerm_shared_image_galleryHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_shared_image_gallery{ Azurerm_shared_image_gallery_id: &id }
+	x := &Azurerm_shared_image_gallery{Azurerm_shared_image_gallery_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_shared_image_gallery", "actual", spew.Sdump(x))
@@ -22813,36 +21564,31 @@ func (h *Azurerm_shared_image_galleryHandler) Delete(externalID string) error {
 }
 
 type Azurerm_shared_image_version_target_region_208 struct {
+	Name string
 
-
-    Name string
-
-    Regional_replica_count int
-
+	Regional_replica_count int
 }
 
 type Azurerm_shared_image_version struct {
-
 	Azurerm_shared_image_version_id *string `lyra:"ignore"`
 
-    Exclude_from_latest *bool
+	Exclude_from_latest *bool
 
-    Gallery_name string
+	Gallery_name string
 
-    Image_name string
+	Image_name string
 
-    Location string
+	Location string
 
-    Managed_image_id string
+	Managed_image_id string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Target_region []Azurerm_shared_image_version_target_region_208
-
+	Target_region []Azurerm_shared_image_version_target_region_208
 }
 
 var Azurerm_shared_image_version_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22852,7 +21598,6 @@ var Azurerm_shared_image_version_rtb = func(rtb service.ResourceTypeBuilder) {
 		"exclude_from_latest",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -22867,7 +21612,6 @@ var Azurerm_shared_image_version_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -22907,11 +21651,11 @@ func (h *Azurerm_shared_image_versionHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_shared_image_version", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_shared_image_version", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_shared_image_version{ Azurerm_shared_image_version_id: &externalID }
+	x := &Azurerm_shared_image_version{Azurerm_shared_image_version_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_shared_image_version", "actual", spew.Sdump(x))
@@ -22930,7 +21674,7 @@ func (h *Azurerm_shared_image_versionHandler) Read(externalID string) (*Azurerm_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_shared_image_version{ Azurerm_shared_image_version_id: &id }
+	x := &Azurerm_shared_image_version{Azurerm_shared_image_version_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_shared_image_version", "actual", spew.Sdump(x))
@@ -22949,36 +21693,31 @@ func (h *Azurerm_shared_image_versionHandler) Delete(externalID string) error {
 }
 
 type Azurerm_signalr_service_sku_209 struct {
+	Capacity int
 
-
-    Capacity int
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_signalr_service struct {
-
 	Azurerm_signalr_service_id *string `lyra:"ignore"`
 
-    Hostname *string
+	Hostname *string
 
-    Ip_address *string
+	Ip_address *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Public_port *int
+	Public_port *int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_port *int
+	Server_port *int
 
-    Sku []Azurerm_signalr_service_sku_209
+	Sku []Azurerm_signalr_service_sku_209
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_signalr_service_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -22994,7 +21733,6 @@ var Azurerm_signalr_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"server_port",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23003,7 +21741,6 @@ var Azurerm_signalr_service_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -23043,11 +21780,11 @@ func (h *Azurerm_signalr_serviceHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_signalr_service", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_signalr_service", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_signalr_service{ Azurerm_signalr_service_id: &externalID }
+	x := &Azurerm_signalr_service{Azurerm_signalr_service_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_signalr_service", "actual", spew.Sdump(x))
@@ -23066,7 +21803,7 @@ func (h *Azurerm_signalr_serviceHandler) Read(externalID string) (*Azurerm_signa
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_signalr_service{ Azurerm_signalr_service_id: &id }
+	x := &Azurerm_signalr_service{Azurerm_signalr_service_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_signalr_service", "actual", spew.Sdump(x))
@@ -23085,58 +21822,47 @@ func (h *Azurerm_signalr_serviceHandler) Delete(externalID string) error {
 }
 
 type Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211 struct {
+	Secret_url string
 
-
-    Secret_url string
-
-    Source_vault_id string
-
+	Source_vault_id string
 }
 
 type Azurerm_snapshot_encryption_settings_210_key_encryption_key_212 struct {
+	Key_url string
 
-
-    Key_url string
-
-    Source_vault_id string
-
+	Source_vault_id string
 }
 
 type Azurerm_snapshot_encryption_settings_210 struct {
+	Disk_encryption_key *[]Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211
 
+	Enabled bool
 
-    Disk_encryption_key *[]Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211
-
-    Enabled bool
-
-    Key_encryption_key *[]Azurerm_snapshot_encryption_settings_210_key_encryption_key_212
-
+	Key_encryption_key *[]Azurerm_snapshot_encryption_settings_210_key_encryption_key_212
 }
 
 type Azurerm_snapshot struct {
-
 	Azurerm_snapshot_id *string `lyra:"ignore"`
 
-    Create_option string
+	Create_option string
 
-    Disk_size_gb *int
+	Disk_size_gb *int
 
-    Encryption_settings *[]Azurerm_snapshot_encryption_settings_210
+	Encryption_settings *[]Azurerm_snapshot_encryption_settings_210
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Source_resource_id *string
+	Source_resource_id *string
 
-    Source_uri *string
+	Source_uri *string
 
-    Storage_account_id *string
+	Storage_account_id *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_snapshot_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -23154,7 +21880,6 @@ var Azurerm_snapshot_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_account_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23169,7 +21894,6 @@ var Azurerm_snapshot_rtb = func(rtb service.ResourceTypeBuilder) {
 		"source_uri",
 
 		"storage_account_id",
-
 	)
 }
 
@@ -23209,11 +21933,11 @@ func (h *Azurerm_snapshotHandler) Update(externalID string, desired *Azurerm_sna
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_snapshot", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_snapshot", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_snapshot{ Azurerm_snapshot_id: &externalID }
+	x := &Azurerm_snapshot{Azurerm_snapshot_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_snapshot", "actual", spew.Sdump(x))
@@ -23232,7 +21956,7 @@ func (h *Azurerm_snapshotHandler) Read(externalID string) (*Azurerm_snapshot, er
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_snapshot{ Azurerm_snapshot_id: &id }
+	x := &Azurerm_snapshot{Azurerm_snapshot_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_snapshot", "actual", spew.Sdump(x))
@@ -23251,32 +21975,28 @@ func (h *Azurerm_snapshotHandler) Delete(externalID string) error {
 }
 
 type Azurerm_sql_active_directory_administrator struct {
-
 	Azurerm_sql_active_directory_administrator_id *string `lyra:"ignore"`
 
-    Login string
+	Login string
 
-    Object_id string
+	Object_id string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Tenant_id string
-
+	Tenant_id string
 }
 
 var Azurerm_sql_active_directory_administrator_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_sql_active_directory_administrator_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -23316,11 +22036,11 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Update(externalID st
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_sql_active_directory_administrator", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_sql_active_directory_administrator", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_active_directory_administrator{ Azurerm_sql_active_directory_administrator_id: &externalID }
+	x := &Azurerm_sql_active_directory_administrator{Azurerm_sql_active_directory_administrator_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_sql_active_directory_administrator", "actual", spew.Sdump(x))
@@ -23339,7 +22059,7 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Read(externalID stri
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_active_directory_administrator{ Azurerm_sql_active_directory_administrator_id: &id }
+	x := &Azurerm_sql_active_directory_administrator{Azurerm_sql_active_directory_administrator_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_sql_active_directory_administrator", "actual", spew.Sdump(x))
@@ -23358,89 +22078,81 @@ func (h *Azurerm_sql_active_directory_administratorHandler) Delete(externalID st
 }
 
 type Azurerm_sql_database_import_213 struct {
+	Administrator_login string
 
+	Administrator_login_password string
 
-    Administrator_login string
+	Authentication_type string
 
-    Administrator_login_password string
+	Operation_mode *string
 
-    Authentication_type string
+	Storage_key string
 
-    Operation_mode *string
+	Storage_key_type string
 
-    Storage_key string
-
-    Storage_key_type string
-
-    Storage_uri string
-
+	Storage_uri string
 }
 
 type Azurerm_sql_database_threat_detection_policy_214 struct {
+	Disabled_alerts *[]string
 
+	Email_account_admins *string
 
-    Disabled_alerts *[]string
+	Email_addresses *[]string
 
-    Email_account_admins *string
+	Retention_days *int
 
-    Email_addresses *[]string
+	State *string
 
-    Retention_days *int
+	Storage_account_access_key *string
 
-    State *string
+	Storage_endpoint *string
 
-    Storage_account_access_key *string
-
-    Storage_endpoint *string
-
-    Use_server_default *string
-
+	Use_server_default *string
 }
 
 type Azurerm_sql_database struct {
-
 	Azurerm_sql_database_id *string `lyra:"ignore"`
 
-    Collation *string
+	Collation *string
 
-    Create_mode *string
+	Create_mode *string
 
-    Creation_date *string
+	Creation_date *string
 
-    Default_secondary_location *string
+	Default_secondary_location *string
 
-    Edition *string
+	Edition *string
 
-    Elastic_pool_name *string
+	Elastic_pool_name *string
 
-    Encryption *string
+	Encryption *string
 
-    Import *[]Azurerm_sql_database_import_213
+	Import *[]Azurerm_sql_database_import_213
 
-    Location string
+	Location string
 
-    Max_size_bytes *string
+	Max_size_bytes *string
 
-    Name string
+	Name string
 
-    Requested_service_objective_id *string
+	Requested_service_objective_id *string
 
-    Requested_service_objective_name *string
+	Requested_service_objective_name *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Restore_point_in_time *string
+	Restore_point_in_time *string
 
-    Server_name string
+	Server_name string
 
-    Source_database_deletion_date *string
+	Source_database_deletion_date *string
 
-    Source_database_id *string
+	Source_database_id *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Threat_detection_policy *[]Azurerm_sql_database_threat_detection_policy_214
-
+	Threat_detection_policy *[]Azurerm_sql_database_threat_detection_policy_214
 }
 
 var Azurerm_sql_database_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -23478,7 +22190,6 @@ var Azurerm_sql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"threat_detection_policy",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23491,7 +22202,6 @@ var Azurerm_sql_database_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -23531,11 +22241,11 @@ func (h *Azurerm_sql_databaseHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_sql_database", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_sql_database", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_database{ Azurerm_sql_database_id: &externalID }
+	x := &Azurerm_sql_database{Azurerm_sql_database_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_sql_database", "actual", spew.Sdump(x))
@@ -23554,7 +22264,7 @@ func (h *Azurerm_sql_databaseHandler) Read(externalID string) (*Azurerm_sql_data
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_database{ Azurerm_sql_database_id: &id }
+	x := &Azurerm_sql_database{Azurerm_sql_database_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_sql_database", "actual", spew.Sdump(x))
@@ -23573,31 +22283,29 @@ func (h *Azurerm_sql_databaseHandler) Delete(externalID string) error {
 }
 
 type Azurerm_sql_elasticpool struct {
-
 	Azurerm_sql_elasticpool_id *string `lyra:"ignore"`
 
-    Creation_date *string
+	Creation_date *string
 
-    Db_dtu_max *int
+	Db_dtu_max *int
 
-    Db_dtu_min *int
+	Db_dtu_min *int
 
-    Dtu int
+	Dtu int
 
-    Edition string
+	Edition string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Pool_size *int
+	Pool_size *int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_sql_elasticpool_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -23613,7 +22321,6 @@ var Azurerm_sql_elasticpool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"pool_size",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23626,7 +22333,6 @@ var Azurerm_sql_elasticpool_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -23666,11 +22372,11 @@ func (h *Azurerm_sql_elasticpoolHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_sql_elasticpool", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_sql_elasticpool", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_elasticpool{ Azurerm_sql_elasticpool_id: &externalID }
+	x := &Azurerm_sql_elasticpool{Azurerm_sql_elasticpool_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_sql_elasticpool", "actual", spew.Sdump(x))
@@ -23689,7 +22395,7 @@ func (h *Azurerm_sql_elasticpoolHandler) Read(externalID string) (*Azurerm_sql_e
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_elasticpool{ Azurerm_sql_elasticpool_id: &id }
+	x := &Azurerm_sql_elasticpool{Azurerm_sql_elasticpool_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_sql_elasticpool", "actual", spew.Sdump(x))
@@ -23708,25 +22414,22 @@ func (h *Azurerm_sql_elasticpoolHandler) Delete(externalID string) error {
 }
 
 type Azurerm_sql_firewall_rule struct {
-
 	Azurerm_sql_firewall_rule_id *string `lyra:"ignore"`
 
-    End_ip_address string
+	End_ip_address string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Start_ip_address string
-
+	Start_ip_address string
 }
 
 var Azurerm_sql_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_sql_firewall_rule_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23735,7 +22438,6 @@ var Azurerm_sql_firewall_rule_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -23775,11 +22477,11 @@ func (h *Azurerm_sql_firewall_ruleHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_sql_firewall_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_sql_firewall_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_firewall_rule{ Azurerm_sql_firewall_rule_id: &externalID }
+	x := &Azurerm_sql_firewall_rule{Azurerm_sql_firewall_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_sql_firewall_rule", "actual", spew.Sdump(x))
@@ -23798,7 +22500,7 @@ func (h *Azurerm_sql_firewall_ruleHandler) Read(externalID string) (*Azurerm_sql
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_firewall_rule{ Azurerm_sql_firewall_rule_id: &id }
+	x := &Azurerm_sql_firewall_rule{Azurerm_sql_firewall_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_sql_firewall_rule", "actual", spew.Sdump(x))
@@ -23817,25 +22519,23 @@ func (h *Azurerm_sql_firewall_ruleHandler) Delete(externalID string) error {
 }
 
 type Azurerm_sql_server struct {
-
 	Azurerm_sql_server_id *string `lyra:"ignore"`
 
-    Administrator_login string
+	Administrator_login string
 
-    Administrator_login_password string
+	Administrator_login_password string
 
-    Fully_qualified_domain_name *string
+	Fully_qualified_domain_name *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Version string
-
+	Version string
 }
 
 var Azurerm_sql_server_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -23845,7 +22545,6 @@ var Azurerm_sql_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"fully_qualified_domain_name",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23858,7 +22557,6 @@ var Azurerm_sql_server_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"version",
-
 	)
 }
 
@@ -23898,11 +22596,11 @@ func (h *Azurerm_sql_serverHandler) Update(externalID string, desired *Azurerm_s
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_sql_server", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_sql_server", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_server{ Azurerm_sql_server_id: &externalID }
+	x := &Azurerm_sql_server{Azurerm_sql_server_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_sql_server", "actual", spew.Sdump(x))
@@ -23921,7 +22619,7 @@ func (h *Azurerm_sql_serverHandler) Read(externalID string) (*Azurerm_sql_server
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_server{ Azurerm_sql_server_id: &id }
+	x := &Azurerm_sql_server{Azurerm_sql_server_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_sql_server", "actual", spew.Sdump(x))
@@ -23940,19 +22638,17 @@ func (h *Azurerm_sql_serverHandler) Delete(externalID string) error {
 }
 
 type Azurerm_sql_virtual_network_rule struct {
-
 	Azurerm_sql_virtual_network_rule_id *string `lyra:"ignore"`
 
-    Ignore_missing_vnet_service_endpoint *bool
+	Ignore_missing_vnet_service_endpoint *bool
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Server_name string
+	Server_name string
 
-    Subnet_id string
-
+	Subnet_id string
 }
 
 var Azurerm_sql_virtual_network_rule_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -23960,7 +22656,6 @@ var Azurerm_sql_virtual_network_rule_rtb = func(rtb service.ResourceTypeBuilder)
 		"azurerm_sql_virtual_network_rule_id",
 
 		"ignore_missing_vnet_service_endpoint",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -23969,7 +22664,6 @@ var Azurerm_sql_virtual_network_rule_rtb = func(rtb service.ResourceTypeBuilder)
 		"resource_group_name",
 
 		"server_name",
-
 	)
 }
 
@@ -24009,11 +22703,11 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_sql_virtual_network_rule", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_sql_virtual_network_rule", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_virtual_network_rule{ Azurerm_sql_virtual_network_rule_id: &externalID }
+	x := &Azurerm_sql_virtual_network_rule{Azurerm_sql_virtual_network_rule_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_sql_virtual_network_rule", "actual", spew.Sdump(x))
@@ -24032,7 +22726,7 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_sql_virtual_network_rule{ Azurerm_sql_virtual_network_rule_id: &id }
+	x := &Azurerm_sql_virtual_network_rule{Azurerm_sql_virtual_network_rule_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_sql_virtual_network_rule", "actual", spew.Sdump(x))
@@ -24051,102 +22745,91 @@ func (h *Azurerm_sql_virtual_network_ruleHandler) Delete(externalID string) erro
 }
 
 type Azurerm_storage_account_custom_domain_215 struct {
+	Name string
 
-
-    Name string
-
-    Use_subdomain *bool
-
+	Use_subdomain *bool
 }
 
 type Azurerm_storage_account_identity_216 struct {
+	Principal_id *string
 
+	Tenant_id *string
 
-    Principal_id *string
-
-    Tenant_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_storage_account_network_rules_217 struct {
+	Bypass *[]string
 
+	Ip_rules *[]string
 
-    Bypass *[]string
-
-    Ip_rules *[]string
-
-    Virtual_network_subnet_ids *[]string
-
+	Virtual_network_subnet_ids *[]string
 }
 
 type Azurerm_storage_account struct {
-
 	Azurerm_storage_account_id *string `lyra:"ignore"`
 
-    Access_tier *string
+	Access_tier *string
 
-    Account_encryption_source *string
+	Account_encryption_source *string
 
-    Account_kind *string
+	Account_kind *string
 
-    Account_replication_type string
+	Account_replication_type string
 
-    Account_tier string
+	Account_tier string
 
-    Account_type *string
+	Account_type *string
 
-    Custom_domain *[]Azurerm_storage_account_custom_domain_215
+	Custom_domain *[]Azurerm_storage_account_custom_domain_215
 
-    Enable_blob_encryption *bool
+	Enable_blob_encryption *bool
 
-    Enable_file_encryption *bool
+	Enable_file_encryption *bool
 
-    Enable_https_traffic_only *bool
+	Enable_https_traffic_only *bool
 
-    Identity *[]Azurerm_storage_account_identity_216
+	Identity *[]Azurerm_storage_account_identity_216
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Network_rules *[]Azurerm_storage_account_network_rules_217
+	Network_rules *[]Azurerm_storage_account_network_rules_217
 
-    Primary_access_key *string
+	Primary_access_key *string
 
-    Primary_blob_connection_string *string
+	Primary_blob_connection_string *string
 
-    Primary_blob_endpoint *string
+	Primary_blob_endpoint *string
 
-    Primary_connection_string *string
+	Primary_connection_string *string
 
-    Primary_file_endpoint *string
+	Primary_file_endpoint *string
 
-    Primary_location *string
+	Primary_location *string
 
-    Primary_queue_endpoint *string
+	Primary_queue_endpoint *string
 
-    Primary_table_endpoint *string
+	Primary_table_endpoint *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Secondary_access_key *string
+	Secondary_access_key *string
 
-    Secondary_blob_connection_string *string
+	Secondary_blob_connection_string *string
 
-    Secondary_blob_endpoint *string
+	Secondary_blob_endpoint *string
 
-    Secondary_connection_string *string
+	Secondary_connection_string *string
 
-    Secondary_location *string
+	Secondary_location *string
 
-    Secondary_queue_endpoint *string
+	Secondary_queue_endpoint *string
 
-    Secondary_table_endpoint *string
+	Secondary_table_endpoint *string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_storage_account_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -24204,7 +22887,6 @@ var Azurerm_storage_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"secondary_table_endpoint",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24217,7 +22899,6 @@ var Azurerm_storage_account_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -24257,11 +22938,11 @@ func (h *Azurerm_storage_accountHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_storage_account", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_storage_account", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_account{ Azurerm_storage_account_id: &externalID }
+	x := &Azurerm_storage_account{Azurerm_storage_account_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_storage_account", "actual", spew.Sdump(x))
@@ -24280,7 +22961,7 @@ func (h *Azurerm_storage_accountHandler) Read(externalID string) (*Azurerm_stora
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_account{ Azurerm_storage_account_id: &id }
+	x := &Azurerm_storage_account{Azurerm_storage_account_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_storage_account", "actual", spew.Sdump(x))
@@ -24299,33 +22980,31 @@ func (h *Azurerm_storage_accountHandler) Delete(externalID string) error {
 }
 
 type Azurerm_storage_blob struct {
-
 	Azurerm_storage_blob_id *string `lyra:"ignore"`
 
-    Attempts *int
+	Attempts *int
 
-    Content_type *string
+	Content_type *string
 
-    Name string
+	Name string
 
-    Parallelism *int
+	Parallelism *int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Size *int
+	Size *int
 
-    Source *string
+	Source *string
 
-    Source_uri *string
+	Source_uri *string
 
-    Storage_account_name string
+	Storage_account_name string
 
-    Storage_container_name string
+	Storage_container_name string
 
-    Type *string
+	Type *string
 
-    Url *string
-
+	Url *string
 }
 
 var Azurerm_storage_blob_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -24347,7 +23026,6 @@ var Azurerm_storage_blob_rtb = func(rtb service.ResourceTypeBuilder) {
 		"type",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24370,7 +23048,6 @@ var Azurerm_storage_blob_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_container_name",
 
 		"type",
-
 	)
 }
 
@@ -24410,11 +23087,11 @@ func (h *Azurerm_storage_blobHandler) Update(externalID string, desired *Azurerm
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_storage_blob", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_storage_blob", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_blob{ Azurerm_storage_blob_id: &externalID }
+	x := &Azurerm_storage_blob{Azurerm_storage_blob_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_storage_blob", "actual", spew.Sdump(x))
@@ -24433,7 +23110,7 @@ func (h *Azurerm_storage_blobHandler) Read(externalID string) (*Azurerm_storage_
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_blob{ Azurerm_storage_blob_id: &id }
+	x := &Azurerm_storage_blob{Azurerm_storage_blob_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_storage_blob", "actual", spew.Sdump(x))
@@ -24452,19 +23129,17 @@ func (h *Azurerm_storage_blobHandler) Delete(externalID string) error {
 }
 
 type Azurerm_storage_container struct {
-
 	Azurerm_storage_container_id *string `lyra:"ignore"`
 
-    Container_access_type *string
+	Container_access_type *string
 
-    Name string
+	Name string
 
-    Properties *map[string]string
+	Properties *map[string]string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_account_name string
-
+	Storage_account_name string
 }
 
 var Azurerm_storage_container_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -24474,7 +23149,6 @@ var Azurerm_storage_container_rtb = func(rtb service.ResourceTypeBuilder) {
 		"container_access_type",
 
 		"properties",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24483,7 +23157,6 @@ var Azurerm_storage_container_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"storage_account_name",
-
 	)
 }
 
@@ -24523,11 +23196,11 @@ func (h *Azurerm_storage_containerHandler) Update(externalID string, desired *Az
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_storage_container", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_storage_container", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_container{ Azurerm_storage_container_id: &externalID }
+	x := &Azurerm_storage_container{Azurerm_storage_container_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_storage_container", "actual", spew.Sdump(x))
@@ -24546,7 +23219,7 @@ func (h *Azurerm_storage_containerHandler) Read(externalID string) (*Azurerm_sto
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_container{ Azurerm_storage_container_id: &id }
+	x := &Azurerm_storage_container{Azurerm_storage_container_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_storage_container", "actual", spew.Sdump(x))
@@ -24565,21 +23238,18 @@ func (h *Azurerm_storage_containerHandler) Delete(externalID string) error {
 }
 
 type Azurerm_storage_queue struct {
-
 	Azurerm_storage_queue_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_account_name string
-
+	Storage_account_name string
 }
 
 var Azurerm_storage_queue_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_storage_queue_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24588,7 +23258,6 @@ var Azurerm_storage_queue_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"storage_account_name",
-
 	)
 }
 
@@ -24628,11 +23297,11 @@ func (h *Azurerm_storage_queueHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_storage_queue", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_storage_queue", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_queue{ Azurerm_storage_queue_id: &externalID }
+	x := &Azurerm_storage_queue{Azurerm_storage_queue_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_storage_queue", "actual", spew.Sdump(x))
@@ -24651,7 +23320,7 @@ func (h *Azurerm_storage_queueHandler) Read(externalID string) (*Azurerm_storage
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_queue{ Azurerm_storage_queue_id: &id }
+	x := &Azurerm_storage_queue{Azurerm_storage_queue_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_storage_queue", "actual", spew.Sdump(x))
@@ -24670,19 +23339,17 @@ func (h *Azurerm_storage_queueHandler) Delete(externalID string) error {
 }
 
 type Azurerm_storage_share struct {
-
 	Azurerm_storage_share_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Quota *int
+	Quota *int
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_account_name string
+	Storage_account_name string
 
-    Url *string
-
+	Url *string
 }
 
 var Azurerm_storage_share_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -24692,7 +23359,6 @@ var Azurerm_storage_share_rtb = func(rtb service.ResourceTypeBuilder) {
 		"quota",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24701,7 +23367,6 @@ var Azurerm_storage_share_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"storage_account_name",
-
 	)
 }
 
@@ -24741,11 +23406,11 @@ func (h *Azurerm_storage_shareHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_storage_share", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_storage_share", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_share{ Azurerm_storage_share_id: &externalID }
+	x := &Azurerm_storage_share{Azurerm_storage_share_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_storage_share", "actual", spew.Sdump(x))
@@ -24764,7 +23429,7 @@ func (h *Azurerm_storage_shareHandler) Read(externalID string) (*Azurerm_storage
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_share{ Azurerm_storage_share_id: &id }
+	x := &Azurerm_storage_share{Azurerm_storage_share_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_storage_share", "actual", spew.Sdump(x))
@@ -24783,21 +23448,18 @@ func (h *Azurerm_storage_shareHandler) Delete(externalID string) error {
 }
 
 type Azurerm_storage_table struct {
-
 	Azurerm_storage_table_id *string `lyra:"ignore"`
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_account_name string
-
+	Storage_account_name string
 }
 
 var Azurerm_storage_table_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_storage_table_id",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24806,7 +23468,6 @@ var Azurerm_storage_table_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"storage_account_name",
-
 	)
 }
 
@@ -24846,11 +23507,11 @@ func (h *Azurerm_storage_tableHandler) Update(externalID string, desired *Azurer
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_storage_table", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_storage_table", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_table{ Azurerm_storage_table_id: &externalID }
+	x := &Azurerm_storage_table{Azurerm_storage_table_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_storage_table", "actual", spew.Sdump(x))
@@ -24869,7 +23530,7 @@ func (h *Azurerm_storage_tableHandler) Read(externalID string) (*Azurerm_storage
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_storage_table{ Azurerm_storage_table_id: &id }
+	x := &Azurerm_storage_table{Azurerm_storage_table_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_storage_table", "actual", spew.Sdump(x))
@@ -24888,45 +23549,37 @@ func (h *Azurerm_storage_tableHandler) Delete(externalID string) error {
 }
 
 type Azurerm_subnet_delegation_218_service_delegation_219 struct {
+	Actions *[]string
 
-
-    Actions *[]string
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_subnet_delegation_218 struct {
+	Name string
 
-
-    Name string
-
-    Service_delegation []Azurerm_subnet_delegation_218_service_delegation_219
-
+	Service_delegation []Azurerm_subnet_delegation_218_service_delegation_219
 }
 
 type Azurerm_subnet struct {
-
 	Azurerm_subnet_id *string `lyra:"ignore"`
 
-    Address_prefix string
+	Address_prefix string
 
-    Delegation *[]Azurerm_subnet_delegation_218
+	Delegation *[]Azurerm_subnet_delegation_218
 
-    Ip_configurations *[]string
+	Ip_configurations *[]string
 
-    Name string
+	Name string
 
-    Network_security_group_id *string
+	Network_security_group_id *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Route_table_id *string
+	Route_table_id *string
 
-    Service_endpoints *[]string
+	Service_endpoints *[]string
 
-    Virtual_network_name string
-
+	Virtual_network_name string
 }
 
 var Azurerm_subnet_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -24942,7 +23595,6 @@ var Azurerm_subnet_rtb = func(rtb service.ResourceTypeBuilder) {
 		"route_table_id",
 
 		"service_endpoints",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -24951,7 +23603,6 @@ var Azurerm_subnet_rtb = func(rtb service.ResourceTypeBuilder) {
 		"resource_group_name",
 
 		"virtual_network_name",
-
 	)
 }
 
@@ -24991,11 +23642,11 @@ func (h *Azurerm_subnetHandler) Update(externalID string, desired *Azurerm_subne
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_subnet", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_subnet", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_subnet{ Azurerm_subnet_id: &externalID }
+	x := &Azurerm_subnet{Azurerm_subnet_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_subnet", "actual", spew.Sdump(x))
@@ -25014,7 +23665,7 @@ func (h *Azurerm_subnetHandler) Read(externalID string) (*Azurerm_subnet, error)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_subnet{ Azurerm_subnet_id: &id }
+	x := &Azurerm_subnet{Azurerm_subnet_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_subnet", "actual", spew.Sdump(x))
@@ -25033,26 +23684,22 @@ func (h *Azurerm_subnetHandler) Delete(externalID string) error {
 }
 
 type Azurerm_subnet_network_security_group_association struct {
-
 	Azurerm_subnet_network_security_group_association_id *string `lyra:"ignore"`
 
-    Network_security_group_id string
+	Network_security_group_id string
 
-    Subnet_id string
-
+	Subnet_id string
 }
 
 var Azurerm_subnet_network_security_group_association_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_subnet_network_security_group_association_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"network_security_group_id",
 
 		"subnet_id",
-
 	)
 }
 
@@ -25092,11 +23739,11 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Update(extern
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_subnet_network_security_group_association", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_subnet_network_security_group_association", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_subnet_network_security_group_association{ Azurerm_subnet_network_security_group_association_id: &externalID }
+	x := &Azurerm_subnet_network_security_group_association{Azurerm_subnet_network_security_group_association_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_subnet_network_security_group_association", "actual", spew.Sdump(x))
@@ -25115,7 +23762,7 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Read(external
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_subnet_network_security_group_association{ Azurerm_subnet_network_security_group_association_id: &id }
+	x := &Azurerm_subnet_network_security_group_association{Azurerm_subnet_network_security_group_association_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_subnet_network_security_group_association", "actual", spew.Sdump(x))
@@ -25134,26 +23781,22 @@ func (h *Azurerm_subnet_network_security_group_associationHandler) Delete(extern
 }
 
 type Azurerm_subnet_route_table_association struct {
-
 	Azurerm_subnet_route_table_association_id *string `lyra:"ignore"`
 
-    Route_table_id string
+	Route_table_id string
 
-    Subnet_id string
-
+	Subnet_id string
 }
 
 var Azurerm_subnet_route_table_association_rtb = func(rtb service.ResourceTypeBuilder) {
 	rtb.ProvidedAttributes(
 		"azurerm_subnet_route_table_association_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"route_table_id",
 
 		"subnet_id",
-
 	)
 }
 
@@ -25193,11 +23836,11 @@ func (h *Azurerm_subnet_route_table_associationHandler) Update(externalID string
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_subnet_route_table_association", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_subnet_route_table_association", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_subnet_route_table_association{ Azurerm_subnet_route_table_association_id: &externalID }
+	x := &Azurerm_subnet_route_table_association{Azurerm_subnet_route_table_association_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_subnet_route_table_association", "actual", spew.Sdump(x))
@@ -25216,7 +23859,7 @@ func (h *Azurerm_subnet_route_table_associationHandler) Read(externalID string) 
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_subnet_route_table_association{ Azurerm_subnet_route_table_association_id: &id }
+	x := &Azurerm_subnet_route_table_association{Azurerm_subnet_route_table_association_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_subnet_route_table_association", "actual", spew.Sdump(x))
@@ -25235,23 +23878,21 @@ func (h *Azurerm_subnet_route_table_associationHandler) Delete(externalID string
 }
 
 type Azurerm_template_deployment struct {
-
 	Azurerm_template_deployment_id *string `lyra:"ignore"`
 
-    Deployment_mode string
+	Deployment_mode string
 
-    Name string
+	Name string
 
-    Outputs *map[string]string
+	Outputs *map[string]string
 
-    Parameters *map[string]string
+	Parameters *map[string]string
 
-    Parameters_body *string
+	Parameters_body *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Template_body *string
-
+	Template_body *string
 }
 
 var Azurerm_template_deployment_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -25265,14 +23906,12 @@ var Azurerm_template_deployment_rtb = func(rtb service.ResourceTypeBuilder) {
 		"parameters_body",
 
 		"template_body",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -25312,11 +23951,11 @@ func (h *Azurerm_template_deploymentHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_template_deployment", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_template_deployment", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_template_deployment{ Azurerm_template_deployment_id: &externalID }
+	x := &Azurerm_template_deployment{Azurerm_template_deployment_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_template_deployment", "actual", spew.Sdump(x))
@@ -25335,7 +23974,7 @@ func (h *Azurerm_template_deploymentHandler) Read(externalID string) (*Azurerm_t
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_template_deployment{ Azurerm_template_deployment_id: &id }
+	x := &Azurerm_template_deployment{Azurerm_template_deployment_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_template_deployment", "actual", spew.Sdump(x))
@@ -25354,35 +23993,33 @@ func (h *Azurerm_template_deploymentHandler) Delete(externalID string) error {
 }
 
 type Azurerm_traffic_manager_endpoint struct {
-
 	Azurerm_traffic_manager_endpoint_id *string `lyra:"ignore"`
 
-    Endpoint_location *string
+	Endpoint_location *string
 
-    Endpoint_monitor_status *string
+	Endpoint_monitor_status *string
 
-    Endpoint_status *string
+	Endpoint_status *string
 
-    Geo_mappings *[]string
+	Geo_mappings *[]string
 
-    Min_child_endpoints *int
+	Min_child_endpoints *int
 
-    Name string
+	Name string
 
-    Priority *int
+	Priority *int
 
-    Profile_name string
+	Profile_name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Target *string
+	Target *string
 
-    Target_resource_id *string
+	Target_resource_id *string
 
-    Type string
+	Type string
 
-    Weight *int
-
+	Weight *int
 }
 
 var Azurerm_traffic_manager_endpoint_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -25406,7 +24043,6 @@ var Azurerm_traffic_manager_endpoint_rtb = func(rtb service.ResourceTypeBuilder)
 		"target_resource_id",
 
 		"weight",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -25417,7 +24053,6 @@ var Azurerm_traffic_manager_endpoint_rtb = func(rtb service.ResourceTypeBuilder)
 		"resource_group_name",
 
 		"type",
-
 	)
 }
 
@@ -25457,11 +24092,11 @@ func (h *Azurerm_traffic_manager_endpointHandler) Update(externalID string, desi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_traffic_manager_endpoint", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_traffic_manager_endpoint", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_traffic_manager_endpoint{ Azurerm_traffic_manager_endpoint_id: &externalID }
+	x := &Azurerm_traffic_manager_endpoint{Azurerm_traffic_manager_endpoint_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_traffic_manager_endpoint", "actual", spew.Sdump(x))
@@ -25480,7 +24115,7 @@ func (h *Azurerm_traffic_manager_endpointHandler) Read(externalID string) (*Azur
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_traffic_manager_endpoint{ Azurerm_traffic_manager_endpoint_id: &id }
+	x := &Azurerm_traffic_manager_endpoint{Azurerm_traffic_manager_endpoint_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_traffic_manager_endpoint", "actual", spew.Sdump(x))
@@ -25499,45 +24134,37 @@ func (h *Azurerm_traffic_manager_endpointHandler) Delete(externalID string) erro
 }
 
 type Azurerm_traffic_manager_profile_dns_config_220 struct {
+	Relative_name string
 
-
-    Relative_name string
-
-    Ttl int
-
+	Ttl int
 }
 
 type Azurerm_traffic_manager_profile_monitor_config_221 struct {
+	Path *string
 
+	Port int
 
-    Path *string
-
-    Port int
-
-    Protocol string
-
+	Protocol string
 }
 
 type Azurerm_traffic_manager_profile struct {
-
 	Azurerm_traffic_manager_profile_id *string `lyra:"ignore"`
 
-    Dns_config []Azurerm_traffic_manager_profile_dns_config_220
+	Dns_config []Azurerm_traffic_manager_profile_dns_config_220
 
-    Fqdn *string
+	Fqdn *string
 
-    Monitor_config []Azurerm_traffic_manager_profile_monitor_config_221
+	Monitor_config []Azurerm_traffic_manager_profile_monitor_config_221
 
-    Name string
+	Name string
 
-    Profile_status *string
+	Profile_status *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Traffic_routing_method string
-
+	Traffic_routing_method string
 }
 
 var Azurerm_traffic_manager_profile_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -25549,14 +24176,12 @@ var Azurerm_traffic_manager_profile_rtb = func(rtb service.ResourceTypeBuilder) 
 		"profile_status",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -25596,11 +24221,11 @@ func (h *Azurerm_traffic_manager_profileHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_traffic_manager_profile", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_traffic_manager_profile", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_traffic_manager_profile{ Azurerm_traffic_manager_profile_id: &externalID }
+	x := &Azurerm_traffic_manager_profile{Azurerm_traffic_manager_profile_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_traffic_manager_profile", "actual", spew.Sdump(x))
@@ -25619,7 +24244,7 @@ func (h *Azurerm_traffic_manager_profileHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_traffic_manager_profile{ Azurerm_traffic_manager_profile_id: &id }
+	x := &Azurerm_traffic_manager_profile{Azurerm_traffic_manager_profile_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_traffic_manager_profile", "actual", spew.Sdump(x))
@@ -25638,21 +24263,19 @@ func (h *Azurerm_traffic_manager_profileHandler) Delete(externalID string) error
 }
 
 type Azurerm_user_assigned_identity struct {
-
 	Azurerm_user_assigned_identity_id *string `lyra:"ignore"`
 
-    Client_id *string
+	Client_id *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Principal_id *string
+	Principal_id *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_user_assigned_identity_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -25664,7 +24287,6 @@ var Azurerm_user_assigned_identity_rtb = func(rtb service.ResourceTypeBuilder) {
 		"principal_id",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -25673,7 +24295,6 @@ var Azurerm_user_assigned_identity_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -25713,11 +24334,11 @@ func (h *Azurerm_user_assigned_identityHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_user_assigned_identity", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_user_assigned_identity", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_user_assigned_identity{ Azurerm_user_assigned_identity_id: &externalID }
+	x := &Azurerm_user_assigned_identity{Azurerm_user_assigned_identity_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_user_assigned_identity", "actual", spew.Sdump(x))
@@ -25736,7 +24357,7 @@ func (h *Azurerm_user_assigned_identityHandler) Read(externalID string) (*Azurer
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_user_assigned_identity{ Azurerm_user_assigned_identity_id: &id }
+	x := &Azurerm_user_assigned_identity{Azurerm_user_assigned_identity_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_user_assigned_identity", "actual", spew.Sdump(x))
@@ -25755,233 +24376,189 @@ func (h *Azurerm_user_assigned_identityHandler) Delete(externalID string) error 
 }
 
 type Azurerm_virtual_machine_boot_diagnostics_222 struct {
+	Enabled bool
 
-
-    Enabled bool
-
-    Storage_uri string
-
+	Storage_uri string
 }
 
 type Azurerm_virtual_machine_identity_223 struct {
+	Identity_ids *[]string
 
+	Principal_id *string
 
-    Identity_ids *[]string
-
-    Principal_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_virtual_machine_os_profile_224 struct {
+	Admin_password *string
 
+	Admin_username string
 
-    Admin_password *string
+	Computer_name string
 
-    Admin_username string
-
-    Computer_name string
-
-    Custom_data *string
-
+	Custom_data *string
 }
 
 type Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226 struct {
+	Key_data string
 
-
-    Key_data string
-
-    Path string
-
+	Path string
 }
 
 type Azurerm_virtual_machine_os_profile_linux_config_225 struct {
+	Disable_password_authentication bool
 
-
-    Disable_password_authentication bool
-
-    Ssh_keys *[]Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226
-
+	Ssh_keys *[]Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226
 }
 
 type Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228 struct {
+	Certificate_store *string
 
-
-    Certificate_store *string
-
-    Certificate_url string
-
+	Certificate_url string
 }
 
 type Azurerm_virtual_machine_os_profile_secrets_227 struct {
+	Source_vault_id string
 
-
-    Source_vault_id string
-
-    Vault_certificates *[]Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228
-
+	Vault_certificates *[]Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228
 }
 
 type Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230 struct {
+	Component string
 
+	Content string
 
-    Component string
+	Pass string
 
-    Content string
-
-    Pass string
-
-    Setting_name string
-
+	Setting_name string
 }
 
 type Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231 struct {
+	Certificate_url *string
 
-
-    Certificate_url *string
-
-    Protocol string
-
+	Protocol string
 }
 
 type Azurerm_virtual_machine_os_profile_windows_config_229 struct {
+	Additional_unattend_config *[]Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230
 
+	Enable_automatic_upgrades *bool
 
-    Additional_unattend_config *[]Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230
+	Provision_vm_agent *bool
 
-    Enable_automatic_upgrades *bool
+	Timezone *string
 
-    Provision_vm_agent *bool
-
-    Timezone *string
-
-    Winrm *[]Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231
-
+	Winrm *[]Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231
 }
 
 type Azurerm_virtual_machine_plan_232 struct {
+	Name string
 
+	Product string
 
-    Name string
-
-    Product string
-
-    Publisher string
-
+	Publisher string
 }
 
 type Azurerm_virtual_machine_storage_data_disk_233 struct {
+	Caching *string
 
+	Create_option string
 
-    Caching *string
+	Disk_size_gb *int
 
-    Create_option string
+	Lun int
 
-    Disk_size_gb *int
+	Managed_disk_id *string
 
-    Lun int
+	Managed_disk_type *string
 
-    Managed_disk_id *string
+	Name string
 
-    Managed_disk_type *string
+	Vhd_uri *string
 
-    Name string
-
-    Vhd_uri *string
-
-    Write_accelerator_enabled *bool
-
+	Write_accelerator_enabled *bool
 }
 
 type Azurerm_virtual_machine_storage_image_reference_234 struct {
+	Id *string
 
+	Offer *string
 
-    Id *string
+	Publisher *string
 
-    Offer *string
+	Sku *string
 
-    Publisher *string
-
-    Sku *string
-
-    Version *string
-
+	Version *string
 }
 
 type Azurerm_virtual_machine_storage_os_disk_235 struct {
+	Caching *string
 
+	Create_option string
 
-    Caching *string
+	Disk_size_gb *int
 
-    Create_option string
+	Image_uri *string
 
-    Disk_size_gb *int
+	Managed_disk_id *string
 
-    Image_uri *string
+	Managed_disk_type *string
 
-    Managed_disk_id *string
+	Name string
 
-    Managed_disk_type *string
+	Os_type *string
 
-    Name string
+	Vhd_uri *string
 
-    Os_type *string
-
-    Vhd_uri *string
-
-    Write_accelerator_enabled *bool
-
+	Write_accelerator_enabled *bool
 }
 
 type Azurerm_virtual_machine struct {
-
 	Azurerm_virtual_machine_id *string `lyra:"ignore"`
 
-    Availability_set_id *string
+	Availability_set_id *string
 
-    Boot_diagnostics *[]Azurerm_virtual_machine_boot_diagnostics_222
+	Boot_diagnostics *[]Azurerm_virtual_machine_boot_diagnostics_222
 
-    Delete_data_disks_on_termination *bool
+	Delete_data_disks_on_termination *bool
 
-    Delete_os_disk_on_termination *bool
+	Delete_os_disk_on_termination *bool
 
-    Identity *[]Azurerm_virtual_machine_identity_223
+	Identity *[]Azurerm_virtual_machine_identity_223
 
-    License_type *string
+	License_type *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Network_interface_ids []string
+	Network_interface_ids []string
 
-    Os_profile *[]Azurerm_virtual_machine_os_profile_224
+	Os_profile *[]Azurerm_virtual_machine_os_profile_224
 
-    Os_profile_linux_config *[]Azurerm_virtual_machine_os_profile_linux_config_225
+	Os_profile_linux_config *[]Azurerm_virtual_machine_os_profile_linux_config_225
 
-    Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_227
+	Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_227
 
-    Os_profile_windows_config *[]Azurerm_virtual_machine_os_profile_windows_config_229
+	Os_profile_windows_config *[]Azurerm_virtual_machine_os_profile_windows_config_229
 
-    Plan *[]Azurerm_virtual_machine_plan_232
+	Plan *[]Azurerm_virtual_machine_plan_232
 
-    Primary_network_interface_id *string
+	Primary_network_interface_id *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_233
+	Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_233
 
-    Storage_image_reference *[]Azurerm_virtual_machine_storage_image_reference_234
+	Storage_image_reference *[]Azurerm_virtual_machine_storage_image_reference_234
 
-    Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_235
+	Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_235
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Vm_size string
+	Vm_size string
 
-    Zones *[]string
-
+	Zones *[]string
 }
 
 var Azurerm_virtual_machine_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -26019,7 +24596,6 @@ var Azurerm_virtual_machine_rtb = func(rtb service.ResourceTypeBuilder) {
 		"tags",
 
 		"zones",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -26034,7 +24610,6 @@ var Azurerm_virtual_machine_rtb = func(rtb service.ResourceTypeBuilder) {
 		"storage_image_reference",
 
 		"zones",
-
 	)
 }
 
@@ -26074,11 +24649,11 @@ func (h *Azurerm_virtual_machineHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine{ Azurerm_virtual_machine_id: &externalID }
+	x := &Azurerm_virtual_machine{Azurerm_virtual_machine_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_machine", "actual", spew.Sdump(x))
@@ -26097,7 +24672,7 @@ func (h *Azurerm_virtual_machineHandler) Read(externalID string) (*Azurerm_virtu
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine{ Azurerm_virtual_machine_id: &id }
+	x := &Azurerm_virtual_machine{Azurerm_virtual_machine_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_machine", "actual", spew.Sdump(x))
@@ -26116,21 +24691,19 @@ func (h *Azurerm_virtual_machineHandler) Delete(externalID string) error {
 }
 
 type Azurerm_virtual_machine_data_disk_attachment struct {
-
 	Azurerm_virtual_machine_data_disk_attachment_id *string `lyra:"ignore"`
 
-    Caching string
+	Caching string
 
-    Create_option *string
+	Create_option *string
 
-    Lun int
+	Lun int
 
-    Managed_disk_id string
+	Managed_disk_id string
 
-    Virtual_machine_id string
+	Virtual_machine_id string
 
-    Write_accelerator_enabled *bool
-
+	Write_accelerator_enabled *bool
 }
 
 var Azurerm_virtual_machine_data_disk_attachment_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -26140,7 +24713,6 @@ var Azurerm_virtual_machine_data_disk_attachment_rtb = func(rtb service.Resource
 		"create_option",
 
 		"write_accelerator_enabled",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -26151,7 +24723,6 @@ var Azurerm_virtual_machine_data_disk_attachment_rtb = func(rtb service.Resource
 		"managed_disk_id",
 
 		"virtual_machine_id",
-
 	)
 }
 
@@ -26191,11 +24762,11 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Update(externalID 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine_data_disk_attachment", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine_data_disk_attachment{ Azurerm_virtual_machine_data_disk_attachment_id: &externalID }
+	x := &Azurerm_virtual_machine_data_disk_attachment{Azurerm_virtual_machine_data_disk_attachment_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_machine_data_disk_attachment", "actual", spew.Sdump(x))
@@ -26214,7 +24785,7 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Read(externalID st
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine_data_disk_attachment{ Azurerm_virtual_machine_data_disk_attachment_id: &id }
+	x := &Azurerm_virtual_machine_data_disk_attachment{Azurerm_virtual_machine_data_disk_attachment_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_machine_data_disk_attachment", "actual", spew.Sdump(x))
@@ -26233,31 +24804,29 @@ func (h *Azurerm_virtual_machine_data_disk_attachmentHandler) Delete(externalID 
 }
 
 type Azurerm_virtual_machine_extension struct {
-
 	Azurerm_virtual_machine_extension_id *string `lyra:"ignore"`
 
-    Auto_upgrade_minor_version *bool
+	Auto_upgrade_minor_version *bool
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Protected_settings *string
+	Protected_settings *string
 
-    Publisher string
+	Publisher string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Settings *string
+	Settings *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Type string
+	Type string
 
-    Type_handler_version string
+	Type_handler_version string
 
-    Virtual_machine_name string
-
+	Virtual_machine_name string
 }
 
 var Azurerm_virtual_machine_extension_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -26271,7 +24840,6 @@ var Azurerm_virtual_machine_extension_rtb = func(rtb service.ResourceTypeBuilder
 		"settings",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -26282,7 +24850,6 @@ var Azurerm_virtual_machine_extension_rtb = func(rtb service.ResourceTypeBuilder
 		"resource_group_name",
 
 		"virtual_machine_name",
-
 	)
 }
 
@@ -26322,11 +24889,11 @@ func (h *Azurerm_virtual_machine_extensionHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine_extension", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine_extension", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine_extension{ Azurerm_virtual_machine_extension_id: &externalID }
+	x := &Azurerm_virtual_machine_extension{Azurerm_virtual_machine_extension_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_machine_extension", "actual", spew.Sdump(x))
@@ -26345,7 +24912,7 @@ func (h *Azurerm_virtual_machine_extensionHandler) Read(externalID string) (*Azu
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine_extension{ Azurerm_virtual_machine_extension_id: &id }
+	x := &Azurerm_virtual_machine_extension{Azurerm_virtual_machine_extension_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_machine_extension", "actual", spew.Sdump(x))
@@ -26364,328 +24931,263 @@ func (h *Azurerm_virtual_machine_extensionHandler) Delete(externalID string) err
 }
 
 type Azurerm_virtual_machine_scale_set_boot_diagnostics_236 struct {
+	Enabled *bool
 
-
-    Enabled *bool
-
-    Storage_uri string
-
+	Storage_uri string
 }
 
 type Azurerm_virtual_machine_scale_set_extension_237 struct {
+	Auto_upgrade_minor_version *bool
 
+	Name string
 
-    Auto_upgrade_minor_version *bool
+	Protected_settings *string
 
-    Name string
+	Publisher string
 
-    Protected_settings *string
+	Settings *string
 
-    Publisher string
+	Type string
 
-    Settings *string
-
-    Type string
-
-    Type_handler_version string
-
+	Type_handler_version string
 }
 
 type Azurerm_virtual_machine_scale_set_identity_238 struct {
+	Identity_ids *[]string
 
+	Principal_id *string
 
-    Identity_ids *[]string
-
-    Principal_id *string
-
-    Type string
-
+	Type string
 }
 
 type Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240 struct {
-
-
-    Dns_servers []string
-
+	Dns_servers []string
 }
 
 type Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242 struct {
+	Domain_name_label string
 
+	Idle_timeout int
 
-    Domain_name_label string
-
-    Idle_timeout int
-
-    Name string
-
+	Name string
 }
 
 type Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241 struct {
+	Application_gateway_backend_address_pool_ids *[]string
 
+	Application_security_group_ids *[]string
 
-    Application_gateway_backend_address_pool_ids *[]string
+	Load_balancer_backend_address_pool_ids *[]string
 
-    Application_security_group_ids *[]string
+	Load_balancer_inbound_nat_rules_ids *[]string
 
-    Load_balancer_backend_address_pool_ids *[]string
+	Name string
 
-    Load_balancer_inbound_nat_rules_ids *[]string
+	Primary bool
 
-    Name string
+	Public_ip_address_configuration *[]Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242
 
-    Primary bool
-
-    Public_ip_address_configuration *[]Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242
-
-    Subnet_id string
-
+	Subnet_id string
 }
 
 type Azurerm_virtual_machine_scale_set_network_profile_239 struct {
+	Accelerated_networking *bool
 
+	Dns_settings *[]Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240
 
-    Accelerated_networking *bool
+	Ip_configuration []Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241
 
-    Dns_settings *[]Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240
+	Ip_forwarding *bool
 
-    Ip_configuration []Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241
+	Name string
 
-    Ip_forwarding *bool
+	Network_security_group_id *string
 
-    Name string
-
-    Network_security_group_id *string
-
-    Primary bool
-
+	Primary bool
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_243 struct {
+	Admin_password *string
 
+	Admin_username string
 
-    Admin_password *string
+	Computer_name_prefix string
 
-    Admin_username string
-
-    Computer_name_prefix string
-
-    Custom_data *string
-
+	Custom_data *string
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245 struct {
+	Key_data *string
 
-
-    Key_data *string
-
-    Path string
-
+	Path string
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_linux_config_244 struct {
+	Disable_password_authentication *bool
 
-
-    Disable_password_authentication *bool
-
-    Ssh_keys *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245
-
+	Ssh_keys *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247 struct {
+	Certificate_store *string
 
-
-    Certificate_store *string
-
-    Certificate_url string
-
+	Certificate_url string
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_secrets_246 struct {
+	Source_vault_id string
 
-
-    Source_vault_id string
-
-    Vault_certificates *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247
-
+	Vault_certificates *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249 struct {
+	Component string
 
+	Content string
 
-    Component string
+	Pass string
 
-    Content string
-
-    Pass string
-
-    Setting_name string
-
+	Setting_name string
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250 struct {
+	Certificate_url *string
 
-
-    Certificate_url *string
-
-    Protocol string
-
+	Protocol string
 }
 
 type Azurerm_virtual_machine_scale_set_os_profile_windows_config_248 struct {
+	Additional_unattend_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249
 
+	Enable_automatic_upgrades *bool
 
-    Additional_unattend_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249
+	Provision_vm_agent *bool
 
-    Enable_automatic_upgrades *bool
-
-    Provision_vm_agent *bool
-
-    Winrm *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250
-
+	Winrm *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250
 }
 
 type Azurerm_virtual_machine_scale_set_plan_251 struct {
+	Name string
 
+	Product string
 
-    Name string
-
-    Product string
-
-    Publisher string
-
+	Publisher string
 }
 
 type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252 struct {
+	Max_batch_instance_percent *int
 
+	Max_unhealthy_instance_percent *int
 
-    Max_batch_instance_percent *int
+	Max_unhealthy_upgraded_instance_percent *int
 
-    Max_unhealthy_instance_percent *int
-
-    Max_unhealthy_upgraded_instance_percent *int
-
-    Pause_time_between_batches *string
-
+	Pause_time_between_batches *string
 }
 
 type Azurerm_virtual_machine_scale_set_sku_253 struct {
+	Capacity int
 
+	Name string
 
-    Capacity int
-
-    Name string
-
-    Tier *string
-
+	Tier *string
 }
 
 type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254 struct {
+	Caching *string
 
+	Create_option string
 
-    Caching *string
+	Disk_size_gb *int
 
-    Create_option string
+	Lun int
 
-    Disk_size_gb *int
-
-    Lun int
-
-    Managed_disk_type *string
-
+	Managed_disk_type *string
 }
 
 type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255 struct {
+	Id *string
 
+	Offer *string
 
-    Id *string
+	Publisher *string
 
-    Offer *string
+	Sku *string
 
-    Publisher *string
-
-    Sku *string
-
-    Version *string
-
+	Version *string
 }
 
 type Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256 struct {
+	Caching *string
 
+	Create_option string
 
-    Caching *string
+	Image *string
 
-    Create_option string
+	Managed_disk_type *string
 
-    Image *string
+	Name *string
 
-    Managed_disk_type *string
+	Os_type *string
 
-    Name *string
-
-    Os_type *string
-
-    Vhd_containers *[]string
-
+	Vhd_containers *[]string
 }
 
 type Azurerm_virtual_machine_scale_set struct {
-
 	Azurerm_virtual_machine_scale_set_id *string `lyra:"ignore"`
 
-    Automatic_os_upgrade *bool
+	Automatic_os_upgrade *bool
 
-    Boot_diagnostics *[]Azurerm_virtual_machine_scale_set_boot_diagnostics_236
+	Boot_diagnostics *[]Azurerm_virtual_machine_scale_set_boot_diagnostics_236
 
-    Eviction_policy *string
+	Eviction_policy *string
 
-    Extension *[]Azurerm_virtual_machine_scale_set_extension_237
+	Extension *[]Azurerm_virtual_machine_scale_set_extension_237
 
-    Health_probe_id *string
+	Health_probe_id *string
 
-    Identity *[]Azurerm_virtual_machine_scale_set_identity_238
+	Identity *[]Azurerm_virtual_machine_scale_set_identity_238
 
-    License_type *string
+	License_type *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Network_profile []Azurerm_virtual_machine_scale_set_network_profile_239
+	Network_profile []Azurerm_virtual_machine_scale_set_network_profile_239
 
-    Os_profile []Azurerm_virtual_machine_scale_set_os_profile_243
+	Os_profile []Azurerm_virtual_machine_scale_set_os_profile_243
 
-    Os_profile_linux_config *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_244
+	Os_profile_linux_config *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_244
 
-    Os_profile_secrets *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_246
+	Os_profile_secrets *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_246
 
-    Os_profile_windows_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248
+	Os_profile_windows_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248
 
-    Overprovision *bool
+	Overprovision *bool
 
-    Plan *[]Azurerm_virtual_machine_scale_set_plan_251
+	Plan *[]Azurerm_virtual_machine_scale_set_plan_251
 
-    Priority *string
+	Priority *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Rolling_upgrade_policy *[]Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252
+	Rolling_upgrade_policy *[]Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252
 
-    Single_placement_group *bool
+	Single_placement_group *bool
 
-    Sku []Azurerm_virtual_machine_scale_set_sku_253
+	Sku []Azurerm_virtual_machine_scale_set_sku_253
 
-    Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254
+	Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254
 
-    Storage_profile_image_reference *[]Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255
+	Storage_profile_image_reference *[]Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255
 
-    Storage_profile_os_disk []Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256
+	Storage_profile_os_disk []Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Upgrade_policy_mode string
+	Upgrade_policy_mode string
 
-    Zones *[]string
-
+	Zones *[]string
 }
 
 var Azurerm_virtual_machine_scale_set_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -26729,7 +25231,6 @@ var Azurerm_virtual_machine_scale_set_rtb = func(rtb service.ResourceTypeBuilder
 		"tags",
 
 		"zones",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -26746,7 +25247,6 @@ var Azurerm_virtual_machine_scale_set_rtb = func(rtb service.ResourceTypeBuilder
 		"single_placement_group",
 
 		"zones",
-
 	)
 }
 
@@ -26786,11 +25286,11 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Update(externalID string, des
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine_scale_set", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_machine_scale_set", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine_scale_set{ Azurerm_virtual_machine_scale_set_id: &externalID }
+	x := &Azurerm_virtual_machine_scale_set{Azurerm_virtual_machine_scale_set_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_machine_scale_set", "actual", spew.Sdump(x))
@@ -26809,7 +25309,7 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Read(externalID string) (*Azu
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_machine_scale_set{ Azurerm_virtual_machine_scale_set_id: &id }
+	x := &Azurerm_virtual_machine_scale_set{Azurerm_virtual_machine_scale_set_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_machine_scale_set", "actual", spew.Sdump(x))
@@ -26828,36 +25328,31 @@ func (h *Azurerm_virtual_machine_scale_setHandler) Delete(externalID string) err
 }
 
 type Azurerm_virtual_network_subnet_257 struct {
+	Address_prefix string
 
+	Id *string
 
-    Address_prefix string
+	Name string
 
-    Id *string
-
-    Name string
-
-    Security_group *string
-
+	Security_group *string
 }
 
 type Azurerm_virtual_network struct {
-
 	Azurerm_virtual_network_id *string `lyra:"ignore"`
 
-    Address_space []string
+	Address_space []string
 
-    Dns_servers *[]string
+	Dns_servers *[]string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Subnet *[]Azurerm_virtual_network_subnet_257
+	Subnet *[]Azurerm_virtual_network_subnet_257
 
-    Tags *map[string]string
-
+	Tags *map[string]string
 }
 
 var Azurerm_virtual_network_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -26869,7 +25364,6 @@ var Azurerm_virtual_network_rtb = func(rtb service.ResourceTypeBuilder) {
 		"subnet",
 
 		"tags",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -26878,7 +25372,6 @@ var Azurerm_virtual_network_rtb = func(rtb service.ResourceTypeBuilder) {
 		"name",
 
 		"resource_group_name",
-
 	)
 }
 
@@ -26918,11 +25411,11 @@ func (h *Azurerm_virtual_networkHandler) Update(externalID string, desired *Azur
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_network", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_network", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network{ Azurerm_virtual_network_id: &externalID }
+	x := &Azurerm_virtual_network{Azurerm_virtual_network_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_network", "actual", spew.Sdump(x))
@@ -26941,7 +25434,7 @@ func (h *Azurerm_virtual_networkHandler) Read(externalID string) (*Azurerm_virtu
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network{ Azurerm_virtual_network_id: &id }
+	x := &Azurerm_virtual_network{Azurerm_virtual_network_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_network", "actual", spew.Sdump(x))
@@ -26960,94 +25453,77 @@ func (h *Azurerm_virtual_networkHandler) Delete(externalID string) error {
 }
 
 type Azurerm_virtual_network_gateway_bgp_settings_258 struct {
+	Asn *int
 
+	Peer_weight *int
 
-    Asn *int
-
-    Peer_weight *int
-
-    Peering_address *string
-
+	Peering_address *string
 }
 
 type Azurerm_virtual_network_gateway_ip_configuration_259 struct {
+	Name *string
 
+	Private_ip_address_allocation *string
 
-    Name *string
+	Public_ip_address_id *string
 
-    Private_ip_address_allocation *string
-
-    Public_ip_address_id *string
-
-    Subnet_id string
-
+	Subnet_id string
 }
 
 type Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261 struct {
+	Name string
 
-
-    Name string
-
-    Thumbprint string
-
+	Thumbprint string
 }
 
 type Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262 struct {
+	Name string
 
-
-    Name string
-
-    Public_cert_data string
-
+	Public_cert_data string
 }
 
 type Azurerm_virtual_network_gateway_vpn_client_configuration_260 struct {
+	Address_space []string
 
+	Radius_server_address *string
 
-    Address_space []string
+	Radius_server_secret *string
 
-    Radius_server_address *string
+	Revoked_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261
 
-    Radius_server_secret *string
+	Root_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262
 
-    Revoked_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261
-
-    Root_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262
-
-    Vpn_client_protocols *[]string
-
+	Vpn_client_protocols *[]string
 }
 
 type Azurerm_virtual_network_gateway struct {
-
 	Azurerm_virtual_network_gateway_id *string `lyra:"ignore"`
 
-    Active_active *bool
+	Active_active *bool
 
-    Bgp_settings *[]Azurerm_virtual_network_gateway_bgp_settings_258
+	Bgp_settings *[]Azurerm_virtual_network_gateway_bgp_settings_258
 
-    Default_local_network_gateway_id *string
+	Default_local_network_gateway_id *string
 
-    Enable_bgp *bool
+	Enable_bgp *bool
 
-    Ip_configuration []Azurerm_virtual_network_gateway_ip_configuration_259
+	Ip_configuration []Azurerm_virtual_network_gateway_ip_configuration_259
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Sku string
+	Sku string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Type string
+	Type string
 
-    Vpn_client_configuration *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260
+	Vpn_client_configuration *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260
 
-    Vpn_type *string
-
+	Vpn_type *string
 }
 
 var Azurerm_virtual_network_gateway_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -27067,7 +25543,6 @@ var Azurerm_virtual_network_gateway_rtb = func(rtb service.ResourceTypeBuilder) 
 		"vpn_client_configuration",
 
 		"vpn_type",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -27080,7 +25555,6 @@ var Azurerm_virtual_network_gateway_rtb = func(rtb service.ResourceTypeBuilder) 
 		"type",
 
 		"vpn_type",
-
 	)
 }
 
@@ -27120,11 +25594,11 @@ func (h *Azurerm_virtual_network_gatewayHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_network_gateway", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_network_gateway", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network_gateway{ Azurerm_virtual_network_gateway_id: &externalID }
+	x := &Azurerm_virtual_network_gateway{Azurerm_virtual_network_gateway_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_network_gateway", "actual", spew.Sdump(x))
@@ -27143,7 +25617,7 @@ func (h *Azurerm_virtual_network_gatewayHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network_gateway{ Azurerm_virtual_network_gateway_id: &id }
+	x := &Azurerm_virtual_network_gateway{Azurerm_virtual_network_gateway_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_network_gateway", "actual", spew.Sdump(x))
@@ -27162,60 +25636,55 @@ func (h *Azurerm_virtual_network_gatewayHandler) Delete(externalID string) error
 }
 
 type Azurerm_virtual_network_gateway_connection_ipsec_policy_263 struct {
+	Dh_group string
 
+	Ike_encryption string
 
-    Dh_group string
+	Ike_integrity string
 
-    Ike_encryption string
+	Ipsec_encryption string
 
-    Ike_integrity string
+	Ipsec_integrity string
 
-    Ipsec_encryption string
+	Pfs_group string
 
-    Ipsec_integrity string
+	Sa_datasize *int
 
-    Pfs_group string
-
-    Sa_datasize *int
-
-    Sa_lifetime *int
-
+	Sa_lifetime *int
 }
 
 type Azurerm_virtual_network_gateway_connection struct {
-
 	Azurerm_virtual_network_gateway_connection_id *string `lyra:"ignore"`
 
-    Authorization_key *string
+	Authorization_key *string
 
-    Enable_bgp *bool
+	Enable_bgp *bool
 
-    Express_route_circuit_id *string
+	Express_route_circuit_id *string
 
-    Ipsec_policy *[]Azurerm_virtual_network_gateway_connection_ipsec_policy_263
+	Ipsec_policy *[]Azurerm_virtual_network_gateway_connection_ipsec_policy_263
 
-    Local_network_gateway_id *string
+	Local_network_gateway_id *string
 
-    Location string
+	Location string
 
-    Name string
+	Name string
 
-    Peer_virtual_network_gateway_id *string
+	Peer_virtual_network_gateway_id *string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Routing_weight *int
+	Routing_weight *int
 
-    Shared_key *string
+	Shared_key *string
 
-    Tags *map[string]string
+	Tags *map[string]string
 
-    Type string
+	Type string
 
-    Use_policy_based_traffic_selectors *bool
+	Use_policy_based_traffic_selectors *bool
 
-    Virtual_network_gateway_id string
-
+	Virtual_network_gateway_id string
 }
 
 var Azurerm_virtual_network_gateway_connection_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -27241,7 +25710,6 @@ var Azurerm_virtual_network_gateway_connection_rtb = func(rtb service.ResourceTy
 		"tags",
 
 		"use_policy_based_traffic_selectors",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -27258,7 +25726,6 @@ var Azurerm_virtual_network_gateway_connection_rtb = func(rtb service.ResourceTy
 		"type",
 
 		"virtual_network_gateway_id",
-
 	)
 }
 
@@ -27298,11 +25765,11 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Update(externalID st
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_network_gateway_connection", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_network_gateway_connection", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network_gateway_connection{ Azurerm_virtual_network_gateway_connection_id: &externalID }
+	x := &Azurerm_virtual_network_gateway_connection{Azurerm_virtual_network_gateway_connection_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_network_gateway_connection", "actual", spew.Sdump(x))
@@ -27321,7 +25788,7 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Read(externalID stri
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network_gateway_connection{ Azurerm_virtual_network_gateway_connection_id: &id }
+	x := &Azurerm_virtual_network_gateway_connection{Azurerm_virtual_network_gateway_connection_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_network_gateway_connection", "actual", spew.Sdump(x))
@@ -27340,25 +25807,23 @@ func (h *Azurerm_virtual_network_gateway_connectionHandler) Delete(externalID st
 }
 
 type Azurerm_virtual_network_peering struct {
-
 	Azurerm_virtual_network_peering_id *string `lyra:"ignore"`
 
-    Allow_forwarded_traffic *bool
+	Allow_forwarded_traffic *bool
 
-    Allow_gateway_transit *bool
+	Allow_gateway_transit *bool
 
-    Allow_virtual_network_access *bool
+	Allow_virtual_network_access *bool
 
-    Name string
+	Name string
 
-    Remote_virtual_network_id string
+	Remote_virtual_network_id string
 
-    Resource_group_name string
+	Resource_group_name string
 
-    Use_remote_gateways *bool
+	Use_remote_gateways *bool
 
-    Virtual_network_name string
-
+	Virtual_network_name string
 }
 
 var Azurerm_virtual_network_peering_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -27372,7 +25837,6 @@ var Azurerm_virtual_network_peering_rtb = func(rtb service.ResourceTypeBuilder) 
 		"allow_virtual_network_access",
 
 		"use_remote_gateways",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -27383,7 +25847,6 @@ var Azurerm_virtual_network_peering_rtb = func(rtb service.ResourceTypeBuilder) 
 		"resource_group_name",
 
 		"virtual_network_name",
-
 	)
 }
 
@@ -27423,11 +25886,11 @@ func (h *Azurerm_virtual_network_peeringHandler) Update(externalID string, desir
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "azurerm_virtual_network_peering", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "azurerm_virtual_network_peering", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network_peering{ Azurerm_virtual_network_peering_id: &externalID }
+	x := &Azurerm_virtual_network_peering{Azurerm_virtual_network_peering_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Azurerm_virtual_network_peering", "actual", spew.Sdump(x))
@@ -27446,7 +25909,7 @@ func (h *Azurerm_virtual_network_peeringHandler) Read(externalID string) (*Azure
 	if err != nil {
 		return nil, err
 	}
-	x := &Azurerm_virtual_network_peering{ Azurerm_virtual_network_peering_id: &id }
+	x := &Azurerm_virtual_network_peering{Azurerm_virtual_network_peering_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Azurerm_virtual_network_peering", "actual", spew.Sdump(x))
