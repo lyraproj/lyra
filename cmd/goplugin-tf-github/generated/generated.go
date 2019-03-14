@@ -88,58 +88,47 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 }
 
 type Github_branch_protection_required_pull_request_reviews_1 struct {
+	Dismiss_stale_reviews *bool
 
+	Dismissal_teams *[]string
 
-    Dismiss_stale_reviews *bool
+	Dismissal_users *[]string
 
-    Dismissal_teams *[]string
+	Include_admins *bool
 
-    Dismissal_users *[]string
-
-    Include_admins *bool
-
-    Require_code_owner_reviews *bool
-
+	Require_code_owner_reviews *bool
 }
 
 type Github_branch_protection_required_status_checks_2 struct {
+	Contexts *[]string
 
+	Include_admins *bool
 
-    Contexts *[]string
-
-    Include_admins *bool
-
-    Strict *bool
-
+	Strict *bool
 }
 
 type Github_branch_protection_restrictions_3 struct {
+	Teams *[]string
 
-
-    Teams *[]string
-
-    Users *[]string
-
+	Users *[]string
 }
 
 type Github_branch_protection struct {
-
 	Github_branch_protection_id *string `lyra:"ignore"`
 
-    Branch string
+	Branch string
 
-    Enforce_admins *bool
+	Enforce_admins *bool
 
-    Etag *string
+	Etag *string
 
-    Repository string
+	Repository string
 
-    Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_1
+	Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_1
 
-    Required_status_checks *[]Github_branch_protection_required_status_checks_2
+	Required_status_checks *[]Github_branch_protection_required_status_checks_2
 
-    Restrictions *[]Github_branch_protection_restrictions_3
-
+	Restrictions *[]Github_branch_protection_restrictions_3
 }
 
 var Github_branch_protection_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -155,14 +144,12 @@ var Github_branch_protection_rtb = func(rtb service.ResourceTypeBuilder) {
 		"required_status_checks",
 
 		"restrictions",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"branch",
 
 		"repository",
-
 	)
 }
 
@@ -202,11 +189,11 @@ func (h *Github_branch_protectionHandler) Update(externalID string, desired *Git
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_branch_protection", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_branch_protection", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_branch_protection{ Github_branch_protection_id: &externalID }
+	x := &Github_branch_protection{Github_branch_protection_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_branch_protection", "actual", spew.Sdump(x))
@@ -225,7 +212,7 @@ func (h *Github_branch_protectionHandler) Read(externalID string) (*Github_branc
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_branch_protection{ Github_branch_protection_id: &id }
+	x := &Github_branch_protection{Github_branch_protection_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_branch_protection", "actual", spew.Sdump(x))
@@ -244,21 +231,19 @@ func (h *Github_branch_protectionHandler) Delete(externalID string) error {
 }
 
 type Github_issue_label struct {
-
 	Github_issue_label_id *string `lyra:"ignore"`
 
-    Color string
+	Color string
 
-    Description *string
+	Description *string
 
-    Etag *string
+	Etag *string
 
-    Name string
+	Name string
 
-    Repository string
+	Repository string
 
-    Url *string
-
+	Url *string
 }
 
 var Github_issue_label_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -270,12 +255,10 @@ var Github_issue_label_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"repository",
-
 	)
 }
 
@@ -315,11 +298,11 @@ func (h *Github_issue_labelHandler) Update(externalID string, desired *Github_is
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_issue_label", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_issue_label", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_issue_label{ Github_issue_label_id: &externalID }
+	x := &Github_issue_label{Github_issue_label_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_issue_label", "actual", spew.Sdump(x))
@@ -338,7 +321,7 @@ func (h *Github_issue_labelHandler) Read(externalID string) (*Github_issue_label
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_issue_label{ Github_issue_label_id: &id }
+	x := &Github_issue_label{Github_issue_label_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_issue_label", "actual", spew.Sdump(x))
@@ -357,15 +340,13 @@ func (h *Github_issue_labelHandler) Delete(externalID string) error {
 }
 
 type Github_membership struct {
-
 	Github_membership_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Role *string
+	Role *string
 
-    Username string
-
+	Username string
 }
 
 var Github_membership_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -375,12 +356,10 @@ var Github_membership_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"role",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"username",
-
 	)
 }
 
@@ -420,11 +399,11 @@ func (h *Github_membershipHandler) Update(externalID string, desired *Github_mem
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_membership", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_membership", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_membership{ Github_membership_id: &externalID }
+	x := &Github_membership{Github_membership_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_membership", "actual", spew.Sdump(x))
@@ -443,7 +422,7 @@ func (h *Github_membershipHandler) Read(externalID string) (*Github_membership, 
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_membership{ Github_membership_id: &id }
+	x := &Github_membership{Github_membership_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_membership", "actual", spew.Sdump(x))
@@ -462,17 +441,15 @@ func (h *Github_membershipHandler) Delete(externalID string) error {
 }
 
 type Github_organization_project struct {
-
 	Github_organization_project_id *string `lyra:"ignore"`
 
-    Body *string
+	Body *string
 
-    Etag *string
+	Etag *string
 
-    Name string
+	Name string
 
-    Url *string
-
+	Url *string
 }
 
 var Github_organization_project_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -484,11 +461,8 @@ var Github_organization_project_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"url",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Github_organization_projectHandler ...
@@ -527,11 +501,11 @@ func (h *Github_organization_projectHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_organization_project", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_organization_project", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_organization_project{ Github_organization_project_id: &externalID }
+	x := &Github_organization_project{Github_organization_project_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_organization_project", "actual", spew.Sdump(x))
@@ -550,7 +524,7 @@ func (h *Github_organization_projectHandler) Read(externalID string) (*Github_or
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_organization_project{ Github_organization_project_id: &id }
+	x := &Github_organization_project{Github_organization_project_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_organization_project", "actual", spew.Sdump(x))
@@ -569,34 +543,29 @@ func (h *Github_organization_projectHandler) Delete(externalID string) error {
 }
 
 type Github_organization_webhook_configuration_4 struct {
+	Content_type *string
 
+	Insecure_ssl *string
 
-    Content_type *string
+	Secret *string
 
-    Insecure_ssl *string
-
-    Secret *string
-
-    Url string
-
+	Url string
 }
 
 type Github_organization_webhook struct {
-
 	Github_organization_webhook_id *string `lyra:"ignore"`
 
-    Active *bool
+	Active *bool
 
-    Configuration *[]Github_organization_webhook_configuration_4
+	Configuration *[]Github_organization_webhook_configuration_4
 
-    Etag *string
+	Etag *string
 
-    Events []string
+	Events []string
 
-    Name string
+	Name string
 
-    Url *string
-
+	Url *string
 }
 
 var Github_organization_webhook_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -610,12 +579,10 @@ var Github_organization_webhook_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
-
 	)
 }
 
@@ -655,11 +622,11 @@ func (h *Github_organization_webhookHandler) Update(externalID string, desired *
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_organization_webhook", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_organization_webhook", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_organization_webhook{ Github_organization_webhook_id: &externalID }
+	x := &Github_organization_webhook{Github_organization_webhook_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_organization_webhook", "actual", spew.Sdump(x))
@@ -678,7 +645,7 @@ func (h *Github_organization_webhookHandler) Read(externalID string) (*Github_or
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_organization_webhook{ Github_organization_webhook_id: &id }
+	x := &Github_organization_webhook{Github_organization_webhook_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_organization_webhook", "actual", spew.Sdump(x))
@@ -697,15 +664,13 @@ func (h *Github_organization_webhookHandler) Delete(externalID string) error {
 }
 
 type Github_project_column struct {
-
 	Github_project_column_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Name string
+	Name string
 
-    Project_id string
-
+	Project_id string
 }
 
 var Github_project_column_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -713,12 +678,10 @@ var Github_project_column_rtb = func(rtb service.ResourceTypeBuilder) {
 		"github_project_column_id",
 
 		"etag",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"project_id",
-
 	)
 }
 
@@ -758,11 +721,11 @@ func (h *Github_project_columnHandler) Update(externalID string, desired *Github
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_project_column", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_project_column", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_project_column{ Github_project_column_id: &externalID }
+	x := &Github_project_column{Github_project_column_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_project_column", "actual", spew.Sdump(x))
@@ -781,7 +744,7 @@ func (h *Github_project_columnHandler) Read(externalID string) (*Github_project_
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_project_column{ Github_project_column_id: &id }
+	x := &Github_project_column{Github_project_column_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_project_column", "actual", spew.Sdump(x))
@@ -800,57 +763,55 @@ func (h *Github_project_columnHandler) Delete(externalID string) error {
 }
 
 type Github_repository struct {
-
 	Github_repository_id *string `lyra:"ignore"`
 
-    Allow_merge_commit *bool
+	Allow_merge_commit *bool
 
-    Allow_rebase_merge *bool
+	Allow_rebase_merge *bool
 
-    Allow_squash_merge *bool
+	Allow_squash_merge *bool
 
-    Archived *bool
+	Archived *bool
 
-    Auto_init *bool
+	Auto_init *bool
 
-    Default_branch *string
+	Default_branch *string
 
-    Description *string
+	Description *string
 
-    Etag *string
+	Etag *string
 
-    Full_name *string
+	Full_name *string
 
-    Git_clone_url *string
+	Git_clone_url *string
 
-    Gitignore_template *string
+	Gitignore_template *string
 
-    Has_downloads *bool
+	Has_downloads *bool
 
-    Has_issues *bool
+	Has_issues *bool
 
-    Has_projects *bool
+	Has_projects *bool
 
-    Has_wiki *bool
+	Has_wiki *bool
 
-    Homepage_url *string
+	Homepage_url *string
 
-    Html_url *string
+	Html_url *string
 
-    Http_clone_url *string
+	Http_clone_url *string
 
-    License_template *string
+	License_template *string
 
-    Name string
+	Name string
 
-    Private *bool
+	Private *bool
 
-    Ssh_clone_url *string
+	Ssh_clone_url *string
 
-    Svn_url *string
+	Svn_url *string
 
-    Topics *[]string
-
+	Topics *[]string
 }
 
 var Github_repository_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -902,7 +863,6 @@ var Github_repository_rtb = func(rtb service.ResourceTypeBuilder) {
 		"svn_url",
 
 		"topics",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -913,7 +873,6 @@ var Github_repository_rtb = func(rtb service.ResourceTypeBuilder) {
 		"license_template",
 
 		"name",
-
 	)
 }
 
@@ -953,11 +912,11 @@ func (h *Github_repositoryHandler) Update(externalID string, desired *Github_rep
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_repository", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_repository", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository{ Github_repository_id: &externalID }
+	x := &Github_repository{Github_repository_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_repository", "actual", spew.Sdump(x))
@@ -976,7 +935,7 @@ func (h *Github_repositoryHandler) Read(externalID string) (*Github_repository, 
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository{ Github_repository_id: &id }
+	x := &Github_repository{Github_repository_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_repository", "actual", spew.Sdump(x))
@@ -995,15 +954,13 @@ func (h *Github_repositoryHandler) Delete(externalID string) error {
 }
 
 type Github_repository_collaborator struct {
-
 	Github_repository_collaborator_id *string `lyra:"ignore"`
 
-    Permission *string
+	Permission *string
 
-    Repository string
+	Repository string
 
-    Username string
-
+	Username string
 }
 
 var Github_repository_collaborator_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1011,7 +968,6 @@ var Github_repository_collaborator_rtb = func(rtb service.ResourceTypeBuilder) {
 		"github_repository_collaborator_id",
 
 		"permission",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1020,7 +976,6 @@ var Github_repository_collaborator_rtb = func(rtb service.ResourceTypeBuilder) {
 		"repository",
 
 		"username",
-
 	)
 }
 
@@ -1060,11 +1015,11 @@ func (h *Github_repository_collaboratorHandler) Update(externalID string, desire
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_repository_collaborator", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_repository_collaborator", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_collaborator{ Github_repository_collaborator_id: &externalID }
+	x := &Github_repository_collaborator{Github_repository_collaborator_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_repository_collaborator", "actual", spew.Sdump(x))
@@ -1083,7 +1038,7 @@ func (h *Github_repository_collaboratorHandler) Read(externalID string) (*Github
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_collaborator{ Github_repository_collaborator_id: &id }
+	x := &Github_repository_collaborator{Github_repository_collaborator_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_repository_collaborator", "actual", spew.Sdump(x))
@@ -1102,19 +1057,17 @@ func (h *Github_repository_collaboratorHandler) Delete(externalID string) error 
 }
 
 type Github_repository_deploy_key struct {
-
 	Github_repository_deploy_key_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Key string
+	Key string
 
-    Read_only *bool
+	Read_only *bool
 
-    Repository string
+	Repository string
 
-    Title string
-
+	Title string
 }
 
 var Github_repository_deploy_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1124,7 +1077,6 @@ var Github_repository_deploy_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"read_only",
-
 	)
 	rtb.ImmutableAttributes(
 
@@ -1135,7 +1087,6 @@ var Github_repository_deploy_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"repository",
 
 		"title",
-
 	)
 }
 
@@ -1175,11 +1126,11 @@ func (h *Github_repository_deploy_keyHandler) Update(externalID string, desired 
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_repository_deploy_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_repository_deploy_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_deploy_key{ Github_repository_deploy_key_id: &externalID }
+	x := &Github_repository_deploy_key{Github_repository_deploy_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_repository_deploy_key", "actual", spew.Sdump(x))
@@ -1198,7 +1149,7 @@ func (h *Github_repository_deploy_keyHandler) Read(externalID string) (*Github_r
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_deploy_key{ Github_repository_deploy_key_id: &id }
+	x := &Github_repository_deploy_key{Github_repository_deploy_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_repository_deploy_key", "actual", spew.Sdump(x))
@@ -1217,19 +1168,17 @@ func (h *Github_repository_deploy_keyHandler) Delete(externalID string) error {
 }
 
 type Github_repository_project struct {
-
 	Github_repository_project_id *string `lyra:"ignore"`
 
-    Body *string
+	Body *string
 
-    Etag *string
+	Etag *string
 
-    Name string
+	Name string
 
-    Repository string
+	Repository string
 
-    Url *string
-
+	Url *string
 }
 
 var Github_repository_project_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1241,12 +1190,10 @@ var Github_repository_project_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"repository",
-
 	)
 }
 
@@ -1286,11 +1233,11 @@ func (h *Github_repository_projectHandler) Update(externalID string, desired *Gi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_repository_project", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_repository_project", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_project{ Github_repository_project_id: &externalID }
+	x := &Github_repository_project{Github_repository_project_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_repository_project", "actual", spew.Sdump(x))
@@ -1309,7 +1256,7 @@ func (h *Github_repository_projectHandler) Read(externalID string) (*Github_repo
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_project{ Github_repository_project_id: &id }
+	x := &Github_repository_project{Github_repository_project_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_repository_project", "actual", spew.Sdump(x))
@@ -1328,36 +1275,31 @@ func (h *Github_repository_projectHandler) Delete(externalID string) error {
 }
 
 type Github_repository_webhook_configuration_5 struct {
+	Content_type *string
 
+	Insecure_ssl *string
 
-    Content_type *string
+	Secret *string
 
-    Insecure_ssl *string
-
-    Secret *string
-
-    Url string
-
+	Url string
 }
 
 type Github_repository_webhook struct {
-
 	Github_repository_webhook_id *string `lyra:"ignore"`
 
-    Active *bool
+	Active *bool
 
-    Configuration *[]Github_repository_webhook_configuration_5
+	Configuration *[]Github_repository_webhook_configuration_5
 
-    Etag *string
+	Etag *string
 
-    Events []string
+	Events []string
 
-    Name string
+	Name string
 
-    Repository string
+	Repository string
 
-    Url *string
-
+	Url *string
 }
 
 var Github_repository_webhook_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1371,14 +1313,12 @@ var Github_repository_webhook_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"name",
 
 		"repository",
-
 	)
 }
 
@@ -1418,11 +1358,11 @@ func (h *Github_repository_webhookHandler) Update(externalID string, desired *Gi
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_repository_webhook", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_repository_webhook", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_webhook{ Github_repository_webhook_id: &externalID }
+	x := &Github_repository_webhook{Github_repository_webhook_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_repository_webhook", "actual", spew.Sdump(x))
@@ -1441,7 +1381,7 @@ func (h *Github_repository_webhookHandler) Read(externalID string) (*Github_repo
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_repository_webhook{ Github_repository_webhook_id: &id }
+	x := &Github_repository_webhook{Github_repository_webhook_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_repository_webhook", "actual", spew.Sdump(x))
@@ -1460,23 +1400,21 @@ func (h *Github_repository_webhookHandler) Delete(externalID string) error {
 }
 
 type Github_team struct {
-
 	Github_team_id *string `lyra:"ignore"`
 
-    Description *string
+	Description *string
 
-    Etag *string
+	Etag *string
 
-    Ldap_dn *string
+	Ldap_dn *string
 
-    Name string
+	Name string
 
-    Parent_team_id *int
+	Parent_team_id *int
 
-    Privacy *string
+	Privacy *string
 
-    Slug *string
-
+	Slug *string
 }
 
 var Github_team_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1494,11 +1432,8 @@ var Github_team_rtb = func(rtb service.ResourceTypeBuilder) {
 		"privacy",
 
 		"slug",
-
 	)
-	rtb.ImmutableAttributes(
-
-	)
+	rtb.ImmutableAttributes()
 }
 
 // Github_teamHandler ...
@@ -1537,11 +1472,11 @@ func (h *Github_teamHandler) Update(externalID string, desired *Github_team) (*G
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_team", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_team", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_team{ Github_team_id: &externalID }
+	x := &Github_team{Github_team_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_team", "actual", spew.Sdump(x))
@@ -1560,7 +1495,7 @@ func (h *Github_teamHandler) Read(externalID string) (*Github_team, error) {
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_team{ Github_team_id: &id }
+	x := &Github_team{Github_team_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_team", "actual", spew.Sdump(x))
@@ -1579,17 +1514,15 @@ func (h *Github_teamHandler) Delete(externalID string) error {
 }
 
 type Github_team_membership struct {
-
 	Github_team_membership_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Role *string
+	Role *string
 
-    Team_id string
+	Team_id string
 
-    Username string
-
+	Username string
 }
 
 var Github_team_membership_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1599,14 +1532,12 @@ var Github_team_membership_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"role",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"team_id",
 
 		"username",
-
 	)
 }
 
@@ -1646,11 +1577,11 @@ func (h *Github_team_membershipHandler) Update(externalID string, desired *Githu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_team_membership", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_team_membership", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_team_membership{ Github_team_membership_id: &externalID }
+	x := &Github_team_membership{Github_team_membership_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_team_membership", "actual", spew.Sdump(x))
@@ -1669,7 +1600,7 @@ func (h *Github_team_membershipHandler) Read(externalID string) (*Github_team_me
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_team_membership{ Github_team_membership_id: &id }
+	x := &Github_team_membership{Github_team_membership_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_team_membership", "actual", spew.Sdump(x))
@@ -1688,17 +1619,15 @@ func (h *Github_team_membershipHandler) Delete(externalID string) error {
 }
 
 type Github_team_repository struct {
-
 	Github_team_repository_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Permission *string
+	Permission *string
 
-    Repository string
+	Repository string
 
-    Team_id string
-
+	Team_id string
 }
 
 var Github_team_repository_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1708,14 +1637,12 @@ var Github_team_repository_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"permission",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"repository",
 
 		"team_id",
-
 	)
 }
 
@@ -1755,11 +1682,11 @@ func (h *Github_team_repositoryHandler) Update(externalID string, desired *Githu
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_team_repository", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_team_repository", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_team_repository{ Github_team_repository_id: &externalID }
+	x := &Github_team_repository{Github_team_repository_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_team_repository", "actual", spew.Sdump(x))
@@ -1778,7 +1705,7 @@ func (h *Github_team_repositoryHandler) Read(externalID string) (*Github_team_re
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_team_repository{ Github_team_repository_id: &id }
+	x := &Github_team_repository{Github_team_repository_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_team_repository", "actual", spew.Sdump(x))
@@ -1797,15 +1724,13 @@ func (h *Github_team_repositoryHandler) Delete(externalID string) error {
 }
 
 type Github_user_gpg_key struct {
-
 	Github_user_gpg_key_id *string `lyra:"ignore"`
 
-    Armored_public_key string
+	Armored_public_key string
 
-    Etag *string
+	Etag *string
 
-    Key_id *string
-
+	Key_id *string
 }
 
 var Github_user_gpg_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1815,12 +1740,10 @@ var Github_user_gpg_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"key_id",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"armored_public_key",
-
 	)
 }
 
@@ -1860,11 +1783,11 @@ func (h *Github_user_gpg_keyHandler) Update(externalID string, desired *Github_u
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_user_gpg_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_user_gpg_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_user_gpg_key{ Github_user_gpg_key_id: &externalID }
+	x := &Github_user_gpg_key{Github_user_gpg_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_user_gpg_key", "actual", spew.Sdump(x))
@@ -1883,7 +1806,7 @@ func (h *Github_user_gpg_keyHandler) Read(externalID string) (*Github_user_gpg_k
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_user_gpg_key{ Github_user_gpg_key_id: &id }
+	x := &Github_user_gpg_key{Github_user_gpg_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_user_gpg_key", "actual", spew.Sdump(x))
@@ -1902,17 +1825,15 @@ func (h *Github_user_gpg_keyHandler) Delete(externalID string) error {
 }
 
 type Github_user_ssh_key struct {
-
 	Github_user_ssh_key_id *string `lyra:"ignore"`
 
-    Etag *string
+	Etag *string
 
-    Key string
+	Key string
 
-    Title string
+	Title string
 
-    Url *string
-
+	Url *string
 }
 
 var Github_user_ssh_key_rtb = func(rtb service.ResourceTypeBuilder) {
@@ -1922,14 +1843,12 @@ var Github_user_ssh_key_rtb = func(rtb service.ResourceTypeBuilder) {
 		"etag",
 
 		"url",
-
 	)
 	rtb.ImmutableAttributes(
 
 		"key",
 
 		"title",
-
 	)
 }
 
@@ -1969,11 +1888,11 @@ func (h *Github_user_ssh_keyHandler) Update(externalID string, desired *Github_u
 	rc := &terraform.ResourceConfig{
 		Config: bridge.TerraformMarshal(desired),
 	}
-	actual, err := bridge.Update(h.provider, "github_user_ssh_key", externalID,  rc)
+	actual, err := bridge.Update(h.provider, "github_user_ssh_key", externalID, rc)
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_user_ssh_key{ Github_user_ssh_key_id: &externalID }
+	x := &Github_user_ssh_key{Github_user_ssh_key_id: &externalID}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Update Actual State Github_user_ssh_key", "actual", spew.Sdump(x))
@@ -1992,7 +1911,7 @@ func (h *Github_user_ssh_keyHandler) Read(externalID string) (*Github_user_ssh_k
 	if err != nil {
 		return nil, err
 	}
-	x := &Github_user_ssh_key{ Github_user_ssh_key_id: &id }
+	x := &Github_user_ssh_key{Github_user_ssh_key_id: &id}
 	bridge.TerraformUnmarshal(actual, x)
 	if log.IsInfo() {
 		log.Info("Read Actual State Github_user_ssh_key", "actual", spew.Sdump(x))
