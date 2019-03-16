@@ -2,11 +2,12 @@ package resource
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
-	"time"
 )
 
 const defaultRetryBackoff = 1 * time.Second
@@ -37,6 +38,9 @@ func (h *InternetGatewayHandler) Create(desired *InternetGateway) (*InternetGate
 	}
 	ig, externalID, err := createInternetGatewayInternal(&ec2.CreateInternetGatewayInput{},
 		tagsToAws(desired.Tags))
+	if err != nil {
+		return nil, "", err
+	}
 	actual := h.fromAWS(desired, ig)
 	return actual, externalID, err
 }

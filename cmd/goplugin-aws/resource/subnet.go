@@ -37,6 +37,9 @@ func (h *SubnetHandler) Create(desired *Subnet) (*Subnet, string, error) {
 		AvailabilityZone: desired.AvailabilityZone,
 	},
 		tagsToAws(desired.Tags))
+	if err != nil {
+		return nil, "", err
+	}
 	actual := h.fromAWS(desired, subnet)
 	return actual, externalID, err
 }
