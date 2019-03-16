@@ -37,6 +37,9 @@ func (h *VPCHandler) Create(desired *Vpc) (*Vpc, string, error) {
 			CidrBlock:                   nilIfEmpty(desired.CidrBlock),
 		},
 		tagsToAws(desired.Tags))
+	if err != nil {
+		return nil, "", err
+	}
 	actual := h.fromAWS(desired, vpc)
 	return actual, externalID, err
 }
