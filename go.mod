@@ -23,7 +23,7 @@ require (
 	github.com/lyraproj/puppet-workflow v0.0.0-20190317134807-04531c2d2822 // indirect
 	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
 	github.com/lyraproj/servicesdk v0.0.0-20190317133540-499c41434691
-	github.com/lyraproj/wfe v0.0.0-20190317135041-2d906b029f19
+	github.com/lyraproj/wfe v0.0.0-20190317225657-57a806ded9d9
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect

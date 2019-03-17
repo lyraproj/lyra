@@ -236,8 +236,11 @@ github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEB
 github.com/lyraproj/servicesdk v0.0.0-20190313114433-a66d98e28e69/go.mod h1:iHEEMoKpz6udgljQEojZ65iK0YKpUc+b8f/5Lgmi+t4=
 github.com/lyraproj/servicesdk v0.0.0-20190317133540-499c41434691 h1:tlgQyIQaaaE96JwBatRJHZL9DhZ5Z8UExBdDLjnsxNE=
 github.com/lyraproj/servicesdk v0.0.0-20190317133540-499c41434691/go.mod h1:moZ3fuB4G5R94X5uPwFH8ibtdmDPQ9Nql6NXhbmG1yM=
+github.com/lyraproj/wfe v0.0.0-20190315091529-2314fb087db1 h1:7HsTIQo0SH69ueWaVI43CgI+Prq2lURcgbjM27wu8rM=
 github.com/lyraproj/wfe v0.0.0-20190317135041-2d906b029f19 h1:zfO/hHe8VKaGMJ+DY8IRcL4iGLFXTFUX7y2BYGfB3IU=
 github.com/lyraproj/wfe v0.0.0-20190317135041-2d906b029f19/go.mod h1:5bZr4FjVSVpt6165cupZ9baH/ty85WiIzsJn3DFQmiM=
+github.com/lyraproj/wfe v0.0.0-20190317225657-57a806ded9d9 h1:5Ik8kswtatsdyr3Y7v9lYk8mhOgaUUwwkhcXxNF5u/w=
+github.com/lyraproj/wfe v0.0.0-20190317225657-57a806ded9d9/go.mod h1:PW2Xk58wRJ69mhyRC26Hitc8n6cETQu2jH+A+7tYaUI=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=
 github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a/go.mod h1:M1qoD/MqPgTZIk0EWKB38wE28ACRfVcn+cU08jyArI0=
