@@ -55,9 +55,6 @@ func createRoleInternal(input *iam.CreateRoleInput, awsTags []*iam.Tag) (*iam.Ro
 		RoleName: &externalID,
 		Tags:     awsTags,
 	})
-	if err != nil {
-		return nil, externalID, err
-	}
 	// There is no WaitUntilRoleExists (whereas there is a WaitUntilUserExists) so no waiting?
 	if err != nil {
 		log.Debug("Error waiting for Role resource", "externalID", externalID, "error", err)
