@@ -1,10 +1,11 @@
 package identity
 
 import (
-	"github.com/lyraproj/pcore/px"
 	"os"
 	"testing"
 
+	"github.com/lyraproj/pcore/px"
+	"github.com/lyraproj/servicesdk/serviceapi"
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,13 +23,13 @@ func deleteFile(filename string) {
 	}
 }
 
-func checkGetInternal(t *testing.T, id *Identity, externalID, internalID string) {
+func checkGetInternal(t *testing.T, id serviceapi.Identity, externalID, internalID string) {
 	actual, err := id.GetInternal(externalID)
 	require.Nil(t, err)
 	require.Equal(t, internalID, actual)
 }
 
-func checkGetExternal(t *testing.T, id *Identity, internalID, externalID string) {
+func checkGetExternal(t *testing.T, id serviceapi.Identity, internalID, externalID string) {
 	actual, err := id.GetExternal(internalID)
 	require.Nil(t, err)
 	require.Equal(t, externalID, actual)
