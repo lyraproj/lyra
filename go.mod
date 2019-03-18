@@ -4,7 +4,6 @@ require (
 	cloud.google.com/go v0.36.0 // indirect
 	github.com/Azure/azure-sdk-for-go v24.1.0+incompatible // indirect
 	github.com/aws/aws-sdk-go v1.16.26
-	github.com/boltdb/bolt v1.3.1
 	github.com/davecgh/go-spew v1.1.1
 	github.com/dnaeon/go-vcr v1.0.1 // indirect
 	github.com/go-logr/logr v0.1.0
@@ -17,11 +16,11 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190313120414-23c940ce7383
+	github.com/lyraproj/identity v0.0.0-20190318120248-75df16c65ce7
 	github.com/lyraproj/issue v0.0.0-20190213110846-64f0e861a560
 	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
 	github.com/lyraproj/pcore v0.0.0-20190317133239-e367a175e431
-	github.com/lyraproj/puppet-workflow v0.0.0-20190317134807-04531c2d2822 // indirect
-	github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2
+	github.com/lyraproj/puppet-workflow v0.0.0-20190318122053-7c7712a6da54
 	github.com/lyraproj/servicesdk v0.0.0-20190317133540-499c41434691
 	github.com/lyraproj/wfe v0.0.0-20190317225657-57a806ded9d9
 	github.com/marstr/guid v1.1.0 // indirect
