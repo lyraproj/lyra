@@ -21,7 +21,7 @@ import (
 )
 
 // Identity stores identity state
-type Identity struct {
+type identity struct {
 	filename string
 }
 
@@ -61,12 +61,12 @@ var supportedVersions = semver.MustParseVersionRange("1.x")
 // Start the Identity service running
 func Start(filename string) {
 	pcore.Do(func(c px.Context) {
-		sb := service.NewServiceBuilder(c, "Default::Identity::Service")
+		sb := service.NewServiceBuilder(c, "Identity")
 		id, err := NewIdentity(filename)
 		if err != nil {
 			panic(err)
 		}
-		sb.RegisterAPI(serviceapi.IdentityName, id)
+		sb.RegisterAPI("Identity::Service", id)
 		s := sb.Server()
 		grpc.Serve(c, s)
 	})
@@ -84,12 +84,12 @@ func (t *tuple) ValueTuple() px.List {
 }
 
 // NewIdentity opens the database
-func NewIdentity(filename string) (*Identity, error) {
+func NewIdentity(filename string) (serviceapi.Identity, error) {
 	absName, err := filepath.Abs(filename)
 	if err != nil {
 		return nil, err
 	}
-	i := &Identity{
+	i := &identity{
 		filename: absName,
 	}
 	err = i.withDb(func(db *bolt.DB) error {
@@ -137,7 +137,7 @@ func NewIdentity(filename string) (*Identity, error) {
 }
 
 // BumpEra bumps the current GC-era
-func (i *Identity) BumpEra() error {
+func (i *identity) BumpEra() error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			md := i.readMetadata(tx)
@@ -149,7 +149,7 @@ func (i *Identity) BumpEra() error {
 }
 
 // ReadEra returns the current GC-era
-func (i *Identity) ReadEra() (era int64, err error) {
+func (i *identity) ReadEra() (era int64, err error) {
 	err = i.withDb(func(db *bolt.DB) error {
 		return db.View(func(tx *bolt.Tx) error {
 			era = i.readMetadata(tx).Era
@@ -164,7 +164,7 @@ func (i *Identity) ReadEra() (era int64, err error) {
 // Any existing mapping involving the internal or external ID will be moved to the garbage
 // bin unless it is an exact match of the desired mapping, in which case the GC era will
 // be updated to the current era of the storage
-func (i *Identity) Associate(internalID, externalID string) error {
+func (i *identity) Associate(internalID, externalID string) error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			iid := []byte(internalID)
@@ -195,7 +195,7 @@ func (i *Identity) Associate(internalID, externalID string) error {
 
 // GetExternal returns the external ID associated with the given internal ID or an empty string if no association exists
 // Updates GC-era of the mapping to the current era of the storage
-func (i *Identity) GetExternal(internalID string) (string, error) {
+func (i *identity) GetExternal(internalID string) (string, error) {
 	externalID := ""
 	err := i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
@@ -212,7 +212,7 @@ func (i *Identity) GetExternal(internalID string) (string, error) {
 
 // GetInternal returns the internal ID associated with the given external ID or an empty string if no association exists
 // Updates GC-era of the mapping to the current era of the storage
-func (i *Identity) GetInternal(externalID string) (string, error) {
+func (i *identity) GetInternal(externalID string) (string, error) {
 	internalID := ""
 	err := i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
@@ -233,7 +233,7 @@ func (i *Identity) GetInternal(externalID string) (string, error) {
 
 // PurgeExternal explicitly removes any mappings involving the given external ID, both from the store
 // and from the garbage bin.
-func (i *Identity) PurgeExternal(externalID string) error {
+func (i *identity) PurgeExternal(externalID string) error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			eid := []byte(externalID)
@@ -246,7 +246,7 @@ func (i *Identity) PurgeExternal(externalID string) error {
 
 // PurgeInternal explicitly removes any mappings involving the given internal ID, both from the store
 // and from the garbage bin.
-func (i *Identity) PurgeInternal(internalID string) error {
+func (i *identity) PurgeInternal(internalID string) error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			iid := []byte(internalID)
@@ -272,7 +272,7 @@ func (i *Identity) PurgeInternal(internalID string) error {
 }
 
 // RemoveExternal moves all mappings to or from this external ID to the garbage bin
-func (i *Identity) RemoveExternal(externalID string) error {
+func (i *identity) RemoveExternal(externalID string) error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			i.removeExternal(tx, []byte(externalID), true)
@@ -282,7 +282,7 @@ func (i *Identity) RemoveExternal(externalID string) error {
 }
 
 // RemoveInternal moves all mappings to or from this internal ID to the garbage bin
-func (i *Identity) RemoveInternal(internalID string) error {
+func (i *identity) RemoveInternal(internalID string) error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			i.removeInternal(tx, []byte(internalID), true)
@@ -298,7 +298,7 @@ func (i *Identity) RemoveInternal(internalID string) error {
 //
 // The tuples are returned in the order they were added to the store. An empty slice is returned when no tuples
 // are found.
-func (i *Identity) Search(internalIDPrefix string) (px.List, error) {
+func (i *identity) Search(internalIDPrefix string) (px.List, error) {
 	found := make([]px.Value, 0, 32)
 	err := i.withDb(func(db *bolt.DB) error {
 		return db.View(func(tx *bolt.Tx) error {
@@ -320,7 +320,7 @@ func (i *Identity) Search(internalIDPrefix string) (px.List, error) {
 // are eligible for garbage collection to the garbage bin.
 //
 // A tuple is considered eligable for GC when its GC era is lower than the current era
-func (i *Identity) Sweep(internalIDPrefix string) error {
+func (i *identity) Sweep(internalIDPrefix string) error {
 	return i.withDb(func(db *bolt.DB) error {
 		return db.Update(func(tx *bolt.Tx) error {
 			era := i.readMetadata(tx).Era
@@ -339,7 +339,7 @@ func (i *Identity) Sweep(internalIDPrefix string) error {
 
 // Garbage finds all tuples that have been moved to the garbage bin. The tuples are returned in the order they were
 // added to the store. An empty slice is returned when no tuples are found.
-func (i *Identity) Garbage() (px.List, error) {
+func (i *identity) Garbage() (px.List, error) {
 	found := make([]px.Value, 0, 32)
 	err := i.withDb(func(db *bolt.DB) error {
 		return db.View(func(tx *bolt.Tx) error {
@@ -355,7 +355,7 @@ func (i *Identity) Garbage() (px.List, error) {
 	return sortedValueTuples(found), nil
 }
 
-func (i *Identity) removeExternal(tx *bolt.Tx, eid []byte, moveToGarbage bool) {
+func (i *identity) removeExternal(tx *bolt.Tx, eid []byte, moveToGarbage bool) {
 	// Remove any existing mapping
 	iid := tx.Bucket(externalToInternal).Get(eid)
 	if iid == nil {
@@ -373,7 +373,7 @@ func (i *Identity) removeExternal(tx *bolt.Tx, eid []byte, moveToGarbage bool) {
 	}
 }
 
-func (i *Identity) removeInternal(tx *bolt.Tx, iid []byte, moveToGarbage bool) {
+func (i *identity) removeInternal(tx *bolt.Tx, iid []byte, moveToGarbage bool) {
 	// Remove any existing mapping
 	t := readTuple(tx, iid)
 	if t == nil {
@@ -391,12 +391,12 @@ func (i *Identity) removeInternal(tx *bolt.Tx, iid []byte, moveToGarbage bool) {
 	}
 }
 
-func (i *Identity) addToGarbage(tx *bolt.Tx, t *tuple) {
+func (i *identity) addToGarbage(tx *bolt.Tx, t *tuple) {
 	// Store bucket in garbage bin. Overwrite any previous entry for the same external ID.
 	putInBucket(tx, garbage, []byte(t.ExternalID), marshalTuple(t))
 }
 
-func (i *Identity) withDb(df func(*bolt.DB) error) (err error) {
+func (i *identity) withDb(df func(*bolt.DB) error) (err error) {
 	var db *bolt.DB
 	db, err = bolt.Open(i.filename, 0600, &bolt.Options{Timeout: 200 * time.Millisecond})
 	if err != nil {
@@ -421,7 +421,7 @@ func (i *Identity) withDb(df func(*bolt.DB) error) (err error) {
 	return
 }
 
-func (i *Identity) readMetadata(tx *bolt.Tx) *storeMeta {
+func (i *identity) readMetadata(tx *bolt.Tx) *storeMeta {
 	md := tx.Bucket(metadata).Get(metadata)
 	if md != nil {
 		return unmarshalMetadata(md)
@@ -429,7 +429,7 @@ func (i *Identity) readMetadata(tx *bolt.Tx) *storeMeta {
 	panic(errorf("identity store at '%s' has invalid format", i.filename))
 }
 
-func (i *Identity) updateEra(t *tuple, tx *bolt.Tx) {
+func (i *identity) updateEra(t *tuple, tx *bolt.Tx) {
 	md := i.readMetadata(tx)
 	if t.Era < md.Era {
 		t.Era = md.Era

@@ -1,10 +1,8 @@
 package loader
 
 import (
-	"os"
 	"testing"
 
-	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -47,16 +45,7 @@ var findfileTests = []struct {
 func Test_FindFile(t *testing.T) {
 	for _, test := range findfileTests {
 		t.Run(test.title, func(t *testing.T) {
-			spec := logger.Spec{
-				Name:   "find-files",
-				Level:  "debug",
-				Output: os.Stderr,
-			}
-			l := Loader{
-				pluginPath: []string{test.dir},
-				logger:     logger.Initialise(spec),
-			}
-			files := l.findFiles(test.glob)
+			files := findFiles(test.glob, []string{test.dir})
 			if !test.error {
 				assert.Equal(t, len(test.expected), len(files))
 				for _, expected := range test.expected {

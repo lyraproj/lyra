@@ -6,8 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
+
+	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/hiera/lookup"
 	"github.com/lyraproj/hiera/provider"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
@@ -89,16 +90,16 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 	}
 
 	defer func() {
-		plugin.CleanupClients()
-		logger.Get().Debug("all plugins cleaned up")
 		if e := recover(); e != nil {
+			exitCode = 1
 			if err, ok := e.(cmdError); ok {
 				ui.Message("error", err)
-				exitCode = 1
 			} else {
-				panic(e)
+				ui.Message("fatal", e)
 			}
 		}
+		plugin.CleanupClients()
+		logger.Get().Debug("all plugins cleaned up")
 	}()
 
 	lookupOptions := map[string]px.Value{
@@ -112,10 +113,7 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 func applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
 	return func(c px.Context) {
 		logger := logger.Get()
-		loader := loader.New(logger, c.Loader())
-		loader.PreLoad(c)
-		logger.Debug("all plugins loaded")
-		c.DoWithLoader(loader, func() {
+		c.DoWithLoader(loader.New(c.Loader()), func() {
 			if intent == wf.Delete {
 				logger.Debug("calling delete")
 				delete(c, workflowName)

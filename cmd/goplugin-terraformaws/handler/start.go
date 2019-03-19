@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/lyraproj/lyra/cmd/goplugin-tf-aws/generated"
+	"github.com/lyraproj/lyra/cmd/goplugin-terraformaws/generated"
 	"github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/grpc"

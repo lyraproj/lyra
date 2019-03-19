@@ -33,11 +33,12 @@ shrink:
 	done;
 
 PHONY+= plugins
-plugins: check-mods
-	@$(foreach plugin,$(GO_PLUGINS),$(call build,$(plugin),cmd/$(plugin)/main.go);)
+plugins: check-mods puppet-dsl
+	@$(foreach plugin,$(GO_PLUGINS),$(call build,goplugins/$(subst goplugin-,,$(plugin)),cmd/$(plugin)/main.go);)
 
+PHONY+= puppet-dsl
 puppet-dsl:
-	$(call build,goplugin-puppetdsl,cmd/goplugin-puppetdsl/main.go)
+	$(call build,goplugins/puppet,github.com/lyraproj/puppet-workflow/main)
 
 PHONY+= lyra
 lyra: check-mods

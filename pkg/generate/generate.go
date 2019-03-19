@@ -1,9 +1,6 @@
 package generate
 
 import (
-	"path/filepath"
-
-	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
@@ -18,25 +15,25 @@ func Generate(language, targetDirectory string) error {
 	pcore.Do(func(c px.Context) {
 		generator := typegen.GetGenerator(language)
 
-		loader := loader.New(hclog.Default(), c.Loader())
-		loader.PreLoadPlugins(c)
+		c.DoWithLoader(loader.New(c.Loader()), func() {
+			loader.LoadPlugins(c)
 
-		sNames := loader.Discover(c, func(tn px.TypedName) bool {
-			return tn.Namespace() == px.NsService
-		})
+			sNames := c.Loader().Discover(c, func(tn px.TypedName) bool {
+				return tn.Namespace() == px.NsService
+			})
 
-		if targetDirectory == `` {
-			targetDirectory = filepath.Join("plugins", "types")
-		}
-		for _, sName := range sNames {
-			lv := loader.LoadEntry(c, sName)
-			if s, ok := lv.Value().(serviceapi.Service); ok {
-				typeSet, _ := s.Metadata(c)
-				if typeSet != nil && typeSet.Types().Len() > 0 {
-					generator.GenerateTypes(typeSet, targetDirectory)
+			if targetDirectory == `` {
+				targetDirectory = "types"
+			}
+			for _, sName := range sNames {
+				if v, ok := px.Load(c, sName); ok {
+					typeSet, _ := v.(serviceapi.Service).Metadata(c)
+					if typeSet != nil && typeSet.Types().Len() > 0 {
+						generator.GenerateTypes(typeSet, targetDirectory)
+					}
 				}
 			}
-		}
+		})
 	})
 
 	return nil
