@@ -34,6 +34,9 @@ func (h *RoleHandler) Create(desired *IamRole) (*IamRole, string, error) {
 		Path:                     desired.Path,
 	}
 	role, externalID, err := createRoleInternal(&input, iamTagsToAws(desired.Tags))
+	if err != nil {
+		return nil, "", err
+	}
 	actual := h.fromAWS(desired, role)
 	return actual, externalID, err
 }
