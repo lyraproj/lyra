@@ -33,8 +33,12 @@ shrink:
 	done;
 
 PHONY+= plugins
-plugins: check-mods puppet-dsl
+plugins: check-mods identity puppet-dsl
 	@$(foreach plugin,$(GO_PLUGINS),$(call build,goplugins/$(subst goplugin-,,$(plugin)),cmd/$(plugin)/main.go);)
+
+PHONY+= identity
+identity:
+	$(call build,goplugins/identity,github.com/lyraproj/identity/main)
 
 PHONY+= puppet-dsl
 puppet-dsl:

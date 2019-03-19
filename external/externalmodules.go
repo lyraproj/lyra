@@ -1,0 +1,13 @@
+// This file contains imports of external plug-in modules so that they are retained in the
+// go.mod file when running "go mod tidy". The external package should never be built
+// or referenced.
+//
+// NOTE: This is a Q&D solution to get the current Makefile/go.mod combo functional without
+// too much hassle. We should investigate other ways to get all plug-in binaries into a
+// common place.
+package external
+
+import (
+	_ "github.com/lyraproj/identity/identity"
+	_ "github.com/lyraproj/puppet-workflow/puppetwf"
+)
