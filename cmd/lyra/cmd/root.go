@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/lyraproj/issue/issue"
+
 	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/logger"
@@ -58,6 +60,7 @@ func runHelp(cmd *cobra.Command, args []string) {
 func initialiseTool(cmd *cobra.Command, args []string) {
 	if debug {
 		loglevel = "debug"
+		issue.IncludeStacktrace(true)
 	}
 	spec := logger.Spec{
 		Name:   "lyra",
