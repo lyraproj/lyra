@@ -7,6 +7,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/dnaeon/go-vcr v1.0.1 // indirect
 	github.com/go-logr/logr v0.1.0
+	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc // indirect
 	github.com/hashicorp/go-azure-helpers v0.0.0-20190129193224-166dfd221bb2 // indirect
 	github.com/hashicorp/go-hclog v0.8.0
@@ -15,14 +16,14 @@ require (
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190313120414-23c940ce7383
-	github.com/lyraproj/identity v0.0.0-20190318120248-75df16c65ce7
-	github.com/lyraproj/issue v0.0.0-20190319130620-4de77398eaa0
+	github.com/lyraproj/hiera v0.0.0-20190320112446-ad9ccc6c1e4b
+	github.com/lyraproj/identity v0.0.0-20190320130629-39164e8c9667
+	github.com/lyraproj/issue v0.0.0-20190320112454-9485eb12e31e
 	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
-	github.com/lyraproj/pcore v0.0.0-20190319132702-b24aeeee04ab
-	github.com/lyraproj/puppet-workflow v0.0.0-20190318122053-7c7712a6da54
-	github.com/lyraproj/servicesdk v0.0.0-20190317133540-499c41434691
-	github.com/lyraproj/wfe v0.0.0-20190317225657-57a806ded9d9
+	github.com/lyraproj/pcore v0.0.0-20190320111839-ae4fd2637077
+	github.com/lyraproj/puppet-workflow v0.0.0-20190320115549-e9bceb46beee
+	github.com/lyraproj/servicesdk v0.0.0-20190320113120-6be298b18bf0
+	github.com/lyraproj/wfe v0.0.0-20190320113157-3f81dde879c7
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
