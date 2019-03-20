@@ -1,0 +1,12 @@
+sample_output_hash:
+  typespace: example
+  output:
+    o: Hash
+  activities:
+    person:
+      output:
+        o: [name, age]
+      state:
+        age: 25
+        name: Ann
+        human: true

@@ -1,0 +1,14 @@
+sample_alias:
+  typespace: example
+  output:
+    longName: String
+    currentAge: Integer
+  activities:
+    person:
+      output:
+        longName: name
+        currentAge: age
+      state:
+        age: 66
+        name: Ann
+        human: true

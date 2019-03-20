@@ -46,8 +46,8 @@ List of names of a state attributes (resource) or output of contained activities
 An alias is used when it is desirable to give the output variable a different name than the attribute it references:
 
     output:
-      - [attr_x, alias_x]
-      - [attr_y, alias_y]
+      alias_x: attr_x
+      alias_y: attr_y
 
 A special construct can be used when it is desirable to group resource attributes into a Struct
 
@@ -57,15 +57,6 @@ A special construct can be used when it is desirable to group resource attribute
 this example will result in an output name "o" that has the inferred type:
 
     Struct[x1 => Like[<resource_type>, x1], x2 => Like[<resource_type>, x2]]
-
-this special construct also allows aliases, thus:
-
-    output:
-      o: [[a, x1], [b, x2]]
-
-yields the type:
-
-    Struct[a=>Like[<resource_type>,x1],b=>Like[<resource_type>,x2]]
 
 #### when
 an activity is considered to have a guard when it declares:
