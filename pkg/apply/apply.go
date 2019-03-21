@@ -134,7 +134,7 @@ func loadActivity(c px.Context, activityID string) api.Activity {
 	if !ok {
 		panic(cmdError(fmt.Sprintf("Unable to find definition for activity %s", activityID)))
 	}
-	return wfe.CreateActivity(def.(serviceapi.Definition))
+	return wfe.CreateActivity(c, def.(serviceapi.Definition))
 }
 
 func delete(c px.Context, activityID string) {

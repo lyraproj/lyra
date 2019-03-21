@@ -18,12 +18,12 @@ require (
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190320112446-ad9ccc6c1e4b
 	github.com/lyraproj/identity v0.0.0-20190320130629-39164e8c9667
-	github.com/lyraproj/issue v0.0.0-20190320112454-9485eb12e31e
+	github.com/lyraproj/issue v0.0.0-20190321123504-45f186b58f0e
 	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
-	github.com/lyraproj/pcore v0.0.0-20190320111839-ae4fd2637077
+	github.com/lyraproj/pcore v0.0.0-20190320221415-6e1d1bd9c47d
 	github.com/lyraproj/puppet-workflow v0.0.0-20190320115549-e9bceb46beee
 	github.com/lyraproj/servicesdk v0.0.0-20190320113120-6be298b18bf0
-	github.com/lyraproj/wfe v0.0.0-20190320113157-3f81dde879c7
+	github.com/lyraproj/wfe v0.0.0-20190321125752-37a17f3018a7
 	github.com/marstr/guid v1.1.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -42,7 +42,6 @@ require (
 	go.opencensus.io v0.19.0 // indirect
 	golang.org/x/exp v0.0.0-20190212162250-21964bba6549 // indirect
 	golang.org/x/oauth2 v0.0.0-20190212230446-3e8b2be13635 // indirect
-	gonum.org/v1/netlib v0.0.0-20190119082159-9be13e02fd56 // indirect
 	k8s.io/client-go v10.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.1.10
 )
