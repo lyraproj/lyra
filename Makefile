@@ -13,6 +13,12 @@ LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTag=$(shell git describe --all -
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --short HEAD)"
 
 GO_PLUGINS := $(subst cmd/,,$(wildcard cmd/goplugin-*))
+TERRAFORM_PLUGINS := \
+	terraformaws \
+	terraformazurerm \
+	terraformgithub \
+	terraformgoogle \
+	terraformkubernetes
 
 PHONY+= default
 default: LINTFLAGS = --fast
@@ -33,16 +39,23 @@ shrink:
 	done;
 
 PHONY+= plugins
-plugins: check-mods identity puppet-dsl
+plugins: check-mods identity puppet-dsl lyra-plugins terraform-plugins
+
+PHONY+= lyra-plugins
+lyra-plugins: check-mods
 	@$(foreach plugin,$(GO_PLUGINS),$(call build,goplugins/$(subst goplugin-,,$(plugin)),cmd/$(plugin)/main.go);)
+
+PHONY+= terraform-plugins
+terraform-plugins: check-mods
+	@$(foreach plugin,$(TERRAFORM_PLUGINS),$(call build,goplugins/$(plugin),github.com/lyraproj/terraform-bridge/cmd/goplugin-$(plugin));)
 
 PHONY+= identity
 identity:
-	$(call build,goplugins/identity,github.com/lyraproj/identity/main)
+	@$(call build,goplugins/identity,github.com/lyraproj/identity/main)
 
 PHONY+= puppet-dsl
 puppet-dsl:
-	$(call build,goplugins/puppet,github.com/lyraproj/puppet-workflow/main)
+	@$(call build,goplugins/puppet,github.com/lyraproj/puppet-workflow/main)
 
 PHONY+= lyra
 lyra: check-mods
