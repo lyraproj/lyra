@@ -8,6 +8,13 @@
 package external
 
 import (
+
+	// Identity service
 	_ "github.com/lyraproj/identity/identity"
+
+	// Puppet DSL service
 	_ "github.com/lyraproj/puppet-workflow/puppetwf"
+
+	// Terraform bridge
+	_ "github.com/lyraproj/terraform-bridge/pkg/bridge"
 )
