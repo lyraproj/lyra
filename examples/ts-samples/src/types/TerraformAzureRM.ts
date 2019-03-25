@@ -7,20 +7,20 @@ export class Azurerm_api_management implements PcoreValue {
   readonly publisher_email: string;
   readonly publisher_name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_api_management_sku_598[];
+  readonly sku: Azurerm_api_management_sku_10[];
   readonly azurerm_api_management_id: string|null;
-  readonly additional_location: Azurerm_api_management_additional_location_589[]|null;
-  readonly certificate: Azurerm_api_management_certificate_590[]|null;
+  readonly additional_location: Azurerm_api_management_additional_location_1[]|null;
+  readonly certificate: Azurerm_api_management_certificate_2[]|null;
   readonly gateway_regional_url: string|null;
   readonly gateway_url: string|null;
-  readonly hostname_configuration: Azurerm_api_management_hostname_configuration_591[]|null;
-  readonly identity: Azurerm_api_management_identity_596[]|null;
+  readonly hostname_configuration: Azurerm_api_management_hostname_configuration_3[]|null;
+  readonly identity: Azurerm_api_management_identity_8[]|null;
   readonly management_api_url: string|null;
   readonly notification_sender_email: string|null;
   readonly portal_url: string|null;
   readonly public_ip_addresses: string[]|null;
   readonly scm_url: string|null;
-  readonly security: Azurerm_api_management_security_597[]|null;
+  readonly security: Azurerm_api_management_security_9[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -50,20 +50,20 @@ export class Azurerm_api_management implements PcoreValue {
     publisher_email: string,
     publisher_name: string,
     resource_group_name: string,
-    sku: Azurerm_api_management_sku_598[],
+    sku: Azurerm_api_management_sku_10[],
     azurerm_api_management_id?: string|null,
-    additional_location?: Azurerm_api_management_additional_location_589[]|null,
-    certificate?: Azurerm_api_management_certificate_590[]|null,
+    additional_location?: Azurerm_api_management_additional_location_1[]|null,
+    certificate?: Azurerm_api_management_certificate_2[]|null,
     gateway_regional_url?: string|null,
     gateway_url?: string|null,
-    hostname_configuration?: Azurerm_api_management_hostname_configuration_591[]|null,
-    identity?: Azurerm_api_management_identity_596[]|null,
+    hostname_configuration?: Azurerm_api_management_hostname_configuration_3[]|null,
+    identity?: Azurerm_api_management_identity_8[]|null,
     management_api_url?: string|null,
     notification_sender_email?: string|null,
     portal_url?: string|null,
     public_ip_addresses?: string[]|null,
     scm_url?: string|null,
-    security?: Azurerm_api_management_security_597[]|null,
+    security?: Azurerm_api_management_security_9[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.location = location;
@@ -156,7 +156,7 @@ export class Azurerm_api_managementHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_api_management_additional_location_589 implements PcoreValue {
+export class Azurerm_api_management_additional_location_1 implements PcoreValue {
   readonly location: string;
   readonly gateway_regional_url: string|null;
   readonly public_ip_addresses: string[]|null;
@@ -188,11 +188,11 @@ export class Azurerm_api_management_additional_location_589 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_additional_location_589';
+    return 'TerraformAzureRM::Azurerm_api_management_additional_location_1';
   }
 }
 
-export class Azurerm_api_management_certificate_590 implements PcoreValue {
+export class Azurerm_api_management_certificate_2 implements PcoreValue {
   readonly certificate_password: string;
   readonly encoded_certificate: string;
   readonly store_name: string;
@@ -220,15 +220,15 @@ export class Azurerm_api_management_certificate_590 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_certificate_590';
+    return 'TerraformAzureRM::Azurerm_api_management_certificate_2';
   }
 }
 
-export class Azurerm_api_management_hostname_configuration_591 implements PcoreValue {
-  readonly management: Azurerm_api_management_hostname_configuration_591_management_592[]|null;
-  readonly portal: Azurerm_api_management_hostname_configuration_591_portal_593[]|null;
-  readonly proxy: Azurerm_api_management_hostname_configuration_591_proxy_594[]|null;
-  readonly scm: Azurerm_api_management_hostname_configuration_591_scm_595[]|null;
+export class Azurerm_api_management_hostname_configuration_3 implements PcoreValue {
+  readonly management: Azurerm_api_management_hostname_configuration_3_management_4[]|null;
+  readonly portal: Azurerm_api_management_hostname_configuration_3_portal_5[]|null;
+  readonly proxy: Azurerm_api_management_hostname_configuration_3_proxy_6[]|null;
+  readonly scm: Azurerm_api_management_hostname_configuration_3_scm_7[]|null;
 
   constructor({
     management = null,
@@ -236,10 +236,10 @@ export class Azurerm_api_management_hostname_configuration_591 implements PcoreV
     proxy = null,
     scm = null
   }: {
-    management?: Azurerm_api_management_hostname_configuration_591_management_592[]|null,
-    portal?: Azurerm_api_management_hostname_configuration_591_portal_593[]|null,
-    proxy?: Azurerm_api_management_hostname_configuration_591_proxy_594[]|null,
-    scm?: Azurerm_api_management_hostname_configuration_591_scm_595[]|null
+    management?: Azurerm_api_management_hostname_configuration_3_management_4[]|null,
+    portal?: Azurerm_api_management_hostname_configuration_3_portal_5[]|null,
+    proxy?: Azurerm_api_management_hostname_configuration_3_proxy_6[]|null,
+    scm?: Azurerm_api_management_hostname_configuration_3_scm_7[]|null
   }) {
     this.management = management;
     this.portal = portal;
@@ -265,11 +265,11 @@ export class Azurerm_api_management_hostname_configuration_591 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_591';
+    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_3';
   }
 }
 
-export class Azurerm_api_management_hostname_configuration_591_management_592 implements PcoreValue {
+export class Azurerm_api_management_hostname_configuration_3_management_4 implements PcoreValue {
   readonly host_name: string;
   readonly certificate: string|null;
   readonly certificate_password: string|null;
@@ -315,11 +315,11 @@ export class Azurerm_api_management_hostname_configuration_591_management_592 im
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_591_management_592';
+    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_3_management_4';
   }
 }
 
-export class Azurerm_api_management_hostname_configuration_591_portal_593 implements PcoreValue {
+export class Azurerm_api_management_hostname_configuration_3_portal_5 implements PcoreValue {
   readonly host_name: string;
   readonly certificate: string|null;
   readonly certificate_password: string|null;
@@ -365,11 +365,11 @@ export class Azurerm_api_management_hostname_configuration_591_portal_593 implem
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_591_portal_593';
+    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_3_portal_5';
   }
 }
 
-export class Azurerm_api_management_hostname_configuration_591_proxy_594 implements PcoreValue {
+export class Azurerm_api_management_hostname_configuration_3_proxy_6 implements PcoreValue {
   readonly host_name: string;
   readonly certificate: string|null;
   readonly certificate_password: string|null;
@@ -422,11 +422,11 @@ export class Azurerm_api_management_hostname_configuration_591_proxy_594 impleme
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_591_proxy_594';
+    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_3_proxy_6';
   }
 }
 
-export class Azurerm_api_management_hostname_configuration_591_scm_595 implements PcoreValue {
+export class Azurerm_api_management_hostname_configuration_3_scm_7 implements PcoreValue {
   readonly host_name: string;
   readonly certificate: string|null;
   readonly certificate_password: string|null;
@@ -472,11 +472,11 @@ export class Azurerm_api_management_hostname_configuration_591_scm_595 implement
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_591_scm_595';
+    return 'TerraformAzureRM::Azurerm_api_management_hostname_configuration_3_scm_7';
   }
 }
 
-export class Azurerm_api_management_identity_596 implements PcoreValue {
+export class Azurerm_api_management_identity_8 implements PcoreValue {
   readonly type: string;
   readonly principal_id: string|null;
   readonly tenant_id: string|null;
@@ -508,11 +508,11 @@ export class Azurerm_api_management_identity_596 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_identity_596';
+    return 'TerraformAzureRM::Azurerm_api_management_identity_8';
   }
 }
 
-export class Azurerm_api_management_security_597 implements PcoreValue {
+export class Azurerm_api_management_security_9 implements PcoreValue {
   readonly disable_backend_ssl30: boolean|null;
   readonly disable_backend_tls10: boolean|null;
   readonly disable_backend_tls11: boolean|null;
@@ -574,11 +574,11 @@ export class Azurerm_api_management_security_597 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_security_597';
+    return 'TerraformAzureRM::Azurerm_api_management_security_9';
   }
 }
 
-export class Azurerm_api_management_sku_598 implements PcoreValue {
+export class Azurerm_api_management_sku_10 implements PcoreValue {
   readonly capacity: number;
   readonly name: string;
 
@@ -601,7 +601,7 @@ export class Azurerm_api_management_sku_598 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_api_management_sku_598';
+    return 'TerraformAzureRM::Azurerm_api_management_sku_10';
   }
 }
 
@@ -613,16 +613,16 @@ export class Azurerm_app_service implements PcoreValue {
   readonly azurerm_app_service_id: string|null;
   readonly app_settings: {[s: string]: string}|null;
   readonly client_affinity_enabled: boolean|null;
-  readonly connection_string: Azurerm_app_service_connection_string_599[]|null;
+  readonly connection_string: Azurerm_app_service_connection_string_11[]|null;
   readonly default_site_hostname: string|null;
   readonly enabled: boolean|null;
   readonly https_only: boolean|null;
-  readonly identity: Azurerm_app_service_identity_600[]|null;
+  readonly identity: Azurerm_app_service_identity_12[]|null;
   readonly outbound_ip_addresses: string|null;
   readonly possible_outbound_ip_addresses: string|null;
-  readonly site_config: Azurerm_app_service_site_config_601[]|null;
-  readonly site_credential: Azurerm_app_service_site_credential_603[]|null;
-  readonly source_control: Azurerm_app_service_source_control_604[]|null;
+  readonly site_config: Azurerm_app_service_site_config_13[]|null;
+  readonly site_credential: Azurerm_app_service_site_credential_15[]|null;
+  readonly source_control: Azurerm_app_service_source_control_16[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -652,16 +652,16 @@ export class Azurerm_app_service implements PcoreValue {
     azurerm_app_service_id?: string|null,
     app_settings?: {[s: string]: string}|null,
     client_affinity_enabled?: boolean|null,
-    connection_string?: Azurerm_app_service_connection_string_599[]|null,
+    connection_string?: Azurerm_app_service_connection_string_11[]|null,
     default_site_hostname?: string|null,
     enabled?: boolean|null,
     https_only?: boolean|null,
-    identity?: Azurerm_app_service_identity_600[]|null,
+    identity?: Azurerm_app_service_identity_12[]|null,
     outbound_ip_addresses?: string|null,
     possible_outbound_ip_addresses?: string|null,
-    site_config?: Azurerm_app_service_site_config_601[]|null,
-    site_credential?: Azurerm_app_service_site_credential_603[]|null,
-    source_control?: Azurerm_app_service_source_control_604[]|null,
+    site_config?: Azurerm_app_service_site_config_13[]|null,
+    site_credential?: Azurerm_app_service_site_credential_15[]|null,
+    source_control?: Azurerm_app_service_source_control_16[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.app_service_plan_id = app_service_plan_id;
@@ -799,7 +799,7 @@ export class Azurerm_app_service_active_slotHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_app_service_connection_string_599 implements PcoreValue {
+export class Azurerm_app_service_connection_string_11 implements PcoreValue {
   readonly name: string;
   readonly type: string;
   readonly value: string;
@@ -827,7 +827,7 @@ export class Azurerm_app_service_connection_string_599 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_connection_string_599';
+    return 'TerraformAzureRM::Azurerm_app_service_connection_string_11';
   }
 }
 
@@ -880,7 +880,7 @@ export class Azurerm_app_service_custom_hostname_bindingHandler implements Pcore
   }
 }
 
-export class Azurerm_app_service_identity_600 implements PcoreValue {
+export class Azurerm_app_service_identity_12 implements PcoreValue {
   readonly type: string;
   readonly principal_id: string|null;
   readonly tenant_id: string|null;
@@ -912,7 +912,7 @@ export class Azurerm_app_service_identity_600 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_identity_600';
+    return 'TerraformAzureRM::Azurerm_app_service_identity_12';
   }
 }
 
@@ -920,13 +920,13 @@ export class Azurerm_app_service_plan implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_app_service_plan_sku_606[];
+  readonly sku: Azurerm_app_service_plan_sku_18[];
   readonly azurerm_app_service_plan_id: string|null;
   readonly app_service_environment_id: string|null;
   readonly kind: string|null;
   readonly maximum_number_of_workers: number|null;
   readonly per_site_scaling: boolean|null;
-  readonly properties: Azurerm_app_service_plan_properties_605[]|null;
+  readonly properties: Azurerm_app_service_plan_properties_17[]|null;
   readonly reserved: boolean|null;
   readonly tags: {[s: string]: string}|null;
 
@@ -947,13 +947,13 @@ export class Azurerm_app_service_plan implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_app_service_plan_sku_606[],
+    sku: Azurerm_app_service_plan_sku_18[],
     azurerm_app_service_plan_id?: string|null,
     app_service_environment_id?: string|null,
     kind?: string|null,
     maximum_number_of_workers?: number|null,
     per_site_scaling?: boolean|null,
-    properties?: Azurerm_app_service_plan_properties_605[]|null,
+    properties?: Azurerm_app_service_plan_properties_17[]|null,
     reserved?: boolean|null,
     tags?: {[s: string]: string}|null
   }) {
@@ -1019,7 +1019,7 @@ export class Azurerm_app_service_planHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_app_service_plan_properties_605 implements PcoreValue {
+export class Azurerm_app_service_plan_properties_17 implements PcoreValue {
   readonly app_service_environment_id: string|null;
   readonly per_site_scaling: boolean|null;
   readonly reserved: boolean|null;
@@ -1053,11 +1053,11 @@ export class Azurerm_app_service_plan_properties_605 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_plan_properties_605';
+    return 'TerraformAzureRM::Azurerm_app_service_plan_properties_17';
   }
 }
 
-export class Azurerm_app_service_plan_sku_606 implements PcoreValue {
+export class Azurerm_app_service_plan_sku_18 implements PcoreValue {
   readonly size: string;
   readonly tier: string;
   readonly capacity: number|null;
@@ -1087,18 +1087,18 @@ export class Azurerm_app_service_plan_sku_606 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_plan_sku_606';
+    return 'TerraformAzureRM::Azurerm_app_service_plan_sku_18';
   }
 }
 
-export class Azurerm_app_service_site_config_601 implements PcoreValue {
+export class Azurerm_app_service_site_config_13 implements PcoreValue {
   readonly always_on: boolean|null;
   readonly app_command_line: string|null;
   readonly default_documents: string[]|null;
   readonly dotnet_framework_version: string|null;
   readonly ftps_state: string|null;
   readonly http2_enabled: boolean|null;
-  readonly ip_restriction: Azurerm_app_service_site_config_601_ip_restriction_602[]|null;
+  readonly ip_restriction: Azurerm_app_service_site_config_13_ip_restriction_14[]|null;
   readonly java_container: string|null;
   readonly java_container_version: string|null;
   readonly java_version: string|null;
@@ -1145,7 +1145,7 @@ export class Azurerm_app_service_site_config_601 implements PcoreValue {
     dotnet_framework_version?: string|null,
     ftps_state?: string|null,
     http2_enabled?: boolean|null,
-    ip_restriction?: Azurerm_app_service_site_config_601_ip_restriction_602[]|null,
+    ip_restriction?: Azurerm_app_service_site_config_13_ip_restriction_14[]|null,
     java_container?: string|null,
     java_container_version?: string|null,
     java_version?: string|null,
@@ -1258,11 +1258,11 @@ export class Azurerm_app_service_site_config_601 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_site_config_601';
+    return 'TerraformAzureRM::Azurerm_app_service_site_config_13';
   }
 }
 
-export class Azurerm_app_service_site_config_601_ip_restriction_602 implements PcoreValue {
+export class Azurerm_app_service_site_config_13_ip_restriction_14 implements PcoreValue {
   readonly ip_address: string;
   readonly subnet_mask: string|null;
 
@@ -1287,11 +1287,11 @@ export class Azurerm_app_service_site_config_601_ip_restriction_602 implements P
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_site_config_601_ip_restriction_602';
+    return 'TerraformAzureRM::Azurerm_app_service_site_config_13_ip_restriction_14';
   }
 }
 
-export class Azurerm_app_service_site_credential_603 implements PcoreValue {
+export class Azurerm_app_service_site_credential_15 implements PcoreValue {
   readonly password: string|null;
   readonly username: string|null;
 
@@ -1318,7 +1318,7 @@ export class Azurerm_app_service_site_credential_603 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_site_credential_603';
+    return 'TerraformAzureRM::Azurerm_app_service_site_credential_15';
   }
 }
 
@@ -1331,12 +1331,12 @@ export class Azurerm_app_service_slot implements PcoreValue {
   readonly azurerm_app_service_slot_id: string|null;
   readonly app_settings: {[s: string]: string}|null;
   readonly client_affinity_enabled: boolean|null;
-  readonly connection_string: Azurerm_app_service_slot_connection_string_607[]|null;
+  readonly connection_string: Azurerm_app_service_slot_connection_string_19[]|null;
   readonly default_site_hostname: string|null;
   readonly enabled: boolean|null;
   readonly https_only: boolean|null;
-  readonly identity: Azurerm_app_service_slot_identity_608[]|null;
-  readonly site_config: Azurerm_app_service_slot_site_config_609[]|null;
+  readonly identity: Azurerm_app_service_slot_identity_20[]|null;
+  readonly site_config: Azurerm_app_service_slot_site_config_21[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -1364,12 +1364,12 @@ export class Azurerm_app_service_slot implements PcoreValue {
     azurerm_app_service_slot_id?: string|null,
     app_settings?: {[s: string]: string}|null,
     client_affinity_enabled?: boolean|null,
-    connection_string?: Azurerm_app_service_slot_connection_string_607[]|null,
+    connection_string?: Azurerm_app_service_slot_connection_string_19[]|null,
     default_site_hostname?: string|null,
     enabled?: boolean|null,
     https_only?: boolean|null,
-    identity?: Azurerm_app_service_slot_identity_608[]|null,
-    site_config?: Azurerm_app_service_slot_site_config_609[]|null,
+    identity?: Azurerm_app_service_slot_identity_20[]|null,
+    site_config?: Azurerm_app_service_slot_site_config_21[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.app_service_name = app_service_name;
@@ -1444,7 +1444,7 @@ export class Azurerm_app_service_slotHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_app_service_slot_connection_string_607 implements PcoreValue {
+export class Azurerm_app_service_slot_connection_string_19 implements PcoreValue {
   readonly name: string;
   readonly type: string;
   readonly value: string;
@@ -1472,11 +1472,11 @@ export class Azurerm_app_service_slot_connection_string_607 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_slot_connection_string_607';
+    return 'TerraformAzureRM::Azurerm_app_service_slot_connection_string_19';
   }
 }
 
-export class Azurerm_app_service_slot_identity_608 implements PcoreValue {
+export class Azurerm_app_service_slot_identity_20 implements PcoreValue {
   readonly type: string;
   readonly principal_id: string|null;
   readonly tenant_id: string|null;
@@ -1508,18 +1508,18 @@ export class Azurerm_app_service_slot_identity_608 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_slot_identity_608';
+    return 'TerraformAzureRM::Azurerm_app_service_slot_identity_20';
   }
 }
 
-export class Azurerm_app_service_slot_site_config_609 implements PcoreValue {
+export class Azurerm_app_service_slot_site_config_21 implements PcoreValue {
   readonly always_on: boolean|null;
   readonly app_command_line: string|null;
   readonly default_documents: string[]|null;
   readonly dotnet_framework_version: string|null;
   readonly ftps_state: string|null;
   readonly http2_enabled: boolean|null;
-  readonly ip_restriction: Azurerm_app_service_slot_site_config_609_ip_restriction_610[]|null;
+  readonly ip_restriction: Azurerm_app_service_slot_site_config_21_ip_restriction_22[]|null;
   readonly java_container: string|null;
   readonly java_container_version: string|null;
   readonly java_version: string|null;
@@ -1566,7 +1566,7 @@ export class Azurerm_app_service_slot_site_config_609 implements PcoreValue {
     dotnet_framework_version?: string|null,
     ftps_state?: string|null,
     http2_enabled?: boolean|null,
-    ip_restriction?: Azurerm_app_service_slot_site_config_609_ip_restriction_610[]|null,
+    ip_restriction?: Azurerm_app_service_slot_site_config_21_ip_restriction_22[]|null,
     java_container?: string|null,
     java_container_version?: string|null,
     java_version?: string|null,
@@ -1679,11 +1679,11 @@ export class Azurerm_app_service_slot_site_config_609 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_slot_site_config_609';
+    return 'TerraformAzureRM::Azurerm_app_service_slot_site_config_21';
   }
 }
 
-export class Azurerm_app_service_slot_site_config_609_ip_restriction_610 implements PcoreValue {
+export class Azurerm_app_service_slot_site_config_21_ip_restriction_22 implements PcoreValue {
   readonly ip_address: string;
   readonly subnet_mask: string|null;
 
@@ -1708,11 +1708,11 @@ export class Azurerm_app_service_slot_site_config_609_ip_restriction_610 impleme
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_slot_site_config_609_ip_restriction_610';
+    return 'TerraformAzureRM::Azurerm_app_service_slot_site_config_21_ip_restriction_22';
   }
 }
 
-export class Azurerm_app_service_source_control_604 implements PcoreValue {
+export class Azurerm_app_service_source_control_16 implements PcoreValue {
   readonly branch: string|null;
   readonly repo_url: string|null;
 
@@ -1739,30 +1739,30 @@ export class Azurerm_app_service_source_control_604 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_app_service_source_control_604';
+    return 'TerraformAzureRM::Azurerm_app_service_source_control_16';
   }
 }
 
 export class Azurerm_application_gateway implements PcoreValue {
-  readonly backend_address_pool: Azurerm_application_gateway_backend_address_pool_612[];
-  readonly backend_http_settings: Azurerm_application_gateway_backend_http_settings_613[];
-  readonly frontend_ip_configuration: Azurerm_application_gateway_frontend_ip_configuration_615[];
-  readonly frontend_port: Azurerm_application_gateway_frontend_port_616[];
-  readonly gateway_ip_configuration: Azurerm_application_gateway_gateway_ip_configuration_617[];
-  readonly http_listener: Azurerm_application_gateway_http_listener_618[];
+  readonly backend_address_pool: Azurerm_application_gateway_backend_address_pool_24[];
+  readonly backend_http_settings: Azurerm_application_gateway_backend_http_settings_25[];
+  readonly frontend_ip_configuration: Azurerm_application_gateway_frontend_ip_configuration_27[];
+  readonly frontend_port: Azurerm_application_gateway_frontend_port_28[];
+  readonly gateway_ip_configuration: Azurerm_application_gateway_gateway_ip_configuration_29[];
+  readonly http_listener: Azurerm_application_gateway_http_listener_30[];
   readonly location: string;
   readonly name: string;
-  readonly request_routing_rule: Azurerm_application_gateway_request_routing_rule_621[];
+  readonly request_routing_rule: Azurerm_application_gateway_request_routing_rule_33[];
   readonly resource_group_name: string;
-  readonly sku: Azurerm_application_gateway_sku_622[];
+  readonly sku: Azurerm_application_gateway_sku_34[];
   readonly azurerm_application_gateway_id: string|null;
-  readonly authentication_certificate: Azurerm_application_gateway_authentication_certificate_611[]|null;
+  readonly authentication_certificate: Azurerm_application_gateway_authentication_certificate_23[]|null;
   readonly disabled_ssl_protocols: string[]|null;
-  readonly probe: Azurerm_application_gateway_probe_619[]|null;
-  readonly ssl_certificate: Azurerm_application_gateway_ssl_certificate_623[]|null;
+  readonly probe: Azurerm_application_gateway_probe_31[]|null;
+  readonly ssl_certificate: Azurerm_application_gateway_ssl_certificate_35[]|null;
   readonly tags: {[s: string]: string}|null;
-  readonly url_path_map: Azurerm_application_gateway_url_path_map_624[]|null;
-  readonly waf_configuration: Azurerm_application_gateway_waf_configuration_626[]|null;
+  readonly url_path_map: Azurerm_application_gateway_url_path_map_36[]|null;
+  readonly waf_configuration: Azurerm_application_gateway_waf_configuration_38[]|null;
 
   constructor({
     backend_address_pool,
@@ -1785,25 +1785,25 @@ export class Azurerm_application_gateway implements PcoreValue {
     url_path_map = null,
     waf_configuration = null
   }: {
-    backend_address_pool: Azurerm_application_gateway_backend_address_pool_612[],
-    backend_http_settings: Azurerm_application_gateway_backend_http_settings_613[],
-    frontend_ip_configuration: Azurerm_application_gateway_frontend_ip_configuration_615[],
-    frontend_port: Azurerm_application_gateway_frontend_port_616[],
-    gateway_ip_configuration: Azurerm_application_gateway_gateway_ip_configuration_617[],
-    http_listener: Azurerm_application_gateway_http_listener_618[],
+    backend_address_pool: Azurerm_application_gateway_backend_address_pool_24[],
+    backend_http_settings: Azurerm_application_gateway_backend_http_settings_25[],
+    frontend_ip_configuration: Azurerm_application_gateway_frontend_ip_configuration_27[],
+    frontend_port: Azurerm_application_gateway_frontend_port_28[],
+    gateway_ip_configuration: Azurerm_application_gateway_gateway_ip_configuration_29[],
+    http_listener: Azurerm_application_gateway_http_listener_30[],
     location: string,
     name: string,
-    request_routing_rule: Azurerm_application_gateway_request_routing_rule_621[],
+    request_routing_rule: Azurerm_application_gateway_request_routing_rule_33[],
     resource_group_name: string,
-    sku: Azurerm_application_gateway_sku_622[],
+    sku: Azurerm_application_gateway_sku_34[],
     azurerm_application_gateway_id?: string|null,
-    authentication_certificate?: Azurerm_application_gateway_authentication_certificate_611[]|null,
+    authentication_certificate?: Azurerm_application_gateway_authentication_certificate_23[]|null,
     disabled_ssl_protocols?: string[]|null,
-    probe?: Azurerm_application_gateway_probe_619[]|null,
-    ssl_certificate?: Azurerm_application_gateway_ssl_certificate_623[]|null,
+    probe?: Azurerm_application_gateway_probe_31[]|null,
+    ssl_certificate?: Azurerm_application_gateway_ssl_certificate_35[]|null,
     tags?: {[s: string]: string}|null,
-    url_path_map?: Azurerm_application_gateway_url_path_map_624[]|null,
-    waf_configuration?: Azurerm_application_gateway_waf_configuration_626[]|null
+    url_path_map?: Azurerm_application_gateway_url_path_map_36[]|null,
+    waf_configuration?: Azurerm_application_gateway_waf_configuration_38[]|null
   }) {
     this.backend_address_pool = backend_address_pool;
     this.backend_http_settings = backend_http_settings;
@@ -1881,7 +1881,7 @@ export class Azurerm_application_gatewayHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_application_gateway_authentication_certificate_611 implements PcoreValue {
+export class Azurerm_application_gateway_authentication_certificate_23 implements PcoreValue {
   readonly data: string;
   readonly name: string;
   readonly id: string|null;
@@ -1911,11 +1911,11 @@ export class Azurerm_application_gateway_authentication_certificate_611 implemen
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_authentication_certificate_611';
+    return 'TerraformAzureRM::Azurerm_application_gateway_authentication_certificate_23';
   }
 }
 
-export class Azurerm_application_gateway_backend_address_pool_612 implements PcoreValue {
+export class Azurerm_application_gateway_backend_address_pool_24 implements PcoreValue {
   readonly name: string;
   readonly fqdn_list: string[]|null;
   readonly id: string|null;
@@ -1954,16 +1954,16 @@ export class Azurerm_application_gateway_backend_address_pool_612 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_backend_address_pool_612';
+    return 'TerraformAzureRM::Azurerm_application_gateway_backend_address_pool_24';
   }
 }
 
-export class Azurerm_application_gateway_backend_http_settings_613 implements PcoreValue {
+export class Azurerm_application_gateway_backend_http_settings_25 implements PcoreValue {
   readonly cookie_based_affinity: string;
   readonly name: string;
   readonly port: number;
   readonly protocol: string;
-  readonly authentication_certificate: Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614[]|null;
+  readonly authentication_certificate: Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26[]|null;
   readonly id: string|null;
   readonly probe_id: string|null;
   readonly probe_name: string|null;
@@ -1984,7 +1984,7 @@ export class Azurerm_application_gateway_backend_http_settings_613 implements Pc
     name: string,
     port: number,
     protocol: string,
-    authentication_certificate?: Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614[]|null,
+    authentication_certificate?: Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26[]|null,
     id?: string|null,
     probe_id?: string|null,
     probe_name?: string|null,
@@ -2026,11 +2026,11 @@ export class Azurerm_application_gateway_backend_http_settings_613 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_backend_http_settings_613';
+    return 'TerraformAzureRM::Azurerm_application_gateway_backend_http_settings_25';
   }
 }
 
-export class Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614 implements PcoreValue {
+export class Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26 implements PcoreValue {
   readonly name: string;
   readonly id: string|null;
 
@@ -2055,11 +2055,11 @@ export class Azurerm_application_gateway_backend_http_settings_613_authenticatio
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_backend_http_settings_613_authentication_certificate_614';
+    return 'TerraformAzureRM::Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26';
   }
 }
 
-export class Azurerm_application_gateway_frontend_ip_configuration_615 implements PcoreValue {
+export class Azurerm_application_gateway_frontend_ip_configuration_27 implements PcoreValue {
   readonly name: string;
   readonly id: string|null;
   readonly private_ip_address: string|null;
@@ -2112,11 +2112,11 @@ export class Azurerm_application_gateway_frontend_ip_configuration_615 implement
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_frontend_ip_configuration_615';
+    return 'TerraformAzureRM::Azurerm_application_gateway_frontend_ip_configuration_27';
   }
 }
 
-export class Azurerm_application_gateway_frontend_port_616 implements PcoreValue {
+export class Azurerm_application_gateway_frontend_port_28 implements PcoreValue {
   readonly name: string;
   readonly port: number;
   readonly id: string|null;
@@ -2146,11 +2146,11 @@ export class Azurerm_application_gateway_frontend_port_616 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_frontend_port_616';
+    return 'TerraformAzureRM::Azurerm_application_gateway_frontend_port_28';
   }
 }
 
-export class Azurerm_application_gateway_gateway_ip_configuration_617 implements PcoreValue {
+export class Azurerm_application_gateway_gateway_ip_configuration_29 implements PcoreValue {
   readonly name: string;
   readonly subnet_id: string;
   readonly id: string|null;
@@ -2180,11 +2180,11 @@ export class Azurerm_application_gateway_gateway_ip_configuration_617 implements
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_gateway_ip_configuration_617';
+    return 'TerraformAzureRM::Azurerm_application_gateway_gateway_ip_configuration_29';
   }
 }
 
-export class Azurerm_application_gateway_http_listener_618 implements PcoreValue {
+export class Azurerm_application_gateway_http_listener_30 implements PcoreValue {
   readonly frontend_ip_configuration_name: string;
   readonly frontend_port_name: string;
   readonly name: string;
@@ -2266,11 +2266,11 @@ export class Azurerm_application_gateway_http_listener_618 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_http_listener_618';
+    return 'TerraformAzureRM::Azurerm_application_gateway_http_listener_30';
   }
 }
 
-export class Azurerm_application_gateway_probe_619 implements PcoreValue {
+export class Azurerm_application_gateway_probe_31 implements PcoreValue {
   readonly host: string;
   readonly interval: number;
   readonly name: string;
@@ -2279,7 +2279,7 @@ export class Azurerm_application_gateway_probe_619 implements PcoreValue {
   readonly timeout: number;
   readonly unhealthy_threshold: number;
   readonly id: string|null;
-  readonly match: Azurerm_application_gateway_probe_619_match_620[]|null;
+  readonly match: Azurerm_application_gateway_probe_31_match_32[]|null;
   readonly minimum_servers: number|null;
 
   constructor({
@@ -2302,7 +2302,7 @@ export class Azurerm_application_gateway_probe_619 implements PcoreValue {
     timeout: number,
     unhealthy_threshold: number,
     id?: string|null,
-    match?: Azurerm_application_gateway_probe_619_match_620[]|null,
+    match?: Azurerm_application_gateway_probe_31_match_32[]|null,
     minimum_servers?: number|null
   }) {
     this.host = host;
@@ -2339,11 +2339,11 @@ export class Azurerm_application_gateway_probe_619 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_probe_619';
+    return 'TerraformAzureRM::Azurerm_application_gateway_probe_31';
   }
 }
 
-export class Azurerm_application_gateway_probe_619_match_620 implements PcoreValue {
+export class Azurerm_application_gateway_probe_31_match_32 implements PcoreValue {
   readonly body: string|null;
   readonly status_code: string[]|null;
 
@@ -2370,11 +2370,11 @@ export class Azurerm_application_gateway_probe_619_match_620 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_probe_619_match_620';
+    return 'TerraformAzureRM::Azurerm_application_gateway_probe_31_match_32';
   }
 }
 
-export class Azurerm_application_gateway_request_routing_rule_621 implements PcoreValue {
+export class Azurerm_application_gateway_request_routing_rule_33 implements PcoreValue {
   readonly http_listener_name: string;
   readonly name: string;
   readonly rule_type: string;
@@ -2458,11 +2458,11 @@ export class Azurerm_application_gateway_request_routing_rule_621 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_request_routing_rule_621';
+    return 'TerraformAzureRM::Azurerm_application_gateway_request_routing_rule_33';
   }
 }
 
-export class Azurerm_application_gateway_sku_622 implements PcoreValue {
+export class Azurerm_application_gateway_sku_34 implements PcoreValue {
   readonly capacity: number;
   readonly name: string;
   readonly tier: string;
@@ -2490,11 +2490,11 @@ export class Azurerm_application_gateway_sku_622 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_sku_622';
+    return 'TerraformAzureRM::Azurerm_application_gateway_sku_34';
   }
 }
 
-export class Azurerm_application_gateway_ssl_certificate_623 implements PcoreValue {
+export class Azurerm_application_gateway_ssl_certificate_35 implements PcoreValue {
   readonly data: string;
   readonly name: string;
   readonly password: string;
@@ -2536,15 +2536,15 @@ export class Azurerm_application_gateway_ssl_certificate_623 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_ssl_certificate_623';
+    return 'TerraformAzureRM::Azurerm_application_gateway_ssl_certificate_35';
   }
 }
 
-export class Azurerm_application_gateway_url_path_map_624 implements PcoreValue {
+export class Azurerm_application_gateway_url_path_map_36 implements PcoreValue {
   readonly default_backend_address_pool_name: string;
   readonly default_backend_http_settings_name: string;
   readonly name: string;
-  readonly path_rule: Azurerm_application_gateway_url_path_map_624_path_rule_625[];
+  readonly path_rule: Azurerm_application_gateway_url_path_map_36_path_rule_37[];
   readonly default_backend_address_pool_id: string|null;
   readonly default_backend_http_settings_id: string|null;
   readonly id: string|null;
@@ -2561,7 +2561,7 @@ export class Azurerm_application_gateway_url_path_map_624 implements PcoreValue 
     default_backend_address_pool_name: string,
     default_backend_http_settings_name: string,
     name: string,
-    path_rule: Azurerm_application_gateway_url_path_map_624_path_rule_625[],
+    path_rule: Azurerm_application_gateway_url_path_map_36_path_rule_37[],
     default_backend_address_pool_id?: string|null,
     default_backend_http_settings_id?: string|null,
     id?: string|null
@@ -2594,11 +2594,11 @@ export class Azurerm_application_gateway_url_path_map_624 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_url_path_map_624';
+    return 'TerraformAzureRM::Azurerm_application_gateway_url_path_map_36';
   }
 }
 
-export class Azurerm_application_gateway_url_path_map_624_path_rule_625 implements PcoreValue {
+export class Azurerm_application_gateway_url_path_map_36_path_rule_37 implements PcoreValue {
   readonly backend_address_pool_name: string;
   readonly backend_http_settings_name: string;
   readonly name: string;
@@ -2652,11 +2652,11 @@ export class Azurerm_application_gateway_url_path_map_624_path_rule_625 implemen
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_url_path_map_624_path_rule_625';
+    return 'TerraformAzureRM::Azurerm_application_gateway_url_path_map_36_path_rule_37';
   }
 }
 
-export class Azurerm_application_gateway_waf_configuration_626 implements PcoreValue {
+export class Azurerm_application_gateway_waf_configuration_38 implements PcoreValue {
   readonly enabled: boolean;
   readonly firewall_mode: string;
   readonly rule_set_version: string;
@@ -2691,7 +2691,7 @@ export class Azurerm_application_gateway_waf_configuration_626 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_application_gateway_waf_configuration_626';
+    return 'TerraformAzureRM::Azurerm_application_gateway_waf_configuration_38';
   }
 }
 
@@ -2895,7 +2895,7 @@ export class Azurerm_automation_account implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_automation_account_sku_627[];
+  readonly sku: Azurerm_automation_account_sku_39[];
   readonly azurerm_automation_account_id: string|null;
   readonly dsc_primary_access_key: string|null;
   readonly dsc_secondary_access_key: string|null;
@@ -2916,7 +2916,7 @@ export class Azurerm_automation_account implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_automation_account_sku_627[],
+    sku: Azurerm_automation_account_sku_39[],
     azurerm_automation_account_id?: string|null,
     dsc_primary_access_key?: string|null,
     dsc_secondary_access_key?: string|null,
@@ -2973,7 +2973,7 @@ export class Azurerm_automation_accountHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_automation_account_sku_627 implements PcoreValue {
+export class Azurerm_automation_account_sku_39 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -2993,7 +2993,7 @@ export class Azurerm_automation_account_sku_627 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_automation_account_sku_627';
+    return 'TerraformAzureRM::Azurerm_automation_account_sku_39';
   }
 }
 
@@ -3206,7 +3206,7 @@ export class Azurerm_automation_dsc_nodeconfigurationHandler implements PcoreVal
 
 export class Azurerm_automation_module implements PcoreValue {
   readonly automation_account_name: string;
-  readonly module_link: Azurerm_automation_module_module_link_628[];
+  readonly module_link: Azurerm_automation_module_module_link_40[];
   readonly name: string;
   readonly resource_group_name: string;
   readonly azurerm_automation_module_id: string|null;
@@ -3219,7 +3219,7 @@ export class Azurerm_automation_module implements PcoreValue {
     azurerm_automation_module_id = null
   }: {
     automation_account_name: string,
-    module_link: Azurerm_automation_module_module_link_628[],
+    module_link: Azurerm_automation_module_module_link_40[],
     name: string,
     resource_group_name: string,
     azurerm_automation_module_id?: string|null
@@ -3258,16 +3258,16 @@ export class Azurerm_automation_moduleHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_automation_module_module_link_628 implements PcoreValue {
+export class Azurerm_automation_module_module_link_40 implements PcoreValue {
   readonly uri: string;
-  readonly hash: Azurerm_automation_module_module_link_628_hash_629[]|null;
+  readonly hash: Azurerm_automation_module_module_link_40_hash_41[]|null;
 
   constructor({
     uri,
     hash = null
   }: {
     uri: string,
-    hash?: Azurerm_automation_module_module_link_628_hash_629[]|null
+    hash?: Azurerm_automation_module_module_link_40_hash_41[]|null
   }) {
     this.uri = uri;
     this.hash = hash;
@@ -3283,11 +3283,11 @@ export class Azurerm_automation_module_module_link_628 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_automation_module_module_link_628';
+    return 'TerraformAzureRM::Azurerm_automation_module_module_link_40';
   }
 }
 
-export class Azurerm_automation_module_module_link_628_hash_629 implements PcoreValue {
+export class Azurerm_automation_module_module_link_40_hash_41 implements PcoreValue {
   readonly algorithm: string;
   readonly value: string;
 
@@ -3310,7 +3310,7 @@ export class Azurerm_automation_module_module_link_628_hash_629 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_automation_module_module_link_628_hash_629';
+    return 'TerraformAzureRM::Azurerm_automation_module_module_link_40_hash_41';
   }
 }
 
@@ -3320,7 +3320,7 @@ export class Azurerm_automation_runbook implements PcoreValue {
   readonly log_progress: boolean;
   readonly log_verbose: boolean;
   readonly name: string;
-  readonly publish_content_link: Azurerm_automation_runbook_publish_content_link_630[];
+  readonly publish_content_link: Azurerm_automation_runbook_publish_content_link_42[];
   readonly resource_group_name: string;
   readonly runbook_type: string;
   readonly azurerm_automation_runbook_id: string|null;
@@ -3347,7 +3347,7 @@ export class Azurerm_automation_runbook implements PcoreValue {
     log_progress: boolean,
     log_verbose: boolean,
     name: string,
-    publish_content_link: Azurerm_automation_runbook_publish_content_link_630[],
+    publish_content_link: Azurerm_automation_runbook_publish_content_link_42[],
     resource_group_name: string,
     runbook_type: string,
     azurerm_automation_runbook_id?: string|null,
@@ -3409,9 +3409,9 @@ export class Azurerm_automation_runbookHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_automation_runbook_publish_content_link_630 implements PcoreValue {
+export class Azurerm_automation_runbook_publish_content_link_42 implements PcoreValue {
   readonly uri: string;
-  readonly hash: Azurerm_automation_runbook_publish_content_link_630_hash_631[]|null;
+  readonly hash: Azurerm_automation_runbook_publish_content_link_42_hash_43[]|null;
   readonly version: string|null;
 
   constructor({
@@ -3420,7 +3420,7 @@ export class Azurerm_automation_runbook_publish_content_link_630 implements Pcor
     version = null
   }: {
     uri: string,
-    hash?: Azurerm_automation_runbook_publish_content_link_630_hash_631[]|null,
+    hash?: Azurerm_automation_runbook_publish_content_link_42_hash_43[]|null,
     version?: string|null
   }) {
     this.uri = uri;
@@ -3441,11 +3441,11 @@ export class Azurerm_automation_runbook_publish_content_link_630 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_automation_runbook_publish_content_link_630';
+    return 'TerraformAzureRM::Azurerm_automation_runbook_publish_content_link_42';
   }
 }
 
-export class Azurerm_automation_runbook_publish_content_link_630_hash_631 implements PcoreValue {
+export class Azurerm_automation_runbook_publish_content_link_42_hash_43 implements PcoreValue {
   readonly algorithm: string;
   readonly value: string;
 
@@ -3468,7 +3468,7 @@ export class Azurerm_automation_runbook_publish_content_link_630_hash_631 implem
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_automation_runbook_publish_content_link_630_hash_631';
+    return 'TerraformAzureRM::Azurerm_automation_runbook_publish_content_link_42_hash_43';
   }
 }
 
@@ -3483,7 +3483,7 @@ export class Azurerm_automation_schedule implements PcoreValue {
   readonly expiry_time: string|null;
   readonly interval: number|null;
   readonly month_days: number[]|null;
-  readonly monthly_occurrence: Azurerm_automation_schedule_monthly_occurrence_632[]|null;
+  readonly monthly_occurrence: Azurerm_automation_schedule_monthly_occurrence_44[]|null;
   readonly start_time: string|null;
   readonly timezone: string|null;
   readonly week_days: string[]|null;
@@ -3514,7 +3514,7 @@ export class Azurerm_automation_schedule implements PcoreValue {
     expiry_time?: string|null,
     interval?: number|null,
     month_days?: number[]|null,
-    monthly_occurrence?: Azurerm_automation_schedule_monthly_occurrence_632[]|null,
+    monthly_occurrence?: Azurerm_automation_schedule_monthly_occurrence_44[]|null,
     start_time?: string|null,
     timezone?: string|null,
     week_days?: string[]|null
@@ -3591,7 +3591,7 @@ export class Azurerm_automation_scheduleHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_automation_schedule_monthly_occurrence_632 implements PcoreValue {
+export class Azurerm_automation_schedule_monthly_occurrence_44 implements PcoreValue {
   readonly day: string;
   readonly occurrence: number;
 
@@ -3614,19 +3614,19 @@ export class Azurerm_automation_schedule_monthly_occurrence_632 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_automation_schedule_monthly_occurrence_632';
+    return 'TerraformAzureRM::Azurerm_automation_schedule_monthly_occurrence_44';
   }
 }
 
 export class Azurerm_autoscale_setting implements PcoreValue {
   readonly location: string;
   readonly name: string;
-  readonly profile: Azurerm_autoscale_setting_profile_636[];
+  readonly profile: Azurerm_autoscale_setting_profile_48[];
   readonly resource_group_name: string;
   readonly target_resource_id: string;
   readonly azurerm_autoscale_setting_id: string|null;
   readonly enabled: boolean|null;
-  readonly notification: Azurerm_autoscale_setting_notification_633[]|null;
+  readonly notification: Azurerm_autoscale_setting_notification_45[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -3642,12 +3642,12 @@ export class Azurerm_autoscale_setting implements PcoreValue {
   }: {
     location: string,
     name: string,
-    profile: Azurerm_autoscale_setting_profile_636[],
+    profile: Azurerm_autoscale_setting_profile_48[],
     resource_group_name: string,
     target_resource_id: string,
     azurerm_autoscale_setting_id?: string|null,
     enabled?: boolean|null,
-    notification?: Azurerm_autoscale_setting_notification_633[]|null,
+    notification?: Azurerm_autoscale_setting_notification_45[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.location = location;
@@ -3698,16 +3698,16 @@ export class Azurerm_autoscale_settingHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_autoscale_setting_notification_633 implements PcoreValue {
-  readonly email: Azurerm_autoscale_setting_notification_633_email_634[]|null;
-  readonly webhook: Azurerm_autoscale_setting_notification_633_webhook_635[]|null;
+export class Azurerm_autoscale_setting_notification_45 implements PcoreValue {
+  readonly email: Azurerm_autoscale_setting_notification_45_email_46[]|null;
+  readonly webhook: Azurerm_autoscale_setting_notification_45_webhook_47[]|null;
 
   constructor({
     email = null,
     webhook = null
   }: {
-    email?: Azurerm_autoscale_setting_notification_633_email_634[]|null,
-    webhook?: Azurerm_autoscale_setting_notification_633_webhook_635[]|null
+    email?: Azurerm_autoscale_setting_notification_45_email_46[]|null,
+    webhook?: Azurerm_autoscale_setting_notification_45_webhook_47[]|null
   }) {
     this.email = email;
     this.webhook = webhook;
@@ -3725,11 +3725,11 @@ export class Azurerm_autoscale_setting_notification_633 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_notification_633';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_notification_45';
   }
 }
 
-export class Azurerm_autoscale_setting_notification_633_email_634 implements PcoreValue {
+export class Azurerm_autoscale_setting_notification_45_email_46 implements PcoreValue {
   readonly custom_emails: string[]|null;
   readonly send_to_subscription_administrator: boolean|null;
   readonly send_to_subscription_co_administrator: boolean|null;
@@ -3763,11 +3763,11 @@ export class Azurerm_autoscale_setting_notification_633_email_634 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_notification_633_email_634';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_notification_45_email_46';
   }
 }
 
-export class Azurerm_autoscale_setting_notification_633_webhook_635 implements PcoreValue {
+export class Azurerm_autoscale_setting_notification_45_webhook_47 implements PcoreValue {
   readonly service_uri: string;
   readonly properties: {[s: string]: string}|null;
 
@@ -3792,16 +3792,16 @@ export class Azurerm_autoscale_setting_notification_633_webhook_635 implements P
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_notification_633_webhook_635';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_notification_45_webhook_47';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636 implements PcoreValue {
-  readonly capacity: Azurerm_autoscale_setting_profile_636_capacity_637[];
+export class Azurerm_autoscale_setting_profile_48 implements PcoreValue {
+  readonly capacity: Azurerm_autoscale_setting_profile_48_capacity_49[];
   readonly name: string;
-  readonly fixed_date: Azurerm_autoscale_setting_profile_636_fixed_date_638[]|null;
-  readonly recurrence: Azurerm_autoscale_setting_profile_636_recurrence_639[]|null;
-  readonly rule: Azurerm_autoscale_setting_profile_636_rule_640[]|null;
+  readonly fixed_date: Azurerm_autoscale_setting_profile_48_fixed_date_50[]|null;
+  readonly recurrence: Azurerm_autoscale_setting_profile_48_recurrence_51[]|null;
+  readonly rule: Azurerm_autoscale_setting_profile_48_rule_52[]|null;
 
   constructor({
     capacity,
@@ -3810,11 +3810,11 @@ export class Azurerm_autoscale_setting_profile_636 implements PcoreValue {
     recurrence = null,
     rule = null
   }: {
-    capacity: Azurerm_autoscale_setting_profile_636_capacity_637[],
+    capacity: Azurerm_autoscale_setting_profile_48_capacity_49[],
     name: string,
-    fixed_date?: Azurerm_autoscale_setting_profile_636_fixed_date_638[]|null,
-    recurrence?: Azurerm_autoscale_setting_profile_636_recurrence_639[]|null,
-    rule?: Azurerm_autoscale_setting_profile_636_rule_640[]|null
+    fixed_date?: Azurerm_autoscale_setting_profile_48_fixed_date_50[]|null,
+    recurrence?: Azurerm_autoscale_setting_profile_48_recurrence_51[]|null,
+    rule?: Azurerm_autoscale_setting_profile_48_rule_52[]|null
   }) {
     this.capacity = capacity;
     this.name = name;
@@ -3840,11 +3840,11 @@ export class Azurerm_autoscale_setting_profile_636 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636_capacity_637 implements PcoreValue {
+export class Azurerm_autoscale_setting_profile_48_capacity_49 implements PcoreValue {
   readonly default_: number;
   readonly maximum: number;
   readonly minimum: number;
@@ -3872,11 +3872,11 @@ export class Azurerm_autoscale_setting_profile_636_capacity_637 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636_capacity_637';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48_capacity_49';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636_fixed_date_638 implements PcoreValue {
+export class Azurerm_autoscale_setting_profile_48_fixed_date_50 implements PcoreValue {
   readonly end: string;
   readonly start: string;
   readonly timezone: string|null;
@@ -3906,11 +3906,11 @@ export class Azurerm_autoscale_setting_profile_636_fixed_date_638 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636_fixed_date_638';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48_fixed_date_50';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636_recurrence_639 implements PcoreValue {
+export class Azurerm_autoscale_setting_profile_48_recurrence_51 implements PcoreValue {
   readonly days: string[];
   readonly hours: number[];
   readonly minutes: number[];
@@ -3945,20 +3945,20 @@ export class Azurerm_autoscale_setting_profile_636_recurrence_639 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636_recurrence_639';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48_recurrence_51';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636_rule_640 implements PcoreValue {
-  readonly metric_trigger: Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641[];
-  readonly scale_action: Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642[];
+export class Azurerm_autoscale_setting_profile_48_rule_52 implements PcoreValue {
+  readonly metric_trigger: Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53[];
+  readonly scale_action: Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54[];
 
   constructor({
     metric_trigger,
     scale_action
   }: {
-    metric_trigger: Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641[],
-    scale_action: Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642[]
+    metric_trigger: Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53[],
+    scale_action: Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54[]
   }) {
     this.metric_trigger = metric_trigger;
     this.scale_action = scale_action;
@@ -3972,11 +3972,11 @@ export class Azurerm_autoscale_setting_profile_636_rule_640 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636_rule_640';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48_rule_52';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641 implements PcoreValue {
+export class Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53 implements PcoreValue {
   readonly metric_name: string;
   readonly metric_resource_id: string;
   readonly operator: string;
@@ -4029,11 +4029,11 @@ export class Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641 i
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636_rule_640_metric_trigger_641';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53';
   }
 }
 
-export class Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642 implements PcoreValue {
+export class Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54 implements PcoreValue {
   readonly cooldown: string;
   readonly direction: string;
   readonly type: string;
@@ -4066,7 +4066,7 @@ export class Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642 imp
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_636_rule_640_scale_action_642';
+    return 'TerraformAzureRM::Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54';
   }
 }
 
@@ -4412,13 +4412,13 @@ export class Azurerm_batch_pool implements PcoreValue {
   readonly name: string;
   readonly node_agent_sku_id: string;
   readonly resource_group_name: string;
-  readonly storage_image_reference: Azurerm_batch_pool_storage_image_reference_648[];
+  readonly storage_image_reference: Azurerm_batch_pool_storage_image_reference_60[];
   readonly vm_size: string;
   readonly azurerm_batch_pool_id: string|null;
-  readonly auto_scale: Azurerm_batch_pool_auto_scale_643[]|null;
+  readonly auto_scale: Azurerm_batch_pool_auto_scale_55[]|null;
   readonly display_name: string|null;
-  readonly fixed_scale: Azurerm_batch_pool_fixed_scale_644[]|null;
-  readonly start_task: Azurerm_batch_pool_start_task_645[]|null;
+  readonly fixed_scale: Azurerm_batch_pool_fixed_scale_56[]|null;
+  readonly start_task: Azurerm_batch_pool_start_task_57[]|null;
   readonly stop_pending_resize_operation: boolean|null;
 
   constructor({
@@ -4439,13 +4439,13 @@ export class Azurerm_batch_pool implements PcoreValue {
     name: string,
     node_agent_sku_id: string,
     resource_group_name: string,
-    storage_image_reference: Azurerm_batch_pool_storage_image_reference_648[],
+    storage_image_reference: Azurerm_batch_pool_storage_image_reference_60[],
     vm_size: string,
     azurerm_batch_pool_id?: string|null,
-    auto_scale?: Azurerm_batch_pool_auto_scale_643[]|null,
+    auto_scale?: Azurerm_batch_pool_auto_scale_55[]|null,
     display_name?: string|null,
-    fixed_scale?: Azurerm_batch_pool_fixed_scale_644[]|null,
-    start_task?: Azurerm_batch_pool_start_task_645[]|null,
+    fixed_scale?: Azurerm_batch_pool_fixed_scale_56[]|null,
+    start_task?: Azurerm_batch_pool_start_task_57[]|null,
     stop_pending_resize_operation?: boolean|null
   }) {
     this.account_name = account_name;
@@ -4506,7 +4506,7 @@ export class Azurerm_batch_poolHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_batch_pool_auto_scale_643 implements PcoreValue {
+export class Azurerm_batch_pool_auto_scale_55 implements PcoreValue {
   readonly formula: string;
   readonly evaluation_interval: string|null;
 
@@ -4531,11 +4531,11 @@ export class Azurerm_batch_pool_auto_scale_643 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_batch_pool_auto_scale_643';
+    return 'TerraformAzureRM::Azurerm_batch_pool_auto_scale_55';
   }
 }
 
-export class Azurerm_batch_pool_fixed_scale_644 implements PcoreValue {
+export class Azurerm_batch_pool_fixed_scale_56 implements PcoreValue {
   readonly resize_timeout: string|null;
   readonly target_dedicated_nodes: number|null;
   readonly target_low_priority_nodes: number|null;
@@ -4569,13 +4569,13 @@ export class Azurerm_batch_pool_fixed_scale_644 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_batch_pool_fixed_scale_644';
+    return 'TerraformAzureRM::Azurerm_batch_pool_fixed_scale_56';
   }
 }
 
-export class Azurerm_batch_pool_start_task_645 implements PcoreValue {
+export class Azurerm_batch_pool_start_task_57 implements PcoreValue {
   readonly command_line: string;
-  readonly user_identity: Azurerm_batch_pool_start_task_645_user_identity_646[];
+  readonly user_identity: Azurerm_batch_pool_start_task_57_user_identity_58[];
   readonly environment: {[s: string]: string}|null;
   readonly max_task_retry_count: number|null;
   readonly wait_for_success: boolean|null;
@@ -4588,7 +4588,7 @@ export class Azurerm_batch_pool_start_task_645 implements PcoreValue {
     wait_for_success = null
   }: {
     command_line: string,
-    user_identity: Azurerm_batch_pool_start_task_645_user_identity_646[],
+    user_identity: Azurerm_batch_pool_start_task_57_user_identity_58[],
     environment?: {[s: string]: string}|null,
     max_task_retry_count?: number|null,
     wait_for_success?: boolean|null
@@ -4617,19 +4617,19 @@ export class Azurerm_batch_pool_start_task_645 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_batch_pool_start_task_645';
+    return 'TerraformAzureRM::Azurerm_batch_pool_start_task_57';
   }
 }
 
-export class Azurerm_batch_pool_start_task_645_user_identity_646 implements PcoreValue {
-  readonly auto_user: Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647[]|null;
+export class Azurerm_batch_pool_start_task_57_user_identity_58 implements PcoreValue {
+  readonly auto_user: Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59[]|null;
   readonly user_name: string|null;
 
   constructor({
     auto_user = null,
     user_name = null
   }: {
-    auto_user?: Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647[]|null,
+    auto_user?: Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59[]|null,
     user_name?: string|null
   }) {
     this.auto_user = auto_user;
@@ -4648,11 +4648,11 @@ export class Azurerm_batch_pool_start_task_645_user_identity_646 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_batch_pool_start_task_645_user_identity_646';
+    return 'TerraformAzureRM::Azurerm_batch_pool_start_task_57_user_identity_58';
   }
 }
 
-export class Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647 implements PcoreValue {
+export class Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59 implements PcoreValue {
   readonly elevation_level: string|null;
   readonly scope: string|null;
 
@@ -4679,11 +4679,11 @@ export class Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647 i
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_batch_pool_start_task_645_user_identity_646_auto_user_647';
+    return 'TerraformAzureRM::Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59';
   }
 }
 
-export class Azurerm_batch_pool_storage_image_reference_648 implements PcoreValue {
+export class Azurerm_batch_pool_storage_image_reference_60 implements PcoreValue {
   readonly offer: string;
   readonly publisher: string;
   readonly sku: string;
@@ -4723,19 +4723,19 @@ export class Azurerm_batch_pool_storage_image_reference_648 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_batch_pool_storage_image_reference_648';
+    return 'TerraformAzureRM::Azurerm_batch_pool_storage_image_reference_60';
   }
 }
 
 export class Azurerm_cdn_endpoint implements PcoreValue {
   readonly location: string;
   readonly name: string;
-  readonly origin: Azurerm_cdn_endpoint_origin_650[];
+  readonly origin: Azurerm_cdn_endpoint_origin_62[];
   readonly profile_name: string;
   readonly resource_group_name: string;
   readonly azurerm_cdn_endpoint_id: string|null;
   readonly content_types_to_compress: string[]|null;
-  readonly geo_filter: Azurerm_cdn_endpoint_geo_filter_649[]|null;
+  readonly geo_filter: Azurerm_cdn_endpoint_geo_filter_61[]|null;
   readonly host_name: string|null;
   readonly is_compression_enabled: boolean|null;
   readonly is_http_allowed: boolean|null;
@@ -4769,12 +4769,12 @@ export class Azurerm_cdn_endpoint implements PcoreValue {
   }: {
     location: string,
     name: string,
-    origin: Azurerm_cdn_endpoint_origin_650[],
+    origin: Azurerm_cdn_endpoint_origin_62[],
     profile_name: string,
     resource_group_name: string,
     azurerm_cdn_endpoint_id?: string|null,
     content_types_to_compress?: string[]|null,
-    geo_filter?: Azurerm_cdn_endpoint_geo_filter_649[]|null,
+    geo_filter?: Azurerm_cdn_endpoint_geo_filter_61[]|null,
     host_name?: string|null,
     is_compression_enabled?: boolean|null,
     is_http_allowed?: boolean|null,
@@ -4870,7 +4870,7 @@ export class Azurerm_cdn_endpointHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_cdn_endpoint_geo_filter_649 implements PcoreValue {
+export class Azurerm_cdn_endpoint_geo_filter_61 implements PcoreValue {
   readonly action: string;
   readonly country_codes: string[];
   readonly relative_path: string;
@@ -4898,11 +4898,11 @@ export class Azurerm_cdn_endpoint_geo_filter_649 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cdn_endpoint_geo_filter_649';
+    return 'TerraformAzureRM::Azurerm_cdn_endpoint_geo_filter_61';
   }
 }
 
-export class Azurerm_cdn_endpoint_origin_650 implements PcoreValue {
+export class Azurerm_cdn_endpoint_origin_62 implements PcoreValue {
   readonly host_name: string;
   readonly name: string;
   readonly http_port: number|null;
@@ -4939,7 +4939,7 @@ export class Azurerm_cdn_endpoint_origin_650 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cdn_endpoint_origin_650';
+    return 'TerraformAzureRM::Azurerm_cdn_endpoint_origin_62';
   }
 }
 
@@ -5009,7 +5009,7 @@ export class Azurerm_cognitive_account implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_cognitive_account_sku_651[];
+  readonly sku: Azurerm_cognitive_account_sku_63[];
   readonly azurerm_cognitive_account_id: string|null;
   readonly endpoint: string|null;
   readonly tags: {[s: string]: string}|null;
@@ -5028,7 +5028,7 @@ export class Azurerm_cognitive_account implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_cognitive_account_sku_651[],
+    sku: Azurerm_cognitive_account_sku_63[],
     azurerm_cognitive_account_id?: string|null,
     endpoint?: string|null,
     tags?: {[s: string]: string}|null
@@ -5077,7 +5077,7 @@ export class Azurerm_cognitive_accountHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_cognitive_account_sku_651 implements PcoreValue {
+export class Azurerm_cognitive_account_sku_63 implements PcoreValue {
   readonly name: string;
   readonly tier: string;
 
@@ -5100,12 +5100,12 @@ export class Azurerm_cognitive_account_sku_651 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cognitive_account_sku_651';
+    return 'TerraformAzureRM::Azurerm_cognitive_account_sku_63';
   }
 }
 
 export class Azurerm_container_group implements PcoreValue {
-  readonly container: Azurerm_container_group_container_652[];
+  readonly container: Azurerm_container_group_container_64[];
   readonly location: string;
   readonly name: string;
   readonly os_type: string;
@@ -5113,7 +5113,7 @@ export class Azurerm_container_group implements PcoreValue {
   readonly azurerm_container_group_id: string|null;
   readonly dns_name_label: string|null;
   readonly fqdn: string|null;
-  readonly image_registry_credential: Azurerm_container_group_image_registry_credential_655[]|null;
+  readonly image_registry_credential: Azurerm_container_group_image_registry_credential_67[]|null;
   readonly ip_address: string|null;
   readonly ip_address_type: string|null;
   readonly restart_policy: string|null;
@@ -5134,7 +5134,7 @@ export class Azurerm_container_group implements PcoreValue {
     restart_policy = null,
     tags = null
   }: {
-    container: Azurerm_container_group_container_652[],
+    container: Azurerm_container_group_container_64[],
     location: string,
     name: string,
     os_type: string,
@@ -5142,7 +5142,7 @@ export class Azurerm_container_group implements PcoreValue {
     azurerm_container_group_id?: string|null,
     dns_name_label?: string|null,
     fqdn?: string|null,
-    image_registry_credential?: Azurerm_container_group_image_registry_credential_655[]|null,
+    image_registry_credential?: Azurerm_container_group_image_registry_credential_67[]|null,
     ip_address?: string|null,
     ip_address_type?: string|null,
     restart_policy?: string|null,
@@ -5212,7 +5212,7 @@ export class Azurerm_container_groupHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_container_group_container_652 implements PcoreValue {
+export class Azurerm_container_group_container_64 implements PcoreValue {
   readonly cpu: number;
   readonly image: string;
   readonly memory: number;
@@ -5221,10 +5221,10 @@ export class Azurerm_container_group_container_652 implements PcoreValue {
   readonly commands: string[]|null;
   readonly environment_variables: {[s: string]: string}|null;
   readonly port: number|null;
-  readonly ports: Azurerm_container_group_container_652_ports_653[]|null;
+  readonly ports: Azurerm_container_group_container_64_ports_65[]|null;
   readonly protocol: string|null;
   readonly secure_environment_variables: {[s: string]: string}|null;
-  readonly volume: Azurerm_container_group_container_652_volume_654[]|null;
+  readonly volume: Azurerm_container_group_container_64_volume_66[]|null;
 
   constructor({
     cpu,
@@ -5248,10 +5248,10 @@ export class Azurerm_container_group_container_652 implements PcoreValue {
     commands?: string[]|null,
     environment_variables?: {[s: string]: string}|null,
     port?: number|null,
-    ports?: Azurerm_container_group_container_652_ports_653[]|null,
+    ports?: Azurerm_container_group_container_64_ports_65[]|null,
     protocol?: string|null,
     secure_environment_variables?: {[s: string]: string}|null,
-    volume?: Azurerm_container_group_container_652_volume_654[]|null
+    volume?: Azurerm_container_group_container_64_volume_66[]|null
   }) {
     this.cpu = cpu;
     this.image = image;
@@ -5301,11 +5301,11 @@ export class Azurerm_container_group_container_652 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_group_container_652';
+    return 'TerraformAzureRM::Azurerm_container_group_container_64';
   }
 }
 
-export class Azurerm_container_group_container_652_ports_653 implements PcoreValue {
+export class Azurerm_container_group_container_64_ports_65 implements PcoreValue {
   readonly port: number|null;
   readonly protocol: string|null;
 
@@ -5332,11 +5332,11 @@ export class Azurerm_container_group_container_652_ports_653 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_group_container_652_ports_653';
+    return 'TerraformAzureRM::Azurerm_container_group_container_64_ports_65';
   }
 }
 
-export class Azurerm_container_group_container_652_volume_654 implements PcoreValue {
+export class Azurerm_container_group_container_64_volume_66 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly share_name: string;
@@ -5381,11 +5381,11 @@ export class Azurerm_container_group_container_652_volume_654 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_group_container_652_volume_654';
+    return 'TerraformAzureRM::Azurerm_container_group_container_64_volume_66';
   }
 }
 
-export class Azurerm_container_group_image_registry_credential_655 implements PcoreValue {
+export class Azurerm_container_group_image_registry_credential_67 implements PcoreValue {
   readonly password: string;
   readonly server: string;
   readonly username: string;
@@ -5413,7 +5413,7 @@ export class Azurerm_container_group_image_registry_credential_655 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_group_image_registry_credential_655';
+    return 'TerraformAzureRM::Azurerm_container_group_image_registry_credential_67';
   }
 }
 
@@ -5428,7 +5428,7 @@ export class Azurerm_container_registry implements PcoreValue {
   readonly georeplication_locations: string[]|null;
   readonly login_server: string|null;
   readonly sku: string|null;
-  readonly storage_account: Azurerm_container_registry_storage_account_656[]|null;
+  readonly storage_account: Azurerm_container_registry_storage_account_68[]|null;
   readonly storage_account_id: string|null;
   readonly tags: {[s: string]: string}|null;
 
@@ -5457,7 +5457,7 @@ export class Azurerm_container_registry implements PcoreValue {
     georeplication_locations?: string[]|null,
     login_server?: string|null,
     sku?: string|null,
-    storage_account?: Azurerm_container_registry_storage_account_656[]|null,
+    storage_account?: Azurerm_container_registry_storage_account_68[]|null,
     storage_account_id?: string|null,
     tags?: {[s: string]: string}|null
   }) {
@@ -5529,7 +5529,7 @@ export class Azurerm_container_registryHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_container_registry_storage_account_656 implements PcoreValue {
+export class Azurerm_container_registry_storage_account_68 implements PcoreValue {
   readonly access_key: string;
   readonly name: string;
 
@@ -5552,21 +5552,21 @@ export class Azurerm_container_registry_storage_account_656 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_registry_storage_account_656';
+    return 'TerraformAzureRM::Azurerm_container_registry_storage_account_68';
   }
 }
 
 export class Azurerm_container_service implements PcoreValue {
-  readonly agent_pool_profile: Azurerm_container_service_agent_pool_profile_657[];
-  readonly diagnostics_profile: Azurerm_container_service_diagnostics_profile_658[];
-  readonly linux_profile: Azurerm_container_service_linux_profile_659[];
+  readonly agent_pool_profile: Azurerm_container_service_agent_pool_profile_69[];
+  readonly diagnostics_profile: Azurerm_container_service_diagnostics_profile_70[];
+  readonly linux_profile: Azurerm_container_service_linux_profile_71[];
   readonly location: string;
-  readonly master_profile: Azurerm_container_service_master_profile_661[];
+  readonly master_profile: Azurerm_container_service_master_profile_73[];
   readonly name: string;
   readonly orchestration_platform: string;
   readonly resource_group_name: string;
   readonly azurerm_container_service_id: string|null;
-  readonly service_principal: Azurerm_container_service_service_principal_662[]|null;
+  readonly service_principal: Azurerm_container_service_service_principal_74[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -5582,16 +5582,16 @@ export class Azurerm_container_service implements PcoreValue {
     service_principal = null,
     tags = null
   }: {
-    agent_pool_profile: Azurerm_container_service_agent_pool_profile_657[],
-    diagnostics_profile: Azurerm_container_service_diagnostics_profile_658[],
-    linux_profile: Azurerm_container_service_linux_profile_659[],
+    agent_pool_profile: Azurerm_container_service_agent_pool_profile_69[],
+    diagnostics_profile: Azurerm_container_service_diagnostics_profile_70[],
+    linux_profile: Azurerm_container_service_linux_profile_71[],
     location: string,
-    master_profile: Azurerm_container_service_master_profile_661[],
+    master_profile: Azurerm_container_service_master_profile_73[],
     name: string,
     orchestration_platform: string,
     resource_group_name: string,
     azurerm_container_service_id?: string|null,
-    service_principal?: Azurerm_container_service_service_principal_662[]|null,
+    service_principal?: Azurerm_container_service_service_principal_74[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.agent_pool_profile = agent_pool_profile;
@@ -5644,7 +5644,7 @@ export class Azurerm_container_serviceHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_container_service_agent_pool_profile_657 implements PcoreValue {
+export class Azurerm_container_service_agent_pool_profile_69 implements PcoreValue {
   readonly dns_prefix: string;
   readonly name: string;
   readonly vm_size: string;
@@ -5686,11 +5686,11 @@ export class Azurerm_container_service_agent_pool_profile_657 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_service_agent_pool_profile_657';
+    return 'TerraformAzureRM::Azurerm_container_service_agent_pool_profile_69';
   }
 }
 
-export class Azurerm_container_service_diagnostics_profile_658 implements PcoreValue {
+export class Azurerm_container_service_diagnostics_profile_70 implements PcoreValue {
   readonly enabled: boolean;
   readonly storage_uri: string|null;
 
@@ -5715,20 +5715,20 @@ export class Azurerm_container_service_diagnostics_profile_658 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_service_diagnostics_profile_658';
+    return 'TerraformAzureRM::Azurerm_container_service_diagnostics_profile_70';
   }
 }
 
-export class Azurerm_container_service_linux_profile_659 implements PcoreValue {
+export class Azurerm_container_service_linux_profile_71 implements PcoreValue {
   readonly admin_username: string;
-  readonly ssh_key: Azurerm_container_service_linux_profile_659_ssh_key_660[];
+  readonly ssh_key: Azurerm_container_service_linux_profile_71_ssh_key_72[];
 
   constructor({
     admin_username,
     ssh_key
   }: {
     admin_username: string,
-    ssh_key: Azurerm_container_service_linux_profile_659_ssh_key_660[]
+    ssh_key: Azurerm_container_service_linux_profile_71_ssh_key_72[]
   }) {
     this.admin_username = admin_username;
     this.ssh_key = ssh_key;
@@ -5742,11 +5742,11 @@ export class Azurerm_container_service_linux_profile_659 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_service_linux_profile_659';
+    return 'TerraformAzureRM::Azurerm_container_service_linux_profile_71';
   }
 }
 
-export class Azurerm_container_service_linux_profile_659_ssh_key_660 implements PcoreValue {
+export class Azurerm_container_service_linux_profile_71_ssh_key_72 implements PcoreValue {
   readonly key_data: string;
 
   constructor({
@@ -5764,11 +5764,11 @@ export class Azurerm_container_service_linux_profile_659_ssh_key_660 implements 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_service_linux_profile_659_ssh_key_660';
+    return 'TerraformAzureRM::Azurerm_container_service_linux_profile_71_ssh_key_72';
   }
 }
 
-export class Azurerm_container_service_master_profile_661 implements PcoreValue {
+export class Azurerm_container_service_master_profile_73 implements PcoreValue {
   readonly dns_prefix: string;
   readonly count: number|null;
   readonly fqdn: string|null;
@@ -5800,11 +5800,11 @@ export class Azurerm_container_service_master_profile_661 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_service_master_profile_661';
+    return 'TerraformAzureRM::Azurerm_container_service_master_profile_73';
   }
 }
 
-export class Azurerm_container_service_service_principal_662 implements PcoreValue {
+export class Azurerm_container_service_service_principal_74 implements PcoreValue {
   readonly client_id: string;
   readonly client_secret: string;
 
@@ -5827,24 +5827,24 @@ export class Azurerm_container_service_service_principal_662 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_container_service_service_principal_662';
+    return 'TerraformAzureRM::Azurerm_container_service_service_principal_74';
   }
 }
 
 export class Azurerm_cosmosdb_account implements PcoreValue {
-  readonly consistency_policy: Azurerm_cosmosdb_account_consistency_policy_664[];
+  readonly consistency_policy: Azurerm_cosmosdb_account_consistency_policy_76[];
   readonly location: string;
   readonly name: string;
   readonly offer_type: string;
   readonly resource_group_name: string;
   readonly azurerm_cosmosdb_account_id: string|null;
-  readonly capabilities: Azurerm_cosmosdb_account_capabilities_663[]|null;
+  readonly capabilities: Azurerm_cosmosdb_account_capabilities_75[]|null;
   readonly connection_strings: string[]|null;
   readonly enable_automatic_failover: boolean|null;
   readonly enable_multiple_write_locations: boolean|null;
   readonly endpoint: string|null;
-  readonly failover_policy: Azurerm_cosmosdb_account_failover_policy_665[]|null;
-  readonly geo_location: Azurerm_cosmosdb_account_geo_location_666[]|null;
+  readonly failover_policy: Azurerm_cosmosdb_account_failover_policy_77[]|null;
+  readonly geo_location: Azurerm_cosmosdb_account_geo_location_78[]|null;
   readonly ip_range_filter: string|null;
   readonly is_virtual_network_filter_enabled: boolean|null;
   readonly kind: string|null;
@@ -5854,7 +5854,7 @@ export class Azurerm_cosmosdb_account implements PcoreValue {
   readonly secondary_master_key: string|null;
   readonly secondary_readonly_master_key: string|null;
   readonly tags: {[s: string]: string}|null;
-  readonly virtual_network_rule: Azurerm_cosmosdb_account_virtual_network_rule_667[]|null;
+  readonly virtual_network_rule: Azurerm_cosmosdb_account_virtual_network_rule_79[]|null;
   readonly write_endpoints: string[]|null;
 
   constructor({
@@ -5883,19 +5883,19 @@ export class Azurerm_cosmosdb_account implements PcoreValue {
     virtual_network_rule = null,
     write_endpoints = null
   }: {
-    consistency_policy: Azurerm_cosmosdb_account_consistency_policy_664[],
+    consistency_policy: Azurerm_cosmosdb_account_consistency_policy_76[],
     location: string,
     name: string,
     offer_type: string,
     resource_group_name: string,
     azurerm_cosmosdb_account_id?: string|null,
-    capabilities?: Azurerm_cosmosdb_account_capabilities_663[]|null,
+    capabilities?: Azurerm_cosmosdb_account_capabilities_75[]|null,
     connection_strings?: string[]|null,
     enable_automatic_failover?: boolean|null,
     enable_multiple_write_locations?: boolean|null,
     endpoint?: string|null,
-    failover_policy?: Azurerm_cosmosdb_account_failover_policy_665[]|null,
-    geo_location?: Azurerm_cosmosdb_account_geo_location_666[]|null,
+    failover_policy?: Azurerm_cosmosdb_account_failover_policy_77[]|null,
+    geo_location?: Azurerm_cosmosdb_account_geo_location_78[]|null,
     ip_range_filter?: string|null,
     is_virtual_network_filter_enabled?: boolean|null,
     kind?: string|null,
@@ -5905,7 +5905,7 @@ export class Azurerm_cosmosdb_account implements PcoreValue {
     secondary_master_key?: string|null,
     secondary_readonly_master_key?: string|null,
     tags?: {[s: string]: string}|null,
-    virtual_network_rule?: Azurerm_cosmosdb_account_virtual_network_rule_667[]|null,
+    virtual_network_rule?: Azurerm_cosmosdb_account_virtual_network_rule_79[]|null,
     write_endpoints?: string[]|null
   }) {
     this.consistency_policy = consistency_policy;
@@ -6016,7 +6016,7 @@ export class Azurerm_cosmosdb_accountHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_cosmosdb_account_capabilities_663 implements PcoreValue {
+export class Azurerm_cosmosdb_account_capabilities_75 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -6034,11 +6034,11 @@ export class Azurerm_cosmosdb_account_capabilities_663 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cosmosdb_account_capabilities_663';
+    return 'TerraformAzureRM::Azurerm_cosmosdb_account_capabilities_75';
   }
 }
 
-export class Azurerm_cosmosdb_account_consistency_policy_664 implements PcoreValue {
+export class Azurerm_cosmosdb_account_consistency_policy_76 implements PcoreValue {
   readonly consistency_level: string;
   readonly max_interval_in_seconds: number|null;
   readonly max_staleness_prefix: number|null;
@@ -6070,11 +6070,11 @@ export class Azurerm_cosmosdb_account_consistency_policy_664 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cosmosdb_account_consistency_policy_664';
+    return 'TerraformAzureRM::Azurerm_cosmosdb_account_consistency_policy_76';
   }
 }
 
-export class Azurerm_cosmosdb_account_failover_policy_665 implements PcoreValue {
+export class Azurerm_cosmosdb_account_failover_policy_77 implements PcoreValue {
   readonly location: string;
   readonly priority: number;
   readonly id: string|null;
@@ -6104,11 +6104,11 @@ export class Azurerm_cosmosdb_account_failover_policy_665 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cosmosdb_account_failover_policy_665';
+    return 'TerraformAzureRM::Azurerm_cosmosdb_account_failover_policy_77';
   }
 }
 
-export class Azurerm_cosmosdb_account_geo_location_666 implements PcoreValue {
+export class Azurerm_cosmosdb_account_geo_location_78 implements PcoreValue {
   readonly failover_priority: number;
   readonly location: string;
   readonly id: string|null;
@@ -6145,11 +6145,11 @@ export class Azurerm_cosmosdb_account_geo_location_666 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cosmosdb_account_geo_location_666';
+    return 'TerraformAzureRM::Azurerm_cosmosdb_account_geo_location_78';
   }
 }
 
-export class Azurerm_cosmosdb_account_virtual_network_rule_667 implements PcoreValue {
+export class Azurerm_cosmosdb_account_virtual_network_rule_79 implements PcoreValue {
   readonly id: string;
 
   constructor({
@@ -6167,7 +6167,7 @@ export class Azurerm_cosmosdb_account_virtual_network_rule_667 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_cosmosdb_account_virtual_network_rule_667';
+    return 'TerraformAzureRM::Azurerm_cosmosdb_account_virtual_network_rule_79';
   }
 }
 
@@ -6685,7 +6685,7 @@ export class Azurerm_dev_test_labHandler implements PcoreValue {
 }
 
 export class Azurerm_dev_test_linux_virtual_machine implements PcoreValue {
-  readonly gallery_image_reference: Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668[];
+  readonly gallery_image_reference: Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80[];
   readonly lab_name: string;
   readonly lab_subnet_name: string;
   readonly lab_virtual_network_id: string;
@@ -6699,7 +6699,7 @@ export class Azurerm_dev_test_linux_virtual_machine implements PcoreValue {
   readonly allow_claim: boolean|null;
   readonly disallow_public_ip_address: boolean|null;
   readonly fqdn: string|null;
-  readonly inbound_nat_rule: Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669[]|null;
+  readonly inbound_nat_rule: Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81[]|null;
   readonly notes: string|null;
   readonly password: string|null;
   readonly ssh_key: string|null;
@@ -6728,7 +6728,7 @@ export class Azurerm_dev_test_linux_virtual_machine implements PcoreValue {
     tags = null,
     unique_identifier = null
   }: {
-    gallery_image_reference: Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668[],
+    gallery_image_reference: Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80[],
     lab_name: string,
     lab_subnet_name: string,
     lab_virtual_network_id: string,
@@ -6742,7 +6742,7 @@ export class Azurerm_dev_test_linux_virtual_machine implements PcoreValue {
     allow_claim?: boolean|null,
     disallow_public_ip_address?: boolean|null,
     fqdn?: string|null,
-    inbound_nat_rule?: Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669[]|null,
+    inbound_nat_rule?: Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81[]|null,
     notes?: string|null,
     password?: string|null,
     ssh_key?: string|null,
@@ -6831,7 +6831,7 @@ export class Azurerm_dev_test_linux_virtual_machineHandler implements PcoreValue
   }
 }
 
-export class Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668 implements PcoreValue {
+export class Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80 implements PcoreValue {
   readonly offer: string;
   readonly publisher: string;
   readonly sku: string;
@@ -6864,11 +6864,11 @@ export class Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_668';
+    return 'TerraformAzureRM::Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80';
   }
 }
 
-export class Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669 implements PcoreValue {
+export class Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81 implements PcoreValue {
   readonly backend_port: number;
   readonly protocol: string;
   readonly frontend_port: number|null;
@@ -6898,7 +6898,7 @@ export class Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669 impleme
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_669';
+    return 'TerraformAzureRM::Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81';
   }
 }
 
@@ -6993,7 +6993,7 @@ export class Azurerm_dev_test_virtual_network implements PcoreValue {
   readonly resource_group_name: string;
   readonly azurerm_dev_test_virtual_network_id: string|null;
   readonly description: string|null;
-  readonly subnet: Azurerm_dev_test_virtual_network_subnet_670[]|null;
+  readonly subnet: Azurerm_dev_test_virtual_network_subnet_82[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly unique_identifier: string|null;
 
@@ -7012,7 +7012,7 @@ export class Azurerm_dev_test_virtual_network implements PcoreValue {
     resource_group_name: string,
     azurerm_dev_test_virtual_network_id?: string|null,
     description?: string|null,
-    subnet?: Azurerm_dev_test_virtual_network_subnet_670[]|null,
+    subnet?: Azurerm_dev_test_virtual_network_subnet_82[]|null,
     tags?: {[s: string]: string}|null,
     unique_identifier?: string|null
   }) {
@@ -7064,7 +7064,7 @@ export class Azurerm_dev_test_virtual_networkHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_dev_test_virtual_network_subnet_670 implements PcoreValue {
+export class Azurerm_dev_test_virtual_network_subnet_82 implements PcoreValue {
   readonly name: string|null;
   readonly use_in_virtual_machine_creation: string|null;
   readonly use_public_ip_address: string|null;
@@ -7098,12 +7098,12 @@ export class Azurerm_dev_test_virtual_network_subnet_670 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dev_test_virtual_network_subnet_670';
+    return 'TerraformAzureRM::Azurerm_dev_test_virtual_network_subnet_82';
   }
 }
 
 export class Azurerm_dev_test_windows_virtual_machine implements PcoreValue {
-  readonly gallery_image_reference: Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671[];
+  readonly gallery_image_reference: Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83[];
   readonly lab_name: string;
   readonly lab_subnet_name: string;
   readonly lab_virtual_network_id: string;
@@ -7118,7 +7118,7 @@ export class Azurerm_dev_test_windows_virtual_machine implements PcoreValue {
   readonly allow_claim: boolean|null;
   readonly disallow_public_ip_address: boolean|null;
   readonly fqdn: string|null;
-  readonly inbound_nat_rule: Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672[]|null;
+  readonly inbound_nat_rule: Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84[]|null;
   readonly notes: string|null;
   readonly tags: {[s: string]: string}|null;
   readonly unique_identifier: string|null;
@@ -7144,7 +7144,7 @@ export class Azurerm_dev_test_windows_virtual_machine implements PcoreValue {
     tags = null,
     unique_identifier = null
   }: {
-    gallery_image_reference: Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671[],
+    gallery_image_reference: Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83[],
     lab_name: string,
     lab_subnet_name: string,
     lab_virtual_network_id: string,
@@ -7159,7 +7159,7 @@ export class Azurerm_dev_test_windows_virtual_machine implements PcoreValue {
     allow_claim?: boolean|null,
     disallow_public_ip_address?: boolean|null,
     fqdn?: string|null,
-    inbound_nat_rule?: Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672[]|null,
+    inbound_nat_rule?: Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84[]|null,
     notes?: string|null,
     tags?: {[s: string]: string}|null,
     unique_identifier?: string|null
@@ -7240,7 +7240,7 @@ export class Azurerm_dev_test_windows_virtual_machineHandler implements PcoreVal
   }
 }
 
-export class Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671 implements PcoreValue {
+export class Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83 implements PcoreValue {
   readonly offer: string;
   readonly publisher: string;
   readonly sku: string;
@@ -7273,11 +7273,11 @@ export class Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_67
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_671';
+    return 'TerraformAzureRM::Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83';
   }
 }
 
-export class Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672 implements PcoreValue {
+export class Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84 implements PcoreValue {
   readonly backend_port: number;
   readonly protocol: string;
   readonly frontend_port: number|null;
@@ -7307,7 +7307,7 @@ export class Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672 imple
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_672';
+    return 'TerraformAzureRM::Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84';
   }
 }
 
@@ -7316,7 +7316,7 @@ export class Azurerm_devspace_controller implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_devspace_controller_sku_673[];
+  readonly sku: Azurerm_devspace_controller_sku_85[];
   readonly target_container_host_credentials_base64: string;
   readonly target_container_host_resource_id: string;
   readonly azurerm_devspace_controller_id: string|null;
@@ -7339,7 +7339,7 @@ export class Azurerm_devspace_controller implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_devspace_controller_sku_673[],
+    sku: Azurerm_devspace_controller_sku_85[],
     target_container_host_credentials_base64: string,
     target_container_host_resource_id: string,
     azurerm_devspace_controller_id?: string|null,
@@ -7394,7 +7394,7 @@ export class Azurerm_devspace_controllerHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_devspace_controller_sku_673 implements PcoreValue {
+export class Azurerm_devspace_controller_sku_85 implements PcoreValue {
   readonly name: string;
   readonly tier: string;
 
@@ -7417,7 +7417,7 @@ export class Azurerm_devspace_controller_sku_673 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_devspace_controller_sku_673';
+    return 'TerraformAzureRM::Azurerm_devspace_controller_sku_85';
   }
 }
 
@@ -7555,7 +7555,7 @@ export class Azurerm_dns_aaaa_recordHandler implements PcoreValue {
 
 export class Azurerm_dns_caa_record implements PcoreValue {
   readonly name: string;
-  readonly record: Azurerm_dns_caa_record_record_674[];
+  readonly record: Azurerm_dns_caa_record_record_86[];
   readonly resource_group_name: string;
   readonly ttl: number;
   readonly zone_name: string;
@@ -7572,7 +7572,7 @@ export class Azurerm_dns_caa_record implements PcoreValue {
     tags = null
   }: {
     name: string,
-    record: Azurerm_dns_caa_record_record_674[],
+    record: Azurerm_dns_caa_record_record_86[],
     resource_group_name: string,
     ttl: number,
     zone_name: string,
@@ -7619,7 +7619,7 @@ export class Azurerm_dns_caa_recordHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_dns_caa_record_record_674 implements PcoreValue {
+export class Azurerm_dns_caa_record_record_86 implements PcoreValue {
   readonly flags: number;
   readonly tag: string;
   readonly value: string;
@@ -7647,7 +7647,7 @@ export class Azurerm_dns_caa_record_record_674 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dns_caa_record_record_674';
+    return 'TerraformAzureRM::Azurerm_dns_caa_record_record_86';
   }
 }
 
@@ -7726,7 +7726,7 @@ export class Azurerm_dns_cname_recordHandler implements PcoreValue {
 
 export class Azurerm_dns_mx_record implements PcoreValue {
   readonly name: string;
-  readonly record: Azurerm_dns_mx_record_record_675[];
+  readonly record: Azurerm_dns_mx_record_record_87[];
   readonly resource_group_name: string;
   readonly ttl: number;
   readonly zone_name: string;
@@ -7743,7 +7743,7 @@ export class Azurerm_dns_mx_record implements PcoreValue {
     tags = null
   }: {
     name: string,
-    record: Azurerm_dns_mx_record_record_675[],
+    record: Azurerm_dns_mx_record_record_87[],
     resource_group_name: string,
     ttl: number,
     zone_name: string,
@@ -7790,7 +7790,7 @@ export class Azurerm_dns_mx_recordHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_dns_mx_record_record_675 implements PcoreValue {
+export class Azurerm_dns_mx_record_record_87 implements PcoreValue {
   readonly exchange: string;
   readonly preference: string;
 
@@ -7813,7 +7813,7 @@ export class Azurerm_dns_mx_record_record_675 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dns_mx_record_record_675';
+    return 'TerraformAzureRM::Azurerm_dns_mx_record_record_87';
   }
 }
 
@@ -7823,7 +7823,7 @@ export class Azurerm_dns_ns_record implements PcoreValue {
   readonly ttl: number;
   readonly zone_name: string;
   readonly azurerm_dns_ns_record_id: string|null;
-  readonly record: Azurerm_dns_ns_record_record_676[]|null;
+  readonly record: Azurerm_dns_ns_record_record_88[]|null;
   readonly records: string[]|null;
   readonly tags: {[s: string]: string}|null;
 
@@ -7842,7 +7842,7 @@ export class Azurerm_dns_ns_record implements PcoreValue {
     ttl: number,
     zone_name: string,
     azurerm_dns_ns_record_id?: string|null,
-    record?: Azurerm_dns_ns_record_record_676[]|null,
+    record?: Azurerm_dns_ns_record_record_88[]|null,
     records?: string[]|null,
     tags?: {[s: string]: string}|null
   }) {
@@ -7892,7 +7892,7 @@ export class Azurerm_dns_ns_recordHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_dns_ns_record_record_676 implements PcoreValue {
+export class Azurerm_dns_ns_record_record_88 implements PcoreValue {
   readonly nsdname: string;
 
   constructor({
@@ -7910,7 +7910,7 @@ export class Azurerm_dns_ns_record_record_676 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dns_ns_record_record_676';
+    return 'TerraformAzureRM::Azurerm_dns_ns_record_record_88';
   }
 }
 
@@ -7982,7 +7982,7 @@ export class Azurerm_dns_ptr_recordHandler implements PcoreValue {
 
 export class Azurerm_dns_srv_record implements PcoreValue {
   readonly name: string;
-  readonly record: Azurerm_dns_srv_record_record_677[];
+  readonly record: Azurerm_dns_srv_record_record_89[];
   readonly resource_group_name: string;
   readonly ttl: number;
   readonly zone_name: string;
@@ -7999,7 +7999,7 @@ export class Azurerm_dns_srv_record implements PcoreValue {
     tags = null
   }: {
     name: string,
-    record: Azurerm_dns_srv_record_record_677[],
+    record: Azurerm_dns_srv_record_record_89[],
     resource_group_name: string,
     ttl: number,
     zone_name: string,
@@ -8046,7 +8046,7 @@ export class Azurerm_dns_srv_recordHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_dns_srv_record_record_677 implements PcoreValue {
+export class Azurerm_dns_srv_record_record_89 implements PcoreValue {
   readonly port: number;
   readonly priority: number;
   readonly target: string;
@@ -8079,13 +8079,13 @@ export class Azurerm_dns_srv_record_record_677 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dns_srv_record_record_677';
+    return 'TerraformAzureRM::Azurerm_dns_srv_record_record_89';
   }
 }
 
 export class Azurerm_dns_txt_record implements PcoreValue {
   readonly name: string;
-  readonly record: Azurerm_dns_txt_record_record_678[];
+  readonly record: Azurerm_dns_txt_record_record_90[];
   readonly resource_group_name: string;
   readonly ttl: number;
   readonly zone_name: string;
@@ -8102,7 +8102,7 @@ export class Azurerm_dns_txt_record implements PcoreValue {
     tags = null
   }: {
     name: string,
-    record: Azurerm_dns_txt_record_record_678[],
+    record: Azurerm_dns_txt_record_record_90[],
     resource_group_name: string,
     ttl: number,
     zone_name: string,
@@ -8149,7 +8149,7 @@ export class Azurerm_dns_txt_recordHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_dns_txt_record_record_678 implements PcoreValue {
+export class Azurerm_dns_txt_record_record_90 implements PcoreValue {
   readonly value: string;
 
   constructor({
@@ -8167,7 +8167,7 @@ export class Azurerm_dns_txt_record_record_678 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_dns_txt_record_record_678';
+    return 'TerraformAzureRM::Azurerm_dns_txt_record_record_90';
   }
 }
 
@@ -8348,7 +8348,7 @@ export class Azurerm_eventhub implements PcoreValue {
   readonly partition_count: number;
   readonly resource_group_name: string;
   readonly azurerm_eventhub_id: string|null;
-  readonly capture_description: Azurerm_eventhub_capture_description_679[]|null;
+  readonly capture_description: Azurerm_eventhub_capture_description_91[]|null;
   readonly location: string|null;
   readonly partition_ids: string[]|null;
 
@@ -8369,7 +8369,7 @@ export class Azurerm_eventhub implements PcoreValue {
     partition_count: number,
     resource_group_name: string,
     azurerm_eventhub_id?: string|null,
-    capture_description?: Azurerm_eventhub_capture_description_679[]|null,
+    capture_description?: Azurerm_eventhub_capture_description_91[]|null,
     location?: string|null,
     partition_ids?: string[]|null
   }) {
@@ -8531,8 +8531,8 @@ export class Azurerm_eventhub_authorization_ruleHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_eventhub_capture_description_679 implements PcoreValue {
-  readonly destination: Azurerm_eventhub_capture_description_679_destination_680[];
+export class Azurerm_eventhub_capture_description_91 implements PcoreValue {
+  readonly destination: Azurerm_eventhub_capture_description_91_destination_92[];
   readonly enabled: boolean;
   readonly encoding: string;
   readonly interval_in_seconds: number|null;
@@ -8545,7 +8545,7 @@ export class Azurerm_eventhub_capture_description_679 implements PcoreValue {
     interval_in_seconds = null,
     size_limit_in_bytes = null
   }: {
-    destination: Azurerm_eventhub_capture_description_679_destination_680[],
+    destination: Azurerm_eventhub_capture_description_91_destination_92[],
     enabled: boolean,
     encoding: string,
     interval_in_seconds?: number|null,
@@ -8573,11 +8573,11 @@ export class Azurerm_eventhub_capture_description_679 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_eventhub_capture_description_679';
+    return 'TerraformAzureRM::Azurerm_eventhub_capture_description_91';
   }
 }
 
-export class Azurerm_eventhub_capture_description_679_destination_680 implements PcoreValue {
+export class Azurerm_eventhub_capture_description_91_destination_92 implements PcoreValue {
   readonly archive_name_format: string;
   readonly blob_container_name: string;
   readonly name: string;
@@ -8610,7 +8610,7 @@ export class Azurerm_eventhub_capture_description_679_destination_680 implements
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_eventhub_capture_description_679_destination_680';
+    return 'TerraformAzureRM::Azurerm_eventhub_capture_description_91_destination_92';
   }
 }
 
@@ -8911,7 +8911,7 @@ export class Azurerm_express_route_circuit implements PcoreValue {
   readonly peering_location: string;
   readonly resource_group_name: string;
   readonly service_provider_name: string;
-  readonly sku: Azurerm_express_route_circuit_sku_681[];
+  readonly sku: Azurerm_express_route_circuit_sku_93[];
   readonly azurerm_express_route_circuit_id: string|null;
   readonly allow_classic_operations: boolean|null;
   readonly service_key: string|null;
@@ -8938,7 +8938,7 @@ export class Azurerm_express_route_circuit implements PcoreValue {
     peering_location: string,
     resource_group_name: string,
     service_provider_name: string,
-    sku: Azurerm_express_route_circuit_sku_681[],
+    sku: Azurerm_express_route_circuit_sku_93[],
     azurerm_express_route_circuit_id?: string|null,
     allow_classic_operations?: boolean|null,
     service_key?: string|null,
@@ -9073,7 +9073,7 @@ export class Azurerm_express_route_circuit_peering implements PcoreValue {
   readonly vlan_id: number;
   readonly azurerm_express_route_circuit_peering_id: string|null;
   readonly azure_asn: number|null;
-  readonly microsoft_peering_config: Azurerm_express_route_circuit_peering_microsoft_peering_config_682[]|null;
+  readonly microsoft_peering_config: Azurerm_express_route_circuit_peering_microsoft_peering_config_94[]|null;
   readonly peer_asn: number|null;
   readonly primary_azure_port: string|null;
   readonly secondary_azure_port: string|null;
@@ -9102,7 +9102,7 @@ export class Azurerm_express_route_circuit_peering implements PcoreValue {
     vlan_id: number,
     azurerm_express_route_circuit_peering_id?: string|null,
     azure_asn?: number|null,
-    microsoft_peering_config?: Azurerm_express_route_circuit_peering_microsoft_peering_config_682[]|null,
+    microsoft_peering_config?: Azurerm_express_route_circuit_peering_microsoft_peering_config_94[]|null,
     peer_asn?: number|null,
     primary_azure_port?: string|null,
     secondary_azure_port?: string|null,
@@ -9170,7 +9170,7 @@ export class Azurerm_express_route_circuit_peeringHandler implements PcoreValue 
   }
 }
 
-export class Azurerm_express_route_circuit_peering_microsoft_peering_config_682 implements PcoreValue {
+export class Azurerm_express_route_circuit_peering_microsoft_peering_config_94 implements PcoreValue {
   readonly advertised_public_prefixes: string[];
 
   constructor({
@@ -9188,11 +9188,11 @@ export class Azurerm_express_route_circuit_peering_microsoft_peering_config_682 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_express_route_circuit_peering_microsoft_peering_config_682';
+    return 'TerraformAzureRM::Azurerm_express_route_circuit_peering_microsoft_peering_config_94';
   }
 }
 
-export class Azurerm_express_route_circuit_sku_681 implements PcoreValue {
+export class Azurerm_express_route_circuit_sku_93 implements PcoreValue {
   readonly family: string;
   readonly tier: string;
 
@@ -9215,12 +9215,12 @@ export class Azurerm_express_route_circuit_sku_681 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_express_route_circuit_sku_681';
+    return 'TerraformAzureRM::Azurerm_express_route_circuit_sku_93';
   }
 }
 
 export class Azurerm_firewall implements PcoreValue {
-  readonly ip_configuration: Azurerm_firewall_ip_configuration_683[];
+  readonly ip_configuration: Azurerm_firewall_ip_configuration_95[];
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
@@ -9235,7 +9235,7 @@ export class Azurerm_firewall implements PcoreValue {
     azurerm_firewall_id = null,
     tags = null
   }: {
-    ip_configuration: Azurerm_firewall_ip_configuration_683[],
+    ip_configuration: Azurerm_firewall_ip_configuration_95[],
     location: string,
     name: string,
     resource_group_name: string,
@@ -9286,7 +9286,7 @@ export class Azurerm_firewall_application_rule_collection implements PcoreValue 
   readonly name: string;
   readonly priority: number;
   readonly resource_group_name: string;
-  readonly rule: Azurerm_firewall_application_rule_collection_rule_684[];
+  readonly rule: Azurerm_firewall_application_rule_collection_rule_96[];
   readonly azurerm_firewall_application_rule_collection_id: string|null;
 
   constructor({
@@ -9303,7 +9303,7 @@ export class Azurerm_firewall_application_rule_collection implements PcoreValue 
     name: string,
     priority: number,
     resource_group_name: string,
-    rule: Azurerm_firewall_application_rule_collection_rule_684[],
+    rule: Azurerm_firewall_application_rule_collection_rule_96[],
     azurerm_firewall_application_rule_collection_id?: string|null
   }) {
     this.action = action;
@@ -9344,12 +9344,12 @@ export class Azurerm_firewall_application_rule_collectionHandler implements Pcor
   }
 }
 
-export class Azurerm_firewall_application_rule_collection_rule_684 implements PcoreValue {
+export class Azurerm_firewall_application_rule_collection_rule_96 implements PcoreValue {
   readonly name: string;
   readonly source_addresses: string[];
   readonly description: string|null;
   readonly fqdn_tags: string[]|null;
-  readonly protocol: Azurerm_firewall_application_rule_collection_rule_684_protocol_685[]|null;
+  readonly protocol: Azurerm_firewall_application_rule_collection_rule_96_protocol_97[]|null;
   readonly target_fqdns: string[]|null;
 
   constructor({
@@ -9364,7 +9364,7 @@ export class Azurerm_firewall_application_rule_collection_rule_684 implements Pc
     source_addresses: string[],
     description?: string|null,
     fqdn_tags?: string[]|null,
-    protocol?: Azurerm_firewall_application_rule_collection_rule_684_protocol_685[]|null,
+    protocol?: Azurerm_firewall_application_rule_collection_rule_96_protocol_97[]|null,
     target_fqdns?: string[]|null
   }) {
     this.name = name;
@@ -9395,11 +9395,11 @@ export class Azurerm_firewall_application_rule_collection_rule_684 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_firewall_application_rule_collection_rule_684';
+    return 'TerraformAzureRM::Azurerm_firewall_application_rule_collection_rule_96';
   }
 }
 
-export class Azurerm_firewall_application_rule_collection_rule_684_protocol_685 implements PcoreValue {
+export class Azurerm_firewall_application_rule_collection_rule_96_protocol_97 implements PcoreValue {
   readonly type: string;
   readonly port: number|null;
 
@@ -9424,11 +9424,11 @@ export class Azurerm_firewall_application_rule_collection_rule_684_protocol_685 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_firewall_application_rule_collection_rule_684_protocol_685';
+    return 'TerraformAzureRM::Azurerm_firewall_application_rule_collection_rule_96_protocol_97';
   }
 }
 
-export class Azurerm_firewall_ip_configuration_683 implements PcoreValue {
+export class Azurerm_firewall_ip_configuration_95 implements PcoreValue {
   readonly name: string;
   readonly subnet_id: string;
   readonly internal_public_ip_address_id: string|null;
@@ -9472,7 +9472,7 @@ export class Azurerm_firewall_ip_configuration_683 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_firewall_ip_configuration_683';
+    return 'TerraformAzureRM::Azurerm_firewall_ip_configuration_95';
   }
 }
 
@@ -9482,7 +9482,7 @@ export class Azurerm_firewall_network_rule_collection implements PcoreValue {
   readonly name: string;
   readonly priority: number;
   readonly resource_group_name: string;
-  readonly rule: Azurerm_firewall_network_rule_collection_rule_686[];
+  readonly rule: Azurerm_firewall_network_rule_collection_rule_98[];
   readonly azurerm_firewall_network_rule_collection_id: string|null;
 
   constructor({
@@ -9499,7 +9499,7 @@ export class Azurerm_firewall_network_rule_collection implements PcoreValue {
     name: string,
     priority: number,
     resource_group_name: string,
-    rule: Azurerm_firewall_network_rule_collection_rule_686[],
+    rule: Azurerm_firewall_network_rule_collection_rule_98[],
     azurerm_firewall_network_rule_collection_id?: string|null
   }) {
     this.action = action;
@@ -9540,7 +9540,7 @@ export class Azurerm_firewall_network_rule_collectionHandler implements PcoreVal
   }
 }
 
-export class Azurerm_firewall_network_rule_collection_rule_686 implements PcoreValue {
+export class Azurerm_firewall_network_rule_collection_rule_98 implements PcoreValue {
   readonly destination_addresses: string[];
   readonly destination_ports: string[];
   readonly name: string;
@@ -9585,7 +9585,7 @@ export class Azurerm_firewall_network_rule_collection_rule_686 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_firewall_network_rule_collection_rule_686';
+    return 'TerraformAzureRM::Azurerm_firewall_network_rule_collection_rule_98';
   }
 }
 
@@ -9598,15 +9598,15 @@ export class Azurerm_function_app implements PcoreValue {
   readonly azurerm_function_app_id: string|null;
   readonly app_settings: {[s: string]: string}|null;
   readonly client_affinity_enabled: boolean|null;
-  readonly connection_string: Azurerm_function_app_connection_string_687[]|null;
+  readonly connection_string: Azurerm_function_app_connection_string_99[]|null;
   readonly default_hostname: string|null;
   readonly enable_builtin_logging: boolean|null;
   readonly enabled: boolean|null;
   readonly https_only: boolean|null;
-  readonly identity: Azurerm_function_app_identity_688[]|null;
+  readonly identity: Azurerm_function_app_identity_100[]|null;
   readonly outbound_ip_addresses: string|null;
-  readonly site_config: Azurerm_function_app_site_config_689[]|null;
-  readonly site_credential: Azurerm_function_app_site_credential_690[]|null;
+  readonly site_config: Azurerm_function_app_site_config_101[]|null;
+  readonly site_credential: Azurerm_function_app_site_credential_102[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly version: string|null;
 
@@ -9639,15 +9639,15 @@ export class Azurerm_function_app implements PcoreValue {
     azurerm_function_app_id?: string|null,
     app_settings?: {[s: string]: string}|null,
     client_affinity_enabled?: boolean|null,
-    connection_string?: Azurerm_function_app_connection_string_687[]|null,
+    connection_string?: Azurerm_function_app_connection_string_99[]|null,
     default_hostname?: string|null,
     enable_builtin_logging?: boolean|null,
     enabled?: boolean|null,
     https_only?: boolean|null,
-    identity?: Azurerm_function_app_identity_688[]|null,
+    identity?: Azurerm_function_app_identity_100[]|null,
     outbound_ip_addresses?: string|null,
-    site_config?: Azurerm_function_app_site_config_689[]|null,
-    site_credential?: Azurerm_function_app_site_credential_690[]|null,
+    site_config?: Azurerm_function_app_site_config_101[]|null,
+    site_credential?: Azurerm_function_app_site_credential_102[]|null,
     tags?: {[s: string]: string}|null,
     version?: string|null
   }) {
@@ -9739,7 +9739,7 @@ export class Azurerm_function_appHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_function_app_connection_string_687 implements PcoreValue {
+export class Azurerm_function_app_connection_string_99 implements PcoreValue {
   readonly name: string;
   readonly type: string;
   readonly value: string;
@@ -9767,11 +9767,11 @@ export class Azurerm_function_app_connection_string_687 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_function_app_connection_string_687';
+    return 'TerraformAzureRM::Azurerm_function_app_connection_string_99';
   }
 }
 
-export class Azurerm_function_app_identity_688 implements PcoreValue {
+export class Azurerm_function_app_identity_100 implements PcoreValue {
   readonly type: string;
   readonly principal_id: string|null;
   readonly tenant_id: string|null;
@@ -9803,11 +9803,11 @@ export class Azurerm_function_app_identity_688 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_function_app_identity_688';
+    return 'TerraformAzureRM::Azurerm_function_app_identity_100';
   }
 }
 
-export class Azurerm_function_app_site_config_689 implements PcoreValue {
+export class Azurerm_function_app_site_config_101 implements PcoreValue {
   readonly always_on: boolean|null;
   readonly use_32_bit_worker_process: boolean|null;
   readonly websockets_enabled: boolean|null;
@@ -9841,11 +9841,11 @@ export class Azurerm_function_app_site_config_689 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_function_app_site_config_689';
+    return 'TerraformAzureRM::Azurerm_function_app_site_config_101';
   }
 }
 
-export class Azurerm_function_app_site_credential_690 implements PcoreValue {
+export class Azurerm_function_app_site_credential_102 implements PcoreValue {
   readonly password: string|null;
   readonly username: string|null;
 
@@ -9872,7 +9872,7 @@ export class Azurerm_function_app_site_credential_690 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_function_app_site_credential_690';
+    return 'TerraformAzureRM::Azurerm_function_app_site_credential_102';
   }
 }
 
@@ -9881,8 +9881,8 @@ export class Azurerm_image implements PcoreValue {
   readonly name: string;
   readonly resource_group_name: string;
   readonly azurerm_image_id: string|null;
-  readonly data_disk: Azurerm_image_data_disk_691[]|null;
-  readonly os_disk: Azurerm_image_os_disk_692[]|null;
+  readonly data_disk: Azurerm_image_data_disk_103[]|null;
+  readonly os_disk: Azurerm_image_os_disk_104[]|null;
   readonly source_virtual_machine_id: string|null;
   readonly tags: {[s: string]: string}|null;
 
@@ -9900,8 +9900,8 @@ export class Azurerm_image implements PcoreValue {
     name: string,
     resource_group_name: string,
     azurerm_image_id?: string|null,
-    data_disk?: Azurerm_image_data_disk_691[]|null,
-    os_disk?: Azurerm_image_os_disk_692[]|null,
+    data_disk?: Azurerm_image_data_disk_103[]|null,
+    os_disk?: Azurerm_image_os_disk_104[]|null,
     source_virtual_machine_id?: string|null,
     tags?: {[s: string]: string}|null
   }) {
@@ -9953,7 +9953,7 @@ export class Azurerm_imageHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_image_data_disk_691 implements PcoreValue {
+export class Azurerm_image_data_disk_103 implements PcoreValue {
   readonly blob_uri: string|null;
   readonly caching: string|null;
   readonly lun: number|null;
@@ -10001,11 +10001,11 @@ export class Azurerm_image_data_disk_691 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_image_data_disk_691';
+    return 'TerraformAzureRM::Azurerm_image_data_disk_103';
   }
 }
 
-export class Azurerm_image_os_disk_692 implements PcoreValue {
+export class Azurerm_image_os_disk_104 implements PcoreValue {
   readonly blob_uri: string|null;
   readonly caching: string|null;
   readonly managed_disk_id: string|null;
@@ -10060,7 +10060,7 @@ export class Azurerm_image_os_disk_692 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_image_os_disk_692';
+    return 'TerraformAzureRM::Azurerm_image_os_disk_104';
   }
 }
 
@@ -10068,16 +10068,16 @@ export class Azurerm_iothub implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_iothub_sku_696[];
+  readonly sku: Azurerm_iothub_sku_108[];
   readonly azurerm_iothub_id: string|null;
-  readonly endpoint: Azurerm_iothub_endpoint_693[]|null;
+  readonly endpoint: Azurerm_iothub_endpoint_105[]|null;
   readonly event_hub_events_endpoint: string|null;
   readonly event_hub_events_path: string|null;
   readonly event_hub_operations_endpoint: string|null;
   readonly event_hub_operations_path: string|null;
   readonly hostname: string|null;
-  readonly route: Azurerm_iothub_route_694[]|null;
-  readonly shared_access_policy: Azurerm_iothub_shared_access_policy_695[]|null;
+  readonly route: Azurerm_iothub_route_106[]|null;
+  readonly shared_access_policy: Azurerm_iothub_shared_access_policy_107[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly type: string|null;
 
@@ -10101,16 +10101,16 @@ export class Azurerm_iothub implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_iothub_sku_696[],
+    sku: Azurerm_iothub_sku_108[],
     azurerm_iothub_id?: string|null,
-    endpoint?: Azurerm_iothub_endpoint_693[]|null,
+    endpoint?: Azurerm_iothub_endpoint_105[]|null,
     event_hub_events_endpoint?: string|null,
     event_hub_events_path?: string|null,
     event_hub_operations_endpoint?: string|null,
     event_hub_operations_path?: string|null,
     hostname?: string|null,
-    route?: Azurerm_iothub_route_694[]|null,
-    shared_access_policy?: Azurerm_iothub_shared_access_policy_695[]|null,
+    route?: Azurerm_iothub_route_106[]|null,
+    shared_access_policy?: Azurerm_iothub_shared_access_policy_107[]|null,
     tags?: {[s: string]: string}|null,
     type?: string|null
   }) {
@@ -10242,7 +10242,7 @@ export class Azurerm_iothub_consumer_groupHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_iothub_endpoint_693 implements PcoreValue {
+export class Azurerm_iothub_endpoint_105 implements PcoreValue {
   readonly connection_string: string;
   readonly name: string;
   readonly type: string;
@@ -10305,11 +10305,11 @@ export class Azurerm_iothub_endpoint_693 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_iothub_endpoint_693';
+    return 'TerraformAzureRM::Azurerm_iothub_endpoint_105';
   }
 }
 
-export class Azurerm_iothub_route_694 implements PcoreValue {
+export class Azurerm_iothub_route_106 implements PcoreValue {
   readonly enabled: boolean;
   readonly endpoint_names: string[];
   readonly name: string;
@@ -10349,11 +10349,11 @@ export class Azurerm_iothub_route_694 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_iothub_route_694';
+    return 'TerraformAzureRM::Azurerm_iothub_route_106';
   }
 }
 
-export class Azurerm_iothub_shared_access_policy_695 implements PcoreValue {
+export class Azurerm_iothub_shared_access_policy_107 implements PcoreValue {
   readonly key_name: string|null;
   readonly permissions: string|null;
   readonly primary_key: string|null;
@@ -10394,11 +10394,11 @@ export class Azurerm_iothub_shared_access_policy_695 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_iothub_shared_access_policy_695';
+    return 'TerraformAzureRM::Azurerm_iothub_shared_access_policy_107';
   }
 }
 
-export class Azurerm_iothub_sku_696 implements PcoreValue {
+export class Azurerm_iothub_sku_108 implements PcoreValue {
   readonly capacity: number;
   readonly name: string;
   readonly tier: string;
@@ -10426,7 +10426,7 @@ export class Azurerm_iothub_sku_696 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_iothub_sku_696';
+    return 'TerraformAzureRM::Azurerm_iothub_sku_108';
   }
 }
 
@@ -10434,14 +10434,14 @@ export class Azurerm_key_vault implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_key_vault_sku_699[];
+  readonly sku: Azurerm_key_vault_sku_111[];
   readonly tenant_id: string;
   readonly azurerm_key_vault_id: string|null;
-  readonly access_policy: Azurerm_key_vault_access_policy_697[]|null;
+  readonly access_policy: Azurerm_key_vault_access_policy_109[]|null;
   readonly enabled_for_deployment: boolean|null;
   readonly enabled_for_disk_encryption: boolean|null;
   readonly enabled_for_template_deployment: boolean|null;
-  readonly network_acls: Azurerm_key_vault_network_acls_698[]|null;
+  readonly network_acls: Azurerm_key_vault_network_acls_110[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly vault_uri: string|null;
 
@@ -10463,14 +10463,14 @@ export class Azurerm_key_vault implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_key_vault_sku_699[],
+    sku: Azurerm_key_vault_sku_111[],
     tenant_id: string,
     azurerm_key_vault_id?: string|null,
-    access_policy?: Azurerm_key_vault_access_policy_697[]|null,
+    access_policy?: Azurerm_key_vault_access_policy_109[]|null,
     enabled_for_deployment?: boolean|null,
     enabled_for_disk_encryption?: boolean|null,
     enabled_for_template_deployment?: boolean|null,
-    network_acls?: Azurerm_key_vault_network_acls_698[]|null,
+    network_acls?: Azurerm_key_vault_network_acls_110[]|null,
     tags?: {[s: string]: string}|null,
     vault_uri?: string|null
   }) {
@@ -10620,7 +10620,7 @@ export class Azurerm_key_vault_access_policyHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_key_vault_access_policy_697 implements PcoreValue {
+export class Azurerm_key_vault_access_policy_109 implements PcoreValue {
   readonly object_id: string;
   readonly tenant_id: string;
   readonly application_id: string|null;
@@ -10671,16 +10671,16 @@ export class Azurerm_key_vault_access_policy_697 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_access_policy_697';
+    return 'TerraformAzureRM::Azurerm_key_vault_access_policy_109';
   }
 }
 
 export class Azurerm_key_vault_certificate implements PcoreValue {
-  readonly certificate_policy: Azurerm_key_vault_certificate_certificate_policy_701[];
+  readonly certificate_policy: Azurerm_key_vault_certificate_certificate_policy_113[];
   readonly name: string;
   readonly vault_uri: string;
   readonly azurerm_key_vault_certificate_id: string|null;
-  readonly certificate: Azurerm_key_vault_certificate_certificate_700[]|null;
+  readonly certificate: Azurerm_key_vault_certificate_certificate_112[]|null;
   readonly certificate_data: string|null;
   readonly secret_id: string|null;
   readonly tags: {[s: string]: string}|null;
@@ -10699,11 +10699,11 @@ export class Azurerm_key_vault_certificate implements PcoreValue {
     thumbprint = null,
     version = null
   }: {
-    certificate_policy: Azurerm_key_vault_certificate_certificate_policy_701[],
+    certificate_policy: Azurerm_key_vault_certificate_certificate_policy_113[],
     name: string,
     vault_uri: string,
     azurerm_key_vault_certificate_id?: string|null,
-    certificate?: Azurerm_key_vault_certificate_certificate_700[]|null,
+    certificate?: Azurerm_key_vault_certificate_certificate_112[]|null,
     certificate_data?: string|null,
     secret_id?: string|null,
     tags?: {[s: string]: string}|null,
@@ -10766,7 +10766,7 @@ export class Azurerm_key_vault_certificateHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_700 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_112 implements PcoreValue {
   readonly contents: string;
   readonly password: string|null;
 
@@ -10791,16 +10791,16 @@ export class Azurerm_key_vault_certificate_certificate_700 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_700';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_112';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701 implements PcoreValue {
-  readonly issuer_parameters: Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702[];
-  readonly key_properties: Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703[];
-  readonly secret_properties: Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707[];
-  readonly lifetime_action: Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704[]|null;
-  readonly x509_certificate_properties: Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708[]|null;
+export class Azurerm_key_vault_certificate_certificate_policy_113 implements PcoreValue {
+  readonly issuer_parameters: Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114[];
+  readonly key_properties: Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115[];
+  readonly secret_properties: Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119[];
+  readonly lifetime_action: Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116[]|null;
+  readonly x509_certificate_properties: Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120[]|null;
 
   constructor({
     issuer_parameters,
@@ -10809,11 +10809,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701 implements Pco
     lifetime_action = null,
     x509_certificate_properties = null
   }: {
-    issuer_parameters: Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702[],
-    key_properties: Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703[],
-    secret_properties: Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707[],
-    lifetime_action?: Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704[]|null,
-    x509_certificate_properties?: Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708[]|null
+    issuer_parameters: Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114[],
+    key_properties: Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115[],
+    secret_properties: Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119[],
+    lifetime_action?: Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116[]|null,
+    x509_certificate_properties?: Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120[]|null
   }) {
     this.issuer_parameters = issuer_parameters;
     this.key_properties = key_properties;
@@ -10837,11 +10837,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -10859,11 +10859,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_issuer_paramet
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_issuer_parameters_702';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115 implements PcoreValue {
   readonly exportable: boolean;
   readonly key_size: number;
   readonly key_type: string;
@@ -10896,20 +10896,20 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_key_properties
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_key_properties_703';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704 implements PcoreValue {
-  readonly action: Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705[];
-  readonly trigger: Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706[];
+export class Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116 implements PcoreValue {
+  readonly action: Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117[];
+  readonly trigger: Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118[];
 
   constructor({
     action,
     trigger
   }: {
-    action: Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705[],
-    trigger: Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706[]
+    action: Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117[],
+    trigger: Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118[]
   }) {
     this.action = action;
     this.trigger = trigger;
@@ -10923,11 +10923,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_lifetime_actio
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117 implements PcoreValue {
   readonly action_type: string;
 
   constructor({
@@ -10945,11 +10945,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_lifetime_actio
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_action_705';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118 implements PcoreValue {
   readonly days_before_expiry: number|null;
   readonly lifetime_percentage: number|null;
 
@@ -10976,11 +10976,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_lifetime_actio
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_lifetime_action_704_trigger_706';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119 implements PcoreValue {
   readonly content_type: string;
 
   constructor({
@@ -10998,16 +10998,16 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_secret_propert
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_secret_properties_707';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120 implements PcoreValue {
   readonly key_usage: string[];
   readonly subject: string;
   readonly validity_in_months: number;
   readonly extended_key_usage: string[]|null;
-  readonly subject_alternative_names: Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709[]|null;
+  readonly subject_alternative_names: Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121[]|null;
 
   constructor({
     key_usage,
@@ -11020,7 +11020,7 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_x509_certifica
     subject: string,
     validity_in_months: number,
     extended_key_usage?: string[]|null,
-    subject_alternative_names?: Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709[]|null
+    subject_alternative_names?: Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121[]|null
   }) {
     this.key_usage = key_usage;
     this.subject = subject;
@@ -11044,11 +11044,11 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_x509_certifica
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120';
   }
 }
 
-export class Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709 implements PcoreValue {
+export class Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121 implements PcoreValue {
   readonly dns_names: string[]|null;
   readonly emails: string[]|null;
   readonly upns: string[]|null;
@@ -11082,7 +11082,7 @@ export class Azurerm_key_vault_certificate_certificate_policy_701_x509_certifica
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_701_x509_certificate_properties_708_subject_alternative_names_709';
+    return 'TerraformAzureRM::Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121';
   }
 }
 
@@ -11173,7 +11173,7 @@ export class Azurerm_key_vault_keyHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_key_vault_network_acls_698 implements PcoreValue {
+export class Azurerm_key_vault_network_acls_110 implements PcoreValue {
   readonly bypass: string;
   readonly default_action: string;
   readonly ip_rules: string[]|null;
@@ -11210,7 +11210,7 @@ export class Azurerm_key_vault_network_acls_698 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_network_acls_698';
+    return 'TerraformAzureRM::Azurerm_key_vault_network_acls_110';
   }
 }
 
@@ -11284,7 +11284,7 @@ export class Azurerm_key_vault_secretHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_key_vault_sku_699 implements PcoreValue {
+export class Azurerm_key_vault_sku_111 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -11302,29 +11302,29 @@ export class Azurerm_key_vault_sku_699 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_key_vault_sku_699';
+    return 'TerraformAzureRM::Azurerm_key_vault_sku_111';
   }
 }
 
 export class Azurerm_kubernetes_cluster implements PcoreValue {
-  readonly agent_pool_profile: Azurerm_kubernetes_cluster_agent_pool_profile_714[];
+  readonly agent_pool_profile: Azurerm_kubernetes_cluster_agent_pool_profile_126[];
   readonly dns_prefix: string;
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly service_principal: Azurerm_kubernetes_cluster_service_principal_722[];
+  readonly service_principal: Azurerm_kubernetes_cluster_service_principal_134[];
   readonly azurerm_kubernetes_cluster_id: string|null;
-  readonly addon_profile: Azurerm_kubernetes_cluster_addon_profile_710[]|null;
+  readonly addon_profile: Azurerm_kubernetes_cluster_addon_profile_122[]|null;
   readonly fqdn: string|null;
-  readonly kube_admin_config: Azurerm_kubernetes_cluster_kube_admin_config_715[]|null;
+  readonly kube_admin_config: Azurerm_kubernetes_cluster_kube_admin_config_127[]|null;
   readonly kube_admin_config_raw: string|null;
-  readonly kube_config: Azurerm_kubernetes_cluster_kube_config_716[]|null;
+  readonly kube_config: Azurerm_kubernetes_cluster_kube_config_128[]|null;
   readonly kube_config_raw: string|null;
   readonly kubernetes_version: string|null;
-  readonly linux_profile: Azurerm_kubernetes_cluster_linux_profile_717[]|null;
-  readonly network_profile: Azurerm_kubernetes_cluster_network_profile_719[]|null;
+  readonly linux_profile: Azurerm_kubernetes_cluster_linux_profile_129[]|null;
+  readonly network_profile: Azurerm_kubernetes_cluster_network_profile_131[]|null;
   readonly node_resource_group: string|null;
-  readonly role_based_access_control: Azurerm_kubernetes_cluster_role_based_access_control_720[]|null;
+  readonly role_based_access_control: Azurerm_kubernetes_cluster_role_based_access_control_132[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -11348,24 +11348,24 @@ export class Azurerm_kubernetes_cluster implements PcoreValue {
     role_based_access_control = null,
     tags = null
   }: {
-    agent_pool_profile: Azurerm_kubernetes_cluster_agent_pool_profile_714[],
+    agent_pool_profile: Azurerm_kubernetes_cluster_agent_pool_profile_126[],
     dns_prefix: string,
     location: string,
     name: string,
     resource_group_name: string,
-    service_principal: Azurerm_kubernetes_cluster_service_principal_722[],
+    service_principal: Azurerm_kubernetes_cluster_service_principal_134[],
     azurerm_kubernetes_cluster_id?: string|null,
-    addon_profile?: Azurerm_kubernetes_cluster_addon_profile_710[]|null,
+    addon_profile?: Azurerm_kubernetes_cluster_addon_profile_122[]|null,
     fqdn?: string|null,
-    kube_admin_config?: Azurerm_kubernetes_cluster_kube_admin_config_715[]|null,
+    kube_admin_config?: Azurerm_kubernetes_cluster_kube_admin_config_127[]|null,
     kube_admin_config_raw?: string|null,
-    kube_config?: Azurerm_kubernetes_cluster_kube_config_716[]|null,
+    kube_config?: Azurerm_kubernetes_cluster_kube_config_128[]|null,
     kube_config_raw?: string|null,
     kubernetes_version?: string|null,
-    linux_profile?: Azurerm_kubernetes_cluster_linux_profile_717[]|null,
-    network_profile?: Azurerm_kubernetes_cluster_network_profile_719[]|null,
+    linux_profile?: Azurerm_kubernetes_cluster_linux_profile_129[]|null,
+    network_profile?: Azurerm_kubernetes_cluster_network_profile_131[]|null,
     node_resource_group?: string|null,
-    role_based_access_control?: Azurerm_kubernetes_cluster_role_based_access_control_720[]|null,
+    role_based_access_control?: Azurerm_kubernetes_cluster_role_based_access_control_132[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.agent_pool_profile = agent_pool_profile;
@@ -11454,19 +11454,19 @@ export class Azurerm_kubernetes_clusterHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_kubernetes_cluster_addon_profile_710 implements PcoreValue {
-  readonly aci_connector_linux: Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711[]|null;
-  readonly http_application_routing: Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712[]|null;
-  readonly oms_agent: Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713[]|null;
+export class Azurerm_kubernetes_cluster_addon_profile_122 implements PcoreValue {
+  readonly aci_connector_linux: Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123[]|null;
+  readonly http_application_routing: Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124[]|null;
+  readonly oms_agent: Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125[]|null;
 
   constructor({
     aci_connector_linux = null,
     http_application_routing = null,
     oms_agent = null
   }: {
-    aci_connector_linux?: Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711[]|null,
-    http_application_routing?: Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712[]|null,
-    oms_agent?: Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713[]|null
+    aci_connector_linux?: Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123[]|null,
+    http_application_routing?: Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124[]|null,
+    oms_agent?: Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125[]|null
   }) {
     this.aci_connector_linux = aci_connector_linux;
     this.http_application_routing = http_application_routing;
@@ -11488,11 +11488,11 @@ export class Azurerm_kubernetes_cluster_addon_profile_710 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_710';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_122';
   }
 }
 
-export class Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123 implements PcoreValue {
   readonly enabled: boolean;
   readonly subnet_name: string;
 
@@ -11515,11 +11515,11 @@ export class Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_71
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_710_aci_connector_linux_711';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123';
   }
 }
 
-export class Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124 implements PcoreValue {
   readonly enabled: boolean;
   readonly http_application_routing_zone_name: string|null;
 
@@ -11544,11 +11544,11 @@ export class Azurerm_kubernetes_cluster_addon_profile_710_http_application_routi
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_710_http_application_routing_712';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124';
   }
 }
 
-export class Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125 implements PcoreValue {
   readonly enabled: boolean;
   readonly log_analytics_workspace_id: string;
 
@@ -11571,11 +11571,11 @@ export class Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713 implemen
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_710_oms_agent_713';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125';
   }
 }
 
-export class Azurerm_kubernetes_cluster_agent_pool_profile_714 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_agent_pool_profile_126 implements PcoreValue {
   readonly name: string;
   readonly vm_size: string;
   readonly count: number|null;
@@ -11647,11 +11647,11 @@ export class Azurerm_kubernetes_cluster_agent_pool_profile_714 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_agent_pool_profile_714';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_agent_pool_profile_126';
   }
 }
 
-export class Azurerm_kubernetes_cluster_kube_admin_config_715 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_kube_admin_config_127 implements PcoreValue {
   readonly client_certificate: string|null;
   readonly client_key: string|null;
   readonly cluster_ca_certificate: string|null;
@@ -11706,11 +11706,11 @@ export class Azurerm_kubernetes_cluster_kube_admin_config_715 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_kube_admin_config_715';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_kube_admin_config_127';
   }
 }
 
-export class Azurerm_kubernetes_cluster_kube_config_716 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_kube_config_128 implements PcoreValue {
   readonly client_certificate: string|null;
   readonly client_key: string|null;
   readonly cluster_ca_certificate: string|null;
@@ -11765,20 +11765,20 @@ export class Azurerm_kubernetes_cluster_kube_config_716 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_kube_config_716';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_kube_config_128';
   }
 }
 
-export class Azurerm_kubernetes_cluster_linux_profile_717 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_linux_profile_129 implements PcoreValue {
   readonly admin_username: string;
-  readonly ssh_key: Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718[];
+  readonly ssh_key: Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130[];
 
   constructor({
     admin_username,
     ssh_key
   }: {
     admin_username: string,
-    ssh_key: Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718[]
+    ssh_key: Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130[]
   }) {
     this.admin_username = admin_username;
     this.ssh_key = ssh_key;
@@ -11792,11 +11792,11 @@ export class Azurerm_kubernetes_cluster_linux_profile_717 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_linux_profile_717';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_linux_profile_129';
   }
 }
 
-export class Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130 implements PcoreValue {
   readonly key_data: string;
 
   constructor({
@@ -11814,11 +11814,11 @@ export class Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718 implements
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_linux_profile_717_ssh_key_718';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130';
   }
 }
 
-export class Azurerm_kubernetes_cluster_network_profile_719 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_network_profile_131 implements PcoreValue {
   readonly network_plugin: string;
   readonly dns_service_ip: string|null;
   readonly docker_bridge_cidr: string|null;
@@ -11864,20 +11864,20 @@ export class Azurerm_kubernetes_cluster_network_profile_719 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_network_profile_719';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_network_profile_131';
   }
 }
 
-export class Azurerm_kubernetes_cluster_role_based_access_control_720 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_role_based_access_control_132 implements PcoreValue {
   readonly enabled: boolean;
-  readonly azure_active_directory: Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721[]|null;
+  readonly azure_active_directory: Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133[]|null;
 
   constructor({
     enabled,
     azure_active_directory = null
   }: {
     enabled: boolean,
-    azure_active_directory?: Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721[]|null
+    azure_active_directory?: Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133[]|null
   }) {
     this.enabled = enabled;
     this.azure_active_directory = azure_active_directory;
@@ -11893,11 +11893,11 @@ export class Azurerm_kubernetes_cluster_role_based_access_control_720 implements
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_role_based_access_control_720';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_role_based_access_control_132';
   }
 }
 
-export class Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133 implements PcoreValue {
   readonly client_app_id: string;
   readonly server_app_id: string;
   readonly server_app_secret: string;
@@ -11932,11 +11932,11 @@ export class Azurerm_kubernetes_cluster_role_based_access_control_720_azure_acti
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_role_based_access_control_720_azure_active_directory_721';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133';
   }
 }
 
-export class Azurerm_kubernetes_cluster_service_principal_722 implements PcoreValue {
+export class Azurerm_kubernetes_cluster_service_principal_134 implements PcoreValue {
   readonly client_id: string;
   readonly client_secret: string;
 
@@ -11959,7 +11959,7 @@ export class Azurerm_kubernetes_cluster_service_principal_722 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_service_principal_722';
+    return 'TerraformAzureRM::Azurerm_kubernetes_cluster_service_principal_134';
   }
 }
 
@@ -11968,7 +11968,7 @@ export class Azurerm_lb implements PcoreValue {
   readonly name: string;
   readonly resource_group_name: string;
   readonly azurerm_lb_id: string|null;
-  readonly frontend_ip_configuration: Azurerm_lb_frontend_ip_configuration_723[]|null;
+  readonly frontend_ip_configuration: Azurerm_lb_frontend_ip_configuration_135[]|null;
   readonly private_ip_address: string|null;
   readonly private_ip_addresses: string[]|null;
   readonly sku: string|null;
@@ -11989,7 +11989,7 @@ export class Azurerm_lb implements PcoreValue {
     name: string,
     resource_group_name: string,
     azurerm_lb_id?: string|null,
-    frontend_ip_configuration?: Azurerm_lb_frontend_ip_configuration_723[]|null,
+    frontend_ip_configuration?: Azurerm_lb_frontend_ip_configuration_135[]|null,
     private_ip_address?: string|null,
     private_ip_addresses?: string[]|null,
     sku?: string|null,
@@ -12117,7 +12117,7 @@ export class Azurerm_lb_backend_address_poolHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_lb_frontend_ip_configuration_723 implements PcoreValue {
+export class Azurerm_lb_frontend_ip_configuration_135 implements PcoreValue {
   readonly name: string;
   readonly inbound_nat_rules: string[]|null;
   readonly load_balancer_rules: string[]|null;
@@ -12184,7 +12184,7 @@ export class Azurerm_lb_frontend_ip_configuration_723 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_lb_frontend_ip_configuration_723';
+    return 'TerraformAzureRM::Azurerm_lb_frontend_ip_configuration_135';
   }
 }
 
@@ -12594,7 +12594,7 @@ export class Azurerm_local_network_gateway implements PcoreValue {
   readonly name: string;
   readonly resource_group_name: string;
   readonly azurerm_local_network_gateway_id: string|null;
-  readonly bgp_settings: Azurerm_local_network_gateway_bgp_settings_724[]|null;
+  readonly bgp_settings: Azurerm_local_network_gateway_bgp_settings_136[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -12613,7 +12613,7 @@ export class Azurerm_local_network_gateway implements PcoreValue {
     name: string,
     resource_group_name: string,
     azurerm_local_network_gateway_id?: string|null,
-    bgp_settings?: Azurerm_local_network_gateway_bgp_settings_724[]|null,
+    bgp_settings?: Azurerm_local_network_gateway_bgp_settings_136[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.address_space = address_space;
@@ -12660,7 +12660,7 @@ export class Azurerm_local_network_gatewayHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_local_network_gateway_bgp_settings_724 implements PcoreValue {
+export class Azurerm_local_network_gateway_bgp_settings_136 implements PcoreValue {
   readonly asn: number;
   readonly bgp_peering_address: string;
   readonly peer_weight: number|null;
@@ -12690,13 +12690,13 @@ export class Azurerm_local_network_gateway_bgp_settings_724 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_local_network_gateway_bgp_settings_724';
+    return 'TerraformAzureRM::Azurerm_local_network_gateway_bgp_settings_136';
   }
 }
 
 export class Azurerm_log_analytics_solution implements PcoreValue {
   readonly location: string;
-  readonly plan: Azurerm_log_analytics_solution_plan_725[];
+  readonly plan: Azurerm_log_analytics_solution_plan_137[];
   readonly resource_group_name: string;
   readonly solution_name: string;
   readonly workspace_name: string;
@@ -12713,7 +12713,7 @@ export class Azurerm_log_analytics_solution implements PcoreValue {
     azurerm_log_analytics_solution_id = null
   }: {
     location: string,
-    plan: Azurerm_log_analytics_solution_plan_725[],
+    plan: Azurerm_log_analytics_solution_plan_137[],
     resource_group_name: string,
     solution_name: string,
     workspace_name: string,
@@ -12758,7 +12758,7 @@ export class Azurerm_log_analytics_solutionHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_log_analytics_solution_plan_725 implements PcoreValue {
+export class Azurerm_log_analytics_solution_plan_137 implements PcoreValue {
   readonly product: string;
   readonly publisher: string;
   readonly name: string|null;
@@ -12795,7 +12795,7 @@ export class Azurerm_log_analytics_solution_plan_725 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_log_analytics_solution_plan_725';
+    return 'TerraformAzureRM::Azurerm_log_analytics_solution_plan_137';
   }
 }
 
@@ -13340,7 +13340,7 @@ export class Azurerm_managed_disk implements PcoreValue {
   readonly storage_account_type: string;
   readonly azurerm_managed_disk_id: string|null;
   readonly disk_size_gb: number|null;
-  readonly encryption_settings: Azurerm_managed_disk_encryption_settings_726[]|null;
+  readonly encryption_settings: Azurerm_managed_disk_encryption_settings_138[]|null;
   readonly image_reference_id: string|null;
   readonly os_type: string|null;
   readonly source_resource_id: string|null;
@@ -13371,7 +13371,7 @@ export class Azurerm_managed_disk implements PcoreValue {
     storage_account_type: string,
     azurerm_managed_disk_id?: string|null,
     disk_size_gb?: number|null,
-    encryption_settings?: Azurerm_managed_disk_encryption_settings_726[]|null,
+    encryption_settings?: Azurerm_managed_disk_encryption_settings_138[]|null,
     image_reference_id?: string|null,
     os_type?: string|null,
     source_resource_id?: string|null,
@@ -13447,10 +13447,10 @@ export class Azurerm_managed_diskHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_managed_disk_encryption_settings_726 implements PcoreValue {
+export class Azurerm_managed_disk_encryption_settings_138 implements PcoreValue {
   readonly enabled: boolean;
-  readonly disk_encryption_key: Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727[]|null;
-  readonly key_encryption_key: Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728[]|null;
+  readonly disk_encryption_key: Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139[]|null;
+  readonly key_encryption_key: Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140[]|null;
 
   constructor({
     enabled,
@@ -13458,8 +13458,8 @@ export class Azurerm_managed_disk_encryption_settings_726 implements PcoreValue 
     key_encryption_key = null
   }: {
     enabled: boolean,
-    disk_encryption_key?: Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727[]|null,
-    key_encryption_key?: Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728[]|null
+    disk_encryption_key?: Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139[]|null,
+    key_encryption_key?: Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140[]|null
   }) {
     this.enabled = enabled;
     this.disk_encryption_key = disk_encryption_key;
@@ -13479,11 +13479,11 @@ export class Azurerm_managed_disk_encryption_settings_726 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_managed_disk_encryption_settings_726';
+    return 'TerraformAzureRM::Azurerm_managed_disk_encryption_settings_138';
   }
 }
 
-export class Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727 implements PcoreValue {
+export class Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139 implements PcoreValue {
   readonly secret_url: string;
   readonly source_vault_id: string;
 
@@ -13506,11 +13506,11 @@ export class Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_72
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_managed_disk_encryption_settings_726_disk_encryption_key_727';
+    return 'TerraformAzureRM::Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139';
   }
 }
 
-export class Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728 implements PcoreValue {
+export class Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140 implements PcoreValue {
   readonly key_url: string;
   readonly source_vault_id: string;
 
@@ -13533,7 +13533,7 @@ export class Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_managed_disk_encryption_settings_726_key_encryption_key_728';
+    return 'TerraformAzureRM::Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140';
   }
 }
 
@@ -13720,9 +13720,9 @@ export class Azurerm_mariadb_server implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_mariadb_server_sku_729[];
+  readonly sku: Azurerm_mariadb_server_sku_141[];
   readonly ssl_enforcement: string;
-  readonly storage_profile: Azurerm_mariadb_server_storage_profile_730[];
+  readonly storage_profile: Azurerm_mariadb_server_storage_profile_142[];
   readonly version: string;
   readonly azurerm_mariadb_server_id: string|null;
   readonly fqdn: string|null;
@@ -13747,9 +13747,9 @@ export class Azurerm_mariadb_server implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_mariadb_server_sku_729[],
+    sku: Azurerm_mariadb_server_sku_141[],
     ssl_enforcement: string,
-    storage_profile: Azurerm_mariadb_server_storage_profile_730[],
+    storage_profile: Azurerm_mariadb_server_storage_profile_142[],
     version: string,
     azurerm_mariadb_server_id?: string|null,
     fqdn?: string|null,
@@ -13807,7 +13807,7 @@ export class Azurerm_mariadb_serverHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_mariadb_server_sku_729 implements PcoreValue {
+export class Azurerm_mariadb_server_sku_141 implements PcoreValue {
   readonly capacity: number;
   readonly family: string;
   readonly name: string;
@@ -13840,11 +13840,11 @@ export class Azurerm_mariadb_server_sku_729 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mariadb_server_sku_729';
+    return 'TerraformAzureRM::Azurerm_mariadb_server_sku_141';
   }
 }
 
-export class Azurerm_mariadb_server_storage_profile_730 implements PcoreValue {
+export class Azurerm_mariadb_server_storage_profile_142 implements PcoreValue {
   readonly storage_mb: number;
   readonly backup_retention_days: number|null;
   readonly geo_redundant_backup: string|null;
@@ -13876,7 +13876,7 @@ export class Azurerm_mariadb_server_storage_profile_730 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mariadb_server_storage_profile_730';
+    return 'TerraformAzureRM::Azurerm_mariadb_server_storage_profile_142';
   }
 }
 
@@ -13892,10 +13892,10 @@ export class Azurerm_metric_alertrule implements PcoreValue {
   readonly threshold: number;
   readonly azurerm_metric_alertrule_id: string|null;
   readonly description: string|null;
-  readonly email_action: Azurerm_metric_alertrule_email_action_731[]|null;
+  readonly email_action: Azurerm_metric_alertrule_email_action_143[]|null;
   readonly enabled: boolean|null;
   readonly tags: {[s: string]: string}|null;
-  readonly webhook_action: Azurerm_metric_alertrule_webhook_action_732[]|null;
+  readonly webhook_action: Azurerm_metric_alertrule_webhook_action_144[]|null;
 
   constructor({
     aggregation,
@@ -13925,10 +13925,10 @@ export class Azurerm_metric_alertrule implements PcoreValue {
     threshold: number,
     azurerm_metric_alertrule_id?: string|null,
     description?: string|null,
-    email_action?: Azurerm_metric_alertrule_email_action_731[]|null,
+    email_action?: Azurerm_metric_alertrule_email_action_143[]|null,
     enabled?: boolean|null,
     tags?: {[s: string]: string}|null,
-    webhook_action?: Azurerm_metric_alertrule_webhook_action_732[]|null
+    webhook_action?: Azurerm_metric_alertrule_webhook_action_144[]|null
   }) {
     this.aggregation = aggregation;
     this.location = location;
@@ -13994,7 +13994,7 @@ export class Azurerm_metric_alertruleHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_metric_alertrule_email_action_731 implements PcoreValue {
+export class Azurerm_metric_alertrule_email_action_143 implements PcoreValue {
   readonly custom_emails: string[]|null;
   readonly send_to_service_owners: boolean|null;
 
@@ -14021,11 +14021,11 @@ export class Azurerm_metric_alertrule_email_action_731 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_metric_alertrule_email_action_731';
+    return 'TerraformAzureRM::Azurerm_metric_alertrule_email_action_143';
   }
 }
 
-export class Azurerm_metric_alertrule_webhook_action_732 implements PcoreValue {
+export class Azurerm_metric_alertrule_webhook_action_144 implements PcoreValue {
   readonly service_uri: string;
   readonly properties: {[s: string]: string}|null;
 
@@ -14050,7 +14050,7 @@ export class Azurerm_metric_alertrule_webhook_action_732 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_metric_alertrule_webhook_action_732';
+    return 'TerraformAzureRM::Azurerm_metric_alertrule_webhook_action_144';
   }
 }
 
@@ -14059,11 +14059,11 @@ export class Azurerm_monitor_action_group implements PcoreValue {
   readonly resource_group_name: string;
   readonly short_name: string;
   readonly azurerm_monitor_action_group_id: string|null;
-  readonly email_receiver: Azurerm_monitor_action_group_email_receiver_733[]|null;
+  readonly email_receiver: Azurerm_monitor_action_group_email_receiver_145[]|null;
   readonly enabled: boolean|null;
-  readonly sms_receiver: Azurerm_monitor_action_group_sms_receiver_734[]|null;
+  readonly sms_receiver: Azurerm_monitor_action_group_sms_receiver_146[]|null;
   readonly tags: {[s: string]: string}|null;
-  readonly webhook_receiver: Azurerm_monitor_action_group_webhook_receiver_735[]|null;
+  readonly webhook_receiver: Azurerm_monitor_action_group_webhook_receiver_147[]|null;
 
   constructor({
     name,
@@ -14080,11 +14080,11 @@ export class Azurerm_monitor_action_group implements PcoreValue {
     resource_group_name: string,
     short_name: string,
     azurerm_monitor_action_group_id?: string|null,
-    email_receiver?: Azurerm_monitor_action_group_email_receiver_733[]|null,
+    email_receiver?: Azurerm_monitor_action_group_email_receiver_145[]|null,
     enabled?: boolean|null,
-    sms_receiver?: Azurerm_monitor_action_group_sms_receiver_734[]|null,
+    sms_receiver?: Azurerm_monitor_action_group_sms_receiver_146[]|null,
     tags?: {[s: string]: string}|null,
-    webhook_receiver?: Azurerm_monitor_action_group_webhook_receiver_735[]|null
+    webhook_receiver?: Azurerm_monitor_action_group_webhook_receiver_147[]|null
   }) {
     this.name = name;
     this.resource_group_name = resource_group_name;
@@ -14138,7 +14138,7 @@ export class Azurerm_monitor_action_groupHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_monitor_action_group_email_receiver_733 implements PcoreValue {
+export class Azurerm_monitor_action_group_email_receiver_145 implements PcoreValue {
   readonly email_address: string;
   readonly name: string;
 
@@ -14161,11 +14161,11 @@ export class Azurerm_monitor_action_group_email_receiver_733 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_action_group_email_receiver_733';
+    return 'TerraformAzureRM::Azurerm_monitor_action_group_email_receiver_145';
   }
 }
 
-export class Azurerm_monitor_action_group_sms_receiver_734 implements PcoreValue {
+export class Azurerm_monitor_action_group_sms_receiver_146 implements PcoreValue {
   readonly country_code: string;
   readonly name: string;
   readonly phone_number: string;
@@ -14193,11 +14193,11 @@ export class Azurerm_monitor_action_group_sms_receiver_734 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_action_group_sms_receiver_734';
+    return 'TerraformAzureRM::Azurerm_monitor_action_group_sms_receiver_146';
   }
 }
 
-export class Azurerm_monitor_action_group_webhook_receiver_735 implements PcoreValue {
+export class Azurerm_monitor_action_group_webhook_receiver_147 implements PcoreValue {
   readonly name: string;
   readonly service_uri: string;
 
@@ -14220,17 +14220,17 @@ export class Azurerm_monitor_action_group_webhook_receiver_735 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_action_group_webhook_receiver_735';
+    return 'TerraformAzureRM::Azurerm_monitor_action_group_webhook_receiver_147';
   }
 }
 
 export class Azurerm_monitor_activity_log_alert implements PcoreValue {
-  readonly criteria: Azurerm_monitor_activity_log_alert_criteria_737[];
+  readonly criteria: Azurerm_monitor_activity_log_alert_criteria_149[];
   readonly name: string;
   readonly resource_group_name: string;
   readonly scopes: string[];
   readonly azurerm_monitor_activity_log_alert_id: string|null;
-  readonly action: Azurerm_monitor_activity_log_alert_action_736[]|null;
+  readonly action: Azurerm_monitor_activity_log_alert_action_148[]|null;
   readonly description: string|null;
   readonly enabled: boolean|null;
   readonly tags: {[s: string]: string}|null;
@@ -14246,12 +14246,12 @@ export class Azurerm_monitor_activity_log_alert implements PcoreValue {
     enabled = null,
     tags = null
   }: {
-    criteria: Azurerm_monitor_activity_log_alert_criteria_737[],
+    criteria: Azurerm_monitor_activity_log_alert_criteria_149[],
     name: string,
     resource_group_name: string,
     scopes: string[],
     azurerm_monitor_activity_log_alert_id?: string|null,
-    action?: Azurerm_monitor_activity_log_alert_action_736[]|null,
+    action?: Azurerm_monitor_activity_log_alert_action_148[]|null,
     description?: string|null,
     enabled?: boolean|null,
     tags?: {[s: string]: string}|null
@@ -14306,7 +14306,7 @@ export class Azurerm_monitor_activity_log_alertHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_monitor_activity_log_alert_action_736 implements PcoreValue {
+export class Azurerm_monitor_activity_log_alert_action_148 implements PcoreValue {
   readonly action_group_id: string;
   readonly webhook_properties: {[s: string]: string}|null;
 
@@ -14331,11 +14331,11 @@ export class Azurerm_monitor_activity_log_alert_action_736 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_activity_log_alert_action_736';
+    return 'TerraformAzureRM::Azurerm_monitor_activity_log_alert_action_148';
   }
 }
 
-export class Azurerm_monitor_activity_log_alert_criteria_737 implements PcoreValue {
+export class Azurerm_monitor_activity_log_alert_criteria_149 implements PcoreValue {
   readonly category: string;
   readonly caller: string|null;
   readonly level: string|null;
@@ -14416,7 +14416,7 @@ export class Azurerm_monitor_activity_log_alert_criteria_737 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_activity_log_alert_criteria_737';
+    return 'TerraformAzureRM::Azurerm_monitor_activity_log_alert_criteria_149';
   }
 }
 
@@ -14426,9 +14426,9 @@ export class Azurerm_monitor_diagnostic_setting implements PcoreValue {
   readonly azurerm_monitor_diagnostic_setting_id: string|null;
   readonly eventhub_authorization_rule_id: string|null;
   readonly eventhub_name: string|null;
-  readonly log: Azurerm_monitor_diagnostic_setting_log_738[]|null;
+  readonly log: Azurerm_monitor_diagnostic_setting_log_150[]|null;
   readonly log_analytics_workspace_id: string|null;
-  readonly metric: Azurerm_monitor_diagnostic_setting_metric_740[]|null;
+  readonly metric: Azurerm_monitor_diagnostic_setting_metric_152[]|null;
   readonly storage_account_id: string|null;
 
   constructor({
@@ -14447,9 +14447,9 @@ export class Azurerm_monitor_diagnostic_setting implements PcoreValue {
     azurerm_monitor_diagnostic_setting_id?: string|null,
     eventhub_authorization_rule_id?: string|null,
     eventhub_name?: string|null,
-    log?: Azurerm_monitor_diagnostic_setting_log_738[]|null,
+    log?: Azurerm_monitor_diagnostic_setting_log_150[]|null,
     log_analytics_workspace_id?: string|null,
-    metric?: Azurerm_monitor_diagnostic_setting_metric_740[]|null,
+    metric?: Azurerm_monitor_diagnostic_setting_metric_152[]|null,
     storage_account_id?: string|null
   }) {
     this.name = name;
@@ -14506,9 +14506,9 @@ export class Azurerm_monitor_diagnostic_settingHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_monitor_diagnostic_setting_log_738 implements PcoreValue {
+export class Azurerm_monitor_diagnostic_setting_log_150 implements PcoreValue {
   readonly category: string;
-  readonly retention_policy: Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739[];
+  readonly retention_policy: Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151[];
   readonly enabled: boolean|null;
 
   constructor({
@@ -14517,7 +14517,7 @@ export class Azurerm_monitor_diagnostic_setting_log_738 implements PcoreValue {
     enabled = null
   }: {
     category: string,
-    retention_policy: Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739[],
+    retention_policy: Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151[],
     enabled?: boolean|null
   }) {
     this.category = category;
@@ -14536,11 +14536,11 @@ export class Azurerm_monitor_diagnostic_setting_log_738 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_log_738';
+    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_log_150';
   }
 }
 
-export class Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739 implements PcoreValue {
+export class Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151 implements PcoreValue {
   readonly enabled: boolean;
   readonly days: number|null;
 
@@ -14565,13 +14565,13 @@ export class Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739 imp
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_log_738_retention_policy_739';
+    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151';
   }
 }
 
-export class Azurerm_monitor_diagnostic_setting_metric_740 implements PcoreValue {
+export class Azurerm_monitor_diagnostic_setting_metric_152 implements PcoreValue {
   readonly category: string;
-  readonly retention_policy: Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741[];
+  readonly retention_policy: Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153[];
   readonly enabled: boolean|null;
 
   constructor({
@@ -14580,7 +14580,7 @@ export class Azurerm_monitor_diagnostic_setting_metric_740 implements PcoreValue
     enabled = null
   }: {
     category: string,
-    retention_policy: Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741[],
+    retention_policy: Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153[],
     enabled?: boolean|null
   }) {
     this.category = category;
@@ -14599,11 +14599,11 @@ export class Azurerm_monitor_diagnostic_setting_metric_740 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_metric_740';
+    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_metric_152';
   }
 }
 
-export class Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741 implements PcoreValue {
+export class Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153 implements PcoreValue {
   readonly enabled: boolean;
   readonly days: number|null;
 
@@ -14628,7 +14628,7 @@ export class Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_metric_740_retention_policy_741';
+    return 'TerraformAzureRM::Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153';
   }
 }
 
@@ -14636,7 +14636,7 @@ export class Azurerm_monitor_log_profile implements PcoreValue {
   readonly categories: string[];
   readonly locations: string[];
   readonly name: string;
-  readonly retention_policy: Azurerm_monitor_log_profile_retention_policy_742[];
+  readonly retention_policy: Azurerm_monitor_log_profile_retention_policy_154[];
   readonly azurerm_monitor_log_profile_id: string|null;
   readonly servicebus_rule_id: string|null;
   readonly storage_account_id: string|null;
@@ -14653,7 +14653,7 @@ export class Azurerm_monitor_log_profile implements PcoreValue {
     categories: string[],
     locations: string[],
     name: string,
-    retention_policy: Azurerm_monitor_log_profile_retention_policy_742[],
+    retention_policy: Azurerm_monitor_log_profile_retention_policy_154[],
     azurerm_monitor_log_profile_id?: string|null,
     servicebus_rule_id?: string|null,
     storage_account_id?: string|null
@@ -14700,7 +14700,7 @@ export class Azurerm_monitor_log_profileHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_monitor_log_profile_retention_policy_742 implements PcoreValue {
+export class Azurerm_monitor_log_profile_retention_policy_154 implements PcoreValue {
   readonly enabled: boolean;
   readonly days: number|null;
 
@@ -14725,17 +14725,17 @@ export class Azurerm_monitor_log_profile_retention_policy_742 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_log_profile_retention_policy_742';
+    return 'TerraformAzureRM::Azurerm_monitor_log_profile_retention_policy_154';
   }
 }
 
 export class Azurerm_monitor_metric_alert implements PcoreValue {
-  readonly criteria: Azurerm_monitor_metric_alert_criteria_744[];
+  readonly criteria: Azurerm_monitor_metric_alert_criteria_156[];
   readonly name: string;
   readonly resource_group_name: string;
   readonly scopes: string[];
   readonly azurerm_monitor_metric_alert_id: string|null;
-  readonly action: Azurerm_monitor_metric_alert_action_743[]|null;
+  readonly action: Azurerm_monitor_metric_alert_action_155[]|null;
   readonly auto_mitigate: boolean|null;
   readonly description: string|null;
   readonly enabled: boolean|null;
@@ -14759,12 +14759,12 @@ export class Azurerm_monitor_metric_alert implements PcoreValue {
     tags = null,
     window_size = null
   }: {
-    criteria: Azurerm_monitor_metric_alert_criteria_744[],
+    criteria: Azurerm_monitor_metric_alert_criteria_156[],
     name: string,
     resource_group_name: string,
     scopes: string[],
     azurerm_monitor_metric_alert_id?: string|null,
-    action?: Azurerm_monitor_metric_alert_action_743[]|null,
+    action?: Azurerm_monitor_metric_alert_action_155[]|null,
     auto_mitigate?: boolean|null,
     description?: string|null,
     enabled?: boolean|null,
@@ -14839,7 +14839,7 @@ export class Azurerm_monitor_metric_alertHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_monitor_metric_alert_action_743 implements PcoreValue {
+export class Azurerm_monitor_metric_alert_action_155 implements PcoreValue {
   readonly action_group_id: string;
   readonly webhook_properties: {[s: string]: string}|null;
 
@@ -14864,17 +14864,17 @@ export class Azurerm_monitor_metric_alert_action_743 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_metric_alert_action_743';
+    return 'TerraformAzureRM::Azurerm_monitor_metric_alert_action_155';
   }
 }
 
-export class Azurerm_monitor_metric_alert_criteria_744 implements PcoreValue {
+export class Azurerm_monitor_metric_alert_criteria_156 implements PcoreValue {
   readonly aggregation: string;
   readonly metric_name: string;
   readonly metric_namespace: string;
   readonly operator: string;
   readonly threshold: number;
-  readonly dimension: Azurerm_monitor_metric_alert_criteria_744_dimension_745[]|null;
+  readonly dimension: Azurerm_monitor_metric_alert_criteria_156_dimension_157[]|null;
 
   constructor({
     aggregation,
@@ -14889,7 +14889,7 @@ export class Azurerm_monitor_metric_alert_criteria_744 implements PcoreValue {
     metric_namespace: string,
     operator: string,
     threshold: number,
-    dimension?: Azurerm_monitor_metric_alert_criteria_744_dimension_745[]|null
+    dimension?: Azurerm_monitor_metric_alert_criteria_156_dimension_157[]|null
   }) {
     this.aggregation = aggregation;
     this.metric_name = metric_name;
@@ -14913,11 +14913,11 @@ export class Azurerm_monitor_metric_alert_criteria_744 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_metric_alert_criteria_744';
+    return 'TerraformAzureRM::Azurerm_monitor_metric_alert_criteria_156';
   }
 }
 
-export class Azurerm_monitor_metric_alert_criteria_744_dimension_745 implements PcoreValue {
+export class Azurerm_monitor_metric_alert_criteria_156_dimension_157 implements PcoreValue {
   readonly name: string;
   readonly operator: string;
   readonly values: string[];
@@ -14945,19 +14945,19 @@ export class Azurerm_monitor_metric_alert_criteria_744_dimension_745 implements 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_monitor_metric_alert_criteria_744_dimension_745';
+    return 'TerraformAzureRM::Azurerm_monitor_metric_alert_criteria_156_dimension_157';
   }
 }
 
 export class Azurerm_mssql_elasticpool implements PcoreValue {
   readonly location: string;
   readonly name: string;
-  readonly per_database_settings: Azurerm_mssql_elasticpool_per_database_settings_747[];
+  readonly per_database_settings: Azurerm_mssql_elasticpool_per_database_settings_159[];
   readonly resource_group_name: string;
   readonly server_name: string;
-  readonly sku: Azurerm_mssql_elasticpool_sku_748[];
+  readonly sku: Azurerm_mssql_elasticpool_sku_160[];
   readonly azurerm_mssql_elasticpool_id: string|null;
-  readonly elastic_pool_properties: Azurerm_mssql_elasticpool_elastic_pool_properties_746[]|null;
+  readonly elastic_pool_properties: Azurerm_mssql_elasticpool_elastic_pool_properties_158[]|null;
   readonly max_size_bytes: number|null;
   readonly tags: {[s: string]: string}|null;
   readonly zone_redundant: boolean|null;
@@ -14977,12 +14977,12 @@ export class Azurerm_mssql_elasticpool implements PcoreValue {
   }: {
     location: string,
     name: string,
-    per_database_settings: Azurerm_mssql_elasticpool_per_database_settings_747[],
+    per_database_settings: Azurerm_mssql_elasticpool_per_database_settings_159[],
     resource_group_name: string,
     server_name: string,
-    sku: Azurerm_mssql_elasticpool_sku_748[],
+    sku: Azurerm_mssql_elasticpool_sku_160[],
     azurerm_mssql_elasticpool_id?: string|null,
-    elastic_pool_properties?: Azurerm_mssql_elasticpool_elastic_pool_properties_746[]|null,
+    elastic_pool_properties?: Azurerm_mssql_elasticpool_elastic_pool_properties_158[]|null,
     max_size_bytes?: number|null,
     tags?: {[s: string]: string}|null,
     zone_redundant?: boolean|null
@@ -15041,7 +15041,7 @@ export class Azurerm_mssql_elasticpoolHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_mssql_elasticpool_elastic_pool_properties_746 implements PcoreValue {
+export class Azurerm_mssql_elasticpool_elastic_pool_properties_158 implements PcoreValue {
   readonly creation_date: string|null;
   readonly license_type: string|null;
   readonly max_size_bytes: number|null;
@@ -15089,11 +15089,11 @@ export class Azurerm_mssql_elasticpool_elastic_pool_properties_746 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mssql_elasticpool_elastic_pool_properties_746';
+    return 'TerraformAzureRM::Azurerm_mssql_elasticpool_elastic_pool_properties_158';
   }
 }
 
-export class Azurerm_mssql_elasticpool_per_database_settings_747 implements PcoreValue {
+export class Azurerm_mssql_elasticpool_per_database_settings_159 implements PcoreValue {
   readonly max_capacity: number;
   readonly min_capacity: number;
 
@@ -15116,11 +15116,11 @@ export class Azurerm_mssql_elasticpool_per_database_settings_747 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mssql_elasticpool_per_database_settings_747';
+    return 'TerraformAzureRM::Azurerm_mssql_elasticpool_per_database_settings_159';
   }
 }
 
-export class Azurerm_mssql_elasticpool_sku_748 implements PcoreValue {
+export class Azurerm_mssql_elasticpool_sku_160 implements PcoreValue {
   readonly capacity: number;
   readonly name: string;
   readonly tier: string;
@@ -15155,7 +15155,7 @@ export class Azurerm_mssql_elasticpool_sku_748 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mssql_elasticpool_sku_748';
+    return 'TerraformAzureRM::Azurerm_mssql_elasticpool_sku_160';
   }
 }
 
@@ -15337,9 +15337,9 @@ export class Azurerm_mysql_server implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_mysql_server_sku_749[];
+  readonly sku: Azurerm_mysql_server_sku_161[];
   readonly ssl_enforcement: string;
-  readonly storage_profile: Azurerm_mysql_server_storage_profile_750[];
+  readonly storage_profile: Azurerm_mysql_server_storage_profile_162[];
   readonly version: string;
   readonly azurerm_mysql_server_id: string|null;
   readonly fqdn: string|null;
@@ -15364,9 +15364,9 @@ export class Azurerm_mysql_server implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_mysql_server_sku_749[],
+    sku: Azurerm_mysql_server_sku_161[],
     ssl_enforcement: string,
-    storage_profile: Azurerm_mysql_server_storage_profile_750[],
+    storage_profile: Azurerm_mysql_server_storage_profile_162[],
     version: string,
     azurerm_mysql_server_id?: string|null,
     fqdn?: string|null,
@@ -15424,7 +15424,7 @@ export class Azurerm_mysql_serverHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_mysql_server_sku_749 implements PcoreValue {
+export class Azurerm_mysql_server_sku_161 implements PcoreValue {
   readonly capacity: number;
   readonly family: string;
   readonly name: string;
@@ -15457,11 +15457,11 @@ export class Azurerm_mysql_server_sku_749 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mysql_server_sku_749';
+    return 'TerraformAzureRM::Azurerm_mysql_server_sku_161';
   }
 }
 
-export class Azurerm_mysql_server_storage_profile_750 implements PcoreValue {
+export class Azurerm_mysql_server_storage_profile_162 implements PcoreValue {
   readonly storage_mb: number;
   readonly backup_retention_days: number|null;
   readonly geo_redundant_backup: string|null;
@@ -15493,7 +15493,7 @@ export class Azurerm_mysql_server_storage_profile_750 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_mysql_server_storage_profile_750';
+    return 'TerraformAzureRM::Azurerm_mysql_server_storage_profile_162';
   }
 }
 
@@ -15552,7 +15552,7 @@ export class Azurerm_mysql_virtual_network_ruleHandler implements PcoreValue {
 }
 
 export class Azurerm_network_interface implements PcoreValue {
-  readonly ip_configuration: Azurerm_network_interface_ip_configuration_751[];
+  readonly ip_configuration: Azurerm_network_interface_ip_configuration_163[];
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
@@ -15589,7 +15589,7 @@ export class Azurerm_network_interface implements PcoreValue {
     tags = null,
     virtual_machine_id = null
   }: {
-    ip_configuration: Azurerm_network_interface_ip_configuration_751[],
+    ip_configuration: Azurerm_network_interface_ip_configuration_163[],
     location: string,
     name: string,
     resource_group_name: string,
@@ -15787,7 +15787,7 @@ export class Azurerm_network_interface_backend_address_pool_associationHandler i
   }
 }
 
-export class Azurerm_network_interface_ip_configuration_751 implements PcoreValue {
+export class Azurerm_network_interface_ip_configuration_163 implements PcoreValue {
   readonly name: string;
   readonly private_ip_address_allocation: string;
   readonly application_gateway_backend_address_pools_ids: string[]|null;
@@ -15873,7 +15873,7 @@ export class Azurerm_network_interface_ip_configuration_751 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_network_interface_ip_configuration_751';
+    return 'TerraformAzureRM::Azurerm_network_interface_ip_configuration_163';
   }
 }
 
@@ -15931,7 +15931,7 @@ export class Azurerm_network_security_group implements PcoreValue {
   readonly name: string;
   readonly resource_group_name: string;
   readonly azurerm_network_security_group_id: string|null;
-  readonly security_rule: Azurerm_network_security_group_security_rule_752[]|null;
+  readonly security_rule: Azurerm_network_security_group_security_rule_164[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -15946,7 +15946,7 @@ export class Azurerm_network_security_group implements PcoreValue {
     name: string,
     resource_group_name: string,
     azurerm_network_security_group_id?: string|null,
-    security_rule?: Azurerm_network_security_group_security_rule_752[]|null,
+    security_rule?: Azurerm_network_security_group_security_rule_164[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.location = location;
@@ -15989,7 +15989,7 @@ export class Azurerm_network_security_groupHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_network_security_group_security_rule_752 implements PcoreValue {
+export class Azurerm_network_security_group_security_rule_164 implements PcoreValue {
   readonly access: string;
   readonly direction: string;
   readonly name: string;
@@ -16104,7 +16104,7 @@ export class Azurerm_network_security_group_security_rule_752 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_network_security_group_security_rule_752';
+    return 'TerraformAzureRM::Azurerm_network_security_group_security_rule_164';
   }
 }
 
@@ -16316,8 +16316,8 @@ export class Azurerm_notification_hub implements PcoreValue {
   readonly namespace_name: string;
   readonly resource_group_name: string;
   readonly azurerm_notification_hub_id: string|null;
-  readonly apns_credential: Azurerm_notification_hub_apns_credential_753[]|null;
-  readonly gcm_credential: Azurerm_notification_hub_gcm_credential_754[]|null;
+  readonly apns_credential: Azurerm_notification_hub_apns_credential_165[]|null;
+  readonly gcm_credential: Azurerm_notification_hub_gcm_credential_166[]|null;
 
   constructor({
     location,
@@ -16333,8 +16333,8 @@ export class Azurerm_notification_hub implements PcoreValue {
     namespace_name: string,
     resource_group_name: string,
     azurerm_notification_hub_id?: string|null,
-    apns_credential?: Azurerm_notification_hub_apns_credential_753[]|null,
-    gcm_credential?: Azurerm_notification_hub_gcm_credential_754[]|null
+    apns_credential?: Azurerm_notification_hub_apns_credential_165[]|null,
+    gcm_credential?: Azurerm_notification_hub_gcm_credential_166[]|null
   }) {
     this.location = location;
     this.name = name;
@@ -16378,7 +16378,7 @@ export class Azurerm_notification_hubHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_notification_hub_apns_credential_753 implements PcoreValue {
+export class Azurerm_notification_hub_apns_credential_165 implements PcoreValue {
   readonly application_mode: string;
   readonly bundle_id: string;
   readonly key_id: string;
@@ -16416,7 +16416,7 @@ export class Azurerm_notification_hub_apns_credential_753 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_notification_hub_apns_credential_753';
+    return 'TerraformAzureRM::Azurerm_notification_hub_apns_credential_165';
   }
 }
 
@@ -16509,7 +16509,7 @@ export class Azurerm_notification_hub_authorization_ruleHandler implements Pcore
   }
 }
 
-export class Azurerm_notification_hub_gcm_credential_754 implements PcoreValue {
+export class Azurerm_notification_hub_gcm_credential_166 implements PcoreValue {
   readonly api_key: string;
 
   constructor({
@@ -16527,7 +16527,7 @@ export class Azurerm_notification_hub_gcm_credential_754 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_notification_hub_gcm_credential_754';
+    return 'TerraformAzureRM::Azurerm_notification_hub_gcm_credential_166';
   }
 }
 
@@ -16536,7 +16536,7 @@ export class Azurerm_notification_hub_namespace implements PcoreValue {
   readonly name: string;
   readonly namespace_type: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_notification_hub_namespace_sku_755[];
+  readonly sku: Azurerm_notification_hub_namespace_sku_167[];
   readonly azurerm_notification_hub_namespace_id: string|null;
   readonly enabled: boolean|null;
   readonly servicebus_endpoint: string|null;
@@ -16555,7 +16555,7 @@ export class Azurerm_notification_hub_namespace implements PcoreValue {
     name: string,
     namespace_type: string,
     resource_group_name: string,
-    sku: Azurerm_notification_hub_namespace_sku_755[],
+    sku: Azurerm_notification_hub_namespace_sku_167[],
     azurerm_notification_hub_namespace_id?: string|null,
     enabled?: boolean|null,
     servicebus_endpoint?: string|null
@@ -16604,7 +16604,7 @@ export class Azurerm_notification_hub_namespaceHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_notification_hub_namespace_sku_755 implements PcoreValue {
+export class Azurerm_notification_hub_namespace_sku_167 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -16622,7 +16622,7 @@ export class Azurerm_notification_hub_namespace_sku_755 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_notification_hub_namespace_sku_755';
+    return 'TerraformAzureRM::Azurerm_notification_hub_namespace_sku_167';
   }
 }
 
@@ -16630,10 +16630,10 @@ export class Azurerm_packet_capture implements PcoreValue {
   readonly name: string;
   readonly network_watcher_name: string;
   readonly resource_group_name: string;
-  readonly storage_location: Azurerm_packet_capture_storage_location_757[];
+  readonly storage_location: Azurerm_packet_capture_storage_location_169[];
   readonly target_resource_id: string;
   readonly azurerm_packet_capture_id: string|null;
-  readonly filter: Azurerm_packet_capture_filter_756[]|null;
+  readonly filter: Azurerm_packet_capture_filter_168[]|null;
   readonly maximum_bytes_per_packet: number|null;
   readonly maximum_bytes_per_session: number|null;
   readonly maximum_capture_duration: number|null;
@@ -16653,10 +16653,10 @@ export class Azurerm_packet_capture implements PcoreValue {
     name: string,
     network_watcher_name: string,
     resource_group_name: string,
-    storage_location: Azurerm_packet_capture_storage_location_757[],
+    storage_location: Azurerm_packet_capture_storage_location_169[],
     target_resource_id: string,
     azurerm_packet_capture_id?: string|null,
-    filter?: Azurerm_packet_capture_filter_756[]|null,
+    filter?: Azurerm_packet_capture_filter_168[]|null,
     maximum_bytes_per_packet?: number|null,
     maximum_bytes_per_session?: number|null,
     maximum_capture_duration?: number|null
@@ -16713,7 +16713,7 @@ export class Azurerm_packet_captureHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_packet_capture_filter_756 implements PcoreValue {
+export class Azurerm_packet_capture_filter_168 implements PcoreValue {
   readonly protocol: string;
   readonly local_ip_address: string|null;
   readonly local_port: string|null;
@@ -16759,11 +16759,11 @@ export class Azurerm_packet_capture_filter_756 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_packet_capture_filter_756';
+    return 'TerraformAzureRM::Azurerm_packet_capture_filter_168';
   }
 }
 
-export class Azurerm_packet_capture_storage_location_757 implements PcoreValue {
+export class Azurerm_packet_capture_storage_location_169 implements PcoreValue {
   readonly file_path: string|null;
   readonly storage_account_id: string|null;
   readonly storage_path: string|null;
@@ -16797,7 +16797,7 @@ export class Azurerm_packet_capture_storage_location_757 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_packet_capture_storage_location_757';
+    return 'TerraformAzureRM::Azurerm_packet_capture_storage_location_169';
   }
 }
 
@@ -16808,7 +16808,7 @@ export class Azurerm_policy_assignment implements PcoreValue {
   readonly azurerm_policy_assignment_id: string|null;
   readonly description: string|null;
   readonly display_name: string|null;
-  readonly identity: Azurerm_policy_assignment_identity_758[]|null;
+  readonly identity: Azurerm_policy_assignment_identity_170[]|null;
   readonly location: string|null;
   readonly not_scopes: string[]|null;
   readonly parameters: string|null;
@@ -16831,7 +16831,7 @@ export class Azurerm_policy_assignment implements PcoreValue {
     azurerm_policy_assignment_id?: string|null,
     description?: string|null,
     display_name?: string|null,
-    identity?: Azurerm_policy_assignment_identity_758[]|null,
+    identity?: Azurerm_policy_assignment_identity_170[]|null,
     location?: string|null,
     not_scopes?: string[]|null,
     parameters?: string|null
@@ -16892,7 +16892,7 @@ export class Azurerm_policy_assignmentHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_policy_assignment_identity_758 implements PcoreValue {
+export class Azurerm_policy_assignment_identity_170 implements PcoreValue {
   readonly principal_id: string|null;
   readonly tenant_id: string|null;
   readonly type: string|null;
@@ -16926,7 +16926,7 @@ export class Azurerm_policy_assignment_identity_758 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_policy_assignment_identity_758';
+    return 'TerraformAzureRM::Azurerm_policy_assignment_identity_170';
   }
 }
 
@@ -17281,9 +17281,9 @@ export class Azurerm_postgresql_server implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_postgresql_server_sku_759[];
+  readonly sku: Azurerm_postgresql_server_sku_171[];
   readonly ssl_enforcement: string;
-  readonly storage_profile: Azurerm_postgresql_server_storage_profile_760[];
+  readonly storage_profile: Azurerm_postgresql_server_storage_profile_172[];
   readonly version: string;
   readonly azurerm_postgresql_server_id: string|null;
   readonly fqdn: string|null;
@@ -17308,9 +17308,9 @@ export class Azurerm_postgresql_server implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_postgresql_server_sku_759[],
+    sku: Azurerm_postgresql_server_sku_171[],
     ssl_enforcement: string,
-    storage_profile: Azurerm_postgresql_server_storage_profile_760[],
+    storage_profile: Azurerm_postgresql_server_storage_profile_172[],
     version: string,
     azurerm_postgresql_server_id?: string|null,
     fqdn?: string|null,
@@ -17368,7 +17368,7 @@ export class Azurerm_postgresql_serverHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_postgresql_server_sku_759 implements PcoreValue {
+export class Azurerm_postgresql_server_sku_171 implements PcoreValue {
   readonly capacity: number;
   readonly family: string;
   readonly name: string;
@@ -17401,11 +17401,11 @@ export class Azurerm_postgresql_server_sku_759 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_postgresql_server_sku_759';
+    return 'TerraformAzureRM::Azurerm_postgresql_server_sku_171';
   }
 }
 
-export class Azurerm_postgresql_server_storage_profile_760 implements PcoreValue {
+export class Azurerm_postgresql_server_storage_profile_172 implements PcoreValue {
   readonly storage_mb: number;
   readonly backup_retention_days: number|null;
   readonly geo_redundant_backup: string|null;
@@ -17437,7 +17437,7 @@ export class Azurerm_postgresql_server_storage_profile_760 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_postgresql_server_storage_profile_760';
+    return 'TerraformAzureRM::Azurerm_postgresql_server_storage_profile_172';
   }
 }
 
@@ -17690,15 +17690,15 @@ export class Azurerm_recovery_services_protected_vmHandler implements PcoreValue
 }
 
 export class Azurerm_recovery_services_protection_policy_vm implements PcoreValue {
-  readonly backup: Azurerm_recovery_services_protection_policy_vm_backup_761[];
+  readonly backup: Azurerm_recovery_services_protection_policy_vm_backup_173[];
   readonly name: string;
   readonly recovery_vault_name: string;
   readonly resource_group_name: string;
   readonly azurerm_recovery_services_protection_policy_vm_id: string|null;
-  readonly retention_daily: Azurerm_recovery_services_protection_policy_vm_retention_daily_762[]|null;
-  readonly retention_monthly: Azurerm_recovery_services_protection_policy_vm_retention_monthly_763[]|null;
-  readonly retention_weekly: Azurerm_recovery_services_protection_policy_vm_retention_weekly_764[]|null;
-  readonly retention_yearly: Azurerm_recovery_services_protection_policy_vm_retention_yearly_765[]|null;
+  readonly retention_daily: Azurerm_recovery_services_protection_policy_vm_retention_daily_174[]|null;
+  readonly retention_monthly: Azurerm_recovery_services_protection_policy_vm_retention_monthly_175[]|null;
+  readonly retention_weekly: Azurerm_recovery_services_protection_policy_vm_retention_weekly_176[]|null;
+  readonly retention_yearly: Azurerm_recovery_services_protection_policy_vm_retention_yearly_177[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly timezone: string|null;
 
@@ -17715,15 +17715,15 @@ export class Azurerm_recovery_services_protection_policy_vm implements PcoreValu
     tags = null,
     timezone = null
   }: {
-    backup: Azurerm_recovery_services_protection_policy_vm_backup_761[],
+    backup: Azurerm_recovery_services_protection_policy_vm_backup_173[],
     name: string,
     recovery_vault_name: string,
     resource_group_name: string,
     azurerm_recovery_services_protection_policy_vm_id?: string|null,
-    retention_daily?: Azurerm_recovery_services_protection_policy_vm_retention_daily_762[]|null,
-    retention_monthly?: Azurerm_recovery_services_protection_policy_vm_retention_monthly_763[]|null,
-    retention_weekly?: Azurerm_recovery_services_protection_policy_vm_retention_weekly_764[]|null,
-    retention_yearly?: Azurerm_recovery_services_protection_policy_vm_retention_yearly_765[]|null,
+    retention_daily?: Azurerm_recovery_services_protection_policy_vm_retention_daily_174[]|null,
+    retention_monthly?: Azurerm_recovery_services_protection_policy_vm_retention_monthly_175[]|null,
+    retention_weekly?: Azurerm_recovery_services_protection_policy_vm_retention_weekly_176[]|null,
+    retention_yearly?: Azurerm_recovery_services_protection_policy_vm_retention_yearly_177[]|null,
     tags?: {[s: string]: string}|null,
     timezone?: string|null
   }) {
@@ -17785,7 +17785,7 @@ export class Azurerm_recovery_services_protection_policy_vmHandler implements Pc
   }
 }
 
-export class Azurerm_recovery_services_protection_policy_vm_backup_761 implements PcoreValue {
+export class Azurerm_recovery_services_protection_policy_vm_backup_173 implements PcoreValue {
   readonly frequency: string;
   readonly time: string;
   readonly weekdays: string[]|null;
@@ -17815,11 +17815,11 @@ export class Azurerm_recovery_services_protection_policy_vm_backup_761 implement
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_backup_761';
+    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_backup_173';
   }
 }
 
-export class Azurerm_recovery_services_protection_policy_vm_retention_daily_762 implements PcoreValue {
+export class Azurerm_recovery_services_protection_policy_vm_retention_daily_174 implements PcoreValue {
   readonly count: number;
 
   constructor({
@@ -17837,11 +17837,11 @@ export class Azurerm_recovery_services_protection_policy_vm_retention_daily_762 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_daily_762';
+    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_daily_174';
   }
 }
 
-export class Azurerm_recovery_services_protection_policy_vm_retention_monthly_763 implements PcoreValue {
+export class Azurerm_recovery_services_protection_policy_vm_retention_monthly_175 implements PcoreValue {
   readonly count: number;
   readonly weekdays: string[];
   readonly weeks: string[];
@@ -17869,11 +17869,11 @@ export class Azurerm_recovery_services_protection_policy_vm_retention_monthly_76
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_monthly_763';
+    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_monthly_175';
   }
 }
 
-export class Azurerm_recovery_services_protection_policy_vm_retention_weekly_764 implements PcoreValue {
+export class Azurerm_recovery_services_protection_policy_vm_retention_weekly_176 implements PcoreValue {
   readonly count: number;
   readonly weekdays: string[];
 
@@ -17896,11 +17896,11 @@ export class Azurerm_recovery_services_protection_policy_vm_retention_weekly_764
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_weekly_764';
+    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_weekly_176';
   }
 }
 
-export class Azurerm_recovery_services_protection_policy_vm_retention_yearly_765 implements PcoreValue {
+export class Azurerm_recovery_services_protection_policy_vm_retention_yearly_177 implements PcoreValue {
   readonly count: number;
   readonly months: string[];
   readonly weekdays: string[];
@@ -17933,7 +17933,7 @@ export class Azurerm_recovery_services_protection_policy_vm_retention_yearly_765
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_yearly_765';
+    return 'TerraformAzureRM::Azurerm_recovery_services_protection_policy_vm_retention_yearly_177';
   }
 }
 
@@ -18003,13 +18003,13 @@ export class Azurerm_redis_cache implements PcoreValue {
   readonly family: string;
   readonly location: string;
   readonly name: string;
-  readonly redis_configuration: Azurerm_redis_cache_redis_configuration_767[];
+  readonly redis_configuration: Azurerm_redis_cache_redis_configuration_179[];
   readonly resource_group_name: string;
   readonly sku_name: string;
   readonly azurerm_redis_cache_id: string|null;
   readonly enable_non_ssl_port: boolean|null;
   readonly hostname: string|null;
-  readonly patch_schedule: Azurerm_redis_cache_patch_schedule_766[]|null;
+  readonly patch_schedule: Azurerm_redis_cache_patch_schedule_178[]|null;
   readonly port: number|null;
   readonly primary_access_key: string|null;
   readonly private_static_ip_address: string|null;
@@ -18046,13 +18046,13 @@ export class Azurerm_redis_cache implements PcoreValue {
     family: string,
     location: string,
     name: string,
-    redis_configuration: Azurerm_redis_cache_redis_configuration_767[],
+    redis_configuration: Azurerm_redis_cache_redis_configuration_179[],
     resource_group_name: string,
     sku_name: string,
     azurerm_redis_cache_id?: string|null,
     enable_non_ssl_port?: boolean|null,
     hostname?: string|null,
-    patch_schedule?: Azurerm_redis_cache_patch_schedule_766[]|null,
+    patch_schedule?: Azurerm_redis_cache_patch_schedule_178[]|null,
     port?: number|null,
     primary_access_key?: string|null,
     private_static_ip_address?: string|null,
@@ -18151,7 +18151,7 @@ export class Azurerm_redis_cacheHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_redis_cache_patch_schedule_766 implements PcoreValue {
+export class Azurerm_redis_cache_patch_schedule_178 implements PcoreValue {
   readonly day_of_week: string;
   readonly start_hour_utc: number|null;
 
@@ -18176,11 +18176,11 @@ export class Azurerm_redis_cache_patch_schedule_766 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_redis_cache_patch_schedule_766';
+    return 'TerraformAzureRM::Azurerm_redis_cache_patch_schedule_178';
   }
 }
 
-export class Azurerm_redis_cache_redis_configuration_767 implements PcoreValue {
+export class Azurerm_redis_cache_redis_configuration_179 implements PcoreValue {
   readonly maxclients: number|null;
   readonly maxmemory_delta: number|null;
   readonly maxmemory_policy: string|null;
@@ -18256,7 +18256,7 @@ export class Azurerm_redis_cache_redis_configuration_767 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_redis_cache_redis_configuration_767';
+    return 'TerraformAzureRM::Azurerm_redis_cache_redis_configuration_179';
   }
 }
 
@@ -18323,7 +18323,7 @@ export class Azurerm_relay_namespace implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_relay_namespace_sku_768[];
+  readonly sku: Azurerm_relay_namespace_sku_180[];
   readonly azurerm_relay_namespace_id: string|null;
   readonly metric_id: string|null;
   readonly primary_connection_string: string|null;
@@ -18348,7 +18348,7 @@ export class Azurerm_relay_namespace implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_relay_namespace_sku_768[],
+    sku: Azurerm_relay_namespace_sku_180[],
     azurerm_relay_namespace_id?: string|null,
     metric_id?: string|null,
     primary_connection_string?: string|null,
@@ -18415,7 +18415,7 @@ export class Azurerm_relay_namespaceHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_relay_namespace_sku_768 implements PcoreValue {
+export class Azurerm_relay_namespace_sku_180 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -18433,7 +18433,7 @@ export class Azurerm_relay_namespace_sku_768 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_relay_namespace_sku_768';
+    return 'TerraformAzureRM::Azurerm_relay_namespace_sku_180';
   }
 }
 
@@ -18556,7 +18556,7 @@ export class Azurerm_role_assignmentHandler implements PcoreValue {
 export class Azurerm_role_definition implements PcoreValue {
   readonly assignable_scopes: string[];
   readonly name: string;
-  readonly permissions: Azurerm_role_definition_permissions_769[];
+  readonly permissions: Azurerm_role_definition_permissions_181[];
   readonly scope: string;
   readonly azurerm_role_definition_id: string|null;
   readonly description: string|null;
@@ -18573,7 +18573,7 @@ export class Azurerm_role_definition implements PcoreValue {
   }: {
     assignable_scopes: string[],
     name: string,
-    permissions: Azurerm_role_definition_permissions_769[],
+    permissions: Azurerm_role_definition_permissions_181[],
     scope: string,
     azurerm_role_definition_id?: string|null,
     description?: string|null,
@@ -18621,7 +18621,7 @@ export class Azurerm_role_definitionHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_role_definition_permissions_769 implements PcoreValue {
+export class Azurerm_role_definition_permissions_181 implements PcoreValue {
   readonly actions: string[]|null;
   readonly data_actions: string[]|null;
   readonly not_actions: string[]|null;
@@ -18662,7 +18662,7 @@ export class Azurerm_role_definition_permissions_769 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_role_definition_permissions_769';
+    return 'TerraformAzureRM::Azurerm_role_definition_permissions_181';
   }
 }
 
@@ -18738,7 +18738,7 @@ export class Azurerm_route_table implements PcoreValue {
   readonly resource_group_name: string;
   readonly azurerm_route_table_id: string|null;
   readonly disable_bgp_route_propagation: boolean|null;
-  readonly route: Azurerm_route_table_route_770[]|null;
+  readonly route: Azurerm_route_table_route_182[]|null;
   readonly subnets: string[]|null;
   readonly tags: {[s: string]: string}|null;
 
@@ -18757,7 +18757,7 @@ export class Azurerm_route_table implements PcoreValue {
     resource_group_name: string,
     azurerm_route_table_id?: string|null,
     disable_bgp_route_propagation?: boolean|null,
-    route?: Azurerm_route_table_route_770[]|null,
+    route?: Azurerm_route_table_route_182[]|null,
     subnets?: string[]|null,
     tags?: {[s: string]: string}|null
   }) {
@@ -18809,7 +18809,7 @@ export class Azurerm_route_tableHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_route_table_route_770 implements PcoreValue {
+export class Azurerm_route_table_route_182 implements PcoreValue {
   readonly address_prefix: string;
   readonly name: string;
   readonly next_hop_type: string;
@@ -18844,7 +18844,7 @@ export class Azurerm_route_table_route_770 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_route_table_route_770';
+    return 'TerraformAzureRM::Azurerm_route_table_route_182';
   }
 }
 
@@ -18853,12 +18853,12 @@ export class Azurerm_scheduler_job implements PcoreValue {
   readonly name: string;
   readonly resource_group_name: string;
   readonly azurerm_scheduler_job_id: string|null;
-  readonly action_storage_queue: Azurerm_scheduler_job_action_storage_queue_771[]|null;
-  readonly action_web: Azurerm_scheduler_job_action_web_772[]|null;
-  readonly error_action_storage_queue: Azurerm_scheduler_job_error_action_storage_queue_776[]|null;
-  readonly error_action_web: Azurerm_scheduler_job_error_action_web_777[]|null;
-  readonly recurrence: Azurerm_scheduler_job_recurrence_781[]|null;
-  readonly retry: Azurerm_scheduler_job_retry_783[]|null;
+  readonly action_storage_queue: Azurerm_scheduler_job_action_storage_queue_183[]|null;
+  readonly action_web: Azurerm_scheduler_job_action_web_184[]|null;
+  readonly error_action_storage_queue: Azurerm_scheduler_job_error_action_storage_queue_188[]|null;
+  readonly error_action_web: Azurerm_scheduler_job_error_action_web_189[]|null;
+  readonly recurrence: Azurerm_scheduler_job_recurrence_193[]|null;
+  readonly retry: Azurerm_scheduler_job_retry_195[]|null;
   readonly start_time: string|null;
   readonly state: string|null;
 
@@ -18880,12 +18880,12 @@ export class Azurerm_scheduler_job implements PcoreValue {
     name: string,
     resource_group_name: string,
     azurerm_scheduler_job_id?: string|null,
-    action_storage_queue?: Azurerm_scheduler_job_action_storage_queue_771[]|null,
-    action_web?: Azurerm_scheduler_job_action_web_772[]|null,
-    error_action_storage_queue?: Azurerm_scheduler_job_error_action_storage_queue_776[]|null,
-    error_action_web?: Azurerm_scheduler_job_error_action_web_777[]|null,
-    recurrence?: Azurerm_scheduler_job_recurrence_781[]|null,
-    retry?: Azurerm_scheduler_job_retry_783[]|null,
+    action_storage_queue?: Azurerm_scheduler_job_action_storage_queue_183[]|null,
+    action_web?: Azurerm_scheduler_job_action_web_184[]|null,
+    error_action_storage_queue?: Azurerm_scheduler_job_error_action_storage_queue_188[]|null,
+    error_action_web?: Azurerm_scheduler_job_error_action_web_189[]|null,
+    recurrence?: Azurerm_scheduler_job_recurrence_193[]|null,
+    retry?: Azurerm_scheduler_job_retry_195[]|null,
     start_time?: string|null,
     state?: string|null
   }) {
@@ -18953,7 +18953,7 @@ export class Azurerm_scheduler_jobHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_scheduler_job_action_storage_queue_771 implements PcoreValue {
+export class Azurerm_scheduler_job_action_storage_queue_183 implements PcoreValue {
   readonly message: string;
   readonly sas_token: string;
   readonly storage_account_name: string;
@@ -18986,16 +18986,16 @@ export class Azurerm_scheduler_job_action_storage_queue_771 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_action_storage_queue_771';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_action_storage_queue_183';
   }
 }
 
-export class Azurerm_scheduler_job_action_web_772 implements PcoreValue {
+export class Azurerm_scheduler_job_action_web_184 implements PcoreValue {
   readonly method: string;
   readonly url: string;
-  readonly authentication_active_directory: Azurerm_scheduler_job_action_web_772_authentication_active_directory_773[]|null;
-  readonly authentication_basic: Azurerm_scheduler_job_action_web_772_authentication_basic_774[]|null;
-  readonly authentication_certificate: Azurerm_scheduler_job_action_web_772_authentication_certificate_775[]|null;
+  readonly authentication_active_directory: Azurerm_scheduler_job_action_web_184_authentication_active_directory_185[]|null;
+  readonly authentication_basic: Azurerm_scheduler_job_action_web_184_authentication_basic_186[]|null;
+  readonly authentication_certificate: Azurerm_scheduler_job_action_web_184_authentication_certificate_187[]|null;
   readonly body: string|null;
   readonly headers: {[s: string]: string}|null;
 
@@ -19010,9 +19010,9 @@ export class Azurerm_scheduler_job_action_web_772 implements PcoreValue {
   }: {
     method: string,
     url: string,
-    authentication_active_directory?: Azurerm_scheduler_job_action_web_772_authentication_active_directory_773[]|null,
-    authentication_basic?: Azurerm_scheduler_job_action_web_772_authentication_basic_774[]|null,
-    authentication_certificate?: Azurerm_scheduler_job_action_web_772_authentication_certificate_775[]|null,
+    authentication_active_directory?: Azurerm_scheduler_job_action_web_184_authentication_active_directory_185[]|null,
+    authentication_basic?: Azurerm_scheduler_job_action_web_184_authentication_basic_186[]|null,
+    authentication_certificate?: Azurerm_scheduler_job_action_web_184_authentication_certificate_187[]|null,
     body?: string|null,
     headers?: {[s: string]: string}|null
   }) {
@@ -19048,11 +19048,11 @@ export class Azurerm_scheduler_job_action_web_772 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_772';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_184';
   }
 }
 
-export class Azurerm_scheduler_job_action_web_772_authentication_active_directory_773 implements PcoreValue {
+export class Azurerm_scheduler_job_action_web_184_authentication_active_directory_185 implements PcoreValue {
   readonly client_id: string;
   readonly secret: string;
   readonly tenant_id: string;
@@ -19087,11 +19087,11 @@ export class Azurerm_scheduler_job_action_web_772_authentication_active_director
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_772_authentication_active_directory_773';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_184_authentication_active_directory_185';
   }
 }
 
-export class Azurerm_scheduler_job_action_web_772_authentication_basic_774 implements PcoreValue {
+export class Azurerm_scheduler_job_action_web_184_authentication_basic_186 implements PcoreValue {
   readonly password: string;
   readonly username: string;
 
@@ -19114,11 +19114,11 @@ export class Azurerm_scheduler_job_action_web_772_authentication_basic_774 imple
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_772_authentication_basic_774';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_184_authentication_basic_186';
   }
 }
 
-export class Azurerm_scheduler_job_action_web_772_authentication_certificate_775 implements PcoreValue {
+export class Azurerm_scheduler_job_action_web_184_authentication_certificate_187 implements PcoreValue {
   readonly password: string;
   readonly pfx: string;
   readonly expiration: string|null;
@@ -19162,7 +19162,7 @@ export class Azurerm_scheduler_job_action_web_772_authentication_certificate_775
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_772_authentication_certificate_775';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_action_web_184_authentication_certificate_187';
   }
 }
 
@@ -19172,7 +19172,7 @@ export class Azurerm_scheduler_job_collection implements PcoreValue {
   readonly resource_group_name: string;
   readonly sku: string;
   readonly azurerm_scheduler_job_collection_id: string|null;
-  readonly quota: Azurerm_scheduler_job_collection_quota_784[]|null;
+  readonly quota: Azurerm_scheduler_job_collection_quota_196[]|null;
   readonly state: string|null;
   readonly tags: {[s: string]: string}|null;
 
@@ -19191,7 +19191,7 @@ export class Azurerm_scheduler_job_collection implements PcoreValue {
     resource_group_name: string,
     sku: string,
     azurerm_scheduler_job_collection_id?: string|null,
-    quota?: Azurerm_scheduler_job_collection_quota_784[]|null,
+    quota?: Azurerm_scheduler_job_collection_quota_196[]|null,
     state?: string|null,
     tags?: {[s: string]: string}|null
   }) {
@@ -19241,7 +19241,7 @@ export class Azurerm_scheduler_job_collectionHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_scheduler_job_collection_quota_784 implements PcoreValue {
+export class Azurerm_scheduler_job_collection_quota_196 implements PcoreValue {
   readonly max_recurrence_frequency: string;
   readonly max_job_count: number|null;
   readonly max_recurrence_interval: number|null;
@@ -19280,11 +19280,11 @@ export class Azurerm_scheduler_job_collection_quota_784 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_collection_quota_784';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_collection_quota_196';
   }
 }
 
-export class Azurerm_scheduler_job_error_action_storage_queue_776 implements PcoreValue {
+export class Azurerm_scheduler_job_error_action_storage_queue_188 implements PcoreValue {
   readonly message: string;
   readonly sas_token: string;
   readonly storage_account_name: string;
@@ -19317,16 +19317,16 @@ export class Azurerm_scheduler_job_error_action_storage_queue_776 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_storage_queue_776';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_storage_queue_188';
   }
 }
 
-export class Azurerm_scheduler_job_error_action_web_777 implements PcoreValue {
+export class Azurerm_scheduler_job_error_action_web_189 implements PcoreValue {
   readonly method: string;
   readonly url: string;
-  readonly authentication_active_directory: Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778[]|null;
-  readonly authentication_basic: Azurerm_scheduler_job_error_action_web_777_authentication_basic_779[]|null;
-  readonly authentication_certificate: Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780[]|null;
+  readonly authentication_active_directory: Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190[]|null;
+  readonly authentication_basic: Azurerm_scheduler_job_error_action_web_189_authentication_basic_191[]|null;
+  readonly authentication_certificate: Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192[]|null;
   readonly body: string|null;
   readonly headers: {[s: string]: string}|null;
 
@@ -19341,9 +19341,9 @@ export class Azurerm_scheduler_job_error_action_web_777 implements PcoreValue {
   }: {
     method: string,
     url: string,
-    authentication_active_directory?: Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778[]|null,
-    authentication_basic?: Azurerm_scheduler_job_error_action_web_777_authentication_basic_779[]|null,
-    authentication_certificate?: Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780[]|null,
+    authentication_active_directory?: Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190[]|null,
+    authentication_basic?: Azurerm_scheduler_job_error_action_web_189_authentication_basic_191[]|null,
+    authentication_certificate?: Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192[]|null,
     body?: string|null,
     headers?: {[s: string]: string}|null
   }) {
@@ -19379,11 +19379,11 @@ export class Azurerm_scheduler_job_error_action_web_777 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_777';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_189';
   }
 }
 
-export class Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778 implements PcoreValue {
+export class Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190 implements PcoreValue {
   readonly client_id: string;
   readonly secret: string;
   readonly tenant_id: string;
@@ -19418,11 +19418,11 @@ export class Azurerm_scheduler_job_error_action_web_777_authentication_active_di
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_777_authentication_active_directory_778';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190';
   }
 }
 
-export class Azurerm_scheduler_job_error_action_web_777_authentication_basic_779 implements PcoreValue {
+export class Azurerm_scheduler_job_error_action_web_189_authentication_basic_191 implements PcoreValue {
   readonly password: string;
   readonly username: string;
 
@@ -19445,11 +19445,11 @@ export class Azurerm_scheduler_job_error_action_web_777_authentication_basic_779
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_777_authentication_basic_779';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_189_authentication_basic_191';
   }
 }
 
-export class Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780 implements PcoreValue {
+export class Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192 implements PcoreValue {
   readonly password: string;
   readonly pfx: string;
   readonly expiration: string|null;
@@ -19493,11 +19493,11 @@ export class Azurerm_scheduler_job_error_action_web_777_authentication_certifica
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_777_authentication_certificate_780';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192';
   }
 }
 
-export class Azurerm_scheduler_job_recurrence_781 implements PcoreValue {
+export class Azurerm_scheduler_job_recurrence_193 implements PcoreValue {
   readonly frequency: string;
   readonly count: number|null;
   readonly end_time: string|null;
@@ -19505,7 +19505,7 @@ export class Azurerm_scheduler_job_recurrence_781 implements PcoreValue {
   readonly interval: number|null;
   readonly minutes: number[]|null;
   readonly month_days: number[]|null;
-  readonly monthly_occurrences: Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782[]|null;
+  readonly monthly_occurrences: Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194[]|null;
   readonly week_days: string[]|null;
 
   constructor({
@@ -19526,7 +19526,7 @@ export class Azurerm_scheduler_job_recurrence_781 implements PcoreValue {
     interval?: number|null,
     minutes?: number[]|null,
     month_days?: number[]|null,
-    monthly_occurrences?: Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782[]|null,
+    monthly_occurrences?: Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194[]|null,
     week_days?: string[]|null
   }) {
     this.frequency = frequency;
@@ -19571,11 +19571,11 @@ export class Azurerm_scheduler_job_recurrence_781 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_recurrence_781';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_recurrence_193';
   }
 }
 
-export class Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782 implements PcoreValue {
+export class Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194 implements PcoreValue {
   readonly day: string;
   readonly occurrence: number;
 
@@ -19598,11 +19598,11 @@ export class Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782 implem
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_recurrence_781_monthly_occurrences_782';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194';
   }
 }
 
-export class Azurerm_scheduler_job_retry_783 implements PcoreValue {
+export class Azurerm_scheduler_job_retry_195 implements PcoreValue {
   readonly count: number|null;
   readonly interval: string|null;
 
@@ -19629,7 +19629,7 @@ export class Azurerm_scheduler_job_retry_783 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_scheduler_job_retry_783';
+    return 'TerraformAzureRM::Azurerm_scheduler_job_retry_195';
   }
 }
 
@@ -19863,21 +19863,21 @@ export class Azurerm_service_fabric_cluster implements PcoreValue {
   readonly location: string;
   readonly management_endpoint: string;
   readonly name: string;
-  readonly node_type: Azurerm_service_fabric_cluster_node_type_790[];
+  readonly node_type: Azurerm_service_fabric_cluster_node_type_202[];
   readonly reliability_level: string;
   readonly resource_group_name: string;
   readonly upgrade_mode: string;
   readonly vm_image: string;
   readonly azurerm_service_fabric_cluster_id: string|null;
   readonly add_on_features: string[]|null;
-  readonly azure_active_directory: Azurerm_service_fabric_cluster_azure_active_directory_785[]|null;
-  readonly certificate: Azurerm_service_fabric_cluster_certificate_786[]|null;
-  readonly client_certificate_thumbprint: Azurerm_service_fabric_cluster_client_certificate_thumbprint_787[]|null;
+  readonly azure_active_directory: Azurerm_service_fabric_cluster_azure_active_directory_197[]|null;
+  readonly certificate: Azurerm_service_fabric_cluster_certificate_198[]|null;
+  readonly client_certificate_thumbprint: Azurerm_service_fabric_cluster_client_certificate_thumbprint_199[]|null;
   readonly cluster_code_version: string|null;
   readonly cluster_endpoint: string|null;
-  readonly diagnostics_config: Azurerm_service_fabric_cluster_diagnostics_config_788[]|null;
-  readonly fabric_settings: Azurerm_service_fabric_cluster_fabric_settings_789[]|null;
-  readonly reverse_proxy_certificate: Azurerm_service_fabric_cluster_reverse_proxy_certificate_793[]|null;
+  readonly diagnostics_config: Azurerm_service_fabric_cluster_diagnostics_config_200[]|null;
+  readonly fabric_settings: Azurerm_service_fabric_cluster_fabric_settings_201[]|null;
+  readonly reverse_proxy_certificate: Azurerm_service_fabric_cluster_reverse_proxy_certificate_205[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -19904,21 +19904,21 @@ export class Azurerm_service_fabric_cluster implements PcoreValue {
     location: string,
     management_endpoint: string,
     name: string,
-    node_type: Azurerm_service_fabric_cluster_node_type_790[],
+    node_type: Azurerm_service_fabric_cluster_node_type_202[],
     reliability_level: string,
     resource_group_name: string,
     upgrade_mode: string,
     vm_image: string,
     azurerm_service_fabric_cluster_id?: string|null,
     add_on_features?: string[]|null,
-    azure_active_directory?: Azurerm_service_fabric_cluster_azure_active_directory_785[]|null,
-    certificate?: Azurerm_service_fabric_cluster_certificate_786[]|null,
-    client_certificate_thumbprint?: Azurerm_service_fabric_cluster_client_certificate_thumbprint_787[]|null,
+    azure_active_directory?: Azurerm_service_fabric_cluster_azure_active_directory_197[]|null,
+    certificate?: Azurerm_service_fabric_cluster_certificate_198[]|null,
+    client_certificate_thumbprint?: Azurerm_service_fabric_cluster_client_certificate_thumbprint_199[]|null,
     cluster_code_version?: string|null,
     cluster_endpoint?: string|null,
-    diagnostics_config?: Azurerm_service_fabric_cluster_diagnostics_config_788[]|null,
-    fabric_settings?: Azurerm_service_fabric_cluster_fabric_settings_789[]|null,
-    reverse_proxy_certificate?: Azurerm_service_fabric_cluster_reverse_proxy_certificate_793[]|null,
+    diagnostics_config?: Azurerm_service_fabric_cluster_diagnostics_config_200[]|null,
+    fabric_settings?: Azurerm_service_fabric_cluster_fabric_settings_201[]|null,
+    reverse_proxy_certificate?: Azurerm_service_fabric_cluster_reverse_proxy_certificate_205[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.location = location;
@@ -20003,7 +20003,7 @@ export class Azurerm_service_fabric_clusterHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_service_fabric_cluster_azure_active_directory_785 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_azure_active_directory_197 implements PcoreValue {
   readonly client_application_id: string;
   readonly cluster_application_id: string;
   readonly tenant_id: string;
@@ -20031,11 +20031,11 @@ export class Azurerm_service_fabric_cluster_azure_active_directory_785 implement
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_azure_active_directory_785';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_azure_active_directory_197';
   }
 }
 
-export class Azurerm_service_fabric_cluster_certificate_786 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_certificate_198 implements PcoreValue {
   readonly thumbprint: string;
   readonly x509_store_name: string;
   readonly thumbprint_secondary: string|null;
@@ -20065,11 +20065,11 @@ export class Azurerm_service_fabric_cluster_certificate_786 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_certificate_786';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_certificate_198';
   }
 }
 
-export class Azurerm_service_fabric_cluster_client_certificate_thumbprint_787 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_client_certificate_thumbprint_199 implements PcoreValue {
   readonly is_admin: boolean;
   readonly thumbprint: string;
 
@@ -20092,11 +20092,11 @@ export class Azurerm_service_fabric_cluster_client_certificate_thumbprint_787 im
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_client_certificate_thumbprint_787';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_client_certificate_thumbprint_199';
   }
 }
 
-export class Azurerm_service_fabric_cluster_diagnostics_config_788 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_diagnostics_config_200 implements PcoreValue {
   readonly blob_endpoint: string;
   readonly protected_account_key_name: string;
   readonly queue_endpoint: string;
@@ -20134,11 +20134,11 @@ export class Azurerm_service_fabric_cluster_diagnostics_config_788 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_diagnostics_config_788';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_diagnostics_config_200';
   }
 }
 
-export class Azurerm_service_fabric_cluster_fabric_settings_789 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_fabric_settings_201 implements PcoreValue {
   readonly name: string;
   readonly parameters: {[s: string]: string}|null;
 
@@ -20163,19 +20163,19 @@ export class Azurerm_service_fabric_cluster_fabric_settings_789 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_fabric_settings_789';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_fabric_settings_201';
   }
 }
 
-export class Azurerm_service_fabric_cluster_node_type_790 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_node_type_202 implements PcoreValue {
   readonly client_endpoint_port: number;
   readonly http_endpoint_port: number;
   readonly instance_count: number;
   readonly is_primary: boolean;
   readonly name: string;
-  readonly application_ports: Azurerm_service_fabric_cluster_node_type_790_application_ports_791[]|null;
+  readonly application_ports: Azurerm_service_fabric_cluster_node_type_202_application_ports_203[]|null;
   readonly durability_level: string|null;
-  readonly ephemeral_ports: Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792[]|null;
+  readonly ephemeral_ports: Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204[]|null;
   readonly reverse_proxy_endpoint_port: number|null;
 
   constructor({
@@ -20194,9 +20194,9 @@ export class Azurerm_service_fabric_cluster_node_type_790 implements PcoreValue 
     instance_count: number,
     is_primary: boolean,
     name: string,
-    application_ports?: Azurerm_service_fabric_cluster_node_type_790_application_ports_791[]|null,
+    application_ports?: Azurerm_service_fabric_cluster_node_type_202_application_ports_203[]|null,
     durability_level?: string|null,
-    ephemeral_ports?: Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792[]|null,
+    ephemeral_ports?: Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204[]|null,
     reverse_proxy_endpoint_port?: number|null
   }) {
     this.client_endpoint_port = client_endpoint_port;
@@ -20233,11 +20233,11 @@ export class Azurerm_service_fabric_cluster_node_type_790 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_node_type_790';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_node_type_202';
   }
 }
 
-export class Azurerm_service_fabric_cluster_node_type_790_application_ports_791 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_node_type_202_application_ports_203 implements PcoreValue {
   readonly end_port: number;
   readonly start_port: number;
 
@@ -20260,11 +20260,11 @@ export class Azurerm_service_fabric_cluster_node_type_790_application_ports_791 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_node_type_790_application_ports_791';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_node_type_202_application_ports_203';
   }
 }
 
-export class Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204 implements PcoreValue {
   readonly end_port: number;
   readonly start_port: number;
 
@@ -20287,11 +20287,11 @@ export class Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792 im
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_node_type_790_ephemeral_ports_792';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204';
   }
 }
 
-export class Azurerm_service_fabric_cluster_reverse_proxy_certificate_793 implements PcoreValue {
+export class Azurerm_service_fabric_cluster_reverse_proxy_certificate_205 implements PcoreValue {
   readonly thumbprint: string;
   readonly x509_store_name: string;
   readonly thumbprint_secondary: string|null;
@@ -20321,7 +20321,7 @@ export class Azurerm_service_fabric_cluster_reverse_proxy_certificate_793 implem
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_reverse_proxy_certificate_793';
+    return 'TerraformAzureRM::Azurerm_service_fabric_cluster_reverse_proxy_certificate_205';
   }
 }
 
@@ -20900,7 +20900,7 @@ export class Azurerm_servicebus_subscription_rule implements PcoreValue {
   readonly topic_name: string;
   readonly azurerm_servicebus_subscription_rule_id: string|null;
   readonly action: string|null;
-  readonly correlation_filter: Azurerm_servicebus_subscription_rule_correlation_filter_794[]|null;
+  readonly correlation_filter: Azurerm_servicebus_subscription_rule_correlation_filter_206[]|null;
   readonly sql_filter: string|null;
 
   constructor({
@@ -20923,7 +20923,7 @@ export class Azurerm_servicebus_subscription_rule implements PcoreValue {
     topic_name: string,
     azurerm_servicebus_subscription_rule_id?: string|null,
     action?: string|null,
-    correlation_filter?: Azurerm_servicebus_subscription_rule_correlation_filter_794[]|null,
+    correlation_filter?: Azurerm_servicebus_subscription_rule_correlation_filter_206[]|null,
     sql_filter?: string|null
   }) {
     this.filter_type = filter_type;
@@ -20976,7 +20976,7 @@ export class Azurerm_servicebus_subscription_ruleHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_servicebus_subscription_rule_correlation_filter_794 implements PcoreValue {
+export class Azurerm_servicebus_subscription_rule_correlation_filter_206 implements PcoreValue {
   readonly content_type: string|null;
   readonly correlation_id: string|null;
   readonly label: string|null;
@@ -21045,7 +21045,7 @@ export class Azurerm_servicebus_subscription_rule_correlation_filter_794 impleme
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_servicebus_subscription_rule_correlation_filter_794';
+    return 'TerraformAzureRM::Azurerm_servicebus_subscription_rule_correlation_filter_206';
   }
 }
 
@@ -21287,7 +21287,7 @@ export class Azurerm_servicebus_topic_authorization_ruleHandler implements Pcore
 
 export class Azurerm_shared_image implements PcoreValue {
   readonly gallery_name: string;
-  readonly identifier: Azurerm_shared_image_identifier_795[];
+  readonly identifier: Azurerm_shared_image_identifier_207[];
   readonly location: string;
   readonly name: string;
   readonly os_type: string;
@@ -21314,7 +21314,7 @@ export class Azurerm_shared_image implements PcoreValue {
     tags = null
   }: {
     gallery_name: string,
-    identifier: Azurerm_shared_image_identifier_795[],
+    identifier: Azurerm_shared_image_identifier_207[],
     location: string,
     name: string,
     os_type: string,
@@ -21454,7 +21454,7 @@ export class Azurerm_shared_image_galleryHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_shared_image_identifier_795 implements PcoreValue {
+export class Azurerm_shared_image_identifier_207 implements PcoreValue {
   readonly offer: string;
   readonly publisher: string;
   readonly sku: string;
@@ -21482,7 +21482,7 @@ export class Azurerm_shared_image_identifier_795 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_shared_image_identifier_795';
+    return 'TerraformAzureRM::Azurerm_shared_image_identifier_207';
   }
 }
 
@@ -21493,7 +21493,7 @@ export class Azurerm_shared_image_version implements PcoreValue {
   readonly managed_image_id: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly target_region: Azurerm_shared_image_version_target_region_796[];
+  readonly target_region: Azurerm_shared_image_version_target_region_208[];
   readonly azurerm_shared_image_version_id: string|null;
   readonly exclude_from_latest: boolean|null;
   readonly tags: {[s: string]: string}|null;
@@ -21516,7 +21516,7 @@ export class Azurerm_shared_image_version implements PcoreValue {
     managed_image_id: string,
     name: string,
     resource_group_name: string,
-    target_region: Azurerm_shared_image_version_target_region_796[],
+    target_region: Azurerm_shared_image_version_target_region_208[],
     azurerm_shared_image_version_id?: string|null,
     exclude_from_latest?: boolean|null,
     tags?: {[s: string]: string}|null
@@ -21569,7 +21569,7 @@ export class Azurerm_shared_image_versionHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_shared_image_version_target_region_796 implements PcoreValue {
+export class Azurerm_shared_image_version_target_region_208 implements PcoreValue {
   readonly name: string;
   readonly regional_replica_count: number;
 
@@ -21592,7 +21592,7 @@ export class Azurerm_shared_image_version_target_region_796 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_shared_image_version_target_region_796';
+    return 'TerraformAzureRM::Azurerm_shared_image_version_target_region_208';
   }
 }
 
@@ -21600,7 +21600,7 @@ export class Azurerm_signalr_service implements PcoreValue {
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
-  readonly sku: Azurerm_signalr_service_sku_797[];
+  readonly sku: Azurerm_signalr_service_sku_209[];
   readonly azurerm_signalr_service_id: string|null;
   readonly hostname: string|null;
   readonly ip_address: string|null;
@@ -21623,7 +21623,7 @@ export class Azurerm_signalr_service implements PcoreValue {
     location: string,
     name: string,
     resource_group_name: string,
-    sku: Azurerm_signalr_service_sku_797[],
+    sku: Azurerm_signalr_service_sku_209[],
     azurerm_signalr_service_id?: string|null,
     hostname?: string|null,
     ip_address?: string|null,
@@ -21685,7 +21685,7 @@ export class Azurerm_signalr_serviceHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_signalr_service_sku_797 implements PcoreValue {
+export class Azurerm_signalr_service_sku_209 implements PcoreValue {
   readonly capacity: number;
   readonly name: string;
 
@@ -21708,7 +21708,7 @@ export class Azurerm_signalr_service_sku_797 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_signalr_service_sku_797';
+    return 'TerraformAzureRM::Azurerm_signalr_service_sku_209';
   }
 }
 
@@ -21719,7 +21719,7 @@ export class Azurerm_snapshot implements PcoreValue {
   readonly resource_group_name: string;
   readonly azurerm_snapshot_id: string|null;
   readonly disk_size_gb: number|null;
-  readonly encryption_settings: Azurerm_snapshot_encryption_settings_798[]|null;
+  readonly encryption_settings: Azurerm_snapshot_encryption_settings_210[]|null;
   readonly source_resource_id: string|null;
   readonly source_uri: string|null;
   readonly storage_account_id: string|null;
@@ -21744,7 +21744,7 @@ export class Azurerm_snapshot implements PcoreValue {
     resource_group_name: string,
     azurerm_snapshot_id?: string|null,
     disk_size_gb?: number|null,
-    encryption_settings?: Azurerm_snapshot_encryption_settings_798[]|null,
+    encryption_settings?: Azurerm_snapshot_encryption_settings_210[]|null,
     source_resource_id?: string|null,
     source_uri?: string|null,
     storage_account_id?: string|null,
@@ -21808,10 +21808,10 @@ export class Azurerm_snapshotHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_snapshot_encryption_settings_798 implements PcoreValue {
+export class Azurerm_snapshot_encryption_settings_210 implements PcoreValue {
   readonly enabled: boolean;
-  readonly disk_encryption_key: Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799[]|null;
-  readonly key_encryption_key: Azurerm_snapshot_encryption_settings_798_key_encryption_key_800[]|null;
+  readonly disk_encryption_key: Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211[]|null;
+  readonly key_encryption_key: Azurerm_snapshot_encryption_settings_210_key_encryption_key_212[]|null;
 
   constructor({
     enabled,
@@ -21819,8 +21819,8 @@ export class Azurerm_snapshot_encryption_settings_798 implements PcoreValue {
     key_encryption_key = null
   }: {
     enabled: boolean,
-    disk_encryption_key?: Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799[]|null,
-    key_encryption_key?: Azurerm_snapshot_encryption_settings_798_key_encryption_key_800[]|null
+    disk_encryption_key?: Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211[]|null,
+    key_encryption_key?: Azurerm_snapshot_encryption_settings_210_key_encryption_key_212[]|null
   }) {
     this.enabled = enabled;
     this.disk_encryption_key = disk_encryption_key;
@@ -21840,11 +21840,11 @@ export class Azurerm_snapshot_encryption_settings_798 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_snapshot_encryption_settings_798';
+    return 'TerraformAzureRM::Azurerm_snapshot_encryption_settings_210';
   }
 }
 
-export class Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799 implements PcoreValue {
+export class Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211 implements PcoreValue {
   readonly secret_url: string;
   readonly source_vault_id: string;
 
@@ -21867,11 +21867,11 @@ export class Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799 im
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_snapshot_encryption_settings_798_disk_encryption_key_799';
+    return 'TerraformAzureRM::Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211';
   }
 }
 
-export class Azurerm_snapshot_encryption_settings_798_key_encryption_key_800 implements PcoreValue {
+export class Azurerm_snapshot_encryption_settings_210_key_encryption_key_212 implements PcoreValue {
   readonly key_url: string;
   readonly source_vault_id: string;
 
@@ -21894,7 +21894,7 @@ export class Azurerm_snapshot_encryption_settings_798_key_encryption_key_800 imp
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_snapshot_encryption_settings_798_key_encryption_key_800';
+    return 'TerraformAzureRM::Azurerm_snapshot_encryption_settings_210_key_encryption_key_212';
   }
 }
 
@@ -21970,7 +21970,7 @@ export class Azurerm_sql_database implements PcoreValue {
   readonly edition: string|null;
   readonly elastic_pool_name: string|null;
   readonly encryption: string|null;
-  readonly import_: Azurerm_sql_database_import_801[]|null;
+  readonly import_: Azurerm_sql_database_import_213[]|null;
   readonly max_size_bytes: string|null;
   readonly requested_service_objective_id: string|null;
   readonly requested_service_objective_name: string|null;
@@ -21978,7 +21978,7 @@ export class Azurerm_sql_database implements PcoreValue {
   readonly source_database_deletion_date: string|null;
   readonly source_database_id: string|null;
   readonly tags: {[s: string]: string}|null;
-  readonly threat_detection_policy: Azurerm_sql_database_threat_detection_policy_802[]|null;
+  readonly threat_detection_policy: Azurerm_sql_database_threat_detection_policy_214[]|null;
 
   constructor({
     location,
@@ -22015,7 +22015,7 @@ export class Azurerm_sql_database implements PcoreValue {
     edition?: string|null,
     elastic_pool_name?: string|null,
     encryption?: string|null,
-    import_?: Azurerm_sql_database_import_801[]|null,
+    import_?: Azurerm_sql_database_import_213[]|null,
     max_size_bytes?: string|null,
     requested_service_objective_id?: string|null,
     requested_service_objective_name?: string|null,
@@ -22023,7 +22023,7 @@ export class Azurerm_sql_database implements PcoreValue {
     source_database_deletion_date?: string|null,
     source_database_id?: string|null,
     tags?: {[s: string]: string}|null,
-    threat_detection_policy?: Azurerm_sql_database_threat_detection_policy_802[]|null
+    threat_detection_policy?: Azurerm_sql_database_threat_detection_policy_214[]|null
   }) {
     this.location = location;
     this.name = name;
@@ -22123,7 +22123,7 @@ export class Azurerm_sql_databaseHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_sql_database_import_801 implements PcoreValue {
+export class Azurerm_sql_database_import_213 implements PcoreValue {
   readonly administrator_login: string;
   readonly administrator_login_password: string;
   readonly authentication_type: string;
@@ -22173,11 +22173,11 @@ export class Azurerm_sql_database_import_801 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_sql_database_import_801';
+    return 'TerraformAzureRM::Azurerm_sql_database_import_213';
   }
 }
 
-export class Azurerm_sql_database_threat_detection_policy_802 implements PcoreValue {
+export class Azurerm_sql_database_threat_detection_policy_214 implements PcoreValue {
   readonly disabled_alerts: string[]|null;
   readonly email_account_admins: string|null;
   readonly email_addresses: string[]|null;
@@ -22246,7 +22246,7 @@ export class Azurerm_sql_database_threat_detection_policy_802 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_sql_database_threat_detection_policy_802';
+    return 'TerraformAzureRM::Azurerm_sql_database_threat_detection_policy_214';
   }
 }
 
@@ -22558,12 +22558,12 @@ export class Azurerm_storage_account implements PcoreValue {
   readonly account_encryption_source: string|null;
   readonly account_kind: string|null;
   readonly account_type: string|null;
-  readonly custom_domain: Azurerm_storage_account_custom_domain_803[]|null;
+  readonly custom_domain: Azurerm_storage_account_custom_domain_215[]|null;
   readonly enable_blob_encryption: boolean|null;
   readonly enable_file_encryption: boolean|null;
   readonly enable_https_traffic_only: boolean|null;
-  readonly identity: Azurerm_storage_account_identity_804[]|null;
-  readonly network_rules: Azurerm_storage_account_network_rules_805[]|null;
+  readonly identity: Azurerm_storage_account_identity_216[]|null;
+  readonly network_rules: Azurerm_storage_account_network_rules_217[]|null;
   readonly primary_access_key: string|null;
   readonly primary_blob_connection_string: string|null;
   readonly primary_blob_endpoint: string|null;
@@ -22625,12 +22625,12 @@ export class Azurerm_storage_account implements PcoreValue {
     account_encryption_source?: string|null,
     account_kind?: string|null,
     account_type?: string|null,
-    custom_domain?: Azurerm_storage_account_custom_domain_803[]|null,
+    custom_domain?: Azurerm_storage_account_custom_domain_215[]|null,
     enable_blob_encryption?: boolean|null,
     enable_file_encryption?: boolean|null,
     enable_https_traffic_only?: boolean|null,
-    identity?: Azurerm_storage_account_identity_804[]|null,
-    network_rules?: Azurerm_storage_account_network_rules_805[]|null,
+    identity?: Azurerm_storage_account_identity_216[]|null,
+    network_rules?: Azurerm_storage_account_network_rules_217[]|null,
     primary_access_key?: string|null,
     primary_blob_connection_string?: string|null,
     primary_blob_endpoint?: string|null,
@@ -22788,7 +22788,7 @@ export class Azurerm_storage_accountHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_storage_account_custom_domain_803 implements PcoreValue {
+export class Azurerm_storage_account_custom_domain_215 implements PcoreValue {
   readonly name: string;
   readonly use_subdomain: boolean|null;
 
@@ -22813,11 +22813,11 @@ export class Azurerm_storage_account_custom_domain_803 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_storage_account_custom_domain_803';
+    return 'TerraformAzureRM::Azurerm_storage_account_custom_domain_215';
   }
 }
 
-export class Azurerm_storage_account_identity_804 implements PcoreValue {
+export class Azurerm_storage_account_identity_216 implements PcoreValue {
   readonly type: string;
   readonly principal_id: string|null;
   readonly tenant_id: string|null;
@@ -22849,11 +22849,11 @@ export class Azurerm_storage_account_identity_804 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_storage_account_identity_804';
+    return 'TerraformAzureRM::Azurerm_storage_account_identity_216';
   }
 }
 
-export class Azurerm_storage_account_network_rules_805 implements PcoreValue {
+export class Azurerm_storage_account_network_rules_217 implements PcoreValue {
   readonly bypass: string[]|null;
   readonly ip_rules: string[]|null;
   readonly virtual_network_subnet_ids: string[]|null;
@@ -22887,7 +22887,7 @@ export class Azurerm_storage_account_network_rules_805 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_storage_account_network_rules_805';
+    return 'TerraformAzureRM::Azurerm_storage_account_network_rules_217';
   }
 }
 
@@ -23231,7 +23231,7 @@ export class Azurerm_subnet implements PcoreValue {
   readonly resource_group_name: string;
   readonly virtual_network_name: string;
   readonly azurerm_subnet_id: string|null;
-  readonly delegation: Azurerm_subnet_delegation_806[]|null;
+  readonly delegation: Azurerm_subnet_delegation_218[]|null;
   readonly ip_configurations: string[]|null;
   readonly network_security_group_id: string|null;
   readonly route_table_id: string|null;
@@ -23254,7 +23254,7 @@ export class Azurerm_subnet implements PcoreValue {
     resource_group_name: string,
     virtual_network_name: string,
     azurerm_subnet_id?: string|null,
-    delegation?: Azurerm_subnet_delegation_806[]|null,
+    delegation?: Azurerm_subnet_delegation_218[]|null,
     ip_configurations?: string[]|null,
     network_security_group_id?: string|null,
     route_table_id?: string|null,
@@ -23314,16 +23314,16 @@ export class Azurerm_subnetHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_subnet_delegation_806 implements PcoreValue {
+export class Azurerm_subnet_delegation_218 implements PcoreValue {
   readonly name: string;
-  readonly service_delegation: Azurerm_subnet_delegation_806_service_delegation_807[];
+  readonly service_delegation: Azurerm_subnet_delegation_218_service_delegation_219[];
 
   constructor({
     name,
     service_delegation
   }: {
     name: string,
-    service_delegation: Azurerm_subnet_delegation_806_service_delegation_807[]
+    service_delegation: Azurerm_subnet_delegation_218_service_delegation_219[]
   }) {
     this.name = name;
     this.service_delegation = service_delegation;
@@ -23337,11 +23337,11 @@ export class Azurerm_subnet_delegation_806 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_subnet_delegation_806';
+    return 'TerraformAzureRM::Azurerm_subnet_delegation_218';
   }
 }
 
-export class Azurerm_subnet_delegation_806_service_delegation_807 implements PcoreValue {
+export class Azurerm_subnet_delegation_218_service_delegation_219 implements PcoreValue {
   readonly name: string;
   readonly actions: string[]|null;
 
@@ -23366,7 +23366,7 @@ export class Azurerm_subnet_delegation_806_service_delegation_807 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_subnet_delegation_806_service_delegation_807';
+    return 'TerraformAzureRM::Azurerm_subnet_delegation_218_service_delegation_219';
   }
 }
 
@@ -23653,8 +23653,8 @@ export class Azurerm_traffic_manager_endpointHandler implements PcoreValue {
 }
 
 export class Azurerm_traffic_manager_profile implements PcoreValue {
-  readonly dns_config: Azurerm_traffic_manager_profile_dns_config_808[];
-  readonly monitor_config: Azurerm_traffic_manager_profile_monitor_config_809[];
+  readonly dns_config: Azurerm_traffic_manager_profile_dns_config_220[];
+  readonly monitor_config: Azurerm_traffic_manager_profile_monitor_config_221[];
   readonly name: string;
   readonly resource_group_name: string;
   readonly traffic_routing_method: string;
@@ -23674,8 +23674,8 @@ export class Azurerm_traffic_manager_profile implements PcoreValue {
     profile_status = null,
     tags = null
   }: {
-    dns_config: Azurerm_traffic_manager_profile_dns_config_808[],
-    monitor_config: Azurerm_traffic_manager_profile_monitor_config_809[],
+    dns_config: Azurerm_traffic_manager_profile_dns_config_220[],
+    monitor_config: Azurerm_traffic_manager_profile_monitor_config_221[],
     name: string,
     resource_group_name: string,
     traffic_routing_method: string,
@@ -23732,7 +23732,7 @@ export class Azurerm_traffic_manager_profileHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_traffic_manager_profile_dns_config_808 implements PcoreValue {
+export class Azurerm_traffic_manager_profile_dns_config_220 implements PcoreValue {
   readonly relative_name: string;
   readonly ttl: number;
 
@@ -23755,11 +23755,11 @@ export class Azurerm_traffic_manager_profile_dns_config_808 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_traffic_manager_profile_dns_config_808';
+    return 'TerraformAzureRM::Azurerm_traffic_manager_profile_dns_config_220';
   }
 }
 
-export class Azurerm_traffic_manager_profile_monitor_config_809 implements PcoreValue {
+export class Azurerm_traffic_manager_profile_monitor_config_221 implements PcoreValue {
   readonly port: number;
   readonly protocol: string;
   readonly path: string|null;
@@ -23789,7 +23789,7 @@ export class Azurerm_traffic_manager_profile_monitor_config_809 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_traffic_manager_profile_monitor_config_809';
+    return 'TerraformAzureRM::Azurerm_traffic_manager_profile_monitor_config_221';
   }
 }
 
@@ -23868,23 +23868,23 @@ export class Azurerm_virtual_machine implements PcoreValue {
   readonly name: string;
   readonly network_interface_ids: string[];
   readonly resource_group_name: string;
-  readonly storage_os_disk: Azurerm_virtual_machine_storage_os_disk_823[];
+  readonly storage_os_disk: Azurerm_virtual_machine_storage_os_disk_235[];
   readonly vm_size: string;
   readonly azurerm_virtual_machine_id: string|null;
   readonly availability_set_id: string|null;
-  readonly boot_diagnostics: Azurerm_virtual_machine_boot_diagnostics_810[]|null;
+  readonly boot_diagnostics: Azurerm_virtual_machine_boot_diagnostics_222[]|null;
   readonly delete_data_disks_on_termination: boolean|null;
   readonly delete_os_disk_on_termination: boolean|null;
-  readonly identity: Azurerm_virtual_machine_identity_811[]|null;
+  readonly identity: Azurerm_virtual_machine_identity_223[]|null;
   readonly license_type: string|null;
-  readonly os_profile: Azurerm_virtual_machine_os_profile_812[]|null;
-  readonly os_profile_linux_config: Azurerm_virtual_machine_os_profile_linux_config_813[]|null;
-  readonly os_profile_secrets: Azurerm_virtual_machine_os_profile_secrets_815[]|null;
-  readonly os_profile_windows_config: Azurerm_virtual_machine_os_profile_windows_config_817[]|null;
-  readonly plan: Azurerm_virtual_machine_plan_820[]|null;
+  readonly os_profile: Azurerm_virtual_machine_os_profile_224[]|null;
+  readonly os_profile_linux_config: Azurerm_virtual_machine_os_profile_linux_config_225[]|null;
+  readonly os_profile_secrets: Azurerm_virtual_machine_os_profile_secrets_227[]|null;
+  readonly os_profile_windows_config: Azurerm_virtual_machine_os_profile_windows_config_229[]|null;
+  readonly plan: Azurerm_virtual_machine_plan_232[]|null;
   readonly primary_network_interface_id: string|null;
-  readonly storage_data_disk: Azurerm_virtual_machine_storage_data_disk_821[]|null;
-  readonly storage_image_reference: Azurerm_virtual_machine_storage_image_reference_822[]|null;
+  readonly storage_data_disk: Azurerm_virtual_machine_storage_data_disk_233[]|null;
+  readonly storage_image_reference: Azurerm_virtual_machine_storage_image_reference_234[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly zones: string[]|null;
 
@@ -23917,23 +23917,23 @@ export class Azurerm_virtual_machine implements PcoreValue {
     name: string,
     network_interface_ids: string[],
     resource_group_name: string,
-    storage_os_disk: Azurerm_virtual_machine_storage_os_disk_823[],
+    storage_os_disk: Azurerm_virtual_machine_storage_os_disk_235[],
     vm_size: string,
     azurerm_virtual_machine_id?: string|null,
     availability_set_id?: string|null,
-    boot_diagnostics?: Azurerm_virtual_machine_boot_diagnostics_810[]|null,
+    boot_diagnostics?: Azurerm_virtual_machine_boot_diagnostics_222[]|null,
     delete_data_disks_on_termination?: boolean|null,
     delete_os_disk_on_termination?: boolean|null,
-    identity?: Azurerm_virtual_machine_identity_811[]|null,
+    identity?: Azurerm_virtual_machine_identity_223[]|null,
     license_type?: string|null,
-    os_profile?: Azurerm_virtual_machine_os_profile_812[]|null,
-    os_profile_linux_config?: Azurerm_virtual_machine_os_profile_linux_config_813[]|null,
-    os_profile_secrets?: Azurerm_virtual_machine_os_profile_secrets_815[]|null,
-    os_profile_windows_config?: Azurerm_virtual_machine_os_profile_windows_config_817[]|null,
-    plan?: Azurerm_virtual_machine_plan_820[]|null,
+    os_profile?: Azurerm_virtual_machine_os_profile_224[]|null,
+    os_profile_linux_config?: Azurerm_virtual_machine_os_profile_linux_config_225[]|null,
+    os_profile_secrets?: Azurerm_virtual_machine_os_profile_secrets_227[]|null,
+    os_profile_windows_config?: Azurerm_virtual_machine_os_profile_windows_config_229[]|null,
+    plan?: Azurerm_virtual_machine_plan_232[]|null,
     primary_network_interface_id?: string|null,
-    storage_data_disk?: Azurerm_virtual_machine_storage_data_disk_821[]|null,
-    storage_image_reference?: Azurerm_virtual_machine_storage_image_reference_822[]|null,
+    storage_data_disk?: Azurerm_virtual_machine_storage_data_disk_233[]|null,
+    storage_image_reference?: Azurerm_virtual_machine_storage_image_reference_234[]|null,
     tags?: {[s: string]: string}|null,
     zones?: string[]|null
   }) {
@@ -24039,7 +24039,7 @@ export class Azurerm_virtual_machineHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_virtual_machine_boot_diagnostics_810 implements PcoreValue {
+export class Azurerm_virtual_machine_boot_diagnostics_222 implements PcoreValue {
   readonly enabled: boolean;
   readonly storage_uri: string;
 
@@ -24062,7 +24062,7 @@ export class Azurerm_virtual_machine_boot_diagnostics_810 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_boot_diagnostics_810';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_boot_diagnostics_222';
   }
 }
 
@@ -24231,7 +24231,7 @@ export class Azurerm_virtual_machine_extensionHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_virtual_machine_identity_811 implements PcoreValue {
+export class Azurerm_virtual_machine_identity_223 implements PcoreValue {
   readonly type: string;
   readonly identity_ids: string[]|null;
   readonly principal_id: string|null;
@@ -24263,11 +24263,11 @@ export class Azurerm_virtual_machine_identity_811 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_identity_811';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_identity_223';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_812 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_224 implements PcoreValue {
   readonly admin_username: string;
   readonly computer_name: string;
   readonly admin_password: string|null;
@@ -24304,20 +24304,20 @@ export class Azurerm_virtual_machine_os_profile_812 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_812';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_224';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_linux_config_813 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_linux_config_225 implements PcoreValue {
   readonly disable_password_authentication: boolean;
-  readonly ssh_keys: Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814[]|null;
+  readonly ssh_keys: Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226[]|null;
 
   constructor({
     disable_password_authentication,
     ssh_keys = null
   }: {
     disable_password_authentication: boolean,
-    ssh_keys?: Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814[]|null
+    ssh_keys?: Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226[]|null
   }) {
     this.disable_password_authentication = disable_password_authentication;
     this.ssh_keys = ssh_keys;
@@ -24333,11 +24333,11 @@ export class Azurerm_virtual_machine_os_profile_linux_config_813 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_linux_config_813';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_linux_config_225';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226 implements PcoreValue {
   readonly key_data: string;
   readonly path: string;
 
@@ -24360,20 +24360,20 @@ export class Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814 im
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_linux_config_813_ssh_keys_814';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_secrets_815 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_secrets_227 implements PcoreValue {
   readonly source_vault_id: string;
-  readonly vault_certificates: Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816[]|null;
+  readonly vault_certificates: Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228[]|null;
 
   constructor({
     source_vault_id,
     vault_certificates = null
   }: {
     source_vault_id: string,
-    vault_certificates?: Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816[]|null
+    vault_certificates?: Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228[]|null
   }) {
     this.source_vault_id = source_vault_id;
     this.vault_certificates = vault_certificates;
@@ -24389,11 +24389,11 @@ export class Azurerm_virtual_machine_os_profile_secrets_815 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_secrets_815';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_secrets_227';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228 implements PcoreValue {
   readonly certificate_url: string;
   readonly certificate_store: string|null;
 
@@ -24418,16 +24418,16 @@ export class Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_8
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_secrets_815_vault_certificates_816';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_windows_config_817 implements PcoreValue {
-  readonly additional_unattend_config: Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818[]|null;
+export class Azurerm_virtual_machine_os_profile_windows_config_229 implements PcoreValue {
+  readonly additional_unattend_config: Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230[]|null;
   readonly enable_automatic_upgrades: boolean|null;
   readonly provision_vm_agent: boolean|null;
   readonly timezone: string|null;
-  readonly winrm: Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819[]|null;
+  readonly winrm: Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231[]|null;
 
   constructor({
     additional_unattend_config = null,
@@ -24436,11 +24436,11 @@ export class Azurerm_virtual_machine_os_profile_windows_config_817 implements Pc
     timezone = null,
     winrm = null
   }: {
-    additional_unattend_config?: Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818[]|null,
+    additional_unattend_config?: Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230[]|null,
     enable_automatic_upgrades?: boolean|null,
     provision_vm_agent?: boolean|null,
     timezone?: string|null,
-    winrm?: Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819[]|null
+    winrm?: Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231[]|null
   }) {
     this.additional_unattend_config = additional_unattend_config;
     this.enable_automatic_upgrades = enable_automatic_upgrades;
@@ -24470,11 +24470,11 @@ export class Azurerm_virtual_machine_os_profile_windows_config_817 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_windows_config_817';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_windows_config_229';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230 implements PcoreValue {
   readonly component: string;
   readonly content: string;
   readonly pass: string;
@@ -24507,11 +24507,11 @@ export class Azurerm_virtual_machine_os_profile_windows_config_817_additional_un
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_windows_config_817_additional_unattend_config_818';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230';
   }
 }
 
-export class Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819 implements PcoreValue {
+export class Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231 implements PcoreValue {
   readonly protocol: string;
   readonly certificate_url: string|null;
 
@@ -24536,11 +24536,11 @@ export class Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819 imp
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_windows_config_817_winrm_819';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231';
   }
 }
 
-export class Azurerm_virtual_machine_plan_820 implements PcoreValue {
+export class Azurerm_virtual_machine_plan_232 implements PcoreValue {
   readonly name: string;
   readonly product: string;
   readonly publisher: string;
@@ -24568,37 +24568,37 @@ export class Azurerm_virtual_machine_plan_820 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_plan_820';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_plan_232';
   }
 }
 
 export class Azurerm_virtual_machine_scale_set implements PcoreValue {
   readonly location: string;
   readonly name: string;
-  readonly network_profile: Azurerm_virtual_machine_scale_set_network_profile_827[];
-  readonly os_profile: Azurerm_virtual_machine_scale_set_os_profile_831[];
+  readonly network_profile: Azurerm_virtual_machine_scale_set_network_profile_239[];
+  readonly os_profile: Azurerm_virtual_machine_scale_set_os_profile_243[];
   readonly resource_group_name: string;
-  readonly sku: Azurerm_virtual_machine_scale_set_sku_841[];
-  readonly storage_profile_os_disk: Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844[];
+  readonly sku: Azurerm_virtual_machine_scale_set_sku_253[];
+  readonly storage_profile_os_disk: Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256[];
   readonly upgrade_policy_mode: string;
   readonly azurerm_virtual_machine_scale_set_id: string|null;
   readonly automatic_os_upgrade: boolean|null;
-  readonly boot_diagnostics: Azurerm_virtual_machine_scale_set_boot_diagnostics_824[]|null;
+  readonly boot_diagnostics: Azurerm_virtual_machine_scale_set_boot_diagnostics_236[]|null;
   readonly eviction_policy: string|null;
-  readonly extension: Azurerm_virtual_machine_scale_set_extension_825[]|null;
+  readonly extension: Azurerm_virtual_machine_scale_set_extension_237[]|null;
   readonly health_probe_id: string|null;
-  readonly identity: Azurerm_virtual_machine_scale_set_identity_826[]|null;
+  readonly identity: Azurerm_virtual_machine_scale_set_identity_238[]|null;
   readonly license_type: string|null;
-  readonly os_profile_linux_config: Azurerm_virtual_machine_scale_set_os_profile_linux_config_832[]|null;
-  readonly os_profile_secrets: Azurerm_virtual_machine_scale_set_os_profile_secrets_834[]|null;
-  readonly os_profile_windows_config: Azurerm_virtual_machine_scale_set_os_profile_windows_config_836[]|null;
+  readonly os_profile_linux_config: Azurerm_virtual_machine_scale_set_os_profile_linux_config_244[]|null;
+  readonly os_profile_secrets: Azurerm_virtual_machine_scale_set_os_profile_secrets_246[]|null;
+  readonly os_profile_windows_config: Azurerm_virtual_machine_scale_set_os_profile_windows_config_248[]|null;
   readonly overprovision: boolean|null;
-  readonly plan: Azurerm_virtual_machine_scale_set_plan_839[]|null;
+  readonly plan: Azurerm_virtual_machine_scale_set_plan_251[]|null;
   readonly priority: string|null;
-  readonly rolling_upgrade_policy: Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840[]|null;
+  readonly rolling_upgrade_policy: Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252[]|null;
   readonly single_placement_group: boolean|null;
-  readonly storage_profile_data_disk: Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842[]|null;
-  readonly storage_profile_image_reference: Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843[]|null;
+  readonly storage_profile_data_disk: Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254[]|null;
+  readonly storage_profile_image_reference: Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255[]|null;
   readonly tags: {[s: string]: string}|null;
   readonly zones: string[]|null;
 
@@ -24634,30 +24634,30 @@ export class Azurerm_virtual_machine_scale_set implements PcoreValue {
   }: {
     location: string,
     name: string,
-    network_profile: Azurerm_virtual_machine_scale_set_network_profile_827[],
-    os_profile: Azurerm_virtual_machine_scale_set_os_profile_831[],
+    network_profile: Azurerm_virtual_machine_scale_set_network_profile_239[],
+    os_profile: Azurerm_virtual_machine_scale_set_os_profile_243[],
     resource_group_name: string,
-    sku: Azurerm_virtual_machine_scale_set_sku_841[],
-    storage_profile_os_disk: Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844[],
+    sku: Azurerm_virtual_machine_scale_set_sku_253[],
+    storage_profile_os_disk: Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256[],
     upgrade_policy_mode: string,
     azurerm_virtual_machine_scale_set_id?: string|null,
     automatic_os_upgrade?: boolean|null,
-    boot_diagnostics?: Azurerm_virtual_machine_scale_set_boot_diagnostics_824[]|null,
+    boot_diagnostics?: Azurerm_virtual_machine_scale_set_boot_diagnostics_236[]|null,
     eviction_policy?: string|null,
-    extension?: Azurerm_virtual_machine_scale_set_extension_825[]|null,
+    extension?: Azurerm_virtual_machine_scale_set_extension_237[]|null,
     health_probe_id?: string|null,
-    identity?: Azurerm_virtual_machine_scale_set_identity_826[]|null,
+    identity?: Azurerm_virtual_machine_scale_set_identity_238[]|null,
     license_type?: string|null,
-    os_profile_linux_config?: Azurerm_virtual_machine_scale_set_os_profile_linux_config_832[]|null,
-    os_profile_secrets?: Azurerm_virtual_machine_scale_set_os_profile_secrets_834[]|null,
-    os_profile_windows_config?: Azurerm_virtual_machine_scale_set_os_profile_windows_config_836[]|null,
+    os_profile_linux_config?: Azurerm_virtual_machine_scale_set_os_profile_linux_config_244[]|null,
+    os_profile_secrets?: Azurerm_virtual_machine_scale_set_os_profile_secrets_246[]|null,
+    os_profile_windows_config?: Azurerm_virtual_machine_scale_set_os_profile_windows_config_248[]|null,
     overprovision?: boolean|null,
-    plan?: Azurerm_virtual_machine_scale_set_plan_839[]|null,
+    plan?: Azurerm_virtual_machine_scale_set_plan_251[]|null,
     priority?: string|null,
-    rolling_upgrade_policy?: Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840[]|null,
+    rolling_upgrade_policy?: Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252[]|null,
     single_placement_group?: boolean|null,
-    storage_profile_data_disk?: Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842[]|null,
-    storage_profile_image_reference?: Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843[]|null,
+    storage_profile_data_disk?: Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254[]|null,
+    storage_profile_image_reference?: Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255[]|null,
     tags?: {[s: string]: string}|null,
     zones?: string[]|null
   }) {
@@ -24779,7 +24779,7 @@ export class Azurerm_virtual_machine_scale_setHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_boot_diagnostics_824 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_boot_diagnostics_236 implements PcoreValue {
   readonly storage_uri: string;
   readonly enabled: boolean|null;
 
@@ -24804,11 +24804,11 @@ export class Azurerm_virtual_machine_scale_set_boot_diagnostics_824 implements P
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_boot_diagnostics_824';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_boot_diagnostics_236';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_extension_825 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_extension_237 implements PcoreValue {
   readonly name: string;
   readonly publisher: string;
   readonly type: string;
@@ -24862,11 +24862,11 @@ export class Azurerm_virtual_machine_scale_set_extension_825 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_extension_825';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_extension_237';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_identity_826 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_identity_238 implements PcoreValue {
   readonly type: string;
   readonly identity_ids: string[]|null;
   readonly principal_id: string|null;
@@ -24898,16 +24898,16 @@ export class Azurerm_virtual_machine_scale_set_identity_826 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_identity_826';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_identity_238';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_network_profile_827 implements PcoreValue {
-  readonly ip_configuration: Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829[];
+export class Azurerm_virtual_machine_scale_set_network_profile_239 implements PcoreValue {
+  readonly ip_configuration: Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241[];
   readonly name: string;
   readonly primary: boolean;
   readonly accelerated_networking: boolean|null;
-  readonly dns_settings: Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828[]|null;
+  readonly dns_settings: Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240[]|null;
   readonly ip_forwarding: boolean|null;
   readonly network_security_group_id: string|null;
 
@@ -24920,11 +24920,11 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827 implements Pc
     ip_forwarding = null,
     network_security_group_id = null
   }: {
-    ip_configuration: Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829[],
+    ip_configuration: Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241[],
     name: string,
     primary: boolean,
     accelerated_networking?: boolean|null,
-    dns_settings?: Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828[]|null,
+    dns_settings?: Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240[]|null,
     ip_forwarding?: boolean|null,
     network_security_group_id?: string|null
   }) {
@@ -24958,11 +24958,11 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_827';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_239';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240 implements PcoreValue {
   readonly dns_servers: string[];
 
   constructor({
@@ -24980,11 +24980,11 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_827_dns_settings_828';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241 implements PcoreValue {
   readonly name: string;
   readonly primary: boolean;
   readonly subnet_id: string;
@@ -24992,7 +24992,7 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827_ip_configurat
   readonly application_security_group_ids: string[]|null;
   readonly load_balancer_backend_address_pool_ids: string[]|null;
   readonly load_balancer_inbound_nat_rules_ids: string[]|null;
-  readonly public_ip_address_configuration: Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830[]|null;
+  readonly public_ip_address_configuration: Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242[]|null;
 
   constructor({
     name,
@@ -25011,7 +25011,7 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827_ip_configurat
     application_security_group_ids?: string[]|null,
     load_balancer_backend_address_pool_ids?: string[]|null,
     load_balancer_inbound_nat_rules_ids?: string[]|null,
-    public_ip_address_configuration?: Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830[]|null
+    public_ip_address_configuration?: Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242[]|null
   }) {
     this.name = name;
     this.primary = primary;
@@ -25047,11 +25047,11 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827_ip_configurat
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242 implements PcoreValue {
   readonly domain_name_label: string;
   readonly idle_timeout: number;
   readonly name: string;
@@ -25079,11 +25079,11 @@ export class Azurerm_virtual_machine_scale_set_network_profile_827_ip_configurat
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_827_ip_configuration_829_public_ip_address_configuration_830';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_831 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_243 implements PcoreValue {
   readonly admin_username: string;
   readonly computer_name_prefix: string;
   readonly admin_password: string|null;
@@ -25120,20 +25120,20 @@ export class Azurerm_virtual_machine_scale_set_os_profile_831 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_831';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_243';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_linux_config_832 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_linux_config_244 implements PcoreValue {
   readonly disable_password_authentication: boolean|null;
-  readonly ssh_keys: Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833[]|null;
+  readonly ssh_keys: Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245[]|null;
 
   constructor({
     disable_password_authentication = null,
     ssh_keys = null
   }: {
     disable_password_authentication?: boolean|null,
-    ssh_keys?: Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833[]|null
+    ssh_keys?: Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245[]|null
   }) {
     this.disable_password_authentication = disable_password_authentication;
     this.ssh_keys = ssh_keys;
@@ -25151,11 +25151,11 @@ export class Azurerm_virtual_machine_scale_set_os_profile_linux_config_832 imple
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_linux_config_832';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_linux_config_244';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245 implements PcoreValue {
   readonly path: string;
   readonly key_data: string|null;
 
@@ -25180,20 +25180,20 @@ export class Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_k
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_linux_config_832_ssh_keys_833';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_secrets_834 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_secrets_246 implements PcoreValue {
   readonly source_vault_id: string;
-  readonly vault_certificates: Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835[]|null;
+  readonly vault_certificates: Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247[]|null;
 
   constructor({
     source_vault_id,
     vault_certificates = null
   }: {
     source_vault_id: string,
-    vault_certificates?: Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835[]|null
+    vault_certificates?: Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247[]|null
   }) {
     this.source_vault_id = source_vault_id;
     this.vault_certificates = vault_certificates;
@@ -25209,11 +25209,11 @@ export class Azurerm_virtual_machine_scale_set_os_profile_secrets_834 implements
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_secrets_834';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_secrets_246';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247 implements PcoreValue {
   readonly certificate_url: string;
   readonly certificate_store: string|null;
 
@@ -25238,15 +25238,15 @@ export class Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_cert
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_secrets_834_vault_certificates_835';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836 implements PcoreValue {
-  readonly additional_unattend_config: Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837[]|null;
+export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_248 implements PcoreValue {
+  readonly additional_unattend_config: Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249[]|null;
   readonly enable_automatic_upgrades: boolean|null;
   readonly provision_vm_agent: boolean|null;
-  readonly winrm: Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838[]|null;
+  readonly winrm: Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250[]|null;
 
   constructor({
     additional_unattend_config = null,
@@ -25254,10 +25254,10 @@ export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836 imp
     provision_vm_agent = null,
     winrm = null
   }: {
-    additional_unattend_config?: Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837[]|null,
+    additional_unattend_config?: Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249[]|null,
     enable_automatic_upgrades?: boolean|null,
     provision_vm_agent?: boolean|null,
-    winrm?: Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838[]|null
+    winrm?: Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250[]|null
   }) {
     this.additional_unattend_config = additional_unattend_config;
     this.enable_automatic_upgrades = enable_automatic_upgrades;
@@ -25283,11 +25283,11 @@ export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836 imp
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_windows_config_836';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_windows_config_248';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249 implements PcoreValue {
   readonly component: string;
   readonly content: string;
   readonly pass: string;
@@ -25320,11 +25320,11 @@ export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_add
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_additional_unattend_config_837';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250 implements PcoreValue {
   readonly protocol: string;
   readonly certificate_url: string|null;
 
@@ -25349,11 +25349,11 @@ export class Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_win
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_windows_config_836_winrm_838';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_plan_839 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_plan_251 implements PcoreValue {
   readonly name: string;
   readonly product: string;
   readonly publisher: string;
@@ -25381,11 +25381,11 @@ export class Azurerm_virtual_machine_scale_set_plan_839 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_plan_839';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_plan_251';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252 implements PcoreValue {
   readonly max_batch_instance_percent: number|null;
   readonly max_unhealthy_instance_percent: number|null;
   readonly max_unhealthy_upgraded_instance_percent: number|null;
@@ -25426,11 +25426,11 @@ export class Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840 implem
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_840';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_sku_841 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_sku_253 implements PcoreValue {
   readonly capacity: number;
   readonly name: string;
   readonly tier: string|null;
@@ -25460,11 +25460,11 @@ export class Azurerm_virtual_machine_scale_set_sku_841 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_sku_841';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_sku_253';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254 implements PcoreValue {
   readonly create_option: string;
   readonly lun: number;
   readonly caching: string|null;
@@ -25508,11 +25508,11 @@ export class Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842 imp
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_storage_profile_data_disk_842';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255 implements PcoreValue {
   readonly id: string|null;
   readonly offer: string|null;
   readonly publisher: string|null;
@@ -25560,11 +25560,11 @@ export class Azurerm_virtual_machine_scale_set_storage_profile_image_reference_8
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_storage_profile_image_reference_843';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255';
   }
 }
 
-export class Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844 implements PcoreValue {
+export class Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256 implements PcoreValue {
   readonly create_option: string;
   readonly caching: string|null;
   readonly image: string|null;
@@ -25624,11 +25624,11 @@ export class Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844 imple
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_storage_profile_os_disk_844';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256';
   }
 }
 
-export class Azurerm_virtual_machine_storage_data_disk_821 implements PcoreValue {
+export class Azurerm_virtual_machine_storage_data_disk_233 implements PcoreValue {
   readonly create_option: string;
   readonly lun: number;
   readonly name: string;
@@ -25698,11 +25698,11 @@ export class Azurerm_virtual_machine_storage_data_disk_821 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_storage_data_disk_821';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_storage_data_disk_233';
   }
 }
 
-export class Azurerm_virtual_machine_storage_image_reference_822 implements PcoreValue {
+export class Azurerm_virtual_machine_storage_image_reference_234 implements PcoreValue {
   readonly id: string|null;
   readonly offer: string|null;
   readonly publisher: string|null;
@@ -25750,11 +25750,11 @@ export class Azurerm_virtual_machine_storage_image_reference_822 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_storage_image_reference_822';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_storage_image_reference_234';
   }
 }
 
-export class Azurerm_virtual_machine_storage_os_disk_823 implements PcoreValue {
+export class Azurerm_virtual_machine_storage_os_disk_235 implements PcoreValue {
   readonly create_option: string;
   readonly name: string;
   readonly caching: string|null;
@@ -25833,7 +25833,7 @@ export class Azurerm_virtual_machine_storage_os_disk_823 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_machine_storage_os_disk_823';
+    return 'TerraformAzureRM::Azurerm_virtual_machine_storage_os_disk_235';
   }
 }
 
@@ -25844,7 +25844,7 @@ export class Azurerm_virtual_network implements PcoreValue {
   readonly resource_group_name: string;
   readonly azurerm_virtual_network_id: string|null;
   readonly dns_servers: string[]|null;
-  readonly subnet: Azurerm_virtual_network_subnet_845[]|null;
+  readonly subnet: Azurerm_virtual_network_subnet_257[]|null;
   readonly tags: {[s: string]: string}|null;
 
   constructor({
@@ -25863,7 +25863,7 @@ export class Azurerm_virtual_network implements PcoreValue {
     resource_group_name: string,
     azurerm_virtual_network_id?: string|null,
     dns_servers?: string[]|null,
-    subnet?: Azurerm_virtual_network_subnet_845[]|null,
+    subnet?: Azurerm_virtual_network_subnet_257[]|null,
     tags?: {[s: string]: string}|null
   }) {
     this.address_space = address_space;
@@ -25913,7 +25913,7 @@ export class Azurerm_virtual_networkHandler implements PcoreValue {
 }
 
 export class Azurerm_virtual_network_gateway implements PcoreValue {
-  readonly ip_configuration: Azurerm_virtual_network_gateway_ip_configuration_847[];
+  readonly ip_configuration: Azurerm_virtual_network_gateway_ip_configuration_259[];
   readonly location: string;
   readonly name: string;
   readonly resource_group_name: string;
@@ -25921,11 +25921,11 @@ export class Azurerm_virtual_network_gateway implements PcoreValue {
   readonly type: string;
   readonly azurerm_virtual_network_gateway_id: string|null;
   readonly active_active: boolean|null;
-  readonly bgp_settings: Azurerm_virtual_network_gateway_bgp_settings_846[]|null;
+  readonly bgp_settings: Azurerm_virtual_network_gateway_bgp_settings_258[]|null;
   readonly default_local_network_gateway_id: string|null;
   readonly enable_bgp: boolean|null;
   readonly tags: {[s: string]: string}|null;
-  readonly vpn_client_configuration: Azurerm_virtual_network_gateway_vpn_client_configuration_848[]|null;
+  readonly vpn_client_configuration: Azurerm_virtual_network_gateway_vpn_client_configuration_260[]|null;
   readonly vpn_type: string|null;
 
   constructor({
@@ -25944,7 +25944,7 @@ export class Azurerm_virtual_network_gateway implements PcoreValue {
     vpn_client_configuration = null,
     vpn_type = null
   }: {
-    ip_configuration: Azurerm_virtual_network_gateway_ip_configuration_847[],
+    ip_configuration: Azurerm_virtual_network_gateway_ip_configuration_259[],
     location: string,
     name: string,
     resource_group_name: string,
@@ -25952,11 +25952,11 @@ export class Azurerm_virtual_network_gateway implements PcoreValue {
     type: string,
     azurerm_virtual_network_gateway_id?: string|null,
     active_active?: boolean|null,
-    bgp_settings?: Azurerm_virtual_network_gateway_bgp_settings_846[]|null,
+    bgp_settings?: Azurerm_virtual_network_gateway_bgp_settings_258[]|null,
     default_local_network_gateway_id?: string|null,
     enable_bgp?: boolean|null,
     tags?: {[s: string]: string}|null,
-    vpn_client_configuration?: Azurerm_virtual_network_gateway_vpn_client_configuration_848[]|null,
+    vpn_client_configuration?: Azurerm_virtual_network_gateway_vpn_client_configuration_260[]|null,
     vpn_type?: string|null
   }) {
     this.ip_configuration = ip_configuration;
@@ -26025,7 +26025,7 @@ export class Azurerm_virtual_network_gatewayHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_virtual_network_gateway_bgp_settings_846 implements PcoreValue {
+export class Azurerm_virtual_network_gateway_bgp_settings_258 implements PcoreValue {
   readonly asn: number|null;
   readonly peer_weight: number|null;
   readonly peering_address: string|null;
@@ -26059,7 +26059,7 @@ export class Azurerm_virtual_network_gateway_bgp_settings_846 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_bgp_settings_846';
+    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_bgp_settings_258';
   }
 }
 
@@ -26073,7 +26073,7 @@ export class Azurerm_virtual_network_gateway_connection implements PcoreValue {
   readonly authorization_key: string|null;
   readonly enable_bgp: boolean|null;
   readonly express_route_circuit_id: string|null;
-  readonly ipsec_policy: Azurerm_virtual_network_gateway_connection_ipsec_policy_851[]|null;
+  readonly ipsec_policy: Azurerm_virtual_network_gateway_connection_ipsec_policy_263[]|null;
   readonly local_network_gateway_id: string|null;
   readonly peer_virtual_network_gateway_id: string|null;
   readonly routing_weight: number|null;
@@ -26108,7 +26108,7 @@ export class Azurerm_virtual_network_gateway_connection implements PcoreValue {
     authorization_key?: string|null,
     enable_bgp?: boolean|null,
     express_route_circuit_id?: string|null,
-    ipsec_policy?: Azurerm_virtual_network_gateway_connection_ipsec_policy_851[]|null,
+    ipsec_policy?: Azurerm_virtual_network_gateway_connection_ipsec_policy_263[]|null,
     local_network_gateway_id?: string|null,
     peer_virtual_network_gateway_id?: string|null,
     routing_weight?: number|null,
@@ -26192,7 +26192,7 @@ export class Azurerm_virtual_network_gateway_connectionHandler implements PcoreV
   }
 }
 
-export class Azurerm_virtual_network_gateway_connection_ipsec_policy_851 implements PcoreValue {
+export class Azurerm_virtual_network_gateway_connection_ipsec_policy_263 implements PcoreValue {
   readonly dh_group: string;
   readonly ike_encryption: string;
   readonly ike_integrity: string;
@@ -26249,11 +26249,11 @@ export class Azurerm_virtual_network_gateway_connection_ipsec_policy_851 impleme
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_connection_ipsec_policy_851';
+    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_connection_ipsec_policy_263';
   }
 }
 
-export class Azurerm_virtual_network_gateway_ip_configuration_847 implements PcoreValue {
+export class Azurerm_virtual_network_gateway_ip_configuration_259 implements PcoreValue {
   readonly subnet_id: string;
   readonly name: string|null;
   readonly private_ip_address_allocation: string|null;
@@ -26292,16 +26292,16 @@ export class Azurerm_virtual_network_gateway_ip_configuration_847 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_ip_configuration_847';
+    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_ip_configuration_259';
   }
 }
 
-export class Azurerm_virtual_network_gateway_vpn_client_configuration_848 implements PcoreValue {
+export class Azurerm_virtual_network_gateway_vpn_client_configuration_260 implements PcoreValue {
   readonly address_space: string[];
   readonly radius_server_address: string|null;
   readonly radius_server_secret: string|null;
-  readonly revoked_certificate: Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849[]|null;
-  readonly root_certificate: Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850[]|null;
+  readonly revoked_certificate: Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261[]|null;
+  readonly root_certificate: Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262[]|null;
   readonly vpn_client_protocols: string[]|null;
 
   constructor({
@@ -26315,8 +26315,8 @@ export class Azurerm_virtual_network_gateway_vpn_client_configuration_848 implem
     address_space: string[],
     radius_server_address?: string|null,
     radius_server_secret?: string|null,
-    revoked_certificate?: Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849[]|null,
-    root_certificate?: Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850[]|null,
+    revoked_certificate?: Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261[]|null,
+    root_certificate?: Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262[]|null,
     vpn_client_protocols?: string[]|null
   }) {
     this.address_space = address_space;
@@ -26349,11 +26349,11 @@ export class Azurerm_virtual_network_gateway_vpn_client_configuration_848 implem
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_vpn_client_configuration_848';
+    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_vpn_client_configuration_260';
   }
 }
 
-export class Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849 implements PcoreValue {
+export class Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261 implements PcoreValue {
   readonly name: string;
   readonly thumbprint: string;
 
@@ -26376,11 +26376,11 @@ export class Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoke
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_vpn_client_configuration_848_revoked_certificate_849';
+    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261';
   }
 }
 
-export class Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850 implements PcoreValue {
+export class Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262 implements PcoreValue {
   readonly name: string;
   readonly public_cert_data: string;
 
@@ -26403,7 +26403,7 @@ export class Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_c
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_vpn_client_configuration_848_root_certificate_850';
+    return 'TerraformAzureRM::Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262';
   }
 }
 
@@ -26489,7 +26489,7 @@ export class Azurerm_virtual_network_peeringHandler implements PcoreValue {
   }
 }
 
-export class Azurerm_virtual_network_subnet_845 implements PcoreValue {
+export class Azurerm_virtual_network_subnet_257 implements PcoreValue {
   readonly address_prefix: string;
   readonly name: string;
   readonly id: string|null;
@@ -26526,6 +26526,6 @@ export class Azurerm_virtual_network_subnet_845 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformAzureRM::Azurerm_virtual_network_subnet_845';
+    return 'TerraformAzureRM::Azurerm_virtual_network_subnet_257';
   }
 }
