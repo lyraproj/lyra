@@ -1,8 +1,6 @@
 module github.com/lyraproj/lyra
 
 require (
-	github.com/aws/aws-sdk-go v1.16.26
-	github.com/davecgh/go-spew v1.1.1
 	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-hclog v0.8.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104

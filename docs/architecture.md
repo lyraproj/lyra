@@ -45,12 +45,9 @@ An external process described by a service definition. Examples of services are:
 
 * **Identity** - The Identity Storage
 
-* **Aws** - Provides handlers for a number of Aws resource types
-
 * **Puppet-Workflow** - Language Front-end for Puppet. Produces activity definitions from Puppet manifests
 
 <p align="center"><img src="media/services.png" alt="services"></p>
-
 
 ## Principles
 
