@@ -1,58 +1,54 @@
-import {action, logger, PluginLogger, resource, ServiceBuilder} from 'lyra-workflow';
+import { action, logger, PluginLogger, resource, ServiceBuilder } from 'lyra-workflow';
 import * as util from 'util';
 
-import * as Aws from './types/Aws';
+import * as TerraformAws from './types/TerraformAws';
 
 function makeRouteTable(
-    vpcId: string, tags: {[s: string]: string}): Aws.RouteTable {
-  return new Aws.RouteTable({vpcId, tags});
+  vpc_id: string, tags: { [s: string]: string }): TerraformAws.Aws_route_table {
+  return new TerraformAws.Aws_route_table({ vpc_id, tags });
 }
 
 const wf = {
   source: __filename,
-  input: {tags: {type: 'StringHash', lookup: 'aws.tags'}},
+  input: { tags: { type: 'StringHash', lookup: 'aws.tags' } },
 
-  output: {vpcId: 'string', subnetId: 'string', routeTableId: 'string'},
+  output: { aws_vpc_id: 'string', aws_subnet_id: 'string', aws_route_table_id: 'string' },
 
   activities: {
     vpc: resource({
-      output: 'vpcId',
-      state: (tags: {[s: string]: string}): Aws.Vpc => new Aws.Vpc({
-        amazonProvidedIpv6CidrBlock: false,
-        cidrBlock: '192.168.0.0/16',
-        enableDnsHostnames: false,
-        enableDnsSupport: false,
-        isDefault: false,
-        state: 'available',
+      output: 'aws_vpc_id',
+      state: (tags: { [s: string]: string }): TerraformAws.Aws_vpc => new TerraformAws.Aws_vpc({
+        assign_generated_ipv6_cidr_block: false,
+        cidr_block: '192.168.0.0/16',
+        enable_dns_hostnames: false,
+        enable_dns_support: false,
         tags,
       })
     }),
 
     vpcDone: action({
-      do: (vpcId: string): {vpcOk: boolean} => {
-        logger.info('created vpc', 'vpcId', vpcId);
-        return {vpcOk: true};
+      do: (aws_vpc_id: string): { vpcOk: boolean } => {
+        logger.info('created vpc', 'aws_vpc_id', aws_vpc_id);
+        return { vpcOk: true };
       }
     }),
 
     subnet: resource({
-      output: 'subnetId',
-      state: (vpcId: string, tags: {[s: string]: string}) => new Aws.Subnet({
-        vpcId,
+      output: 'aws_subnet_id',
+      state: (aws_vpc_id: string, tags: { [s: string]: string }) => new TerraformAws.Aws_subnet({
+        vpc_id: aws_vpc_id,
         tags,
-        cidrBlock: '192.168.1.0/24',
-        ipv6CidrBlock: '',
-        assignIpv6AddressOnCreation: false,
-        mapPublicIpOnLaunch: false,
-        defaultForAz: false,
-        state: 'available'
+        cidr_block: '192.168.1.0/24',
+        ipv6_cidr_block: '',
+        assign_ipv6_address_on_creation: false,
+        map_public_ip_on_launch: false,
       })
     }),
 
     routetable: resource({
-      output: 'routeTableId',
-      state: (vpcId: string, tags: {[s: string]: string}) =>
-          makeRouteTable(vpcId, tags)
+      output: 'aws_route_table_id',
+      state: (aws_vpc_id: string, tags: { [s: string]: string }) =>
+        makeRouteTable(aws_vpc_id, tags)
     })
   }
 };
