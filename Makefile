@@ -128,7 +128,7 @@ smoke-test: lyra plugins
 	@build/lyra apply sample || (echo "Failed applying sample $$?"; exit 1)
 
 smoke-test-ts: lyra plugins generate-ts
-	@build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
+	build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
 
 generate-ts: lyra plugins
 	@build/lyra generate typescript --target-directory examples/ts-samples/src/types
