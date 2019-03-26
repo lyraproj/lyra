@@ -13,12 +13,7 @@ LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTag=$(shell git describe --all -
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --short HEAD)"
 
 GO_PLUGINS := $(subst cmd/,,$(wildcard cmd/goplugin-*))
-TERRAFORM_PLUGINS := \
-	terraformaws \
-	terraformazurerm \
-	terraformgithub \
-	terraformgoogle \
-	terraformkubernetes
+TERRAFORM_PLUGINS := $(shell go list github.com/lyraproj/terraform-bridge/... | grep goplugin | cut -d/ -f5 | cut -d- -f2 | uniq | sort)
 
 PHONY+= default
 default: LINTFLAGS = --fast
