@@ -22,7 +22,7 @@ For a more detailed view of how we think about Lyra, check out our introductory 
 ## Getting Started
 
 ### Build
-The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [go modules](https://github.com/golang/go/wiki/Modules) to be on.
+The project requires [Go](https://golang.org/doc/install) 1.11.4 or higher, and [go modules](https://github.com/golang/go/wiki/Modules) to be on.
 
 1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
 2. Build the binary: `$ cd lyra; make`
@@ -37,6 +37,8 @@ The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [g
 This workflow is an AWS Workflow called `aws_vpc_yaml` in `plugins\aws_vpc_yaml.yaml`.  Tag data (loaded [here](plugins/aws_vpc_yaml.yaml#L6) by a new golang implementation of [hiera](https://github.com/lyraproj/hiera)) is specified in the [the data.yaml file](data.yaml) file.  This workflow will use the default AWS credentials configured in your `~/.aws/credentials`.
 
 For the examples using Terraform providers (e.g. `typespace=>'TerraformAws'`), region is currently hard-coded to `eu-west-1`. For non-Terraform providers (e.g. `typespace=>'aws'`), Lyra will use the default region supplied in your `~/.aws/config`. 
+
+There are also examples of [workflows specified in TypeScript for various cloud providers](examples/ts-samples/src/).  All TypeScript examples require NodeJs version 9 or greater (`node --version`) - see [https://nodejs.org/en/download/]().  To run [a basic sample](examples/ts-samples/src/sample_ts.ts), run `make smoke-test-ts`.  This will run an npm install (`(cd examples/ts-samples && npm install)`) and then `build/lyra apply sample_ts --debug`.    
 
 ### Deploying Workflows with Kubernetes
 
