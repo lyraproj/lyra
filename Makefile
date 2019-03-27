@@ -5,7 +5,10 @@ else
 	OS := linux
 endif
 
+# version 11.4 or later of go
 HAS_REQUIRED_GO := $(shell go version | grep -E 'go[2-9]|go1.1[2-9]|go1.11.[4-9]')
+# version 9 or later of node
+HAS_REQUIRED_NODE := $(shell node --version | grep -E 'v9|v[0-9]{2}')
 
 PACKAGE_NAME = github.com/lyraproj/lyra
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
@@ -122,15 +125,25 @@ check-mods:
 	@GO111MODULE=on go mod download || (echo "🔴 The command 'GO111MODULE=on go mod download' did not return zero exit code (exit code was $$?)"; exit 1)
 	@echo "✅ Go mod is available (`date '+%H:%M:%S'`)"
 
+PHONY+= check-node
+check-node:
+	@echo "🔘 Ensuring node version is 9.0.0 or later (`date '+%H:%M:%S'`)"
+	@if [ "$(HAS_REQUIRED_NODE)" = "" ]; \
+	then \
+		echo "🔴 must be running Node version 9.0.0 or later.  Exiting"; \
+		exit 1; \
+	fi
+	@echo "✅ Node version is sufficient (`date '+%H:%M:%S'`)"
+
 PHONY+= smoke-test
 smoke-test: lyra plugins
 	@echo "🔘 Running a smoke test with sample workflow"
 	@build/lyra apply sample || (echo "Failed applying sample $$?"; exit 1)
 
-smoke-test-ts: lyra plugins generate-ts
+smoke-test-ts: check-node generate-ts
 	build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
 
-generate-ts: lyra plugins
+generate-ts:
 	@build/lyra generate typescript --target-directory examples/ts-samples/src/types
 	cd examples/ts-samples && npm install
 
