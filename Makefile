@@ -73,10 +73,9 @@ PHONY+= clean
 clean:
 	@echo "🔘 Cleaning build dir..."
 	@rm -rf build
-	@echo "🔘 Cleaning template dir..."
-	@rm -rf cmd/serverless-openfaas-example/template
-	@echo "🔘 Cleaning vendor..."
-	@rm -rf vendor
+	@echo "🔘 Cleaning ts dist..."
+	@rm -rf examples/ts-samples/dist
+
 
 PHONY+= lint
 lint: $(GOPATH)/bin/golangci-lint
