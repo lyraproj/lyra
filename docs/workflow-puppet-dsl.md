@@ -34,7 +34,7 @@ as with output, the type can often be omitted:
 
 An alias is used when it is desirable to give the output variable a different name than the attribute it references:
 
-    output => ($o1 = x1, $o2)
+    output => ($output_number1 = o1, $o2)
 
 A special construct can be used when it is desirable to group attributes into a Struct
 
@@ -43,14 +43,6 @@ A special construct can be used when it is desirable to group attributes into a 
 this example will result in
 
     output => (Struct[x1 => Like[<resourceType>, x1], x1 => Like[<resourceType>, x2]] $o)
-
-this special construct also allows aliases, thus:
-
-    output => ($o = [a = x1, b = x2])
-
-yields:
-
-    output => (Struct[a=>Like[<resourceType>,x1],b=>Like[<resourceType>,x2]] $o)
 
 #### when
 an activity is considered to have a guard when it declares:

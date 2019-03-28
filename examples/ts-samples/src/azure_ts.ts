@@ -7,7 +7,7 @@ const wf = {
   source: __filename,
 
   activities: {
-    azure_virtual_machine: resource({
+    azurerm_resource_group: resource({
       output: {
         "resourceGroupName": { alias: "name" }
       },
@@ -60,7 +60,7 @@ const wf = {
       },
       state: (resourceGroupName: string): TerraformAzureRM.Azurerm_public_ip => {
         return new TerraformAzureRM.Azurerm_public_ip({
-          name: "lyraSubnetTs",
+          name: "lyraPublicIpTs",
           location: "ukwest",
           resource_group_name: resourceGroupName,
           public_ip_address_allocation: "dynamic"
