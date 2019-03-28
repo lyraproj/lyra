@@ -2,9 +2,9 @@
 import {PcoreValue, Value} from 'lyra-workflow';
 
 export class Kubernetes_cluster_role_binding implements PcoreValue {
-  readonly metadata: Kubernetes_cluster_role_binding_metadata_1079[];
+  readonly metadata: Kubernetes_cluster_role_binding_metadata_1[];
   readonly role_ref: {[s: string]: string};
-  readonly subject: Kubernetes_cluster_role_binding_subject_1080[];
+  readonly subject: Kubernetes_cluster_role_binding_subject_2[];
   readonly kubernetes_cluster_role_binding_id: string|null;
 
   constructor({
@@ -13,9 +13,9 @@ export class Kubernetes_cluster_role_binding implements PcoreValue {
     subject,
     kubernetes_cluster_role_binding_id = null
   }: {
-    metadata: Kubernetes_cluster_role_binding_metadata_1079[],
+    metadata: Kubernetes_cluster_role_binding_metadata_1[],
     role_ref: {[s: string]: string},
-    subject: Kubernetes_cluster_role_binding_subject_1080[],
+    subject: Kubernetes_cluster_role_binding_subject_2[],
     kubernetes_cluster_role_binding_id?: string|null
   }) {
     this.metadata = metadata;
@@ -50,7 +50,7 @@ export class Kubernetes_cluster_role_bindingHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_cluster_role_binding_metadata_1079 implements PcoreValue {
+export class Kubernetes_cluster_role_binding_metadata_1 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generation: number|null;
   readonly labels: {[s: string]: string}|null;
@@ -112,11 +112,11 @@ export class Kubernetes_cluster_role_binding_metadata_1079 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_cluster_role_binding_metadata_1079';
+    return 'TerraformKubernetes::Kubernetes_cluster_role_binding_metadata_1';
   }
 }
 
-export class Kubernetes_cluster_role_binding_subject_1080 implements PcoreValue {
+export class Kubernetes_cluster_role_binding_subject_2 implements PcoreValue {
   readonly kind: string;
   readonly name: string;
   readonly api_group: string|null;
@@ -153,12 +153,12 @@ export class Kubernetes_cluster_role_binding_subject_1080 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_cluster_role_binding_subject_1080';
+    return 'TerraformKubernetes::Kubernetes_cluster_role_binding_subject_2';
   }
 }
 
 export class Kubernetes_config_map implements PcoreValue {
-  readonly metadata: Kubernetes_config_map_metadata_1081[];
+  readonly metadata: Kubernetes_config_map_metadata_3[];
   readonly kubernetes_config_map_id: string|null;
   readonly data: {[s: string]: string}|null;
 
@@ -167,7 +167,7 @@ export class Kubernetes_config_map implements PcoreValue {
     kubernetes_config_map_id = null,
     data = null
   }: {
-    metadata: Kubernetes_config_map_metadata_1081[],
+    metadata: Kubernetes_config_map_metadata_3[],
     kubernetes_config_map_id?: string|null,
     data?: {[s: string]: string}|null
   }) {
@@ -203,7 +203,7 @@ export class Kubernetes_config_mapHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_config_map_metadata_1081 implements PcoreValue {
+export class Kubernetes_config_map_metadata_3 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -279,13 +279,13 @@ export class Kubernetes_config_map_metadata_1081 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_config_map_metadata_1081';
+    return 'TerraformKubernetes::Kubernetes_config_map_metadata_3';
   }
 }
 
 export class Kubernetes_deployment implements PcoreValue {
-  readonly metadata: Kubernetes_deployment_metadata_1082[];
-  readonly spec: Kubernetes_deployment_spec_1083[];
+  readonly metadata: Kubernetes_deployment_metadata_4[];
+  readonly spec: Kubernetes_deployment_spec_5[];
   readonly kubernetes_deployment_id: string|null;
 
   constructor({
@@ -293,8 +293,8 @@ export class Kubernetes_deployment implements PcoreValue {
     spec,
     kubernetes_deployment_id = null
   }: {
-    metadata: Kubernetes_deployment_metadata_1082[],
-    spec: Kubernetes_deployment_spec_1083[],
+    metadata: Kubernetes_deployment_metadata_4[],
+    spec: Kubernetes_deployment_spec_5[],
     kubernetes_deployment_id?: string|null
   }) {
     this.metadata = metadata;
@@ -327,7 +327,7 @@ export class Kubernetes_deploymentHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_deployment_metadata_1082 implements PcoreValue {
+export class Kubernetes_deployment_metadata_4 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -403,19 +403,19 @@ export class Kubernetes_deployment_metadata_1082 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_metadata_1082';
+    return 'TerraformKubernetes::Kubernetes_deployment_metadata_4';
   }
 }
 
-export class Kubernetes_deployment_spec_1083 implements PcoreValue {
-  readonly template: Kubernetes_deployment_spec_1083_template_1088[];
+export class Kubernetes_deployment_spec_5 implements PcoreValue {
+  readonly template: Kubernetes_deployment_spec_5_template_10[];
   readonly min_ready_seconds: number|null;
   readonly paused: boolean|null;
   readonly progress_deadline_seconds: number|null;
   readonly replicas: number|null;
   readonly revision_history_limit: number|null;
-  readonly selector: Kubernetes_deployment_spec_1083_selector_1084[]|null;
-  readonly strategy: Kubernetes_deployment_spec_1083_strategy_1086[]|null;
+  readonly selector: Kubernetes_deployment_spec_5_selector_6[]|null;
+  readonly strategy: Kubernetes_deployment_spec_5_strategy_8[]|null;
 
   constructor({
     template,
@@ -427,14 +427,14 @@ export class Kubernetes_deployment_spec_1083 implements PcoreValue {
     selector = null,
     strategy = null
   }: {
-    template: Kubernetes_deployment_spec_1083_template_1088[],
+    template: Kubernetes_deployment_spec_5_template_10[],
     min_ready_seconds?: number|null,
     paused?: boolean|null,
     progress_deadline_seconds?: number|null,
     replicas?: number|null,
     revision_history_limit?: number|null,
-    selector?: Kubernetes_deployment_spec_1083_selector_1084[]|null,
-    strategy?: Kubernetes_deployment_spec_1083_strategy_1086[]|null
+    selector?: Kubernetes_deployment_spec_5_selector_6[]|null,
+    strategy?: Kubernetes_deployment_spec_5_strategy_8[]|null
   }) {
     this.template = template;
     this.min_ready_seconds = min_ready_seconds;
@@ -474,19 +474,19 @@ export class Kubernetes_deployment_spec_1083 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_selector_1084 implements PcoreValue {
-  readonly match_expressions: Kubernetes_deployment_spec_1083_selector_1084_match_expressions_1085[]|null;
+export class Kubernetes_deployment_spec_5_selector_6 implements PcoreValue {
+  readonly match_expressions: Kubernetes_deployment_spec_5_selector_6_match_expressions_7[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_deployment_spec_1083_selector_1084_match_expressions_1085[]|null,
+    match_expressions?: Kubernetes_deployment_spec_5_selector_6_match_expressions_7[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -505,11 +505,11 @@ export class Kubernetes_deployment_spec_1083_selector_1084 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_selector_1084';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_selector_6';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_selector_1084_match_expressions_1085 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_selector_6_match_expressions_7 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -543,19 +543,19 @@ export class Kubernetes_deployment_spec_1083_selector_1084_match_expressions_108
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_selector_1084_match_expressions_1085';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_selector_6_match_expressions_7';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_strategy_1086 implements PcoreValue {
-  readonly rolling_update: Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087[]|null;
+export class Kubernetes_deployment_spec_5_strategy_8 implements PcoreValue {
+  readonly rolling_update: Kubernetes_deployment_spec_5_strategy_8_rolling_update_9[]|null;
   readonly type: string|null;
 
   constructor({
     rolling_update = null,
     type = null
   }: {
-    rolling_update?: Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087[]|null,
+    rolling_update?: Kubernetes_deployment_spec_5_strategy_8_rolling_update_9[]|null,
     type?: string|null
   }) {
     this.rolling_update = rolling_update;
@@ -574,11 +574,11 @@ export class Kubernetes_deployment_spec_1083_strategy_1086 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_strategy_1086';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_strategy_8';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_strategy_8_rolling_update_9 implements PcoreValue {
   readonly max_surge: string|null;
   readonly max_unavailable: string|null;
 
@@ -605,20 +605,20 @@ export class Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087 i
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_strategy_1086_rolling_update_1087';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_strategy_8_rolling_update_9';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088 implements PcoreValue {
-  readonly metadata: Kubernetes_deployment_spec_1083_template_1088_metadata_1089[];
-  readonly spec: Kubernetes_deployment_spec_1083_template_1088_spec_1090[];
+export class Kubernetes_deployment_spec_5_template_10 implements PcoreValue {
+  readonly metadata: Kubernetes_deployment_spec_5_template_10_metadata_11[];
+  readonly spec: Kubernetes_deployment_spec_5_template_10_spec_12[];
 
   constructor({
     metadata,
     spec
   }: {
-    metadata: Kubernetes_deployment_spec_1083_template_1088_metadata_1089[],
-    spec: Kubernetes_deployment_spec_1083_template_1088_spec_1090[]
+    metadata: Kubernetes_deployment_spec_5_template_10_metadata_11[],
+    spec: Kubernetes_deployment_spec_5_template_10_spec_12[]
   }) {
     this.metadata = metadata;
     this.spec = spec;
@@ -632,11 +632,11 @@ export class Kubernetes_deployment_spec_1083_template_1088 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_metadata_1089 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_metadata_11 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -712,28 +712,28 @@ export class Kubernetes_deployment_spec_1083_template_1088_metadata_1089 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_metadata_1089';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_metadata_11';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12 implements PcoreValue {
   readonly active_deadline_seconds: number|null;
-  readonly container: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091[]|null;
+  readonly container: Kubernetes_deployment_spec_5_template_10_spec_12_container_13[]|null;
   readonly dns_policy: string|null;
   readonly host_ipc: boolean|null;
   readonly host_network: boolean|null;
   readonly host_pid: boolean|null;
   readonly hostname: string|null;
-  readonly image_pull_secrets: Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_secrets_1130[]|null;
-  readonly init_container: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131[]|null;
+  readonly image_pull_secrets: Kubernetes_deployment_spec_5_template_10_spec_12_image_pull_secrets_52[]|null;
+  readonly init_container: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53[]|null;
   readonly node_name: string|null;
   readonly node_selector: {[s: string]: string}|null;
   readonly restart_policy: string|null;
-  readonly security_context: Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170[]|null;
+  readonly security_context: Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92[]|null;
   readonly service_account_name: string|null;
   readonly subdomain: string|null;
   readonly termination_grace_period_seconds: number|null;
-  readonly volume: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172[]|null;
+  readonly volume: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94[]|null;
 
   constructor({
     active_deadline_seconds = null,
@@ -755,22 +755,22 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090 implements 
     volume = null
   }: {
     active_deadline_seconds?: number|null,
-    container?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091[]|null,
+    container?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13[]|null,
     dns_policy?: string|null,
     host_ipc?: boolean|null,
     host_network?: boolean|null,
     host_pid?: boolean|null,
     hostname?: string|null,
-    image_pull_secrets?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_secrets_1130[]|null,
-    init_container?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131[]|null,
+    image_pull_secrets?: Kubernetes_deployment_spec_5_template_10_spec_12_image_pull_secrets_52[]|null,
+    init_container?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53[]|null,
     node_name?: string|null,
     node_selector?: {[s: string]: string}|null,
     restart_policy?: string|null,
-    security_context?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170[]|null,
+    security_context?: Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92[]|null,
     service_account_name?: string|null,
     subdomain?: string|null,
     termination_grace_period_seconds?: number|null,
-    volume?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172[]|null
+    volume?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94[]|null
   }) {
     this.active_deadline_seconds = active_deadline_seconds;
     this.container = container;
@@ -848,29 +848,29 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090 implements 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092[]|null;
-  readonly env_from: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098[]|null;
+  readonly env: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14[]|null;
+  readonly env_from: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101[]|null;
-  readonly liveness_probe: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112[]|null;
-  readonly port: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_port_1117[]|null;
-  readonly readiness_probe: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118[]|null;
-  readonly resources: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123[]|null;
-  readonly security_context: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126[]|null;
+  readonly lifecycle: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23[]|null;
+  readonly liveness_probe: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34[]|null;
+  readonly port: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_port_39[]|null;
+  readonly readiness_probe: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40[]|null;
+  readonly resources: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45[]|null;
+  readonly security_context: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_volume_mount_1129[]|null;
+  readonly volume_mount: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_volume_mount_51[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -897,21 +897,21 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092[]|null,
-    env_from?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098[]|null,
+    env?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14[]|null,
+    env_from?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101[]|null,
-    liveness_probe?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112[]|null,
-    port?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_port_1117[]|null,
-    readiness_probe?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118[]|null,
-    resources?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123[]|null,
-    security_context?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126[]|null,
+    lifecycle?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23[]|null,
+    liveness_probe?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34[]|null,
+    port?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_port_39[]|null,
+    readiness_probe?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40[]|null,
+    resources?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45[]|null,
+    security_context?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_volume_mount_1129[]|null,
+    volume_mount?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_volume_mount_51[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -996,14 +996,14 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093[]|null;
+  readonly value_from: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15[]|null;
 
   constructor({
     name,
@@ -1012,7 +1012,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093[]|null
+    value_from?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -1032,15 +1032,15 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_config_map_key_ref_1094[]|null;
-  readonly field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_field_ref_1095[]|null;
-  readonly resource_field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_resource_field_ref_1096[]|null;
-  readonly secret_key_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_secret_key_ref_1097[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_config_map_key_ref_16[]|null;
+  readonly field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_field_ref_17[]|null;
+  readonly resource_field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_resource_field_ref_18[]|null;
+  readonly secret_key_ref: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_secret_key_ref_19[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -1048,10 +1048,10 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_config_map_key_ref_1094[]|null,
-    field_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_field_ref_1095[]|null,
-    resource_field_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_resource_field_ref_1096[]|null,
-    secret_key_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_secret_key_ref_1097[]|null
+    config_map_key_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_config_map_key_ref_16[]|null,
+    field_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_field_ref_17[]|null,
+    resource_field_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_resource_field_ref_18[]|null,
+    secret_key_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_secret_key_ref_19[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -1077,11 +1077,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_config_map_key_ref_1094 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_config_map_key_ref_16 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -1108,11 +1108,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_config_map_key_ref_1094';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_config_map_key_ref_16';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_field_ref_1095 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_field_ref_17 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -1139,11 +1139,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_field_ref_1095';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_field_ref_17';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_resource_field_ref_1096 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_resource_field_ref_18 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -1168,11 +1168,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_resource_field_ref_1096';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_resource_field_ref_18';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_secret_key_ref_1097 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_secret_key_ref_19 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -1199,23 +1199,23 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_1092_value_from_1093_secret_key_ref_1097';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_secret_key_ref_19';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_config_map_ref_1099[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_config_map_ref_21[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_secret_ref_1100[]|null;
+  readonly secret_ref: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_secret_ref_22[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_config_map_ref_1099[]|null,
+    config_map_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_config_map_ref_21[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_secret_ref_1100[]|null
+    secret_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_secret_ref_22[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -1237,11 +1237,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_config_map_ref_1099 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_config_map_ref_21 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -1266,11 +1266,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_config_map_ref_1099';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_config_map_ref_21';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_secret_ref_1100 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_secret_ref_22 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -1295,20 +1295,20 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_env_from_1098_secret_ref_1100';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_secret_ref_22';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101 implements PcoreValue {
-  readonly post_start: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102[]|null;
-  readonly pre_stop: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23 implements PcoreValue {
+  readonly post_start: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24[]|null;
+  readonly pre_stop: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102[]|null,
-    pre_stop?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107[]|null
+    post_start?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24[]|null,
+    pre_stop?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -1326,23 +1326,23 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_exec_1103[]|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104[]|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_tcp_socket_1106[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_exec_25[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_tcp_socket_28[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_exec_1103[]|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104[]|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_tcp_socket_1106[]|null
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_exec_25[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_tcp_socket_28[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -1364,11 +1364,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_exec_1103 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_exec_25 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -1388,13 +1388,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_exec_1103';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_exec_25';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104_http_header_1105[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26_http_header_27[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -1407,7 +1407,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104_http_header_1105[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26_http_header_27[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -1440,11 +1440,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104_http_header_1105 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26_http_header_27 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -1471,11 +1471,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_http_get_1104_http_header_1105';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26_http_header_27';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_tcp_socket_1106 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_tcp_socket_28 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -1493,23 +1493,23 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_post_start_1102_tcp_socket_1106';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_tcp_socket_28';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_exec_1108[]|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109[]|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_tcp_socket_1111[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_exec_30[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_tcp_socket_33[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_exec_1108[]|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109[]|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_tcp_socket_1111[]|null
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_exec_30[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_tcp_socket_33[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -1531,11 +1531,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_exec_1108 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_exec_30 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -1555,13 +1555,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_exec_1108';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_exec_30';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109_http_header_1110[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31_http_header_32[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -1574,7 +1574,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109_http_header_1110[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31_http_header_32[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -1607,11 +1607,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109_http_header_1110 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31_http_header_32 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -1638,11 +1638,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_http_get_1109_http_header_1110';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31_http_header_32';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_tcp_socket_1111 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_tcp_socket_33 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -1660,18 +1660,18 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_lifecycle_1101_pre_stop_1107_tcp_socket_1111';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_tcp_socket_33';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_exec_1113[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_exec_35[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_tcp_socket_1116[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_tcp_socket_38[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -1684,13 +1684,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_exec_1113[]|null,
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_exec_35[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_tcp_socket_1116[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_tcp_socket_38[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -1733,11 +1733,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_exec_1113 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_exec_35 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -1757,13 +1757,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_exec_1113';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_exec_35';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114_http_header_1115[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36_http_header_37[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -1776,7 +1776,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114_http_header_1115[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36_http_header_37[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -1809,11 +1809,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114_http_header_1115 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36_http_header_37 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -1840,11 +1840,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_http_get_1114_http_header_1115';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36_http_header_37';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_tcp_socket_1116 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_tcp_socket_38 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -1862,11 +1862,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_liveness_probe_1112_tcp_socket_1116';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_tcp_socket_38';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_port_1117 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_port_39 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -1912,18 +1912,18 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_port_1117';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_port_39';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_exec_1119[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_exec_41[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_tcp_socket_1122[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_tcp_socket_44[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -1936,13 +1936,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_exec_1119[]|null,
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_exec_41[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_tcp_socket_1122[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_tcp_socket_44[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -1985,11 +1985,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_exec_1119 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_exec_41 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -2009,13 +2009,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_exec_1119';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_exec_41';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120_http_header_1121[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42_http_header_43[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -2028,7 +2028,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120_http_header_1121[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42_http_header_43[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -2061,11 +2061,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120_http_header_1121 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42_http_header_43 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -2092,11 +2092,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_http_get_1120_http_header_1121';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42_http_header_43';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_tcp_socket_1122 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_tcp_socket_44 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -2114,20 +2114,20 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_readiness_probe_1118_tcp_socket_1122';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_tcp_socket_44';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123 implements PcoreValue {
-  readonly limits: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_limits_1124[]|null;
-  readonly requests: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_requests_1125[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45 implements PcoreValue {
+  readonly limits: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_limits_46[]|null;
+  readonly requests: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_requests_47[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_limits_1124[]|null,
-    requests?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_requests_1125[]|null
+    limits?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_limits_46[]|null,
+    requests?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_requests_47[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -2145,11 +2145,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_limits_1124 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_limits_46 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -2176,11 +2176,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_limits_1124';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_limits_46';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_requests_1125 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_requests_47 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -2207,18 +2207,18 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_resources_1123_requests_1125';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_requests_47';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_capabilities_1127[]|null;
+  readonly capabilities: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_capabilities_49[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_se_linux_options_1128[]|null;
+  readonly se_linux_options: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_se_linux_options_50[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -2230,12 +2230,12 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_capabilities_1127[]|null,
+    capabilities?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_capabilities_49[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_se_linux_options_1128[]|null
+    se_linux_options?: Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_se_linux_options_50[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -2273,11 +2273,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_capabilities_1127 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_capabilities_49 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -2304,11 +2304,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_capabilities_1127';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_capabilities_49';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_se_linux_options_1128 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_se_linux_options_50 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -2349,11 +2349,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_security_context_1126_se_linux_options_1128';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_se_linux_options_50';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_volume_mount_1129 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_container_13_volume_mount_51 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -2390,11 +2390,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_container_1091_volume_mount_1129';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_container_13_volume_mount_51';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_secrets_1130 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_image_pull_secrets_52 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -2412,29 +2412,29 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_image_pull_secrets_1130';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_image_pull_secrets_52';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132[]|null;
-  readonly env_from: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138[]|null;
+  readonly env: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54[]|null;
+  readonly env_from: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141[]|null;
-  readonly liveness_probe: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152[]|null;
-  readonly port: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_port_1157[]|null;
-  readonly readiness_probe: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158[]|null;
-  readonly resources: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163[]|null;
-  readonly security_context: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166[]|null;
+  readonly lifecycle: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63[]|null;
+  readonly liveness_probe: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74[]|null;
+  readonly port: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_port_79[]|null;
+  readonly readiness_probe: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80[]|null;
+  readonly resources: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85[]|null;
+  readonly security_context: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_volume_mount_1169[]|null;
+  readonly volume_mount: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_volume_mount_91[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -2461,21 +2461,21 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132[]|null,
-    env_from?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138[]|null,
+    env?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54[]|null,
+    env_from?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141[]|null,
-    liveness_probe?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152[]|null,
-    port?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_port_1157[]|null,
-    readiness_probe?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158[]|null,
-    resources?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163[]|null,
-    security_context?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166[]|null,
+    lifecycle?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63[]|null,
+    liveness_probe?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74[]|null,
+    port?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_port_79[]|null,
+    readiness_probe?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80[]|null,
+    resources?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85[]|null,
+    security_context?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_volume_mount_1169[]|null,
+    volume_mount?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_volume_mount_91[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -2560,14 +2560,14 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133[]|null;
+  readonly value_from: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55[]|null;
 
   constructor({
     name,
@@ -2576,7 +2576,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133[]|null
+    value_from?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -2596,15 +2596,15 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_config_map_key_ref_1134[]|null;
-  readonly field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_field_ref_1135[]|null;
-  readonly resource_field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_resource_field_ref_1136[]|null;
-  readonly secret_key_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_secret_key_ref_1137[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_config_map_key_ref_56[]|null;
+  readonly field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_field_ref_57[]|null;
+  readonly resource_field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_resource_field_ref_58[]|null;
+  readonly secret_key_ref: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_secret_key_ref_59[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -2612,10 +2612,10 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_config_map_key_ref_1134[]|null,
-    field_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_field_ref_1135[]|null,
-    resource_field_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_resource_field_ref_1136[]|null,
-    secret_key_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_secret_key_ref_1137[]|null
+    config_map_key_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_config_map_key_ref_56[]|null,
+    field_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_field_ref_57[]|null,
+    resource_field_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_resource_field_ref_58[]|null,
+    secret_key_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_secret_key_ref_59[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -2641,11 +2641,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_config_map_key_ref_1134 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_config_map_key_ref_56 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -2672,11 +2672,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_config_map_key_ref_1134';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_config_map_key_ref_56';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_field_ref_1135 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_field_ref_57 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -2703,11 +2703,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_field_ref_1135';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_field_ref_57';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_resource_field_ref_1136 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_resource_field_ref_58 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -2732,11 +2732,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_resource_field_ref_1136';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_resource_field_ref_58';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_secret_key_ref_1137 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_secret_key_ref_59 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -2763,23 +2763,23 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_1132_value_from_1133_secret_key_ref_1137';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_secret_key_ref_59';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_config_map_ref_1139[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_config_map_ref_61[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_secret_ref_1140[]|null;
+  readonly secret_ref: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_secret_ref_62[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_config_map_ref_1139[]|null,
+    config_map_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_config_map_ref_61[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_secret_ref_1140[]|null
+    secret_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_secret_ref_62[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -2801,11 +2801,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_config_map_ref_1139 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_config_map_ref_61 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -2830,11 +2830,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_config_map_ref_1139';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_config_map_ref_61';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_secret_ref_1140 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_secret_ref_62 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -2859,20 +2859,20 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_env_from_1138_secret_ref_1140';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_secret_ref_62';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141 implements PcoreValue {
-  readonly post_start: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142[]|null;
-  readonly pre_stop: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63 implements PcoreValue {
+  readonly post_start: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64[]|null;
+  readonly pre_stop: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142[]|null,
-    pre_stop?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147[]|null
+    post_start?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64[]|null,
+    pre_stop?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -2890,23 +2890,23 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_exec_1143[]|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144[]|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_tcp_socket_1146[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_exec_65[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_tcp_socket_68[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_exec_1143[]|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144[]|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_tcp_socket_1146[]|null
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_exec_65[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_tcp_socket_68[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -2928,11 +2928,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_exec_1143 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_exec_65 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -2952,13 +2952,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_exec_1143';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_exec_65';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144_http_header_1145[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66_http_header_67[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -2971,7 +2971,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144_http_header_1145[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66_http_header_67[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -3004,11 +3004,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144_http_header_1145 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66_http_header_67 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -3035,11 +3035,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_http_get_1144_http_header_1145';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66_http_header_67';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_tcp_socket_1146 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_tcp_socket_68 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -3057,23 +3057,23 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_post_start_1142_tcp_socket_1146';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_tcp_socket_68';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_exec_1148[]|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149[]|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_tcp_socket_1151[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_exec_70[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_tcp_socket_73[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_exec_1148[]|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149[]|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_tcp_socket_1151[]|null
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_exec_70[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_tcp_socket_73[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -3095,11 +3095,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_exec_1148 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_exec_70 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -3119,13 +3119,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_exec_1148';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_exec_70';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149_http_header_1150[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71_http_header_72[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -3138,7 +3138,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149_http_header_1150[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71_http_header_72[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -3171,11 +3171,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149_http_header_1150 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71_http_header_72 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -3202,11 +3202,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_http_get_1149_http_header_1150';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71_http_header_72';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_tcp_socket_1151 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_tcp_socket_73 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -3224,18 +3224,18 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_lifecycle_1141_pre_stop_1147_tcp_socket_1151';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_tcp_socket_73';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_exec_1153[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_exec_75[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_tcp_socket_1156[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_tcp_socket_78[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -3248,13 +3248,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_exec_1153[]|null,
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_exec_75[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_tcp_socket_1156[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_tcp_socket_78[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -3297,11 +3297,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_exec_1153 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_exec_75 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -3321,13 +3321,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_exec_1153';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_exec_75';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154_http_header_1155[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76_http_header_77[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -3340,7 +3340,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154_http_header_1155[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76_http_header_77[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -3373,11 +3373,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154_http_header_1155 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76_http_header_77 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -3404,11 +3404,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_http_get_1154_http_header_1155';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76_http_header_77';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_tcp_socket_1156 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_tcp_socket_78 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -3426,11 +3426,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_liveness_probe_1152_tcp_socket_1156';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_tcp_socket_78';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_port_1157 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_port_79 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -3476,18 +3476,18 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_port_1157';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_port_79';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158 implements PcoreValue {
-  readonly exec: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_exec_1159[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80 implements PcoreValue {
+  readonly exec: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_exec_81[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160[]|null;
+  readonly http_get: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_tcp_socket_1162[]|null;
+  readonly tcp_socket: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_tcp_socket_84[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -3500,13 +3500,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_exec_1159[]|null,
+    exec?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_exec_81[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160[]|null,
+    http_get?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_tcp_socket_1162[]|null,
+    tcp_socket?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_tcp_socket_84[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -3549,11 +3549,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_exec_1159 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_exec_81 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -3573,13 +3573,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_exec_1159';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_exec_81';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160_http_header_1161[]|null;
+  readonly http_header: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82_http_header_83[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -3592,7 +3592,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160_http_header_1161[]|null,
+    http_header?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82_http_header_83[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -3625,11 +3625,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160_http_header_1161 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82_http_header_83 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -3656,11 +3656,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_http_get_1160_http_header_1161';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82_http_header_83';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_tcp_socket_1162 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_tcp_socket_84 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -3678,20 +3678,20 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_readiness_probe_1158_tcp_socket_1162';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_tcp_socket_84';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163 implements PcoreValue {
-  readonly limits: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_limits_1164[]|null;
-  readonly requests: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_requests_1165[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85 implements PcoreValue {
+  readonly limits: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_limits_86[]|null;
+  readonly requests: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_requests_87[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_limits_1164[]|null,
-    requests?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_requests_1165[]|null
+    limits?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_limits_86[]|null,
+    requests?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_requests_87[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -3709,11 +3709,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_limits_1164 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_limits_86 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -3740,11 +3740,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_limits_1164';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_limits_86';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_requests_1165 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_requests_87 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -3771,18 +3771,18 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_resources_1163_requests_1165';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_requests_87';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_capabilities_1167[]|null;
+  readonly capabilities: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_capabilities_89[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_se_linux_options_1168[]|null;
+  readonly se_linux_options: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_se_linux_options_90[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -3794,12 +3794,12 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_capabilities_1167[]|null,
+    capabilities?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_capabilities_89[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_se_linux_options_1168[]|null
+    se_linux_options?: Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_se_linux_options_90[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -3837,11 +3837,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_capabilities_1167 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_capabilities_89 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -3868,11 +3868,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_capabilities_1167';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_capabilities_89';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_se_linux_options_1168 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_se_linux_options_90 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -3913,11 +3913,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_security_context_1166_se_linux_options_1168';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_se_linux_options_90';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_volume_mount_1169 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_volume_mount_91 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -3954,15 +3954,15 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_contai
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_init_container_1131_volume_mount_1169';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_volume_mount_91';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92 implements PcoreValue {
   readonly fs_group: number|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170_se_linux_options_1171[]|null;
+  readonly se_linux_options: Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92_se_linux_options_93[]|null;
   readonly supplemental_groups: number[]|null;
 
   constructor({
@@ -3975,7 +3975,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_co
     fs_group?: number|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170_se_linux_options_1171[]|null,
+    se_linux_options?: Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92_se_linux_options_93[]|null,
     supplemental_groups?: number[]|null
   }) {
     this.fs_group = fs_group;
@@ -4006,11 +4006,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_co
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170_se_linux_options_1171 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92_se_linux_options_93 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -4051,36 +4051,36 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_co
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_security_context_1170_se_linux_options_1171';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92_se_linux_options_93';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172 implements PcoreValue {
-  readonly aws_elastic_block_store: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_aws_elastic_block_store_1173[]|null;
-  readonly azure_disk: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_disk_1174[]|null;
-  readonly azure_file: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_file_1175[]|null;
-  readonly ceph_fs: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176[]|null;
-  readonly cinder: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_cinder_1178[]|null;
-  readonly config_map: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179[]|null;
-  readonly downward_api: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181[]|null;
-  readonly empty_dir: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_empty_dir_1185[]|null;
-  readonly fc: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_fc_1186[]|null;
-  readonly flex_volume: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187[]|null;
-  readonly flocker: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flocker_1189[]|null;
-  readonly gce_persistent_disk: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_gce_persistent_disk_1190[]|null;
-  readonly git_repo: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_git_repo_1191[]|null;
-  readonly glusterfs: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_glusterfs_1192[]|null;
-  readonly host_path: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_host_path_1193[]|null;
-  readonly iscsi: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_iscsi_1194[]|null;
-  readonly local: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_local_1195[]|null;
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94 implements PcoreValue {
+  readonly aws_elastic_block_store: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_aws_elastic_block_store_95[]|null;
+  readonly azure_disk: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_disk_96[]|null;
+  readonly azure_file: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_file_97[]|null;
+  readonly ceph_fs: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98[]|null;
+  readonly cinder: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_cinder_100[]|null;
+  readonly config_map: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101[]|null;
+  readonly downward_api: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103[]|null;
+  readonly empty_dir: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_empty_dir_107[]|null;
+  readonly fc: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_fc_108[]|null;
+  readonly flex_volume: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109[]|null;
+  readonly flocker: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flocker_111[]|null;
+  readonly gce_persistent_disk: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_gce_persistent_disk_112[]|null;
+  readonly git_repo: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_git_repo_113[]|null;
+  readonly glusterfs: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_glusterfs_114[]|null;
+  readonly host_path: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_host_path_115[]|null;
+  readonly iscsi: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_iscsi_116[]|null;
+  readonly local: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_local_117[]|null;
   readonly name: string|null;
-  readonly nfs: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_nfs_1196[]|null;
-  readonly persistent_volume_claim: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_persistent_volume_claim_1197[]|null;
-  readonly photon_persistent_disk: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_photon_persistent_disk_1198[]|null;
-  readonly quobyte: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_quobyte_1199[]|null;
-  readonly rbd: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200[]|null;
-  readonly secret: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202[]|null;
-  readonly vsphere_volume: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_vsphere_volume_1204[]|null;
+  readonly nfs: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_nfs_118[]|null;
+  readonly persistent_volume_claim: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_persistent_volume_claim_119[]|null;
+  readonly photon_persistent_disk: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_photon_persistent_disk_120[]|null;
+  readonly quobyte: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_quobyte_121[]|null;
+  readonly rbd: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122[]|null;
+  readonly secret: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124[]|null;
+  readonly vsphere_volume: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_vsphere_volume_126[]|null;
 
   constructor({
     aws_elastic_block_store = null,
@@ -4109,31 +4109,31 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     secret = null,
     vsphere_volume = null
   }: {
-    aws_elastic_block_store?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_aws_elastic_block_store_1173[]|null,
-    azure_disk?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_disk_1174[]|null,
-    azure_file?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_file_1175[]|null,
-    ceph_fs?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176[]|null,
-    cinder?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_cinder_1178[]|null,
-    config_map?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179[]|null,
-    downward_api?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181[]|null,
-    empty_dir?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_empty_dir_1185[]|null,
-    fc?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_fc_1186[]|null,
-    flex_volume?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187[]|null,
-    flocker?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flocker_1189[]|null,
-    gce_persistent_disk?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_gce_persistent_disk_1190[]|null,
-    git_repo?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_git_repo_1191[]|null,
-    glusterfs?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_glusterfs_1192[]|null,
-    host_path?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_host_path_1193[]|null,
-    iscsi?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_iscsi_1194[]|null,
-    local?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_local_1195[]|null,
+    aws_elastic_block_store?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_aws_elastic_block_store_95[]|null,
+    azure_disk?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_disk_96[]|null,
+    azure_file?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_file_97[]|null,
+    ceph_fs?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98[]|null,
+    cinder?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_cinder_100[]|null,
+    config_map?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101[]|null,
+    downward_api?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103[]|null,
+    empty_dir?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_empty_dir_107[]|null,
+    fc?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_fc_108[]|null,
+    flex_volume?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109[]|null,
+    flocker?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flocker_111[]|null,
+    gce_persistent_disk?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_gce_persistent_disk_112[]|null,
+    git_repo?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_git_repo_113[]|null,
+    glusterfs?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_glusterfs_114[]|null,
+    host_path?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_host_path_115[]|null,
+    iscsi?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_iscsi_116[]|null,
+    local?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_local_117[]|null,
     name?: string|null,
-    nfs?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_nfs_1196[]|null,
-    persistent_volume_claim?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_persistent_volume_claim_1197[]|null,
-    photon_persistent_disk?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_photon_persistent_disk_1198[]|null,
-    quobyte?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_quobyte_1199[]|null,
-    rbd?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200[]|null,
-    secret?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202[]|null,
-    vsphere_volume?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_vsphere_volume_1204[]|null
+    nfs?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_nfs_118[]|null,
+    persistent_volume_claim?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_persistent_volume_claim_119[]|null,
+    photon_persistent_disk?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_photon_persistent_disk_120[]|null,
+    quobyte?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_quobyte_121[]|null,
+    rbd?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122[]|null,
+    secret?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124[]|null,
+    vsphere_volume?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_vsphere_volume_126[]|null
   }) {
     this.aws_elastic_block_store = aws_elastic_block_store;
     this.azure_disk = azure_disk;
@@ -4243,11 +4243,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_aws_elastic_block_store_1173 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_aws_elastic_block_store_95 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -4286,11 +4286,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_aws_elastic_block_store_1173';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_aws_elastic_block_store_95';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_disk_1174 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_disk_96 implements PcoreValue {
   readonly caching_mode: string;
   readonly data_disk_uri: string;
   readonly disk_name: string;
@@ -4332,11 +4332,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_disk_1174';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_disk_96';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_file_1175 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_file_97 implements PcoreValue {
   readonly secret_name: string;
   readonly share_name: string;
   readonly read_only: boolean|null;
@@ -4366,16 +4366,16 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_azure_file_1175';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_file_97';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98 implements PcoreValue {
   readonly monitors: string[];
   readonly path: string|null;
   readonly read_only: boolean|null;
   readonly secret_file: string|null;
-  readonly secret_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176_secret_ref_1177[]|null;
+  readonly secret_ref: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98_secret_ref_99[]|null;
   readonly user: string|null;
 
   constructor({
@@ -4390,7 +4390,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     path?: string|null,
     read_only?: boolean|null,
     secret_file?: string|null,
-    secret_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176_secret_ref_1177[]|null,
+    secret_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98_secret_ref_99[]|null,
     user?: string|null
   }) {
     this.monitors = monitors;
@@ -4423,11 +4423,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176_secret_ref_1177 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98_secret_ref_99 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -4447,11 +4447,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_ceph_fs_1176_secret_ref_1177';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98_secret_ref_99';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_cinder_1178 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_cinder_100 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly read_only: boolean|null;
@@ -4483,13 +4483,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_cinder_1178';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_cinder_100';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179_items_1180[]|null;
+  readonly items: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101_items_102[]|null;
   readonly name: string|null;
 
   constructor({
@@ -4498,7 +4498,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179_items_1180[]|null,
+    items?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101_items_102[]|null,
     name?: string|null
   }) {
     this.default_mode = default_mode;
@@ -4521,11 +4521,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179_items_1180 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101_items_102 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -4559,20 +4559,20 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_config_map_1179_items_1180';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101_items_102';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182[]|null;
+  readonly items: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104[]|null;
 
   constructor({
     default_mode = null,
     items = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182[]|null
+    items?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104[]|null
   }) {
     this.default_mode = default_mode;
     this.items = items;
@@ -4590,15 +4590,15 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182 implements PcoreValue {
-  readonly field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_field_ref_1183[];
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104 implements PcoreValue {
+  readonly field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_field_ref_105[];
   readonly path: string;
   readonly mode: number|null;
-  readonly resource_field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_resource_field_ref_1184[]|null;
+  readonly resource_field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_resource_field_ref_106[]|null;
 
   constructor({
     field_ref,
@@ -4606,10 +4606,10 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     mode = null,
     resource_field_ref = null
   }: {
-    field_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_field_ref_1183[],
+    field_ref: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_field_ref_105[],
     path: string,
     mode?: number|null,
-    resource_field_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_resource_field_ref_1184[]|null
+    resource_field_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_resource_field_ref_106[]|null
   }) {
     this.field_ref = field_ref;
     this.path = path;
@@ -4631,11 +4631,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_field_ref_1183 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_field_ref_105 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -4662,11 +4662,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_field_ref_1183';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_field_ref_105';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_resource_field_ref_1184 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_resource_field_ref_106 implements PcoreValue {
   readonly container_name: string;
   readonly resource: string;
   readonly quantity: string|null;
@@ -4696,11 +4696,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_downward_api_1181_items_1182_resource_field_ref_1184';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_resource_field_ref_106';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_empty_dir_1185 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_empty_dir_107 implements PcoreValue {
   readonly medium: string|null;
 
   constructor({
@@ -4720,11 +4720,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_empty_dir_1185';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_empty_dir_107';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_fc_1186 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_fc_108 implements PcoreValue {
   readonly lun: number;
   readonly target_ww_ns: string[];
   readonly fs_type: string|null;
@@ -4761,16 +4761,16 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_fc_1186';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_fc_108';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109 implements PcoreValue {
   readonly driver: string;
   readonly fs_type: string|null;
   readonly options: {[s: string]: string}|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187_secret_ref_1188[]|null;
+  readonly secret_ref: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109_secret_ref_110[]|null;
 
   constructor({
     driver,
@@ -4783,7 +4783,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     fs_type?: string|null,
     options?: {[s: string]: string}|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187_secret_ref_1188[]|null
+    secret_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109_secret_ref_110[]|null
   }) {
     this.driver = driver;
     this.fs_type = fs_type;
@@ -4811,11 +4811,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187_secret_ref_1188 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109_secret_ref_110 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -4835,11 +4835,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flex_volume_1187_secret_ref_1188';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109_secret_ref_110';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flocker_1189 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flocker_111 implements PcoreValue {
   readonly dataset_name: string|null;
   readonly dataset_uuid: string|null;
 
@@ -4866,11 +4866,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_flocker_1189';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flocker_111';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_gce_persistent_disk_1190 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_gce_persistent_disk_112 implements PcoreValue {
   readonly pd_name: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -4909,11 +4909,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_gce_persistent_disk_1190';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_gce_persistent_disk_112';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_git_repo_1191 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_git_repo_113 implements PcoreValue {
   readonly directory: string|null;
   readonly repository: string|null;
   readonly revision: string|null;
@@ -4947,11 +4947,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_git_repo_1191';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_git_repo_113';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_glusterfs_1192 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_glusterfs_114 implements PcoreValue {
   readonly endpoints_name: string;
   readonly path: string;
   readonly read_only: boolean|null;
@@ -4981,11 +4981,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_glusterfs_1192';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_glusterfs_114';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_host_path_1193 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_host_path_115 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -5005,11 +5005,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_host_path_1193';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_host_path_115';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_iscsi_1194 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_iscsi_116 implements PcoreValue {
   readonly iqn: string;
   readonly target_portal: string;
   readonly fs_type: string|null;
@@ -5060,11 +5060,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_iscsi_1194';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_iscsi_116';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_local_1195 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_local_117 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -5084,11 +5084,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_local_1195';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_local_117';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_nfs_1196 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_nfs_118 implements PcoreValue {
   readonly path: string;
   readonly server: string;
   readonly read_only: boolean|null;
@@ -5118,11 +5118,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_nfs_1196';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_nfs_118';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_persistent_volume_claim_1197 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_persistent_volume_claim_119 implements PcoreValue {
   readonly claim_name: string|null;
   readonly read_only: boolean|null;
 
@@ -5149,11 +5149,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_persistent_volume_claim_1197';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_persistent_volume_claim_119';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_photon_persistent_disk_1198 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_photon_persistent_disk_120 implements PcoreValue {
   readonly pd_id: string;
   readonly fs_type: string|null;
 
@@ -5178,11 +5178,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_photon_persistent_disk_1198';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_photon_persistent_disk_120';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_quobyte_1199 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_quobyte_121 implements PcoreValue {
   readonly registry: string;
   readonly volume: string;
   readonly group: string|null;
@@ -5226,11 +5226,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_quobyte_1199';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_quobyte_121';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122 implements PcoreValue {
   readonly ceph_monitors: string[];
   readonly rbd_image: string;
   readonly fs_type: string|null;
@@ -5238,7 +5238,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   readonly rados_user: string|null;
   readonly rbd_pool: string|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200_secret_ref_1201[]|null;
+  readonly secret_ref: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122_secret_ref_123[]|null;
 
   constructor({
     ceph_monitors,
@@ -5257,7 +5257,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     rados_user?: string|null,
     rbd_pool?: string|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200_secret_ref_1201[]|null
+    secret_ref?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122_secret_ref_123[]|null
   }) {
     this.ceph_monitors = ceph_monitors;
     this.rbd_image = rbd_image;
@@ -5295,11 +5295,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200_secret_ref_1201 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122_secret_ref_123 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -5319,13 +5319,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_rbd_1200_secret_ref_1201';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122_secret_ref_123';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202_items_1203[]|null;
+  readonly items: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124_items_125[]|null;
   readonly optional: boolean|null;
   readonly secret_name: string|null;
 
@@ -5336,7 +5336,7 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
     secret_name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202_items_1203[]|null,
+    items?: Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124_items_125[]|null,
     optional?: boolean|null,
     secret_name?: string|null
   }) {
@@ -5364,11 +5364,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202_items_1203 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124_items_125 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -5402,11 +5402,11 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_secret_1202_items_1203';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124_items_125';
   }
 }
 
-export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_vsphere_volume_1204 implements PcoreValue {
+export class Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_vsphere_volume_126 implements PcoreValue {
   readonly volume_path: string;
   readonly fs_type: string|null;
 
@@ -5431,13 +5431,13 @@ export class Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_deployment_spec_1083_template_1088_spec_1090_volume_1172_vsphere_volume_1204';
+    return 'TerraformKubernetes::Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_vsphere_volume_126';
   }
 }
 
 export class Kubernetes_horizontal_pod_autoscaler implements PcoreValue {
-  readonly metadata: Kubernetes_horizontal_pod_autoscaler_metadata_1205[];
-  readonly spec: Kubernetes_horizontal_pod_autoscaler_spec_1206[];
+  readonly metadata: Kubernetes_horizontal_pod_autoscaler_metadata_127[];
+  readonly spec: Kubernetes_horizontal_pod_autoscaler_spec_128[];
   readonly kubernetes_horizontal_pod_autoscaler_id: string|null;
 
   constructor({
@@ -5445,8 +5445,8 @@ export class Kubernetes_horizontal_pod_autoscaler implements PcoreValue {
     spec,
     kubernetes_horizontal_pod_autoscaler_id = null
   }: {
-    metadata: Kubernetes_horizontal_pod_autoscaler_metadata_1205[],
-    spec: Kubernetes_horizontal_pod_autoscaler_spec_1206[],
+    metadata: Kubernetes_horizontal_pod_autoscaler_metadata_127[],
+    spec: Kubernetes_horizontal_pod_autoscaler_spec_128[],
     kubernetes_horizontal_pod_autoscaler_id?: string|null
   }) {
     this.metadata = metadata;
@@ -5479,7 +5479,7 @@ export class Kubernetes_horizontal_pod_autoscalerHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_horizontal_pod_autoscaler_metadata_1205 implements PcoreValue {
+export class Kubernetes_horizontal_pod_autoscaler_metadata_127 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -5555,13 +5555,13 @@ export class Kubernetes_horizontal_pod_autoscaler_metadata_1205 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_horizontal_pod_autoscaler_metadata_1205';
+    return 'TerraformKubernetes::Kubernetes_horizontal_pod_autoscaler_metadata_127';
   }
 }
 
-export class Kubernetes_horizontal_pod_autoscaler_spec_1206 implements PcoreValue {
+export class Kubernetes_horizontal_pod_autoscaler_spec_128 implements PcoreValue {
   readonly max_replicas: number;
-  readonly scale_target_ref: Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_1207[];
+  readonly scale_target_ref: Kubernetes_horizontal_pod_autoscaler_spec_128_scale_target_ref_129[];
   readonly min_replicas: number|null;
   readonly target_cpu_utilization_percentage: number|null;
 
@@ -5572,7 +5572,7 @@ export class Kubernetes_horizontal_pod_autoscaler_spec_1206 implements PcoreValu
     target_cpu_utilization_percentage = null
   }: {
     max_replicas: number,
-    scale_target_ref: Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_1207[],
+    scale_target_ref: Kubernetes_horizontal_pod_autoscaler_spec_128_scale_target_ref_129[],
     min_replicas?: number|null,
     target_cpu_utilization_percentage?: number|null
   }) {
@@ -5596,11 +5596,11 @@ export class Kubernetes_horizontal_pod_autoscaler_spec_1206 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_horizontal_pod_autoscaler_spec_1206';
+    return 'TerraformKubernetes::Kubernetes_horizontal_pod_autoscaler_spec_128';
   }
 }
 
-export class Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_1207 implements PcoreValue {
+export class Kubernetes_horizontal_pod_autoscaler_spec_128_scale_target_ref_129 implements PcoreValue {
   readonly kind: string;
   readonly name: string;
   readonly api_version: string|null;
@@ -5630,23 +5630,23 @@ export class Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_120
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_horizontal_pod_autoscaler_spec_1206_scale_target_ref_1207';
+    return 'TerraformKubernetes::Kubernetes_horizontal_pod_autoscaler_spec_128_scale_target_ref_129';
   }
 }
 
 export class Kubernetes_limit_range implements PcoreValue {
-  readonly metadata: Kubernetes_limit_range_metadata_1208[];
+  readonly metadata: Kubernetes_limit_range_metadata_130[];
   readonly kubernetes_limit_range_id: string|null;
-  readonly spec: Kubernetes_limit_range_spec_1209[]|null;
+  readonly spec: Kubernetes_limit_range_spec_131[]|null;
 
   constructor({
     metadata,
     kubernetes_limit_range_id = null,
     spec = null
   }: {
-    metadata: Kubernetes_limit_range_metadata_1208[],
+    metadata: Kubernetes_limit_range_metadata_130[],
     kubernetes_limit_range_id?: string|null,
-    spec?: Kubernetes_limit_range_spec_1209[]|null
+    spec?: Kubernetes_limit_range_spec_131[]|null
   }) {
     this.metadata = metadata;
     this.kubernetes_limit_range_id = kubernetes_limit_range_id;
@@ -5680,7 +5680,7 @@ export class Kubernetes_limit_rangeHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_limit_range_metadata_1208 implements PcoreValue {
+export class Kubernetes_limit_range_metadata_130 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -5756,17 +5756,17 @@ export class Kubernetes_limit_range_metadata_1208 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_limit_range_metadata_1208';
+    return 'TerraformKubernetes::Kubernetes_limit_range_metadata_130';
   }
 }
 
-export class Kubernetes_limit_range_spec_1209 implements PcoreValue {
-  readonly limit: Kubernetes_limit_range_spec_1209_limit_1210[]|null;
+export class Kubernetes_limit_range_spec_131 implements PcoreValue {
+  readonly limit: Kubernetes_limit_range_spec_131_limit_132[]|null;
 
   constructor({
     limit = null
   }: {
-    limit?: Kubernetes_limit_range_spec_1209_limit_1210[]|null
+    limit?: Kubernetes_limit_range_spec_131_limit_132[]|null
   }) {
     this.limit = limit;
   }
@@ -5780,11 +5780,11 @@ export class Kubernetes_limit_range_spec_1209 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_limit_range_spec_1209';
+    return 'TerraformKubernetes::Kubernetes_limit_range_spec_131';
   }
 }
 
-export class Kubernetes_limit_range_spec_1209_limit_1210 implements PcoreValue {
+export class Kubernetes_limit_range_spec_131_limit_132 implements PcoreValue {
   readonly default_: {[s: string]: string}|null;
   readonly default_request: {[s: string]: string}|null;
   readonly max: {[s: string]: string}|null;
@@ -5839,19 +5839,19 @@ export class Kubernetes_limit_range_spec_1209_limit_1210 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_limit_range_spec_1209_limit_1210';
+    return 'TerraformKubernetes::Kubernetes_limit_range_spec_131_limit_132';
   }
 }
 
 export class Kubernetes_namespace implements PcoreValue {
-  readonly metadata: Kubernetes_namespace_metadata_1211[];
+  readonly metadata: Kubernetes_namespace_metadata_133[];
   readonly kubernetes_namespace_id: string|null;
 
   constructor({
     metadata,
     kubernetes_namespace_id = null
   }: {
-    metadata: Kubernetes_namespace_metadata_1211[],
+    metadata: Kubernetes_namespace_metadata_133[],
     kubernetes_namespace_id?: string|null
   }) {
     this.metadata = metadata;
@@ -5882,7 +5882,7 @@ export class Kubernetes_namespaceHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_namespace_metadata_1211 implements PcoreValue {
+export class Kubernetes_namespace_metadata_133 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -5951,13 +5951,13 @@ export class Kubernetes_namespace_metadata_1211 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_namespace_metadata_1211';
+    return 'TerraformKubernetes::Kubernetes_namespace_metadata_133';
   }
 }
 
 export class Kubernetes_network_policy implements PcoreValue {
-  readonly metadata: Kubernetes_network_policy_metadata_1212[];
-  readonly spec: Kubernetes_network_policy_spec_1213[];
+  readonly metadata: Kubernetes_network_policy_metadata_134[];
+  readonly spec: Kubernetes_network_policy_spec_135[];
   readonly kubernetes_network_policy_id: string|null;
 
   constructor({
@@ -5965,8 +5965,8 @@ export class Kubernetes_network_policy implements PcoreValue {
     spec,
     kubernetes_network_policy_id = null
   }: {
-    metadata: Kubernetes_network_policy_metadata_1212[],
-    spec: Kubernetes_network_policy_spec_1213[],
+    metadata: Kubernetes_network_policy_metadata_134[],
+    spec: Kubernetes_network_policy_spec_135[],
     kubernetes_network_policy_id?: string|null
   }) {
     this.metadata = metadata;
@@ -5999,7 +5999,7 @@ export class Kubernetes_network_policyHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_network_policy_metadata_1212 implements PcoreValue {
+export class Kubernetes_network_policy_metadata_134 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -6075,15 +6075,15 @@ export class Kubernetes_network_policy_metadata_1212 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_metadata_1212';
+    return 'TerraformKubernetes::Kubernetes_network_policy_metadata_134';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213 implements PcoreValue {
-  readonly pod_selector: Kubernetes_network_policy_spec_1213_pod_selector_1230[];
+export class Kubernetes_network_policy_spec_135 implements PcoreValue {
+  readonly pod_selector: Kubernetes_network_policy_spec_135_pod_selector_152[];
   readonly policy_types: string[];
-  readonly egress: Kubernetes_network_policy_spec_1213_egress_1214[]|null;
-  readonly ingress: Kubernetes_network_policy_spec_1213_ingress_1222[]|null;
+  readonly egress: Kubernetes_network_policy_spec_135_egress_136[]|null;
+  readonly ingress: Kubernetes_network_policy_spec_135_ingress_144[]|null;
 
   constructor({
     pod_selector,
@@ -6091,10 +6091,10 @@ export class Kubernetes_network_policy_spec_1213 implements PcoreValue {
     egress = null,
     ingress = null
   }: {
-    pod_selector: Kubernetes_network_policy_spec_1213_pod_selector_1230[],
+    pod_selector: Kubernetes_network_policy_spec_135_pod_selector_152[],
     policy_types: string[],
-    egress?: Kubernetes_network_policy_spec_1213_egress_1214[]|null,
-    ingress?: Kubernetes_network_policy_spec_1213_ingress_1222[]|null
+    egress?: Kubernetes_network_policy_spec_135_egress_136[]|null,
+    ingress?: Kubernetes_network_policy_spec_135_ingress_144[]|null
   }) {
     this.pod_selector = pod_selector;
     this.policy_types = policy_types;
@@ -6116,20 +6116,20 @@ export class Kubernetes_network_policy_spec_1213 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214 implements PcoreValue {
-  readonly ports: Kubernetes_network_policy_spec_1213_egress_1214_ports_1215[]|null;
-  readonly to: Kubernetes_network_policy_spec_1213_egress_1214_to_1216[]|null;
+export class Kubernetes_network_policy_spec_135_egress_136 implements PcoreValue {
+  readonly ports: Kubernetes_network_policy_spec_135_egress_136_ports_137[]|null;
+  readonly to: Kubernetes_network_policy_spec_135_egress_136_to_138[]|null;
 
   constructor({
     ports = null,
     to = null
   }: {
-    ports?: Kubernetes_network_policy_spec_1213_egress_1214_ports_1215[]|null,
-    to?: Kubernetes_network_policy_spec_1213_egress_1214_to_1216[]|null
+    ports?: Kubernetes_network_policy_spec_135_egress_136_ports_137[]|null,
+    to?: Kubernetes_network_policy_spec_135_egress_136_to_138[]|null
   }) {
     this.ports = ports;
     this.to = to;
@@ -6147,11 +6147,11 @@ export class Kubernetes_network_policy_spec_1213_egress_1214 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_ports_1215 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_egress_136_ports_137 implements PcoreValue {
   readonly port: string|null;
   readonly protocol: string|null;
 
@@ -6178,23 +6178,23 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_ports_1215 implemen
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_ports_1215';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_ports_137';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216 implements PcoreValue {
-  readonly ip_block: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_1217[]|null;
-  readonly namespace_selector: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218[]|null;
-  readonly pod_selector: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220[]|null;
+export class Kubernetes_network_policy_spec_135_egress_136_to_138 implements PcoreValue {
+  readonly ip_block: Kubernetes_network_policy_spec_135_egress_136_to_138_ip_block_139[]|null;
+  readonly namespace_selector: Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140[]|null;
+  readonly pod_selector: Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142[]|null;
 
   constructor({
     ip_block = null,
     namespace_selector = null,
     pod_selector = null
   }: {
-    ip_block?: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_1217[]|null,
-    namespace_selector?: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218[]|null,
-    pod_selector?: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220[]|null
+    ip_block?: Kubernetes_network_policy_spec_135_egress_136_to_138_ip_block_139[]|null,
+    namespace_selector?: Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140[]|null,
+    pod_selector?: Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142[]|null
   }) {
     this.ip_block = ip_block;
     this.namespace_selector = namespace_selector;
@@ -6216,11 +6216,11 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216 implements 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_to_1216';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_to_138';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_1217 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_egress_136_to_138_ip_block_139 implements PcoreValue {
   readonly cidr: string|null;
   readonly except: string[]|null;
 
@@ -6247,19 +6247,19 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_12
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_to_1216_ip_block_1217';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_to_138_ip_block_139';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218 implements PcoreValue {
-  readonly match_expressions: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218_match_expressions_1219[]|null;
+export class Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140 implements PcoreValue {
+  readonly match_expressions: Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140_match_expressions_141[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218_match_expressions_1219[]|null,
+    match_expressions?: Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140_match_expressions_141[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -6278,11 +6278,11 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_s
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218_match_expressions_1219 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140_match_expressions_141 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -6316,19 +6316,19 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_s
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_to_1216_namespace_selector_1218_match_expressions_1219';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140_match_expressions_141';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220 implements PcoreValue {
-  readonly match_expressions: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220_match_expressions_1221[]|null;
+export class Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142 implements PcoreValue {
+  readonly match_expressions: Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142_match_expressions_143[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220_match_expressions_1221[]|null,
+    match_expressions?: Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142_match_expressions_143[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -6347,11 +6347,11 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selecto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220_match_expressions_1221 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142_match_expressions_143 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -6385,20 +6385,20 @@ export class Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selecto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_egress_1214_to_1216_pod_selector_1220_match_expressions_1221';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142_match_expressions_143';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222 implements PcoreValue {
-  readonly from: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223[]|null;
-  readonly ports: Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229[]|null;
+export class Kubernetes_network_policy_spec_135_ingress_144 implements PcoreValue {
+  readonly from: Kubernetes_network_policy_spec_135_ingress_144_from_145[]|null;
+  readonly ports: Kubernetes_network_policy_spec_135_ingress_144_ports_151[]|null;
 
   constructor({
     from = null,
     ports = null
   }: {
-    from?: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223[]|null,
-    ports?: Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229[]|null
+    from?: Kubernetes_network_policy_spec_135_ingress_144_from_145[]|null,
+    ports?: Kubernetes_network_policy_spec_135_ingress_144_ports_151[]|null
   }) {
     this.from = from;
     this.ports = ports;
@@ -6416,23 +6416,23 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223 implements PcoreValue {
-  readonly ip_block: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block_1224[]|null;
-  readonly namespace_selector: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225[]|null;
-  readonly pod_selector: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227[]|null;
+export class Kubernetes_network_policy_spec_135_ingress_144_from_145 implements PcoreValue {
+  readonly ip_block: Kubernetes_network_policy_spec_135_ingress_144_from_145_ip_block_146[]|null;
+  readonly namespace_selector: Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147[]|null;
+  readonly pod_selector: Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149[]|null;
 
   constructor({
     ip_block = null,
     namespace_selector = null,
     pod_selector = null
   }: {
-    ip_block?: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block_1224[]|null,
-    namespace_selector?: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225[]|null,
-    pod_selector?: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227[]|null
+    ip_block?: Kubernetes_network_policy_spec_135_ingress_144_from_145_ip_block_146[]|null,
+    namespace_selector?: Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147[]|null,
+    pod_selector?: Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149[]|null
   }) {
     this.ip_block = ip_block;
     this.namespace_selector = namespace_selector;
@@ -6454,11 +6454,11 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223 implemen
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_from_1223';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_from_145';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block_1224 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_ingress_144_from_145_ip_block_146 implements PcoreValue {
   readonly cidr: string|null;
   readonly except: string[]|null;
 
@@ -6485,19 +6485,19 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_ip_block_1224';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_from_145_ip_block_146';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225 implements PcoreValue {
-  readonly match_expressions: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225_match_expressions_1226[]|null;
+export class Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147 implements PcoreValue {
+  readonly match_expressions: Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147_match_expressions_148[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225_match_expressions_1226[]|null,
+    match_expressions?: Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147_match_expressions_148[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -6516,11 +6516,11 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespac
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225_match_expressions_1226 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147_match_expressions_148 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -6554,19 +6554,19 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespac
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_namespace_selector_1225_match_expressions_1226';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147_match_expressions_148';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227 implements PcoreValue {
-  readonly match_expressions: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227_match_expressions_1228[]|null;
+export class Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149 implements PcoreValue {
+  readonly match_expressions: Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149_match_expressions_150[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227_match_expressions_1228[]|null,
+    match_expressions?: Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149_match_expressions_150[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -6585,11 +6585,11 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_sele
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227_match_expressions_1228 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149_match_expressions_150 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -6623,11 +6623,11 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_sele
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_from_1223_pod_selector_1227_match_expressions_1228';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149_match_expressions_150';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_ingress_144_ports_151 implements PcoreValue {
   readonly port: string|null;
   readonly protocol: string|null;
 
@@ -6654,19 +6654,19 @@ export class Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_ingress_1222_ports_1229';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_ingress_144_ports_151';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_pod_selector_1230 implements PcoreValue {
-  readonly match_expressions: Kubernetes_network_policy_spec_1213_pod_selector_1230_match_expressions_1231[]|null;
+export class Kubernetes_network_policy_spec_135_pod_selector_152 implements PcoreValue {
+  readonly match_expressions: Kubernetes_network_policy_spec_135_pod_selector_152_match_expressions_153[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_network_policy_spec_1213_pod_selector_1230_match_expressions_1231[]|null,
+    match_expressions?: Kubernetes_network_policy_spec_135_pod_selector_152_match_expressions_153[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -6685,11 +6685,11 @@ export class Kubernetes_network_policy_spec_1213_pod_selector_1230 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_pod_selector_1230';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_pod_selector_152';
   }
 }
 
-export class Kubernetes_network_policy_spec_1213_pod_selector_1230_match_expressions_1231 implements PcoreValue {
+export class Kubernetes_network_policy_spec_135_pod_selector_152_match_expressions_153 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -6723,13 +6723,13 @@ export class Kubernetes_network_policy_spec_1213_pod_selector_1230_match_express
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_network_policy_spec_1213_pod_selector_1230_match_expressions_1231';
+    return 'TerraformKubernetes::Kubernetes_network_policy_spec_135_pod_selector_152_match_expressions_153';
   }
 }
 
 export class Kubernetes_persistent_volume implements PcoreValue {
-  readonly metadata: Kubernetes_persistent_volume_metadata_1232[];
-  readonly spec: Kubernetes_persistent_volume_spec_1233[];
+  readonly metadata: Kubernetes_persistent_volume_metadata_154[];
+  readonly spec: Kubernetes_persistent_volume_spec_155[];
   readonly kubernetes_persistent_volume_id: string|null;
 
   constructor({
@@ -6737,8 +6737,8 @@ export class Kubernetes_persistent_volume implements PcoreValue {
     spec,
     kubernetes_persistent_volume_id = null
   }: {
-    metadata: Kubernetes_persistent_volume_metadata_1232[],
-    spec: Kubernetes_persistent_volume_spec_1233[],
+    metadata: Kubernetes_persistent_volume_metadata_154[],
+    spec: Kubernetes_persistent_volume_spec_155[],
     kubernetes_persistent_volume_id?: string|null
   }) {
     this.metadata = metadata;
@@ -6772,8 +6772,8 @@ export class Kubernetes_persistent_volumeHandler implements PcoreValue {
 }
 
 export class Kubernetes_persistent_volume_claim implements PcoreValue {
-  readonly metadata: Kubernetes_persistent_volume_claim_metadata_1261[];
-  readonly spec: Kubernetes_persistent_volume_claim_spec_1262[];
+  readonly metadata: Kubernetes_persistent_volume_claim_metadata_183[];
+  readonly spec: Kubernetes_persistent_volume_claim_spec_184[];
   readonly kubernetes_persistent_volume_claim_id: string|null;
   readonly wait_until_bound: boolean|null;
 
@@ -6783,8 +6783,8 @@ export class Kubernetes_persistent_volume_claim implements PcoreValue {
     kubernetes_persistent_volume_claim_id = null,
     wait_until_bound = null
   }: {
-    metadata: Kubernetes_persistent_volume_claim_metadata_1261[],
-    spec: Kubernetes_persistent_volume_claim_spec_1262[],
+    metadata: Kubernetes_persistent_volume_claim_metadata_183[],
+    spec: Kubernetes_persistent_volume_claim_spec_184[],
     kubernetes_persistent_volume_claim_id?: string|null,
     wait_until_bound?: boolean|null
   }) {
@@ -6822,7 +6822,7 @@ export class Kubernetes_persistent_volume_claimHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_persistent_volume_claim_metadata_1261 implements PcoreValue {
+export class Kubernetes_persistent_volume_claim_metadata_183 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -6898,14 +6898,14 @@ export class Kubernetes_persistent_volume_claim_metadata_1261 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_metadata_1261';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_metadata_183';
   }
 }
 
-export class Kubernetes_persistent_volume_claim_spec_1262 implements PcoreValue {
+export class Kubernetes_persistent_volume_claim_spec_184 implements PcoreValue {
   readonly access_modes: string[];
-  readonly resources: Kubernetes_persistent_volume_claim_spec_1262_resources_1263[];
-  readonly selector: Kubernetes_persistent_volume_claim_spec_1262_selector_1264[]|null;
+  readonly resources: Kubernetes_persistent_volume_claim_spec_184_resources_185[];
+  readonly selector: Kubernetes_persistent_volume_claim_spec_184_selector_186[]|null;
   readonly storage_class_name: string|null;
   readonly volume_name: string|null;
 
@@ -6917,8 +6917,8 @@ export class Kubernetes_persistent_volume_claim_spec_1262 implements PcoreValue 
     volume_name = null
   }: {
     access_modes: string[],
-    resources: Kubernetes_persistent_volume_claim_spec_1262_resources_1263[],
-    selector?: Kubernetes_persistent_volume_claim_spec_1262_selector_1264[]|null,
+    resources: Kubernetes_persistent_volume_claim_spec_184_resources_185[],
+    selector?: Kubernetes_persistent_volume_claim_spec_184_selector_186[]|null,
     storage_class_name?: string|null,
     volume_name?: string|null
   }) {
@@ -6946,11 +6946,11 @@ export class Kubernetes_persistent_volume_claim_spec_1262 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_1262';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_184';
   }
 }
 
-export class Kubernetes_persistent_volume_claim_spec_1262_resources_1263 implements PcoreValue {
+export class Kubernetes_persistent_volume_claim_spec_184_resources_185 implements PcoreValue {
   readonly limits: {[s: string]: string}|null;
   readonly requests: {[s: string]: string}|null;
 
@@ -6977,19 +6977,19 @@ export class Kubernetes_persistent_volume_claim_spec_1262_resources_1263 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_1262_resources_1263';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_184_resources_185';
   }
 }
 
-export class Kubernetes_persistent_volume_claim_spec_1262_selector_1264 implements PcoreValue {
-  readonly match_expressions: Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_expressions_1265[]|null;
+export class Kubernetes_persistent_volume_claim_spec_184_selector_186 implements PcoreValue {
+  readonly match_expressions: Kubernetes_persistent_volume_claim_spec_184_selector_186_match_expressions_187[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_expressions_1265[]|null,
+    match_expressions?: Kubernetes_persistent_volume_claim_spec_184_selector_186_match_expressions_187[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -7008,11 +7008,11 @@ export class Kubernetes_persistent_volume_claim_spec_1262_selector_1264 implemen
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_1262_selector_1264';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_184_selector_186';
   }
 }
 
-export class Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_expressions_1265 implements PcoreValue {
+export class Kubernetes_persistent_volume_claim_spec_184_selector_186_match_expressions_187 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -7046,11 +7046,11 @@ export class Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_ex
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_1262_selector_1264_match_expressions_1265';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_claim_spec_184_selector_186_match_expressions_187';
   }
 }
 
-export class Kubernetes_persistent_volume_metadata_1232 implements PcoreValue {
+export class Kubernetes_persistent_volume_metadata_154 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generation: number|null;
   readonly labels: {[s: string]: string}|null;
@@ -7112,15 +7112,15 @@ export class Kubernetes_persistent_volume_metadata_1232 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_metadata_1232';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_metadata_154';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155 implements PcoreValue {
   readonly access_modes: string[];
   readonly capacity: {[s: string]: string};
-  readonly persistent_volume_source: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239[];
-  readonly node_affinity: Kubernetes_persistent_volume_spec_1233_node_affinity_1234[]|null;
+  readonly persistent_volume_source: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161[];
+  readonly node_affinity: Kubernetes_persistent_volume_spec_155_node_affinity_156[]|null;
   readonly persistent_volume_reclaim_policy: string|null;
   readonly storage_class_name: string|null;
 
@@ -7134,8 +7134,8 @@ export class Kubernetes_persistent_volume_spec_1233 implements PcoreValue {
   }: {
     access_modes: string[],
     capacity: {[s: string]: string},
-    persistent_volume_source: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239[],
-    node_affinity?: Kubernetes_persistent_volume_spec_1233_node_affinity_1234[]|null,
+    persistent_volume_source: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161[],
+    node_affinity?: Kubernetes_persistent_volume_spec_155_node_affinity_156[]|null,
     persistent_volume_reclaim_policy?: string|null,
     storage_class_name?: string|null
   }) {
@@ -7165,17 +7165,17 @@ export class Kubernetes_persistent_volume_spec_1233 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234 implements PcoreValue {
-  readonly required: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235[]|null;
+export class Kubernetes_persistent_volume_spec_155_node_affinity_156 implements PcoreValue {
+  readonly required: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157[]|null;
 
   constructor({
     required = null
   }: {
-    required?: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235[]|null
+    required?: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157[]|null
   }) {
     this.required = required;
   }
@@ -7189,17 +7189,17 @@ export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234 implement
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_node_affinity_1234';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_node_affinity_156';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235 implements PcoreValue {
-  readonly node_selector_term: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236[]|null;
+export class Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157 implements PcoreValue {
+  readonly node_selector_term: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158[]|null;
 
   constructor({
     node_selector_term = null
   }: {
-    node_selector_term?: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236[]|null
+    node_selector_term?: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158[]|null
   }) {
     this.node_selector_term = node_selector_term;
   }
@@ -7213,20 +7213,20 @@ export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236 implements PcoreValue {
-  readonly match_expressions: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_expressions_1237[]|null;
-  readonly match_fields: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_fields_1238[]|null;
+export class Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158 implements PcoreValue {
+  readonly match_expressions: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_expressions_159[]|null;
+  readonly match_fields: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_fields_160[]|null;
 
   constructor({
     match_expressions = null,
     match_fields = null
   }: {
-    match_expressions?: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_expressions_1237[]|null,
-    match_fields?: Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_fields_1238[]|null
+    match_expressions?: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_expressions_159[]|null,
+    match_fields?: Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_fields_160[]|null
   }) {
     this.match_expressions = match_expressions;
     this.match_fields = match_fields;
@@ -7244,11 +7244,11 @@ export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_expressions_1237 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_expressions_159 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -7282,11 +7282,11 @@ export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_expressions_1237';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_expressions_159';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_fields_1238 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_fields_160 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -7320,29 +7320,29 @@ export class Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_node_affinity_1234_required_1235_node_selector_term_1236_match_fields_1238';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_fields_160';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239 implements PcoreValue {
-  readonly aws_elastic_block_store: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_aws_elastic_block_store_1240[]|null;
-  readonly azure_disk: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_disk_1241[]|null;
-  readonly azure_file: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_file_1242[]|null;
-  readonly ceph_fs: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243[]|null;
-  readonly cinder: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_cinder_1245[]|null;
-  readonly fc: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_fc_1246[]|null;
-  readonly flex_volume: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247[]|null;
-  readonly flocker: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flocker_1249[]|null;
-  readonly gce_persistent_disk: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_gce_persistent_disk_1250[]|null;
-  readonly glusterfs: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_glusterfs_1251[]|null;
-  readonly host_path: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_host_path_1252[]|null;
-  readonly iscsi: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_iscsi_1253[]|null;
-  readonly local: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_local_1254[]|null;
-  readonly nfs: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_nfs_1255[]|null;
-  readonly photon_persistent_disk: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_photon_persistent_disk_1256[]|null;
-  readonly quobyte: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_quobyte_1257[]|null;
-  readonly rbd: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258[]|null;
-  readonly vsphere_volume: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_vsphere_volume_1260[]|null;
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161 implements PcoreValue {
+  readonly aws_elastic_block_store: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_aws_elastic_block_store_162[]|null;
+  readonly azure_disk: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_disk_163[]|null;
+  readonly azure_file: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_file_164[]|null;
+  readonly ceph_fs: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165[]|null;
+  readonly cinder: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_cinder_167[]|null;
+  readonly fc: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_fc_168[]|null;
+  readonly flex_volume: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169[]|null;
+  readonly flocker: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flocker_171[]|null;
+  readonly gce_persistent_disk: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_gce_persistent_disk_172[]|null;
+  readonly glusterfs: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_glusterfs_173[]|null;
+  readonly host_path: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_host_path_174[]|null;
+  readonly iscsi: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_iscsi_175[]|null;
+  readonly local: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_local_176[]|null;
+  readonly nfs: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_nfs_177[]|null;
+  readonly photon_persistent_disk: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_photon_persistent_disk_178[]|null;
+  readonly quobyte: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_quobyte_179[]|null;
+  readonly rbd: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180[]|null;
+  readonly vsphere_volume: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_vsphere_volume_182[]|null;
 
   constructor({
     aws_elastic_block_store = null,
@@ -7364,24 +7364,24 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
     rbd = null,
     vsphere_volume = null
   }: {
-    aws_elastic_block_store?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_aws_elastic_block_store_1240[]|null,
-    azure_disk?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_disk_1241[]|null,
-    azure_file?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_file_1242[]|null,
-    ceph_fs?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243[]|null,
-    cinder?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_cinder_1245[]|null,
-    fc?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_fc_1246[]|null,
-    flex_volume?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247[]|null,
-    flocker?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flocker_1249[]|null,
-    gce_persistent_disk?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_gce_persistent_disk_1250[]|null,
-    glusterfs?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_glusterfs_1251[]|null,
-    host_path?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_host_path_1252[]|null,
-    iscsi?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_iscsi_1253[]|null,
-    local?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_local_1254[]|null,
-    nfs?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_nfs_1255[]|null,
-    photon_persistent_disk?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_photon_persistent_disk_1256[]|null,
-    quobyte?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_quobyte_1257[]|null,
-    rbd?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258[]|null,
-    vsphere_volume?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_vsphere_volume_1260[]|null
+    aws_elastic_block_store?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_aws_elastic_block_store_162[]|null,
+    azure_disk?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_disk_163[]|null,
+    azure_file?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_file_164[]|null,
+    ceph_fs?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165[]|null,
+    cinder?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_cinder_167[]|null,
+    fc?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_fc_168[]|null,
+    flex_volume?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169[]|null,
+    flocker?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flocker_171[]|null,
+    gce_persistent_disk?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_gce_persistent_disk_172[]|null,
+    glusterfs?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_glusterfs_173[]|null,
+    host_path?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_host_path_174[]|null,
+    iscsi?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_iscsi_175[]|null,
+    local?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_local_176[]|null,
+    nfs?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_nfs_177[]|null,
+    photon_persistent_disk?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_photon_persistent_disk_178[]|null,
+    quobyte?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_quobyte_179[]|null,
+    rbd?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180[]|null,
+    vsphere_volume?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_vsphere_volume_182[]|null
   }) {
     this.aws_elastic_block_store = aws_elastic_block_store;
     this.azure_disk = azure_disk;
@@ -7463,11 +7463,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_aws_elastic_block_store_1240 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_aws_elastic_block_store_162 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -7506,11 +7506,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_aws_elastic_block_store_1240';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_aws_elastic_block_store_162';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_disk_1241 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_disk_163 implements PcoreValue {
   readonly caching_mode: string;
   readonly data_disk_uri: string;
   readonly disk_name: string;
@@ -7552,11 +7552,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_disk_1241';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_disk_163';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_file_1242 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_file_164 implements PcoreValue {
   readonly secret_name: string;
   readonly share_name: string;
   readonly read_only: boolean|null;
@@ -7586,16 +7586,16 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_azure_file_1242';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_file_164';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165 implements PcoreValue {
   readonly monitors: string[];
   readonly path: string|null;
   readonly read_only: boolean|null;
   readonly secret_file: string|null;
-  readonly secret_ref: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243_secret_ref_1244[]|null;
+  readonly secret_ref: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165_secret_ref_166[]|null;
   readonly user: string|null;
 
   constructor({
@@ -7610,7 +7610,7 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
     path?: string|null,
     read_only?: boolean|null,
     secret_file?: string|null,
-    secret_ref?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243_secret_ref_1244[]|null,
+    secret_ref?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165_secret_ref_166[]|null,
     user?: string|null
   }) {
     this.monitors = monitors;
@@ -7643,11 +7643,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243_secret_ref_1244 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165_secret_ref_166 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -7667,11 +7667,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_ceph_fs_1243_secret_ref_1244';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165_secret_ref_166';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_cinder_1245 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_cinder_167 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly read_only: boolean|null;
@@ -7703,11 +7703,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_cinder_1245';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_cinder_167';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_fc_1246 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_fc_168 implements PcoreValue {
   readonly lun: number;
   readonly target_ww_ns: string[];
   readonly fs_type: string|null;
@@ -7744,16 +7744,16 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_fc_1246';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_fc_168';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169 implements PcoreValue {
   readonly driver: string;
   readonly fs_type: string|null;
   readonly options: {[s: string]: string}|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247_secret_ref_1248[]|null;
+  readonly secret_ref: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169_secret_ref_170[]|null;
 
   constructor({
     driver,
@@ -7766,7 +7766,7 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
     fs_type?: string|null,
     options?: {[s: string]: string}|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247_secret_ref_1248[]|null
+    secret_ref?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169_secret_ref_170[]|null
   }) {
     this.driver = driver;
     this.fs_type = fs_type;
@@ -7794,11 +7794,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247_secret_ref_1248 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169_secret_ref_170 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -7818,11 +7818,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flex_volume_1247_secret_ref_1248';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169_secret_ref_170';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flocker_1249 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flocker_171 implements PcoreValue {
   readonly dataset_name: string|null;
   readonly dataset_uuid: string|null;
 
@@ -7849,11 +7849,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_flocker_1249';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flocker_171';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_gce_persistent_disk_1250 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_gce_persistent_disk_172 implements PcoreValue {
   readonly pd_name: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -7892,11 +7892,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_gce_persistent_disk_1250';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_gce_persistent_disk_172';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_glusterfs_1251 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_glusterfs_173 implements PcoreValue {
   readonly endpoints_name: string;
   readonly path: string;
   readonly read_only: boolean|null;
@@ -7926,11 +7926,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_glusterfs_1251';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_glusterfs_173';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_host_path_1252 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_host_path_174 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -7950,11 +7950,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_host_path_1252';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_host_path_174';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_iscsi_1253 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_iscsi_175 implements PcoreValue {
   readonly iqn: string;
   readonly target_portal: string;
   readonly fs_type: string|null;
@@ -8005,11 +8005,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_iscsi_1253';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_iscsi_175';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_local_1254 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_local_176 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -8029,11 +8029,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_local_1254';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_local_176';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_nfs_1255 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_nfs_177 implements PcoreValue {
   readonly path: string;
   readonly server: string;
   readonly read_only: boolean|null;
@@ -8063,11 +8063,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_nfs_1255';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_nfs_177';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_photon_persistent_disk_1256 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_photon_persistent_disk_178 implements PcoreValue {
   readonly pd_id: string;
   readonly fs_type: string|null;
 
@@ -8092,11 +8092,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_photon_persistent_disk_1256';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_photon_persistent_disk_178';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_quobyte_1257 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_quobyte_179 implements PcoreValue {
   readonly registry: string;
   readonly volume: string;
   readonly group: string|null;
@@ -8140,11 +8140,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_quobyte_1257';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_quobyte_179';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180 implements PcoreValue {
   readonly ceph_monitors: string[];
   readonly rbd_image: string;
   readonly fs_type: string|null;
@@ -8152,7 +8152,7 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   readonly rados_user: string|null;
   readonly rbd_pool: string|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258_secret_ref_1259[]|null;
+  readonly secret_ref: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180_secret_ref_181[]|null;
 
   constructor({
     ceph_monitors,
@@ -8171,7 +8171,7 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
     rados_user?: string|null,
     rbd_pool?: string|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258_secret_ref_1259[]|null
+    secret_ref?: Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180_secret_ref_181[]|null
   }) {
     this.ceph_monitors = ceph_monitors;
     this.rbd_image = rbd_image;
@@ -8209,11 +8209,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258_secret_ref_1259 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180_secret_ref_181 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -8233,11 +8233,11 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_rbd_1258_secret_ref_1259';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180_secret_ref_181';
   }
 }
 
-export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_vsphere_volume_1260 implements PcoreValue {
+export class Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_vsphere_volume_182 implements PcoreValue {
   readonly volume_path: string;
   readonly fs_type: string|null;
 
@@ -8262,13 +8262,13 @@ export class Kubernetes_persistent_volume_spec_1233_persistent_volume_source_123
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_1233_persistent_volume_source_1239_vsphere_volume_1260';
+    return 'TerraformKubernetes::Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_vsphere_volume_182';
   }
 }
 
 export class Kubernetes_pod implements PcoreValue {
-  readonly metadata: Kubernetes_pod_metadata_1266[];
-  readonly spec: Kubernetes_pod_spec_1267[];
+  readonly metadata: Kubernetes_pod_metadata_188[];
+  readonly spec: Kubernetes_pod_spec_189[];
   readonly kubernetes_pod_id: string|null;
 
   constructor({
@@ -8276,8 +8276,8 @@ export class Kubernetes_pod implements PcoreValue {
     spec,
     kubernetes_pod_id = null
   }: {
-    metadata: Kubernetes_pod_metadata_1266[],
-    spec: Kubernetes_pod_spec_1267[],
+    metadata: Kubernetes_pod_metadata_188[],
+    spec: Kubernetes_pod_spec_189[],
     kubernetes_pod_id?: string|null
   }) {
     this.metadata = metadata;
@@ -8310,7 +8310,7 @@ export class Kubernetes_podHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_pod_metadata_1266 implements PcoreValue {
+export class Kubernetes_pod_metadata_188 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -8386,28 +8386,28 @@ export class Kubernetes_pod_metadata_1266 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_metadata_1266';
+    return 'TerraformKubernetes::Kubernetes_pod_metadata_188';
   }
 }
 
-export class Kubernetes_pod_spec_1267 implements PcoreValue {
+export class Kubernetes_pod_spec_189 implements PcoreValue {
   readonly active_deadline_seconds: number|null;
-  readonly container: Kubernetes_pod_spec_1267_container_1268[]|null;
+  readonly container: Kubernetes_pod_spec_189_container_190[]|null;
   readonly dns_policy: string|null;
   readonly host_ipc: boolean|null;
   readonly host_network: boolean|null;
   readonly host_pid: boolean|null;
   readonly hostname: string|null;
-  readonly image_pull_secrets: Kubernetes_pod_spec_1267_image_pull_secrets_1307[]|null;
-  readonly init_container: Kubernetes_pod_spec_1267_init_container_1308[]|null;
+  readonly image_pull_secrets: Kubernetes_pod_spec_189_image_pull_secrets_229[]|null;
+  readonly init_container: Kubernetes_pod_spec_189_init_container_230[]|null;
   readonly node_name: string|null;
   readonly node_selector: {[s: string]: string}|null;
   readonly restart_policy: string|null;
-  readonly security_context: Kubernetes_pod_spec_1267_security_context_1347[]|null;
+  readonly security_context: Kubernetes_pod_spec_189_security_context_269[]|null;
   readonly service_account_name: string|null;
   readonly subdomain: string|null;
   readonly termination_grace_period_seconds: number|null;
-  readonly volume: Kubernetes_pod_spec_1267_volume_1349[]|null;
+  readonly volume: Kubernetes_pod_spec_189_volume_271[]|null;
 
   constructor({
     active_deadline_seconds = null,
@@ -8429,22 +8429,22 @@ export class Kubernetes_pod_spec_1267 implements PcoreValue {
     volume = null
   }: {
     active_deadline_seconds?: number|null,
-    container?: Kubernetes_pod_spec_1267_container_1268[]|null,
+    container?: Kubernetes_pod_spec_189_container_190[]|null,
     dns_policy?: string|null,
     host_ipc?: boolean|null,
     host_network?: boolean|null,
     host_pid?: boolean|null,
     hostname?: string|null,
-    image_pull_secrets?: Kubernetes_pod_spec_1267_image_pull_secrets_1307[]|null,
-    init_container?: Kubernetes_pod_spec_1267_init_container_1308[]|null,
+    image_pull_secrets?: Kubernetes_pod_spec_189_image_pull_secrets_229[]|null,
+    init_container?: Kubernetes_pod_spec_189_init_container_230[]|null,
     node_name?: string|null,
     node_selector?: {[s: string]: string}|null,
     restart_policy?: string|null,
-    security_context?: Kubernetes_pod_spec_1267_security_context_1347[]|null,
+    security_context?: Kubernetes_pod_spec_189_security_context_269[]|null,
     service_account_name?: string|null,
     subdomain?: string|null,
     termination_grace_period_seconds?: number|null,
-    volume?: Kubernetes_pod_spec_1267_volume_1349[]|null
+    volume?: Kubernetes_pod_spec_189_volume_271[]|null
   }) {
     this.active_deadline_seconds = active_deadline_seconds;
     this.container = container;
@@ -8522,29 +8522,29 @@ export class Kubernetes_pod_spec_1267 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_pod_spec_1267_container_1268_env_1269[]|null;
-  readonly env_from: Kubernetes_pod_spec_1267_container_1268_env_from_1275[]|null;
+  readonly env: Kubernetes_pod_spec_189_container_190_env_191[]|null;
+  readonly env_from: Kubernetes_pod_spec_189_container_190_env_from_197[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278[]|null;
-  readonly liveness_probe: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289[]|null;
-  readonly port: Kubernetes_pod_spec_1267_container_1268_port_1294[]|null;
-  readonly readiness_probe: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295[]|null;
-  readonly resources: Kubernetes_pod_spec_1267_container_1268_resources_1300[]|null;
-  readonly security_context: Kubernetes_pod_spec_1267_container_1268_security_context_1303[]|null;
+  readonly lifecycle: Kubernetes_pod_spec_189_container_190_lifecycle_200[]|null;
+  readonly liveness_probe: Kubernetes_pod_spec_189_container_190_liveness_probe_211[]|null;
+  readonly port: Kubernetes_pod_spec_189_container_190_port_216[]|null;
+  readonly readiness_probe: Kubernetes_pod_spec_189_container_190_readiness_probe_217[]|null;
+  readonly resources: Kubernetes_pod_spec_189_container_190_resources_222[]|null;
+  readonly security_context: Kubernetes_pod_spec_189_container_190_security_context_225[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_pod_spec_1267_container_1268_volume_mount_1306[]|null;
+  readonly volume_mount: Kubernetes_pod_spec_189_container_190_volume_mount_228[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -8571,21 +8571,21 @@ export class Kubernetes_pod_spec_1267_container_1268 implements PcoreValue {
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_pod_spec_1267_container_1268_env_1269[]|null,
-    env_from?: Kubernetes_pod_spec_1267_container_1268_env_from_1275[]|null,
+    env?: Kubernetes_pod_spec_189_container_190_env_191[]|null,
+    env_from?: Kubernetes_pod_spec_189_container_190_env_from_197[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278[]|null,
-    liveness_probe?: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289[]|null,
-    port?: Kubernetes_pod_spec_1267_container_1268_port_1294[]|null,
-    readiness_probe?: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295[]|null,
-    resources?: Kubernetes_pod_spec_1267_container_1268_resources_1300[]|null,
-    security_context?: Kubernetes_pod_spec_1267_container_1268_security_context_1303[]|null,
+    lifecycle?: Kubernetes_pod_spec_189_container_190_lifecycle_200[]|null,
+    liveness_probe?: Kubernetes_pod_spec_189_container_190_liveness_probe_211[]|null,
+    port?: Kubernetes_pod_spec_189_container_190_port_216[]|null,
+    readiness_probe?: Kubernetes_pod_spec_189_container_190_readiness_probe_217[]|null,
+    resources?: Kubernetes_pod_spec_189_container_190_resources_222[]|null,
+    security_context?: Kubernetes_pod_spec_189_container_190_security_context_225[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_pod_spec_1267_container_1268_volume_mount_1306[]|null,
+    volume_mount?: Kubernetes_pod_spec_189_container_190_volume_mount_228[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -8670,14 +8670,14 @@ export class Kubernetes_pod_spec_1267_container_1268 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_1269 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_191 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270[]|null;
+  readonly value_from: Kubernetes_pod_spec_189_container_190_env_191_value_from_192[]|null;
 
   constructor({
     name,
@@ -8686,7 +8686,7 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269 implements PcoreVa
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270[]|null
+    value_from?: Kubernetes_pod_spec_189_container_190_env_191_value_from_192[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -8706,15 +8706,15 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_1269';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_191';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_config_map_key_ref_1271[]|null;
-  readonly field_ref: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_field_ref_1272[]|null;
-  readonly resource_field_ref: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_resource_field_ref_1273[]|null;
-  readonly secret_key_ref: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_secret_key_ref_1274[]|null;
+export class Kubernetes_pod_spec_189_container_190_env_191_value_from_192 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_config_map_key_ref_193[]|null;
+  readonly field_ref: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_field_ref_194[]|null;
+  readonly resource_field_ref: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_resource_field_ref_195[]|null;
+  readonly secret_key_ref: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_secret_key_ref_196[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -8722,10 +8722,10 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270 im
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_config_map_key_ref_1271[]|null,
-    field_ref?: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_field_ref_1272[]|null,
-    resource_field_ref?: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_resource_field_ref_1273[]|null,
-    secret_key_ref?: Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_secret_key_ref_1274[]|null
+    config_map_key_ref?: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_config_map_key_ref_193[]|null,
+    field_ref?: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_field_ref_194[]|null,
+    resource_field_ref?: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_resource_field_ref_195[]|null,
+    secret_key_ref?: Kubernetes_pod_spec_189_container_190_env_191_value_from_192_secret_key_ref_196[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -8751,11 +8751,11 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270 im
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_191_value_from_192';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_config_map_key_ref_1271 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_191_value_from_192_config_map_key_ref_193 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -8782,11 +8782,11 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_co
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_config_map_key_ref_1271';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_191_value_from_192_config_map_key_ref_193';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_field_ref_1272 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_191_value_from_192_field_ref_194 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -8813,11 +8813,11 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_fi
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_field_ref_1272';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_191_value_from_192_field_ref_194';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_resource_field_ref_1273 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_191_value_from_192_resource_field_ref_195 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -8842,11 +8842,11 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_re
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_resource_field_ref_1273';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_191_value_from_192_resource_field_ref_195';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_secret_key_ref_1274 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_191_value_from_192_secret_key_ref_196 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -8873,23 +8873,23 @@ export class Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_se
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_1269_value_from_1270_secret_key_ref_1274';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_191_value_from_192_secret_key_ref_196';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_from_1275 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_ref_1276[]|null;
+export class Kubernetes_pod_spec_189_container_190_env_from_197 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_pod_spec_189_container_190_env_from_197_config_map_ref_198[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_1277[]|null;
+  readonly secret_ref: Kubernetes_pod_spec_189_container_190_env_from_197_secret_ref_199[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_ref_1276[]|null,
+    config_map_ref?: Kubernetes_pod_spec_189_container_190_env_from_197_config_map_ref_198[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_1277[]|null
+    secret_ref?: Kubernetes_pod_spec_189_container_190_env_from_197_secret_ref_199[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -8911,11 +8911,11 @@ export class Kubernetes_pod_spec_1267_container_1268_env_from_1275 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_from_1275';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_from_197';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_ref_1276 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_from_197_config_map_ref_198 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -8940,11 +8940,11 @@ export class Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_re
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_from_1275_config_map_ref_1276';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_from_197_config_map_ref_198';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_1277 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_env_from_197_secret_ref_199 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -8969,20 +8969,20 @@ export class Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_12
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_env_from_1275_secret_ref_1277';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_env_from_197_secret_ref_199';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278 implements PcoreValue {
-  readonly post_start: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279[]|null;
-  readonly pre_stop: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284[]|null;
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200 implements PcoreValue {
+  readonly post_start: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201[]|null;
+  readonly pre_stop: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279[]|null,
-    pre_stop?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284[]|null
+    post_start?: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201[]|null,
+    pre_stop?: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -9000,23 +9000,23 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278 implements P
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_exec_1280[]|null;
-  readonly http_get: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281[]|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_tcp_socket_1283[]|null;
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_exec_202[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_tcp_socket_205[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_exec_1280[]|null,
-    http_get?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281[]|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_tcp_socket_1283[]|null
+    exec?: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_exec_202[]|null,
+    http_get?: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_tcp_socket_205[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -9038,11 +9038,11 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_exec_1280 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_exec_202 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -9062,13 +9062,13 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_exec_1280';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_exec_202';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281_http_header_1282[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203_http_header_204[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -9081,7 +9081,7 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281_http_header_1282[]|null,
+    http_header?: Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203_http_header_204[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -9114,11 +9114,11 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281_http_header_1282 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203_http_header_204 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -9145,11 +9145,11 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_http_get_1281_http_header_1282';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203_http_header_204';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_tcp_socket_1283 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_tcp_socket_205 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -9167,23 +9167,23 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_post_start_1279_tcp_socket_1283';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_tcp_socket_205';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_exec_1285[]|null;
-  readonly http_get: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286[]|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_tcp_socket_1288[]|null;
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_exec_207[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_tcp_socket_210[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_exec_1285[]|null,
-    http_get?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286[]|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_tcp_socket_1288[]|null
+    exec?: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_exec_207[]|null,
+    http_get?: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_tcp_socket_210[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -9205,11 +9205,11 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_128
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_exec_1285 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_exec_207 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -9229,13 +9229,13 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_128
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_exec_1285';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_exec_207';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286_http_header_1287[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208_http_header_209[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -9248,7 +9248,7 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_128
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286_http_header_1287[]|null,
+    http_header?: Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208_http_header_209[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -9281,11 +9281,11 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_128
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286_http_header_1287 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208_http_header_209 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -9312,11 +9312,11 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_128
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_http_get_1286_http_header_1287';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208_http_header_209';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_tcp_socket_1288 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_tcp_socket_210 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -9334,18 +9334,18 @@ export class Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_128
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_lifecycle_1278_pre_stop_1284_tcp_socket_1288';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_tcp_socket_210';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_1290[]|null;
+export class Kubernetes_pod_spec_189_container_190_liveness_probe_211 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_container_190_liveness_probe_211_exec_212[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_socket_1293[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_container_190_liveness_probe_211_tcp_socket_215[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -9358,13 +9358,13 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289 impleme
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_1290[]|null,
+    exec?: Kubernetes_pod_spec_189_container_190_liveness_probe_211_exec_212[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291[]|null,
+    http_get?: Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_socket_1293[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_container_190_liveness_probe_211_tcp_socket_215[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -9407,11 +9407,11 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_liveness_probe_211';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_1290 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_liveness_probe_211_exec_212 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -9431,13 +9431,13 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_12
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_exec_1290';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_liveness_probe_211_exec_212';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291_http_header_1292[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213_http_header_214[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -9450,7 +9450,7 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_ge
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291_http_header_1292[]|null,
+    http_header?: Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213_http_header_214[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -9483,11 +9483,11 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_ge
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291_http_header_1292 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213_http_header_214 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -9514,11 +9514,11 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_ge
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_http_get_1291_http_header_1292';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213_http_header_214';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_socket_1293 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_liveness_probe_211_tcp_socket_215 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -9536,11 +9536,11 @@ export class Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_soc
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_liveness_probe_1289_tcp_socket_1293';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_liveness_probe_211_tcp_socket_215';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_port_1294 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_port_216 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -9586,18 +9586,18 @@ export class Kubernetes_pod_spec_1267_container_1268_port_1294 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_port_1294';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_port_216';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1296[]|null;
+export class Kubernetes_pod_spec_189_container_190_readiness_probe_217 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_container_190_readiness_probe_217_exec_218[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_socket_1299[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_container_190_readiness_probe_217_tcp_socket_221[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -9610,13 +9610,13 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295 implem
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1296[]|null,
+    exec?: Kubernetes_pod_spec_189_container_190_readiness_probe_217_exec_218[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297[]|null,
+    http_get?: Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_socket_1299[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_container_190_readiness_probe_217_tcp_socket_221[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -9659,11 +9659,11 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295 implem
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_readiness_probe_217';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1296 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_readiness_probe_217_exec_218 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -9683,13 +9683,13 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_exec_1296';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_readiness_probe_217_exec_218';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297_http_header_1298[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219_http_header_220[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -9702,7 +9702,7 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_g
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297_http_header_1298[]|null,
+    http_header?: Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219_http_header_220[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -9735,11 +9735,11 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_g
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297_http_header_1298 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219_http_header_220 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -9766,11 +9766,11 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_g
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_http_get_1297_http_header_1298';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219_http_header_220';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_socket_1299 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_readiness_probe_217_tcp_socket_221 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -9788,20 +9788,20 @@ export class Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_so
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_readiness_probe_1295_tcp_socket_1299';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_readiness_probe_217_tcp_socket_221';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_resources_1300 implements PcoreValue {
-  readonly limits: Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301[]|null;
-  readonly requests: Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_1302[]|null;
+export class Kubernetes_pod_spec_189_container_190_resources_222 implements PcoreValue {
+  readonly limits: Kubernetes_pod_spec_189_container_190_resources_222_limits_223[]|null;
+  readonly requests: Kubernetes_pod_spec_189_container_190_resources_222_requests_224[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301[]|null,
-    requests?: Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_1302[]|null
+    limits?: Kubernetes_pod_spec_189_container_190_resources_222_limits_223[]|null,
+    requests?: Kubernetes_pod_spec_189_container_190_resources_222_requests_224[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -9819,11 +9819,11 @@ export class Kubernetes_pod_spec_1267_container_1268_resources_1300 implements P
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_resources_1300';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_resources_222';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_resources_222_limits_223 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -9850,11 +9850,11 @@ export class Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_resources_1300_limits_1301';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_resources_222_limits_223';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_1302 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_resources_222_requests_224 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -9881,18 +9881,18 @@ export class Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_130
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_resources_1300_requests_1302';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_resources_222_requests_224';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_security_context_1303 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_security_context_225 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_pod_spec_1267_container_1268_security_context_1303_capabilities_1304[]|null;
+  readonly capabilities: Kubernetes_pod_spec_189_container_190_security_context_225_capabilities_226[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_linux_options_1305[]|null;
+  readonly se_linux_options: Kubernetes_pod_spec_189_container_190_security_context_225_se_linux_options_227[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -9904,12 +9904,12 @@ export class Kubernetes_pod_spec_1267_container_1268_security_context_1303 imple
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_pod_spec_1267_container_1268_security_context_1303_capabilities_1304[]|null,
+    capabilities?: Kubernetes_pod_spec_189_container_190_security_context_225_capabilities_226[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_linux_options_1305[]|null
+    se_linux_options?: Kubernetes_pod_spec_189_container_190_security_context_225_se_linux_options_227[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -9947,11 +9947,11 @@ export class Kubernetes_pod_spec_1267_container_1268_security_context_1303 imple
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_security_context_1303';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_security_context_225';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_security_context_1303_capabilities_1304 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_security_context_225_capabilities_226 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -9978,11 +9978,11 @@ export class Kubernetes_pod_spec_1267_container_1268_security_context_1303_capab
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_security_context_1303_capabilities_1304';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_security_context_225_capabilities_226';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_linux_options_1305 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_security_context_225_se_linux_options_227 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -10023,11 +10023,11 @@ export class Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_li
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_security_context_1303_se_linux_options_1305';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_security_context_225_se_linux_options_227';
   }
 }
 
-export class Kubernetes_pod_spec_1267_container_1268_volume_mount_1306 implements PcoreValue {
+export class Kubernetes_pod_spec_189_container_190_volume_mount_228 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -10064,11 +10064,11 @@ export class Kubernetes_pod_spec_1267_container_1268_volume_mount_1306 implement
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_container_1268_volume_mount_1306';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_container_190_volume_mount_228';
   }
 }
 
-export class Kubernetes_pod_spec_1267_image_pull_secrets_1307 implements PcoreValue {
+export class Kubernetes_pod_spec_189_image_pull_secrets_229 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -10086,29 +10086,29 @@ export class Kubernetes_pod_spec_1267_image_pull_secrets_1307 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_image_pull_secrets_1307';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_image_pull_secrets_229';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_pod_spec_1267_init_container_1308_env_1309[]|null;
-  readonly env_from: Kubernetes_pod_spec_1267_init_container_1308_env_from_1315[]|null;
+  readonly env: Kubernetes_pod_spec_189_init_container_230_env_231[]|null;
+  readonly env_from: Kubernetes_pod_spec_189_init_container_230_env_from_237[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318[]|null;
-  readonly liveness_probe: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329[]|null;
-  readonly port: Kubernetes_pod_spec_1267_init_container_1308_port_1334[]|null;
-  readonly readiness_probe: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335[]|null;
-  readonly resources: Kubernetes_pod_spec_1267_init_container_1308_resources_1340[]|null;
-  readonly security_context: Kubernetes_pod_spec_1267_init_container_1308_security_context_1343[]|null;
+  readonly lifecycle: Kubernetes_pod_spec_189_init_container_230_lifecycle_240[]|null;
+  readonly liveness_probe: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251[]|null;
+  readonly port: Kubernetes_pod_spec_189_init_container_230_port_256[]|null;
+  readonly readiness_probe: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257[]|null;
+  readonly resources: Kubernetes_pod_spec_189_init_container_230_resources_262[]|null;
+  readonly security_context: Kubernetes_pod_spec_189_init_container_230_security_context_265[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346[]|null;
+  readonly volume_mount: Kubernetes_pod_spec_189_init_container_230_volume_mount_268[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -10135,21 +10135,21 @@ export class Kubernetes_pod_spec_1267_init_container_1308 implements PcoreValue 
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_pod_spec_1267_init_container_1308_env_1309[]|null,
-    env_from?: Kubernetes_pod_spec_1267_init_container_1308_env_from_1315[]|null,
+    env?: Kubernetes_pod_spec_189_init_container_230_env_231[]|null,
+    env_from?: Kubernetes_pod_spec_189_init_container_230_env_from_237[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318[]|null,
-    liveness_probe?: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329[]|null,
-    port?: Kubernetes_pod_spec_1267_init_container_1308_port_1334[]|null,
-    readiness_probe?: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335[]|null,
-    resources?: Kubernetes_pod_spec_1267_init_container_1308_resources_1340[]|null,
-    security_context?: Kubernetes_pod_spec_1267_init_container_1308_security_context_1343[]|null,
+    lifecycle?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240[]|null,
+    liveness_probe?: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251[]|null,
+    port?: Kubernetes_pod_spec_189_init_container_230_port_256[]|null,
+    readiness_probe?: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257[]|null,
+    resources?: Kubernetes_pod_spec_189_init_container_230_resources_262[]|null,
+    security_context?: Kubernetes_pod_spec_189_init_container_230_security_context_265[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346[]|null,
+    volume_mount?: Kubernetes_pod_spec_189_init_container_230_volume_mount_268[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -10234,14 +10234,14 @@ export class Kubernetes_pod_spec_1267_init_container_1308 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_1309 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_231 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310[]|null;
+  readonly value_from: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232[]|null;
 
   constructor({
     name,
@@ -10250,7 +10250,7 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309 implements Pc
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310[]|null
+    value_from?: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -10270,15 +10270,15 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_1309';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_231';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_config_map_key_ref_1311[]|null;
-  readonly field_ref: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_field_ref_1312[]|null;
-  readonly resource_field_ref: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_resource_field_ref_1313[]|null;
-  readonly secret_key_ref: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_secret_key_ref_1314[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_config_map_key_ref_233[]|null;
+  readonly field_ref: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_field_ref_234[]|null;
+  readonly resource_field_ref: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_resource_field_ref_235[]|null;
+  readonly secret_key_ref: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_secret_key_ref_236[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -10286,10 +10286,10 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_13
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_config_map_key_ref_1311[]|null,
-    field_ref?: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_field_ref_1312[]|null,
-    resource_field_ref?: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_resource_field_ref_1313[]|null,
-    secret_key_ref?: Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_secret_key_ref_1314[]|null
+    config_map_key_ref?: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_config_map_key_ref_233[]|null,
+    field_ref?: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_field_ref_234[]|null,
+    resource_field_ref?: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_resource_field_ref_235[]|null,
+    secret_key_ref?: Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_secret_key_ref_236[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -10315,11 +10315,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_13
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_config_map_key_ref_1311 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_config_map_key_ref_233 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -10346,11 +10346,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_13
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_config_map_key_ref_1311';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_config_map_key_ref_233';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_field_ref_1312 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_field_ref_234 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -10377,11 +10377,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_13
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_field_ref_1312';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_field_ref_234';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_resource_field_ref_1313 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_resource_field_ref_235 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -10406,11 +10406,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_13
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_resource_field_ref_1313';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_resource_field_ref_235';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_secret_key_ref_1314 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_secret_key_ref_236 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -10437,23 +10437,23 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_13
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_1309_value_from_1310_secret_key_ref_1314';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_secret_key_ref_236';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_from_1315 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_map_ref_1316[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_env_from_237 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_pod_spec_189_init_container_230_env_from_237_config_map_ref_238[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_ref_1317[]|null;
+  readonly secret_ref: Kubernetes_pod_spec_189_init_container_230_env_from_237_secret_ref_239[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_map_ref_1316[]|null,
+    config_map_ref?: Kubernetes_pod_spec_189_init_container_230_env_from_237_config_map_ref_238[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_ref_1317[]|null
+    secret_ref?: Kubernetes_pod_spec_189_init_container_230_env_from_237_secret_ref_239[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -10475,11 +10475,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_from_1315 implemen
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_from_1315';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_from_237';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_map_ref_1316 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_from_237_config_map_ref_238 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -10504,11 +10504,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_m
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_config_map_ref_1316';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_from_237_config_map_ref_238';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_ref_1317 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_env_from_237_secret_ref_239 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -10533,20 +10533,20 @@ export class Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_r
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_env_from_1315_secret_ref_1317';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_env_from_237_secret_ref_239';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318 implements PcoreValue {
-  readonly post_start: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319[]|null;
-  readonly pre_stop: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240 implements PcoreValue {
+  readonly post_start: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241[]|null;
+  readonly pre_stop: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319[]|null,
-    pre_stop?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324[]|null
+    post_start?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241[]|null,
+    pre_stop?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -10564,23 +10564,23 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_exec_1320[]|null;
-  readonly http_get: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321[]|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_tcp_socket_1323[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_exec_242[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_tcp_socket_245[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_exec_1320[]|null,
-    http_get?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321[]|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_tcp_socket_1323[]|null
+    exec?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_exec_242[]|null,
+    http_get?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_tcp_socket_245[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -10602,11 +10602,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_st
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_exec_1320 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_exec_242 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -10626,13 +10626,13 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_st
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_exec_1320';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_exec_242';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321_http_header_1322[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243_http_header_244[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -10645,7 +10645,7 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_st
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321_http_header_1322[]|null,
+    http_header?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243_http_header_244[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -10678,11 +10678,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_st
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321_http_header_1322 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243_http_header_244 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -10709,11 +10709,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_st
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_http_get_1321_http_header_1322';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243_http_header_244';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_tcp_socket_1323 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_tcp_socket_245 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -10731,23 +10731,23 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_st
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_post_start_1319_tcp_socket_1323';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_tcp_socket_245';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_exec_1325[]|null;
-  readonly http_get: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326[]|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_tcp_socket_1328[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_exec_247[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_tcp_socket_250[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_exec_1325[]|null,
-    http_get?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326[]|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_tcp_socket_1328[]|null
+    exec?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_exec_247[]|null,
+    http_get?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_tcp_socket_250[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -10769,11 +10769,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_sto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_exec_1325 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_exec_247 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -10793,13 +10793,13 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_sto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_exec_1325';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_exec_247';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326_http_header_1327[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248_http_header_249[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -10812,7 +10812,7 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_sto
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326_http_header_1327[]|null,
+    http_header?: Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248_http_header_249[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -10845,11 +10845,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_sto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326_http_header_1327 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248_http_header_249 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -10876,11 +10876,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_sto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_http_get_1326_http_header_1327';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248_http_header_249';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_tcp_socket_1328 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_tcp_socket_250 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -10898,18 +10898,18 @@ export class Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_sto
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_lifecycle_1318_pre_stop_1324_tcp_socket_1328';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_tcp_socket_250';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_exec_1330[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_liveness_probe_251 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_exec_252[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tcp_socket_1333[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_tcp_socket_255[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -10922,13 +10922,13 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329 im
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_exec_1330[]|null,
+    exec?: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_exec_252[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331[]|null,
+    http_get?: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tcp_socket_1333[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_tcp_socket_255[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -10971,11 +10971,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329 im
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_liveness_probe_251';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_exec_1330 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_exec_252 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -10995,13 +10995,13 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_ex
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_exec_1330';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_exec_252';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331_http_header_1332[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253_http_header_254[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -11014,7 +11014,7 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_ht
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331_http_header_1332[]|null,
+    http_header?: Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253_http_header_254[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -11047,11 +11047,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_ht
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331_http_header_1332 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253_http_header_254 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -11078,11 +11078,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_ht
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_http_get_1331_http_header_1332';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253_http_header_254';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tcp_socket_1333 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_tcp_socket_255 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -11100,11 +11100,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tc
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_liveness_probe_1329_tcp_socket_1333';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_tcp_socket_255';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_port_1334 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_port_256 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -11150,18 +11150,18 @@ export class Kubernetes_pod_spec_1267_init_container_1308_port_1334 implements P
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_port_1334';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_port_256';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335 implements PcoreValue {
-  readonly exec: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_exec_1336[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_readiness_probe_257 implements PcoreValue {
+  readonly exec: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_exec_258[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337[]|null;
+  readonly http_get: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_tcp_socket_1339[]|null;
+  readonly tcp_socket: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_tcp_socket_261[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -11174,13 +11174,13 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335 i
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_exec_1336[]|null,
+    exec?: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_exec_258[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337[]|null,
+    http_get?: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_tcp_socket_1339[]|null,
+    tcp_socket?: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_tcp_socket_261[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -11223,11 +11223,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335 i
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_readiness_probe_257';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_exec_1336 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_exec_258 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -11247,13 +11247,13 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_e
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_exec_1336';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_exec_258';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337_http_header_1338[]|null;
+  readonly http_header: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259_http_header_260[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -11266,7 +11266,7 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_h
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337_http_header_1338[]|null,
+    http_header?: Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259_http_header_260[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -11299,11 +11299,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_h
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337_http_header_1338 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259_http_header_260 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -11330,11 +11330,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_h
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_http_get_1337_http_header_1338';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259_http_header_260';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_tcp_socket_1339 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_tcp_socket_261 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -11352,20 +11352,20 @@ export class Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_t
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_readiness_probe_1335_tcp_socket_1339';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_tcp_socket_261';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_resources_1340 implements PcoreValue {
-  readonly limits: Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_1341[]|null;
-  readonly requests: Kubernetes_pod_spec_1267_init_container_1308_resources_1340_requests_1342[]|null;
+export class Kubernetes_pod_spec_189_init_container_230_resources_262 implements PcoreValue {
+  readonly limits: Kubernetes_pod_spec_189_init_container_230_resources_262_limits_263[]|null;
+  readonly requests: Kubernetes_pod_spec_189_init_container_230_resources_262_requests_264[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_1341[]|null,
-    requests?: Kubernetes_pod_spec_1267_init_container_1308_resources_1340_requests_1342[]|null
+    limits?: Kubernetes_pod_spec_189_init_container_230_resources_262_limits_263[]|null,
+    requests?: Kubernetes_pod_spec_189_init_container_230_resources_262_requests_264[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -11383,11 +11383,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_resources_1340 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_resources_1340';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_resources_262';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_1341 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_resources_262_limits_263 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -11414,11 +11414,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_resources_1340_limits_1341';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_resources_262_limits_263';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_resources_1340_requests_1342 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_resources_262_requests_264 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -11445,18 +11445,18 @@ export class Kubernetes_pod_spec_1267_init_container_1308_resources_1340_request
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_resources_1340_requests_1342';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_resources_262_requests_264';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_security_context_265 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_capabilities_1344[]|null;
+  readonly capabilities: Kubernetes_pod_spec_189_init_container_230_security_context_265_capabilities_266[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_se_linux_options_1345[]|null;
+  readonly se_linux_options: Kubernetes_pod_spec_189_init_container_230_security_context_265_se_linux_options_267[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -11468,12 +11468,12 @@ export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343 
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_capabilities_1344[]|null,
+    capabilities?: Kubernetes_pod_spec_189_init_container_230_security_context_265_capabilities_266[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_se_linux_options_1345[]|null
+    se_linux_options?: Kubernetes_pod_spec_189_init_container_230_security_context_265_se_linux_options_267[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -11511,11 +11511,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_security_context_1343';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_security_context_265';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_capabilities_1344 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_security_context_265_capabilities_266 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -11542,11 +11542,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_capabilities_1344';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_security_context_265_capabilities_266';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_se_linux_options_1345 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_security_context_265_se_linux_options_267 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -11587,11 +11587,11 @@ export class Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_security_context_1343_se_linux_options_1345';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_security_context_265_se_linux_options_267';
   }
 }
 
-export class Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346 implements PcoreValue {
+export class Kubernetes_pod_spec_189_init_container_230_volume_mount_268 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -11628,15 +11628,15 @@ export class Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346 impl
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_init_container_1308_volume_mount_1346';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_init_container_230_volume_mount_268';
   }
 }
 
-export class Kubernetes_pod_spec_1267_security_context_1347 implements PcoreValue {
+export class Kubernetes_pod_spec_189_security_context_269 implements PcoreValue {
   readonly fs_group: number|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_1348[]|null;
+  readonly se_linux_options: Kubernetes_pod_spec_189_security_context_269_se_linux_options_270[]|null;
   readonly supplemental_groups: number[]|null;
 
   constructor({
@@ -11649,7 +11649,7 @@ export class Kubernetes_pod_spec_1267_security_context_1347 implements PcoreValu
     fs_group?: number|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_1348[]|null,
+    se_linux_options?: Kubernetes_pod_spec_189_security_context_269_se_linux_options_270[]|null,
     supplemental_groups?: number[]|null
   }) {
     this.fs_group = fs_group;
@@ -11680,11 +11680,11 @@ export class Kubernetes_pod_spec_1267_security_context_1347 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_security_context_1347';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_security_context_269';
   }
 }
 
-export class Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_1348 implements PcoreValue {
+export class Kubernetes_pod_spec_189_security_context_269_se_linux_options_270 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -11725,36 +11725,36 @@ export class Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_134
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_security_context_1347_se_linux_options_1348';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_security_context_269_se_linux_options_270';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349 implements PcoreValue {
-  readonly aws_elastic_block_store: Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350[]|null;
-  readonly azure_disk: Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351[]|null;
-  readonly azure_file: Kubernetes_pod_spec_1267_volume_1349_azure_file_1352[]|null;
-  readonly ceph_fs: Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353[]|null;
-  readonly cinder: Kubernetes_pod_spec_1267_volume_1349_cinder_1355[]|null;
-  readonly config_map: Kubernetes_pod_spec_1267_volume_1349_config_map_1356[]|null;
-  readonly downward_api: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358[]|null;
-  readonly empty_dir: Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362[]|null;
-  readonly fc: Kubernetes_pod_spec_1267_volume_1349_fc_1363[]|null;
-  readonly flex_volume: Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364[]|null;
-  readonly flocker: Kubernetes_pod_spec_1267_volume_1349_flocker_1366[]|null;
-  readonly gce_persistent_disk: Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367[]|null;
-  readonly git_repo: Kubernetes_pod_spec_1267_volume_1349_git_repo_1368[]|null;
-  readonly glusterfs: Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369[]|null;
-  readonly host_path: Kubernetes_pod_spec_1267_volume_1349_host_path_1370[]|null;
-  readonly iscsi: Kubernetes_pod_spec_1267_volume_1349_iscsi_1371[]|null;
-  readonly local: Kubernetes_pod_spec_1267_volume_1349_local_1372[]|null;
+export class Kubernetes_pod_spec_189_volume_271 implements PcoreValue {
+  readonly aws_elastic_block_store: Kubernetes_pod_spec_189_volume_271_aws_elastic_block_store_272[]|null;
+  readonly azure_disk: Kubernetes_pod_spec_189_volume_271_azure_disk_273[]|null;
+  readonly azure_file: Kubernetes_pod_spec_189_volume_271_azure_file_274[]|null;
+  readonly ceph_fs: Kubernetes_pod_spec_189_volume_271_ceph_fs_275[]|null;
+  readonly cinder: Kubernetes_pod_spec_189_volume_271_cinder_277[]|null;
+  readonly config_map: Kubernetes_pod_spec_189_volume_271_config_map_278[]|null;
+  readonly downward_api: Kubernetes_pod_spec_189_volume_271_downward_api_280[]|null;
+  readonly empty_dir: Kubernetes_pod_spec_189_volume_271_empty_dir_284[]|null;
+  readonly fc: Kubernetes_pod_spec_189_volume_271_fc_285[]|null;
+  readonly flex_volume: Kubernetes_pod_spec_189_volume_271_flex_volume_286[]|null;
+  readonly flocker: Kubernetes_pod_spec_189_volume_271_flocker_288[]|null;
+  readonly gce_persistent_disk: Kubernetes_pod_spec_189_volume_271_gce_persistent_disk_289[]|null;
+  readonly git_repo: Kubernetes_pod_spec_189_volume_271_git_repo_290[]|null;
+  readonly glusterfs: Kubernetes_pod_spec_189_volume_271_glusterfs_291[]|null;
+  readonly host_path: Kubernetes_pod_spec_189_volume_271_host_path_292[]|null;
+  readonly iscsi: Kubernetes_pod_spec_189_volume_271_iscsi_293[]|null;
+  readonly local: Kubernetes_pod_spec_189_volume_271_local_294[]|null;
   readonly name: string|null;
-  readonly nfs: Kubernetes_pod_spec_1267_volume_1349_nfs_1373[]|null;
-  readonly persistent_volume_claim: Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374[]|null;
-  readonly photon_persistent_disk: Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375[]|null;
-  readonly quobyte: Kubernetes_pod_spec_1267_volume_1349_quobyte_1376[]|null;
-  readonly rbd: Kubernetes_pod_spec_1267_volume_1349_rbd_1377[]|null;
-  readonly secret: Kubernetes_pod_spec_1267_volume_1349_secret_1379[]|null;
-  readonly vsphere_volume: Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381[]|null;
+  readonly nfs: Kubernetes_pod_spec_189_volume_271_nfs_295[]|null;
+  readonly persistent_volume_claim: Kubernetes_pod_spec_189_volume_271_persistent_volume_claim_296[]|null;
+  readonly photon_persistent_disk: Kubernetes_pod_spec_189_volume_271_photon_persistent_disk_297[]|null;
+  readonly quobyte: Kubernetes_pod_spec_189_volume_271_quobyte_298[]|null;
+  readonly rbd: Kubernetes_pod_spec_189_volume_271_rbd_299[]|null;
+  readonly secret: Kubernetes_pod_spec_189_volume_271_secret_301[]|null;
+  readonly vsphere_volume: Kubernetes_pod_spec_189_volume_271_vsphere_volume_303[]|null;
 
   constructor({
     aws_elastic_block_store = null,
@@ -11783,31 +11783,31 @@ export class Kubernetes_pod_spec_1267_volume_1349 implements PcoreValue {
     secret = null,
     vsphere_volume = null
   }: {
-    aws_elastic_block_store?: Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350[]|null,
-    azure_disk?: Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351[]|null,
-    azure_file?: Kubernetes_pod_spec_1267_volume_1349_azure_file_1352[]|null,
-    ceph_fs?: Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353[]|null,
-    cinder?: Kubernetes_pod_spec_1267_volume_1349_cinder_1355[]|null,
-    config_map?: Kubernetes_pod_spec_1267_volume_1349_config_map_1356[]|null,
-    downward_api?: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358[]|null,
-    empty_dir?: Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362[]|null,
-    fc?: Kubernetes_pod_spec_1267_volume_1349_fc_1363[]|null,
-    flex_volume?: Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364[]|null,
-    flocker?: Kubernetes_pod_spec_1267_volume_1349_flocker_1366[]|null,
-    gce_persistent_disk?: Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367[]|null,
-    git_repo?: Kubernetes_pod_spec_1267_volume_1349_git_repo_1368[]|null,
-    glusterfs?: Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369[]|null,
-    host_path?: Kubernetes_pod_spec_1267_volume_1349_host_path_1370[]|null,
-    iscsi?: Kubernetes_pod_spec_1267_volume_1349_iscsi_1371[]|null,
-    local?: Kubernetes_pod_spec_1267_volume_1349_local_1372[]|null,
+    aws_elastic_block_store?: Kubernetes_pod_spec_189_volume_271_aws_elastic_block_store_272[]|null,
+    azure_disk?: Kubernetes_pod_spec_189_volume_271_azure_disk_273[]|null,
+    azure_file?: Kubernetes_pod_spec_189_volume_271_azure_file_274[]|null,
+    ceph_fs?: Kubernetes_pod_spec_189_volume_271_ceph_fs_275[]|null,
+    cinder?: Kubernetes_pod_spec_189_volume_271_cinder_277[]|null,
+    config_map?: Kubernetes_pod_spec_189_volume_271_config_map_278[]|null,
+    downward_api?: Kubernetes_pod_spec_189_volume_271_downward_api_280[]|null,
+    empty_dir?: Kubernetes_pod_spec_189_volume_271_empty_dir_284[]|null,
+    fc?: Kubernetes_pod_spec_189_volume_271_fc_285[]|null,
+    flex_volume?: Kubernetes_pod_spec_189_volume_271_flex_volume_286[]|null,
+    flocker?: Kubernetes_pod_spec_189_volume_271_flocker_288[]|null,
+    gce_persistent_disk?: Kubernetes_pod_spec_189_volume_271_gce_persistent_disk_289[]|null,
+    git_repo?: Kubernetes_pod_spec_189_volume_271_git_repo_290[]|null,
+    glusterfs?: Kubernetes_pod_spec_189_volume_271_glusterfs_291[]|null,
+    host_path?: Kubernetes_pod_spec_189_volume_271_host_path_292[]|null,
+    iscsi?: Kubernetes_pod_spec_189_volume_271_iscsi_293[]|null,
+    local?: Kubernetes_pod_spec_189_volume_271_local_294[]|null,
     name?: string|null,
-    nfs?: Kubernetes_pod_spec_1267_volume_1349_nfs_1373[]|null,
-    persistent_volume_claim?: Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374[]|null,
-    photon_persistent_disk?: Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375[]|null,
-    quobyte?: Kubernetes_pod_spec_1267_volume_1349_quobyte_1376[]|null,
-    rbd?: Kubernetes_pod_spec_1267_volume_1349_rbd_1377[]|null,
-    secret?: Kubernetes_pod_spec_1267_volume_1349_secret_1379[]|null,
-    vsphere_volume?: Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381[]|null
+    nfs?: Kubernetes_pod_spec_189_volume_271_nfs_295[]|null,
+    persistent_volume_claim?: Kubernetes_pod_spec_189_volume_271_persistent_volume_claim_296[]|null,
+    photon_persistent_disk?: Kubernetes_pod_spec_189_volume_271_photon_persistent_disk_297[]|null,
+    quobyte?: Kubernetes_pod_spec_189_volume_271_quobyte_298[]|null,
+    rbd?: Kubernetes_pod_spec_189_volume_271_rbd_299[]|null,
+    secret?: Kubernetes_pod_spec_189_volume_271_secret_301[]|null,
+    vsphere_volume?: Kubernetes_pod_spec_189_volume_271_vsphere_volume_303[]|null
   }) {
     this.aws_elastic_block_store = aws_elastic_block_store;
     this.azure_disk = azure_disk;
@@ -11917,11 +11917,11 @@ export class Kubernetes_pod_spec_1267_volume_1349 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_aws_elastic_block_store_272 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -11960,11 +11960,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350 i
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_aws_elastic_block_store_1350';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_aws_elastic_block_store_272';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_azure_disk_273 implements PcoreValue {
   readonly caching_mode: string;
   readonly data_disk_uri: string;
   readonly disk_name: string;
@@ -12006,11 +12006,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_azure_disk_1351';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_azure_disk_273';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_azure_file_1352 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_azure_file_274 implements PcoreValue {
   readonly secret_name: string;
   readonly share_name: string;
   readonly read_only: boolean|null;
@@ -12040,16 +12040,16 @@ export class Kubernetes_pod_spec_1267_volume_1349_azure_file_1352 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_azure_file_1352';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_azure_file_274';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_ceph_fs_275 implements PcoreValue {
   readonly monitors: string[];
   readonly path: string|null;
   readonly read_only: boolean|null;
   readonly secret_file: string|null;
-  readonly secret_ref: Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354[]|null;
+  readonly secret_ref: Kubernetes_pod_spec_189_volume_271_ceph_fs_275_secret_ref_276[]|null;
   readonly user: string|null;
 
   constructor({
@@ -12064,7 +12064,7 @@ export class Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353 implements PcoreV
     path?: string|null,
     read_only?: boolean|null,
     secret_file?: string|null,
-    secret_ref?: Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354[]|null,
+    secret_ref?: Kubernetes_pod_spec_189_volume_271_ceph_fs_275_secret_ref_276[]|null,
     user?: string|null
   }) {
     this.monitors = monitors;
@@ -12097,11 +12097,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_ceph_fs_275';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_ceph_fs_275_secret_ref_276 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -12121,11 +12121,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354 i
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_ceph_fs_1353_secret_ref_1354';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_ceph_fs_275_secret_ref_276';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_cinder_1355 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_cinder_277 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly read_only: boolean|null;
@@ -12157,13 +12157,13 @@ export class Kubernetes_pod_spec_1267_volume_1349_cinder_1355 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_cinder_1355';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_cinder_277';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_config_map_1356 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_config_map_278 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357[]|null;
+  readonly items: Kubernetes_pod_spec_189_volume_271_config_map_278_items_279[]|null;
   readonly name: string|null;
 
   constructor({
@@ -12172,7 +12172,7 @@ export class Kubernetes_pod_spec_1267_volume_1349_config_map_1356 implements Pco
     name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357[]|null,
+    items?: Kubernetes_pod_spec_189_volume_271_config_map_278_items_279[]|null,
     name?: string|null
   }) {
     this.default_mode = default_mode;
@@ -12195,11 +12195,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_config_map_1356 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_config_map_1356';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_config_map_278';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_config_map_278_items_279 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -12233,20 +12233,20 @@ export class Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357 imp
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_config_map_1356_items_1357';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_config_map_278_items_279';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_downward_api_280 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359[]|null;
+  readonly items: Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281[]|null;
 
   constructor({
     default_mode = null,
     items = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359[]|null
+    items?: Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281[]|null
   }) {
     this.default_mode = default_mode;
     this.items = items;
@@ -12264,15 +12264,15 @@ export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358 implements P
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_downward_api_1358';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_downward_api_280';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359 implements PcoreValue {
-  readonly field_ref: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_field_ref_1360[];
+export class Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281 implements PcoreValue {
+  readonly field_ref: Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_field_ref_282[];
   readonly path: string;
   readonly mode: number|null;
-  readonly resource_field_ref: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_resource_field_ref_1361[]|null;
+  readonly resource_field_ref: Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_resource_field_ref_283[]|null;
 
   constructor({
     field_ref,
@@ -12280,10 +12280,10 @@ export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359 i
     mode = null,
     resource_field_ref = null
   }: {
-    field_ref: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_field_ref_1360[],
+    field_ref: Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_field_ref_282[],
     path: string,
     mode?: number|null,
-    resource_field_ref?: Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_resource_field_ref_1361[]|null
+    resource_field_ref?: Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_resource_field_ref_283[]|null
   }) {
     this.field_ref = field_ref;
     this.path = path;
@@ -12305,11 +12305,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359 i
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_field_ref_1360 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_field_ref_282 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -12336,11 +12336,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_f
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_field_ref_1360';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_field_ref_282';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_resource_field_ref_1361 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_resource_field_ref_283 implements PcoreValue {
   readonly container_name: string;
   readonly resource: string;
   readonly quantity: string|null;
@@ -12370,11 +12370,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_r
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_downward_api_1358_items_1359_resource_field_ref_1361';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_resource_field_ref_283';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_empty_dir_284 implements PcoreValue {
   readonly medium: string|null;
 
   constructor({
@@ -12394,11 +12394,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_empty_dir_1362';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_empty_dir_284';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_fc_1363 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_fc_285 implements PcoreValue {
   readonly lun: number;
   readonly target_ww_ns: string[];
   readonly fs_type: string|null;
@@ -12435,16 +12435,16 @@ export class Kubernetes_pod_spec_1267_volume_1349_fc_1363 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_fc_1363';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_fc_285';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_flex_volume_286 implements PcoreValue {
   readonly driver: string;
   readonly fs_type: string|null;
   readonly options: {[s: string]: string}|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_1365[]|null;
+  readonly secret_ref: Kubernetes_pod_spec_189_volume_271_flex_volume_286_secret_ref_287[]|null;
 
   constructor({
     driver,
@@ -12457,7 +12457,7 @@ export class Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364 implements Pc
     fs_type?: string|null,
     options?: {[s: string]: string}|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_1365[]|null
+    secret_ref?: Kubernetes_pod_spec_189_volume_271_flex_volume_286_secret_ref_287[]|null
   }) {
     this.driver = driver;
     this.fs_type = fs_type;
@@ -12485,11 +12485,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_flex_volume_286';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_1365 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_flex_volume_286_secret_ref_287 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -12509,11 +12509,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_13
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_flex_volume_1364_secret_ref_1365';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_flex_volume_286_secret_ref_287';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_flocker_1366 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_flocker_288 implements PcoreValue {
   readonly dataset_name: string|null;
   readonly dataset_uuid: string|null;
 
@@ -12540,11 +12540,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_flocker_1366 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_flocker_1366';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_flocker_288';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_gce_persistent_disk_289 implements PcoreValue {
   readonly pd_name: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -12583,11 +12583,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367 imple
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_gce_persistent_disk_1367';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_gce_persistent_disk_289';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_git_repo_1368 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_git_repo_290 implements PcoreValue {
   readonly directory: string|null;
   readonly repository: string|null;
   readonly revision: string|null;
@@ -12621,11 +12621,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_git_repo_1368 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_git_repo_1368';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_git_repo_290';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_glusterfs_291 implements PcoreValue {
   readonly endpoints_name: string;
   readonly path: string;
   readonly read_only: boolean|null;
@@ -12655,11 +12655,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_glusterfs_1369';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_glusterfs_291';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_host_path_1370 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_host_path_292 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -12679,11 +12679,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_host_path_1370 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_host_path_1370';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_host_path_292';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_iscsi_1371 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_iscsi_293 implements PcoreValue {
   readonly iqn: string;
   readonly target_portal: string;
   readonly fs_type: string|null;
@@ -12734,11 +12734,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_iscsi_1371 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_iscsi_1371';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_iscsi_293';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_local_1372 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_local_294 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -12758,11 +12758,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_local_1372 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_local_1372';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_local_294';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_nfs_1373 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_nfs_295 implements PcoreValue {
   readonly path: string;
   readonly server: string;
   readonly read_only: boolean|null;
@@ -12792,11 +12792,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_nfs_1373 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_nfs_1373';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_nfs_295';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_persistent_volume_claim_296 implements PcoreValue {
   readonly claim_name: string|null;
   readonly read_only: boolean|null;
 
@@ -12823,11 +12823,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374 i
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_persistent_volume_claim_1374';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_persistent_volume_claim_296';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_photon_persistent_disk_297 implements PcoreValue {
   readonly pd_id: string;
   readonly fs_type: string|null;
 
@@ -12852,11 +12852,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375 im
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_photon_persistent_disk_1375';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_photon_persistent_disk_297';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_quobyte_1376 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_quobyte_298 implements PcoreValue {
   readonly registry: string;
   readonly volume: string;
   readonly group: string|null;
@@ -12900,11 +12900,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_quobyte_1376 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_quobyte_1376';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_quobyte_298';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_rbd_1377 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_rbd_299 implements PcoreValue {
   readonly ceph_monitors: string[];
   readonly rbd_image: string;
   readonly fs_type: string|null;
@@ -12912,7 +12912,7 @@ export class Kubernetes_pod_spec_1267_volume_1349_rbd_1377 implements PcoreValue
   readonly rados_user: string|null;
   readonly rbd_pool: string|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378[]|null;
+  readonly secret_ref: Kubernetes_pod_spec_189_volume_271_rbd_299_secret_ref_300[]|null;
 
   constructor({
     ceph_monitors,
@@ -12931,7 +12931,7 @@ export class Kubernetes_pod_spec_1267_volume_1349_rbd_1377 implements PcoreValue
     rados_user?: string|null,
     rbd_pool?: string|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378[]|null
+    secret_ref?: Kubernetes_pod_spec_189_volume_271_rbd_299_secret_ref_300[]|null
   }) {
     this.ceph_monitors = ceph_monitors;
     this.rbd_image = rbd_image;
@@ -12969,11 +12969,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_rbd_1377 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_rbd_1377';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_rbd_299';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_rbd_299_secret_ref_300 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -12993,13 +12993,13 @@ export class Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378 imple
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_rbd_1377_secret_ref_1378';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_rbd_299_secret_ref_300';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_secret_1379 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_secret_301 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380[]|null;
+  readonly items: Kubernetes_pod_spec_189_volume_271_secret_301_items_302[]|null;
   readonly optional: boolean|null;
   readonly secret_name: string|null;
 
@@ -13010,7 +13010,7 @@ export class Kubernetes_pod_spec_1267_volume_1349_secret_1379 implements PcoreVa
     secret_name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380[]|null,
+    items?: Kubernetes_pod_spec_189_volume_271_secret_301_items_302[]|null,
     optional?: boolean|null,
     secret_name?: string|null
   }) {
@@ -13038,11 +13038,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_secret_1379 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_secret_1379';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_secret_301';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_secret_301_items_302 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -13076,11 +13076,11 @@ export class Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380 impleme
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_secret_1379_items_1380';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_secret_301_items_302';
   }
 }
 
-export class Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381 implements PcoreValue {
+export class Kubernetes_pod_spec_189_volume_271_vsphere_volume_303 implements PcoreValue {
   readonly volume_path: string;
   readonly fs_type: string|null;
 
@@ -13105,13 +13105,13 @@ export class Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381 implements
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_pod_spec_1267_volume_1349_vsphere_volume_1381';
+    return 'TerraformKubernetes::Kubernetes_pod_spec_189_volume_271_vsphere_volume_303';
   }
 }
 
 export class Kubernetes_replication_controller implements PcoreValue {
-  readonly metadata: Kubernetes_replication_controller_metadata_1382[];
-  readonly spec: Kubernetes_replication_controller_spec_1383[];
+  readonly metadata: Kubernetes_replication_controller_metadata_304[];
+  readonly spec: Kubernetes_replication_controller_spec_305[];
   readonly kubernetes_replication_controller_id: string|null;
 
   constructor({
@@ -13119,8 +13119,8 @@ export class Kubernetes_replication_controller implements PcoreValue {
     spec,
     kubernetes_replication_controller_id = null
   }: {
-    metadata: Kubernetes_replication_controller_metadata_1382[],
-    spec: Kubernetes_replication_controller_spec_1383[],
+    metadata: Kubernetes_replication_controller_metadata_304[],
+    spec: Kubernetes_replication_controller_spec_305[],
     kubernetes_replication_controller_id?: string|null
   }) {
     this.metadata = metadata;
@@ -13153,7 +13153,7 @@ export class Kubernetes_replication_controllerHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_replication_controller_metadata_1382 implements PcoreValue {
+export class Kubernetes_replication_controller_metadata_304 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -13229,13 +13229,13 @@ export class Kubernetes_replication_controller_metadata_1382 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_metadata_1382';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_metadata_304';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305 implements PcoreValue {
   readonly selector: {[s: string]: string};
-  readonly template: Kubernetes_replication_controller_spec_1383_template_1384[];
+  readonly template: Kubernetes_replication_controller_spec_305_template_306[];
   readonly min_ready_seconds: number|null;
   readonly replicas: number|null;
 
@@ -13246,7 +13246,7 @@ export class Kubernetes_replication_controller_spec_1383 implements PcoreValue {
     replicas = null
   }: {
     selector: {[s: string]: string},
-    template: Kubernetes_replication_controller_spec_1383_template_1384[],
+    template: Kubernetes_replication_controller_spec_305_template_306[],
     min_ready_seconds?: number|null,
     replicas?: number|null
   }) {
@@ -13270,30 +13270,30 @@ export class Kubernetes_replication_controller_spec_1383 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306 implements PcoreValue {
   readonly active_deadline_seconds: number|null;
-  readonly container: Kubernetes_replication_controller_spec_1383_template_1384_container_1385[]|null;
+  readonly container: Kubernetes_replication_controller_spec_305_template_306_container_307[]|null;
   readonly dns_policy: string|null;
   readonly host_ipc: boolean|null;
   readonly host_network: boolean|null;
   readonly host_pid: boolean|null;
   readonly hostname: string|null;
-  readonly image_pull_secrets: Kubernetes_replication_controller_spec_1383_template_1384_image_pull_secrets_1424[]|null;
-  readonly init_container: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425[]|null;
-  readonly metadata: Kubernetes_replication_controller_spec_1383_template_1384_metadata_1464[]|null;
+  readonly image_pull_secrets: Kubernetes_replication_controller_spec_305_template_306_image_pull_secrets_346[]|null;
+  readonly init_container: Kubernetes_replication_controller_spec_305_template_306_init_container_347[]|null;
+  readonly metadata: Kubernetes_replication_controller_spec_305_template_306_metadata_386[]|null;
   readonly node_name: string|null;
   readonly node_selector: {[s: string]: string}|null;
   readonly restart_policy: string|null;
-  readonly security_context: Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465[]|null;
+  readonly security_context: Kubernetes_replication_controller_spec_305_template_306_security_context_387[]|null;
   readonly service_account_name: string|null;
-  readonly spec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467[]|null;
+  readonly spec: Kubernetes_replication_controller_spec_305_template_306_spec_389[]|null;
   readonly subdomain: string|null;
   readonly termination_grace_period_seconds: number|null;
-  readonly volume: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582[]|null;
+  readonly volume: Kubernetes_replication_controller_spec_305_template_306_volume_504[]|null;
 
   constructor({
     active_deadline_seconds = null,
@@ -13317,24 +13317,24 @@ export class Kubernetes_replication_controller_spec_1383_template_1384 implement
     volume = null
   }: {
     active_deadline_seconds?: number|null,
-    container?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385[]|null,
+    container?: Kubernetes_replication_controller_spec_305_template_306_container_307[]|null,
     dns_policy?: string|null,
     host_ipc?: boolean|null,
     host_network?: boolean|null,
     host_pid?: boolean|null,
     hostname?: string|null,
-    image_pull_secrets?: Kubernetes_replication_controller_spec_1383_template_1384_image_pull_secrets_1424[]|null,
-    init_container?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425[]|null,
-    metadata?: Kubernetes_replication_controller_spec_1383_template_1384_metadata_1464[]|null,
+    image_pull_secrets?: Kubernetes_replication_controller_spec_305_template_306_image_pull_secrets_346[]|null,
+    init_container?: Kubernetes_replication_controller_spec_305_template_306_init_container_347[]|null,
+    metadata?: Kubernetes_replication_controller_spec_305_template_306_metadata_386[]|null,
     node_name?: string|null,
     node_selector?: {[s: string]: string}|null,
     restart_policy?: string|null,
-    security_context?: Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465[]|null,
+    security_context?: Kubernetes_replication_controller_spec_305_template_306_security_context_387[]|null,
     service_account_name?: string|null,
-    spec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467[]|null,
+    spec?: Kubernetes_replication_controller_spec_305_template_306_spec_389[]|null,
     subdomain?: string|null,
     termination_grace_period_seconds?: number|null,
-    volume?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582[]|null
+    volume?: Kubernetes_replication_controller_spec_305_template_306_volume_504[]|null
   }) {
     this.active_deadline_seconds = active_deadline_seconds;
     this.container = container;
@@ -13420,29 +13420,29 @@ export class Kubernetes_replication_controller_spec_1383_template_1384 implement
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386[]|null;
-  readonly env_from: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392[]|null;
+  readonly env: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308[]|null;
+  readonly env_from: Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395[]|null;
-  readonly liveness_probe: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406[]|null;
-  readonly port: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_port_1411[]|null;
-  readonly readiness_probe: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412[]|null;
-  readonly resources: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417[]|null;
-  readonly security_context: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420[]|null;
+  readonly lifecycle: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317[]|null;
+  readonly liveness_probe: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328[]|null;
+  readonly port: Kubernetes_replication_controller_spec_305_template_306_container_307_port_333[]|null;
+  readonly readiness_probe: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334[]|null;
+  readonly resources: Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339[]|null;
+  readonly security_context: Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_volume_mount_1423[]|null;
+  readonly volume_mount: Kubernetes_replication_controller_spec_305_template_306_container_307_volume_mount_345[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -13469,21 +13469,21 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386[]|null,
-    env_from?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392[]|null,
+    env?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308[]|null,
+    env_from?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395[]|null,
-    liveness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406[]|null,
-    port?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_port_1411[]|null,
-    readiness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412[]|null,
-    resources?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417[]|null,
-    security_context?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420[]|null,
+    lifecycle?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317[]|null,
+    liveness_probe?: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328[]|null,
+    port?: Kubernetes_replication_controller_spec_305_template_306_container_307_port_333[]|null,
+    readiness_probe?: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334[]|null,
+    resources?: Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339[]|null,
+    security_context?: Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_volume_mount_1423[]|null,
+    volume_mount?: Kubernetes_replication_controller_spec_305_template_306_container_307_volume_mount_345[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -13568,14 +13568,14 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_308 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387[]|null;
+  readonly value_from: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309[]|null;
 
   constructor({
     name,
@@ -13584,7 +13584,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387[]|null
+    value_from?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -13604,15 +13604,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_308';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_config_map_key_ref_1388[]|null;
-  readonly field_ref: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_field_ref_1389[]|null;
-  readonly resource_field_ref: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_resource_field_ref_1390[]|null;
-  readonly secret_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_secret_key_ref_1391[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_config_map_key_ref_310[]|null;
+  readonly field_ref: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_field_ref_311[]|null;
+  readonly resource_field_ref: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_resource_field_ref_312[]|null;
+  readonly secret_key_ref: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_secret_key_ref_313[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -13620,10 +13620,10 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_config_map_key_ref_1388[]|null,
-    field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_field_ref_1389[]|null,
-    resource_field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_resource_field_ref_1390[]|null,
-    secret_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_secret_key_ref_1391[]|null
+    config_map_key_ref?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_config_map_key_ref_310[]|null,
+    field_ref?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_field_ref_311[]|null,
+    resource_field_ref?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_resource_field_ref_312[]|null,
+    secret_key_ref?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_secret_key_ref_313[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -13649,11 +13649,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_config_map_key_ref_1388 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_config_map_key_ref_310 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -13680,11 +13680,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_config_map_key_ref_1388';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_config_map_key_ref_310';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_field_ref_1389 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_field_ref_311 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -13711,11 +13711,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_field_ref_1389';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_field_ref_311';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_resource_field_ref_1390 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_resource_field_ref_312 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -13740,11 +13740,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_resource_field_ref_1390';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_resource_field_ref_312';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_secret_key_ref_1391 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_secret_key_ref_313 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -13771,23 +13771,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_1386_value_from_1387_secret_key_ref_1391';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_secret_key_ref_313';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_config_map_ref_1393[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_config_map_ref_315[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_secret_ref_1394[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_secret_ref_316[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_config_map_ref_1393[]|null,
+    config_map_ref?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_config_map_ref_315[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_secret_ref_1394[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_secret_ref_316[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -13809,11 +13809,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_config_map_ref_1393 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_config_map_ref_315 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -13838,11 +13838,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_config_map_ref_1393';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_config_map_ref_315';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_secret_ref_1394 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_secret_ref_316 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -13867,20 +13867,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_env_from_1392_secret_ref_1394';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_secret_ref_316';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395 implements PcoreValue {
-  readonly post_start: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396[]|null;
-  readonly pre_stop: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317 implements PcoreValue {
+  readonly post_start: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318[]|null;
+  readonly pre_stop: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396[]|null,
-    pre_stop?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401[]|null
+    post_start?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318[]|null,
+    pre_stop?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -13898,23 +13898,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_exec_1397[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_tcp_socket_1400[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_exec_319[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_tcp_socket_322[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_exec_1397[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_tcp_socket_1400[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_exec_319[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_tcp_socket_322[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -13936,11 +13936,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_exec_1397 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_exec_319 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -13960,13 +13960,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_exec_1397';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_exec_319';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398_http_header_1399[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320_http_header_321[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -13979,7 +13979,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398_http_header_1399[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320_http_header_321[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -14012,11 +14012,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398_http_header_1399 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320_http_header_321 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -14043,11 +14043,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_http_get_1398_http_header_1399';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320_http_header_321';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_tcp_socket_1400 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_tcp_socket_322 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -14065,23 +14065,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_post_start_1396_tcp_socket_1400';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_tcp_socket_322';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_exec_1402[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_tcp_socket_1405[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_exec_324[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_tcp_socket_327[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_exec_1402[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_tcp_socket_1405[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_exec_324[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_tcp_socket_327[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -14103,11 +14103,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_exec_1402 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_exec_324 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -14127,13 +14127,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_exec_1402';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_exec_324';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403_http_header_1404[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325_http_header_326[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -14146,7 +14146,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403_http_header_1404[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325_http_header_326[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -14179,11 +14179,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403_http_header_1404 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325_http_header_326 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -14210,11 +14210,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_http_get_1403_http_header_1404';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325_http_header_326';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_tcp_socket_1405 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_tcp_socket_327 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -14232,18 +14232,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_lifecycle_1395_pre_stop_1401_tcp_socket_1405';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_tcp_socket_327';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_exec_1407[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_exec_329[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_tcp_socket_1410[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_tcp_socket_332[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -14256,13 +14256,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_exec_1407[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_exec_329[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_tcp_socket_1410[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_tcp_socket_332[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -14305,11 +14305,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_exec_1407 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_exec_329 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -14329,13 +14329,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_exec_1407';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_exec_329';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408_http_header_1409[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330_http_header_331[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -14348,7 +14348,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408_http_header_1409[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330_http_header_331[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -14381,11 +14381,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408_http_header_1409 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330_http_header_331 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -14412,11 +14412,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_http_get_1408_http_header_1409';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330_http_header_331';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_tcp_socket_1410 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_tcp_socket_332 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -14434,11 +14434,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_liveness_probe_1406_tcp_socket_1410';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_tcp_socket_332';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_port_1411 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_port_333 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -14484,18 +14484,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_port_1411';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_port_333';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_exec_1413[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_exec_335[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_tcp_socket_1416[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_tcp_socket_338[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -14508,13 +14508,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_exec_1413[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_exec_335[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_tcp_socket_1416[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_tcp_socket_338[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -14557,11 +14557,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_exec_1413 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_exec_335 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -14581,13 +14581,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_exec_1413';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_exec_335';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414_http_header_1415[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336_http_header_337[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -14600,7 +14600,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414_http_header_1415[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336_http_header_337[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -14633,11 +14633,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414_http_header_1415 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336_http_header_337 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -14664,11 +14664,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_http_get_1414_http_header_1415';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336_http_header_337';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_tcp_socket_1416 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_tcp_socket_338 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -14686,20 +14686,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_readiness_probe_1412_tcp_socket_1416';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_tcp_socket_338';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417 implements PcoreValue {
-  readonly limits: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_limits_1418[]|null;
-  readonly requests: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_requests_1419[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339 implements PcoreValue {
+  readonly limits: Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_limits_340[]|null;
+  readonly requests: Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_requests_341[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_limits_1418[]|null,
-    requests?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_requests_1419[]|null
+    limits?: Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_limits_340[]|null,
+    requests?: Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_requests_341[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -14717,11 +14717,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_limits_1418 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_limits_340 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -14748,11 +14748,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_limits_1418';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_limits_340';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_requests_1419 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_requests_341 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -14779,18 +14779,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_resources_1417_requests_1419';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_requests_341';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_capabilities_1421[]|null;
+  readonly capabilities: Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_capabilities_343[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_se_linux_options_1422[]|null;
+  readonly se_linux_options: Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_se_linux_options_344[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -14802,12 +14802,12 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_capabilities_1421[]|null,
+    capabilities?: Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_capabilities_343[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_se_linux_options_1422[]|null
+    se_linux_options?: Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_se_linux_options_344[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -14845,11 +14845,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_capabilities_1421 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_capabilities_343 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -14876,11 +14876,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_capabilities_1421';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_capabilities_343';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_se_linux_options_1422 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_se_linux_options_344 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -14921,11 +14921,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_security_context_1420_se_linux_options_1422';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_se_linux_options_344';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_container_1385_volume_mount_1423 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_container_307_volume_mount_345 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -14962,11 +14962,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_container_1385_volume_mount_1423';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_container_307_volume_mount_345';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_image_pull_secrets_1424 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_image_pull_secrets_346 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -14984,29 +14984,29 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_image_pul
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_image_pull_secrets_1424';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_image_pull_secrets_346';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426[]|null;
-  readonly env_from: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432[]|null;
+  readonly env: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348[]|null;
+  readonly env_from: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435[]|null;
-  readonly liveness_probe: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446[]|null;
-  readonly port: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_port_1451[]|null;
-  readonly readiness_probe: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452[]|null;
-  readonly resources: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457[]|null;
-  readonly security_context: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460[]|null;
+  readonly lifecycle: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357[]|null;
+  readonly liveness_probe: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368[]|null;
+  readonly port: Kubernetes_replication_controller_spec_305_template_306_init_container_347_port_373[]|null;
+  readonly readiness_probe: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374[]|null;
+  readonly resources: Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379[]|null;
+  readonly security_context: Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_volume_mount_1463[]|null;
+  readonly volume_mount: Kubernetes_replication_controller_spec_305_template_306_init_container_347_volume_mount_385[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -15033,21 +15033,21 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426[]|null,
-    env_from?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432[]|null,
+    env?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348[]|null,
+    env_from?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435[]|null,
-    liveness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446[]|null,
-    port?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_port_1451[]|null,
-    readiness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452[]|null,
-    resources?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457[]|null,
-    security_context?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460[]|null,
+    lifecycle?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357[]|null,
+    liveness_probe?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368[]|null,
+    port?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_port_373[]|null,
+    readiness_probe?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374[]|null,
+    resources?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379[]|null,
+    security_context?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_volume_mount_1463[]|null,
+    volume_mount?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_volume_mount_385[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -15132,14 +15132,14 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427[]|null;
+  readonly value_from: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349[]|null;
 
   constructor({
     name,
@@ -15148,7 +15148,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427[]|null
+    value_from?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -15168,15 +15168,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_config_map_key_ref_1428[]|null;
-  readonly field_ref: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_field_ref_1429[]|null;
-  readonly resource_field_ref: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_resource_field_ref_1430[]|null;
-  readonly secret_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_secret_key_ref_1431[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_config_map_key_ref_350[]|null;
+  readonly field_ref: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_field_ref_351[]|null;
+  readonly resource_field_ref: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_resource_field_ref_352[]|null;
+  readonly secret_key_ref: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_secret_key_ref_353[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -15184,10 +15184,10 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_config_map_key_ref_1428[]|null,
-    field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_field_ref_1429[]|null,
-    resource_field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_resource_field_ref_1430[]|null,
-    secret_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_secret_key_ref_1431[]|null
+    config_map_key_ref?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_config_map_key_ref_350[]|null,
+    field_ref?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_field_ref_351[]|null,
+    resource_field_ref?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_resource_field_ref_352[]|null,
+    secret_key_ref?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_secret_key_ref_353[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -15213,11 +15213,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_config_map_key_ref_1428 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_config_map_key_ref_350 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -15244,11 +15244,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_config_map_key_ref_1428';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_config_map_key_ref_350';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_field_ref_1429 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_field_ref_351 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -15275,11 +15275,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_field_ref_1429';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_field_ref_351';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_resource_field_ref_1430 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_resource_field_ref_352 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -15304,11 +15304,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_resource_field_ref_1430';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_resource_field_ref_352';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_secret_key_ref_1431 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_secret_key_ref_353 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -15335,23 +15335,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_1426_value_from_1427_secret_key_ref_1431';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_secret_key_ref_353';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_config_map_ref_1433[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_config_map_ref_355[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_secret_ref_1434[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_secret_ref_356[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_config_map_ref_1433[]|null,
+    config_map_ref?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_config_map_ref_355[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_secret_ref_1434[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_secret_ref_356[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -15373,11 +15373,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_config_map_ref_1433 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_config_map_ref_355 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -15402,11 +15402,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_config_map_ref_1433';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_config_map_ref_355';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_secret_ref_1434 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_secret_ref_356 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -15431,20 +15431,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_env_from_1432_secret_ref_1434';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_secret_ref_356';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435 implements PcoreValue {
-  readonly post_start: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436[]|null;
-  readonly pre_stop: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357 implements PcoreValue {
+  readonly post_start: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358[]|null;
+  readonly pre_stop: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436[]|null,
-    pre_stop?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441[]|null
+    post_start?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358[]|null,
+    pre_stop?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -15462,23 +15462,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_exec_1437[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_tcp_socket_1440[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_exec_359[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_tcp_socket_362[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_exec_1437[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_tcp_socket_1440[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_exec_359[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_tcp_socket_362[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -15500,11 +15500,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_exec_1437 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_exec_359 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -15524,13 +15524,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_exec_1437';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_exec_359';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438_http_header_1439[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360_http_header_361[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -15543,7 +15543,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438_http_header_1439[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360_http_header_361[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -15576,11 +15576,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438_http_header_1439 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360_http_header_361 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -15607,11 +15607,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_http_get_1438_http_header_1439';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360_http_header_361';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_tcp_socket_1440 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_tcp_socket_362 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -15629,23 +15629,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_post_start_1436_tcp_socket_1440';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_tcp_socket_362';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_exec_1442[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_tcp_socket_1445[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_exec_364[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_tcp_socket_367[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_exec_1442[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_tcp_socket_1445[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_exec_364[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_tcp_socket_367[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -15667,11 +15667,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_exec_1442 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_exec_364 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -15691,13 +15691,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_exec_1442';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_exec_364';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443_http_header_1444[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365_http_header_366[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -15710,7 +15710,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443_http_header_1444[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365_http_header_366[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -15743,11 +15743,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443_http_header_1444 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365_http_header_366 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -15774,11 +15774,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_http_get_1443_http_header_1444';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365_http_header_366';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_tcp_socket_1445 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_tcp_socket_367 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -15796,18 +15796,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_lifecycle_1435_pre_stop_1441_tcp_socket_1445';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_tcp_socket_367';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_exec_1447[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_exec_369[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_tcp_socket_1450[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_tcp_socket_372[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -15820,13 +15820,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_exec_1447[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_exec_369[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_tcp_socket_1450[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_tcp_socket_372[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -15869,11 +15869,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_exec_1447 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_exec_369 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -15893,13 +15893,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_exec_1447';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_exec_369';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448_http_header_1449[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370_http_header_371[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -15912,7 +15912,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448_http_header_1449[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370_http_header_371[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -15945,11 +15945,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448_http_header_1449 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370_http_header_371 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -15976,11 +15976,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_http_get_1448_http_header_1449';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370_http_header_371';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_tcp_socket_1450 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_tcp_socket_372 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -15998,11 +15998,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_liveness_probe_1446_tcp_socket_1450';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_tcp_socket_372';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_port_1451 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_port_373 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -16048,18 +16048,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_port_1451';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_port_373';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_exec_1453[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_exec_375[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_tcp_socket_1456[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_tcp_socket_378[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -16072,13 +16072,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_exec_1453[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_exec_375[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_tcp_socket_1456[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_tcp_socket_378[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -16121,11 +16121,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_exec_1453 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_exec_375 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -16145,13 +16145,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_exec_1453';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_exec_375';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454_http_header_1455[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376_http_header_377[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -16164,7 +16164,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454_http_header_1455[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376_http_header_377[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -16197,11 +16197,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454_http_header_1455 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376_http_header_377 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -16228,11 +16228,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_http_get_1454_http_header_1455';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376_http_header_377';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_tcp_socket_1456 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_tcp_socket_378 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -16250,20 +16250,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_readiness_probe_1452_tcp_socket_1456';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_tcp_socket_378';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457 implements PcoreValue {
-  readonly limits: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_limits_1458[]|null;
-  readonly requests: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_requests_1459[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379 implements PcoreValue {
+  readonly limits: Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_limits_380[]|null;
+  readonly requests: Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_requests_381[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_limits_1458[]|null,
-    requests?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_requests_1459[]|null
+    limits?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_limits_380[]|null,
+    requests?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_requests_381[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -16281,11 +16281,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_limits_1458 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_limits_380 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -16312,11 +16312,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_limits_1458';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_limits_380';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_requests_1459 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_requests_381 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -16343,18 +16343,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_resources_1457_requests_1459';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_requests_381';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_capabilities_1461[]|null;
+  readonly capabilities: Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_capabilities_383[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_se_linux_options_1462[]|null;
+  readonly se_linux_options: Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_se_linux_options_384[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -16366,12 +16366,12 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_capabilities_1461[]|null,
+    capabilities?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_capabilities_383[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_se_linux_options_1462[]|null
+    se_linux_options?: Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_se_linux_options_384[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -16409,11 +16409,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_capabilities_1461 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_capabilities_383 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -16440,11 +16440,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_capabilities_1461';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_capabilities_383';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_se_linux_options_1462 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_se_linux_options_384 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -16485,11 +16485,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_security_context_1460_se_linux_options_1462';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_se_linux_options_384';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_volume_mount_1463 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_init_container_347_volume_mount_385 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -16526,11 +16526,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_init_container_1425_volume_mount_1463';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_init_container_347_volume_mount_385';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_metadata_1464 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_metadata_386 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -16606,15 +16606,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_metadata_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_metadata_1464';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_metadata_386';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_security_context_387 implements PcoreValue {
   readonly fs_group: number|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465_se_linux_options_1466[]|null;
+  readonly se_linux_options: Kubernetes_replication_controller_spec_305_template_306_security_context_387_se_linux_options_388[]|null;
   readonly supplemental_groups: number[]|null;
 
   constructor({
@@ -16627,7 +16627,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_security_
     fs_group?: number|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465_se_linux_options_1466[]|null,
+    se_linux_options?: Kubernetes_replication_controller_spec_305_template_306_security_context_387_se_linux_options_388[]|null,
     supplemental_groups?: number[]|null
   }) {
     this.fs_group = fs_group;
@@ -16658,11 +16658,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_security_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_security_context_387';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465_se_linux_options_1466 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_security_context_387_se_linux_options_388 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -16703,28 +16703,28 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_security_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_security_context_1465_se_linux_options_1466';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_security_context_387_se_linux_options_388';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389 implements PcoreValue {
   readonly active_deadline_seconds: number|null;
-  readonly container: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468[]|null;
+  readonly container: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390[]|null;
   readonly dns_policy: string|null;
   readonly host_ipc: boolean|null;
   readonly host_network: boolean|null;
   readonly host_pid: boolean|null;
   readonly hostname: string|null;
-  readonly image_pull_secrets: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_image_pull_secrets_1507[]|null;
-  readonly init_container: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508[]|null;
+  readonly image_pull_secrets: Kubernetes_replication_controller_spec_305_template_306_spec_389_image_pull_secrets_429[]|null;
+  readonly init_container: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430[]|null;
   readonly node_name: string|null;
   readonly node_selector: {[s: string]: string}|null;
   readonly restart_policy: string|null;
-  readonly security_context: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547[]|null;
+  readonly security_context: Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469[]|null;
   readonly service_account_name: string|null;
   readonly subdomain: string|null;
   readonly termination_grace_period_seconds: number|null;
-  readonly volume: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549[]|null;
+  readonly volume: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471[]|null;
 
   constructor({
     active_deadline_seconds = null,
@@ -16746,22 +16746,22 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     volume = null
   }: {
     active_deadline_seconds?: number|null,
-    container?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468[]|null,
+    container?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390[]|null,
     dns_policy?: string|null,
     host_ipc?: boolean|null,
     host_network?: boolean|null,
     host_pid?: boolean|null,
     hostname?: string|null,
-    image_pull_secrets?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_image_pull_secrets_1507[]|null,
-    init_container?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508[]|null,
+    image_pull_secrets?: Kubernetes_replication_controller_spec_305_template_306_spec_389_image_pull_secrets_429[]|null,
+    init_container?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430[]|null,
     node_name?: string|null,
     node_selector?: {[s: string]: string}|null,
     restart_policy?: string|null,
-    security_context?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547[]|null,
+    security_context?: Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469[]|null,
     service_account_name?: string|null,
     subdomain?: string|null,
     termination_grace_period_seconds?: number|null,
-    volume?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549[]|null
+    volume?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471[]|null
   }) {
     this.active_deadline_seconds = active_deadline_seconds;
     this.container = container;
@@ -16839,29 +16839,29 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469[]|null;
-  readonly env_from: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475[]|null;
+  readonly env: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391[]|null;
+  readonly env_from: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478[]|null;
-  readonly liveness_probe: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489[]|null;
-  readonly port: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_port_1494[]|null;
-  readonly readiness_probe: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495[]|null;
-  readonly resources: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500[]|null;
-  readonly security_context: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503[]|null;
+  readonly lifecycle: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400[]|null;
+  readonly liveness_probe: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411[]|null;
+  readonly port: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_port_416[]|null;
+  readonly readiness_probe: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417[]|null;
+  readonly resources: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422[]|null;
+  readonly security_context: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_volume_mount_1506[]|null;
+  readonly volume_mount: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_volume_mount_428[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -16888,21 +16888,21 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469[]|null,
-    env_from?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475[]|null,
+    env?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391[]|null,
+    env_from?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478[]|null,
-    liveness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489[]|null,
-    port?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_port_1494[]|null,
-    readiness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495[]|null,
-    resources?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500[]|null,
-    security_context?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503[]|null,
+    lifecycle?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400[]|null,
+    liveness_probe?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411[]|null,
+    port?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_port_416[]|null,
+    readiness_probe?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417[]|null,
+    resources?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422[]|null,
+    security_context?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_volume_mount_1506[]|null,
+    volume_mount?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_volume_mount_428[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -16987,14 +16987,14 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470[]|null;
+  readonly value_from: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392[]|null;
 
   constructor({
     name,
@@ -17003,7 +17003,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470[]|null
+    value_from?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -17023,15 +17023,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_config_map_key_ref_1471[]|null;
-  readonly field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_field_ref_1472[]|null;
-  readonly resource_field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_resource_field_ref_1473[]|null;
-  readonly secret_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_secret_key_ref_1474[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_config_map_key_ref_393[]|null;
+  readonly field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_field_ref_394[]|null;
+  readonly resource_field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_resource_field_ref_395[]|null;
+  readonly secret_key_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_secret_key_ref_396[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -17039,10 +17039,10 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_config_map_key_ref_1471[]|null,
-    field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_field_ref_1472[]|null,
-    resource_field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_resource_field_ref_1473[]|null,
-    secret_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_secret_key_ref_1474[]|null
+    config_map_key_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_config_map_key_ref_393[]|null,
+    field_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_field_ref_394[]|null,
+    resource_field_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_resource_field_ref_395[]|null,
+    secret_key_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_secret_key_ref_396[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -17068,11 +17068,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_config_map_key_ref_1471 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_config_map_key_ref_393 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -17099,11 +17099,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_config_map_key_ref_1471';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_config_map_key_ref_393';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_field_ref_1472 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_field_ref_394 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -17130,11 +17130,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_field_ref_1472';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_field_ref_394';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_resource_field_ref_1473 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_resource_field_ref_395 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -17159,11 +17159,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_resource_field_ref_1473';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_resource_field_ref_395';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_secret_key_ref_1474 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_secret_key_ref_396 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -17190,23 +17190,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_1469_value_from_1470_secret_key_ref_1474';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_secret_key_ref_396';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_config_map_ref_1476[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_config_map_ref_398[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_secret_ref_1477[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_secret_ref_399[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_config_map_ref_1476[]|null,
+    config_map_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_config_map_ref_398[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_secret_ref_1477[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_secret_ref_399[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -17228,11 +17228,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_config_map_ref_1476 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_config_map_ref_398 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -17257,11 +17257,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_config_map_ref_1476';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_config_map_ref_398';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_secret_ref_1477 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_secret_ref_399 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -17286,20 +17286,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_env_from_1475_secret_ref_1477';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_secret_ref_399';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478 implements PcoreValue {
-  readonly post_start: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479[]|null;
-  readonly pre_stop: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400 implements PcoreValue {
+  readonly post_start: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401[]|null;
+  readonly pre_stop: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479[]|null,
-    pre_stop?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484[]|null
+    post_start?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401[]|null,
+    pre_stop?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -17317,23 +17317,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_exec_1480[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_tcp_socket_1483[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_exec_402[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_tcp_socket_405[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_exec_1480[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_tcp_socket_1483[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_exec_402[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_tcp_socket_405[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -17355,11 +17355,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_exec_1480 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_exec_402 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -17379,13 +17379,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_exec_1480';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_exec_402';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481_http_header_1482[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403_http_header_404[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -17398,7 +17398,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481_http_header_1482[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403_http_header_404[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -17431,11 +17431,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481_http_header_1482 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403_http_header_404 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -17462,11 +17462,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_http_get_1481_http_header_1482';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403_http_header_404';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_tcp_socket_1483 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_tcp_socket_405 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -17484,23 +17484,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_post_start_1479_tcp_socket_1483';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_tcp_socket_405';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_exec_1485[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_tcp_socket_1488[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_exec_407[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_tcp_socket_410[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_exec_1485[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_tcp_socket_1488[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_exec_407[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_tcp_socket_410[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -17522,11 +17522,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_exec_1485 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_exec_407 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -17546,13 +17546,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_exec_1485';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_exec_407';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486_http_header_1487[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408_http_header_409[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -17565,7 +17565,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486_http_header_1487[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408_http_header_409[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -17598,11 +17598,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486_http_header_1487 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408_http_header_409 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -17629,11 +17629,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_http_get_1486_http_header_1487';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408_http_header_409';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_tcp_socket_1488 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_tcp_socket_410 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -17651,18 +17651,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_lifecycle_1478_pre_stop_1484_tcp_socket_1488';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_tcp_socket_410';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_exec_1490[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_exec_412[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_tcp_socket_1493[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_tcp_socket_415[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -17675,13 +17675,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_exec_1490[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_exec_412[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_tcp_socket_1493[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_tcp_socket_415[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -17724,11 +17724,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_exec_1490 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_exec_412 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -17748,13 +17748,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_exec_1490';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_exec_412';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491_http_header_1492[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413_http_header_414[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -17767,7 +17767,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491_http_header_1492[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413_http_header_414[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -17800,11 +17800,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491_http_header_1492 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413_http_header_414 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -17831,11 +17831,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_http_get_1491_http_header_1492';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413_http_header_414';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_tcp_socket_1493 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_tcp_socket_415 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -17853,11 +17853,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_liveness_probe_1489_tcp_socket_1493';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_tcp_socket_415';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_port_1494 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_port_416 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -17903,18 +17903,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_port_1494';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_port_416';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_exec_1496[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_exec_418[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_tcp_socket_1499[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_tcp_socket_421[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -17927,13 +17927,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_exec_1496[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_exec_418[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_tcp_socket_1499[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_tcp_socket_421[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -17976,11 +17976,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_exec_1496 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_exec_418 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -18000,13 +18000,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_exec_1496';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_exec_418';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497_http_header_1498[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419_http_header_420[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -18019,7 +18019,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497_http_header_1498[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419_http_header_420[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -18052,11 +18052,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497_http_header_1498 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419_http_header_420 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -18083,11 +18083,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_http_get_1497_http_header_1498';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419_http_header_420';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_tcp_socket_1499 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_tcp_socket_421 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -18105,20 +18105,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_readiness_probe_1495_tcp_socket_1499';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_tcp_socket_421';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500 implements PcoreValue {
-  readonly limits: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_limits_1501[]|null;
-  readonly requests: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_requests_1502[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422 implements PcoreValue {
+  readonly limits: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_limits_423[]|null;
+  readonly requests: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_requests_424[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_limits_1501[]|null,
-    requests?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_requests_1502[]|null
+    limits?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_limits_423[]|null,
+    requests?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_requests_424[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -18136,11 +18136,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_limits_1501 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_limits_423 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -18167,11 +18167,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_limits_1501';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_limits_423';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_requests_1502 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_requests_424 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -18198,18 +18198,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_resources_1500_requests_1502';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_requests_424';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_capabilities_1504[]|null;
+  readonly capabilities: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_capabilities_426[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_se_linux_options_1505[]|null;
+  readonly se_linux_options: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_se_linux_options_427[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -18221,12 +18221,12 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_capabilities_1504[]|null,
+    capabilities?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_capabilities_426[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_se_linux_options_1505[]|null
+    se_linux_options?: Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_se_linux_options_427[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -18264,11 +18264,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_capabilities_1504 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_capabilities_426 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -18295,11 +18295,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_capabilities_1504';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_capabilities_426';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_se_linux_options_1505 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_se_linux_options_427 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -18340,11 +18340,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_security_context_1503_se_linux_options_1505';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_se_linux_options_427';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_volume_mount_1506 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_volume_mount_428 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -18381,11 +18381,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_container_1468_volume_mount_1506';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_volume_mount_428';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_image_pull_secrets_1507 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_image_pull_secrets_429 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -18403,29 +18403,29 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_image_pull_secrets_1507';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_image_pull_secrets_429';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509[]|null;
-  readonly env_from: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515[]|null;
+  readonly env: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431[]|null;
+  readonly env_from: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518[]|null;
-  readonly liveness_probe: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529[]|null;
-  readonly port: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_port_1534[]|null;
-  readonly readiness_probe: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535[]|null;
-  readonly resources: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540[]|null;
-  readonly security_context: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543[]|null;
+  readonly lifecycle: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440[]|null;
+  readonly liveness_probe: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451[]|null;
+  readonly port: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_port_456[]|null;
+  readonly readiness_probe: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457[]|null;
+  readonly resources: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462[]|null;
+  readonly security_context: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_volume_mount_1546[]|null;
+  readonly volume_mount: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_volume_mount_468[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -18452,21 +18452,21 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509[]|null,
-    env_from?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515[]|null,
+    env?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431[]|null,
+    env_from?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518[]|null,
-    liveness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529[]|null,
-    port?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_port_1534[]|null,
-    readiness_probe?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535[]|null,
-    resources?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540[]|null,
-    security_context?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543[]|null,
+    lifecycle?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440[]|null,
+    liveness_probe?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451[]|null,
+    port?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_port_456[]|null,
+    readiness_probe?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457[]|null,
+    resources?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462[]|null,
+    security_context?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_volume_mount_1546[]|null,
+    volume_mount?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_volume_mount_468[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -18551,14 +18551,14 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510[]|null;
+  readonly value_from: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432[]|null;
 
   constructor({
     name,
@@ -18567,7 +18567,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510[]|null
+    value_from?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -18587,15 +18587,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_config_map_key_ref_1511[]|null;
-  readonly field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_field_ref_1512[]|null;
-  readonly resource_field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_resource_field_ref_1513[]|null;
-  readonly secret_key_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_secret_key_ref_1514[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_config_map_key_ref_433[]|null;
+  readonly field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_field_ref_434[]|null;
+  readonly resource_field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_resource_field_ref_435[]|null;
+  readonly secret_key_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_secret_key_ref_436[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -18603,10 +18603,10 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_config_map_key_ref_1511[]|null,
-    field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_field_ref_1512[]|null,
-    resource_field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_resource_field_ref_1513[]|null,
-    secret_key_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_secret_key_ref_1514[]|null
+    config_map_key_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_config_map_key_ref_433[]|null,
+    field_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_field_ref_434[]|null,
+    resource_field_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_resource_field_ref_435[]|null,
+    secret_key_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_secret_key_ref_436[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -18632,11 +18632,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_config_map_key_ref_1511 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_config_map_key_ref_433 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -18663,11 +18663,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_config_map_key_ref_1511';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_config_map_key_ref_433';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_field_ref_1512 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_field_ref_434 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -18694,11 +18694,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_field_ref_1512';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_field_ref_434';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_resource_field_ref_1513 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_resource_field_ref_435 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -18723,11 +18723,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_resource_field_ref_1513';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_resource_field_ref_435';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_secret_key_ref_1514 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_secret_key_ref_436 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -18754,23 +18754,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_1509_value_from_1510_secret_key_ref_1514';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_secret_key_ref_436';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_config_map_ref_1516[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_config_map_ref_438[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_secret_ref_1517[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_secret_ref_439[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_config_map_ref_1516[]|null,
+    config_map_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_config_map_ref_438[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_secret_ref_1517[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_secret_ref_439[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -18792,11 +18792,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_config_map_ref_1516 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_config_map_ref_438 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -18821,11 +18821,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_config_map_ref_1516';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_config_map_ref_438';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_secret_ref_1517 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_secret_ref_439 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -18850,20 +18850,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_env_from_1515_secret_ref_1517';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_secret_ref_439';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518 implements PcoreValue {
-  readonly post_start: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519[]|null;
-  readonly pre_stop: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440 implements PcoreValue {
+  readonly post_start: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441[]|null;
+  readonly pre_stop: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519[]|null,
-    pre_stop?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524[]|null
+    post_start?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441[]|null,
+    pre_stop?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -18881,23 +18881,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_exec_1520[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_tcp_socket_1523[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_exec_442[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_tcp_socket_445[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_exec_1520[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_tcp_socket_1523[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_exec_442[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_tcp_socket_445[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -18919,11 +18919,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_exec_1520 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_exec_442 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -18943,13 +18943,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_exec_1520';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_exec_442';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521_http_header_1522[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443_http_header_444[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -18962,7 +18962,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521_http_header_1522[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443_http_header_444[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -18995,11 +18995,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521_http_header_1522 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443_http_header_444 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -19026,11 +19026,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_http_get_1521_http_header_1522';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443_http_header_444';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_tcp_socket_1523 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_tcp_socket_445 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -19048,23 +19048,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_post_start_1519_tcp_socket_1523';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_tcp_socket_445';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_exec_1525[]|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526[]|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_tcp_socket_1528[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_exec_447[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_tcp_socket_450[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_exec_1525[]|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526[]|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_tcp_socket_1528[]|null
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_exec_447[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_tcp_socket_450[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -19086,11 +19086,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_exec_1525 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_exec_447 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -19110,13 +19110,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_exec_1525';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_exec_447';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526_http_header_1527[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448_http_header_449[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -19129,7 +19129,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526_http_header_1527[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448_http_header_449[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -19162,11 +19162,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526_http_header_1527 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448_http_header_449 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -19193,11 +19193,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_http_get_1526_http_header_1527';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448_http_header_449';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_tcp_socket_1528 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_tcp_socket_450 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -19215,18 +19215,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_lifecycle_1518_pre_stop_1524_tcp_socket_1528';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_tcp_socket_450';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_exec_1530[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_exec_452[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_tcp_socket_1533[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_tcp_socket_455[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -19239,13 +19239,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_exec_1530[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_exec_452[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_tcp_socket_1533[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_tcp_socket_455[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -19288,11 +19288,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_exec_1530 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_exec_452 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -19312,13 +19312,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_exec_1530';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_exec_452';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531_http_header_1532[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453_http_header_454[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -19331,7 +19331,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531_http_header_1532[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453_http_header_454[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -19364,11 +19364,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531_http_header_1532 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453_http_header_454 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -19395,11 +19395,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_http_get_1531_http_header_1532';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453_http_header_454';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_tcp_socket_1533 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_tcp_socket_455 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -19417,11 +19417,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_liveness_probe_1529_tcp_socket_1533';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_tcp_socket_455';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_port_1534 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_port_456 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -19467,18 +19467,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_port_1534';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_port_456';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535 implements PcoreValue {
-  readonly exec: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_exec_1536[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457 implements PcoreValue {
+  readonly exec: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_exec_458[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537[]|null;
+  readonly http_get: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_tcp_socket_1539[]|null;
+  readonly tcp_socket: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_tcp_socket_461[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -19491,13 +19491,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_exec_1536[]|null,
+    exec?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_exec_458[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537[]|null,
+    http_get?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_tcp_socket_1539[]|null,
+    tcp_socket?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_tcp_socket_461[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -19540,11 +19540,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_exec_1536 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_exec_458 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -19564,13 +19564,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_exec_1536';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_exec_458';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537_http_header_1538[]|null;
+  readonly http_header: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459_http_header_460[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -19583,7 +19583,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537_http_header_1538[]|null,
+    http_header?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459_http_header_460[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -19616,11 +19616,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537_http_header_1538 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459_http_header_460 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -19647,11 +19647,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_http_get_1537_http_header_1538';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459_http_header_460';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_tcp_socket_1539 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_tcp_socket_461 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -19669,20 +19669,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_readiness_probe_1535_tcp_socket_1539';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_tcp_socket_461';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540 implements PcoreValue {
-  readonly limits: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_limits_1541[]|null;
-  readonly requests: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_requests_1542[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462 implements PcoreValue {
+  readonly limits: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_limits_463[]|null;
+  readonly requests: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_requests_464[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_limits_1541[]|null,
-    requests?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_requests_1542[]|null
+    limits?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_limits_463[]|null,
+    requests?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_requests_464[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -19700,11 +19700,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_limits_1541 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_limits_463 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -19731,11 +19731,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_limits_1541';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_limits_463';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_requests_1542 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_requests_464 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -19762,18 +19762,18 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_resources_1540_requests_1542';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_requests_464';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_capabilities_1544[]|null;
+  readonly capabilities: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_capabilities_466[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_se_linux_options_1545[]|null;
+  readonly se_linux_options: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_se_linux_options_467[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -19785,12 +19785,12 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_capabilities_1544[]|null,
+    capabilities?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_capabilities_466[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_se_linux_options_1545[]|null
+    se_linux_options?: Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_se_linux_options_467[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -19828,11 +19828,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_capabilities_1544 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_capabilities_466 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -19859,11 +19859,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_capabilities_1544';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_capabilities_466';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_se_linux_options_1545 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_se_linux_options_467 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -19904,11 +19904,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_security_context_1543_se_linux_options_1545';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_se_linux_options_467';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_volume_mount_1546 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_volume_mount_468 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -19945,15 +19945,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_init_container_1508_volume_mount_1546';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_volume_mount_468';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469 implements PcoreValue {
   readonly fs_group: number|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547_se_linux_options_1548[]|null;
+  readonly se_linux_options: Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469_se_linux_options_470[]|null;
   readonly supplemental_groups: number[]|null;
 
   constructor({
@@ -19966,7 +19966,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     fs_group?: number|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547_se_linux_options_1548[]|null,
+    se_linux_options?: Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469_se_linux_options_470[]|null,
     supplemental_groups?: number[]|null
   }) {
     this.fs_group = fs_group;
@@ -19997,11 +19997,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547_se_linux_options_1548 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469_se_linux_options_470 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -20042,36 +20042,36 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_security_context_1547_se_linux_options_1548';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469_se_linux_options_470';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549 implements PcoreValue {
-  readonly aws_elastic_block_store: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_aws_elastic_block_store_1550[]|null;
-  readonly azure_disk: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_disk_1551[]|null;
-  readonly azure_file: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_file_1552[]|null;
-  readonly ceph_fs: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553[]|null;
-  readonly cinder: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_cinder_1555[]|null;
-  readonly config_map: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556[]|null;
-  readonly downward_api: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558[]|null;
-  readonly empty_dir: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_empty_dir_1562[]|null;
-  readonly fc: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_fc_1563[]|null;
-  readonly flex_volume: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564[]|null;
-  readonly flocker: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flocker_1566[]|null;
-  readonly gce_persistent_disk: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_gce_persistent_disk_1567[]|null;
-  readonly git_repo: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_git_repo_1568[]|null;
-  readonly glusterfs: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_glusterfs_1569[]|null;
-  readonly host_path: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_host_path_1570[]|null;
-  readonly iscsi: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_iscsi_1571[]|null;
-  readonly local: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_local_1572[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471 implements PcoreValue {
+  readonly aws_elastic_block_store: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_aws_elastic_block_store_472[]|null;
+  readonly azure_disk: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_disk_473[]|null;
+  readonly azure_file: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_file_474[]|null;
+  readonly ceph_fs: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475[]|null;
+  readonly cinder: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_cinder_477[]|null;
+  readonly config_map: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478[]|null;
+  readonly downward_api: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480[]|null;
+  readonly empty_dir: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_empty_dir_484[]|null;
+  readonly fc: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_fc_485[]|null;
+  readonly flex_volume: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486[]|null;
+  readonly flocker: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flocker_488[]|null;
+  readonly gce_persistent_disk: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_gce_persistent_disk_489[]|null;
+  readonly git_repo: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_git_repo_490[]|null;
+  readonly glusterfs: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_glusterfs_491[]|null;
+  readonly host_path: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_host_path_492[]|null;
+  readonly iscsi: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_iscsi_493[]|null;
+  readonly local: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_local_494[]|null;
   readonly name: string|null;
-  readonly nfs: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_nfs_1573[]|null;
-  readonly persistent_volume_claim: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_persistent_volume_claim_1574[]|null;
-  readonly photon_persistent_disk: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_photon_persistent_disk_1575[]|null;
-  readonly quobyte: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_quobyte_1576[]|null;
-  readonly rbd: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577[]|null;
-  readonly secret: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579[]|null;
-  readonly vsphere_volume: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_vsphere_volume_1581[]|null;
+  readonly nfs: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_nfs_495[]|null;
+  readonly persistent_volume_claim: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_persistent_volume_claim_496[]|null;
+  readonly photon_persistent_disk: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_photon_persistent_disk_497[]|null;
+  readonly quobyte: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_quobyte_498[]|null;
+  readonly rbd: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499[]|null;
+  readonly secret: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501[]|null;
+  readonly vsphere_volume: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_vsphere_volume_503[]|null;
 
   constructor({
     aws_elastic_block_store = null,
@@ -20100,31 +20100,31 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     secret = null,
     vsphere_volume = null
   }: {
-    aws_elastic_block_store?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_aws_elastic_block_store_1550[]|null,
-    azure_disk?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_disk_1551[]|null,
-    azure_file?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_file_1552[]|null,
-    ceph_fs?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553[]|null,
-    cinder?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_cinder_1555[]|null,
-    config_map?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556[]|null,
-    downward_api?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558[]|null,
-    empty_dir?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_empty_dir_1562[]|null,
-    fc?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_fc_1563[]|null,
-    flex_volume?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564[]|null,
-    flocker?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flocker_1566[]|null,
-    gce_persistent_disk?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_gce_persistent_disk_1567[]|null,
-    git_repo?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_git_repo_1568[]|null,
-    glusterfs?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_glusterfs_1569[]|null,
-    host_path?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_host_path_1570[]|null,
-    iscsi?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_iscsi_1571[]|null,
-    local?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_local_1572[]|null,
+    aws_elastic_block_store?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_aws_elastic_block_store_472[]|null,
+    azure_disk?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_disk_473[]|null,
+    azure_file?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_file_474[]|null,
+    ceph_fs?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475[]|null,
+    cinder?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_cinder_477[]|null,
+    config_map?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478[]|null,
+    downward_api?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480[]|null,
+    empty_dir?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_empty_dir_484[]|null,
+    fc?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_fc_485[]|null,
+    flex_volume?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486[]|null,
+    flocker?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flocker_488[]|null,
+    gce_persistent_disk?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_gce_persistent_disk_489[]|null,
+    git_repo?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_git_repo_490[]|null,
+    glusterfs?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_glusterfs_491[]|null,
+    host_path?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_host_path_492[]|null,
+    iscsi?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_iscsi_493[]|null,
+    local?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_local_494[]|null,
     name?: string|null,
-    nfs?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_nfs_1573[]|null,
-    persistent_volume_claim?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_persistent_volume_claim_1574[]|null,
-    photon_persistent_disk?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_photon_persistent_disk_1575[]|null,
-    quobyte?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_quobyte_1576[]|null,
-    rbd?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577[]|null,
-    secret?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579[]|null,
-    vsphere_volume?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_vsphere_volume_1581[]|null
+    nfs?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_nfs_495[]|null,
+    persistent_volume_claim?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_persistent_volume_claim_496[]|null,
+    photon_persistent_disk?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_photon_persistent_disk_497[]|null,
+    quobyte?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_quobyte_498[]|null,
+    rbd?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499[]|null,
+    secret?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501[]|null,
+    vsphere_volume?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_vsphere_volume_503[]|null
   }) {
     this.aws_elastic_block_store = aws_elastic_block_store;
     this.azure_disk = azure_disk;
@@ -20234,11 +20234,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_aws_elastic_block_store_1550 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_aws_elastic_block_store_472 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -20277,11 +20277,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_aws_elastic_block_store_1550';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_aws_elastic_block_store_472';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_disk_1551 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_disk_473 implements PcoreValue {
   readonly caching_mode: string;
   readonly data_disk_uri: string;
   readonly disk_name: string;
@@ -20323,11 +20323,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_disk_1551';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_disk_473';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_file_1552 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_file_474 implements PcoreValue {
   readonly secret_name: string;
   readonly share_name: string;
   readonly read_only: boolean|null;
@@ -20357,16 +20357,16 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_azure_file_1552';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_file_474';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475 implements PcoreValue {
   readonly monitors: string[];
   readonly path: string|null;
   readonly read_only: boolean|null;
   readonly secret_file: string|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553_secret_ref_1554[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475_secret_ref_476[]|null;
   readonly user: string|null;
 
   constructor({
@@ -20381,7 +20381,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     path?: string|null,
     read_only?: boolean|null,
     secret_file?: string|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553_secret_ref_1554[]|null,
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475_secret_ref_476[]|null,
     user?: string|null
   }) {
     this.monitors = monitors;
@@ -20414,11 +20414,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553_secret_ref_1554 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475_secret_ref_476 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -20438,11 +20438,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_ceph_fs_1553_secret_ref_1554';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475_secret_ref_476';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_cinder_1555 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_cinder_477 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly read_only: boolean|null;
@@ -20474,13 +20474,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_cinder_1555';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_cinder_477';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556_items_1557[]|null;
+  readonly items: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478_items_479[]|null;
   readonly name: string|null;
 
   constructor({
@@ -20489,7 +20489,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556_items_1557[]|null,
+    items?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478_items_479[]|null,
     name?: string|null
   }) {
     this.default_mode = default_mode;
@@ -20512,11 +20512,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556_items_1557 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478_items_479 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -20550,20 +20550,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_config_map_1556_items_1557';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478_items_479';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559[]|null;
+  readonly items: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481[]|null;
 
   constructor({
     default_mode = null,
     items = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559[]|null
+    items?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481[]|null
   }) {
     this.default_mode = default_mode;
     this.items = items;
@@ -20581,15 +20581,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559 implements PcoreValue {
-  readonly field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_field_ref_1560[];
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481 implements PcoreValue {
+  readonly field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_field_ref_482[];
   readonly path: string;
   readonly mode: number|null;
-  readonly resource_field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_resource_field_ref_1561[]|null;
+  readonly resource_field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_resource_field_ref_483[]|null;
 
   constructor({
     field_ref,
@@ -20597,10 +20597,10 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     mode = null,
     resource_field_ref = null
   }: {
-    field_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_field_ref_1560[],
+    field_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_field_ref_482[],
     path: string,
     mode?: number|null,
-    resource_field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_resource_field_ref_1561[]|null
+    resource_field_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_resource_field_ref_483[]|null
   }) {
     this.field_ref = field_ref;
     this.path = path;
@@ -20622,11 +20622,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_field_ref_1560 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_field_ref_482 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -20653,11 +20653,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_field_ref_1560';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_field_ref_482';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_resource_field_ref_1561 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_resource_field_ref_483 implements PcoreValue {
   readonly container_name: string;
   readonly resource: string;
   readonly quantity: string|null;
@@ -20687,11 +20687,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_downward_api_1558_items_1559_resource_field_ref_1561';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_resource_field_ref_483';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_empty_dir_1562 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_empty_dir_484 implements PcoreValue {
   readonly medium: string|null;
 
   constructor({
@@ -20711,11 +20711,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_empty_dir_1562';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_empty_dir_484';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_fc_1563 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_fc_485 implements PcoreValue {
   readonly lun: number;
   readonly target_ww_ns: string[];
   readonly fs_type: string|null;
@@ -20752,16 +20752,16 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_fc_1563';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_fc_485';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486 implements PcoreValue {
   readonly driver: string;
   readonly fs_type: string|null;
   readonly options: {[s: string]: string}|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564_secret_ref_1565[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486_secret_ref_487[]|null;
 
   constructor({
     driver,
@@ -20774,7 +20774,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     fs_type?: string|null,
     options?: {[s: string]: string}|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564_secret_ref_1565[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486_secret_ref_487[]|null
   }) {
     this.driver = driver;
     this.fs_type = fs_type;
@@ -20802,11 +20802,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564_secret_ref_1565 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486_secret_ref_487 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -20826,11 +20826,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flex_volume_1564_secret_ref_1565';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486_secret_ref_487';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flocker_1566 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flocker_488 implements PcoreValue {
   readonly dataset_name: string|null;
   readonly dataset_uuid: string|null;
 
@@ -20857,11 +20857,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_flocker_1566';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flocker_488';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_gce_persistent_disk_1567 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_gce_persistent_disk_489 implements PcoreValue {
   readonly pd_name: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -20900,11 +20900,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_gce_persistent_disk_1567';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_gce_persistent_disk_489';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_git_repo_1568 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_git_repo_490 implements PcoreValue {
   readonly directory: string|null;
   readonly repository: string|null;
   readonly revision: string|null;
@@ -20938,11 +20938,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_git_repo_1568';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_git_repo_490';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_glusterfs_1569 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_glusterfs_491 implements PcoreValue {
   readonly endpoints_name: string;
   readonly path: string;
   readonly read_only: boolean|null;
@@ -20972,11 +20972,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_glusterfs_1569';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_glusterfs_491';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_host_path_1570 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_host_path_492 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -20996,11 +20996,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_host_path_1570';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_host_path_492';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_iscsi_1571 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_iscsi_493 implements PcoreValue {
   readonly iqn: string;
   readonly target_portal: string;
   readonly fs_type: string|null;
@@ -21051,11 +21051,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_iscsi_1571';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_iscsi_493';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_local_1572 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_local_494 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -21075,11 +21075,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_local_1572';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_local_494';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_nfs_1573 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_nfs_495 implements PcoreValue {
   readonly path: string;
   readonly server: string;
   readonly read_only: boolean|null;
@@ -21109,11 +21109,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_nfs_1573';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_nfs_495';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_persistent_volume_claim_1574 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_persistent_volume_claim_496 implements PcoreValue {
   readonly claim_name: string|null;
   readonly read_only: boolean|null;
 
@@ -21140,11 +21140,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_persistent_volume_claim_1574';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_persistent_volume_claim_496';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_photon_persistent_disk_1575 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_photon_persistent_disk_497 implements PcoreValue {
   readonly pd_id: string;
   readonly fs_type: string|null;
 
@@ -21169,11 +21169,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_photon_persistent_disk_1575';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_photon_persistent_disk_497';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_quobyte_1576 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_quobyte_498 implements PcoreValue {
   readonly registry: string;
   readonly volume: string;
   readonly group: string|null;
@@ -21217,11 +21217,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_quobyte_1576';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_quobyte_498';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499 implements PcoreValue {
   readonly ceph_monitors: string[];
   readonly rbd_image: string;
   readonly fs_type: string|null;
@@ -21229,7 +21229,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   readonly rados_user: string|null;
   readonly rbd_pool: string|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577_secret_ref_1578[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499_secret_ref_500[]|null;
 
   constructor({
     ceph_monitors,
@@ -21248,7 +21248,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     rados_user?: string|null,
     rbd_pool?: string|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577_secret_ref_1578[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499_secret_ref_500[]|null
   }) {
     this.ceph_monitors = ceph_monitors;
     this.rbd_image = rbd_image;
@@ -21286,11 +21286,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577_secret_ref_1578 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499_secret_ref_500 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -21310,13 +21310,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_rbd_1577_secret_ref_1578';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499_secret_ref_500';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579_items_1580[]|null;
+  readonly items: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501_items_502[]|null;
   readonly optional: boolean|null;
   readonly secret_name: string|null;
 
@@ -21327,7 +21327,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
     secret_name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579_items_1580[]|null,
+    items?: Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501_items_502[]|null,
     optional?: boolean|null,
     secret_name?: string|null
   }) {
@@ -21355,11 +21355,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579_items_1580 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501_items_502 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -21393,11 +21393,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_secret_1579_items_1580';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501_items_502';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_vsphere_volume_1581 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_vsphere_volume_503 implements PcoreValue {
   readonly volume_path: string;
   readonly fs_type: string|null;
 
@@ -21422,36 +21422,36 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_spec_1467
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_spec_1467_volume_1549_vsphere_volume_1581';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_vsphere_volume_503';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582 implements PcoreValue {
-  readonly aws_elastic_block_store: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_aws_elastic_block_store_1583[]|null;
-  readonly azure_disk: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_disk_1584[]|null;
-  readonly azure_file: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_file_1585[]|null;
-  readonly ceph_fs: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586[]|null;
-  readonly cinder: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_cinder_1588[]|null;
-  readonly config_map: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589[]|null;
-  readonly downward_api: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591[]|null;
-  readonly empty_dir: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_empty_dir_1595[]|null;
-  readonly fc: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_fc_1596[]|null;
-  readonly flex_volume: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597[]|null;
-  readonly flocker: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flocker_1599[]|null;
-  readonly gce_persistent_disk: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_gce_persistent_disk_1600[]|null;
-  readonly git_repo: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_git_repo_1601[]|null;
-  readonly glusterfs: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_glusterfs_1602[]|null;
-  readonly host_path: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_host_path_1603[]|null;
-  readonly iscsi: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_iscsi_1604[]|null;
-  readonly local: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_local_1605[]|null;
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504 implements PcoreValue {
+  readonly aws_elastic_block_store: Kubernetes_replication_controller_spec_305_template_306_volume_504_aws_elastic_block_store_505[]|null;
+  readonly azure_disk: Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_disk_506[]|null;
+  readonly azure_file: Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_file_507[]|null;
+  readonly ceph_fs: Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508[]|null;
+  readonly cinder: Kubernetes_replication_controller_spec_305_template_306_volume_504_cinder_510[]|null;
+  readonly config_map: Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511[]|null;
+  readonly downward_api: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513[]|null;
+  readonly empty_dir: Kubernetes_replication_controller_spec_305_template_306_volume_504_empty_dir_517[]|null;
+  readonly fc: Kubernetes_replication_controller_spec_305_template_306_volume_504_fc_518[]|null;
+  readonly flex_volume: Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519[]|null;
+  readonly flocker: Kubernetes_replication_controller_spec_305_template_306_volume_504_flocker_521[]|null;
+  readonly gce_persistent_disk: Kubernetes_replication_controller_spec_305_template_306_volume_504_gce_persistent_disk_522[]|null;
+  readonly git_repo: Kubernetes_replication_controller_spec_305_template_306_volume_504_git_repo_523[]|null;
+  readonly glusterfs: Kubernetes_replication_controller_spec_305_template_306_volume_504_glusterfs_524[]|null;
+  readonly host_path: Kubernetes_replication_controller_spec_305_template_306_volume_504_host_path_525[]|null;
+  readonly iscsi: Kubernetes_replication_controller_spec_305_template_306_volume_504_iscsi_526[]|null;
+  readonly local: Kubernetes_replication_controller_spec_305_template_306_volume_504_local_527[]|null;
   readonly name: string|null;
-  readonly nfs: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_nfs_1606[]|null;
-  readonly persistent_volume_claim: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_persistent_volume_claim_1607[]|null;
-  readonly photon_persistent_disk: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_photon_persistent_disk_1608[]|null;
-  readonly quobyte: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_quobyte_1609[]|null;
-  readonly rbd: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610[]|null;
-  readonly secret: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612[]|null;
-  readonly vsphere_volume: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_vsphere_volume_1614[]|null;
+  readonly nfs: Kubernetes_replication_controller_spec_305_template_306_volume_504_nfs_528[]|null;
+  readonly persistent_volume_claim: Kubernetes_replication_controller_spec_305_template_306_volume_504_persistent_volume_claim_529[]|null;
+  readonly photon_persistent_disk: Kubernetes_replication_controller_spec_305_template_306_volume_504_photon_persistent_disk_530[]|null;
+  readonly quobyte: Kubernetes_replication_controller_spec_305_template_306_volume_504_quobyte_531[]|null;
+  readonly rbd: Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532[]|null;
+  readonly secret: Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534[]|null;
+  readonly vsphere_volume: Kubernetes_replication_controller_spec_305_template_306_volume_504_vsphere_volume_536[]|null;
 
   constructor({
     aws_elastic_block_store = null,
@@ -21480,31 +21480,31 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     secret = null,
     vsphere_volume = null
   }: {
-    aws_elastic_block_store?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_aws_elastic_block_store_1583[]|null,
-    azure_disk?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_disk_1584[]|null,
-    azure_file?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_file_1585[]|null,
-    ceph_fs?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586[]|null,
-    cinder?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_cinder_1588[]|null,
-    config_map?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589[]|null,
-    downward_api?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591[]|null,
-    empty_dir?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_empty_dir_1595[]|null,
-    fc?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_fc_1596[]|null,
-    flex_volume?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597[]|null,
-    flocker?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flocker_1599[]|null,
-    gce_persistent_disk?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_gce_persistent_disk_1600[]|null,
-    git_repo?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_git_repo_1601[]|null,
-    glusterfs?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_glusterfs_1602[]|null,
-    host_path?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_host_path_1603[]|null,
-    iscsi?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_iscsi_1604[]|null,
-    local?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_local_1605[]|null,
+    aws_elastic_block_store?: Kubernetes_replication_controller_spec_305_template_306_volume_504_aws_elastic_block_store_505[]|null,
+    azure_disk?: Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_disk_506[]|null,
+    azure_file?: Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_file_507[]|null,
+    ceph_fs?: Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508[]|null,
+    cinder?: Kubernetes_replication_controller_spec_305_template_306_volume_504_cinder_510[]|null,
+    config_map?: Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511[]|null,
+    downward_api?: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513[]|null,
+    empty_dir?: Kubernetes_replication_controller_spec_305_template_306_volume_504_empty_dir_517[]|null,
+    fc?: Kubernetes_replication_controller_spec_305_template_306_volume_504_fc_518[]|null,
+    flex_volume?: Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519[]|null,
+    flocker?: Kubernetes_replication_controller_spec_305_template_306_volume_504_flocker_521[]|null,
+    gce_persistent_disk?: Kubernetes_replication_controller_spec_305_template_306_volume_504_gce_persistent_disk_522[]|null,
+    git_repo?: Kubernetes_replication_controller_spec_305_template_306_volume_504_git_repo_523[]|null,
+    glusterfs?: Kubernetes_replication_controller_spec_305_template_306_volume_504_glusterfs_524[]|null,
+    host_path?: Kubernetes_replication_controller_spec_305_template_306_volume_504_host_path_525[]|null,
+    iscsi?: Kubernetes_replication_controller_spec_305_template_306_volume_504_iscsi_526[]|null,
+    local?: Kubernetes_replication_controller_spec_305_template_306_volume_504_local_527[]|null,
     name?: string|null,
-    nfs?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_nfs_1606[]|null,
-    persistent_volume_claim?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_persistent_volume_claim_1607[]|null,
-    photon_persistent_disk?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_photon_persistent_disk_1608[]|null,
-    quobyte?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_quobyte_1609[]|null,
-    rbd?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610[]|null,
-    secret?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612[]|null,
-    vsphere_volume?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_vsphere_volume_1614[]|null
+    nfs?: Kubernetes_replication_controller_spec_305_template_306_volume_504_nfs_528[]|null,
+    persistent_volume_claim?: Kubernetes_replication_controller_spec_305_template_306_volume_504_persistent_volume_claim_529[]|null,
+    photon_persistent_disk?: Kubernetes_replication_controller_spec_305_template_306_volume_504_photon_persistent_disk_530[]|null,
+    quobyte?: Kubernetes_replication_controller_spec_305_template_306_volume_504_quobyte_531[]|null,
+    rbd?: Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532[]|null,
+    secret?: Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534[]|null,
+    vsphere_volume?: Kubernetes_replication_controller_spec_305_template_306_volume_504_vsphere_volume_536[]|null
   }) {
     this.aws_elastic_block_store = aws_elastic_block_store;
     this.azure_disk = azure_disk;
@@ -21614,11 +21614,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_aws_elastic_block_store_1583 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_aws_elastic_block_store_505 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -21657,11 +21657,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_aws_elastic_block_store_1583';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_aws_elastic_block_store_505';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_disk_1584 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_disk_506 implements PcoreValue {
   readonly caching_mode: string;
   readonly data_disk_uri: string;
   readonly disk_name: string;
@@ -21703,11 +21703,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_disk_1584';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_disk_506';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_file_1585 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_file_507 implements PcoreValue {
   readonly secret_name: string;
   readonly share_name: string;
   readonly read_only: boolean|null;
@@ -21737,16 +21737,16 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_azure_file_1585';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_file_507';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508 implements PcoreValue {
   readonly monitors: string[];
   readonly path: string|null;
   readonly read_only: boolean|null;
   readonly secret_file: string|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586_secret_ref_1587[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508_secret_ref_509[]|null;
   readonly user: string|null;
 
   constructor({
@@ -21761,7 +21761,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     path?: string|null,
     read_only?: boolean|null,
     secret_file?: string|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586_secret_ref_1587[]|null,
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508_secret_ref_509[]|null,
     user?: string|null
   }) {
     this.monitors = monitors;
@@ -21794,11 +21794,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586_secret_ref_1587 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508_secret_ref_509 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -21818,11 +21818,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_ceph_fs_1586_secret_ref_1587';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508_secret_ref_509';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_cinder_1588 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_cinder_510 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly read_only: boolean|null;
@@ -21854,13 +21854,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_cinder_1588';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_cinder_510';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589_items_1590[]|null;
+  readonly items: Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511_items_512[]|null;
   readonly name: string|null;
 
   constructor({
@@ -21869,7 +21869,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589_items_1590[]|null,
+    items?: Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511_items_512[]|null,
     name?: string|null
   }) {
     this.default_mode = default_mode;
@@ -21892,11 +21892,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589_items_1590 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511_items_512 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -21930,20 +21930,20 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_config_map_1589_items_1590';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511_items_512';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592[]|null;
+  readonly items: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514[]|null;
 
   constructor({
     default_mode = null,
     items = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592[]|null
+    items?: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514[]|null
   }) {
     this.default_mode = default_mode;
     this.items = items;
@@ -21961,15 +21961,15 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592 implements PcoreValue {
-  readonly field_ref: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_field_ref_1593[];
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514 implements PcoreValue {
+  readonly field_ref: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_field_ref_515[];
   readonly path: string;
   readonly mode: number|null;
-  readonly resource_field_ref: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_resource_field_ref_1594[]|null;
+  readonly resource_field_ref: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_resource_field_ref_516[]|null;
 
   constructor({
     field_ref,
@@ -21977,10 +21977,10 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     mode = null,
     resource_field_ref = null
   }: {
-    field_ref: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_field_ref_1593[],
+    field_ref: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_field_ref_515[],
     path: string,
     mode?: number|null,
-    resource_field_ref?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_resource_field_ref_1594[]|null
+    resource_field_ref?: Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_resource_field_ref_516[]|null
   }) {
     this.field_ref = field_ref;
     this.path = path;
@@ -22002,11 +22002,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_field_ref_1593 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_field_ref_515 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -22033,11 +22033,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_field_ref_1593';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_field_ref_515';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_resource_field_ref_1594 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_resource_field_ref_516 implements PcoreValue {
   readonly container_name: string;
   readonly resource: string;
   readonly quantity: string|null;
@@ -22067,11 +22067,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_downward_api_1591_items_1592_resource_field_ref_1594';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_resource_field_ref_516';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_empty_dir_1595 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_empty_dir_517 implements PcoreValue {
   readonly medium: string|null;
 
   constructor({
@@ -22091,11 +22091,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_empty_dir_1595';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_empty_dir_517';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_fc_1596 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_fc_518 implements PcoreValue {
   readonly lun: number;
   readonly target_ww_ns: string[];
   readonly fs_type: string|null;
@@ -22132,16 +22132,16 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_fc_1596';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_fc_518';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519 implements PcoreValue {
   readonly driver: string;
   readonly fs_type: string|null;
   readonly options: {[s: string]: string}|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597_secret_ref_1598[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519_secret_ref_520[]|null;
 
   constructor({
     driver,
@@ -22154,7 +22154,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     fs_type?: string|null,
     options?: {[s: string]: string}|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597_secret_ref_1598[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519_secret_ref_520[]|null
   }) {
     this.driver = driver;
     this.fs_type = fs_type;
@@ -22182,11 +22182,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597_secret_ref_1598 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519_secret_ref_520 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -22206,11 +22206,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flex_volume_1597_secret_ref_1598';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519_secret_ref_520';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flocker_1599 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_flocker_521 implements PcoreValue {
   readonly dataset_name: string|null;
   readonly dataset_uuid: string|null;
 
@@ -22237,11 +22237,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_flocker_1599';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_flocker_521';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_gce_persistent_disk_1600 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_gce_persistent_disk_522 implements PcoreValue {
   readonly pd_name: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -22280,11 +22280,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_gce_persistent_disk_1600';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_gce_persistent_disk_522';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_git_repo_1601 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_git_repo_523 implements PcoreValue {
   readonly directory: string|null;
   readonly repository: string|null;
   readonly revision: string|null;
@@ -22318,11 +22318,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_git_repo_1601';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_git_repo_523';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_glusterfs_1602 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_glusterfs_524 implements PcoreValue {
   readonly endpoints_name: string;
   readonly path: string;
   readonly read_only: boolean|null;
@@ -22352,11 +22352,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_glusterfs_1602';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_glusterfs_524';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_host_path_1603 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_host_path_525 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -22376,11 +22376,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_host_path_1603';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_host_path_525';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_iscsi_1604 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_iscsi_526 implements PcoreValue {
   readonly iqn: string;
   readonly target_portal: string;
   readonly fs_type: string|null;
@@ -22431,11 +22431,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_iscsi_1604';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_iscsi_526';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_local_1605 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_local_527 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -22455,11 +22455,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_local_1605';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_local_527';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_nfs_1606 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_nfs_528 implements PcoreValue {
   readonly path: string;
   readonly server: string;
   readonly read_only: boolean|null;
@@ -22489,11 +22489,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_nfs_1606';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_nfs_528';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_persistent_volume_claim_1607 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_persistent_volume_claim_529 implements PcoreValue {
   readonly claim_name: string|null;
   readonly read_only: boolean|null;
 
@@ -22520,11 +22520,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_persistent_volume_claim_1607';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_persistent_volume_claim_529';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_photon_persistent_disk_1608 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_photon_persistent_disk_530 implements PcoreValue {
   readonly pd_id: string;
   readonly fs_type: string|null;
 
@@ -22549,11 +22549,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_photon_persistent_disk_1608';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_photon_persistent_disk_530';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_quobyte_1609 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_quobyte_531 implements PcoreValue {
   readonly registry: string;
   readonly volume: string;
   readonly group: string|null;
@@ -22597,11 +22597,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_quobyte_1609';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_quobyte_531';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532 implements PcoreValue {
   readonly ceph_monitors: string[];
   readonly rbd_image: string;
   readonly fs_type: string|null;
@@ -22609,7 +22609,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   readonly rados_user: string|null;
   readonly rbd_pool: string|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610_secret_ref_1611[]|null;
+  readonly secret_ref: Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532_secret_ref_533[]|null;
 
   constructor({
     ceph_monitors,
@@ -22628,7 +22628,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     rados_user?: string|null,
     rbd_pool?: string|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610_secret_ref_1611[]|null
+    secret_ref?: Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532_secret_ref_533[]|null
   }) {
     this.ceph_monitors = ceph_monitors;
     this.rbd_image = rbd_image;
@@ -22666,11 +22666,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610_secret_ref_1611 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532_secret_ref_533 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -22690,13 +22690,13 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_rbd_1610_secret_ref_1611';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532_secret_ref_533';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612_items_1613[]|null;
+  readonly items: Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534_items_535[]|null;
   readonly optional: boolean|null;
   readonly secret_name: string|null;
 
@@ -22707,7 +22707,7 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
     secret_name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612_items_1613[]|null,
+    items?: Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534_items_535[]|null,
     optional?: boolean|null,
     secret_name?: string|null
   }) {
@@ -22735,11 +22735,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612_items_1613 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534_items_535 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -22773,11 +22773,11 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_secret_1612_items_1613';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534_items_535';
   }
 }
 
-export class Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_vsphere_volume_1614 implements PcoreValue {
+export class Kubernetes_replication_controller_spec_305_template_306_volume_504_vsphere_volume_536 implements PcoreValue {
   readonly volume_path: string;
   readonly fs_type: string|null;
 
@@ -22802,23 +22802,23 @@ export class Kubernetes_replication_controller_spec_1383_template_1384_volume_15
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_1383_template_1384_volume_1582_vsphere_volume_1614';
+    return 'TerraformKubernetes::Kubernetes_replication_controller_spec_305_template_306_volume_504_vsphere_volume_536';
   }
 }
 
 export class Kubernetes_resource_quota implements PcoreValue {
-  readonly metadata: Kubernetes_resource_quota_metadata_1615[];
+  readonly metadata: Kubernetes_resource_quota_metadata_537[];
   readonly kubernetes_resource_quota_id: string|null;
-  readonly spec: Kubernetes_resource_quota_spec_1616[]|null;
+  readonly spec: Kubernetes_resource_quota_spec_538[]|null;
 
   constructor({
     metadata,
     kubernetes_resource_quota_id = null,
     spec = null
   }: {
-    metadata: Kubernetes_resource_quota_metadata_1615[],
+    metadata: Kubernetes_resource_quota_metadata_537[],
     kubernetes_resource_quota_id?: string|null,
-    spec?: Kubernetes_resource_quota_spec_1616[]|null
+    spec?: Kubernetes_resource_quota_spec_538[]|null
   }) {
     this.metadata = metadata;
     this.kubernetes_resource_quota_id = kubernetes_resource_quota_id;
@@ -22852,7 +22852,7 @@ export class Kubernetes_resource_quotaHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_resource_quota_metadata_1615 implements PcoreValue {
+export class Kubernetes_resource_quota_metadata_537 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -22928,11 +22928,11 @@ export class Kubernetes_resource_quota_metadata_1615 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_resource_quota_metadata_1615';
+    return 'TerraformKubernetes::Kubernetes_resource_quota_metadata_537';
   }
 }
 
-export class Kubernetes_resource_quota_spec_1616 implements PcoreValue {
+export class Kubernetes_resource_quota_spec_538 implements PcoreValue {
   readonly hard: {[s: string]: string}|null;
   readonly scopes: string[]|null;
 
@@ -22959,13 +22959,13 @@ export class Kubernetes_resource_quota_spec_1616 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_resource_quota_spec_1616';
+    return 'TerraformKubernetes::Kubernetes_resource_quota_spec_538';
   }
 }
 
 export class Kubernetes_role implements PcoreValue {
-  readonly metadata: Kubernetes_role_metadata_1617[];
-  readonly rule: Kubernetes_role_rule_1618[];
+  readonly metadata: Kubernetes_role_metadata_539[];
+  readonly rule: Kubernetes_role_rule_540[];
   readonly kubernetes_role_id: string|null;
 
   constructor({
@@ -22973,8 +22973,8 @@ export class Kubernetes_role implements PcoreValue {
     rule,
     kubernetes_role_id = null
   }: {
-    metadata: Kubernetes_role_metadata_1617[],
-    rule: Kubernetes_role_rule_1618[],
+    metadata: Kubernetes_role_metadata_539[],
+    rule: Kubernetes_role_rule_540[],
     kubernetes_role_id?: string|null
   }) {
     this.metadata = metadata;
@@ -23008,9 +23008,9 @@ export class Kubernetes_roleHandler implements PcoreValue {
 }
 
 export class Kubernetes_role_binding implements PcoreValue {
-  readonly metadata: Kubernetes_role_binding_metadata_1619[];
+  readonly metadata: Kubernetes_role_binding_metadata_541[];
   readonly role_ref: {[s: string]: string};
-  readonly subject: Kubernetes_role_binding_subject_1620[];
+  readonly subject: Kubernetes_role_binding_subject_542[];
   readonly kubernetes_role_binding_id: string|null;
 
   constructor({
@@ -23019,9 +23019,9 @@ export class Kubernetes_role_binding implements PcoreValue {
     subject,
     kubernetes_role_binding_id = null
   }: {
-    metadata: Kubernetes_role_binding_metadata_1619[],
+    metadata: Kubernetes_role_binding_metadata_541[],
     role_ref: {[s: string]: string},
-    subject: Kubernetes_role_binding_subject_1620[],
+    subject: Kubernetes_role_binding_subject_542[],
     kubernetes_role_binding_id?: string|null
   }) {
     this.metadata = metadata;
@@ -23056,7 +23056,7 @@ export class Kubernetes_role_bindingHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_role_binding_metadata_1619 implements PcoreValue {
+export class Kubernetes_role_binding_metadata_541 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generation: number|null;
   readonly labels: {[s: string]: string}|null;
@@ -23125,11 +23125,11 @@ export class Kubernetes_role_binding_metadata_1619 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_role_binding_metadata_1619';
+    return 'TerraformKubernetes::Kubernetes_role_binding_metadata_541';
   }
 }
 
-export class Kubernetes_role_binding_subject_1620 implements PcoreValue {
+export class Kubernetes_role_binding_subject_542 implements PcoreValue {
   readonly kind: string;
   readonly name: string;
   readonly api_group: string|null;
@@ -23166,11 +23166,11 @@ export class Kubernetes_role_binding_subject_1620 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_role_binding_subject_1620';
+    return 'TerraformKubernetes::Kubernetes_role_binding_subject_542';
   }
 }
 
-export class Kubernetes_role_metadata_1617 implements PcoreValue {
+export class Kubernetes_role_metadata_539 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -23246,11 +23246,11 @@ export class Kubernetes_role_metadata_1617 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_role_metadata_1617';
+    return 'TerraformKubernetes::Kubernetes_role_metadata_539';
   }
 }
 
-export class Kubernetes_role_rule_1618 implements PcoreValue {
+export class Kubernetes_role_rule_540 implements PcoreValue {
   readonly api_groups: string[];
   readonly resources: string[];
   readonly verbs: string[];
@@ -23285,12 +23285,12 @@ export class Kubernetes_role_rule_1618 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_role_rule_1618';
+    return 'TerraformKubernetes::Kubernetes_role_rule_540';
   }
 }
 
 export class Kubernetes_secret implements PcoreValue {
-  readonly metadata: Kubernetes_secret_metadata_1621[];
+  readonly metadata: Kubernetes_secret_metadata_543[];
   readonly kubernetes_secret_id: string|null;
   readonly data: {[s: string]: string}|null;
   readonly type: string|null;
@@ -23301,7 +23301,7 @@ export class Kubernetes_secret implements PcoreValue {
     data = null,
     type = null
   }: {
-    metadata: Kubernetes_secret_metadata_1621[],
+    metadata: Kubernetes_secret_metadata_543[],
     kubernetes_secret_id?: string|null,
     data?: {[s: string]: string}|null,
     type?: string|null
@@ -23342,7 +23342,7 @@ export class Kubernetes_secretHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_secret_metadata_1621 implements PcoreValue {
+export class Kubernetes_secret_metadata_543 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -23418,15 +23418,15 @@ export class Kubernetes_secret_metadata_1621 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_secret_metadata_1621';
+    return 'TerraformKubernetes::Kubernetes_secret_metadata_543';
   }
 }
 
 export class Kubernetes_service implements PcoreValue {
-  readonly metadata: Kubernetes_service_metadata_1623[];
-  readonly spec: Kubernetes_service_spec_1624[];
+  readonly metadata: Kubernetes_service_metadata_545[];
+  readonly spec: Kubernetes_service_spec_546[];
   readonly kubernetes_service_id: string|null;
-  readonly load_balancer_ingress: Kubernetes_service_load_balancer_ingress_1622[]|null;
+  readonly load_balancer_ingress: Kubernetes_service_load_balancer_ingress_544[]|null;
 
   constructor({
     metadata,
@@ -23434,10 +23434,10 @@ export class Kubernetes_service implements PcoreValue {
     kubernetes_service_id = null,
     load_balancer_ingress = null
   }: {
-    metadata: Kubernetes_service_metadata_1623[],
-    spec: Kubernetes_service_spec_1624[],
+    metadata: Kubernetes_service_metadata_545[],
+    spec: Kubernetes_service_spec_546[],
     kubernetes_service_id?: string|null,
-    load_balancer_ingress?: Kubernetes_service_load_balancer_ingress_1622[]|null
+    load_balancer_ingress?: Kubernetes_service_load_balancer_ingress_544[]|null
   }) {
     this.metadata = metadata;
     this.spec = spec;
@@ -23474,12 +23474,12 @@ export class Kubernetes_serviceHandler implements PcoreValue {
 }
 
 export class Kubernetes_service_account implements PcoreValue {
-  readonly metadata: Kubernetes_service_account_metadata_1627[];
+  readonly metadata: Kubernetes_service_account_metadata_549[];
   readonly kubernetes_service_account_id: string|null;
   readonly automount_service_account_token: boolean|null;
   readonly default_secret_name: string|null;
-  readonly image_pull_secret: Kubernetes_service_account_image_pull_secret_1626[]|null;
-  readonly secret: Kubernetes_service_account_secret_1628[]|null;
+  readonly image_pull_secret: Kubernetes_service_account_image_pull_secret_548[]|null;
+  readonly secret: Kubernetes_service_account_secret_550[]|null;
 
   constructor({
     metadata,
@@ -23489,12 +23489,12 @@ export class Kubernetes_service_account implements PcoreValue {
     image_pull_secret = null,
     secret = null
   }: {
-    metadata: Kubernetes_service_account_metadata_1627[],
+    metadata: Kubernetes_service_account_metadata_549[],
     kubernetes_service_account_id?: string|null,
     automount_service_account_token?: boolean|null,
     default_secret_name?: string|null,
-    image_pull_secret?: Kubernetes_service_account_image_pull_secret_1626[]|null,
-    secret?: Kubernetes_service_account_secret_1628[]|null
+    image_pull_secret?: Kubernetes_service_account_image_pull_secret_548[]|null,
+    secret?: Kubernetes_service_account_secret_550[]|null
   }) {
     this.metadata = metadata;
     this.kubernetes_service_account_id = kubernetes_service_account_id;
@@ -23540,7 +23540,7 @@ export class Kubernetes_service_accountHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_service_account_image_pull_secret_1626 implements PcoreValue {
+export class Kubernetes_service_account_image_pull_secret_548 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -23560,11 +23560,11 @@ export class Kubernetes_service_account_image_pull_secret_1626 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_account_image_pull_secret_1626';
+    return 'TerraformKubernetes::Kubernetes_service_account_image_pull_secret_548';
   }
 }
 
-export class Kubernetes_service_account_metadata_1627 implements PcoreValue {
+export class Kubernetes_service_account_metadata_549 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -23640,11 +23640,11 @@ export class Kubernetes_service_account_metadata_1627 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_account_metadata_1627';
+    return 'TerraformKubernetes::Kubernetes_service_account_metadata_549';
   }
 }
 
-export class Kubernetes_service_account_secret_1628 implements PcoreValue {
+export class Kubernetes_service_account_secret_550 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -23664,11 +23664,11 @@ export class Kubernetes_service_account_secret_1628 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_account_secret_1628';
+    return 'TerraformKubernetes::Kubernetes_service_account_secret_550';
   }
 }
 
-export class Kubernetes_service_load_balancer_ingress_1622 implements PcoreValue {
+export class Kubernetes_service_load_balancer_ingress_544 implements PcoreValue {
   readonly hostname: string|null;
   readonly ip: string|null;
 
@@ -23695,11 +23695,11 @@ export class Kubernetes_service_load_balancer_ingress_1622 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_load_balancer_ingress_1622';
+    return 'TerraformKubernetes::Kubernetes_service_load_balancer_ingress_544';
   }
 }
 
-export class Kubernetes_service_metadata_1623 implements PcoreValue {
+export class Kubernetes_service_metadata_545 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -23775,17 +23775,17 @@ export class Kubernetes_service_metadata_1623 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_metadata_1623';
+    return 'TerraformKubernetes::Kubernetes_service_metadata_545';
   }
 }
 
-export class Kubernetes_service_spec_1624 implements PcoreValue {
+export class Kubernetes_service_spec_546 implements PcoreValue {
   readonly cluster_ip: string|null;
   readonly external_ips: string[]|null;
   readonly external_name: string|null;
   readonly load_balancer_ip: string|null;
   readonly load_balancer_source_ranges: string[]|null;
-  readonly port: Kubernetes_service_spec_1624_port_1625[]|null;
+  readonly port: Kubernetes_service_spec_546_port_547[]|null;
   readonly selector: {[s: string]: string}|null;
   readonly session_affinity: string|null;
   readonly type: string|null;
@@ -23806,7 +23806,7 @@ export class Kubernetes_service_spec_1624 implements PcoreValue {
     external_name?: string|null,
     load_balancer_ip?: string|null,
     load_balancer_source_ranges?: string[]|null,
-    port?: Kubernetes_service_spec_1624_port_1625[]|null,
+    port?: Kubernetes_service_spec_546_port_547[]|null,
     selector?: {[s: string]: string}|null,
     session_affinity?: string|null,
     type?: string|null
@@ -23855,11 +23855,11 @@ export class Kubernetes_service_spec_1624 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_spec_1624';
+    return 'TerraformKubernetes::Kubernetes_service_spec_546';
   }
 }
 
-export class Kubernetes_service_spec_1624_port_1625 implements PcoreValue {
+export class Kubernetes_service_spec_546_port_547 implements PcoreValue {
   readonly port: number;
   readonly name: string|null;
   readonly node_port: number|null;
@@ -23905,13 +23905,13 @@ export class Kubernetes_service_spec_1624_port_1625 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_service_spec_1624_port_1625';
+    return 'TerraformKubernetes::Kubernetes_service_spec_546_port_547';
   }
 }
 
 export class Kubernetes_stateful_set implements PcoreValue {
-  readonly metadata: Kubernetes_stateful_set_metadata_1629[];
-  readonly spec: Kubernetes_stateful_set_spec_1630[];
+  readonly metadata: Kubernetes_stateful_set_metadata_551[];
+  readonly spec: Kubernetes_stateful_set_spec_552[];
   readonly kubernetes_stateful_set_id: string|null;
 
   constructor({
@@ -23919,8 +23919,8 @@ export class Kubernetes_stateful_set implements PcoreValue {
     spec,
     kubernetes_stateful_set_id = null
   }: {
-    metadata: Kubernetes_stateful_set_metadata_1629[],
-    spec: Kubernetes_stateful_set_spec_1630[],
+    metadata: Kubernetes_stateful_set_metadata_551[],
+    spec: Kubernetes_stateful_set_spec_552[],
     kubernetes_stateful_set_id?: string|null
   }) {
     this.metadata = metadata;
@@ -23953,7 +23953,7 @@ export class Kubernetes_stateful_setHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_stateful_set_metadata_1629 implements PcoreValue {
+export class Kubernetes_stateful_set_metadata_551 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -24029,19 +24029,19 @@ export class Kubernetes_stateful_set_metadata_1629 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_metadata_1629';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_metadata_551';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630 implements PcoreValue {
-  readonly selector: Kubernetes_stateful_set_spec_1630_selector_1631[];
+export class Kubernetes_stateful_set_spec_552 implements PcoreValue {
+  readonly selector: Kubernetes_stateful_set_spec_552_selector_553[];
   readonly service_name: string;
-  readonly template: Kubernetes_stateful_set_spec_1630_template_1633[];
+  readonly template: Kubernetes_stateful_set_spec_552_template_555[];
   readonly pod_management_policy: string|null;
   readonly replicas: number|null;
   readonly revision_history_limit: number|null;
-  readonly update_strategy: Kubernetes_stateful_set_spec_1630_update_strategy_1750[]|null;
-  readonly volume_claim_template: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752[]|null;
+  readonly update_strategy: Kubernetes_stateful_set_spec_552_update_strategy_672[]|null;
+  readonly volume_claim_template: Kubernetes_stateful_set_spec_552_volume_claim_template_674[]|null;
 
   constructor({
     selector,
@@ -24053,14 +24053,14 @@ export class Kubernetes_stateful_set_spec_1630 implements PcoreValue {
     update_strategy = null,
     volume_claim_template = null
   }: {
-    selector: Kubernetes_stateful_set_spec_1630_selector_1631[],
+    selector: Kubernetes_stateful_set_spec_552_selector_553[],
     service_name: string,
-    template: Kubernetes_stateful_set_spec_1630_template_1633[],
+    template: Kubernetes_stateful_set_spec_552_template_555[],
     pod_management_policy?: string|null,
     replicas?: number|null,
     revision_history_limit?: number|null,
-    update_strategy?: Kubernetes_stateful_set_spec_1630_update_strategy_1750[]|null,
-    volume_claim_template?: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752[]|null
+    update_strategy?: Kubernetes_stateful_set_spec_552_update_strategy_672[]|null,
+    volume_claim_template?: Kubernetes_stateful_set_spec_552_volume_claim_template_674[]|null
   }) {
     this.selector = selector;
     this.service_name = service_name;
@@ -24096,19 +24096,19 @@ export class Kubernetes_stateful_set_spec_1630 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_selector_1631 implements PcoreValue {
-  readonly match_expressions: Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1632[]|null;
+export class Kubernetes_stateful_set_spec_552_selector_553 implements PcoreValue {
+  readonly match_expressions: Kubernetes_stateful_set_spec_552_selector_553_match_expressions_554[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1632[]|null,
+    match_expressions?: Kubernetes_stateful_set_spec_552_selector_553_match_expressions_554[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -24127,11 +24127,11 @@ export class Kubernetes_stateful_set_spec_1630_selector_1631 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_selector_1631';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_selector_553';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1632 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_selector_553_match_expressions_554 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -24165,20 +24165,20 @@ export class Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_selector_1631_match_expressions_1632';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_selector_553_match_expressions_554';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633 implements PcoreValue {
-  readonly metadata: Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634[];
-  readonly spec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555 implements PcoreValue {
+  readonly metadata: Kubernetes_stateful_set_spec_552_template_555_metadata_556[];
+  readonly spec: Kubernetes_stateful_set_spec_552_template_555_spec_557[]|null;
 
   constructor({
     metadata,
     spec = null
   }: {
-    metadata: Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634[],
-    spec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635[]|null
+    metadata: Kubernetes_stateful_set_spec_552_template_555_metadata_556[],
+    spec?: Kubernetes_stateful_set_spec_552_template_555_spec_557[]|null
   }) {
     this.metadata = metadata;
     this.spec = spec;
@@ -24194,11 +24194,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_metadata_556 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -24267,28 +24267,28 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634 imple
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_metadata_1634';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_metadata_556';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557 implements PcoreValue {
   readonly active_deadline_seconds: number|null;
-  readonly container: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636[]|null;
+  readonly container: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558[]|null;
   readonly dns_policy: string|null;
   readonly host_ipc: boolean|null;
   readonly host_network: boolean|null;
   readonly host_pid: boolean|null;
   readonly hostname: string|null;
-  readonly image_pull_secrets: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pull_secrets_1675[]|null;
-  readonly init_container: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676[]|null;
+  readonly image_pull_secrets: Kubernetes_stateful_set_spec_552_template_555_spec_557_image_pull_secrets_597[]|null;
+  readonly init_container: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598[]|null;
   readonly node_name: string|null;
   readonly node_selector: {[s: string]: string}|null;
   readonly restart_policy: string|null;
-  readonly security_context: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715[]|null;
+  readonly security_context: Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637[]|null;
   readonly service_account_name: string|null;
   readonly subdomain: string|null;
   readonly termination_grace_period_seconds: number|null;
-  readonly volume: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717[]|null;
+  readonly volume: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639[]|null;
 
   constructor({
     active_deadline_seconds = null,
@@ -24310,22 +24310,22 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635 implement
     volume = null
   }: {
     active_deadline_seconds?: number|null,
-    container?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636[]|null,
+    container?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558[]|null,
     dns_policy?: string|null,
     host_ipc?: boolean|null,
     host_network?: boolean|null,
     host_pid?: boolean|null,
     hostname?: string|null,
-    image_pull_secrets?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pull_secrets_1675[]|null,
-    init_container?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676[]|null,
+    image_pull_secrets?: Kubernetes_stateful_set_spec_552_template_555_spec_557_image_pull_secrets_597[]|null,
+    init_container?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598[]|null,
     node_name?: string|null,
     node_selector?: {[s: string]: string}|null,
     restart_policy?: string|null,
-    security_context?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715[]|null,
+    security_context?: Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637[]|null,
     service_account_name?: string|null,
     subdomain?: string|null,
     termination_grace_period_seconds?: number|null,
-    volume?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717[]|null
+    volume?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639[]|null
   }) {
     this.active_deadline_seconds = active_deadline_seconds;
     this.container = container;
@@ -24403,29 +24403,29 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635 implement
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637[]|null;
-  readonly env_from: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643[]|null;
+  readonly env: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559[]|null;
+  readonly env_from: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646[]|null;
-  readonly liveness_probe: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657[]|null;
-  readonly port: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_port_1662[]|null;
-  readonly readiness_probe: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663[]|null;
-  readonly resources: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668[]|null;
-  readonly security_context: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671[]|null;
+  readonly lifecycle: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568[]|null;
+  readonly liveness_probe: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579[]|null;
+  readonly port: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_port_584[]|null;
+  readonly readiness_probe: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585[]|null;
+  readonly resources: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590[]|null;
+  readonly security_context: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_volume_mount_1674[]|null;
+  readonly volume_mount: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_volume_mount_596[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -24452,21 +24452,21 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637[]|null,
-    env_from?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643[]|null,
+    env?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559[]|null,
+    env_from?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646[]|null,
-    liveness_probe?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657[]|null,
-    port?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_port_1662[]|null,
-    readiness_probe?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663[]|null,
-    resources?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668[]|null,
-    security_context?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671[]|null,
+    lifecycle?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568[]|null,
+    liveness_probe?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579[]|null,
+    port?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_port_584[]|null,
+    readiness_probe?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585[]|null,
+    resources?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590[]|null,
+    security_context?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_volume_mount_1674[]|null,
+    volume_mount?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_volume_mount_596[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -24551,14 +24551,14 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638[]|null;
+  readonly value_from: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560[]|null;
 
   constructor({
     name,
@@ -24567,7 +24567,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638[]|null
+    value_from?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -24587,15 +24587,15 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_config_map_key_ref_1639[]|null;
-  readonly field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_field_ref_1640[]|null;
-  readonly resource_field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_resource_field_ref_1641[]|null;
-  readonly secret_key_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_secret_key_ref_1642[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_config_map_key_ref_561[]|null;
+  readonly field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_field_ref_562[]|null;
+  readonly resource_field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_resource_field_ref_563[]|null;
+  readonly secret_key_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_secret_key_ref_564[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -24603,10 +24603,10 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_config_map_key_ref_1639[]|null,
-    field_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_field_ref_1640[]|null,
-    resource_field_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_resource_field_ref_1641[]|null,
-    secret_key_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_secret_key_ref_1642[]|null
+    config_map_key_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_config_map_key_ref_561[]|null,
+    field_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_field_ref_562[]|null,
+    resource_field_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_resource_field_ref_563[]|null,
+    secret_key_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_secret_key_ref_564[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -24632,11 +24632,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_config_map_key_ref_1639 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_config_map_key_ref_561 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -24663,11 +24663,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_config_map_key_ref_1639';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_config_map_key_ref_561';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_field_ref_1640 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_field_ref_562 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -24694,11 +24694,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_field_ref_1640';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_field_ref_562';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_resource_field_ref_1641 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_resource_field_ref_563 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -24723,11 +24723,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_resource_field_ref_1641';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_resource_field_ref_563';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_secret_key_ref_1642 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_secret_key_ref_564 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -24754,23 +24754,23 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_1637_value_from_1638_secret_key_ref_1642';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_secret_key_ref_564';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_config_map_ref_1644[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_config_map_ref_566[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_secret_ref_1645[]|null;
+  readonly secret_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_secret_ref_567[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_config_map_ref_1644[]|null,
+    config_map_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_config_map_ref_566[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_secret_ref_1645[]|null
+    secret_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_secret_ref_567[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -24792,11 +24792,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_config_map_ref_1644 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_config_map_ref_566 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -24821,11 +24821,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_config_map_ref_1644';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_config_map_ref_566';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_secret_ref_1645 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_secret_ref_567 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -24850,20 +24850,20 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_env_from_1643_secret_ref_1645';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_secret_ref_567';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646 implements PcoreValue {
-  readonly post_start: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647[]|null;
-  readonly pre_stop: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568 implements PcoreValue {
+  readonly post_start: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569[]|null;
+  readonly pre_stop: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647[]|null,
-    pre_stop?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652[]|null
+    post_start?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569[]|null,
+    pre_stop?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -24881,23 +24881,23 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_exec_1648[]|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649[]|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_tcp_socket_1651[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_exec_570[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_tcp_socket_573[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_exec_1648[]|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649[]|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_tcp_socket_1651[]|null
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_exec_570[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_tcp_socket_573[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -24919,11 +24919,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_exec_1648 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_exec_570 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -24943,13 +24943,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_exec_1648';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_exec_570';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649_http_header_1650[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571_http_header_572[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -24962,7 +24962,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649_http_header_1650[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571_http_header_572[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -24995,11 +24995,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649_http_header_1650 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571_http_header_572 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -25026,11 +25026,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_http_get_1649_http_header_1650';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571_http_header_572';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_tcp_socket_1651 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_tcp_socket_573 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -25048,23 +25048,23 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_post_start_1647_tcp_socket_1651';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_tcp_socket_573';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_exec_1653[]|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654[]|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_tcp_socket_1656[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_exec_575[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_tcp_socket_578[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_exec_1653[]|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654[]|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_tcp_socket_1656[]|null
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_exec_575[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_tcp_socket_578[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -25086,11 +25086,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_exec_1653 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_exec_575 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -25110,13 +25110,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_exec_1653';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_exec_575';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654_http_header_1655[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576_http_header_577[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -25129,7 +25129,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654_http_header_1655[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576_http_header_577[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -25162,11 +25162,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654_http_header_1655 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576_http_header_577 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -25193,11 +25193,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_http_get_1654_http_header_1655';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576_http_header_577';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_tcp_socket_1656 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_tcp_socket_578 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -25215,18 +25215,18 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_lifecycle_1646_pre_stop_1652_tcp_socket_1656';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_tcp_socket_578';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_exec_1658[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_exec_580[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_tcp_socket_1661[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_tcp_socket_583[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -25239,13 +25239,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_exec_1658[]|null,
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_exec_580[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_tcp_socket_1661[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_tcp_socket_583[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -25288,11 +25288,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_exec_1658 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_exec_580 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -25312,13 +25312,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_exec_1658';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_exec_580';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659_http_header_1660[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581_http_header_582[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -25331,7 +25331,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659_http_header_1660[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581_http_header_582[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -25364,11 +25364,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659_http_header_1660 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581_http_header_582 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -25395,11 +25395,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_http_get_1659_http_header_1660';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581_http_header_582';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_tcp_socket_1661 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_tcp_socket_583 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -25417,11 +25417,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_liveness_probe_1657_tcp_socket_1661';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_tcp_socket_583';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_port_1662 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_port_584 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -25467,18 +25467,18 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_port_1662';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_port_584';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_exec_1664[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_exec_586[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_tcp_socket_1667[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_tcp_socket_589[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -25491,13 +25491,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_exec_1664[]|null,
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_exec_586[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_tcp_socket_1667[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_tcp_socket_589[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -25540,11 +25540,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_exec_1664 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_exec_586 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -25564,13 +25564,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_exec_1664';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_exec_586';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665_http_header_1666[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587_http_header_588[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -25583,7 +25583,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665_http_header_1666[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587_http_header_588[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -25616,11 +25616,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665_http_header_1666 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587_http_header_588 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -25647,11 +25647,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_http_get_1665_http_header_1666';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587_http_header_588';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_tcp_socket_1667 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_tcp_socket_589 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -25669,20 +25669,20 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_readiness_probe_1663_tcp_socket_1667';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_tcp_socket_589';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668 implements PcoreValue {
-  readonly limits: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_limits_1669[]|null;
-  readonly requests: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_requests_1670[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590 implements PcoreValue {
+  readonly limits: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_limits_591[]|null;
+  readonly requests: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_requests_592[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_limits_1669[]|null,
-    requests?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_requests_1670[]|null
+    limits?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_limits_591[]|null,
+    requests?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_requests_592[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -25700,11 +25700,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_limits_1669 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_limits_591 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -25731,11 +25731,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_limits_1669';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_limits_591';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_requests_1670 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_requests_592 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -25762,18 +25762,18 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_resources_1668_requests_1670';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_requests_592';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_capabilities_1672[]|null;
+  readonly capabilities: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_capabilities_594[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_se_linux_options_1673[]|null;
+  readonly se_linux_options: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_se_linux_options_595[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -25785,12 +25785,12 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_capabilities_1672[]|null,
+    capabilities?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_capabilities_594[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_se_linux_options_1673[]|null
+    se_linux_options?: Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_se_linux_options_595[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -25828,11 +25828,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_capabilities_1672 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_capabilities_594 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -25859,11 +25859,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_capabilities_1672';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_capabilities_594';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_se_linux_options_1673 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_se_linux_options_595 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -25904,11 +25904,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_security_context_1671_se_linux_options_1673';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_se_linux_options_595';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_volume_mount_1674 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_volume_mount_596 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -25945,11 +25945,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_container_1636_volume_mount_1674';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_volume_mount_596';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pull_secrets_1675 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_image_pull_secrets_597 implements PcoreValue {
   readonly name: string;
 
   constructor({
@@ -25967,29 +25967,29 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pul
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_image_pull_secrets_1675';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_image_pull_secrets_597';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598 implements PcoreValue {
   readonly name: string;
   readonly args: string[]|null;
   readonly command: string[]|null;
-  readonly env: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677[]|null;
-  readonly env_from: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683[]|null;
+  readonly env: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599[]|null;
+  readonly env_from: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605[]|null;
   readonly image: string|null;
   readonly image_pull_policy: string|null;
-  readonly lifecycle: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686[]|null;
-  readonly liveness_probe: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697[]|null;
-  readonly port: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_port_1702[]|null;
-  readonly readiness_probe: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703[]|null;
-  readonly resources: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708[]|null;
-  readonly security_context: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711[]|null;
+  readonly lifecycle: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608[]|null;
+  readonly liveness_probe: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619[]|null;
+  readonly port: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_port_624[]|null;
+  readonly readiness_probe: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625[]|null;
+  readonly resources: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630[]|null;
+  readonly security_context: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633[]|null;
   readonly stdin: boolean|null;
   readonly stdin_once: boolean|null;
   readonly termination_message_path: string|null;
   readonly tty: boolean|null;
-  readonly volume_mount: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_volume_mount_1714[]|null;
+  readonly volume_mount: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_volume_mount_636[]|null;
   readonly working_dir: string|null;
 
   constructor({
@@ -26016,21 +26016,21 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     name: string,
     args?: string[]|null,
     command?: string[]|null,
-    env?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677[]|null,
-    env_from?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683[]|null,
+    env?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599[]|null,
+    env_from?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605[]|null,
     image?: string|null,
     image_pull_policy?: string|null,
-    lifecycle?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686[]|null,
-    liveness_probe?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697[]|null,
-    port?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_port_1702[]|null,
-    readiness_probe?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703[]|null,
-    resources?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708[]|null,
-    security_context?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711[]|null,
+    lifecycle?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608[]|null,
+    liveness_probe?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619[]|null,
+    port?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_port_624[]|null,
+    readiness_probe?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625[]|null,
+    resources?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630[]|null,
+    security_context?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633[]|null,
     stdin?: boolean|null,
     stdin_once?: boolean|null,
     termination_message_path?: string|null,
     tty?: boolean|null,
-    volume_mount?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_volume_mount_1714[]|null,
+    volume_mount?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_volume_mount_636[]|null,
     working_dir?: string|null
   }) {
     this.name = name;
@@ -26115,14 +26115,14 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599 implements PcoreValue {
   readonly name: string;
   readonly value: string|null;
-  readonly value_from: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678[]|null;
+  readonly value_from: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600[]|null;
 
   constructor({
     name,
@@ -26131,7 +26131,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }: {
     name: string,
     value?: string|null,
-    value_from?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678[]|null
+    value_from?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600[]|null
   }) {
     this.name = name;
     this.value = value;
@@ -26151,15 +26151,15 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678 implements PcoreValue {
-  readonly config_map_key_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_config_map_key_ref_1679[]|null;
-  readonly field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_field_ref_1680[]|null;
-  readonly resource_field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_resource_field_ref_1681[]|null;
-  readonly secret_key_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_secret_key_ref_1682[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600 implements PcoreValue {
+  readonly config_map_key_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_config_map_key_ref_601[]|null;
+  readonly field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_field_ref_602[]|null;
+  readonly resource_field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_resource_field_ref_603[]|null;
+  readonly secret_key_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_secret_key_ref_604[]|null;
 
   constructor({
     config_map_key_ref = null,
@@ -26167,10 +26167,10 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     resource_field_ref = null,
     secret_key_ref = null
   }: {
-    config_map_key_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_config_map_key_ref_1679[]|null,
-    field_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_field_ref_1680[]|null,
-    resource_field_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_resource_field_ref_1681[]|null,
-    secret_key_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_secret_key_ref_1682[]|null
+    config_map_key_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_config_map_key_ref_601[]|null,
+    field_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_field_ref_602[]|null,
+    resource_field_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_resource_field_ref_603[]|null,
+    secret_key_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_secret_key_ref_604[]|null
   }) {
     this.config_map_key_ref = config_map_key_ref;
     this.field_ref = field_ref;
@@ -26196,11 +26196,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_config_map_key_ref_1679 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_config_map_key_ref_601 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -26227,11 +26227,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_config_map_key_ref_1679';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_config_map_key_ref_601';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_field_ref_1680 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_field_ref_602 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -26258,11 +26258,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_field_ref_1680';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_field_ref_602';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_resource_field_ref_1681 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_resource_field_ref_603 implements PcoreValue {
   readonly resource: string;
   readonly container_name: string|null;
 
@@ -26287,11 +26287,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_resource_field_ref_1681';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_resource_field_ref_603';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_secret_key_ref_1682 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_secret_key_ref_604 implements PcoreValue {
   readonly key: string|null;
   readonly name: string|null;
 
@@ -26318,23 +26318,23 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_1677_value_from_1678_secret_key_ref_1682';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_secret_key_ref_604';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683 implements PcoreValue {
-  readonly config_map_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_config_map_ref_1684[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605 implements PcoreValue {
+  readonly config_map_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_config_map_ref_606[]|null;
   readonly prefix: string|null;
-  readonly secret_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_secret_ref_1685[]|null;
+  readonly secret_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_secret_ref_607[]|null;
 
   constructor({
     config_map_ref = null,
     prefix = null,
     secret_ref = null
   }: {
-    config_map_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_config_map_ref_1684[]|null,
+    config_map_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_config_map_ref_606[]|null,
     prefix?: string|null,
-    secret_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_secret_ref_1685[]|null
+    secret_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_secret_ref_607[]|null
   }) {
     this.config_map_ref = config_map_ref;
     this.prefix = prefix;
@@ -26356,11 +26356,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_config_map_ref_1684 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_config_map_ref_606 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -26385,11 +26385,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_config_map_ref_1684';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_config_map_ref_606';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_secret_ref_1685 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_secret_ref_607 implements PcoreValue {
   readonly name: string;
   readonly optional: boolean|null;
 
@@ -26414,20 +26414,20 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_env_from_1683_secret_ref_1685';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_secret_ref_607';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686 implements PcoreValue {
-  readonly post_start: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687[]|null;
-  readonly pre_stop: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608 implements PcoreValue {
+  readonly post_start: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609[]|null;
+  readonly pre_stop: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614[]|null;
 
   constructor({
     post_start = null,
     pre_stop = null
   }: {
-    post_start?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687[]|null,
-    pre_stop?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692[]|null
+    post_start?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609[]|null,
+    pre_stop?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614[]|null
   }) {
     this.post_start = post_start;
     this.pre_stop = pre_stop;
@@ -26445,23 +26445,23 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_exec_1688[]|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689[]|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_tcp_socket_1691[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_exec_610[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_tcp_socket_613[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_exec_1688[]|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689[]|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_tcp_socket_1691[]|null
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_exec_610[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_tcp_socket_613[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -26483,11 +26483,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_exec_1688 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_exec_610 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -26507,13 +26507,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_exec_1688';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_exec_610';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689_http_header_1690[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611_http_header_612[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -26526,7 +26526,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689_http_header_1690[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611_http_header_612[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -26559,11 +26559,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689_http_header_1690 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611_http_header_612 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -26590,11 +26590,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_http_get_1689_http_header_1690';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611_http_header_612';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_tcp_socket_1691 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_tcp_socket_613 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -26612,23 +26612,23 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_post_start_1687_tcp_socket_1691';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_tcp_socket_613';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_exec_1693[]|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694[]|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_tcp_socket_1696[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_exec_615[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_tcp_socket_618[]|null;
 
   constructor({
     exec = null,
     http_get = null,
     tcp_socket = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_exec_1693[]|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694[]|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_tcp_socket_1696[]|null
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_exec_615[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_tcp_socket_618[]|null
   }) {
     this.exec = exec;
     this.http_get = http_get;
@@ -26650,11 +26650,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_exec_1693 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_exec_615 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -26674,13 +26674,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_exec_1693';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_exec_615';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694_http_header_1695[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616_http_header_617[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -26693,7 +26693,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694_http_header_1695[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616_http_header_617[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -26726,11 +26726,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694_http_header_1695 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616_http_header_617 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -26757,11 +26757,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_http_get_1694_http_header_1695';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616_http_header_617';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_tcp_socket_1696 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_tcp_socket_618 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -26779,18 +26779,18 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_lifecycle_1686_pre_stop_1692_tcp_socket_1696';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_tcp_socket_618';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_exec_1698[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_exec_620[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_tcp_socket_1701[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_tcp_socket_623[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -26803,13 +26803,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_exec_1698[]|null,
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_exec_620[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_tcp_socket_1701[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_tcp_socket_623[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -26852,11 +26852,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_exec_1698 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_exec_620 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -26876,13 +26876,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_exec_1698';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_exec_620';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699_http_header_1700[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621_http_header_622[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -26895,7 +26895,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699_http_header_1700[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621_http_header_622[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -26928,11 +26928,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699_http_header_1700 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621_http_header_622 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -26959,11 +26959,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_http_get_1699_http_header_1700';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621_http_header_622';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_tcp_socket_1701 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_tcp_socket_623 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -26981,11 +26981,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_liveness_probe_1697_tcp_socket_1701';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_tcp_socket_623';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_port_1702 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_port_624 implements PcoreValue {
   readonly container_port: number;
   readonly host_ip: string|null;
   readonly host_port: number|null;
@@ -27031,18 +27031,18 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_port_1702';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_port_624';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703 implements PcoreValue {
-  readonly exec: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_exec_1704[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625 implements PcoreValue {
+  readonly exec: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_exec_626[]|null;
   readonly failure_threshold: number|null;
-  readonly http_get: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705[]|null;
+  readonly http_get: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627[]|null;
   readonly initial_delay_seconds: number|null;
   readonly period_seconds: number|null;
   readonly success_threshold: number|null;
-  readonly tcp_socket: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_tcp_socket_1707[]|null;
+  readonly tcp_socket: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_tcp_socket_629[]|null;
   readonly timeout_seconds: number|null;
 
   constructor({
@@ -27055,13 +27055,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     tcp_socket = null,
     timeout_seconds = null
   }: {
-    exec?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_exec_1704[]|null,
+    exec?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_exec_626[]|null,
     failure_threshold?: number|null,
-    http_get?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705[]|null,
+    http_get?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627[]|null,
     initial_delay_seconds?: number|null,
     period_seconds?: number|null,
     success_threshold?: number|null,
-    tcp_socket?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_tcp_socket_1707[]|null,
+    tcp_socket?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_tcp_socket_629[]|null,
     timeout_seconds?: number|null
   }) {
     this.exec = exec;
@@ -27104,11 +27104,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_exec_1704 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_exec_626 implements PcoreValue {
   readonly command: string[]|null;
 
   constructor({
@@ -27128,13 +27128,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_exec_1704';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_exec_626';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627 implements PcoreValue {
   readonly host: string|null;
-  readonly http_header: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705_http_header_1706[]|null;
+  readonly http_header: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627_http_header_628[]|null;
   readonly path: string|null;
   readonly port: string|null;
   readonly scheme: string|null;
@@ -27147,7 +27147,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     scheme = null
   }: {
     host?: string|null,
-    http_header?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705_http_header_1706[]|null,
+    http_header?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627_http_header_628[]|null,
     path?: string|null,
     port?: string|null,
     scheme?: string|null
@@ -27180,11 +27180,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705_http_header_1706 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627_http_header_628 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -27211,11 +27211,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_http_get_1705_http_header_1706';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627_http_header_628';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_tcp_socket_1707 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_tcp_socket_629 implements PcoreValue {
   readonly port: string;
 
   constructor({
@@ -27233,20 +27233,20 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_readiness_probe_1703_tcp_socket_1707';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_tcp_socket_629';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708 implements PcoreValue {
-  readonly limits: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_limits_1709[]|null;
-  readonly requests: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_requests_1710[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630 implements PcoreValue {
+  readonly limits: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_limits_631[]|null;
+  readonly requests: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_requests_632[]|null;
 
   constructor({
     limits = null,
     requests = null
   }: {
-    limits?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_limits_1709[]|null,
-    requests?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_requests_1710[]|null
+    limits?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_limits_631[]|null,
+    requests?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_requests_632[]|null
   }) {
     this.limits = limits;
     this.requests = requests;
@@ -27264,11 +27264,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_limits_1709 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_limits_631 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -27295,11 +27295,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_limits_1709';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_limits_631';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_requests_1710 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_requests_632 implements PcoreValue {
   readonly cpu: string|null;
   readonly memory: string|null;
 
@@ -27326,18 +27326,18 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_resources_1708_requests_1710';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_requests_632';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633 implements PcoreValue {
   readonly allow_privilege_escalation: boolean|null;
-  readonly capabilities: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_capabilities_1712[]|null;
+  readonly capabilities: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_capabilities_634[]|null;
   readonly privileged: boolean|null;
   readonly read_only_root_filesystem: boolean|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_se_linux_options_1713[]|null;
+  readonly se_linux_options: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_se_linux_options_635[]|null;
 
   constructor({
     allow_privilege_escalation = null,
@@ -27349,12 +27349,12 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
     se_linux_options = null
   }: {
     allow_privilege_escalation?: boolean|null,
-    capabilities?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_capabilities_1712[]|null,
+    capabilities?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_capabilities_634[]|null,
     privileged?: boolean|null,
     read_only_root_filesystem?: boolean|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_se_linux_options_1713[]|null
+    se_linux_options?: Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_se_linux_options_635[]|null
   }) {
     this.allow_privilege_escalation = allow_privilege_escalation;
     this.capabilities = capabilities;
@@ -27392,11 +27392,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_capabilities_1712 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_capabilities_634 implements PcoreValue {
   readonly add: string[]|null;
   readonly drop: string[]|null;
 
@@ -27423,11 +27423,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_capabilities_1712';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_capabilities_634';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_se_linux_options_1713 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_se_linux_options_635 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -27468,11 +27468,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_security_context_1711_se_linux_options_1713';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_se_linux_options_635';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_volume_mount_1714 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_volume_mount_636 implements PcoreValue {
   readonly mount_path: string;
   readonly name: string;
   readonly read_only: boolean|null;
@@ -27509,15 +27509,15 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_cont
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_init_container_1676_volume_mount_1714';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_volume_mount_636';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637 implements PcoreValue {
   readonly fs_group: number|null;
   readonly run_as_non_root: boolean|null;
   readonly run_as_user: number|null;
-  readonly se_linux_options: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715_se_linux_options_1716[]|null;
+  readonly se_linux_options: Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637_se_linux_options_638[]|null;
   readonly supplemental_groups: number[]|null;
 
   constructor({
@@ -27530,7 +27530,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_
     fs_group?: number|null,
     run_as_non_root?: boolean|null,
     run_as_user?: number|null,
-    se_linux_options?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715_se_linux_options_1716[]|null,
+    se_linux_options?: Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637_se_linux_options_638[]|null,
     supplemental_groups?: number[]|null
   }) {
     this.fs_group = fs_group;
@@ -27561,11 +27561,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715_se_linux_options_1716 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637_se_linux_options_638 implements PcoreValue {
   readonly level: string|null;
   readonly role: string|null;
   readonly type: string|null;
@@ -27606,36 +27606,36 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_security_context_1715_se_linux_options_1716';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637_se_linux_options_638';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717 implements PcoreValue {
-  readonly aws_elastic_block_store: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_aws_elastic_block_store_1718[]|null;
-  readonly azure_disk: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_disk_1719[]|null;
-  readonly azure_file: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_file_1720[]|null;
-  readonly ceph_fs: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721[]|null;
-  readonly cinder: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_cinder_1723[]|null;
-  readonly config_map: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724[]|null;
-  readonly downward_api: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726[]|null;
-  readonly empty_dir: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_empty_dir_1730[]|null;
-  readonly fc: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_fc_1731[]|null;
-  readonly flex_volume: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732[]|null;
-  readonly flocker: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flocker_1734[]|null;
-  readonly gce_persistent_disk: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_gce_persistent_disk_1735[]|null;
-  readonly git_repo: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_git_repo_1736[]|null;
-  readonly glusterfs: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_glusterfs_1737[]|null;
-  readonly host_path: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_host_path_1738[]|null;
-  readonly iscsi: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_iscsi_1739[]|null;
-  readonly local: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_local_1740[]|null;
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639 implements PcoreValue {
+  readonly aws_elastic_block_store: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_aws_elastic_block_store_640[]|null;
+  readonly azure_disk: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_disk_641[]|null;
+  readonly azure_file: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_file_642[]|null;
+  readonly ceph_fs: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643[]|null;
+  readonly cinder: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_cinder_645[]|null;
+  readonly config_map: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646[]|null;
+  readonly downward_api: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648[]|null;
+  readonly empty_dir: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_empty_dir_652[]|null;
+  readonly fc: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_fc_653[]|null;
+  readonly flex_volume: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654[]|null;
+  readonly flocker: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flocker_656[]|null;
+  readonly gce_persistent_disk: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_gce_persistent_disk_657[]|null;
+  readonly git_repo: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_git_repo_658[]|null;
+  readonly glusterfs: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_glusterfs_659[]|null;
+  readonly host_path: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_host_path_660[]|null;
+  readonly iscsi: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_iscsi_661[]|null;
+  readonly local: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_local_662[]|null;
   readonly name: string|null;
-  readonly nfs: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_nfs_1741[]|null;
-  readonly persistent_volume_claim: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_persistent_volume_claim_1742[]|null;
-  readonly photon_persistent_disk: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_photon_persistent_disk_1743[]|null;
-  readonly quobyte: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_quobyte_1744[]|null;
-  readonly rbd: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745[]|null;
-  readonly secret: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747[]|null;
-  readonly vsphere_volume: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_vsphere_volume_1749[]|null;
+  readonly nfs: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_nfs_663[]|null;
+  readonly persistent_volume_claim: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_persistent_volume_claim_664[]|null;
+  readonly photon_persistent_disk: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_photon_persistent_disk_665[]|null;
+  readonly quobyte: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_quobyte_666[]|null;
+  readonly rbd: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667[]|null;
+  readonly secret: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669[]|null;
+  readonly vsphere_volume: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_vsphere_volume_671[]|null;
 
   constructor({
     aws_elastic_block_store = null,
@@ -27664,31 +27664,31 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     secret = null,
     vsphere_volume = null
   }: {
-    aws_elastic_block_store?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_aws_elastic_block_store_1718[]|null,
-    azure_disk?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_disk_1719[]|null,
-    azure_file?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_file_1720[]|null,
-    ceph_fs?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721[]|null,
-    cinder?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_cinder_1723[]|null,
-    config_map?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724[]|null,
-    downward_api?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726[]|null,
-    empty_dir?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_empty_dir_1730[]|null,
-    fc?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_fc_1731[]|null,
-    flex_volume?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732[]|null,
-    flocker?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flocker_1734[]|null,
-    gce_persistent_disk?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_gce_persistent_disk_1735[]|null,
-    git_repo?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_git_repo_1736[]|null,
-    glusterfs?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_glusterfs_1737[]|null,
-    host_path?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_host_path_1738[]|null,
-    iscsi?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_iscsi_1739[]|null,
-    local?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_local_1740[]|null,
+    aws_elastic_block_store?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_aws_elastic_block_store_640[]|null,
+    azure_disk?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_disk_641[]|null,
+    azure_file?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_file_642[]|null,
+    ceph_fs?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643[]|null,
+    cinder?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_cinder_645[]|null,
+    config_map?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646[]|null,
+    downward_api?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648[]|null,
+    empty_dir?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_empty_dir_652[]|null,
+    fc?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_fc_653[]|null,
+    flex_volume?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654[]|null,
+    flocker?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flocker_656[]|null,
+    gce_persistent_disk?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_gce_persistent_disk_657[]|null,
+    git_repo?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_git_repo_658[]|null,
+    glusterfs?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_glusterfs_659[]|null,
+    host_path?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_host_path_660[]|null,
+    iscsi?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_iscsi_661[]|null,
+    local?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_local_662[]|null,
     name?: string|null,
-    nfs?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_nfs_1741[]|null,
-    persistent_volume_claim?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_persistent_volume_claim_1742[]|null,
-    photon_persistent_disk?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_photon_persistent_disk_1743[]|null,
-    quobyte?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_quobyte_1744[]|null,
-    rbd?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745[]|null,
-    secret?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747[]|null,
-    vsphere_volume?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_vsphere_volume_1749[]|null
+    nfs?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_nfs_663[]|null,
+    persistent_volume_claim?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_persistent_volume_claim_664[]|null,
+    photon_persistent_disk?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_photon_persistent_disk_665[]|null,
+    quobyte?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_quobyte_666[]|null,
+    rbd?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667[]|null,
+    secret?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669[]|null,
+    vsphere_volume?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_vsphere_volume_671[]|null
   }) {
     this.aws_elastic_block_store = aws_elastic_block_store;
     this.azure_disk = azure_disk;
@@ -27798,11 +27798,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_aws_elastic_block_store_1718 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_aws_elastic_block_store_640 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -27841,11 +27841,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_aws_elastic_block_store_1718';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_aws_elastic_block_store_640';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_disk_1719 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_disk_641 implements PcoreValue {
   readonly caching_mode: string;
   readonly data_disk_uri: string;
   readonly disk_name: string;
@@ -27887,11 +27887,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_disk_1719';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_disk_641';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_file_1720 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_file_642 implements PcoreValue {
   readonly secret_name: string;
   readonly share_name: string;
   readonly read_only: boolean|null;
@@ -27921,16 +27921,16 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_azure_file_1720';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_file_642';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643 implements PcoreValue {
   readonly monitors: string[];
   readonly path: string|null;
   readonly read_only: boolean|null;
   readonly secret_file: string|null;
-  readonly secret_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721_secret_ref_1722[]|null;
+  readonly secret_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643_secret_ref_644[]|null;
   readonly user: string|null;
 
   constructor({
@@ -27945,7 +27945,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     path?: string|null,
     read_only?: boolean|null,
     secret_file?: string|null,
-    secret_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721_secret_ref_1722[]|null,
+    secret_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643_secret_ref_644[]|null,
     user?: string|null
   }) {
     this.monitors = monitors;
@@ -27978,11 +27978,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721_secret_ref_1722 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643_secret_ref_644 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -28002,11 +28002,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_ceph_fs_1721_secret_ref_1722';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643_secret_ref_644';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_cinder_1723 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_cinder_645 implements PcoreValue {
   readonly volume_id: string;
   readonly fs_type: string|null;
   readonly read_only: boolean|null;
@@ -28038,13 +28038,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_cinder_1723';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_cinder_645';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724_items_1725[]|null;
+  readonly items: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646_items_647[]|null;
   readonly name: string|null;
 
   constructor({
@@ -28053,7 +28053,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724_items_1725[]|null,
+    items?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646_items_647[]|null,
     name?: string|null
   }) {
     this.default_mode = default_mode;
@@ -28076,11 +28076,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724_items_1725 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646_items_647 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -28114,20 +28114,20 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_config_map_1724_items_1725';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646_items_647';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727[]|null;
+  readonly items: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649[]|null;
 
   constructor({
     default_mode = null,
     items = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727[]|null
+    items?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649[]|null
   }) {
     this.default_mode = default_mode;
     this.items = items;
@@ -28145,15 +28145,15 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727 implements PcoreValue {
-  readonly field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_field_ref_1728[];
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649 implements PcoreValue {
+  readonly field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_field_ref_650[];
   readonly path: string;
   readonly mode: number|null;
-  readonly resource_field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_resource_field_ref_1729[]|null;
+  readonly resource_field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_resource_field_ref_651[]|null;
 
   constructor({
     field_ref,
@@ -28161,10 +28161,10 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     mode = null,
     resource_field_ref = null
   }: {
-    field_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_field_ref_1728[],
+    field_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_field_ref_650[],
     path: string,
     mode?: number|null,
-    resource_field_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_resource_field_ref_1729[]|null
+    resource_field_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_resource_field_ref_651[]|null
   }) {
     this.field_ref = field_ref;
     this.path = path;
@@ -28186,11 +28186,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_field_ref_1728 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_field_ref_650 implements PcoreValue {
   readonly api_version: string|null;
   readonly field_path: string|null;
 
@@ -28217,11 +28217,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_field_ref_1728';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_field_ref_650';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_resource_field_ref_1729 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_resource_field_ref_651 implements PcoreValue {
   readonly container_name: string;
   readonly resource: string;
   readonly quantity: string|null;
@@ -28251,11 +28251,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_downward_api_1726_items_1727_resource_field_ref_1729';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_resource_field_ref_651';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_empty_dir_1730 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_empty_dir_652 implements PcoreValue {
   readonly medium: string|null;
 
   constructor({
@@ -28275,11 +28275,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_empty_dir_1730';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_empty_dir_652';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_fc_1731 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_fc_653 implements PcoreValue {
   readonly lun: number;
   readonly target_ww_ns: string[];
   readonly fs_type: string|null;
@@ -28316,16 +28316,16 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_fc_1731';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_fc_653';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654 implements PcoreValue {
   readonly driver: string;
   readonly fs_type: string|null;
   readonly options: {[s: string]: string}|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732_secret_ref_1733[]|null;
+  readonly secret_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654_secret_ref_655[]|null;
 
   constructor({
     driver,
@@ -28338,7 +28338,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     fs_type?: string|null,
     options?: {[s: string]: string}|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732_secret_ref_1733[]|null
+    secret_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654_secret_ref_655[]|null
   }) {
     this.driver = driver;
     this.fs_type = fs_type;
@@ -28366,11 +28366,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732_secret_ref_1733 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654_secret_ref_655 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -28390,11 +28390,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flex_volume_1732_secret_ref_1733';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654_secret_ref_655';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flocker_1734 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flocker_656 implements PcoreValue {
   readonly dataset_name: string|null;
   readonly dataset_uuid: string|null;
 
@@ -28421,11 +28421,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_flocker_1734';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flocker_656';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_gce_persistent_disk_1735 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_gce_persistent_disk_657 implements PcoreValue {
   readonly pd_name: string;
   readonly fs_type: string|null;
   readonly partition: number|null;
@@ -28464,11 +28464,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_gce_persistent_disk_1735';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_gce_persistent_disk_657';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_git_repo_1736 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_git_repo_658 implements PcoreValue {
   readonly directory: string|null;
   readonly repository: string|null;
   readonly revision: string|null;
@@ -28502,11 +28502,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_git_repo_1736';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_git_repo_658';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_glusterfs_1737 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_glusterfs_659 implements PcoreValue {
   readonly endpoints_name: string;
   readonly path: string;
   readonly read_only: boolean|null;
@@ -28536,11 +28536,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_glusterfs_1737';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_glusterfs_659';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_host_path_1738 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_host_path_660 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -28560,11 +28560,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_host_path_1738';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_host_path_660';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_iscsi_1739 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_iscsi_661 implements PcoreValue {
   readonly iqn: string;
   readonly target_portal: string;
   readonly fs_type: string|null;
@@ -28615,11 +28615,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_iscsi_1739';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_iscsi_661';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_local_1740 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_local_662 implements PcoreValue {
   readonly path: string|null;
 
   constructor({
@@ -28639,11 +28639,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_local_1740';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_local_662';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_nfs_1741 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_nfs_663 implements PcoreValue {
   readonly path: string;
   readonly server: string;
   readonly read_only: boolean|null;
@@ -28673,11 +28673,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_nfs_1741';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_nfs_663';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_persistent_volume_claim_1742 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_persistent_volume_claim_664 implements PcoreValue {
   readonly claim_name: string|null;
   readonly read_only: boolean|null;
 
@@ -28704,11 +28704,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_persistent_volume_claim_1742';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_persistent_volume_claim_664';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_photon_persistent_disk_1743 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_photon_persistent_disk_665 implements PcoreValue {
   readonly pd_id: string;
   readonly fs_type: string|null;
 
@@ -28733,11 +28733,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_photon_persistent_disk_1743';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_photon_persistent_disk_665';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_quobyte_1744 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_quobyte_666 implements PcoreValue {
   readonly registry: string;
   readonly volume: string;
   readonly group: string|null;
@@ -28781,11 +28781,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_quobyte_1744';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_quobyte_666';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667 implements PcoreValue {
   readonly ceph_monitors: string[];
   readonly rbd_image: string;
   readonly fs_type: string|null;
@@ -28793,7 +28793,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   readonly rados_user: string|null;
   readonly rbd_pool: string|null;
   readonly read_only: boolean|null;
-  readonly secret_ref: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745_secret_ref_1746[]|null;
+  readonly secret_ref: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667_secret_ref_668[]|null;
 
   constructor({
     ceph_monitors,
@@ -28812,7 +28812,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     rados_user?: string|null,
     rbd_pool?: string|null,
     read_only?: boolean|null,
-    secret_ref?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745_secret_ref_1746[]|null
+    secret_ref?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667_secret_ref_668[]|null
   }) {
     this.ceph_monitors = ceph_monitors;
     this.rbd_image = rbd_image;
@@ -28850,11 +28850,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745_secret_ref_1746 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667_secret_ref_668 implements PcoreValue {
   readonly name: string|null;
 
   constructor({
@@ -28874,13 +28874,13 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_rbd_1745_secret_ref_1746';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667_secret_ref_668';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669 implements PcoreValue {
   readonly default_mode: number|null;
-  readonly items: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747_items_1748[]|null;
+  readonly items: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669_items_670[]|null;
   readonly optional: boolean|null;
   readonly secret_name: string|null;
 
@@ -28891,7 +28891,7 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
     secret_name = null
   }: {
     default_mode?: number|null,
-    items?: Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747_items_1748[]|null,
+    items?: Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669_items_670[]|null,
     optional?: boolean|null,
     secret_name?: string|null
   }) {
@@ -28919,11 +28919,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747_items_1748 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669_items_670 implements PcoreValue {
   readonly key: string|null;
   readonly mode: number|null;
   readonly path: string|null;
@@ -28957,11 +28957,11 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_secret_1747_items_1748';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669_items_670';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_vsphere_volume_1749 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_vsphere_volume_671 implements PcoreValue {
   readonly volume_path: string;
   readonly fs_type: string|null;
 
@@ -28986,19 +28986,19 @@ export class Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_17
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_template_1633_spec_1635_volume_1717_vsphere_volume_1749';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_vsphere_volume_671';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_update_strategy_1750 implements PcoreValue {
-  readonly rolling_update: Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_update_1751[]|null;
+export class Kubernetes_stateful_set_spec_552_update_strategy_672 implements PcoreValue {
+  readonly rolling_update: Kubernetes_stateful_set_spec_552_update_strategy_672_rolling_update_673[]|null;
   readonly type: string|null;
 
   constructor({
     rolling_update = null,
     type = null
   }: {
-    rolling_update?: Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_update_1751[]|null,
+    rolling_update?: Kubernetes_stateful_set_spec_552_update_strategy_672_rolling_update_673[]|null,
     type?: string|null
   }) {
     this.rolling_update = rolling_update;
@@ -29017,11 +29017,11 @@ export class Kubernetes_stateful_set_spec_1630_update_strategy_1750 implements P
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_update_strategy_1750';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_update_strategy_672';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_update_1751 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_update_strategy_672_rolling_update_673 implements PcoreValue {
   readonly partition: number|null;
 
   constructor({
@@ -29041,20 +29041,20 @@ export class Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_upda
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_update_strategy_1750_rolling_update_1751';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_update_strategy_672_rolling_update_673';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752 implements PcoreValue {
-  readonly metadata: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metadata_1753[];
-  readonly spec: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754[];
+export class Kubernetes_stateful_set_spec_552_volume_claim_template_674 implements PcoreValue {
+  readonly metadata: Kubernetes_stateful_set_spec_552_volume_claim_template_674_metadata_675[];
+  readonly spec: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676[];
 
   constructor({
     metadata,
     spec
   }: {
-    metadata: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metadata_1753[],
-    spec: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754[]
+    metadata: Kubernetes_stateful_set_spec_552_volume_claim_template_674_metadata_675[],
+    spec: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676[]
   }) {
     this.metadata = metadata;
     this.spec = spec;
@@ -29068,11 +29068,11 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752 implem
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_volume_claim_template_1752';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_volume_claim_template_674';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metadata_1753 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_volume_claim_template_674_metadata_675 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -29148,14 +29148,14 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metada
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_metadata_1753';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_volume_claim_template_674_metadata_675';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676 implements PcoreValue {
   readonly access_modes: string[];
-  readonly resources: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_resources_1755[];
-  readonly selector: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756[]|null;
+  readonly resources: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_resources_677[];
+  readonly selector: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678[]|null;
   readonly storage_class_name: string|null;
   readonly volume_name: string|null;
 
@@ -29167,8 +29167,8 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1
     volume_name = null
   }: {
     access_modes: string[],
-    resources: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_resources_1755[],
-    selector?: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756[]|null,
+    resources: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_resources_677[],
+    selector?: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678[]|null,
     storage_class_name?: string|null,
     volume_name?: string|null
   }) {
@@ -29196,11 +29196,11 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_resources_1755 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_resources_677 implements PcoreValue {
   readonly limits: {[s: string]: string}|null;
   readonly requests: {[s: string]: string}|null;
 
@@ -29227,19 +29227,19 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_resources_1755';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_resources_677';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756 implements PcoreValue {
-  readonly match_expressions: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756_match_expressions_1757[]|null;
+export class Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678 implements PcoreValue {
+  readonly match_expressions: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678_match_expressions_679[]|null;
   readonly match_labels: {[s: string]: string}|null;
 
   constructor({
     match_expressions = null,
     match_labels = null
   }: {
-    match_expressions?: Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756_match_expressions_1757[]|null,
+    match_expressions?: Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678_match_expressions_679[]|null,
     match_labels?: {[s: string]: string}|null
   }) {
     this.match_expressions = match_expressions;
@@ -29258,11 +29258,11 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678';
   }
 }
 
-export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756_match_expressions_1757 implements PcoreValue {
+export class Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678_match_expressions_679 implements PcoreValue {
   readonly key: string|null;
   readonly operator: string|null;
   readonly values: string[]|null;
@@ -29296,12 +29296,12 @@ export class Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_1630_volume_claim_template_1752_spec_1754_selector_1756_match_expressions_1757';
+    return 'TerraformKubernetes::Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678_match_expressions_679';
   }
 }
 
 export class Kubernetes_storage_class implements PcoreValue {
-  readonly metadata: Kubernetes_storage_class_metadata_1758[];
+  readonly metadata: Kubernetes_storage_class_metadata_680[];
   readonly storage_provisioner: string;
   readonly kubernetes_storage_class_id: string|null;
   readonly parameters: {[s: string]: string}|null;
@@ -29316,7 +29316,7 @@ export class Kubernetes_storage_class implements PcoreValue {
     reclaim_policy = null,
     volume_binding_mode = null
   }: {
-    metadata: Kubernetes_storage_class_metadata_1758[],
+    metadata: Kubernetes_storage_class_metadata_680[],
     storage_provisioner: string,
     kubernetes_storage_class_id?: string|null,
     parameters?: {[s: string]: string}|null,
@@ -29365,7 +29365,7 @@ export class Kubernetes_storage_classHandler implements PcoreValue {
   }
 }
 
-export class Kubernetes_storage_class_metadata_1758 implements PcoreValue {
+export class Kubernetes_storage_class_metadata_680 implements PcoreValue {
   readonly annotations: {[s: string]: string}|null;
   readonly generate_name: string|null;
   readonly generation: number|null;
@@ -29434,6 +29434,6 @@ export class Kubernetes_storage_class_metadata_1758 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformKubernetes::Kubernetes_storage_class_metadata_1758';
+    return 'TerraformKubernetes::Kubernetes_storage_class_metadata_680';
   }
 }
