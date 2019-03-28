@@ -1,9 +1,6 @@
-import {action, logger, PluginLogger, resource, ServiceBuilder} from 'lyra-workflow';
-import * as util from 'util';
+import {logger, resource, ServiceBuilder} from 'lyra-workflow';
 
 import * as Example from './types/Example';
-
-const hash: {[s: string]: string} = {};
 
 const wf = {
   source: __filename,

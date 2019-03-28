@@ -1,4 +1,4 @@
-workflow k8s_namespace_service_pp {
+workflow kubernetes_pp {
   typespace => 'TerraformKubernetes',
   output => (
       String $kubernetes_namespace_id,
@@ -6,31 +6,29 @@ workflow k8s_namespace_service_pp {
   )
 } {
     resource kubernetes_namespace {
-      output=> ($kubernetes_namespace_id)
+      output=> ($kubernetes_namespace_id),
     } {
-        metadata=> [
-            TerraformKubernetes::Kubernetes_namespace_metadata_1211 (
-                name=> lyra-terraform-ns-pp
-            )
-        ]
+        metadata => [TerraformKubernetes::Kubernetes_namespace_metadata_133(
+          name => 'lyra-terraform-ns-pp',
+        )],
     }
 
     resource kubernetes_service {
-      output=> ($kubernetes_service_id)
+      output => ($kubernetes_service_id)
     } {
-        metadata=> [
-            TerraformKubernetes::Kubernetes_service_metadata_1623 (
-                name=> lyra-terraform-service-pp,
+        metadata => [
+            TerraformKubernetes::Kubernetes_service_metadata_545 (
+                name => 'lyra-terraform-service-pp',
             )
         ],
 
         spec => [
-            TerraformKubernetes::Kubernetes_service_spec_1624 (
+            TerraformKubernetes::Kubernetes_service_spec_546 (
                 selector => {
                     'app' => 'lyra-test',
                 },
                 port => [
-                    TerraformKubernetes::Kubernetes_service_spec_1624_port_1625 (
+                    TerraformKubernetes::Kubernetes_service_spec_546_port_547 (
                         port => 80,
                         target_port => '80',
                     )

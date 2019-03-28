@@ -2,7 +2,7 @@
 # export GITHUB_ORGANIZATION=lyraproj
 # export GITHUB_TOKEN=<token>
 
-github_repository:
+github:
   typespace: TerraformGitHub
   activities:
     github_repository:

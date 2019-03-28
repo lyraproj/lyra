@@ -1,4 +1,4 @@
-workflow sample {
+workflow sample_pp {
   typespace => 'example',
   output => (
     String $name
