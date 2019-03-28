@@ -18,25 +18,25 @@ A Workflow can be packaged as a deployable unit and consumed from any of these i
 
 For a more detailed view of how we think about Lyra, check out our introductory [document](https://docs.google.com/document/d/1oJwg4LlolC3qlt0xG__xjrz16aYwEyOk8GqyNt5_Gdo/edit?usp=sharing)!
 
-
 ## Getting Started
 
 ### Build
-The project requires [Go](https://golang.org/doc/install) 1.11.4 or higher, and [go modules](https://github.com/golang/go/wiki/Modules) to be on.
 
-1. Clone the git repo: `$ git clone https://github.com/lyraproj/lyra`
-2. Build the binary: `$ cd lyra; make`
+The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [go modules](https://github.com/golang/go/wiki/Modules) enabled. These instructions should work on Linux and macOS. Proper packages are [coming soon](https://github.com/lyraproj/lyra/issues/12).
 
-### Deploying Workflows with CLI
+1. Clone this repository: `git clone https://github.com/lyraproj/lyra`
+2. Build Lyra: `cd lyra; make`
+
+### Deploying Workflows with the Lyra CLI
 
 > **!! WARNING: THIS WORKFLOW CREATES REAL RESOURCES ($$) !!**
 
-1. Run the binary with the [sample Workflow](plugins/aws_vpc_yaml.yaml): ` $ ./build/lyra apply aws_vpc_yaml --debug`
-2. Delete the Workflow (i.e. its resources), run ` $ ./build/lyra delete aws_vpc_yaml --debug`.  
+1. Apply a [sample Workflow](workflows/aws_vpc_yaml.yaml): `./build/lyra apply aws_vpc_yaml --debug`
+2. Delete the Workflow (i.e. its resources): `./build/lyra delete aws_vpc_yaml --debug`
 
-This workflow is an AWS Workflow called `aws_vpc_yaml` in `plugins\aws_vpc_yaml.yaml`.  Tag data (loaded [here](plugins/aws_vpc_yaml.yaml#L6) by a new golang implementation of [hiera](https://github.com/lyraproj/hiera)) is specified in the [the data.yaml file](data.yaml) file.  This workflow will use the default AWS credentials configured in your `~/.aws/credentials`.
+This Workflow manages several resources on AWS and incorporates external data (for Tags, loaded [here](workflows/aws_vpc_yaml.yaml#L6) using a new Golang implementation of [hiera](https://github.com/lyraproj/hiera)), as specified in the [data.yaml](data.yaml) file. Lyra will use AWS credentials as configured in `~/.aws/credentials`.
 
-For the examples using Terraform providers (e.g. `typespace=>'TerraformAws'`), region is currently hard-coded to `eu-west-1`. For non-Terraform providers (e.g. `typespace=>'aws'`), Lyra will use the default region supplied in your `~/.aws/config`. 
+> NB regarding regions: For the [examples](workflows/) using Terraform providers (e.g. `typespace=>'TerraformAws'`), region is currently hard-coded to `eu-west-1`. For non-Terraform providers (e.g. `typespace=>'aws'`), Lyra will use the default region supplied in your `~/.aws/config`.
 
 There are also examples of [workflows specified in TypeScript for various cloud providers](examples/ts-samples/src/).  All TypeScript examples require NodeJs version 9 or greater (`node --version`) - see [https://nodejs.org/en/download/]().  To run [a basic sample](examples/ts-samples/src/sample_ts.ts), run `make smoke-test-ts`.  This will run an npm install (`(cd examples/ts-samples && npm install)`) and then `build/lyra apply sample_ts --debug`.    
 
@@ -44,13 +44,13 @@ There are also examples of [workflows specified in TypeScript for various cloud 
 
 > **!! WARNING: THIS WORKFLOW CREATES REAL RESOURCES ($$) !!**
 
-1. Install the Lyra CRD: `$ kubectl apply -f k8s/lyra_v1alpha1_workflow_crd.yaml`
-2. Start Lyra in controller mode: ` $ ./build/lyra controller --debug`
-3. Create a Workflow resource: `$ kubectl apply -f k8s/aws_vpc.yaml`
-4. Inspect the resource: `$ kubectl get workflows` 
-5. Delete the Workflow (i.e. its resources): `$ kubectl delete workflow vpc-workflow`
+1. Install the Lyra Workflow CRD: `kubectl apply -f k8s/lyra_v1alpha1_workflow_crd.yaml`
+2. Start Lyra in controller mode: `./build/lyra controller --debug`
+3. In another terminal window, create a Workflow resource: `kubectl apply -f k8s/vpc-workflow.yaml`
+4. Inspect the resource: `kubectl get workflows`
+5. Delete the Workflow (i.e. its resources): `kubectl delete workflow vpc-workflow`
 
-Tag data (loaded [here](plugins/aws_vpc_yaml.yaml#L6) by [hiera](https://github.com/lyraproj/hiera)) for kubernetes workflows is specified in [the data section of the k8s/aws_vpc.yaml file](k8s/vpc-workflow.yaml#L8-L12).
+Tag data for Kubernetes workflows is specified in the data section of [k8s/vpc-workflow.yaml](k8s/vpc-workflow.yaml#L8-L12).
 
 ## Project Status
 Very much in early development. Lyra is just starting and things are a bit bumpy! Star this project above to stay tuned.
@@ -69,7 +69,7 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 ### Language Support
 - [x] Puppet
 - [x] YAML
-- [ ] TypeScript - [**IN PROGRESS**](https://github.com/lyraproj/lyra/issues/42)
+- [X] TypeScript
 - [ ] Language X (File a [feature request](https://github.com/lyraproj/lyra/issues/new?template=feature_request.md)!)
 
 ### Content Ecosystem
