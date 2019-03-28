@@ -7,9 +7,9 @@ export class Github_branch_protection implements PcoreValue {
   readonly github_branch_protection_id: string|null;
   readonly enforce_admins: boolean|null;
   readonly etag: string|null;
-  readonly required_pull_request_reviews: Github_branch_protection_required_pull_request_reviews_852[]|null;
-  readonly required_status_checks: Github_branch_protection_required_status_checks_853[]|null;
-  readonly restrictions: Github_branch_protection_restrictions_854[]|null;
+  readonly required_pull_request_reviews: Github_branch_protection_required_pull_request_reviews_1[]|null;
+  readonly required_status_checks: Github_branch_protection_required_status_checks_2[]|null;
+  readonly restrictions: Github_branch_protection_restrictions_3[]|null;
 
   constructor({
     branch,
@@ -26,9 +26,9 @@ export class Github_branch_protection implements PcoreValue {
     github_branch_protection_id?: string|null,
     enforce_admins?: boolean|null,
     etag?: string|null,
-    required_pull_request_reviews?: Github_branch_protection_required_pull_request_reviews_852[]|null,
-    required_status_checks?: Github_branch_protection_required_status_checks_853[]|null,
-    restrictions?: Github_branch_protection_restrictions_854[]|null
+    required_pull_request_reviews?: Github_branch_protection_required_pull_request_reviews_1[]|null,
+    required_status_checks?: Github_branch_protection_required_status_checks_2[]|null,
+    restrictions?: Github_branch_protection_restrictions_3[]|null
   }) {
     this.branch = branch;
     this.repository = repository;
@@ -80,7 +80,7 @@ export class Github_branch_protectionHandler implements PcoreValue {
   }
 }
 
-export class Github_branch_protection_required_pull_request_reviews_852 implements PcoreValue {
+export class Github_branch_protection_required_pull_request_reviews_1 implements PcoreValue {
   readonly dismiss_stale_reviews: boolean|null;
   readonly dismissal_teams: string[]|null;
   readonly dismissal_users: string[]|null;
@@ -128,11 +128,11 @@ export class Github_branch_protection_required_pull_request_reviews_852 implemen
   }
 
   __ptype(): string {
-    return 'TerraformGitHub::Github_branch_protection_required_pull_request_reviews_852';
+    return 'TerraformGitHub::Github_branch_protection_required_pull_request_reviews_1';
   }
 }
 
-export class Github_branch_protection_required_status_checks_853 implements PcoreValue {
+export class Github_branch_protection_required_status_checks_2 implements PcoreValue {
   readonly contexts: string[]|null;
   readonly include_admins: boolean|null;
   readonly strict: boolean|null;
@@ -166,11 +166,11 @@ export class Github_branch_protection_required_status_checks_853 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGitHub::Github_branch_protection_required_status_checks_853';
+    return 'TerraformGitHub::Github_branch_protection_required_status_checks_2';
   }
 }
 
-export class Github_branch_protection_restrictions_854 implements PcoreValue {
+export class Github_branch_protection_restrictions_3 implements PcoreValue {
   readonly teams: string[]|null;
   readonly users: string[]|null;
 
@@ -197,7 +197,7 @@ export class Github_branch_protection_restrictions_854 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGitHub::Github_branch_protection_restrictions_854';
+    return 'TerraformGitHub::Github_branch_protection_restrictions_3';
   }
 }
 
@@ -389,7 +389,7 @@ export class Github_organization_webhook implements PcoreValue {
   readonly name: string;
   readonly github_organization_webhook_id: string|null;
   readonly active: boolean|null;
-  readonly configuration: Github_organization_webhook_configuration_855[]|null;
+  readonly configuration: Github_organization_webhook_configuration_4[]|null;
   readonly etag: string|null;
   readonly url: string|null;
 
@@ -406,7 +406,7 @@ export class Github_organization_webhook implements PcoreValue {
     name: string,
     github_organization_webhook_id?: string|null,
     active?: boolean|null,
-    configuration?: Github_organization_webhook_configuration_855[]|null,
+    configuration?: Github_organization_webhook_configuration_4[]|null,
     etag?: string|null,
     url?: string|null
   }) {
@@ -456,7 +456,7 @@ export class Github_organization_webhookHandler implements PcoreValue {
   }
 }
 
-export class Github_organization_webhook_configuration_855 implements PcoreValue {
+export class Github_organization_webhook_configuration_4 implements PcoreValue {
   readonly url: string;
   readonly content_type: string|null;
   readonly insecure_ssl: string|null;
@@ -495,7 +495,7 @@ export class Github_organization_webhook_configuration_855 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformGitHub::Github_organization_webhook_configuration_855';
+    return 'TerraformGitHub::Github_organization_webhook_configuration_4';
   }
 }
 
@@ -935,7 +935,7 @@ export class Github_repository_webhook implements PcoreValue {
   readonly repository: string;
   readonly github_repository_webhook_id: string|null;
   readonly active: boolean|null;
-  readonly configuration: Github_repository_webhook_configuration_856[]|null;
+  readonly configuration: Github_repository_webhook_configuration_5[]|null;
   readonly etag: string|null;
   readonly url: string|null;
 
@@ -954,7 +954,7 @@ export class Github_repository_webhook implements PcoreValue {
     repository: string,
     github_repository_webhook_id?: string|null,
     active?: boolean|null,
-    configuration?: Github_repository_webhook_configuration_856[]|null,
+    configuration?: Github_repository_webhook_configuration_5[]|null,
     etag?: string|null,
     url?: string|null
   }) {
@@ -1006,7 +1006,7 @@ export class Github_repository_webhookHandler implements PcoreValue {
   }
 }
 
-export class Github_repository_webhook_configuration_856 implements PcoreValue {
+export class Github_repository_webhook_configuration_5 implements PcoreValue {
   readonly url: string;
   readonly content_type: string|null;
   readonly insecure_ssl: string|null;
@@ -1045,7 +1045,7 @@ export class Github_repository_webhook_configuration_856 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGitHub::Github_repository_webhook_configuration_856';
+    return 'TerraformGitHub::Github_repository_webhook_configuration_5';
   }
 }
 

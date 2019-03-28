@@ -1,0 +1,10 @@
+sample:
+  typespace: example
+  output: [name, age]
+  activities:
+    person:
+      output: [name, age]
+      state:
+        age: 66
+        name: Ann
+        human: true

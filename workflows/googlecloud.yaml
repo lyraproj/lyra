@@ -2,7 +2,7 @@
 # export GOOGLE_PROJECT=<some-project>
 # export GOOGLE_APPLICATION_CREDENTIALS=<credentials-file.json>
 
-google_compute_instance:
+googlecloud:
   typespace: TerraformGoogle
   activities:
     google_compute_instance:

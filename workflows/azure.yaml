@@ -1,6 +1,6 @@
 # You will need to authenticate with Azure using the "az login" command
 
-azure_virtual_machine:
+azure:
   typespace: TerraformAzureRM
   activities:
     azurerm_resource_group:

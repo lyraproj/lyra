@@ -8,12 +8,12 @@ export class Google_app_engine_application implements PcoreValue {
   readonly code_bucket: string|null;
   readonly default_bucket: string|null;
   readonly default_hostname: string|null;
-  readonly feature_settings: Google_app_engine_application_feature_settings_857[]|null;
+  readonly feature_settings: Google_app_engine_application_feature_settings_1[]|null;
   readonly gcr_domain: string|null;
   readonly name: string|null;
   readonly project: string|null;
   readonly serving_status: string|null;
-  readonly url_dispatch_rule: Google_app_engine_application_url_dispatch_rule_858[]|null;
+  readonly url_dispatch_rule: Google_app_engine_application_url_dispatch_rule_2[]|null;
 
   constructor({
     location_id,
@@ -35,12 +35,12 @@ export class Google_app_engine_application implements PcoreValue {
     code_bucket?: string|null,
     default_bucket?: string|null,
     default_hostname?: string|null,
-    feature_settings?: Google_app_engine_application_feature_settings_857[]|null,
+    feature_settings?: Google_app_engine_application_feature_settings_1[]|null,
     gcr_domain?: string|null,
     name?: string|null,
     project?: string|null,
     serving_status?: string|null,
-    url_dispatch_rule?: Google_app_engine_application_url_dispatch_rule_858[]|null
+    url_dispatch_rule?: Google_app_engine_application_url_dispatch_rule_2[]|null
   }) {
     this.location_id = location_id;
     this.google_app_engine_application_id = google_app_engine_application_id;
@@ -110,7 +110,7 @@ export class Google_app_engine_applicationHandler implements PcoreValue {
   }
 }
 
-export class Google_app_engine_application_feature_settings_857 implements PcoreValue {
+export class Google_app_engine_application_feature_settings_1 implements PcoreValue {
   readonly split_health_checks: boolean|null;
 
   constructor({
@@ -130,11 +130,11 @@ export class Google_app_engine_application_feature_settings_857 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_app_engine_application_feature_settings_857';
+    return 'TerraformGoogle::Google_app_engine_application_feature_settings_1';
   }
 }
 
-export class Google_app_engine_application_url_dispatch_rule_858 implements PcoreValue {
+export class Google_app_engine_application_url_dispatch_rule_2 implements PcoreValue {
   readonly domain: string|null;
   readonly path: string|null;
   readonly service: string|null;
@@ -168,14 +168,14 @@ export class Google_app_engine_application_url_dispatch_rule_858 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_app_engine_application_url_dispatch_rule_858';
+    return 'TerraformGoogle::Google_app_engine_application_url_dispatch_rule_2';
   }
 }
 
 export class Google_bigquery_dataset implements PcoreValue {
   readonly dataset_id: string;
   readonly google_bigquery_dataset_id: string|null;
-  readonly access: Google_bigquery_dataset_access_859[]|null;
+  readonly access: Google_bigquery_dataset_access_3[]|null;
   readonly creation_time: number|null;
   readonly default_table_expiration_ms: number|null;
   readonly description: string|null;
@@ -204,7 +204,7 @@ export class Google_bigquery_dataset implements PcoreValue {
   }: {
     dataset_id: string,
     google_bigquery_dataset_id?: string|null,
-    access?: Google_bigquery_dataset_access_859[]|null,
+    access?: Google_bigquery_dataset_access_3[]|null,
     creation_time?: number|null,
     default_table_expiration_ms?: number|null,
     description?: string|null,
@@ -288,13 +288,13 @@ export class Google_bigquery_datasetHandler implements PcoreValue {
   }
 }
 
-export class Google_bigquery_dataset_access_859 implements PcoreValue {
+export class Google_bigquery_dataset_access_3 implements PcoreValue {
   readonly domain: string|null;
   readonly group_by_email: string|null;
   readonly role: string|null;
   readonly special_group: string|null;
   readonly user_by_email: string|null;
-  readonly view: Google_bigquery_dataset_access_859_view_860[]|null;
+  readonly view: Google_bigquery_dataset_access_3_view_4[]|null;
 
   constructor({
     domain = null,
@@ -309,7 +309,7 @@ export class Google_bigquery_dataset_access_859 implements PcoreValue {
     role?: string|null,
     special_group?: string|null,
     user_by_email?: string|null,
-    view?: Google_bigquery_dataset_access_859_view_860[]|null
+    view?: Google_bigquery_dataset_access_3_view_4[]|null
   }) {
     this.domain = domain;
     this.group_by_email = group_by_email;
@@ -343,11 +343,11 @@ export class Google_bigquery_dataset_access_859 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_bigquery_dataset_access_859';
+    return 'TerraformGoogle::Google_bigquery_dataset_access_3';
   }
 }
 
-export class Google_bigquery_dataset_access_859_view_860 implements PcoreValue {
+export class Google_bigquery_dataset_access_3_view_4 implements PcoreValue {
   readonly dataset_id: string;
   readonly project_id: string;
   readonly table_id: string;
@@ -375,7 +375,7 @@ export class Google_bigquery_dataset_access_859_view_860 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_bigquery_dataset_access_859_view_860';
+    return 'TerraformGoogle::Google_bigquery_dataset_access_3_view_4';
   }
 }
 
@@ -397,9 +397,9 @@ export class Google_bigquery_table implements PcoreValue {
   readonly project: string|null;
   readonly schema: string|null;
   readonly self_link: string|null;
-  readonly time_partitioning: Google_bigquery_table_time_partitioning_861[]|null;
+  readonly time_partitioning: Google_bigquery_table_time_partitioning_5[]|null;
   readonly type: string|null;
-  readonly view: Google_bigquery_table_view_862[]|null;
+  readonly view: Google_bigquery_table_view_6[]|null;
 
   constructor({
     dataset_id,
@@ -440,9 +440,9 @@ export class Google_bigquery_table implements PcoreValue {
     project?: string|null,
     schema?: string|null,
     self_link?: string|null,
-    time_partitioning?: Google_bigquery_table_time_partitioning_861[]|null,
+    time_partitioning?: Google_bigquery_table_time_partitioning_5[]|null,
     type?: string|null,
-    view?: Google_bigquery_table_view_862[]|null
+    view?: Google_bigquery_table_view_6[]|null
   }) {
     this.dataset_id = dataset_id;
     this.table_id = table_id;
@@ -542,7 +542,7 @@ export class Google_bigquery_tableHandler implements PcoreValue {
   }
 }
 
-export class Google_bigquery_table_time_partitioning_861 implements PcoreValue {
+export class Google_bigquery_table_time_partitioning_5 implements PcoreValue {
   readonly type: string;
   readonly expiration_ms: number|null;
   readonly field: string|null;
@@ -574,11 +574,11 @@ export class Google_bigquery_table_time_partitioning_861 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_bigquery_table_time_partitioning_861';
+    return 'TerraformGoogle::Google_bigquery_table_time_partitioning_5';
   }
 }
 
-export class Google_bigquery_table_view_862 implements PcoreValue {
+export class Google_bigquery_table_view_6 implements PcoreValue {
   readonly query: string;
   readonly use_legacy_sql: boolean|null;
 
@@ -603,14 +603,14 @@ export class Google_bigquery_table_view_862 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_bigquery_table_view_862';
+    return 'TerraformGoogle::Google_bigquery_table_view_6';
   }
 }
 
 export class Google_bigtable_instance implements PcoreValue {
   readonly name: string;
   readonly google_bigtable_instance_id: string|null;
-  readonly cluster: Google_bigtable_instance_cluster_863[]|null;
+  readonly cluster: Google_bigtable_instance_cluster_7[]|null;
   readonly cluster_id: string|null;
   readonly display_name: string|null;
   readonly instance_type: string|null;
@@ -633,7 +633,7 @@ export class Google_bigtable_instance implements PcoreValue {
   }: {
     name: string,
     google_bigtable_instance_id?: string|null,
-    cluster?: Google_bigtable_instance_cluster_863[]|null,
+    cluster?: Google_bigtable_instance_cluster_7[]|null,
     cluster_id?: string|null,
     display_name?: string|null,
     instance_type?: string|null,
@@ -702,7 +702,7 @@ export class Google_bigtable_instanceHandler implements PcoreValue {
   }
 }
 
-export class Google_bigtable_instance_cluster_863 implements PcoreValue {
+export class Google_bigtable_instance_cluster_7 implements PcoreValue {
   readonly cluster_id: string|null;
   readonly num_nodes: number|null;
   readonly storage_type: string|null;
@@ -743,7 +743,7 @@ export class Google_bigtable_instance_cluster_863 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_bigtable_instance_cluster_863';
+    return 'TerraformGoogle::Google_bigtable_instance_cluster_7';
   }
 }
 
@@ -969,7 +969,7 @@ export class Google_billing_account_iam_policyHandler implements PcoreValue {
 }
 
 export class Google_binary_authorization_attestor implements PcoreValue {
-  readonly attestation_authority_note: Google_binary_authorization_attestor_attestation_authority_note_864[];
+  readonly attestation_authority_note: Google_binary_authorization_attestor_attestation_authority_note_8[];
   readonly name: string;
   readonly google_binary_authorization_attestor_id: string|null;
   readonly description: string|null;
@@ -982,7 +982,7 @@ export class Google_binary_authorization_attestor implements PcoreValue {
     description = null,
     project = null
   }: {
-    attestation_authority_note: Google_binary_authorization_attestor_attestation_authority_note_864[],
+    attestation_authority_note: Google_binary_authorization_attestor_attestation_authority_note_8[],
     name: string,
     google_binary_authorization_attestor_id?: string|null,
     description?: string|null,
@@ -1026,10 +1026,10 @@ export class Google_binary_authorization_attestorHandler implements PcoreValue {
   }
 }
 
-export class Google_binary_authorization_attestor_attestation_authority_note_864 implements PcoreValue {
+export class Google_binary_authorization_attestor_attestation_authority_note_8 implements PcoreValue {
   readonly note_reference: string;
   readonly delegation_service_account_email: string|null;
-  readonly public_keys: Google_binary_authorization_attestor_attestation_authority_note_864_public_keys_865[]|null;
+  readonly public_keys: Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9[]|null;
 
   constructor({
     note_reference,
@@ -1038,7 +1038,7 @@ export class Google_binary_authorization_attestor_attestation_authority_note_864
   }: {
     note_reference: string,
     delegation_service_account_email?: string|null,
-    public_keys?: Google_binary_authorization_attestor_attestation_authority_note_864_public_keys_865[]|null
+    public_keys?: Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9[]|null
   }) {
     this.note_reference = note_reference;
     this.delegation_service_account_email = delegation_service_account_email;
@@ -1058,11 +1058,11 @@ export class Google_binary_authorization_attestor_attestation_authority_note_864
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_binary_authorization_attestor_attestation_authority_note_864';
+    return 'TerraformGoogle::Google_binary_authorization_attestor_attestation_authority_note_8';
   }
 }
 
-export class Google_binary_authorization_attestor_attestation_authority_note_864_public_keys_865 implements PcoreValue {
+export class Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9 implements PcoreValue {
   readonly ascii_armored_pgp_public_key: string;
   readonly comment: string|null;
   readonly id: string|null;
@@ -1094,15 +1094,15 @@ export class Google_binary_authorization_attestor_attestation_authority_note_864
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_binary_authorization_attestor_attestation_authority_note_864_public_keys_865';
+    return 'TerraformGoogle::Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9';
   }
 }
 
 export class Google_binary_authorization_policy implements PcoreValue {
-  readonly default_admission_rule: Google_binary_authorization_policy_default_admission_rule_868[];
+  readonly default_admission_rule: Google_binary_authorization_policy_default_admission_rule_12[];
   readonly google_binary_authorization_policy_id: string|null;
-  readonly admission_whitelist_patterns: Google_binary_authorization_policy_admission_whitelist_patterns_866[]|null;
-  readonly cluster_admission_rules: Google_binary_authorization_policy_cluster_admission_rules_867[]|null;
+  readonly admission_whitelist_patterns: Google_binary_authorization_policy_admission_whitelist_patterns_10[]|null;
+  readonly cluster_admission_rules: Google_binary_authorization_policy_cluster_admission_rules_11[]|null;
   readonly description: string|null;
   readonly project: string|null;
 
@@ -1114,10 +1114,10 @@ export class Google_binary_authorization_policy implements PcoreValue {
     description = null,
     project = null
   }: {
-    default_admission_rule: Google_binary_authorization_policy_default_admission_rule_868[],
+    default_admission_rule: Google_binary_authorization_policy_default_admission_rule_12[],
     google_binary_authorization_policy_id?: string|null,
-    admission_whitelist_patterns?: Google_binary_authorization_policy_admission_whitelist_patterns_866[]|null,
-    cluster_admission_rules?: Google_binary_authorization_policy_cluster_admission_rules_867[]|null,
+    admission_whitelist_patterns?: Google_binary_authorization_policy_admission_whitelist_patterns_10[]|null,
+    cluster_admission_rules?: Google_binary_authorization_policy_cluster_admission_rules_11[]|null,
     description?: string|null,
     project?: string|null
   }) {
@@ -1165,7 +1165,7 @@ export class Google_binary_authorization_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_binary_authorization_policy_admission_whitelist_patterns_866 implements PcoreValue {
+export class Google_binary_authorization_policy_admission_whitelist_patterns_10 implements PcoreValue {
   readonly name_pattern: string|null;
 
   constructor({
@@ -1185,11 +1185,11 @@ export class Google_binary_authorization_policy_admission_whitelist_patterns_866
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_binary_authorization_policy_admission_whitelist_patterns_866';
+    return 'TerraformGoogle::Google_binary_authorization_policy_admission_whitelist_patterns_10';
   }
 }
 
-export class Google_binary_authorization_policy_cluster_admission_rules_867 implements PcoreValue {
+export class Google_binary_authorization_policy_cluster_admission_rules_11 implements PcoreValue {
   readonly cluster: string;
   readonly enforcement_mode: string|null;
   readonly evaluation_mode: string|null;
@@ -1228,11 +1228,11 @@ export class Google_binary_authorization_policy_cluster_admission_rules_867 impl
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_binary_authorization_policy_cluster_admission_rules_867';
+    return 'TerraformGoogle::Google_binary_authorization_policy_cluster_admission_rules_11';
   }
 }
 
-export class Google_binary_authorization_policy_default_admission_rule_868 implements PcoreValue {
+export class Google_binary_authorization_policy_default_admission_rule_12 implements PcoreValue {
   readonly enforcement_mode: string;
   readonly evaluation_mode: string;
   readonly require_attestations_by: string[]|null;
@@ -1262,18 +1262,18 @@ export class Google_binary_authorization_policy_default_admission_rule_868 imple
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_binary_authorization_policy_default_admission_rule_868';
+    return 'TerraformGoogle::Google_binary_authorization_policy_default_admission_rule_12';
   }
 }
 
 export class Google_cloudbuild_trigger implements PcoreValue {
   readonly google_cloudbuild_trigger_id: string|null;
-  readonly build: Google_cloudbuild_trigger_build_869[]|null;
+  readonly build: Google_cloudbuild_trigger_build_13[]|null;
   readonly description: string|null;
   readonly filename: string|null;
   readonly project: string|null;
   readonly substitutions: {[s: string]: string}|null;
-  readonly trigger_template: Google_cloudbuild_trigger_trigger_template_871[]|null;
+  readonly trigger_template: Google_cloudbuild_trigger_trigger_template_15[]|null;
 
   constructor({
     google_cloudbuild_trigger_id = null,
@@ -1285,12 +1285,12 @@ export class Google_cloudbuild_trigger implements PcoreValue {
     trigger_template = null
   }: {
     google_cloudbuild_trigger_id?: string|null,
-    build?: Google_cloudbuild_trigger_build_869[]|null,
+    build?: Google_cloudbuild_trigger_build_13[]|null,
     description?: string|null,
     filename?: string|null,
     project?: string|null,
     substitutions?: {[s: string]: string}|null,
-    trigger_template?: Google_cloudbuild_trigger_trigger_template_871[]|null
+    trigger_template?: Google_cloudbuild_trigger_trigger_template_15[]|null
   }) {
     this.google_cloudbuild_trigger_id = google_cloudbuild_trigger_id;
     this.build = build;
@@ -1342,9 +1342,9 @@ export class Google_cloudbuild_triggerHandler implements PcoreValue {
   }
 }
 
-export class Google_cloudbuild_trigger_build_869 implements PcoreValue {
+export class Google_cloudbuild_trigger_build_13 implements PcoreValue {
   readonly images: string[]|null;
-  readonly step: Google_cloudbuild_trigger_build_869_step_870[]|null;
+  readonly step: Google_cloudbuild_trigger_build_13_step_14[]|null;
   readonly tags: string[]|null;
 
   constructor({
@@ -1353,7 +1353,7 @@ export class Google_cloudbuild_trigger_build_869 implements PcoreValue {
     tags = null
   }: {
     images?: string[]|null,
-    step?: Google_cloudbuild_trigger_build_869_step_870[]|null,
+    step?: Google_cloudbuild_trigger_build_13_step_14[]|null,
     tags?: string[]|null
   }) {
     this.images = images;
@@ -1376,11 +1376,11 @@ export class Google_cloudbuild_trigger_build_869 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_cloudbuild_trigger_build_869';
+    return 'TerraformGoogle::Google_cloudbuild_trigger_build_13';
   }
 }
 
-export class Google_cloudbuild_trigger_build_869_step_870 implements PcoreValue {
+export class Google_cloudbuild_trigger_build_13_step_14 implements PcoreValue {
   readonly args: string|null;
   readonly name: string|null;
 
@@ -1407,11 +1407,11 @@ export class Google_cloudbuild_trigger_build_869_step_870 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_cloudbuild_trigger_build_869_step_870';
+    return 'TerraformGoogle::Google_cloudbuild_trigger_build_13_step_14';
   }
 }
 
-export class Google_cloudbuild_trigger_trigger_template_871 implements PcoreValue {
+export class Google_cloudbuild_trigger_trigger_template_15 implements PcoreValue {
   readonly branch_name: string|null;
   readonly commit_sha: string|null;
   readonly dir: string|null;
@@ -1466,7 +1466,7 @@ export class Google_cloudbuild_trigger_trigger_template_871 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_cloudbuild_trigger_trigger_template_871';
+    return 'TerraformGoogle::Google_cloudbuild_trigger_trigger_template_15';
   }
 }
 
@@ -1479,7 +1479,7 @@ export class Google_cloudfunctions_function implements PcoreValue {
   readonly description: string|null;
   readonly entry_point: string|null;
   readonly environment_variables: {[s: string]: string}|null;
-  readonly event_trigger: Google_cloudfunctions_function_event_trigger_872[]|null;
+  readonly event_trigger: Google_cloudfunctions_function_event_trigger_16[]|null;
   readonly https_trigger_url: string|null;
   readonly labels: {[s: string]: string}|null;
   readonly project: string|null;
@@ -1520,7 +1520,7 @@ export class Google_cloudfunctions_function implements PcoreValue {
     description?: string|null,
     entry_point?: string|null,
     environment_variables?: {[s: string]: string}|null,
-    event_trigger?: Google_cloudfunctions_function_event_trigger_872[]|null,
+    event_trigger?: Google_cloudfunctions_function_event_trigger_16[]|null,
     https_trigger_url?: string|null,
     labels?: {[s: string]: string}|null,
     project?: string|null,
@@ -1624,10 +1624,10 @@ export class Google_cloudfunctions_functionHandler implements PcoreValue {
   }
 }
 
-export class Google_cloudfunctions_function_event_trigger_872 implements PcoreValue {
+export class Google_cloudfunctions_function_event_trigger_16 implements PcoreValue {
   readonly event_type: string;
   readonly resource: string;
-  readonly failure_policy: Google_cloudfunctions_function_event_trigger_872_failure_policy_873[]|null;
+  readonly failure_policy: Google_cloudfunctions_function_event_trigger_16_failure_policy_17[]|null;
 
   constructor({
     event_type,
@@ -1636,7 +1636,7 @@ export class Google_cloudfunctions_function_event_trigger_872 implements PcoreVa
   }: {
     event_type: string,
     resource: string,
-    failure_policy?: Google_cloudfunctions_function_event_trigger_872_failure_policy_873[]|null
+    failure_policy?: Google_cloudfunctions_function_event_trigger_16_failure_policy_17[]|null
   }) {
     this.event_type = event_type;
     this.resource = resource;
@@ -1654,11 +1654,11 @@ export class Google_cloudfunctions_function_event_trigger_872 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_cloudfunctions_function_event_trigger_872';
+    return 'TerraformGoogle::Google_cloudfunctions_function_event_trigger_16';
   }
 }
 
-export class Google_cloudfunctions_function_event_trigger_872_failure_policy_873 implements PcoreValue {
+export class Google_cloudfunctions_function_event_trigger_16_failure_policy_17 implements PcoreValue {
   readonly retry: boolean;
 
   constructor({
@@ -1676,14 +1676,14 @@ export class Google_cloudfunctions_function_event_trigger_872_failure_policy_873
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_cloudfunctions_function_event_trigger_872_failure_policy_873';
+    return 'TerraformGoogle::Google_cloudfunctions_function_event_trigger_16_failure_policy_17';
   }
 }
 
 export class Google_cloudiot_registry implements PcoreValue {
   readonly name: string;
   readonly google_cloudiot_registry_id: string|null;
-  readonly credentials: Google_cloudiot_registry_credentials_874[]|null;
+  readonly credentials: Google_cloudiot_registry_credentials_18[]|null;
   readonly event_notification_config: {[s: string]: string}|null;
   readonly http_config: {[s: string]: string}|null;
   readonly mqtt_config: {[s: string]: string}|null;
@@ -1704,7 +1704,7 @@ export class Google_cloudiot_registry implements PcoreValue {
   }: {
     name: string,
     google_cloudiot_registry_id?: string|null,
-    credentials?: Google_cloudiot_registry_credentials_874[]|null,
+    credentials?: Google_cloudiot_registry_credentials_18[]|null,
     event_notification_config?: {[s: string]: string}|null,
     http_config?: {[s: string]: string}|null,
     mqtt_config?: {[s: string]: string}|null,
@@ -1768,7 +1768,7 @@ export class Google_cloudiot_registryHandler implements PcoreValue {
   }
 }
 
-export class Google_cloudiot_registry_credentials_874 implements PcoreValue {
+export class Google_cloudiot_registry_credentials_18 implements PcoreValue {
   readonly public_key_certificate: {[s: string]: string}|null;
 
   constructor({
@@ -1788,14 +1788,14 @@ export class Google_cloudiot_registry_credentials_874 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_cloudiot_registry_credentials_874';
+    return 'TerraformGoogle::Google_cloudiot_registry_credentials_18';
   }
 }
 
 export class Google_composer_environment implements PcoreValue {
   readonly name: string;
   readonly google_composer_environment_id: string|null;
-  readonly config: Google_composer_environment_config_875[]|null;
+  readonly config: Google_composer_environment_config_19[]|null;
   readonly labels: {[s: string]: string}|null;
   readonly project: string|null;
   readonly region: string|null;
@@ -1810,7 +1810,7 @@ export class Google_composer_environment implements PcoreValue {
   }: {
     name: string,
     google_composer_environment_id?: string|null,
-    config?: Google_composer_environment_config_875[]|null,
+    config?: Google_composer_environment_config_19[]|null,
     labels?: {[s: string]: string}|null,
     project?: string|null,
     region?: string|null
@@ -1859,13 +1859,13 @@ export class Google_composer_environmentHandler implements PcoreValue {
   }
 }
 
-export class Google_composer_environment_config_875 implements PcoreValue {
+export class Google_composer_environment_config_19 implements PcoreValue {
   readonly airflow_uri: string|null;
   readonly dag_gcs_prefix: string|null;
   readonly gke_cluster: string|null;
-  readonly node_config: Google_composer_environment_config_875_node_config_876[]|null;
+  readonly node_config: Google_composer_environment_config_19_node_config_20[]|null;
   readonly node_count: number|null;
-  readonly software_config: Google_composer_environment_config_875_software_config_877[]|null;
+  readonly software_config: Google_composer_environment_config_19_software_config_21[]|null;
 
   constructor({
     airflow_uri = null,
@@ -1878,9 +1878,9 @@ export class Google_composer_environment_config_875 implements PcoreValue {
     airflow_uri?: string|null,
     dag_gcs_prefix?: string|null,
     gke_cluster?: string|null,
-    node_config?: Google_composer_environment_config_875_node_config_876[]|null,
+    node_config?: Google_composer_environment_config_19_node_config_20[]|null,
     node_count?: number|null,
-    software_config?: Google_composer_environment_config_875_software_config_877[]|null
+    software_config?: Google_composer_environment_config_19_software_config_21[]|null
   }) {
     this.airflow_uri = airflow_uri;
     this.dag_gcs_prefix = dag_gcs_prefix;
@@ -1914,11 +1914,11 @@ export class Google_composer_environment_config_875 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_composer_environment_config_875';
+    return 'TerraformGoogle::Google_composer_environment_config_19';
   }
 }
 
-export class Google_composer_environment_config_875_node_config_876 implements PcoreValue {
+export class Google_composer_environment_config_19_node_config_20 implements PcoreValue {
   readonly disk_size_gb: number|null;
   readonly machine_type: string|null;
   readonly network: string|null;
@@ -1987,11 +1987,11 @@ export class Google_composer_environment_config_875_node_config_876 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_composer_environment_config_875_node_config_876';
+    return 'TerraformGoogle::Google_composer_environment_config_19_node_config_20';
   }
 }
 
-export class Google_composer_environment_config_875_software_config_877 implements PcoreValue {
+export class Google_composer_environment_config_19_software_config_21 implements PcoreValue {
   readonly airflow_config_overrides: {[s: string]: string}|null;
   readonly env_variables: {[s: string]: string}|null;
   readonly image_version: string|null;
@@ -2032,7 +2032,7 @@ export class Google_composer_environment_config_875_software_config_877 implemen
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_composer_environment_config_875_software_config_877';
+    return 'TerraformGoogle::Google_composer_environment_config_19_software_config_21';
   }
 }
 
@@ -2232,7 +2232,7 @@ export class Google_compute_attached_diskHandler implements PcoreValue {
 }
 
 export class Google_compute_autoscaler implements PcoreValue {
-  readonly autoscaling_policy: Google_compute_autoscaler_autoscaling_policy_878[];
+  readonly autoscaling_policy: Google_compute_autoscaler_autoscaling_policy_22[];
   readonly name: string;
   readonly target: string;
   readonly google_compute_autoscaler_id: string|null;
@@ -2253,7 +2253,7 @@ export class Google_compute_autoscaler implements PcoreValue {
     self_link = null,
     zone = null
   }: {
-    autoscaling_policy: Google_compute_autoscaler_autoscaling_policy_878[],
+    autoscaling_policy: Google_compute_autoscaler_autoscaling_policy_22[],
     name: string,
     target: string,
     google_compute_autoscaler_id?: string|null,
@@ -2315,13 +2315,13 @@ export class Google_compute_autoscalerHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_autoscaler_autoscaling_policy_878 implements PcoreValue {
+export class Google_compute_autoscaler_autoscaling_policy_22 implements PcoreValue {
   readonly max_replicas: number;
   readonly min_replicas: number;
   readonly cooldown_period: number|null;
-  readonly cpu_utilization: Google_compute_autoscaler_autoscaling_policy_878_cpu_utilization_879[]|null;
-  readonly load_balancing_utilization: Google_compute_autoscaler_autoscaling_policy_878_load_balancing_utilization_880[]|null;
-  readonly metric: Google_compute_autoscaler_autoscaling_policy_878_metric_881[]|null;
+  readonly cpu_utilization: Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23[]|null;
+  readonly load_balancing_utilization: Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24[]|null;
+  readonly metric: Google_compute_autoscaler_autoscaling_policy_22_metric_25[]|null;
 
   constructor({
     max_replicas,
@@ -2334,9 +2334,9 @@ export class Google_compute_autoscaler_autoscaling_policy_878 implements PcoreVa
     max_replicas: number,
     min_replicas: number,
     cooldown_period?: number|null,
-    cpu_utilization?: Google_compute_autoscaler_autoscaling_policy_878_cpu_utilization_879[]|null,
-    load_balancing_utilization?: Google_compute_autoscaler_autoscaling_policy_878_load_balancing_utilization_880[]|null,
-    metric?: Google_compute_autoscaler_autoscaling_policy_878_metric_881[]|null
+    cpu_utilization?: Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23[]|null,
+    load_balancing_utilization?: Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24[]|null,
+    metric?: Google_compute_autoscaler_autoscaling_policy_22_metric_25[]|null
   }) {
     this.max_replicas = max_replicas;
     this.min_replicas = min_replicas;
@@ -2366,11 +2366,11 @@ export class Google_compute_autoscaler_autoscaling_policy_878 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_878';
+    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_22';
   }
 }
 
-export class Google_compute_autoscaler_autoscaling_policy_878_cpu_utilization_879 implements PcoreValue {
+export class Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23 implements PcoreValue {
   readonly target: number;
 
   constructor({
@@ -2388,11 +2388,11 @@ export class Google_compute_autoscaler_autoscaling_policy_878_cpu_utilization_87
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_878_cpu_utilization_879';
+    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23';
   }
 }
 
-export class Google_compute_autoscaler_autoscaling_policy_878_load_balancing_utilization_880 implements PcoreValue {
+export class Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24 implements PcoreValue {
   readonly target: number;
 
   constructor({
@@ -2410,11 +2410,11 @@ export class Google_compute_autoscaler_autoscaling_policy_878_load_balancing_uti
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_878_load_balancing_utilization_880';
+    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24';
   }
 }
 
-export class Google_compute_autoscaler_autoscaling_policy_878_metric_881 implements PcoreValue {
+export class Google_compute_autoscaler_autoscaling_policy_22_metric_25 implements PcoreValue {
   readonly name: string;
   readonly target: number;
   readonly type: string;
@@ -2442,7 +2442,7 @@ export class Google_compute_autoscaler_autoscaling_policy_878_metric_881 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_878_metric_881';
+    return 'TerraformGoogle::Google_compute_autoscaler_autoscaling_policy_22_metric_25';
   }
 }
 
@@ -2529,14 +2529,14 @@ export class Google_compute_backend_service implements PcoreValue {
   readonly health_checks: string[];
   readonly name: string;
   readonly google_compute_backend_service_id: string|null;
-  readonly backend: Google_compute_backend_service_backend_882[]|null;
-  readonly cdn_policy: Google_compute_backend_service_cdn_policy_883[]|null;
+  readonly backend: Google_compute_backend_service_backend_26[]|null;
+  readonly cdn_policy: Google_compute_backend_service_cdn_policy_27[]|null;
   readonly connection_draining_timeout_sec: number|null;
   readonly custom_request_headers: string[]|null;
   readonly description: string|null;
   readonly enable_cdn: boolean|null;
   readonly fingerprint: string|null;
-  readonly iap: Google_compute_backend_service_iap_885[]|null;
+  readonly iap: Google_compute_backend_service_iap_29[]|null;
   readonly port_name: string|null;
   readonly project: string|null;
   readonly protocol: string|null;
@@ -2570,14 +2570,14 @@ export class Google_compute_backend_service implements PcoreValue {
     health_checks: string[],
     name: string,
     google_compute_backend_service_id?: string|null,
-    backend?: Google_compute_backend_service_backend_882[]|null,
-    cdn_policy?: Google_compute_backend_service_cdn_policy_883[]|null,
+    backend?: Google_compute_backend_service_backend_26[]|null,
+    cdn_policy?: Google_compute_backend_service_cdn_policy_27[]|null,
     connection_draining_timeout_sec?: number|null,
     custom_request_headers?: string[]|null,
     description?: string|null,
     enable_cdn?: boolean|null,
     fingerprint?: string|null,
-    iap?: Google_compute_backend_service_iap_885[]|null,
+    iap?: Google_compute_backend_service_iap_29[]|null,
     port_name?: string|null,
     project?: string|null,
     protocol?: string|null,
@@ -2681,7 +2681,7 @@ export class Google_compute_backend_serviceHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_backend_service_backend_882 implements PcoreValue {
+export class Google_compute_backend_service_backend_26 implements PcoreValue {
   readonly balancing_mode: string|null;
   readonly capacity_scaler: number|null;
   readonly description: string|null;
@@ -2757,17 +2757,17 @@ export class Google_compute_backend_service_backend_882 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_backend_service_backend_882';
+    return 'TerraformGoogle::Google_compute_backend_service_backend_26';
   }
 }
 
-export class Google_compute_backend_service_cdn_policy_883 implements PcoreValue {
-  readonly cache_key_policy: Google_compute_backend_service_cdn_policy_883_cache_key_policy_884[]|null;
+export class Google_compute_backend_service_cdn_policy_27 implements PcoreValue {
+  readonly cache_key_policy: Google_compute_backend_service_cdn_policy_27_cache_key_policy_28[]|null;
 
   constructor({
     cache_key_policy = null
   }: {
-    cache_key_policy?: Google_compute_backend_service_cdn_policy_883_cache_key_policy_884[]|null
+    cache_key_policy?: Google_compute_backend_service_cdn_policy_27_cache_key_policy_28[]|null
   }) {
     this.cache_key_policy = cache_key_policy;
   }
@@ -2781,11 +2781,11 @@ export class Google_compute_backend_service_cdn_policy_883 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_backend_service_cdn_policy_883';
+    return 'TerraformGoogle::Google_compute_backend_service_cdn_policy_27';
   }
 }
 
-export class Google_compute_backend_service_cdn_policy_883_cache_key_policy_884 implements PcoreValue {
+export class Google_compute_backend_service_cdn_policy_27_cache_key_policy_28 implements PcoreValue {
   readonly include_host: boolean|null;
   readonly include_protocol: boolean|null;
   readonly include_query_string: boolean|null;
@@ -2833,11 +2833,11 @@ export class Google_compute_backend_service_cdn_policy_883_cache_key_policy_884 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_backend_service_cdn_policy_883_cache_key_policy_884';
+    return 'TerraformGoogle::Google_compute_backend_service_cdn_policy_27_cache_key_policy_28';
   }
 }
 
-export class Google_compute_backend_service_iap_885 implements PcoreValue {
+export class Google_compute_backend_service_iap_29 implements PcoreValue {
   readonly oauth2_client_id: string;
   readonly oauth2_client_secret: string;
 
@@ -2860,7 +2860,7 @@ export class Google_compute_backend_service_iap_885 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_backend_service_iap_885';
+    return 'TerraformGoogle::Google_compute_backend_service_iap_29';
   }
 }
 
@@ -2869,7 +2869,7 @@ export class Google_compute_disk implements PcoreValue {
   readonly google_compute_disk_id: string|null;
   readonly creation_timestamp: string|null;
   readonly description: string|null;
-  readonly disk_encryption_key: Google_compute_disk_disk_encryption_key_886[]|null;
+  readonly disk_encryption_key: Google_compute_disk_disk_encryption_key_30[]|null;
   readonly disk_encryption_key_raw: string|null;
   readonly disk_encryption_key_sha256: string|null;
   readonly image: string|null;
@@ -2881,9 +2881,9 @@ export class Google_compute_disk implements PcoreValue {
   readonly self_link: string|null;
   readonly size: number|null;
   readonly snapshot: string|null;
-  readonly source_image_encryption_key: Google_compute_disk_source_image_encryption_key_887[]|null;
+  readonly source_image_encryption_key: Google_compute_disk_source_image_encryption_key_31[]|null;
   readonly source_image_id: string|null;
-  readonly source_snapshot_encryption_key: Google_compute_disk_source_snapshot_encryption_key_888[]|null;
+  readonly source_snapshot_encryption_key: Google_compute_disk_source_snapshot_encryption_key_32[]|null;
   readonly source_snapshot_id: string|null;
   readonly type: string|null;
   readonly users: string[]|null;
@@ -2918,7 +2918,7 @@ export class Google_compute_disk implements PcoreValue {
     google_compute_disk_id?: string|null,
     creation_timestamp?: string|null,
     description?: string|null,
-    disk_encryption_key?: Google_compute_disk_disk_encryption_key_886[]|null,
+    disk_encryption_key?: Google_compute_disk_disk_encryption_key_30[]|null,
     disk_encryption_key_raw?: string|null,
     disk_encryption_key_sha256?: string|null,
     image?: string|null,
@@ -2930,9 +2930,9 @@ export class Google_compute_disk implements PcoreValue {
     self_link?: string|null,
     size?: number|null,
     snapshot?: string|null,
-    source_image_encryption_key?: Google_compute_disk_source_image_encryption_key_887[]|null,
+    source_image_encryption_key?: Google_compute_disk_source_image_encryption_key_31[]|null,
     source_image_id?: string|null,
-    source_snapshot_encryption_key?: Google_compute_disk_source_snapshot_encryption_key_888[]|null,
+    source_snapshot_encryption_key?: Google_compute_disk_source_snapshot_encryption_key_32[]|null,
     source_snapshot_id?: string|null,
     type?: string|null,
     users?: string[]|null,
@@ -3050,7 +3050,7 @@ export class Google_compute_diskHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_disk_disk_encryption_key_886 implements PcoreValue {
+export class Google_compute_disk_disk_encryption_key_30 implements PcoreValue {
   readonly raw_key: string|null;
   readonly sha256: string|null;
 
@@ -3077,11 +3077,11 @@ export class Google_compute_disk_disk_encryption_key_886 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_disk_disk_encryption_key_886';
+    return 'TerraformGoogle::Google_compute_disk_disk_encryption_key_30';
   }
 }
 
-export class Google_compute_disk_source_image_encryption_key_887 implements PcoreValue {
+export class Google_compute_disk_source_image_encryption_key_31 implements PcoreValue {
   readonly raw_key: string|null;
   readonly sha256: string|null;
 
@@ -3108,11 +3108,11 @@ export class Google_compute_disk_source_image_encryption_key_887 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_disk_source_image_encryption_key_887';
+    return 'TerraformGoogle::Google_compute_disk_source_image_encryption_key_31';
   }
 }
 
-export class Google_compute_disk_source_snapshot_encryption_key_888 implements PcoreValue {
+export class Google_compute_disk_source_snapshot_encryption_key_32 implements PcoreValue {
   readonly raw_key: string|null;
   readonly sha256: string|null;
 
@@ -3139,7 +3139,7 @@ export class Google_compute_disk_source_snapshot_encryption_key_888 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_disk_source_snapshot_encryption_key_888';
+    return 'TerraformGoogle::Google_compute_disk_source_snapshot_encryption_key_32';
   }
 }
 
@@ -3147,9 +3147,9 @@ export class Google_compute_firewall implements PcoreValue {
   readonly name: string;
   readonly network: string;
   readonly google_compute_firewall_id: string|null;
-  readonly allow: Google_compute_firewall_allow_889[]|null;
+  readonly allow: Google_compute_firewall_allow_33[]|null;
   readonly creation_timestamp: string|null;
-  readonly deny: Google_compute_firewall_deny_890[]|null;
+  readonly deny: Google_compute_firewall_deny_34[]|null;
   readonly description: string|null;
   readonly destination_ranges: string[]|null;
   readonly direction: string|null;
@@ -3188,9 +3188,9 @@ export class Google_compute_firewall implements PcoreValue {
     name: string,
     network: string,
     google_compute_firewall_id?: string|null,
-    allow?: Google_compute_firewall_allow_889[]|null,
+    allow?: Google_compute_firewall_allow_33[]|null,
     creation_timestamp?: string|null,
-    deny?: Google_compute_firewall_deny_890[]|null,
+    deny?: Google_compute_firewall_deny_34[]|null,
     description?: string|null,
     destination_ranges?: string[]|null,
     direction?: string|null,
@@ -3299,7 +3299,7 @@ export class Google_compute_firewallHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_firewall_allow_889 implements PcoreValue {
+export class Google_compute_firewall_allow_33 implements PcoreValue {
   readonly protocol: string;
   readonly ports: string[]|null;
 
@@ -3324,11 +3324,11 @@ export class Google_compute_firewall_allow_889 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_firewall_allow_889';
+    return 'TerraformGoogle::Google_compute_firewall_allow_33';
   }
 }
 
-export class Google_compute_firewall_deny_890 implements PcoreValue {
+export class Google_compute_firewall_deny_34 implements PcoreValue {
   readonly protocol: string;
   readonly ports: string[]|null;
 
@@ -3353,7 +3353,7 @@ export class Google_compute_firewall_deny_890 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_firewall_deny_890';
+    return 'TerraformGoogle::Google_compute_firewall_deny_34';
   }
 }
 
@@ -3780,12 +3780,12 @@ export class Google_compute_health_check implements PcoreValue {
   readonly creation_timestamp: string|null;
   readonly description: string|null;
   readonly healthy_threshold: number|null;
-  readonly http_health_check: Google_compute_health_check_http_health_check_891[]|null;
-  readonly https_health_check: Google_compute_health_check_https_health_check_892[]|null;
+  readonly http_health_check: Google_compute_health_check_http_health_check_35[]|null;
+  readonly https_health_check: Google_compute_health_check_https_health_check_36[]|null;
   readonly project: string|null;
   readonly self_link: string|null;
-  readonly ssl_health_check: Google_compute_health_check_ssl_health_check_893[]|null;
-  readonly tcp_health_check: Google_compute_health_check_tcp_health_check_894[]|null;
+  readonly ssl_health_check: Google_compute_health_check_ssl_health_check_37[]|null;
+  readonly tcp_health_check: Google_compute_health_check_tcp_health_check_38[]|null;
   readonly timeout_sec: number|null;
   readonly type: string|null;
   readonly unhealthy_threshold: number|null;
@@ -3813,12 +3813,12 @@ export class Google_compute_health_check implements PcoreValue {
     creation_timestamp?: string|null,
     description?: string|null,
     healthy_threshold?: number|null,
-    http_health_check?: Google_compute_health_check_http_health_check_891[]|null,
-    https_health_check?: Google_compute_health_check_https_health_check_892[]|null,
+    http_health_check?: Google_compute_health_check_http_health_check_35[]|null,
+    https_health_check?: Google_compute_health_check_https_health_check_36[]|null,
     project?: string|null,
     self_link?: string|null,
-    ssl_health_check?: Google_compute_health_check_ssl_health_check_893[]|null,
-    tcp_health_check?: Google_compute_health_check_tcp_health_check_894[]|null,
+    ssl_health_check?: Google_compute_health_check_ssl_health_check_37[]|null,
+    tcp_health_check?: Google_compute_health_check_tcp_health_check_38[]|null,
     timeout_sec?: number|null,
     type?: string|null,
     unhealthy_threshold?: number|null
@@ -3903,7 +3903,7 @@ export class Google_compute_health_checkHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_health_check_http_health_check_891 implements PcoreValue {
+export class Google_compute_health_check_http_health_check_35 implements PcoreValue {
   readonly host: string|null;
   readonly port: number|null;
   readonly proxy_header: string|null;
@@ -3951,11 +3951,11 @@ export class Google_compute_health_check_http_health_check_891 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_health_check_http_health_check_891';
+    return 'TerraformGoogle::Google_compute_health_check_http_health_check_35';
   }
 }
 
-export class Google_compute_health_check_https_health_check_892 implements PcoreValue {
+export class Google_compute_health_check_https_health_check_36 implements PcoreValue {
   readonly host: string|null;
   readonly port: number|null;
   readonly proxy_header: string|null;
@@ -4003,11 +4003,11 @@ export class Google_compute_health_check_https_health_check_892 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_health_check_https_health_check_892';
+    return 'TerraformGoogle::Google_compute_health_check_https_health_check_36';
   }
 }
 
-export class Google_compute_health_check_ssl_health_check_893 implements PcoreValue {
+export class Google_compute_health_check_ssl_health_check_37 implements PcoreValue {
   readonly port: number|null;
   readonly proxy_header: string|null;
   readonly request: string|null;
@@ -4048,11 +4048,11 @@ export class Google_compute_health_check_ssl_health_check_893 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_health_check_ssl_health_check_893';
+    return 'TerraformGoogle::Google_compute_health_check_ssl_health_check_37';
   }
 }
 
-export class Google_compute_health_check_tcp_health_check_894 implements PcoreValue {
+export class Google_compute_health_check_tcp_health_check_38 implements PcoreValue {
   readonly port: number|null;
   readonly proxy_header: string|null;
   readonly request: string|null;
@@ -4093,7 +4093,7 @@ export class Google_compute_health_check_tcp_health_check_894 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_health_check_tcp_health_check_894';
+    return 'TerraformGoogle::Google_compute_health_check_tcp_health_check_38';
   }
 }
 
@@ -4339,7 +4339,7 @@ export class Google_compute_image implements PcoreValue {
   readonly labels: {[s: string]: string}|null;
   readonly licenses: string[]|null;
   readonly project: string|null;
-  readonly raw_disk: Google_compute_image_raw_disk_895[]|null;
+  readonly raw_disk: Google_compute_image_raw_disk_39[]|null;
   readonly self_link: string|null;
   readonly source_disk: string|null;
 
@@ -4366,7 +4366,7 @@ export class Google_compute_image implements PcoreValue {
     labels?: {[s: string]: string}|null,
     licenses?: string[]|null,
     project?: string|null,
-    raw_disk?: Google_compute_image_raw_disk_895[]|null,
+    raw_disk?: Google_compute_image_raw_disk_39[]|null,
     self_link?: string|null,
     source_disk?: string|null
   }) {
@@ -4438,7 +4438,7 @@ export class Google_compute_imageHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_image_raw_disk_895 implements PcoreValue {
+export class Google_compute_image_raw_disk_39 implements PcoreValue {
   readonly source: string;
   readonly container_type: string|null;
   readonly sha1: string|null;
@@ -4470,25 +4470,25 @@ export class Google_compute_image_raw_disk_895 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_image_raw_disk_895';
+    return 'TerraformGoogle::Google_compute_image_raw_disk_39';
   }
 }
 
 export class Google_compute_instance implements PcoreValue {
-  readonly boot_disk: Google_compute_instance_boot_disk_897[];
+  readonly boot_disk: Google_compute_instance_boot_disk_41[];
   readonly machine_type: string;
   readonly name: string;
-  readonly network_interface: Google_compute_instance_network_interface_902[];
+  readonly network_interface: Google_compute_instance_network_interface_46[];
   readonly google_compute_instance_id: string|null;
   readonly allow_stopping_for_update: boolean|null;
-  readonly attached_disk: Google_compute_instance_attached_disk_896[]|null;
+  readonly attached_disk: Google_compute_instance_attached_disk_40[]|null;
   readonly can_ip_forward: boolean|null;
   readonly cpu_platform: string|null;
   readonly create_timeout: number|null;
   readonly deletion_protection: boolean|null;
   readonly description: string|null;
-  readonly disk: Google_compute_instance_disk_899[]|null;
-  readonly guest_accelerator: Google_compute_instance_guest_accelerator_900[]|null;
+  readonly disk: Google_compute_instance_disk_43[]|null;
+  readonly guest_accelerator: Google_compute_instance_guest_accelerator_44[]|null;
   readonly instance_id: string|null;
   readonly label_fingerprint: string|null;
   readonly labels: {[s: string]: string}|null;
@@ -4496,12 +4496,12 @@ export class Google_compute_instance implements PcoreValue {
   readonly metadata_fingerprint: string|null;
   readonly metadata_startup_script: string|null;
   readonly min_cpu_platform: string|null;
-  readonly network: Google_compute_instance_network_901[]|null;
+  readonly network: Google_compute_instance_network_45[]|null;
   readonly project: string|null;
-  readonly scheduling: Google_compute_instance_scheduling_905[]|null;
-  readonly scratch_disk: Google_compute_instance_scratch_disk_906[]|null;
+  readonly scheduling: Google_compute_instance_scheduling_49[]|null;
+  readonly scratch_disk: Google_compute_instance_scratch_disk_50[]|null;
   readonly self_link: string|null;
-  readonly service_account: Google_compute_instance_service_account_907[]|null;
+  readonly service_account: Google_compute_instance_service_account_51[]|null;
   readonly tags: string[]|null;
   readonly tags_fingerprint: string|null;
   readonly zone: string|null;
@@ -4538,20 +4538,20 @@ export class Google_compute_instance implements PcoreValue {
     tags_fingerprint = null,
     zone = null
   }: {
-    boot_disk: Google_compute_instance_boot_disk_897[],
+    boot_disk: Google_compute_instance_boot_disk_41[],
     machine_type: string,
     name: string,
-    network_interface: Google_compute_instance_network_interface_902[],
+    network_interface: Google_compute_instance_network_interface_46[],
     google_compute_instance_id?: string|null,
     allow_stopping_for_update?: boolean|null,
-    attached_disk?: Google_compute_instance_attached_disk_896[]|null,
+    attached_disk?: Google_compute_instance_attached_disk_40[]|null,
     can_ip_forward?: boolean|null,
     cpu_platform?: string|null,
     create_timeout?: number|null,
     deletion_protection?: boolean|null,
     description?: string|null,
-    disk?: Google_compute_instance_disk_899[]|null,
-    guest_accelerator?: Google_compute_instance_guest_accelerator_900[]|null,
+    disk?: Google_compute_instance_disk_43[]|null,
+    guest_accelerator?: Google_compute_instance_guest_accelerator_44[]|null,
     instance_id?: string|null,
     label_fingerprint?: string|null,
     labels?: {[s: string]: string}|null,
@@ -4559,12 +4559,12 @@ export class Google_compute_instance implements PcoreValue {
     metadata_fingerprint?: string|null,
     metadata_startup_script?: string|null,
     min_cpu_platform?: string|null,
-    network?: Google_compute_instance_network_901[]|null,
+    network?: Google_compute_instance_network_45[]|null,
     project?: string|null,
-    scheduling?: Google_compute_instance_scheduling_905[]|null,
-    scratch_disk?: Google_compute_instance_scratch_disk_906[]|null,
+    scheduling?: Google_compute_instance_scheduling_49[]|null,
+    scratch_disk?: Google_compute_instance_scratch_disk_50[]|null,
     self_link?: string|null,
-    service_account?: Google_compute_instance_service_account_907[]|null,
+    service_account?: Google_compute_instance_service_account_51[]|null,
     tags?: string[]|null,
     tags_fingerprint?: string|null,
     zone?: string|null
@@ -4703,7 +4703,7 @@ export class Google_compute_instanceHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_instance_attached_disk_896 implements PcoreValue {
+export class Google_compute_instance_attached_disk_40 implements PcoreValue {
   readonly source: string;
   readonly device_name: string|null;
   readonly disk_encryption_key_raw: string|null;
@@ -4749,16 +4749,16 @@ export class Google_compute_instance_attached_disk_896 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_attached_disk_896';
+    return 'TerraformGoogle::Google_compute_instance_attached_disk_40';
   }
 }
 
-export class Google_compute_instance_boot_disk_897 implements PcoreValue {
+export class Google_compute_instance_boot_disk_41 implements PcoreValue {
   readonly auto_delete: boolean|null;
   readonly device_name: string|null;
   readonly disk_encryption_key_raw: string|null;
   readonly disk_encryption_key_sha256: string|null;
-  readonly initialize_params: Google_compute_instance_boot_disk_897_initialize_params_898[]|null;
+  readonly initialize_params: Google_compute_instance_boot_disk_41_initialize_params_42[]|null;
   readonly source: string|null;
 
   constructor({
@@ -4773,7 +4773,7 @@ export class Google_compute_instance_boot_disk_897 implements PcoreValue {
     device_name?: string|null,
     disk_encryption_key_raw?: string|null,
     disk_encryption_key_sha256?: string|null,
-    initialize_params?: Google_compute_instance_boot_disk_897_initialize_params_898[]|null,
+    initialize_params?: Google_compute_instance_boot_disk_41_initialize_params_42[]|null,
     source?: string|null
   }) {
     this.auto_delete = auto_delete;
@@ -4808,11 +4808,11 @@ export class Google_compute_instance_boot_disk_897 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_boot_disk_897';
+    return 'TerraformGoogle::Google_compute_instance_boot_disk_41';
   }
 }
 
-export class Google_compute_instance_boot_disk_897_initialize_params_898 implements PcoreValue {
+export class Google_compute_instance_boot_disk_41_initialize_params_42 implements PcoreValue {
   readonly image: string|null;
   readonly size: number|null;
   readonly type: string|null;
@@ -4846,11 +4846,11 @@ export class Google_compute_instance_boot_disk_897_initialize_params_898 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_boot_disk_897_initialize_params_898';
+    return 'TerraformGoogle::Google_compute_instance_boot_disk_41_initialize_params_42';
   }
 }
 
-export class Google_compute_instance_disk_899 implements PcoreValue {
+export class Google_compute_instance_disk_43 implements PcoreValue {
   readonly auto_delete: boolean|null;
   readonly device_name: string|null;
   readonly disk: string|null;
@@ -4926,7 +4926,7 @@ export class Google_compute_instance_disk_899 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_disk_899';
+    return 'TerraformGoogle::Google_compute_instance_disk_43';
   }
 }
 
@@ -4935,13 +4935,13 @@ export class Google_compute_instance_from_template implements PcoreValue {
   readonly source_instance_template: string;
   readonly google_compute_instance_from_template_id: string|null;
   readonly allow_stopping_for_update: boolean|null;
-  readonly attached_disk: Google_compute_instance_from_template_attached_disk_908[]|null;
-  readonly boot_disk: Google_compute_instance_from_template_boot_disk_909[]|null;
+  readonly attached_disk: Google_compute_instance_from_template_attached_disk_52[]|null;
+  readonly boot_disk: Google_compute_instance_from_template_boot_disk_53[]|null;
   readonly can_ip_forward: boolean|null;
   readonly cpu_platform: string|null;
   readonly deletion_protection: boolean|null;
   readonly description: string|null;
-  readonly guest_accelerator: Google_compute_instance_from_template_guest_accelerator_911[]|null;
+  readonly guest_accelerator: Google_compute_instance_from_template_guest_accelerator_55[]|null;
   readonly instance_id: string|null;
   readonly label_fingerprint: string|null;
   readonly labels: {[s: string]: string}|null;
@@ -4950,12 +4950,12 @@ export class Google_compute_instance_from_template implements PcoreValue {
   readonly metadata_fingerprint: string|null;
   readonly metadata_startup_script: string|null;
   readonly min_cpu_platform: string|null;
-  readonly network_interface: Google_compute_instance_from_template_network_interface_912[]|null;
+  readonly network_interface: Google_compute_instance_from_template_network_interface_56[]|null;
   readonly project: string|null;
-  readonly scheduling: Google_compute_instance_from_template_scheduling_915[]|null;
-  readonly scratch_disk: Google_compute_instance_from_template_scratch_disk_916[]|null;
+  readonly scheduling: Google_compute_instance_from_template_scheduling_59[]|null;
+  readonly scratch_disk: Google_compute_instance_from_template_scratch_disk_60[]|null;
   readonly self_link: string|null;
-  readonly service_account: Google_compute_instance_from_template_service_account_917[]|null;
+  readonly service_account: Google_compute_instance_from_template_service_account_61[]|null;
   readonly tags: string[]|null;
   readonly tags_fingerprint: string|null;
   readonly zone: string|null;
@@ -4994,13 +4994,13 @@ export class Google_compute_instance_from_template implements PcoreValue {
     source_instance_template: string,
     google_compute_instance_from_template_id?: string|null,
     allow_stopping_for_update?: boolean|null,
-    attached_disk?: Google_compute_instance_from_template_attached_disk_908[]|null,
-    boot_disk?: Google_compute_instance_from_template_boot_disk_909[]|null,
+    attached_disk?: Google_compute_instance_from_template_attached_disk_52[]|null,
+    boot_disk?: Google_compute_instance_from_template_boot_disk_53[]|null,
     can_ip_forward?: boolean|null,
     cpu_platform?: string|null,
     deletion_protection?: boolean|null,
     description?: string|null,
-    guest_accelerator?: Google_compute_instance_from_template_guest_accelerator_911[]|null,
+    guest_accelerator?: Google_compute_instance_from_template_guest_accelerator_55[]|null,
     instance_id?: string|null,
     label_fingerprint?: string|null,
     labels?: {[s: string]: string}|null,
@@ -5009,12 +5009,12 @@ export class Google_compute_instance_from_template implements PcoreValue {
     metadata_fingerprint?: string|null,
     metadata_startup_script?: string|null,
     min_cpu_platform?: string|null,
-    network_interface?: Google_compute_instance_from_template_network_interface_912[]|null,
+    network_interface?: Google_compute_instance_from_template_network_interface_56[]|null,
     project?: string|null,
-    scheduling?: Google_compute_instance_from_template_scheduling_915[]|null,
-    scratch_disk?: Google_compute_instance_from_template_scratch_disk_916[]|null,
+    scheduling?: Google_compute_instance_from_template_scheduling_59[]|null,
+    scratch_disk?: Google_compute_instance_from_template_scratch_disk_60[]|null,
     self_link?: string|null,
-    service_account?: Google_compute_instance_from_template_service_account_917[]|null,
+    service_account?: Google_compute_instance_from_template_service_account_61[]|null,
     tags?: string[]|null,
     tags_fingerprint?: string|null,
     zone?: string|null
@@ -5149,7 +5149,7 @@ export class Google_compute_instance_from_templateHandler implements PcoreValue 
   }
 }
 
-export class Google_compute_instance_from_template_attached_disk_908 implements PcoreValue {
+export class Google_compute_instance_from_template_attached_disk_52 implements PcoreValue {
   readonly source: string;
   readonly device_name: string|null;
   readonly disk_encryption_key_raw: string|null;
@@ -5195,16 +5195,16 @@ export class Google_compute_instance_from_template_attached_disk_908 implements 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_attached_disk_908';
+    return 'TerraformGoogle::Google_compute_instance_from_template_attached_disk_52';
   }
 }
 
-export class Google_compute_instance_from_template_boot_disk_909 implements PcoreValue {
+export class Google_compute_instance_from_template_boot_disk_53 implements PcoreValue {
   readonly auto_delete: boolean|null;
   readonly device_name: string|null;
   readonly disk_encryption_key_raw: string|null;
   readonly disk_encryption_key_sha256: string|null;
-  readonly initialize_params: Google_compute_instance_from_template_boot_disk_909_initialize_params_910[]|null;
+  readonly initialize_params: Google_compute_instance_from_template_boot_disk_53_initialize_params_54[]|null;
   readonly source: string|null;
 
   constructor({
@@ -5219,7 +5219,7 @@ export class Google_compute_instance_from_template_boot_disk_909 implements Pcor
     device_name?: string|null,
     disk_encryption_key_raw?: string|null,
     disk_encryption_key_sha256?: string|null,
-    initialize_params?: Google_compute_instance_from_template_boot_disk_909_initialize_params_910[]|null,
+    initialize_params?: Google_compute_instance_from_template_boot_disk_53_initialize_params_54[]|null,
     source?: string|null
   }) {
     this.auto_delete = auto_delete;
@@ -5254,11 +5254,11 @@ export class Google_compute_instance_from_template_boot_disk_909 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_boot_disk_909';
+    return 'TerraformGoogle::Google_compute_instance_from_template_boot_disk_53';
   }
 }
 
-export class Google_compute_instance_from_template_boot_disk_909_initialize_params_910 implements PcoreValue {
+export class Google_compute_instance_from_template_boot_disk_53_initialize_params_54 implements PcoreValue {
   readonly image: string|null;
   readonly size: number|null;
   readonly type: string|null;
@@ -5292,11 +5292,11 @@ export class Google_compute_instance_from_template_boot_disk_909_initialize_para
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_boot_disk_909_initialize_params_910';
+    return 'TerraformGoogle::Google_compute_instance_from_template_boot_disk_53_initialize_params_54';
   }
 }
 
-export class Google_compute_instance_from_template_guest_accelerator_911 implements PcoreValue {
+export class Google_compute_instance_from_template_guest_accelerator_55 implements PcoreValue {
   readonly count: number;
   readonly type: string;
 
@@ -5319,14 +5319,14 @@ export class Google_compute_instance_from_template_guest_accelerator_911 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_guest_accelerator_911';
+    return 'TerraformGoogle::Google_compute_instance_from_template_guest_accelerator_55';
   }
 }
 
-export class Google_compute_instance_from_template_network_interface_912 implements PcoreValue {
-  readonly access_config: Google_compute_instance_from_template_network_interface_912_access_config_913[]|null;
+export class Google_compute_instance_from_template_network_interface_56 implements PcoreValue {
+  readonly access_config: Google_compute_instance_from_template_network_interface_56_access_config_57[]|null;
   readonly address: string|null;
-  readonly alias_ip_range: Google_compute_instance_from_template_network_interface_912_alias_ip_range_914[]|null;
+  readonly alias_ip_range: Google_compute_instance_from_template_network_interface_56_alias_ip_range_58[]|null;
   readonly name: string|null;
   readonly network: string|null;
   readonly network_ip: string|null;
@@ -5343,9 +5343,9 @@ export class Google_compute_instance_from_template_network_interface_912 impleme
     subnetwork = null,
     subnetwork_project = null
   }: {
-    access_config?: Google_compute_instance_from_template_network_interface_912_access_config_913[]|null,
+    access_config?: Google_compute_instance_from_template_network_interface_56_access_config_57[]|null,
     address?: string|null,
-    alias_ip_range?: Google_compute_instance_from_template_network_interface_912_alias_ip_range_914[]|null,
+    alias_ip_range?: Google_compute_instance_from_template_network_interface_56_alias_ip_range_58[]|null,
     name?: string|null,
     network?: string|null,
     network_ip?: string|null,
@@ -5392,11 +5392,11 @@ export class Google_compute_instance_from_template_network_interface_912 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_network_interface_912';
+    return 'TerraformGoogle::Google_compute_instance_from_template_network_interface_56';
   }
 }
 
-export class Google_compute_instance_from_template_network_interface_912_access_config_913 implements PcoreValue {
+export class Google_compute_instance_from_template_network_interface_56_access_config_57 implements PcoreValue {
   readonly assigned_nat_ip: string|null;
   readonly nat_ip: string|null;
   readonly network_tier: string|null;
@@ -5437,11 +5437,11 @@ export class Google_compute_instance_from_template_network_interface_912_access_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_network_interface_912_access_config_913';
+    return 'TerraformGoogle::Google_compute_instance_from_template_network_interface_56_access_config_57';
   }
 }
 
-export class Google_compute_instance_from_template_network_interface_912_alias_ip_range_914 implements PcoreValue {
+export class Google_compute_instance_from_template_network_interface_56_alias_ip_range_58 implements PcoreValue {
   readonly ip_cidr_range: string;
   readonly subnetwork_range_name: string|null;
 
@@ -5466,11 +5466,11 @@ export class Google_compute_instance_from_template_network_interface_912_alias_i
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_network_interface_912_alias_ip_range_914';
+    return 'TerraformGoogle::Google_compute_instance_from_template_network_interface_56_alias_ip_range_58';
   }
 }
 
-export class Google_compute_instance_from_template_scheduling_915 implements PcoreValue {
+export class Google_compute_instance_from_template_scheduling_59 implements PcoreValue {
   readonly automatic_restart: boolean|null;
   readonly on_host_maintenance: string|null;
   readonly preemptible: boolean|null;
@@ -5504,11 +5504,11 @@ export class Google_compute_instance_from_template_scheduling_915 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_scheduling_915';
+    return 'TerraformGoogle::Google_compute_instance_from_template_scheduling_59';
   }
 }
 
-export class Google_compute_instance_from_template_scratch_disk_916 implements PcoreValue {
+export class Google_compute_instance_from_template_scratch_disk_60 implements PcoreValue {
   readonly interface_: string|null;
 
   constructor({
@@ -5528,11 +5528,11 @@ export class Google_compute_instance_from_template_scratch_disk_916 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_scratch_disk_916';
+    return 'TerraformGoogle::Google_compute_instance_from_template_scratch_disk_60';
   }
 }
 
-export class Google_compute_instance_from_template_service_account_917 implements PcoreValue {
+export class Google_compute_instance_from_template_service_account_61 implements PcoreValue {
   readonly scopes: string[];
   readonly email: string|null;
 
@@ -5557,7 +5557,7 @@ export class Google_compute_instance_from_template_service_account_917 implement
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_from_template_service_account_917';
+    return 'TerraformGoogle::Google_compute_instance_from_template_service_account_61';
   }
 }
 
@@ -5566,7 +5566,7 @@ export class Google_compute_instance_group implements PcoreValue {
   readonly google_compute_instance_group_id: string|null;
   readonly description: string|null;
   readonly instances: string[]|null;
-  readonly named_port: Google_compute_instance_group_named_port_918[]|null;
+  readonly named_port: Google_compute_instance_group_named_port_62[]|null;
   readonly network: string|null;
   readonly project: string|null;
   readonly self_link: string|null;
@@ -5589,7 +5589,7 @@ export class Google_compute_instance_group implements PcoreValue {
     google_compute_instance_group_id?: string|null,
     description?: string|null,
     instances?: string[]|null,
-    named_port?: Google_compute_instance_group_named_port_918[]|null,
+    named_port?: Google_compute_instance_group_named_port_62[]|null,
     network?: string|null,
     project?: string|null,
     self_link?: string|null,
@@ -5660,19 +5660,19 @@ export class Google_compute_instance_group_manager implements PcoreValue {
   readonly base_instance_name: string;
   readonly name: string;
   readonly google_compute_instance_group_manager_id: string|null;
-  readonly auto_healing_policies: Google_compute_instance_group_manager_auto_healing_policies_919[]|null;
+  readonly auto_healing_policies: Google_compute_instance_group_manager_auto_healing_policies_63[]|null;
   readonly description: string|null;
   readonly fingerprint: string|null;
   readonly instance_group: string|null;
   readonly instance_template: string|null;
-  readonly named_port: Google_compute_instance_group_manager_named_port_920[]|null;
+  readonly named_port: Google_compute_instance_group_manager_named_port_64[]|null;
   readonly project: string|null;
-  readonly rolling_update_policy: Google_compute_instance_group_manager_rolling_update_policy_921[]|null;
+  readonly rolling_update_policy: Google_compute_instance_group_manager_rolling_update_policy_65[]|null;
   readonly self_link: string|null;
   readonly target_pools: string[]|null;
   readonly target_size: number|null;
   readonly update_strategy: string|null;
-  readonly version: Google_compute_instance_group_manager_version_922[]|null;
+  readonly version: Google_compute_instance_group_manager_version_66[]|null;
   readonly wait_for_instances: boolean|null;
   readonly zone: string|null;
 
@@ -5699,19 +5699,19 @@ export class Google_compute_instance_group_manager implements PcoreValue {
     base_instance_name: string,
     name: string,
     google_compute_instance_group_manager_id?: string|null,
-    auto_healing_policies?: Google_compute_instance_group_manager_auto_healing_policies_919[]|null,
+    auto_healing_policies?: Google_compute_instance_group_manager_auto_healing_policies_63[]|null,
     description?: string|null,
     fingerprint?: string|null,
     instance_group?: string|null,
     instance_template?: string|null,
-    named_port?: Google_compute_instance_group_manager_named_port_920[]|null,
+    named_port?: Google_compute_instance_group_manager_named_port_64[]|null,
     project?: string|null,
-    rolling_update_policy?: Google_compute_instance_group_manager_rolling_update_policy_921[]|null,
+    rolling_update_policy?: Google_compute_instance_group_manager_rolling_update_policy_65[]|null,
     self_link?: string|null,
     target_pools?: string[]|null,
     target_size?: number|null,
     update_strategy?: string|null,
-    version?: Google_compute_instance_group_manager_version_922[]|null,
+    version?: Google_compute_instance_group_manager_version_66[]|null,
     wait_for_instances?: boolean|null,
     zone?: string|null
   }) {
@@ -5805,7 +5805,7 @@ export class Google_compute_instance_group_managerHandler implements PcoreValue 
   }
 }
 
-export class Google_compute_instance_group_manager_auto_healing_policies_919 implements PcoreValue {
+export class Google_compute_instance_group_manager_auto_healing_policies_63 implements PcoreValue {
   readonly health_check: string;
   readonly initial_delay_sec: number;
 
@@ -5828,11 +5828,11 @@ export class Google_compute_instance_group_manager_auto_healing_policies_919 imp
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_group_manager_auto_healing_policies_919';
+    return 'TerraformGoogle::Google_compute_instance_group_manager_auto_healing_policies_63';
   }
 }
 
-export class Google_compute_instance_group_manager_named_port_920 implements PcoreValue {
+export class Google_compute_instance_group_manager_named_port_64 implements PcoreValue {
   readonly name: string;
   readonly port: number;
 
@@ -5855,11 +5855,11 @@ export class Google_compute_instance_group_manager_named_port_920 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_group_manager_named_port_920';
+    return 'TerraformGoogle::Google_compute_instance_group_manager_named_port_64';
   }
 }
 
-export class Google_compute_instance_group_manager_rolling_update_policy_921 implements PcoreValue {
+export class Google_compute_instance_group_manager_rolling_update_policy_65 implements PcoreValue {
   readonly minimal_action: string;
   readonly type: string;
   readonly max_surge_fixed: number|null;
@@ -5917,14 +5917,14 @@ export class Google_compute_instance_group_manager_rolling_update_policy_921 imp
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_group_manager_rolling_update_policy_921';
+    return 'TerraformGoogle::Google_compute_instance_group_manager_rolling_update_policy_65';
   }
 }
 
-export class Google_compute_instance_group_manager_version_922 implements PcoreValue {
+export class Google_compute_instance_group_manager_version_66 implements PcoreValue {
   readonly instance_template: string;
   readonly name: string;
-  readonly target_size: Google_compute_instance_group_manager_version_922_target_size_923[]|null;
+  readonly target_size: Google_compute_instance_group_manager_version_66_target_size_67[]|null;
 
   constructor({
     instance_template,
@@ -5933,7 +5933,7 @@ export class Google_compute_instance_group_manager_version_922 implements PcoreV
   }: {
     instance_template: string,
     name: string,
-    target_size?: Google_compute_instance_group_manager_version_922_target_size_923[]|null
+    target_size?: Google_compute_instance_group_manager_version_66_target_size_67[]|null
   }) {
     this.instance_template = instance_template;
     this.name = name;
@@ -5951,11 +5951,11 @@ export class Google_compute_instance_group_manager_version_922 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_group_manager_version_922';
+    return 'TerraformGoogle::Google_compute_instance_group_manager_version_66';
   }
 }
 
-export class Google_compute_instance_group_manager_version_922_target_size_923 implements PcoreValue {
+export class Google_compute_instance_group_manager_version_66_target_size_67 implements PcoreValue {
   readonly fixed: number|null;
   readonly percent: number|null;
 
@@ -5982,11 +5982,11 @@ export class Google_compute_instance_group_manager_version_922_target_size_923 i
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_group_manager_version_922_target_size_923';
+    return 'TerraformGoogle::Google_compute_instance_group_manager_version_66_target_size_67';
   }
 }
 
-export class Google_compute_instance_group_named_port_918 implements PcoreValue {
+export class Google_compute_instance_group_named_port_62 implements PcoreValue {
   readonly name: string;
   readonly port: number;
 
@@ -6009,11 +6009,11 @@ export class Google_compute_instance_group_named_port_918 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_group_named_port_918';
+    return 'TerraformGoogle::Google_compute_instance_group_named_port_62';
   }
 }
 
-export class Google_compute_instance_guest_accelerator_900 implements PcoreValue {
+export class Google_compute_instance_guest_accelerator_44 implements PcoreValue {
   readonly count: number;
   readonly type: string;
 
@@ -6036,11 +6036,11 @@ export class Google_compute_instance_guest_accelerator_900 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_guest_accelerator_900';
+    return 'TerraformGoogle::Google_compute_instance_guest_accelerator_44';
   }
 }
 
-export class Google_compute_instance_network_901 implements PcoreValue {
+export class Google_compute_instance_network_45 implements PcoreValue {
   readonly source: string;
   readonly address: string|null;
   readonly external_address: string|null;
@@ -6086,14 +6086,14 @@ export class Google_compute_instance_network_901 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_network_901';
+    return 'TerraformGoogle::Google_compute_instance_network_45';
   }
 }
 
-export class Google_compute_instance_network_interface_902 implements PcoreValue {
-  readonly access_config: Google_compute_instance_network_interface_902_access_config_903[]|null;
+export class Google_compute_instance_network_interface_46 implements PcoreValue {
+  readonly access_config: Google_compute_instance_network_interface_46_access_config_47[]|null;
   readonly address: string|null;
-  readonly alias_ip_range: Google_compute_instance_network_interface_902_alias_ip_range_904[]|null;
+  readonly alias_ip_range: Google_compute_instance_network_interface_46_alias_ip_range_48[]|null;
   readonly name: string|null;
   readonly network: string|null;
   readonly network_ip: string|null;
@@ -6110,9 +6110,9 @@ export class Google_compute_instance_network_interface_902 implements PcoreValue
     subnetwork = null,
     subnetwork_project = null
   }: {
-    access_config?: Google_compute_instance_network_interface_902_access_config_903[]|null,
+    access_config?: Google_compute_instance_network_interface_46_access_config_47[]|null,
     address?: string|null,
-    alias_ip_range?: Google_compute_instance_network_interface_902_alias_ip_range_904[]|null,
+    alias_ip_range?: Google_compute_instance_network_interface_46_alias_ip_range_48[]|null,
     name?: string|null,
     network?: string|null,
     network_ip?: string|null,
@@ -6159,11 +6159,11 @@ export class Google_compute_instance_network_interface_902 implements PcoreValue
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_network_interface_902';
+    return 'TerraformGoogle::Google_compute_instance_network_interface_46';
   }
 }
 
-export class Google_compute_instance_network_interface_902_access_config_903 implements PcoreValue {
+export class Google_compute_instance_network_interface_46_access_config_47 implements PcoreValue {
   readonly assigned_nat_ip: string|null;
   readonly nat_ip: string|null;
   readonly network_tier: string|null;
@@ -6204,11 +6204,11 @@ export class Google_compute_instance_network_interface_902_access_config_903 imp
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_network_interface_902_access_config_903';
+    return 'TerraformGoogle::Google_compute_instance_network_interface_46_access_config_47';
   }
 }
 
-export class Google_compute_instance_network_interface_902_alias_ip_range_904 implements PcoreValue {
+export class Google_compute_instance_network_interface_46_alias_ip_range_48 implements PcoreValue {
   readonly ip_cidr_range: string;
   readonly subnetwork_range_name: string|null;
 
@@ -6233,11 +6233,11 @@ export class Google_compute_instance_network_interface_902_alias_ip_range_904 im
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_network_interface_902_alias_ip_range_904';
+    return 'TerraformGoogle::Google_compute_instance_network_interface_46_alias_ip_range_48';
   }
 }
 
-export class Google_compute_instance_scheduling_905 implements PcoreValue {
+export class Google_compute_instance_scheduling_49 implements PcoreValue {
   readonly automatic_restart: boolean|null;
   readonly on_host_maintenance: string|null;
   readonly preemptible: boolean|null;
@@ -6271,11 +6271,11 @@ export class Google_compute_instance_scheduling_905 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_scheduling_905';
+    return 'TerraformGoogle::Google_compute_instance_scheduling_49';
   }
 }
 
-export class Google_compute_instance_scratch_disk_906 implements PcoreValue {
+export class Google_compute_instance_scratch_disk_50 implements PcoreValue {
   readonly interface_: string|null;
 
   constructor({
@@ -6295,11 +6295,11 @@ export class Google_compute_instance_scratch_disk_906 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_scratch_disk_906';
+    return 'TerraformGoogle::Google_compute_instance_scratch_disk_50';
   }
 }
 
-export class Google_compute_instance_service_account_907 implements PcoreValue {
+export class Google_compute_instance_service_account_51 implements PcoreValue {
   readonly scopes: string[];
   readonly email: string|null;
 
@@ -6324,18 +6324,18 @@ export class Google_compute_instance_service_account_907 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_service_account_907';
+    return 'TerraformGoogle::Google_compute_instance_service_account_51';
   }
 }
 
 export class Google_compute_instance_template implements PcoreValue {
-  readonly disk: Google_compute_instance_template_disk_924[];
+  readonly disk: Google_compute_instance_template_disk_68[];
   readonly machine_type: string;
   readonly google_compute_instance_template_id: string|null;
   readonly automatic_restart: boolean|null;
   readonly can_ip_forward: boolean|null;
   readonly description: string|null;
-  readonly guest_accelerator: Google_compute_instance_template_guest_accelerator_926[]|null;
+  readonly guest_accelerator: Google_compute_instance_template_guest_accelerator_70[]|null;
   readonly instance_description: string|null;
   readonly labels: {[s: string]: string}|null;
   readonly metadata: {[s: string]: string}|null;
@@ -6344,13 +6344,13 @@ export class Google_compute_instance_template implements PcoreValue {
   readonly min_cpu_platform: string|null;
   readonly name: string|null;
   readonly name_prefix: string|null;
-  readonly network_interface: Google_compute_instance_template_network_interface_927[]|null;
+  readonly network_interface: Google_compute_instance_template_network_interface_71[]|null;
   readonly on_host_maintenance: string|null;
   readonly project: string|null;
   readonly region: string|null;
-  readonly scheduling: Google_compute_instance_template_scheduling_930[]|null;
+  readonly scheduling: Google_compute_instance_template_scheduling_74[]|null;
   readonly self_link: string|null;
-  readonly service_account: Google_compute_instance_template_service_account_931[]|null;
+  readonly service_account: Google_compute_instance_template_service_account_75[]|null;
   readonly tags: string[]|null;
   readonly tags_fingerprint: string|null;
 
@@ -6380,13 +6380,13 @@ export class Google_compute_instance_template implements PcoreValue {
     tags = null,
     tags_fingerprint = null
   }: {
-    disk: Google_compute_instance_template_disk_924[],
+    disk: Google_compute_instance_template_disk_68[],
     machine_type: string,
     google_compute_instance_template_id?: string|null,
     automatic_restart?: boolean|null,
     can_ip_forward?: boolean|null,
     description?: string|null,
-    guest_accelerator?: Google_compute_instance_template_guest_accelerator_926[]|null,
+    guest_accelerator?: Google_compute_instance_template_guest_accelerator_70[]|null,
     instance_description?: string|null,
     labels?: {[s: string]: string}|null,
     metadata?: {[s: string]: string}|null,
@@ -6395,13 +6395,13 @@ export class Google_compute_instance_template implements PcoreValue {
     min_cpu_platform?: string|null,
     name?: string|null,
     name_prefix?: string|null,
-    network_interface?: Google_compute_instance_template_network_interface_927[]|null,
+    network_interface?: Google_compute_instance_template_network_interface_71[]|null,
     on_host_maintenance?: string|null,
     project?: string|null,
     region?: string|null,
-    scheduling?: Google_compute_instance_template_scheduling_930[]|null,
+    scheduling?: Google_compute_instance_template_scheduling_74[]|null,
     self_link?: string|null,
-    service_account?: Google_compute_instance_template_service_account_931[]|null,
+    service_account?: Google_compute_instance_template_service_account_75[]|null,
     tags?: string[]|null,
     tags_fingerprint?: string|null
   }) {
@@ -6519,11 +6519,11 @@ export class Google_compute_instance_templateHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_instance_template_disk_924 implements PcoreValue {
+export class Google_compute_instance_template_disk_68 implements PcoreValue {
   readonly auto_delete: boolean|null;
   readonly boot: boolean|null;
   readonly device_name: string|null;
-  readonly disk_encryption_key: Google_compute_instance_template_disk_924_disk_encryption_key_925[]|null;
+  readonly disk_encryption_key: Google_compute_instance_template_disk_68_disk_encryption_key_69[]|null;
   readonly disk_name: string|null;
   readonly disk_size_gb: number|null;
   readonly disk_type: string|null;
@@ -6550,7 +6550,7 @@ export class Google_compute_instance_template_disk_924 implements PcoreValue {
     auto_delete?: boolean|null,
     boot?: boolean|null,
     device_name?: string|null,
-    disk_encryption_key?: Google_compute_instance_template_disk_924_disk_encryption_key_925[]|null,
+    disk_encryption_key?: Google_compute_instance_template_disk_68_disk_encryption_key_69[]|null,
     disk_name?: string|null,
     disk_size_gb?: number|null,
     disk_type?: string|null,
@@ -6616,11 +6616,11 @@ export class Google_compute_instance_template_disk_924 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_disk_924';
+    return 'TerraformGoogle::Google_compute_instance_template_disk_68';
   }
 }
 
-export class Google_compute_instance_template_disk_924_disk_encryption_key_925 implements PcoreValue {
+export class Google_compute_instance_template_disk_68_disk_encryption_key_69 implements PcoreValue {
   readonly kms_key_self_link: string|null;
 
   constructor({
@@ -6640,11 +6640,11 @@ export class Google_compute_instance_template_disk_924_disk_encryption_key_925 i
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_disk_924_disk_encryption_key_925';
+    return 'TerraformGoogle::Google_compute_instance_template_disk_68_disk_encryption_key_69';
   }
 }
 
-export class Google_compute_instance_template_guest_accelerator_926 implements PcoreValue {
+export class Google_compute_instance_template_guest_accelerator_70 implements PcoreValue {
   readonly count: number;
   readonly type: string;
 
@@ -6667,14 +6667,14 @@ export class Google_compute_instance_template_guest_accelerator_926 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_guest_accelerator_926';
+    return 'TerraformGoogle::Google_compute_instance_template_guest_accelerator_70';
   }
 }
 
-export class Google_compute_instance_template_network_interface_927 implements PcoreValue {
-  readonly access_config: Google_compute_instance_template_network_interface_927_access_config_928[]|null;
+export class Google_compute_instance_template_network_interface_71 implements PcoreValue {
+  readonly access_config: Google_compute_instance_template_network_interface_71_access_config_72[]|null;
   readonly address: string|null;
-  readonly alias_ip_range: Google_compute_instance_template_network_interface_927_alias_ip_range_929[]|null;
+  readonly alias_ip_range: Google_compute_instance_template_network_interface_71_alias_ip_range_73[]|null;
   readonly network: string|null;
   readonly network_ip: string|null;
   readonly subnetwork: string|null;
@@ -6689,9 +6689,9 @@ export class Google_compute_instance_template_network_interface_927 implements P
     subnetwork = null,
     subnetwork_project = null
   }: {
-    access_config?: Google_compute_instance_template_network_interface_927_access_config_928[]|null,
+    access_config?: Google_compute_instance_template_network_interface_71_access_config_72[]|null,
     address?: string|null,
-    alias_ip_range?: Google_compute_instance_template_network_interface_927_alias_ip_range_929[]|null,
+    alias_ip_range?: Google_compute_instance_template_network_interface_71_alias_ip_range_73[]|null,
     network?: string|null,
     network_ip?: string|null,
     subnetwork?: string|null,
@@ -6733,11 +6733,11 @@ export class Google_compute_instance_template_network_interface_927 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_network_interface_927';
+    return 'TerraformGoogle::Google_compute_instance_template_network_interface_71';
   }
 }
 
-export class Google_compute_instance_template_network_interface_927_access_config_928 implements PcoreValue {
+export class Google_compute_instance_template_network_interface_71_access_config_72 implements PcoreValue {
   readonly assigned_nat_ip: string|null;
   readonly nat_ip: string|null;
   readonly network_tier: string|null;
@@ -6771,11 +6771,11 @@ export class Google_compute_instance_template_network_interface_927_access_confi
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_network_interface_927_access_config_928';
+    return 'TerraformGoogle::Google_compute_instance_template_network_interface_71_access_config_72';
   }
 }
 
-export class Google_compute_instance_template_network_interface_927_alias_ip_range_929 implements PcoreValue {
+export class Google_compute_instance_template_network_interface_71_alias_ip_range_73 implements PcoreValue {
   readonly ip_cidr_range: string;
   readonly subnetwork_range_name: string|null;
 
@@ -6800,11 +6800,11 @@ export class Google_compute_instance_template_network_interface_927_alias_ip_ran
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_network_interface_927_alias_ip_range_929';
+    return 'TerraformGoogle::Google_compute_instance_template_network_interface_71_alias_ip_range_73';
   }
 }
 
-export class Google_compute_instance_template_scheduling_930 implements PcoreValue {
+export class Google_compute_instance_template_scheduling_74 implements PcoreValue {
   readonly automatic_restart: boolean|null;
   readonly on_host_maintenance: string|null;
   readonly preemptible: boolean|null;
@@ -6838,11 +6838,11 @@ export class Google_compute_instance_template_scheduling_930 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_scheduling_930';
+    return 'TerraformGoogle::Google_compute_instance_template_scheduling_74';
   }
 }
 
-export class Google_compute_instance_template_service_account_931 implements PcoreValue {
+export class Google_compute_instance_template_service_account_75 implements PcoreValue {
   readonly scopes: string[];
   readonly email: string|null;
 
@@ -6867,7 +6867,7 @@ export class Google_compute_instance_template_service_account_931 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_instance_template_service_account_931';
+    return 'TerraformGoogle::Google_compute_instance_template_service_account_75';
   }
 }
 
@@ -6881,7 +6881,7 @@ export class Google_compute_interconnect_attachment implements PcoreValue {
   readonly customer_router_ip_address: string|null;
   readonly description: string|null;
   readonly google_reference_id: string|null;
-  readonly private_interconnect_info: Google_compute_interconnect_attachment_private_interconnect_info_932[]|null;
+  readonly private_interconnect_info: Google_compute_interconnect_attachment_private_interconnect_info_76[]|null;
   readonly project: string|null;
   readonly region: string|null;
   readonly self_link: string|null;
@@ -6910,7 +6910,7 @@ export class Google_compute_interconnect_attachment implements PcoreValue {
     customer_router_ip_address?: string|null,
     description?: string|null,
     google_reference_id?: string|null,
-    private_interconnect_info?: Google_compute_interconnect_attachment_private_interconnect_info_932[]|null,
+    private_interconnect_info?: Google_compute_interconnect_attachment_private_interconnect_info_76[]|null,
     project?: string|null,
     region?: string|null,
     self_link?: string|null
@@ -6983,7 +6983,7 @@ export class Google_compute_interconnect_attachmentHandler implements PcoreValue
   }
 }
 
-export class Google_compute_interconnect_attachment_private_interconnect_info_932 implements PcoreValue {
+export class Google_compute_interconnect_attachment_private_interconnect_info_76 implements PcoreValue {
   readonly tag8021q: number|null;
 
   constructor({
@@ -7003,7 +7003,7 @@ export class Google_compute_interconnect_attachment_private_interconnect_info_93
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_interconnect_attachment_private_interconnect_info_932';
+    return 'TerraformGoogle::Google_compute_interconnect_attachment_private_interconnect_info_76';
   }
 }
 
@@ -7263,7 +7263,7 @@ export class Google_compute_project_metadata_itemHandler implements PcoreValue {
 }
 
 export class Google_compute_region_autoscaler implements PcoreValue {
-  readonly autoscaling_policy: Google_compute_region_autoscaler_autoscaling_policy_933[];
+  readonly autoscaling_policy: Google_compute_region_autoscaler_autoscaling_policy_77[];
   readonly name: string;
   readonly target: string;
   readonly google_compute_region_autoscaler_id: string|null;
@@ -7284,7 +7284,7 @@ export class Google_compute_region_autoscaler implements PcoreValue {
     region = null,
     self_link = null
   }: {
-    autoscaling_policy: Google_compute_region_autoscaler_autoscaling_policy_933[],
+    autoscaling_policy: Google_compute_region_autoscaler_autoscaling_policy_77[],
     name: string,
     target: string,
     google_compute_region_autoscaler_id?: string|null,
@@ -7346,13 +7346,13 @@ export class Google_compute_region_autoscalerHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_region_autoscaler_autoscaling_policy_933 implements PcoreValue {
+export class Google_compute_region_autoscaler_autoscaling_policy_77 implements PcoreValue {
   readonly max_replicas: number;
   readonly min_replicas: number;
   readonly cooldown_period: number|null;
-  readonly cpu_utilization: Google_compute_region_autoscaler_autoscaling_policy_933_cpu_utilization_934[]|null;
-  readonly load_balancing_utilization: Google_compute_region_autoscaler_autoscaling_policy_933_load_balancing_utilization_935[]|null;
-  readonly metric: Google_compute_region_autoscaler_autoscaling_policy_933_metric_936[]|null;
+  readonly cpu_utilization: Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78[]|null;
+  readonly load_balancing_utilization: Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79[]|null;
+  readonly metric: Google_compute_region_autoscaler_autoscaling_policy_77_metric_80[]|null;
 
   constructor({
     max_replicas,
@@ -7365,9 +7365,9 @@ export class Google_compute_region_autoscaler_autoscaling_policy_933 implements 
     max_replicas: number,
     min_replicas: number,
     cooldown_period?: number|null,
-    cpu_utilization?: Google_compute_region_autoscaler_autoscaling_policy_933_cpu_utilization_934[]|null,
-    load_balancing_utilization?: Google_compute_region_autoscaler_autoscaling_policy_933_load_balancing_utilization_935[]|null,
-    metric?: Google_compute_region_autoscaler_autoscaling_policy_933_metric_936[]|null
+    cpu_utilization?: Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78[]|null,
+    load_balancing_utilization?: Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79[]|null,
+    metric?: Google_compute_region_autoscaler_autoscaling_policy_77_metric_80[]|null
   }) {
     this.max_replicas = max_replicas;
     this.min_replicas = min_replicas;
@@ -7397,11 +7397,11 @@ export class Google_compute_region_autoscaler_autoscaling_policy_933 implements 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_933';
+    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_77';
   }
 }
 
-export class Google_compute_region_autoscaler_autoscaling_policy_933_cpu_utilization_934 implements PcoreValue {
+export class Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78 implements PcoreValue {
   readonly target: number;
 
   constructor({
@@ -7419,11 +7419,11 @@ export class Google_compute_region_autoscaler_autoscaling_policy_933_cpu_utiliza
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_933_cpu_utilization_934';
+    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78';
   }
 }
 
-export class Google_compute_region_autoscaler_autoscaling_policy_933_load_balancing_utilization_935 implements PcoreValue {
+export class Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79 implements PcoreValue {
   readonly target: number;
 
   constructor({
@@ -7441,11 +7441,11 @@ export class Google_compute_region_autoscaler_autoscaling_policy_933_load_balanc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_933_load_balancing_utilization_935';
+    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79';
   }
 }
 
-export class Google_compute_region_autoscaler_autoscaling_policy_933_metric_936 implements PcoreValue {
+export class Google_compute_region_autoscaler_autoscaling_policy_77_metric_80 implements PcoreValue {
   readonly name: string;
   readonly target: number;
   readonly type: string;
@@ -7473,7 +7473,7 @@ export class Google_compute_region_autoscaler_autoscaling_policy_933_metric_936 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_933_metric_936';
+    return 'TerraformGoogle::Google_compute_region_autoscaler_autoscaling_policy_77_metric_80';
   }
 }
 
@@ -7481,7 +7481,7 @@ export class Google_compute_region_backend_service implements PcoreValue {
   readonly health_checks: string[];
   readonly name: string;
   readonly google_compute_region_backend_service_id: string|null;
-  readonly backend: Google_compute_region_backend_service_backend_937[]|null;
+  readonly backend: Google_compute_region_backend_service_backend_81[]|null;
   readonly connection_draining_timeout_sec: number|null;
   readonly description: string|null;
   readonly fingerprint: string|null;
@@ -7510,7 +7510,7 @@ export class Google_compute_region_backend_service implements PcoreValue {
     health_checks: string[],
     name: string,
     google_compute_region_backend_service_id?: string|null,
-    backend?: Google_compute_region_backend_service_backend_937[]|null,
+    backend?: Google_compute_region_backend_service_backend_81[]|null,
     connection_draining_timeout_sec?: number|null,
     description?: string|null,
     fingerprint?: string|null,
@@ -7591,7 +7591,7 @@ export class Google_compute_region_backend_serviceHandler implements PcoreValue 
   }
 }
 
-export class Google_compute_region_backend_service_backend_937 implements PcoreValue {
+export class Google_compute_region_backend_service_backend_81 implements PcoreValue {
   readonly description: string|null;
   readonly group: string|null;
 
@@ -7618,7 +7618,7 @@ export class Google_compute_region_backend_service_backend_937 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_backend_service_backend_937';
+    return 'TerraformGoogle::Google_compute_region_backend_service_backend_81';
   }
 }
 
@@ -7628,7 +7628,7 @@ export class Google_compute_region_disk implements PcoreValue {
   readonly google_compute_region_disk_id: string|null;
   readonly creation_timestamp: string|null;
   readonly description: string|null;
-  readonly disk_encryption_key: Google_compute_region_disk_disk_encryption_key_938[]|null;
+  readonly disk_encryption_key: Google_compute_region_disk_disk_encryption_key_82[]|null;
   readonly label_fingerprint: string|null;
   readonly labels: {[s: string]: string}|null;
   readonly last_attach_timestamp: string|null;
@@ -7638,7 +7638,7 @@ export class Google_compute_region_disk implements PcoreValue {
   readonly self_link: string|null;
   readonly size: number|null;
   readonly snapshot: string|null;
-  readonly source_snapshot_encryption_key: Google_compute_region_disk_source_snapshot_encryption_key_939[]|null;
+  readonly source_snapshot_encryption_key: Google_compute_region_disk_source_snapshot_encryption_key_83[]|null;
   readonly source_snapshot_id: string|null;
   readonly type: string|null;
   readonly users: string[]|null;
@@ -7669,7 +7669,7 @@ export class Google_compute_region_disk implements PcoreValue {
     google_compute_region_disk_id?: string|null,
     creation_timestamp?: string|null,
     description?: string|null,
-    disk_encryption_key?: Google_compute_region_disk_disk_encryption_key_938[]|null,
+    disk_encryption_key?: Google_compute_region_disk_disk_encryption_key_82[]|null,
     label_fingerprint?: string|null,
     labels?: {[s: string]: string}|null,
     last_attach_timestamp?: string|null,
@@ -7679,7 +7679,7 @@ export class Google_compute_region_disk implements PcoreValue {
     self_link?: string|null,
     size?: number|null,
     snapshot?: string|null,
-    source_snapshot_encryption_key?: Google_compute_region_disk_source_snapshot_encryption_key_939[]|null,
+    source_snapshot_encryption_key?: Google_compute_region_disk_source_snapshot_encryption_key_83[]|null,
     source_snapshot_id?: string|null,
     type?: string|null,
     users?: string[]|null
@@ -7778,7 +7778,7 @@ export class Google_compute_region_diskHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_region_disk_disk_encryption_key_938 implements PcoreValue {
+export class Google_compute_region_disk_disk_encryption_key_82 implements PcoreValue {
   readonly raw_key: string|null;
   readonly sha256: string|null;
 
@@ -7805,11 +7805,11 @@ export class Google_compute_region_disk_disk_encryption_key_938 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_disk_disk_encryption_key_938';
+    return 'TerraformGoogle::Google_compute_region_disk_disk_encryption_key_82';
   }
 }
 
-export class Google_compute_region_disk_source_snapshot_encryption_key_939 implements PcoreValue {
+export class Google_compute_region_disk_source_snapshot_encryption_key_83 implements PcoreValue {
   readonly raw_key: string|null;
   readonly sha256: string|null;
 
@@ -7836,7 +7836,7 @@ export class Google_compute_region_disk_source_snapshot_encryption_key_939 imple
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_disk_source_snapshot_encryption_key_939';
+    return 'TerraformGoogle::Google_compute_region_disk_source_snapshot_encryption_key_83';
   }
 }
 
@@ -7845,20 +7845,20 @@ export class Google_compute_region_instance_group_manager implements PcoreValue 
   readonly name: string;
   readonly region: string;
   readonly google_compute_region_instance_group_manager_id: string|null;
-  readonly auto_healing_policies: Google_compute_region_instance_group_manager_auto_healing_policies_940[]|null;
+  readonly auto_healing_policies: Google_compute_region_instance_group_manager_auto_healing_policies_84[]|null;
   readonly description: string|null;
   readonly distribution_policy_zones: string[]|null;
   readonly fingerprint: string|null;
   readonly instance_group: string|null;
   readonly instance_template: string|null;
-  readonly named_port: Google_compute_region_instance_group_manager_named_port_941[]|null;
+  readonly named_port: Google_compute_region_instance_group_manager_named_port_85[]|null;
   readonly project: string|null;
-  readonly rolling_update_policy: Google_compute_region_instance_group_manager_rolling_update_policy_942[]|null;
+  readonly rolling_update_policy: Google_compute_region_instance_group_manager_rolling_update_policy_86[]|null;
   readonly self_link: string|null;
   readonly target_pools: string[]|null;
   readonly target_size: number|null;
   readonly update_strategy: string|null;
-  readonly version: Google_compute_region_instance_group_manager_version_943[]|null;
+  readonly version: Google_compute_region_instance_group_manager_version_87[]|null;
   readonly wait_for_instances: boolean|null;
 
   constructor({
@@ -7886,20 +7886,20 @@ export class Google_compute_region_instance_group_manager implements PcoreValue 
     name: string,
     region: string,
     google_compute_region_instance_group_manager_id?: string|null,
-    auto_healing_policies?: Google_compute_region_instance_group_manager_auto_healing_policies_940[]|null,
+    auto_healing_policies?: Google_compute_region_instance_group_manager_auto_healing_policies_84[]|null,
     description?: string|null,
     distribution_policy_zones?: string[]|null,
     fingerprint?: string|null,
     instance_group?: string|null,
     instance_template?: string|null,
-    named_port?: Google_compute_region_instance_group_manager_named_port_941[]|null,
+    named_port?: Google_compute_region_instance_group_manager_named_port_85[]|null,
     project?: string|null,
-    rolling_update_policy?: Google_compute_region_instance_group_manager_rolling_update_policy_942[]|null,
+    rolling_update_policy?: Google_compute_region_instance_group_manager_rolling_update_policy_86[]|null,
     self_link?: string|null,
     target_pools?: string[]|null,
     target_size?: number|null,
     update_strategy?: string|null,
-    version?: Google_compute_region_instance_group_manager_version_943[]|null,
+    version?: Google_compute_region_instance_group_manager_version_87[]|null,
     wait_for_instances?: boolean|null
   }) {
     this.base_instance_name = base_instance_name;
@@ -7994,7 +7994,7 @@ export class Google_compute_region_instance_group_managerHandler implements Pcor
   }
 }
 
-export class Google_compute_region_instance_group_manager_auto_healing_policies_940 implements PcoreValue {
+export class Google_compute_region_instance_group_manager_auto_healing_policies_84 implements PcoreValue {
   readonly health_check: string;
   readonly initial_delay_sec: number;
 
@@ -8017,11 +8017,11 @@ export class Google_compute_region_instance_group_manager_auto_healing_policies_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_instance_group_manager_auto_healing_policies_940';
+    return 'TerraformGoogle::Google_compute_region_instance_group_manager_auto_healing_policies_84';
   }
 }
 
-export class Google_compute_region_instance_group_manager_named_port_941 implements PcoreValue {
+export class Google_compute_region_instance_group_manager_named_port_85 implements PcoreValue {
   readonly name: string;
   readonly port: number;
 
@@ -8044,11 +8044,11 @@ export class Google_compute_region_instance_group_manager_named_port_941 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_instance_group_manager_named_port_941';
+    return 'TerraformGoogle::Google_compute_region_instance_group_manager_named_port_85';
   }
 }
 
-export class Google_compute_region_instance_group_manager_rolling_update_policy_942 implements PcoreValue {
+export class Google_compute_region_instance_group_manager_rolling_update_policy_86 implements PcoreValue {
   readonly minimal_action: string;
   readonly type: string;
   readonly max_surge_fixed: number|null;
@@ -8106,14 +8106,14 @@ export class Google_compute_region_instance_group_manager_rolling_update_policy_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_instance_group_manager_rolling_update_policy_942';
+    return 'TerraformGoogle::Google_compute_region_instance_group_manager_rolling_update_policy_86';
   }
 }
 
-export class Google_compute_region_instance_group_manager_version_943 implements PcoreValue {
+export class Google_compute_region_instance_group_manager_version_87 implements PcoreValue {
   readonly instance_template: string;
   readonly name: string;
-  readonly target_size: Google_compute_region_instance_group_manager_version_943_target_size_944[]|null;
+  readonly target_size: Google_compute_region_instance_group_manager_version_87_target_size_88[]|null;
 
   constructor({
     instance_template,
@@ -8122,7 +8122,7 @@ export class Google_compute_region_instance_group_manager_version_943 implements
   }: {
     instance_template: string,
     name: string,
-    target_size?: Google_compute_region_instance_group_manager_version_943_target_size_944[]|null
+    target_size?: Google_compute_region_instance_group_manager_version_87_target_size_88[]|null
   }) {
     this.instance_template = instance_template;
     this.name = name;
@@ -8140,11 +8140,11 @@ export class Google_compute_region_instance_group_manager_version_943 implements
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_instance_group_manager_version_943';
+    return 'TerraformGoogle::Google_compute_region_instance_group_manager_version_87';
   }
 }
 
-export class Google_compute_region_instance_group_manager_version_943_target_size_944 implements PcoreValue {
+export class Google_compute_region_instance_group_manager_version_87_target_size_88 implements PcoreValue {
   readonly fixed: number|null;
   readonly percent: number|null;
 
@@ -8171,7 +8171,7 @@ export class Google_compute_region_instance_group_manager_version_943_target_siz
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_region_instance_group_manager_version_943_target_size_944';
+    return 'TerraformGoogle::Google_compute_region_instance_group_manager_version_87_target_size_88';
   }
 }
 
@@ -8305,7 +8305,7 @@ export class Google_compute_router implements PcoreValue {
   readonly name: string;
   readonly network: string;
   readonly google_compute_router_id: string|null;
-  readonly bgp: Google_compute_router_bgp_945[]|null;
+  readonly bgp: Google_compute_router_bgp_89[]|null;
   readonly creation_timestamp: string|null;
   readonly description: string|null;
   readonly project: string|null;
@@ -8326,7 +8326,7 @@ export class Google_compute_router implements PcoreValue {
     name: string,
     network: string,
     google_compute_router_id?: string|null,
-    bgp?: Google_compute_router_bgp_945[]|null,
+    bgp?: Google_compute_router_bgp_89[]|null,
     creation_timestamp?: string|null,
     description?: string|null,
     project?: string|null,
@@ -8387,11 +8387,11 @@ export class Google_compute_routerHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_router_bgp_945 implements PcoreValue {
+export class Google_compute_router_bgp_89 implements PcoreValue {
   readonly asn: number;
   readonly advertise_mode: string|null;
   readonly advertised_groups: string[]|null;
-  readonly advertised_ip_ranges: Google_compute_router_bgp_945_advertised_ip_ranges_946[]|null;
+  readonly advertised_ip_ranges: Google_compute_router_bgp_89_advertised_ip_ranges_90[]|null;
 
   constructor({
     asn,
@@ -8402,7 +8402,7 @@ export class Google_compute_router_bgp_945 implements PcoreValue {
     asn: number,
     advertise_mode?: string|null,
     advertised_groups?: string[]|null,
-    advertised_ip_ranges?: Google_compute_router_bgp_945_advertised_ip_ranges_946[]|null
+    advertised_ip_ranges?: Google_compute_router_bgp_89_advertised_ip_ranges_90[]|null
   }) {
     this.asn = asn;
     this.advertise_mode = advertise_mode;
@@ -8426,11 +8426,11 @@ export class Google_compute_router_bgp_945 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_router_bgp_945';
+    return 'TerraformGoogle::Google_compute_router_bgp_89';
   }
 }
 
-export class Google_compute_router_bgp_945_advertised_ip_ranges_946 implements PcoreValue {
+export class Google_compute_router_bgp_89_advertised_ip_ranges_90 implements PcoreValue {
   readonly description: string|null;
   readonly range: string|null;
 
@@ -8457,7 +8457,7 @@ export class Google_compute_router_bgp_945_advertised_ip_ranges_946 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_router_bgp_945_advertised_ip_ranges_946';
+    return 'TerraformGoogle::Google_compute_router_bgp_89_advertised_ip_ranges_90';
   }
 }
 
@@ -8542,7 +8542,7 @@ export class Google_compute_router_nat implements PcoreValue {
   readonly project: string|null;
   readonly region: string|null;
   readonly source_subnetwork_ip_ranges_to_nat: string|null;
-  readonly subnetwork: Google_compute_router_nat_subnetwork_947[]|null;
+  readonly subnetwork: Google_compute_router_nat_subnetwork_91[]|null;
   readonly tcp_established_idle_timeout_sec: number|null;
   readonly tcp_transitory_idle_timeout_sec: number|null;
   readonly udp_idle_timeout_sec: number|null;
@@ -8573,7 +8573,7 @@ export class Google_compute_router_nat implements PcoreValue {
     project?: string|null,
     region?: string|null,
     source_subnetwork_ip_ranges_to_nat?: string|null,
-    subnetwork?: Google_compute_router_nat_subnetwork_947[]|null,
+    subnetwork?: Google_compute_router_nat_subnetwork_91[]|null,
     tcp_established_idle_timeout_sec?: number|null,
     tcp_transitory_idle_timeout_sec?: number|null,
     udp_idle_timeout_sec?: number|null
@@ -8650,7 +8650,7 @@ export class Google_compute_router_natHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_router_nat_subnetwork_947 implements PcoreValue {
+export class Google_compute_router_nat_subnetwork_91 implements PcoreValue {
   readonly name: string;
   readonly secondary_ip_range_names: string[]|null;
   readonly source_ip_ranges_to_nat: string[]|null;
@@ -8682,7 +8682,7 @@ export class Google_compute_router_nat_subnetwork_947 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_router_nat_subnetwork_947';
+    return 'TerraformGoogle::Google_compute_router_nat_subnetwork_91';
   }
 }
 
@@ -8781,7 +8781,7 @@ export class Google_compute_security_policy implements PcoreValue {
   readonly description: string|null;
   readonly fingerprint: string|null;
   readonly project: string|null;
-  readonly rule: Google_compute_security_policy_rule_948[]|null;
+  readonly rule: Google_compute_security_policy_rule_92[]|null;
   readonly self_link: string|null;
 
   constructor({
@@ -8798,7 +8798,7 @@ export class Google_compute_security_policy implements PcoreValue {
     description?: string|null,
     fingerprint?: string|null,
     project?: string|null,
-    rule?: Google_compute_security_policy_rule_948[]|null,
+    rule?: Google_compute_security_policy_rule_92[]|null,
     self_link?: string|null
   }) {
     this.name = name;
@@ -8849,9 +8849,9 @@ export class Google_compute_security_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_security_policy_rule_948 implements PcoreValue {
+export class Google_compute_security_policy_rule_92 implements PcoreValue {
   readonly action: string;
-  readonly match: Google_compute_security_policy_rule_948_match_949[];
+  readonly match: Google_compute_security_policy_rule_92_match_93[];
   readonly priority: number;
   readonly description: string|null;
   readonly preview: boolean|null;
@@ -8864,7 +8864,7 @@ export class Google_compute_security_policy_rule_948 implements PcoreValue {
     preview = null
   }: {
     action: string,
-    match: Google_compute_security_policy_rule_948_match_949[],
+    match: Google_compute_security_policy_rule_92_match_93[],
     priority: number,
     description?: string|null,
     preview?: boolean|null
@@ -8891,19 +8891,19 @@ export class Google_compute_security_policy_rule_948 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_security_policy_rule_948';
+    return 'TerraformGoogle::Google_compute_security_policy_rule_92';
   }
 }
 
-export class Google_compute_security_policy_rule_948_match_949 implements PcoreValue {
-  readonly config: Google_compute_security_policy_rule_948_match_949_config_950[];
+export class Google_compute_security_policy_rule_92_match_93 implements PcoreValue {
+  readonly config: Google_compute_security_policy_rule_92_match_93_config_94[];
   readonly versioned_expr: string;
 
   constructor({
     config,
     versioned_expr
   }: {
-    config: Google_compute_security_policy_rule_948_match_949_config_950[],
+    config: Google_compute_security_policy_rule_92_match_93_config_94[],
     versioned_expr: string
   }) {
     this.config = config;
@@ -8918,11 +8918,11 @@ export class Google_compute_security_policy_rule_948_match_949 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_security_policy_rule_948_match_949';
+    return 'TerraformGoogle::Google_compute_security_policy_rule_92_match_93';
   }
 }
 
-export class Google_compute_security_policy_rule_948_match_949_config_950 implements PcoreValue {
+export class Google_compute_security_policy_rule_92_match_93_config_94 implements PcoreValue {
   readonly src_ip_ranges: string[];
 
   constructor({
@@ -8940,7 +8940,7 @@ export class Google_compute_security_policy_rule_948_match_949_config_950 implem
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_security_policy_rule_948_match_949_config_950';
+    return 'TerraformGoogle::Google_compute_security_policy_rule_92_match_93_config_94';
   }
 }
 
@@ -9039,11 +9039,11 @@ export class Google_compute_snapshot implements PcoreValue {
   readonly licenses: string[]|null;
   readonly project: string|null;
   readonly self_link: string|null;
-  readonly snapshot_encryption_key: Google_compute_snapshot_snapshot_encryption_key_951[]|null;
+  readonly snapshot_encryption_key: Google_compute_snapshot_snapshot_encryption_key_95[]|null;
   readonly snapshot_encryption_key_raw: string|null;
   readonly snapshot_encryption_key_sha256: string|null;
   readonly snapshot_id: number|null;
-  readonly source_disk_encryption_key: Google_compute_snapshot_source_disk_encryption_key_952[]|null;
+  readonly source_disk_encryption_key: Google_compute_snapshot_source_disk_encryption_key_96[]|null;
   readonly source_disk_encryption_key_raw: string|null;
   readonly source_disk_encryption_key_sha256: string|null;
   readonly source_disk_link: string|null;
@@ -9084,11 +9084,11 @@ export class Google_compute_snapshot implements PcoreValue {
     licenses?: string[]|null,
     project?: string|null,
     self_link?: string|null,
-    snapshot_encryption_key?: Google_compute_snapshot_snapshot_encryption_key_951[]|null,
+    snapshot_encryption_key?: Google_compute_snapshot_snapshot_encryption_key_95[]|null,
     snapshot_encryption_key_raw?: string|null,
     snapshot_encryption_key_sha256?: string|null,
     snapshot_id?: number|null,
-    source_disk_encryption_key?: Google_compute_snapshot_source_disk_encryption_key_952[]|null,
+    source_disk_encryption_key?: Google_compute_snapshot_source_disk_encryption_key_96[]|null,
     source_disk_encryption_key_raw?: string|null,
     source_disk_encryption_key_sha256?: string|null,
     source_disk_link?: string|null,
@@ -9197,7 +9197,7 @@ export class Google_compute_snapshotHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_snapshot_snapshot_encryption_key_951 implements PcoreValue {
+export class Google_compute_snapshot_snapshot_encryption_key_95 implements PcoreValue {
   readonly raw_key: string|null;
   readonly sha256: string|null;
 
@@ -9224,11 +9224,11 @@ export class Google_compute_snapshot_snapshot_encryption_key_951 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_snapshot_snapshot_encryption_key_951';
+    return 'TerraformGoogle::Google_compute_snapshot_snapshot_encryption_key_95';
   }
 }
 
-export class Google_compute_snapshot_source_disk_encryption_key_952 implements PcoreValue {
+export class Google_compute_snapshot_source_disk_encryption_key_96 implements PcoreValue {
   readonly raw_key: string|null;
 
   constructor({
@@ -9248,7 +9248,7 @@ export class Google_compute_snapshot_source_disk_encryption_key_952 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_snapshot_source_disk_encryption_key_952';
+    return 'TerraformGoogle::Google_compute_snapshot_source_disk_encryption_key_96';
   }
 }
 
@@ -9460,7 +9460,7 @@ export class Google_compute_subnetwork implements PcoreValue {
   readonly private_ip_google_access: boolean|null;
   readonly project: string|null;
   readonly region: string|null;
-  readonly secondary_ip_range: Google_compute_subnetwork_secondary_ip_range_953[]|null;
+  readonly secondary_ip_range: Google_compute_subnetwork_secondary_ip_range_97[]|null;
   readonly self_link: string|null;
 
   constructor({
@@ -9491,7 +9491,7 @@ export class Google_compute_subnetwork implements PcoreValue {
     private_ip_google_access?: boolean|null,
     project?: string|null,
     region?: string|null,
-    secondary_ip_range?: Google_compute_subnetwork_secondary_ip_range_953[]|null,
+    secondary_ip_range?: Google_compute_subnetwork_secondary_ip_range_97[]|null,
     self_link?: string|null
   }) {
     this.ip_cidr_range = ip_cidr_range;
@@ -9771,7 +9771,7 @@ export class Google_compute_subnetwork_iam_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_subnetwork_secondary_ip_range_953 implements PcoreValue {
+export class Google_compute_subnetwork_secondary_ip_range_97 implements PcoreValue {
   readonly ip_cidr_range: string;
   readonly range_name: string;
 
@@ -9794,7 +9794,7 @@ export class Google_compute_subnetwork_secondary_ip_range_953 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_subnetwork_secondary_ip_range_953';
+    return 'TerraformGoogle::Google_compute_subnetwork_secondary_ip_range_97';
   }
 }
 
@@ -10267,12 +10267,12 @@ export class Google_compute_url_map implements PcoreValue {
   readonly google_compute_url_map_id: string|null;
   readonly description: string|null;
   readonly fingerprint: string|null;
-  readonly host_rule: Google_compute_url_map_host_rule_954[]|null;
+  readonly host_rule: Google_compute_url_map_host_rule_98[]|null;
   readonly map_id: string|null;
-  readonly path_matcher: Google_compute_url_map_path_matcher_955[]|null;
+  readonly path_matcher: Google_compute_url_map_path_matcher_99[]|null;
   readonly project: string|null;
   readonly self_link: string|null;
-  readonly test: Google_compute_url_map_test_957[]|null;
+  readonly test: Google_compute_url_map_test_101[]|null;
 
   constructor({
     default_service,
@@ -10292,12 +10292,12 @@ export class Google_compute_url_map implements PcoreValue {
     google_compute_url_map_id?: string|null,
     description?: string|null,
     fingerprint?: string|null,
-    host_rule?: Google_compute_url_map_host_rule_954[]|null,
+    host_rule?: Google_compute_url_map_host_rule_98[]|null,
     map_id?: string|null,
-    path_matcher?: Google_compute_url_map_path_matcher_955[]|null,
+    path_matcher?: Google_compute_url_map_path_matcher_99[]|null,
     project?: string|null,
     self_link?: string|null,
-    test?: Google_compute_url_map_test_957[]|null
+    test?: Google_compute_url_map_test_101[]|null
   }) {
     this.default_service = default_service;
     this.name = name;
@@ -10361,7 +10361,7 @@ export class Google_compute_url_mapHandler implements PcoreValue {
   }
 }
 
-export class Google_compute_url_map_host_rule_954 implements PcoreValue {
+export class Google_compute_url_map_host_rule_98 implements PcoreValue {
   readonly hosts: string[];
   readonly path_matcher: string;
   readonly description: string|null;
@@ -10391,15 +10391,15 @@ export class Google_compute_url_map_host_rule_954 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_url_map_host_rule_954';
+    return 'TerraformGoogle::Google_compute_url_map_host_rule_98';
   }
 }
 
-export class Google_compute_url_map_path_matcher_955 implements PcoreValue {
+export class Google_compute_url_map_path_matcher_99 implements PcoreValue {
   readonly default_service: string;
   readonly name: string;
   readonly description: string|null;
-  readonly path_rule: Google_compute_url_map_path_matcher_955_path_rule_956[]|null;
+  readonly path_rule: Google_compute_url_map_path_matcher_99_path_rule_100[]|null;
 
   constructor({
     default_service,
@@ -10410,7 +10410,7 @@ export class Google_compute_url_map_path_matcher_955 implements PcoreValue {
     default_service: string,
     name: string,
     description?: string|null,
-    path_rule?: Google_compute_url_map_path_matcher_955_path_rule_956[]|null
+    path_rule?: Google_compute_url_map_path_matcher_99_path_rule_100[]|null
   }) {
     this.default_service = default_service;
     this.name = name;
@@ -10432,11 +10432,11 @@ export class Google_compute_url_map_path_matcher_955 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_url_map_path_matcher_955';
+    return 'TerraformGoogle::Google_compute_url_map_path_matcher_99';
   }
 }
 
-export class Google_compute_url_map_path_matcher_955_path_rule_956 implements PcoreValue {
+export class Google_compute_url_map_path_matcher_99_path_rule_100 implements PcoreValue {
   readonly paths: string[];
   readonly service: string;
 
@@ -10459,11 +10459,11 @@ export class Google_compute_url_map_path_matcher_955_path_rule_956 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_url_map_path_matcher_955_path_rule_956';
+    return 'TerraformGoogle::Google_compute_url_map_path_matcher_99_path_rule_100';
   }
 }
 
-export class Google_compute_url_map_test_957 implements PcoreValue {
+export class Google_compute_url_map_test_101 implements PcoreValue {
   readonly host: string;
   readonly path: string;
   readonly service: string;
@@ -10498,7 +10498,7 @@ export class Google_compute_url_map_test_957 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_compute_url_map_test_957';
+    return 'TerraformGoogle::Google_compute_url_map_test_101';
   }
 }
 
@@ -10727,7 +10727,7 @@ export class Google_compute_vpn_tunnelHandler implements PcoreValue {
 }
 
 export class Google_container_analysis_note implements PcoreValue {
-  readonly attestation_authority: Google_container_analysis_note_attestation_authority_958[];
+  readonly attestation_authority: Google_container_analysis_note_attestation_authority_102[];
   readonly name: string;
   readonly google_container_analysis_note_id: string|null;
   readonly project: string|null;
@@ -10738,7 +10738,7 @@ export class Google_container_analysis_note implements PcoreValue {
     google_container_analysis_note_id = null,
     project = null
   }: {
-    attestation_authority: Google_container_analysis_note_attestation_authority_958[],
+    attestation_authority: Google_container_analysis_note_attestation_authority_102[],
     name: string,
     google_container_analysis_note_id?: string|null,
     project?: string|null
@@ -10777,13 +10777,13 @@ export class Google_container_analysis_noteHandler implements PcoreValue {
   }
 }
 
-export class Google_container_analysis_note_attestation_authority_958 implements PcoreValue {
-  readonly hint: Google_container_analysis_note_attestation_authority_958_hint_959[];
+export class Google_container_analysis_note_attestation_authority_102 implements PcoreValue {
+  readonly hint: Google_container_analysis_note_attestation_authority_102_hint_103[];
 
   constructor({
     hint
   }: {
-    hint: Google_container_analysis_note_attestation_authority_958_hint_959[]
+    hint: Google_container_analysis_note_attestation_authority_102_hint_103[]
   }) {
     this.hint = hint;
   }
@@ -10795,11 +10795,11 @@ export class Google_container_analysis_note_attestation_authority_958 implements
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_analysis_note_attestation_authority_958';
+    return 'TerraformGoogle::Google_container_analysis_note_attestation_authority_102';
   }
 }
 
-export class Google_container_analysis_note_attestation_authority_958_hint_959 implements PcoreValue {
+export class Google_container_analysis_note_attestation_authority_102_hint_103 implements PcoreValue {
   readonly human_readable_name: string;
 
   constructor({
@@ -10817,7 +10817,7 @@ export class Google_container_analysis_note_attestation_authority_958_hint_959 i
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_analysis_note_attestation_authority_958_hint_959';
+    return 'TerraformGoogle::Google_container_analysis_note_attestation_authority_102_hint_103';
   }
 }
 
@@ -10825,8 +10825,8 @@ export class Google_container_cluster implements PcoreValue {
   readonly name: string;
   readonly google_container_cluster_id: string|null;
   readonly additional_zones: string[]|null;
-  readonly addons_config: Google_container_cluster_addons_config_960[]|null;
-  readonly cluster_autoscaling: Google_container_cluster_cluster_autoscaling_965[]|null;
+  readonly addons_config: Google_container_cluster_addons_config_104[]|null;
+  readonly cluster_autoscaling: Google_container_cluster_cluster_autoscaling_109[]|null;
   readonly cluster_ipv4_cidr: string|null;
   readonly description: string|null;
   readonly enable_binary_authorization: boolean|null;
@@ -10836,23 +10836,23 @@ export class Google_container_cluster implements PcoreValue {
   readonly endpoint: string|null;
   readonly initial_node_count: number|null;
   readonly instance_group_urls: string[]|null;
-  readonly ip_allocation_policy: Google_container_cluster_ip_allocation_policy_967[]|null;
+  readonly ip_allocation_policy: Google_container_cluster_ip_allocation_policy_111[]|null;
   readonly logging_service: string|null;
-  readonly maintenance_policy: Google_container_cluster_maintenance_policy_968[]|null;
-  readonly master_auth: Google_container_cluster_master_auth_970[]|null;
-  readonly master_authorized_networks_config: Google_container_cluster_master_authorized_networks_config_972[]|null;
+  readonly maintenance_policy: Google_container_cluster_maintenance_policy_112[]|null;
+  readonly master_auth: Google_container_cluster_master_auth_114[]|null;
+  readonly master_authorized_networks_config: Google_container_cluster_master_authorized_networks_config_116[]|null;
   readonly master_ipv4_cidr_block: string|null;
   readonly master_version: string|null;
   readonly min_master_version: string|null;
   readonly monitoring_service: string|null;
   readonly network: string|null;
-  readonly network_policy: Google_container_cluster_network_policy_974[]|null;
-  readonly node_config: Google_container_cluster_node_config_975[]|null;
-  readonly node_pool: Google_container_cluster_node_pool_979[]|null;
+  readonly network_policy: Google_container_cluster_network_policy_118[]|null;
+  readonly node_config: Google_container_cluster_node_config_119[]|null;
+  readonly node_pool: Google_container_cluster_node_pool_123[]|null;
   readonly node_version: string|null;
-  readonly pod_security_policy_config: Google_container_cluster_pod_security_policy_config_986[]|null;
+  readonly pod_security_policy_config: Google_container_cluster_pod_security_policy_config_130[]|null;
   readonly private_cluster: boolean|null;
-  readonly private_cluster_config: Google_container_cluster_private_cluster_config_987[]|null;
+  readonly private_cluster_config: Google_container_cluster_private_cluster_config_131[]|null;
   readonly project: string|null;
   readonly region: string|null;
   readonly remove_default_node_pool: boolean|null;
@@ -10902,8 +10902,8 @@ export class Google_container_cluster implements PcoreValue {
     name: string,
     google_container_cluster_id?: string|null,
     additional_zones?: string[]|null,
-    addons_config?: Google_container_cluster_addons_config_960[]|null,
-    cluster_autoscaling?: Google_container_cluster_cluster_autoscaling_965[]|null,
+    addons_config?: Google_container_cluster_addons_config_104[]|null,
+    cluster_autoscaling?: Google_container_cluster_cluster_autoscaling_109[]|null,
     cluster_ipv4_cidr?: string|null,
     description?: string|null,
     enable_binary_authorization?: boolean|null,
@@ -10913,23 +10913,23 @@ export class Google_container_cluster implements PcoreValue {
     endpoint?: string|null,
     initial_node_count?: number|null,
     instance_group_urls?: string[]|null,
-    ip_allocation_policy?: Google_container_cluster_ip_allocation_policy_967[]|null,
+    ip_allocation_policy?: Google_container_cluster_ip_allocation_policy_111[]|null,
     logging_service?: string|null,
-    maintenance_policy?: Google_container_cluster_maintenance_policy_968[]|null,
-    master_auth?: Google_container_cluster_master_auth_970[]|null,
-    master_authorized_networks_config?: Google_container_cluster_master_authorized_networks_config_972[]|null,
+    maintenance_policy?: Google_container_cluster_maintenance_policy_112[]|null,
+    master_auth?: Google_container_cluster_master_auth_114[]|null,
+    master_authorized_networks_config?: Google_container_cluster_master_authorized_networks_config_116[]|null,
     master_ipv4_cidr_block?: string|null,
     master_version?: string|null,
     min_master_version?: string|null,
     monitoring_service?: string|null,
     network?: string|null,
-    network_policy?: Google_container_cluster_network_policy_974[]|null,
-    node_config?: Google_container_cluster_node_config_975[]|null,
-    node_pool?: Google_container_cluster_node_pool_979[]|null,
+    network_policy?: Google_container_cluster_network_policy_118[]|null,
+    node_config?: Google_container_cluster_node_config_119[]|null,
+    node_pool?: Google_container_cluster_node_pool_123[]|null,
     node_version?: string|null,
-    pod_security_policy_config?: Google_container_cluster_pod_security_policy_config_986[]|null,
+    pod_security_policy_config?: Google_container_cluster_pod_security_policy_config_130[]|null,
     private_cluster?: boolean|null,
-    private_cluster_config?: Google_container_cluster_private_cluster_config_987[]|null,
+    private_cluster_config?: Google_container_cluster_private_cluster_config_131[]|null,
     project?: string|null,
     region?: string|null,
     remove_default_node_pool?: boolean|null,
@@ -11105,11 +11105,11 @@ export class Google_container_clusterHandler implements PcoreValue {
   }
 }
 
-export class Google_container_cluster_addons_config_960 implements PcoreValue {
-  readonly horizontal_pod_autoscaling: Google_container_cluster_addons_config_960_horizontal_pod_autoscaling_961[]|null;
-  readonly http_load_balancing: Google_container_cluster_addons_config_960_http_load_balancing_962[]|null;
-  readonly kubernetes_dashboard: Google_container_cluster_addons_config_960_kubernetes_dashboard_963[]|null;
-  readonly network_policy_config: Google_container_cluster_addons_config_960_network_policy_config_964[]|null;
+export class Google_container_cluster_addons_config_104 implements PcoreValue {
+  readonly horizontal_pod_autoscaling: Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105[]|null;
+  readonly http_load_balancing: Google_container_cluster_addons_config_104_http_load_balancing_106[]|null;
+  readonly kubernetes_dashboard: Google_container_cluster_addons_config_104_kubernetes_dashboard_107[]|null;
+  readonly network_policy_config: Google_container_cluster_addons_config_104_network_policy_config_108[]|null;
 
   constructor({
     horizontal_pod_autoscaling = null,
@@ -11117,10 +11117,10 @@ export class Google_container_cluster_addons_config_960 implements PcoreValue {
     kubernetes_dashboard = null,
     network_policy_config = null
   }: {
-    horizontal_pod_autoscaling?: Google_container_cluster_addons_config_960_horizontal_pod_autoscaling_961[]|null,
-    http_load_balancing?: Google_container_cluster_addons_config_960_http_load_balancing_962[]|null,
-    kubernetes_dashboard?: Google_container_cluster_addons_config_960_kubernetes_dashboard_963[]|null,
-    network_policy_config?: Google_container_cluster_addons_config_960_network_policy_config_964[]|null
+    horizontal_pod_autoscaling?: Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105[]|null,
+    http_load_balancing?: Google_container_cluster_addons_config_104_http_load_balancing_106[]|null,
+    kubernetes_dashboard?: Google_container_cluster_addons_config_104_kubernetes_dashboard_107[]|null,
+    network_policy_config?: Google_container_cluster_addons_config_104_network_policy_config_108[]|null
   }) {
     this.horizontal_pod_autoscaling = horizontal_pod_autoscaling;
     this.http_load_balancing = http_load_balancing;
@@ -11146,11 +11146,11 @@ export class Google_container_cluster_addons_config_960 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_addons_config_960';
+    return 'TerraformGoogle::Google_container_cluster_addons_config_104';
   }
 }
 
-export class Google_container_cluster_addons_config_960_horizontal_pod_autoscaling_961 implements PcoreValue {
+export class Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105 implements PcoreValue {
   readonly disabled: boolean|null;
 
   constructor({
@@ -11170,11 +11170,11 @@ export class Google_container_cluster_addons_config_960_horizontal_pod_autoscali
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_addons_config_960_horizontal_pod_autoscaling_961';
+    return 'TerraformGoogle::Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105';
   }
 }
 
-export class Google_container_cluster_addons_config_960_http_load_balancing_962 implements PcoreValue {
+export class Google_container_cluster_addons_config_104_http_load_balancing_106 implements PcoreValue {
   readonly disabled: boolean|null;
 
   constructor({
@@ -11194,11 +11194,11 @@ export class Google_container_cluster_addons_config_960_http_load_balancing_962 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_addons_config_960_http_load_balancing_962';
+    return 'TerraformGoogle::Google_container_cluster_addons_config_104_http_load_balancing_106';
   }
 }
 
-export class Google_container_cluster_addons_config_960_kubernetes_dashboard_963 implements PcoreValue {
+export class Google_container_cluster_addons_config_104_kubernetes_dashboard_107 implements PcoreValue {
   readonly disabled: boolean|null;
 
   constructor({
@@ -11218,11 +11218,11 @@ export class Google_container_cluster_addons_config_960_kubernetes_dashboard_963
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_addons_config_960_kubernetes_dashboard_963';
+    return 'TerraformGoogle::Google_container_cluster_addons_config_104_kubernetes_dashboard_107';
   }
 }
 
-export class Google_container_cluster_addons_config_960_network_policy_config_964 implements PcoreValue {
+export class Google_container_cluster_addons_config_104_network_policy_config_108 implements PcoreValue {
   readonly disabled: boolean|null;
 
   constructor({
@@ -11242,20 +11242,20 @@ export class Google_container_cluster_addons_config_960_network_policy_config_96
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_addons_config_960_network_policy_config_964';
+    return 'TerraformGoogle::Google_container_cluster_addons_config_104_network_policy_config_108';
   }
 }
 
-export class Google_container_cluster_cluster_autoscaling_965 implements PcoreValue {
+export class Google_container_cluster_cluster_autoscaling_109 implements PcoreValue {
   readonly enabled: boolean;
-  readonly resource_limits: Google_container_cluster_cluster_autoscaling_965_resource_limits_966[]|null;
+  readonly resource_limits: Google_container_cluster_cluster_autoscaling_109_resource_limits_110[]|null;
 
   constructor({
     enabled,
     resource_limits = null
   }: {
     enabled: boolean,
-    resource_limits?: Google_container_cluster_cluster_autoscaling_965_resource_limits_966[]|null
+    resource_limits?: Google_container_cluster_cluster_autoscaling_109_resource_limits_110[]|null
   }) {
     this.enabled = enabled;
     this.resource_limits = resource_limits;
@@ -11271,11 +11271,11 @@ export class Google_container_cluster_cluster_autoscaling_965 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_cluster_autoscaling_965';
+    return 'TerraformGoogle::Google_container_cluster_cluster_autoscaling_109';
   }
 }
 
-export class Google_container_cluster_cluster_autoscaling_965_resource_limits_966 implements PcoreValue {
+export class Google_container_cluster_cluster_autoscaling_109_resource_limits_110 implements PcoreValue {
   readonly resource_type: string;
   readonly maximum: number|null;
   readonly minimum: number|null;
@@ -11307,11 +11307,11 @@ export class Google_container_cluster_cluster_autoscaling_965_resource_limits_96
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_cluster_autoscaling_965_resource_limits_966';
+    return 'TerraformGoogle::Google_container_cluster_cluster_autoscaling_109_resource_limits_110';
   }
 }
 
-export class Google_container_cluster_ip_allocation_policy_967 implements PcoreValue {
+export class Google_container_cluster_ip_allocation_policy_111 implements PcoreValue {
   readonly cluster_ipv4_cidr_block: string|null;
   readonly cluster_secondary_range_name: string|null;
   readonly create_subnetwork: boolean|null;
@@ -11366,17 +11366,17 @@ export class Google_container_cluster_ip_allocation_policy_967 implements PcoreV
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_ip_allocation_policy_967';
+    return 'TerraformGoogle::Google_container_cluster_ip_allocation_policy_111';
   }
 }
 
-export class Google_container_cluster_maintenance_policy_968 implements PcoreValue {
-  readonly daily_maintenance_window: Google_container_cluster_maintenance_policy_968_daily_maintenance_window_969[];
+export class Google_container_cluster_maintenance_policy_112 implements PcoreValue {
+  readonly daily_maintenance_window: Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113[];
 
   constructor({
     daily_maintenance_window
   }: {
-    daily_maintenance_window: Google_container_cluster_maintenance_policy_968_daily_maintenance_window_969[]
+    daily_maintenance_window: Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113[]
   }) {
     this.daily_maintenance_window = daily_maintenance_window;
   }
@@ -11388,11 +11388,11 @@ export class Google_container_cluster_maintenance_policy_968 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_maintenance_policy_968';
+    return 'TerraformGoogle::Google_container_cluster_maintenance_policy_112';
   }
 }
 
-export class Google_container_cluster_maintenance_policy_968_daily_maintenance_window_969 implements PcoreValue {
+export class Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113 implements PcoreValue {
   readonly start_time: string;
   readonly duration: string|null;
 
@@ -11417,15 +11417,15 @@ export class Google_container_cluster_maintenance_policy_968_daily_maintenance_w
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_maintenance_policy_968_daily_maintenance_window_969';
+    return 'TerraformGoogle::Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113';
   }
 }
 
-export class Google_container_cluster_master_auth_970 implements PcoreValue {
+export class Google_container_cluster_master_auth_114 implements PcoreValue {
   readonly password: string;
   readonly username: string;
   readonly client_certificate: string|null;
-  readonly client_certificate_config: Google_container_cluster_master_auth_970_client_certificate_config_971[]|null;
+  readonly client_certificate_config: Google_container_cluster_master_auth_114_client_certificate_config_115[]|null;
   readonly client_key: string|null;
   readonly cluster_ca_certificate: string|null;
 
@@ -11440,7 +11440,7 @@ export class Google_container_cluster_master_auth_970 implements PcoreValue {
     password: string,
     username: string,
     client_certificate?: string|null,
-    client_certificate_config?: Google_container_cluster_master_auth_970_client_certificate_config_971[]|null,
+    client_certificate_config?: Google_container_cluster_master_auth_114_client_certificate_config_115[]|null,
     client_key?: string|null,
     cluster_ca_certificate?: string|null
   }) {
@@ -11472,11 +11472,11 @@ export class Google_container_cluster_master_auth_970 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_master_auth_970';
+    return 'TerraformGoogle::Google_container_cluster_master_auth_114';
   }
 }
 
-export class Google_container_cluster_master_auth_970_client_certificate_config_971 implements PcoreValue {
+export class Google_container_cluster_master_auth_114_client_certificate_config_115 implements PcoreValue {
   readonly issue_client_certificate: boolean;
 
   constructor({
@@ -11494,17 +11494,17 @@ export class Google_container_cluster_master_auth_970_client_certificate_config_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_master_auth_970_client_certificate_config_971';
+    return 'TerraformGoogle::Google_container_cluster_master_auth_114_client_certificate_config_115';
   }
 }
 
-export class Google_container_cluster_master_authorized_networks_config_972 implements PcoreValue {
-  readonly cidr_blocks: Google_container_cluster_master_authorized_networks_config_972_cidr_blocks_973[]|null;
+export class Google_container_cluster_master_authorized_networks_config_116 implements PcoreValue {
+  readonly cidr_blocks: Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117[]|null;
 
   constructor({
     cidr_blocks = null
   }: {
-    cidr_blocks?: Google_container_cluster_master_authorized_networks_config_972_cidr_blocks_973[]|null
+    cidr_blocks?: Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117[]|null
   }) {
     this.cidr_blocks = cidr_blocks;
   }
@@ -11518,11 +11518,11 @@ export class Google_container_cluster_master_authorized_networks_config_972 impl
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_master_authorized_networks_config_972';
+    return 'TerraformGoogle::Google_container_cluster_master_authorized_networks_config_116';
   }
 }
 
-export class Google_container_cluster_master_authorized_networks_config_972_cidr_blocks_973 implements PcoreValue {
+export class Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117 implements PcoreValue {
   readonly cidr_block: string;
   readonly display_name: string|null;
 
@@ -11547,11 +11547,11 @@ export class Google_container_cluster_master_authorized_networks_config_972_cidr
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_master_authorized_networks_config_972_cidr_blocks_973';
+    return 'TerraformGoogle::Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117';
   }
 }
 
-export class Google_container_cluster_network_policy_974 implements PcoreValue {
+export class Google_container_cluster_network_policy_118 implements PcoreValue {
   readonly enabled: boolean|null;
   readonly provider: string|null;
 
@@ -11578,14 +11578,14 @@ export class Google_container_cluster_network_policy_974 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_network_policy_974';
+    return 'TerraformGoogle::Google_container_cluster_network_policy_118';
   }
 }
 
-export class Google_container_cluster_node_config_975 implements PcoreValue {
+export class Google_container_cluster_node_config_119 implements PcoreValue {
   readonly disk_size_gb: number|null;
   readonly disk_type: string|null;
-  readonly guest_accelerator: Google_container_cluster_node_config_975_guest_accelerator_976[]|null;
+  readonly guest_accelerator: Google_container_cluster_node_config_119_guest_accelerator_120[]|null;
   readonly image_type: string|null;
   readonly labels: {[s: string]: string}|null;
   readonly local_ssd_count: number|null;
@@ -11596,8 +11596,8 @@ export class Google_container_cluster_node_config_975 implements PcoreValue {
   readonly preemptible: boolean|null;
   readonly service_account: string|null;
   readonly tags: string[]|null;
-  readonly taint: Google_container_cluster_node_config_975_taint_977[]|null;
-  readonly workload_metadata_config: Google_container_cluster_node_config_975_workload_metadata_config_978[]|null;
+  readonly taint: Google_container_cluster_node_config_119_taint_121[]|null;
+  readonly workload_metadata_config: Google_container_cluster_node_config_119_workload_metadata_config_122[]|null;
 
   constructor({
     disk_size_gb = null,
@@ -11618,7 +11618,7 @@ export class Google_container_cluster_node_config_975 implements PcoreValue {
   }: {
     disk_size_gb?: number|null,
     disk_type?: string|null,
-    guest_accelerator?: Google_container_cluster_node_config_975_guest_accelerator_976[]|null,
+    guest_accelerator?: Google_container_cluster_node_config_119_guest_accelerator_120[]|null,
     image_type?: string|null,
     labels?: {[s: string]: string}|null,
     local_ssd_count?: number|null,
@@ -11629,8 +11629,8 @@ export class Google_container_cluster_node_config_975 implements PcoreValue {
     preemptible?: boolean|null,
     service_account?: string|null,
     tags?: string[]|null,
-    taint?: Google_container_cluster_node_config_975_taint_977[]|null,
-    workload_metadata_config?: Google_container_cluster_node_config_975_workload_metadata_config_978[]|null
+    taint?: Google_container_cluster_node_config_119_taint_121[]|null,
+    workload_metadata_config?: Google_container_cluster_node_config_119_workload_metadata_config_122[]|null
   }) {
     this.disk_size_gb = disk_size_gb;
     this.disk_type = disk_type;
@@ -11700,11 +11700,11 @@ export class Google_container_cluster_node_config_975 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_config_975';
+    return 'TerraformGoogle::Google_container_cluster_node_config_119';
   }
 }
 
-export class Google_container_cluster_node_config_975_guest_accelerator_976 implements PcoreValue {
+export class Google_container_cluster_node_config_119_guest_accelerator_120 implements PcoreValue {
   readonly count: number;
   readonly type: string;
 
@@ -11727,11 +11727,11 @@ export class Google_container_cluster_node_config_975_guest_accelerator_976 impl
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_config_975_guest_accelerator_976';
+    return 'TerraformGoogle::Google_container_cluster_node_config_119_guest_accelerator_120';
   }
 }
 
-export class Google_container_cluster_node_config_975_taint_977 implements PcoreValue {
+export class Google_container_cluster_node_config_119_taint_121 implements PcoreValue {
   readonly effect: string;
   readonly key: string;
   readonly value: string;
@@ -11759,11 +11759,11 @@ export class Google_container_cluster_node_config_975_taint_977 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_config_975_taint_977';
+    return 'TerraformGoogle::Google_container_cluster_node_config_119_taint_121';
   }
 }
 
-export class Google_container_cluster_node_config_975_workload_metadata_config_978 implements PcoreValue {
+export class Google_container_cluster_node_config_119_workload_metadata_config_122 implements PcoreValue {
   readonly node_metadata: string;
 
   constructor({
@@ -11781,19 +11781,19 @@ export class Google_container_cluster_node_config_975_workload_metadata_config_9
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_config_975_workload_metadata_config_978';
+    return 'TerraformGoogle::Google_container_cluster_node_config_119_workload_metadata_config_122';
   }
 }
 
-export class Google_container_cluster_node_pool_979 implements PcoreValue {
-  readonly autoscaling: Google_container_cluster_node_pool_979_autoscaling_980[]|null;
+export class Google_container_cluster_node_pool_123 implements PcoreValue {
+  readonly autoscaling: Google_container_cluster_node_pool_123_autoscaling_124[]|null;
   readonly initial_node_count: number|null;
   readonly instance_group_urls: string[]|null;
-  readonly management: Google_container_cluster_node_pool_979_management_981[]|null;
+  readonly management: Google_container_cluster_node_pool_123_management_125[]|null;
   readonly max_pods_per_node: number|null;
   readonly name: string|null;
   readonly name_prefix: string|null;
-  readonly node_config: Google_container_cluster_node_pool_979_node_config_982[]|null;
+  readonly node_config: Google_container_cluster_node_pool_123_node_config_126[]|null;
   readonly node_count: number|null;
   readonly version: string|null;
 
@@ -11809,14 +11809,14 @@ export class Google_container_cluster_node_pool_979 implements PcoreValue {
     node_count = null,
     version = null
   }: {
-    autoscaling?: Google_container_cluster_node_pool_979_autoscaling_980[]|null,
+    autoscaling?: Google_container_cluster_node_pool_123_autoscaling_124[]|null,
     initial_node_count?: number|null,
     instance_group_urls?: string[]|null,
-    management?: Google_container_cluster_node_pool_979_management_981[]|null,
+    management?: Google_container_cluster_node_pool_123_management_125[]|null,
     max_pods_per_node?: number|null,
     name?: string|null,
     name_prefix?: string|null,
-    node_config?: Google_container_cluster_node_pool_979_node_config_982[]|null,
+    node_config?: Google_container_cluster_node_pool_123_node_config_126[]|null,
     node_count?: number|null,
     version?: string|null
   }) {
@@ -11868,11 +11868,11 @@ export class Google_container_cluster_node_pool_979 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123';
   }
 }
 
-export class Google_container_cluster_node_pool_979_autoscaling_980 implements PcoreValue {
+export class Google_container_cluster_node_pool_123_autoscaling_124 implements PcoreValue {
   readonly max_node_count: number;
   readonly min_node_count: number;
 
@@ -11895,11 +11895,11 @@ export class Google_container_cluster_node_pool_979_autoscaling_980 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979_autoscaling_980';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123_autoscaling_124';
   }
 }
 
-export class Google_container_cluster_node_pool_979_management_981 implements PcoreValue {
+export class Google_container_cluster_node_pool_123_management_125 implements PcoreValue {
   readonly auto_repair: boolean|null;
   readonly auto_upgrade: boolean|null;
 
@@ -11926,14 +11926,14 @@ export class Google_container_cluster_node_pool_979_management_981 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979_management_981';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123_management_125';
   }
 }
 
-export class Google_container_cluster_node_pool_979_node_config_982 implements PcoreValue {
+export class Google_container_cluster_node_pool_123_node_config_126 implements PcoreValue {
   readonly disk_size_gb: number|null;
   readonly disk_type: string|null;
-  readonly guest_accelerator: Google_container_cluster_node_pool_979_node_config_982_guest_accelerator_983[]|null;
+  readonly guest_accelerator: Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127[]|null;
   readonly image_type: string|null;
   readonly labels: {[s: string]: string}|null;
   readonly local_ssd_count: number|null;
@@ -11944,8 +11944,8 @@ export class Google_container_cluster_node_pool_979_node_config_982 implements P
   readonly preemptible: boolean|null;
   readonly service_account: string|null;
   readonly tags: string[]|null;
-  readonly taint: Google_container_cluster_node_pool_979_node_config_982_taint_984[]|null;
-  readonly workload_metadata_config: Google_container_cluster_node_pool_979_node_config_982_workload_metadata_config_985[]|null;
+  readonly taint: Google_container_cluster_node_pool_123_node_config_126_taint_128[]|null;
+  readonly workload_metadata_config: Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129[]|null;
 
   constructor({
     disk_size_gb = null,
@@ -11966,7 +11966,7 @@ export class Google_container_cluster_node_pool_979_node_config_982 implements P
   }: {
     disk_size_gb?: number|null,
     disk_type?: string|null,
-    guest_accelerator?: Google_container_cluster_node_pool_979_node_config_982_guest_accelerator_983[]|null,
+    guest_accelerator?: Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127[]|null,
     image_type?: string|null,
     labels?: {[s: string]: string}|null,
     local_ssd_count?: number|null,
@@ -11977,8 +11977,8 @@ export class Google_container_cluster_node_pool_979_node_config_982 implements P
     preemptible?: boolean|null,
     service_account?: string|null,
     tags?: string[]|null,
-    taint?: Google_container_cluster_node_pool_979_node_config_982_taint_984[]|null,
-    workload_metadata_config?: Google_container_cluster_node_pool_979_node_config_982_workload_metadata_config_985[]|null
+    taint?: Google_container_cluster_node_pool_123_node_config_126_taint_128[]|null,
+    workload_metadata_config?: Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129[]|null
   }) {
     this.disk_size_gb = disk_size_gb;
     this.disk_type = disk_type;
@@ -12048,11 +12048,11 @@ export class Google_container_cluster_node_pool_979_node_config_982 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979_node_config_982';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123_node_config_126';
   }
 }
 
-export class Google_container_cluster_node_pool_979_node_config_982_guest_accelerator_983 implements PcoreValue {
+export class Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127 implements PcoreValue {
   readonly count: number;
   readonly type: string;
 
@@ -12075,11 +12075,11 @@ export class Google_container_cluster_node_pool_979_node_config_982_guest_accele
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979_node_config_982_guest_accelerator_983';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127';
   }
 }
 
-export class Google_container_cluster_node_pool_979_node_config_982_taint_984 implements PcoreValue {
+export class Google_container_cluster_node_pool_123_node_config_126_taint_128 implements PcoreValue {
   readonly effect: string;
   readonly key: string;
   readonly value: string;
@@ -12107,11 +12107,11 @@ export class Google_container_cluster_node_pool_979_node_config_982_taint_984 im
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979_node_config_982_taint_984';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123_node_config_126_taint_128';
   }
 }
 
-export class Google_container_cluster_node_pool_979_node_config_982_workload_metadata_config_985 implements PcoreValue {
+export class Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129 implements PcoreValue {
   readonly node_metadata: string;
 
   constructor({
@@ -12129,11 +12129,11 @@ export class Google_container_cluster_node_pool_979_node_config_982_workload_met
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_node_pool_979_node_config_982_workload_metadata_config_985';
+    return 'TerraformGoogle::Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129';
   }
 }
 
-export class Google_container_cluster_pod_security_policy_config_986 implements PcoreValue {
+export class Google_container_cluster_pod_security_policy_config_130 implements PcoreValue {
   readonly enabled: boolean;
 
   constructor({
@@ -12151,11 +12151,11 @@ export class Google_container_cluster_pod_security_policy_config_986 implements 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_pod_security_policy_config_986';
+    return 'TerraformGoogle::Google_container_cluster_pod_security_policy_config_130';
   }
 }
 
-export class Google_container_cluster_private_cluster_config_987 implements PcoreValue {
+export class Google_container_cluster_private_cluster_config_131 implements PcoreValue {
   readonly enable_private_endpoint: boolean|null;
   readonly enable_private_nodes: boolean|null;
   readonly master_ipv4_cidr_block: string|null;
@@ -12203,21 +12203,21 @@ export class Google_container_cluster_private_cluster_config_987 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_cluster_private_cluster_config_987';
+    return 'TerraformGoogle::Google_container_cluster_private_cluster_config_131';
   }
 }
 
 export class Google_container_node_pool implements PcoreValue {
   readonly cluster: string;
   readonly google_container_node_pool_id: string|null;
-  readonly autoscaling: Google_container_node_pool_autoscaling_988[]|null;
+  readonly autoscaling: Google_container_node_pool_autoscaling_132[]|null;
   readonly initial_node_count: number|null;
   readonly instance_group_urls: string[]|null;
-  readonly management: Google_container_node_pool_management_989[]|null;
+  readonly management: Google_container_node_pool_management_133[]|null;
   readonly max_pods_per_node: number|null;
   readonly name: string|null;
   readonly name_prefix: string|null;
-  readonly node_config: Google_container_node_pool_node_config_990[]|null;
+  readonly node_config: Google_container_node_pool_node_config_134[]|null;
   readonly node_count: number|null;
   readonly project: string|null;
   readonly region: string|null;
@@ -12243,14 +12243,14 @@ export class Google_container_node_pool implements PcoreValue {
   }: {
     cluster: string,
     google_container_node_pool_id?: string|null,
-    autoscaling?: Google_container_node_pool_autoscaling_988[]|null,
+    autoscaling?: Google_container_node_pool_autoscaling_132[]|null,
     initial_node_count?: number|null,
     instance_group_urls?: string[]|null,
-    management?: Google_container_node_pool_management_989[]|null,
+    management?: Google_container_node_pool_management_133[]|null,
     max_pods_per_node?: number|null,
     name?: string|null,
     name_prefix?: string|null,
-    node_config?: Google_container_node_pool_node_config_990[]|null,
+    node_config?: Google_container_node_pool_node_config_134[]|null,
     node_count?: number|null,
     project?: string|null,
     region?: string|null,
@@ -12337,7 +12337,7 @@ export class Google_container_node_poolHandler implements PcoreValue {
   }
 }
 
-export class Google_container_node_pool_autoscaling_988 implements PcoreValue {
+export class Google_container_node_pool_autoscaling_132 implements PcoreValue {
   readonly max_node_count: number;
   readonly min_node_count: number;
 
@@ -12360,11 +12360,11 @@ export class Google_container_node_pool_autoscaling_988 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_node_pool_autoscaling_988';
+    return 'TerraformGoogle::Google_container_node_pool_autoscaling_132';
   }
 }
 
-export class Google_container_node_pool_management_989 implements PcoreValue {
+export class Google_container_node_pool_management_133 implements PcoreValue {
   readonly auto_repair: boolean|null;
   readonly auto_upgrade: boolean|null;
 
@@ -12391,14 +12391,14 @@ export class Google_container_node_pool_management_989 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_node_pool_management_989';
+    return 'TerraformGoogle::Google_container_node_pool_management_133';
   }
 }
 
-export class Google_container_node_pool_node_config_990 implements PcoreValue {
+export class Google_container_node_pool_node_config_134 implements PcoreValue {
   readonly disk_size_gb: number|null;
   readonly disk_type: string|null;
-  readonly guest_accelerator: Google_container_node_pool_node_config_990_guest_accelerator_991[]|null;
+  readonly guest_accelerator: Google_container_node_pool_node_config_134_guest_accelerator_135[]|null;
   readonly image_type: string|null;
   readonly labels: {[s: string]: string}|null;
   readonly local_ssd_count: number|null;
@@ -12409,8 +12409,8 @@ export class Google_container_node_pool_node_config_990 implements PcoreValue {
   readonly preemptible: boolean|null;
   readonly service_account: string|null;
   readonly tags: string[]|null;
-  readonly taint: Google_container_node_pool_node_config_990_taint_992[]|null;
-  readonly workload_metadata_config: Google_container_node_pool_node_config_990_workload_metadata_config_993[]|null;
+  readonly taint: Google_container_node_pool_node_config_134_taint_136[]|null;
+  readonly workload_metadata_config: Google_container_node_pool_node_config_134_workload_metadata_config_137[]|null;
 
   constructor({
     disk_size_gb = null,
@@ -12431,7 +12431,7 @@ export class Google_container_node_pool_node_config_990 implements PcoreValue {
   }: {
     disk_size_gb?: number|null,
     disk_type?: string|null,
-    guest_accelerator?: Google_container_node_pool_node_config_990_guest_accelerator_991[]|null,
+    guest_accelerator?: Google_container_node_pool_node_config_134_guest_accelerator_135[]|null,
     image_type?: string|null,
     labels?: {[s: string]: string}|null,
     local_ssd_count?: number|null,
@@ -12442,8 +12442,8 @@ export class Google_container_node_pool_node_config_990 implements PcoreValue {
     preemptible?: boolean|null,
     service_account?: string|null,
     tags?: string[]|null,
-    taint?: Google_container_node_pool_node_config_990_taint_992[]|null,
-    workload_metadata_config?: Google_container_node_pool_node_config_990_workload_metadata_config_993[]|null
+    taint?: Google_container_node_pool_node_config_134_taint_136[]|null,
+    workload_metadata_config?: Google_container_node_pool_node_config_134_workload_metadata_config_137[]|null
   }) {
     this.disk_size_gb = disk_size_gb;
     this.disk_type = disk_type;
@@ -12513,11 +12513,11 @@ export class Google_container_node_pool_node_config_990 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_node_pool_node_config_990';
+    return 'TerraformGoogle::Google_container_node_pool_node_config_134';
   }
 }
 
-export class Google_container_node_pool_node_config_990_guest_accelerator_991 implements PcoreValue {
+export class Google_container_node_pool_node_config_134_guest_accelerator_135 implements PcoreValue {
   readonly count: number;
   readonly type: string;
 
@@ -12540,11 +12540,11 @@ export class Google_container_node_pool_node_config_990_guest_accelerator_991 im
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_node_pool_node_config_990_guest_accelerator_991';
+    return 'TerraformGoogle::Google_container_node_pool_node_config_134_guest_accelerator_135';
   }
 }
 
-export class Google_container_node_pool_node_config_990_taint_992 implements PcoreValue {
+export class Google_container_node_pool_node_config_134_taint_136 implements PcoreValue {
   readonly effect: string;
   readonly key: string;
   readonly value: string;
@@ -12572,11 +12572,11 @@ export class Google_container_node_pool_node_config_990_taint_992 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_node_pool_node_config_990_taint_992';
+    return 'TerraformGoogle::Google_container_node_pool_node_config_134_taint_136';
   }
 }
 
-export class Google_container_node_pool_node_config_990_workload_metadata_config_993 implements PcoreValue {
+export class Google_container_node_pool_node_config_134_workload_metadata_config_137 implements PcoreValue {
   readonly node_metadata: string;
 
   constructor({
@@ -12594,7 +12594,7 @@ export class Google_container_node_pool_node_config_990_workload_metadata_config
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_container_node_pool_node_config_990_workload_metadata_config_993';
+    return 'TerraformGoogle::Google_container_node_pool_node_config_134_workload_metadata_config_137';
   }
 }
 
@@ -12699,7 +12699,7 @@ export class Google_dataflow_jobHandler implements PcoreValue {
 export class Google_dataproc_cluster implements PcoreValue {
   readonly name: string;
   readonly google_dataproc_cluster_id: string|null;
-  readonly cluster_config: Google_dataproc_cluster_cluster_config_994[]|null;
+  readonly cluster_config: Google_dataproc_cluster_cluster_config_138[]|null;
   readonly labels: {[s: string]: string}|null;
   readonly project: string|null;
   readonly region: string|null;
@@ -12714,7 +12714,7 @@ export class Google_dataproc_cluster implements PcoreValue {
   }: {
     name: string,
     google_dataproc_cluster_id?: string|null,
-    cluster_config?: Google_dataproc_cluster_cluster_config_994[]|null,
+    cluster_config?: Google_dataproc_cluster_cluster_config_138[]|null,
     labels?: {[s: string]: string}|null,
     project?: string|null,
     region?: string|null
@@ -12763,16 +12763,16 @@ export class Google_dataproc_clusterHandler implements PcoreValue {
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138 implements PcoreValue {
   readonly bucket: string|null;
   readonly delete_autogen_bucket: boolean|null;
-  readonly gce_cluster_config: Google_dataproc_cluster_cluster_config_994_gce_cluster_config_995[]|null;
-  readonly initialization_action: Google_dataproc_cluster_cluster_config_994_initialization_action_996[]|null;
-  readonly master_config: Google_dataproc_cluster_cluster_config_994_master_config_997[]|null;
-  readonly preemptible_worker_config: Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999[]|null;
-  readonly software_config: Google_dataproc_cluster_cluster_config_994_software_config_1001[]|null;
+  readonly gce_cluster_config: Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139[]|null;
+  readonly initialization_action: Google_dataproc_cluster_cluster_config_138_initialization_action_140[]|null;
+  readonly master_config: Google_dataproc_cluster_cluster_config_138_master_config_141[]|null;
+  readonly preemptible_worker_config: Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143[]|null;
+  readonly software_config: Google_dataproc_cluster_cluster_config_138_software_config_145[]|null;
   readonly staging_bucket: string|null;
-  readonly worker_config: Google_dataproc_cluster_cluster_config_994_worker_config_1002[]|null;
+  readonly worker_config: Google_dataproc_cluster_cluster_config_138_worker_config_146[]|null;
 
   constructor({
     bucket = null,
@@ -12787,13 +12787,13 @@ export class Google_dataproc_cluster_cluster_config_994 implements PcoreValue {
   }: {
     bucket?: string|null,
     delete_autogen_bucket?: boolean|null,
-    gce_cluster_config?: Google_dataproc_cluster_cluster_config_994_gce_cluster_config_995[]|null,
-    initialization_action?: Google_dataproc_cluster_cluster_config_994_initialization_action_996[]|null,
-    master_config?: Google_dataproc_cluster_cluster_config_994_master_config_997[]|null,
-    preemptible_worker_config?: Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999[]|null,
-    software_config?: Google_dataproc_cluster_cluster_config_994_software_config_1001[]|null,
+    gce_cluster_config?: Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139[]|null,
+    initialization_action?: Google_dataproc_cluster_cluster_config_138_initialization_action_140[]|null,
+    master_config?: Google_dataproc_cluster_cluster_config_138_master_config_141[]|null,
+    preemptible_worker_config?: Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143[]|null,
+    software_config?: Google_dataproc_cluster_cluster_config_138_software_config_145[]|null,
     staging_bucket?: string|null,
-    worker_config?: Google_dataproc_cluster_cluster_config_994_worker_config_1002[]|null
+    worker_config?: Google_dataproc_cluster_cluster_config_138_worker_config_146[]|null
   }) {
     this.bucket = bucket;
     this.delete_autogen_bucket = delete_autogen_bucket;
@@ -12839,11 +12839,11 @@ export class Google_dataproc_cluster_cluster_config_994 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_gce_cluster_config_995 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139 implements PcoreValue {
   readonly internal_ip_only: boolean|null;
   readonly metadata: {[s: string]: string}|null;
   readonly network: string|null;
@@ -12912,11 +12912,11 @@ export class Google_dataproc_cluster_cluster_config_994_gce_cluster_config_995 i
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_gce_cluster_config_995';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_initialization_action_996 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138_initialization_action_140 implements PcoreValue {
   readonly script: string;
   readonly timeout_sec: number|null;
 
@@ -12941,12 +12941,12 @@ export class Google_dataproc_cluster_cluster_config_994_initialization_action_99
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_initialization_action_996';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_initialization_action_140';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_master_config_997 implements PcoreValue {
-  readonly disk_config: Google_dataproc_cluster_cluster_config_994_master_config_997_disk_config_998[]|null;
+export class Google_dataproc_cluster_cluster_config_138_master_config_141 implements PcoreValue {
+  readonly disk_config: Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142[]|null;
   readonly instance_names: string[]|null;
   readonly machine_type: string|null;
   readonly num_instances: number|null;
@@ -12957,7 +12957,7 @@ export class Google_dataproc_cluster_cluster_config_994_master_config_997 implem
     machine_type = null,
     num_instances = null
   }: {
-    disk_config?: Google_dataproc_cluster_cluster_config_994_master_config_997_disk_config_998[]|null,
+    disk_config?: Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142[]|null,
     instance_names?: string[]|null,
     machine_type?: string|null,
     num_instances?: number|null
@@ -12986,11 +12986,11 @@ export class Google_dataproc_cluster_cluster_config_994_master_config_997 implem
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_master_config_997';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_master_config_141';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_master_config_997_disk_config_998 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142 implements PcoreValue {
   readonly boot_disk_size_gb: number|null;
   readonly boot_disk_type: string|null;
   readonly num_local_ssds: number|null;
@@ -13024,12 +13024,12 @@ export class Google_dataproc_cluster_cluster_config_994_master_config_997_disk_c
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_master_config_997_disk_config_998';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999 implements PcoreValue {
-  readonly disk_config: Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999_disk_config_1000[]|null;
+export class Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143 implements PcoreValue {
+  readonly disk_config: Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144[]|null;
   readonly instance_names: string[]|null;
   readonly num_instances: number|null;
 
@@ -13038,7 +13038,7 @@ export class Google_dataproc_cluster_cluster_config_994_preemptible_worker_confi
     instance_names = null,
     num_instances = null
   }: {
-    disk_config?: Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999_disk_config_1000[]|null,
+    disk_config?: Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144[]|null,
     instance_names?: string[]|null,
     num_instances?: number|null
   }) {
@@ -13062,11 +13062,11 @@ export class Google_dataproc_cluster_cluster_config_994_preemptible_worker_confi
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999_disk_config_1000 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144 implements PcoreValue {
   readonly boot_disk_size_gb: number|null;
 
   constructor({
@@ -13086,11 +13086,11 @@ export class Google_dataproc_cluster_cluster_config_994_preemptible_worker_confi
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_preemptible_worker_config_999_disk_config_1000';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_software_config_1001 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138_software_config_145 implements PcoreValue {
   readonly image_version: string|null;
   readonly override_properties: {[s: string]: string}|null;
   readonly properties: {[s: string]: string}|null;
@@ -13124,12 +13124,12 @@ export class Google_dataproc_cluster_cluster_config_994_software_config_1001 imp
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_software_config_1001';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_software_config_145';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_worker_config_1002 implements PcoreValue {
-  readonly disk_config: Google_dataproc_cluster_cluster_config_994_worker_config_1002_disk_config_1003[]|null;
+export class Google_dataproc_cluster_cluster_config_138_worker_config_146 implements PcoreValue {
+  readonly disk_config: Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147[]|null;
   readonly instance_names: string[]|null;
   readonly machine_type: string|null;
   readonly num_instances: number|null;
@@ -13140,7 +13140,7 @@ export class Google_dataproc_cluster_cluster_config_994_worker_config_1002 imple
     machine_type = null,
     num_instances = null
   }: {
-    disk_config?: Google_dataproc_cluster_cluster_config_994_worker_config_1002_disk_config_1003[]|null,
+    disk_config?: Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147[]|null,
     instance_names?: string[]|null,
     machine_type?: string|null,
     num_instances?: number|null
@@ -13169,11 +13169,11 @@ export class Google_dataproc_cluster_cluster_config_994_worker_config_1002 imple
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_worker_config_1002';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_worker_config_146';
   }
 }
 
-export class Google_dataproc_cluster_cluster_config_994_worker_config_1002_disk_config_1003 implements PcoreValue {
+export class Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147 implements PcoreValue {
   readonly boot_disk_size_gb: number|null;
   readonly boot_disk_type: string|null;
   readonly num_local_ssds: number|null;
@@ -13207,28 +13207,28 @@ export class Google_dataproc_cluster_cluster_config_994_worker_config_1002_disk_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_994_worker_config_1002_disk_config_1003';
+    return 'TerraformGoogle::Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147';
   }
 }
 
 export class Google_dataproc_job implements PcoreValue {
-  readonly placement: Google_dataproc_job_placement_1009[];
+  readonly placement: Google_dataproc_job_placement_153[];
   readonly google_dataproc_job_id: string|null;
   readonly driver_controls_files_uri: string|null;
   readonly driver_output_resource_uri: string|null;
   readonly force_delete: boolean|null;
-  readonly hadoop_config: Google_dataproc_job_hadoop_config_1004[]|null;
-  readonly hive_config: Google_dataproc_job_hive_config_1006[]|null;
+  readonly hadoop_config: Google_dataproc_job_hadoop_config_148[]|null;
+  readonly hive_config: Google_dataproc_job_hive_config_150[]|null;
   readonly labels: {[s: string]: string}|null;
-  readonly pig_config: Google_dataproc_job_pig_config_1007[]|null;
+  readonly pig_config: Google_dataproc_job_pig_config_151[]|null;
   readonly project: string|null;
-  readonly pyspark_config: Google_dataproc_job_pyspark_config_1010[]|null;
-  readonly reference: Google_dataproc_job_reference_1012[]|null;
+  readonly pyspark_config: Google_dataproc_job_pyspark_config_154[]|null;
+  readonly reference: Google_dataproc_job_reference_156[]|null;
   readonly region: string|null;
-  readonly scheduling: Google_dataproc_job_scheduling_1013[]|null;
-  readonly spark_config: Google_dataproc_job_spark_config_1014[]|null;
-  readonly sparksql_config: Google_dataproc_job_sparksql_config_1016[]|null;
-  readonly status: Google_dataproc_job_status_1018[]|null;
+  readonly scheduling: Google_dataproc_job_scheduling_157[]|null;
+  readonly spark_config: Google_dataproc_job_spark_config_158[]|null;
+  readonly sparksql_config: Google_dataproc_job_sparksql_config_160[]|null;
+  readonly status: Google_dataproc_job_status_162[]|null;
 
   constructor({
     placement,
@@ -13249,23 +13249,23 @@ export class Google_dataproc_job implements PcoreValue {
     sparksql_config = null,
     status = null
   }: {
-    placement: Google_dataproc_job_placement_1009[],
+    placement: Google_dataproc_job_placement_153[],
     google_dataproc_job_id?: string|null,
     driver_controls_files_uri?: string|null,
     driver_output_resource_uri?: string|null,
     force_delete?: boolean|null,
-    hadoop_config?: Google_dataproc_job_hadoop_config_1004[]|null,
-    hive_config?: Google_dataproc_job_hive_config_1006[]|null,
+    hadoop_config?: Google_dataproc_job_hadoop_config_148[]|null,
+    hive_config?: Google_dataproc_job_hive_config_150[]|null,
     labels?: {[s: string]: string}|null,
-    pig_config?: Google_dataproc_job_pig_config_1007[]|null,
+    pig_config?: Google_dataproc_job_pig_config_151[]|null,
     project?: string|null,
-    pyspark_config?: Google_dataproc_job_pyspark_config_1010[]|null,
-    reference?: Google_dataproc_job_reference_1012[]|null,
+    pyspark_config?: Google_dataproc_job_pyspark_config_154[]|null,
+    reference?: Google_dataproc_job_reference_156[]|null,
     region?: string|null,
-    scheduling?: Google_dataproc_job_scheduling_1013[]|null,
-    spark_config?: Google_dataproc_job_spark_config_1014[]|null,
-    sparksql_config?: Google_dataproc_job_sparksql_config_1016[]|null,
-    status?: Google_dataproc_job_status_1018[]|null
+    scheduling?: Google_dataproc_job_scheduling_157[]|null,
+    spark_config?: Google_dataproc_job_spark_config_158[]|null,
+    sparksql_config?: Google_dataproc_job_sparksql_config_160[]|null,
+    status?: Google_dataproc_job_status_162[]|null
   }) {
     this.placement = placement;
     this.google_dataproc_job_id = google_dataproc_job_id;
@@ -13355,12 +13355,12 @@ export class Google_dataproc_jobHandler implements PcoreValue {
   }
 }
 
-export class Google_dataproc_job_hadoop_config_1004 implements PcoreValue {
+export class Google_dataproc_job_hadoop_config_148 implements PcoreValue {
   readonly archive_uris: string[]|null;
   readonly args: string[]|null;
   readonly file_uris: string[]|null;
   readonly jar_file_uris: string[]|null;
-  readonly logging_config: Google_dataproc_job_hadoop_config_1004_logging_config_1005[]|null;
+  readonly logging_config: Google_dataproc_job_hadoop_config_148_logging_config_149[]|null;
   readonly main_class: string|null;
   readonly main_jar_file_uri: string|null;
   readonly properties: {[s: string]: string}|null;
@@ -13379,7 +13379,7 @@ export class Google_dataproc_job_hadoop_config_1004 implements PcoreValue {
     args?: string[]|null,
     file_uris?: string[]|null,
     jar_file_uris?: string[]|null,
-    logging_config?: Google_dataproc_job_hadoop_config_1004_logging_config_1005[]|null,
+    logging_config?: Google_dataproc_job_hadoop_config_148_logging_config_149[]|null,
     main_class?: string|null,
     main_jar_file_uri?: string|null,
     properties?: {[s: string]: string}|null
@@ -13424,11 +13424,11 @@ export class Google_dataproc_job_hadoop_config_1004 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_hadoop_config_1004';
+    return 'TerraformGoogle::Google_dataproc_job_hadoop_config_148';
   }
 }
 
-export class Google_dataproc_job_hadoop_config_1004_logging_config_1005 implements PcoreValue {
+export class Google_dataproc_job_hadoop_config_148_logging_config_149 implements PcoreValue {
   readonly driver_log_levels: {[s: string]: string}|null;
 
   constructor({
@@ -13448,11 +13448,11 @@ export class Google_dataproc_job_hadoop_config_1004_logging_config_1005 implemen
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_hadoop_config_1004_logging_config_1005';
+    return 'TerraformGoogle::Google_dataproc_job_hadoop_config_148_logging_config_149';
   }
 }
 
-export class Google_dataproc_job_hive_config_1006 implements PcoreValue {
+export class Google_dataproc_job_hive_config_150 implements PcoreValue {
   readonly continue_on_failure: boolean|null;
   readonly jar_file_uris: string[]|null;
   readonly properties: {[s: string]: string}|null;
@@ -13507,14 +13507,14 @@ export class Google_dataproc_job_hive_config_1006 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_hive_config_1006';
+    return 'TerraformGoogle::Google_dataproc_job_hive_config_150';
   }
 }
 
-export class Google_dataproc_job_pig_config_1007 implements PcoreValue {
+export class Google_dataproc_job_pig_config_151 implements PcoreValue {
   readonly continue_on_failure: boolean|null;
   readonly jar_file_uris: string[]|null;
-  readonly logging_config: Google_dataproc_job_pig_config_1007_logging_config_1008[]|null;
+  readonly logging_config: Google_dataproc_job_pig_config_151_logging_config_152[]|null;
   readonly properties: {[s: string]: string}|null;
   readonly query_file_uri: string|null;
   readonly query_list: string[]|null;
@@ -13531,7 +13531,7 @@ export class Google_dataproc_job_pig_config_1007 implements PcoreValue {
   }: {
     continue_on_failure?: boolean|null,
     jar_file_uris?: string[]|null,
-    logging_config?: Google_dataproc_job_pig_config_1007_logging_config_1008[]|null,
+    logging_config?: Google_dataproc_job_pig_config_151_logging_config_152[]|null,
     properties?: {[s: string]: string}|null,
     query_file_uri?: string|null,
     query_list?: string[]|null,
@@ -13573,11 +13573,11 @@ export class Google_dataproc_job_pig_config_1007 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_pig_config_1007';
+    return 'TerraformGoogle::Google_dataproc_job_pig_config_151';
   }
 }
 
-export class Google_dataproc_job_pig_config_1007_logging_config_1008 implements PcoreValue {
+export class Google_dataproc_job_pig_config_151_logging_config_152 implements PcoreValue {
   readonly driver_log_levels: {[s: string]: string}|null;
 
   constructor({
@@ -13597,11 +13597,11 @@ export class Google_dataproc_job_pig_config_1007_logging_config_1008 implements 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_pig_config_1007_logging_config_1008';
+    return 'TerraformGoogle::Google_dataproc_job_pig_config_151_logging_config_152';
   }
 }
 
-export class Google_dataproc_job_placement_1009 implements PcoreValue {
+export class Google_dataproc_job_placement_153 implements PcoreValue {
   readonly cluster_name: string;
   readonly cluster_uuid: string|null;
 
@@ -13626,17 +13626,17 @@ export class Google_dataproc_job_placement_1009 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_placement_1009';
+    return 'TerraformGoogle::Google_dataproc_job_placement_153';
   }
 }
 
-export class Google_dataproc_job_pyspark_config_1010 implements PcoreValue {
+export class Google_dataproc_job_pyspark_config_154 implements PcoreValue {
   readonly main_python_file_uri: string;
   readonly archive_uris: string[]|null;
   readonly args: string[]|null;
   readonly file_uris: string[]|null;
   readonly jar_file_uris: string[]|null;
-  readonly logging_config: Google_dataproc_job_pyspark_config_1010_logging_config_1011[]|null;
+  readonly logging_config: Google_dataproc_job_pyspark_config_154_logging_config_155[]|null;
   readonly properties: {[s: string]: string}|null;
   readonly python_file_uris: string[]|null;
 
@@ -13655,7 +13655,7 @@ export class Google_dataproc_job_pyspark_config_1010 implements PcoreValue {
     args?: string[]|null,
     file_uris?: string[]|null,
     jar_file_uris?: string[]|null,
-    logging_config?: Google_dataproc_job_pyspark_config_1010_logging_config_1011[]|null,
+    logging_config?: Google_dataproc_job_pyspark_config_154_logging_config_155[]|null,
     properties?: {[s: string]: string}|null,
     python_file_uris?: string[]|null
   }) {
@@ -13697,11 +13697,11 @@ export class Google_dataproc_job_pyspark_config_1010 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_pyspark_config_1010';
+    return 'TerraformGoogle::Google_dataproc_job_pyspark_config_154';
   }
 }
 
-export class Google_dataproc_job_pyspark_config_1010_logging_config_1011 implements PcoreValue {
+export class Google_dataproc_job_pyspark_config_154_logging_config_155 implements PcoreValue {
   readonly driver_log_levels: {[s: string]: string}|null;
 
   constructor({
@@ -13721,11 +13721,11 @@ export class Google_dataproc_job_pyspark_config_1010_logging_config_1011 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_pyspark_config_1010_logging_config_1011';
+    return 'TerraformGoogle::Google_dataproc_job_pyspark_config_154_logging_config_155';
   }
 }
 
-export class Google_dataproc_job_reference_1012 implements PcoreValue {
+export class Google_dataproc_job_reference_156 implements PcoreValue {
   readonly job_id: string|null;
 
   constructor({
@@ -13745,11 +13745,11 @@ export class Google_dataproc_job_reference_1012 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_reference_1012';
+    return 'TerraformGoogle::Google_dataproc_job_reference_156';
   }
 }
 
-export class Google_dataproc_job_scheduling_1013 implements PcoreValue {
+export class Google_dataproc_job_scheduling_157 implements PcoreValue {
   readonly max_failures_per_hour: number|null;
 
   constructor({
@@ -13769,16 +13769,16 @@ export class Google_dataproc_job_scheduling_1013 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_scheduling_1013';
+    return 'TerraformGoogle::Google_dataproc_job_scheduling_157';
   }
 }
 
-export class Google_dataproc_job_spark_config_1014 implements PcoreValue {
+export class Google_dataproc_job_spark_config_158 implements PcoreValue {
   readonly archive_uris: string[]|null;
   readonly args: string[]|null;
   readonly file_uris: string[]|null;
   readonly jar_file_uris: string[]|null;
-  readonly logging_config: Google_dataproc_job_spark_config_1014_logging_config_1015[]|null;
+  readonly logging_config: Google_dataproc_job_spark_config_158_logging_config_159[]|null;
   readonly main_class: string|null;
   readonly main_jar_file_uri: string|null;
   readonly properties: {[s: string]: string}|null;
@@ -13797,7 +13797,7 @@ export class Google_dataproc_job_spark_config_1014 implements PcoreValue {
     args?: string[]|null,
     file_uris?: string[]|null,
     jar_file_uris?: string[]|null,
-    logging_config?: Google_dataproc_job_spark_config_1014_logging_config_1015[]|null,
+    logging_config?: Google_dataproc_job_spark_config_158_logging_config_159[]|null,
     main_class?: string|null,
     main_jar_file_uri?: string|null,
     properties?: {[s: string]: string}|null
@@ -13842,11 +13842,11 @@ export class Google_dataproc_job_spark_config_1014 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_spark_config_1014';
+    return 'TerraformGoogle::Google_dataproc_job_spark_config_158';
   }
 }
 
-export class Google_dataproc_job_spark_config_1014_logging_config_1015 implements PcoreValue {
+export class Google_dataproc_job_spark_config_158_logging_config_159 implements PcoreValue {
   readonly driver_log_levels: {[s: string]: string}|null;
 
   constructor({
@@ -13866,13 +13866,13 @@ export class Google_dataproc_job_spark_config_1014_logging_config_1015 implement
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_spark_config_1014_logging_config_1015';
+    return 'TerraformGoogle::Google_dataproc_job_spark_config_158_logging_config_159';
   }
 }
 
-export class Google_dataproc_job_sparksql_config_1016 implements PcoreValue {
+export class Google_dataproc_job_sparksql_config_160 implements PcoreValue {
   readonly jar_file_uris: string[]|null;
-  readonly logging_config: Google_dataproc_job_sparksql_config_1016_logging_config_1017[]|null;
+  readonly logging_config: Google_dataproc_job_sparksql_config_160_logging_config_161[]|null;
   readonly properties: {[s: string]: string}|null;
   readonly query_file_uri: string|null;
   readonly query_list: string[]|null;
@@ -13887,7 +13887,7 @@ export class Google_dataproc_job_sparksql_config_1016 implements PcoreValue {
     script_variables = null
   }: {
     jar_file_uris?: string[]|null,
-    logging_config?: Google_dataproc_job_sparksql_config_1016_logging_config_1017[]|null,
+    logging_config?: Google_dataproc_job_sparksql_config_160_logging_config_161[]|null,
     properties?: {[s: string]: string}|null,
     query_file_uri?: string|null,
     query_list?: string[]|null,
@@ -13925,11 +13925,11 @@ export class Google_dataproc_job_sparksql_config_1016 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_sparksql_config_1016';
+    return 'TerraformGoogle::Google_dataproc_job_sparksql_config_160';
   }
 }
 
-export class Google_dataproc_job_sparksql_config_1016_logging_config_1017 implements PcoreValue {
+export class Google_dataproc_job_sparksql_config_160_logging_config_161 implements PcoreValue {
   readonly driver_log_levels: {[s: string]: string}|null;
 
   constructor({
@@ -13949,11 +13949,11 @@ export class Google_dataproc_job_sparksql_config_1016_logging_config_1017 implem
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_sparksql_config_1016_logging_config_1017';
+    return 'TerraformGoogle::Google_dataproc_job_sparksql_config_160_logging_config_161';
   }
 }
 
-export class Google_dataproc_job_status_1018 implements PcoreValue {
+export class Google_dataproc_job_status_162 implements PcoreValue {
   readonly details: string|null;
   readonly state: string|null;
   readonly state_start_time: string|null;
@@ -13994,7 +13994,7 @@ export class Google_dataproc_job_status_1018 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_dataproc_job_status_1018';
+    return 'TerraformGoogle::Google_dataproc_job_status_162';
   }
 }
 
@@ -14139,10 +14139,10 @@ export class Google_dns_record_setHandler implements PcoreValue {
 export class Google_endpoints_service implements PcoreValue {
   readonly service_name: string;
   readonly google_endpoints_service_id: string|null;
-  readonly apis: Google_endpoints_service_apis_1019[]|null;
+  readonly apis: Google_endpoints_service_apis_163[]|null;
   readonly config_id: string|null;
   readonly dns_address: string|null;
-  readonly endpoints: Google_endpoints_service_endpoints_1021[]|null;
+  readonly endpoints: Google_endpoints_service_endpoints_165[]|null;
   readonly grpc_config: string|null;
   readonly openapi_config: string|null;
   readonly project: string|null;
@@ -14164,10 +14164,10 @@ export class Google_endpoints_service implements PcoreValue {
   }: {
     service_name: string,
     google_endpoints_service_id?: string|null,
-    apis?: Google_endpoints_service_apis_1019[]|null,
+    apis?: Google_endpoints_service_apis_163[]|null,
     config_id?: string|null,
     dns_address?: string|null,
-    endpoints?: Google_endpoints_service_endpoints_1021[]|null,
+    endpoints?: Google_endpoints_service_endpoints_165[]|null,
     grpc_config?: string|null,
     openapi_config?: string|null,
     project?: string|null,
@@ -14238,8 +14238,8 @@ export class Google_endpoints_serviceHandler implements PcoreValue {
   }
 }
 
-export class Google_endpoints_service_apis_1019 implements PcoreValue {
-  readonly methods: Google_endpoints_service_apis_1019_methods_1020[]|null;
+export class Google_endpoints_service_apis_163 implements PcoreValue {
+  readonly methods: Google_endpoints_service_apis_163_methods_164[]|null;
   readonly name: string|null;
   readonly syntax: string|null;
   readonly version: string|null;
@@ -14250,7 +14250,7 @@ export class Google_endpoints_service_apis_1019 implements PcoreValue {
     syntax = null,
     version = null
   }: {
-    methods?: Google_endpoints_service_apis_1019_methods_1020[]|null,
+    methods?: Google_endpoints_service_apis_163_methods_164[]|null,
     name?: string|null,
     syntax?: string|null,
     version?: string|null
@@ -14279,11 +14279,11 @@ export class Google_endpoints_service_apis_1019 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_endpoints_service_apis_1019';
+    return 'TerraformGoogle::Google_endpoints_service_apis_163';
   }
 }
 
-export class Google_endpoints_service_apis_1019_methods_1020 implements PcoreValue {
+export class Google_endpoints_service_apis_163_methods_164 implements PcoreValue {
   readonly name: string|null;
   readonly request_type: string|null;
   readonly response_type: string|null;
@@ -14324,11 +14324,11 @@ export class Google_endpoints_service_apis_1019_methods_1020 implements PcoreVal
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_endpoints_service_apis_1019_methods_1020';
+    return 'TerraformGoogle::Google_endpoints_service_apis_163_methods_164';
   }
 }
 
-export class Google_endpoints_service_endpoints_1021 implements PcoreValue {
+export class Google_endpoints_service_endpoints_165 implements PcoreValue {
   readonly address: string|null;
   readonly name: string|null;
 
@@ -14355,14 +14355,14 @@ export class Google_endpoints_service_endpoints_1021 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_endpoints_service_endpoints_1021';
+    return 'TerraformGoogle::Google_endpoints_service_endpoints_165';
   }
 }
 
 export class Google_filestore_instance implements PcoreValue {
-  readonly file_shares: Google_filestore_instance_file_shares_1022[];
+  readonly file_shares: Google_filestore_instance_file_shares_166[];
   readonly name: string;
-  readonly networks: Google_filestore_instance_networks_1023[];
+  readonly networks: Google_filestore_instance_networks_167[];
   readonly tier: string;
   readonly zone: string;
   readonly google_filestore_instance_id: string|null;
@@ -14385,9 +14385,9 @@ export class Google_filestore_instance implements PcoreValue {
     labels = null,
     project = null
   }: {
-    file_shares: Google_filestore_instance_file_shares_1022[],
+    file_shares: Google_filestore_instance_file_shares_166[],
     name: string,
-    networks: Google_filestore_instance_networks_1023[],
+    networks: Google_filestore_instance_networks_167[],
     tier: string,
     zone: string,
     google_filestore_instance_id?: string|null,
@@ -14453,7 +14453,7 @@ export class Google_filestore_instanceHandler implements PcoreValue {
   }
 }
 
-export class Google_filestore_instance_file_shares_1022 implements PcoreValue {
+export class Google_filestore_instance_file_shares_166 implements PcoreValue {
   readonly capacity_gb: number;
   readonly name: string;
 
@@ -14476,11 +14476,11 @@ export class Google_filestore_instance_file_shares_1022 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_filestore_instance_file_shares_1022';
+    return 'TerraformGoogle::Google_filestore_instance_file_shares_166';
   }
 }
 
-export class Google_filestore_instance_networks_1023 implements PcoreValue {
+export class Google_filestore_instance_networks_167 implements PcoreValue {
   readonly modes: string[];
   readonly network: string;
   readonly ip_addresses: string[]|null;
@@ -14517,7 +14517,7 @@ export class Google_filestore_instance_networks_1023 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_filestore_instance_networks_1023';
+    return 'TerraformGoogle::Google_filestore_instance_networks_167';
   }
 }
 
@@ -14753,10 +14753,10 @@ export class Google_folder_organization_policy implements PcoreValue {
   readonly constraint: string;
   readonly folder: string;
   readonly google_folder_organization_policy_id: string|null;
-  readonly boolean_policy: Google_folder_organization_policy_boolean_policy_1024[]|null;
+  readonly boolean_policy: Google_folder_organization_policy_boolean_policy_168[]|null;
   readonly etag: string|null;
-  readonly list_policy: Google_folder_organization_policy_list_policy_1025[]|null;
-  readonly restore_policy: Google_folder_organization_policy_restore_policy_1028[]|null;
+  readonly list_policy: Google_folder_organization_policy_list_policy_169[]|null;
+  readonly restore_policy: Google_folder_organization_policy_restore_policy_172[]|null;
   readonly update_time: string|null;
   readonly version: number|null;
 
@@ -14774,10 +14774,10 @@ export class Google_folder_organization_policy implements PcoreValue {
     constraint: string,
     folder: string,
     google_folder_organization_policy_id?: string|null,
-    boolean_policy?: Google_folder_organization_policy_boolean_policy_1024[]|null,
+    boolean_policy?: Google_folder_organization_policy_boolean_policy_168[]|null,
     etag?: string|null,
-    list_policy?: Google_folder_organization_policy_list_policy_1025[]|null,
-    restore_policy?: Google_folder_organization_policy_restore_policy_1028[]|null,
+    list_policy?: Google_folder_organization_policy_list_policy_169[]|null,
+    restore_policy?: Google_folder_organization_policy_restore_policy_172[]|null,
     update_time?: string|null,
     version?: number|null
   }) {
@@ -14835,7 +14835,7 @@ export class Google_folder_organization_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_folder_organization_policy_boolean_policy_1024 implements PcoreValue {
+export class Google_folder_organization_policy_boolean_policy_168 implements PcoreValue {
   readonly enforced: boolean;
 
   constructor({
@@ -14853,13 +14853,13 @@ export class Google_folder_organization_policy_boolean_policy_1024 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_folder_organization_policy_boolean_policy_1024';
+    return 'TerraformGoogle::Google_folder_organization_policy_boolean_policy_168';
   }
 }
 
-export class Google_folder_organization_policy_list_policy_1025 implements PcoreValue {
-  readonly allow: Google_folder_organization_policy_list_policy_1025_allow_1026[]|null;
-  readonly deny: Google_folder_organization_policy_list_policy_1025_deny_1027[]|null;
+export class Google_folder_organization_policy_list_policy_169 implements PcoreValue {
+  readonly allow: Google_folder_organization_policy_list_policy_169_allow_170[]|null;
+  readonly deny: Google_folder_organization_policy_list_policy_169_deny_171[]|null;
   readonly suggested_value: string|null;
 
   constructor({
@@ -14867,8 +14867,8 @@ export class Google_folder_organization_policy_list_policy_1025 implements Pcore
     deny = null,
     suggested_value = null
   }: {
-    allow?: Google_folder_organization_policy_list_policy_1025_allow_1026[]|null,
-    deny?: Google_folder_organization_policy_list_policy_1025_deny_1027[]|null,
+    allow?: Google_folder_organization_policy_list_policy_169_allow_170[]|null,
+    deny?: Google_folder_organization_policy_list_policy_169_deny_171[]|null,
     suggested_value?: string|null
   }) {
     this.allow = allow;
@@ -14891,11 +14891,11 @@ export class Google_folder_organization_policy_list_policy_1025 implements Pcore
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_folder_organization_policy_list_policy_1025';
+    return 'TerraformGoogle::Google_folder_organization_policy_list_policy_169';
   }
 }
 
-export class Google_folder_organization_policy_list_policy_1025_allow_1026 implements PcoreValue {
+export class Google_folder_organization_policy_list_policy_169_allow_170 implements PcoreValue {
   readonly all: boolean|null;
   readonly values: string[]|null;
 
@@ -14922,11 +14922,11 @@ export class Google_folder_organization_policy_list_policy_1025_allow_1026 imple
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_folder_organization_policy_list_policy_1025_allow_1026';
+    return 'TerraformGoogle::Google_folder_organization_policy_list_policy_169_allow_170';
   }
 }
 
-export class Google_folder_organization_policy_list_policy_1025_deny_1027 implements PcoreValue {
+export class Google_folder_organization_policy_list_policy_169_deny_171 implements PcoreValue {
   readonly all: boolean|null;
   readonly values: string[]|null;
 
@@ -14953,11 +14953,11 @@ export class Google_folder_organization_policy_list_policy_1025_deny_1027 implem
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_folder_organization_policy_list_policy_1025_deny_1027';
+    return 'TerraformGoogle::Google_folder_organization_policy_list_policy_169_deny_171';
   }
 }
 
-export class Google_folder_organization_policy_restore_policy_1028 implements PcoreValue {
+export class Google_folder_organization_policy_restore_policy_172 implements PcoreValue {
   readonly default_: boolean;
 
   constructor({
@@ -14975,7 +14975,7 @@ export class Google_folder_organization_policy_restore_policy_1028 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_folder_organization_policy_restore_policy_1028';
+    return 'TerraformGoogle::Google_folder_organization_policy_restore_policy_172';
   }
 }
 
@@ -15901,11 +15901,11 @@ export class Google_logging_project_sinkHandler implements PcoreValue {
 
 export class Google_monitoring_alert_policy implements PcoreValue {
   readonly combiner: string;
-  readonly conditions: Google_monitoring_alert_policy_conditions_1029[];
+  readonly conditions: Google_monitoring_alert_policy_conditions_173[];
   readonly display_name: string;
   readonly enabled: boolean;
   readonly google_monitoring_alert_policy_id: string|null;
-  readonly creation_record: Google_monitoring_alert_policy_creation_record_1037[]|null;
+  readonly creation_record: Google_monitoring_alert_policy_creation_record_181[]|null;
   readonly labels: string[]|null;
   readonly name: string|null;
   readonly notification_channels: string[]|null;
@@ -15924,11 +15924,11 @@ export class Google_monitoring_alert_policy implements PcoreValue {
     project = null
   }: {
     combiner: string,
-    conditions: Google_monitoring_alert_policy_conditions_1029[],
+    conditions: Google_monitoring_alert_policy_conditions_173[],
     display_name: string,
     enabled: boolean,
     google_monitoring_alert_policy_id?: string|null,
-    creation_record?: Google_monitoring_alert_policy_creation_record_1037[]|null,
+    creation_record?: Google_monitoring_alert_policy_creation_record_181[]|null,
     labels?: string[]|null,
     name?: string|null,
     notification_channels?: string[]|null,
@@ -15988,10 +15988,10 @@ export class Google_monitoring_alert_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173 implements PcoreValue {
   readonly display_name: string;
-  readonly condition_absent: Google_monitoring_alert_policy_conditions_1029_condition_absent_1030[]|null;
-  readonly condition_threshold: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033[]|null;
+  readonly condition_absent: Google_monitoring_alert_policy_conditions_173_condition_absent_174[]|null;
+  readonly condition_threshold: Google_monitoring_alert_policy_conditions_173_condition_threshold_177[]|null;
   readonly name: string|null;
 
   constructor({
@@ -16001,8 +16001,8 @@ export class Google_monitoring_alert_policy_conditions_1029 implements PcoreValu
     name = null
   }: {
     display_name: string,
-    condition_absent?: Google_monitoring_alert_policy_conditions_1029_condition_absent_1030[]|null,
-    condition_threshold?: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033[]|null,
+    condition_absent?: Google_monitoring_alert_policy_conditions_173_condition_absent_174[]|null,
+    condition_threshold?: Google_monitoring_alert_policy_conditions_173_condition_threshold_177[]|null,
     name?: string|null
   }) {
     this.display_name = display_name;
@@ -16027,15 +16027,15 @@ export class Google_monitoring_alert_policy_conditions_1029 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_absent_1030 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_absent_174 implements PcoreValue {
   readonly duration: string;
-  readonly aggregations: Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_aggregations_1031[]|null;
+  readonly aggregations: Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175[]|null;
   readonly filter: string|null;
-  readonly trigger: Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_trigger_1032[]|null;
+  readonly trigger: Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176[]|null;
 
   constructor({
     duration,
@@ -16044,9 +16044,9 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_absent_103
     trigger = null
   }: {
     duration: string,
-    aggregations?: Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_aggregations_1031[]|null,
+    aggregations?: Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175[]|null,
     filter?: string|null,
-    trigger?: Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_trigger_1032[]|null
+    trigger?: Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176[]|null
   }) {
     this.duration = duration;
     this.aggregations = aggregations;
@@ -16070,11 +16070,11 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_absent_103
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_absent_1030';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_absent_174';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_aggregations_1031 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175 implements PcoreValue {
   readonly alignment_period: string|null;
   readonly cross_series_reducer: string|null;
   readonly group_by_fields: string[]|null;
@@ -16115,11 +16115,11 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_absent_103
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_aggregations_1031';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_trigger_1032 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176 implements PcoreValue {
   readonly count: number|null;
   readonly percent: number|null;
 
@@ -16146,19 +16146,19 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_absent_103
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_absent_1030_trigger_1032';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_threshold_177 implements PcoreValue {
   readonly comparison: string;
   readonly duration: string;
-  readonly aggregations: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_aggregations_1034[]|null;
-  readonly denominator_aggregations: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_denominator_aggregations_1035[]|null;
+  readonly aggregations: Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178[]|null;
+  readonly denominator_aggregations: Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179[]|null;
   readonly denominator_filter: string|null;
   readonly filter: string|null;
   readonly threshold_value: number|null;
-  readonly trigger: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_trigger_1036[]|null;
+  readonly trigger: Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180[]|null;
 
   constructor({
     comparison,
@@ -16172,12 +16172,12 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_
   }: {
     comparison: string,
     duration: string,
-    aggregations?: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_aggregations_1034[]|null,
-    denominator_aggregations?: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_denominator_aggregations_1035[]|null,
+    aggregations?: Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178[]|null,
+    denominator_aggregations?: Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179[]|null,
     denominator_filter?: string|null,
     filter?: string|null,
     threshold_value?: number|null,
-    trigger?: Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_trigger_1036[]|null
+    trigger?: Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180[]|null
   }) {
     this.comparison = comparison;
     this.duration = duration;
@@ -16215,11 +16215,11 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_threshold_177';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_aggregations_1034 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178 implements PcoreValue {
   readonly alignment_period: string|null;
   readonly cross_series_reducer: string|null;
   readonly group_by_fields: string[]|null;
@@ -16260,11 +16260,11 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_aggregations_1034';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_denominator_aggregations_1035 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179 implements PcoreValue {
   readonly alignment_period: string|null;
   readonly cross_series_reducer: string|null;
   readonly group_by_fields: string[]|null;
@@ -16305,11 +16305,11 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_denominator_aggregations_1035';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179';
   }
 }
 
-export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_trigger_1036 implements PcoreValue {
+export class Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180 implements PcoreValue {
   readonly count: number|null;
   readonly percent: number|null;
 
@@ -16336,11 +16336,11 @@ export class Google_monitoring_alert_policy_conditions_1029_condition_threshold_
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_1029_condition_threshold_1033_trigger_1036';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180';
   }
 }
 
-export class Google_monitoring_alert_policy_creation_record_1037 implements PcoreValue {
+export class Google_monitoring_alert_policy_creation_record_181 implements PcoreValue {
   readonly mutate_time: string|null;
   readonly mutated_by: string|null;
 
@@ -16367,7 +16367,7 @@ export class Google_monitoring_alert_policy_creation_record_1037 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_alert_policy_creation_record_1037';
+    return 'TerraformGoogle::Google_monitoring_alert_policy_creation_record_181';
   }
 }
 
@@ -16540,17 +16540,17 @@ export class Google_monitoring_uptime_check_config implements PcoreValue {
   readonly display_name: string;
   readonly timeout: string;
   readonly google_monitoring_uptime_check_config_id: string|null;
-  readonly content_matchers: Google_monitoring_uptime_check_config_content_matchers_1038[]|null;
-  readonly http_check: Google_monitoring_uptime_check_config_http_check_1039[]|null;
-  readonly internal_checkers: Google_monitoring_uptime_check_config_internal_checkers_1041[]|null;
+  readonly content_matchers: Google_monitoring_uptime_check_config_content_matchers_182[]|null;
+  readonly http_check: Google_monitoring_uptime_check_config_http_check_183[]|null;
+  readonly internal_checkers: Google_monitoring_uptime_check_config_internal_checkers_185[]|null;
   readonly is_internal: boolean|null;
-  readonly monitored_resource: Google_monitoring_uptime_check_config_monitored_resource_1042[]|null;
+  readonly monitored_resource: Google_monitoring_uptime_check_config_monitored_resource_186[]|null;
   readonly name: string|null;
   readonly period: string|null;
   readonly project: string|null;
-  readonly resource_group: Google_monitoring_uptime_check_config_resource_group_1043[]|null;
+  readonly resource_group: Google_monitoring_uptime_check_config_resource_group_187[]|null;
   readonly selected_regions: string[]|null;
-  readonly tcp_check: Google_monitoring_uptime_check_config_tcp_check_1044[]|null;
+  readonly tcp_check: Google_monitoring_uptime_check_config_tcp_check_188[]|null;
 
   constructor({
     display_name,
@@ -16571,17 +16571,17 @@ export class Google_monitoring_uptime_check_config implements PcoreValue {
     display_name: string,
     timeout: string,
     google_monitoring_uptime_check_config_id?: string|null,
-    content_matchers?: Google_monitoring_uptime_check_config_content_matchers_1038[]|null,
-    http_check?: Google_monitoring_uptime_check_config_http_check_1039[]|null,
-    internal_checkers?: Google_monitoring_uptime_check_config_internal_checkers_1041[]|null,
+    content_matchers?: Google_monitoring_uptime_check_config_content_matchers_182[]|null,
+    http_check?: Google_monitoring_uptime_check_config_http_check_183[]|null,
+    internal_checkers?: Google_monitoring_uptime_check_config_internal_checkers_185[]|null,
     is_internal?: boolean|null,
-    monitored_resource?: Google_monitoring_uptime_check_config_monitored_resource_1042[]|null,
+    monitored_resource?: Google_monitoring_uptime_check_config_monitored_resource_186[]|null,
     name?: string|null,
     period?: string|null,
     project?: string|null,
-    resource_group?: Google_monitoring_uptime_check_config_resource_group_1043[]|null,
+    resource_group?: Google_monitoring_uptime_check_config_resource_group_187[]|null,
     selected_regions?: string[]|null,
-    tcp_check?: Google_monitoring_uptime_check_config_tcp_check_1044[]|null
+    tcp_check?: Google_monitoring_uptime_check_config_tcp_check_188[]|null
   }) {
     this.display_name = display_name;
     this.timeout = timeout;
@@ -16657,7 +16657,7 @@ export class Google_monitoring_uptime_check_configHandler implements PcoreValue 
   }
 }
 
-export class Google_monitoring_uptime_check_config_content_matchers_1038 implements PcoreValue {
+export class Google_monitoring_uptime_check_config_content_matchers_182 implements PcoreValue {
   readonly content: string|null;
 
   constructor({
@@ -16677,12 +16677,12 @@ export class Google_monitoring_uptime_check_config_content_matchers_1038 impleme
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_content_matchers_1038';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_content_matchers_182';
   }
 }
 
-export class Google_monitoring_uptime_check_config_http_check_1039 implements PcoreValue {
-  readonly auth_info: Google_monitoring_uptime_check_config_http_check_1039_auth_info_1040[]|null;
+export class Google_monitoring_uptime_check_config_http_check_183 implements PcoreValue {
+  readonly auth_info: Google_monitoring_uptime_check_config_http_check_183_auth_info_184[]|null;
   readonly headers: {[s: string]: string}|null;
   readonly mask_headers: boolean|null;
   readonly path: string|null;
@@ -16697,7 +16697,7 @@ export class Google_monitoring_uptime_check_config_http_check_1039 implements Pc
     port = null,
     use_ssl = null
   }: {
-    auth_info?: Google_monitoring_uptime_check_config_http_check_1039_auth_info_1040[]|null,
+    auth_info?: Google_monitoring_uptime_check_config_http_check_183_auth_info_184[]|null,
     headers?: {[s: string]: string}|null,
     mask_headers?: boolean|null,
     path?: string|null,
@@ -16736,11 +16736,11 @@ export class Google_monitoring_uptime_check_config_http_check_1039 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_http_check_1039';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_http_check_183';
   }
 }
 
-export class Google_monitoring_uptime_check_config_http_check_1039_auth_info_1040 implements PcoreValue {
+export class Google_monitoring_uptime_check_config_http_check_183_auth_info_184 implements PcoreValue {
   readonly password: string|null;
   readonly username: string|null;
 
@@ -16767,11 +16767,11 @@ export class Google_monitoring_uptime_check_config_http_check_1039_auth_info_104
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_http_check_1039_auth_info_1040';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_http_check_183_auth_info_184';
   }
 }
 
-export class Google_monitoring_uptime_check_config_internal_checkers_1041 implements PcoreValue {
+export class Google_monitoring_uptime_check_config_internal_checkers_185 implements PcoreValue {
   readonly display_name: string|null;
   readonly gcp_zone: string|null;
   readonly name: string|null;
@@ -16819,11 +16819,11 @@ export class Google_monitoring_uptime_check_config_internal_checkers_1041 implem
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_internal_checkers_1041';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_internal_checkers_185';
   }
 }
 
-export class Google_monitoring_uptime_check_config_monitored_resource_1042 implements PcoreValue {
+export class Google_monitoring_uptime_check_config_monitored_resource_186 implements PcoreValue {
   readonly labels: {[s: string]: string};
   readonly type: string;
 
@@ -16846,11 +16846,11 @@ export class Google_monitoring_uptime_check_config_monitored_resource_1042 imple
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_monitored_resource_1042';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_monitored_resource_186';
   }
 }
 
-export class Google_monitoring_uptime_check_config_resource_group_1043 implements PcoreValue {
+export class Google_monitoring_uptime_check_config_resource_group_187 implements PcoreValue {
   readonly group_id: string|null;
   readonly resource_type: string|null;
 
@@ -16877,11 +16877,11 @@ export class Google_monitoring_uptime_check_config_resource_group_1043 implement
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_resource_group_1043';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_resource_group_187';
   }
 }
 
-export class Google_monitoring_uptime_check_config_tcp_check_1044 implements PcoreValue {
+export class Google_monitoring_uptime_check_config_tcp_check_188 implements PcoreValue {
   readonly port: number;
 
   constructor({
@@ -16899,7 +16899,7 @@ export class Google_monitoring_uptime_check_config_tcp_check_1044 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_monitoring_uptime_check_config_tcp_check_1044';
+    return 'TerraformGoogle::Google_monitoring_uptime_check_config_tcp_check_188';
   }
 }
 
@@ -17145,10 +17145,10 @@ export class Google_organization_policy implements PcoreValue {
   readonly constraint: string;
   readonly org_id: string;
   readonly google_organization_policy_id: string|null;
-  readonly boolean_policy: Google_organization_policy_boolean_policy_1045[]|null;
+  readonly boolean_policy: Google_organization_policy_boolean_policy_189[]|null;
   readonly etag: string|null;
-  readonly list_policy: Google_organization_policy_list_policy_1046[]|null;
-  readonly restore_policy: Google_organization_policy_restore_policy_1049[]|null;
+  readonly list_policy: Google_organization_policy_list_policy_190[]|null;
+  readonly restore_policy: Google_organization_policy_restore_policy_193[]|null;
   readonly update_time: string|null;
   readonly version: number|null;
 
@@ -17166,10 +17166,10 @@ export class Google_organization_policy implements PcoreValue {
     constraint: string,
     org_id: string,
     google_organization_policy_id?: string|null,
-    boolean_policy?: Google_organization_policy_boolean_policy_1045[]|null,
+    boolean_policy?: Google_organization_policy_boolean_policy_189[]|null,
     etag?: string|null,
-    list_policy?: Google_organization_policy_list_policy_1046[]|null,
-    restore_policy?: Google_organization_policy_restore_policy_1049[]|null,
+    list_policy?: Google_organization_policy_list_policy_190[]|null,
+    restore_policy?: Google_organization_policy_restore_policy_193[]|null,
     update_time?: string|null,
     version?: number|null
   }) {
@@ -17227,7 +17227,7 @@ export class Google_organization_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_organization_policy_boolean_policy_1045 implements PcoreValue {
+export class Google_organization_policy_boolean_policy_189 implements PcoreValue {
   readonly enforced: boolean;
 
   constructor({
@@ -17245,13 +17245,13 @@ export class Google_organization_policy_boolean_policy_1045 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_organization_policy_boolean_policy_1045';
+    return 'TerraformGoogle::Google_organization_policy_boolean_policy_189';
   }
 }
 
-export class Google_organization_policy_list_policy_1046 implements PcoreValue {
-  readonly allow: Google_organization_policy_list_policy_1046_allow_1047[]|null;
-  readonly deny: Google_organization_policy_list_policy_1046_deny_1048[]|null;
+export class Google_organization_policy_list_policy_190 implements PcoreValue {
+  readonly allow: Google_organization_policy_list_policy_190_allow_191[]|null;
+  readonly deny: Google_organization_policy_list_policy_190_deny_192[]|null;
   readonly suggested_value: string|null;
 
   constructor({
@@ -17259,8 +17259,8 @@ export class Google_organization_policy_list_policy_1046 implements PcoreValue {
     deny = null,
     suggested_value = null
   }: {
-    allow?: Google_organization_policy_list_policy_1046_allow_1047[]|null,
-    deny?: Google_organization_policy_list_policy_1046_deny_1048[]|null,
+    allow?: Google_organization_policy_list_policy_190_allow_191[]|null,
+    deny?: Google_organization_policy_list_policy_190_deny_192[]|null,
     suggested_value?: string|null
   }) {
     this.allow = allow;
@@ -17283,11 +17283,11 @@ export class Google_organization_policy_list_policy_1046 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_organization_policy_list_policy_1046';
+    return 'TerraformGoogle::Google_organization_policy_list_policy_190';
   }
 }
 
-export class Google_organization_policy_list_policy_1046_allow_1047 implements PcoreValue {
+export class Google_organization_policy_list_policy_190_allow_191 implements PcoreValue {
   readonly all: boolean|null;
   readonly values: string[]|null;
 
@@ -17314,11 +17314,11 @@ export class Google_organization_policy_list_policy_1046_allow_1047 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_organization_policy_list_policy_1046_allow_1047';
+    return 'TerraformGoogle::Google_organization_policy_list_policy_190_allow_191';
   }
 }
 
-export class Google_organization_policy_list_policy_1046_deny_1048 implements PcoreValue {
+export class Google_organization_policy_list_policy_190_deny_192 implements PcoreValue {
   readonly all: boolean|null;
   readonly values: string[]|null;
 
@@ -17345,11 +17345,11 @@ export class Google_organization_policy_list_policy_1046_deny_1048 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_organization_policy_list_policy_1046_deny_1048';
+    return 'TerraformGoogle::Google_organization_policy_list_policy_190_deny_192';
   }
 }
 
-export class Google_organization_policy_restore_policy_1049 implements PcoreValue {
+export class Google_organization_policy_restore_policy_193 implements PcoreValue {
   readonly default_: boolean;
 
   constructor({
@@ -17367,7 +17367,7 @@ export class Google_organization_policy_restore_policy_1049 implements PcoreValu
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_organization_policy_restore_policy_1049';
+    return 'TerraformGoogle::Google_organization_policy_restore_policy_193';
   }
 }
 
@@ -17375,7 +17375,7 @@ export class Google_project implements PcoreValue {
   readonly name: string;
   readonly project_id: string;
   readonly google_project_id: string|null;
-  readonly app_engine: Google_project_app_engine_1050[]|null;
+  readonly app_engine: Google_project_app_engine_194[]|null;
   readonly auto_create_network: boolean|null;
   readonly billing_account: string|null;
   readonly folder_id: string|null;
@@ -17404,7 +17404,7 @@ export class Google_project implements PcoreValue {
     name: string,
     project_id: string,
     google_project_id?: string|null,
-    app_engine?: Google_project_app_engine_1050[]|null,
+    app_engine?: Google_project_app_engine_194[]|null,
     auto_create_network?: boolean|null,
     billing_account?: string|null,
     folder_id?: string|null,
@@ -17485,17 +17485,17 @@ export class Google_projectHandler implements PcoreValue {
   }
 }
 
-export class Google_project_app_engine_1050 implements PcoreValue {
+export class Google_project_app_engine_194 implements PcoreValue {
   readonly auth_domain: string|null;
   readonly code_bucket: string|null;
   readonly default_bucket: string|null;
   readonly default_hostname: string|null;
-  readonly feature_settings: Google_project_app_engine_1050_feature_settings_1051[]|null;
+  readonly feature_settings: Google_project_app_engine_194_feature_settings_195[]|null;
   readonly gcr_domain: string|null;
   readonly location_id: string|null;
   readonly name: string|null;
   readonly serving_status: string|null;
-  readonly url_dispatch_rule: Google_project_app_engine_1050_url_dispatch_rule_1052[]|null;
+  readonly url_dispatch_rule: Google_project_app_engine_194_url_dispatch_rule_196[]|null;
 
   constructor({
     auth_domain = null,
@@ -17513,12 +17513,12 @@ export class Google_project_app_engine_1050 implements PcoreValue {
     code_bucket?: string|null,
     default_bucket?: string|null,
     default_hostname?: string|null,
-    feature_settings?: Google_project_app_engine_1050_feature_settings_1051[]|null,
+    feature_settings?: Google_project_app_engine_194_feature_settings_195[]|null,
     gcr_domain?: string|null,
     location_id?: string|null,
     name?: string|null,
     serving_status?: string|null,
-    url_dispatch_rule?: Google_project_app_engine_1050_url_dispatch_rule_1052[]|null
+    url_dispatch_rule?: Google_project_app_engine_194_url_dispatch_rule_196[]|null
   }) {
     this.auth_domain = auth_domain;
     this.code_bucket = code_bucket;
@@ -17568,11 +17568,11 @@ export class Google_project_app_engine_1050 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_app_engine_1050';
+    return 'TerraformGoogle::Google_project_app_engine_194';
   }
 }
 
-export class Google_project_app_engine_1050_feature_settings_1051 implements PcoreValue {
+export class Google_project_app_engine_194_feature_settings_195 implements PcoreValue {
   readonly split_health_checks: boolean|null;
 
   constructor({
@@ -17592,11 +17592,11 @@ export class Google_project_app_engine_1050_feature_settings_1051 implements Pco
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_app_engine_1050_feature_settings_1051';
+    return 'TerraformGoogle::Google_project_app_engine_194_feature_settings_195';
   }
 }
 
-export class Google_project_app_engine_1050_url_dispatch_rule_1052 implements PcoreValue {
+export class Google_project_app_engine_194_url_dispatch_rule_196 implements PcoreValue {
   readonly domain: string|null;
   readonly path: string|null;
   readonly service: string|null;
@@ -17630,7 +17630,7 @@ export class Google_project_app_engine_1050_url_dispatch_rule_1052 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_app_engine_1050_url_dispatch_rule_1052';
+    return 'TerraformGoogle::Google_project_app_engine_194_url_dispatch_rule_196';
   }
 }
 
@@ -17905,10 +17905,10 @@ export class Google_project_organization_policy implements PcoreValue {
   readonly constraint: string;
   readonly project: string;
   readonly google_project_organization_policy_id: string|null;
-  readonly boolean_policy: Google_project_organization_policy_boolean_policy_1053[]|null;
+  readonly boolean_policy: Google_project_organization_policy_boolean_policy_197[]|null;
   readonly etag: string|null;
-  readonly list_policy: Google_project_organization_policy_list_policy_1054[]|null;
-  readonly restore_policy: Google_project_organization_policy_restore_policy_1057[]|null;
+  readonly list_policy: Google_project_organization_policy_list_policy_198[]|null;
+  readonly restore_policy: Google_project_organization_policy_restore_policy_201[]|null;
   readonly update_time: string|null;
   readonly version: number|null;
 
@@ -17926,10 +17926,10 @@ export class Google_project_organization_policy implements PcoreValue {
     constraint: string,
     project: string,
     google_project_organization_policy_id?: string|null,
-    boolean_policy?: Google_project_organization_policy_boolean_policy_1053[]|null,
+    boolean_policy?: Google_project_organization_policy_boolean_policy_197[]|null,
     etag?: string|null,
-    list_policy?: Google_project_organization_policy_list_policy_1054[]|null,
-    restore_policy?: Google_project_organization_policy_restore_policy_1057[]|null,
+    list_policy?: Google_project_organization_policy_list_policy_198[]|null,
+    restore_policy?: Google_project_organization_policy_restore_policy_201[]|null,
     update_time?: string|null,
     version?: number|null
   }) {
@@ -17987,7 +17987,7 @@ export class Google_project_organization_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_project_organization_policy_boolean_policy_1053 implements PcoreValue {
+export class Google_project_organization_policy_boolean_policy_197 implements PcoreValue {
   readonly enforced: boolean;
 
   constructor({
@@ -18005,13 +18005,13 @@ export class Google_project_organization_policy_boolean_policy_1053 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_organization_policy_boolean_policy_1053';
+    return 'TerraformGoogle::Google_project_organization_policy_boolean_policy_197';
   }
 }
 
-export class Google_project_organization_policy_list_policy_1054 implements PcoreValue {
-  readonly allow: Google_project_organization_policy_list_policy_1054_allow_1055[]|null;
-  readonly deny: Google_project_organization_policy_list_policy_1054_deny_1056[]|null;
+export class Google_project_organization_policy_list_policy_198 implements PcoreValue {
+  readonly allow: Google_project_organization_policy_list_policy_198_allow_199[]|null;
+  readonly deny: Google_project_organization_policy_list_policy_198_deny_200[]|null;
   readonly suggested_value: string|null;
 
   constructor({
@@ -18019,8 +18019,8 @@ export class Google_project_organization_policy_list_policy_1054 implements Pcor
     deny = null,
     suggested_value = null
   }: {
-    allow?: Google_project_organization_policy_list_policy_1054_allow_1055[]|null,
-    deny?: Google_project_organization_policy_list_policy_1054_deny_1056[]|null,
+    allow?: Google_project_organization_policy_list_policy_198_allow_199[]|null,
+    deny?: Google_project_organization_policy_list_policy_198_deny_200[]|null,
     suggested_value?: string|null
   }) {
     this.allow = allow;
@@ -18043,11 +18043,11 @@ export class Google_project_organization_policy_list_policy_1054 implements Pcor
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_organization_policy_list_policy_1054';
+    return 'TerraformGoogle::Google_project_organization_policy_list_policy_198';
   }
 }
 
-export class Google_project_organization_policy_list_policy_1054_allow_1055 implements PcoreValue {
+export class Google_project_organization_policy_list_policy_198_allow_199 implements PcoreValue {
   readonly all: boolean|null;
   readonly values: string[]|null;
 
@@ -18074,11 +18074,11 @@ export class Google_project_organization_policy_list_policy_1054_allow_1055 impl
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_organization_policy_list_policy_1054_allow_1055';
+    return 'TerraformGoogle::Google_project_organization_policy_list_policy_198_allow_199';
   }
 }
 
-export class Google_project_organization_policy_list_policy_1054_deny_1056 implements PcoreValue {
+export class Google_project_organization_policy_list_policy_198_deny_200 implements PcoreValue {
   readonly all: boolean|null;
   readonly values: string[]|null;
 
@@ -18105,11 +18105,11 @@ export class Google_project_organization_policy_list_policy_1054_deny_1056 imple
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_organization_policy_list_policy_1054_deny_1056';
+    return 'TerraformGoogle::Google_project_organization_policy_list_policy_198_deny_200';
   }
 }
 
-export class Google_project_organization_policy_restore_policy_1057 implements PcoreValue {
+export class Google_project_organization_policy_restore_policy_201 implements PcoreValue {
   readonly default_: boolean;
 
   constructor({
@@ -18127,7 +18127,7 @@ export class Google_project_organization_policy_restore_policy_1057 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_project_organization_policy_restore_policy_1057';
+    return 'TerraformGoogle::Google_project_organization_policy_restore_policy_201';
   }
 }
 
@@ -18297,7 +18297,7 @@ export class Google_pubsub_subscription implements PcoreValue {
   readonly ack_deadline_seconds: number|null;
   readonly path: string|null;
   readonly project: string|null;
-  readonly push_config: Google_pubsub_subscription_push_config_1058[]|null;
+  readonly push_config: Google_pubsub_subscription_push_config_202[]|null;
 
   constructor({
     name,
@@ -18314,7 +18314,7 @@ export class Google_pubsub_subscription implements PcoreValue {
     ack_deadline_seconds?: number|null,
     path?: string|null,
     project?: string|null,
-    push_config?: Google_pubsub_subscription_push_config_1058[]|null
+    push_config?: Google_pubsub_subscription_push_config_202[]|null
   }) {
     this.name = name;
     this.topic = topic;
@@ -18546,7 +18546,7 @@ export class Google_pubsub_subscription_iam_policyHandler implements PcoreValue 
   }
 }
 
-export class Google_pubsub_subscription_push_config_1058 implements PcoreValue {
+export class Google_pubsub_subscription_push_config_202 implements PcoreValue {
   readonly push_endpoint: string;
   readonly attributes: {[s: string]: string}|null;
 
@@ -18571,7 +18571,7 @@ export class Google_pubsub_subscription_push_config_1058 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_pubsub_subscription_push_config_1058';
+    return 'TerraformGoogle::Google_pubsub_subscription_push_config_202';
   }
 }
 
@@ -20167,19 +20167,19 @@ export class Google_sql_databaseHandler implements PcoreValue {
 }
 
 export class Google_sql_database_instance implements PcoreValue {
-  readonly settings: Google_sql_database_instance_settings_1062[];
+  readonly settings: Google_sql_database_instance_settings_206[];
   readonly google_sql_database_instance_id: string|null;
   readonly connection_name: string|null;
   readonly database_version: string|null;
   readonly first_ip_address: string|null;
-  readonly ip_address: Google_sql_database_instance_ip_address_1059[]|null;
+  readonly ip_address: Google_sql_database_instance_ip_address_203[]|null;
   readonly master_instance_name: string|null;
   readonly name: string|null;
   readonly project: string|null;
   readonly region: string|null;
-  readonly replica_configuration: Google_sql_database_instance_replica_configuration_1060[]|null;
+  readonly replica_configuration: Google_sql_database_instance_replica_configuration_204[]|null;
   readonly self_link: string|null;
-  readonly server_ca_cert: Google_sql_database_instance_server_ca_cert_1061[]|null;
+  readonly server_ca_cert: Google_sql_database_instance_server_ca_cert_205[]|null;
   readonly service_account_email_address: string|null;
 
   constructor({
@@ -20198,19 +20198,19 @@ export class Google_sql_database_instance implements PcoreValue {
     server_ca_cert = null,
     service_account_email_address = null
   }: {
-    settings: Google_sql_database_instance_settings_1062[],
+    settings: Google_sql_database_instance_settings_206[],
     google_sql_database_instance_id?: string|null,
     connection_name?: string|null,
     database_version?: string|null,
     first_ip_address?: string|null,
-    ip_address?: Google_sql_database_instance_ip_address_1059[]|null,
+    ip_address?: Google_sql_database_instance_ip_address_203[]|null,
     master_instance_name?: string|null,
     name?: string|null,
     project?: string|null,
     region?: string|null,
-    replica_configuration?: Google_sql_database_instance_replica_configuration_1060[]|null,
+    replica_configuration?: Google_sql_database_instance_replica_configuration_204[]|null,
     self_link?: string|null,
-    server_ca_cert?: Google_sql_database_instance_server_ca_cert_1061[]|null,
+    server_ca_cert?: Google_sql_database_instance_server_ca_cert_205[]|null,
     service_account_email_address?: string|null
   }) {
     this.settings = settings;
@@ -20289,7 +20289,7 @@ export class Google_sql_database_instanceHandler implements PcoreValue {
   }
 }
 
-export class Google_sql_database_instance_ip_address_1059 implements PcoreValue {
+export class Google_sql_database_instance_ip_address_203 implements PcoreValue {
   readonly ip_address: string|null;
   readonly time_to_retire: string|null;
 
@@ -20316,11 +20316,11 @@ export class Google_sql_database_instance_ip_address_1059 implements PcoreValue 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_ip_address_1059';
+    return 'TerraformGoogle::Google_sql_database_instance_ip_address_203';
   }
 }
 
-export class Google_sql_database_instance_replica_configuration_1060 implements PcoreValue {
+export class Google_sql_database_instance_replica_configuration_204 implements PcoreValue {
   readonly ca_certificate: string|null;
   readonly client_certificate: string|null;
   readonly client_key: string|null;
@@ -20410,11 +20410,11 @@ export class Google_sql_database_instance_replica_configuration_1060 implements 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_replica_configuration_1060';
+    return 'TerraformGoogle::Google_sql_database_instance_replica_configuration_204';
   }
 }
 
-export class Google_sql_database_instance_server_ca_cert_1061 implements PcoreValue {
+export class Google_sql_database_instance_server_ca_cert_205 implements PcoreValue {
   readonly cert: string|null;
   readonly common_name: string|null;
   readonly create_time: string|null;
@@ -20462,24 +20462,24 @@ export class Google_sql_database_instance_server_ca_cert_1061 implements PcoreVa
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_server_ca_cert_1061';
+    return 'TerraformGoogle::Google_sql_database_instance_server_ca_cert_205';
   }
 }
 
-export class Google_sql_database_instance_settings_1062 implements PcoreValue {
+export class Google_sql_database_instance_settings_206 implements PcoreValue {
   readonly tier: string;
   readonly activation_policy: string|null;
   readonly authorized_gae_applications: string[]|null;
   readonly availability_type: string|null;
-  readonly backup_configuration: Google_sql_database_instance_settings_1062_backup_configuration_1063[]|null;
+  readonly backup_configuration: Google_sql_database_instance_settings_206_backup_configuration_207[]|null;
   readonly crash_safe_replication: boolean|null;
-  readonly database_flags: Google_sql_database_instance_settings_1062_database_flags_1064[]|null;
+  readonly database_flags: Google_sql_database_instance_settings_206_database_flags_208[]|null;
   readonly disk_autoresize: boolean|null;
   readonly disk_size: number|null;
   readonly disk_type: string|null;
-  readonly ip_configuration: Google_sql_database_instance_settings_1062_ip_configuration_1065[]|null;
-  readonly location_preference: Google_sql_database_instance_settings_1062_location_preference_1067[]|null;
-  readonly maintenance_window: Google_sql_database_instance_settings_1062_maintenance_window_1068[]|null;
+  readonly ip_configuration: Google_sql_database_instance_settings_206_ip_configuration_209[]|null;
+  readonly location_preference: Google_sql_database_instance_settings_206_location_preference_211[]|null;
+  readonly maintenance_window: Google_sql_database_instance_settings_206_maintenance_window_212[]|null;
   readonly pricing_plan: string|null;
   readonly replication_type: string|null;
   readonly user_labels: {[s: string]: string}|null;
@@ -20508,15 +20508,15 @@ export class Google_sql_database_instance_settings_1062 implements PcoreValue {
     activation_policy?: string|null,
     authorized_gae_applications?: string[]|null,
     availability_type?: string|null,
-    backup_configuration?: Google_sql_database_instance_settings_1062_backup_configuration_1063[]|null,
+    backup_configuration?: Google_sql_database_instance_settings_206_backup_configuration_207[]|null,
     crash_safe_replication?: boolean|null,
-    database_flags?: Google_sql_database_instance_settings_1062_database_flags_1064[]|null,
+    database_flags?: Google_sql_database_instance_settings_206_database_flags_208[]|null,
     disk_autoresize?: boolean|null,
     disk_size?: number|null,
     disk_type?: string|null,
-    ip_configuration?: Google_sql_database_instance_settings_1062_ip_configuration_1065[]|null,
-    location_preference?: Google_sql_database_instance_settings_1062_location_preference_1067[]|null,
-    maintenance_window?: Google_sql_database_instance_settings_1062_maintenance_window_1068[]|null,
+    ip_configuration?: Google_sql_database_instance_settings_206_ip_configuration_209[]|null,
+    location_preference?: Google_sql_database_instance_settings_206_location_preference_211[]|null,
+    maintenance_window?: Google_sql_database_instance_settings_206_maintenance_window_212[]|null,
     pricing_plan?: string|null,
     replication_type?: string|null,
     user_labels?: {[s: string]: string}|null,
@@ -20596,11 +20596,11 @@ export class Google_sql_database_instance_settings_1062 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206';
   }
 }
 
-export class Google_sql_database_instance_settings_1062_backup_configuration_1063 implements PcoreValue {
+export class Google_sql_database_instance_settings_206_backup_configuration_207 implements PcoreValue {
   readonly binary_log_enabled: boolean|null;
   readonly enabled: boolean|null;
   readonly start_time: string|null;
@@ -20634,11 +20634,11 @@ export class Google_sql_database_instance_settings_1062_backup_configuration_106
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062_backup_configuration_1063';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206_backup_configuration_207';
   }
 }
 
-export class Google_sql_database_instance_settings_1062_database_flags_1064 implements PcoreValue {
+export class Google_sql_database_instance_settings_206_database_flags_208 implements PcoreValue {
   readonly name: string|null;
   readonly value: string|null;
 
@@ -20665,12 +20665,12 @@ export class Google_sql_database_instance_settings_1062_database_flags_1064 impl
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062_database_flags_1064';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206_database_flags_208';
   }
 }
 
-export class Google_sql_database_instance_settings_1062_ip_configuration_1065 implements PcoreValue {
-  readonly authorized_networks: Google_sql_database_instance_settings_1062_ip_configuration_1065_authorized_networks_1066[]|null;
+export class Google_sql_database_instance_settings_206_ip_configuration_209 implements PcoreValue {
+  readonly authorized_networks: Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210[]|null;
   readonly ipv4_enabled: boolean|null;
   readonly private_network: string|null;
   readonly require_ssl: boolean|null;
@@ -20681,7 +20681,7 @@ export class Google_sql_database_instance_settings_1062_ip_configuration_1065 im
     private_network = null,
     require_ssl = null
   }: {
-    authorized_networks?: Google_sql_database_instance_settings_1062_ip_configuration_1065_authorized_networks_1066[]|null,
+    authorized_networks?: Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210[]|null,
     ipv4_enabled?: boolean|null,
     private_network?: string|null,
     require_ssl?: boolean|null
@@ -20710,11 +20710,11 @@ export class Google_sql_database_instance_settings_1062_ip_configuration_1065 im
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062_ip_configuration_1065';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206_ip_configuration_209';
   }
 }
 
-export class Google_sql_database_instance_settings_1062_ip_configuration_1065_authorized_networks_1066 implements PcoreValue {
+export class Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210 implements PcoreValue {
   readonly expiration_time: string|null;
   readonly name: string|null;
   readonly value: string|null;
@@ -20748,11 +20748,11 @@ export class Google_sql_database_instance_settings_1062_ip_configuration_1065_au
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062_ip_configuration_1065_authorized_networks_1066';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210';
   }
 }
 
-export class Google_sql_database_instance_settings_1062_location_preference_1067 implements PcoreValue {
+export class Google_sql_database_instance_settings_206_location_preference_211 implements PcoreValue {
   readonly follow_gae_application: string|null;
   readonly zone: string|null;
 
@@ -20779,11 +20779,11 @@ export class Google_sql_database_instance_settings_1062_location_preference_1067
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062_location_preference_1067';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206_location_preference_211';
   }
 }
 
-export class Google_sql_database_instance_settings_1062_maintenance_window_1068 implements PcoreValue {
+export class Google_sql_database_instance_settings_206_maintenance_window_212 implements PcoreValue {
   readonly day: number|null;
   readonly hour: number|null;
   readonly update_track: string|null;
@@ -20817,7 +20817,7 @@ export class Google_sql_database_instance_settings_1062_maintenance_window_1068 
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_sql_database_instance_settings_1062_maintenance_window_1068';
+    return 'TerraformGoogle::Google_sql_database_instance_settings_206_maintenance_window_212';
   }
 }
 
@@ -20982,20 +20982,20 @@ export class Google_sql_userHandler implements PcoreValue {
 export class Google_storage_bucket implements PcoreValue {
   readonly name: string;
   readonly google_storage_bucket_id: string|null;
-  readonly cors: Google_storage_bucket_cors_1069[]|null;
-  readonly encryption: Google_storage_bucket_encryption_1070[]|null;
+  readonly cors: Google_storage_bucket_cors_213[]|null;
+  readonly encryption: Google_storage_bucket_encryption_214[]|null;
   readonly force_destroy: boolean|null;
   readonly labels: {[s: string]: string}|null;
-  readonly lifecycle_rule: Google_storage_bucket_lifecycle_rule_1071[]|null;
+  readonly lifecycle_rule: Google_storage_bucket_lifecycle_rule_215[]|null;
   readonly location: string|null;
-  readonly logging: Google_storage_bucket_logging_1074[]|null;
+  readonly logging: Google_storage_bucket_logging_218[]|null;
   readonly predefined_acl: string|null;
   readonly project: string|null;
   readonly self_link: string|null;
   readonly storage_class: string|null;
   readonly url: string|null;
-  readonly versioning: Google_storage_bucket_versioning_1075[]|null;
-  readonly website: Google_storage_bucket_website_1076[]|null;
+  readonly versioning: Google_storage_bucket_versioning_219[]|null;
+  readonly website: Google_storage_bucket_website_220[]|null;
 
   constructor({
     name,
@@ -21017,20 +21017,20 @@ export class Google_storage_bucket implements PcoreValue {
   }: {
     name: string,
     google_storage_bucket_id?: string|null,
-    cors?: Google_storage_bucket_cors_1069[]|null,
-    encryption?: Google_storage_bucket_encryption_1070[]|null,
+    cors?: Google_storage_bucket_cors_213[]|null,
+    encryption?: Google_storage_bucket_encryption_214[]|null,
     force_destroy?: boolean|null,
     labels?: {[s: string]: string}|null,
-    lifecycle_rule?: Google_storage_bucket_lifecycle_rule_1071[]|null,
+    lifecycle_rule?: Google_storage_bucket_lifecycle_rule_215[]|null,
     location?: string|null,
-    logging?: Google_storage_bucket_logging_1074[]|null,
+    logging?: Google_storage_bucket_logging_218[]|null,
     predefined_acl?: string|null,
     project?: string|null,
     self_link?: string|null,
     storage_class?: string|null,
     url?: string|null,
-    versioning?: Google_storage_bucket_versioning_1075[]|null,
-    website?: Google_storage_bucket_website_1076[]|null
+    versioning?: Google_storage_bucket_versioning_219[]|null,
+    website?: Google_storage_bucket_website_220[]|null
   }) {
     this.name = name;
     this.google_storage_bucket_id = google_storage_bucket_id;
@@ -21176,7 +21176,7 @@ export class Google_storage_bucket_aclHandler implements PcoreValue {
   }
 }
 
-export class Google_storage_bucket_cors_1069 implements PcoreValue {
+export class Google_storage_bucket_cors_213 implements PcoreValue {
   readonly max_age_seconds: number|null;
   readonly method: string[]|null;
   readonly origin: string[]|null;
@@ -21217,11 +21217,11 @@ export class Google_storage_bucket_cors_1069 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_cors_1069';
+    return 'TerraformGoogle::Google_storage_bucket_cors_213';
   }
 }
 
-export class Google_storage_bucket_encryption_1070 implements PcoreValue {
+export class Google_storage_bucket_encryption_214 implements PcoreValue {
   readonly default_kms_key_name: string;
 
   constructor({
@@ -21239,7 +21239,7 @@ export class Google_storage_bucket_encryption_1070 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_encryption_1070';
+    return 'TerraformGoogle::Google_storage_bucket_encryption_214';
   }
 }
 
@@ -21406,16 +21406,16 @@ export class Google_storage_bucket_iam_policyHandler implements PcoreValue {
   }
 }
 
-export class Google_storage_bucket_lifecycle_rule_1071 implements PcoreValue {
-  readonly action: Google_storage_bucket_lifecycle_rule_1071_action_1072[];
-  readonly condition: Google_storage_bucket_lifecycle_rule_1071_condition_1073[];
+export class Google_storage_bucket_lifecycle_rule_215 implements PcoreValue {
+  readonly action: Google_storage_bucket_lifecycle_rule_215_action_216[];
+  readonly condition: Google_storage_bucket_lifecycle_rule_215_condition_217[];
 
   constructor({
     action,
     condition
   }: {
-    action: Google_storage_bucket_lifecycle_rule_1071_action_1072[],
-    condition: Google_storage_bucket_lifecycle_rule_1071_condition_1073[]
+    action: Google_storage_bucket_lifecycle_rule_215_action_216[],
+    condition: Google_storage_bucket_lifecycle_rule_215_condition_217[]
   }) {
     this.action = action;
     this.condition = condition;
@@ -21429,11 +21429,11 @@ export class Google_storage_bucket_lifecycle_rule_1071 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_lifecycle_rule_1071';
+    return 'TerraformGoogle::Google_storage_bucket_lifecycle_rule_215';
   }
 }
 
-export class Google_storage_bucket_lifecycle_rule_1071_action_1072 implements PcoreValue {
+export class Google_storage_bucket_lifecycle_rule_215_action_216 implements PcoreValue {
   readonly type: string;
   readonly storage_class: string|null;
 
@@ -21458,11 +21458,11 @@ export class Google_storage_bucket_lifecycle_rule_1071_action_1072 implements Pc
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_lifecycle_rule_1071_action_1072';
+    return 'TerraformGoogle::Google_storage_bucket_lifecycle_rule_215_action_216';
   }
 }
 
-export class Google_storage_bucket_lifecycle_rule_1071_condition_1073 implements PcoreValue {
+export class Google_storage_bucket_lifecycle_rule_215_condition_217 implements PcoreValue {
   readonly age: number|null;
   readonly created_before: string|null;
   readonly is_live: boolean|null;
@@ -21510,11 +21510,11 @@ export class Google_storage_bucket_lifecycle_rule_1071_condition_1073 implements
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_lifecycle_rule_1071_condition_1073';
+    return 'TerraformGoogle::Google_storage_bucket_lifecycle_rule_215_condition_217';
   }
 }
 
-export class Google_storage_bucket_logging_1074 implements PcoreValue {
+export class Google_storage_bucket_logging_218 implements PcoreValue {
   readonly log_bucket: string;
   readonly log_object_prefix: string|null;
 
@@ -21539,7 +21539,7 @@ export class Google_storage_bucket_logging_1074 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_logging_1074';
+    return 'TerraformGoogle::Google_storage_bucket_logging_218';
   }
 }
 
@@ -21671,7 +21671,7 @@ export class Google_storage_bucket_objectHandler implements PcoreValue {
   }
 }
 
-export class Google_storage_bucket_versioning_1075 implements PcoreValue {
+export class Google_storage_bucket_versioning_219 implements PcoreValue {
   readonly enabled: boolean|null;
 
   constructor({
@@ -21691,11 +21691,11 @@ export class Google_storage_bucket_versioning_1075 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_versioning_1075';
+    return 'TerraformGoogle::Google_storage_bucket_versioning_219';
   }
 }
 
-export class Google_storage_bucket_website_1076 implements PcoreValue {
+export class Google_storage_bucket_website_220 implements PcoreValue {
   readonly main_page_suffix: string|null;
   readonly not_found_page: string|null;
 
@@ -21722,7 +21722,7 @@ export class Google_storage_bucket_website_1076 implements PcoreValue {
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_bucket_website_1076';
+    return 'TerraformGoogle::Google_storage_bucket_website_220';
   }
 }
 
@@ -21736,7 +21736,7 @@ export class Google_storage_default_object_access_control implements PcoreValue 
   readonly entity_id: string|null;
   readonly generation: number|null;
   readonly object: string|null;
-  readonly project_team: Google_storage_default_object_access_control_project_team_1077[]|null;
+  readonly project_team: Google_storage_default_object_access_control_project_team_221[]|null;
 
   constructor({
     bucket,
@@ -21759,7 +21759,7 @@ export class Google_storage_default_object_access_control implements PcoreValue 
     entity_id?: string|null,
     generation?: number|null,
     object?: string|null,
-    project_team?: Google_storage_default_object_access_control_project_team_1077[]|null
+    project_team?: Google_storage_default_object_access_control_project_team_221[]|null
   }) {
     this.bucket = bucket;
     this.entity = entity;
@@ -21817,7 +21817,7 @@ export class Google_storage_default_object_access_controlHandler implements Pcor
   }
 }
 
-export class Google_storage_default_object_access_control_project_team_1077 implements PcoreValue {
+export class Google_storage_default_object_access_control_project_team_221 implements PcoreValue {
   readonly project_number: string|null;
   readonly team: string|null;
 
@@ -21844,7 +21844,7 @@ export class Google_storage_default_object_access_control_project_team_1077 impl
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_default_object_access_control_project_team_1077';
+    return 'TerraformGoogle::Google_storage_default_object_access_control_project_team_221';
   }
 }
 
@@ -21981,7 +21981,7 @@ export class Google_storage_object_access_control implements PcoreValue {
   readonly email: string|null;
   readonly entity_id: string|null;
   readonly generation: number|null;
-  readonly project_team: Google_storage_object_access_control_project_team_1078[]|null;
+  readonly project_team: Google_storage_object_access_control_project_team_222[]|null;
 
   constructor({
     bucket,
@@ -22004,7 +22004,7 @@ export class Google_storage_object_access_control implements PcoreValue {
     email?: string|null,
     entity_id?: string|null,
     generation?: number|null,
-    project_team?: Google_storage_object_access_control_project_team_1078[]|null
+    project_team?: Google_storage_object_access_control_project_team_222[]|null
   }) {
     this.bucket = bucket;
     this.entity = entity;
@@ -22060,7 +22060,7 @@ export class Google_storage_object_access_controlHandler implements PcoreValue {
   }
 }
 
-export class Google_storage_object_access_control_project_team_1078 implements PcoreValue {
+export class Google_storage_object_access_control_project_team_222 implements PcoreValue {
   readonly project_number: string|null;
   readonly team: string|null;
 
@@ -22087,7 +22087,7 @@ export class Google_storage_object_access_control_project_team_1078 implements P
   }
 
   __ptype(): string {
-    return 'TerraformGoogle::Google_storage_object_access_control_project_team_1078';
+    return 'TerraformGoogle::Google_storage_object_access_control_project_team_222';
   }
 }
 

@@ -1,4 +1,4 @@
-k8s_namespace_service:
+kubernetes:
  typespace: TerraformKubernetes
  output:
    kubernetes_namespace_id: String
