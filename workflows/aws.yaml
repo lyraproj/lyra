@@ -30,10 +30,13 @@ aws:
             ]
           }
 
-    aws_key_pair:
-      state:
-        key_name: lyra-test-keypair
-        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"
+    #
+    # Application of aws_key_pair succeeds on the first run then fails: see https://github.com/lyraproj/lyra/issues/203
+    #
+    # aws_key_pair:
+    #   state:
+    #     key_name: lyra-test-keypair
+    #     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"
 
     aws_vpc:
       # type is implicit and is derived from the
@@ -50,6 +53,13 @@ aws:
         tags:
           name: lyra-routetable
           created_by: lyra
+
+    #
+    # Deletion of aws_internet_gateway fails: see https://github.com/lyraproj/lyra/issues/204
+    #
+    # aws_internet_gateway:
+    #   state:
+    #     vpc_id: $aws_vpc_id
 
     aws_security_group:
       state:
