@@ -1,0 +1,89 @@
+foobernetes:
+
+  typespace: Foobernetes
+
+  input:
+    load_balancer_policy:
+      type: String
+      lookup: foobernetes.lb_policy
+
+  output: [ primary_load_balancer_id ]
+
+  activities:
+
+    loadbalancer:
+      output:
+        primary_load_balancer_id: loadBalancerID
+      state:
+        loadBalancerIP: 10.0.0.1
+        location: eu1
+        replica: false
+        webServerIDs: [$webserver1_id, $webserver2_id]
+        tags:
+          team: "lyra team"
+          role: primary
+
+    secondary-load-balancer:
+      type: Foobernetes::loadbalancer
+      output:
+        secondary_load_balancer_id: loadBalancerID
+      state:
+        loadBalancerIP: '10.0.0.2'
+        location: eu2
+        replica: true
+        webServerIDs: [$webserver1_id, $webserver2_id]
+        tags:
+          team: "lyra team"
+          role: secondary
+
+    webserver1:
+      type: Foobernetes::webserver
+      output:
+        webserver1_id: webServerID
+      state:
+        port: 8080
+        appServers: [$appserver1_id, $appserver2_id]
+
+    webserver2:
+      type: Foobernetes::webserver
+      output:
+        webserver2_id: webServerID
+      state:
+        port: 8080
+        appServers: [$appserver1_id, $appserver2_id]
+
+    appserver1:
+      type: Foobernetes::instance
+      output:
+        appserver1_id: instanceID
+      state:
+        location: eu1
+        image: lyra::application
+        config:
+          name: appserver1xxx
+          databaseID: $database_id
+        cpus: 4
+        memory: 8G
+
+    appserver2:
+      type: Foobernetes::instance
+      output:
+        appserver2_id: instanceID
+      state:
+        location: eu2
+        image: "lyra::application"
+        config:
+          name: appserver2xxx
+          databaseID: $database_id
+        cpus: 4
+        memory: 8G
+
+    database:
+      type: Foobernetes::instance
+      output:
+        database_id: instanceID
+      state:
+        location: eu1
+        image: "lyra::database"
+        cpus: 16
+        memory: 64G
