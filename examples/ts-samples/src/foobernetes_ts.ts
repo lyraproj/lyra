@@ -23,6 +23,22 @@ const wf = {
         }
       })
     }),
+    secondaryloadbalancer: resource({
+      type: "Foobernetes::Loadbalancer",
+      output: {
+        "secondary_load_balancer_id": { alias: "loadBalancerID" }
+      },
+      state: (webServer1Id: string, webServer2Id: string): Foobernetes.LoadBalancer => new Foobernetes.LoadBalancer({
+        loadBalancerIP: "10.0.0.2",
+        location: "eu2",
+        replica: true,
+        webServerIDs: [webServer1Id, webServer2Id],
+        tags: {
+            team: "lyra team",
+            role: "secondary"
+        }
+      })
+    }),
     webserver1: resource({
       type: "Foobernetes::Webserver",
       output: {
