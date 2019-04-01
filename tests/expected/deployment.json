@@ -1,0 +1,85 @@
+{
+  "LoadBalancers": {
+    "lb-2423360789606128860": {
+      "LoadBalancerID": "lb-2423360789606128860",
+      "LoadBalancerIP": "10.0.0.2",
+      "Location": "eu2",
+      "Replica": true,
+      "WebServerIDs": [
+        "ws-1887659887648687854",
+        "ws-8944791324497208693"
+      ],
+      "Tags": {
+        "role": "secondary",
+        "team": "lyra team"
+      }
+    },
+    "lb-3618215965287207229": {
+      "LoadBalancerID": "lb-3618215965287207229",
+      "LoadBalancerIP": "10.0.0.1",
+      "Location": "eu1",
+      "Replica": false,
+      "WebServerIDs": [
+        "ws-1887659887648687854",
+        "ws-8944791324497208693"
+      ],
+      "Tags": {
+        "role": "primary",
+        "team": "lyra team"
+      }
+    }
+  },
+  "WebServers": {
+    "ws-1887659887648687854": {
+      "WebServerID": "ws-1887659887648687854",
+      "Port": 8080,
+      "AppServers": [
+        "i-6273240920820765851",
+        "i-9138959821132670258"
+      ]
+    },
+    "ws-8944791324497208693": {
+      "WebServerID": "ws-8944791324497208693",
+      "Port": 8080,
+      "AppServers": [
+        "i-6273240920820765851",
+        "i-9138959821132670258"
+      ]
+    }
+  },
+  "Instances": {
+    "i-1308450800133028021": {
+      "InstanceID": "i-1308450800133028021",
+      "InstanceIP": "10.0.0.1",
+      "Location": "eu1",
+      "Image": "lyra::database",
+      "Config": null,
+      "Cpus": 16,
+      "Memory": "64G"
+    },
+    "i-6273240920820765851": {
+      "InstanceID": "i-6273240920820765851",
+      "InstanceIP": "10.0.0.3",
+      "Location": "eu1",
+      "Image": "lyra::application",
+      "Config": {
+        "databaseID": "i-1308450800133028021",
+        "name": "appserver1xxx"
+      },
+      "Cpus": 4,
+      "Memory": "8G"
+    },
+    "i-9138959821132670258": {
+      "InstanceID": "i-9138959821132670258",
+      "InstanceIP": "10.0.0.2",
+      "Location": "eu2",
+      "Image": "lyra::application",
+      "Config": {
+        "databaseID": "i-1308450800133028021",
+        "name": "appserver2xxx"
+      },
+      "Cpus": 4,
+      "Memory": "8G"
+    }
+  }
+}

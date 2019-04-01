@@ -135,9 +135,20 @@ check-node:
 	@echo "✅ Node version is sufficient (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test: lyra plugins
-	@echo "🔘 Running a smoke test with sample workflow"
-	@build/lyra apply sample || (echo "Failed applying sample $$?"; exit 1)
+smoke-test: # lyra plugins
+	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
+	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
+	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
+	@sort deployment.json|grep -v "\d\d\d\d" > deployment.json.sorted
+	@cp deployment.json.sorted deployment.json.sorted.original
+	@sort tests/expected/deployment.json|grep -v "\d\d\d\d" > deployment.json.sorted.expected
+	@diff deployment.json.sorted.expected deployment.json.sorted || (echo "First run results are not as expected"; exit 1)
+	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the second time: exit code $$?"; exit 1)
+	@sort deployment.json|grep -v "\d\d\d\d" > deployment.json.sorted
+	@diff deployment.json.sorted.original deployment.json.sorted || (echo "Second run results are not as expected"; exit 1)
+	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
+	@diff tests/expected/deployment.empty.json deployment.json || (echo "Final deletion run results are not as expected"; exit 1)
+	@rm deployment.json*
 
 smoke-test-ts: check-node generate-ts
 	build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
