@@ -11,7 +11,7 @@ func main() {
 	hclog.DefaultOptions = &hclog.LoggerOptions{
 		Name:            "Puppet",
 		Level:           hclog.Debug,
-		JSONFormat:      false,
+		JSONFormat:      true,
 		IncludeLocation: false,
 		Output:          os.Stderr,
 	}
