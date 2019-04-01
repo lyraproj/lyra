@@ -5,3 +5,7 @@ aws:
     department: engineering
     project:    incubator
     lifetime:   1h
+
+foobernetes:
+  lb_policy: "rr"
+  in_production: false
