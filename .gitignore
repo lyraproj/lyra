@@ -5,3 +5,4 @@ build
 tmp/
 LICENSE_TMPFILE.txt
 *.db
+deployment.json
