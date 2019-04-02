@@ -140,11 +140,11 @@ smoke-test: lyra plugins
 	@build/lyra apply sample || (echo "Failed applying sample $$?"; exit 1)
 
 smoke-test-ts: check-node generate-ts
-	build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
+	@build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
 
 generate-ts:
 	@build/lyra generate typescript --target-directory examples/ts-samples/src/types
-	cd examples/ts-samples && npm install
+	@cd examples/ts-samples && npm install
 
 define build
 	echo "🔘 Building - $(1) (`date '+%H:%M:%S'`)"
