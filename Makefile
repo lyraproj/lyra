@@ -135,16 +135,16 @@ check-node:
 	@echo "✅ Node version is sufficient (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test: # lyra plugins
+smoke-test: lyra plugins
 	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
 	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
-	@sort deployment.json|grep -v "\d\d\d\d" > deployment.json.sorted
+	@sort deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted
 	@cp deployment.json.sorted deployment.json.sorted.original
-	@sort tests/expected/deployment.json|grep -v "\d\d\d\d" > deployment.json.sorted.expected
+	@sort tests/expected/deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted.expected
 	@diff deployment.json.sorted.expected deployment.json.sorted || (echo "First run results are not as expected"; exit 1)
 	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the second time: exit code $$?"; exit 1)
-	@sort deployment.json|grep -v "\d\d\d\d" > deployment.json.sorted
+	@sort deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted
 	@diff deployment.json.sorted.original deployment.json.sorted || (echo "Second run results are not as expected"; exit 1)
 	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@diff tests/expected/deployment.empty.json deployment.json || (echo "Final deletion run results are not as expected"; exit 1)
