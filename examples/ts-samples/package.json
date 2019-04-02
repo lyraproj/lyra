@@ -1,11 +1,15 @@
 {
   "name": "ts-samples",
   "version": "0.0.0",
-  "description": "",
+  "description": "Sample Lyra workflow",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "Apache-2.0",
   "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lyraproj/lyra"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "gts check",
