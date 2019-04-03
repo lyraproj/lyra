@@ -135,7 +135,7 @@ check-node:
 	@echo "✅ Node version is sufficient (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test: lyra plugins
+smoke-test: lyra identity puppet-dsl lyra-plugins
 	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
 	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
