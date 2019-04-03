@@ -1,22 +1,20 @@
 module github.com/lyraproj/lyra
 
 require (
-	github.com/aws/aws-sdk-go v1.16.26
-	github.com/davecgh/go-spew v1.1.1
 	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-hclog v0.8.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190329232239-0a668ca79a0a
-	github.com/lyraproj/identity v0.0.0-20190320130629-39164e8c9667
+	github.com/lyraproj/identity v0.0.0-20190408135217-4fc7f86b6fb3
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
-	github.com/lyraproj/lyra-operator v0.0.0-20190306102824-30ad4480dd58
-	github.com/lyraproj/pcore v0.0.0-20190406122651-bf67b7db25c6
-	github.com/lyraproj/puppet-workflow v0.0.0-20190406123331-a2c260ef793e
-	github.com/lyraproj/servicesdk v0.0.0-20190405110630-7e35406a94bd
-	github.com/lyraproj/terraform-bridge v0.0.0-20190406123847-d79f3c513550
-	github.com/lyraproj/wfe v0.0.0-20190405111643-1999d0d1167b
+	github.com/lyraproj/lyra-operator v0.0.0-20190315160732-5cae8a9bc88d
+	github.com/lyraproj/pcore v0.0.0-20190408134742-7ef8f288585f
+	github.com/lyraproj/puppet-workflow v0.0.0-20190408135127-39314d42d0f4
+	github.com/lyraproj/servicesdk v0.0.0-20190408134916-985421696619
+	github.com/lyraproj/terraform-bridge v0.0.0-20190408135359-a8c691855a82
+	github.com/lyraproj/wfe v0.0.0-20190408135039-be57c7687d8f
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect

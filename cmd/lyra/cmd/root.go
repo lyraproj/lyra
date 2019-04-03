@@ -34,7 +34,7 @@ func NewRootCmd() *cobra.Command {
 	}
 
 	cmd.PersistentFlags().BoolVar(&debug, "debug", false, gotext.Get("Sets log level to debug"))
-	cmd.PersistentFlags().StringVar(&loglevel, "loglevel", "", gotext.Get("Set log level to fatal, error, warn, info or debug"))
+	cmd.PersistentFlags().StringVar(&loglevel, "loglevel", "", gotext.Get("Set log level to error, warn, info or debug"))
 
 	cmd.SetHelpTemplate(ansi.Blue + version.LogoFiglet + ansi.Reset + ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
