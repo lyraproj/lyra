@@ -64,7 +64,7 @@
       "Image": "lyra::application",
       "Config": {
         "databaseID": "i-1308450800133028021",
-        "name": "appserver1xxx"
+        "name": "app-server1"
       },
       "Cpus": 4,
       "Memory": "8G"
@@ -76,7 +76,7 @@
       "Image": "lyra::application",
       "Config": {
         "databaseID": "i-1308450800133028021",
-        "name": "appserver2xxx"
+        "name": "app-server2"
       },
       "Cpus": 4,
       "Memory": "8G"
