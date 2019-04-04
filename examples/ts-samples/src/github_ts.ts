@@ -1,7 +1,6 @@
-import {action, logger, PluginLogger, resource, ServiceBuilder} from 'lyra-workflow';
-import * as util from 'util';
+import {action, logger, resource, ServiceBuilder} from 'lyra-workflow';
 
-import * as TerraformGitHub from './types/TerraformGitHub';
+import * as GitHub from './types/GitHub';
 
 // # You will need to set the following environment variables to authenticate with GitHub
 // # export GITHUB_ORGANIZATION=lyraproj
@@ -12,8 +11,8 @@ const wf = {
 
   activities: {
     github_repository: resource({
-      state: (): TerraformGitHub.Github_repository => {
-        return new TerraformGitHub.Github_repository({
+      state: (): GitHub.Repository => {
+        return new GitHub.Repository({
             name: "lyra-provider-test-ts",
             description: "Created using Lyra"
         })

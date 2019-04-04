@@ -1,7 +1,6 @@
-import {action, logger, PluginLogger, resource, ServiceBuilder} from 'lyra-workflow';
-import * as util from 'util';
+import {action, logger, resource, ServiceBuilder} from 'lyra-workflow';
 
-import * as TerraformKubernetes from './types/TerraformKubernetes';
+import * as Kubernetes from './types/Kubernetes';
 
 const wf = {
   source: __filename,
@@ -9,26 +8,24 @@ const wf = {
   activities: {
     Kubernetes_namespace: resource({
       output: 'kubernetes_namespace_id',
-      state: (): TerraformKubernetes.Kubernetes_namespace =>{
-        var m = new TerraformKubernetes.Kubernetes_namespace_metadata_133({name:"lyra-ts"})
-        return new TerraformKubernetes.Kubernetes_namespace({metadata:[m]})
+      state: (): Kubernetes.Namespace =>{
+        return new Kubernetes.Namespace({namespace_id:"lyra-ts"})
       }
     }),
     Kubernetes_service: resource({
       output: 'kubernetes_service_id',
-      state: (): TerraformKubernetes.Kubernetes_service =>{
-        var m = new TerraformKubernetes.Kubernetes_service_metadata_545({name:"lyra-service-ts"})
-
-        var p = new TerraformKubernetes.Kubernetes_service_spec_546_port_547({port: 80, target_port: "80"})
-        var s = new TerraformKubernetes.Kubernetes_service_spec_546({
+      state: (): Kubernetes.Service =>{
+        var m = {name:"lyra-service-ts"}
+        var p = {port: 80, target_port: "80"}
+        var s = {
           session_affinity: "ClientIP",
           port: [p],
           type: "LoadBalancer",
           selector: {
             "app": "lyra-test"
           }
-        })
-        return new TerraformKubernetes.Kubernetes_service({metadata:[m], spec:[s] })
+        }
+        return new Kubernetes.Service({metadata:m, spec:s })
       }
     })
 

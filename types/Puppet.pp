@@ -14,7 +14,7 @@ type Puppet = TypeSet[{
     Service => {
       functions => {
         'invoke' => Callable[
-          [String, String, Any, 2, 'default'],
+          [String, String, Any, 2, default],
           Any],
         'metadata' => Callable[0, 0, Tuple[Pcore::TypeSet]],
         'state' => Callable[

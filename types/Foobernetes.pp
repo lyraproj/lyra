@@ -8,23 +8,11 @@ type Foobernetes = TypeSet[{
   types => {
     Instance => {
       attributes => {
-        'instanceID' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'instanceIP' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'location' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'instanceID' => Optional[String],
+        'instanceIP' => Optional[String],
+        'location' => Optional[String],
         'image' => String,
-        'config' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
+        'config' => Optional[Hash[String, String]],
         'cpus' => Integer,
         'memory' => String
       }
@@ -39,27 +27,12 @@ type Foobernetes = TypeSet[{
     },
     LoadBalancer => {
       attributes => {
-        'loadBalancerID' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'loadBalancerIP' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'location' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'replica' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
+        'loadBalancerID' => Optional[String],
+        'loadBalancerIP' => Optional[String],
+        'location' => Optional[String],
+        'replica' => Optional[Boolean],
         'webServerIDs' => Array[String],
-        'tags' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        }
+        'tags' => Optional[Hash[String, String]]
       }
     },
     LoadBalancerHandler => {
@@ -72,10 +45,7 @@ type Foobernetes = TypeSet[{
     },
     WebServer => {
       attributes => {
-        'webServerID' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'webServerID' => Optional[String],
         'port' => Integer,
         'appServers' => Array[String]
       }

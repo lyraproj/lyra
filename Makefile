@@ -17,11 +17,11 @@ LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --shor
 
 GO_PLUGINS := $(subst cmd/,,$(wildcard cmd/goplugin-*))
 TERRAFORM_PLUGINS := \
-	terraformaws \
-	terraformazurerm \
-	terraformgithub \
-	terraformgoogle \
-	terraformkubernetes
+	aws \
+	azurerm \
+	github \
+	google \
+	kubernetes
 
 PHONY+= default
 default: LINTFLAGS = --fast
