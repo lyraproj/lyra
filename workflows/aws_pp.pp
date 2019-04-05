@@ -1,14 +1,14 @@
 workflow aws_pp {
-  typespace => 'TerraformAws',
+  typespace => 'Aws',
   input => (
     Hash[String,String] $tags = lookup('aws.tags'),
   ),
   output => (
-    String $aws_vpc_id,
+    String $vpc_id,
   )
 } {
 
-  resource aws_iam_role {
+  resource iam_role {
   } {
     name => 'lyra-iam-role',
     assume_role_policy => '{
@@ -27,6 +27,7 @@ workflow aws_pp {
           }
        }
     ]}'
+
   }
 
   #
@@ -38,21 +39,21 @@ workflow aws_pp {
   #   public_key => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"
   # }
 
-  resource aws_vpc {
+  resource vpc {
     # type is implicit and is derived from the
     # activity name, in contrast to subnets below
     input  => ($tags),
-    output => ($aws_vpc_id)
+    output => ($vpc_id)
   }{
     cidr_block => '192.168.0.0/16',
     instance_tenancy => 'default',
     tags => $tags
   }
 
-  resource aws_route_table {
-    input  => ($aws_vpc_id),
+  resource route_table {
+    input  => ($vpc_id),
   } {
-    vpc_id => $aws_vpc_id,
+    vpc_id => $vpc_id,
     tags => {
       'Name' => 'lyra-routetable',
       'created_by' => 'lyra'
@@ -60,40 +61,40 @@ workflow aws_pp {
   }
 
   #
-  # Deletion of aws_internet_gateway fails => see https {//github.com/lyraproj/lyra/issues/204
+  # Deletion of internet_gateway fails => see https {//github.com/lyraproj/lyra/issues/204
   #
-  # resource aws_internet_gateway {
-  #   input  => ($aws_vpc_id),
+  # resource internet_gateway {
+  #   input  => ($vpc_id),
   # } {
-  #   vpc_id => $aws_vpc_id
+  #   vpc_id => $vpc_id
   # }
 
-  resource aws_security_group {
-    input  => ($aws_vpc_id),
+  resource security_group {
+    input  => ($vpc_id),
   }{
     name => "lyra",
     description => "lyra security group",
-    vpc_id => $aws_vpc_id,
-    ingress => [TerraformAws::Aws_security_group_ingress_501(
+    vpc_id => $vpc_id,
+    ingress => [{
       from_port   => 0,
       to_port     => 0,
       protocol    => "-1",
       cidr_blocks => ["0.0.0.0/0"],
-    )],
-    egress => [TerraformAws::Aws_security_group_egress_500(
+    }],
+    egress => [{
       from_port       => 0,
       to_port         => 0,
       protocol        => "-1",
       cidr_blocks     => ["0.0.0.0/0"]
-    )]
+    }]
   }
 
-  resource aws_subnet1 {
-    type =>  'TerraformAws::aws_subnet',
-    input  => ($aws_vpc_id),
-    output => ($aws_subnet_id1 = aws_subnet_id)
+  resource subnet1 {
+    type =>  'Aws::Subnet',
+    input  => ($vpc_id),
+    output => ($subnet_id1 = subnet_id)
   }{
-    vpc_id => $aws_vpc_id,
+    vpc_id => $vpc_id,
     cidr_block => '192.168.1.0/24',
     tags => {
       'Name' => 'lyra-subnet-1',
@@ -101,12 +102,12 @@ workflow aws_pp {
     }
   }
 
-  resource aws_subnet2 {
-    type =>  'TerraformAws::aws_subnet',
-    input  => ($aws_vpc_id),
-    output => ($aws_subnet_id2 = aws_subnet_id)
+  resource subnet2 {
+    type =>  'Aws::Subnet',
+    input  => ($vpc_id),
+    output => ($subnet_id2 = subnet_id)
   }{
-    vpc_id => $aws_vpc_id,
+    vpc_id => $vpc_id,
     cidr_block => '192.168.2.0/24',
     tags => {
       'Name' => 'lyra-subnet-2',
@@ -114,26 +115,26 @@ workflow aws_pp {
     }
   }
 
-  resource aws_instance1 {
-    type =>  'TerraformAws::aws_instance',
-    input  => ($aws_subnet_id1)
+  resource instance1 {
+    type =>  'Aws::Instance',
+    input  => ($subnet_id1)
   }{
     instance_type => 't2.nano',
     ami => 'ami-f90a4880',
-    subnet_id => $aws_subnet_id1,
+    subnet_id => $subnet_id1,
     tags => {
       'Name' => 'lyra-instance-1',
       'created_by' => 'lyra'
     }
   }
 
-  resource aws_instance2 {
-    type =>  'TerraformAws::aws_instance',
-    input  => ($aws_subnet_id2)
+  resource instance2 {
+    type =>  'Aws::Instance',
+    input  => ($subnet_id2)
   }{
     instance_type => 't2.nano',
     ami => 'ami-f90a4880',
-    subnet_id => $aws_subnet_id2,
+    subnet_id => $subnet_id2,
     tags => {
       'Name' => 'lyra-instance-2',
       'created_by' => 'lyra'

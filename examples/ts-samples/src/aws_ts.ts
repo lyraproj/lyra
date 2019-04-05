@@ -1,7 +1,6 @@
-import { action, logger, PluginLogger, resource, ServiceBuilder } from 'lyra-workflow';
-import * as util from 'util';
+import { action, logger, resource, ServiceBuilder } from 'lyra-workflow';
 
-import * as TerraformAws from './types/TerraformAws';
+import * as Aws from './types/Aws';
 
 const wf = {
   source: __filename,
@@ -13,8 +12,8 @@ const wf = {
   activities: {
 
     aws_iam_role: resource({
-      state: (): TerraformAws.Aws_iam_role => {
-        return new TerraformAws.Aws_iam_role({
+      state: (): Aws.Iam_role => {
+        return new Aws.Iam_role({
           name: "lyra-iam-role",
           assume_role_policy: `{
             "Version": "2012-10-17",
@@ -39,11 +38,11 @@ const wf = {
     }),
 
     //
-    // Application of aws_key_pair succeeds on the first run then fails: see https://github.com/lyraproj/lyra/issues/203
+    // Application of Key_pair succeeds on the first run then fails: see https://github.com/lyraproj/lyra/issues/203
     //
     // aws_key_pair: resource({
-    //   state: (): TerraformAws.Aws_key_pair => {
-    //     return new TerraformAws.Aws_key_pair({
+    //   state: (): Aws.Key_pair => {
+    //     return new Aws.Key_pair({
     //       key_name: "lyra-test-keypair",
     //       public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"
     //     })
@@ -51,9 +50,9 @@ const wf = {
     // }),
 
     aws_vpc: resource({
-      output: "aws_vpc_id",
-      state: (tags: { [s: string]: string }): TerraformAws.Aws_vpc => {
-        return new TerraformAws.Aws_vpc({
+      output: "vpc_id",
+      state: (tags: { [s: string]: string }): Aws.Vpc => {
+        return new Aws.Vpc({
           cidr_block: "192.168.0.0/16",
           instance_tenancy: "default",
           tags: tags
@@ -63,16 +62,16 @@ const wf = {
 
     // An example of an action triggered after the VPC is created
     vpcDone: action({
-      do: (aws_vpc_id: string): { vpcOk: boolean } => {
-        logger.info('created vpc', 'aws_vpc_id', aws_vpc_id);
+      do: (vpc_id: string): { vpcOk: boolean } => {
+        logger.info('created vpc', 'vpc_id', vpc_id);
         return { vpcOk: true };
       }
     }),
 
     aws_route_table: resource({
-      state: (aws_vpc_id: string): TerraformAws.Aws_route_table => {
-        return new TerraformAws.Aws_route_table({
-          vpc_id: aws_vpc_id,
+      state: (vpc_id: string): Aws.Route_table => {
+        return new Aws.Route_table({
+          vpc_id: vpc_id,
           tags: {
             "name": "lyra-routetable",
             "created_by": "lyra"
@@ -82,45 +81,45 @@ const wf = {
     }),
 
     //
-    // Deletion of aws_internet_gateway fails: see https://github.com/lyraproj/lyra/issues/204
+    // Deletion of Internet_gateway fails: see https://github.com/lyraproj/lyra/issues/204
     //
     // aws_internet_gateway: resource({
-    //   state: (aws_vpc_id: string): TerraformAws.Aws_internet_gateway => {
-    //     return new TerraformAws.Aws_internet_gateway({
+    //   state: (vpc_id: string): Aws.Internet_gateway => {
+    //     return new Aws.Internet_gateway({
     //       vpc_id: aws_vpc_id,
     //     })
     //   }
     // }),
 
     aws_security_group: resource({
-      state: (aws_vpc_id: string): TerraformAws.Aws_security_group => {
-        return new TerraformAws.Aws_security_group({
+      state: (vpc_id: string): Aws.Security_group => {
+        return new Aws.Security_group({
           name: "lyra",
           description: "lyra security group",
-          vpc_id: aws_vpc_id,
-          ingress: [new TerraformAws.Aws_security_group_ingress_501({
+          vpc_id: vpc_id,
+          ingress: [{
             from_port: 0,
             to_port: 0,
             protocol: "-1",
             cidr_blocks: ["0.0.0.0/0"]
-          })],
-          egress: [new TerraformAws.Aws_security_group_egress_500({
+          }],
+          egress: [{
             from_port: 0,
             to_port: 0,
             protocol: "-1",
             cidr_blocks: ["0.0.0.0/0"]
-          })],
+          }],
         })
       }
     }),
 
     aws_subnet1: resource({
       output: {
-        "aws_subnet_id1": { alias: "aws_subnet_id" }
+        "subnet_id1": { alias: "subnet_id" }
       },
-      state: (aws_vpc_id: string): TerraformAws.Aws_subnet => {
-        return new TerraformAws.Aws_subnet({
-          vpc_id: aws_vpc_id,
+      state: (vpc_id: string): Aws.Subnet => {
+        return new Aws.Subnet({
+          vpc_id: vpc_id,
           cidr_block: "192.168.1.0/24",
           tags: {
             "name": "lyra-subnet-1",
@@ -132,11 +131,11 @@ const wf = {
 
     aws_subnet2: resource({
       output: {
-        "aws_subnet_id2": { alias: "aws_subnet_id" }
+        "subnet_id2": { alias: "subnet_id" }
       },
-      state: (aws_vpc_id: string): TerraformAws.Aws_subnet => {
-        return new TerraformAws.Aws_subnet({
-          vpc_id: aws_vpc_id,
+      state: (vpc_id: string): Aws.Subnet => {
+        return new Aws.Subnet({
+          vpc_id: vpc_id,
           cidr_block: "192.168.2.0/24",
           tags: {
             "name": "lyra-subnet-2",
@@ -147,11 +146,11 @@ const wf = {
     }),
 
     aws_instance1: resource({
-      state: (aws_subnet_id1: string): TerraformAws.Aws_instance => {
-        return new TerraformAws.Aws_instance({
+      state: (subnet_id1: string): Aws.Instance => {
+        return new Aws.Instance({
           instance_type: "t2.nano",
           ami: "ami-f90a4880",
-          subnet_id: aws_subnet_id1,
+          subnet_id: subnet_id1,
           tags: {
             "name": "lyra-instance-1",
             "created_by": "lyra"
@@ -161,8 +160,8 @@ const wf = {
     }),
 
     aws_instance2: resource({
-      state: (aws_subnet_id2: string): TerraformAws.Aws_instance => {
-        return new TerraformAws.Aws_instance({
+      state: (aws_subnet_id2: string): Aws.Instance => {
+        return new Aws.Instance({
           instance_type: "t2.nano",
           ami: "ami-f90a4880",
           subnet_id: aws_subnet_id2,
@@ -182,3 +181,4 @@ sb.workflow(wf);
 const server = sb.build(global);
 logger.info('Starting the server', 'serverId', server.serviceId.toString());
 server.start();
+

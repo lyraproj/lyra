@@ -29,10 +29,7 @@ type Example = TypeSet[{
         }
       },
       attributes => {
-        'id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'id' => Optional[String],
         'ownerId' => String,
         'stuff' => String
       }
@@ -52,10 +49,7 @@ type Example = TypeSet[{
         }
       },
       attributes => {
-        'id' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
+        'id' => Optional[String],
         'phone' => String
       }
     },
@@ -73,10 +67,7 @@ type Example = TypeSet[{
           'type' => Boolean,
           'value' => false
         },
-        'address' => {
-          'type' => Optional[Address],
-          'value' => undef
-        }
+        'address' => Optional[Address]
       }
     },
     PersonHandler => {
