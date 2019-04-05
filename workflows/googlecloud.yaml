@@ -3,9 +3,9 @@
 # export GOOGLE_APPLICATION_CREDENTIALS=<credentials-file.json>
 
 googlecloud:
-  typespace: TerraformGoogle
+  typespace: Google
   activities:
-    google_compute_instance:
+    compute_instance:
       state:
         name: "lyra-test"
         zone: "us-central1-a"
