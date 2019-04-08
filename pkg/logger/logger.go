@@ -7,10 +7,6 @@ import (
 	hclog "github.com/hashicorp/go-hclog"
 )
 
-const (
-	logsDisabled = 100
-)
-
 var logger hclog.Logger
 var once sync.Once
 
@@ -33,7 +29,7 @@ func Initialise(spec Spec) hclog.Logger {
 	once.Do(func() {
 		hclog.DefaultOptions = &hclog.LoggerOptions{
 			Name:            spec.Name,
-			Level:           hclog.Level(logsDisabled),
+			Level:           hclog.Warn,
 			JSONFormat:      spec.JSON,
 			IncludeLocation: spec.IncludeLocation,
 		}
