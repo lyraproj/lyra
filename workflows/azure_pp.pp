@@ -81,26 +81,26 @@ workflow azure_pp {
           resource_group_name =>  $resource_group_name,
           network_interface_ids => [$nic_id],
           vm_size => 'Standard_B1s',
-          storage_image_reference => [{
+          storage_image_reference => {
             publisher => 'Canonical',
             offer => 'UbuntuServer',
             sku => '18.04-LTS',
             version => 'latest',
-          }],
-          storage_os_disk => [{
+          },
+          storage_os_disk => {
             name => 'lyraosppdisk1',
             caching => 'ReadWrite',
             create_option => 'FromImage',
             managed_disk_type => 'Standard_LRS',
-          }],
-          os_profile => [{
+          },
+          os_profile => {
             computer_name => 'hostnamePp',
             admin_username => 'testadminpp',
             admin_password => 'Password1234!',
-          }],
-          os_profile_linux_config => [{
+          },
+          os_profile_linux_config => {
             disable_password_authentication => false,
-          }],
+          },
           tags => {
               'environment' => 'lyra-test-pp'
           },
