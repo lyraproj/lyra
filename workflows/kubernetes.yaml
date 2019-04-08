@@ -1,21 +1,21 @@
 kubernetes:
- typespace: TerraformKubernetes
+ typespace: Kubernetes
  output:
-   kubernetes_namespace_id: String
-   kubernetes_service_id: String
+   namespace_id: String
+   service_id: String
  activities:
-   Kubernetes_namespace:
-     output: kubernetes_namespace_id
+   namespace:
+     output: namespace_id
      state:
        metadata:
-         - name: lyra-terraform-ns
+         - name: lyra-ns
            labels:
-             name: lyra-terraform-ns
-   Kubernetes_service:
-     output: kubernetes_service_id
+             name: lyra-ns
+   service:
+     output: service_id
      state:
       metadata:
-        - name: lyra-terraform-service
+        - name: lyra-service
       spec:
         - session_affinity: ClientIP
           selector:

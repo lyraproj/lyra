@@ -31,9 +31,9 @@ workflow aws_pp {
   }
 
   #
-  # Application of aws_key_pair succeeds on the first run then fails => see https {//github.com/lyraproj/lyra/issues/203
+  # Application of key_pair succeeds on the first run then fails => see https {//github.com/lyraproj/lyra/issues/203
   #
-  # resource aws_key_pair {
+  # resource key_pair {
   # } {
   #   key_name => 'lyra-test-keypair',
   #   public_key => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"

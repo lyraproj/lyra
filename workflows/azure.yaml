@@ -1,9 +1,9 @@
 # You will need to authenticate with Azure using the "az login" command
 
 azure:
-  typespace: TerraformAzureRM
+  typespace: AzureRM
   activities:
-    azurerm_resource_group:
+    resource_group:
       output:
         resource_group_name: name
       state:
@@ -11,7 +11,7 @@ azure:
         location: ukwest
         tags:
           environment: "Lyra Example"
-    azurerm_virtual_network:
+    virtual_network:
       output:
         virtual_network_name: name
       state:
@@ -19,22 +19,22 @@ azure:
         address_space: [10.0.0.0/16]
         location: ukwest
         resource_group_name: $resource_group_name
-    azurerm_subnet:
-      output: azurerm_subnet_id
+    subnet:
+      output: subnet_id
       state:
         name: lyraSubnet
         resource_group_name: $resource_group_name
         virtual_network_name: $virtual_network_name
         address_prefix: 10.0.1.0/24
-    azurerm_public_ip:
-      output: azurerm_public_ip_id
+    public_ip:
+      output: public_ip_id
       state:
         name: lyraPublicIP
         location: ukwest
         resource_group_name: $resource_group_name
-        public_ip_address_allocation: dynamic
-    azurerm_network_security_group:
-      output: azurerm_network_security_group_id
+        allocation_method: dynamic
+    network_security_group:
+      output: network_security_group_id
       state:
         name: lyraNetworkSecurityGroup
         location: ukwest
@@ -46,44 +46,44 @@ azure:
             access: Allow
             protocol: Tcp
             source_port_range: "*"
-            destination_port_range: 22
+            destination_port_range: "22"
             source_address_prefix: "*"
             destination_address_prefix: "*"
-    azurerm_network_interface:
-      output: azurerm_network_interface_id
+    network_interface:
+      output: network_interface_id
       state:
         name: lyraNIC
         location: ukwest
         resource_group_name: $resource_group_name
-        network_security_group_id: $azurerm_network_security_group_id
+        network_security_group_id: $network_security_group_id
         ip_configuration:
           - name: lyraNicConfiguration
-            subnet_id: $azurerm_subnet_id
+            subnet_id: $subnet_id
             private_ip_address_allocation: dynamic
-            public_ip_address_id: $azurerm_public_ip_id
-    azurerm_virtual_machine:
+            public_ip_address_id: $public_ip_id
+    virtual_machine:
       state:
         name: lyraVirtualMachine
         location: UK West
         resource_group_name: $resource_group_name
-        network_interface_ids: [$azurerm_network_interface_id]
+        network_interface_ids: [$network_interface_id]
         vm_size: Standard_B1s
         storage_image_reference:
-          - publisher: Canonical
-            offer: UbuntuServer
-            sku: 18.04-LTS
-            version: latest
+          publisher: Canonical
+          offer: UbuntuServer
+          sku: 18.04-LTS
+          version: latest
         storage_os_disk:
-          - name: lyraosdisk1
-            caching: ReadWrite
-            create_option: FromImage
-            managed_disk_type: Standard_LRS
+          name: lyraosdisk1
+          caching: ReadWrite
+          create_option: FromImage
+          managed_disk_type: Standard_LRS
         os_profile:
-          - computer_name: hostname
-            admin_username: testadmin
-            admin_password: Password1234!
+          computer_name: hostname
+          admin_username: testadmin
+          admin_password: Password1234!
         os_profile_linux_config:
-          - disable_password_authentication: false
+          disable_password_authentication: false
         tags:
           environment: lyra-test
         delete_os_disk_on_termination: true

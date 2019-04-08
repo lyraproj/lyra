@@ -3,9 +3,9 @@
 # export GITHUB_TOKEN=<token>
 
 github:
-  typespace: TerraformGitHub
+  typespace: GitHub
   activities:
-    github_repository:
+    repository:
       state:
         name: "lyra-provider-test"
         description: "Created using Lyra"
