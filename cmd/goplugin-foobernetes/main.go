@@ -4,10 +4,15 @@ import (
 	"os"
 
 	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/issue/issue"
 	"github.com/lyraproj/lyra/cmd/goplugin-foobernetes/foobernetes"
 )
 
 func init() {
+	// Tell issue reporting to amend all errors with a stack trace
+	if hclog.DefaultOptions.Level <= hclog.Debug {
+		issue.IncludeStacktrace(true)
+	}
 	// Configuring hclog like this allows Lyra to handle log levels automatically
 	hclog.DefaultOptions = &hclog.LoggerOptions{
 		Name:            "Foobernetes",
