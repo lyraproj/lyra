@@ -5,7 +5,9 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"os/signal"
 	"strings"
+	"syscall"
 
 	"github.com/lyraproj/pcore/utils"
 
@@ -93,6 +95,23 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 		}
 	}
 
+	lookupOptions := map[string]px.Value{
+		`path`:                      types.WrapString(hieraDataFilename),
+		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
+
+	sgs := make(chan os.Signal, 1)
+	done := make(chan bool, 1)
+
+	// Spawn signal handler routine. It will get called explicitly by the deferred func
+	// below this one unless it is called when a signal is trapped.
+	go func() {
+		<-sgs
+		plugin.CleanupClients()
+		logger.Get().Debug("all plugins cleaned up")
+		done <- true
+	}()
+	signal.Notify(sgs, syscall.SIGINT, syscall.SIGTERM)
+
 	defer func() {
 		if e := recover(); e != nil {
 			exitCode = 1
@@ -102,13 +121,9 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 				ui.Message("fatal", e)
 			}
 		}
-		plugin.CleanupClients()
-		logger.Get().Debug("all plugins cleaned up")
+		sgs <- syscall.SIGUSR1 // Our own
+		<-done
 	}()
-
-	lookupOptions := map[string]px.Value{
-		`path`:                      types.WrapString(hieraDataFilename),
-		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
 
 	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, a.applyWithContext(workflowName, intent))
 	return 0
