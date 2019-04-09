@@ -313,6 +313,8 @@ github.com/lyraproj/wfe v0.0.0-20190405111643-1999d0d1167b h1:KIhK2wuUpNCACTgnj4
 github.com/lyraproj/wfe v0.0.0-20190405111643-1999d0d1167b/go.mod h1:hMCl1+Pl9Xv8CJYGyQdfhKqYunZyL711e5Q3WJQI88g=
 github.com/lyraproj/wfe v0.0.0-20190408135039-be57c7687d8f h1:ZzI3qQbt95YcIRGUPx+vE4kMCvO7TsYeFv4RPISHtiY=
 github.com/lyraproj/wfe v0.0.0-20190408135039-be57c7687d8f/go.mod h1:wNoaF35MCY+23HrQxu6HhdLAECaVq+PIZej4mI2ASzE=
+github.com/lyraproj/wfe v0.0.0-20190409154400-e9ace52dcb8b h1:x4OqyWF93SUZ/ZPvV+lxvYgHKjY3n5Tt1RgunVbWrA0=
+github.com/lyraproj/wfe v0.0.0-20190409154400-e9ace52dcb8b/go.mod h1:wNoaF35MCY+23HrQxu6HhdLAECaVq+PIZej4mI2ASzE=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=
 github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a/go.mod h1:M1qoD/MqPgTZIk0EWKB38wE28ACRfVcn+cU08jyArI0=

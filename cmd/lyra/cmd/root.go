@@ -15,8 +15,9 @@ import (
 )
 
 var (
-	debug    bool
-	loglevel string
+	debug     bool
+	loglevel  string
+	dlvConfig string
 )
 
 // NewRootCmd returns the root command
@@ -35,6 +36,7 @@ func NewRootCmd() *cobra.Command {
 
 	cmd.PersistentFlags().BoolVar(&debug, "debug", false, gotext.Get("Sets log level to debug"))
 	cmd.PersistentFlags().StringVar(&loglevel, "loglevel", "", gotext.Get("Set log level to error, warn, info or debug"))
+	cmd.PersistentFlags().StringVar(&dlvConfig, "dlv", "", gotext.Get("Tell remote process to stop and listen for debugger to attach"))
 
 	cmd.SetHelpTemplate(ansi.Blue + version.LogoFiglet + ansi.Reset + ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)

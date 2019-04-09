@@ -41,7 +41,7 @@ func NewControllerCmd() *cobra.Command {
 
 func runControllerCmd(cmd *cobra.Command, args []string) {
 	logf.SetLogger(&hclogLogger{hcLogger: logger.Get()})
-	applicator := &apply.Applicator{HomeDir: homeDir}
+	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
 	err := controller.Start(namespace, applicator)
 	if err != nil {
 		logger.Get().Error("Failed to start controller", "err", err)

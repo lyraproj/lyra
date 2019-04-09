@@ -37,7 +37,7 @@ func NewApplyCmd() *cobra.Command {
 }
 
 func runApplyCmd(cmd *cobra.Command, args []string) {
-	applicator := &apply.Applicator{HomeDir: homeDir}
+	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
 	workflowName := args[0]
 	exitCode := applicator.ApplyWorkflow(workflowName, hieraDataFilename, wf.Upsert)
 	if exitCode != 0 {

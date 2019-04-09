@@ -14,7 +14,7 @@ require (
 	github.com/lyraproj/puppet-workflow v0.0.0-20190408135127-39314d42d0f4
 	github.com/lyraproj/servicesdk v0.0.0-20190408134916-985421696619
 	github.com/lyraproj/terraform-bridge v0.0.0-20190408135359-a8c691855a82
-	github.com/lyraproj/wfe v0.0.0-20190408135039-be57c7687d8f
+	github.com/lyraproj/wfe v0.0.0-20190409154400-e9ace52dcb8b
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect

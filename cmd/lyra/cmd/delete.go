@@ -33,7 +33,7 @@ func NewDeleteCmd() *cobra.Command {
 }
 
 func runDeleteCmd(cmd *cobra.Command, args []string) {
-	applicator := &apply.Applicator{HomeDir: homeDir}
+	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
 	workflowName := args[0]
 	exitCode := applicator.ApplyWorkflow(workflowName, hieraDataFilename, wf.Delete)
 	if exitCode != 0 {
