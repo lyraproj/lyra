@@ -78,7 +78,7 @@ aws:
             cidr_blocks: ["0.0.0.0/0"]
 
     subnet1:
-      type:  Aws::subnet
+      type:  Aws::Subnet
       output:
         subnet_id1: subnet_id
       state:
@@ -89,7 +89,7 @@ aws:
           created_by: lyra
 
     subnet2:
-      type:  Aws::subnet
+      type:  Aws::Subnet
       output:
         subnet_id2: subnet_id
       state:
@@ -100,7 +100,7 @@ aws:
           created_by: lyra
 
     instance1:
-      type:  Aws::instance
+      type:  Aws::Instance
       state:
         instance_type: 't2.nano'
         ami: 'ami-f90a4880'
@@ -110,7 +110,7 @@ aws:
           created_by: lyra
 
     instance2:
-      type:  Aws::instance
+      type:  Aws::Instance
       state:
         instance_type: 't2.nano'
         ami: 'ami-f90a4880'

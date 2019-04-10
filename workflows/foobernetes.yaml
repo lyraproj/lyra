@@ -78,8 +78,8 @@ foobernetes:
     # present in the actual state of the resource returned by the "loadbalancer"
     # state handler. The two inputs are implicit and can be identified by the use of
     # a dollar sign ($) i.e. appServerID1 and appServerID2.
-    web-server1:
-      type: Foobernetes::webserver
+    web-servers:
+      type: Foobernetes::Webserver
       output:
         webServerID1: webServerID
       state:
@@ -91,7 +91,7 @@ foobernetes:
     # need to be unique across the entire workflow and so again the "webServerID"
     # field from the actual resource state is aliased.
     web-server2:
-      type: Foobernetes::webserver
+      type: Foobernetes::Webserver
       output:
         webServerID2: webServerID
       state:
@@ -116,7 +116,7 @@ foobernetes:
     # activity name must be unique. The activity also declares its inputs
     # explicitly, which is never necessary in yaml but can aid clarity.
     secondary-loadbalancer:
-      type: Foobernetes::loadbalancer
+      type: Foobernetes::Loadbalancer
       input: [webServerID1, webServerID2]
       output:
         secondaryLoadBalancerID: loadBalancerID
@@ -132,7 +132,7 @@ foobernetes:
     # The state section of an activity can be arbitrarily nested as shown in the
     # "config" section.
     app-server1:
-      type: Foobernetes::instance
+      type: Foobernetes::Instance
       output:
         appServerID1: instanceID
       state:
@@ -145,7 +145,7 @@ foobernetes:
         memory: 8G
 
     app-server2:
-      type: Foobernetes::instance
+      type: Foobernetes::Instance
       output:
         appServerID2: instanceID
       state:
@@ -158,7 +158,7 @@ foobernetes:
         memory: 8G
 
     database:
-      type: Foobernetes::instance
+      type: Foobernetes::Instance
       output:
         databaseID: instanceID
       state:
