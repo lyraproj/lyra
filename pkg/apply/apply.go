@@ -1,10 +1,13 @@
 package apply
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/lyraproj/pcore/utils"
 
 	"github.com/hashicorp/go-plugin"
 
@@ -28,7 +31,8 @@ import (
 
 // Applicator is used to apply workflows
 type Applicator struct {
-	HomeDir string
+	HomeDir   string
+	DlvConfig string
 }
 
 type cmdError string
@@ -49,7 +53,7 @@ func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[strin
 	tp := func(ic lookup.ProviderContext, key string, _ map[string]px.Value) (px.Value, bool) {
 		return v.Get4(key)
 	}
-	lookup.DoWithParent(context.Background(), tp, nil, applyWithContext(workflowName, intent))
+	lookup.DoWithParent(context.Background(), tp, nil, a.applyWithContext(workflowName, intent))
 }
 
 //convertToDeepMap converts a map[string]string with entries like {k:"aws.tags.created_by", v:"user@company.com"}
@@ -106,14 +110,15 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 		`path`:                      types.WrapString(hieraDataFilename),
 		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
 
-	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, applyWithContext(workflowName, intent))
+	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, a.applyWithContext(workflowName, intent))
 	return 0
 }
 
-func applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
+func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
 	return func(c px.Context) {
 		logger := logger.Get()
 		c.DoWithLoader(loader.New(c.Loader()), func() {
+			a.parseDlvConfig(c)
 			if intent == wf.Delete {
 				logger.Debug("calling delete")
 				delete(c, workflowName)
@@ -127,6 +132,28 @@ func applyWithContext(workflowName string, intent wf.Operation) func(px.Context)
 			}
 		})
 	}
+}
+
+func (a *Applicator) parseDlvConfig(c px.Context) {
+	cfg := strings.TrimSpace(a.DlvConfig)
+	if cfg == `` {
+		return
+	}
+
+	// config must be a string or a hash. The former must be quoted unless it already is
+	switch cfg[0] {
+	case '{', '"', '\'':
+	default:
+		b := bytes.NewBufferString(``)
+		utils.PuppetQuote(b, cfg)
+		cfg = b.String()
+	}
+	dc, err := types.Parse(cfg)
+	if err != nil {
+		panic(cmdError(fmt.Sprintf("Unable to parse --dlv option '%s': %s", cfg, err.Error())))
+	}
+	// Pass DlvConfig on to the plugin loader
+	c.Set(api.LyraDlvConfigKey, dc)
 }
 
 func loadActivity(c px.Context, activityID string) api.Activity {
