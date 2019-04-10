@@ -289,6 +289,8 @@ github.com/lyraproj/puppet-workflow v0.0.0-20190408135127-39314d42d0f4 h1:J2Ij4B
 github.com/lyraproj/puppet-workflow v0.0.0-20190408135127-39314d42d0f4/go.mod h1:MtAUoRQr0GKHfONnOlYD+UifcOG6RBa7RXRJFWZz1j8=
 github.com/lyraproj/puppet-workflow v0.0.0-20190410092735-55ac4c00a8c6 h1:RqT4PH9QOHO+906ItnFNv5kFbdbE1dXzdlecjlOqVNg=
 github.com/lyraproj/puppet-workflow v0.0.0-20190410092735-55ac4c00a8c6/go.mod h1:MtAUoRQr0GKHfONnOlYD+UifcOG6RBa7RXRJFWZz1j8=
+github.com/lyraproj/puppet-workflow v0.0.0-20190410094537-05995e9f9f3d h1:pRemLDDrjjEdpB0J7ypWFd+SIYia/BVf3L65HltOElI=
+github.com/lyraproj/puppet-workflow v0.0.0-20190410094537-05995e9f9f3d/go.mod h1:MtAUoRQr0GKHfONnOlYD+UifcOG6RBa7RXRJFWZz1j8=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190319214040-e12463a5bc49/go.mod h1:++0wnIhGpy7fvoBYFoMuhhByKJikXas4segsbrdJP90=
