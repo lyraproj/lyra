@@ -11,10 +11,10 @@ require (
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
 	github.com/lyraproj/lyra-operator v0.0.0-20190315160732-5cae8a9bc88d
 	github.com/lyraproj/pcore v0.0.0-20190408134742-7ef8f288585f
-	github.com/lyraproj/puppet-workflow v0.0.0-20190410094537-05995e9f9f3d
-	github.com/lyraproj/servicesdk v0.0.0-20190408134916-985421696619
-	github.com/lyraproj/terraform-bridge v0.0.0-20190408135359-a8c691855a82
-	github.com/lyraproj/wfe v0.0.0-20190409154400-e9ace52dcb8b
+	github.com/lyraproj/puppet-workflow v0.0.0-20190410153718-1013f5ecb2a4
+	github.com/lyraproj/servicesdk v0.0.0-20190410153708-929b42b6af38
+	github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7
+	github.com/lyraproj/wfe v0.0.0-20190410153657-367ce3f9ef38
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect

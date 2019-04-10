@@ -291,6 +291,8 @@ github.com/lyraproj/puppet-workflow v0.0.0-20190410092735-55ac4c00a8c6 h1:RqT4PH
 github.com/lyraproj/puppet-workflow v0.0.0-20190410092735-55ac4c00a8c6/go.mod h1:MtAUoRQr0GKHfONnOlYD+UifcOG6RBa7RXRJFWZz1j8=
 github.com/lyraproj/puppet-workflow v0.0.0-20190410094537-05995e9f9f3d h1:pRemLDDrjjEdpB0J7ypWFd+SIYia/BVf3L65HltOElI=
 github.com/lyraproj/puppet-workflow v0.0.0-20190410094537-05995e9f9f3d/go.mod h1:MtAUoRQr0GKHfONnOlYD+UifcOG6RBa7RXRJFWZz1j8=
+github.com/lyraproj/puppet-workflow v0.0.0-20190410153718-1013f5ecb2a4 h1:CbzCDs+NPM1LgoUpI/s07R8QUKdRiN1xC5mGVDP5zAc=
+github.com/lyraproj/puppet-workflow v0.0.0-20190410153718-1013f5ecb2a4/go.mod h1:ELZAVfd0IagVUETotFzABY5UC1ZYeSB5kas2uLLg5Sc=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190319214040-e12463a5bc49/go.mod h1:++0wnIhGpy7fvoBYFoMuhhByKJikXas4segsbrdJP90=
@@ -299,6 +301,9 @@ github.com/lyraproj/servicesdk v0.0.0-20190405110630-7e35406a94bd h1:Q09zC2++K1i
 github.com/lyraproj/servicesdk v0.0.0-20190405110630-7e35406a94bd/go.mod h1:w6s+eXq8Il80CKTGcTHni7LNo1C8EMjIl6Z6b51TEzw=
 github.com/lyraproj/servicesdk v0.0.0-20190408134916-985421696619 h1:6pst+J7dzj0Qm9jH0tgB5TF3lO3fREuqh1mDViwUcBs=
 github.com/lyraproj/servicesdk v0.0.0-20190408134916-985421696619/go.mod h1:JhBbVt9R8Br4wB7FbN2nctXoglv0aCIv2AM1sK0iwXc=
+github.com/lyraproj/servicesdk v0.0.0-20190410151500-46912f6caec3/go.mod h1:JhBbVt9R8Br4wB7FbN2nctXoglv0aCIv2AM1sK0iwXc=
+github.com/lyraproj/servicesdk v0.0.0-20190410153708-929b42b6af38 h1:QuGtGFB8Cti8W48Dxk48MQuStgAsSSBDh1MRS5zRRUs=
+github.com/lyraproj/servicesdk v0.0.0-20190410153708-929b42b6af38/go.mod h1:JhBbVt9R8Br4wB7FbN2nctXoglv0aCIv2AM1sK0iwXc=
 github.com/lyraproj/terraform-bridge v0.0.0-20190322124825-e0c8ca31477c h1:YIpfz2BjMEgQmvh5fJaBx5GpTHS2RbwzaaYLYSr4PmA=
 github.com/lyraproj/terraform-bridge v0.0.0-20190322124825-e0c8ca31477c/go.mod h1:E5HeQFojFgq86V9FRIVlCOI7xu1IvCAhwlFG6gA+xcI=
 github.com/lyraproj/terraform-bridge v0.0.0-20190404100100-60ed9090e32c h1:1WMhEzXxsl0ZlD0NCl1XyyFRpaUUpwaTftscx1fJdsU=
@@ -311,6 +316,8 @@ github.com/lyraproj/terraform-bridge v0.0.0-20190408082910-d100578e6698 h1:YlCSZ
 github.com/lyraproj/terraform-bridge v0.0.0-20190408082910-d100578e6698/go.mod h1:8ale9D8BSM44WsMf3ln0dzqhwyxofKO2XFcBgpZGTlo=
 github.com/lyraproj/terraform-bridge v0.0.0-20190408135359-a8c691855a82 h1:fV/T/hZYNLQxb+dsnZX63svThVUZTuqtkeKy/a6IYGY=
 github.com/lyraproj/terraform-bridge v0.0.0-20190408135359-a8c691855a82/go.mod h1:Ei1DG8KqtwWp4DhnwLCtUhvoIZk0zOjxh7f0DKQc5w4=
+github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7 h1:PdqPRppfQoKGO5eHDusZ0Okb+sbwcZ8Qe+NDHS+ILIM=
+github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7/go.mod h1:/cgeAutH+TDZ2pARROsnuKfkTdnR+8/kJgxqJ836CxQ=
 github.com/lyraproj/wfe v0.0.0-20190321125752-37a17f3018a7 h1:OWmTmjokcW+YdG6K7WfiVK+tB80lOQ6YrQh9KfrTiz8=
 github.com/lyraproj/wfe v0.0.0-20190321125752-37a17f3018a7/go.mod h1:SCH6qawPEB3PuULFkwreSwxnIds8fnficLZceJArxrA=
 github.com/lyraproj/wfe v0.0.0-20190405111643-1999d0d1167b h1:KIhK2wuUpNCACTgnj42RVcnjxwf29HuXQrF/MP9CZZM=
@@ -319,6 +326,8 @@ github.com/lyraproj/wfe v0.0.0-20190408135039-be57c7687d8f h1:ZzI3qQbt95YcIRGUPx
 github.com/lyraproj/wfe v0.0.0-20190408135039-be57c7687d8f/go.mod h1:wNoaF35MCY+23HrQxu6HhdLAECaVq+PIZej4mI2ASzE=
 github.com/lyraproj/wfe v0.0.0-20190409154400-e9ace52dcb8b h1:x4OqyWF93SUZ/ZPvV+lxvYgHKjY3n5Tt1RgunVbWrA0=
 github.com/lyraproj/wfe v0.0.0-20190409154400-e9ace52dcb8b/go.mod h1:wNoaF35MCY+23HrQxu6HhdLAECaVq+PIZej4mI2ASzE=
+github.com/lyraproj/wfe v0.0.0-20190410153657-367ce3f9ef38 h1:zwwZzljEh2N65BJ9oTYlUgZ4124w1E4FpZoKPNAFJE8=
+github.com/lyraproj/wfe v0.0.0-20190410153657-367ce3f9ef38/go.mod h1:qSNaEP+0eDC33Fk7/UaQUWHa9x7pBK4pXjCFHAFEi7c=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=
 github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a/go.mod h1:M1qoD/MqPgTZIk0EWKB38wE28ACRfVcn+cU08jyArI0=
