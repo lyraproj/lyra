@@ -5,13 +5,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"os/signal"
 	"strings"
-	"syscall"
+
+	"github.com/lyraproj/lyra/pkg/util"
 
 	"github.com/lyraproj/pcore/utils"
-
-	"github.com/hashicorp/go-plugin"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/hiera/lookup"
@@ -35,12 +33,6 @@ import (
 type Applicator struct {
 	HomeDir   string
 	DlvConfig string
-}
-
-type cmdError string
-
-func (e cmdError) Error() string {
-	return string(e)
 }
 
 // ApplyWorkflowWithHieraData will apply the named workflow with the supplied hiera data
@@ -99,34 +91,10 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 		`path`:                      types.WrapString(hieraDataFilename),
 		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
 
-	sgs := make(chan os.Signal, 1)
-	done := make(chan bool, 1)
-
-	// Spawn signal handler routine. It will get called explicitly by the deferred func
-	// below this one unless it is called when a signal is trapped.
-	go func() {
-		<-sgs
-		plugin.CleanupClients()
-		logger.Get().Debug("all plugins cleaned up")
-		done <- true
-	}()
-	signal.Notify(sgs, syscall.SIGINT, syscall.SIGTERM)
-
-	defer func() {
-		if e := recover(); e != nil {
-			exitCode = 1
-			if err, ok := e.(cmdError); ok {
-				ui.Message("error", err)
-			} else {
-				ui.Message("fatal", e)
-			}
-		}
-		sgs <- syscall.SIGUSR1 // Our own
-		<-done
-	}()
-
-	lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, a.applyWithContext(workflowName, intent))
-	return 0
+	return util.RunCommand(func() int {
+		lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, a.applyWithContext(workflowName, intent))
+		return 0
+	})
 }
 
 func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
@@ -165,7 +133,7 @@ func (a *Applicator) parseDlvConfig(c px.Context) {
 	}
 	dc, err := types.Parse(cfg)
 	if err != nil {
-		panic(cmdError(fmt.Sprintf("Unable to parse --dlv option '%s': %s", cfg, err.Error())))
+		panic(util.CmdError(fmt.Sprintf("Unable to parse --dlv option '%s': %s", cfg, err.Error())))
 	}
 	// Pass DlvConfig on to the plugin loader
 	c.Set(api.LyraDlvConfigKey, dc)
@@ -174,7 +142,7 @@ func (a *Applicator) parseDlvConfig(c px.Context) {
 func loadActivity(c px.Context, activityID string) api.Activity {
 	def, ok := px.Load(c, px.NewTypedName(px.NsDefinition, activityID))
 	if !ok {
-		panic(cmdError(fmt.Sprintf("Unable to find definition for activity %s", activityID)))
+		panic(util.CmdError(fmt.Sprintf("Unable to find definition for activity %s", activityID)))
 	}
 	return wfe.CreateActivity(c, def.(serviceapi.Definition))
 }
