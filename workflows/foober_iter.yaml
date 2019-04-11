@@ -1,0 +1,139 @@
+# Foobernetes is an imaginary cloud provider used to illustrate and test the capabilities of Lyra.
+#
+# This file defines a workflow called "foober_iter" (which must be in a file of the
+# same name). The workflow contains a set of interrelated activities and Lyra will
+# determine the correct order in which to execute them based on the inputs and
+# outputs of each. In this example we are deploying a (fictional) 3-tier application
+# consisting of a database, two application servers and two web servers, with a load
+# balancer in front. The fictional real-world resources are written to a file called
+# "deployment.json" allowing you to see the changes made by Lyra.
+#
+# Try the following:
+# 1. Use Lyra to apply the workflow:
+#    "lyra apply --debug foober_iter"
+# 2. Look at the debug output and compare with the newly-created "deployment.json"
+#    file to see what Lyra has done.
+# 3. Run Lyra a second time and note that no changes are made - all resources are
+#    already in the desired state.
+# 4. Edit the workflow then run Lyra again to see what happens.
+# 5. Finally, use Lyra to delete all deployed resources:
+#    "lyra delete --debug foober_iter"
+#
+# This example is written in yaml. See the yaml documentation here: docs/workflow-yaml.md
+foober_iter:
+
+  # Typespaces are namespaces. Here we define the default typespace for
+  # this workflow, which allows us to omit it in some cases below.
+  # See "loadbalancer" for an example.
+  typespace: Foobernetes
+
+  # The workflow expects a single value as input. The input is named
+  # "load_balancer_policy" and is used in the "loadbalancers" iteration activity below.
+  # The value itself comes from the "data.yaml" file at runtime based on the
+  # "lookup" key specified here: in this case a key called "lb_policy" nested in
+  # the "foober_iter" section. All top-level workflow inputs must be specified in
+  # the "data.yaml" file at runtime.
+  input:
+    load_balancer_policy:
+      type: String
+      lookup: foobernetes.lb_policy
+
+  # The workflow produces two output values: the IDs produced by the
+  # "loadBalancers" iterator activity. All top-level workflow outputs must be outputs of
+  # activities within this workflow.
+  output: loadbalancers
+
+  # Activities are the main body of the workflow and define its behavior. The
+  # ordering of the activities is not important - Lyra will infer the correct
+  # order in which to execute the activities based on their inputs and outputs.
+  #
+  # The activities in this workflow are all declarative "stateful activities",
+  # meaning they define the desired states of real-world resources. For each type
+  # of stateful activity, there is a "state handler" that takes responsibility for
+  # ensuring the real-world resource matches the desired state. It does this by
+  # creating, reading, updating or deleting those resources in response to
+  # workflow changes. The types and state handlers for this workflow are defined
+  # in Go and can be found in the "go-foobernetes" plugin.
+  #
+  # Although Lyra support imperative "stateless activities", it is not possible to
+  # specify these in yaml.
+  #
+  # In yaml, activity inputs are usually implicit (though can be made explicit if
+  # desired) and any field value that starts with a dollar sign ($) is assumed to
+  # be an input e.g. $databaseID. Activity outputs are always explicit. An
+  # activity can only be executed when all inputs are available. Those inputs must
+  # come from either the top-level workflow inputs or the outputs of other
+  # activities. Inputs and outputs are correlated by name and so must be unique
+  # within a workflow.
+  activities:
+
+    # This activity defines an iteration activity called "webServers" which will
+    # create two identical "Foobernetes::Webserver" resources. The type is explicit.
+    # Since this is an iteration, there is a single list output named "webServers"
+    # containing values of the "webServerID" field declared in the "output" section.
+    # The "webServerID" field is present in the actual state of the resource returned
+    # by the "webserver" state handler. The input is implicit and can be identified by
+    # the use of a dollar sign ($) i.e. appServers.
+    webServers:
+      type: Foobernetes::Webserver
+      output: webServerID
+      iteration:
+        function: times
+        over: 2
+      state:
+        port: 8080
+        appServers: $appServers
+
+    # This iteration activity iterates over an array of 3 element arrays. Each iteration
+    # assigns the 3 values to their corresponding variables $role, $ip, and $replica which
+    # are then used when declaring each loadbalancer's state.
+    loadbalancers:
+      type: Foobernetes::Loadbalancer
+      output: loadBalancerID
+      iteration:
+        function: each
+        over:
+          - [primary, '10.0.0.1', false]
+          - [secondary, '10.0.0.2', true]
+        variables:
+          - role
+          - ip
+          - replica
+      state:
+        loadBalancerIP: $ip
+        location: eu1
+        replica: $replica
+        webServerIDs: $webServers
+        tags:
+          team: "lyra team"
+          role: $role
+
+    # The state section of an activity can be arbitrarily nested as shown in the
+    # "config" section.
+    appServers:
+      type: Foobernetes::Instance
+      output: instanceID
+      iteration:
+        function: each
+        over:
+          - app-server1
+          - app-server2
+        variable: name
+      state:
+        location: eu2
+        image: "lyra::application"
+        config:
+          name: $name
+          databaseID: $databaseID
+        cpus: 4
+        memory: 8G
+
+    database:
+      type: Foobernetes::Instance
+      output:
+        databaseID: instanceID
+      state:
+        location: eu1
+        image: "lyra::database"
+        cpus: 16
+        memory: 64G
