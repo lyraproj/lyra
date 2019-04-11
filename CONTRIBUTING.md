@@ -30,13 +30,11 @@ If you're thinking about making substantial code changes, please file an issue d
 
 Once you're ready to submit your change, follow the usual github PR process. We (try to!) follow the [codelikeagirl guidelines](https://code.likeagirl.io/useful-tips-for-writing-better-git-commit-messages-808770609503) for writing good commit messages: format for short lines, use the imperative mood ("Add X to Y"), describe before and after state in the commit message body.
 
-<!-- We currently require a [Developer Certificate of Origin](https://developercertificate.org/) signoff for commits. See [this explanation](https://helm.sh/blog/helm-dco/) from the Helm project to understand the rationale behind the DCO. Actually adding the signoff is as simple as adding the `-s` flag to your commits:
+We require a [Developer Certificate of Origin](https://developercertificate.org/) signoff for commits. See [this explanation](https://helm.sh/blog/helm-dco/) from the Helm project to understand the rationale behind the DCO.  Actually adding the signoff is as simple as adding the `-s` flag to your commits:
 
 ```
 git commit -s -m "Add feature Foo to Lyra"
 ```
-(this is commented out because it's not formalized yet --eric0 20190319)
--->
 
 ## Development Environment
 
