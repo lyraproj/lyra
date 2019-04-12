@@ -1,9 +1,7 @@
-import {action, logger, PluginLogger, resource, ServiceBuilder} from 'lyra-workflow';
-import * as util from 'util';
-
+import {resource, serveWorkflow} from 'lyra-workflow';
 import * as Foobernetes from './types/Foobernetes';
 
-const wf = {
+serveWorkflow({
   source: __filename,
 
   activities: {
@@ -42,7 +40,7 @@ const wf = {
     webserver1: resource({
       type: "Foobernetes::Webserver",
       output: {
-        "webServer1Id": { alias: "webServerID" }
+        webServer1Id: { alias: "webServerID" }
       },
       state: (appServer1Id: string, appServer2Id: string): Foobernetes.WebServer => new Foobernetes.WebServer({
         port: 8080,
@@ -52,7 +50,7 @@ const wf = {
     webserver2: resource({
       type: "Foobernetes::Webserver",
       output: {
-        "webServer2Id": { alias: "webServerID" }
+        webServer2Id: { alias: "webServerID" }
       },
       state: (appServer1Id: string, appServer2Id: string): Foobernetes.WebServer => new Foobernetes.WebServer({
         port: 8080,
@@ -78,7 +76,7 @@ const wf = {
     appserver2: resource({
       type: "Foobernetes::Instance",
       output: {
-        "appServer2Id": { alias: "instanceID" }
+        appServer2Id: { alias: "instanceID" }
       },
       state: (databaseId: string): Foobernetes.Instance => new Foobernetes.Instance({
         location: "eu2",
@@ -94,7 +92,7 @@ const wf = {
     database: resource({
       type: "Foobernetes::Instance",
       output: {
-        "databaseId": { alias: "instanceID" }
+        databaseId: { alias: "instanceID" }
       },
       state: (): Foobernetes.Instance => new Foobernetes.Instance({
         location: "eu1",
@@ -104,10 +102,4 @@ const wf = {
       })
     }),
   }
-};
-
-const sb = new ServiceBuilder('My::Service');
-sb.workflow(wf);
-const server = sb.build(global);
-logger.info('Starting the server', 'serverId', server.serviceId.toString());
-server.start();
+});
