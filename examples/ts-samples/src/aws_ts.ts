@@ -1,8 +1,8 @@
-import { action, logger, resource, ServiceBuilder } from 'lyra-workflow';
+import { action, logger, resource, serveWorkflow } from 'lyra-workflow';
 
 import * as Aws from './types/Aws';
 
-const wf = {
+serveWorkflow({
   source: __filename,
 
   input: { tags: { type: 'StringHash', lookup: 'aws.tags' } },
@@ -33,7 +33,7 @@ const wf = {
             ]
           }
           `
-        })
+        });
       }
     }),
 
@@ -55,8 +55,8 @@ const wf = {
         return new Aws.Vpc({
           cidr_block: "192.168.0.0/16",
           instance_tenancy: "default",
-          tags: tags
-        })
+          tags
+        });
       }
     }),
 
@@ -71,12 +71,12 @@ const wf = {
     aws_route_table: resource({
       state: (vpc_id: string): Aws.Route_table => {
         return new Aws.Route_table({
-          vpc_id: vpc_id,
+          vpc_id,
           tags: {
             "name": "lyra-routetable",
             "created_by": "lyra"
           },
-        })
+        });
       }
     }),
 
@@ -96,7 +96,7 @@ const wf = {
         return new Aws.Security_group({
           name: "lyra",
           description: "lyra security group",
-          vpc_id: vpc_id,
+          vpc_id,
           ingress: [{
             from_port: 0,
             to_port: 0,
@@ -109,7 +109,7 @@ const wf = {
             protocol: "-1",
             cidr_blocks: ["0.0.0.0/0"]
           }],
-        })
+        });
       }
     }),
 
@@ -119,13 +119,13 @@ const wf = {
       },
       state: (vpc_id: string): Aws.Subnet => {
         return new Aws.Subnet({
-          vpc_id: vpc_id,
+          vpc_id,
           cidr_block: "192.168.1.0/24",
           tags: {
             "name": "lyra-subnet-1",
             "created_by": "lyra"
           },
-        })
+        });
       }
     }),
 
@@ -135,13 +135,13 @@ const wf = {
       },
       state: (vpc_id: string): Aws.Subnet => {
         return new Aws.Subnet({
-          vpc_id: vpc_id,
+          vpc_id,
           cidr_block: "192.168.2.0/24",
           tags: {
             "name": "lyra-subnet-2",
             "created_by": "lyra"
           },
-        })
+        });
       }
     }),
 
@@ -155,7 +155,7 @@ const wf = {
             "name": "lyra-instance-1",
             "created_by": "lyra"
           },
-        })
+        });
       }
     }),
 
@@ -169,16 +169,9 @@ const wf = {
             "name": "lyra-instance-2",
             "created_by": "lyra"
           },
-        })
+        });
       }
     }),
 
   }
-};
-
-const sb = new ServiceBuilder('My::Service');
-sb.workflow(wf);
-const server = sb.build(global);
-logger.info('Starting the server', 'serverId', server.serviceId.toString());
-server.start();
-
+});

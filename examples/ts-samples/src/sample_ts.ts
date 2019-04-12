@@ -1,24 +1,16 @@
-import {logger, resource, ServiceBuilder} from 'lyra-workflow';
+import {resource, serveWorkflow} from 'lyra-workflow';
 
 import * as Example from './types/Example';
 
-const wf = {
+serveWorkflow({
   source: __filename,
   activities: {
     person: resource({
-      state: (): Example.Person => {
-        return new Example.Person({
-          age: 77,
-          name: 'Bert',
-          human: false,
-        });
-      }
-    }),
+      state: (): Example.Person => new Example.Person({
+        age: 77,
+        name: 'Bert',
+        human: false,
+      })
+    })
   }
-}
-
-const sb = new ServiceBuilder('My::Service');
-sb.workflow(wf);
-const server = sb.build(global);
-logger.info('Starting the server', 'serverId', server.serviceId.toString());
-server.start();
+});

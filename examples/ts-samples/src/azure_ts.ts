@@ -1,8 +1,8 @@
-import { action, logger, resource, ServiceBuilder } from 'lyra-workflow';
+import { action, logger, resource, serveWorkflow } from 'lyra-workflow';
 
 import * as AzureRM from './types/AzureRM';
 
-const wf = {
+serveWorkflow({
   source: __filename,
 
   activities: {
@@ -14,7 +14,7 @@ const wf = {
         return new AzureRM.Resource_group({
           name: "lyra-ts",
           location: "ukwest"
-        })
+        });
       }
     }),
 
@@ -35,7 +35,7 @@ const wf = {
           address_space: ["10.0.0.0/16"],
           location: "ukwest",
           resource_group_name: resourceGroupName
-        })
+        });
       }
     }),
 
@@ -49,7 +49,7 @@ const wf = {
           resource_group_name: resourceGroupName,
           virtual_network_name: virtualNetworkName,
           address_prefix: "10.0.1.0/24"
-        })
+        });
       }
     }),
 
@@ -62,7 +62,7 @@ const wf = {
           name: "lyraPublicIpTs",
           location: "ukwest",
           resource_group_name: resourceGroupName
-        })
+        });
       }
     }),
 
@@ -86,7 +86,7 @@ const wf = {
             source_address_prefix: "*",
             destination_address_prefix: "*"
           }]
-        })
+        });
       }
     }),
 
@@ -108,7 +108,7 @@ const wf = {
               public_ip_address_id: publicIpId
             }
           ]
-        })
+        });
       }
     }),
 
@@ -145,14 +145,8 @@ const wf = {
           },
           delete_os_disk_on_termination: true,
           delete_data_disks_on_termination: true
-        })
+        });
       }
     }),
   }
-};
-
-const sb = new ServiceBuilder('My::Service');
-sb.workflow(wf);
-const server = sb.build(global);
-logger.info('Starting the server', 'serverId', server.serviceId.toString());
-server.start();
+});
