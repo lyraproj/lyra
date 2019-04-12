@@ -36,12 +36,9 @@ func NewGenerateCmd() *cobra.Command {
 }
 
 func runGenerateCmd(cmd *cobra.Command, args []string) {
-	language := args[0]
-	err := generate.Generate(language, targetDirectory)
-	if err != nil {
-		ui.Message("error", err)
-		os.Exit(1)
+	exitCode := generate.Generate(args[0], targetDirectory)
+	if exitCode == 0 {
+		ui.ShowMessage("Generation complete")
 	}
-	ui.ShowMessage("Generation complete")
-	os.Exit(0)
+	os.Exit(exitCode)
 }
