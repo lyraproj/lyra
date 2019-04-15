@@ -4,6 +4,8 @@ import (
 	"io"
 	"sync"
 
+	"github.com/lyraproj/issue/issue"
+
 	hclog "github.com/hashicorp/go-hclog"
 )
 
@@ -40,6 +42,7 @@ func Initialise(spec Spec) hclog.Logger {
 			hclog.DefaultOptions.Output = spec.Output
 		}
 		l := hclog.Default()
+		issue.IncludeStacktrace(l.IsDebug())
 		logger = l
 	})
 	return logger
