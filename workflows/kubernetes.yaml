@@ -4,23 +4,23 @@ kubernetes:
    namespace_id: String
    service_id: String
  activities:
-   namespace:
-     output: namespace_id
-     state:
-       metadata:
-         - name: lyra-ns
-           labels:
-             name: lyra-ns
-   service:
-     output: service_id
-     state:
-      metadata:
-        - name: lyra-service
-      spec:
-        - session_affinity: ClientIP
+    namespace:
+      output: namespace_id
+      state:
+        metadata:
+          name: lyra-ns
+          labels:
+            name: lyra-ns
+    service:
+      output: service_id
+      state:
+        metadata:
+          name: lyra-service
+        spec:
+          session_affinity: ClientIP
           selector:
             app : anything
           port:
             - port: 80
-              target_port: 80
+              target_port: "80"
           type: LoadBalancer
