@@ -7,7 +7,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190329232239-0a668ca79a0a
-	github.com/lyraproj/identity v0.0.0-20190415163405-6d097b973b4e
+	github.com/lyraproj/identity v0.0.0-20190416121109-cd5d8db4e9b8
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
 	github.com/lyraproj/pcore v0.0.0-20190408134742-7ef8f288585f
