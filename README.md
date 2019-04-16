@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lyraproj/lyra.svg?branch=master)](https://travis-ci.org/lyraproj/lyra)
+
 <p align="center"><img src="docs/media/lyrabanner.png" alt="Lyra"></p>
 
 ## What is Lyra?
