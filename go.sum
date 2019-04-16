@@ -237,6 +237,8 @@ github.com/lyraproj/identity v0.0.0-20190408135217-4fc7f86b6fb3 h1:cXTSIDJfHKNMC
 github.com/lyraproj/identity v0.0.0-20190408135217-4fc7f86b6fb3/go.mod h1:gfpbmXVaswVWxA+lcEt9K5KyZ8XhhN1mSGSkmq7Ah6M=
 github.com/lyraproj/identity v0.0.0-20190415163405-6d097b973b4e h1:PzKa3K/3b76kPb8bpzl/z2jQG7jVNKrSjmtRPsq3V7Q=
 github.com/lyraproj/identity v0.0.0-20190415163405-6d097b973b4e/go.mod h1:ewnDAdp0Gpz9I8Slm/khoAsYW7v5yRHsHEbAcDStZyw=
+github.com/lyraproj/identity v0.0.0-20190416121109-cd5d8db4e9b8 h1:k2wPq3SwZJ4HM2Xtw571de3OCphmKqv0nH8ea72U/EA=
+github.com/lyraproj/identity v0.0.0-20190416121109-cd5d8db4e9b8/go.mod h1:ewnDAdp0Gpz9I8Slm/khoAsYW7v5yRHsHEbAcDStZyw=
 github.com/lyraproj/issue v0.0.0-20190319145359-029b4266d45b/go.mod h1:F3Zu9SjR6zROUIVdxgxuX0/Mi4npwgDRalQCNzCyzU0=
 github.com/lyraproj/issue v0.0.0-20190321123504-45f186b58f0e h1:+jVvDDz6ZVagE9YqhK/UJpoUbjuqKkjYQLYKufo1DfQ=
 github.com/lyraproj/issue v0.0.0-20190321123504-45f186b58f0e/go.mod h1:F3Zu9SjR6zROUIVdxgxuX0/Mi4npwgDRalQCNzCyzU0=
