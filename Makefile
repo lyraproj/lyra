@@ -111,6 +111,12 @@ dist-release:
 		sha256sum $$f.tar.gz | awk '{ print $1 }' > $$f.tar.gz.sha256 ; \
 	done;
 
+PHONY+= docker
+docker:
+	@echo "🔘 Building docker container (`date '+%H:%M:%S'`)"
+	@docker build --tag lyraproj/lyra .
+	@echo "✅ Successfully dockerized (`date '+%H:%M:%S'`)"
+
 PHONY+= check-mods
 check-mods:
 	@echo "🔘 Ensuring go version is 1.11.4 or later (`date '+%H:%M:%S'`)"
