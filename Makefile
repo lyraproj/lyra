@@ -62,7 +62,7 @@ puppet-dsl:
 
 PHONY+= lyra
 lyra: check-mods
-	@$(call build,lyra,cmd/lyra/main.go)
+	@$(call build,bin/lyra,cmd/lyra/main.go)
 
 PHONY+= test
 test:
@@ -93,7 +93,7 @@ generate:
 	@echo "🔘 Generating Puppet types ... (`date '+%H:%M:%S'`)"
 	@go run cmd/lyra/main.go generate puppet
 	@echo "🔘 Smoke test ... (`date '+%H:%M:%S'`)"
-	@build/lyra apply sample || (echo "Failed $$?"; exit 1)
+	@build/bin/lyra apply sample || (echo "Failed $$?"; exit 1)
 
 PHONY+= dist-release
 dist-release:
@@ -143,24 +143,24 @@ check-node:
 PHONY+= smoke-test
 smoke-test: lyra identity puppet-dsl lyra-plugins
 	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
-	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
-	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
+	@build/bin/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
+	@build/bin/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
 	@sort deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted
 	@cp deployment.json.sorted deployment.json.sorted.original
 	@sort tests/expected/deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted.expected
 	@diff deployment.json.sorted.expected deployment.json.sorted || (echo "First run results are not as expected"; exit 1)
-	@build/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the second time: exit code $$?"; exit 1)
+	@build/bin/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the second time: exit code $$?"; exit 1)
 	@sort deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted
 	@diff deployment.json.sorted.original deployment.json.sorted || (echo "Second run results are not as expected"; exit 1)
-	@build/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
+	@build/bin/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@diff tests/expected/deployment.empty.json deployment.json || (echo "Final deletion run results are not as expected"; exit 1)
 	@rm deployment.json*
 
 smoke-test-ts: check-node generate-ts
-	@build/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
+	@build/bin/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
 
 generate-ts:
-	@build/lyra generate typescript --target-directory examples/ts-samples/src/types
+	@build/bin/lyra generate typescript --target-directory examples/ts-samples/src/types
 	@cd examples/ts-samples && npm install
 
 define build
