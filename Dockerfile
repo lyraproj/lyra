@@ -11,10 +11,16 @@ RUN GO111MODULE=on go mod download
 COPY . .
 RUN make lyra plugins
 # Copy binaries over to a new container
-FROM golang:latest
+FROM alpine
 WORKDIR /src/lyra/
+<<<<<<< HEAD
 ENV PATH /src/lyra/build/bin:$PATH
 COPY --from=builder /src/lyra/build/bin/lyra /src/lyra/build/bin/lyra
+=======
+ENV PATH /src/lyra/build:$PATH
+RUN apk add ca-certificates
+COPY --from=builder /src/lyra/build/lyra /src/lyra/build/lyra
+>>>>>>> Use alpine instead of golang container for runtime
 COPY --from=builder /src/lyra/build/goplugins /src/lyra/build/goplugins
 COPY --from=builder /src/lyra/workflows /src/lyra/workflows
 COPY --from=builder /src/lyra/examples /src/lyra/examples
