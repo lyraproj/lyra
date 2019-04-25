@@ -9,7 +9,7 @@ COPY go.mod .
 COPY go.sum .
 RUN GO111MODULE=on go mod download
 COPY . .
-RUN make lyra plugins
+RUN make docker-build
 # Copy binaries over to a new container
 FROM alpine
 WORKDIR /src/lyra/
