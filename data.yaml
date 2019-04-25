@@ -9,3 +9,6 @@ aws:
 foobernetes:
   lb_policy: "rr"
   in_production: false
+
+golang:
+  hello: Value of hello key

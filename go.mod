@@ -10,9 +10,9 @@ require (
 	github.com/lyraproj/identity v0.0.0-20190416121109-cd5d8db4e9b8
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
-	github.com/lyraproj/pcore v0.0.0-20190408134742-7ef8f288585f
+	github.com/lyraproj/pcore v0.0.0-20190425144336-6ce33ec8f612
 	github.com/lyraproj/puppet-workflow v0.0.0-20190423111420-6627befb3c02
-	github.com/lyraproj/servicesdk v0.0.0-20190415162539-e6edc437e235
+	github.com/lyraproj/servicesdk v0.0.0-20190425150129-cc2b235700f2
 	github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7
 	github.com/lyraproj/wfe v0.0.0-20190415163950-a82e7f274631
 	github.com/mattn/go-colorable v0.1.1 // indirect
