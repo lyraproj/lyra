@@ -3,19 +3,27 @@ go:
   - stable
 env:
   - GO111MODULE=on
-jobs:
+script:
+  - rm go.sum # Workaround for https://github.com/kubernetes/kubernetes/issues/69040
+  - node --version
+  - nvm install 11
+  - nvm use 11
+  - node --version
+  - make all
+# Use different deploy prep based on OS
+matrix:
   include:
-    - stage: Test and build
-      script:
-        - rm go.sum # Workaround for https://github.com/kubernetes/kubernetes/issues/69040
-        - node --version
-        - nvm install 11
-        - nvm use 11
-        - node --version
-        - make all
+    - os: linux
       before_deploy:
         - sudo apt-get install -y upx
         - make dist-release
+        # TODO: make docker && docker push
+    - os: osx
+      before_deploy:
+        - make bottle
+        # TODO: Deploy step pushes bottle
+      after_deploy:
+        # TODO: push new bottle commit to lyraproj/homebrew-lyra
 deploy:
   provider: releases
   api_key:
