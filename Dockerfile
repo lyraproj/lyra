@@ -13,8 +13,8 @@ RUN make lyra plugins
 # Copy binaries over to a new container
 FROM golang:latest
 WORKDIR /src/lyra/
-ENV PATH /src/lyra/build:$PATH
-COPY --from=builder /src/lyra/build/lyra /src/lyra/build/lyra
+ENV PATH /src/lyra/build/bin:$PATH
+COPY --from=builder /src/lyra/build/bin/lyra /src/lyra/build/bin/lyra
 COPY --from=builder /src/lyra/build/goplugins /src/lyra/build/goplugins
 COPY --from=builder /src/lyra/workflows /src/lyra/workflows
 COPY --from=builder /src/lyra/examples /src/lyra/examples

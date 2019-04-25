@@ -240,8 +240,6 @@ github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc/go.mod h1:Q
 github.com/lyraproj/pcore v0.0.0-20190319163905-c435c6e1b96e/go.mod h1:zaYm7Mn2rIKNNpcMGy+QkWUqoTpGAQiAmVwJpJ4wYDc=
 github.com/lyraproj/pcore v0.0.0-20190408134742-7ef8f288585f h1:XdWLz+VOIGEiZa2q8krUCjUDXo5jxNg/YzYu0xlv2iM=
 github.com/lyraproj/pcore v0.0.0-20190408134742-7ef8f288585f/go.mod h1:rEl2ewvqyi/MUo+sEoADKduVlO971HgiLJmu26EO+vM=
-github.com/lyraproj/pcore v0.0.0-20190425144336-6ce33ec8f612 h1:8NQ9YH6QWaMC9856LglyXyyywcjti93ydPEGI0CuJCc=
-github.com/lyraproj/pcore v0.0.0-20190425144336-6ce33ec8f612/go.mod h1:rEl2ewvqyi/MUo+sEoADKduVlO971HgiLJmu26EO+vM=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190408134831-48d551aeb21e h1:zg9UgXQSWC+v+iq6M3sFywYWHXaWkB8btk2z8iAKXqE=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190408134831-48d551aeb21e/go.mod h1:QnnXPIENaNZk1Adv77uy76BnPcF3xHKP8pTLdm4MTF4=
 github.com/lyraproj/puppet-parser v0.0.0-20190408134638-04ce07bb0d8a h1:5DyjQco5pv/jnA/kvcxbTkMP2RpJ0MghwwNLbGCKMMo=
@@ -255,8 +253,6 @@ github.com/lyraproj/servicesdk v0.0.0-20190410153708-929b42b6af38 h1:QuGtGFB8Cti
 github.com/lyraproj/servicesdk v0.0.0-20190410153708-929b42b6af38/go.mod h1:JhBbVt9R8Br4wB7FbN2nctXoglv0aCIv2AM1sK0iwXc=
 github.com/lyraproj/servicesdk v0.0.0-20190415162539-e6edc437e235 h1:jTRku+pobfVIDeXvU4SPk+wsLTScdPaA+FuNINhFLNU=
 github.com/lyraproj/servicesdk v0.0.0-20190415162539-e6edc437e235/go.mod h1:JhBbVt9R8Br4wB7FbN2nctXoglv0aCIv2AM1sK0iwXc=
-github.com/lyraproj/servicesdk v0.0.0-20190425150129-cc2b235700f2 h1:GgE9E/t9bWZubvuTvS4jIpWASirZlsxarL8Nfj3IZSM=
-github.com/lyraproj/servicesdk v0.0.0-20190425150129-cc2b235700f2/go.mod h1:uZK9H26ivZWg3QSz1uvIC6lrQKwnZJ+t3bGQ6cmPapw=
 github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7 h1:PdqPRppfQoKGO5eHDusZ0Okb+sbwcZ8Qe+NDHS+ILIM=
 github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7/go.mod h1:/cgeAutH+TDZ2pARROsnuKfkTdnR+8/kJgxqJ836CxQ=
 github.com/lyraproj/wfe v0.0.0-20190415163950-a82e7f274631 h1:aAUixOJsGQrxQ/VF0ExjVg6oSFUwcZ5aQ2S0UW2/Mjg=

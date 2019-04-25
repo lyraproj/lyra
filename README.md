@@ -33,21 +33,21 @@ The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [g
 
 > **!! WARNING: THIS WORKFLOW CREATES REAL RESOURCES ($$) !!**
 
-1. Apply a [sample Workflow](workflows/aws.yaml): `./build/lyra apply aws --debug`
-2. Delete the Workflow (i.e. its resources): `./build/lyra delete aws --debug`
+1. Apply a [sample Workflow](workflows/aws.yaml): `./build/bin/lyra apply aws --debug`
+2. Delete the Workflow (i.e. its resources): `./build/bin/lyra delete aws --debug`
 
 This Workflow manages several resources on AWS and incorporates external data (for Tags, loaded [here](workflows/aws.yaml#L6) using a new Golang implementation of [hiera](https://github.com/lyraproj/hiera)), as specified in the [data.yaml](data.yaml) file. Lyra will use AWS credentials as configured in `~/.aws/credentials`.
 
 > NB regarding regions: For the [examples](workflows/) using Terraform providers (e.g. `typespace=>'TerraformAws'`), region is currently hard-coded to `eu-west-1`. For non-Terraform providers (e.g. `typespace=>'aws'`), Lyra will use the default region supplied in your `~/.aws/config`.
 
-There are also more examples of workflows for various cloud providers specified in [yaml](workflows) and in [TypeScript](examples/ts-samples/src/).  All TypeScript examples require NodeJs version 9 or greater (`node --version`) - see [https://nodejs.org/en/download/]().  To run [a basic sample](examples/ts-samples/src/sample_ts.ts), run `make smoke-test-ts`.  This will run an npm install (`(cd examples/ts-samples && npm install)`) and then `build/lyra apply sample_ts --debug`.    
+There are also more examples of workflows for various cloud providers specified in [yaml](workflows) and in [TypeScript](examples/ts-samples/src/).  All TypeScript examples require NodeJs version 9 or greater (`node --version`) - see [https://nodejs.org/en/download/]().  To run [a basic sample](examples/ts-samples/src/sample_ts.ts), run `make smoke-test-ts`.  This will run an npm install (`(cd examples/ts-samples && npm install)`) and then `build/bin/lyra apply sample_ts --debug`.
 
 ### Deploying Workflows with Kubernetes
 
 > **!! WARNING: THIS WORKFLOW CREATES REAL RESOURCES ($$) !!**
 
 1. Install the Lyra Workflow CRD: `kubectl apply -f k8s/lyra_v1alpha1_workflow_crd.yaml`
-2. Start Lyra in controller mode: `./build/lyra controller --debug`
+2. Start Lyra in controller mode: `./build/bin/lyra controller --debug`
 3. In another terminal window, create a Workflow resource: `kubectl apply -f k8s/vpc-workflow.yaml`
 4. Inspect the resource: `kubectl get workflows`
 5. Delete the Workflow (i.e. its resources): `kubectl delete workflow vpc-workflow`
@@ -80,7 +80,7 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 - [ ] Provider X ecosystem (File a [feature request](https://github.com/lyraproj/lyra/issues/new?template=feature_request.md)!)
 
 ## Releases
-### [X] Proof of Concept 
+### [X] Proof of Concept
 * Ability to express resources in a Workflow in Puppet language
 
 ### [ ] Release 0.1 - [**IN PROGRESS**](https://github.com/lyraproj/lyra/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22release+0.1%22)
