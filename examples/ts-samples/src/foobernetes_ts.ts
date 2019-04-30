@@ -4,10 +4,10 @@ import * as Foobernetes from './types/Foobernetes';
 serveWorkflow({
   source: __filename,
 
-  activities: {
+  steps: {
     loadbalancer: resource({
       type: "Foobernetes::Loadbalancer",
-      output: {
+      returns: {
         "primary_load_balancer_id": { alias: "loadBalancerID" }
       },
       state: (webServer1Id: string, webServer2Id: string): Foobernetes.LoadBalancer => new Foobernetes.LoadBalancer({
@@ -23,7 +23,7 @@ serveWorkflow({
     }),
     secondaryloadbalancer: resource({
       type: "Foobernetes::Loadbalancer",
-      output: {
+      returns: {
         "secondary_load_balancer_id": { alias: "loadBalancerID" }
       },
       state: (webServer1Id: string, webServer2Id: string): Foobernetes.LoadBalancer => new Foobernetes.LoadBalancer({
@@ -39,7 +39,7 @@ serveWorkflow({
     }),
     webserver1: resource({
       type: "Foobernetes::Webserver",
-      output: {
+      returns: {
         webServer1Id: { alias: "webServerID" }
       },
       state: (appServer1Id: string, appServer2Id: string): Foobernetes.WebServer => new Foobernetes.WebServer({
@@ -49,7 +49,7 @@ serveWorkflow({
     }),
     webserver2: resource({
       type: "Foobernetes::Webserver",
-      output: {
+      returns: {
         webServer2Id: { alias: "webServerID" }
       },
       state: (appServer1Id: string, appServer2Id: string): Foobernetes.WebServer => new Foobernetes.WebServer({
@@ -59,7 +59,7 @@ serveWorkflow({
     }),
     appserver1: resource({
       type: "Foobernetes::Instance",
-      output: {
+      returns: {
         "appServer1Id": { alias: "instanceID" }
       },
       state: (databaseId: string): Foobernetes.Instance => new Foobernetes.Instance({
@@ -75,7 +75,7 @@ serveWorkflow({
     }),
     appserver2: resource({
       type: "Foobernetes::Instance",
-      output: {
+      returns: {
         appServer2Id: { alias: "instanceID" }
       },
       state: (databaseId: string): Foobernetes.Instance => new Foobernetes.Instance({
@@ -91,7 +91,7 @@ serveWorkflow({
     }),
     database: resource({
       type: "Foobernetes::Instance",
-      output: {
+      returns: {
         databaseId: { alias: "instanceID" }
       },
       state: (): Foobernetes.Instance => new Foobernetes.Instance({

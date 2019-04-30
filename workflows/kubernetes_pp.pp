@@ -1,12 +1,12 @@
 workflow kubernetes_pp {
   typespace => 'Kubernetes',
-  output => (
+  returns => (
       String $namespace_id,
       String $service_id
   )
 } {
     resource namespace {
-      output=> ($namespace_id),
+      returns=> ($namespace_id),
     } {
         metadata => {
           name => 'lyra-ns-pp',
@@ -14,7 +14,7 @@ workflow kubernetes_pp {
     }
 
     resource service {
-      output => ($service_id)
+      returns => ($service_id)
     } {
         metadata => {
                 name => 'lyra-service-pp',

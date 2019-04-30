@@ -11,12 +11,15 @@ import (
 
 	// Ensure that lookup function properly loaded
 	_ "github.com/lyraproj/hiera/functions"
+
+	// Ensure that types created by the go lyra package are loaded
+	_ "github.com/lyraproj/servicesdk/lang/go/lyra"
 )
 
 var homeDir string
 var hieraDataFilename string
 
-// NewApplyCmd returns the apply subcommand used to evaluate and apply activities. //TODO: (JD) Does 'apply' even make sense for what this does now?
+// NewApplyCmd returns the apply subcommand used to evaluate and apply steps. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     gotext.Get("apply <workflow-name>"),

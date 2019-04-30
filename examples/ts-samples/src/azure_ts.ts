@@ -5,9 +5,9 @@ import * as AzureRM from './types/AzureRM';
 serveWorkflow({
   source: __filename,
 
-  activities: {
+  steps: {
     resource_group: resource({
-      output: {
+      returns: {
         "resourceGroupName": { alias: "name" }
       },
       state: (): AzureRM.Resource_group => {
@@ -26,7 +26,7 @@ serveWorkflow({
     }),
 
     virtual_network: resource({
-      output: {
+      returns: {
         "virtualNetworkName": { alias: "name" }
       },
       state: (resourceGroupName: string): AzureRM.Virtual_network => {
@@ -40,7 +40,7 @@ serveWorkflow({
     }),
 
     subnet: resource({
-      output: {
+      returns: {
         "subnetId": { alias: "subnet_id" }
       },
       state: (resourceGroupName: string, virtualNetworkName: string): AzureRM.Subnet => {
@@ -54,7 +54,7 @@ serveWorkflow({
     }),
 
     public_ip: resource({
-      output: {
+      returns: {
         "publicIpId": { alias: "public_ip_id" }
       },
       state: (resourceGroupName: string): AzureRM.Public_ip => {
@@ -67,7 +67,7 @@ serveWorkflow({
     }),
 
     network_security_group: resource({
-      output: {
+      returns: {
         "nsgId": { alias: "network_security_group_id" }
       },
       state: (resourceGroupName: string): AzureRM.Network_security_group => {
@@ -91,7 +91,7 @@ serveWorkflow({
     }),
 
     network_interface: resource({
-      output: {
+      returns: {
         "nicId": { alias: "network_interface_id" }
       },
       state: (resourceGroupName: string, subnetId: string, nsgId: string, publicIpId: string): AzureRM.Network_interface => {

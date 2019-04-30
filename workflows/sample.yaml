@@ -1,9 +1,9 @@
 sample:
   typespace: example
-  output: [name, age]
-  activities:
+  returns: [name, age]
+  steps:
     person:
-      output: [name, age]
+      returns: [name, age]
       state:
         age: 66
         name: Ann

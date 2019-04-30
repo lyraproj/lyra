@@ -2,50 +2,50 @@ Puppet Workflow DSL
 ===
 For an explanation of the semantics of each element, please see [Workflow Semantics](workflow-semantics.md)
 
-## Activities
+## Steps
 
-All activities are declared using the following syntax:
+All steps are declared using the following syntax:
 
     <style> <name> '{' <properties> '}' [ <iteration> ] [ '{' <data or code> '}' ]
 
-### Common activity properties
-##### input
-The input declaration is similar to a function parameter list. The following:
+### Common Step properties
+##### parameters
+The parameters declaration is similar to a function parameter list. The following:
 
-    input => (String $i1, String $i2 = lookup('doSomething::i1'))
+    parameters => (String $i1, String $i2 = lookup('doSomething::i1'))
 
 declares the named parameters _i1_ and _i2_. The parameter _i2_ will get its value from a lookup.
 
 The type of input an parameter is often optional and can be omitted:
 
-    input => ($i1, $i2)
+    parameters => ($i1, $i2)
 
 When using Puppet DSL, it is possible to infer input for both `resoure` and `action` which means that it
 can often be omitted altogether.
 
-#### output
-similar to `input` but without the ability to declare lookups.
+#### returns
+similar to `parameters` but without the ability to declare lookups.
 
-    output => (String $o1, Integer $o2)
+    returns => (String $o1, Integer $o2)
 
-as with output, the type can often be omitted:
+as with parameters, the type can often be omitted:
 
-    output => ($o1, $o2)
+    returns => ($o1, $o2)
 
 An alias is used when it is desirable to give the output variable a different name than the attribute it references:
 
-    output => ($output_number1 = o1, $o2)
+    returns => ($output_number1 = o1, $o2)
 
 A special construct can be used when it is desirable to group attributes into a Struct
 
-    output => ($o = [x1, x2])
+    returns => ($o = [x1, x2])
 
 this example will result in
 
-    output => (Struct[x1 => Like[<resourceType>, x1], x1 => Like[<resourceType>, x2]] $o)
+    returns => (Struct[x1 => Like[<resourceType>, x1], x1 => Like[<resourceType>, x2]] $o)
 
 #### when
-an activity is considered to have a guard when it declares:
+a step is considered to have a guard when it declares:
 
      when => <guard expression>
      
@@ -58,7 +58,7 @@ The sequential aspect of evaluation is controlled using the following syntax.
      sequential => activities | iteration | both
 
 #### iteration
-Iteration is defined by adding one of the following constructs between the `<properties>` and the `<data or code>` elements of the activity syntax:
+Iteration is defined by adding one of the following constructs between the `<properties>` and the `<data or code>` elements of the step syntax:
 
       times(<count>) |$index|
 
@@ -72,12 +72,12 @@ Iteration is defined by adding one of the following constructs between the `<pro
 
 ### Example
 
-Activity that performs different actions on create, read, delete, and update.
+Step that performs different actions on create, read, delete, and update.
 
     stateHandler doSomething {
       handlerFor => Some::Resource
-      input => (String i1, String i2 = lookup('doSomething::i1')),
-      output => (String x, Integer y)
+      parameters => (String i1, String i2 = lookup('doSomething::i1')),
+      returns => (String x, Integer y)
     } {
       create($state) {
         // Code to create the subject

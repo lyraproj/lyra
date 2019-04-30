@@ -8,7 +8,7 @@ Lyra (“lee-ruh”) is an open source workflow engine for provisioning and mana
 
 Infrastructure management involves defining and executing workflows that manage the underlying resources across their entire lifecycle - performing the initial provisioning, orchestrating intentional changes, and ultimately decommissioning those resources. Lyra is built to help manage all of these types of these workflows.
 
-A Lyra Workflow describes a collection of Activities in a single manifest. An Activity is a declarative resource or imperative action that can be orchestrated together. These include API-requested resources such as Azure Functions, Kubernetes Deployments, and Datadog monitors, as well as imperative actions and scripts. Lyra keeps a record of the resources that it has provisioned in order to ensure idempotency.
+A Lyra Workflow describes a collection of Steps in a single manifest. A Step is a declarative resource or imperative action that can be orchestrated together. These include API-requested resources such as Azure Functions, Kubernetes Deployments, and Datadog monitors, as well as imperative actions and scripts. Lyra keeps a record of the resources that it has provisioned in order to ensure idempotency.
 
 Lyra provides a number of language bindings to describe a Workflow, and the workflow engine is decoupled from the language bindings so that other language front-ends can be added to the system. The initial target languages are YAML for getting started, and Typescript for advanced uses. Lyra itself is written in Go and therefore supports Go workflows. Additionally, the project was initially started by Puppet and includes support for a version of the Puppet language.
 

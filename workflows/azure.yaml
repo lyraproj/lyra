@@ -2,9 +2,9 @@
 
 azure:
   typespace: AzureRM
-  activities:
+  steps:
     resource_group:
-      output:
+      returns:
         resource_group_name: name
       state:
         name: lyra
@@ -12,7 +12,7 @@ azure:
         tags:
           environment: "Lyra Example"
     virtual_network:
-      output:
+      returns:
         virtual_network_name: name
       state:
         name: lyraVnet
@@ -20,21 +20,21 @@ azure:
         location: ukwest
         resource_group_name: $resource_group_name
     subnet:
-      output: subnet_id
+      returns: subnet_id
       state:
         name: lyraSubnet
         resource_group_name: $resource_group_name
         virtual_network_name: $virtual_network_name
         address_prefix: 10.0.1.0/24
     public_ip:
-      output: public_ip_id
+      returns: public_ip_id
       state:
         name: lyraPublicIP
         location: ukwest
         resource_group_name: $resource_group_name
         allocation_method: dynamic
     network_security_group:
-      output: network_security_group_id
+      returns: network_security_group_id
       state:
         name: lyraNetworkSecurityGroup
         location: ukwest
@@ -50,7 +50,7 @@ azure:
             source_address_prefix: "*"
             destination_address_prefix: "*"
     network_interface:
-      output: network_interface_id
+      returns: network_interface_id
       state:
         name: lyraNIC
         location: ukwest

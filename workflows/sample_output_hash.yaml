@@ -1,10 +1,10 @@
-sample_output_hash:
+sample_returns_hash:
   typespace: example
-  output:
+  returns:
     o: Hash
-  activities:
+  steps:
     person:
-      output:
+      returns:
         o: [name, age]
       state:
         age: 25

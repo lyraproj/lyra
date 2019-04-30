@@ -1,9 +1,9 @@
 workflow foobernetes_pp {
   typespace => 'Foobernetes',
-  input => (
+  parameters => (
     String $load_balancer_policy = lookup('foobernetes.lb_policy')
   ),
-  output => (
+  returns => (
     String $primary_load_balancer_id,
     String $secondary_load_balancer_id
   )
@@ -11,8 +11,8 @@ workflow foobernetes_pp {
 
   resource loadbalancer {
     type => Foobernetes::Loadbalancer,
-    input => ($webserver1_id, $webserver2_id),
-    output => ($primary_load_balancer_id = loadBalancerID)
+    parameters => ($webserver1_id, $webserver2_id),
+    returns => ($primary_load_balancer_id = loadBalancerID)
   }{
     loadBalancerIP => '10.0.0.1',
     location => 'eu1',
@@ -26,8 +26,8 @@ workflow foobernetes_pp {
 
   resource secondaryloadbalancer {
     type => Foobernetes::Loadbalancer,
-    input => ($webserver1_id, $webserver2_id),
-    output => ($secondary_load_balancer_id = loadBalancerID)
+    parameters => ($webserver1_id, $webserver2_id),
+    returns => ($secondary_load_balancer_id = loadBalancerID)
   }{
     loadBalancerIP => '10.0.0.2',
     location => 'eu2',
@@ -41,8 +41,8 @@ workflow foobernetes_pp {
 
   resource webserver1 {
     type => Foobernetes::Webserver,
-    input => ($appserver1_id, $appserver2_id),
-    output => ($webserver1_id = webServerID)
+    parameters => ($appserver1_id, $appserver2_id),
+    returns => ($webserver1_id = webServerID)
   }{
     port => 8080,
     appServers => [$appserver1_id, $appserver2_id],
@@ -50,8 +50,8 @@ workflow foobernetes_pp {
 
   resource webserver2 {
     type => Foobernetes::Webserver,
-    input => ($appserver1_id, $appserver2_id),
-    output => ($webserver2_id = webServerID)
+    parameters => ($appserver1_id, $appserver2_id),
+    returns => ($webserver2_id = webServerID)
   }{
     port => 8080,
     appServers => [$appserver1_id, $appserver2_id],
@@ -60,8 +60,8 @@ workflow foobernetes_pp {
 
   resource appserver1 {
     type => Foobernetes::Instance,
-    input => ($database_id),
-    output => ($appserver1_id = instanceID)
+    parameters => ($database_id),
+    returns => ($appserver1_id = instanceID)
   }{
     location => 'eu1',
     image => 'lyra::application',
@@ -75,8 +75,8 @@ workflow foobernetes_pp {
 
   resource appserver2 {
     type => Foobernetes::Instance,
-    input => ($database_id),
-    output => ($appserver2_id = instanceID)
+    parameters => ($database_id),
+    returns => ($appserver2_id = instanceID)
   }{
     location => 'eu2',
     image => 'lyra::application',
@@ -90,7 +90,7 @@ workflow foobernetes_pp {
 
   resource database {
     type => Foobernetes::Instance,
-    output => ($database_id = instanceID)
+    returns => ($database_id = instanceID)
   }{
     location => 'eu1',
     image => 'lyra::database',

@@ -1,12 +1,12 @@
 aws:
   typespace: Aws
-  input:
+  parameters:
     tags:
       type: Hash[String,String]
       lookup: aws.tags
-  output:
+  returns:
     vpc_id: String
-  activities:
+  steps:
 
     iam_role:
       state:
@@ -40,8 +40,8 @@ aws:
 
     vpc:
       # type is implicit and is derived from the
-      # activity name, in contrast to subnets below
-      output: vpc_id
+      # step name, in contrast to subnets below
+      returns: vpc_id
       state:
         cidr_block: 192.168.0.0/16
         instance_tenancy: default
@@ -79,7 +79,7 @@ aws:
 
     subnet1:
       type:  Aws::Subnet
-      output:
+      returns:
         subnet_id1: subnet_id
       state:
         vpc_id: $vpc_id
@@ -90,7 +90,7 @@ aws:
 
     subnet2:
       type:  Aws::Subnet
-      output:
+      returns:
         subnet_id2: subnet_id
       state:
         vpc_id: $vpc_id

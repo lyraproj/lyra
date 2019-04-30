@@ -1,18 +1,18 @@
 workflow sample2 {
   typespace => 'example',
-  input => (
+  parameters => (
   String $foo = lookup('foo', undef, undef, "foo"),
   String $bar = lookup('bar', undef, undef, "bar"),
   String $baz = lookup('baz', undef, undef, "baz")
   ),
-  output => (
+  returns => (
   String $foo,
   String $bar,
   String $baz
   )
 } {
   resource person {
-  output => ($name)
+  returns => ($name)
   }{
     age => 28,
     name => 'Bob',

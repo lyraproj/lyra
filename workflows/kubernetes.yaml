@@ -1,18 +1,18 @@
 kubernetes:
  typespace: Kubernetes
- output:
+ returns:
    namespace_id: String
    service_id: String
- activities:
+ steps:
     namespace:
-      output: namespace_id
+      returns: namespace_id
       state:
         metadata:
           name: lyra-ns
           labels:
             name: lyra-ns
     service:
-      output: service_id
+      returns: service_id
       state:
         metadata:
           name: lyra-service

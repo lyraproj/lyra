@@ -1,9 +1,9 @@
 workflow aws_pp {
   typespace => 'Aws',
-  input => (
+  parameters => (
     Hash[String,String] $tags = lookup('aws.tags'),
   ),
-  output => (
+  returns => (
     String $vpc_id,
   )
 } {
@@ -41,9 +41,9 @@ workflow aws_pp {
 
   resource vpc {
     # type is implicit and is derived from the
-    # activity name, in contrast to subnets below
-    input  => ($tags),
-    output => ($vpc_id)
+    # step name, in contrast to subnets below
+    parameters  => ($tags),
+    returns => ($vpc_id)
   }{
     cidr_block => '192.168.0.0/16',
     instance_tenancy => 'default',
@@ -51,7 +51,7 @@ workflow aws_pp {
   }
 
   resource route_table {
-    input  => ($vpc_id),
+    parameters  => ($vpc_id),
   } {
     vpc_id => $vpc_id,
     tags => {
@@ -64,13 +64,13 @@ workflow aws_pp {
   # Deletion of internet_gateway fails => see https {//github.com/lyraproj/lyra/issues/204
   #
   # resource internet_gateway {
-  #   input  => ($vpc_id),
+  #   parameters  => ($vpc_id),
   # } {
   #   vpc_id => $vpc_id
   # }
 
   resource security_group {
-    input  => ($vpc_id),
+    parameters  => ($vpc_id),
   }{
     name => "lyra",
     description => "lyra security group",
@@ -91,8 +91,8 @@ workflow aws_pp {
 
   resource subnet1 {
     type =>  'Aws::Subnet',
-    input  => ($vpc_id),
-    output => ($subnet_id1 = subnet_id)
+    parameters  => ($vpc_id),
+    returns => ($subnet_id1 = subnet_id)
   }{
     vpc_id => $vpc_id,
     cidr_block => '192.168.1.0/24',
@@ -104,8 +104,8 @@ workflow aws_pp {
 
   resource subnet2 {
     type =>  'Aws::Subnet',
-    input  => ($vpc_id),
-    output => ($subnet_id2 = subnet_id)
+    parameters  => ($vpc_id),
+    returns => ($subnet_id2 = subnet_id)
   }{
     vpc_id => $vpc_id,
     cidr_block => '192.168.2.0/24',
@@ -117,7 +117,7 @@ workflow aws_pp {
 
   resource instance1 {
     type =>  'Aws::Instance',
-    input  => ($subnet_id1)
+    parameters  => ($subnet_id1)
   }{
     instance_type => 't2.nano',
     ami => 'ami-f90a4880',
@@ -130,7 +130,7 @@ workflow aws_pp {
 
   resource instance2 {
     type =>  'Aws::Instance',
-    input  => ($subnet_id2)
+    parameters  => ($subnet_id2)
   }{
     instance_type => 't2.nano',
     ami => 'ami-f90a4880',
