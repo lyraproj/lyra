@@ -2,14 +2,14 @@ workflow azure_pp {
   typespace => 'AzureRM',
 } {
     resource resource_group {
-      output => ($resource_group_name = name),
+      returns => ($resource_group_name = name),
     } {
           name => 'lyra-pp',
           location =>  'ukwest'
     }
     resource virtual_network {
-      input => ($resource_group_name),
-      output => ($virtual_network_name = name),
+      parameters => ($resource_group_name),
+      returns => ($virtual_network_name = name),
     } {
           name => 'lyraVnetPp',
           address_space => ['10.0.0.0/16'],
@@ -18,8 +18,8 @@ workflow azure_pp {
     }
 
     resource subnet {
-      input => ($resource_group_name, $virtual_network_name),
-      output => ($subnet_id = subnet_id)
+      parameters => ($resource_group_name, $virtual_network_name),
+      returns => ($subnet_id = subnet_id)
     } {
           name => 'lyraSubnetPp',
           resource_group_name =>  $resource_group_name,
@@ -28,8 +28,8 @@ workflow azure_pp {
     }
 
     resource public_ip {
-      input => ($resource_group_name, $virtual_network_name),
-      output => ($public_ip_id = public_ip_id)
+      parameters => ($resource_group_name, $virtual_network_name),
+      returns => ($public_ip_id = public_ip_id)
     } {
           name =>  'lyraPublicIpPp',
           location =>  'ukwest',
@@ -38,8 +38,8 @@ workflow azure_pp {
     }
 
     resource network_security_group {
-      input => ($resource_group_name),
-      output => ($nsg_id = network_security_group_id)
+      parameters => ($resource_group_name),
+      returns => ($nsg_id = network_security_group_id)
     } {
           name =>  'lyraNetworkSecurityGroupPp',
           location =>  'ukwest',
@@ -58,8 +58,8 @@ workflow azure_pp {
     }
 
     resource network_interface {
-      input => ($resource_group_name, $nsg_id, $subnet_id, $public_ip_id),
-      output => ($nic_id = network_interface_id)
+      parameters => ($resource_group_name, $nsg_id, $subnet_id, $public_ip_id),
+      returns => ($nic_id = network_interface_id)
     } {
           name =>  'lyraNetworkSecurityGroupPp',
           location =>  'ukwest',
@@ -74,7 +74,7 @@ workflow azure_pp {
     }
 
     resource virtual_machine {
-      input => ($resource_group_name, $nic_id, $nsg_id),
+      parameters => ($resource_group_name, $nic_id, $nsg_id),
     } {
           name =>  'lyraVirtualMachinePp',
           location =>  'ukwest',

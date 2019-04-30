@@ -5,11 +5,11 @@ import * as Aws from './types/Aws';
 serveWorkflow({
   source: __filename,
 
-  input: { tags: { type: 'StringHash', lookup: 'aws.tags' } },
+  parameters: { tags: { type: 'StringHash', lookup: 'aws.tags' } },
 
-  output: { aws_vpc_id: 'string' },
+  returns: { aws_vpc_id: 'string' },
 
-  activities: {
+  steps: {
 
     aws_iam_role: resource({
       state: (): Aws.Iam_role => {
@@ -50,7 +50,7 @@ serveWorkflow({
     // }),
 
     aws_vpc: resource({
-      output: "vpc_id",
+      returns: "vpc_id",
       state: (tags: { [s: string]: string }): Aws.Vpc => {
         return new Aws.Vpc({
           cidr_block: "192.168.0.0/16",
@@ -114,7 +114,7 @@ serveWorkflow({
     }),
 
     aws_subnet1: resource({
-      output: {
+      returns: {
         "subnet_id1": { alias: "subnet_id" }
       },
       state: (vpc_id: string): Aws.Subnet => {
@@ -130,7 +130,7 @@ serveWorkflow({
     }),
 
     aws_subnet2: resource({
-      output: {
+      returns: {
         "subnet_id2": { alias: "subnet_id" }
       },
       state: (vpc_id: string): Aws.Subnet => {

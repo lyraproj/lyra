@@ -4,7 +4,7 @@
 
 googlecloud:
   typespace: Google
-  activities:
+  steps:
     compute_instance:
       state:
         name: "lyra-test"

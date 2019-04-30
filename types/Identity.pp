@@ -11,7 +11,7 @@ type Identity = TypeSet[{
         'associate' => Callable[String, String],
         'bumpEra' => Callable[0, 0],
         'garbage' => Callable[
-          [0, 0],
+          [String],
           Array],
         'getExternal' => Callable[
           [String],

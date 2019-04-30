@@ -8,7 +8,7 @@ import * as Google from './types/Google';
 serveWorkflow({
   source: __filename,
 
-  activities: {
+  steps: {
     google_compute_instance_ts: resource({
       state: (): Google.Compute_instance => new Google.Compute_instance({
         name: "lyra-test-ts",

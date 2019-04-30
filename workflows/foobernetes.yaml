@@ -1,9 +1,9 @@
 # Foobernetes is an imaginary cloud provider used to illustrate and test the capabilities of Lyra.
 #
 # This file defines a workflow called "foobernetes" (which must be in a file of the
-# same name). The workflow contains a set of interrelated activities and Lyra will
-# determine the correct order in which to execute them based on the inputs and
-# outputs of each. In this example we are deploying a (fictional) 3-tier application
+# same name). The workflow contains a set of interrelated steps and Lyra will
+# determine the correct order in which to execute them based on the parameters and
+# returns of each. In this example we are deploying a (fictional) 3-tier application
 # consisting of a database, two application servers and two web servers, with a load
 # balancer in front. The fictional real-world resources are written to a file called
 # "deployment.json" allowing you to see the changes made by Lyra.
@@ -27,82 +27,82 @@ foobernetes:
   # See "loadbalancer" for an example.
   typespace: Foobernetes
 
-  # The workflow expects a single value as input. The input is named
-  # "load_balancer_policy" and is used in the two "loadbalancer" activities below.
+  # The workflow expects a single value as parameters. The parameters is named
+  # "load_balancer_policy" and is used in the two "loadbalancer" steps below.
   # The value itself comes from the "data.yaml" file at runtime based on the
   # "lookup" key specified here: in this case a key called "lb_policy" nested in
-  # the "foobernetes" section. All top-level workflow inputs must be specified in
+  # the "foobernetes" section. All top-level workflow parameters must be specified in
   # the "data.yaml" file at runtime.
-  input:
+  parameters:
     load_balancer_policy:
       type: String
       lookup: foobernetes.lb_policy
 
-  # The workflow produces two output values: the IDs produced by the two
-  # "loadbalancer" activities. All top-level workflow outputs must be outputs of
-  # activities within this workflow.
-  output: [ loadBalancerID, secondaryLoadBalancerID ]
+  # The workflow returns two output values: the IDs produced by the two
+  # "loadbalancer" steps. All top-level workflow returns must be returns of
+  # steps within this workflow.
+  returns: [ loadBalancerID, secondaryLoadBalancerID ]
 
-  # Activities are the main body of the workflow and define its behavior. The
-  # ordering of the activities is not important - Lyra will infer the correct
-  # order in which to execute the activities based on their inputs and outputs.
+  # Steps are the main body of the workflow and define its behavior. The
+  # ordering of the steps is not important - Lyra will infer the correct
+  # order in which to execute the steps based on their parameters and returns.
   #
-  # The activities in this workflow are all declarative "stateful activities",
+  # The steps in this workflow are all declarative "stateful steps",
   # meaning they define the desired states of real-world resources. For each type
-  # of stateful activity, there is a "state handler" that takes responsibility for
+  # of stateful step, there is a "state handler" that takes responsibility for
   # ensuring the real-world resource matches the desired state. It does this by
   # creating, reading, updating or deleting those resources in response to
   # workflow changes. The types and state handlers for this workflow are defined
   # in Go and can be found in the "go-foobernetes" plugin.
   #
-  # Although Lyra support imperative "stateless activities", it is not possible to
+  # Although Lyra support imperative "stateless steps", it is not possible to
   # specify these in yaml.
   #
   # Each resource has a type which can be specified explicitly or implicitly. In
   # the implicit case, the type field is omitted. The type is inferred from the
-  # name and the workflow's top-level typespace e.g. an activity named "loadbalancer"
+  # name and the workflow's top-level typespace e.g. a step named "loadbalancer"
   # has an inferred type of "Foobernetes::loadbalancer".
   #
-  # In yaml, activity inputs are usually implicit (though can be made explicit if
+  # In yaml, step parameters are usually implicit (though can be made explicit if
   # desired) and any field value that starts with a dollar sign ($) is assumed to
-  # be an input e.g. $databaseID. Activity outputs are always explicit. An
-  # activity can only be executed when all inputs are available. Those inputs must
-  # come from either the top-level workflow inputs or the outputs of other
-  # activities. Inputs and outputs are correlated by name and so must be unique
+  # be an parameters e.g. $databaseID. Step returns are always explicit. An
+  # step can only be executed when all parameters are available. Those parameters must
+  # come from either the top-level workflow parameters or the returns of other
+  # steps. Parameters and returns are correlated by name and so must be unique
   # within a workflow.
-  activities:
+  steps:
 
-    # This activity defines a resource called "webserver1". The type is explicit.
+    # This step defines a resource called "webserver1". The type is explicit.
     # There is a single output, the value of the "webServerID" field, which has been
     # aliased to "webServerID1" to ensure uniqueness. The "webServerID" field is
     # present in the actual state of the resource returned by the "loadbalancer"
-    # state handler. The two inputs are implicit and can be identified by the use of
+    # state handler. The two parameters are implicit and can be identified by the use of
     # a dollar sign ($) i.e. appServerID1 and appServerID2.
     web-servers:
       type: Foobernetes::Webserver
-      output:
+      returns:
         webServerID1: webServerID
       state:
         port: 8080
         appServers: [$appServerID1, $appServerID2]
 
-    # Since each activity needs to have a unique name, this one is called
-    # "web-server2" to differentiate it from the activity above. Output names also
+    # Since each step needs to have a unique name, this one is called
+    # "web-server2" to differentiate it from the step above. The names in "returns" also
     # need to be unique across the entire workflow and so again the "webServerID"
     # field from the actual resource state is aliased.
     web-server2:
       type: Foobernetes::Webserver
-      output:
+      returns:
         webServerID2: webServerID
       state:
         port: 8080
         appServers: [$appServerID1, $appServerID2]
 
-    # This activity has an implicit type, derived from its name i.e.
-    # Foobernetes::loadbalancer. The output in this case is not aliased because the
+    # This step has an implicit type, derived from its name i.e.
+    # Foobernetes::loadbalancer. The returns field in this case is not aliased because the
     # field name is already unique.
     loadbalancer:
-      output: loadBalancerID
+      returns: loadBalancerID
       state:
         loadBalancerIP: 10.0.0.1
         location: eu1
@@ -112,13 +112,13 @@ foobernetes:
           team: "lyra team"
           role: primary
 
-    # This second "loadbalancer" activity cannot be typed implicitly since the
-    # activity name must be unique. The activity also declares its inputs
+    # This second "loadbalancer" step cannot be typed implicitly since the
+    # step name must be unique. The step also declares its parameters
     # explicitly, which is never necessary in yaml but can aid clarity.
     secondary-loadbalancer:
       type: Foobernetes::Loadbalancer
-      input: [webServerID1, webServerID2]
-      output:
+      parameters: [webServerID1, webServerID2]
+      returns:
         secondaryLoadBalancerID: loadBalancerID
       state:
         loadBalancerIP: '10.0.0.2'
@@ -129,11 +129,11 @@ foobernetes:
           team: "lyra team"
           role: secondary
 
-    # The state section of an activity can be arbitrarily nested as shown in the
+    # The state section of a step can be arbitrarily nested as shown in the
     # "config" section.
     app-server1:
       type: Foobernetes::Instance
-      output:
+      returns:
         appServerID1: instanceID
       state:
         location: eu1
@@ -146,7 +146,7 @@ foobernetes:
 
     app-server2:
       type: Foobernetes::Instance
-      output:
+      returns:
         appServerID2: instanceID
       state:
         location: eu2
@@ -159,7 +159,7 @@ foobernetes:
 
     database:
       type: Foobernetes::Instance
-      output:
+      returns:
         databaseID: instanceID
       state:
         location: eu1

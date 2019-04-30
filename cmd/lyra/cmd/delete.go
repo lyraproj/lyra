@@ -13,7 +13,7 @@ import (
 	_ "github.com/lyraproj/hiera/functions"
 )
 
-// NewDeleteCmd returns the delete subcommand used to delete activities.
+// NewDeleteCmd returns the delete subcommand used to delete steps.
 func NewDeleteCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     gotext.Get("delete <workflow-name>"),

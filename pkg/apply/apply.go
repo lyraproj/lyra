@@ -109,7 +109,7 @@ func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) 
 				logger.Debug("delete finished")
 			} else {
 				logger.Debug("calling apply")
-				apply(c, workflowName, px.EmptyMap, intent) // TODO: Perhaps provide top-level input from command line args
+				apply(c, workflowName, px.EmptyMap, intent) // TODO: Perhaps provide top-level parameters from command line args
 				ui.ShowMessage("apply done:", workflowName)
 				logger.Debug("apply finished")
 			}
@@ -139,33 +139,33 @@ func (a *Applicator) parseDlvConfig(c px.Context) {
 	c.Set(api.LyraDlvConfigKey, dc)
 }
 
-func loadActivity(c px.Context, activityID string) api.Activity {
-	def, ok := px.Load(c, px.NewTypedName(px.NsDefinition, activityID))
+func loadStep(c px.Context, stepID string) api.Step {
+	def, ok := px.Load(c, px.NewTypedName(px.NsDefinition, stepID))
 	if !ok {
-		panic(util.CmdError(fmt.Sprintf("Unable to find definition for activity %s", activityID)))
+		panic(util.CmdError(fmt.Sprintf("Unable to find definition for step %s", stepID)))
 	}
-	return wfe.CreateActivity(c, def.(serviceapi.Definition))
+	return wfe.CreateStep(c, def.(serviceapi.Definition))
 }
 
-func delete(c px.Context, activityID string) {
+func delete(c px.Context, stepID string) {
 	log := logger.Get()
-	log.Debug("deleting", "activityID", activityID)
+	log.Debug("deleting", "stepID", stepID)
 
 	// Nothing in the workflow will be in the new era so all is deleted
 	service.StartEra(c)
-	service.SweepAndGC(c, loadActivity(c, activityID).Identifier()+"/")
+	service.SweepAndGC(c, loadStep(c, stepID).Identifier()+"/")
 }
 
-func apply(c px.Context, activityID string, input px.OrderedMap, intent wf.Operation) {
+func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Operation) {
 	log := logger.Get()
 
 	log.Debug("configuring scope")
-	c.Set(service.ActivityContextKey, px.SingletonMap(`operation`, types.WrapInteger(int64(intent))))
+	c.Set(service.StepContextKey, px.SingletonMap(`operation`, types.WrapInteger(int64(intent))))
 
-	log.Debug("applying", "activityID", activityID)
+	log.Debug("applying", "stepID", stepID)
 	service.StartEra(c)
-	a := loadActivity(c, activityID)
-	result := a.Run(c, px.Wrap(c, input).(px.OrderedMap))
+	a := loadStep(c, stepID)
+	result := a.Run(c, px.Wrap(c, parameters).(px.OrderedMap))
 	log.Debug("Apply done", "result", result)
 
 	gcPrefix := a.Identifier() + "/"

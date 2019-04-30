@@ -6,22 +6,22 @@ For an explanation of the semantics of each element, please see [Workflow Semant
 
 The YAML workflow is limited to two types of activities, the `workflow` and the `resource`. A hash containing the key `activities` is considered a workflow and a hash containing the key `state` is considered a resource.
 
-### Common activity properties
-##### input
+### Common step properties
+##### parameters
 
-The input declaration can be in one of the following forms:
+The parameters declaration can be in one of the following forms:
 
 Just a name:
 
-    input: i1
+    parameters: i1
 
 An array of names:
 
-    input: [i1, i2]
+    parameters: [i1, i2]
 
 A hash with names mapping to hash of type and optional lookup where:
 
-    input:
+    parameters:
       i1:
         type: String
       i2:
@@ -32,26 +32,26 @@ declares the named parameters _i1_ and _i2_. The parameter _i2_ will get its val
 
 When using YAML, it is possible to infer all `input` declarations which means that it can often be omitted unless lookup is desired.
 
-#### output
-similar to `input` but without the ability to declare type (it is always inferred) or lookups.
+#### returns
+similar to `parameters` but without the ability to declare type (it is always inferred) or lookups.
 
-Single name of a state attribute (resource) or output of contained activity (workflow)
+Single name of a state attribute (resource) or output of contained step (workflow)
 
-    output: attr_x
+    returns: attr_x
 
 List of names of a state attributes (resource) or output of contained activities (workflow)
 
-    output: [attr_x, attr_y]
+    returns: [attr_x, attr_y]
 
 An alias is used when it is desirable to give the output variable a different name than the attribute it references:
 
-    output:
+    returns:
       alias_x: attr_x
       alias_y: attr_y
 
 A special construct can be used when it is desirable to group resource attributes into a Struct
 
-    output:
+    returns:
       o: [x1, x2]
 
 this example will result in an output name "o" that has the inferred type:
@@ -59,7 +59,7 @@ this example will result in an output name "o" that has the inferred type:
     Struct[x1 => Like[<resource_type>, x1], x2 => Like[<resource_type>, x2]]
 
 #### when
-an activity is considered to have a guard when it declares:
+a step is considered to have a guard when it declares:
 
      when: <guard expression>
      
@@ -68,10 +68,10 @@ the `<guard expression>` is a string containing a boolean expression consisting 
 #### sequential
 The sequential aspect of evaluation is controlled using the following syntax.
 
-     sequential: activities | iteration | both
+     sequential: steps | iteration | both
 
 #### iteration
-Iteration is defined by adding an iteration key the activity. The iteration must be a hash containing the four keys `name`, `function`, `over`, and `vars`. Example:
+Iteration is defined by adding an iteration key the step. The iteration must be a hash containing the four keys `name`, `function`, `over`, and `vars`. Example:
 
     iteration:
       name: nodes

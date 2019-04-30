@@ -9,7 +9,7 @@ import * as GitHub from './types/GitHub';
 serveWorkflow({
   source: __filename,
 
-  activities: {
+  steps: {
     github_repository: resource({
       state: (): GitHub.Repository => new GitHub.Repository({
         name       : "lyra-provider-test-ts",

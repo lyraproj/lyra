@@ -4,7 +4,7 @@ import * as Example from './types/Example';
 
 serveWorkflow({
   source: __filename,
-  activities: {
+  steps: {
     person: resource({
       state: (): Example.Person => new Example.Person({
         age: 77,

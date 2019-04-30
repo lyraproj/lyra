@@ -1,11 +1,11 @@
 workflow sample_pp {
   typespace => 'example',
-  output => (
+  returns => (
     String $name
   )
 } {
   resource person {
-    output => ($name)
+    returns => ($name)
   }{
     age => 28,
     name => 'Bob',

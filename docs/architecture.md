@@ -19,7 +19,7 @@ The Lyra Command Line Interface. Provides commands like *apply*, *validate*, and
 
 ### Workflow Engine
 
-Performs evaluation of workflow activity definitions using services. Services and definitions are obtained from the *Loader*.
+Performs evaluation of workflow step definitions using services. Services and definitions are obtained from the *Loader*.
 
 ### Loader
 
@@ -27,17 +27,17 @@ Loads and manages all services, workflow activities, value types, and functions 
 
 ### Language Front-end
 
-Parses workflow manifests written in a specific language into activity definitions that the workflow engine can understand. Executes imperative activities on demand using an evaluator native to the language.
+Parses workflow manifests written in a specific language into step definitions that the workflow engine can understand. Executes imperative activities on demand using an evaluator native to the language.
 
 ### Lookup
 
-A Hiera 5 compatible framework for looking up various values such as environment settings, command line options, secret credentials, and configuration values. A workflow or an activity can declare that input should be fulfilled by lookup.
+A Hiera 5 compatible framework for looking up various values such as environment settings, command line options, secret credentials, and configuration values. A workflow or a step can declare that input should be fulfilled by lookup.
 
 The lookup framework is easy to extend with new functionality by adding special backend functions tailored to read from a file or use vault, k8s, etc.
 
 ### Identity Storage
 
-A persistent store that maps Lyra internal activity identifiers to external resource identifiers.
+A persistent store that maps Lyra internal step identifiers to external resource identifiers.
 
 ### Service
 
@@ -47,7 +47,7 @@ An external process described by a service definition. Examples of services are:
 
 * **Aws** - Provides handlers for a number of Aws resource types
 
-* **Puppet-Workflow** - Language Front-end for Puppet. Produces activity definitions from Puppet manifests
+* **Puppet-Workflow** - Language Front-end for Puppet. Produces step definitions from Puppet manifests
 
 <p align="center"><img src="media/services.png" alt="services"></p>
 
@@ -89,7 +89,7 @@ The ability to send complex data structures between processes is very important 
 
 ### Declarative or Imperative Programming
 
-Lyra covers both programming models by providing specializations of an Activity, such as Resource, which is pure declaration of a desired state.
+Lyra covers both programming models by providing specializations of a Step, such as Resource, which is pure declaration of a desired state.
 
 Lyra also allows generic activities that are very similar to functions. I.e. code that is called with parameters and returns values. Such activities can do virtually anything. When controlled by Guards they can mimic state-changes that are not easily expressed using resources.
 
@@ -99,7 +99,7 @@ Lyra makes ordering easy without enforcing a specific model onto the user. As me
 
 Order isn’t applicable within individual activities because they are either a declaration of state, a block of code to execute, or a workflow in which case it manages its own order internally. If it is code, then that code is in charge of its own actions. The workflow engine treats an invocation of the code as one-off execution of something opaque.
 
-A special iteration construct enables the declaration of an activity that should be invoked multiple times. The declared activity will run multiple times, each time with a different value of a given variable. The invocations will happen in parallel. Lyra has several iteration methods, including "times", “range”, “each”, and “each_pair”.
+A special iteration construct enables the declaration of a step that should be invoked multiple times. The declared step will run multiple times, each time with a different value of a given variable. The invocations will happen in parallel. Lyra has several iteration methods, including "times", “range”, “each”, and “each_pair”.
 
 ### CRUD
 
