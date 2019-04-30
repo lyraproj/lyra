@@ -60,7 +60,7 @@ foober_iter:
   #
   # In yaml, step parameters are usually implicit (though can be made explicit if
   # desired) and any field value that starts with a dollar sign ($) is assumed to
-  # be an parameters e.g. $databaseID. Step returns are always explicit. A step
+  # be a parameter e.g. $databaseID. Step returns are always explicit. A step
   # can only be executed when all parameters are available. Those parameters must
   # come from either the top-level workflow parameters or the returns of other
   # steps. Parameters and returns are correlated by name and so must be unique

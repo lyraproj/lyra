@@ -9,7 +9,7 @@ A Workflow describes a collection of Activities and must be declared in such a w
 The workflow engine loads this declaration, validates it, and invokes its activities in an order determined by their input and output declarations. The workflow can be packaged into a deployable unit (coming soon!).
 
 ## Step
-A Step is an abstract executable unit, analog to “a function in a program”, that consumes inputs and produces outputs. The workflow engine triggers its execution when all its input requirements are met. When several activities are grouped into a workflow, the execution in turn produces output available as input to other activities which then get triggered. In essence, this means that all ordering of activities and all concerns regarding parallel or sequential execution, can be expressed as input requirements and output declarations that fulfills them.
+A Step is an abstract executable unit, analog to “a function in a program”, that consumes named parameters and produces named return values. The workflow engine triggers its execution when all its input requirements are met. When several activities are grouped into a workflow, the execution in turn produces output available as input to other activities which then get triggered. In essence, this means that all ordering of activities and all concerns regarding parallel or sequential execution, can be expressed as input requirements and output declarations that fulfills them.
 
 A Step will always have a Guard. A Guard is an expression consisting of named variables,  the boolean operators “!”, “and”, and “or”. It may also contain parentheses to enforce order of evaluation. The default guard is the expression “true” which not surprisingly, always evaluates to true.
 
