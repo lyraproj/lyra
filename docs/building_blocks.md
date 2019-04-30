@@ -21,7 +21,7 @@ A Step can be a Resource, an Action, a Stateless, or a Workflow.
 A special form of declarative step that defines a desired state. A resource is always managed by a provider responsible for setting or mutating its state. The inputs to a resource can be used to define state attributes and the output is values of selected attributes once the state has been applied.
 
 ## Action
-An step that contains a function written in a supported programming language. The code is evaluated by the corresponding language front-end.
+A step that contains a function written in a supported programming language. The code is evaluated by the corresponding language front-end.
 
 ## Handler
-An step that contains CRUD (Create, Read, Update, Delete) functions written in a supported programming language. The workflow engine selects the functions to be evaluated and the evaluation is then performed by the corresponding language front-end.
+A step that contains CRUD (Create, Read, Update, Delete) functions written in a supported programming language. The workflow engine selects the functions to be evaluated and the evaluation is then performed by the corresponding language front-end.

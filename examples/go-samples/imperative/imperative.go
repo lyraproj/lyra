@@ -6,8 +6,6 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/lyraproj/lyra/examples/go-samples/types/foobernetes"
-	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/lang/go/lyra"
 )
 
@@ -17,7 +15,7 @@ func main() {
 	}
 
 	// Workflow input is from Hiera and a constant (declared by annotations in the In struct).
-	lyra.Serve(`imperative_go`, func(c px.Context) { foobernetes.InitTypes(c) }, &lyra.Workflow{
+	lyra.Serve(`imperative_go`, nil, &lyra.Workflow{
 		Parameters: struct {
 			A string `lookup:"golang.hello"`
 			B int    `value:"5"`

@@ -26,7 +26,7 @@ A parameter without a lookup expression must denote a variable known to the cont
 
 The input `type` can be omitted when the parameter maps to an output variable from other step because the type can then be inferred from the output.
 
-An step will have access to the `input` that it declares, an optional iteration variable, and a predefined global variable named `$context` (see section about `$context` below). It will not have access to any other variables. The reason for this is that steps may run in a process different from the workflow engine and will be executed with the presumption that the remote process holds no state. All state must hence be passed to a step in order for it to execute.
+A step will have access to the `input` that it declares, an optional iteration variable, and a predefined global variable named `$context` (see section about `$context` below). It will not have access to any other variables. The reason for this is that steps may run in a process different from the workflow engine and will be executed with the presumption that the remote process holds no state. All state must hence be passed to a step in order for it to execute.
 
 ##### returns
 declares the set of named and typed variables that a step will contribute to the workflow.
@@ -58,7 +58,7 @@ times|iterates the number of times given by count|`count` - a positive integer|`
 range|iterates over a range denoted by two parameters|`from` - an integer, `to` - an integer greater than `from`|`index`and integer starting at `<from>` and increments up to, but not including `<to>`
 each|iterates over all elements of a hash or an array|`collection` - a hash or array to iterate over|`value` - each element in the array or `key` and `value` to iterate over the associations of a hash
 
-An step with an iteration must be declared to produce an `output` consisting of a `key` and a `value`. This is the product of each iteration. The final output from the step is one variable named after the step containing a Hash consisting of the key/value pair of each iteration.
+A step with an iteration must be declared to produce an `output` consisting of a `key` and a `value`. This is the product of each iteration. The final output from the step is one variable named after the step containing a Hash consisting of the key/value pair of each iteration.
 
 ### StateHandler
 A stateHandler implements a predefined set of functions (an interface) that performs tasks related to a subject. Lyra currently only defines one such interface, the CRUD, which is implemented by resource handlers and the only reason to write an action, is when there's a desire to implement a handler for a resource state.
