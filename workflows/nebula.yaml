@@ -1,0 +1,38 @@
+parameters:
+  helm_image:
+    type: String
+    value: "helm"
+  rabbitmq_args:
+    type: String
+    value: "install rabbitmq"
+  rabbitmq_release_name_key:
+    type: String
+    value: "releaseName"
+  mysql_args:
+    type: String
+    value: "install mysql"
+  mysql_release_name_key:
+    type: String
+    value: "releaseName"
+
+returns: [rabbitmq_release_name, mysql_release_name]
+
+steps:
+
+  rabbitmq:
+    parameters:
+      helm_image: image
+      rabbitmq_args: args
+      rabbitmq_release_name_key: key
+    returns:
+      rabbitmq_release_name: value
+    reference: containerized
+
+  mysql:
+    parameters:
+      helm_image: image
+      mysql_args: args
+      mysql_release_name_key: key
+    returns:
+      mysql_release_name: value
+    reference: containerized
