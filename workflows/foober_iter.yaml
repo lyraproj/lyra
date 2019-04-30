@@ -75,58 +75,55 @@ foober_iter:
     # by the "webserver" state handler. The parameters are implicit and can be identified by
     # the use of a dollar sign ($) i.e. appServers.
     webServers:
-      type: Foobernetes::Webserver
-      returns: webServerID
-      iteration:
-        function: times
-        over: 2
-      state:
-        port: 8080
-        appServers: $appServers
+      times: 2
+      step:
+        type: Foobernetes::Webserver
+        returns: webServerID
+        state:
+          port: 8080
+          appServers: $appServers
 
     # This iteration step iterates over an array of 3 element arrays. Each iteration
     # assigns the 3 values to their corresponding variables $role, $ip, and $replica which
     # are then used when declaring each loadbalancer's state.
     loadbalancers:
-      type: Foobernetes::Loadbalancer
-      returns: loadBalancerID
-      iteration:
-        function: each
-        over:
-          - [primary, '10.0.0.1', false]
-          - [secondary, '10.0.0.2', true]
-        variables:
-          - role
-          - ip
-          - replica
-      state:
-        loadBalancerIP: $ip
-        location: eu1
-        replica: $replica
-        webServerIDs: $webServers
-        tags:
-          team: "lyra team"
-          role: $role
+      each:
+        - [primary, '10.0.0.1', false]
+        - [secondary, '10.0.0.2', true]
+      as:
+        - role
+        - ip
+        - replica
+      step:
+        type: Foobernetes::Loadbalancer
+        returns: loadBalancerID
+        state:
+          loadBalancerIP: $ip
+          location: eu1
+          replica: $replica
+          webServerIDs: $webServers
+          tags:
+            team: "lyra team"
+            role: $role
 
     # The state section of a step can be arbitrarily nested as shown in the
     # "config" section.
     appServers:
-      type: Foobernetes::Instance
-      returns: instanceID
-      iteration:
-        function: each
-        over:
-          - app-server1
-          - app-server2
-        variable: name
-      state:
-        location: eu2
-        image: "lyra::application"
-        config:
-          name: $name
-          databaseID: $databaseID
-        cpus: 4
-        memory: 8G
+      each:
+        - app-server1
+        - app-server2
+      as: name
+      step:
+        type: Foobernetes::Instance
+        returns: instanceID
+        state:
+          location: eu2
+          image: "lyra::application"
+          config:
+            name: $name
+            databaseID: $databaseID
+          cpus: 4
+          memory: 8G
 
     database:
       type: Foobernetes::Instance
