@@ -4,6 +4,7 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/hashicorp/go-hclog v0.8.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
+	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190329232239-0a668ca79a0a
@@ -11,10 +12,8 @@ require (
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
 	github.com/lyraproj/pcore v0.0.0-20190430110934-83976192a929
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190430110916-1041c320cd36 // indirect
-	github.com/lyraproj/puppet-parser v0.0.0-20190430110841-411815e88e03 // indirect
-	github.com/lyraproj/puppet-workflow v0.0.0-20190430110746-3b8de61f70f1
-	github.com/lyraproj/servicesdk v0.0.0-20190430110643-7dfcac6e18d8
+	github.com/lyraproj/puppet-workflow v0.0.0-20190430124605-3b35744f8b1a
+	github.com/lyraproj/servicesdk v0.0.0-20190430120815-0243a545d9a2
 	github.com/lyraproj/terraform-bridge v0.0.0-20190410154810-5b515592f0f7
 	github.com/lyraproj/wfe v0.0.0-20190430110315-3198f74f2a02
 	github.com/mattn/go-colorable v0.1.1 // indirect
