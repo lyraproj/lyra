@@ -1,10 +1,10 @@
 workflow sample_pp {
-  typespace => 'example',
   returns => (
     String $name
   )
 } {
   resource person {
+    type => Example::Person,
     returns => ($name)
   }{
     age => 28,

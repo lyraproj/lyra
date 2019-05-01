@@ -1,120 +1,114 @@
-aws:
-  typespace: Aws
-  parameters:
-    tags:
-      type: Hash[String,String]
-      lookup: aws.tags
-  returns:
-    vpc_id: String
-  steps:
+parameters:
+  tags:
+    type: Hash[String,String]
+    lookup: aws.tags
+returns:
+  vpc_id: String
+steps:
 
-    iam_role:
-      state:
-        name: lyra-iam-role
-        assume_role_policy: |
-          {
-            "Version": "2012-10-17",
-            "Statement": [
-              {
-                  "Action": "sts:AssumeRoleWithSAML",
-                  "Effect": "Allow",
-                  "Condition": {
-                    "StringEquals": {
-                        "SAML:aud": "https://signin.aws.amazon.com/saml"
-                    }
-                  },
-                  "Principal": {
-                    "Federated": "arn:aws:iam::1234567890:saml-provider/myidp"
+  iam_role:
+    Aws::Iam_role:
+      name: lyra-iam-role
+      assume_role_policy: |
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+                "Action": "sts:AssumeRoleWithSAML",
+                "Effect": "Allow",
+                "Condition": {
+                  "StringEquals": {
+                      "SAML:aud": "https://signin.aws.amazon.com/saml"
                   }
-              }
-            ]
-          }
+                },
+                "Principal": {
+                  "Federated": "arn:aws:iam::1234567890:saml-provider/myidp"
+                }
+            }
+          ]
+        }
 
-    #
-    # Application of key_pair succeeds on the first run then fails: see https://github.com/lyraproj/lyra/issues/203
-    #
-    # key_pair:
-    #   state:
-    #     key_name: lyra-test-keypair
-    #     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"
+  #
+  # Application of key_pair succeeds on the first run then fails: see https://github.com/lyraproj/lyra/issues/203
+  #
+  # key_pair:
+  #   Aws::Key_pair:
+  #     key_name: lyra-test-keypair
+  #     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCX363gh/q6DGSL963/LlYcILkYKtEjrq5Ze4gr1BJdY0pqLMIKFt/VMJ5UTyx85N4Chjb/jEQhZzlWGC1SMsXOQ+EnY72fYrpOV0wZ4VraxZAz3WASikEglHJYALTQtsL8RGPxlBhIv0HpgevBkDlHvR+QGFaEQCaUhXCWDtLWYw== nyx-test-keypair-nopassword"
 
-    vpc:
-      # type is implicit and is derived from the
-      # step name, in contrast to subnets below
-      returns: vpc_id
-      state:
-        cidr_block: 192.168.0.0/16
-        instance_tenancy: default
-        tags: $tags
+  vpc:
+    # type is implicit and is derived from the
+    # step name, in contrast to subnets below
+    returns: vpc_id
+    Aws::Vpc:
+      cidr_block: 192.168.0.0/16
+      instance_tenancy: default
+      tags: $tags
 
-    route_table:
-      state:
-        vpc_id: $vpc_id
-        tags:
-          name: lyra-routetable
-          created_by: lyra
+  route_table:
+    Aws::Route_table:
+      vpc_id: $vpc_id
+      tags:
+        name: lyra-routetable
+        created_by: lyra
 
-    #
-    # Deletion of internet_gateway fails: see https://github.com/lyraproj/lyra/issues/204
-    #
-    # internet_gateway:
-    #   state:
-    #     vpc_id: $vpc_id
+  #
+  # Deletion of internet_gateway fails: see https://github.com/lyraproj/lyra/issues/204
+  #
+  # internet_gateway:
+  #   Aws::Internet_gateway:
+  #     vpc_id: $vpc_id
 
-    security_group:
-      state:
-        name: "lyra"
-        description: "lyra security group"
-        vpc_id: $vpc_id
-        ingress:
-          - from_port: 0
-            to_port: 0
-            protocol: "-1"
-            cidr_blocks: ["0.0.0.0/0"]
-        egress:
-          - from_port: 0
-            to_port: 0
-            protocol: "-1"
-            cidr_blocks: ["0.0.0.0/0"]
+  security_group:
+    Aws::Security_group:
+      name: "lyra"
+      description: "lyra security group"
+      vpc_id: $vpc_id
+      ingress:
+        - from_port: 0
+          to_port: 0
+          protocol: "-1"
+          cidr_blocks: ["0.0.0.0/0"]
+      egress:
+        - from_port: 0
+          to_port: 0
+          protocol: "-1"
+          cidr_blocks: ["0.0.0.0/0"]
 
-    subnet1:
-      type:  Aws::Subnet
-      returns:
-        subnet_id1: subnet_id
-      state:
-        vpc_id: $vpc_id
-        cidr_block: 192.168.1.0/24
-        tags:
-          name: lyra-subnet-1
-          created_by: lyra
+  subnet1:
+    returns:
+      subnet_id1: subnet_id
+    Aws::Subnet:
+      vpc_id: $vpc_id
+      cidr_block: 192.168.1.0/24
+      tags:
+        name: lyra-subnet-1
+        created_by: lyra
 
-    subnet2:
-      type:  Aws::Subnet
-      returns:
-        subnet_id2: subnet_id
-      state:
-        vpc_id: $vpc_id
-        cidr_block: 192.168.2.0/24
-        tags:
-          name: lyra-subnet-2
-          created_by: lyra
+  subnet2:
+    returns:
+      subnet_id2: subnet_id
+    Aws::Subnet:
+      vpc_id: $vpc_id
+      cidr_block: 192.168.2.0/24
+      tags:
+        name: lyra-subnet-2
+        created_by: lyra
 
-    instance1:
-      type:  Aws::Instance
-      state:
-        instance_type: 't2.nano'
-        ami: 'ami-f90a4880'
-        subnet_id: $subnet_id1
-        tags:
-          name: lyra-instance-1
-          created_by: lyra
+  instance1:
+    Aws::Instance:
+      instance_type: 't2.nano'
+      ami: 'ami-f90a4880'
+      subnet_id: $subnet_id1
+      tags:
+        name: lyra-instance-1
+        created_by: lyra
 
-    instance2:
-      type:  Aws::Instance
-      state:
-        instance_type: 't2.nano'
-        ami: 'ami-f90a4880'
-        subnet_id: $subnet_id2
-        tags:
-          name: lyra-instance-2
-          created_by: lyra
+  instance2:
+    Aws::Instance:
+      instance_type: 't2.nano'
+      ami: 'ami-f90a4880'
+      subnet_id: $subnet_id2
+      tags:
+        name: lyra-instance-2
+        created_by: lyra

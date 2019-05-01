@@ -1,90 +1,87 @@
 # You will need to authenticate with Azure using the "az login" command
-
-azure:
-  typespace: AzureRM
-  steps:
-    resource_group:
-      returns:
-        resource_group_name: name
-      state:
-        name: lyra
-        location: ukwest
-        tags:
-          environment: "Lyra Example"
-    virtual_network:
-      returns:
-        virtual_network_name: name
-      state:
-        name: lyraVnet
-        address_space: [10.0.0.0/16]
-        location: ukwest
-        resource_group_name: $resource_group_name
-    subnet:
-      returns: subnet_id
-      state:
-        name: lyraSubnet
-        resource_group_name: $resource_group_name
-        virtual_network_name: $virtual_network_name
-        address_prefix: 10.0.1.0/24
-    public_ip:
-      returns: public_ip_id
-      state:
-        name: lyraPublicIP
-        location: ukwest
-        resource_group_name: $resource_group_name
-        allocation_method: dynamic
-    network_security_group:
-      returns: network_security_group_id
-      state:
-        name: lyraNetworkSecurityGroup
-        location: ukwest
-        resource_group_name: $resource_group_name
-        security_rule:
-          - name: SSH
-            priority: 1001
-            direction: Inbound
-            access: Allow
-            protocol: Tcp
-            source_port_range: "*"
-            destination_port_range: "22"
-            source_address_prefix: "*"
-            destination_address_prefix: "*"
-    network_interface:
-      returns: network_interface_id
-      state:
-        name: lyraNIC
-        location: ukwest
-        resource_group_name: $resource_group_name
-        network_security_group_id: $network_security_group_id
-        ip_configuration:
-          - name: lyraNicConfiguration
-            subnet_id: $subnet_id
-            private_ip_address_allocation: dynamic
-            public_ip_address_id: $public_ip_id
-    virtual_machine:
-      state:
-        name: lyraVirtualMachine
-        location: UK West
-        resource_group_name: $resource_group_name
-        network_interface_ids: [$network_interface_id]
-        vm_size: Standard_B1s
-        storage_image_reference:
-          publisher: Canonical
-          offer: UbuntuServer
-          sku: 18.04-LTS
-          version: latest
-        storage_os_disk:
-          name: lyraosdisk1
-          caching: ReadWrite
-          create_option: FromImage
-          managed_disk_type: Standard_LRS
-        os_profile:
-          computer_name: hostname
-          admin_username: testadmin
-          admin_password: Password1234!
-        os_profile_linux_config:
-          disable_password_authentication: false
-        tags:
-          environment: lyra-test
-        delete_os_disk_on_termination: true
-        delete_data_disks_on_termination: true
+steps:
+  resource_group:
+    returns:
+      resource_group_name: name
+    AzureRM::Resource_group:
+      name: lyra
+      location: ukwest
+      tags:
+        environment: "Lyra Example"
+  virtual_network:
+    returns:
+      virtual_network_name: name
+    AzureRM::Virtual_network:
+      name: lyraVnet
+      address_space: [10.0.0.0/16]
+      location: ukwest
+      resource_group_name: $resource_group_name
+  subnet:
+    returns: subnet_id
+    AzureRM::Subnet:
+      name: lyraSubnet
+      resource_group_name: $resource_group_name
+      virtual_network_name: $virtual_network_name
+      address_prefix: 10.0.1.0/24
+  public_ip:
+    returns: public_ip_id
+    AzureRM::Public_ip:
+      name: lyraPublicIP
+      location: ukwest
+      resource_group_name: $resource_group_name
+      allocation_method: dynamic
+  network_security_group:
+    returns: network_security_group_id
+    AzureRM::Network_security_group:
+      name: lyraNetworkSecurityGroup
+      location: ukwest
+      resource_group_name: $resource_group_name
+      security_rule:
+        - name: SSH
+          priority: 1001
+          direction: Inbound
+          access: Allow
+          protocol: Tcp
+          source_port_range: "*"
+          destination_port_range: "22"
+          source_address_prefix: "*"
+          destination_address_prefix: "*"
+  network_interface:
+    returns: network_interface_id
+    AzureRM::Network_interface:
+      name: lyraNIC
+      location: ukwest
+      resource_group_name: $resource_group_name
+      network_security_group_id: $network_security_group_id
+      ip_configuration:
+        - name: lyraNicConfiguration
+          subnet_id: $subnet_id
+          private_ip_address_allocation: dynamic
+          public_ip_address_id: $public_ip_id
+  virtual_machine:
+    AzureRM::Virtual_machine:
+      name: lyraVirtualMachine
+      location: UK West
+      resource_group_name: $resource_group_name
+      network_interface_ids: [$network_interface_id]
+      vm_size: Standard_B1s
+      storage_image_reference:
+        publisher: Canonical
+        offer: UbuntuServer
+        sku: 18.04-LTS
+        version: latest
+      storage_os_disk:
+        name: lyraosdisk1
+        caching: ReadWrite
+        create_option: FromImage
+        managed_disk_type: Standard_LRS
+      os_profile:
+        computer_name: hostname
+        admin_username: testadmin
+        admin_password: Password1234!
+      os_profile_linux_config:
+        disable_password_authentication: false
+      tags:
+        environment: lyra-test
+      delete_os_disk_on_termination: true
+      delete_data_disks_on_termination: true

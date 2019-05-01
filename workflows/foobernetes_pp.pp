@@ -1,5 +1,4 @@
 workflow foobernetes_pp {
-  typespace => 'Foobernetes',
   parameters => (
     String $load_balancer_policy = lookup('foobernetes.lb_policy')
   ),

@@ -3,9 +3,9 @@
 # export GITHUB_TOKEN=<token>
 
 workflow github_pp {
-  typespace => 'GitHub',
 } {
   resource repository {
+    type => GitHub::Repository,
   } {
     name => 'lyra-provider-test-pp',
     description =>'Created using Lyra'

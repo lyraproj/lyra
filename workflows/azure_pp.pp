@@ -1,13 +1,14 @@
 workflow azure_pp {
-  typespace => 'AzureRM',
 } {
     resource resource_group {
+      type => AzureRM::Resource_group,
       returns => ($resource_group_name = name),
     } {
           name => 'lyra-pp',
           location =>  'ukwest'
     }
     resource virtual_network {
+      type => AzureRM::Virtual_network,
       parameters => ($resource_group_name),
       returns => ($virtual_network_name = name),
     } {
@@ -18,6 +19,7 @@ workflow azure_pp {
     }
 
     resource subnet {
+      type => AzureRM::Subnet,
       parameters => ($resource_group_name, $virtual_network_name),
       returns => ($subnet_id = subnet_id)
     } {
@@ -28,6 +30,7 @@ workflow azure_pp {
     }
 
     resource public_ip {
+      type => AzureRM::Public_ip,
       parameters => ($resource_group_name, $virtual_network_name),
       returns => ($public_ip_id = public_ip_id)
     } {
@@ -38,6 +41,7 @@ workflow azure_pp {
     }
 
     resource network_security_group {
+      type => AzureRM::Network_security_group,
       parameters => ($resource_group_name),
       returns => ($nsg_id = network_security_group_id)
     } {
@@ -58,6 +62,7 @@ workflow azure_pp {
     }
 
     resource network_interface {
+      type => AzureRM::Network_interface,
       parameters => ($resource_group_name, $nsg_id, $subnet_id, $public_ip_id),
       returns => ($nic_id = network_interface_id)
     } {
@@ -74,6 +79,7 @@ workflow azure_pp {
     }
 
     resource virtual_machine {
+      type => AzureRM::Virtual_machine,
       parameters => ($resource_group_name, $nic_id, $nsg_id),
     } {
           name =>  'lyraVirtualMachinePp',

@@ -12,7 +12,7 @@ require (
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
 	github.com/lyraproj/pcore v0.0.0-20190430133451-57d4da316569
-	github.com/lyraproj/puppet-workflow v0.0.0-20190430133822-68528441a2e9
+	github.com/lyraproj/puppet-workflow v0.0.0-20190501130808-fde06007b4e2
 	github.com/lyraproj/servicesdk v0.0.0-20190430133733-68a5a13f9111
 	github.com/lyraproj/terraform-bridge v0.0.0-20190430134352-33bd7e9b457a
 	github.com/lyraproj/wfe v0.0.0-20190430133906-65404dfd97a1

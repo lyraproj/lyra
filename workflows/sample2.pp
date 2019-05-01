@@ -1,5 +1,4 @@
 workflow sample2 {
-  typespace => 'example',
   parameters => (
   String $foo = lookup('foo', undef, undef, "foo"),
   String $bar = lookup('bar', undef, undef, "bar"),
@@ -12,6 +11,7 @@ workflow sample2 {
   )
 } {
   resource person {
+  type => Example::Person,
   returns => ($name)
   }{
     age => 28,
