@@ -1,10 +1,8 @@
-sample:
-  typespace: example
-  returns: [name, age]
-  steps:
-    person:
-      returns: [name, age]
-      state:
-        age: 66
-        name: Ann
-        human: true
+returns: [name, age]
+steps:
+  person:
+    returns: [name, age]
+    Example::Person:
+      age: 66
+      name: Ann
+      human: true

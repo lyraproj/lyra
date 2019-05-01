@@ -1,14 +1,12 @@
-sample_alias:
-  typespace: example
-  returns:
-    longName: String
-    currentAge: Integer
-  steps:
-    person:
-      returns:
-        longName: name
-        currentAge: age
-      state:
-        age: 66
-        name: Ann
-        human: true
+returns:
+  longName: String
+  currentAge: Integer
+steps:
+  person:
+    returns:
+      longName: name
+      currentAge: age
+    Example::Person:
+      age: 66
+      name: Ann
+      human: true

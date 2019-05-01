@@ -1,12 +1,10 @@
-sample_returns_hash:
-  typespace: example
-  returns:
-    o: Hash
-  steps:
-    person:
-      returns:
-        o: [name, age]
-      state:
-        age: 25
-        name: Ann
-        human: true
+returns:
+  o: Hash
+steps:
+  person:
+    returns:
+      o: [name, age]
+    Example::Person:
+      age: 25
+      name: Ann
+      human: true

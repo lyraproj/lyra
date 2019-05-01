@@ -1,7 +1,7 @@
 # Foobernetes is an imaginary cloud provider used to illustrate and test the capabilities of Lyra.
 #
-# This file defines a workflow called "foobernetes" (which must be in a file of the
-# same name). The workflow contains a set of interrelated steps and Lyra will
+# This file defines a workflow called "foobernetes". (named after the file that it resides in).
+# The workflow contains a set of interrelated steps and Lyra will
 # determine the correct order in which to execute them based on the parameters and
 # returns of each. In this example we are deploying a (fictional) 3-tier application
 # consisting of a database, two application servers and two web servers, with a load
@@ -20,149 +20,136 @@
 #    "lyra delete --debug foobernetes"
 #
 # This example is written in yaml. See the yaml documentation here: docs/workflow-yaml.md
-foobernetes:
 
-  # Typespaces are namespaces. Here we define the default typespace for
-  # this workflow, which allows us to omit it in some cases below.
-  # See "loadbalancer" for an example.
-  typespace: Foobernetes
+# The workflow expects a single parameter named "load_balancer_policy" and is used in the
+# two "loadbalancer" steps below. The value itself comes from the "data.yaml" file at runtime
+# based on the "lookup" key specified here: in this case a key called "lb_policy" nested in
+# the "foobernetes" section. All top-level workflow parameters must be specified in
+# the "data.yaml" file at runtime.
+parameters:
+  load_balancer_policy:
+    type: String
+    lookup: foobernetes.lb_policy
 
-  # The workflow expects a single value as parameters. The parameters is named
-  # "load_balancer_policy" and is used in the two "loadbalancer" steps below.
-  # The value itself comes from the "data.yaml" file at runtime based on the
-  # "lookup" key specified here: in this case a key called "lb_policy" nested in
-  # the "foobernetes" section. All top-level workflow parameters must be specified in
-  # the "data.yaml" file at runtime.
-  parameters:
-    load_balancer_policy:
-      type: String
-      lookup: foobernetes.lb_policy
+# The workflow returns two named values which are the IDs produced by the two
+# "loadbalancer" steps. All top-level workflow returns must be returns of
+# steps within this workflow.
+returns: [ loadBalancerID, secondaryLoadBalancerID ]
 
-  # The workflow returns two output values: the IDs produced by the two
-  # "loadbalancer" steps. All top-level workflow returns must be returns of
-  # steps within this workflow.
-  returns: [ loadBalancerID, secondaryLoadBalancerID ]
+# Steps are the main body of the workflow and define its behavior. The
+# ordering of the steps is not important - Lyra will infer the correct
+# order in which to execute the steps based on their parameters and returns.
+#
+# The steps in this workflow are all declarative "stateful steps",
+# meaning they define the desired states of real-world resources. For each type
+# of stateful step, there is a "state handler" that takes responsibility for
+# ensuring the real-world resource matches the desired state. It does this by
+# creating, reading, updating or deleting those resources in response to
+# workflow changes. The types and state handlers for this workflow are defined
+# in Go and can be found in the "go-foobernetes" plugin.
+#
+# Although Lyra support imperative "stateless steps", it is not possible to
+# specify these in yaml.
+#
+# Each resource has a type which can be specified explicitly or implicitly. In
+# the implicit case, the type field is omitted. The type is inferred from the
+# name and the workflow's top-level typespace e.g. a step named "loadbalancer"
+# has an inferred type of "Foobernetes::loadbalancer".
+#
+# In yaml, step parameters are usually implicit (though can be made explicit if
+# desired) and any field value that starts with a dollar sign ($) is assumed to
+# be an parameters e.g. $databaseID. Step returns are always explicit. An
+# step can only be executed when all parameters are available. Those parameters must
+# come from either the top-level workflow parameters or the returns of other
+# steps. Parameters and returns are correlated by name and so must be unique
+# within a workflow.
+steps:
 
-  # Steps are the main body of the workflow and define its behavior. The
-  # ordering of the steps is not important - Lyra will infer the correct
-  # order in which to execute the steps based on their parameters and returns.
-  #
-  # The steps in this workflow are all declarative "stateful steps",
-  # meaning they define the desired states of real-world resources. For each type
-  # of stateful step, there is a "state handler" that takes responsibility for
-  # ensuring the real-world resource matches the desired state. It does this by
-  # creating, reading, updating or deleting those resources in response to
-  # workflow changes. The types and state handlers for this workflow are defined
-  # in Go and can be found in the "go-foobernetes" plugin.
-  #
-  # Although Lyra support imperative "stateless steps", it is not possible to
-  # specify these in yaml.
-  #
-  # Each resource has a type which can be specified explicitly or implicitly. In
-  # the implicit case, the type field is omitted. The type is inferred from the
-  # name and the workflow's top-level typespace e.g. a step named "loadbalancer"
-  # has an inferred type of "Foobernetes::loadbalancer".
-  #
-  # In yaml, step parameters are usually implicit (though can be made explicit if
-  # desired) and any field value that starts with a dollar sign ($) is assumed to
-  # be an parameters e.g. $databaseID. Step returns are always explicit. An
-  # step can only be executed when all parameters are available. Those parameters must
-  # come from either the top-level workflow parameters or the returns of other
-  # steps. Parameters and returns are correlated by name and so must be unique
-  # within a workflow.
-  steps:
+  # This step defines a resource called "webserver1". The type is explicit.
+  # There is a single output, the value of the "webServerID" field, which has been
+  # aliased to "webServerID1" to ensure uniqueness. The "webServerID" field is
+  # present in the actual state of the resource returned by the "loadbalancer"
+  # state handler. The two parameters are implicit and can be identified by the use of
+  # a dollar sign ($) i.e. appServerID1 and appServerID2.
+  web-servers:
+    returns:
+      webServerID1: webServerID
+    Foobernetes::Webserver:
+      port: 8080
+      appServers: [$appServerID1, $appServerID2]
 
-    # This step defines a resource called "webserver1". The type is explicit.
-    # There is a single output, the value of the "webServerID" field, which has been
-    # aliased to "webServerID1" to ensure uniqueness. The "webServerID" field is
-    # present in the actual state of the resource returned by the "loadbalancer"
-    # state handler. The two parameters are implicit and can be identified by the use of
-    # a dollar sign ($) i.e. appServerID1 and appServerID2.
-    web-servers:
-      type: Foobernetes::Webserver
-      returns:
-        webServerID1: webServerID
-      state:
-        port: 8080
-        appServers: [$appServerID1, $appServerID2]
+  # Since each step needs to have a unique name, this one is called
+  # "web-server2" to differentiate it from the step above. The names in "returns" also
+  # need to be unique across the entire workflow and so again the "webServerID"
+  # field from the actual resource state is aliased.
+  web-server2:
+    returns:
+      webServerID2: webServerID
+    Foobernetes::Webserver:
+      port: 8080
+      appServers: [$appServerID1, $appServerID2]
 
-    # Since each step needs to have a unique name, this one is called
-    # "web-server2" to differentiate it from the step above. The names in "returns" also
-    # need to be unique across the entire workflow and so again the "webServerID"
-    # field from the actual resource state is aliased.
-    web-server2:
-      type: Foobernetes::Webserver
-      returns:
-        webServerID2: webServerID
-      state:
-        port: 8080
-        appServers: [$appServerID1, $appServerID2]
+  # This step has an implicit type, derived from its name i.e.
+  # Foobernetes::loadbalancer. The returns field in this case is not aliased because the
+  # field name is already unique.
+  loadbalancer:
+    returns: loadBalancerID
+    Foobernetes::Loadbalancer:
+      loadBalancerIP: 10.0.0.1
+      location: eu1
+      replica: false
+      webServerIDs: [$webServerID1, $webServerID2]
+      tags:
+        team: "lyra team"
+        role: primary
 
-    # This step has an implicit type, derived from its name i.e.
-    # Foobernetes::loadbalancer. The returns field in this case is not aliased because the
-    # field name is already unique.
-    loadbalancer:
-      returns: loadBalancerID
-      state:
-        loadBalancerIP: 10.0.0.1
-        location: eu1
-        replica: false
-        webServerIDs: [$webServerID1, $webServerID2]
-        tags:
-          team: "lyra team"
-          role: primary
+  # This second "loadbalancer" step cannot be typed implicitly since the
+  # step name must be unique. The step also declares its parameters
+  # explicitly, which is never necessary in yaml but can aid clarity.
+  secondary-loadbalancer:
+    parameters: [webServerID1, webServerID2]
+    returns:
+      secondaryLoadBalancerID: loadBalancerID
+    Foobernetes::Loadbalancer:
+      loadBalancerIP: '10.0.0.2'
+      location: eu2
+      replica: true
+      webServerIDs: [$webServerID1, $webServerID2]
+      tags:
+        team: "lyra team"
+        role: secondary
 
-    # This second "loadbalancer" step cannot be typed implicitly since the
-    # step name must be unique. The step also declares its parameters
-    # explicitly, which is never necessary in yaml but can aid clarity.
-    secondary-loadbalancer:
-      type: Foobernetes::Loadbalancer
-      parameters: [webServerID1, webServerID2]
-      returns:
-        secondaryLoadBalancerID: loadBalancerID
-      state:
-        loadBalancerIP: '10.0.0.2'
-        location: eu2
-        replica: true
-        webServerIDs: [$webServerID1, $webServerID2]
-        tags:
-          team: "lyra team"
-          role: secondary
+  # The state section of a step can be arbitrarily nested as shown in the
+  # "config" section.
+  app-server1:
+    returns:
+      appServerID1: instanceID
+    Foobernetes::Instance:
+      location: eu1
+      image: lyra::application
+      config:
+        name: app-server1
+        databaseID: $databaseID
+      cpus: 4
+      memory: 8G
 
-    # The state section of a step can be arbitrarily nested as shown in the
-    # "config" section.
-    app-server1:
-      type: Foobernetes::Instance
-      returns:
-        appServerID1: instanceID
-      state:
-        location: eu1
-        image: lyra::application
-        config:
-          name: app-server1
-          databaseID: $databaseID
-        cpus: 4
-        memory: 8G
+  app-server2:
+    returns:
+      appServerID2: instanceID
+    Foobernetes::Instance:
+      location: eu2
+      image: "lyra::application"
+      config:
+        name: app-server2
+        databaseID: $databaseID
+      cpus: 4
+      memory: 8G
 
-    app-server2:
-      type: Foobernetes::Instance
-      returns:
-        appServerID2: instanceID
-      state:
-        location: eu2
-        image: "lyra::application"
-        config:
-          name: app-server2
-          databaseID: $databaseID
-        cpus: 4
-        memory: 8G
-
-    database:
-      type: Foobernetes::Instance
-      returns:
-        databaseID: instanceID
-      state:
-        location: eu1
-        image: "lyra::database"
-        cpus: 16
-        memory: 64G
+  database:
+    returns:
+      databaseID: instanceID
+    Foobernetes::Instance:
+      location: eu1
+      image: "lyra::database"
+      cpus: 16
+      memory: 64G

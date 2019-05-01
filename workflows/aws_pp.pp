@@ -1,5 +1,4 @@
 workflow aws_pp {
-  typespace => 'Aws',
   parameters => (
     Hash[String,String] $tags = lookup('aws.tags'),
   ),
@@ -9,6 +8,7 @@ workflow aws_pp {
 } {
 
   resource iam_role {
+    type => Aws::Iam_role
   } {
     name => 'lyra-iam-role',
     assume_role_policy => '{
@@ -42,6 +42,7 @@ workflow aws_pp {
   resource vpc {
     # type is implicit and is derived from the
     # step name, in contrast to subnets below
+    type => Aws::Vpc,
     parameters  => ($tags),
     returns => ($vpc_id)
   }{
@@ -51,7 +52,8 @@ workflow aws_pp {
   }
 
   resource route_table {
-    parameters  => ($vpc_id),
+    type => Aws::Route_table,
+    parameters  => ($vpc_id)
   } {
     vpc_id => $vpc_id,
     tags => {
@@ -70,7 +72,8 @@ workflow aws_pp {
   # }
 
   resource security_group {
-    parameters  => ($vpc_id),
+    type => Aws::Security_group,
+    parameters  => ($vpc_id)
   }{
     name => "lyra",
     description => "lyra security group",
@@ -90,9 +93,9 @@ workflow aws_pp {
   }
 
   resource subnet1 {
-    type =>  'Aws::Subnet',
+    type => Aws::Subnet,
     parameters  => ($vpc_id),
-    returns => ($subnet_id1 = subnet_id)
+    returns => ($subnet_id1 = subnet_id),
   }{
     vpc_id => $vpc_id,
     cidr_block => '192.168.1.0/24',
@@ -103,7 +106,7 @@ workflow aws_pp {
   }
 
   resource subnet2 {
-    type =>  'Aws::Subnet',
+    type => Aws::Subnet,
     parameters  => ($vpc_id),
     returns => ($subnet_id2 = subnet_id)
   }{
@@ -116,7 +119,7 @@ workflow aws_pp {
   }
 
   resource instance1 {
-    type =>  'Aws::Instance',
+    type => Aws::Instance,
     parameters  => ($subnet_id1)
   }{
     instance_type => 't2.nano',
@@ -129,7 +132,7 @@ workflow aws_pp {
   }
 
   resource instance2 {
-    type =>  'Aws::Instance',
+    type => Aws::Instance,
     parameters  => ($subnet_id2)
   }{
     instance_type => 't2.nano',

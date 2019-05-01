@@ -2,9 +2,9 @@
 # export GOOGLE_PROJECT=<some-project>
 # export GOOGLE_APPLICATION_CREDENTIALS=<credentials-file.json>
 workflow googlecloud_pp {
-  typespace => 'Google',
 } {
   resource compute_instance {
+    type => Google::Compute_instance,
   }{
     name => 'lyra-test-pp',
     zone => 'us-central1-a',

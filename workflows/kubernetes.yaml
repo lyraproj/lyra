@@ -1,26 +1,24 @@
-kubernetes:
- typespace: Kubernetes
- returns:
-   namespace_id: String
-   service_id: String
- steps:
-    namespace:
-      returns: namespace_id
-      state:
-        metadata:
+returns:
+ namespace_id: String
+ service_id: String
+steps:
+  namespace:
+    returns: namespace_id
+    Kubernetes::Namespace:
+      metadata:
+        name: lyra-ns
+        labels:
           name: lyra-ns
-          labels:
-            name: lyra-ns
-    service:
-      returns: service_id
-      state:
-        metadata:
-          name: lyra-service
-        spec:
-          session_affinity: ClientIP
-          selector:
-            app : anything
-          port:
-            - port: 80
-              target_port: "80"
-          type: LoadBalancer
+  service:
+    returns: service_id
+    Kubernetes::Service:
+      metadata:
+        name: lyra-service
+      spec:
+        session_affinity: ClientIP
+        selector:
+          app : anything
+        port:
+          - port: 80
+            target_port: "80"
+        type: LoadBalancer
