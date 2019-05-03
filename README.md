@@ -28,6 +28,7 @@ The project requires [Go](https://golang.org/doc/install) 1.11 or higher, and [g
 
 1. Clone this repository: `git clone https://github.com/lyraproj/lyra`
 2. Build Lyra: `cd lyra; make`
+3. Optionally, if you intend to work with typescript, run `make smoke-test-ts` (this will check for an appropriate version of Node.js)
 
 ### Deploying Workflows with the Lyra CLI
 

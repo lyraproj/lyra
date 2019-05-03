@@ -33,7 +33,7 @@ all: TESTFLAGS = --race
 all: everything
 
 PHONY+= everything
-everything: check-mods clean lint test lyra plugins smoke-test smoke-test-ts
+everything: check-mods clean lint test lyra plugins smoke-test
 
 PHONY+= shrink
 shrink:
