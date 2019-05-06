@@ -7,9 +7,6 @@ import (
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/generate"
 	"github.com/spf13/cobra"
-
-	// Ensure that lookup function properly loaded
-	_ "github.com/lyraproj/hiera/functions"
 )
 
 var targetDirectory = ``
@@ -27,7 +24,6 @@ func NewGenerateCmd() *cobra.Command {
 
 	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
 	cmd.Flags().StringVarP(&targetDirectory, "target-directory", "t", "", gotext.Get("path to target directory"))
-	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", gotext.Get("hiera data filename"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)

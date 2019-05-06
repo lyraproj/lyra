@@ -13,9 +13,6 @@ import (
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/spf13/cobra"
 	logf "sigs.k8s.io/controller-runtime/pkg/runtime/log"
-
-	// Ensure that lookup function properly loaded
-	_ "github.com/lyraproj/hiera/functions"
 )
 
 var namespace string

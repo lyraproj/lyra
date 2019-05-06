@@ -8,9 +8,6 @@ import (
 	"github.com/lyraproj/lyra/pkg/apply"
 	"github.com/lyraproj/servicesdk/wf"
 	"github.com/spf13/cobra"
-
-	// Ensure that lookup function properly loaded
-	_ "github.com/lyraproj/hiera/functions"
 )
 
 // NewDeleteCmd returns the delete subcommand used to delete steps.
@@ -35,7 +32,7 @@ func NewDeleteCmd() *cobra.Command {
 func runDeleteCmd(cmd *cobra.Command, args []string) {
 	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
 	workflowName := args[0]
-	exitCode := applicator.ApplyWorkflow(workflowName, hieraDataFilename, wf.Delete)
+	exitCode := applicator.ApplyWorkflow(workflowName, wf.Delete)
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}

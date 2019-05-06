@@ -7,26 +7,22 @@ import (
 	"os"
 	"strings"
 
-	"github.com/lyraproj/lyra/pkg/util"
-
-	"github.com/lyraproj/pcore/utils"
-
 	"github.com/hashicorp/go-hclog"
-	"github.com/lyraproj/hiera/lookup"
+	"github.com/lyraproj/hiera/hiera"
+	"github.com/lyraproj/hiera/hieraapi"
 	"github.com/lyraproj/hiera/provider"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/lyra/pkg/logger"
+	"github.com/lyraproj/lyra/pkg/util"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/pcore/types"
+	"github.com/lyraproj/pcore/utils"
 	"github.com/lyraproj/servicesdk/serviceapi"
 	"github.com/lyraproj/servicesdk/wf"
 	"github.com/lyraproj/wfe/api"
 	"github.com/lyraproj/wfe/service"
 	"github.com/lyraproj/wfe/wfe"
-
-	// Ensure that lookup function properly loaded
-	_ "github.com/lyraproj/hiera/functions"
 )
 
 // Applicator is used to apply workflows
@@ -44,10 +40,13 @@ func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[strin
 	m := convertToDeepMap(hieraData)
 	hclog.Default().Debug("converted map to hiera data", "m", m)
 	v := px.Wrap(nil, m).(px.OrderedMap)
-	tp := func(ic lookup.ProviderContext, key string, _ map[string]px.Value) (px.Value, bool) {
-		return v.Get4(key)
+	tp := func(ic hieraapi.ProviderContext, key string, _ map[string]px.Value) px.Value {
+		if v, ok := v.Get4(key); ok {
+			return v
+		}
+		return nil
 	}
-	lookup.DoWithParent(context.Background(), tp, nil, a.applyWithContext(workflowName, intent))
+	hiera.DoWithParent(context.Background(), tp, nil, a.applyWithContext(workflowName, intent))
 }
 
 //convertToDeepMap converts a map[string]string with entries like {k:"aws.tags.created_by", v:"user@company.com"}
@@ -79,7 +78,7 @@ func (a *Applicator) DeleteWorkflowWithHieraData(workflowName string, hieraData 
 }
 
 // ApplyWorkflow will apply the named workflow getting hiera data from file
-func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, intent wf.Operation) (exitCode int) {
+func (a *Applicator) ApplyWorkflow(workflowName string, intent wf.Operation) (exitCode int) {
 	if a.HomeDir != `` {
 		if err := os.Chdir(a.HomeDir); err != nil {
 			ui.Message("error", fmt.Errorf("Unable to change directory to '%s'", a.HomeDir))
@@ -88,11 +87,10 @@ func (a *Applicator) ApplyWorkflow(workflowName, hieraDataFilename string, inten
 	}
 
 	lookupOptions := map[string]px.Value{
-		`path`:                      types.WrapString(hieraDataFilename),
-		provider.LookupProvidersKey: types.WrapRuntime([]lookup.LookupKey{provider.Yaml, provider.Environment})}
+		provider.LookupProvidersKey: types.WrapRuntime([]hieraapi.LookupKey{provider.ConfigLookupKey, provider.Environment})}
 
 	return util.RunCommand(func() int {
-		lookup.DoWithParent(context.Background(), provider.MuxLookup, lookupOptions, a.applyWithContext(workflowName, intent))
+		hiera.DoWithParent(context.Background(), provider.MuxLookupKey, lookupOptions, a.applyWithContext(workflowName, intent))
 		return 0
 	})
 }

@@ -2,16 +2,16 @@ module github.com/lyraproj/lyra
 
 require (
 	github.com/go-logr/logr v0.1.0
-	github.com/hashicorp/go-hclog v0.8.0
+	github.com/hashicorp/go-hclog v0.9.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190430134724-89b4eaaab6a8
+	github.com/lyraproj/hiera v0.0.0-20190506120201-be3f22e23eba
 	github.com/lyraproj/identity v0.0.0-20190430135216-17f157c7aa57
 	github.com/lyraproj/issue v0.0.0-20190329160035-8bc10230f995
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
-	github.com/lyraproj/pcore v0.0.0-20190430133451-57d4da316569
+	github.com/lyraproj/pcore v0.0.0-20190502085713-c95bdae56d68
 	github.com/lyraproj/puppet-workflow v0.0.0-20190501130808-fde06007b4e2
 	github.com/lyraproj/servicesdk v0.0.0-20190430133733-68a5a13f9111
 	github.com/lyraproj/terraform-bridge v0.0.0-20190430134352-33bd7e9b457a
