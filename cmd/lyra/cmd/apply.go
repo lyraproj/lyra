@@ -9,15 +9,11 @@ import (
 	"github.com/lyraproj/servicesdk/wf"
 	"github.com/spf13/cobra"
 
-	// Ensure that lookup function properly loaded
-	_ "github.com/lyraproj/hiera/functions"
-
 	// Ensure that types created by the go lyra package are loaded
 	_ "github.com/lyraproj/servicesdk/lang/go/lyra"
 )
 
 var homeDir string
-var hieraDataFilename string
 
 // NewApplyCmd returns the apply subcommand used to evaluate and apply steps. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
@@ -31,7 +27,6 @@ func NewApplyCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
-	cmd.Flags().StringVarP(&hieraDataFilename, "data", "d", "data.yaml", gotext.Get("hiera data filename"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
@@ -42,7 +37,7 @@ func NewApplyCmd() *cobra.Command {
 func runApplyCmd(cmd *cobra.Command, args []string) {
 	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
 	workflowName := args[0]
-	exitCode := applicator.ApplyWorkflow(workflowName, hieraDataFilename, wf.Upsert)
+	exitCode := applicator.ApplyWorkflow(workflowName, wf.Upsert)
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}
