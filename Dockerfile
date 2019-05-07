@@ -9,12 +9,14 @@ COPY go.mod .
 COPY go.sum .
 RUN GO111MODULE=on go mod download
 COPY . .
-RUN make lyra plugins
+RUN make docker-build
 # Copy binaries over to a new container
-FROM golang:latest
+FROM alpine
 WORKDIR /src/lyra/
 ENV PATH /src/lyra/build/bin:$PATH
 COPY --from=builder /src/lyra/build/bin/lyra /src/lyra/build/bin/lyra
+RUN apk add ca-certificates
+RUN mkdir /src/lyra/local
 COPY --from=builder /src/lyra/build/goplugins /src/lyra/build/goplugins
 COPY --from=builder /src/lyra/workflows /src/lyra/workflows
 COPY --from=builder /src/lyra/examples /src/lyra/examples

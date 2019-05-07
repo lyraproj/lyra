@@ -14,6 +14,7 @@ PACKAGE_NAME = github.com/lyraproj/lyra
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S %Z')"
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildTag=$(shell git describe --all --exact-match `git rev-parse HEAD` | grep tags | sed 's/tags\///')"
 LDFLAGS += -X "$(PACKAGE_NAME)/pkg/version.BuildSHA=$(shell git rev-parse --short HEAD)"
+BUILDARGS = GO111MODULE=on
 
 GO_PLUGINS := $(subst cmd/,,$(wildcard cmd/goplugin-*))
 TERRAFORM_PLUGINS := \
@@ -34,6 +35,11 @@ all: everything
 
 PHONY+= everything
 everything: check-mods clean lint test lyra plugins smoke-test
+
+PHONY+= docker-build
+docker-build: BUILDARGS += CGO_ENABLED=0 GOOS=linux
+docker-build: LDFLAGS += -extldflags "-static"
+docker-build: lyra plugins
 
 PHONY+= shrink
 shrink:
@@ -67,7 +73,7 @@ lyra: check-mods
 PHONY+= test
 test:
 	@echo "🔘 Running unit tests... (`date '+%H:%M:%S'`)"
-	GO111MODULE=on go test $(TESTFLAGS) github.com/lyraproj/lyra/...
+	$(BUILDARGS) go test $(TESTFLAGS) github.com/lyraproj/lyra/...
 
 PHONY+= clean
 clean:
@@ -111,6 +117,8 @@ dist-release:
 		sha256sum $$f.tar.gz | awk '{ print $1 }' > $$f.tar.gz.sha256 ; \
 	done;
 
+# Recursion note: this target is to build a container on a host OS.
+# The Dockerfile will then run `make docker-build` *inside* the container
 PHONY+= docker
 docker:
 	@echo "🔘 Building docker container (`date '+%H:%M:%S'`)"
@@ -166,13 +174,13 @@ generate-ts:
 define build
 	echo "🔘 Building - $(1) (`date '+%H:%M:%S'`)"
 	mkdir -p build/
-	GO111MODULE=on go build -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
+	$(BUILDARGS) go build -ldflags '$(LDFLAGS)' -o build/$(1) $(2)
 	echo "✅ Build complete - $(1) (`date '+%H:%M:%S'`)"
 endef
 
 define checklint
 	echo "🔘 Linting $(1) (`date '+%H:%M:%S'`)"
-	lint=`GO111MODULE=on golangci-lint run $(LINTFLAGS) $(1)`; \
+	lint=`$(BUILDARGS) golangci-lint run $(LINTFLAGS) $(1)`; \
 	if [ "$$lint" != "" ]; \
 	then echo "🔴 Lint found"; echo "$$lint"; exit 1;\
 	else echo "✅ Lint-free (`date '+%H:%M:%S'`)"; \
