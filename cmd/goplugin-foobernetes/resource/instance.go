@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
 var ip int
@@ -48,7 +49,10 @@ func (*InstanceHandler) Read(externalID string) (*Instance, error) {
 	// Read the actual state of the resource from the cloud
 	// The external ID passed here is the same one that is returned at creation time
 	d := loadFakeCloudData()
-	actualState := d.Instances[externalID]
+	actualState, ok := d.Instances[externalID]
+	if !ok {
+		return nil, serviceapi.NotFound("Instance", externalID)
+	}
 
 	return actualState, nil
 }
@@ -63,7 +67,10 @@ func (*InstanceHandler) Update(externalID string, desiredState *Instance) (*Inst
 	defer saveFakeCloudData(d)
 
 	// Update the desired state with values provided by the cloud
-	actualState := d.Instances[externalID]
+	actualState, ok := d.Instances[externalID]
+	if !ok {
+		return nil, serviceapi.NotFound("Instance", externalID)
+	}
 	desiredState.InstanceID = actualState.InstanceID
 	desiredState.InstanceIP = actualState.InstanceIP
 	d.Instances[externalID] = desiredState
@@ -77,8 +84,10 @@ func (*InstanceHandler) Delete(externalID string) error {
 
 	// The cloud deletes the resource based on its ID
 	d := loadFakeCloudData()
-	defer saveFakeCloudData(d)
-	delete(d.Instances, externalID)
+	if _, ok := d.Instances[externalID]; ok {
+		defer saveFakeCloudData(d)
+		delete(d.Instances, externalID)
+	}
 
 	return nil
 }

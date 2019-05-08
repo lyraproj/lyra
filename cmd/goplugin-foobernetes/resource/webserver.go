@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
 // WebServer handles HTTP requests targetting the app
@@ -39,7 +40,10 @@ func (*WebServerHandler) Read(externalID string) (*WebServer, error) {
 	// Read the actual state of the resource from the cloud
 	// The external ID passed here is the same one that is returned at creation time
 	d := loadFakeCloudData()
-	actualState := d.WebServers[externalID]
+	actualState, ok := d.WebServers[externalID]
+	if !ok {
+		return nil, serviceapi.NotFound("WebServer", externalID)
+	}
 
 	return actualState, nil
 }
@@ -54,7 +58,10 @@ func (*WebServerHandler) Update(externalID string, desiredState *WebServer) (*We
 	defer saveFakeCloudData(d)
 
 	// Update the desired state with values provided by the cloud
-	actualState := d.WebServers[externalID]
+	actualState, ok := d.WebServers[externalID]
+	if !ok {
+		return nil, serviceapi.NotFound("WebServer", externalID)
+	}
 	desiredState.WebServerID = actualState.WebServerID
 	d.WebServers[externalID] = desiredState
 
@@ -67,8 +74,10 @@ func (*WebServerHandler) Delete(externalID string) error {
 
 	// The cloud deletes the resource based on its ID
 	d := loadFakeCloudData()
-	defer saveFakeCloudData(d)
-	delete(d.WebServers, externalID)
+	if _, ok := d.WebServers[externalID]; ok {
+		defer saveFakeCloudData(d)
+		delete(d.WebServers, externalID)
+	}
 
 	return nil
 }
