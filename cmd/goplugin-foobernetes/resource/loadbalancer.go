@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
 // LoadBalancer distributes traffic to web servers
@@ -42,7 +43,10 @@ func (*LoadBalancerHandler) Read(externalID string) (*LoadBalancer, error) {
 	// Read the actual state of the resource from the cloud
 	// The external ID passed here is the same one that is returned at creation time
 	d := loadFakeCloudData()
-	actualState := d.LoadBalancers[externalID]
+	actualState, ok := d.LoadBalancers[externalID]
+	if !ok {
+		return nil, serviceapi.NotFound("LoadBalancer", externalID)
+	}
 
 	return actualState, nil
 }
@@ -57,7 +61,10 @@ func (*LoadBalancerHandler) Update(externalID string, desiredState *LoadBalancer
 	defer saveFakeCloudData(d)
 
 	// Update the desired state with values provided by the cloud
-	actualState := d.LoadBalancers[externalID]
+	actualState, ok := d.LoadBalancers[externalID]
+	if !ok {
+		return nil, serviceapi.NotFound("LoadBalancer", externalID)
+	}
 	desiredState.LoadBalancerID = actualState.LoadBalancerID
 	d.LoadBalancers[externalID] = desiredState
 
@@ -70,8 +77,10 @@ func (*LoadBalancerHandler) Delete(externalID string) error {
 
 	// The cloud deletes the resource based on its ID
 	d := loadFakeCloudData()
-	defer saveFakeCloudData(d)
-	delete(d.LoadBalancers, externalID)
+	if _, ok := d.LoadBalancers[externalID]; ok {
+		defer saveFakeCloudData(d)
+		delete(d.LoadBalancers, externalID)
+	}
 
 	return nil
 }

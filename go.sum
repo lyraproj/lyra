@@ -146,6 +146,7 @@ github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c/go.mod h1:lNA+9X1NB3Z
 github.com/google/go-cmp v0.1.1-0.20171002171727-8ebdfab36c66/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
 github.com/google/go-cmp v0.2.0 h1:+dTQ8DZQJz0Mb/HjFlkptS1FeQ4cWSnN941F8aEG4SQ=
 github.com/google/go-cmp v0.2.0/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
+github.com/google/go-github v16.0.0+incompatible h1:omSHCJqM3CNG6RFFfGmIqGVbdQS2U3QVQSqACgwV1PY=
 github.com/google/go-github v16.0.0+incompatible/go.mod h1:zLgOLi98H3fifZn+44m+umXrS52loVEgC2AApnigrVQ=
 github.com/google/go-querystring v1.0.0 h1:Xkwi/a1rcvNg1PPYe5vI8GbeBY/jrVuDX5ASuANWTrk=
 github.com/google/go-querystring v1.0.0/go.mod h1:odCYkC5MyYFN7vkCjXpyrEuKhc/BUO6wN/zVPAxq5ck=
@@ -321,10 +322,16 @@ github.com/lyraproj/servicesdk v0.0.0-20190430133733-68a5a13f9111/go.mod h1:EmDP
 github.com/lyraproj/servicesdk v0.0.0-20190507084719-4338e6e7eb52/go.mod h1:EmDPNtYrtPyWgOAIri33u3ARX8LQH4Iccfqf4KiqTnM=
 github.com/lyraproj/servicesdk v0.0.0-20190507133311-974f5eac5047 h1:d4M4hks22aoBQFksLf0JxphUftza917OJ2c9AYlp/5M=
 github.com/lyraproj/servicesdk v0.0.0-20190507133311-974f5eac5047/go.mod h1:EmDPNtYrtPyWgOAIri33u3ARX8LQH4Iccfqf4KiqTnM=
+github.com/lyraproj/servicesdk v0.0.0-20190507143352-f65d30892e58 h1:3YPc4x0hy0wnecq2VqIzRb28Kzx5AGiB7UPKRN/I32g=
+github.com/lyraproj/servicesdk v0.0.0-20190507143352-f65d30892e58/go.mod h1:mAgzNVtNRt2DltU6NACk6bGvKyoEwcbgfhuQWkIYoIU=
 github.com/lyraproj/terraform-bridge v0.0.0-20190430134352-33bd7e9b457a h1:MBSfY0V5ku6t88vsTqOdPEByNca1b3NvFqS8NvNNM90=
 github.com/lyraproj/terraform-bridge v0.0.0-20190430134352-33bd7e9b457a/go.mod h1:JmDkyiueKQPLvpSNsch7ifHfG88MqDaj684UYfS2F8s=
+github.com/lyraproj/terraform-bridge v0.0.0-20190508092614-08389ee18a93 h1:syU4SnGHdAE/Jnr0n0DWMiPit0UKp/Ffperz+M/gn2A=
+github.com/lyraproj/terraform-bridge v0.0.0-20190508092614-08389ee18a93/go.mod h1:to0+ledfU3liMWP2etxegxD//y248uH1Iwt7PajHlm0=
 github.com/lyraproj/wfe v0.0.0-20190507084852-357e5a891e63 h1:b5N312xZADmRjR89NU7/E1qHWY68DqxvdQA6Ul0wm0M=
 github.com/lyraproj/wfe v0.0.0-20190507084852-357e5a891e63/go.mod h1:px9lKu8PXL0YAAusEp4RmNR761xw+rqkdLH0ZPeZexo=
+github.com/lyraproj/wfe v0.0.0-20190508084840-d13a8391a7af h1:rTRP5TNitBLoFHp+04GMup1ul9wLj1LIRYYQuMuqxy0=
+github.com/lyraproj/wfe v0.0.0-20190508084840-d13a8391a7af/go.mod h1:ubonJOQ/k3l+SujYKsadksDosJ4pc0EAx3t5YChIcRE=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=
 github.com/masterzen/azure-sdk-for-go v0.0.0-20161014135628-ee4f0065d00c/go.mod h1:mf8fjOu33zCqxUjuiU3I8S1lJMyEAlH+0F2+M5xl3hE=
