@@ -167,6 +167,9 @@ smoke-test: lyra identity puppet-dsl lyra-plugins
 smoke-test-ts: check-node generate-ts
 	@build/bin/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
 
+smoke-test-go-wf:
+	build/bin/lyra apply imperative_go
+
 generate-ts:
 	@build/bin/lyra generate typescript --target-directory examples/ts-samples/src/types
 	@cd examples/ts-samples && npm install
