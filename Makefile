@@ -70,7 +70,6 @@ PHONY+= lyra
 lyra: check-mods
 	@$(call build,bin/lyra,cmd/lyra/main.go)
 
-PHONY+= test
 test:
 	@echo "🔘 Running unit tests... (`date '+%H:%M:%S'`)"
 	$(BUILDARGS) go test $(TESTFLAGS) github.com/lyraproj/lyra/...
@@ -82,6 +81,24 @@ clean:
 	@echo "🔘 Cleaning ts dist..."
 	@rm -rf examples/ts-samples/dist
 
+PHONY+= pre-commit
+pre-commit: format tidy lint
+
+# Run go mod tidy and check go.sum is unchanged
+PHONY+= tidy
+tidy:
+	@echo "🔘 Checking that go mod tidy does not make a change..."
+	@cp go.sum go.sum.bak
+	@go mod tidy
+	@diff go.sum go.sum.bak || (echo "🔴 go mod tidy would make a change, exiting"; exit 1)
+	@echo "✅ Checking go mod tidy complete"
+
+# Format go code and error if any changes are made
+PHONY+= format
+format:
+	@echo "🔘 Checking that go fmt does not make any changes..."
+	@test -z $$(go fmt ./...) || (echo "🔴 go fmt would make a change, exiting"; exit 1)
+	@echo "✅ Checking go fmt complete"
 
 PHONY+= lint
 lint: $(GOPATH)/bin/golangci-lint

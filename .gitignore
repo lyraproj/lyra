@@ -6,4 +6,5 @@ tmp/
 types/
 LICENSE_TMPFILE.txt
 *.db
+*.bak
 /deployment.json
