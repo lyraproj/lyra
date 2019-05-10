@@ -34,7 +34,7 @@ all: TESTFLAGS = --race
 all: everything
 
 PHONY+= everything
-everything: check-mods clean lint test lyra plugins smoke-test
+everything: check-mods clean lint test lyra plugins generate smoke-test
 
 PHONY+= docker-build
 docker-build: BUILDARGS += CGO_ENABLED=0 GOOS=linux
@@ -91,15 +91,8 @@ lint: $(GOPATH)/bin/golangci-lint
 
 PHONY+= generate
 generate:
-	@echo "🔘 Regenerating bridge plugins (tf-gen) ... (`date '+%H:%M:%S'`)"
-	@go run cmd/tf-gen/main.go
-	@echo "✅ Generation complete (`date '+%H:%M:%S'`)"
-	@echo "🔘 Rebuilding ... (`date '+%H:%M:%S'`)"
-	@$(MAKE) lyra plugins
 	@echo "🔘 Generating Puppet types ... (`date '+%H:%M:%S'`)"
-	@go run cmd/lyra/main.go generate puppet
-	@echo "🔘 Smoke test ... (`date '+%H:%M:%S'`)"
-	@build/bin/lyra apply sample || (echo "Failed $$?"; exit 1)
+	@build/bin/lyra generate -t build/types puppet
 
 PHONY+= dist-release
 dist-release:
@@ -149,7 +142,7 @@ check-node:
 	@echo "✅ Node version is sufficient (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test: lyra identity puppet-dsl lyra-plugins
+smoke-test: lyra identity puppet-dsl lyra-plugins generate
 	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
 	@build/bin/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@build/bin/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
