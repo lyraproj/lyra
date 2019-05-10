@@ -19,10 +19,16 @@ type Foobernetes = TypeSet[{
     },
     InstanceHandler => {
       functions => {
-        'create' => Callable[Optional[Instance], Tuple[Optional[Instance]]],
+        'create' => Callable[
+          [Optional[Instance]],
+          Tuple[Optional[Instance], String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Instance]],
-        'update' => Callable[String, Optional[Instance]]
+        'read' => Callable[
+          [String],
+          Optional[Instance]],
+        'update' => Callable[
+          [String, Optional[Instance]],
+          Optional[Instance]]
       }
     },
     LoadBalancer => {
@@ -37,10 +43,16 @@ type Foobernetes = TypeSet[{
     },
     LoadBalancerHandler => {
       functions => {
-        'create' => Callable[Optional[LoadBalancer], Tuple[Optional[LoadBalancer]]],
+        'create' => Callable[
+          [Optional[LoadBalancer]],
+          Tuple[Optional[LoadBalancer], String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[LoadBalancer]],
-        'update' => Callable[String, Optional[LoadBalancer]]
+        'read' => Callable[
+          [String],
+          Optional[LoadBalancer]],
+        'update' => Callable[
+          [String, Optional[LoadBalancer]],
+          Optional[LoadBalancer]]
       }
     },
     WebServer => {
@@ -52,10 +64,16 @@ type Foobernetes = TypeSet[{
     },
     WebServerHandler => {
       functions => {
-        'create' => Callable[Optional[WebServer], Tuple[Optional[WebServer]]],
+        'create' => Callable[
+          [Optional[WebServer]],
+          Tuple[Optional[WebServer], String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[WebServer]],
-        'update' => Callable[String, Optional[WebServer]]
+        'read' => Callable[
+          [String],
+          Optional[WebServer]],
+        'update' => Callable[
+          [String, Optional[WebServer]],
+          Optional[WebServer]]
       }
     }
   }

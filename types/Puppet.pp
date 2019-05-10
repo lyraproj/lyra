@@ -8,7 +8,9 @@ type Puppet = TypeSet[{
   types => {
     ManifestLoader => {
       functions => {
-        'loadManifest' => Callable[String, String, Service::Definition]
+        'loadManifest' => Callable[
+          [String, String],
+          Service::Definition]
       }
     },
     Service => {
@@ -16,7 +18,9 @@ type Puppet = TypeSet[{
         'invoke' => Callable[
           [String, String, Any, 2, default],
           Any],
-        'metadata' => Callable[0, 0, Tuple[Pcore::TypeSet]],
+        'metadata' => Callable[
+          [0, 0],
+          Tuple[Pcore::TypeSet, Array[Service::Definition]]],
         'state' => Callable[
           [String, Hash],
           Object]

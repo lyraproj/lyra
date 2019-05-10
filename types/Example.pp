@@ -72,10 +72,16 @@ type Example = TypeSet[{
     },
     PersonHandler => {
       functions => {
-        'create' => Callable[Optional[Person], Tuple[Optional[Person]]],
+        'create' => Callable[
+          [Optional[Person]],
+          Tuple[Optional[Person], String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Person]],
-        'update' => Callable[String, Optional[Person]]
+        'read' => Callable[
+          [String],
+          Optional[Person]],
+        'update' => Callable[
+          [String, Optional[Person]],
+          Optional[Person]]
       }
     }
   }

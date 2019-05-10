@@ -148,6 +148,7 @@ github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c/go.mod h1:lNA+9X1NB3Z
 github.com/google/go-cmp v0.1.1-0.20171002171727-8ebdfab36c66/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
 github.com/google/go-cmp v0.2.0 h1:+dTQ8DZQJz0Mb/HjFlkptS1FeQ4cWSnN941F8aEG4SQ=
 github.com/google/go-cmp v0.2.0/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
+github.com/google/go-github v16.0.0+incompatible h1:omSHCJqM3CNG6RFFfGmIqGVbdQS2U3QVQSqACgwV1PY=
 github.com/google/go-github v16.0.0+incompatible/go.mod h1:zLgOLi98H3fifZn+44m+umXrS52loVEgC2AApnigrVQ=
 github.com/google/go-querystring v1.0.0 h1:Xkwi/a1rcvNg1PPYe5vI8GbeBY/jrVuDX5ASuANWTrk=
 github.com/google/go-querystring v1.0.0/go.mod h1:odCYkC5MyYFN7vkCjXpyrEuKhc/BUO6wN/zVPAxq5ck=
@@ -310,12 +311,16 @@ github.com/lyraproj/pcore v0.0.0-20190430133451-57d4da316569 h1:wzY8l1Rkl5UIwq7/
 github.com/lyraproj/pcore v0.0.0-20190430133451-57d4da316569/go.mod h1:rEl2ewvqyi/MUo+sEoADKduVlO971HgiLJmu26EO+vM=
 github.com/lyraproj/pcore v0.0.0-20190502085713-c95bdae56d68 h1:/sZhuQeebUbpjuHL9EZCMBn0OJoHrR7okfYD0pnvlTI=
 github.com/lyraproj/pcore v0.0.0-20190502085713-c95bdae56d68/go.mod h1:rEl2ewvqyi/MUo+sEoADKduVlO971HgiLJmu26EO+vM=
+github.com/lyraproj/pcore v0.0.0-20190510110551-08ede39ae02d h1:OxxMmmELVizAcPosMzJEbsM/UpSNYakCYVfJ25fcb44=
+github.com/lyraproj/pcore v0.0.0-20190510110551-08ede39ae02d/go.mod h1:rEl2ewvqyi/MUo+sEoADKduVlO971HgiLJmu26EO+vM=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190430133644-e723fda87b97 h1:FhuoXiPRQQZRtppOi6ppzz65FUl7YEFNVuhaKNGHBuY=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190430133644-e723fda87b97/go.mod h1:vdkj2zAsXYPkHwxr/J/eeIJFYiQYHF+Von3mbq0UvOU=
 github.com/lyraproj/puppet-parser v0.0.0-20190430133542-e2f2062b9126 h1:7GRijiODjFJCn9yVzYfoPZkvj7GtPM7zFVi897wbBYg=
 github.com/lyraproj/puppet-parser v0.0.0-20190430133542-e2f2062b9126/go.mod h1:SBAnx/uxMMKy29qME9jFlgHtVJOLI4q7dVMu0UTcIk0=
 github.com/lyraproj/puppet-workflow v0.0.0-20190509101801-6dfb91962bde h1:2NoSHYPu7NXt29MOIkydmnyUPxTcdbQPcn0aTW/vGJY=
 github.com/lyraproj/puppet-workflow v0.0.0-20190509101801-6dfb91962bde/go.mod h1:+3dJHqb/lF8asu6nQwwiGD+ztHWxyKs41GbTCvPhc3Q=
+github.com/lyraproj/puppet-workflow v0.0.0-20190510110814-2b8a82d3b710 h1:CNG1kmgFIFZhIZbCJNrc99Jqaj/sYrvxABR9LnXlAOw=
+github.com/lyraproj/puppet-workflow v0.0.0-20190510110814-2b8a82d3b710/go.mod h1:+3dJHqb/lF8asu6nQwwiGD+ztHWxyKs41GbTCvPhc3Q=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190508121759-aa1c3c39fdcb h1:DABm4WdbGTFcujm6dzMN6K/saOhk7i02ZBfxZ40vR9g=
