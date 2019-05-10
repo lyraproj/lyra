@@ -3,6 +3,7 @@ build
 .vscode/
 .idea/
 tmp/
+types/
 LICENSE_TMPFILE.txt
 *.db
 /deployment.json
