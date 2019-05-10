@@ -7,7 +7,6 @@ jobs:
   include:
     - stage: Test and build
       script:
-        - rm go.sum # Workaround for https://github.com/kubernetes/kubernetes/issues/69040
         - node --version
         - nvm install 11
         - nvm use 11

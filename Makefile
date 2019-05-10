@@ -81,6 +81,7 @@ clean:
 	@echo "🔘 Cleaning ts dist..."
 	@rm -rf examples/ts-samples/dist
 
+# This is not run as a pre-commit hook unless configured locally using .git/hooks
 PHONY+= pre-commit
 pre-commit: format tidy lint
 
