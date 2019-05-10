@@ -44,6 +44,19 @@ func ShowMessage(params ...string) {
 	log.Println("\n"+ansi.Green+"▸ "+action+ansi.Reset, msg+"\n")
 }
 
+// ShowMessage prints an attractive message to STDOUT
+func ShowError(params ...string) {
+	var action = ""
+	var msg = ""
+	if len(params) > 1 {
+		msg = params[1]
+	}
+	if len(params) > 0 {
+		action = params[0]
+	}
+	log.Println("\n"+ansi.Red+"▸ "+action+ansi.Reset, msg+"\n")
+}
+
 // AskForConfirmation presents a blocking choice to users
 func AskForConfirmation(s string) bool {
 	// Quiet implies yes. This might not be the right choice.

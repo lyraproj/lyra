@@ -106,10 +106,7 @@ func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) 
 				ui.ShowMessage("delete done:", workflowName)
 				logger.Debug("delete finished")
 			} else {
-				logger.Debug("calling apply")
 				apply(c, workflowName, px.EmptyMap, intent) // TODO: Perhaps provide top-level parameters from command line args
-				ui.ShowMessage("apply done:", workflowName)
-				logger.Debug("apply finished")
 			}
 		})
 	}
@@ -163,10 +160,17 @@ func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Oper
 	log.Debug("applying", "stepID", stepID)
 	service.StartEra(c)
 	a := loadStep(c, stepID)
-	result := a.Run(c, px.Wrap(c, parameters).(px.OrderedMap))
-	log.Debug("Apply done", "result", result)
+	defer func() {
+		if r := recover(); r != nil {
+			log.Error(`apply failed`, `Error`, r)
+			ui.ShowError(`apply failed`, stepID)
+		}
+		gcPrefix := a.Identifier() + "/"
+		log.Debug("garbage collecting", "prefix", gcPrefix)
+		service.SweepAndGC(c, gcPrefix)
+	}()
 
-	gcPrefix := a.Identifier() + "/"
-	log.Debug("garbage collecting", "prefix", gcPrefix)
-	service.SweepAndGC(c, gcPrefix)
+	result := a.Run(c, px.Wrap(c, parameters).(px.OrderedMap))
+	log.Debug("apply done", "result", result)
+	ui.ShowMessage("apply done:", stepID)
 }
