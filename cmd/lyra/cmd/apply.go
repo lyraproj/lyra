@@ -3,10 +3,10 @@ package cmd
 import (
 	"os"
 
+	"github.com/lyraproj/lyra/pkg/apply"
+
 	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
-	"github.com/lyraproj/lyra/pkg/apply"
-	"github.com/lyraproj/servicesdk/wf"
 	"github.com/spf13/cobra"
 
 	// Ensure that types created by the go lyra package are loaded
@@ -35,9 +35,9 @@ func NewApplyCmd() *cobra.Command {
 }
 
 func runApplyCmd(cmd *cobra.Command, args []string) {
-	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
+	applicator := apply.NewApplicator(homeDir, dlvConfig)
 	workflowName := args[0]
-	exitCode := applicator.ApplyWorkflow(workflowName, wf.Upsert)
+	exitCode := applicator.ApplyWorkflow(workflowName)
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}

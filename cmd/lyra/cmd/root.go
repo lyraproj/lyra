@@ -21,7 +21,7 @@ var (
 )
 
 // NewRootCmd returns the root command
-func NewRootCmd() *cobra.Command {
+func NewRootCmd(subCommands ...*cobra.Command) *cobra.Command {
 
 	gotext.Configure("locales", "en_US", "default")
 
@@ -41,13 +41,17 @@ func NewRootCmd() *cobra.Command {
 	cmd.SetHelpTemplate(ansi.Blue + version.LogoFiglet + ansi.Reset + ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
 
-	cmd.AddCommand(NewVersionCmd())
-	cmd.AddCommand(NewApplyCmd())
-	cmd.AddCommand(NewDeleteCmd())
-	cmd.AddCommand(NewControllerCmd())
-	// cmd.AddCommand(NewValidateCmd())
-	cmd.AddCommand(NewGenerateCmd())
-	// cmd.AddCommand(EmbeddedPluginCmd())
+	cmd.AddCommand(
+		NewVersionCmd(),
+		NewApplyCmd(),
+		NewDeleteCmd(),
+		// NewValidateCmd(),
+		NewGenerateCmd(),
+		// cmd.AddCommand(EmbeddedPluginCmd())
+	)
+	if len(subCommands) > 0 {
+		cmd.AddCommand(subCommands...)
+	}
 
 	return cmd
 }
