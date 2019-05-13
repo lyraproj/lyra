@@ -8,16 +8,15 @@ require (
 	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190507134255-7e5f10f74371
-	github.com/lyraproj/identity v0.0.0-20190508125111-1233fbd7493c
+	github.com/lyraproj/hiera v0.0.0-20190513111754-8d56b42ea56e
+	github.com/lyraproj/identity v0.0.0-20190513111822-87075e1957ce
 	github.com/lyraproj/issue v0.0.0-20190513084509-faf9b542f594
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
 	github.com/lyraproj/pcore v0.0.0-20190513110440-3136007d878d
-	github.com/lyraproj/puppet-evaluator v0.0.0-20190513085757-b7c99b5b1cd3 // indirect
-	github.com/lyraproj/puppet-workflow v0.0.0-20190510110814-2b8a82d3b710
-	github.com/lyraproj/servicesdk v0.0.0-20190513085907-538592ef90de
-	github.com/lyraproj/terraform-bridge v0.0.0-20190508125211-3b912f363208
-	github.com/lyraproj/wfe v0.0.0-20190513090014-b57829d41357
+	github.com/lyraproj/puppet-workflow v0.0.0-20190513111934-14c6d0d513c3
+	github.com/lyraproj/servicesdk v0.0.0-20190513111104-a5b399ba7e1d
+	github.com/lyraproj/terraform-bridge v0.0.0-20190513111724-9d3d86df9e38
+	github.com/lyraproj/wfe v0.0.0-20190513111521-6fefbb7225be
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
