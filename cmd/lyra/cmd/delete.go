@@ -3,10 +3,10 @@ package cmd
 import (
 	"os"
 
+	"github.com/lyraproj/lyra/pkg/apply"
+
 	"github.com/leonelquinteros/gotext"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
-	"github.com/lyraproj/lyra/pkg/apply"
-	"github.com/lyraproj/servicesdk/wf"
 	"github.com/spf13/cobra"
 )
 
@@ -30,9 +30,9 @@ func NewDeleteCmd() *cobra.Command {
 }
 
 func runDeleteCmd(cmd *cobra.Command, args []string) {
-	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
+	applicator := apply.NewApplicator(homeDir, dlvConfig)
 	workflowName := args[0]
-	exitCode := applicator.ApplyWorkflow(workflowName, wf.Delete)
+	exitCode := applicator.DeleteWorkflow(workflowName)
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}

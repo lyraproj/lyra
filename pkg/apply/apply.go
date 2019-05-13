@@ -25,18 +25,34 @@ import (
 	"github.com/lyraproj/wfe/wfe"
 )
 
-// Applicator is used to apply workflows
-type Applicator struct {
-	HomeDir   string
-	DlvConfig string
+// Applicator abstracts over workflow application and deletion
+type Applicator interface {
+	ApplyWorkflow(workflowName string) (exitCode int)
+
+	DeleteWorkflow(workflowName string) (exitCode int)
+
+	ApplyWorkflowWithHieraData(workflowName string, data map[string]string)
+
+	//DeleteWorkflowWithHieraData calls the delete on the workflow in lyra, meaning that resources will be destroyed, if applicable
+	DeleteWorkflowWithHieraData(workflowName string, data map[string]string)
+}
+
+// applicator is used to apply workflows
+type applicator struct {
+	homeDir   string
+	dlvConfig string
+}
+
+func NewApplicator(homeDir, dlvConfig string) Applicator {
+	return &applicator{homeDir, dlvConfig}
 }
 
 // ApplyWorkflowWithHieraData will apply the named workflow with the supplied hiera data
-func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
+func (a *applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
 	a.applyWithHieraData(workflowName, hieraData, wf.Upsert)
 }
 
-func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wf.Operation) {
+func (a *applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wf.Operation) {
 	m := convertToDeepMap(hieraData)
 	hclog.Default().Debug("converted map to hiera data", "m", m)
 	v := px.Wrap(nil, m).(px.OrderedMap)
@@ -72,16 +88,25 @@ func convertToDeepMap(hieraData map[string]string) map[string]interface{} {
 	return output
 }
 
+// ApplyWorkflow will apply the named workflow getting hiera data from file
+func (a *applicator) ApplyWorkflow(workflowName string) (exitCode int) {
+	return a.applyWorkflow(workflowName, wf.Upsert)
+}
+
+// DeleteWorkflow will delete resources persisted by the named workflow
+func (a *applicator) DeleteWorkflow(workflowName string) (exitCode int) {
+	return a.applyWorkflow(workflowName, wf.Delete)
+}
+
 // DeleteWorkflowWithHieraData will delete the named workflow with the supplied hiera data
-func (a *Applicator) DeleteWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
+func (a *applicator) DeleteWorkflowWithHieraData(workflowName string, hieraData map[string]string) {
 	a.applyWithHieraData(workflowName, hieraData, wf.Delete)
 }
 
-// ApplyWorkflow will apply the named workflow getting hiera data from file
-func (a *Applicator) ApplyWorkflow(workflowName string, intent wf.Operation) (exitCode int) {
-	if a.HomeDir != `` {
-		if err := os.Chdir(a.HomeDir); err != nil {
-			ui.Message("error", fmt.Errorf("Unable to change directory to '%s'", a.HomeDir))
+func (a *applicator) applyWorkflow(workflowName string, intent wf.Operation) (exitCode int) {
+	if a.homeDir != `` {
+		if err := os.Chdir(a.homeDir); err != nil {
+			ui.Message("error", fmt.Errorf("Unable to change directory to '%s'", a.homeDir))
 			return 1
 		}
 	}
@@ -95,7 +120,7 @@ func (a *Applicator) ApplyWorkflow(workflowName string, intent wf.Operation) (ex
 	})
 }
 
-func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
+func (a *applicator) applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
 	return func(c px.Context) {
 		logger := logger.Get()
 		c.DoWithLoader(loader.New(c.Loader()), func() {
@@ -112,8 +137,8 @@ func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) 
 	}
 }
 
-func (a *Applicator) parseDlvConfig(c px.Context) {
-	cfg := strings.TrimSpace(a.DlvConfig)
+func (a *applicator) parseDlvConfig(c px.Context) {
+	cfg := strings.TrimSpace(a.dlvConfig)
 	if cfg == `` {
 		return
 	}
