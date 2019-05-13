@@ -21,6 +21,6 @@ COPY --from=builder /src/lyra/build/goplugins /src/lyra/build/goplugins
 COPY --from=builder /src/lyra/workflows /src/lyra/workflows
 COPY --from=builder /src/lyra/examples /src/lyra/examples
 COPY --from=builder /src/lyra/docs /src/lyra/docs
-COPY --from=builder /src/lyra/types /src/lyra/types
+COPY --from=builder /src/lyra/build/types /src/lyra/build/types
 COPY --from=builder /src/lyra/data.yaml /src/lyra
 CMD lyra apply foobernetes
