@@ -7,12 +7,11 @@ jobs:
   include:
     - stage: Test and build
       script:
-        - rm go.sum # Workaround for https://github.com/kubernetes/kubernetes/issues/69040
         - node --version
         - nvm install 11
         - nvm use 11
         - node --version
-        - make all smoke-test-ts smoke-test-go-wf
+        - make format tidy all smoke-test-ts smoke-test-go-wf
       before_deploy:
         - sudo apt-get install -y upx
         - make dist-release
