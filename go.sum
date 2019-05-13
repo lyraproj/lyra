@@ -324,8 +324,6 @@ github.com/lyraproj/puppet-parser v0.0.0-20190513085601-0448059066e7 h1:gQ6z47Xn
 github.com/lyraproj/puppet-parser v0.0.0-20190513085601-0448059066e7/go.mod h1:kM/x+lqmCiuxsK4FgAF1kIwlgQrcZfsI6gnX5YzTIe4=
 github.com/lyraproj/puppet-workflow v0.0.0-20190510110814-2b8a82d3b710 h1:CNG1kmgFIFZhIZbCJNrc99Jqaj/sYrvxABR9LnXlAOw=
 github.com/lyraproj/puppet-workflow v0.0.0-20190510110814-2b8a82d3b710/go.mod h1:+3dJHqb/lF8asu6nQwwiGD+ztHWxyKs41GbTCvPhc3Q=
-github.com/lyraproj/puppet-workflow v0.0.0-20190513090423-e16b8714bc03 h1:q2uLI3sy3YjagE2ukvH+zkKxIpQU1ol1DIUzhhvaRr8=
-github.com/lyraproj/puppet-workflow v0.0.0-20190513090423-e16b8714bc03/go.mod h1:W7b/8qSW5jVadgGFxcpJXOKqqwtjgBK5NxjSMHVu3cc=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190508121759-aa1c3c39fdcb h1:DABm4WdbGTFcujm6dzMN6K/saOhk7i02ZBfxZ40vR9g=
@@ -334,8 +332,6 @@ github.com/lyraproj/servicesdk v0.0.0-20190513085907-538592ef90de h1:sjccabzVEI/
 github.com/lyraproj/servicesdk v0.0.0-20190513085907-538592ef90de/go.mod h1:UgfcDUyzLvj43rOqj5ypAEWw62nTzg2sxK238f/7rEQ=
 github.com/lyraproj/terraform-bridge v0.0.0-20190508125211-3b912f363208 h1:bqVEP4gSEtO/zyJbdlONskjVLcyQZqz28sceP76M0dY=
 github.com/lyraproj/terraform-bridge v0.0.0-20190508125211-3b912f363208/go.mod h1:3KS0Pqea8RoU1VsMBwShiFZVe6tl2ntznOpv6EOiTyk=
-github.com/lyraproj/wfe v0.0.0-20190508124926-84cb6813dc7b h1:FTvBgjGX748Sactlo7vlV/Ne3SFrzGagmgJSBGMXbfQ=
-github.com/lyraproj/wfe v0.0.0-20190508124926-84cb6813dc7b/go.mod h1:iBuOK6MsPyityPUmzvWUw80fk80MkZnmNUvd3aEyAwM=
 github.com/lyraproj/wfe v0.0.0-20190513090014-b57829d41357 h1:gseR1x16ruqEF0WK8VFagDaAoIYp5e+O4Wg8SjOAM0w=
 github.com/lyraproj/wfe v0.0.0-20190513090014-b57829d41357/go.mod h1:l2zTMrG8WDl1LgxfJk7edYErA3LCMBO1m8pkCXon7JA=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=

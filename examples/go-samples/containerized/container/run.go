@@ -10,8 +10,9 @@ import (
 )
 
 // Run the container using Docker
+// We assume the container returns a JSON response.
+// We then use the supplied Key to pull a single value out of that response.
 func Run(in In) Out {
-	// We could provide some input to the container via environment variables
 	hclog.Default().Info("******** RUNNING CONTAINER ********", "Image", in.Image, "Args", in.Args)
 	args := append([]string{"run", in.Image}, strings.Split(in.Args, " ")...)
 	cmd := exec.Command("docker", args...)
@@ -21,8 +22,6 @@ func Run(in In) Out {
 	}
 
 	// Unmarshal JSON output from the run
-	// We could use "jq" in a container instead
-	// docker run --rm --name jq realguess/jq:1.4 ...
 	out := map[string]interface{}{}
 	err = json.Unmarshal(output, &out)
 	if err != nil {
@@ -34,12 +33,12 @@ func Run(in In) Out {
 
 // In contains the values needed to run the container
 type In struct {
-	Image string
-	Args  string
-	Key   string
+	Image string // The container image to run
+	Args  string // Arguments to be passed to the container on the command line
+	Key   string // A JSON key to dereference from the container response - the corresponding value must be a string
 }
 
 // Out contains the result of running the container
 type Out struct {
-	Value string
+	Value string // The string value obtained when dereferencing the supplied key from the container response
 }

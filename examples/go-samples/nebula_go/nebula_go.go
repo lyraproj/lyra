@@ -40,7 +40,7 @@ func installRabbitMQ() rabbitMQDeployment {
 
 func main() {
 
-	// This demo depends on the example "nebula/helm" container existing and so builds it now
+	// This demo depends on the example "helm" container existing and so builds it now
 	// A real application would not do this!
 	cmd := exec.Command("docker", "build", "examples/go-samples/containerized/", "-t", "helm")
 	_, err := cmd.Output()
