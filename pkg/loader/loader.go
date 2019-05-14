@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/hashicorp/go-hclog"
+	_ "github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/wfe/api"
 )
