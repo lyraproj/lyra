@@ -1,0 +1,9 @@
+parameters:
+  name:
+    type: String
+    value: Bob Builder
+  number:
+    type: Integer
+    value: 42
+
+reference: lyra_sample
