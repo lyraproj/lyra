@@ -4,7 +4,8 @@ workflow foobernetes_pp {
   ),
   returns => (
     String $primary_load_balancer_id,
-    String $secondary_load_balancer_id
+    String $secondary_load_balancer_id,
+    String $from_action
   )
 } {
 
@@ -21,6 +22,14 @@ workflow foobernetes_pp {
         'team' => 'lyra team',
         'role' => 'primary'
     }
+  }
+
+  action foo {
+    parameters => ($database_id),
+    returns => ($from_action)
+  } {
+    notice("The created database has id: ", $database_id)
+    return(from_action => 'Message from foo action')
   }
 
   resource secondaryloadbalancer {
