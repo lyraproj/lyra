@@ -301,8 +301,8 @@ github.com/lyraproj/data-protobuf v0.0.0-20190329160005-a909d9e1f93b h1:qGgMkFUQ
 github.com/lyraproj/data-protobuf v0.0.0-20190329160005-a909d9e1f93b/go.mod h1:oQIFBu0fmkiSpSRROEgK5gnjQ/ZDrx3UdpRpT3791Gg=
 github.com/lyraproj/hiera v0.0.0-20190513111754-8d56b42ea56e h1:+RWhZns+Pq9hNG+sb5Pn4uaM62vPgmQe2Io4xa5Ay8E=
 github.com/lyraproj/hiera v0.0.0-20190513111754-8d56b42ea56e/go.mod h1:3Tth250fpXSCM7YllVFASAJ7YqG2lPEagrnQ3alvNtM=
-github.com/lyraproj/identity v0.0.0-20190513150534-6f1a6b3164fc h1:MCBAxdAorOFzLBGa3RVZOhQ1X/osDwbqAyKeG7uvaso=
-github.com/lyraproj/identity v0.0.0-20190513150534-6f1a6b3164fc/go.mod h1:0R6J/XP3MxQobesPXj4FJPWeXxDHV+oKsYoL7Hxh1hk=
+github.com/lyraproj/identity v0.0.0-20190514203413-40d9b472e587 h1:LW1FELGj7kPV8+Dtwxx/7Uegg7aja/eMUUUphRT6X1o=
+github.com/lyraproj/identity v0.0.0-20190514203413-40d9b472e587/go.mod h1:mUj8CMnQu3ulMNnriYAqBu4SDREH3sYX9/1QFUqq/Ac=
 github.com/lyraproj/issue v0.0.0-20190513084509-faf9b542f594 h1:IcsHRQ3xzCIcK0eXpot8IYgEyUQPEFHmFErZwJcsDqk=
 github.com/lyraproj/issue v0.0.0-20190513084509-faf9b542f594/go.mod h1:jqRRmAiVqjTehhncbKJPoC2AFoxxkritzzlfWioTa00=
 github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc h1:bqjRcha8dRZJBAPM4cu8kq4JAEDw4hZBaXIzPhQAYWg=
@@ -319,11 +319,10 @@ github.com/lyraproj/puppet-workflow v0.0.0-20190514150914-ee41cd35ea7c h1:bKTRb9
 github.com/lyraproj/puppet-workflow v0.0.0-20190514150914-ee41cd35ea7c/go.mod h1:CQS9RWWKDSZdjGTr2XqKT6vP5XxQdoygNYDB9oe8eLE=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
-github.com/lyraproj/servicesdk v0.0.0-20190513111104-a5b399ba7e1d/go.mod h1:uT1n4KLYr5P04yOs4gO6zP4UkjXhUG46bvHhrgt8zfI=
 github.com/lyraproj/servicesdk v0.0.0-20190514145959-5467213bbd8f h1:SFmT35xzxpVUOHn9b+1o8eEAGKdx0/DswRJPZmn/x0k=
 github.com/lyraproj/servicesdk v0.0.0-20190514145959-5467213bbd8f/go.mod h1:8qbDlTKcDFzE+pHn2ZhQrXX3lh2ChiJb9aq9pZHmg70=
-github.com/lyraproj/terraform-bridge v0.0.0-20190513111724-9d3d86df9e38 h1:2LrN34MRnquleT36jw3SRfsS1LPkUp/LsfAwTp4lnY8=
-github.com/lyraproj/terraform-bridge v0.0.0-20190513111724-9d3d86df9e38/go.mod h1:ILU3GsxrdkpO+oFcucywp0C9crItv66sBWhGY0KqlCY=
+github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d h1:823chO5bLY6qDkNRSmcNHPkDcLRdBoofx5BtkKVpEf8=
+github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d/go.mod h1:w/3/SSI0pwXyVB01TJA3JDKKhMyoKIS/SvboPWvOey8=
 github.com/lyraproj/wfe v0.0.0-20190514150706-fc1fa286c815 h1:xY7QTPSttScycslXAKxv1PlAeh4tCVnwqiVEyYeNrvk=
 github.com/lyraproj/wfe v0.0.0-20190514150706-fc1fa286c815/go.mod h1:ko9DVVLhrXgiLz1owBMy6OsVxhueEQQnY7ipdpfA6xQ=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
