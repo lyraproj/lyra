@@ -13,8 +13,8 @@ require (
 	github.com/lyraproj/issue v0.0.0-20190513084509-faf9b542f594
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
 	github.com/lyraproj/pcore v0.0.0-20190514082225-61649d71c936
-	github.com/lyraproj/puppet-workflow v0.0.0-20190514150914-ee41cd35ea7c
-	github.com/lyraproj/servicesdk v0.0.0-20190514145959-5467213bbd8f
+	github.com/lyraproj/puppet-workflow v0.0.0-20190515092044-bed898034187
+	github.com/lyraproj/servicesdk v0.0.0-20190515092137-ed47ea72148f
 	github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d
 	github.com/lyraproj/wfe v0.0.0-20190514150706-fc1fa286c815
 	github.com/mattn/go-colorable v0.1.1 // indirect
