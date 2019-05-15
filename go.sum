@@ -315,12 +315,14 @@ github.com/lyraproj/puppet-evaluator v0.0.0-20190514124651-1338675d7039 h1:GJ/2E
 github.com/lyraproj/puppet-evaluator v0.0.0-20190514124651-1338675d7039/go.mod h1:V2dnix0SLL9vAqehVG0VxzzMlls8WeDni6nRPHnrLgY=
 github.com/lyraproj/puppet-parser v0.0.0-20190513085601-0448059066e7 h1:gQ6z47XnHB/WndnxMnBP/5KprCqYMM5VzCni7wbmiuc=
 github.com/lyraproj/puppet-parser v0.0.0-20190513085601-0448059066e7/go.mod h1:kM/x+lqmCiuxsK4FgAF1kIwlgQrcZfsI6gnX5YzTIe4=
-github.com/lyraproj/puppet-workflow v0.0.0-20190514150914-ee41cd35ea7c h1:bKTRb96erSQ7IIPfGoE2hfx4rj4Ii5+jRiz18cGGBQE=
-github.com/lyraproj/puppet-workflow v0.0.0-20190514150914-ee41cd35ea7c/go.mod h1:CQS9RWWKDSZdjGTr2XqKT6vP5XxQdoygNYDB9oe8eLE=
+github.com/lyraproj/puppet-workflow v0.0.0-20190515092044-bed898034187 h1:UGmm37KKcoc2JrdAdbQScQ27dxoC/US5R88mOQQzEiU=
+github.com/lyraproj/puppet-workflow v0.0.0-20190515092044-bed898034187/go.mod h1:CQS9RWWKDSZdjGTr2XqKT6vP5XxQdoygNYDB9oe8eLE=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2 h1:vb4PbiMtIXdhsOUinkkcqZiASDIZzXRhSG4yvNfE0tg=
 github.com/lyraproj/semver v0.0.0-20181213164306-02ecea2cd6a2/go.mod h1:KOdZKnEBdDb2iGPUnHiKpk3M5cvv949xMyj8XPqaMF0=
 github.com/lyraproj/servicesdk v0.0.0-20190514145959-5467213bbd8f h1:SFmT35xzxpVUOHn9b+1o8eEAGKdx0/DswRJPZmn/x0k=
 github.com/lyraproj/servicesdk v0.0.0-20190514145959-5467213bbd8f/go.mod h1:8qbDlTKcDFzE+pHn2ZhQrXX3lh2ChiJb9aq9pZHmg70=
+github.com/lyraproj/servicesdk v0.0.0-20190515092137-ed47ea72148f h1:sVPEuW/tW0PC/z4H+9TyibTt48C6j3sxnVzOC5dlVhs=
+github.com/lyraproj/servicesdk v0.0.0-20190515092137-ed47ea72148f/go.mod h1:8qbDlTKcDFzE+pHn2ZhQrXX3lh2ChiJb9aq9pZHmg70=
 github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d h1:823chO5bLY6qDkNRSmcNHPkDcLRdBoofx5BtkKVpEf8=
 github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d/go.mod h1:w/3/SSI0pwXyVB01TJA3JDKKhMyoKIS/SvboPWvOey8=
 github.com/lyraproj/wfe v0.0.0-20190514150706-fc1fa286c815 h1:xY7QTPSttScycslXAKxv1PlAeh4tCVnwqiVEyYeNrvk=
