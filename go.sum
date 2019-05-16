@@ -325,8 +325,8 @@ github.com/lyraproj/servicesdk v0.0.0-20190515092137-ed47ea72148f h1:sVPEuW/tW0P
 github.com/lyraproj/servicesdk v0.0.0-20190515092137-ed47ea72148f/go.mod h1:8qbDlTKcDFzE+pHn2ZhQrXX3lh2ChiJb9aq9pZHmg70=
 github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d h1:823chO5bLY6qDkNRSmcNHPkDcLRdBoofx5BtkKVpEf8=
 github.com/lyraproj/terraform-bridge v0.0.0-20190514203703-0234f423154d/go.mod h1:w/3/SSI0pwXyVB01TJA3JDKKhMyoKIS/SvboPWvOey8=
-github.com/lyraproj/wfe v0.0.0-20190514150706-fc1fa286c815 h1:xY7QTPSttScycslXAKxv1PlAeh4tCVnwqiVEyYeNrvk=
-github.com/lyraproj/wfe v0.0.0-20190514150706-fc1fa286c815/go.mod h1:ko9DVVLhrXgiLz1owBMy6OsVxhueEQQnY7ipdpfA6xQ=
+github.com/lyraproj/wfe v0.0.0-20190516130206-32626e9a6ee6 h1:ebejl88nom3RjVystv6zvXT3rlKWMbG4h2z1/YlSsKE=
+github.com/lyraproj/wfe v0.0.0-20190516130206-32626e9a6ee6/go.mod h1:ko9DVVLhrXgiLz1owBMy6OsVxhueEQQnY7ipdpfA6xQ=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=
 github.com/masterzen/azure-sdk-for-go v0.0.0-20161014135628-ee4f0065d00c/go.mod h1:mf8fjOu33zCqxUjuiU3I8S1lJMyEAlH+0F2+M5xl3hE=
