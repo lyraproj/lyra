@@ -126,12 +126,14 @@ func (a *Applicator) parseDlvConfig(c px.Context) {
 		utils.PuppetQuote(b, cfg)
 		cfg = b.String()
 	}
-	dc, err := types.Parse(cfg)
-	if err != nil {
-		panic(util.CmdError(fmt.Sprintf("Unable to parse --dlv option '%s': %s", cfg, err.Error())))
-	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			panic(util.CmdError(fmt.Sprintf("Unable to parse --dlv option '%s': %v", cfg, r)))
+		}
+	}()
 	// Pass DlvConfig on to the plugin loader
-	c.Set(api.LyraDlvConfigKey, dc)
+	c.Set(api.LyraDlvConfigKey, types.ParseFile("", cfg))
 }
 
 func loadStep(c px.Context, stepID string) api.Step {
