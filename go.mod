@@ -36,4 +36,4 @@ replace github.com/lyraproj/servicesdk => github.com/thallgren/servicesdk v0.0.0
 
 replace github.com/lyraproj/wfe => github.com/thallgren/wfe v0.0.0-20190517064632-7cece86892b4
 
-replace github.com/lyraproj/puppet-workflow => github.com/thallgren/puppet-workflow v0.0.0-20190517113722-f30ed5d55e8c
+replace github.com/lyraproj/puppet-workflow => github.com/thallgren/puppet-workflow v0.0.0-20190517152103-bb90c6d84f09

@@ -496,8 +496,8 @@ github.com/terraform-providers/terraform-provider-template v1.0.0/go.mod h1:/J+B
 github.com/terraform-providers/terraform-provider-tls v0.1.0/go.mod h1:Mxe/v5u31LDW4m32O1z6Ursdh95dpc9Puq6otkYg7tU=
 github.com/terraform-providers/terraform-provider-tls v1.2.0 h1:wcD0InKzNh8fanUYQwim62WCd4toeD9WJnPw/RjBI4o=
 github.com/terraform-providers/terraform-provider-tls v1.2.0/go.mod h1:Mxe/v5u31LDW4m32O1z6Ursdh95dpc9Puq6otkYg7tU=
-github.com/thallgren/puppet-workflow v0.0.0-20190517113722-f30ed5d55e8c h1:IcslunKFZY0bKMT147sLgSwh+qnU78g5naFjo92Icf4=
-github.com/thallgren/puppet-workflow v0.0.0-20190517113722-f30ed5d55e8c/go.mod h1:wy1hVKx6bNI/7WcubFsFiv1mpZyErSXqrU37AhYFysA=
+github.com/thallgren/puppet-workflow v0.0.0-20190517152103-bb90c6d84f09 h1:Mmn6aS4KNQOxTW1tN6QhaD4cfbESk0rO5ttVP/ZwPOc=
+github.com/thallgren/puppet-workflow v0.0.0-20190517152103-bb90c6d84f09/go.mod h1:wy1hVKx6bNI/7WcubFsFiv1mpZyErSXqrU37AhYFysA=
 github.com/thallgren/servicesdk v0.0.0-20190517063002-0afea861afeb h1:fmou9N1ULFYKL7k8C+9srFkRSrqWslKZAkmRMfCHpJI=
 github.com/thallgren/servicesdk v0.0.0-20190517063002-0afea861afeb/go.mod h1:oRnxP9zeUPRbbQ1i+b1uKKrkzq2qhNcOLID9/Kl1AMM=
 github.com/thallgren/wfe v0.0.0-20190517064632-7cece86892b4 h1:8z2xB2SFXKh7+lhuGHUTQWRpgWzorq3vLtjoYRCz9dc=
