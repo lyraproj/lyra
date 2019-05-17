@@ -1,3 +1,5 @@
+call: lyra_sample
+
 parameters:
   name:
     type: String
@@ -6,4 +8,3 @@ parameters:
     type: Integer
     value: 42
 
-reference: lyra_sample

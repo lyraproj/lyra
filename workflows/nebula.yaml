@@ -20,19 +20,19 @@ returns: [rabbitmq_release_name, mysql_release_name]
 steps:
 
   rabbitmq:
+    call: containerized
     parameters:
       helm_image: image
       rabbitmq_args: args
       rabbitmq_release_name_key: key
     returns:
       rabbitmq_release_name: value
-    reference: containerized
 
   mysql:
+    call: containerized
     parameters:
       helm_image: image
       mysql_args: args
       mysql_release_name_key: key
     returns:
       mysql_release_name: value
-    reference: containerized

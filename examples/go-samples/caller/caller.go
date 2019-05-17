@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	lyra.Serve(`referee_go`, nil, &lyra.Workflow{
+	lyra.Serve(`caller_go`, nil, &lyra.Workflow{
 		Steps: map[string]lyra.Step{
 			`prolog`: &lyra.Action{
 				Do: func() struct{ A string } {
@@ -14,14 +14,14 @@ func main() {
 					return struct{ A string }{`value from prolog`}
 				}},
 
-			`referenced`: &lyra.Reference{
+			`referenced`: &lyra.Call{
 				Parameters: struct {
 					A string `alias:"P"`
 				}{},
 				Return: struct {
 					B string `alias:"X"`
 				}{},
-				StepName: `referenced_go`},
+				StepName: `called_go`},
 
 			`epilog`: &lyra.Action{
 				Do: func(input struct{ B string }) {
