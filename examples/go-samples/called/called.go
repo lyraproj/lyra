@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	lyra.Serve(`referenced_go`, nil, &lyra.Action{
+	lyra.Serve(`called_go`, nil, &lyra.Action{
 		Do: func(input struct{ P string }) struct{ X string } {
-			hclog.Default().Info(`referenced`, `P`, input.P)
-			return struct{ X string }{fmt.Sprintf(`value from referenced + %s`, input.P)}
+			hclog.Default().Info(`called`, `P`, input.P)
+			return struct{ X string }{fmt.Sprintf(`value from called + %s`, input.P)}
 		}})
 }
