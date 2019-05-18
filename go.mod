@@ -9,14 +9,14 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190516210910-f44466fc060e
-	github.com/lyraproj/identity v0.0.0-20190516210421-eee467f678fe
+	github.com/lyraproj/identity v0.0.0-20190518094321-4cbc7f28fc0e
 	github.com/lyraproj/issue v0.0.0-20190513084509-faf9b542f594
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
 	github.com/lyraproj/pcore v0.0.0-20190516164225-2c1838ece043
-	github.com/lyraproj/puppet-workflow v0.0.0-20190517095414-57255eb39018
-	github.com/lyraproj/servicesdk v0.0.0-20190516204150-b994d931dad2
-	github.com/lyraproj/terraform-bridge v0.0.0-20190516210727-b8038ca06fda
-	github.com/lyraproj/wfe v0.0.0-20190516204243-41b9466dc468
+	github.com/lyraproj/puppet-workflow v0.0.0-20190518093659-29dbc81c5169
+	github.com/lyraproj/servicesdk v0.0.0-20190517131335-c9b92d064792
+	github.com/lyraproj/terraform-bridge v0.0.0-20190518094202-4b865be146c8
+	github.com/lyraproj/wfe v0.0.0-20190518093543-6c7e1a520eb7
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -31,9 +31,3 @@ require (
 )
 
 replace github.com/google/go-github => github.com/google/go-github v16.0.0+incompatible // terraform-bridge GitHub plugin requires this version
-
-replace github.com/lyraproj/servicesdk => github.com/thallgren/servicesdk v0.0.0-20190517063002-0afea861afeb
-
-replace github.com/lyraproj/wfe => github.com/thallgren/wfe v0.0.0-20190517064632-7cece86892b4
-
-replace github.com/lyraproj/puppet-workflow => github.com/thallgren/puppet-workflow v0.0.0-20190517152103-bb90c6d84f09
