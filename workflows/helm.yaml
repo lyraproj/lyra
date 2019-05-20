@@ -8,4 +8,4 @@ steps:
       overrides: {value: ["wordpressUsername=somebodynotyou", "wordpressPassword=Anything", "wordpressBlogName=Da Blog", "externalDatabase.Host=myserver"]}
     returns:
       helm_output: output
-    reference: helm_go
+    call: helm_go
