@@ -48,7 +48,7 @@ shrink:
 	done;
 
 PHONY+= plugins
-plugins: check-mods identity puppet-dsl lyra-plugins terraform-plugins
+plugins: check-mods identity puppet-dsl yaml-dsl lyra-plugins terraform-plugins
 
 PHONY+= lyra-plugins
 lyra-plugins: check-mods
@@ -65,6 +65,10 @@ identity:
 PHONY+= puppet-dsl
 puppet-dsl:
 	@$(call build,goplugins/puppet,github.com/lyraproj/puppet-workflow/main)
+
+PHONY+= yaml-dsl
+yaml-dsl:
+	@$(call build,goplugins/yaml,github.com/lyraproj/yaml-workflow/main)
 
 PHONY+= lyra
 lyra: check-mods
@@ -160,7 +164,7 @@ check-node:
 	@echo "✅ Node version is sufficient (`date '+%H:%M:%S'`)"
 
 PHONY+= smoke-test
-smoke-test: lyra identity puppet-dsl lyra-plugins generate
+smoke-test: lyra identity puppet-dsl yaml-dsl lyra-plugins generate
 	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
 	@build/bin/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@build/bin/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)

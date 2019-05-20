@@ -17,6 +17,7 @@ require (
 	github.com/lyraproj/servicesdk v0.0.0-20190517131335-c9b92d064792
 	github.com/lyraproj/terraform-bridge v0.0.0-20190518094202-4b865be146c8
 	github.com/lyraproj/wfe v0.0.0-20190518093543-6c7e1a520eb7
+	github.com/lyraproj/yaml-workflow v0.0.0-20190517133003-3d63b4ff9c12
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -31,3 +32,7 @@ require (
 )
 
 replace github.com/google/go-github => github.com/google/go-github v16.0.0+incompatible // terraform-bridge GitHub plugin requires this version
+
+replace github.com/lyraproj/wfe => github.com/thallgren/wfe v0.0.0-20190520110017-0d2079c8e466
+
+replace github.com/lyraproj/puppet-workflow => github.com/thallgren/puppet-workflow v0.0.0-20190520105836-f42f50c1f495
