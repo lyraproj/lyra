@@ -58,9 +58,7 @@ func main() {
 	// Lyra workflow
 	lyra.Serve(`helm_go`, nil, &lyra.Workflow{
 		Parameters: helmIn{},
-		Return: struct {
-			Output string
-		}{},
+		Return: helmOut{},
 		Steps: map[string]lyra.Step{
 			`helmInstall`: &lyra.Action{
 				Do: helmInstall,
