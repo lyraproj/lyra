@@ -1,18 +1,17 @@
-
 package main
 
 import (
-	"strings"
 	"fmt"
 	"os/exec"
+	"strings"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/servicesdk/lang/go/lyra"
 )
 
 type helmIn struct {
-	Name string
-	Chart string
+	Name      string
+	Chart     string
 	Overrides []string
 	Namespace *string
 }
@@ -27,9 +26,9 @@ func helmInstall(in helmIn) helmOut {
 	if in.Namespace != nil {
 		namespace = *in.Namespace
 	}
-	args := []string {
+	args := []string{
 		"upgrade",
-		"--install", 
+		"--install",
 		in.Name,
 		in.Chart,
 		"--namespace",
@@ -58,7 +57,7 @@ func main() {
 	// Lyra workflow
 	lyra.Serve(`helm_go`, nil, &lyra.Workflow{
 		Parameters: helmIn{},
-		Return: helmOut{},
+		Return:     helmOut{},
 		Steps: map[string]lyra.Step{
 			`helmInstall`: &lyra.Action{
 				Do: helmInstall,
