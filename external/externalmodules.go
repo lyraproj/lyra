@@ -3,7 +3,7 @@
 // or referenced.
 //
 // NOTE: This is a Q&D solution to get the current Makefile/go.mod combo functional without
-// too much hassle. We should investigate other ways to get all plug-in binaries into a
+// too much hassle. We should investigate other ways to get all plug-in binaries into a-ww:
 // common place.
 package external
 
@@ -14,6 +14,9 @@ import (
 
 	// Puppet DSL service
 	_ "github.com/lyraproj/puppet-workflow/puppetwf"
+
+	// Puppet DSL service
+	_ "github.com/lyraproj/yaml-workflow/yaml"
 
 	// Terraform bridge
 	_ "github.com/lyraproj/terraform-bridge/pkg/bridge"
