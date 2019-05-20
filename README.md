@@ -70,9 +70,10 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 - [ ] GitOps
 
 ### Language Support
-- [x] Puppet
 - [x] YAML
-- [X] TypeScript
+- [x] Go
+- [x] TypeScript
+- [x] Puppet
 - [ ] Language X (File a [feature request](https://github.com/lyraproj/lyra/issues/new?template=feature_request.md)!)
 
 ### Content Ecosystem
@@ -84,12 +85,19 @@ Here’s a proposed roadmap for the project. Given the infancy of the project, i
 ### [X] Proof of Concept
 * Ability to express resources in a Workflow in Puppet language
 
-### [ ] Release 0.1 - [**IN PROGRESS**](https://github.com/lyraproj/lyra/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22release+0.1%22)
+### [ ] Release 0.3.0 - [**IN PROGRESS**](https://github.com/lyraproj/lyra/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22release+0.3.0)
+* Ability to preview resources
+
+### [X] Release 0.2.0
+* Ability to call external workflows
+* Simpler YAML syntax
+* Support for Go
+
+### [X] Release 0.1.0
 * Ability to create, update, delete resources
 * Multiple content providers (e.g. AWS, Azure, GCP and more)
 * Ability to package a Workflow
 * Ability to expose Workflows as Kubernetes resources
-* Ability to preview resources
 * Support for YAML, TypeScript
 
 ## Contributing
