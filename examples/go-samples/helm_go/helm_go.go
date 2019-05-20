@@ -46,22 +46,12 @@ func helmInstall(in helmIn) helmOut {
 	out, err := cmd.CombinedOutput()
 	output := fmt.Sprintf("%s", out)
 	if err != nil {
-		panic(fmt.Sprintf("error running helm cmd %v \n error is %v \n output is %v", cmd, err, output))
+		panic(fmt.Errorf("error running helm cmd %v \n error is %v \n output is %v", cmd, err, output))
 	}
 
 	return helmOut{Output: output}
 }
 
 func main() {
-
-	// Lyra workflow
-	lyra.Serve(`helm_go`, nil, &lyra.Workflow{
-		Parameters: helmIn{},
-		Return:     helmOut{},
-		Steps: map[string]lyra.Step{
-			`helmInstall`: &lyra.Action{
-				Do: helmInstall,
-			},
-		},
-	})
+	lyra.Serve(`helm_go`, nil, &lyra.Action{Do: helmInstall})
 }

@@ -5,7 +5,7 @@ steps:
       name: {value: "wordpress"}
       chart: {value: "stable/wordpress"}
       namespace: {value: null}     
-      overrides: {value: ["wordpressUsername=somebodynotyou", "wordpressPassword=Anything", "wordpressBlogName=Da Blog", "externalDatabase.Host=myserver"]}
+      overrides: {value: ["wordpressUsername=somebody", "wordpressPassword=Anything", "wordpressBlogName=The Blog", "externalDatabase.Host=myserver"]}
     returns:
       helm_output: output
     call: helm_go
