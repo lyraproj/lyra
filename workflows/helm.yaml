@@ -1,5 +1,7 @@
-testing:
-  value: "this-is-a-test"
+parameters:
+  password:
+    type: String
+    lookup: helm.wordpress_password
 returns: [helm_output]
 steps:
   helm:
@@ -10,9 +12,7 @@ steps:
       overrides:
         value: 
           wordpressUsername: somebody
-          wordpressPassword: Anything
-          externalDatabase.Host: $testing
-          # externalDatabase.Host: { value: $testing }
+          wordpressPassword: $password
     returns:
       helm_output: output
     call: helm_go
