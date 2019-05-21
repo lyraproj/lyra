@@ -1,3 +1,5 @@
+testing:
+  value: "this-is-a-test"
 returns: [helm_output]
 steps:
   helm:
@@ -5,7 +7,12 @@ steps:
       name: {value: "wordpress"}
       chart: {value: "stable/wordpress"}
       namespace: {value: null}     
-      overrides: {value: ["wordpressUsername=somebody", "wordpressPassword=Anything", "wordpressBlogName=The Blog", "externalDatabase.Host=myserver"]}
+      overrides:
+        value: 
+          wordpressUsername: somebody
+          wordpressPassword: Anything
+          externalDatabase.Host: $testing
+          # externalDatabase.Host: { value: $testing }
     returns:
       helm_output: output
     call: helm_go
