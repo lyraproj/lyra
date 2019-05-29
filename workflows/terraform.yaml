@@ -1,0 +1,8 @@
+returns: [tf_output]
+steps:
+  terraform:
+    parameters:
+      input: {value: "foo"}
+    returns:
+      tf_output: values
+    call: terraform_go
