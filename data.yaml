@@ -12,3 +12,6 @@ foobernetes:
 
 golang:
   hello: Value of hello key
+
+helm:
+  wordpress_password: p#@2soc93k

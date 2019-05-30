@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os/exec"
-	"strings"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/servicesdk/lang/go/lyra"
@@ -12,7 +11,7 @@ import (
 type helmIn struct {
 	Name      string
 	Chart     string
-	Overrides []string
+	Overrides map[string]string
 	Namespace *string
 }
 
@@ -34,10 +33,10 @@ func helmInstall(in helmIn) helmOut {
 		"--namespace",
 		namespace,
 	}
-	if len(in.Overrides) > 0 {
+	for k, v := range in.Overrides {
 		args = append(args, "--set")
-		x := strings.Join(in.Overrides, ",")
-		args = append(args, x)
+		kv := fmt.Sprintf("%v=%v", k, v)
+		args = append(args, kv)
 	}
 	cmd := exec.Command("helm", args...)
 
