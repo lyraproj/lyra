@@ -2,7 +2,7 @@ returns: [tf_output]
 steps:
   terraform:
     parameters:
-      input: {value: "foo"}
+      workingDir: {value: "examples/go-samples/terraform_go/tfroot"}
     returns:
       tf_output: values
     call: terraform_go

@@ -10,28 +10,30 @@ import (
 )
 
 type tfIn struct {
-	Input string
+	//WorkingDir where *.tf and terraform.tfstate files - absolute or relative to cwd
+	WorkingDir string
 }
 
 type tfOut struct {
-	// Values map[string]map[string]string
 	Values map[string]string
 }
 
 func runTF(in tfIn) tfOut {
-	//TODO - assuming for now we are in the right folder
-	_ = mustRun("pwd")
-	_ = mustRun("terraform", "init")
-	_ = mustRun("terraform", "apply")
-	out := mustRun("terraform", "output", "--json")
+	log := hclog.Default()
+	log.Debug("runTF entered", "in", in)
+
+	_ = mustRun(in.WorkingDir, "terraform", "init")
+	_ = mustRun(in.WorkingDir, "terraform", "apply", "-auto-approve")
+	out := mustRun(in.WorkingDir, "terraform", "output", "--json")
 	m := convertOutput(out)
 	return tfOut{Values: m}
 }
 
-func mustRun(name string, arg ...string) []byte {
+func mustRun(dir string, name string, arg ...string) []byte {
 	log := hclog.Default()
-
+	log.Debug("Running command", "name", name, "arg", arg)
 	cmd := exec.Command(name, arg...)
+	cmd.Dir = dir
 	out, err := cmd.CombinedOutput()
 	output := fmt.Sprintf("%s", out)
 	log.Debug("applied", "output", output, "err", err)
