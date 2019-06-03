@@ -1,0 +1,7 @@
+returns: [terraform_output]
+steps:
+  config:
+    returns:
+      terraform_output: output
+    Terraform::Config:  
+      workingDir: examples/go-samples/terraform_go/tfroot
