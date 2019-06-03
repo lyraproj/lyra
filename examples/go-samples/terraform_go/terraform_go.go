@@ -1,9 +1,11 @@
 package main
 
 import (
-	"encoding/json"
+	"bufio"
+	"bytes"
 	"fmt"
 	"os/exec"
+	"strings"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/servicesdk/lang/go/lyra"
@@ -24,7 +26,7 @@ func runTF(in tfIn) tfOut {
 
 	_ = mustRun(in.WorkingDir, "terraform", "init")
 	_ = mustRun(in.WorkingDir, "terraform", "apply", "-auto-approve")
-	out := mustRun(in.WorkingDir, "terraform", "output", "--json")
+	out := mustRun(in.WorkingDir, "terraform", "output")
 	m := convertOutput(out)
 	return tfOut{Values: m}
 }
@@ -43,25 +45,19 @@ func mustRun(dir string, name string, arg ...string) []byte {
 	return out
 }
 
-// convertOutput converts from a byte array representing the terraform ouput to a simple map[string]string
-// flattening from "fullName": { "sensitive": false, "type": "string", "value": "Joe Bloggs" } to
-// "name": "Joe Bloggs" - also converts bools, ints, etc to string
+// convertOutput converts the passed byte array to a map of strings to strings
+// expected format of input is that of `terraform output` e.g zero or more lines in format `a = b`
 func convertOutput(b []byte) map[string]string {
-	// hacky way to do this.  unmarshal first
-	var originalMap map[string]map[string]interface{}
-	err := json.Unmarshal(b, &originalMap)
-	if err != nil {
-		panic(fmt.Errorf("unable to unmarshal, err is %v and output is %s", err, b))
+	scanner := bufio.NewScanner(bytes.NewReader(b))
+	m := make(map[string]string)
+	for scanner.Scan() {
+		s := scanner.Text()
+		tokens := strings.Split(s, "=")
+		key := strings.Trim(tokens[0], " ")
+		value := strings.Trim(tokens[1], " ")
+		m[key] = value
 	}
-
-	// and then flatten, along with converting value to string
-	simpleMap := make(map[string]string)
-	for k, v := range originalMap {
-		if val, ok := v["value"]; ok {
-			simpleMap[k] = fmt.Sprintf("%v", val)
-		}
-	}
-	return simpleMap
+	return m
 }
 
 func main() {
