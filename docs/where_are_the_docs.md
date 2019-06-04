@@ -1,0 +1,1 @@
+The docs have moved to the "docs" repo at https://github.com/lyraproj/docs/tree/master/_docs.
