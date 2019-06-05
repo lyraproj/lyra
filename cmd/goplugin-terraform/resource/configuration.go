@@ -60,7 +60,7 @@ func (*ConfigHandler) Delete(externalID string) error {
 	return nil
 }
 
-func apply(in *Config) map[string]string {
+func apply(in *Config) {
 	log := hclog.Default()
 	log.Debug("apply entered", "in", in)
 
@@ -68,7 +68,8 @@ func apply(in *Config) map[string]string {
 	_ = mustRun(in.WorkingDir, "terraform", "apply", "-auto-approve")
 	out := mustRun(in.WorkingDir, "terraform", "output")
 	m := convertOutput(out)
-	return m
+	log.Debug("apply complete", "m", m)
+	in.Output = &m
 }
 
 func mustRun(dir string, name string, arg ...string) []byte {
