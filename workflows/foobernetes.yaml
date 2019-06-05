@@ -27,9 +27,9 @@
 # the "foobernetes" section. All top-level workflow parameters must be specified in
 # the "data.yaml" file at runtime.
 parameters:
-  load_balancer_policy:
-    type: String
-    lookup: foobernetes.lb_policy
+  policies:
+    type: Hash[String,String]
+    lookup: foobernetes.policies
 
 # The workflow returns two named values which are the IDs produced by the two
 # "loadbalancer" steps. All top-level workflow returns must be returns of
@@ -102,6 +102,7 @@ steps:
       tags:
         team: "lyra team"
         role: primary
+        policy: $policies.lb_policy
 
   # This second "loadbalancer" step cannot be typed implicitly since the
   # step name must be unique. The step also declares its parameters
@@ -118,6 +119,7 @@ steps:
       tags:
         team: "lyra team"
         role: secondary
+        policy: $policies.lb_policy
 
   # The state section of a step can be arbitrarily nested as shown in the
   # "config" section.
