@@ -10,6 +10,7 @@
         "ws-8944791324497208693"
       ],
       "Tags": {
+        "policy": "rr",
         "role": "secondary",
         "team": "lyra team"
       }
@@ -24,6 +25,7 @@
         "ws-8944791324497208693"
       ],
       "Tags": {
+        "policy": "rr",
         "role": "primary",
         "team": "lyra team"
       }

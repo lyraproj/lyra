@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strings"
 
 	"github.com/hashicorp/go-hclog"
@@ -164,7 +165,11 @@ func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Oper
 	a := loadStep(c, stepID)
 	defer func() {
 		if r := recover(); r != nil {
-			log.Error(`apply failed`, `Error`, r)
+			if log.IsDebug() {
+				log.Error(`apply failed`, `Error`, r, `Stack`, string(debug.Stack()))
+			} else {
+				log.Error(`apply failed`, `Error`, r)
+			}
 			ui.ShowError(`apply failed`, stepID)
 		}
 		gcPrefix := a.Identifier() + "/"

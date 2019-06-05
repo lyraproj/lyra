@@ -7,7 +7,8 @@ aws:
     lifetime:   1h
 
 foobernetes:
-  lb_policy: "rr"
+  policies:
+    lb_policy: "rr"
   in_production: false
 
 golang:
