@@ -1,21 +1,22 @@
 package resource
 
 import (
-	"bufio"
 	"bytes"
 	"fmt"
 	"os/exec"
-	"strings"
 
 	"github.com/google/uuid"
 	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/pcore/px"
+	"github.com/lyraproj/pcore/serialization"
+	"github.com/lyraproj/pcore/types"
 )
 
 // Config is a terraform configuration identified by a working directory
 type Config struct {
 	WorkingDir string
 	UniqueID   *string //HACK to force Read to return a new value, in order to always trigger an Update
-	Output     *map[string]string
+	Output     *px.Value
 }
 
 // ConfigHandler is used to perform CRUD operations on a Config resource
@@ -66,7 +67,7 @@ func apply(in *Config) {
 
 	_ = mustRun(in.WorkingDir, "terraform", "init")
 	_ = mustRun(in.WorkingDir, "terraform", "apply", "-auto-approve")
-	out := mustRun(in.WorkingDir, "terraform", "output")
+	out := mustRun(in.WorkingDir, "terraform", "output", "-json")
 	m := convertOutput(out)
 	log.Debug("apply complete", "m", m)
 	in.Output = &m
@@ -86,19 +87,43 @@ func mustRun(dir string, name string, arg ...string) []byte {
 	return out
 }
 
-// convertOutput converts the passed byte array to a map of strings to strings
-// expected format of input is that of `terraform output` e.g zero or more lines in format `a = b`
-func convertOutput(b []byte) map[string]string {
-	scanner := bufio.NewScanner(bytes.NewReader(b))
-	m := make(map[string]string)
-	for scanner.Scan() {
-		s := scanner.Text()
-		tokens := strings.Split(s, "=")
-		key := strings.Trim(tokens[0], " ")
-		value := strings.Trim(tokens[1], " ")
-		m[key] = value
+// convertOutput converts the passed byte array to a typed pcore types.Hash, if successful
+func convertOutput(b []byte) px.Value {
+	c := px.NewCollector()
+	serialization.JsonToData("terraform output", bytes.NewReader(b), c)
+
+	if hash, ok := c.PopLast().(px.OrderedMap); ok {
+
+		ie := make([]*types.HashEntry, 0, hash.Len())
+
+		//map to a Hash with some more rigid typing
+		hash.EachPair(func(k, v px.Value) {
+			innerHash := v.(px.OrderedMap)
+			if innerV, ok := innerHash.Get4(`value`); ok {
+				if typ, ok := innerHash.Get4(`type`); ok {
+					hackTyp := fmt.Sprintf("%v", typ)
+					switch hackTyp {
+					case "number":
+						if intValue, ok := px.ToInt(innerV); ok {
+							ie = append(ie, types.WrapHashEntry(k, types.WrapInteger(intValue)))
+							break
+						}
+						fallthrough
+					case "bool":
+						b := px.IsTruthy(innerV)
+						ie = append(ie, types.WrapHashEntry(k, types.WrapBoolean(b)))
+					case "string":
+						s := px.ToString(innerV)
+						ie = append(ie, types.WrapHashEntry(k, types.WrapString(s)))
+					default:
+						ie = append(ie, types.WrapHashEntry(k, innerV))
+					}
+				}
+			}
+		})
+		return types.WrapHash(ie)
 	}
-	return m
+	return px.Undef
 }
 
 func extID(r Config) string {

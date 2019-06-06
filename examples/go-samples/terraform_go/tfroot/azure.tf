@@ -1,15 +1,20 @@
 resource "azurerm_resource_group" "test" {
-  name     = "lyra-tf-test"
+  count = 2
+  name     = "lyra-tf-test-${count.index}"
   location = "West Europe"
 }
-
-# this is an id we can only get from cloud/tfstate
 output "rgId" {
-  value = "${azurerm_resource_group.test.id}"
+  value = "${azurerm_resource_group.test.*.id}"
 }
 output "rgName" {
-  value = "${azurerm_resource_group.test.name}"
+  value = "${azurerm_resource_group.test.1.name}"
 }
 output "rgLocation" {
-  value = "${azurerm_resource_group.test.location}"
+  value = "${azurerm_resource_group.test.*.location}"
+}
+output "rgCount" {
+  value = "${length(azurerm_resource_group.test)}"
+}
+output "testBool" {
+  value = true
 }

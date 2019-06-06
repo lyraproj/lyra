@@ -4,28 +4,77 @@ import (
 	"regexp"
 	"testing"
 
+	"github.com/lyraproj/pcore/px"
+	"github.com/lyraproj/pcore/types"
 	"github.com/stretchr/testify/require"
 )
 
 func TestConvertOutput(t *testing.T) {
-	s := `rgId = /subscriptions/c82736ee-c108-452b-8178-f548c95d18fe/resourceGroups/lyra-tf-test
-rgLocation = westeurope
-rgName = lyra-tf-test
-1 = 2
-false = true`
+	s := `{
+		"testStringArray": {
+		  "sensitive": false,
+		  "type": [
+			"tuple",
+			[
+			  "string",
+			  "string"
+			]
+		  ],
+		  "value": [
+			"NumberOne",
+			"NumberTwo"
+		  ]
+		},
+		"testString": {
+		  "sensitive": false,
+		  "type": "string",
+		  "value": "lyra-tf-test-1"
+		},
+		"testBool": {
+		  "sensitive": false,
+		  "type": "bool",
+		  "value": true
+		},
+		"testInt": {
+		  "sensitive": false,
+		  "type": "number",
+		  "value": 3
+		}
+	}`
 
 	m := convertOutput([]byte(s))
-	require.Len(t, m, 5)
-	require.Equal(t, "/subscriptions/c82736ee-c108-452b-8178-f548c95d18fe/resourceGroups/lyra-tf-test", m["rgId"])
-	require.Equal(t, "westeurope", m["rgLocation"])
-	require.Equal(t, "lyra-tf-test", m["rgName"])
-	require.Equal(t, "2", m["1"])
-	require.Equal(t, "true", m["false"])
+	h, ok := m.(px.OrderedMap)
+	require.True(t, ok)
+	require.Equal(t, 4, h.Len())
+
+	v, ok := h.Get4("testInt")
+	require.True(t, ok)
+	testInt, ok := v.(px.Integer)
+	require.True(t, ok)
+	require.Equal(t, int64(3), testInt.Int())
+
+	v, ok = h.Get4("testBool")
+	require.True(t, ok)
+	testBool, ok := v.(px.Boolean)
+	require.True(t, ok)
+	require.True(t, testBool.Bool())
+
+	v, ok = h.Get4("testString")
+	require.True(t, ok)
+	testString, ok := v.(px.StringValue)
+	require.True(t, ok)
+	require.Equal(t, "lyra-tf-test-1", testString.String())
+
+	v, ok = h.Get4("testStringArray")
+	require.True(t, ok)
+	testStringArray, ok := v.(*types.Array)
+	require.Equal(t, 2, testStringArray.Len())
+	require.True(t, ok)
 }
 
 func TestConvertOutput_EmptyOutput(t *testing.T) {
 	m := convertOutput([]byte(""))
-	require.Len(t, m, 0)
+	require.Equal(t, px.Undef, m)
 }
 
 func TestUniqueString(t *testing.T) {

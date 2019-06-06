@@ -7,15 +7,9 @@ steps:
       workingDir: examples/go-samples/terraform_go/tfroot
   spew:
     parameters:
-      tf_out: it
-    call: spewer
-  spew2:
-    parameters:
-      # how could we use just the value of $output.rgId
-      # $tf_out.rgId: it #value '$tf_out.rgId' is never produced
-      # tf_out.rgId: it #value 'tf_out.rgId' is never produced
-      # $tf_out: it #value '$tf_out' is never produced
-      it: # put it in a map
-        value:
-          anything: $tf_out.rgId
+      # it: {value: $tf_out.rgName, type: "String"} # spews -> (string) (len=56) "Deferred('name' => '$tf_out', 'arguments' => ['rgName'])"
+      it: {value: $tf_out.rgName, type: "Deferred"}
+      # it: {value: $tf_out.testBool, type: "Deferred"}
+      # it: {value: $tf_out.rgCount, type: "Deferred"}
+      # it: {value: $tf_out.rgLocation, type: "Deferred"}
     call: spewer
