@@ -7,16 +7,16 @@ require (
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190604161640-bd0721a1250e
-	github.com/lyraproj/identity v0.0.0-20190605054233-f4b62924241e
-	github.com/lyraproj/issue v0.0.0-20190513084509-faf9b542f594
+	github.com/lyraproj/hiera v0.0.0-20190606103916-67cf8fbc6c79
+	github.com/lyraproj/identity v0.0.0-20190607094111-d0ea132bfc1c
+	github.com/lyraproj/issue v0.0.0-20190606092846-e082d6813d15
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
-	github.com/lyraproj/pcore v0.0.0-20190604153946-03f706b24291
-	github.com/lyraproj/puppet-workflow v0.0.0-20190605054009-7a5ee58da490
-	github.com/lyraproj/servicesdk v0.0.0-20190604154336-99ba85971af2
-	github.com/lyraproj/terraform-bridge v0.0.0-20190605054202-accc9d1decaf
-	github.com/lyraproj/wfe v0.0.0-20190605054048-5aeb2108fab1
-	github.com/lyraproj/yaml-workflow v0.0.0-20190604155812-8312aecd580e
+	github.com/lyraproj/pcore v0.0.0-20190606102217-7824aee25201
+	github.com/lyraproj/puppet-workflow v0.0.0-20190607093240-b03e4c0364de
+	github.com/lyraproj/servicesdk v0.0.0-20190607070716-322c167d24a9
+	github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d
+	github.com/lyraproj/wfe v0.0.0-20190607093543-16aef5845144
+	github.com/lyraproj/yaml-workflow v0.0.0-20190607093403-fdde3ed029a6
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
