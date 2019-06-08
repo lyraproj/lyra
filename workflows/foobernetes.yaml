@@ -98,6 +98,7 @@ steps:
       loadBalancerIP: 10.0.0.1
       location: eu1
       replica: false
+      policy: $load_balancer_policy
       webServerIDs: [$webServerID1, $webServerID2]
       tags:
         team: "lyra team"
@@ -115,6 +116,7 @@ steps:
       loadBalancerIP: '10.0.0.2'
       location: eu2
       replica: true
+      policy: $load_balancer_policy
       webServerIDs: [$webServerID1, $webServerID2]
       tags:
         team: "lyra team"

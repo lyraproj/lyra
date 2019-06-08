@@ -17,6 +17,7 @@ workflow foobernetes_pp {
     loadBalancerIP => '10.0.0.1',
     location => 'eu1',
     replica => false,
+    policy => $load_balancer_policy,
     webServerIDs => [$webserver1_id, $webserver2_id],
     tags => {
         'team' => 'lyra team',
@@ -40,6 +41,7 @@ workflow foobernetes_pp {
     loadBalancerIP => '10.0.0.2',
     location => 'eu2',
     replica => true,
+    policy => $load_balancer_policy,
     webServerIDs => [$webserver1_id, $webserver2_id],
     tags => {
         'team' => 'lyra team',
