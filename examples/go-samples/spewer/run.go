@@ -1,23 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-hclog"
+	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/lang/go/lyra"
 )
 
 type spewIn struct {
-	It    interface{}
+	It    px.Value
 	Level *string
 }
 
 func run(in spewIn) {
-	s := fmt.Sprintf("\n%v", spew.Sdump(in.It))
 	lf := logFunc(hclog.Default(), in.Level)
-	lf("**Spewer **", "s", s)
+	lf("**Spewer **", "s", px.ToPrettyString(in.It))
 }
 
 func logFunc(logger hclog.Logger, level *string) func(msg string, args ...interface{}) {
