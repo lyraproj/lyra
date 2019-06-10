@@ -48,7 +48,8 @@ func (*ConfigHandler) Read(externalID string) (*Config, error) {
 	//HACK return a new uniqueID to ensure update is always called
 	s := uniqueString()
 	return &Config{
-		UniqueID: &s,
+		WorkingDir: externalID,
+		UniqueID:   &s,
 	}, nil
 }
 
@@ -130,9 +131,10 @@ func convertOutput(b []byte) px.Value {
 	if hash, ok := c.PopLast().(px.OrderedMap); ok {
 		ie := make([]*types.HashEntry, 0, hash.Len())
 		hash.EachPair(func(k, v px.Value) {
-			innerHash := v.(px.OrderedMap)
-			if innerV, ok := innerHash.Get4(`value`); ok {
-				ie = append(ie, types.WrapHashEntry(k, innerV))
+			if innerHash, ok := v.(px.OrderedMap); ok {
+				if innerV, ok := innerHash.Get4(`value`); ok {
+					ie = append(ie, types.WrapHashEntry(k, innerV))
+				}
 			}
 		})
 		return types.WrapHash(ie)
