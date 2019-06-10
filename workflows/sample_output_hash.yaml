@@ -1,9 +1,13 @@
 returns:
-  o: Hash
+  o:
+    value:
+      name: $name
+      age: $age
 steps:
   person:
     returns:
-      o: [name, age]
+      - name
+      - age
     Example::Person:
       age: 25
       name: Ann

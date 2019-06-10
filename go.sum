@@ -318,8 +318,8 @@ github.com/lyraproj/servicesdk v0.0.0-20190607070716-322c167d24a9 h1:u+JH8zmUaeX
 github.com/lyraproj/servicesdk v0.0.0-20190607070716-322c167d24a9/go.mod h1:+IR74NuJQyJnnRUUrtp44Lu5Iu950oAwW0oSs2isvXI=
 github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d h1:wnvGHpdvBA/ndr7vVF+4VC1WrFdvxSIewF586VIoylw=
 github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d/go.mod h1:3TWvmEFt16mac9w+lhxUZw4c8DPofV4KJjPfc4GkPqg=
-github.com/lyraproj/wfe v0.0.0-20190607093543-16aef5845144 h1:W6DvdCbdhk8YTEYssLkZ0vzFlUbcCNtmQ5UYWD/AzfQ=
-github.com/lyraproj/wfe v0.0.0-20190607093543-16aef5845144/go.mod h1:QKbYf9nue8IrnDKRPFbWg5LpYd0DxKHvnfJGZ+SUNP4=
+github.com/lyraproj/wfe v0.0.0-20190610121732-284fa5d4a24f h1:8Zplp29ik82Jkd4HUCFk03fJz8j/5ElJKXJEAWI9un8=
+github.com/lyraproj/wfe v0.0.0-20190610121732-284fa5d4a24f/go.mod h1:QKbYf9nue8IrnDKRPFbWg5LpYd0DxKHvnfJGZ+SUNP4=
 github.com/lyraproj/yaml-workflow v0.0.0-20190607093403-fdde3ed029a6 h1:ium1zDdEkyIWBwkFkDvTBaQHfJRoQRNOaKDKxkak5SE=
 github.com/lyraproj/yaml-workflow v0.0.0-20190607093403-fdde3ed029a6/go.mod h1:lsmfVqoY0fjfeTo8XaHnvh0LZSwe2zrLswR249luUSk=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
