@@ -1,0 +1,21 @@
+returns: [tf_out]
+steps:
+  config:
+    returns:
+      tf_out: output
+    Terraform::Config:  
+      workingDir: examples/go-samples/terraform_go/tfroot
+  spew:
+    parameters:
+      it:
+        value:
+            a: $tf_out.rgName
+            b: $tf_out.testBool
+            c: $tf_out.rgCount
+            d: $tf_out.rgLocation
+      # we can get a single value from a map as long as we explicitly specify the type
+      # it: {value: $tf_out.rgLocation, type: "Deferred"}
+      # we can set a level at which to log, the default is debug
+      # level: {value: "wARn", type: "String"}
+      
+    call: spewer
