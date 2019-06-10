@@ -1,6 +1,8 @@
 package resource
 
 import (
+	"fmt"
+	"log"
 	"regexp"
 	"testing"
 
@@ -10,7 +12,8 @@ import (
 )
 
 func TestConvertOutput(t *testing.T) {
-	s := `{
+	s := `
+	{
 		"testStringArray": {
 		  "sensitive": false,
 		  "type": [
@@ -25,11 +28,6 @@ func TestConvertOutput(t *testing.T) {
 			"NumberTwo"
 		  ]
 		},
-		"testString": {
-		  "sensitive": false,
-		  "type": "string",
-		  "value": "lyra-tf-test-1"
-		},
 		"testBool": {
 		  "sensitive": false,
 		  "type": "bool",
@@ -39,6 +37,11 @@ func TestConvertOutput(t *testing.T) {
 		  "sensitive": false,
 		  "type": "number",
 		  "value": 3
+		},		
+		"testString": {
+		  "sensitive": false,
+		  "type": "string",
+		  "value": "lyra-tf-test-1"
 		}
 	}`
 
@@ -70,8 +73,130 @@ func TestConvertOutput(t *testing.T) {
 	testStringArray, ok := v.(*types.Array)
 	require.Equal(t, 2, testStringArray.Len())
 	require.True(t, ok)
+
 }
 
+func Example_convertOutput_Map() {
+	s := `
+	{
+		"testMap": {
+			"sensitive": false,
+			"type": [
+				"object",
+				{
+					"a": "number",
+					"b": "number"
+				}
+			],
+			"value": {
+				"a": 1,
+				"b": 2
+			}
+		}
+	}`
+
+	m := convertOutput([]byte(s))
+	h, ok := m.(px.OrderedMap)
+	if !ok {
+		log.Fatal("convertOuput failed")
+	}
+
+	fmt.Println(px.ToPrettyString(h))
+	// Output:
+	// {
+	//   'testMap' => {
+	//     'a' => 1,
+	//     'b' => 2
+	//   }
+	// }
+}
+
+func Example_convertOutput_MixedArray() {
+	s := `
+	{
+	    "testMixedArray": {
+			"sensitive": false,
+			"type": [
+				"tuple",
+				[
+					"number",
+					"string"
+				]
+			],
+			"value": [
+				1,
+				"two"
+			]
+	}`
+
+	m := convertOutput([]byte(s))
+	h, ok := m.(px.OrderedMap)
+	if !ok {
+		log.Fatal("convertOuput failed")
+	}
+
+	fmt.Println(px.ToPrettyString(h))
+	// Output:
+	// {
+	//   'testMixedArray' => [1, 'two']
+	// }
+}
+func Example_convertOutput_Object() {
+
+	s := `
+	{
+		"testObject": {
+			"sensitive": false,
+			"type": [
+				"object",
+				{
+					"person": [
+						"object",
+						{
+							"address": [
+								"object",
+								{
+									"houseNumber": "number",
+									"line1": "string"
+								}
+							],
+							"name": "string"
+						}
+					]
+				}
+			],
+			"value": {
+				"person": {
+					"address": {
+						"houseNumber": 23,
+						"line1": "yada yada"
+					},
+					"name": "bob"
+				}
+			}
+		}
+	}`
+	m := convertOutput([]byte(s))
+	h, ok := m.(px.OrderedMap)
+	if !ok {
+		log.Fatal("convertOuput failed")
+	}
+
+	fmt.Println(px.ToPrettyString(h))
+
+	// Output:
+	// {
+	//   'testObject' => {
+	//     'person' => {
+	//       'address' => {
+	//         'houseNumber' => 23,
+	//         'line1' => 'yada yada'
+	//       },
+	//       'name' => 'bob'
+	//     }
+	//   }
+	// }
+}
 func TestConvertOutput_EmptyOutput(t *testing.T) {
 	m := convertOutput([]byte(""))
 	require.Equal(t, px.Undef, m)

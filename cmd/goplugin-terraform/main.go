@@ -9,15 +9,15 @@ import (
 )
 
 func init() {
-	if hclog.DefaultOptions.Level <= hclog.Debug {
-		issue.IncludeStacktrace(true)
-	}
 	hclog.DefaultOptions = &hclog.LoggerOptions{
 		Name:            "terraform",
 		Level:           hclog.LevelFromString(os.Getenv("LYRA_LOG_LEVEL")),
 		JSONFormat:      true,
 		IncludeLocation: false,
 		Output:          os.Stderr,
+	}
+	if hclog.DefaultOptions.Level <= hclog.Debug {
+		issue.IncludeStacktrace(true)
 	}
 }
 

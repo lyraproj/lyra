@@ -3,7 +3,10 @@ package resource
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
+
+	"github.com/lyraproj/servicesdk/serviceapi"
 
 	"github.com/google/uuid"
 	"github.com/hashicorp/go-hclog"
@@ -24,19 +27,26 @@ type ConfigHandler struct{}
 
 // Create a new set of resources
 func (*ConfigHandler) Create(desiredState *Config) (*Config, string, error) {
-	hclog.Default().Debug("Creating Config", "desiredState", desiredState)
-
-	apply(desiredState)
-
-	return desiredState, extID(*desiredState), nil
+	log := hclog.Default()
+	log.Debug("Creating Config", "desiredState", desiredState)
+	externalID := extID(*desiredState)
+	if ok, err := dirExists(externalID); !ok {
+		log.Debug("error reading directory", "err", err)
+		return nil, "", serviceapi.NotFound("LoadBalancer", externalID)
+	}
+	return desiredState, externalID, apply(desiredState)
 }
 
 // Read an existing Config
 func (*ConfigHandler) Read(externalID string) (*Config, error) {
-	hclog.Default().Debug("Reading Config", "externalID", externalID)
-
-	s := uniqueString()
+	log := hclog.Default()
+	log.Debug("Reading Config", "externalID", externalID)
+	if ok, err := dirExists(externalID); !ok {
+		log.Debug("error reading directory", "err", err)
+		return nil, serviceapi.NotFound("LoadBalancer", externalID)
+	}
 	//HACK return a new uniqueID to ensure update is always called
+	s := uniqueString()
 	return &Config{
 		UniqueID: &s,
 	}, nil
@@ -44,36 +54,62 @@ func (*ConfigHandler) Read(externalID string) (*Config, error) {
 
 // Update an existing Config
 func (*ConfigHandler) Update(externalID string, desiredState *Config) (*Config, error) {
-	hclog.Default().Debug("Updating Instance", "externalID", externalID, "desiredState", desiredState)
-
-	apply(desiredState)
-	return desiredState, nil
+	log := hclog.Default()
+	log.Debug("Updating Instance", "externalID", externalID, "desiredState", desiredState)
+	if ok, err := dirExists(externalID); !ok {
+		log.Debug("error reading directory", "err", err)
+		return nil, serviceapi.NotFound("LoadBalancer", externalID)
+	}
+	return desiredState, apply(desiredState)
 }
 
 // Delete an existing Config
 func (*ConfigHandler) Delete(externalID string) error {
 	hclog.Default().Debug("Deleting Config:", "externalID", externalID)
-
-	_ = mustRun(externalID, "terraform", "init")
-
-	//HACK: externalID is the working dir of the terraform config, so that we can delete
-	_ = mustRun(externalID, "terraform", "destroy", "-auto-approve")
+	_, err := runCmd(externalID, "terraform", "init")
+	if err != nil {
+		return err
+	}
+	_, err = runCmd(externalID, "terraform", "destroy", "-auto-approve")
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
-func apply(in *Config) {
+func apply(in *Config) error {
 	log := hclog.Default()
 	log.Debug("apply entered", "in", in)
 
-	_ = mustRun(in.WorkingDir, "terraform", "init")
-	_ = mustRun(in.WorkingDir, "terraform", "apply", "-auto-approve")
-	out := mustRun(in.WorkingDir, "terraform", "output", "-json")
+	_, err := runCmd(in.WorkingDir, "terraform", "init")
+	if err != nil {
+		return err
+	}
+	_, err = runCmd(in.WorkingDir, "terraform", "apply", "-auto-approve")
+	if err != nil {
+		return err
+	}
+	out, err := runCmd(in.WorkingDir, "terraform", "output", "-json")
+	if err != nil {
+		return err
+	}
 	m := convertOutput(out)
 	log.Debug("apply complete", "m", m)
 	in.Output = &m
+	return nil
 }
 
-func mustRun(dir string, name string, arg ...string) []byte {
+func dirExists(dir string) (bool, error) {
+	fi, err := os.Stat(dir)
+	if err != nil {
+		return false, err
+	}
+	if !fi.IsDir() {
+		return false, fmt.Errorf("The path %v exists but is not a directory", dir)
+	}
+	return true, nil
+}
+func runCmd(dir string, name string, arg ...string) ([]byte, error) {
 	log := hclog.Default()
 	log.Debug("Running command", "name", name, "arg", arg, "dir", dir)
 	cmd := exec.Command(name, arg...)
@@ -82,43 +118,21 @@ func mustRun(dir string, name string, arg ...string) []byte {
 	output := fmt.Sprintf("%s", out)
 	log.Debug("applied", "output", output, "err", err)
 	if err != nil {
-		panic(fmt.Errorf("error running cmd %v \n error is %v \n output is %v", cmd, err, output))
+		return nil, fmt.Errorf("error running cmd %v \n error is %v \n output is %v", cmd, err, output)
 	}
-	return out
+	return out, nil
 }
 
 // convertOutput converts the passed byte array to a typed pcore types.Hash, if successful
 func convertOutput(b []byte) px.Value {
 	c := px.NewCollector()
 	serialization.JsonToData("terraform output", bytes.NewReader(b), c)
-
 	if hash, ok := c.PopLast().(px.OrderedMap); ok {
-
 		ie := make([]*types.HashEntry, 0, hash.Len())
-
-		//map to a Hash with some more rigid typing
 		hash.EachPair(func(k, v px.Value) {
 			innerHash := v.(px.OrderedMap)
 			if innerV, ok := innerHash.Get4(`value`); ok {
-				if typ, ok := innerHash.Get4(`type`); ok {
-					hackTyp := fmt.Sprintf("%v", typ)
-					switch hackTyp {
-					case "number":
-						if intValue, ok := px.ToInt(innerV); ok {
-							ie = append(ie, types.WrapHashEntry(k, types.WrapInteger(intValue)))
-							break
-						}
-						fallthrough
-					case "bool":
-						b := px.IsTruthy(innerV)
-						ie = append(ie, types.WrapHashEntry(k, types.WrapBoolean(b)))
-					case "string":
-						s := px.ToString(innerV)
-						ie = append(ie, types.WrapHashEntry(k, types.WrapString(s)))
-					default:
-						ie = append(ie, types.WrapHashEntry(k, innerV))
-					}
-				}
+				ie = append(ie, types.WrapHashEntry(k, innerV))
 			}
 		})
 		return types.WrapHash(ie)
