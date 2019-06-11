@@ -1,6 +1,6 @@
 workflow foobernetes_pp {
   parameters => (
-    String $load_balancer_policy = lookup('foobernetes.lb_policy')
+    String $load_balancer_policy = lookup('foobernetes.policies.lb_policy')
   ),
   returns => (
     String $primary_load_balancer_id,
@@ -21,7 +21,7 @@ workflow foobernetes_pp {
     webServerIDs => [$webserver1_id, $webserver2_id],
     tags => {
         'team' => 'lyra team',
-        'role' => 'primary'
+        'role' => 'primary',
     }
   }
 
@@ -45,7 +45,7 @@ workflow foobernetes_pp {
     webServerIDs => [$webserver1_id, $webserver2_id],
     tags => {
         'team' => 'lyra team',
-        'role' => 'secondary'
+        'role' => 'secondary',
     }
   }
 

@@ -27,9 +27,9 @@
 # the "foober_iter" section. All top-level workflow parameters must be specified in
 # the "data.yaml" file at runtime.
 parameters:
-  load_balancer_policy:
-    type: String
-    lookup: foobernetes.lb_policy
+  policies:
+    type: Hash[String, String]
+    lookup: foobernetes.policies
 
 # The workflow returns a two element array containing the IDs produced by the
 # "loadBalancers" collect step. All top-level returns must be returns of
@@ -93,6 +93,7 @@ steps:
       Foobernetes::Loadbalancer:
         loadBalancerIP: $ip
         location: eu1
+        policy: $policies.lb_policy
         replica: $replica
         webServerIDs: $webServers
         tags:
