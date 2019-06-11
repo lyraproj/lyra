@@ -7,6 +7,7 @@ require (
 	github.com/hashicorp/go-hclog v0.9.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.13 // indirect
+	github.com/heroku/heroku-go/v5 v5.0.0
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190613203819-ed6a3277c530
 	github.com/lyraproj/identity v0.0.0-20190614151341-2d10ddf837ff
