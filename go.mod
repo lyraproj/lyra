@@ -1,7 +1,6 @@
 module github.com/lyraproj/lyra
 
 require (
-	github.com/davecgh/go-spew v1.1.1
 	github.com/go-logr/logr v0.1.0
 	github.com/go-logr/zapr v0.1.1 // indirect
 	github.com/google/uuid v1.1.0
