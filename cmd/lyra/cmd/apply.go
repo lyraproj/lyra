@@ -13,7 +13,12 @@ import (
 	_ "github.com/lyraproj/servicesdk/lang/go/lyra"
 )
 
-var homeDir string
+var (
+	homeDir  string
+	varsPath string
+	renderAs string
+	vars     []string
+)
 
 // NewApplyCmd returns the apply subcommand used to evaluate and apply steps. //TODO: (JD) Does 'apply' even make sense for what this does now?
 func NewApplyCmd() *cobra.Command {
@@ -26,7 +31,11 @@ func NewApplyCmd() *cobra.Command {
 		Args:    cobra.ExactArgs(1),
 	}
 
-	cmd.Flags().StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
+	f := cmd.Flags()
+	f.StringVarP(&homeDir, "root", "r", "", gotext.Get("path to root directory"))
+	f.StringVarP(&renderAs, "render-as", "", "", gotext.Get("render returned value as json or yaml"))
+	f.StringVarP(&varsPath, "vars", "", "", gotext.Get("path to JSON or YAML file containing variables or - for stdin"))
+	f.StringArrayVarP(&vars, "var", "", nil, gotext.Get("a key:value or key=value where value is a puppet literal"))
 
 	cmd.SetHelpTemplate(ui.HelpTemplate)
 	cmd.SetUsageTemplate(ui.UsageTemplate)
@@ -37,7 +46,7 @@ func NewApplyCmd() *cobra.Command {
 func runApplyCmd(cmd *cobra.Command, args []string) {
 	applicator := &apply.Applicator{HomeDir: homeDir, DlvConfig: dlvConfig}
 	workflowName := args[0]
-	exitCode := applicator.ApplyWorkflow(workflowName, wf.Upsert)
+	exitCode := applicator.ApplyWorkflow(workflowName, varsPath, vars, wf.Upsert, renderAs, cmd.OutOrStdout())
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}

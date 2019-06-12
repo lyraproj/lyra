@@ -74,7 +74,7 @@ PHONY+= lyra
 lyra: check-mods
 	@$(call build,bin/lyra,cmd/lyra/main.go)
 
-test:
+test: yaml-dsl
 	@echo "🔘 Running unit tests... (`date '+%H:%M:%S'`)"
 	$(BUILDARGS) go test $(TESTFLAGS) github.com/lyraproj/lyra/...
 
