@@ -4,9 +4,14 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"os"
+	"regexp"
 	"runtime/debug"
 	"strings"
+
+	"github.com/lyraproj/issue/issue"
+	"github.com/lyraproj/pcore/yaml"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/hiera/hiera"
@@ -38,16 +43,15 @@ func (a *Applicator) ApplyWorkflowWithHieraData(workflowName string, hieraData m
 }
 
 func (a *Applicator) applyWithHieraData(workflowName string, hieraData map[string]string, intent wf.Operation) {
-	m := convertToDeepMap(hieraData)
-	hclog.Default().Debug("converted map to hiera data", "m", m)
-	v := px.Wrap(nil, m).(px.OrderedMap)
-	tp := func(ic hieraapi.ProviderContext, key string, _ map[string]px.Value) px.Value {
-		if v, ok := v.Get4(key); ok {
-			return v
+	lookupOptions := make(map[string]px.Value)
+	hiera.DoWithParent(context.Background(), provider.ScopeLookupKey, lookupOptions, func(c px.Context) {
+		if len(hieraData) > 0 {
+			m := convertToDeepMap(hieraData)
+			hclog.Default().Debug("converted map to hiera data", "m", m)
+			lookupOptions[hieraapi.HieraScope] = px.Wrap(c, m)
 		}
-		return nil
-	}
-	hiera.DoWithParent(context.Background(), tp, nil, a.applyWithContext(workflowName, intent))
+		a.applyWithContext(c, workflowName, intent, ``, os.Stdout)
+	})
 }
 
 //convertToDeepMap converts a map[string]string with entries like {k:"aws.tags.created_by", v:"user@company.com"}
@@ -58,9 +62,9 @@ func convertToDeepMap(hieraData map[string]string) map[string]interface{} {
 	for k, v := range hieraData {
 		current := output
 		tokens := strings.Split(k, ".")
-		len := len(tokens)
+		ln := len(tokens)
 		for index, token := range tokens {
-			if index == len-1 {
+			if index == ln-1 {
 				current[token] = v
 			} else {
 				if _, ok := current[token]; !ok {
@@ -78,39 +82,87 @@ func (a *Applicator) DeleteWorkflowWithHieraData(workflowName string, hieraData 
 	a.applyWithHieraData(workflowName, hieraData, wf.Delete)
 }
 
+// varSplit splits on either ':' or '=' but not on '::', ':=', '=:' or '=='
+var varSplit = regexp.MustCompile(`\A(.*[^:=])[:=]([^:=].*)\z`)
+var needParsePrefix = []string{`{`, `[`, `"`, `'`}
+
 // ApplyWorkflow will apply the named workflow getting hiera data from file
-func (a *Applicator) ApplyWorkflow(workflowName string, intent wf.Operation) (exitCode int) {
+func (a *Applicator) ApplyWorkflow(workflowName string, varsPath string, vars []string, intent wf.Operation, renderAs string, out io.Writer) (exitCode int) {
 	if a.HomeDir != `` {
 		if err := os.Chdir(a.HomeDir); err != nil {
-			ui.Message("error", fmt.Errorf("Unable to change directory to '%s'", a.HomeDir))
+			ui.Message("error", fmt.Errorf("unable to change directory to '%s'", a.HomeDir))
 			return 1
 		}
 	}
 
 	lookupOptions := map[string]px.Value{
-		provider.LookupProvidersKey: types.WrapRuntime([]hieraapi.LookupKey{provider.ConfigLookupKey, provider.Environment})}
+		provider.LookupProvidersKey: types.WrapRuntime([]hieraapi.LookupKey{provider.ScopeLookupKey, provider.ConfigLookupKey, provider.Environment})}
 
 	return util.RunCommand(func() int {
-		hiera.DoWithParent(context.Background(), provider.MuxLookupKey, lookupOptions, a.applyWithContext(workflowName, intent))
+		hiera.DoWithParent(context.Background(), provider.MuxLookupKey, lookupOptions, func(c px.Context) {
+			var scope px.OrderedMap
+			if varsPath != `` {
+				content := types.BinaryFromFile(varsPath)
+				yv := yaml.Unmarshal(c, content.Bytes())
+				if data, ok := yv.(px.OrderedMap); ok {
+					scope = data
+				} else {
+					panic(px.Error(hieraapi.YamlNotHash, issue.H{`path`: varsPath}))
+				}
+			}
+
+			if len(vars) > 0 {
+				es := make([]*types.HashEntry, len(vars))
+				for i, e := range vars {
+					if m := varSplit.FindStringSubmatch(e); m != nil {
+						key := strings.TrimSpace(m[1])
+						es[i] = types.WrapHashEntry2(key, parseCommandLineValue(c, key, m[2]))
+					} else {
+						panic(util.CmdError(fmt.Sprintf("Unable to parse --var option '%s'", e)))
+					}
+				}
+
+				vs := types.WrapHash(es)
+				// Merge vars with variables read from file, if any
+				if scope == nil {
+					scope = vs
+				} else {
+					scope = scope.Merge(vs)
+				}
+			}
+
+			if scope != nil {
+				lookupOptions[hieraapi.HieraScope] = scope
+			}
+			a.applyWithContext(c, workflowName, intent, renderAs, out)
+		})
 		return 0
 	})
 }
 
-func (a *Applicator) applyWithContext(workflowName string, intent wf.Operation) func(px.Context) {
-	return func(c px.Context) {
-		logger := logger.Get()
-		c.DoWithLoader(loader.New(c.Loader()), func() {
-			a.parseDlvConfig(c)
-			if intent == wf.Delete {
-				logger.Debug("calling delete")
-				delete(c, workflowName)
-				ui.ShowMessage("delete done:", workflowName)
-				logger.Debug("delete finished")
-			} else {
-				apply(c, workflowName, px.EmptyMap, intent) // TODO: Perhaps provide top-level parameters from command line args
-			}
-		})
+func parseCommandLineValue(c px.Context, key, vs string) px.Value {
+	vs = strings.TrimSpace(vs)
+	for _, pfx := range needParsePrefix {
+		if strings.HasPrefix(vs, pfx) {
+			return types.ResolveDeferred(c, types.ParseFile(`var `+key, vs), c.Scope())
+		}
 	}
+	return types.WrapString(vs)
+}
+
+func (a *Applicator) applyWithContext(c px.Context, workflowName string, intent wf.Operation, renderAs string, out io.Writer) {
+	log := logger.Get()
+	c.DoWithLoader(loader.New(c.Loader()), func() {
+		a.parseDlvConfig(c)
+		if intent == wf.Delete {
+			log.Debug("calling delete")
+			deleteStep(c, workflowName)
+			ui.ShowMessage("delete done:", workflowName)
+			log.Debug("delete finished")
+		} else {
+			apply(c, workflowName, px.EmptyMap, intent, renderAs, out)
+		}
+	})
 }
 
 func (a *Applicator) parseDlvConfig(c px.Context) {
@@ -145,23 +197,25 @@ func loadStep(c px.Context, stepID string) api.Step {
 	return wfe.CreateStep(c, def.(serviceapi.Definition))
 }
 
-func delete(c px.Context, stepID string) {
+func deleteStep(c px.Context, stepID string) {
 	log := logger.Get()
 	log.Debug("deleting", "stepID", stepID)
 
 	// Nothing in the workflow will be in the new era so all is deleted
-	service.StartEra(c)
-	service.SweepAndGC(c, loadStep(c, stepID).Identifier()+"/")
+	li := service.GetLazyIdentity(c)
+	li.StartEra(c)
+	li.SweepAndGC(c, loadStep(c, stepID).Identifier()+"/")
 }
 
-func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Operation) {
+func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Operation, renderAs string, out io.Writer) {
 	log := logger.Get()
 
 	log.Debug("configuring scope")
 	c.Set(service.StepContextKey, px.SingletonMap(`operation`, types.WrapInteger(int64(intent))))
 
 	log.Debug("applying", "stepID", stepID)
-	service.StartEra(c)
+	li := service.GetLazyIdentity(c)
+	li.StartEra(c)
 	a := loadStep(c, stepID)
 	defer func() {
 		if r := recover(); r != nil {
@@ -174,10 +228,14 @@ func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Oper
 		}
 		gcPrefix := a.Identifier() + "/"
 		log.Debug("garbage collecting", "prefix", gcPrefix)
-		service.SweepAndGC(c, gcPrefix)
+		li.LazySweepAndGC(c, gcPrefix)
 	}()
 
 	result := a.Run(c, px.Wrap(c, parameters).(px.OrderedMap))
+	if renderAs != `` {
+		hiera.Render(c, renderAs, result, out)
+	}
+
 	log.Debug("apply done", "result", result)
 	ui.ShowMessage("apply done:", stepID)
 }

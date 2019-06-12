@@ -11,8 +11,8 @@ import (
 	"github.com/lyraproj/wfe/api"
 )
 
-var defaultPluginsPath []string
-var defaultWorkflowsPath []string
+var DefaultPluginsPath []string
+var DefaultWorkflowsPath []string
 
 func init() {
 	executable, err := os.Executable()
@@ -27,20 +27,20 @@ func init() {
 	// Load plugins from:
 	// - WORKING_DIR/build/goplugins (to support both plugin and lyra development)
 	// - EXECUTABLE_DIR/../goplugins (to support running the built binary)
-	defaultPluginsPath = []string{"build", executableParentDir}
+	DefaultPluginsPath = []string{"build", executableParentDir}
 	// Load workflows from:
 	// - WORKING_DIR/workflows
 	// - EXECUTABLE_DIR/../workflows (to support brew and running build\lyra irrespective of working dir)
-	defaultWorkflowsPath = []string{".", executableParentDir}
+	DefaultWorkflowsPath = []string{".", executableParentDir}
 }
 
 // New creates a new federated loader instance
 func New(parentLoader px.Loader) px.Loader {
 	var loaders []px.ModuleLoader
-	for _, pluginPathElement := range defaultPluginsPath {
+	for _, pluginPathElement := range DefaultPluginsPath {
 		loaders = append(loaders, px.NewFileBasedLoader(parentLoader, pluginPathElement, "", api.GoPluginPath))
 	}
-	for _, workflowsPathElement := range defaultWorkflowsPath {
+	for _, workflowsPathElement := range DefaultWorkflowsPath {
 		loaders = append(loaders, px.NewFileBasedLoader(parentLoader, workflowsPathElement, "", api.LyraLinkPath, api.YamlManifestPath, api.PpManifestPath))
 	}
 	return px.NewDependencyLoader(loaders)
@@ -48,7 +48,7 @@ func New(parentLoader px.Loader) px.Loader {
 
 // LoadPlugins loads all known goplugins
 func LoadPlugins(c px.Context) {
-	for _, plugin := range findFiles("goplugins/*", defaultPluginsPath) {
+	for _, plugin := range findFiles("goplugins/*", DefaultPluginsPath) {
 		px.Load(c, px.NewTypedName(px.NsService, filepath.Base(plugin)))
 	}
 }

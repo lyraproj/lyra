@@ -32,3 +32,9 @@ require (
 )
 
 replace github.com/google/go-github => github.com/google/go-github v16.0.0+incompatible // terraform-bridge GitHub plugin requires this version
+
+replace github.com/lyraproj/yaml-workflow => github.com/thallgren/yaml-workflow v0.0.0-20190612101049-8e7160202eaf
+
+replace github.com/lyraproj/wfe => github.com/thallgren/wfe v0.0.0-20190612101635-98fe9adac9b2
+
+replace github.com/lyraproj/hiera => github.com/thallgren/hiera v0.0.0-20190612100504-f2503c64932c

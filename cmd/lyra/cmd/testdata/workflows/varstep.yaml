@@ -1,0 +1,16 @@
+parameters:
+  a:
+    lookup: var_a
+  b:
+    lookup: var_b
+  c:
+    lookup: var_c
+
+returns:
+  v:
+    value:
+      x: $a
+      y: $b
+      z: $c
+
+steps:
