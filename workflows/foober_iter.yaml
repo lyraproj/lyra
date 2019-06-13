@@ -73,7 +73,8 @@ steps:
     step:
       # This step defines a Foobernetes::Webserver resource.
       returns: webServerID
-      Foobernetes::Webserver:
+      resource: Foobernetes::Webserver
+      value:
         port: 8080
         appServers: $appServers
 
@@ -90,7 +91,8 @@ steps:
       - replica
     step:
       returns: loadBalancerID
-      Foobernetes::Loadbalancer:
+      resource: Foobernetes::Loadbalancer
+      value:
         loadBalancerIP: $ip
         location: eu1
         replica: $replica
@@ -108,7 +110,8 @@ steps:
     as: name
     step:
       returns: instanceID
-      Foobernetes::Instance:
+      resource: Foobernetes::Instance
+      value:
         location: eu2
         image: "lyra::application"
         config:
@@ -120,7 +123,8 @@ steps:
   database:
     returns:
       databaseID: instanceID
-    Foobernetes::Instance:
+    resource: Foobernetes::Instance
+    value:
       location: eu1
       image: "lyra::database"
       cpus: 16

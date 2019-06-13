@@ -3,7 +3,8 @@
 # export GOOGLE_APPLICATION_CREDENTIALS=<credentials-file.json>
 steps:
   compute_instance:
-    Google::Compute_instance:
+    resource: Google::Compute_instance
+    value:
       name: "lyra-test"
       zone: "us-central1-a"
       machine_type: "f1-micro"

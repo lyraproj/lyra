@@ -2,7 +2,8 @@ returns: [name, age]
 steps:
   person:
     returns: [name, age]
-    Example::Person:
+    resource: Example::Person
+    value:
       age: 66
       name: Ann
       human: true

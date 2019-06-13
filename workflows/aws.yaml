@@ -3,11 +3,13 @@ parameters:
     type: Hash[String,String]
     lookup: aws.tags
 returns:
-  vpc_id: String
+  vpc_id:
+    type: String
 steps:
 
   iam_role:
-    Aws::Iam_role:
+    resource: Aws::Iam_role
+    value:
       name: lyra-iam-role
       assume_role_policy: |
         {
@@ -40,13 +42,15 @@ steps:
     # type is implicit and is derived from the
     # step name, in contrast to subnets below
     returns: vpc_id
-    Aws::Vpc:
+    resource: Aws::Vpc
+    value:
       cidr_block: 192.168.0.0/16
       instance_tenancy: default
       tags: $tags
 
   route_table:
-    Aws::Route_table:
+    resource: Aws::Route_table
+    value:
       vpc_id: $vpc_id
       tags:
         name: lyra-routetable
@@ -60,7 +64,8 @@ steps:
   #     vpc_id: $vpc_id
 
   security_group:
-    Aws::Security_group:
+    resource: Aws::Security_group
+    value:
       name: "lyra"
       description: "lyra security group"
       vpc_id: $vpc_id
@@ -78,7 +83,8 @@ steps:
   subnet1:
     returns:
       subnet_id1: subnet_id
-    Aws::Subnet:
+    resource: Aws::Subnet
+    value:
       vpc_id: $vpc_id
       cidr_block: 192.168.1.0/24
       tags:
@@ -88,7 +94,8 @@ steps:
   subnet2:
     returns:
       subnet_id2: subnet_id
-    Aws::Subnet:
+    resource: Aws::Subnet
+    value:
       vpc_id: $vpc_id
       cidr_block: 192.168.2.0/24
       tags:
@@ -96,7 +103,8 @@ steps:
         created_by: lyra
 
   instance1:
-    Aws::Instance:
+    resource: Aws::Instance
+    value:
       instance_type: 't2.nano'
       ami: 'ami-f90a4880'
       subnet_id: $subnet_id1
@@ -105,7 +113,8 @@ steps:
         created_by: lyra
 
   instance2:
-    Aws::Instance:
+    resource: Aws::Instance
+    value:
       instance_type: 't2.nano'
       ami: 'ami-f90a4880'
       subnet_id: $subnet_id2

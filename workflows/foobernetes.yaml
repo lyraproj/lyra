@@ -74,7 +74,8 @@ steps:
   web-servers:
     returns:
       webServerID1: webServerID
-    Foobernetes::Webserver:
+    resource: Foobernetes::Webserver
+    value:
       port: 8080
       appServers: [$appServerID1, $appServerID2]
 
@@ -85,7 +86,8 @@ steps:
   web-server2:
     returns:
       webServerID2: webServerID
-    Foobernetes::Webserver:
+    resource: Foobernetes::Webserver
+    value:
       port: 8080
       appServers: [$appServerID1, $appServerID2]
 
@@ -94,7 +96,8 @@ steps:
   # field name is already unique.
   loadbalancer:
     returns: loadBalancerID
-    Foobernetes::Loadbalancer:
+    resource: Foobernetes::Loadbalancer
+    value:
       loadBalancerIP: 10.0.0.1
       location: eu1
       replica: false
@@ -111,7 +114,8 @@ steps:
     parameters: [webServerID1, webServerID2]
     returns:
       secondaryLoadBalancerID: loadBalancerID
-    Foobernetes::Loadbalancer:
+    resource: Foobernetes::Loadbalancer
+    value:
       loadBalancerIP: '10.0.0.2'
       location: eu2
       replica: true
@@ -126,7 +130,8 @@ steps:
   app-server1:
     returns:
       appServerID1: instanceID
-    Foobernetes::Instance:
+    resource: Foobernetes::Instance
+    value:
       location: eu1
       image: lyra::application
       config:
@@ -138,7 +143,8 @@ steps:
   app-server2:
     returns:
       appServerID2: instanceID
-    Foobernetes::Instance:
+    resource: Foobernetes::Instance
+    value:
       location: eu2
       image: "lyra::application"
       config:
@@ -150,7 +156,8 @@ steps:
   database:
     returns:
       databaseID: instanceID
-    Foobernetes::Instance:
+    resource: Foobernetes::Instance
+    value:
       location: eu1
       image: "lyra::database"
       cpus: 16

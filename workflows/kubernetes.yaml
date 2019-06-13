@@ -4,14 +4,16 @@ returns:
 steps:
   namespace:
     returns: namespace_id
-    Kubernetes::Namespace:
+    resource: Kubernetes::Namespace
+    value:
       metadata:
         name: lyra-ns
         labels:
           name: lyra-ns
   service:
     returns: service_id
-    Kubernetes::Service:
+    resource: Kubernetes::Service
+    value:
       metadata:
         name: lyra-service
       spec:
