@@ -8,7 +8,8 @@ steps:
     returns:
       - name
       - age
-    Example::Person:
+    resource: Example::Person
+    value:
       age: 25
       name: Ann
       human: true

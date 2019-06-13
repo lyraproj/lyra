@@ -3,7 +3,8 @@ steps:
   resource_group:
     returns:
       resource_group_name: name
-    AzureRM::Resource_group:
+    resource: AzureRM::Resource_group
+    value:
       name: lyra
       location: ukwest
       tags:
@@ -11,28 +12,32 @@ steps:
   virtual_network:
     returns:
       virtual_network_name: name
-    AzureRM::Virtual_network:
+    resource: AzureRM::Virtual_network
+    value:
       name: lyraVnet
       address_space: [10.0.0.0/16]
       location: ukwest
       resource_group_name: $resource_group_name
   subnet:
     returns: subnet_id
-    AzureRM::Subnet:
+    resource: AzureRM::Subnet
+    value:
       name: lyraSubnet
       resource_group_name: $resource_group_name
       virtual_network_name: $virtual_network_name
       address_prefix: 10.0.1.0/24
   public_ip:
     returns: public_ip_id
-    AzureRM::Public_ip:
+    resource: AzureRM::Public_ip
+    value:
       name: lyraPublicIP
       location: ukwest
       resource_group_name: $resource_group_name
       allocation_method: dynamic
   network_security_group:
     returns: network_security_group_id
-    AzureRM::Network_security_group:
+    resource: AzureRM::Network_security_group
+    value:
       name: lyraNetworkSecurityGroup
       location: ukwest
       resource_group_name: $resource_group_name
@@ -48,7 +53,8 @@ steps:
           destination_address_prefix: "*"
   network_interface:
     returns: network_interface_id
-    AzureRM::Network_interface:
+    resource: AzureRM::Network_interface
+    value:
       name: lyraNIC
       location: ukwest
       resource_group_name: $resource_group_name
@@ -59,7 +65,8 @@ steps:
           private_ip_address_allocation: dynamic
           public_ip_address_id: $public_ip_id
   virtual_machine:
-    AzureRM::Virtual_machine:
+    resource: AzureRM::Virtual_machine
+    value:
       name: lyraVirtualMachine
       location: UK West
       resource_group_name: $resource_group_name

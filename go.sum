@@ -320,8 +320,6 @@ github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d h1:wnvGH
 github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d/go.mod h1:3TWvmEFt16mac9w+lhxUZw4c8DPofV4KJjPfc4GkPqg=
 github.com/lyraproj/wfe v0.0.0-20190612143712-6cb246e7b0b8 h1:GVQA6M7hptFYdLtrG4pGTmfYnFB0GyuZskjbjRefA/w=
 github.com/lyraproj/wfe v0.0.0-20190612143712-6cb246e7b0b8/go.mod h1:QKbYf9nue8IrnDKRPFbWg5LpYd0DxKHvnfJGZ+SUNP4=
-github.com/lyraproj/yaml-workflow v0.0.0-20190613100601-11bc1cef5da4 h1:LEZ5zKb3t7fCNby2IGdzDmknFlwrWP3fVf2MxmzVeXs=
-github.com/lyraproj/yaml-workflow v0.0.0-20190613100601-11bc1cef5da4/go.mod h1:lsmfVqoY0fjfeTo8XaHnvh0LZSwe2zrLswR249luUSk=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=
@@ -515,6 +513,8 @@ github.com/terraform-providers/terraform-provider-template v1.0.0/go.mod h1:/J+B
 github.com/terraform-providers/terraform-provider-tls v0.1.0/go.mod h1:Mxe/v5u31LDW4m32O1z6Ursdh95dpc9Puq6otkYg7tU=
 github.com/terraform-providers/terraform-provider-tls v1.2.0 h1:wcD0InKzNh8fanUYQwim62WCd4toeD9WJnPw/RjBI4o=
 github.com/terraform-providers/terraform-provider-tls v1.2.0/go.mod h1:Mxe/v5u31LDW4m32O1z6Ursdh95dpc9Puq6otkYg7tU=
+github.com/thallgren/yaml-workflow v0.0.0-20190613120256-2b40ff81b91c h1:xaD/Owm3y5aM64T5ty0mbGzRJxoHpCZzrOjvn3fGlSU=
+github.com/thallgren/yaml-workflow v0.0.0-20190613120256-2b40ff81b91c/go.mod h1:lsmfVqoY0fjfeTo8XaHnvh0LZSwe2zrLswR249luUSk=
 github.com/ugorji/go v0.0.0-20170107133203-ded73eae5db7/go.mod h1:hnLbHMwcvSihnDhEfx2/BzKp2xb0Y+ErdfYcrs9tkJQ=
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
 github.com/ulikunitz/xz v0.5.4/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4ABRW8=

@@ -3,6 +3,7 @@
 # export GITHUB_TOKEN=<token>
 steps:
   repository:
-    GitHub::Repository:
+    resource: GitHub::Repository
+    value:
       name: "lyra-provider-test"
       description: "Created using Lyra"

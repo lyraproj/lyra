@@ -3,7 +3,8 @@ steps:
   config:
     returns:
       tf_out: output
-    Terraform::Config:  
+    resource: Terraform::Config
+    value:  
       workingDir: examples/go-samples/terraform_go/tfroot
   spew:
     parameters:
