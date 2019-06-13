@@ -8,7 +8,7 @@ require (
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190606103916-67cf8fbc6c79
+	github.com/lyraproj/hiera v0.0.0-20190612143234-65a63e6c2b1d
 	github.com/lyraproj/identity v0.0.0-20190607094111-d0ea132bfc1c
 	github.com/lyraproj/issue v0.0.0-20190606092846-e082d6813d15
 	github.com/lyraproj/lyra-operator v0.0.0-20190412150939-82bb153789bc
@@ -16,8 +16,8 @@ require (
 	github.com/lyraproj/puppet-workflow v0.0.0-20190607093240-b03e4c0364de
 	github.com/lyraproj/servicesdk v0.0.0-20190607070716-322c167d24a9
 	github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d
-	github.com/lyraproj/wfe v0.0.0-20190610121732-284fa5d4a24f
-	github.com/lyraproj/yaml-workflow v0.0.0-20190607093403-fdde3ed029a6
+	github.com/lyraproj/wfe v0.0.0-20190612143712-6cb246e7b0b8
+	github.com/lyraproj/yaml-workflow v0.0.0-20190613100601-11bc1cef5da4
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -32,9 +32,3 @@ require (
 )
 
 replace github.com/google/go-github => github.com/google/go-github v16.0.0+incompatible // terraform-bridge GitHub plugin requires this version
-
-replace github.com/lyraproj/yaml-workflow => github.com/thallgren/yaml-workflow v0.0.0-20190612101049-8e7160202eaf
-
-replace github.com/lyraproj/wfe => github.com/thallgren/wfe v0.0.0-20190612101635-98fe9adac9b2
-
-replace github.com/lyraproj/hiera => github.com/thallgren/hiera v0.0.0-20190612100504-f2503c64932c
