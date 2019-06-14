@@ -9,14 +9,14 @@ require (
 	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
 	github.com/lyraproj/hiera v0.0.0-20190613203819-ed6a3277c530
-	github.com/lyraproj/identity v0.0.0-20190607094111-d0ea132bfc1c
+	github.com/lyraproj/identity v0.0.0-20190614085022-78a3ae71a3a6
 	github.com/lyraproj/issue v0.0.0-20190606092846-e082d6813d15
 	github.com/lyraproj/lyra-operator v0.0.0-20190613153414-2ba0aeabcee9
 	github.com/lyraproj/pcore v0.0.0-20190606102217-7824aee25201
 	github.com/lyraproj/puppet-workflow v0.0.0-20190607093240-b03e4c0364de
-	github.com/lyraproj/servicesdk v0.0.0-20190607070716-322c167d24a9
+	github.com/lyraproj/servicesdk v0.0.0-20190614081755-57bcd8399414
 	github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d
-	github.com/lyraproj/wfe v0.0.0-20190612143712-6cb246e7b0b8
+	github.com/lyraproj/wfe v0.0.0-20190614082126-e65ed085ba49
 	github.com/lyraproj/yaml-workflow v0.0.0-20190613125302-7751969b529d
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
