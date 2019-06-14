@@ -9,10 +9,6 @@ import (
 )
 
 func init() {
-	// Tell issue reporting to amend all errors with a stack trace
-	if hclog.DefaultOptions.Level <= hclog.Debug {
-		issue.IncludeStacktrace(true)
-	}
 	// Configuring hclog like this allows Lyra to handle log levels automatically
 	hclog.DefaultOptions = &hclog.LoggerOptions{
 		Name:            "Foobernetes",
@@ -21,6 +17,8 @@ func init() {
 		IncludeLocation: false,
 		Output:          os.Stderr,
 	}
+	// Tell issue reporting to amend all errors with a stack trace when log level is debug or lower
+	issue.IncludeStacktrace(hclog.DefaultOptions.Level <= hclog.Debug)
 }
 
 func main() {
