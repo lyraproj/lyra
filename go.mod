@@ -4,6 +4,7 @@ require (
 	github.com/go-logr/logr v0.1.0
 	github.com/go-logr/zapr v0.1.1 // indirect
 	github.com/google/uuid v1.1.0
+	github.com/hashicorp/go-getter v0.0.0-20181213035916-be39683deade
 	github.com/hashicorp/go-hclog v0.9.0
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.13 // indirect
