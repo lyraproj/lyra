@@ -42,9 +42,10 @@ func (*AppHandler) Create(desiredState *App) (*App, string, error) {
 		return nil, "", err
 	}
 
-	desiredState.AppID = &app.ID
+	externalID := app.ID
+	desiredState.AppID = &externalID
 
-	return desiredState, app.ID, nil
+	return desiredState, externalID, nil
 }
 
 func (*AppHandler) Read(externalID string) (*App, error) {

@@ -1,11 +1,22 @@
 steps:
   heroku_app:
     returns:
-      appID: ID
-    Heroku::App:
+      appID1: appID
+    resource: Heroku::App
+    value:
       locked: false
       name: "lyra-test"
       organization: "lyra-heroku"
-      personal: false
+      personal: true
       region: "us"
       stack: "heroku-16"
+  heroku_build:
+    returns:
+      build: Build
+    resource: Heroku::Build
+    value:
+      appID: $appID1
+      sourceBlob:
+        checksum: "12345abcdef"
+        uRL: "https://github.com/lyraproj/heroku_example/archive/v2.0.0.tar.gz"
+        version: "v2.0.0"
