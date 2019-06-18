@@ -12,9 +12,9 @@ require (
 	github.com/lyraproj/identity v0.0.0-20190614151341-2d10ddf837ff
 	github.com/lyraproj/issue v0.0.0-20190606092846-e082d6813d15
 	github.com/lyraproj/lyra-operator v0.0.0-20190613153414-2ba0aeabcee9
-	github.com/lyraproj/pcore v0.0.0-20190614121034-381c91502dac
+	github.com/lyraproj/pcore v0.0.0-20190618142417-30605b6ee043
 	github.com/lyraproj/puppet-workflow v0.0.0-20190607093240-b03e4c0364de
-	github.com/lyraproj/servicesdk v0.0.0-20190617121125-a22cb98187cb
+	github.com/lyraproj/servicesdk v0.0.0-20190618142858-870593a059dc
 	github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d
 	github.com/lyraproj/wfe v0.0.0-20190617122042-ad50b459aa8f
 	github.com/lyraproj/yaml-workflow v0.0.0-20190614124036-903d05538c4c
