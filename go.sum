@@ -308,6 +308,8 @@ github.com/lyraproj/pcore v0.0.0-20190606102217-7824aee25201 h1:KlTHcsEPuRXi/cXY
 github.com/lyraproj/pcore v0.0.0-20190606102217-7824aee25201/go.mod h1:yqZNNXXw/2It5Jh2Vc+g93Qm+1q6EklXJ0t/xqNNBV8=
 github.com/lyraproj/pcore v0.0.0-20190614121034-381c91502dac h1:K4cTDfI72xRV+i7yOrZPyQqDFqbRq6smzgkxWUaSzv0=
 github.com/lyraproj/pcore v0.0.0-20190614121034-381c91502dac/go.mod h1:yqZNNXXw/2It5Jh2Vc+g93Qm+1q6EklXJ0t/xqNNBV8=
+github.com/lyraproj/pcore v0.0.0-20190618142417-30605b6ee043 h1:DPsZvbXM3NfCeJmE7IPz65jJJ2jrSTGkcmrfLNpfP0E=
+github.com/lyraproj/pcore v0.0.0-20190618142417-30605b6ee043/go.mod h1:yqZNNXXw/2It5Jh2Vc+g93Qm+1q6EklXJ0t/xqNNBV8=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190606112643-077894dcf8b7 h1:5WL3VdIN+0aPaLeLXdmgOjRQXwX01FIe/cXY9tF4rcY=
 github.com/lyraproj/puppet-evaluator v0.0.0-20190606112643-077894dcf8b7/go.mod h1:DWI2QYQUhuhg40XbR8I3hxt1y3kQ3KxSKN9geaswyBg=
 github.com/lyraproj/puppet-parser v0.0.0-20190606112603-21687f912799 h1:Oin/1SnPW0N1glMBZgzR/00IAqOFtj1ZWAJPgljf36o=
@@ -322,6 +324,8 @@ github.com/lyraproj/servicesdk v0.0.0-20190614121348-74e5b88a139c h1:XvNS2pW3wuf
 github.com/lyraproj/servicesdk v0.0.0-20190614121348-74e5b88a139c/go.mod h1:1JW0P7jN4e9J8ujxBYaVTLVd5dK7bqlVC0VvTZspwr8=
 github.com/lyraproj/servicesdk v0.0.0-20190617121125-a22cb98187cb h1:tD7CAn75MziXKk9RNv1cHJYvxl9VxDmXD5iKaIwwsas=
 github.com/lyraproj/servicesdk v0.0.0-20190617121125-a22cb98187cb/go.mod h1:1JW0P7jN4e9J8ujxBYaVTLVd5dK7bqlVC0VvTZspwr8=
+github.com/lyraproj/servicesdk v0.0.0-20190618142858-870593a059dc h1:nVlKGI+vZo7hYoBoUyxAZrnTmVWLBB1nfI+NVKpc67A=
+github.com/lyraproj/servicesdk v0.0.0-20190618142858-870593a059dc/go.mod h1:ElGfr2lj8EyJdg5YHj0YDSxEnSV0npJhLgbgFcX2KeU=
 github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d h1:wnvGHpdvBA/ndr7vVF+4VC1WrFdvxSIewF586VIoylw=
 github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d/go.mod h1:3TWvmEFt16mac9w+lhxUZw4c8DPofV4KJjPfc4GkPqg=
 github.com/lyraproj/wfe v0.0.0-20190617122042-ad50b459aa8f h1:uQEsta/SlW2kwludvMG9ANQT5bQh/Vq+G3F1guK7rv0=
