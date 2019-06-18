@@ -7,28 +7,28 @@ returns:
     type: String
 steps:
 
-  iam_role:
-    resource: Aws::Iam_role
-    value:
-      name: lyra-iam-role
-      assume_role_policy: |
-        {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-                "Action": "sts:AssumeRoleWithSAML",
-                "Effect": "Allow",
-                "Condition": {
-                  "StringEquals": {
-                      "SAML:aud": "https://signin.aws.amazon.com/saml"
-                  }
-                },
-                "Principal": {
-                  "Federated": "arn:aws:iam::1234567890:saml-provider/myidp"
-                }
-            }
-          ]
-        }
+  # iam_role:
+  #   resource: Aws::Iam_role
+  #   value:
+  #     name: lyra-iam-role
+  #     assume_role_policy: |
+  #       {
+  #         "Version": "2012-10-17",
+  #         "Statement": [
+  #           {
+  #               "Action": "sts:AssumeRoleWithSAML",
+  #               "Effect": "Allow",
+  #               "Condition": {
+  #                 "StringEquals": {
+  #                     "SAML:aud": "https://signin.aws.amazon.com/saml"
+  #                 }
+  #               },
+  #               "Principal": {
+  #                 "Federated": "arn:aws:iam::1234567890:saml-provider/myidp"
+  #               }
+  #           }
+  #         ]
+  #       }
 
   #
   # Application of key_pair succeeds on the first run then fails: see https://github.com/lyraproj/lyra/issues/203
