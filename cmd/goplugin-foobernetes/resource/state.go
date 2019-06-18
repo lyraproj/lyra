@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -16,7 +17,12 @@ type deployment struct {
 
 var filename = "deployment.json"
 
+var lock sync.Mutex
+
 func loadFakeCloudData() deployment {
+	lock.Lock()
+	defer lock.Unlock()
+
 	var d deployment
 	bs, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -36,6 +42,9 @@ func loadFakeCloudData() deployment {
 }
 
 func saveFakeCloudData(d deployment) {
+	lock.Lock()
+	defer lock.Unlock()
+
 	bs, err := json.MarshalIndent(&d, "", "  ")
 	if err != nil {
 		panic(err)
