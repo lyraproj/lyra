@@ -4,12 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"os"
 	"strconv"
 
 	"github.com/hashicorp/go-getter/helper/url"
 	"github.com/hashicorp/go-hclog"
 	heroku "github.com/heroku/heroku-go/v5"
+	"github.com/lyraproj/lyra/cmd/goplugin-heroku/helper"
 	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
@@ -27,18 +27,18 @@ type App struct {
 
 type AppHandler struct{}
 
-func (*AppHandler) Create(desiredState *App) (*App, string, error) {
+func (*AppHandler) Create(ctx *context.Context, desiredState *App) (*App, string, error) {
 	hclog.Default().Debug("Creating Heroku App", "desiredState", desiredState)
 
-	s := herokuService()
+	s := helper.HerokuService()
 
-	if desiredState.Organization != nil && desiredState.Personal == true {
+	if desiredState.Organization != nil && desiredState.Personal {
 		err := errors.New("Please specify only one of 'Organization' or 'Personal' in the workflow")
 		return nil, "", err
 	}
 
 	// Creates a resource and allocates an ID that can be used to read it in the future
-	app, err := s.OrganizationAppCreate(context.TODO(), heroku.OrganizationAppCreateOpts{
+	app, err := s.OrganizationAppCreate(*ctx, heroku.OrganizationAppCreateOpts{
 		Locked:       &desiredState.Locked,
 		Name:         &desiredState.Name,
 		Organization: desiredState.Organization,
@@ -59,10 +59,10 @@ func (*AppHandler) Create(desiredState *App) (*App, string, error) {
 	return desiredState, fmt.Sprintf("herokuid:/%s?personal=%t", app.ID, desiredState.Personal), nil
 }
 
-func (*AppHandler) Read(externalID string) (*App, error) {
+func (*AppHandler) Read(ctx *context.Context, externalID string) (*App, error) {
 	hclog.Default().Debug("Reading App", "externalID", externalID)
 
-	s := herokuService()
+	s := helper.HerokuService()
 
 	extUrl, err := url.Parse(externalID)
 	if err != nil {
@@ -70,7 +70,7 @@ func (*AppHandler) Read(externalID string) (*App, error) {
 	}
 
 	extID := extUrl.Path[1:] // Strip leading '/'
-	app, err := s.OrganizationAppInfo(context.TODO(), extID)
+	app, err := s.OrganizationAppInfo(*ctx, extID)
 	if err != nil {
 		return nil, err
 	}
@@ -103,17 +103,17 @@ func (*AppHandler) Read(externalID string) (*App, error) {
 	return &actualState, nil
 }
 
-func (*AppHandler) Update(externalID string, desiredState *App) (*App, error) {
+func (*AppHandler) Update(ctx *context.Context, externalID string, desiredState *App) (*App, error) {
 	hclog.Default().Debug("Updating App", "externalID", externalID, "desiredState", desiredState)
 
-	s := herokuService()
+	s := helper.HerokuService()
 
 	extUrl, err := url.Parse(externalID)
 	if err != nil {
 		return nil, err
 	}
 	appId := extUrl.Path[1:] // Strip leading '/'
-	actualState, err := s.AppUpdate(context.TODO(), appId, heroku.AppUpdateOpts{
+	actualState, err := s.AppUpdate(*ctx, appId, heroku.AppUpdateOpts{
 		BuildStack:  &desiredState.Stack,
 		Maintenance: &desiredState.Maintenance,
 		Name:        &desiredState.Name,
@@ -129,28 +129,20 @@ func (*AppHandler) Update(externalID string, desiredState *App) (*App, error) {
 	return desiredState, nil
 }
 
-func (*AppHandler) Delete(externalID string) error {
+func (*AppHandler) Delete(ctx *context.Context, externalID string) error {
 	hclog.Default().Debug("Deleting App:", "externalID", externalID)
 
-	s := herokuService()
+	s := helper.HerokuService()
 
 	extUrl, err := url.Parse(externalID)
 	if err != nil {
 		return err
 	}
 	appId := extUrl.Path[1:] // Strip leading '/'
-	_, err = s.AppDelete(context.TODO(), appId)
+	_, err = s.AppDelete(*ctx, appId)
 	if err != nil {
 		return serviceapi.NotFound("App", externalID)
 	}
 
 	return nil
-}
-
-func herokuService() *heroku.Service {
-	token := os.Getenv("HEROKU_API_TOKEN")
-
-	heroku.DefaultTransport.BearerToken = token
-
-	return heroku.NewService(heroku.DefaultClient)
 }

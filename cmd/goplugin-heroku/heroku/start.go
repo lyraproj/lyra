@@ -19,14 +19,20 @@ func Start() {
 func Server(c px.Context) *service.Server {
 	sb := service.NewServiceBuilder(c, "Heroku")
 
-	evs := sb.RegisterTypes("Heroku", sb.BuildResource(&resource.App{},
-		func(rtb service.ResourceTypeBuilder) {
-			rtb.ProvidedAttributes(`appID`)
-			rtb.ImmutableAttributes(`personal`)
-		}))
-	sb.RegisterHandler("Heroku::AppHandler", &resource.AppHandler{}, evs[0])
+	evs := sb.RegisterTypes("Heroku",
+		sb.BuildResource(&resource.App{},
+			func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`appID`)
+				rtb.ImmutableAttributes(`personal`)
+			}),
+		sb.BuildResource(&resource.Build{},
+			func(rtb service.ResourceTypeBuilder) {
+				rtb.ProvidedAttributes(`buildID`, `buildpacks`)
+				rtb.ImmutableAttributes(`appID`)
+			}),
+	)
 
-	evs = sb.RegisterTypes("Heroku", resource.Build{})
+	sb.RegisterHandler("Heroku::AppHandler", &resource.AppHandler{}, evs[0])
 	sb.RegisterHandler("Heroku::BuildHandler", &resource.BuildHandler{}, evs[0])
 
 	return sb.Server()
