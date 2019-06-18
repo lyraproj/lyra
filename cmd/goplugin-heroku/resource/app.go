@@ -2,6 +2,7 @@ package resource
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -30,6 +31,11 @@ func (*AppHandler) Create(desiredState *App) (*App, string, error) {
 	hclog.Default().Debug("Creating Heroku App", "desiredState", desiredState)
 
 	s := herokuService()
+
+	if desiredState.Organization != nil && desiredState.Personal == true {
+		err := errors.New("Please specify only one of 'Organization' or 'Personal' in the workflow")
+		return nil, "", err
+	}
 
 	// Creates a resource and allocates an ID that can be used to read it in the future
 	app, err := s.OrganizationAppCreate(context.TODO(), heroku.OrganizationAppCreateOpts{
