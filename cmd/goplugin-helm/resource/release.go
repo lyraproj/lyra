@@ -59,7 +59,7 @@ func (*ReleaseHandler) Read(externalID string) (*Release, error) {
 	b := []byte(s)
 	err = json.Unmarshal(b, &releaseList)
 	if err != nil {
-		panic(fmt.Errorf("unable to unmarshal, err is %v and output is %s", err, b))
+		return nil, err
 	}
 	log.Debug("Read Releases", "externalID", externalID, "output", s)
 	for _, v := range releaseList.Releases {
@@ -150,10 +150,10 @@ func (h *ReleaseHandler) upsertRelease(externalID string, desiredState *Release)
 	return h.Read(extID(*desiredState))
 }
 
-func runCmd(dir string, name string, arg ...string) ([]byte, error) {
+func runCmd(dir string, name string, args ...string) ([]byte, error) {
 	log := hclog.Default()
-	log.Debug("Running command", "name", name, "arg", arg, "dir", dir)
-	cmd := exec.Command(name, arg...)
+	log.Debug("Running command", "name", name, "args", args, "dir", dir)
+	cmd := exec.Command(name, args...)
 	cmd.Dir = dir
 	out, err := cmd.CombinedOutput()
 	output := fmt.Sprintf("%s", out)

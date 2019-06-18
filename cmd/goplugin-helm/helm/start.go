@@ -20,7 +20,10 @@ func Start() {
 func Server(c px.Context) *service.Server {
 	sb := service.NewServiceBuilder(c, "Helm")
 
-	evs := sb.RegisterTypes("Helm", resource.Release{})
+	evs := sb.RegisterTypes("Helm",
+		sb.BuildResource(&resource.Release{}, func(rb service.ResourceTypeBuilder) {
+			rb.ImmutableAttributes(`name`)
+		}))
 	sb.RegisterHandler("Helm::ReleaseHandler", &resource.ReleaseHandler{}, evs[0])
 
 	return sb.Server()
