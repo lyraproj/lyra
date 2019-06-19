@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	_ "github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
-	"github.com/lyraproj/wfe/api"
+	"github.com/lyraproj/wfe/wfe"
 )
 
 var DefaultPluginsPath []string
@@ -38,10 +38,10 @@ func init() {
 func New(parentLoader px.Loader) px.Loader {
 	var loaders []px.ModuleLoader
 	for _, pluginPathElement := range DefaultPluginsPath {
-		loaders = append(loaders, px.NewFileBasedLoader(parentLoader, pluginPathElement, "", api.GoPluginPath))
+		loaders = append(loaders, px.NewFileBasedLoader(parentLoader, pluginPathElement, "", wfe.GoPluginPath))
 	}
 	for _, workflowsPathElement := range DefaultWorkflowsPath {
-		loaders = append(loaders, px.NewFileBasedLoader(parentLoader, workflowsPathElement, "", api.LyraLinkPath, api.YamlManifestPath, api.PpManifestPath))
+		loaders = append(loaders, px.NewFileBasedLoader(parentLoader, workflowsPathElement, "", wfe.LyraLinkPath, wfe.YamlManifestPath, wfe.PpManifestPath))
 	}
 	return px.NewDependencyLoader(loaders)
 }
