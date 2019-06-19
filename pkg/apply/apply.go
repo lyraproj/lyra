@@ -10,13 +10,11 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/lyraproj/issue/issue"
-	"github.com/lyraproj/pcore/yaml"
-
 	"github.com/hashicorp/go-hclog"
 	"github.com/lyraproj/hiera/hiera"
 	"github.com/lyraproj/hiera/hieraapi"
 	"github.com/lyraproj/hiera/provider"
+	"github.com/lyraproj/issue/issue"
 	"github.com/lyraproj/lyra/cmd/lyra/ui"
 	"github.com/lyraproj/lyra/pkg/loader"
 	"github.com/lyraproj/lyra/pkg/logger"
@@ -24,10 +22,11 @@ import (
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/pcore/types"
 	"github.com/lyraproj/pcore/utils"
+	"github.com/lyraproj/pcore/yaml"
 	"github.com/lyraproj/servicesdk/serviceapi"
 	"github.com/lyraproj/servicesdk/wf"
-	"github.com/lyraproj/wfe/api"
-	"github.com/lyraproj/wfe/service"
+	"github.com/lyraproj/wfe/identity"
+	"github.com/lyraproj/wfe/step"
 	"github.com/lyraproj/wfe/wfe"
 )
 
@@ -186,15 +185,15 @@ func (a *Applicator) parseDlvConfig(c px.Context) {
 		}
 	}()
 	// Pass DlvConfig on to the plugin loader
-	c.Set(api.LyraDlvConfigKey, types.ParseFile("", cfg))
+	c.Set(wfe.LyraDlvConfigKey, types.ParseFile("", cfg))
 }
 
-func loadStep(c px.Context, stepID string) api.Step {
+func loadStep(c px.Context, stepID string) wfe.Step {
 	def, ok := px.Load(c, px.NewTypedName(px.NsDefinition, stepID))
 	if !ok {
 		panic(util.CmdError(fmt.Sprintf("Unable to find definition for step %s", stepID)))
 	}
-	return wfe.CreateStep(c, def.(serviceapi.Definition))
+	return step.Create(c, def.(serviceapi.Definition))
 }
 
 func deleteStep(c px.Context, stepID string) {
@@ -202,20 +201,18 @@ func deleteStep(c px.Context, stepID string) {
 	log.Debug("deleting", "stepID", stepID)
 
 	// Nothing in the workflow will be in the new era so all is deleted
-	li := service.GetLazyIdentity(c)
-	li.StartEra(c)
-	li.SweepAndGC(c, loadStep(c, stepID).Identifier()+"/")
+	idService := identity.StartEra(c, false)
+	identity.SweepAndGC(c, idService, loadStep(c, stepID).Identifier()+"/")
 }
 
 func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Operation, renderAs string, out io.Writer) {
 	log := logger.Get()
 
 	log.Debug("configuring scope")
-	c.Set(service.StepContextKey, px.SingletonMap(`operation`, types.WrapInteger(int64(intent))))
+	c.Set(wfe.StepContextKey, px.SingletonMap(`operation`, types.WrapInteger(int64(intent))))
 
 	log.Debug("applying", "stepID", stepID)
-	li := service.GetLazyIdentity(c)
-	li.StartEra(c)
+	idService := identity.StartEra(c, true)
 	a := loadStep(c, stepID)
 	defer func() {
 		if r := recover(); r != nil {
@@ -228,11 +225,11 @@ func apply(c px.Context, stepID string, parameters px.OrderedMap, intent wf.Oper
 		}
 		gcPrefix := a.Identifier() + "/"
 		log.Debug("garbage collecting", "prefix", gcPrefix)
-		li.LazySweepAndGC(c, gcPrefix)
+		identity.SweepAndGC(c, idService, gcPrefix)
 	}()
 
 	result := a.Run(c, px.Wrap(c, parameters).(px.OrderedMap))
-	if renderAs != `` {
+	if renderAs != `` && result != nil {
 		hiera.Render(c, renderAs, result, out)
 	}
 
