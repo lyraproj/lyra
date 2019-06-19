@@ -1,18 +1,10 @@
-parameters:
-  password:
-    type: String
-    lookup: helm.wordpress_password
 returns: [helm_output]
 steps:
-  helm:
-    parameters:
-      name: {value: "wordpress"}
-      chart: {value: "stable/wordpress"}
-      namespace: {value: null}     
-      overrides:
-        value: 
-          wordpressUsername: somebody
-          wordpressPassword: $password
+  release:
     returns:
       helm_output: output
-    call: helm_go
+    Helm::Release:
+      name: wordpress
+      chart: stable/wordpress
+      namespace: default
+      overrides:
