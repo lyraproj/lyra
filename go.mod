@@ -8,16 +8,16 @@ require (
 	github.com/hashicorp/go-plugin v0.0.0-20190220160451-3f118e8ee104
 	github.com/hashicorp/terraform v0.11.13 // indirect
 	github.com/leonelquinteros/gotext v1.4.0
-	github.com/lyraproj/hiera v0.0.0-20190613203819-ed6a3277c530
-	github.com/lyraproj/identity v0.0.0-20190614151341-2d10ddf837ff
+	github.com/lyraproj/hiera v0.0.0-20190620131734-532cfd7c2040
+	github.com/lyraproj/identity v0.0.0-20190620125024-769d4913bd98
 	github.com/lyraproj/issue v0.0.0-20190606092846-e082d6813d15
 	github.com/lyraproj/lyra-operator v0.0.0-20190613153414-2ba0aeabcee9
-	github.com/lyraproj/pcore v0.0.0-20190618142417-30605b6ee043
-	github.com/lyraproj/puppet-workflow v0.0.0-20190607093240-b03e4c0364de
-	github.com/lyraproj/servicesdk v0.0.0-20190618142858-870593a059dc
-	github.com/lyraproj/terraform-bridge v0.0.0-20190607093652-7d17c27e656d
-	github.com/lyraproj/wfe v0.0.0-20190617122042-ad50b459aa8f
-	github.com/lyraproj/yaml-workflow v0.0.0-20190614124036-903d05538c4c
+	github.com/lyraproj/pcore v0.0.0-20190619162937-645af37a80ad
+	github.com/lyraproj/puppet-workflow v0.0.0-20190620124902-ad3a420872e3
+	github.com/lyraproj/servicesdk v0.0.0-20190620124349-11383d404381
+	github.com/lyraproj/terraform-bridge v0.0.0-20190620131646-4567545a38d4
+	github.com/lyraproj/wfe v0.0.0-20190620124512-f8ac96e562dc
+	github.com/lyraproj/yaml-workflow v0.0.0-20190620124944-45145730b52a
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
@@ -32,15 +32,3 @@ require (
 )
 
 replace github.com/google/go-github => github.com/google/go-github v16.0.0+incompatible // terraform-bridge GitHub plugin requires this version
-
-replace github.com/lyraproj/pcore => github.com/thallgren/pcore v0.0.0-20190619151240-bebc8c351bb4
-
-replace github.com/lyraproj/servicesdk => github.com/thallgren/servicesdk v0.0.0-20190619152445-7481da553aae
-
-replace github.com/lyraproj/wfe => github.com/thallgren/wfe v0.0.0-20190619153211-2fa3f0788e85
-
-replace github.com/lyraproj/yaml-workflow => github.com/thallgren/yaml-workflow v0.0.0-20190619153532-de48e3eef0ee
-
-replace github.com/lyraproj/puppet-workflow => github.com/thallgren/puppet-workflow v0.0.0-20190619154014-641474e71ee8
-
-replace github.com/lyraproj/identity => github.com/thallgren/identity v0.0.0-20190619152726-9eebff510974
