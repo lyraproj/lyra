@@ -27,7 +27,7 @@ type App struct {
 
 type AppHandler struct{}
 
-func (*AppHandler) Create(ctx *context.Context, desiredState *App) (*App, string, error) {
+func (*AppHandler) Create(desiredState *App) (*App, string, error) {
 	hclog.Default().Debug("Creating Heroku App", "desiredState", desiredState)
 
 	s := helper.HerokuService()
@@ -38,7 +38,7 @@ func (*AppHandler) Create(ctx *context.Context, desiredState *App) (*App, string
 	}
 
 	// Creates a resource and allocates an ID that can be used to read it in the future
-	app, err := s.OrganizationAppCreate(*ctx, heroku.OrganizationAppCreateOpts{
+	app, err := s.OrganizationAppCreate(context.TODO(), heroku.OrganizationAppCreateOpts{
 		Locked:       &desiredState.Locked,
 		Name:         &desiredState.Name,
 		Organization: desiredState.Organization,
@@ -59,7 +59,7 @@ func (*AppHandler) Create(ctx *context.Context, desiredState *App) (*App, string
 	return desiredState, fmt.Sprintf("herokuid:/%s?personal=%t", app.ID, desiredState.Personal), nil
 }
 
-func (*AppHandler) Read(ctx *context.Context, externalID string) (*App, error) {
+func (*AppHandler) Read(externalID string) (*App, error) {
 	hclog.Default().Debug("Reading App", "externalID", externalID)
 
 	s := helper.HerokuService()
@@ -70,7 +70,7 @@ func (*AppHandler) Read(ctx *context.Context, externalID string) (*App, error) {
 	}
 
 	extID := extUrl.Path[1:] // Strip leading '/'
-	app, err := s.OrganizationAppInfo(*ctx, extID)
+	app, err := s.OrganizationAppInfo(context.TODO(), extID)
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +103,7 @@ func (*AppHandler) Read(ctx *context.Context, externalID string) (*App, error) {
 	return &actualState, nil
 }
 
-func (*AppHandler) Update(ctx *context.Context, externalID string, desiredState *App) (*App, error) {
+func (*AppHandler) Update(externalID string, desiredState *App) (*App, error) {
 	hclog.Default().Debug("Updating App", "externalID", externalID, "desiredState", desiredState)
 
 	s := helper.HerokuService()
@@ -113,7 +113,7 @@ func (*AppHandler) Update(ctx *context.Context, externalID string, desiredState 
 		return nil, err
 	}
 	appId := extUrl.Path[1:] // Strip leading '/'
-	actualState, err := s.AppUpdate(*ctx, appId, heroku.AppUpdateOpts{
+	actualState, err := s.AppUpdate(context.TODO(), appId, heroku.AppUpdateOpts{
 		BuildStack:  &desiredState.Stack,
 		Maintenance: &desiredState.Maintenance,
 		Name:        &desiredState.Name,
@@ -129,7 +129,7 @@ func (*AppHandler) Update(ctx *context.Context, externalID string, desiredState 
 	return desiredState, nil
 }
 
-func (*AppHandler) Delete(ctx *context.Context, externalID string) error {
+func (*AppHandler) Delete(externalID string) error {
 	hclog.Default().Debug("Deleting App:", "externalID", externalID)
 
 	s := helper.HerokuService()
@@ -139,7 +139,7 @@ func (*AppHandler) Delete(ctx *context.Context, externalID string) error {
 		return err
 	}
 	appId := extUrl.Path[1:] // Strip leading '/'
-	_, err = s.AppDelete(*ctx, appId)
+	_, err = s.AppDelete(context.TODO(), appId)
 	if err != nil {
 		return serviceapi.NotFound("App", externalID)
 	}

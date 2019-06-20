@@ -33,7 +33,7 @@ func Server(c px.Context) *service.Server {
 	)
 
 	sb.RegisterHandler("Heroku::AppHandler", &resource.AppHandler{}, evs[0])
-	sb.RegisterHandler("Heroku::BuildHandler", &resource.BuildHandler{}, evs[0])
+	sb.RegisterHandler("Heroku::BuildHandler", &resource.BuildHandler{}, evs[1])
 
 	return sb.Server()
 }

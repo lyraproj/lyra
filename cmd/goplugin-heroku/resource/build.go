@@ -36,18 +36,18 @@ type SourceBlob struct {
 
 type BuildHandler struct{}
 
-func (*BuildHandler) Create(ctx *context.Context, desiredState *Build) (*Build, string, error) {
+func (*BuildHandler) Create(desiredState *Build) (*Build, string, error) {
 	hclog.Default().Debug("Creating Heroku Build", "desiredState", desiredState)
 
 	s := helper.HerokuService()
 
-	buildOpts, err := convertToBuildOpts(ctx, desiredState)
+	buildOpts, err := convertToBuildOpts(desiredState)
 	if err != nil {
 		return nil, "", err
 	}
 
 	// Creates a Heroku Build and allocates an ID that can be used to read it in the future
-	build, err := s.BuildCreate(*ctx, desiredState.AppID, *buildOpts)
+	build, err := s.BuildCreate(context.TODO(), desiredState.AppID, *buildOpts)
 	if err != nil {
 		return nil, "", err
 	}
@@ -58,7 +58,7 @@ func (*BuildHandler) Create(ctx *context.Context, desiredState *Build) (*Build, 
 	return desiredState, fmt.Sprintf("herokuid:/%s?build_id=%s&url=%s", build.App.ID, build.ID, *desiredState.SourceBlob.URL), nil
 }
 
-func (*BuildHandler) Read(ctx *context.Context, externalID string) (*Build, error) {
+func (*BuildHandler) Read(externalID string) (*Build, error) {
 	hclog.Default().Debug("Reading Heroku Build", "externalID", externalID)
 
 	s := helper.HerokuService()
@@ -73,7 +73,7 @@ func (*BuildHandler) Read(ctx *context.Context, externalID string) (*Build, erro
 	q := extUrl.Query()
 	extBuildID := q.Get(`build_id`)
 	extBuildURL := q.Get(`url`)
-	build, err := s.BuildInfo(*ctx, extAppID, extBuildID)
+	build, err := s.BuildInfo(context.TODO(), extAppID, extBuildID)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func (*BuildHandler) Read(ctx *context.Context, externalID string) (*Build, erro
 	return actualState, nil
 }
 
-func (*BuildHandler) Update(ctx *context.Context, externalID string, desiredState *Build) (*Build, error) {
+func (*BuildHandler) Update(externalID string, desiredState *Build) (*Build, error) {
 	hclog.Default().Debug("Updating Build", "desiredState", desiredState)
 
 	s := helper.HerokuService()
@@ -100,12 +100,12 @@ func (*BuildHandler) Update(ctx *context.Context, externalID string, desiredStat
 
 	appId := extUrl.Path[1:] // Strip leading '/'
 
-	buildOpts, err := convertToBuildOpts(ctx, desiredState)
+	buildOpts, err := convertToBuildOpts(desiredState)
 	if err != nil {
 		return nil, err
 	}
 
-	actualState, err := s.BuildCreate(*ctx, appId, *buildOpts)
+	actualState, err := s.BuildCreate(context.TODO(), appId, *buildOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +154,7 @@ func convertToBuild(state *heroku.Build) (*Build, error) {
 	return &Hbuild, nil
 }
 
-func convertToBuildOpts(ctx *context.Context, hbuild *Build) (*heroku.BuildCreateOpts, error) {
+func convertToBuildOpts(hbuild *Build) (*heroku.BuildCreateOpts, error) {
 	buildpacks := hbuild.Buildpacks
 	sourceblob := hbuild.SourceBlob
 	var HbuildOpts heroku.BuildCreateOpts
@@ -185,7 +185,7 @@ func convertToBuildOpts(ctx *context.Context, hbuild *Build) (*heroku.BuildCreat
 	if strings.HasPrefix(*sourceblob.URL, "http") {
 		blob.URL = sourceblob.URL
 	} else {
-		newSource, err := generateSourceFromFile(ctx, *sourceblob.URL)
+		newSource, err := generateSourceFromFile(*sourceblob.URL)
 		if err != nil {
 			return nil, err
 		}
@@ -198,10 +198,10 @@ func convertToBuildOpts(ctx *context.Context, hbuild *Build) (*heroku.BuildCreat
 	return &HbuildOpts, nil
 }
 
-func generateSourceFromFile(ctx *context.Context, path string) (*heroku.Source, error) {
+func generateSourceFromFile(path string) (*heroku.Source, error) {
 	s := helper.HerokuService()
 
-	source, err := s.SourceCreate(*ctx)
+	source, err := s.SourceCreate(context.TODO())
 	if err != nil {
 		return nil, err
 	}
@@ -219,10 +219,10 @@ func uploadSource(filePath, httpMethod, httpUrl string) error {
 	hclog.Default().Debug("[DEBUG] Uploading source '%s' to %s %s", filePath, method, httpUrl)
 
 	file, err := os.Open(filePath)
-	defer file.Close()
 	if err != nil {
 		return fmt.Errorf("Error opening source.path: %s", err)
 	}
+	defer file.Close()
 	stat, err := file.Stat()
 	if err != nil {
 		return fmt.Errorf("Error stating source.path: %s", err)
