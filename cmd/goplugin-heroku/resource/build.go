@@ -36,18 +36,18 @@ type SourceBlob struct {
 
 type BuildHandler struct{}
 
-func (*BuildHandler) Create(desiredState *Build) (*Build, string, error) {
+func (*BuildHandler) Create(ctx context.Context, desiredState *Build) (*Build, string, error) {
 	hclog.Default().Debug("Creating Heroku Build", "desiredState", desiredState)
 
 	s := helper.HerokuService()
 
-	buildOpts, err := convertToBuildOpts(desiredState)
+	buildOpts, err := convertToBuildOpts(ctx, desiredState)
 	if err != nil {
 		return nil, "", err
 	}
 
 	// Creates a Heroku Build and allocates an ID that can be used to read it in the future
-	build, err := s.BuildCreate(context.TODO(), desiredState.AppID, *buildOpts)
+	build, err := s.BuildCreate(ctx, desiredState.AppID, *buildOpts)
 	if err != nil {
 		return nil, "", err
 	}
@@ -58,7 +58,7 @@ func (*BuildHandler) Create(desiredState *Build) (*Build, string, error) {
 	return desiredState, fmt.Sprintf("herokuid:/%s?build_id=%s&url=%s", build.App.ID, build.ID, *desiredState.SourceBlob.URL), nil
 }
 
-func (*BuildHandler) Read(externalID string) (*Build, error) {
+func (*BuildHandler) Read(ctx context.Context, externalID string) (*Build, error) {
 	hclog.Default().Debug("Reading Heroku Build", "externalID", externalID)
 
 	s := helper.HerokuService()
@@ -73,7 +73,7 @@ func (*BuildHandler) Read(externalID string) (*Build, error) {
 	q := extUrl.Query()
 	extBuildID := q.Get(`build_id`)
 	extBuildURL := q.Get(`url`)
-	build, err := s.BuildInfo(context.TODO(), extAppID, extBuildID)
+	build, err := s.BuildInfo(ctx, extAppID, extBuildID)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func (*BuildHandler) Read(externalID string) (*Build, error) {
 	return actualState, nil
 }
 
-func (*BuildHandler) Update(externalID string, desiredState *Build) (*Build, error) {
+func (*BuildHandler) Update(ctx context.Context, externalID string, desiredState *Build) (*Build, error) {
 	hclog.Default().Debug("Updating Build", "desiredState", desiredState)
 
 	s := helper.HerokuService()
@@ -100,12 +100,12 @@ func (*BuildHandler) Update(externalID string, desiredState *Build) (*Build, err
 
 	appId := extUrl.Path[1:] // Strip leading '/'
 
-	buildOpts, err := convertToBuildOpts(desiredState)
+	buildOpts, err := convertToBuildOpts(ctx, desiredState)
 	if err != nil {
 		return nil, err
 	}
 
-	actualState, err := s.BuildCreate(context.TODO(), appId, *buildOpts)
+	actualState, err := s.BuildCreate(ctx, appId, *buildOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +154,7 @@ func convertToBuild(state *heroku.Build) (*Build, error) {
 	return &Hbuild, nil
 }
 
-func convertToBuildOpts(hbuild *Build) (*heroku.BuildCreateOpts, error) {
+func convertToBuildOpts(ctx context.Context, hbuild *Build) (*heroku.BuildCreateOpts, error) {
 	buildpacks := hbuild.Buildpacks
 	sourceblob := hbuild.SourceBlob
 	var HbuildOpts heroku.BuildCreateOpts
@@ -185,7 +185,7 @@ func convertToBuildOpts(hbuild *Build) (*heroku.BuildCreateOpts, error) {
 	if strings.HasPrefix(*sourceblob.URL, "http") {
 		blob.URL = sourceblob.URL
 	} else {
-		newSource, err := generateSourceFromFile(*sourceblob.URL)
+		newSource, err := generateSourceFromFile(ctx, *sourceblob.URL)
 		if err != nil {
 			return nil, err
 		}
@@ -198,10 +198,10 @@ func convertToBuildOpts(hbuild *Build) (*heroku.BuildCreateOpts, error) {
 	return &HbuildOpts, nil
 }
 
-func generateSourceFromFile(path string) (*heroku.Source, error) {
+func generateSourceFromFile(ctx context.Context, path string) (*heroku.Source, error) {
 	s := helper.HerokuService()
 
-	source, err := s.SourceCreate(context.TODO())
+	source, err := s.SourceCreate(ctx)
 	if err != nil {
 		return nil, err
 	}
