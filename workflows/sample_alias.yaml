@@ -1,13 +1,8 @@
 returns:
-  longName: String
-  currentAge: Integer
-steps:
-  person:
-    returns:
-      longName: name
-      currentAge: age
-    resource: Example::Person
-    value:
-      age: 66
-      name: Ann
-      human: true
+  databaseID: instanceID
+resource: Foobernetes::Instance
+value:
+  location: eu1
+  image: "lyra::database"
+  cpus: 16
+  memory: 64G

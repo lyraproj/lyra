@@ -320,8 +320,8 @@ github.com/lyraproj/terraform-bridge v0.0.0-20190620131646-4567545a38d4 h1:nLC6W
 github.com/lyraproj/terraform-bridge v0.0.0-20190620131646-4567545a38d4/go.mod h1:mJNPPycG1fneCMjfCaBoFetX4DyRmPHf2kL9euvQOEU=
 github.com/lyraproj/wfe v0.0.0-20190620124512-f8ac96e562dc h1:q2MCMbLvbU4bsMo7Kuit5FYJNZwj8mDLDUzgnZ4rc7Y=
 github.com/lyraproj/wfe v0.0.0-20190620124512-f8ac96e562dc/go.mod h1:J8b1G2KheR3FHXxZ+AiWQ+AItn9qBcZIonQiocS0iFo=
-github.com/lyraproj/yaml-workflow v0.0.0-20190620124944-45145730b52a h1:LoKBvYINZdtx4JdVu6DPuX5BhDbLIGubZKC1hy15om8=
-github.com/lyraproj/yaml-workflow v0.0.0-20190620124944-45145730b52a/go.mod h1:GS0iguZyJINCFkonp85CeRytpfvZ92SGpYZ/6j66+MY=
+github.com/lyraproj/yaml-workflow v0.0.0-20190701102709-c47d6184a495 h1:k+ne06X9/GyOGkc/319E4g5r5LlX+kzKCDGMAOHkP/Q=
+github.com/lyraproj/yaml-workflow v0.0.0-20190701102709-c47d6184a495/go.mod h1:GS0iguZyJINCFkonp85CeRytpfvZ92SGpYZ/6j66+MY=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
 github.com/marstr/guid v1.1.0 h1:/M4H/1G4avsieL6BbUwCOBzulmoeKVP5ux/3mQNnbyI=
 github.com/marstr/guid v1.1.0/go.mod h1:74gB1z2wpxxInTG6yaqA7KrtM0NZ+RbrcqDvYHefzho=

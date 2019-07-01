@@ -1,15 +1,16 @@
 returns:
-  o:
+  database:
     value:
-      name: $name
-      age: $age
+      id: $databaseID
+      ip: $databaseIP
 steps:
-  person:
+  database:
     returns:
-      - name
-      - age
-    resource: Example::Person
+      databaseID: instanceID
+      databaseIP: instanceIP
+    resource: Foobernetes::Instance
     value:
-      age: 25
-      name: Ann
-      human: true
+      location: eu1
+      image: "lyra::database"
+      cpus: 16
+      memory: 64G
