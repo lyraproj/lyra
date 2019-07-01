@@ -84,6 +84,9 @@ clean:
 	@rm -rf build
 	@echo "🔘 Cleaning ts dist..."
 	@rm -rf examples/ts-samples/dist
+	@rm -rf examples/ts-samples/src/types
+	@echo "🔘 Cleaning foobernetes state..."
+	@rm -f deployment.json*
 
 # This is not run as a pre-commit hook unless configured locally using .git/hooks
 PHONY+= pre-commit
@@ -166,6 +169,7 @@ check-node:
 PHONY+= smoke-test
 smoke-test: lyra identity puppet-dsl yaml-dsl lyra-plugins generate
 	@echo "🔘 Running a smoke test with 'foobernetes' workflow"
+	@rm -f deployment.json*
 	@build/bin/lyra delete foobernetes || (echo "Failed deleting 'foobernetes' workflow: exit code $$?"; exit 1)
 	@build/bin/lyra apply foobernetes || (echo "Failed applying 'foobernetes' workflow the first time: exit code $$?"; exit 1)
 	@sort deployment.json|grep -v "[0-9]\{8,\}" > deployment.json.sorted
@@ -180,7 +184,7 @@ smoke-test: lyra identity puppet-dsl yaml-dsl lyra-plugins generate
 	@rm deployment.json*
 
 smoke-test-ts: check-node generate-ts
-	@build/bin/lyra apply sample_ts || (echo "Failed apply typescript sample $$?"; exit 1)
+	@build/bin/lyra apply foobernetes_ts || (echo "Failed apply typescript foobernetes_ts $$?"; exit 1)
 
 smoke-test-go-wf:
 	build/bin/lyra apply imperative_go

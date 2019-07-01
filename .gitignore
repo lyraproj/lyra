@@ -4,6 +4,7 @@ build
 .idea/
 tmp/
 types/
+examples/ts-samples/src/types/
 LICENSE_TMPFILE.txt
 *.db
 *.bak

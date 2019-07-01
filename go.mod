@@ -19,7 +19,7 @@ require (
 	github.com/lyraproj/servicesdk v0.0.0-20190620124349-11383d404381
 	github.com/lyraproj/terraform-bridge v0.0.0-20190620131646-4567545a38d4
 	github.com/lyraproj/wfe v0.0.0-20190620124512-f8ac96e562dc
-	github.com/lyraproj/yaml-workflow v0.0.0-20190620124944-45145730b52a
+	github.com/lyraproj/yaml-workflow v0.0.0-20190701102709-c47d6184a495
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/pkg/errors v0.8.1 // indirect
