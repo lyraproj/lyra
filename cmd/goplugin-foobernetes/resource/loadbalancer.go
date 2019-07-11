@@ -12,6 +12,7 @@ type LoadBalancer struct {
 	LoadBalancerID *string
 	LoadBalancerIP *string
 	Location       *string
+	Policy         *string
 	Replica        *bool
 	WebServerIDs   []string
 	Tags           *map[string]string

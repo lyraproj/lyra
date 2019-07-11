@@ -101,11 +101,11 @@ steps:
       loadBalancerIP: 10.0.0.1
       location: eu1
       replica: false
+      policy: $policies.lb_policy
       webServerIDs: [$webServerID1, $webServerID2]
       tags:
         team: "lyra team"
         role: primary
-        policy: $policies.lb_policy
 
   # This second "loadbalancer" step cannot be typed implicitly since the
   # step name must be unique. The step also declares its parameters
@@ -119,11 +119,11 @@ steps:
       loadBalancerIP: '10.0.0.2'
       location: eu2
       replica: true
+      policy: $policies.lb_policy
       webServerIDs: [$webServerID1, $webServerID2]
       tags:
         team: "lyra team"
         role: secondary
-        policy: $policies.lb_policy
 
   # The state section of a step can be arbitrarily nested as shown in the
   # "config" section.

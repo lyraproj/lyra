@@ -5,12 +5,12 @@
       "LoadBalancerIP": "10.0.0.2",
       "Location": "eu2",
       "Replica": true,
+      "Policy": "rr",
       "WebServerIDs": [
         "ws-1887659887648687854",
         "ws-8944791324497208693"
       ],
       "Tags": {
-        "policy": "rr",
         "role": "secondary",
         "team": "lyra team"
       }
@@ -20,12 +20,12 @@
       "LoadBalancerIP": "10.0.0.1",
       "Location": "eu1",
       "Replica": false,
+      "Policy": "rr",
       "WebServerIDs": [
         "ws-1887659887648687854",
         "ws-8944791324497208693"
       ],
       "Tags": {
-        "policy": "rr",
         "role": "primary",
         "team": "lyra team"
       }
