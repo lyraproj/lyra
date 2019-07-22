@@ -12,6 +12,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	heroku "github.com/heroku/heroku-go/v5"
 	"github.com/lyraproj/lyra/cmd/goplugin-heroku/helper"
+	"github.com/lyraproj/servicesdk/serviceapi"
 )
 
 type Build struct {
@@ -99,6 +100,16 @@ func (*BuildHandler) Update(ctx context.Context, externalID string, desiredState
 	}
 
 	appId := extUrl.Path[1:] // Strip leading '/'
+	buildId := extUrl.Query().Get("build_id")
+
+	bpcheck, err := s.BuildInfo(ctx, appId, buildId)
+	if err != nil {
+		return nil, serviceapi.NotFound("Build", externalID)
+	}
+
+	if stateCheck(*desiredState, *bpcheck) {
+		return desiredState, nil
+	}
 
 	buildOpts, err := convertToBuildOpts(ctx, desiredState)
 	if err != nil {
@@ -252,4 +263,68 @@ func uploadSource(filePath, httpMethod, httpUrl string) error {
 	}
 
 	return nil
+}
+
+// This function loops through any Buildpacks defined in the Build and compares
+// them with the Buildpacks that exist in Heroku already. The status slice tracks
+// the list of results, which are then compared against each other for discrepencies.
+// If any elements of the slice are different from any other, the function returns false
+// telling the Update method that the Build needs to be updated.
+func buildpackCheck(desiredState Build, currentState heroku.Build) bool {
+	var result bool
+
+	// Heroku's Build API always returns the Buildpacks in the same order
+	// they were defined. That is used to advantage here if a user has defined
+	// one or more buildpacks in their workflow.
+	for i, packs := range desiredState.Buildpacks {
+		if strings.Contains(currentState.Buildpacks[i].URL, *packs.Name) || currentState.Buildpacks[i].URL == *packs.URL {
+			result = true
+		} else {
+			// If even one false is found, the buildpacks do not match the desiredState.
+			result = false
+			break
+		}
+	}
+
+	return result
+}
+
+// This function validates that the current state of the active Heroku Build
+// on a Heroku App actually is mismatched and requires an update to the App's
+// state. This is due to the way the Heroku API sends and recieves data.
+// Essentially this function re-validates a Read that returns a mismatch just
+// to be sure since the Lyra Read can return a mismatch when dealing with the
+// Buildpacks.
+func stateCheck(desiredState Build, currentState heroku.Build) bool {
+	var status []bool
+	var result bool
+
+	if desiredState.SourceBlob.Checksum != currentState.SourceBlob.Checksum {
+		status = append(status, false)
+	} else {
+		status = append(status, true)
+	}
+
+	if desiredState.SourceBlob.Version != currentState.SourceBlob.Version {
+		status = append(status, false)
+	} else {
+		status = append(status, true)
+	}
+
+	if len(desiredState.Buildpacks) == 0 {
+		status = append(status, true)
+	} else if len(desiredState.Buildpacks) > len(currentState.Buildpacks) {
+		status = append(status, false)
+	} else {
+		status = append(status, buildpackCheck(desiredState, currentState))
+	}
+
+	for p := 0; p < len(status); p++ {
+		result = (status[p] == status[0])
+		if !result {
+			break
+		}
+	}
+
+	return result
 }
